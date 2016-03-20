@@ -104,7 +104,12 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 <?php $this->block()->start( 'catalog/search' ); ?>
 <section class="catalog-filter-search">
 	<h2><?php echo $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
-	<input class="value" type="text" name="<?php echo $name; ?>" value="<?php echo $phrase; ?>" data-url="<?php echo $suggestUrl; ?>" data-hint="<?php echo $hint; ?>" /><!--
+	<input id="search_text" class="value" type="text" name="<?php echo $name; ?>" value="<?php echo $phrase; ?>" data-url="<?php echo $suggestUrl; ?>" data-hint="<?php echo $hint; ?>" />
+	<div style="display: inline-block; position: relative; right: 25pt;" class="pp_default" onclick="document.getElementById('search_text').value='';this.previousSibling.value=' ';this.previousSibling.placeholder='<?php $this->translate( 'client', 'search') ?>';this.parentNode.parentNode.submit();">
+		<!-- Because the width only takes effect for block elements. -->
+		<span style="display: inline-block;" class="pp_close"></span>
+	</div>
+	<!--
 	--><button class="standardbutton" type="submit"><?php echo $enc->html( $this->translate( 'client', 'Go' ), $enc::TRUST ); ?></button>
 <?php echo $this->get( 'searchBody' ); ?>
 </section>
