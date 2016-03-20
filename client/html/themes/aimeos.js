@@ -766,10 +766,13 @@ AimeosCatalog = {
 };
 
 
+
 /**
  * Catalog filter actions
  */
 AimeosCatalogFilter = {
+
+	MIN_INPUT_LEN: 3,
 
 	/**
 	 * Autocompleter for quick search
@@ -780,7 +783,7 @@ AimeosCatalogFilter = {
 
 		if(aimeosInputComplete.length) {
 			aimeosInputComplete.autocomplete({
-				minLength : 3,
+				minLength : AimeosCatalogFilter.MIN_INPUT_LEN,
 				delay : 200,
 				source : function(req, resp) {
 					var nameTerm = {};
@@ -815,7 +818,7 @@ AimeosCatalogFilter = {
 
 				var input = $(this);
 
-				if(input.val() !== '' && input.val().length < 3) {
+				if(input.val() !== '' && input.val().length < AimeosCatalogFilter.MIN_INPUT_LEN) {
 
 					if($(this).has(".search-hint").length === 0) {
 
