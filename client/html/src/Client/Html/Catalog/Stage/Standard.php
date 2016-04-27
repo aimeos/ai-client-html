@@ -200,7 +200,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return string|null String including HTML tags for the header on error
+	 * @return string String including HTML tags for the header on error
 	 */
 	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
 	{
@@ -393,7 +393,7 @@ class Standard
 	 * Returns the parameters used by the html client.
 	 *
 	 * @param array $params Associative list of all parameters
-	 * @param array $prefixes List of prefixes the parameters must start with
+	 * @param string[] $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
 	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) )
