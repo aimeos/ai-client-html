@@ -56,7 +56,6 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/basket/mini/product/standard/subparts';
 	private $subPartNames = array();
-	private $cache;
 
 
 	/**

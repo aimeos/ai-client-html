@@ -56,8 +56,6 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/detail/additional/property/standard/subparts';
 	private $subPartNames = array();
-	private $tags = array();
-	private $expire;
 	private $cache;
 
 

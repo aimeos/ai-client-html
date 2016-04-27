@@ -484,11 +484,11 @@ class Standard
 	/**
 	 * Adds a single product specified by its values to the basket.
 	 *
-	 * @param \Aimeos\Controller\Frontend\Iface $controller Basket frontend controller
+	 * @param \Aimeos\Controller\Frontend\Basket\Iface $controller Basket frontend controller
 	 * @param array $values Associative list of key/value pairs from the view specifying the product
 	 * @param array $options List of options for addProducts() in basket frontend controller
 	 */
-	protected function addProduct( \Aimeos\Controller\Frontend\Iface $controller, array $values, array $options )
+	protected function addProduct( \Aimeos\Controller\Frontend\Basket\Iface $controller, array $values, array $options )
 	{
 		$controller->addProduct(
 			( isset( $values['prodid'] ) ? (string) $values['prodid'] : '' ),
