@@ -313,7 +313,7 @@ class Standard
 			$ref = $view->config( 'client/html/catalog/filter/tree/domains', array( 'text', 'media' ) );
 
 
-			if( $currentid )
+			if( $currentid !== null )
 			{
 				$catItems = $controller->getCatalogPath( $currentid );
 

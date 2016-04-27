@@ -60,6 +60,7 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/checkout/standard/process/standard/subparts';
 	private $subPartNames = array();
+	private $cache;
 
 
 	/**
