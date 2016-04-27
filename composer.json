@@ -1,0 +1,23 @@
+{
+	"name": "aimeos/ai-client-html",
+	"description": "Aimeos ai-client-html extension",
+	"keywords": ["aimeos", "extension", "client", "html"],
+	"type": "aimeos-extension",
+	"license": "LGPL-3.0",
+	"prefer-stable": true,
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.3.3",
+		"composer/installers": "^1.0",
+		"aimeos/aimeos-core": "dev-master",
+		"aimeos/ai-controller-frontend": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"Aimeos\\Client\\Html\\": "client/html/src/Client/Html/"
+		},
+		"classmap": [
+			"client/html/src"
+		]
+	}
+}

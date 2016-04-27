@@ -1,0 +1,4 @@
+client/html/tests/tmp
+*.junit.xml
+*.log
+*.ser
