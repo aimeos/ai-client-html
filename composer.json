@@ -10,14 +10,17 @@
 		"php": ">=5.3.3",
 		"composer/installers": "^1.0",
 		"aimeos/aimeos-core": "dev-master",
+		"aimeos/ai-controller-jobs": "dev-master",
 		"aimeos/ai-controller-frontend": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
-			"Aimeos\\Client\\Html\\": "client/html/src/Client/Html/"
+			"Aimeos\\Client\\Html\\": "client/html/src/Client/Html/",
+			"Aimeos\\Controller\\Jobs\\": "client/html/src/Controller/Jobs/"
 		},
 		"classmap": [
-			"client/html/src"
+			"client/html/src",
+			"controller/jobs/src"
 		]
 	}
 }

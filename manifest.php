@@ -4,9 +4,11 @@ return array(
 	'name' => 'ai-client-html',
 	'depends' => array(
 		'aimeos-core',
+		'ai-controller-jobs',
 	),
 	'include' => array(
 		'client/html/src',
+		'controller/jobs/src',
 	),
 	'i18n' => array(
 		'client' => 'client/i18n',
@@ -21,6 +23,9 @@ return array(
 	'custom' => array(
 		'client/html/templates' => array(
 			'client/html/templates',
+		),
+		'controller/jobs' => array(
+			'controller/jobs/src',
 		),
 	),
 );
