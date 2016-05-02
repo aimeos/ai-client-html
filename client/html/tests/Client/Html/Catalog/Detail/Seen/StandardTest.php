@@ -55,6 +55,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( '', $output );
 	}
 
+
 	public function testGetSubClient()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
@@ -64,15 +65,21 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testProcess()
 	{
+		$prodid = $this->getProductItem()->getId();
+
+		$session = $this->context->getSession();
+		$session->set( 'aimeos/catalog/session/seen/list', array( $prodid => 'test' ) );
+		$session->set( 'aimeos/catalog/session/seen/cache', array( $prodid => 'test' ) );
+
 		$view = $this->object->getView();
-		$param = array( 'd_prodid' => $this->getProductItem()->getId() );
+		$param = array( 'd_prodid' => $prodid );
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
 		$this->object->process();
 
-		$str = $this->context->getSession()->get( 'aimeos/catalog/session/seen/list' );
+		$str = $session->get( 'aimeos/catalog/session/seen/list' );
 		$this->assertInternalType( 'array', $str );
 	}
 

@@ -62,6 +62,16 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertContains( 'actions-button-favorite', $output );
 	}
 
+
+	public function testModifyBody()
+	{
+		$content = '<!-- catalog.detail.actions -->test<!-- catalog.detail.actions -->';
+		$output = $this->object->modifyBody( $content, -1 );
+
+		$this->assertStringStartsWith( '<!-- catalog.detail.actions -->', $output );
+	}
+
+
 	public function testGetSubClient()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );

@@ -88,6 +88,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetSubClient()
+	{
+		$client = $this->object->getSubClient( 'detail' );
+		$this->assertInstanceOf( '\Aimeos\Client\Html\Iface', $client );
+	}
+
+
 	public function testGetSubClientInvalid()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
