@@ -14,28 +14,16 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	private $context;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
-
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $this->context, $paths );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
@@ -166,6 +154,54 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetBodyHtmlException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyFrontendException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyMShopException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
 	public function testGetSubClient()
 	{
 		$client = $this->object->getSubClient( 'items', 'Standard' );
@@ -184,6 +220,12 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
+	}
+
+
+	public function testProcess()
+	{
+		$this->object->process();
 	}
 
 

@@ -14,12 +14,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	private $context;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
@@ -30,12 +24,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
@@ -49,6 +37,22 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetHeaderException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Suggest\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertEquals( null, $object->getHeader() );
+	}
+
+
 	public function testGetBody()
 	{
 		$view = $this->object->getView();
@@ -59,6 +63,22 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertNotEquals( array(), $this->object->getView()->suggestTextItems );
 		$this->assertRegExp( '#"name":"Unterpro#smU', $output );
+	}
+
+
+	public function testGetBodyException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Suggest\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertEquals( null, $object->getBody() );
 	}
 
 

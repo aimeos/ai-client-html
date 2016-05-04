@@ -13,12 +13,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	private $context;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
@@ -29,12 +23,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
@@ -49,10 +37,74 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetHeaderException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Related\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertEquals( null, $object->getHeader() );
+	}
+
+
 	public function testGetBody()
 	{
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="aimeos basket-related">', $output );
+	}
+
+
+	public function testGetBodyHtmlException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Related\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyFrontendException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Related\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyMShopException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Related\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
 	}
 
 

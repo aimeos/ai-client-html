@@ -10,29 +10,20 @@ namespace Aimeos\Client\Html\Catalog\Count;
  */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
+	private $context;
 	private $object;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Count\Standard( \TestHelperHtml::getContext(), $paths );
+		$this->context = \TestHelperHtml::getContext();
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Count\Standard( $this->context, $paths );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
@@ -46,11 +37,43 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetHeaderException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Count\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertEquals( null, $object->getHeader() );
+	}
+
+
 	public function testGetBody()
 	{
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'var categoryCounts', $output );
+	}
+
+
+	public function testGetBodyException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Count\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertEquals( null, $object->getBody() );
 	}
 
 

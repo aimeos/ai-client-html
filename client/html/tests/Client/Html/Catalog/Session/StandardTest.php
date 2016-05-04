@@ -49,10 +49,90 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetHeaderException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Session\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertEquals( null, $object->getHeader() );
+	}
+
+
 	public function testGetBody()
 	{
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="aimeos catalog-session">', $output );
+	}
+
+
+	public function testGetBodyHtmlException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Session\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyFrontendException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Session\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyMShopException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Session\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Session\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'A non-recoverable error occured', $object->getBody() );
 	}
 
 
@@ -74,5 +154,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
+	}
+
+
+	public function testProcess()
+	{
+		$this->object->process();
 	}
 }

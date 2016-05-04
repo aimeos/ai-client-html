@@ -10,29 +10,20 @@ namespace Aimeos\Client\Html\Locale\Select;
  */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
+	private $context;
 	private $object;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
+		$this->context = \TestHelperHtml::getContext();
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Locale\Select\Standard( \TestHelperHtml::getContext(), $paths );
+
+		$this->object = new \Aimeos\Client\Html\Locale\Select\Standard( $this->context, $paths );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
@@ -51,6 +42,22 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetHeaderException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertEquals( null, $object->getHeader() );
+	}
+
+
 	public function testGetBody()
 	{
 		$view = $this->object->getView();
@@ -65,6 +72,70 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertStringStartsWith( '<section class="aimeos locale-select">', $output );
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 0, count( $tags ) );
+	}
+
+
+	public function testGetBodyHtmlException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyFrontendException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyMShopException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'A non-recoverable error occured', $object->getBody() );
 	}
 
 
