@@ -833,7 +833,6 @@ class Standard
 
 				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 )
 				{
-					$msg =
 					$invalid[$key] = $name;
 					unset( $params[$key] );
 				}
