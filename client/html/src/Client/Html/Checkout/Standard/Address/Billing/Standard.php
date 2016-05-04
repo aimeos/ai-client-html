@@ -271,89 +271,7 @@ class Standard
 				return;
 			}
 
-			$context = $this->getContext();
-			$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
-
-
-			/** client/html/checkout/standard/address/billing/disable-new
-			 * Disables the option to enter a new billing address for an order
-			 *
-			 * Besides the main billing address, customers can usually enter a new
-			 * billing address as well. To suppress displaying the form fields for
-			 * a billing address, you can set this configuration option to "1".
-			 *
-			 * Until 2015-02, the configuration option was available as
-			 * "client/html/common/address/billing/disable-new" starting from 2014-03.
-			 *
-			 * @param boolean A value of "1" to disable, "0" enables the billing address form
-			 * @since 2015.02
-			 * @category User
-			 * @category Developer
-			 * @see client/html/checkout/standard/address/billing/salutations
-			 * @see client/html/checkout/standard/address/billing/mandatory
-			 * @see client/html/checkout/standard/address/billing/optional
-			 * @see client/html/checkout/standard/address/billing/hidden
-			 */
-			$disable = $view->config( 'client/html/checkout/standard/address/billing/disable-new', false );
-			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
-
-			if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
-			{
-				$params = $view->param( 'ca_billing', array() );
-				$invalid = $this->checkFields( $params );
-
-				if( count( $invalid ) > 0 )
-				{
-					$view->billingError = $invalid;
-					throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
-				}
-
-				$basketCtrl->setAddress( $type, $params );
-			}
-			else // existing address
-			{
-				$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-
-				$search = $customerManager->createSearch( true );
-				$expr = array(
-					$search->compare( '==', 'customer.id', $option ),
-					$search->getConditions(),
-				);
-				$search->setConditions( $search->combine( '&&', $expr ) );
-
-				$items = $customerManager->searchItems( $search );
-
-				if( ( $item = reset( $items ) ) === false || $option != $context->getUserId() ) {
-					throw new \Aimeos\Client\Html\Exception( sprintf( 'Customer with ID "%1$s" not found', $option ) );
-				}
-
-				$invalid = array();
-				$addr = $item->getPaymentAddress();
-				$params = $view->param( 'ca_billing_' . $option, array() );
-
-				if( !empty( $params ) )
-				{
-					$list = array();
-					$invalid = $this->checkFields( $params );
-
-					foreach( $params as $key => $value ) {
-						$list[str_replace( 'order.base', 'customer', $key )] = $value;
-					}
-
-					$addr->fromArray( $list );
-					$item->setPaymentAddress( $addr );
-
-					$customerManager->saveItem( $item );
-				}
-
-				if( count( $invalid ) > 0 )
-				{
-					$view->billingError = $invalid;
-					throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
-				}
-
-				$basketCtrl->setAddress( $type, $addr );
-			}
+			$this->setAddress( $view );
 
 			parent::process();
 		}
@@ -512,139 +430,14 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/optional
 		 */
 
-		/** client/html/checkout/standard/address/validate/company
-		 * Regular expression to check the "company" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/vatid
-		 * Regular expression to check the "vatid" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/salutation
-		 * Regular expression to check the "salutation" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/firstname
-		 * Regular expression to check the "firstname" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/lastname
-		 * Regular expression to check the "lastname" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/address1
-		 * Regular expression to check the "address1" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/address2
-		 * Regular expression to check the "address2" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/address3
-		 * Regular expression to check the "address3" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/postal
-		 * Regular expression to check the "postal" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/city
-		 * Regular expression to check the "city" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/state
-		 * Regular expression to check the "state" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/languageid
-		 * Regular expression to check the "languageid" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/countryid
-		 * Regular expression to check the "countryid" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/telephone
-		 * Regular expression to check the "telephone" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/telefax
-		 * Regular expression to check the "telefax" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/email
-		 * Regular expression to check the "email" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		/** client/html/checkout/standard/address/validate/website
-		 * Regular expression to check the "website" address value
-		 *
-		 * @see client/html/checkout/standard/address/validate
-		 */
-
-		$invalid = array();
 		$allFields = array_flip( array_merge( $mandatory, $optional ) );
+		$invalid = $this->validateFields( $params, $allFields );
+		$this->checkSalutation( $params, $mandatory );
 
-		foreach( $params as $key => $value )
+		foreach( $invalid as $key => $name )
 		{
-			if( isset( $allFields[$key] ) )
-			{
-				$name = substr( $key, 19 );
-				$regex = $view->config( 'client/html/checkout/standard/address/validate/' . $name );
-
-				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 )
-				{
-					$msg = $view->translate( 'client', 'Billing address part "%1$s" is invalid' );
-					$invalid[$key] = sprintf( $msg, $name );
-					unset( $params[$key] );
-				}
-			}
-			else
-			{
-				unset( $params[$key] );
-			}
-		}
-
-
-		if( isset( $params['order.base.address.salutation'] )
-			&& $params['order.base.address.salutation'] === \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_COMPANY
-			&& in_array( 'order.base.address.company', $mandatory ) === false
-		) {
-			$mandatory[] = 'order.base.address.company';
-		} else {
-			$params['order.base.address.company'] = $params['order.base.address.vatid'] = '';
+			$msg = $view->translate( 'client', 'Billing address part "%1$s" is invalid' );
+			$invalid[$key] = sprintf( $msg, $name );
 		}
 
 		foreach( $mandatory as $key )
@@ -662,6 +455,56 @@ class Standard
 
 
 	/**
+	 * Additional checks for the salutation
+	 *
+	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
+	 * @param array &$mandatory List of mandatory field names
+	 * @since 2016.05
+	 */
+	protected function checkSalutation( array &$params, array &$mandatory )
+	{
+		if( isset( $params['order.base.address.salutation'] )
+			&& $params['order.base.address.salutation'] === \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_COMPANY
+			&& in_array( 'order.base.address.company', $mandatory ) === false
+		) {
+			$mandatory[] = 'order.base.address.company';
+		} else {
+			$params['order.base.address.company'] = $params['order.base.address.vatid'] = '';
+		}
+	}
+
+
+	/**
+	 * Returns the customer item for the given ID
+	 *
+	 * @param string $id Unique customer ID
+	 * @return \Aimeos\MShop\Customer\Item\Iface Customer item
+	 * @throws \Aimeos\Client\Html\Exception If no customer item is available
+	 * @since 2016.05
+	 */
+	protected function getCustomerItem( $id )
+	{
+		$context = $this->getContext();
+		$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+
+		$search = $customerManager->createSearch( true );
+		$expr = array(
+				$search->compare( '==', 'customer.id', $id ),
+				$search->getConditions(),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+
+		$items = $customerManager->searchItems( $search );
+
+		if( ( $item = reset( $items ) ) === false || $id != $context->getUserId() ) {
+			throw new \Aimeos\Client\Html\Exception( sprintf( 'Customer with ID "%1$s" not found', $id ) );
+		}
+
+		return $item;
+	}
+
+
+	/**
 	 * Returns the list of sub-client names configured for the client.
 	 *
 	 * @return array List of HTML client names
@@ -669,6 +512,89 @@ class Standard
 	protected function getSubClientNames()
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+	}
+
+
+	/**
+	 * Sets the new address
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @throws \Aimeos\Client\Html\Exception If an error occurs
+	 * @since 2016.05
+	 */
+	protected function setAddress( \Aimeos\MW\View\Iface $view )
+	{
+		$context = $this->getContext();
+		$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+
+
+		/** client/html/checkout/standard/address/billing/disable-new
+		 * Disables the option to enter a new billing address for an order
+		 *
+		 * Besides the main billing address, customers can usually enter a new
+		 * billing address as well. To suppress displaying the form fields for
+		 * a billing address, you can set this configuration option to "1".
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/billing/disable-new" starting from 2014-03.
+		 *
+		 * @param boolean A value of "1" to disable, "0" enables the billing address form
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/billing/salutations
+		 * @see client/html/checkout/standard/address/billing/mandatory
+		 * @see client/html/checkout/standard/address/billing/optional
+		 * @see client/html/checkout/standard/address/billing/hidden
+		*/
+		$disable = $view->config( 'client/html/checkout/standard/address/billing/disable-new', false );
+		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
+
+		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
+		{
+			$params = $view->param( 'ca_billing', array() );
+			$invalid = $this->checkFields( $params );
+
+			if( count( $invalid ) > 0 )
+			{
+				$view->billingError = $invalid;
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
+			}
+
+			$basketCtrl->setAddress( $type, $params );
+		}
+		else // existing address
+		{
+			$item = $this->getCustomerItem( $option );
+			$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+
+			$invalid = array();
+			$addr = $item->getPaymentAddress();
+			$params = $view->param( 'ca_billing_' . $option, array() );
+
+			if( !empty( $params ) )
+			{
+				$list = array();
+				$invalid = $this->checkFields( $params );
+
+				foreach( $params as $key => $value ) {
+					$list[str_replace( 'order.base', 'customer', $key )] = $value;
+				}
+
+				$addr->fromArray( $list );
+				$item->setPaymentAddress( $addr );
+
+				$customerManager->saveItem( $item );
+			}
+
+			if( count( $invalid ) > 0 )
+			{
+				$view->billingError = $invalid;
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
+			}
+
+			$basketCtrl->setAddress( $type, $addr );
+		}
 	}
 
 
@@ -779,5 +705,145 @@ class Standard
 		}
 
 		return $this->cache;
+	}
+
+
+	/**
+	 * Validate the address key/value pairs using regular expressions
+	 *
+	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
+	 * @param array $fields List of field names to validate
+	 * @return array List of invalid address keys
+	 * @since 2016.05
+	 */
+	protected function validateFields( array &$params, array $fields )
+	{
+		$config = $this->getContext()->getConfig();
+
+		/** client/html/checkout/standard/address/validate/company
+		 * Regular expression to check the "company" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/vatid
+		 * Regular expression to check the "vatid" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/salutation
+		 * Regular expression to check the "salutation" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/firstname
+		 * Regular expression to check the "firstname" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/lastname
+		 * Regular expression to check the "lastname" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/address1
+		 * Regular expression to check the "address1" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/address2
+		 * Regular expression to check the "address2" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/address3
+		 * Regular expression to check the "address3" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/postal
+		 * Regular expression to check the "postal" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/city
+		 * Regular expression to check the "city" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/state
+		 * Regular expression to check the "state" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/languageid
+		 * Regular expression to check the "languageid" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/countryid
+		 * Regular expression to check the "countryid" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/telephone
+		 * Regular expression to check the "telephone" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/telefax
+		 * Regular expression to check the "telefax" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/email
+		 * Regular expression to check the "email" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		/** client/html/checkout/standard/address/validate/website
+		 * Regular expression to check the "website" address value
+		 *
+		 * @see client/html/checkout/standard/address/validate
+		 */
+
+		$invalid = array();
+
+		foreach( $params as $key => $value )
+		{
+			if( isset( $fields[$key] ) )
+			{
+				$name = substr( $key, 19 );
+				$regex = $config->get( 'client/html/checkout/standard/address/validate/' . $name );
+
+				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 )
+				{
+					$msg =
+					$invalid[$key] = $name;
+					unset( $params[$key] );
+				}
+			}
+			else
+			{
+				unset( $params[$key] );
+			}
+		}
+
+		return $invalid;
 	}
 }

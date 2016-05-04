@@ -10,32 +10,23 @@ namespace Aimeos\Client\Html\Catalog\Filter\Tree;
  */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
+	private $context;
 	private $object;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Tree\Standard( \TestHelperHtml::getContext(), $paths );
+		$this->context = \TestHelperHtml::getContext();
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Tree\Standard( $this->context, $paths );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->context, $this->object );
 	}
 
 
@@ -78,12 +69,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( \TestHelperHtml::getContext() );
 		$node = $catalogManager->getTree( null, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
+		$this->context->getConfig()->set( 'client/html/catalog/filter/tree/levels-always', 2 );
+
 		$view = $this->object->getView();
-
-		$conf = new \Aimeos\MW\Config\PHPArray( array( 'client' => array( 'html' => array( 'catalog' => array( 'filter' => array( 'tree' => array( 'levels-always' => 2 ) ) ) ) ) ) );
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $conf );
-		$view->addHelper( 'config', $helper );
-
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $node->getId() ) );
 		$view->addHelper( 'param', $helper );
 
@@ -102,12 +90,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( \TestHelperHtml::getContext() );
 		$node = $catalogManager->getTree( null, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
 
+		$this->context->getConfig()->set( 'client/html/catalog/filter/tree/levels-only', 1 );
+
 		$view = $this->object->getView();
-
-		$conf = new \Aimeos\MW\Config\PHPArray( array( 'client' => array( 'html' => array( 'catalog' => array( 'filter' => array( 'tree' => array( 'levels-only' => 1 ) ) ) ) ) ) );
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $conf );
-		$view->addHelper( 'config', $helper );
-
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $node->getChild( 0 )->getId() ) );
 		$view->addHelper( 'param', $helper );
 

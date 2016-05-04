@@ -297,22 +297,35 @@ abstract class Base
 			$expires[] = $date;
 		}
 
-		if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface )
-		{
-			foreach( $item->getListItems() as $listitem )
-			{
-				if( $tagAll === true ) {
-					$tags[] = str_replace( '/', '_', $listitem->getDomain() ) . '-' . $listitem->getRefId();
-				}
-
-				if( ( $date = $listitem->getDateEnd() ) !== null ) {
-					$expires[] = $date;
-				}
-			}
+		if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface ) {
+			$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
 		}
 
 		if( !empty( $expires ) ) {
 			$expire = min( $expires );
+		}
+	}
+
+
+	/**
+	 * Adds expire date and tags for referenced items
+	 *
+	 * @param \Aimeos\MShop\Common\Item\ListRef\Iface $item Item with associated list items
+	 * @param array &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @param array &$tags List of tags the new tags will be added to
+	 * @param boolean $tagAll True of tags for all items should be added, false if only for the main item
+	 */
+	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListRef\Iface $item, array &$expires, array &$tags, $tagAll )
+	{
+		foreach( $item->getListItems() as $listitem )
+		{
+			if( $tagAll === true ) {
+				$tags[] = str_replace( '/', '_', $listitem->getDomain() ) . '-' . $listitem->getRefId();
+			}
+
+			if( ( $date = $listitem->getDateEnd() ) !== null ) {
+				$expires[] = $date;
+			}
 		}
 	}
 

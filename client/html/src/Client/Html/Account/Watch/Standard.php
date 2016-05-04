@@ -282,43 +282,18 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$ids = $view->param( 'wat_id', array() );
+		$userId = $context->getUserId();
+		$ids = (array) $view->param( 'wat_id', array() );
 
-		if( $context->getUserId() != null && !empty( $ids ) )
+		if( $userId != null && !empty( $ids ) )
 		{
-			$typeItem = $this->getTypeItem( 'customer/lists/type', 'product', 'watch' );
+			$typeId = $this->getTypeItem( 'customer/lists/type', 'product', 'watch' )->getId();
 			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
-
-			$search = $manager->createSearch();
-			$expr = array(
-				$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
-				$search->compare( '==', 'customer.lists.refid', $ids ),
-				$search->compare( '==', 'customer.lists.domain', 'product' ),
-				$search->compare( '==', 'customer.lists.typeid', $typeItem->getId() ),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
-
-			$items = array();
-			foreach( $manager->searchItems( $search ) as $item ) {
-				$items[$item->getRefId()] = $item;
-			}
-
+			$items = $this->getListItems( $manager, $ids, $typeId, $userId );
 
 			switch( $view->param( 'wat_action' ) )
 			{
 				case 'add':
-
-					$search = $manager->createSearch();
-					$expr = array(
-						$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
-						$search->compare( '==', 'customer.lists.typeid', $typeItem->getId() ),
-						$search->compare( '==', 'customer.lists.domain', 'product' ),
-					);
-					$search->setConditions( $search->combine( '&&', $expr ) );
-					$search->setSlice( 0, 0 );
-
-					$total = 0;
-					$manager->searchItems( $search, array(), $total );
 
 					/** client/html/account/watch/standard/maxitems
 					 * Maximum number of products that can be watched in parallel
@@ -339,79 +314,178 @@ class Standard
 					 * @category Developer
 					 */
 					$max = $context->getConfig()->get( 'client/html/account/watch/standard/maxitems', 100 );
+					$cnt = count( $ids );
 
-					$item = $manager->createItem();
-					$item->setParentId( $context->getUserId() );
-					$item->setTypeId( $typeItem->getId() );
-					$item->setDomain( 'product' );
-					$item->setStatus( 1 );
-
-					foreach( (array) $view->param( 'wat_id', array() ) as $id )
+					if( $this->checkLimit( $manager, $typeId, $userId, $max, $cnt ) === false )
 					{
-						if( $total >= $max )
-						{
-							$error = array( sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max ) );
-							$view->watchErrorList = $view->get( 'watchErrorList', array() ) + $error;
-							break;
-						}
-
-						if( !isset( $items[$id] ) )
-						{
-							$item->setId( null );
-							$item->setRefId( $id );
-
-							$manager->saveItem( $item );
-							$manager->moveItem( $item->getId() );
-
-							$total++;
-						}
+						$error = sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max );
+						$view->watchErrorList = $view->get( 'watchErrorList', array() ) + array( $error );
+						break;
 					}
 
+					$this->addItems( $manager, $items, $ids, $typeId, $userId );
 					break;
 
 				case 'edit':
 
-					foreach( (array) $view->param( 'wat_id', array() ) as $id )
-					{
-						if( isset( $items[$id] ) )
-						{
-							$item = $items[$id];
-
-							$config = array(
-								'timeframe' => $view->param( 'wat_timeframe', 7 ),
-								'pricevalue' => $view->param( 'wat_pricevalue', '0.00' ),
-								'price' => $view->param( 'wat_price', 0 ),
-								'stock' => $view->param( 'wat_stock', 0 ),
-								'currency' => $context->getLocale()->getCurrencyId(),
-							);
-							$time = time() + ( $config['timeframe'] + 1 ) * 86400;
-
-							$item->setDateEnd( date( 'Y-m-d 00:00:00', $time ) );
-							$item->setConfig( $config );
-
-							$manager->saveItem( $item );
-						}
-					}
-
+					$config = array(
+						'timeframe' => $view->param( 'wat_timeframe', 7 ),
+						'pricevalue' => $view->param( 'wat_pricevalue', '0.00' ),
+						'price' => $view->param( 'wat_price', 0 ),
+						'stock' => $view->param( 'wat_stock', 0 ),
+						'currency' => $context->getLocale()->getCurrencyId(),
+					);
+					$this->editItems( $manager, $items, $ids, $config );
 					break;
 
 				case 'delete':
 
-					$listIds = array();
-
-					foreach( (array) $view->param( 'wat_id', array() ) as $id )
-					{
-						if( isset( $items[$id] ) ) {
-							$listIds[] = $items[$id]->getId();
-						}
-					}
-
-					$manager->deleteItems( $listIds );
+					$this->deleteItems( $manager, $items, $ids );
 					break;
 			}
 		}
 
 		parent::process();
+	}
+
+
+	/**
+	 * Tests if the maximum number of entries per user is already reached
+	 *
+	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
+	 * @param string $typeId List type ID of the referenced items
+	 * @param string $userId Unique user ID
+	 * @param integer $max Maximum number of items that are allowed
+	 * @param integer $cnt Number of items that should be added
+	 * @return boolean True if items can be added, false if not
+	 */
+	protected function checkLimit( \Aimeos\MShop\Common\Manager\Iface $manager, $typeId, $userId, $max, $cnt )
+	{
+		$search = $manager->createSearch();
+		$expr = array(
+			$search->compare( '==', 'customer.lists.parentid', $userId ),
+			$search->compare( '==', 'customer.lists.typeid', $typeId ),
+			$search->compare( '==', 'customer.lists.domain', 'product' ),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setSlice( 0, 0 );
+
+		$total = 0;
+		$manager->searchItems( $search, array(), $total );
+
+		if( $total + $cnt > $max ) {
+			return false;
+		}
+
+		return true;
+	}
+
+
+	/**
+	 * Adds one or more list items to the given user
+	 *
+	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
+	 * @param array $listItems Associative list of the reference IDs as keys and the list items as values
+	 * @param array $ids List of referenced IDs
+	 * @param string $typeId List type ID of the referenced items
+	 * @param string $userId Unique user ID
+	 */
+	protected function addItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids, $typeId, $userId )
+	{
+		$item = $manager->createItem();
+		$item->setParentId( $userId );
+		$item->setTypeId( $typeId );
+		$item->setDomain( 'product' );
+		$item->setStatus( 1 );
+
+		foreach( $ids as $id )
+		{
+			if( !isset( $listItems[$id] ) )
+			{
+				$item->setId( null );
+				$item->setRefId( $id );
+
+				$manager->saveItem( $item );
+				$manager->moveItem( $item->getId() );
+			}
+		}
+	}
+
+
+	/**
+	 * Removes the list items for the given reference IDs
+	 *
+	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
+	 * @param array $listItems Associative list of the reference IDs as keys and the list items as values
+	 * @param array $ids List of referenced IDs
+	 */
+	protected function deleteItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids )
+	{
+		$listIds = array();
+
+		foreach( $ids as $id )
+		{
+			if( isset( $listItems[$id] ) ) {
+				$listIds[] = $listItems[$id]->getId();
+			}
+		}
+
+		$manager->deleteItems( $listIds );
+	}
+
+
+	/**
+	 * Updates the list items for the given reference IDs
+	 *
+	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
+	 * @param array $listItems Associative list of the reference IDs as keys and the list items as values
+	 * @param array $ids List of referenced IDs
+	 * @param array $config Configuration settins with "timeframe", "pricevalue", "price", "stock" and "currency"
+	 */
+	protected function editItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids, array $config )
+	{
+		foreach( $ids as $id )
+		{
+			if( isset( $listItems[$id] ) )
+			{
+				$item = $listItems[$id];
+				$time = time() + ( $config['timeframe'] + 1 ) * 86400;
+
+				$item->setDateEnd( date( 'Y-m-d 00:00:00', $time ) );
+				$item->setConfig( $config );
+
+				$manager->saveItem( $item );
+			}
+		}
+	}
+
+
+	/**
+	 * Returns the list items associated to the given user ID
+	 *
+	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
+	 * @param array $refIds IDs of the referenced items
+	 * @param string $typeId List type ID of the referenced items
+	 * @param string $userId Unique user ID
+	 * @return array Associative list of the reference IDs as keys and the list items as values
+	 */
+	protected function getListItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $refIds, $typeId, $userId )
+	{
+		$search = $manager->createSearch();
+		$expr = array(
+			$search->compare( '==', 'customer.lists.parentid', $userId ),
+			$search->compare( '==', 'customer.lists.refid', $refIds ),
+			$search->compare( '==', 'customer.lists.domain', 'product' ),
+			$search->compare( '==', 'customer.lists.typeid', $typeId ),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+
+		$items = array();
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$items[$item->getRefId()] = $item;
+		}
+
+		return $items;
 	}
 
 

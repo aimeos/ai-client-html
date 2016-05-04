@@ -313,20 +313,8 @@ class Standard
 			$ref = $view->config( 'client/html/catalog/filter/tree/domains', array( 'text', 'media' ) );
 
 
-			if( $currentid !== null )
-			{
-				$catItems = $controller->getCatalogPath( $currentid );
-
-				if( $startid )
-				{
-					foreach( $catItems as $key => $item )
-					{
-						if( $key == $startid ) {
-							break;
-						}
-						unset( $catItems[$key] );
-					}
-				}
+			if( $currentid !== null ) {
+				$catItems = $this->filterCatalogPath( $controller->getCatalogPath( $currentid ), $startid );
 			}
 
 			if( ( $node = reset( $catItems ) ) === false )
@@ -336,65 +324,8 @@ class Standard
 			}
 
 
-			$search = $controller->createCatalogFilter();
-			$expr = $search->compare( '==', 'catalog.parentid', array_keys( $catItems ) );
-			$expr = $search->combine( '||', array( $expr, $search->compare( '==', 'catalog.id', $node->getId() ) ) );
-
-			/** client/html/catalog/filter/tree/levels-always
-			 * The number of levels in the category tree that should be always displayed
-			 *
-			 * Usually, only the root node and the first level of the category
-			 * tree is shown in the frontend. Only if the user clicks on a
-			 * node in the first level, the page reloads and the sub-nodes of
-			 * the chosen category are rendered as well.
-			 *
-			 * Using this configuration option you can enforce the given number
-			 * of levels to be always displayed. The root node uses level 0, the
-			 * categories below level 1 and so on.
-			 *
-			 * In most cases you can set this value via the administration interface
-			 * of the shop application. In that case you often can configure the
-			 * levels individually for each catalog filter.
-			 *
-			 * @param integer Number of tree levels
-			 * @since 2014.03
-			 * @category User
-			 * @category Developer
-			 * @see client/html/catalog/filter/tree/startid
-			 * @see client/html/catalog/filter/tree/levels-only
-			 * @see client/html/catalog/filter/tree/domains
-			 */
-			if( ( $levels = $view->config( 'client/html/catalog/filter/tree/levels-always' ) ) != null ) {
-				$expr = $search->combine( '||', array( $expr, $search->compare( '<=', 'catalog.level', $levels ) ) );
-			}
-
-			/** client/html/catalog/filter/tree/levels-only
-			 * No more than this number of levels in the category tree should be displayed
-			 *
-			 * If the user clicks on a category node, the page reloads and the
-			 * sub-nodes of the chosen category are rendered as well.
-			 * Using this configuration option you can enforce that no more than
-			 * the given number of levels will be displayed at all. The root
-			 * node uses level 0, the categories below level 1 and so on.
-			 *
-			 * In most cases you can set this value via the administration interface
-			 * of the shop application. In that case you often can configure the
-			 * levels individually for each catalog filter.
-			 *
-			 * @param integer Number of tree levels
-			 * @since 2014.03
-			 * @category User
-			 * @category Developer
-			 * @see client/html/catalog/filter/tree/startid
-			 * @see client/html/catalog/filter/tree/levels-always
-			 * @see client/html/catalog/filter/tree/domains
-			 */
-			if( ( $levels = $view->config( 'client/html/catalog/filter/tree/levels-only' ) ) != null ) {
-				$expr = $search->combine( '&&', array( $expr, $search->compare( '<=', 'catalog.level', $levels ) ) );
-			}
-
-			$search->setConditions( $expr );
-
+			$catIds = array_keys( $catItems );
+			$search = $this->addSearchConditions( $controller->createCatalogFilter(), $catIds, $node->getId() );
 			$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE;
 
 			$view->treeCatalogPath = $catItems;
@@ -411,6 +342,95 @@ class Standard
 		$tags = array_merge( $tags, $this->tags );
 
 		return $this->cache;
+	}
+
+
+	/**
+	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given catalog tree.
+	 *
+	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Tree node, maybe with sub-nodes
+	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @param array &$tags List of tags the new tags will be added to
+	 */
+	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, &$expire, array &$tags = array() )
+	{
+		$this->addMetaItem( $tree, 'catalog', $expire, $tags );
+
+		foreach( $tree->getChildren() as $child ) {
+			$this->addMetaItemCatalog( $child, $expire, $tags );
+		}
+	}
+
+
+	/**
+	 * Adds the conditions for searching the catalog nodes
+	 *
+	 * @param \Aimeos\MW\Criteria\Iface $search Search object
+	 * @return \Aimeos\MW\Criteria\Iface Enhanced search object
+	 */
+	protected function addSearchConditions( \Aimeos\MW\Criteria\Iface $search, array $catIds, $catId )
+	{
+		$config = $this->getContext()->getConfig();
+
+		$expr = $search->compare( '==', 'catalog.parentid', $catIds );
+		$expr = $search->combine( '||', array( $expr, $search->compare( '==', 'catalog.id', $catId ) ) );
+
+		/** client/html/catalog/filter/tree/levels-always
+		 * The number of levels in the category tree that should be always displayed
+		 *
+		 * Usually, only the root node and the first level of the category
+		 * tree is shown in the frontend. Only if the user clicks on a
+		 * node in the first level, the page reloads and the sub-nodes of
+		 * the chosen category are rendered as well.
+		 *
+		 * Using this configuration option you can enforce the given number
+		 * of levels to be always displayed. The root node uses level 0, the
+		 * categories below level 1 and so on.
+		 *
+		 * In most cases you can set this value via the administration interface
+		 * of the shop application. In that case you often can configure the
+		 * levels individually for each catalog filter.
+		 *
+		 * @param integer Number of tree levels
+		 * @since 2014.03
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/filter/tree/startid
+		 * @see client/html/catalog/filter/tree/levels-only
+		 * @see client/html/catalog/filter/tree/domains
+		*/
+		if( ( $levels = $config->get( 'client/html/catalog/filter/tree/levels-always' ) ) != null ) {
+			$expr = $search->combine( '||', array( $expr, $search->compare( '<=', 'catalog.level', $levels ) ) );
+		}
+
+		/** client/html/catalog/filter/tree/levels-only
+		 * No more than this number of levels in the category tree should be displayed
+		 *
+		 * If the user clicks on a category node, the page reloads and the
+		 * sub-nodes of the chosen category are rendered as well.
+		 * Using this configuration option you can enforce that no more than
+		 * the given number of levels will be displayed at all. The root
+		 * node uses level 0, the categories below level 1 and so on.
+		 *
+		 * In most cases you can set this value via the administration interface
+		 * of the shop application. In that case you often can configure the
+		 * levels individually for each catalog filter.
+		 *
+		 * @param integer Number of tree levels
+		 * @since 2014.03
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/filter/tree/startid
+		 * @see client/html/catalog/filter/tree/levels-always
+		 * @see client/html/catalog/filter/tree/domains
+		 */
+		if( ( $levels = $config->get( 'client/html/catalog/filter/tree/levels-only' ) ) != null ) {
+			$expr = $search->combine( '&&', array( $expr, $search->compare( '<=', 'catalog.level', $levels ) ) );
+		}
+
+		$search->setConditions( $expr );
+
+		return $search;
 	}
 
 
@@ -449,18 +469,25 @@ class Standard
 
 
 	/**
-	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given catalog tree.
+	 * Filters the items in the path to the root of the catalog tree
 	 *
-	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Tree node, maybe with sub-nodes
-	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
-	 * @param array &$tags List of tags the new tags will be added to
+	 * @param array $catItems Associative list of catalog IDs as keys and items implementing \Aimeos\Catalog\Item\Iface as values
+	 * @param string $startid Catalog ID the subtree starts from
+	 * @return array Filtered associative list of catalog items
 	 */
-	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, &$expire, array &$tags = array() )
+	protected function filterCatalogPath( array $catItems, $startid )
 	{
-		$this->addMetaItem( $tree, 'catalog', $expire, $tags );
-
-		foreach( $tree->getChildren() as $child ) {
-			$this->addMetaItemCatalog( $child, $expire, $tags );
+		if( $startid )
+		{
+			foreach( $catItems as $key => $item )
+			{
+				if( $key == $startid ) {
+					break;
+				}
+				unset( $catItems[$key] );
+			}
 		}
+
+		return $catItems;
 	}
 }
