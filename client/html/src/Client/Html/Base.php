@@ -43,6 +43,19 @@ abstract class Base
 
 
 	/**
+	 * Catches unknown methods
+	 *
+	 * @param string $name Name of the method
+	 * @param array $param List of method parameter
+	 * @return boolean False in every case
+	 */
+	public function __call( $name, array $param )
+	{
+		return false;
+	}
+
+
+	/**
 	 * Returns the view object that will generate the HTML output.
 	 *
 	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output

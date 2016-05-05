@@ -101,6 +101,18 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testProcess()
 	{
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'cs_order' => 1 ) );
+		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
+
+		$this->setExpectedException( '\Aimeos\MShop\Order\Exception' );
+		$this->object->process();
+	}
+
+
+	public function testProcessSkip()
+	{
 		$this->object->process();
 	}
 }

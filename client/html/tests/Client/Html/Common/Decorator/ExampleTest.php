@@ -28,7 +28,7 @@ class ExampleTest extends \PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$context = \TestHelperHtml::getContext();
-		$methods = array( 'getHeader', 'getBody' );
+		$methods = array( 'getHeader', 'getBody', 'testMethod' );
 
 		$this->client = $this->getMock( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard', $methods, array( $context, array() ) );
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, array() );
@@ -38,7 +38,15 @@ class ExampleTest extends \PHPUnit_Framework_TestCase
 
 	public function testCall()
 	{
-		$this->assertInternalType( 'boolean', $this->object->additionalMethod() );
+		$this->client->expects( $this->once() )->method( 'testMethod' ) ->will( $this->returnValue( true ) );
+		$this->assertTrue( $this->object->testMethod() );
+	}
+
+
+	public function testCallInvalid()
+	{
+		$this->setExpectedException( '\Aimeos\Client\Html\Exception' );
+		$this->object->invalidMethod();
 	}
 
 

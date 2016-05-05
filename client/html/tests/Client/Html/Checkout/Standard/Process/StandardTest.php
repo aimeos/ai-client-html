@@ -48,6 +48,16 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetHeader()
 	{
+		$view = $this->object->getView();
+		$view->standardStepActive = 'process';
+
+		$output = $this->object->getHeader();
+		$this->assertNotNull( $output );
+	}
+
+
+	public function testGetHeaderSkip()
+	{
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
 	}
@@ -139,6 +149,110 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testProcessNoStep()
 	{
 		$this->assertNull( $this->object->process() );
+	}
+
+
+	public function testProcessHtmlException()
+	{
+		$view = $this->object->getView();
+		$param = array( 'c_step' => 'process' );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$orderid = $this->getOrder( '2008-02-15 12:34:56' )->getId();
+		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
+
+		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+		$mock = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Checkout\\Standard\\Process\\Standard' )
+			->setConstructorArgs( array( $this->context, $paths ) )
+			->setMethods( array( 'getOrderServiceCode' ) )
+			->getMock();
+
+		$mock->expects( $this->once() )->method( 'getOrderServiceCode' )
+			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
+
+		$mock->setView( $view );
+		$mock->process();
+
+		$this->assertInternalType( 'array', $view->standardErrorList );
+	}
+
+
+	public function testProcessFrontendException()
+	{
+		$view = $this->object->getView();
+		$param = array( 'c_step' => 'process' );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$orderid = $this->getOrder( '2008-02-15 12:34:56' )->getId();
+		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
+
+		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+		$mock = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Checkout\\Standard\\Process\\Standard' )
+			->setConstructorArgs( array( $this->context, $paths ) )
+			->setMethods( array( 'getOrderServiceCode' ) )
+			->getMock();
+
+		$mock->expects( $this->once() )->method( 'getOrderServiceCode' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
+
+		$mock->setView( $view );
+		$mock->process();
+
+		$this->assertInternalType( 'array', $view->standardErrorList );
+	}
+
+
+	public function testProcessMShopException()
+	{
+		$view = $this->object->getView();
+		$param = array( 'c_step' => 'process' );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$orderid = $this->getOrder( '2008-02-15 12:34:56' )->getId();
+		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
+
+		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+		$mock = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Checkout\\Standard\\Process\\Standard' )
+			->setConstructorArgs( array( $this->context, $paths ) )
+			->setMethods( array( 'getOrderServiceCode' ) )
+			->getMock();
+
+		$mock->expects( $this->once() )->method( 'getOrderServiceCode' )
+			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
+
+		$mock->setView( $view );
+		$mock->process();
+
+		$this->assertInternalType( 'array', $view->standardErrorList );
+	}
+
+
+	public function testProcessException()
+	{
+		$view = $this->object->getView();
+		$param = array( 'c_step' => 'process' );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$orderid = $this->getOrder( '2008-02-15 12:34:56' )->getId();
+		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
+
+		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+		$mock = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Checkout\\Standard\\Process\\Standard' )
+			->setConstructorArgs( array( $this->context, $paths ) )
+			->setMethods( array( 'getOrderServiceCode' ) )
+			->getMock();
+
+		$mock->expects( $this->once() )->method( 'getOrderServiceCode' )
+			->will( $this->throwException( new \Exception() ) );
+
+		$mock->setView( $view );
+		$mock->process();
+
+		$this->assertInternalType( 'array', $view->standardErrorList );
 	}
 
 

@@ -14,12 +14,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	private $context;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
@@ -30,12 +24,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
@@ -44,6 +32,17 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 
 	public function testGetHeader()
+	{
+		$view = \TestHelperHtml::getView();
+		$view->standardStepActive = 'payment';
+		$this->object->setView( $view );
+
+		$output = $this->object->getHeader();
+		$this->assertNotNull( $output );
+	}
+
+
+	public function testGetHeaderSkip()
 	{
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );

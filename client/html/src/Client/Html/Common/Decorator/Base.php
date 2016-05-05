@@ -52,7 +52,7 @@ abstract class Base
 	 */
 	public function __call( $name, array $param )
 	{
-		if( ( $result = call_user_func_array( array( $this->client, $name ), $param ) ) === false ) {
+		if( ( $result = @call_user_func_array( array( $this->client, $name ), $param ) ) === false ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Unable to call method "%1$s"', $name ) );
 		}
 

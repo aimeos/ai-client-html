@@ -42,6 +42,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetHeaderSingleton()
+	{
+		$this->object->getHeader();
+		$this->assertEquals( '', $this->object->getHeader() );
+	}
+
+
 	public function testGetBody()
 	{
 		$tags = array();
@@ -99,6 +106,22 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$object->setView( \TestHelperHtml::getView() );
 
 		$this->assertContains( 'test exception', $object->getBody() );
+	}
+
+
+	public function testGetBodyException()
+	{
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Filter\Standard' )
+			->setConstructorArgs( array( $this->context, array() ) )
+			->setMethods( array( 'setViewParams' ) )
+			->getMock();
+
+		$object->expects( $this->once() )->method( 'setViewParams' )
+			->will( $this->throwException( new \Exception( 'test exception' ) ) );
+
+		$object->setView( \TestHelperHtml::getView() );
+
+		$this->assertContains( 'A non-recoverable error occured', $object->getBody() );
 	}
 
 

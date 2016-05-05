@@ -17,12 +17,6 @@ class Example
 	extends \Aimeos\Client\Html\Common\Decorator\Base
 	implements \Aimeos\Client\Html\Common\Decorator\Iface
 {
-	public function additionalMethod()
-	{
-		return true;
-	}
-
-
 	protected function getSubClientNames()
 	{
 		return array();
