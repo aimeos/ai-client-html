@@ -4,7 +4,6 @@ return array(
 	'name' => 'ai-client-html',
 	'depends' => array(
 		'aimeos-core',
-		'ai-controller-jobs',
 	),
 	'include' => array(
 		'client/html/src',

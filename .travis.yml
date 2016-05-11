@@ -12,7 +12,7 @@ php:
 before_script:
   - git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
   - cd ../aimeos-core && mv ../ai-client-html ext/
-  - composer self-update && composer require "aimeos/ai-controller-frontend" "aimeos/ai-controller-jobs"
+  - composer self-update && composer require "aimeos/ai-controller-frontend"
   - mysql -e 'create database aimeos;'
   - echo "<?php return array( 'db' => array( 'adapter' => 'mysql', 'host' => '127.0.0.1', 'database' => 'aimeos', 'username' => 'root', 'password' => '', 'limit' => 2, 'opt-persistent' => false, 'stmt' => array( \"SET NAMES 'utf8'\", \"SET SESSION sql_mode='ANSI'\" ) ), 'mq' => array( 'adapter' => 'Standard', 'db' => 'db' ) );" > config/resource.php
 
