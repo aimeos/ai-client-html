@@ -693,7 +693,7 @@ AimeosCatalogFilter = {
 					resp(data);
 				});
 			}
-		}).data("uiAutocomplete")._renderItem = function(ul, item) {
+		}).autocomplete("instance")._renderItem = function(ul, item) {
 			return $("<li>").append(item.value).appendTo(ul);
 		};
 	},
