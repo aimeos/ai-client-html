@@ -693,17 +693,15 @@ AimeosCatalogFilter = {
 					var suggestions = [];
 
 					$.each(data, function(idx, val) {
-						suggestions.push(val.name);
+						suggestions[val.url] = val.name);
 					});
 
 					add(suggestions);
 				});
-			},
-			select : function(ev, ui) {
-				aimeosInputComplete.val(ui.item.value);
-				$(ev.target).parents(".catalog-filter form").submit();
 			}
-		});
+		}).autocomplete("instance")._renderItem = function(ul, item) {
+			return $("<li>").append(item.url).appendTo(ul);
+		};
 	},
 
 

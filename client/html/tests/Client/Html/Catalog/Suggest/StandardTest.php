@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody();
 
 		$this->assertNotEquals( array(), $this->object->getView()->suggestTextItems );
-		$this->assertRegExp( '#"name":"<a.*Unterpro#smU', $output );
+		$this->assertRegExp( '#"id":.*,"name":"Unterpro.*","url":"<a#smU', $output );
 	}
 
 

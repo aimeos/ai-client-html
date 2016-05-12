@@ -12,10 +12,12 @@ $action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $config = $this->config( 'client/html/catalog/detail/url/config', array() );
 
 $suggestTextItems = array();
+$template = '<a class="suggest-item" href="%1$s">%2$s</a>';
+
 foreach( $this->get( 'suggestTextItems', array() ) as $id => $name )
 {
 	$url = $this->url( $target, $cntl, $action, array( 'd_prodid' => $id ), array(), $config );
-	$suggestTextItems[] = array( 'id' => $id, 'name' => '<a class="suggest-item" href="' . $url . '">' . $name . '</a>' );
+	$suggestTextItems[] = array( 'id' => $id, 'name' => $name, 'url' => sprintf( $template, $url, $name ) );
 }
 
 ?>
