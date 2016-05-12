@@ -312,12 +312,7 @@ class Standard
 			$filter = $controller->createTextFilter( $input );
 			$items = $controller->getTextList( $filter );
 
-			$suggestTextItems = array();
-			foreach( $items as $id => $name ) {
-				$suggestTextItems[] = array( "id" => $id, "name" => $name );
-			}
-
-			$view->suggestTextItems = $suggestTextItems;
+			$view->suggestTextItems = $items;
 
 			$this->cache = $view;
 		}
