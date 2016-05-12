@@ -692,6 +692,10 @@ AimeosCatalogFilter = {
 				$.getJSON(aimeosInputComplete.data("url"), nameTerm, function(data) {
 					resp(data);
 				});
+			},
+			select : function(ev, ui) {
+				aimeosInputComplete.val(ui.item.label);
+				return false;
 			}
 		}).autocomplete("instance")._renderItem = function(ul, item) {
 			return $("<li>").append(item.value).appendTo(ul);
