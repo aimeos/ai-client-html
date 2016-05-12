@@ -685,22 +685,16 @@ AimeosCatalogFilter = {
 		aimeosInputComplete.autocomplete({
 			minLength : 3,
 			delay : 200,
-			source : function(req, add) {
+			source : function(req, resp) {
 				var nameTerm = {};
 				nameTerm[aimeosInputComplete.attr("name")] = req.term;
 
 				$.getJSON(aimeosInputComplete.data("url"), nameTerm, function(data) {
-					var suggestions = [];
-
-					$.each(data, function(idx, val) {
-						suggestions[val.url] = val.name);
-					});
-
-					add(suggestions);
+					resp(data);
 				});
 			}
-		}).autocomplete("instance")._renderItem = function(ul, item) {
-			return $("<li>").append(item.url).appendTo(ul);
+		}).data("uiAutocomplete")._renderItem = function(ul, item) {
+			return $("<li>").append(item.value).appendTo(ul);
 		};
 	},
 

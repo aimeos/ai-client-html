@@ -17,7 +17,7 @@ $template = '<a class="suggest-item" href="%1$s">%2$s</a>';
 foreach( $this->get( 'suggestTextItems', array() ) as $id => $name )
 {
 	$url = $this->url( $target, $cntl, $action, array( 'd_prodid' => $id ), array(), $config );
-	$suggestTextItems[] = array( 'id' => $id, 'name' => $name, 'url' => sprintf( $template, $url, $name ) );
+	$suggestTextItems[] = array( 'id' => $id, 'label' => $name, 'value' => sprintf( $template, $url, $name ) );
 }
 
 ?>
