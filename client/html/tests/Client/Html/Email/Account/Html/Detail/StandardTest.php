@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<div class="account-detail content-block">', $output );
+		$this->assertRegexp( '#<style.*/style>.*<div class="account-detail content-block">#smU', $output );
 		$this->assertContains( 'Account', $output );
 		$this->assertContains( 'Password', $output );
 	}
