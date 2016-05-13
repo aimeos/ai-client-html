@@ -9,6 +9,14 @@ $enc = $this->encoder();
 
 ?>
 <?php $this->block()->start( 'email/account/html/detail' ); ?>
+<style>
+	.account-detail h2 {
+		font-weight: bold;
+	}
+	.account-detail .name:after {
+		content: ":";
+	}
+</style>
 <div class="account-detail content-block">
 	<div class="header">
 		<h2><?php echo $enc->html( $this->translate( 'client', 'Your account' ), $enc::TRUST ); ?></h2>
