@@ -1,3 +1,5 @@
 src_dir: ext/ai-client-html
 json_path: ext/ai-client-html/coveralls.json
-coverage_clover: ext/ai-client-html/client/html/tests/coverage.xml
+coverage_clover:
+  - client/html/tests/coverage.xml
+  - controller/jobs/tests/coverage.xml
