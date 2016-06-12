@@ -104,8 +104,8 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 <?php $this->block()->start( 'catalog/search' ); ?>
 <section class="catalog-filter-search">
 	<h2><?php echo $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
-	<input id="search_text" class="value" type="text" name="<?php echo $name; ?>" value="<?php echo $phrase; ?>" data-url="<?php echo $suggestUrl; ?>" data-hint="<?php echo $hint; ?>" />
-	<div style="display: inline-block; position: relative; right: 25pt;" class="pp_default" onclick="document.getElementById('search_text').value='';this.previousSibling.value=' ';this.previousSibling.placeholder='<?php $this->translate( 'client', 'search') ?>';this.parentNode.parentNode.submit();">
+	<input id="search_text" class="value" type="text" name="<?php echo $name; ?>" value="<?php echo $phrase; ?>" data-url="<?php echo $suggestUrl; ?>" data-hint="<?php echo $hint; ?>" onkeyup="if (this.value !== '') this.nextElementSibling.style.display='inline-block'; else this.nextElementSibling.style.display='none';" />
+	<div style="display: <?php if (empty($phrase)) echo 'none'; else echo 'inline-block'?>; position: relative; right: 25pt;" class="pp_default" onclick="document.getElementById('search_text').value='';this.previousSibling.value=' ';this.previousSibling.placeholder='<?php $this->translate( 'client', 'search') ?>';this.parentNode.parentNode.submit(); this.style.display='none';">
 		<!-- Because the width only takes effect for block elements. -->
 		<span style="display: inline-block;" class="pp_close"></span>
 	</div>
