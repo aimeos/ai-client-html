@@ -137,8 +137,10 @@ Aimeos = {
 	/**
 	 * Initializes the setup methods
 	 */
-	init: function() {
-		this.setupContainerClose();
+	init: function(this) {
+		if (this && !(this instanceof Window))
+			this_ = this;
+		this_.setupContainerClose();
 	}
 };
 
@@ -177,8 +179,10 @@ AimeosAccountFavorite = {
 	/**
 	 * Initializes the account favorite actions
 	 */
-	init: function() {
-		this.setupProductRemoval();
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
+		this_.setupProductRemoval();
 	}
 };
 
@@ -237,10 +241,12 @@ AimeosAccountHistory = {
 	/**
 	 * Initializes the account history actions
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 
-		this.setupOrderShow();
-		this.setupOrderClose();
+		this_.setupOrderShow();
+		this_.setupOrderClose();
 	}
 };
 
@@ -301,10 +307,12 @@ AimeosAccountWatch = {
 	/**
 	 * Initializes the account watch actions
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 
-		this.setupProductRemoval();
-		this.setupProductSave();
+		this_.setupProductRemoval();
+		this_.setupProductSave();
 	}
 };
 
@@ -330,9 +338,11 @@ AimeosBasketMini = {
 	/**
 	 * Initializes the basket mini actions
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 
-		this.setupBasketToggle();
+		this_.setupBasketToggle();
 	}
 };
 
@@ -348,7 +358,9 @@ AimeosBasketRelated = {
 	/**
 	 * Initializes the basket related actions
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 	}
 };
 
@@ -439,12 +451,14 @@ AimeosBasketStandard = {
 	/**
 	 * Initializes the basket standard actions
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 
-		this.setupBasketBack();
-		this.setupUpdateHide();
-		this.setupUpdateSubmit();
-		this.setupUpdateChange();
+		this_.setupBasketBack();
+		this_.setupUpdateHide();
+		this_.setupUpdateSubmit();
+		this_.setupUpdateChange();
 	}
 };
 
@@ -660,12 +674,14 @@ AimeosCatalog = {
 	/**
 	 * Initializes the common catalog actions
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 
-		this.setupSelectionDependencies();
-		this.setupSelectionContent();
-		this.setupVariantCheck();
-		this.setupBasketAdd();
+		this_.setupSelectionDependencies();
+		this_.setupSelectionContent();
+		this_.setupVariantCheck();
+		this_.setupBasketAdd();
 	}
 };
 
@@ -804,17 +820,20 @@ AimeosCatalogFilter = {
 	/**
 	 * Initialize the catalog filter actions
 	 */
-	init: function() {
+	init: function(this_) {
+		//alert('this: ' + this + ' <=>? this_: ' + this_);
+		if (this && ! (this instanceof Window))
+			this_ = this;
+		//alert(typeof this_.setupCategoryToggle); // <- must output function!
+		this_.setupCategoryToggle();
+		this_.setupAttributeToggle();
+		this_.setupAttributeListsToggle();
+		this_.setupListFadeout();
 
-		this.setupCategoryToggle();
-		this.setupAttributeToggle();
-		this.setupAttributeListsToggle();
-		this.setupListFadeout();
+		this_.setupAttributeItemSubmit();
 
-		this.setupAttributeItemSubmit();
-
-		this.setupFormChecks();
-		this.setupSearchAutocompletion();
+		this_.setupFormChecks();
+		this_.setupSearchAutocompletion();
 	}
 };
 
@@ -872,8 +891,10 @@ AimeosCatalogList = {
 	/**
 	 * Initializes the catalog list actions
 	 */
-	init: function() {
-		this.setupImageSwitch();
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
+		this_.setupImageSwitch();
 	}
 };
 
@@ -889,7 +910,9 @@ AimeosCatalogSession = {
 	/**
 	 * Initializes the catalog session actions
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 	}
 };
 
@@ -1061,16 +1084,18 @@ AimeosCheckoutStandard = {
 	/**
 	 * Initializes the checkout standard section
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 
-		this.setupAddressForms();
-		this.setupServiceForms();
+		this_.setupAddressForms();
+		this_.setupServiceForms();
 
-		this.setupSalutationCompany();
-		this.setupCountryState();
+		this_.setupSalutationCompany();
+		this_.setupCountryState();
 
-		this.setupMandatoryCheck();
-		this.setupPaymentRedirect();
+		this_.setupMandatoryCheck();
+		this_.setupPaymentRedirect();
 	}
 };
 
@@ -1086,7 +1111,9 @@ AimeosCheckoutConfirm = {
 	/**
 	 * Initializes the checkout confirm section
 	 */
-	init: function() {
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
 	}
 };
 
@@ -1114,8 +1141,10 @@ AimeosLocaleSelect = {
 	/**
 	 * Initializes the locale selector actions
 	 */
-	init: function() {
-		this.setupMenuToggle();
+	init: function(this_) {
+		if (this && !(this instanceof Window))
+			this_ = this;
+		this_.setupMenuToggle();
 	}
 };
 
