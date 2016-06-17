@@ -2128,11 +2128,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
     margin: 1em;
 }
 
-.checkout-standard-delivery .button-group a.standardbutton,
-.checkout-standard-payment .button-group a.standardbutton {
-	margin: 0 1em 0 0;
-}
-
 /* Checkout summary */
 .checkout-standard-summary h3 {
 	display: inline-block;
@@ -2146,10 +2141,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .checkout-standard-summary .note {
 	padding: 0 0 1em 0;
-}
-
-.checkout-standard-summary .button-group a.standardbutton {
-	margin: 0 1em 0 0;
 }
 
 .checkout-standard-summary .modify {
@@ -2180,8 +2171,9 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	padding: 0.5em 0;
 }
 
+.checkout-standard-summary-option label,
 .checkout-standard-summary-option input {
-	display: inline-block;
+	display: inline;
 }
 
 .checkout-standard-summary-option input[type="checkbox"] {
