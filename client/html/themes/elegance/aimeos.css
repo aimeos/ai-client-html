@@ -1213,10 +1213,13 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .catalog-list-items .addbasket input,
 .catalog-detail-basket .group input {
-	vertical-align: middle;
 	text-align: center;
-	height: 1.6em;
-	width: 5em;
+	vertical-align: middle;
+	border: 1px solid #B0A060;
+	line-height: normal;
+	font-size: 125%;
+	padding: 0.2em;
+	width: 4em;
 }
 
 /* services */
