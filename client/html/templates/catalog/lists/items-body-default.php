@@ -53,9 +53,9 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
  * displayed if they have been associated to a product.
  *
  * '''Note:''' To fetch the necessary product variants, you have to extend the
- * list of domains for "client/html/catalog/domains", e.g.
+ * list of domains for "client/html/catalog/lists/domains", e.g.
  *
- *  client/html/catalog/domains = array( 'attribute', 'media', 'price', 'product', 'text' )
+ *  client/html/catalog/lists/domains = array( 'attribute', 'media', 'price', 'product', 'text' )
  *
  * @param boolean True to display the button, false to hide it
  * @since 2016.01
