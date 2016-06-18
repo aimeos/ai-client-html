@@ -18,12 +18,25 @@ $attributes = $this->get( 'selectionAttributeItems', array() );
  * default. This setting removes the hint to select an option, so the first one
  * is selected by default.
  *
+ * The key for each value must be the type code of the attribute, e.g. "width",
+ * "length", "color" or similar types. You can set the layout for all
+ * attributes at once using e.g.
+ *
+ *  client/html/catalog/detail/basket/selection/preselect = array(
+ *      'width' => false,
+ *      'color' => true,
+ *  )
+ *
+ * Similarly, you can set the pre-selection for a specific attribute only,
+ * leaving the rest untouched:
+ *
+ *  client/html/catalog/detail/basket/selection/preselect/color = true
+ *
  * @param boolean True to select the first option by default, false to display the select hint
- * @since 2016.05
+ * @since 2016.07
  * @category Developer
  * @category User
  */
-$preselect = (bool) $this->config( 'client/html/catalog/detail/basket/selection/preselect', false );
 
 /** client/html/catalog/detail/basket/selection/type
  * List of layout types for the variant attributes
@@ -81,15 +94,16 @@ $preselect = (bool) $this->config( 'client/html/catalog/detail/basket/selection/
 <ul class="selection">
 <?php foreach( $this->get( 'selectionAttributeTypeDependencies', array() ) as $code => $attrIds ) : asort( $attrIds ); ?>
 <?php	$layout = $this->config( 'client/html/catalog/detail/basket/selection/type/' . $code, 'select' ); ?>
-	<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
+<?php	$preselect = (bool) $this->config( 'client/html/catalog/detail/basket/selection/preselect/' . $code, false ); ?>
+<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
 		<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
 		<div class="select-value">
-<?php	if( $layout === 'radio' ) : ?>
+<?php	if( $layout === 'radio' ) : $first = true; ?>
 			<ul class="select-list" data-index="<?php echo $index++; ?>">
 <?php		foreach( $attrIds as $attrId => $position ) : ?>
 <?php			if( isset( $attributes[$attrId] ) ) : ?>
 				<li class="select-entry">
-					<input class="select-option" id="option-<?php echo $enc->attr( $attrId ); ?>" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>" type="radio" value="<?php echo $enc->attr( $attrId ); ?>" />
+					<input class="select-option" id="option-<?php echo $enc->attr( $attrId ); ?>" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>" type="radio" value="<?php echo $enc->attr( $attrId ); ?>" <?php echo ( $preselect && $first ? 'checked="checked"' : '' ); $first = false ?>/>
 					<label class="select-label" for="option-<?php echo $enc->attr( $attrId ); ?>"><!--
 <?php				foreach( $attributes[$attrId]->getListItems( 'media', 'icon' ) as $listItem ) : ?>
 <?php					if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
