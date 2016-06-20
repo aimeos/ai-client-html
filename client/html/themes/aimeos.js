@@ -802,6 +802,26 @@ AimeosCatalogFilter = {
 
 
 	/**
+	 * Registers events for the catalog filter search input reset
+	 */
+	setupSearchTextReset: function() {
+
+		$(".catalog-filter-search").on("keyup", ".value", function(ev) {
+			if ($(this).val() !== "") {
+				$(".reset .symbol", ev.delegateTarget).css("visibility", "visible");
+			} else {
+				$(".reset .symbol", ev.delegateTarget).css("visibility", "hidden");
+			}
+		});
+
+		$(".catalog-filter-search").on("click", ".reset", function(ev) {
+			$(".symbol", this).css("visibility", "hidden");
+			$(".value", ev.delegateTarget).focus();
+		});
+	},
+
+
+	/**
 	 * Initialize the catalog filter actions
 	 */
 	init: function() {
@@ -814,6 +834,7 @@ AimeosCatalogFilter = {
 		this.setupAttributeItemSubmit();
 
 		this.setupFormChecks();
+		this.setupSearchTextReset();
 		this.setupSearchAutocompletion();
 	}
 };

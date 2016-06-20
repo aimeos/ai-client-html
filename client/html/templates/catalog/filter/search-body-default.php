@@ -105,11 +105,7 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 <section class="catalog-filter-search">
 	<h2><?php echo $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
 	<input class="value" type="text" name="<?php echo $name; ?>" value="<?php echo $phrase; ?>" data-url="<?php echo $suggestUrl; ?>" data-hint="<?php echo $hint; ?>" /><!--
-    Comment end to prevent merge conflict and thus non-fast forward merge. -->
-	<div class="pp_default">
-		<span class="pp_close"></span>
-	</div>
-	<!-- Comment begin to prevent merge conflict and thus non-fast forward merge.
+	--><button class="reset" type="reset"><span class="symbol"/></button><!--
 	--><button class="standardbutton" type="submit"><?php echo $enc->html( $this->translate( 'client', 'Go' ), $enc::TRUST ); ?></button>
 <?php echo $this->get( 'searchBody' ); ?>
 </section>
