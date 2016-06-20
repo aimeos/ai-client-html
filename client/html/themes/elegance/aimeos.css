@@ -359,6 +359,32 @@
 	display: none;
 }
 
+.catalog-filter-search > div:first-of-type {
+	display: inline-block; /* show by default, toggled by jquery */
+	position: relative;
+	right: 25pt;
+}
+
+/* Show text search reset icon by default: */
+.catalog-filter-search .value + .pp_default {
+	display: inline-block;
+}
+
+/* Hide text search reset icon when value is empty: */
+.catalog-filter-search .value[value=''] + .pp_default {
+	display: none;
+}
+
+/* catalog filter search reset icon: */
+.catalog-filter-search div.pp_default .pp_close {
+	background: transparent url("media/prettyPhoto/default/sprite.png") no-repeat scroll -8px -7px;
+	cursor: pointer;
+	width: 10px;
+	height: 11px;
+	display: inline-block; /* Because width only takes effect for block elements. */
+}
+
+
 .catalog-filter .search-hint {
 	position: absolute;
 	background-color: #ffeeee;
