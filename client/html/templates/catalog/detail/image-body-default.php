@@ -8,6 +8,20 @@
 
 $enc = $this->encoder();
 
+$getIds = function( $mediaId, array $mediaItems )
+{
+	$attrIds = array();
+
+	if( isset( $mediaItems[$mediaId] ) )
+	{
+		$attrIds = array_keys( $mediaItems[mediaId]->getRefItems( 'attribute', null, 'variant' ) );
+		sort( $attrIds );
+	}
+
+	return ( !empty( $attrIds ) ? $id . '-' . implode( '-', $attrIds ) : $id );
+};
+
+
 /** client/html/catalog/detail/url/target
  * Destination of the URL where the controller specified in the URL is known
  *
@@ -80,6 +94,7 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
 
 $url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'detailParams', array() ), array(), $detailConfig ) );
+$media = $this->get( 'detailProductMediaItems', array() );
 
 ?>
 <?php $this->block()->start( 'catalog/detail/image' ); ?>
@@ -89,8 +104,8 @@ $url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, 
 	<div class="image-single">
 		<div class="carousel">
 <?php foreach( $mediaItems as $id => $mediaItem ) : ?>
-<?php	$mediaUrl = $enc->attr( $this->content( $mediaItem->getUrl() ) ); ?>
-			<div id="image-<?php echo $enc->attr( $id ); ?>" class="item"
+<?php		$mediaUrl = $enc->attr( $this->content( $mediaItem->getUrl() ) ); ?>
+			<div id="image-<?php echo $enc->attr( $getIds( $id, $media ) ); ?>" class="item"
 				style="background-image: url('<?php echo $mediaUrl; ?>')"
 				data-image="<?php echo $mediaUrl; ?>"
 				data-zoom-image="<?php echo $mediaUrl; ?>"
@@ -106,7 +121,7 @@ $url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, 
 		<div class="thumbs">
 <?php	if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
 <?php		foreach( $mediaItems as $id => $mediaItem ) : ?>
-			<a href="<?php echo $url . '#image-' . $id; ?>" class="<?php echo $class; ?>" style="background-image: url('<?php echo $this->content( $mediaItem->getPreview() ); ?>')"></a>
+			<a href="<?php echo $url . '#image-' . $enc->attr( $getIds( $id, $media ) ); ?>" class="<?php echo $class; ?>" style="background-image: url('<?php echo $this->content( $mediaItem->getPreview() ); ?>')"></a>
 <?php			$class = 'item'; ?>
 <?php		endforeach; ?>
 <?php	endif; ?>
