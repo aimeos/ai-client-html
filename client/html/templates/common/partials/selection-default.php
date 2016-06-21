@@ -99,7 +99,7 @@ $attributes = $this->get( 'selectionAttributeItems', array() );
 		<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
 		<div class="select-value">
 <?php	if( $layout === 'radio' ) : $first = true; ?>
-			<ul class="select-list" data-index="<?php echo $index++; ?>">
+			<ul class="select-list" data-index="<?php echo $index++; ?>" data-type="<?php echo $enc->attr( $code ); ?>">
 <?php		foreach( $attrIds as $attrId => $position ) : ?>
 <?php			if( isset( $attributes[$attrId] ) ) : ?>
 				<li class="select-entry">
@@ -117,7 +117,7 @@ $attributes = $this->get( 'selectionAttributeItems', array() );
 <?php		endforeach; ?>
 				</ul>
 <?php	else : ?>
-			<select class="select-list" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>" data-index="<?php echo $index++; ?>">
+			<select class="select-list" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>" data-index="<?php echo $index++; ?>" data-type="<?php echo $enc->attr( $code ); ?>">
 <?php		if( $preselect === false ) : ?>
 				<option class="select-option" value=""><?php echo $enc->attr( $this->translate( 'client', 'Please select' ) ); ?></option>
 <?php		endif; ?>

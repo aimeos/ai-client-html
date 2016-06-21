@@ -642,6 +642,28 @@ AimeosCatalog = {
 
 
 	/**
+	 * Shows the images associated to the variant attributes
+	 */
+	setupVariantImages: function() {
+
+		$(".catalog-detail-basket-selection, .catalog-list-items .items-selection").on("change", ".select-list", function(event) {
+
+			var elem = $(this);
+			var type = elem.data("type");
+			var value = elem.find(".select-option:checked").val();
+
+			elem.parents(".product").find(".image-single .item").each( function(ev) {
+
+				if( $(this).data("variant-" + type) == value ) {
+					window.location.hash = $(this).attr("id");
+					return false;
+				}
+			});
+		});
+	},
+
+
+	/**
 	 * Adds products to the basket without page reload
 	 */
 	setupBasketAdd: function(data) {
@@ -665,6 +687,7 @@ AimeosCatalog = {
 
 		this.setupSelectionDependencies();
 		this.setupSelectionContent();
+		this.setupVariantImages();
 		this.setupVariantCheck();
 		this.setupBasketAdd();
 	}
