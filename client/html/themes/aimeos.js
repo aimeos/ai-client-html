@@ -485,7 +485,6 @@ AimeosCatalog = {
 			var prodDeps = $(event.delegateTarget).data("proddeps") || {}; // {"<prodid>":["attrid",...],...}
 			var attrMap = {}, attrList = [];
 
-
 			if( typeof index === "undefined" ) {
 				throw new Error( "HTML select node has no attribute data-index" );
 			}
@@ -509,13 +508,13 @@ AimeosCatalog = {
 			}
 
 
-			$(".select-list", event.delegateTarget).each(function(i, select) {
+			$(".select-list", event.delegateTarget).each(function(idx, select) {
 
 				if( event.currentTarget == select ) {
 					return;
 				}
 
-				$(this).find(".select-option").each(function(i, option) {
+				$(".select-option", this).each(function(i, option) {
 
 					var opt = $(option);
 					var val = opt.val();
@@ -535,8 +534,10 @@ AimeosCatalog = {
 						delete by[index];
 					}
 
-					if( disabled > 0 ) {
+					if( idx !== 0 && disabled > 0 ) {
 						opt.attr("disabled", "disabled");
+						opt.prop("selected", false);
+						opt.prop("checked", false);
 					} else {
 						opt.removeAttr("disabled");
 					}
