@@ -6,7 +6,7 @@
  */
 
 if( !isset( $this->address ) ) {
-	throw new Client_Html_Exception( 'No "address" item to address partial given' );
+	throw new \Aimeos\Client\Html\Exception( 'No "address" item to address partial given' );
 }
 
 $testfcn = function( $list, $key, $default = '' ) {
@@ -42,7 +42,9 @@ $enc = $this->encoder();
 	<li class="form-item salutation <?php echo ( isset( $css['order.base.address.salutation'] ) ? join( ' ', $css['order.base.address.salutation'] ) : '' ); ?>">
 		<label for="address-<?php echo $type ?>-salutation<?php echo $idstr ?>"><?php echo $enc->html( $this->translate( 'client', 'Salutation' ), $enc::TRUST ); ?>
 		</label><select id="address-<?php echo $type ?>-salutation<?php echo $idstr ?>" name="<?php echo $enc->attr( $this->formparam( array( $fname, 'order.base.address.salutation' ) ) ); ?>" <?php echo $disablefcn( $css, 'order.base.address.salutation' ); ?> >
-			<option value=""><?php echo $enc->html( $this->translate( 'client', 'Select salutation' ), $enc::TRUST ); ?></option>
+<?php	if( count( $salutations ) > 1 ) : ?>
+		<option value=""><?php echo $enc->html( $this->translate( 'client', 'Select salutation' ), $enc::TRUST ); ?></option>
+<?php	endif; ?>
 <?php	foreach( $salutations as $salutation ) : ?>
 			<option value="<?php echo $enc->attr( $salutation ); ?>" <?php echo $selectfcn( $addr, 'order.base.address.salutation', $salutation ); ?>><?php echo $enc->html( $this->translate( 'client/code', $salutation ) ); ?></option>
 <?php	endforeach; ?>
