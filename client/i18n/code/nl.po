@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-#
+# 
+# 
 # Translators:
 # Translators:
 # Translators:
@@ -16,50 +16,18 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2015-12-11 11:43+0000\n"
+"PO-Revision-Date: 2016-06-07 09:37+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. Product attribute
-msgid "color"
-msgstr "Kleur"
 
 #. Address salutation
 msgid "company"
 msgstr "Organisatie"
-
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "Account nummer"
-
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "Account beheerder"
-
-#. Direct debit service provider
-msgid "directdebit.bankcode"
-msgstr "BIC"
-
-#. Direct debit service provider
-msgid "directdebit.bankname"
-msgstr "Bank naam"
-
-#. Favorite action
-msgid "favorite"
-msgstr "favoriet"
-
-#. Product attribute
-msgid "length"
-msgstr "Lengte"
-
-#. Address salutation
-msgid "miss"
-msgstr "Mevr"
 
 #. Address salutation
 msgid "mr"
@@ -69,13 +37,29 @@ msgstr "Dhr"
 msgid "mrs"
 msgstr "Mevr"
 
+#. Address salutation
+msgid "miss"
+msgstr "Mevr"
+
+#. Product attribute
+msgid "size"
+msgstr "Grootte"
+
+#. Product attribute
+msgid "length"
+msgstr "Lengte"
+
+#. Product attribute
+msgid "width"
+msgstr "Breedte"
+
+#. Product attribute
+msgid "color"
+msgstr "Kleur"
+
 #. Product attribute
 msgid "option"
 msgstr "Optie"
-
-#. Order type value
-msgid "order:phone"
-msgstr "telefoon"
 
 #. Order type value
 msgid "order:repeat"
@@ -85,21 +69,9 @@ msgstr "herhaald"
 msgid "order:web"
 msgstr "internet"
 
-#. Product property package-height
-msgid "package-height"
-msgstr "Pakket-hoogte"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "Pakket-lengte"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "Pakket-gewicht"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "Pakket-breedte"
+#. Order type value
+msgid "order:phone"
+msgstr "telefoon"
 
 #. Payment status value
 msgid "pay:-1"
@@ -132,41 +104,6 @@ msgstr "bevoegd"
 #. Payment status value
 msgid "pay:6"
 msgstr "ontvangen"
-
-#. Omnipay service provider
-msgid "payment.cardno"
-msgstr "Creditcard nummer"
-
-#. Omnipay service provider
-msgid "payment.cvv"
-msgstr "Verificatie nummer"
-
-#. Omnipay service provider
-msgid "payment.expirymonth"
-msgstr "Verlopen in maand"
-
-#. Omnipay service provider
-msgid "payment.expiryyear"
-msgstr "Verlopen in jaar"
-
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Voornaam"
-
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Achternaam"
-
-#. Pin action
-msgid "pin"
-msgstr "pin"
-
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Product attribute
-msgid "size"
-msgstr "Grootte"
 
 #. Delivery status value
 msgid "stat:-1"
@@ -204,14 +141,77 @@ msgstr "geweigerd"
 msgid "stat:7"
 msgstr "geretouneerd"
 
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "Account beheerder"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Account nummer"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "BIC"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "Bank naam"
+
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Voornaam"
+
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Achternaam"
+
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr "Creditcard nummer"
+
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr "Verificatie nummer"
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr "Verlopen in maand"
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr "Verlopen in jaar"
+
 #. Warehouse code
 msgid "warehouse:default"
 msgstr "Warenhuis:standaard"
+
+#. Favorite action
+msgid "favorite"
+msgstr "favoriet"
+
+#. Pin action
+msgid "pin"
+msgstr "pin"
 
 #. Watch action
 msgid "watch"
 msgstr "Bekijken"
 
-#. Product attribute
-msgid "width"
-msgstr "Breedte"
+#. Product property package-length
+msgid "package-length"
+msgstr "Pakket-lengte"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "Pakket-breedte"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "Pakket-hoogte"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "Pakket-gewicht"
+
+msgid "price:default"
+msgstr "%1$s %2$s"

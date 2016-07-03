@@ -12,42 +12,42 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-06-07 09:37+0000\n"
+"PO-Revision-Date: 2016-06-10 10:56+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
-"Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
+"Language-Team: Slovak (http://www.transifex.com/aimeos/aimeos-core/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. Address salutation
 msgid "company"
-msgstr ""
+msgstr "Spoločnosť"
 
 #. Address salutation
 msgid "mr"
-msgstr ""
+msgstr "Pán"
 
 #. Address salutation
 msgid "mrs"
-msgstr ""
+msgstr "Paní"
 
 #. Address salutation
 msgid "miss"
-msgstr ""
+msgstr "Slečna"
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "Veľkosť"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "Dĺžka"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "Šírka"
 
 #. Product attribute
 msgid "color"
@@ -55,7 +55,7 @@ msgstr ""
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "Varianta"
 
 #. Order type value
 msgid "order:repeat"
@@ -155,11 +155,11 @@ msgstr ""
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr ""
+msgstr "Krstné meno"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr ""
+msgstr "Priezvisko"
 
 #. Omnipay service provider
 msgid "payment.cardno"
