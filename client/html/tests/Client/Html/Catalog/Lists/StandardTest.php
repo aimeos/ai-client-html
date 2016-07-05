@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list type-grid home categories coffee">', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list type-grid">', $output );
 		$this->assertNotRegExp( '#.*U:TESTPSUB01.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB03.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB04.*#smu', $output );
@@ -123,7 +123,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list type-grid home categories coffee">', $output );
 	}
 
 
@@ -155,7 +155,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list type-grid">', $output );
 	}
 
 
@@ -166,7 +166,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list type-grid">', $output );
 	}
 
 
