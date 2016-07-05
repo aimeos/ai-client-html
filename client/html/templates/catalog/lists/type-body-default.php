@@ -17,8 +17,8 @@ $params = $this->get( 'listParams', array() );
 ?>
 <?php $this->block()->start( 'catalog/lists/type' ); ?>
 <div class="catalog-list-type">
-	<a class="type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, array(), $config ) ); ?>"></a>
-	<a class="type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, array(), $config ) ); ?>"></a>
+	<a class="type-item type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, array(), $config ) ); ?>"></a>
+	<a class="type-item type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, array(), $config ) ); ?>"></a>
 <?php echo $this->get( 'typeBody' ); ?>
 </div>
 <?php $this->block()->stop(); ?>
