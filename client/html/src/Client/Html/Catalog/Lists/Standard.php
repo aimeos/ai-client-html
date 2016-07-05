@@ -68,6 +68,17 @@ class Standard
 	 * @category Developer
 	 */
 
+	/** client/html/catalog/lists/quote/name
+	 * Name of the quote part used by the catalog list client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Lists\Quote\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2014.03
+	 * @category Developer
+	 */
+
 	/** client/html/catalog/lists/promo/name
 	 * Name of the promotion part used by the catalog list client implementation
 	 *
@@ -79,14 +90,14 @@ class Standard
 	 * @category Developer
 	 */
 
-	/** client/html/catalog/lists/quote/name
-	 * Name of the quote part used by the catalog list client implementation
+	/** client/html/catalog/lists/type/name
+	 * Name of the type part used by the catalog list client implementation
 	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Lists\Quote\Myname".
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Lists\Type\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the client class name
-	 * @since 2014.03
+	 * @since 2016.07
 	 * @category Developer
 	 */
 
@@ -111,7 +122,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'head', 'quote', 'promo', 'pagination', 'items', 'pagination' );
+	private $subPartNames = array( 'head', 'quote', 'promo', 'type', 'pagination', 'items', 'pagination' );
 
 	private $tags = array();
 	private $expire;
