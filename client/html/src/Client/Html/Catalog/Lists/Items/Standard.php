@@ -103,7 +103,7 @@ class Standard
 		$tplconf = 'client/html/catalog/lists/items/standard/template-body';
 		$default = 'catalog/lists/items-body-default.php';
 
-		return $view->render( $this->getTemplatePath( $tplconf, $default, 'client/html/catalog/list/type' ) );
+		return $view->render( $this->getTemplatePath( $tplconf, $default, 'aimeos/catalog/lists/type' ) );
 	}
 
 
@@ -149,7 +149,7 @@ class Standard
 		$tplconf = 'client/html/catalog/lists/items/standard/template-header';
 		$default = 'catalog/lists/items-header-default.php';
 
-		return $view->render( $this->getTemplatePath( $tplconf, $default, 'client/html/catalog/list/type' ) );
+		return $view->render( $this->getTemplatePath( $tplconf, $default, 'aimeos/catalog/lists/type' ) );
 	}
 
 

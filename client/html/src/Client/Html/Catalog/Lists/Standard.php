@@ -153,7 +153,7 @@ class Standard
 		 * @see client/html/catalog#list
 		 */
 		$confkey = 'client/html/catalog/list';
-		$sessionkey = 'client/html/catalog/list/type';
+		$sessionkey = 'aimeos/catalog/lists/type';
 
 		if( $context->getUserId() != null || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey, $sessionkey ) ) === null )
 		{
@@ -241,7 +241,7 @@ class Standard
 		$prefixes = array( 'f', 'l' );
 		$context = $this->getContext();
 		$confkey = 'client/html/catalog/list';
-		$sessionkey = 'client/html/catalog/list/type';
+		$sessionkey = 'aimeos/catalog/lists/type';
 
 		if( $context->getUserId() != null || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey, $sessionkey ) ) === null )
 		{
