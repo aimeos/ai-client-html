@@ -392,7 +392,7 @@ class Standard
 			$context->getSession()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
 
 			if( ( $type  = $view->param( 'l_type' ) ) !== null ) {
-				$this->getContext()->setSession()->get( 'aimeos/catalog/lists/type', $type );
+				$this->getContext()->getSession()->set( 'aimeos/catalog/lists/type', $type );
 			}
 
 			parent::process();

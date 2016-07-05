@@ -79,13 +79,15 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
-		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
-		$view->addHelper( 'param', $helper );
-
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<div class="catalog-list-items">', $output );
+
+		$this->assertContains( '<div class="price-item', $output );
+		$this->assertContains( '<span class="quantity"', $output );
+		$this->assertContains( '<span class="value">', $output );
+		$this->assertContains( '<span class="costs">', $output );
+		$this->assertContains( '<span class="taxrate">', $output );
 	}
 
 
@@ -104,15 +106,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBodyTemplate()
 	{
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
+		$view->addHelper( 'param', $helper );
+
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<div class="catalog-list-items">', $output );
-
-		$this->assertContains( '<div class="price-item', $output );
-		$this->assertContains( '<span class="quantity"', $output );
-		$this->assertContains( '<span class="value">', $output );
-		$this->assertContains( '<span class="costs">', $output );
-		$this->assertContains( '<span class="taxrate">', $output );
 	}
 
 

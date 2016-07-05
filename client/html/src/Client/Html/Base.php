@@ -651,6 +651,7 @@ abstract class Base
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
+		$session = $context->getSession();
 
 		$force = $config->get( 'client/html/common/cache/force', false );
 
