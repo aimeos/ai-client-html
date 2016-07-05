@@ -19,7 +19,7 @@ foreach( (array) $this->get( 'listCatPath', array() ) as $cat )
 
 ?>
 <?php $this->block()->start( 'catalog/lists' ); ?>
-<section class="aimeos catalog-list type-grid<?php echo $enc->attr( $classes ); ?>">
+<section class="aimeos catalog-list type-list<?php echo $enc->attr( $classes ); ?>">
 <?php if( isset( $this->listErrorList ) ) : ?>
 	<ul class="error-list">
 <?php foreach( (array) $this->listErrorList as $errmsg ) : ?>
