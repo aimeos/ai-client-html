@@ -459,19 +459,20 @@ abstract class Base
 	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @param string $key Unique identifier if the content is placed more than once on the same page
 	 * @param array $config Multi-dimensional array of configuration options used by the client and sub-clients
+	 * @param mixed $session Multi-dimensional array of relevant session entries
 	 * @return string Unique hash
 	 */
-	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), $key = '', array $config = array() )
+	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), $key = '', array $config = array(), $session = null )
 	{
 		$locale = $this->getContext()->getLocale();
 		$params = $this->getClientParams( $this->getView()->param(), $prefixes );
 		ksort( $params );
 
-		if( ( $pstr = json_encode( $params ) ) === false || ( $cstr = json_encode( $config ) ) === false ) {
+		if( ( $pstr = json_encode( $params ) ) === false || ( $cstr = json_encode( $config ) ) === false || ( $sstr = json_encode( $session ) ) === false ) {
 			throw new \Aimeos\Client\Html\Exception( 'Unable to encode parameters or configuration options' );
 		}
 
-		return md5( $key . $pstr . $cstr . $locale->getLanguageId() . $locale->getCurrencyId() );
+		return md5( $key . $pstr . $cstr . $sstr . $locale->getLanguageId() . $locale->getCurrencyId() );
 	}
 
 
@@ -500,6 +501,31 @@ abstract class Base
 		}
 
 		return $this->subclients;
+	}
+
+
+	/**
+	* Returns the template for the given configuration key
+	*
+	* The template is determined by the "l_type" parameter and what's stored in the
+	* session of the users if they've switched the template type before
+	*
+	* @param string $confkey Key to the configuration setting for the template
+	* @param string $default Default template if none is configured or not found
+	* @param string $sessionkey Key to the session setting for the template
+	* @return string Relative template path
+	*/
+	protected function getTemplatePath( $confkey, $default, $sessionkey = null )
+	{
+		if( $sessionkey !== null ) {
+			$type = $this->getContext()->getSession()->get( $sessionkey );
+		}
+
+		if( $type !== null && ctype_alnum( $type ) !== false ) {
+			return $this->view->config( $confkey . '-' . $type, $default );
+		}
+
+		return $this->view->config( $confkey, $default );
 	}
 
 
@@ -554,14 +580,16 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @param string[] $prefixes List of prefixes of all parameters that are relevant for generating the output
 	 * @param string $confkey Configuration key prefix that matches all relevant settings for the component
+	 * @param string|null $sessionkey Session key prefix that matches all relevant session entries of the user for the component
 	 * @return string Cached entry or empty string if not available
 	 */
-	protected function getCached( $type, $uid, array $prefixes, $confkey )
+	protected function getCached( $type, $uid, array $prefixes, $confkey, $sessionkey = null )
 	{
 		if( !isset( $this->cache ) )
 		{
 			$context = $this->getContext();
 			$config = $context->getConfig();
+			$session = $context->getSession();
 
 			/** client/html/common/cache/force
 			 * Enforces content caching regardless of user logins
@@ -587,11 +615,12 @@ abstract class Base
 				return null;
 			}
 
+			$sess = $session->get( $sessionkey );
 			$cfg = $config->get( $confkey, array() );
 
 			$keys = array(
-				'body' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':body', $cfg ),
-				'header' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':header', $cfg ),
+				'body' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':body', $cfg, $sess ),
+				'header' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':header', $cfg, $sess ),
 			);
 
 			$entries = $context->getCache()->getList( $keys );
@@ -614,12 +643,11 @@ abstract class Base
 	 * @param string[] $prefixes List of prefixes of all parameters that are relevant for generating the output
 	 * @param string $confkey Configuration key prefix that matches all relevant settings for the component
 	 * @param string $value Value string that should be stored for the given key
-	 * @param array $tags List of tag strings that should be assoicated to the
-	 * 	given value in the cache
-	 * @param string|null $expire Date/time string in "YYYY-MM-DD HH:mm:ss"
-	 * 	format when the cache entry expires
+	 * @param array $tags List of tag strings that should be assoicated to the given value in the cache
+	 * @param string|null $expire Date/time string in "YYYY-MM-DD HH:mm:ss"	format when the cache entry expires
+	 * @param string|null $sessionkey Session key prefix that matches all relevant session entries of the user for the component
 	 */
-	protected function setCached( $type, $uid, array $prefixes, $confkey, $value, array $tags, $expire )
+	protected function setCached( $type, $uid, array $prefixes, $confkey, $value, array $tags, $expire, $sessionkey = null )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -632,8 +660,9 @@ abstract class Base
 
 		try
 		{
+			$sess = $session->get( $sessionkey );
 			$cfg = $config->get( $confkey, array() );
-			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
+			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg, $sess );
 
 			$context->getCache()->set( $key, $value, array_unique( $tags ), $expire );
 		}

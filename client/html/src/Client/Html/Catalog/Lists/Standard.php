@@ -142,8 +142,9 @@ class Standard
 		 * @see client/html/catalog#list
 		 */
 		$confkey = 'client/html/catalog/list';
+		$sessionkey = 'client/html/catalog/list/type';
 
-		if( $context->getUserId() != null || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		if( $context->getUserId() != null || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey, $sessionkey ) ) === null )
 		{
 			$view = $this->getView();
 
@@ -203,9 +204,9 @@ class Standard
 			$tplconf = 'client/html/catalog/lists/standard/template-body';
 			$default = 'catalog/lists/body-default.php';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			$html = $view->render( $this->getTemplatePath( $tplconf, $default, $sessionkey ) );
 
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $tags, $expire, $sessionkey );
 		}
 		else
 		{
@@ -229,8 +230,9 @@ class Standard
 		$prefixes = array( 'f', 'l' );
 		$context = $this->getContext();
 		$confkey = 'client/html/catalog/list';
+		$sessionkey = 'client/html/catalog/list/type';
 
-		if( $context->getUserId() != null || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
+		if( $context->getUserId() != null || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey, $sessionkey ) ) === null )
 		{
 			$view = $this->getView();
 
@@ -273,9 +275,9 @@ class Standard
 			$tplconf = 'client/html/catalog/lists/standard/template-header';
 			$default = 'catalog/lists/header-default.php';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			$html = $view->render( $this->getTemplatePath( $tplconf, $default, $sessionkey ) );
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $tags, $expire, $sessionkey );
 		}
 		else
 		{
@@ -388,6 +390,10 @@ class Standard
 			$site = $context->getLocale()->getSite()->getCode();
 			$params = $this->getClientParams( $view->param() );
 			$context->getSession()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
+
+			if( ( $type  = $view->param( 'l_type' ) ) !== null ) {
+				$this->getContext()->setSession()->get( 'aimeos/catalog/lists/type', $type );
+			}
 
 			parent::process();
 		}
