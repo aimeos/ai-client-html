@@ -51,7 +51,7 @@ class Standard
 	 * design.
 	 *
 	 * @param array List of sub-client names
-	 * @since 2016..07
+	 * @since 2016.07
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/lists/type/standard/subparts';
@@ -91,10 +91,25 @@ class Standard
 		 * you've implemented an alternative client class as well, "standard"
 		 * should be replaced by the name of the new class.
 		 *
+		 * It's also possible to create a specific template for each type, e.g.
+		 * for the grid, list or whatever view you want to offer your users. In
+		 * that case, you can configure the template by adding "-<type>" to the
+		 * configuration key. To configure an alternative list view template for
+		 * example, use the key
+		 *
+		 * client/html/catalog/lists/type/standard/template-body-list = catalog/lists/type-body-list.php
+		 *
+		 * The argument is the relative path to the new template file. The type of
+		 * the view is determined by the "l_type" parameter (allowed characters for
+		 * the types are a-z and 0-9), which is also stored in the session so users
+		 * will keep the view during their visit. The catalog list type subpart
+		 * contains the template for switching between list types.
+		 *
 		 * @param string Relative path to the template creating code for the HTML page body
-		 * @since 2016..07
+		 * @since 2016.07
 		 * @category Developer
-		 * @see client/html/catalog/lists/type/standard/template-typeer
+		 * @see client/html/catalog/lists/type/standard/template-header
+		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/type/standard/template-body';
 		$default = 'catalog/lists/type-body-default.php';
@@ -137,8 +152,22 @@ class Standard
 		 * you've implemented an alternative client class as well, "standard"
 		 * should be replaced by the name of the new class.
 		 *
+		 * It's also possible to create a specific template for each type, e.g.
+		 * for the grid, list or whatever view you want to offer your users. In
+		 * that case, you can configure the template by adding "-<type>" to the
+		 * configuration key. To configure an alternative list view template for
+		 * example, use the key
+		 *
+		 * client/html/catalog/lists/type/standard/template-header-list = catalog/lists/type-header-list.php
+		 *
+		 * The argument is the relative path to the new template file. The type of
+		 * the view is determined by the "l_type" parameter (allowed characters for
+		 * the types are a-z and 0-9), which is also stored in the session so users
+		 * will keep the view during their visit. The catalog list type subpart
+		 * contains the template for switching between list types.
+		 *
 		 * @param string Relative path to the template creating code for the HTML page head
-		 * @since 2016..07
+		 * @since 2016.07
 		 * @category Developer
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
