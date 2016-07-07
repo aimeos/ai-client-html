@@ -516,7 +516,7 @@ abstract class Base
 	protected function getTemplatePath( $confkey, $default )
 	{
 		if( ( $type = $this->view->param( 'l_type' ) ) !== null && ctype_alnum( $type ) !== false ) {
-			return $this->view->config( $confkey . '-' . $type, $default );
+			return $this->view->config( $confkey . '-' . $type, $this->view->config( $confkey, $default ) );
 		}
 
 		return $this->view->config( $confkey, $default );
