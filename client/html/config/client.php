@@ -2,13 +2,6 @@
 
 return array(
     'html' => array(
-        'catalog' => array(
-            'lists' => array(
-                'standard' => array(
-                    'template-body-list' => 'catalog/lists/body-list.php',
-                )
-            ),
-        ),
         'checkout' => array(
             'standard' => array(
                 'address' => array(
