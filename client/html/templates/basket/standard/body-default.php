@@ -16,43 +16,11 @@ $checkoutController = $this->config( 'client/html/checkout/standard/url/controll
 $checkoutAction = $this->config( 'client/html/checkout/standard/url/action', 'index' );
 $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', array() );
 
-
-/** client/html/basket/standard/check
- * Alters the behavior of the product checks before continuing with the checkout
- *
- * By default, the product related checks are performed every time the basket
- * is shown. They test if there are any products in the basket and execute all
- * basket plugins that have been registered for the "check.before" and "check.after"
- * events.
- *
- * Using this configuration setting, you can either disable all checks completely
- * (0) or display a "Check" button instead of the "Checkout" button (2). In the
- * later case, customers have to click on the "Check" button first to perform
- * the checks and if everything is OK, the "Checkout" button will be displayed
- * that allows the customers to continue the checkout process. If one of the
- * checks fails, the customers have to fix the related basket item and must click
- * on the "Check" button again before they can continue.
- *
- * Available values are:
- *  0 = no product related checks
- *  1 = checks are performed every time when the basket is displayed
- *  2 = checks are performed only when clicking on the "check" button
- *
- * @param integer One of the allowed values (0, 1 or 2)
- * @since 2016.08
- * @category Developer
- * @category User
- */
-$check = $this->config( 'client/html/basket/standard/check', 1 );
 $checkout = true;
-
-if( $check == 1 || ( $check == 2 && $this->param( 'b_check', 0 ) != 0 ) )
-{
-	try {
-		$this->standardBasket->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT );
-	} catch( Exception $e ) {
-		$checkout = false;
-	}
+try {
+	$this->standardBasket->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT );
+} catch( Exception $e ) {
+	$checkout = false;
 }
 
 $enc = $this->encoder();
@@ -78,8 +46,6 @@ $enc = $this->encoder();
 			<button class="standardbutton btn-update" type="submit"><?php echo $enc->html( $this->translate( 'client', 'Update' ), $enc::TRUST ); ?></button>
 <?php if( $checkout === true ) : ?>
 			<a class="standardbutton btn-action" href="<?php echo $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array(), array(), $checkoutConfig ) ); ?>"><?php echo $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ); ?></a>
-<?php else : ?>
-			<a class="standardbutton btn-action" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array( 'b_check' => 1 ), array(), $basketConfig ) ); ?>"><?php echo $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ); ?></a>
 <?php endif; ?>
 		</div>
 	</form>
