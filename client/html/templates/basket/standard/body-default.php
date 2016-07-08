@@ -44,15 +44,18 @@ $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', arr
  * @category User
  */
 $check = $this->config( 'client/html/basket/standard/check', 1 );
-$checkout = true;
+$checkout = false;
 
 if( $check == 1 || ( $check == 2 && $this->param( 'b_check', 0 ) != 0 ) )
 {
 	try {
 		$this->standardBasket->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT );
-	} catch( Exception $e ) {
-		$checkout = false;
-	}
+		$checkout = true;
+	} catch( Exception $e ) {}
+}
+else
+{
+	$checkout = true;
 }
 
 $enc = $this->encoder();
