@@ -551,4 +551,28 @@ class Standard
 			);
 		}
 	}
+
+
+	/**
+	 * Translates the plugin error codes to human readable error strings.
+	 *
+	 * @param array $codes Associative list of scope and object as key and error code as value
+	 * @return array List of translated error messages
+	 */
+	protected function translatePluginErrorCodes( array $codes )
+	{
+		$errors = array();
+		$i18n = $this->getContext()->getI18n();
+
+		foreach( $codes as $scope => $list )
+		{
+			foreach( $list as $object => $errcode )
+			{
+				$key = $scope . ( $scope !== 'product' ? '.' . $object : '' ) . '.' . $errcode;
+				$errors[] = $i18n->dt( 'mshop/code', $key );
+			}
+		}
+
+		return $errors;
+	}
 }
