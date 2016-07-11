@@ -35,6 +35,10 @@
 	font-size: 110%;
 }
 
+.aimeos input {
+	border: solid 1px #D0D0D0;
+}
+
 .aimeos .standardbutton {
 	background-color: #B0A060;
 	border: none;
