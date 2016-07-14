@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			'en' => array( 'USD' => array( 'loc_languageid' => 'en', 'loc_currencyid' => 'USD' ) ),
 		);
 
-		$request = $this->getMock( '\Psr\Http\Message\ServerRequestInterface' );
+		$request = $this->getMockBuilder( '\Psr\Http\Message\ServerRequestInterface' )->getMock();
 		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $request, '127.0.0.1', 'test' );
 		$view->addHelper( 'request', $helper );
 

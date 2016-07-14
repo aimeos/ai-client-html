@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testProcess()
 	{
-		$response = $this->getMock( '\Psr\Http\Message\ResponseInterface' );
+		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
 		$response->expects( $this->never() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
@@ -95,8 +95,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		\Aimeos\MShop\Factory::injectManager( $this->context, 'order/base/product/attribute', $attrManagerStub );
 
 
-		$stream = $this->getMock( '\Psr\Http\Message\StreamInterface' );
-		$response = $this->getMock( '\Psr\Http\Message\ResponseInterface' );
+		$stream = $this->getMockBuilder( '\Psr\Http\Message\StreamInterface' )->getMock();
+		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
 		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->will( $this->returnSelf() );
 
 		$helper = $this->getMockBuilder( '\Aimeos\MW\View\Helper\Response\Standard' )
@@ -184,8 +184,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$item->setName( 'test download' );
 
 
-		$stream = $this->getMock( '\Psr\Http\Message\StreamInterface' );
-		$response = $this->getMock( '\Psr\Http\Message\ResponseInterface' );
+		$stream = $this->getMockBuilder( '\Psr\Http\Message\StreamInterface' )->getMock();
+		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
 		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->will( $this->returnSelf() );
 
 		$helper = $this->getMockBuilder( '\Aimeos\MW\View\Helper\Response\Standard' )
@@ -211,7 +211,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$item->setName( 'test download' );
 
 
-		$response = $this->getMock( '\Psr\Http\Message\ResponseInterface' );
+		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
 		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
@@ -234,7 +234,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$item->setName( 'test download' );
 
 
-		$response = $this->getMock( '\Psr\Http\Message\ResponseInterface' );
+		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
 		$response->expects( $this->never() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 

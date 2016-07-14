@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$this->emailMock = $this->getMock( '\\Aimeos\\MW\\Mail\\Message\\None' );
+		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->object = new \Aimeos\Client\Html\Email\Account\Standard( $this->context, $paths );

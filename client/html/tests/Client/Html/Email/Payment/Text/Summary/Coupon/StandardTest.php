@@ -44,7 +44,7 @@ class StandardTest
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$this->emailMock = $this->getMock( '\\Aimeos\\MW\\Mail\\Message\\None' );
+		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->object = new \Aimeos\Client\Html\Email\Payment\Text\Summary\Coupon\Standard( $this->context, $paths );
