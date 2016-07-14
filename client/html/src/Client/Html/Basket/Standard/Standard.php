@@ -303,6 +303,7 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 		try
 		{
@@ -383,19 +384,15 @@ class Standard
 			 */
 			$check = $view->config( 'client/html/basket/standard/check', 1 );
 
-			try {
-				switch( $check )
-				{
-					case 2:
-						if( $view->param( 'b_check', 0 ) == 0 ) { break; }
-					case 1:
-						$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
-						$controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT );
-						$controller->save(); // store updated basket
-					default:
-						$view->standardCheckout = true;
-				}
-			} catch( \Exception $e ) {} // don't set standardCheckout in view
+			switch( $check )
+			{
+				case 2:
+					if( $view->param( 'b_check', 0 ) == 0 ) { break; }
+				case 1:
+					$controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT );
+				default:
+					$view->standardCheckout = true;
+			}
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
@@ -427,6 +424,9 @@ class Standard
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
 		}
+
+		// store updated basket after plugins updated content and have thrown an exception
+		$controller->save();
 	}
 
 
