@@ -721,8 +721,8 @@ AimeosCatalogFilter = {
 				aimeosInputComplete.val(ui.item.label);
 				return false;
 			}
-		}).autocomplete("instance")._renderItem = function(ul, result) {
-			return $(result).appendTo(ul);
+		}).autocomplete("instance")._renderItem = function(ul, item) {
+			return $(item.html).appendTo(ul);
 		};
 	},
 

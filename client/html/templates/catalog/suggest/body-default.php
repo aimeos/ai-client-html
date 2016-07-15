@@ -12,9 +12,19 @@ $action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $config = $this->config( 'client/html/catalog/detail/url/config', array() );
 
 $enc = $this->encoder();
+$items = array();
 
+foreach( $this->get( 'suggestItems', array() ) as $id => $item )
+{
+	$items[] = array(
+		'label' => $item->getName(),
+		'html' => '
+<li><a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, array( 'd_prodid' => $id ), array(), $config ) ) . '">
+' . $enc->html( $item->getName() ) . '
+</a></li>',
+	);
+}
+
+echo json_encode( $items );
 ?>
-<?php foreach( $this->get( 'suggestItems', array() ) as $id => $item ) : ?>
-<li><a class="suggest-item" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'd_prodid' => $id ), array(), $config ) ); ?>"><?php echo $enc->html( $item->getName() ); ?></a></li>
-<?php endforeach; ?>
 <?php echo $this->get( 'suggestBody' ); ?>

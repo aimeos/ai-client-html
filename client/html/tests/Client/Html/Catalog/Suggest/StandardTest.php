@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody();
 		$suggestItems = $this->object->getView()->suggestItems;
 
-		$this->assertRegExp( '#<li><a.*>Unterpro.*</a></li>#smU', $output );
+		$this->assertRegExp( '#\[\{"label":"Unterpro.*","html":".*Unterpro.*"\}\]#smU', $output );
 		$this->assertNotEquals( array(), $suggestItems );
 
 		foreach( $suggestItems as $item ) {
