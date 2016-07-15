@@ -60,9 +60,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
+		$suggestItems = $this->object->getView()->suggestItems;
 
-		$this->assertNotEquals( array(), $this->object->getView()->suggestTextItems );
-		$this->assertRegExp( '#"id":.*,"label":"Unterpro.*","value":"<a#smU', $output );
+		$this->assertRegExp( '#<li><a.*>Unterpro.*</a></li>#smU', $output );
+		$this->assertNotEquals( array(), $suggestItems );
+
+		foreach( $suggestItems as $item ) {
+			$this->assertInstanceOf( '\Aimeos\MShop\Product\Item\Iface', $item );
+		}
 	}
 
 

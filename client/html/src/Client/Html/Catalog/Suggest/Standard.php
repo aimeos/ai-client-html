@@ -57,7 +57,6 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2015.02
 	 * @category Developer
-	 * @see client/html/catalog/lists/simple/subparts
 	 */
 	private $subPartPath = 'client/html/catalog/suggest/standard/subparts';
 	private $subPartNames = array();
@@ -112,6 +111,7 @@ class Standard
 		 * @since 2015.02
 		 * @category Developer
 		 * @see client/html/catalog/suggest/standard/template-header
+		 * @see client/html/catalog/suggest/domains
 		 */
 		$tplconf = 'client/html/catalog/suggest/standard/template-body';
 		$default = 'catalog/suggest/body-default.php';
@@ -169,6 +169,7 @@ class Standard
 		 * @since 2015.02
 		 * @category Developer
 		 * @see client/html/catalog/suggest/standard/template-body
+		 * @see client/html/catalog/suggest/domains
 		 */
 		$tplconf = 'client/html/catalog/suggest/standard/template-header';
 		$default = 'catalog/suggest/header-default.php';
@@ -305,14 +306,49 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
+			$context = $this->getContext();
 			$input = $view->param( 'f_search' );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'catalog' );
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
 			$filter = $controller->createTextFilter( $input );
-			$items = $controller->getTextList( $filter );
+			$texts = $controller->getTextList( $filter );
 
-			$view->suggestTextItems = $items;
+
+			/** client/html/catalog/suggest/domains
+			 * List of domain items that should be fetched along with the products
+			 *
+			 * The suggsted entries for the full text search in the catalog filter component
+			 * usually consist of the names of the matched products. By default, only the
+			 * product item including the localized name is available. You can add more domains
+			 * like e.g. "media" to get the images of the product as well.
+			 *
+			 * '''Note:''' The more domains you will add, the slower the autocomplete requests
+			 * will be! Keep it to an absolute minium for user friendly response times.
+			 *
+			 * @param array List of domain names
+			 * @since 2016.08
+			 * @category Developer
+			 * @see client/html/catalog/suggest/standard/template-body
+			 */
+			$domains = $context->getConfig()->get( 'client/html/catalog/suggest/domains', array() );
+
+			$manager = $controller->createManager( 'product' );
+			$search = $manager->createSearch( true );
+			$expr = array(
+				$search->compare( '==', 'product.id', array_keys( $texts ) ),
+				$search->getConditions(),
+			);
+			$search->setConditions( $search->combine( '&&', $expr ) );
+			$result = $manager->searchItems( $search, $domains );
+
+
+			// shortcut to avoid having to fetch the text items to get the the localized name
+			foreach( $result as $id => $item ) {
+				$item->setLabel( $texts[$id] );
+			}
+
+			$view->suggestItems = $result;
 
 			$this->cache = $view;
 		}

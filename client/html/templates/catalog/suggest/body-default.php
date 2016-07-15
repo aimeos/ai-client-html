@@ -11,18 +11,10 @@ $cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $config = $this->config( 'client/html/catalog/detail/url/config', array() );
 
-$suggestTextItems = array();
-$template = '<a class="suggest-item" href="%1$s">%2$s</a>';
-
-foreach( $this->get( 'suggestTextItems', array() ) as $id => $name )
-{
-	$url = $this->url( $target, $cntl, $action, array( 'd_prodid' => $id ), array(), $config );
-	$suggestTextItems[] = array( 'id' => $id, 'label' => $name, 'value' => sprintf( $template, $url, $name ) );
-}
+$enc = $this->encoder();
 
 ?>
-<?php $this->block()->start( 'catalog/suggest' ); ?>
-<?php echo json_encode( $suggestTextItems ); ?>
+<?php foreach( $this->get( 'suggestItems', array() ) as $id => $item ) : ?>
+<li><a class="suggest-item" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'd_prodid' => $id ), array(), $config ) ); ?>"><?php echo $enc->html( $item->getName() ); ?></a></li>
+<?php endforeach; ?>
 <?php echo $this->get( 'suggestBody' ); ?>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/suggest' ); ?>
