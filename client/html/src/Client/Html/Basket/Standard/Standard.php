@@ -79,6 +79,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'detail', 'coupon' );
+	private $controller;
 	private $cache;
 
 
@@ -303,7 +304,7 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$controller = $this->getController();
 
 		try
 		{
@@ -480,7 +481,7 @@ class Standard
 				$view->standardBackUrl = $view->url( $target, $controller, $action, $params, array(), $config );
 			}
 
-			$view->standardBasket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
+			$view->standardBasket = $this->getController()->get();
 
 			$this->cache = $view;
 		}
@@ -498,8 +499,8 @@ class Standard
 	protected function addProducts( \Aimeos\MW\View\Iface $view, array $options )
 	{
 		$this->clearCached();
+		$controller = $this->getController();
 		$products = (array) $view->param( 'b_prod', array() );
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 
 		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' )
 		{
@@ -550,8 +551,8 @@ class Standard
 	protected function deleteProducts( \Aimeos\MW\View\Iface $view )
 	{
 		$this->clearCached();
+		$controller = $this->getController();
 		$products = (array) $view->param( 'b_position', array() );
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 
 		foreach( $products as $position ) {
 			$controller->deleteProduct( $position );
@@ -568,8 +569,8 @@ class Standard
 	protected function editProducts( \Aimeos\MW\View\Iface $view, array $options )
 	{
 		$this->clearCached();
+		$controller = $this->getController();
 		$products = (array) $view->param( 'b_prod', array() );
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 
 		if( ( $position = $view->param( 'b_position', '' ) ) !== '' )
 		{
@@ -589,6 +590,21 @@ class Standard
 				( isset( $values['attrconf-code'] ) ? array_filter( (array) $values['attrconf-code'] ) : array() )
 			);
 		}
+	}
+
+
+	/**
+	 * Returns the basket controller object
+	 *
+	 * @return \Controller\Frontend\Basket\Iface Basket controller
+	 */
+	protected function getController()
+	{
+		if( !isset( $this->controller ) ) {
+			$this->controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		}
+
+		return $this->controller;
 	}
 
 
