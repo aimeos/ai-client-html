@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Daniel Vega <danielvega131990@gmail.com>, 2015
 # nsendetzky, 2014
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-03 16:55+0200\n"
+"POT-Creation-Date: 2016-07-16 23:34+0200\n"
 "PO-Revision-Date: 2016-06-07 09:37+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
@@ -25,14 +25,10 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d artículos"
 msgstr[1] "%1$d artículos"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -60,8 +56,7 @@ msgstr "%1$s %2$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s menos"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
+#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
@@ -76,8 +71,7 @@ msgstr "%1$s en %2$s"
 msgid "%1$s%%"
 msgstr "%1$s%%"
 
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
+#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
@@ -85,8 +79,7 @@ msgstr "%1$s%3$s + %2$s%3$s"
 msgid "+"
 msgstr ""
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/unidad"
@@ -136,7 +129,10 @@ msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
 "\n"
 "This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Todos los pedidos enviados están sujetos a nuestros términos y condiciones, disponibles en nuestra página web y aceptados por usted al realizar su pedido.\n\nEl presente correo electrónico contiene información confidencial y es para uso exclusivo de la persona a la que va dirigido. En caso de que usted no fuera esa persona, le rogamos responda al presente correo electrónico y elimine el mensaje y sus adjuntos a continuación."
+msgstr ""
+"Todos los pedidos enviados están sujetos a nuestros términos y condiciones, disponibles en nuestra página web y aceptados por usted al realizar su pedido.\n"
+"\n"
+"El presente correo electrónico contiene información confidencial y es para uso exclusivo de la persona a la que va dirigido. En caso de que usted no fuera esa persona, le rogamos responda al presente correo electrónico y elimine el mensaje y sus adjuntos a continuación."
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
@@ -194,6 +190,10 @@ msgstr "Cambiar pago"
 msgid "Characteristics"
 msgstr "Características"
 
+#, fuzzy
+msgid "Check"
+msgstr "Pagar"
+
 msgid "Checkout"
 msgstr "Pagar"
 
@@ -248,8 +248,7 @@ msgstr "No se ha encontrado el cliente con la ID \"%1$s\""
 
 #. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
 #. and last name (%3$s)
-#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
-#. and last name (%3$s)
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s) and last name (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Estimado/a %1$s %2$s %3$s"
@@ -309,11 +308,7 @@ msgid "Go"
 msgstr "Buscar"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr "Acepto los <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">términos y condiciones</a> y la <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">política de privacidad</a>"
 
 msgid "If back in stock"
@@ -378,9 +373,7 @@ msgid "Next"
 msgstr "Siguiente"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "No se han encontrado artículos para <span class=\"searchstring\">\"%1$s\"</span>. Inténtelo de nuevo con una palabra clave distinta."
 
 #, php-format
@@ -533,9 +526,7 @@ msgstr "Buscar"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "Resultado de búsqueda para <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[1] "Resultado de búsqueda para <span class=\"searchstring\">\"%1$s\"</span> (%2$d artículos)"
 
@@ -577,16 +568,14 @@ msgstr "Estado"
 
 #. / Stock string composition with warehouse name (%1$s, normally left out)
 #. and stock level string (%2$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out)
-#. and stock level string (%2$s)
+#. / Stock string composition with warehouse name (%1$s, normally left out) and stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Existencia: %1$s, %2$s"
 
 #. / Stock string composition with warehouse name (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
+#. / Stock string composition with warehouse name (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "En existencia: %1$s, %2$s, de nuevo el %3$s"
@@ -615,63 +604,68 @@ msgstr "Términos y condiciones"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Gracias por su pedido  %1$s desde %2$s."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Gracias por su pedido %1$s desde %2$s.\n\nEl pedido está pendiente hasta que recibamos el pago final. Si ha elegido pagar por adelantado, por favor, transfiera el importe a nuestra cuenta bancaria indicando la ID del pedido %1$s como referencia."
+msgstr ""
+"Gracias por su pedido %1$s desde %2$s.\n"
+"\n"
+"El pedido está pendiente hasta que recibamos el pago final. Si ha elegido pagar por adelantado, por favor, transfiera el importe a nuestra cuenta bancaria indicando la ID del pedido %1$s como referencia."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr "Gracias por su pedido %1$s desde %2$s.\n\nHemos recibido el pago y nos encargaremos de su pedido inmediatamente."
+msgstr ""
+"Gracias por su pedido %1$s desde %2$s.\n"
+"\n"
+"Hemos recibido el pago y nos encargaremos de su pedido inmediatamente."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Gracias por su pedido y autorización de pago.\nEn los próximos minutos le será enviado un correo electrónico con los detalles de su pedido."
+msgstr ""
+"Gracias por su pedido y autorización de pago.\n"
+"En los próximos minutos le será enviado un correo electrónico con los detalles de su pedido."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Gracias por su pedido.\nHemos recibido su pago y se le enviará un correo electrónico con los detalles del pedido en los próximos minutos."
+msgstr ""
+"Gracias por su pedido.\n"
+"Hemos recibido su pago y se le enviará un correo electrónico con los detalles del pedido en los próximos minutos."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "El estado de entrega de su pedido %1$s desde %2$s ha pasado a \"%3$s\"."
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr "El pedido fue cancelado.\n¿Desea reintentar su pedido?"
+msgstr ""
+"El pedido fue cancelado.\n"
+"¿Desea reintentar su pedido?"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "El paquete de su pedido %1$s desde %2$s no pudo entregarse."
@@ -679,12 +673,13 @@ msgstr "El paquete de su pedido %1$s desde %2$s no pudo entregarse."
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "La confirmación de pago de su pedido se encuentra pendiente.\nSe le enviará un correo electrónico tan pronto como el pago sea autorizado."
+msgstr ""
+"La confirmación de pago de su pedido se encuentra pendiente.\n"
+"Se le enviará un correo electrónico tan pronto como el pago sea autorizado."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "El pago de su pedido %1$s desde %2$s le ha sido devuelto."
@@ -729,7 +724,9 @@ msgstr "Imposible establecer entrada de caché: %1$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr "Desafortunadamente el pago de su pedido fue rechazado.\n¿Desea reintentar el mismo?"
+msgstr ""
+"Desafortunadamente el pago de su pedido fue rechazado.\n"
+"¿Desea reintentar el mismo?"
 
 msgid "Update"
 msgstr "Actualizar"
@@ -745,8 +742,7 @@ msgstr "Productos observados"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Hemos recibido el paquete devuelto de su pedido %1$s desde %2$s."
@@ -757,8 +753,7 @@ msgstr "Sitio web"
 msgid "X"
 msgstr "X"
 
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
+#. / Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "A-m-d"
 
@@ -810,14 +805,15 @@ msgstr "Su nueva cuenta"
 #. / Payment e-mail subject with order ID
 #. / Delivery e-mail subject with order ID
 #. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
 msgstr "Su pedido %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Su pedido %1$s desde %2$s ha sido enviado."

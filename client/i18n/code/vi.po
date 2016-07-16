@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
-# 
+#
+#
 # Translators:
 # Translators:
 # Translators:
@@ -15,15 +15,47 @@ msgstr ""
 "PO-Revision-Date: 2016-06-07 09:37+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/aimeos/aimeos-core/language/vi/)\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Product attribute
+msgid "color"
+msgstr ""
 
 #. Address salutation
 msgid "company"
 msgstr "Công ty"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr ""
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr ""
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr ""
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr ""
+
+#. Favorite action
+msgid "favorite"
+msgstr ""
+
+#. Product attribute
+msgid "length"
+msgstr ""
+
+#. Address salutation
+msgid "miss"
+msgstr ""
 
 #. Address salutation
 msgid "mr"
@@ -33,28 +65,12 @@ msgstr ""
 msgid "mrs"
 msgstr ""
 
-#. Address salutation
-msgid "miss"
-msgstr ""
-
-#. Product attribute
-msgid "size"
-msgstr ""
-
-#. Product attribute
-msgid "length"
-msgstr ""
-
-#. Product attribute
-msgid "width"
-msgstr ""
-
-#. Product attribute
-msgid "color"
-msgstr ""
-
 #. Product attribute
 msgid "option"
+msgstr ""
+
+#. Order type value
+msgid "order:phone"
 msgstr ""
 
 #. Order type value
@@ -65,8 +81,20 @@ msgstr ""
 msgid "order:web"
 msgstr ""
 
-#. Order type value
-msgid "order:phone"
+#. Product property package-height
+msgid "package-height"
+msgstr ""
+
+#. Product property package-length
+msgid "package-length"
+msgstr ""
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr ""
+
+#. Product property package-width
+msgid "package-width"
 msgstr ""
 
 #. Payment status value
@@ -99,6 +127,41 @@ msgstr ""
 
 #. Payment status value
 msgid "pay:6"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Tên"
+
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Họ"
+
+#. Pin action
+msgid "pin"
+msgstr ""
+
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
 msgstr ""
 
 #. Delivery status value
@@ -137,77 +200,14 @@ msgstr ""
 msgid "stat:7"
 msgstr ""
 
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr ""
-
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr ""
-
-#. Direct debit service provider
-msgid "directdebit.bankcode"
-msgstr ""
-
-#. Direct debit service provider
-msgid "directdebit.bankname"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Tên"
-
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Họ"
-
-#. Omnipay service provider
-msgid "payment.cardno"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.cvv"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.expirymonth"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.expiryyear"
-msgstr ""
-
 #. Warehouse code
 msgid "warehouse:default"
-msgstr ""
-
-#. Favorite action
-msgid "favorite"
-msgstr ""
-
-#. Pin action
-msgid "pin"
 msgstr ""
 
 #. Watch action
 msgid "watch"
 msgstr ""
 
-#. Product property package-length
-msgid "package-length"
+#. Product attribute
+msgid "width"
 msgstr ""
-
-#. Product property package-width
-msgid "package-width"
-msgstr ""
-
-#. Product property package-height
-msgid "package-height"
-msgstr ""
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr ""
-
-msgid "price:default"
-msgstr "%1$s %2$s"

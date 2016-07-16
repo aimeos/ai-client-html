@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
-# 
+#
+#
 # Translators:
 # Translators:
 # Translators:
@@ -16,15 +16,47 @@ msgstr ""
 "PO-Revision-Date: 2016-06-07 09:37+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Product attribute
+msgid "color"
+msgstr "颜色"
 
 #. Address salutation
 msgid "company"
 msgstr "公司"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "账户号"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "账户名"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "银行代码"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "开户行"
+
+#. Favorite action
+msgid "favorite"
+msgstr ""
+
+#. Product attribute
+msgid "length"
+msgstr "长度"
+
+#. Address salutation
+msgid "miss"
+msgstr "女士"
 
 #. Address salutation
 msgid "mr"
@@ -34,29 +66,13 @@ msgstr "先生"
 msgid "mrs"
 msgstr "女士"
 
-#. Address salutation
-msgid "miss"
-msgstr "女士"
-
-#. Product attribute
-msgid "size"
-msgstr "尺寸"
-
-#. Product attribute
-msgid "length"
-msgstr "长度"
-
-#. Product attribute
-msgid "width"
-msgstr "宽度"
-
-#. Product attribute
-msgid "color"
-msgstr "颜色"
-
 #. Product attribute
 msgid "option"
 msgstr "选项"
+
+#. Order type value
+msgid "order:phone"
+msgstr "通过电话"
 
 #. Order type value
 msgid "order:repeat"
@@ -66,9 +82,21 @@ msgstr "反复"
 msgid "order:web"
 msgstr "通过因特网"
 
-#. Order type value
-msgid "order:phone"
-msgstr "通过电话"
+#. Product property package-height
+msgid "package-height"
+msgstr ""
+
+#. Product property package-length
+msgid "package-length"
+msgstr ""
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr ""
+
+#. Product property package-width
+msgid "package-width"
+msgstr ""
 
 #. Payment status value
 msgid "pay:-1"
@@ -101,6 +129,41 @@ msgstr "已授权"
 #. Payment status value
 msgid "pay:6"
 msgstr "已收到"
+
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "名"
+
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "姓名"
+
+#. Pin action
+msgid "pin"
+msgstr ""
+
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
+msgstr "尺寸"
 
 #. Delivery status value
 msgid "stat:-1"
@@ -138,77 +201,14 @@ msgstr "被拒收"
 msgid "stat:7"
 msgstr "被退货"
 
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "账户名"
-
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "账户号"
-
-#. Direct debit service provider
-msgid "directdebit.bankcode"
-msgstr "银行代码"
-
-#. Direct debit service provider
-msgid "directdebit.bankname"
-msgstr "开户行"
-
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "名"
-
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "姓名"
-
-#. Omnipay service provider
-msgid "payment.cardno"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.cvv"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.expirymonth"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.expiryyear"
-msgstr ""
-
 #. Warehouse code
 msgid "warehouse:default"
 msgstr "仓库代码"
-
-#. Favorite action
-msgid "favorite"
-msgstr ""
-
-#. Pin action
-msgid "pin"
-msgstr ""
 
 #. Watch action
 msgid "watch"
 msgstr ""
 
-#. Product property package-length
-msgid "package-length"
-msgstr ""
-
-#. Product property package-width
-msgid "package-width"
-msgstr ""
-
-#. Product property package-height
-msgid "package-height"
-msgstr ""
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr ""
-
-msgid "price:default"
-msgstr "%1$s %2$s"
+#. Product attribute
+msgid "width"
+msgstr "宽度"

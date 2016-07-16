@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-03 16:55+0200\n"
+"POT-Creation-Date: 2016-07-16 23:34+0200\n"
 "PO-Revision-Date: 2015-09-29 12:45+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Czech (http://www.transifex.com/aimeos/aimeos-core/language/cs/)\n"
@@ -184,6 +184,9 @@ msgid "Change payment"
 msgstr ""
 
 msgid "Characteristics"
+msgstr ""
+
+msgid "Check"
 msgstr ""
 
 msgid "Checkout"
@@ -750,6 +753,8 @@ msgstr ""
 msgid "Your new account"
 msgstr ""
 
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
 #. / Delivery e-mail subject with order ID
 #. / Payment e-mail subject with order ID
 #. / Delivery e-mail subject with order ID
