@@ -25,7 +25,7 @@ $enc = $this->encoder();
  * @category User
  * @see client/html/common/address/billing/disable-new
  */
-$disablenew = $this->config( 'client/html/common/address/delivery/disable-new', false );
+$disablenew = (bool) $this->config( 'client/html/common/address/delivery/disable-new', false );
 
 
 $target = $this->config( 'client/html/checkout/standard/url/target' );
