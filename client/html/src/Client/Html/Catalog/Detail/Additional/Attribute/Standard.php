@@ -265,7 +265,7 @@ class Standard
 		{
 			$context = $this->getContext();
 			$config = $context->getConfig();
-			$attrIds = $attributeMap = $subAttrDeps = array();
+			$attrIds = $attributeMap = $subAttrDeps = $prodMap = array();
 
 			/** client/html/catalog/detail/additional/attribute/variants
 			 * If variant attributes should be displayed in the additional section too
@@ -287,7 +287,12 @@ class Standard
 
 			if( isset( $view->detailProductItem ) )
 			{
-				$attrIds = array_keys( $view->detailProductItem->getRefItems( 'attribute', null, 'default' ) );
+				foreach( $view->detailProductItem->getRefItems( 'attribute', null, 'default' ) as $id => $item )
+				{
+					$prodId = $view->detailProductItem->getId();
+					$prodMap[$prodId][$id] = $item;
+					$attrIds[] = $id;
+				}
 
 				if( $variants === true ) {
 					$attrIds += array_keys( $view->detailProductItem->getRefItems( 'attribute', null, 'variant' ) );
@@ -329,6 +334,7 @@ class Standard
 
 				foreach( $subItems as $attrId => $attrItem )
 				{
+					$prodMap[$subProdId][$attrId] = $attrItem;
 					$subAttrDeps[$attrId][] = $subProdId;
 					$attrIds[] = $attrId;
 				}
@@ -346,6 +352,7 @@ class Standard
 				$search->getConditions(),
 			);
 			$search->setConditions( $search->combine( '&&', $expr ) );
+			$search->setSlice( 0, 0x7fffffff );
 
 
 			/** client/html/catalog/detail/basket/selection/domains-attributes
@@ -378,6 +385,7 @@ class Standard
 
 
 			$view->attributeMap = $attributeMap;
+			$view->productAttributeMap = $prodMap;
 			$view->subAttributeDependencies = $subAttrDeps;
 
 			$this->cache = $view;
