@@ -225,6 +225,7 @@ class Standard
 			catch( \Exception $e )
 			{
 				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+				return;
 			}
 
 			/** client/html/catalog/stage/standard/template-header
