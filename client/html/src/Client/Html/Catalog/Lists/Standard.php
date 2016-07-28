@@ -498,7 +498,8 @@ class Standard
 				$domains = $config->get( 'client/html/catalog/domains', array( 'media', 'text' ) );
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
-				$listCatPath = $controller->getCatalogPath( $catid, $domains );
+				$catids = ( !is_array( $catid ) ? explode( ',', $catid ) : $catid );
+				$listCatPath = $controller->getCatalogPath( reset( $catids ), $domains );
 
 				if( ( $categoryItem = end( $listCatPath ) ) !== false ) {
 					$view->listCurrentCatItem = $categoryItem;

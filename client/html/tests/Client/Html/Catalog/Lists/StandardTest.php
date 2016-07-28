@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( '<meta name="application-name" content="Aimeos" />', $object->getHeader() );
+		$this->assertNull( $object->getHeader() );
 	}
 
 
@@ -113,6 +113,44 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $this->getCatalogItem()->getId() );
+
+		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context, $paths );
+		$this->object->setView( \TestHelperHtml::getView() );
+
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array() );
+		$view->addHelper( 'param', $helper );
+
+		$output = $this->object->getBody();
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+	}
+
+
+	public function testGetBodyMultipleDefaultCat()
+	{
+		$context = clone $this->context;
+		$catid = $this->getCatalogItem()->getId();
+		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', array( $catid, $catid ) );
+
+		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context, $paths );
+		$this->object->setView( \TestHelperHtml::getView() );
+
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array() );
+		$view->addHelper( 'param', $helper );
+
+		$output = $this->object->getBody();
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+	}
+
+
+	public function testGetBodyMultipleDefaultCatString()
+	{
+		$context = clone $this->context;
+		$catid = $this->getCatalogItem()->getId();
+		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $catid . ',' . $catid );
 
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context, $paths );

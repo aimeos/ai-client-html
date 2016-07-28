@@ -149,7 +149,7 @@ abstract class Base
 	/**
 	 * Returns the list of catetory IDs if subcategories should be included
 	 *
-	 * @param string $catId Category ID
+	 * @param string|array $catId Category ID or list of category IDs
 	 * @return string|array Cateogory ID or list of catetory IDs
 	 */
 	protected function getCatalogIds( $catId )
@@ -189,13 +189,22 @@ abstract class Base
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', $default );
 
+		$catIds = ( !is_array( $catId ) ? explode( ',', $catId ) : $catId );
+
 		if( $level != $default )
 		{
-			$tree = $this->getCatalogController()->getCatalogTree( $catId, array(), $level );
-			$catId = $this->getCatalogIdsFromTree( $tree );
+			$list = array();
+
+			foreach( $catIds as $catId )
+			{
+				$tree = $this->getCatalogController()->getCatalogTree( $catId, array(), $level );
+				$list = array_merge( $list, $this->getCatalogIdsFromTree( $tree ) );
+			}
+
+			$catIds = $list;
 		}
 
-		return $catId;
+		return array_unique( $catIds );
 	}
 
 
