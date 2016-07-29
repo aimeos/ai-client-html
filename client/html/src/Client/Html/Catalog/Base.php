@@ -34,11 +34,21 @@ abstract class Base
 	 */
 	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter )
 	{
-		$attrids = ( isset( $params['f_attrid'] ) ? (array) $params['f_attrid'] : array() );
+		$attrids = array();
+
+		if( isset( $params['f_attrid'] ) )
+		{
+			foreach( (array) $params['f_attrid'] as $attrid )
+			{
+				if( $attrid != '' ) {
+					$attrids[] = (int) $attrid;
+				}
+			}
+		}
 
 		if( !empty( $attrids ) )
 		{
-			$func = $filter->createFunction( 'index.attributeaggregate', array( array_keys( $attrids ) ) );
+			$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
 			$expr = array(
 				$filter->getConditions(),
 				$filter->compare( '==', $func, count( $attrids ) ),
