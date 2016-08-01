@@ -302,8 +302,9 @@ class Standard
 
 			$products = $view->detailProductItem->getRefItems( 'product', 'default', 'default' );
 
-			/** client/html/catalog/detail/additional/attribute/domains
-			 * A list of domain names whose items should be available in the additional attribute part of the catalog detail view templates
+			/** client/html/catalog/detail/basket/selection/domains
+			 * A list of domain names whose items should be available in the basket
+			 * and additional attribute part of the catalog detail view templates
 			 *
 			 * The templates rendering additional attribute related data usually add
 			 * the images and texts associated to each item. If you want to
