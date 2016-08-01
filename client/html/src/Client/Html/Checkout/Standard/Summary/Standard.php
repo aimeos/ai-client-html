@@ -338,10 +338,10 @@ class Standard
 
 		try
 		{
+			parent::process();
+
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 			$controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL );
-
-			parent::process();
 		}
 		catch( \Exception $e )
 		{
