@@ -71,6 +71,26 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetBodyUseCodes()
+	{
+		$this->context->getConfig()->set( 'client/html/catalog/suggest/usecode', true );
+
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'U:TEST' ) );
+		$view->addHelper( 'param', $helper );
+
+		$output = $this->object->getBody();
+		$suggestItems = $this->object->getView()->suggestItems;
+
+		$this->assertRegExp( '#\[\{"label":"Unit.*","html":".*Unit.*"\}.*\]#smU', $output );
+		$this->assertNotEquals( array(), $suggestItems );
+
+		foreach( $suggestItems as $item ) {
+			$this->assertInstanceOf( '\Aimeos\MShop\Product\Item\Iface', $item );
+		}
+	}
+
+
 	public function testGetBodyException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Suggest\Standard' )

@@ -306,13 +306,33 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
+			$codes = array();
 			$context = $this->getContext();
 			$input = $view->param( 'f_search' );
 
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
-			$filter = $controller->createTextFilter( $input );
+			$filter = $controller->createTextFilter( $input, null, '+', 0, 25, 'default', 'name' );
 			$texts = $controller->getTextList( $filter );
+
+
+			/** client/html/catalog/suggest/usecode
+			 * Enables product suggestions based on using the product code
+			 *
+			 * The suggested entries for the full text search in the catalog filter component
+			 * are based on the product names by default. By setting this option to true or 1,
+			 * you can add suggestions based on the product codes as well.
+			 *
+			 * @param boolean True to search for product codes too, false for product names only
+			 * @since 2016.09
+			 * @category Developer
+			 */
+
+			if( $context->getConfig()->get( 'client/html/catalog/suggest/usecode', false ) )
+			{
+				$filter = $controller->createTextFilter( $input, null, '+', 0, 25, '', 'code' );
+				$codes = $controller->getTextList( $filter );
+			}
 
 
 			/** client/html/catalog/suggest/domains
@@ -336,7 +356,7 @@ class Standard
 			$manager = $controller->createManager( 'product' );
 			$search = $manager->createSearch( true );
 			$expr = array(
-				$search->compare( '==', 'product.id', array_keys( $texts ) ),
+				$search->compare( '==', 'product.id', array_merge( array_keys( $texts ), array_keys( $codes ) ) ),
 				$search->getConditions(),
 			);
 			$search->setConditions( $search->combine( '&&', $expr ) );
@@ -344,8 +364,11 @@ class Standard
 
 
 			// shortcut to avoid having to fetch the text items to get the the localized name
-			foreach( $result as $id => $item ) {
-				$item->setLabel( $texts[$id] );
+			foreach( $result as $id => $item )
+			{
+				if( isset( $texts[$id] ) ) {
+					$item->setLabel( $texts[$id] );
+				}
 			}
 
 			$view->suggestItems = $result;
