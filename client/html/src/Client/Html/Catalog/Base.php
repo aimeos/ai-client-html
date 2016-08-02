@@ -126,7 +126,7 @@ abstract class Base
 		 */
 		$usecode = (bool) $this->getContext()->getConfig()->get( 'client/html/catalog/lists/usecode', true );
 
-		if( $usecode === true && $text != '' )
+		if( $usecode === true )
 		{
 			$expr = array(
 				$filter->getConditions(),
