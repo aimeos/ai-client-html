@@ -94,48 +94,18 @@ abstract class Base
 			if( $catid !== '' && $catfilter === true ) {
 				$filter = $controller->addIndexFilterCategory( $filter, $this->getCatalogIds( $catid ) );
 			}
+
+			return $filter;
 		}
 		elseif( $catid !== '' && $catfilter === true )
 		{
 			$catIds = $this->getCatalogIds( $catid );
-			$filter = $controller->createIndexFilterCategory( $catIds, $sort, $sortdir, ( $page - 1 ) * $size, $size );
+			return $controller->createIndexFilterCategory( $catIds, $sort, $sortdir, ( $page - 1 ) * $size, $size );
 		}
 		else
 		{
-			$filter = $controller->createIndexFilter( $sort, $sortdir, ( $page - 1 ) * $size, $size );
+			return $controller->createIndexFilter( $sort, $sortdir, ( $page - 1 ) * $size, $size );
 		}
-
-		/** client/html/catalog/lists/usecode
-		 * Use the product code when filtering for products
-		 *
-		 * If visitors enter a term in the input box of the catalog filter search subpart
-		 * it's used not only for searching in product texts but also for searching
-		 * within the product codes as well. It's not required to enter a full product
-		 * code, the first charactars are sufficient as well.
-		 *
-		 * To disable this behavior, set this configuration option to 0. Then, only
-		 * product texts are matched.
-		 *
-		 * @param boolean True to use the product code when filtering, false if not
-		 * @since 2016.08
-		 * @category Developer
-		 * @see client/html/catalog/lists/catid-default
-		 * @see client/html/catalog/lists/domains
-		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/size
-		 */
-		$usecode = (bool) $this->getContext()->getConfig()->get( 'client/html/catalog/lists/usecode', true );
-
-		if( $usecode === true )
-		{
-			$expr = array(
-				$filter->getConditions(),
-				$filter->compare( '=~', 'product.code', $text )
-			);
-			$filter->setConditions( $filter->combine( '||', $expr ) );
-		}
-
-		return $filter;
 	}
 
 
@@ -192,7 +162,6 @@ abstract class Base
 		 * @param integer Tree level constant
 		 * @since 2015.11
 		 * @category Developer
-		 * @see client/html/catalog/lists/usecode
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/size
@@ -289,7 +258,6 @@ abstract class Base
 			 * @see client/html/catalog/lists/size
 			 * @see client/html/catalog/lists/domains
 			 * @see client/html/catalog/lists/levels
-			 * @see client/html/catalog/lists/usecode
 			 * @see client/html/catalog/detail/prodid-default
 			 */
 			$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
@@ -393,7 +361,6 @@ abstract class Base
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/usecode
 		 */
 		$defaultSize = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/size', 48 );
 
@@ -480,7 +447,6 @@ abstract class Base
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/usecode
 		 */
 		$domains = $config->get( 'client/html/catalog/domains', array( 'media', 'price', 'text' ) );
 
@@ -508,7 +474,6 @@ abstract class Base
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/usecode
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
