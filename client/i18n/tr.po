@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Metal <meteoramic@yahoo.com>, 2015-2016
 msgid ""
@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-06-07 09:37+0000\n"
+"PO-Revision-Date: 2016-07-19 16:56+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #, php-format
@@ -24,10 +24,14 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d makale"
 msgstr[1] "%1$d ürün"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -43,20 +47,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -68,7 +59,8 @@ msgstr "%1$s %2$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s indirim"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
+#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
+#. value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
@@ -83,7 +75,8 @@ msgstr "%1$s, %2$s tarihinde"
 msgid "%1$s%%"
 msgstr "%1$s%%"
 
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
+#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
+#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
@@ -91,7 +84,8 @@ msgstr "%1$s%3$s + %2$s%3$s"
 msgid "+"
 msgstr "+"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/öğe"
@@ -141,17 +135,11 @@ msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
 "\n"
 "This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr ""
-"Sevk edilen tüm gönderiler web sitemizde yer alan ve siparişinizi verdiğinizde kabul etmiş sayıldığınız hüküm ve koşullara tabidir.\n"
-"\n"
-"Bu e-mail gizli bilgi içermektedir ve sadece hitap edilen kişinin kullanımı içindir. Eğer bu kişi siz değilseniz lütfen bu maile cevap verin ve daha sonra ekleriyle beraber bu e-maili silin."
+msgstr "Sevk edilen tüm gönderiler web sitemizde yer alan ve siparişinizi verdiğinizde kabul etmiş sayıldığınız hüküm ve koşullara tabidir.\n\nBu e-mail gizli bilgi içermektedir ve sadece hitap edilen kişinin kullanımı içindir. Eğer bu kişi siz değilseniz lütfen bu maile cevap verin ve daha sonra ekleriyle beraber bu e-maili silin."
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
-"Tüm siparişler web sitemizde yer alan ve siparişinizi verdiğinizde kabul etmiş sayıldığınız hüküm ve koşullara tabidir.\n"
-"\n"
-"Bu e-mail gizli bilgi içermektedir ve sadece hitap edilen kişinin kullanımı içindir. Eğer bu kişi siz değilseniz lütfen bu maile cevap verin ve daha sonra ekleri de dahil bu maili sisteminizden silin."
+msgstr "Tüm siparişler web sitemizde yer alan ve siparişinizi verdiğinizde kabul etmiş sayıldığınız hüküm ve koşullara tabidir.\n\nBu e-mail gizli bilgi içermektedir ve sadece hitap edilen kişinin kullanımı içindir. Eğer bu kişi siz değilseniz lütfen bu maile cevap verin ve daha sonra ekleri de dahil bu maili sisteminizden silin."
 
 msgid "An account has been created for you."
 msgstr "Sizin için bir hesap oluşturuldu."
@@ -205,9 +193,8 @@ msgstr "Ödemeyi değiştir"
 msgid "Characteristics"
 msgstr "Teknik özellikler"
 
-#, fuzzy
 msgid "Check"
-msgstr "Ödeme"
+msgstr "Kontrol et"
 
 msgid "Checkout"
 msgstr "Ödeme"
@@ -263,7 +250,8 @@ msgstr " \"%1$s\" ID'li müşteri bulunamadı"
 
 #. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
 #. and last name (%3$s)
-#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s) and last name (%3$s)
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
+#. and last name (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Sayın %1$s %2$s %3$s"
@@ -323,7 +311,11 @@ msgid "Go"
 msgstr "Ara"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a>"
 msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">Hükümler ve koşullar</a> ve<a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">gizlilik politikası</a> şartlarını kabul ediyorum."
 
 msgid "If back in stock"
@@ -388,7 +380,9 @@ msgid "Next"
 msgstr "Sonraki"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "<span class=\"searchstring\">\"%1$s\"</span> için hiç bir sonuç bulunamadı. Lütfen farklı bir anahtar kelime ile tekrar deneyin."
 
 #, php-format
@@ -541,7 +535,9 @@ msgstr "Aranacak kelimeyi girin"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "<span class=\"searchstring\">\"%1$s\"</span> için arama sonuçları (%2$d sonuç)"
 msgstr[1] "<span class=\"searchstring\">\"%1$s\"</span> için arama sonuçları (%2$d sonuç)"
 
@@ -583,14 +579,16 @@ msgstr "Eyalet"
 
 #. / Stock string composition with warehouse name (%1$s, normally left out)
 #. and stock level string (%2$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out) and stock level string (%2$s)
+#. / Stock string composition with warehouse name (%1$s, normally left out)
+#. and stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Stok: %1$s, %2$s"
 
 #. / Stock string composition with warehouse name (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
+#. / Stock string composition with warehouse name (%1$s, normally left out),
+#. stock level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Stok: %1$s, %2$s, tekrar mevcut %3$s"
@@ -619,68 +617,63 @@ msgstr "Hükümler ve koşullar"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "%2$s 'dan %1$s siparişiniz için teşekkür ederiz."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr ""
-"%2$s 'dan %1$s siparişiniz için teşekkür ederiz.\n"
-"\n"
-"Nihai ödeme tarafımızdan tahsil edilene kadar sipariş beklemede. Eğer peşin ödemeyi seçtiyseniz, lütfen ücreti %1$s sipariş ID'nizi referans olarak ekleyerek banka hesabımıza transfer edin."
+msgstr "%2$s 'dan %1$s siparişiniz için teşekkür ederiz.\n\nNihai ödeme tarafımızdan tahsil edilene kadar sipariş beklemede. Eğer peşin ödemeyi seçtiyseniz, lütfen ücreti %1$s sipariş ID'nizi referans olarak ekleyerek banka hesabımıza transfer edin."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr ""
-"%2$s 'dan %1$s siparişiniz için teşekkür ederiz.\n"
-"\n"
-"Ödemeyi aldık ve derhal siparişinizle alakalı işlemlerle ilgileneceğiz."
+msgstr "%2$s 'dan %1$s siparişiniz için teşekkür ederiz.\n\nÖdemeyi aldık ve derhal siparişinizle alakalı işlemlerle ilgileneceğiz."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Siparişiniz ve ödeme yetkilendirmeniz için teşekkür ederiz.\n"
-"Önümüzdeki birkaç dakika içinde tarafınıza sipariş detaylarını içeren bir e-mail gönderilecek."
+msgstr "Siparişiniz ve ödeme yetkilendirmeniz için teşekkür ederiz.\nÖnümüzdeki birkaç dakika içinde tarafınıza sipariş detaylarını içeren bir e-mail gönderilecek."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Siparişiniz için teşekkür ederiz.\n"
-"Ödemenizi aldık ve önümüzdeki birkaç dakika içinde tarafınıza sipariş detaylarını içeren bir e-mail gönderilecek."
+msgstr "Siparişiniz için teşekkür ederiz.\nÖdemenizi aldık ve önümüzdeki birkaç dakika içinde tarafınıza sipariş detaylarını içeren bir e-mail gönderilecek."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
-msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "%2$s 'dan %1$s siparişinizin teslimat durumu  \"%3$s\" 'a değiştirildi."
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
-"Sipariş iptal edildi.\n"
-"Siparişinizi tekrar denemek ister misiniz?"
+msgstr "Sipariş iptal edildi.\nSiparişinizi tekrar denemek ister misiniz?"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "%2$s 'den %1$s siparişiniz için parsel teslim edilemedi."
@@ -688,13 +681,12 @@ msgstr "%2$s 'den %1$s siparişiniz için parsel teslim edilemedi."
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
-"Siparişiniz için ödeme onayı hala bekliyor.\n"
-"Ödeme yetkilendirildiğinde bir e-mail alacaksınız."
+msgstr "Siparişiniz için ödeme onayı hala bekliyor.\nÖdeme yetkilendirildiğinde bir e-mail alacaksınız."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "%2$s 'dan %1$s siparişinizin ödemesi iade edilmiştir."
@@ -739,9 +731,7 @@ msgstr "önbellek girdisi ayarlanamadı: %1$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
-"Maalesef siparişinizin ödemesi reddedildi.\n"
-"Tekrar denemek ister misiniz?"
+msgstr "Maalesef siparişinizin ödemesi reddedildi.\nTekrar denemek ister misiniz?"
 
 msgid "Update"
 msgstr "Güncelle"
@@ -757,7 +747,8 @@ msgstr "İzlenen ürünler"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "%2$s 'dan siparişiniz %1$s için geri dönen parseli teslim aldık."
@@ -768,7 +759,8 @@ msgstr "Web sitesi"
 msgid "X"
 msgstr "X"
 
-#. / Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
+#. / Date format with year (Y), month (m) and day (d). See
+#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-a-g"
 
@@ -828,7 +820,8 @@ msgstr "Siparişiniz %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$s 'dan siparişiniz %1$s sevk edildi."

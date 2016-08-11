@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Bram Verhaegh <bram@beech.it>, 2015
 # Klaas Runia <info@sennik.nl>, 2015
@@ -12,13 +12,13 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-06-07 09:37+0000\n"
+"PO-Revision-Date: 2016-07-16 21:36+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
@@ -27,10 +27,14 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d artikelen"
 msgstr[1] "%1$d artikelen"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -46,20 +50,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -71,7 +62,8 @@ msgstr "%1$s %2$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s off"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
+#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
+#. value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
@@ -86,7 +78,8 @@ msgstr "%1$s at %2$s"
 msgid "%1$s%%"
 msgstr "%1$s%%"
 
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
+#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
+#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
@@ -94,7 +87,8 @@ msgstr "%1$s%3$s + %2$s%3$s"
 msgid "+"
 msgstr "+"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/item"
@@ -144,10 +138,7 @@ msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
 "\n"
 "This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr ""
-"Alle leveringen zijn onderhevig aan onze voorwaarden en condities die u kunt vinden op onze website. U gaat automatisch akkoord met onze voorwaarden en condities wanneer u een order plaatst.\n"
-"\n"
-"Deze email bevat vertrouwelijke informatie en is exclusief bedoeld voor de persoon aan wie het is geadresseerd. Wanneer u deze persoon niet bent verzoeken wij u ons hierover te informeren en deze email en eventuele bijlagen te verwijderen."
+msgstr "Alle leveringen zijn onderhevig aan onze voorwaarden en condities die u kunt vinden op onze website. U gaat automatisch akkoord met onze voorwaarden en condities wanneer u een order plaatst.\n\nDeze email bevat vertrouwelijke informatie en is exclusief bedoeld voor de persoon aan wie het is geadresseerd. Wanneer u deze persoon niet bent verzoeken wij u ons hierover te informeren en deze email en eventuele bijlagen te verwijderen."
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
@@ -205,9 +196,8 @@ msgstr "Pas betaling aan"
 msgid "Characteristics"
 msgstr "Karakteristieken"
 
-#, fuzzy
 msgid "Check"
-msgstr "Afrekenen"
+msgstr ""
 
 msgid "Checkout"
 msgstr "Afrekenen"
@@ -263,7 +253,8 @@ msgstr "Klant met ID \"%1$s\" niet gevonden"
 
 #. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
 #. and last name (%3$s)
-#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s) and last name (%3$s)
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
+#. and last name (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Geachte  %1$s %2$s %3$s"
@@ -323,7 +314,11 @@ msgid "Go"
 msgstr "Ga"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a>"
 msgstr "Ik accepteer <a href=\"%1$s\" target=\"_blank\" title=\"voorwaarden en condities\" alt=\"voorwaarden en condities\">voorwaarden en condities</a> en <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 
 msgid "If back in stock"
@@ -388,7 +383,9 @@ msgid "Next"
 msgstr "Volgende"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "Geen artikelen gevonden voor <span class=\"searchstring\">\"%1$s\"</span>. Probeer het aub opnieuw met een ander zoekwoord."
 
 #, php-format
@@ -541,7 +538,9 @@ msgstr "Zoeken"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "Zoekresultaat voor <span class=\"searchstring\">\"%1$s\"</span> (%2$d artikelen)"
 msgstr[1] "Zoekresultaat voor <span class=\"searchstring\">\"%1$s\"</span> (%2$d artikelen)"
 
@@ -583,14 +582,16 @@ msgstr "Provincie / Staat"
 
 #. / Stock string composition with warehouse name (%1$s, normally left out)
 #. and stock level string (%2$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out) and stock level string (%2$s)
+#. / Stock string composition with warehouse name (%1$s, normally left out)
+#. and stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Voorraad: %1$s, %2$s"
 
 #. / Stock string composition with warehouse name (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
+#. / Stock string composition with warehouse name (%1$s, normally left out),
+#. stock level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Voorraad: %1$s, %2$s, terug op %3$s"
@@ -619,36 +620,33 @@ msgstr "Voorwaarden en condities"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Bedankt voor uw order %1$s van %2$s."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr ""
-"Bedankt voor uw order %1$s van %2$s.\n"
-"\n"
-"De order wordt uitgevoerd zodra wij uw betaling hebben ontvangen. Wanneer u hebt gekozen voor vooraf betalen maak dan het totaalbedrag van de factuur over naar onze bankrekening en vermeld daar bij het order nummer %1$s als referentie."
+msgstr "Bedankt voor uw order %1$s van %2$s.\n\nDe order wordt uitgevoerd zodra wij uw betaling hebben ontvangen. Wanneer u hebt gekozen voor vooraf betalen maak dan het totaalbedrag van de factuur over naar onze bankrekening en vermeld daar bij het order nummer %1$s als referentie."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr ""
-"Bedankt voor uw order %1$s van %2$s.\n"
-"\n"
-"We hebben uw betaling ontvangen en zullen uw order zo spoedig mogelijk verwerken."
+msgstr "Bedankt voor uw order %1$s van %2$s.\n\nWe hebben uw betaling ontvangen en zullen uw order zo spoedig mogelijk verwerken."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -658,15 +656,16 @@ msgstr "Bedankt voor uw order en uw machtiging om de betaling van uw rekening af
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Bedankt voor uw order.\n"
-"We hebben uw betaling ontvangen en sturen u binnen enkele minuten een email met de order gegevens."
+msgstr "Bedankt voor uw order.\nWe hebben uw betaling ontvangen en sturen u binnen enkele minuten een email met de order gegevens."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
-msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
 msgstr "De status van uw order %1$s van %2$s is gewijzigd in \"%3$s\"."
 
 msgid ""
@@ -676,7 +675,8 @@ msgstr "U hebt uw order geannuleerd. Wilt u uw order opnieuw plaatsen?"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "Het pakket met uw order %1$s van %2$s kan niet aan u worden geleverd."
@@ -688,7 +688,8 @@ msgstr "De betaling voor uw bestelling staat nog in wacht. U ontvangt een e-mail
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "De betaling van uw bestelling %1$s van %2$s is terug gestort."
@@ -749,7 +750,8 @@ msgstr "Bekeken producten"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "We hebben het teruggestuurde pakket van uw bestelling %1$s van %2$s ontvangen."
@@ -760,7 +762,8 @@ msgstr "Website"
 msgid "X"
 msgstr "X"
 
-#. / Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
+#. / Date format with year (Y), month (m) and day (d). See
+#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
@@ -820,7 +823,8 @@ msgstr "Uw order %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Uw bestelling %1$s van %2$s is verstuurd."
