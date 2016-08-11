@@ -81,7 +81,7 @@ $params = $this->param();
 		<ul class="attr-list"><!--
 <?php			foreach( $attributes as $id => $attribute ) : ?>
 			--><li class="attr-item" data-id="<?php echo $enc->attr( $id ); ?>">
-				<input class="attr-item" id="attr-<?php echo $enc->attr( $id ); ?>" name="<?php echo $enc->attr( $this->formparam( array( 'f_attrid', $id ) ) ); ?>" type="checkbox" value="<?php echo $enc->attr( $attribute->getName( 'url' ) ); ?>" <?php echo ( isset( $attrIds[$id] ) ? 'checked="checked"' : '' ); ?> />
+				<input class="attr-item" id="attr-<?php echo $enc->attr( $id ); ?>" name="<?php echo $enc->attr( $this->formparam( array( 'f_attrid', '' ) ) ); ?>" type="checkbox" value="<?php echo $enc->attr( $id ); ?>" <?php echo ( in_array( $id, $attrIds ) ? 'checked="checked"' : '' ); ?> />
 				<label class="attr-name" for="attr-<?php echo $enc->attr( $id ); ?>"><!--
 					--><div class="media-list"><!--
 <?php				foreach( $attribute->getListItems( 'media', 'icon' ) as $listItem ) : ?>
