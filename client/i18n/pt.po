@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-08-09 19:29+0000\n"
+"PO-Revision-Date: 2016-08-11 19:33+0000\n"
 "Last-Translator: Tadeu Pagliarini <tadeu_up@hotmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "%1$s %2$s"
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s off"
 
 #. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
 #. value (%2$s) and currency (%3$s)
@@ -68,7 +68,7 @@ msgstr "%1$s ( %4$s%2$s%3$s )"
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
-msgstr ""
+msgstr "%1$s em %2$s"
 
 #. / Percent format with value (%1$s) and % sign
 #, php-format
@@ -176,7 +176,7 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr "Parte \"%1$s\" do endereço de cobrança está faltando"
 
 msgid "Bundled products"
-msgstr ""
+msgstr "Produtos em pacotes"
 
 msgid "Buy now"
 msgstr "Comprar agora"
@@ -185,7 +185,7 @@ msgid "Categories"
 msgstr "Categorias"
 
 msgid "Change"
-msgstr ""
+msgstr "Alterar"
 
 msgid "Change payment"
 msgstr "Alterar pagamento"
@@ -220,7 +220,7 @@ msgstr "Classe \"%1$s\" não encontrada"
 
 #, php-format
 msgid "Client HTML type is empty"
-msgstr ""
+msgstr "O cliente HTML está vazio"
 
 #, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
@@ -331,7 +331,7 @@ msgstr "Se tiver alguma dúvida, por favor responda este e-mail"
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "Incl. %1$s%% Taxas"
 
 msgid "Included rebates"
 msgstr "Descontos incluídos"
@@ -346,7 +346,7 @@ msgstr "Caracteres inválidos no nome do cliente \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr ""
+msgstr "Caracteres inválidos no nome do cliente \"%1$s\" em \"%2$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -362,7 +362,7 @@ msgstr "Fábrica inválida \"%1$s\""
 
 #, php-format
 msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr ""
+msgstr "Resposta de processo do provedor de serviços \"%1$s\" inválida"
 
 msgid "Language"
 msgstr "Idioma"
@@ -395,7 +395,7 @@ msgstr "Nenhum serviço para o código \"%1$s\" foi encontrado"
 
 #, php-format
 msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr ""
+msgstr "Nenhum tipo para \"%1$s/%2$s\" em \"%3$s\" encontrado"
 
 #, php-format
 msgid "No view available"
@@ -425,7 +425,7 @@ msgid "Order ID"
 msgstr "ID do Pedido"
 
 msgid "Order channel"
-msgstr ""
+msgstr "Canal do pedido"
 
 msgid "Order details"
 msgstr "Detalhes do pedido"
@@ -569,7 +569,7 @@ msgid "Show"
 msgstr "Mostrar"
 
 msgid "Show all quotes"
-msgstr ""
+msgstr "Mostrar todas as cotações"
 
 msgid "Sort by:"
 msgstr "Ordenar por:"
@@ -632,7 +632,7 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr ""
+msgstr "Obrigado pelo seu pedido %1$s de %2$s.\n\nO pedido estará pendente até o recebimento do pagamento. Se você preferir adiantar o pagamento, por favor transfira o dinheiro para a nossa conta bancária com o ID do pedido %1$s como referência."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -643,7 +643,7 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr ""
+msgstr "Obrigado pelo seu pedido %1$s de %2$s.\n\nNós recebemos o pagamento e iremos providenciar o envio."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -676,7 +676,7 @@ msgstr "O pedido foi cancelado.\nDeseja refazer seu pedido?"
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "O seu pedido %1$s de %2$s não pôde ser entregue."
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
@@ -726,7 +726,7 @@ msgstr "Incapaz de salvar o endereço do cliente \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to set cache entry: %1$s"
-msgstr ""
+msgstr "Não foi possível definir a entrada de cache: %1$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -751,7 +751,7 @@ msgstr "Produtos acompanhados"
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
+msgstr "Nós recebemos a devolução de seu pedido %1$s de %2$s."
 
 msgid "Web site"
 msgstr "Site"
@@ -824,7 +824,7 @@ msgstr "Seu pedido %1$s"
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
+msgstr "Seu pedido %1$s de %2$s foi despachado."
 
 msgid "Your search result"
 msgstr "Resultados da pesquisa"
@@ -847,7 +847,7 @@ msgstr "entrega"
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "de %1$s"
 
 msgid "like billing address"
 msgstr "igual ao endereço de cobrança"
@@ -868,7 +868,7 @@ msgstr "pagamento"
 
 #, php-format
 msgid "process"
-msgstr ""
+msgstr "processo"
 
 #. / code for "product is in stock"
 msgid "stock-high"

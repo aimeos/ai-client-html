@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-08-09 18:49+0000\n"
+"PO-Revision-Date: 2016-08-11 19:22+0000\n"
 "Last-Translator: Tadeu Pagliarini <tadeu_up@hotmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -260,7 +260,7 @@ msgid "ki"
 msgstr "Kikuyu"
 
 msgid "kj"
-msgstr ""
+msgstr "Cuanhama"
 
 msgid "kk"
 msgstr "Cazaque"
@@ -269,16 +269,16 @@ msgid "kl"
 msgstr "Groenlandês"
 
 msgid "km"
-msgstr ""
+msgstr "Khmer"
 
 msgid "kn"
-msgstr ""
+msgstr "Canarês"
 
 msgid "ko"
 msgstr "Koreano"
 
 msgid "kr"
-msgstr ""
+msgstr "Kanuri"
 
 msgid "ks"
 msgstr "Caxemira"
@@ -287,13 +287,13 @@ msgid "ku"
 msgstr "Curdo"
 
 msgid "kv"
-msgstr ""
+msgstr "Komi"
 
 msgid "kw"
 msgstr "Córnico"
 
 msgid "ky"
-msgstr ""
+msgstr "Quirguiz"
 
 msgid "la"
 msgstr "Latino"
@@ -305,19 +305,19 @@ msgid "lg"
 msgstr "Luganda"
 
 msgid "li"
-msgstr ""
+msgstr "Limburguês"
 
 msgid "ln"
-msgstr ""
+msgstr "Lingala"
 
 msgid "lo"
-msgstr ""
+msgstr "Laosiano"
 
 msgid "lt"
 msgstr "Lituano"
 
 msgid "lu"
-msgstr ""
+msgstr "Luba-Katanga"
 
 msgid "lv"
 msgstr "Letão"
@@ -329,7 +329,7 @@ msgid "mh"
 msgstr "Marshalês"
 
 msgid "mi"
-msgstr ""
+msgstr "Maori"
 
 msgid "mk"
 msgstr "Macedônio"
@@ -344,7 +344,7 @@ msgid "mo"
 msgstr "Moldávio"
 
 msgid "mr"
-msgstr ""
+msgstr "Marata"
 
 msgid "ms"
 msgstr "Malaio"
@@ -362,13 +362,13 @@ msgid "nb"
 msgstr "Norueguês Bokmål"
 
 msgid "nd"
-msgstr ""
+msgstr "Ndebele do Norte"
 
 msgid "ne"
 msgstr "Nepalês"
 
 msgid "ng"
-msgstr ""
+msgstr "Ndonga"
 
 msgid "nl"
 msgstr "Holandês"
@@ -380,7 +380,7 @@ msgid "no"
 msgstr "Norueguês"
 
 msgid "nr"
-msgstr ""
+msgstr "Ndebele do Sul"
 
 msgid "nv"
 msgstr "Navajo"
@@ -407,25 +407,25 @@ msgid "pa"
 msgstr "Panjabi"
 
 msgid "pi"
-msgstr ""
+msgstr "Pali"
 
 msgid "pl"
 msgstr "Polonês"
 
 msgid "ps"
-msgstr ""
+msgstr "Pastó"
 
 msgid "pt"
 msgstr "Português"
 
 msgid "qu"
-msgstr ""
+msgstr "Quéchua"
 
 msgid "rm"
-msgstr ""
+msgstr "Reto-Românico"
 
 msgid "rn"
-msgstr ""
+msgstr "Kirundi"
 
 msgid "ro"
 msgstr "Romeno"
@@ -434,25 +434,25 @@ msgid "ru"
 msgstr "Russo"
 
 msgid "rw"
-msgstr ""
+msgstr "Quiniaruanda"
 
 msgid "sa"
 msgstr "Sânscrito"
 
 msgid "sc"
-msgstr ""
+msgstr "Sardenho"
 
 msgid "sd"
-msgstr ""
+msgstr "Sindi"
 
 msgid "se"
-msgstr ""
+msgstr "Samí do Norte"
 
 msgid "sg"
-msgstr ""
+msgstr "Sango"
 
 msgid "si"
-msgstr ""
+msgstr "Cingalês"
 
 msgid "sk"
 msgstr "Eslovaco"

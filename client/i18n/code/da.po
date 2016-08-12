@@ -7,208 +7,207 @@
 # Translators:
 # Translators:
 # Translators:
-# Tadeu Pagliarini <tadeu_up@hotmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-08-11 18:58+0000\n"
-"Last-Translator: Tadeu Pagliarini <tadeu_up@hotmail.com>\n"
-"Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"Language-Team: Danish (http://www.transifex.com/aimeos/aimeos-core/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Address salutation
 msgid "company"
-msgstr "Empresa"
+msgstr ""
 
 #. Address salutation
 msgid "mr"
-msgstr "Sr"
+msgstr ""
 
 #. Address salutation
 msgid "mrs"
-msgstr "Sra"
+msgstr ""
 
 #. Address salutation
 msgid "miss"
-msgstr "Srta"
+msgstr ""
 
 #. Product attribute
 msgid "size"
-msgstr "Tamanho"
+msgstr ""
 
 #. Product attribute
 msgid "length"
-msgstr "Comprimento"
+msgstr ""
 
 #. Product attribute
 msgid "width"
-msgstr "Largura"
+msgstr ""
 
 #. Product attribute
 msgid "color"
-msgstr "Cor"
+msgstr ""
 
 #. Product attribute
 msgid "option"
-msgstr "Opção"
+msgstr ""
 
 #. Order type value
 msgid "order:repeat"
-msgstr "Mês de validade"
+msgstr ""
 
 #. Order type value
 msgid "order:web"
-msgstr "A"
+msgstr ""
 
 #. Order type value
 msgid "order:phone"
-msgstr "tefefoneído"
+msgstr ""
 
 #. Payment status value
 msgid "pay:-1"
-msgstr "não-concluído"
+msgstr ""
 
 #. Payment status value
 msgid "pay:0"
-msgstr "removido"
+msgstr ""
 
 #. Payment status value
 msgid "pay:1"
-msgstr "cancelado"
+msgstr ""
 
 #. Payment status value
 msgid "pay:2"
-msgstr "recusado"
+msgstr ""
 
 #. Payment status value
 msgid "pay:3"
-msgstr "reembolsado"
+msgstr ""
 
 #. Payment status value
 msgid "pay:4"
-msgstr "pendente"
+msgstr ""
 
 #. Payment status value
 msgid "pay:5"
-msgstr "autorizado"
+msgstr ""
 
 #. Payment status value
 msgid "pay:6"
-msgstr "recebido"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:-1"
-msgstr "não-concluído"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:0"
-msgstr "removido"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:1"
-msgstr "pendente"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:2"
-msgstr "em progresso"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:3"
-msgstr "despachado"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:4"
-msgstr "entregue"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:5"
-msgstr "perdido"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:6"
-msgstr "recusado"
+msgstr ""
 
 #. Delivery status value
 msgid "stat:7"
-msgstr "devolvido"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "Titular da conta"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "Número da conta"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "Código do banco"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "Nome do Banco"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr "Nome"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr "Sobrenome"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "Número do cartão de crédito"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Dígito de verificação"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "Mês de validade"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "Ano de validade"
+msgstr ""
 
 #. Warehouse code
 msgid "warehouse:default"
-msgstr "armazém:padrão"
+msgstr ""
 
 #. Favorite action
 msgid "favorite"
-msgstr "adicionar aos favoritos"
+msgstr ""
 
 #. Pin action
 msgid "pin"
-msgstr "marcar"
+msgstr ""
 
 #. Watch action
 msgid "watch"
-msgstr "acompanhar"
+msgstr ""
 
 #. Product property package-length
 msgid "package-length"
-msgstr "pacote-comprimento"
+msgstr ""
 
 #. Product property package-width
 msgid "package-width"
-msgstr "pacote-largura"
+msgstr ""
 
 #. Product property package-height
 msgid "package-height"
-msgstr "pacote-altura"
+msgstr ""
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "pacote-peso"
+msgstr ""
 
 msgid "price:default"
-msgstr "%1$s %2$s"
+msgstr ""
