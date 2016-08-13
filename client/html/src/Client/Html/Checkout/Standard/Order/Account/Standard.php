@@ -313,6 +313,7 @@ class Standard
 	protected function addCustomerData( \Aimeos\MShop\Customer\Item\Iface $customer,
 		\Aimeos\MShop\Common\Item\Address\Iface $address, $code, $password )
 	{
+		$extra = $this->getContext()->getSession()->get( 'client/html/checkout/standard/address/extra' );
 		$label = $address->getLastname();
 
 		if( ( $part = $address->getFirstname() ) !== '' ) {
@@ -329,12 +330,11 @@ class Standard
 		$customer->setCode( $code );
 		$customer->setStatus( 1 );
 
-		try
-		{
-			$birthday = $this->getContext()->getSession()->get( 'client/html/checkout/standard/address/extra/birthday' );
-			$customer->setBirthday( $birthday );
+		try {
+			$customer->setBirthday( (string) $extra['customer.birthday'] );
+		} catch( \Aimeos\MShop\Exception $e ) {
+			// don't break on invalid birthdays
 		}
-		catch( \Aimeos\MShop\Exception $e ) { ; } // don't break on invalid birthdays
 
 		/** client/html/checkout/standard/order/account/standard/groupids
 		 * List of groups new customers should be assigned to
