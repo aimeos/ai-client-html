@@ -146,7 +146,9 @@ foreach( $this->get( 'deliveryHidden', array() ) as $name ) {
 			'id' => $id,
 		);
 ?>
+		<ul class="form-list">
 <?php	echo $this->partial( $this->config( 'client/html/common/partials/address', 'common/partials/address-default.php' ), $values ); ?>
+		</ul>
 	</div>
 <?php endforeach; ?>
 <?php if( $disablenew === false ) : ?>
@@ -180,7 +182,9 @@ foreach( $this->get( 'deliveryHidden', array() ) as $name ) {
 			'css' => $deliveryCss,
 		);
 ?>
+		<ul class="form-list">
 <?php	echo $this->partial( $this->config( 'client/html/common/partials/address', 'common/partials/address-default.php' ), $values ); ?>
+		</ul>
 	</div>
 <?php endif; ?>
 <?php echo $this->get( 'deliveryBody' ); ?>

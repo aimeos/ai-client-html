@@ -324,10 +324,17 @@ class Standard
 		}
 
 		$customer->setPaymentAddress( $address );
-		$customer->setCode( $code );
 		$customer->setPassword( $password );
 		$customer->setLabel( $label );
+		$customer->setCode( $code );
 		$customer->setStatus( 1 );
+
+		try
+		{
+			$birthday = $this->getContext()->getSession()->get( 'client/html/checkout/standard/address/extra/birthday' );
+			$customer->setBirthday( $birthday );
+		}
+		catch( \Aimeos\MShop\Exception $e ) { ; } // don't break on invalid birthdays
 
 		/** client/html/checkout/standard/order/account/standard/groupids
 		 * List of groups new customers should be assigned to

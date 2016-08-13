@@ -294,7 +294,9 @@ class Standard
 		{
 			parent::process();
 
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+			$context = $this->getContext();
+			$context->getSession()->set( 'client/html/checkout/standard/address/extra', $view->param( 'ca_extra' ) );
+			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 			// Test if addresses are available
 			$addresses = $basketCntl->get()->getAddresses();
@@ -467,6 +469,7 @@ class Standard
 			 */
 			$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', array() );
 
+			$view->addressExtra = $context->getSession()->get( 'client/html/checkout/standard/address/extra', array() );
 
 			$this->cache = $view;
 		}

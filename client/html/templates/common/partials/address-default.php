@@ -38,7 +38,6 @@ $fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
 $enc = $this->encoder();
 
 ?>
-<ul class="form-list">
 	<li class="form-item salutation <?php echo ( isset( $css['order.base.address.salutation'] ) ? join( ' ', $css['order.base.address.salutation'] ) : '' ); ?>">
 		<label for="address-<?php echo $type ?>-salutation<?php echo $idstr ?>"><?php echo $enc->html( $this->translate( 'client', 'Salutation' ), $enc::TRUST ); ?>
 		</label><select id="address-<?php echo $type ?>-salutation<?php echo $idstr ?>" name="<?php echo $enc->attr( $this->formparam( array( $fname, 'order.base.address.salutation' ) ) ); ?>" <?php echo $disablefcn( $css, 'order.base.address.salutation' ); ?> >
@@ -136,4 +135,3 @@ $enc = $this->encoder();
 		<label for="address-<?php echo $type ?>-website<?php echo $idstr ?>"><?php echo $enc->html( $this->translate( 'client', 'Web site' ), $enc::TRUST ); ?>
 		</label><input type="url" id="address-<?php echo $type ?>-website<?php echo $idstr ?>" name="<?php echo $enc->attr( $this->formparam( array( $fname, 'order.base.address.website' ) ) ); ?>" value="<?php echo $enc->attr( $testfcn( $addr, 'order.base.address.website' ) ); ?>" placeholder="http://example.com" <?php echo $disablefcn( $css, 'order.base.address.website' ); ?> />
 	</li>
-</ul>

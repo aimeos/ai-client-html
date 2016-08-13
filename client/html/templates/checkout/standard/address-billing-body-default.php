@@ -154,7 +154,9 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 		 * @category User
 		 */
 ?>
+		<ul class="form-list">
 <?php	echo $this->partial( $this->config( 'client/html/common/partials/address', 'common/partials/address-default.php' ), $values ); ?>
+		</ul>
 	</div>
 <?php endif; ?>
 <?php if( $disablenew === false ) : ?>
@@ -188,7 +190,21 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 			'css' => $paymentCss,
 		);
 ?>
+		<ul class="form-list">
+
 <?php	echo $this->partial( $this->config( 'client/html/common/partials/address', 'common/partials/address-default.php' ), $values ); ?>
+
+			<li class="form-item birthday">
+				<label for="customer-birthday">
+					<?php echo $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
+				</label><!--
+				--><input type="date" class="birthday"
+					id="customer-birthday"
+					name="<?php echo $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
+					value="<?php echo $enc->attr( $this->param( 'ca_extra/customer.birthday' ) ); ?>"
+				/>
+			</li>
+		</ul>
 	</div>
 <?php endif; ?>
 <?php echo $this->get( 'billingBody' ); ?>
