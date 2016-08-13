@@ -1024,6 +1024,9 @@ AimeosCheckoutStandard = {
 	setupBirthdayPicker: function() {
 
 		$( ".checkout-standard-address .form-list input.birthday" ).datepicker({
+			minDate: '-100Y', maxDate: '0Y',
+			yearRange: 'c-100:c-0',
+			dateFormat: 'yy-mm-dd',
 			changeMonth: true,
 			changeYear: true
 		});
