@@ -1019,6 +1019,18 @@ AimeosCheckoutStandard = {
 
 
 	/**
+	 * Shows date picker for birthday field
+	 */
+	setupBirthdayPicker: function() {
+
+		$( ".checkout-standard-address .form-list input.birthday" ).datepicker({
+			changeMonth: true,
+			changeYear: true
+		});
+	},
+
+
+	/**
 	 * Shows only form fields of selected service option
 	 */
 	setupServiceForms: function() {
@@ -1113,6 +1125,7 @@ AimeosCheckoutStandard = {
 
 		this.setupSalutationCompany();
 		this.setupCountryState();
+		this.setupBirthdayPicker();
 
 		this.setupMandatoryCheck();
 		this.setupPaymentRedirect();

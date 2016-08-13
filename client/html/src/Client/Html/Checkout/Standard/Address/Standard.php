@@ -295,7 +295,11 @@ class Standard
 			parent::process();
 
 			$context = $this->getContext();
-			$context->getSession()->set( 'client/html/checkout/standard/address/extra', $view->param( 'ca_extra' ) );
+
+			if( ( $param = $view->param( 'ca_extra' ) ) !== null ) {
+				$context->getSession()->set( 'client/html/checkout/standard/address/extra', (array) $param );
+			}
+
 			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 			// Test if addresses are available

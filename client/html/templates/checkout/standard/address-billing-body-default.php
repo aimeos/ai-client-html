@@ -201,7 +201,7 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 				--><input type="date" class="birthday"
 					id="customer-birthday"
 					name="<?php echo $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
-					value="<?php echo $enc->attr( $this->param( 'ca_extra/customer.birthday' ) ); ?>"
+					value="<?php echo $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
 				/>
 			</li>
 		</ul>
