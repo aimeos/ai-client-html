@@ -28,9 +28,12 @@ class ExampleTest extends \PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$context = \TestHelperHtml::getContext();
-		$methods = array( 'getHeader', 'getBody', 'testMethod' );
 
-		$this->client = $this->getMock( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard', $methods, array( $context, array() ) );
+		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
+			->setMethods( array( 'getHeader', 'getBody', 'testMethod' ) )
+			->setConstructorArgs( array( $context, array() ) )
+			->getMock();
+
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, array() );
 		$this->object->setView( \TestHelperHtml::getView());
 	}
