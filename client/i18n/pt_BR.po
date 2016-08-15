@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-08-10 17:53+0000\n"
+"PO-Revision-Date: 2016-08-15 10:58+0000\n"
 "Last-Translator: Bruno Rodrigues <brunojti@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -53,18 +53,18 @@ msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%1
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr "%1$s %2$s"
+msgstr "%2$s %1$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "%1$s %2$s off"
+msgstr "%2$s %1$s de desconto"
 
 #. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
 #. value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s ( %4$s%2$s%3$s )"
+msgstr "%1$s ( %4$s%3$s%2$s )"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -80,7 +80,7 @@ msgstr "%1$s%%"
 #. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr "%1$s%3$s + %2$s%3$s"
+msgstr "%3$s%1$s + %3$s%2$s"
 
 msgid "+"
 msgstr "+"
@@ -89,7 +89,7 @@ msgstr "+"
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/item"
+msgstr "+ %2$s %1$s/item"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -633,7 +633,7 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Obrigado pelo seu pedido %1$s de %2$s.\n\nO pedido estará pendente até o recebimento do pagament. Se você preferir adiantar o pagamento, por favor transfira o dinheiro para a nossa conta bancária com o ID do pedido %1$s como referência."
+msgstr "Obrigado pelo seu pedido %1$s de %2$s.\n\nO pedido estará pendente até o recebimento do pagamento. Se você preferir adiantar o pagamento, por favor transfira o dinheiro para a nossa conta bancária com o ID do pedido %1$s como referência."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
