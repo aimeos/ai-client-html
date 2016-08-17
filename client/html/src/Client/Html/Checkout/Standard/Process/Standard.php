@@ -544,7 +544,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/config
 		 */
-		$action = $view->config( 'client/html/checkout/standard/url/action', 'standard' );
+		$action = $view->config( 'client/html/checkout/standard/url/action', 'index' );
 
 		/** client/html/checkout/standard/url/config
 		 * Associative list of configuration options used for generating the URL
