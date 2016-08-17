@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<div class="checkout-standard-process">', $output );
-		$this->assertEquals( 'http://baseurl/checkout/standard/?c_step=payment', $view->standardUrlPayment );
+		$this->assertEquals( 'http://baseurl/checkout/index/?c_step=payment', $view->standardUrlPayment );
 	}
 
 
