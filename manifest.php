@@ -23,6 +23,9 @@ return array(
 		'client/html/templates' => array(
 			'client/html/templates',
 		),
+		'controller/jobs/templates' => array(
+			'client/html/templates',
+		),
 		'controller/jobs' => array(
 			'controller/jobs/src',
 		),
