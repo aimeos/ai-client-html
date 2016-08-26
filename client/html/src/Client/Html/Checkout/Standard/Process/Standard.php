@@ -283,16 +283,28 @@ class Standard
 				$serviceManager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
 				$provider = $serviceManager->getProvider( $serviceItem );
 
-				$params = array( 'code' => $serviceItem->getCode(), 'orderid' => $orderid );
+				$args = array( 'code' => $serviceItem->getCode(), 'orderid' => $orderid );
 				$urls = array(
-					'payment.url-self' => $this->getUrlSelf( $view, $params + array( 'c_step' => 'process' ), array() ),
-					'payment.url-success' => $this->getUrlConfirm( $view, $params, $config ),
-					'payment.url-update' => $this->getUrlUpdate( $view, $params, $config ),
+					'payment.url-self' => $this->getUrlSelf( $view, $args + array( 'c_step' => 'process' ), array() ),
+					'payment.url-success' => $this->getUrlConfirm( $view, $args, $config ),
+					'payment.url-update' => $this->getUrlUpdate( $view, $args, $config ),
 					'client.ipaddress' => $view->request()->getClientAddress(),
 				);
 				$provider->injectGlobalConfigBE( $urls );
+				$params = $view->param();
 
-				if( ( $form = $provider->process( $orderItem, $view->param() ) ) === null )
+				try
+				{
+					$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
+					$attrs = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT )->getAttributes();
+
+					foreach( $attrs as $item ) {
+						$params[$item->getCode()] = $item->getValue();
+					}
+				}
+				catch( \Exception $e ) {} // nothing available
+
+				if( ( $form = $provider->process( $orderItem, $params ) ) === null )
 				{
 					$msg = sprintf( 'Invalid process response from service provider with code "%1$s"', $serviceItem->getCode() );
 					throw new \Aimeos\Client\Html\Exception( $msg );
