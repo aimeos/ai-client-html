@@ -77,7 +77,7 @@ $enc = $this->encoder();
 		<label for="address-<?php echo $type ?>-city<?php echo $idstr ?>"><?php echo $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ); ?>
 		</label><input type="text" id="address-<?php echo $type ?>-city<?php echo $idstr ?>" name="<?php echo $enc->attr( $this->formparam( array( $fname, 'order.base.address.city' ) ) ); ?>" value="<?php echo $enc->attr( $testfcn( $addr, 'order.base.address.city' ) ); ?>" placeholder="<?php echo $enc->attr( $this->translate( 'client', 'City' ) ); ?>" <?php echo $disablefcn( $css, 'order.base.address.city' ); ?> />
 	</li>
-<?php	if( count( $states ) > 1 ) : ?>
+<?php	if( count( $states ) > 0 ) : ?>
 	<li class="form-item state <?php echo ( isset( $css['order.base.address.state'] ) ? join( ' ', $css['order.base.address.state'] ) : '' ); ?>">
 		<label for="address-<?php echo $type ?>-state<?php echo $idstr ?>"><?php echo $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
 		</label><select id="address-<?php echo $type ?>-state<?php echo $idstr ?>" name="<?php echo $enc->attr( $this->formparam( array( $fname, 'order.base.address.state' ) ) ); ?>" <?php echo $disablefcn( $css, 'order.base.address.state' ); ?> >
@@ -96,7 +96,7 @@ $enc = $this->encoder();
 		<label for="address-<?php echo $type ?>-postal<?php echo $idstr ?>"><?php echo $enc->html( $this->translate( 'client', 'Postal code' ), $enc::TRUST ); ?>
 		</label><input type="text" id="address-<?php echo $type ?>-postal<?php echo $idstr ?>" name="<?php echo $enc->attr( $this->formparam( array( $fname, 'order.base.address.postal' ) ) ); ?>" value="<?php echo $enc->attr( $testfcn( $addr, 'order.base.address.postal' ) ); ?>" placeholder="<?php echo $enc->attr( $this->translate( 'client', 'Postal code' ) ); ?>" <?php echo $disablefcn( $css, 'order.base.address.postal' ); ?> />
 	</li>
-<?php	if( count( $countries ) > 1 ) : ?>
+<?php	if( count( $countries ) > 0 ) : ?>
 	<li class="form-item countryid <?php echo ( isset( $css['order.base.address.countryid'] ) ? join( ' ', $css['order.base.address.countryid'] ) : '' ); ?>">
 		<label for="address-<?php echo $type ?>-countryid<?php echo $idstr ?>"><?php echo $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ); ?>
 		</label><select id="address-<?php echo $type ?>-countryid<?php echo $idstr ?>" name="<?php echo $enc->attr( $this->formparam( array( $fname, 'order.base.address.countryid' ) ) ); ?>" <?php echo $disablefcn( $css, 'order.base.address.countryid' ); ?> >
