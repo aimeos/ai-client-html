@@ -471,7 +471,7 @@ class Standard
 			 * @category Developer
 			 */
 			$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
-			$onestep = array_shift( $onepage ); // keep the first one page step
+			$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
 
 			$steps = (array) $context->getConfig()->get( $this->subPartPath, $this->subPartNames );
 			$steps = array_diff( $steps, $onepage ); // remove all remaining steps in $onepage
