@@ -62,7 +62,7 @@ class Factory
 		 * or numbers. Avoid chamel case names like "MyProfile"!
 		 *
 		 * @param string Last part of the class name
-		 * @since 2014.03
+		 * @since 2016.10
 		 * @category Developer
 		 */
 		if( $name === null ) {
