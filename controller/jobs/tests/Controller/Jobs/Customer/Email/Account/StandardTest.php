@@ -104,4 +104,38 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->object->run();
 	}
+
+
+	public function testRunException()
+	{
+		$queueStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Queue\\Standard' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$queueStub->expects( $this->exactly( 2 ) )->method( 'get' )
+			->will( $this->onConsecutiveCalls( new \Aimeos\MW\MQueue\Message\Standard( array( 'message' => 'error') ), null ) );
+
+		$queueStub->expects( $this->once() )->method( 'del' );
+
+
+		$mqueueStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Standard' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$mqueueStub->expects( $this->once() )->method( 'getQueue' )
+			->will( $this->returnValue( $queueStub ) );
+
+
+		$managerStub = $this->getMockBuilder( '\\Aimeos\\MW\\MQueue\\Manager\\Standard' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$managerStub->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $mqueueStub ) );
+
+		$this->context->setMessageQueueManager( $managerStub );
+
+
+		$this->object->run();
+	}
 }

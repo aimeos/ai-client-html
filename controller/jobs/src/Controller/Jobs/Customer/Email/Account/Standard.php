@@ -59,17 +59,24 @@ class Standard
 
 		while( ( $msg = $queue->get() ) !== null )
 		{
-			if( ( $list = json_decode( $msg->getBody(), true ) ) !== null )
+			try
 			{
+				if( ( $list = json_decode( $msg->getBody(), true ) ) === null )
+				{
+					$str = sprintf( 'Invalid JSON encode message: %1$s', $msg->getBody() );
+					throw new \Aimeos\Controller\Jobs\Exception( $str );
+				}
+
 				$password = ( isset( $list['customer.password'] ) ? $list['customer.password'] : '' );
 				$item = $custManager->createItem();
 				$item->fromArray( $list );
 
 				$this->sendEmail( $context, $item, $password );
 			}
-			else
+			catch( \Exception $e )
 			{
-				$context->getLogger()->log( sprintf( 'Invalid JSON encode message: %1$s', $msg->getBody() ) );
+				$str = 'Error while trying to send customer account e-mail: ' . $e->getMessage();
+				$context->getLogger()->log( $str );
 			}
 
 			$queue->del( $msg );
