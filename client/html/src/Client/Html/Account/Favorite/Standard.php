@@ -281,70 +281,137 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$ids = $view->param( 'fav_id', array() );
+		$userId = $context->getUserId();
+		$ids = (array) $view->param( 'fav_id', array() );
 
-
-		if( $context->getUserId() != null && !empty( $ids ) )
+		try
 		{
-			$typeItem = $this->getTypeItem( 'customer/lists/type', 'product', 'favorite' );
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
-
-			$search = $manager->createSearch();
-			$expr = array(
-				$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
-				$search->compare( '==', 'customer.lists.refid', $ids ),
-				$search->compare( '==', 'customer.lists.domain', 'product' ),
-				$search->compare( '==', 'customer.lists.typeid', $typeItem->getId() ),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
-
-			$items = array();
-			foreach( $manager->searchItems( $search ) as $item ) {
-				$items[$item->getRefId()] = $item;
+			if( $userId != null && !empty( $ids ) )
+			{
+				switch( $view->param( 'fav_action' ) )
+				{
+					case 'add':
+						$this->addFavorites( $ids, $userId ); break;
+					case 'delete':
+						$this->deleteFavorites( $ids, $userId ); break;
+				}
 			}
 
+			parent::process();
+		}
+		catch( \Aimeos\MShop\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->favoriteErrorList = $view->get( 'favoriteErrorList', array() ) + $error;
+		}
+		catch( \Aimeos\Controller\Frontend\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->favoriteErrorList = $view->get( 'favoriteErrorList', array() ) + $error;
+		}
+		catch( \Aimeos\Client\Html\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->favoriteErrorList = $view->get( 'favoriteErrorList', array() ) + $error;
+		}
+		catch( \Exception $e )
+		{
+			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
-			switch( $view->param( 'fav_action' ) )
+			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$view->favoriteErrorList = $view->get( 'favoriteErrorList', array() ) + $error;
+		}
+	}
+
+
+	/**
+	 * Returns the customer list items referencing the favorite products
+	 *
+	 * @param array $ids List of product IDs
+	 * @param string $userId Unique customer ID
+	 * @param string $typeId ID of the list item type
+	 * @return array Associative list of product IDs as keys and list items as values
+	 */
+	protected function getListItems( array $ids, $userId, $typeId )
+	{
+		$context = $this->getContext();
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+
+		$search = $manager->createSearch();
+		$expr = array(
+			$search->compare( '==', 'customer.lists.parentid', $userId ),
+			$search->compare( '==', 'customer.lists.refid', $ids ),
+			$search->compare( '==', 'customer.lists.domain', 'product' ),
+			$search->compare( '==', 'customer.lists.typeid', $typeId ),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+
+		$items = array();
+		foreach( $manager->searchItems( $search ) as $item ) {
+			$items[$item->getRefId()] = $item;
+		}
+
+		return $items;
+	}
+
+
+	/**
+	 * Adds new product favorite references to the given customer
+	 *
+	 * @param array $ids List of product IDs
+	 * @param string $userId Unique customer ID
+	 */
+	protected function addFavorites( array $ids, $userId )
+	{
+		$context = $this->getContext();
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+
+		$typeId = $this->getTypeItem( 'customer/lists/type', 'product', 'favorite' )->getId();
+		$listItems = $this->getListItems( $ids, $userId, $typeId );
+
+		$item = $manager->createItem();
+		$item->setDomain( 'product' );
+		$item->setParentId( $userId );
+		$item->setTypeId( $typeId );
+		$item->setStatus( 1 );
+
+		foreach( $ids as $id )
+		{
+			if( !isset( $listItems[$id] ) )
 			{
-				case 'add':
+				$item->setId( null );
+				$item->setRefId( $id );
 
-					$item = $manager->createItem();
-					$item->setParentId( $context->getUserId() );
-					$item->setTypeId( $typeItem->getId() );
-					$item->setDomain( 'product' );
-					$item->setStatus( 1 );
+				$manager->saveItem( $item );
+				$manager->moveItem( $item->getId() );
+			}
+		}
+	}
 
-					foreach( (array) $view->param( 'fav_id', array() ) as $id )
-					{
-						if( !isset( $items[$id] ) )
-						{
-							$item->setId( null );
-							$item->setRefId( $id );
 
-							$manager->saveItem( $item );
-							$manager->moveItem( $item->getId() );
-						}
-					}
+	/**
+	 * Removes product favorite references from the customer
+	 *
+	 * @param array $ids List of product IDs
+	 * @param string $userId Unique customer ID
+	 */
+	protected function deleteFavorites( array $ids, $userId )
+	{
+		$listIds = array();
+		$context = $this->getContext();
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
-					break;
+		$typeId = $this->getTypeItem( 'customer/lists/type', 'product', 'favorite' )->getId();
+		$listItems = $this->getListItems( $ids, $userId, $typeId );
 
-				case 'delete':
-
-					$listIds = array();
-
-					foreach( (array) $view->param( 'fav_id', array() ) as $id )
-					{
-						if( isset( $items[$id] ) ) {
-							$listIds[] = $items[$id]->getId();
-						}
-					}
-
-					$manager->deleteItems( $listIds );
-					break;
+		foreach( $ids as $id )
+		{
+			if( isset( $listItems[$id] ) ) {
+				$listIds[] = $listItems[$id]->getId();
 			}
 		}
 
-		parent::process();
+		$manager->deleteItems( $listIds );
 	}
 
 

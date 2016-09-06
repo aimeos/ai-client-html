@@ -273,6 +273,45 @@ class Standard
 
 
 	/**
+	 * Processes the input, e.g. store given values.
+	 * A view must be available and this method doesn't generate any output
+	 * besides setting view variables.
+	 */
+	public function process()
+	{
+		$context = $this->getContext();
+		$view = $this->getView();
+
+		try
+		{
+			parent::process();
+		}
+		catch( \Aimeos\MShop\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+		}
+		catch( \Aimeos\Controller\Frontend\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+		}
+		catch( \Aimeos\Client\Html\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+		}
+		catch( \Exception $e )
+		{
+			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+
+			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+		}
+	}
+
+
+	/**
 	 * Returns the list of sub-client names configured for the client.
 	 *
 	 * @return array List of HTML client names
