@@ -330,7 +330,7 @@ class Standard
 
 			if( $context->getConfig()->get( 'client/html/catalog/suggest/usecode', false ) )
 			{
-				$filter = $controller->createTextFilter( $input, null, '+', 0, 25, '', 'code' );
+				$filter = $controller->createTextFilter( $input, null, '+', 0, 25, 'default', 'code' );
 				$codes = $controller->getTextList( $filter );
 			}
 
