@@ -99,6 +99,25 @@ class Standard
 		}
 		$view->paymentBody = $content;
 
+
+		/** client/html/email/payment/attachments
+		 * List of file paths whose content should be attached to all payment e-mails
+		 *
+		 * This configuration option allows you to add files to the e-mails that are
+		 * sent to the customer when the payment status changes, e.g. for the order
+		 * confirmation e-mail. These files can't be customer specific.
+		 *
+		 * @param array List of absolute file paths
+		 * @since 2016.10
+		 * @category Developer
+		 * @category User
+		 * @see client/html/email/delivery/attachments
+		 */
+		$files = $view->config( 'client/html/email/payment/attachments', array() );
+
+		$this->addAttachments( $view->mail(), $files );
+
+
 		/** client/html/email/payment/standard/template-body
 		 * Relative path to the HTML body template of the email payment client.
 		 *
@@ -411,6 +430,46 @@ class Standard
 		 */
 
 		return $this->createSubClient( 'email/payment/' . $type, $name );
+	}
+
+
+	/**
+	 * Adds the given list of files as attachments to the mail message object
+	 *
+	 * @param \Aimeos\MW\Mail\Message\Iface $msg Mail message
+	 * @param array $files List of absolute file paths
+	 */
+	protected function addAttachments( \Aimeos\MW\Mail\Message\Iface $msg, array $files )
+	{
+		foreach( $files as $filename )
+		{
+			if( ( $content = @file_get_contents( $filename ) ) === false ) {
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'File "1%s" doesn\'t exist', $filename ) );
+			}
+
+			if( class_exists( 'finfo' ) )
+			{
+				try
+				{
+					$finfo = new \finfo( FILEINFO_MIME_TYPE );
+					$mimetype = $finfo->file( $filename );
+				}
+				catch( \Exception $e )
+				{
+					throw new \Aimeos\Client\Html\Exception( $e->getMessage() );
+				}
+			}
+			else if( function_exists( 'mime_content_type' ) )
+			{
+				$mimetype = mime_content_type( $filename );
+			}
+			else
+			{
+				$mimetype = 'application/binary';
+			}
+
+			$msg->addAttachment( $content, $mimetype, basename( $filename ) );
+		}
 	}
 
 

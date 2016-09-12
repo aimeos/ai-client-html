@@ -103,6 +103,26 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testGetBodyFiles()
+	{
+		$config = $this->context->getConfig();
+		$config->set( 'client/html/email/payment/attachments', array( __FILE__ ) );
+
+		$output = $this->object->getBody();
+		$this->assertNotNull( $output );
+	}
+
+
+	public function testGetBodyFilesException()
+	{
+		$config = $this->context->getConfig();
+		$config->set( 'client/html/email/payment/attachments', array( 'invalid' ) );
+
+		$this->setExpectedException( '\Aimeos\Client\Html\Exception' );
+		$this->object->getBody();
+	}
+
+
 	public function testGetSubClientInvalid()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
