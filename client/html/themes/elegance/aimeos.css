@@ -1909,7 +1909,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	text-align: center !important;
 }
 
-.basket-standard .basket-related h1 {
+.aimeos .basket-related h1 {
 	display: none;
 }
 
