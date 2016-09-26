@@ -33,6 +33,5 @@ if( isset( $this->summaryBasket ) ) {
 <?php endif; ?>
 	</div>
 <?php echo $this->get( 'couponBody' ); ?>
-</div>
-<?php $this->block()->stop(); ?>
+</div><?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'common/summary/coupon' ); ?>
