@@ -3,28 +3,28 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aldemar Hernández <napalm-beach@lycos.com>, 2016
-# Daniel Vega <danielvega131990@gmail.com>, 2015
-# nsendetzky, 2014
+# David Siklaky <siklaky.david@gmail.com>, 2016
+# Nóra Antal <nora1984antal@gmail.com>, 2016
+# Péter Kozma <kopegrafika@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 23:34+0200\n"
-"PO-Revision-Date: 2016-09-02 18:03+0000\n"
-"Last-Translator: Aldemar Hernández <napalm-beach@lycos.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
+"PO-Revision-Date: 2016-09-21 13:25+0000\n"
+"Last-Translator: Nóra Antal <nora1984antal@gmail.com>\n"
+"Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] "%1$d artículos"
-msgstr[1] "%1$d artículos"
+msgstr[0] "%1$d cikk"
+msgstr[1] "%1$d cikk"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -54,12 +54,12 @@ msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%1
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr "%1$s %2$s"
+msgstr "%2$s %1$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "%1$s %2$s menos"
+msgstr "%1$s %2$s"
 
 #. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
 #. value (%2$s) and currency (%3$s)
@@ -70,7 +70,7 @@ msgstr "%1$s ( %4$s%2$s%3$s )"
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
-msgstr "%1$s en %2$s"
+msgstr "%1$s: %2$s"
 
 #. / Percent format with value (%1$s) and % sign
 #, php-format
@@ -81,7 +81,7 @@ msgstr "%1$s%%"
 #. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr "%1$s%3$s + %2$s%3$s"
+msgstr "%1$s %3$s + %2$s %3$s"
 
 msgid "+"
 msgstr "+"
@@ -90,21 +90,21 @@ msgstr "+"
 #. currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/unidad"
+msgstr "+ %1$s %2$s/db"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr "+ %1$s%% IVA"
+msgstr "+ %1$s%% ÁFA"
 
 msgid "+ Payment costs"
-msgstr "+ Comisiones de pago"
+msgstr "+  Fizetési költségek"
 
 msgid "+ Shipping"
-msgstr "+ Envío"
+msgstr "+ Szállítás"
 
 msgid "+ shipping costs"
-msgstr "+ gastos de envío"
+msgstr "+ szállítási költség"
 
 msgid "+1 123 456 7890"
 msgstr "+1 123 456 7890"
@@ -115,140 +115,140 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "Account"
-msgstr "Cuenta"
+msgstr "Felhasználói fiók"
 
 msgid "Add to basket"
-msgstr "Añadir a la cesta"
+msgstr "Kosárba"
 
 msgid "Additional"
-msgstr "Adicional"
+msgstr "Kiegészítő"
 
 msgid "Additional 2"
-msgstr "Adicional 2"
+msgstr "Kiegészítő 2"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
-msgstr "No se ha encontrado la dirección con la ID \"%1$s\""
+msgstr "\"%1$s\" azonosítóval cím nem található"
 
 msgid "Addresses"
-msgstr "Direcciones"
+msgstr "Címek"
 
 msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
 "\n"
 "This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Todos los pedidos enviados están sujetos a nuestros términos y condiciones, disponibles en nuestra página web y aceptados por usted al realizar su pedido.\n\nEl presente correo electrónico contiene información confidencial y es para uso exclusivo de la persona a la que va dirigido. En caso de que usted no fuera esa persona, le rogamos responda al presente correo electrónico y elimine el mensaje y sus adjuntos a continuación."
+msgstr "A kézbesítések menetéről az Általános Szerződési Feltételekben tájékozódhat, mely elérhető weboldalunkon, és amelyet megrendeléskor elfogad.\n\nJelen e-mailünk bizalmas információkat tartalmaz és kizárólag személyes felhasználásra címeztünk. Ha nem Ön a címzett, kérjük, válaszoljon az e-mailre, majd törölje a csatolmánnyal együtt."
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
-msgstr "Todos los pedidos enviados están sujetos a nuestros términos y condiciones, disponibles en nuestra página web y aceptados por usted al realizar su pedido.\n\nEl presente correo electrónico contiene información confidencial y es para uso exclusivo de la persona a la que va dirigido. En caso de que usted no fuera esa persona, le rogamos responda al presente correo electrónico y elimine el mensaje y sus adjuntos a continuación."
+msgstr "Minden megrendelésre az Általános Szerződési Feltételek szabályozása érvényes, mely elérhető weboldalunkon, és amelyet megrendeléskor elfogad.\n\nJelen e-mailünk bizalmas információkat tartalmaz és kizárólag személyes felhasználásra címeztünk. Ha nem Ön a címzett, kérjük, válaszoljon az e-mailre, majd törölje a csatolmánnyal együtt."
 
 msgid "An account has been created for you."
-msgstr "Se ha creado una cuenta para ud."
+msgstr "Felhasználói fiókja elkészült"
 
 msgid "Article no.:"
-msgstr "Nro. de artículo:"
+msgstr "Cikk no.:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr "Al menos una parte de la dirección de cobro no se encuentra o es incorrecta"
+msgstr "Legalább egy számlázási cím rész hiányzik vagy érvénytelen"
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
-msgstr "Al menos una parte de la dirección de entrega no se encuentra o es incorrecta"
+msgstr "Legalább egy szállítási cím rész hiányzik vagy érvénytelen"
 
 msgid "Attributes"
-msgstr "Atributos"
+msgstr "Attribútumok"
 
 msgid "Back"
-msgstr "Volver"
+msgstr "Vissza"
 
 msgid "Basket"
-msgstr "Cesta"
+msgstr "Kosár"
 
 msgid "Billing address"
-msgstr "Dirección de cobro"
+msgstr "Számlázási cím"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr "La parte \"%1$s\" de la dirección de cobro no es válida"
+msgstr "A következő számlázási cím rész érvénytelen: \"%1$s\" "
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr "Falta la parte \"%1$s\" de la dirección de cobro"
+msgstr "A következő számlázási cím rész hiányzik: \"%1$s\" "
 
 msgid "Bundled products"
-msgstr "Productos empaquetados"
+msgstr "Csomagtermékek"
 
 msgid "Buy now"
-msgstr "Comprar ahora"
+msgstr "Most vegye meg!"
 
 msgid "Categories"
-msgstr "Categorías"
+msgstr "Kategóriák"
 
 msgid "Change"
-msgstr "Cambio"
+msgstr "Módosítás"
 
 msgid "Change payment"
-msgstr "Cambiar pago"
+msgstr "Fizetés módosítás"
 
 msgid "Characteristics"
-msgstr "Características"
+msgstr "Jellemzők"
 
 msgid "Check"
-msgstr "Verificado"
+msgstr "Ellenőriz"
 
 msgid "Checkout"
-msgstr "Pagar"
+msgstr "Pénztár"
 
 msgid "City"
-msgstr "Ciudad"
+msgstr "Város"
 
 #, php-format
 msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "La clase \"%1$s\" no implementa la interfaz \"%2$s\""
+msgstr ""
 
 #, php-format
 msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "La clase \"%1$s\" no implementa la interfaz \"%2$s\""
+msgstr ""
 
 #, php-format
 msgid "Class \"%1$s\" not available"
-msgstr "La clase \"%1$s\" no está disponible"
+msgstr "A következő osztály nem elérhető: \"%1$s\""
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr "La clase \"%1$s\" no está disponible"
+msgstr "A következő osztály nem található: \"%1$s\""
 
 #, php-format
 msgid "Client HTML type is empty"
-msgstr "El tipo de cliente html está vacío"
+msgstr "Client HTML típus üres"
 
 #, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr "El tipo de cliente \"%1$s\" debe constar de dos partes separadas por \"/\""
+msgstr ""
 
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Bezár"
 
 msgid "Company"
-msgstr "Compañía"
+msgstr "Cég"
 
 msgid "Confirmation"
-msgstr "Confirmación"
+msgstr "Jóváhagyás"
 
 msgid "Country"
-msgstr "País"
+msgstr "Ország"
 
 msgid "Coupon codes"
-msgstr "Códigos de cupón"
+msgstr "Kupon kódok"
 
 msgid "Coupons"
-msgstr "Cupones"
+msgstr "Kuponok"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
-msgstr "No se ha encontrado el cliente con la ID \"%1$s\""
+msgstr "\"%1$s\" azonosítóval nem található vásárló"
 
 #. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
 #. and last name (%3$s)
@@ -256,61 +256,61 @@ msgstr "No se ha encontrado el cliente con la ID \"%1$s\""
 #. and last name (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
-msgstr "Estimado/a %1$s %2$s %3$s"
+msgstr "Kedves %1$s %3$s %2$s"
 
 msgid "Dear Sir or Madam"
-msgstr "Estimado/a señor/a"
+msgstr "Kedves Hölgyem/Uram"
 
 msgid "Delivery"
-msgstr "Entrega"
+msgstr "Szállítás"
 
 msgid "Delivery address"
-msgstr "Dirección de entrega"
+msgstr "Szállítási cím"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
-msgstr "La parte \"%1$s\" de la dirección de entrega no es válida"
+msgstr "A következő szállítási cím rész érvénytelen: \"%1$s\" "
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
-msgstr "Falta la parte \"%1$s\" de la dirección de entrega"
+msgstr "A következő szállítási cím rész hiányzik: \"%1$s\" "
 
 msgid "Description"
-msgstr "Descripción"
+msgstr "Leírás"
 
 msgid "Details"
-msgstr "Detalles"
+msgstr "Részletek"
 
 msgid "Downloads"
-msgstr "Descargas"
+msgstr "Letöltések"
 
 msgid "E-Mail"
-msgstr "Correo electrónico"
+msgstr "E-mail"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
-msgstr "Notificación de correo electrónico"
+msgstr "E-mail figyelmeztetés"
 
 msgid "Favorite products"
-msgstr "Productos favoritos"
+msgstr "Kedvenc termékek"
 
 msgid "Fax"
 msgstr "Fax"
 
 msgid "Fields with an * are mandatory"
-msgstr "Los campos con * son obligatorios "
+msgstr "A *-gal jelölt mezőket kötelező kitölteni "
 
 msgid "Filter"
-msgstr "Filtro"
+msgstr "Szűrő"
 
 msgid "First name"
-msgstr "Nombre"
+msgstr "Keresztnév"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go"
-msgstr "Buscar"
+msgstr "Mehet"
 
 #, php-format
 msgid ""
@@ -318,266 +318,266 @@ msgid ""
 "conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
 "policy\">privacy policy</a>"
-msgstr "Acepto los <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">términos y condiciones</a> y la <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">política de privacidad</a>"
+msgstr "Elfogadom a <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">Általános Szerződési Feltételeket</a> és a <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">Adatkezelési Szabályzatot</a>"
 
 msgid "If back in stock"
-msgstr "Si está de nuevo existencia"
+msgstr "Ha újra lesz készleten"
 
 msgid "If price decreases"
-msgstr "Si el precio disminuye"
+msgstr "Ha az ár csökken"
 
 #. / E-mail outro
 msgid "If you have any questions, please reply to this e-mail"
-msgstr "Si tiene alguna pregunta, responda a este email"
+msgstr "Ha bármilyen kérdése van, kérjük, válaszoljon erre az e-mailre"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr "Incl. el %1$s%% de IVA"
+msgstr "Tartalmazza a %1$s%% ÁFÁ-t"
 
 msgid "Included rebates"
-msgstr "Rebajas incluidas"
+msgstr "Tartalmazza a kedvezményeket"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr "Caracteres no válidos en el nombre de clase \"%1$s\""
+msgstr "Érvénytelen karakter a következő osztály nevében: \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr "Caracteres no válidos en el nombre del cliente \"%1$s\""
+msgstr "Érvénytelen karakter az ügyfél nevében: \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr "Caracteres no válidos en el nombre del cliente \"%1$s\" en \"%2$s\""
+msgstr ""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr "Nombre de clase no válido \"%1$s\""
+msgstr "Érvénytelen osztálynév: \"%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr "Dominio no válido \"%1$s\""
+msgstr "Érvénytelen domain: \"%1$s\""
 
 #, php-format
 msgid "Invalid factory \"%1$s\""
-msgstr "Constructor no válido \"%1$s\""
+msgstr "Érvénytelen gyártó: \"%1$s\""
 
 #, php-format
 msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "Respuesta de proceso no válida desde el proveedor de servicios con código \"%1$s\""
+msgstr ""
 
 msgid "Language"
-msgstr "Idioma"
+msgstr "Nyelv"
 
 msgid "Last name"
-msgstr "Apellido"
+msgstr "Vezetéknév"
 
 msgid "Last seen"
-msgstr "Última/s vista/s"
+msgstr "Utoljára nézett"
 
 msgid "Name"
-msgstr "Nombre"
+msgstr "Név"
 
 msgid "Next"
-msgstr "Siguiente"
+msgstr "Következő"
 
 #, php-format
 msgid ""
 "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
 "try again with a different keyword."
-msgstr "No se han encontrado artículos para <span class=\"searchstring\">\"%1$s\"</span>. Inténtelo de nuevo con una palabra clave distinta."
+msgstr "Nincs találtat a következő kulcsszóra: <span class=\"searchstring\">\"%1$s\"</span>. Kérjük, próbálkozzon egy másik kulcsszóval."
 
 #, php-format
 msgid "No product with ID \"%1$s\" found"
-msgstr "No se ha encontrado ningún producto con la ID \"%1$s\""
+msgstr "Nem található termék a következő azonosítóval: \"%1$s\""
 
 #, php-format
 msgid "No service for code \"%1$s\" found"
-msgstr "No se ha encontrado ningún servicio para el código \"%1$s\""
+msgstr ""
 
 #, php-format
 msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "No se ha encontrado ningún tipo de elemento para \"%1$s/%2$s\" en \"%3$s\""
+msgstr ""
 
 #, php-format
 msgid "No view available"
-msgstr "No hay vistas disponibles"
+msgstr ""
 
 #, php-format
 msgid "Number of coupon codes exceeds the limit"
-msgstr "El número de códigos de cupones excede el límite"
+msgstr "A kuponok száma meghaladja a limitet"
 
 #, php-format
 msgid "Object doesn't implement \"%1$s\""
-msgstr "El objeto no implementa \"%1$s\""
+msgstr ""
 
 msgid "One month"
-msgstr "Un mes"
+msgstr "Egy hónap"
 
 msgid "One or more products you are watching have been updated."
-msgstr "Uno o más de los productos observados por ud. han sido actualizados."
+msgstr "Az Ön által nézegetett termékek közül egy vagy több idő közben frissült."
 
 msgid "One week"
-msgstr "Una semana"
+msgstr "Egy hét"
 
 msgid "Options"
-msgstr "Opciones"
+msgstr "Opciók"
 
 msgid "Order ID"
-msgstr "ID del pedido"
+msgstr "Rendelés azonosító"
 
 msgid "Order channel"
-msgstr "Canal del pedido"
+msgstr ""
 
 msgid "Order details"
-msgstr "Detalles del pedido"
+msgstr "Megrendelés adatai"
 
 msgid "Order history"
-msgstr "Historial del pedido"
+msgstr "Megrendelés előzményei"
 
 msgid "Order status"
-msgstr "Estado del pedido"
+msgstr "Megrendelés státusza"
 
 #, php-format
 msgid "Order with ID \"%1$s\" not found"
-msgstr "No se ha encontrado el pedido con ID \"%1$s\""
+msgstr "\"%1$s\" azonosítóval nem található megrendelés"
 
 msgid "Other customers also bought"
-msgstr "Otros clientes además compraron"
+msgstr "Mások is vásárolták"
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr "Página %1$d de %2$d"
+msgstr "%1$d/%2$d oldal"
 
 msgid "Password"
-msgstr "Contraseña"
+msgstr "Jelszó"
 
 msgid "Pay now"
-msgstr "Pagar ahora"
+msgstr "Fizetés most"
 
 msgid "Payment"
-msgstr "Pago"
+msgstr "Fizetés"
 
 msgid "Payment costs"
-msgstr "Comisiones de pago"
+msgstr "Fizetési költségek"
 
 msgid "Payment status"
-msgstr "Estado del pago"
+msgstr "Fizetési státusz"
 
 msgid "Pinned products"
-msgstr "Productos marcados"
+msgstr "Rögzített termékek"
 
 msgid "Please accept the terms and conditions"
-msgstr "Por favor, acepte los términos y condiciones"
+msgstr "Kérjük, fogadja el az Általános Szerződési Feltételeket"
 
 msgid "Please check your order"
-msgstr "Compruebe su pedido"
+msgstr "Kérjük, ellenőrizze megrendelését"
 
 msgid "Please choose your delivery method"
-msgstr "Por favor, elija el método de entrega"
+msgstr "Kérjük, válassza ki a szállítási módot"
 
 msgid "Please choose your payment method"
-msgstr "Elija su método de pago"
+msgstr "Kérjük, válassza ki a fizetési módot"
 
 msgid "Please enter at least three characters"
-msgstr "Por favor, introduzca al menos tres caracteres"
+msgstr "Kérjük, legalább három karaktert adjon meg"
 
 msgid "Please enter your payment details"
-msgstr "Por favor, introduzca los detalles de su pago"
+msgstr "Kérjük, adja meg fizetési adatait"
 
 msgid "Please select"
-msgstr "Por favor, seleccione"
+msgstr "Válasszon"
 
 msgid "Postal code"
-msgstr "Código postal"
+msgstr "Irányítószám"
 
 msgid "Previous"
-msgstr "Anterior"
+msgstr "Előző"
 
 msgid "Price"
-msgstr "Precio"
+msgstr "Ár"
 
 msgid "Proceed"
-msgstr "Proceder"
+msgstr "Folytassa"
 
 msgid "Processing the payment failed"
-msgstr "Procesamiento del pago fallido"
+msgstr "A fizetés feldolgozása sikertelen"
 
 msgid "Product"
-msgstr "Producto"
+msgstr "Termék"
 
 msgid "Products you might be also interested in"
-msgstr "Productos en los que también puede estar interesado"
+msgstr "Termékek, melyek iránt még érdeklődhet"
 
 msgid "Properties"
-msgstr "Propiedades"
+msgstr "Tulajdonságok"
 
 msgid "Qty"
-msgstr "Cant"
+msgstr "Mennyiség"
 
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr "Mennyiség"
 
 msgid "Related"
-msgstr "Relacionada"
+msgstr "Kapcsolódó"
 
 msgid "Relevance"
-msgstr "Relevancia"
+msgstr "Fontosság"
 
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
-msgstr "Resultado para \"%1$s\""
+msgstr "Találatok a következő keresési kifejezésre: \"%1$s\""
 
 msgid "Salutation"
-msgstr "Tratamiento"
+msgstr "Üdvözlés"
 
 msgid "Search"
-msgstr "Buscar"
+msgstr "Keresés"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
 msgid_plural ""
 "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
 "articles)"
-msgstr[0] "Resultado de búsqueda para <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
-msgstr[1] "Resultado de búsqueda para <span class=\"searchstring\">\"%1$s\"</span> (%2$d artículos)"
+msgstr[0] "Találat a következő keresési kifejezésre  <span class=\"searchstring\">\"%1$s\"</span> (%2$d cikk)"
+msgstr[1] "Találatok a következő keresési kifejezésre: <span class=\"searchstring\">\"%1$s\"</span> (%2$d cikk)"
 
 msgid "Select country"
-msgstr "Seleccionar país"
+msgstr "Válasszon országot"
 
 msgid "Select currency"
-msgstr "Seleccionar divisa"
+msgstr "Válasszon pénznemet"
 
 msgid "Select language"
-msgstr "Seleccionar idioma"
+msgstr "Válasszon nyelvet "
 
 msgid "Select salutation"
-msgstr "Seleccionar tratamiento"
+msgstr "Válasszon üdvözlési módot"
 
 msgid "Select state"
-msgstr "Seleccionar estado"
+msgstr "Válasszon államot"
 
 msgid "Service fees"
-msgstr "Tarifas del servicio"
+msgstr "Szolgáltatás díjai"
 
 msgid "Services"
-msgstr "Servicios"
+msgstr "Szolgáltatlások"
 
 msgid "Shipping"
-msgstr "Envío"
+msgstr "Szállítás"
 
 msgid "Show"
-msgstr "Mostrar"
+msgstr "Mutat"
 
 msgid "Show all quotes"
-msgstr "Mostrar todos los presupuestos"
+msgstr "Összes idézet mutatása"
 
 msgid "Sort by:"
-msgstr "Ordenar por:"
+msgstr "Rendezés"
 
 msgid "State"
-msgstr "Estado"
+msgstr "Állam"
 
 #. / Stock string composition with warehouse name (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -585,7 +585,7 @@ msgstr "Estado"
 #. and stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
-msgstr "Existencia: %1$s, %2$s"
+msgstr "Raktáron: %1$s, %2$s"
 
 #. / Stock string composition with warehouse name (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
@@ -593,29 +593,29 @@ msgstr "Existencia: %1$s, %2$s"
 #. stock level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
-msgstr "En existencia: %1$s, %2$s, de nuevo el %3$s"
+msgstr "Raktáron: %1$s, %2$s, újra raktáron: %3$s"
 
 msgid "Street"
-msgstr "Calle"
+msgstr "Utca"
 
 msgid "Sub-total"
-msgstr "Subtotal"
+msgstr "Részösszeg"
 
 msgid "Suggested products"
-msgstr "Productos recomendados"
+msgstr "Javasolt termékek"
 
 msgid "Sum"
-msgstr "Suma"
+msgstr "Összeg"
 
 msgid "Telephone"
-msgstr "Teléfono"
+msgstr "Telefon"
 
 #, php-format
 msgid "Template \"%1$s\" not available"
-msgstr "Plantilla \"%1$s\" no disponible"
+msgstr "\"%1$s\" sablon nem elérhető"
 
 msgid "Terms and conditions"
-msgstr "Términos y condiciones"
+msgstr "Általános Szerződési Feltételek"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -623,7 +623,7 @@ msgstr "Términos y condiciones"
 #. status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "Gracias por su pedido  %1$s desde %2$s."
+msgstr "Köszönjük megrendelését! A megrendelés azonosítója: %1$s, a megrendelés dátuma:  %2$s"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -634,7 +634,7 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Gracias por su pedido %1$s desde %2$s.\n\nEl pedido está pendiente hasta que recibamos el pago final. Si ha elegido pagar por adelantado, por favor, transfiera el importe a nuestra cuenta bancaria indicando la ID del pedido %1$s como referencia."
+msgstr "Köszönjük megrendelését! A megrendelés azonosítója: %1$s, a megrendelés dátuma:  %2$s\n\nMegrendelése mindaddig függőben marad, amíg számlája teljesítésre nem kerül. Ha Ön az előre utalást választotta, kérjük utalja a megrendelés végösszegét bankszámlánkra, a megjegyzés rovatban feltüntetve %1$s számú rendelés azonosítóját."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -645,17 +645,17 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr "Gracias por su pedido %1$s desde %2$s.\n\nHemos recibido el pago y nos encargaremos de su pedido inmediatamente."
+msgstr "%2$s-i %1$s azonosítószámú megrendelését köszönjük. Befizetését megkaptuk, és azonnal gondoskodunk a kézbesítésről."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Gracias por su pedido y autorización de pago.\nEn los próximos minutos le será enviado un correo electrónico con los detalles de su pedido."
+msgstr "Köszönjük megrendelését és a befizetés hitelesítését, Hamarosan küldünk egy e-mailt a megrendelés részleteiről."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Gracias por su pedido.\nHemos recibido su pago y se le enviará un correo electrónico con los detalles del pedido en los próximos minutos."
+msgstr "köszönjük megrendelését! \nMegkaptuk befizetését, és hamarosan küldünk egy e-mailt a megrendelés részleteiről."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -665,12 +665,12 @@ msgstr "Gracias por su pedido.\nHemos recibido su pago y se le enviará un corre
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr "El estado de entrega de su pedido %1$s desde %2$s ha pasado a \"%3$s\"."
+msgstr "%2$s-i %1$s azonosítószámú megrendelésének kézbesítési állapota megváltozott. Új állapot:  \"%3$s\"."
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr "El pedido fue cancelado.\n¿Desea reintentar su pedido?"
+msgstr "Megrendelés visszavonva. Szeretné megpróbálni újra?"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -678,12 +678,12 @@ msgstr "El pedido fue cancelado.\n¿Desea reintentar su pedido?"
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "El paquete de su pedido %1$s desde %2$s no pudo entregarse."
+msgstr "%2$s-i %1$s azonosítószámú megrendelésének csomagját nem sikerült kikézbesíteni."
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "La confirmación de pago de su pedido se encuentra pendiente.\nSe le enviará un correo electrónico tan pronto como el pago sea autorizado."
+msgstr "Megrendelésének fizetés megerősítése függőben van. Amint a fizetés hitelesítésre kerül, e-mailben értesítjük."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -691,61 +691,61 @@ msgstr "La confirmación de pago de su pedido se encuentra pendiente.\nSe le env
 #. status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "El pago de su pedido %1$s desde %2$s le ha sido devuelto."
+msgstr "%2$s-i %1$s azonosítószámú megrendelésének összege visszatérítésre került."
 
 msgid "Three month"
-msgstr "Tres meses"
+msgstr "Három hónap"
 
 msgid "Time frame"
-msgstr "Marco de tiempo"
+msgstr "Időkeret"
 
 msgid "Top seller"
-msgstr "Éxito de ventas"
+msgstr "Legjobb eladó"
 
 msgid "Total"
-msgstr "Total"
+msgstr "Végösszeg"
 
 msgid "Total quantity"
-msgstr "Cantidad total"
+msgstr "Teljes mennyiség"
 
 msgid "Try again"
-msgstr "Probar de nuevo"
+msgstr "Próbáld újra"
 
 msgid "Two weeks"
-msgstr "Dos semanas"
+msgstr "Két hét"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr "No se puede llamar al método \"%1$s\""
+msgstr "Nem lehet, meghívni a \"%1$s\" eljárást"
 
 #, php-format
 msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr "Imposible crear una cuenta para \"%1$s\": %2$s"
+msgstr ""
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr "No se pudo guardar la dirección para el cliente \"%1$s\": %2$s"
+msgstr ""
 
 #, php-format
 msgid "Unable to set cache entry: %1$s"
-msgstr "Imposible establecer entrada de caché: %1$s"
+msgstr ""
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr "Desafortunadamente el pago de su pedido fue rechazado.\n¿Desea reintentar el mismo?"
+msgstr "Sajnálatos módon, megrendelésének kifizetését visszautasították. Szeretné újra megpróbálni?"
 
 msgid "Update"
-msgstr "Actualizar"
+msgstr "Frissítés"
 
 msgid "Vat ID"
-msgstr "ID de IVA"
+msgstr "Adószám"
 
 msgid "Watch"
-msgstr "Observar"
+msgstr "Megtekintés"
 
 msgid "Watched products"
-msgstr "Productos observados"
+msgstr "Megtekintett termékek"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -753,10 +753,10 @@ msgstr "Productos observados"
 #. delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "Hemos recibido el paquete devuelto de su pedido %1$s desde %2$s."
+msgstr "%2$s-i %1$s azonosítószámú megrendelésének visszaküldött csomagját megkaptuk."
 
 msgid "Web site"
-msgstr "Sitio web"
+msgstr "Weboldal"
 
 msgid "X"
 msgstr "X"
@@ -764,23 +764,23 @@ msgstr "X"
 #. / Date format with year (Y), month (m) and day (d). See
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
-msgstr "A-m-d"
+msgstr "Y-m-d"
 
 msgid "You are here:"
-msgstr "Usted está aquí:"
+msgstr "Ön itt van:"
 
 msgid "You will now be forwarded to the next step"
-msgstr "Ahora pasará al siguiente paso"
+msgstr "Most már jöhet a következő lépés"
 
 msgid "Your account"
-msgstr "Su cuenta"
+msgstr "Fiókja"
 
 msgid "Your choice"
-msgstr "Su selección"
+msgstr "Választásod"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
-msgstr "Su nueva cuenta"
+msgstr "Új fiók"
 
 #. / Delivery e-mail subject with order ID
 #. / Payment e-mail subject with order ID
@@ -818,7 +818,7 @@ msgstr "Su nueva cuenta"
 #. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
-msgstr "Su pedido %1$s"
+msgstr "Rendelésed %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -826,77 +826,77 @@ msgstr "Su pedido %1$s"
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Su pedido %1$s desde %2$s ha sido enviado."
+msgstr "%2$s-i %1$s azonosítószámú megrendelése kézbesítésre került."
 
 msgid "Your search result"
-msgstr "Resultado de su búsqueda"
+msgstr "Keresési eredmény"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
-msgstr "Sus productos observados"
+msgstr "Figyelt termékek"
 
 #, php-format
 msgid "address"
-msgstr "dirección"
+msgstr "Cím"
 
 msgid "clear all"
-msgstr "limpiar todo"
+msgstr "Az összes törlése"
 
 #, php-format
 msgid "delivery"
-msgstr "entrega"
+msgstr "Szállítás"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr "desde %1$s"
+msgstr ""
 
 msgid "like billing address"
-msgstr "misma dirección de cobro"
+msgstr "mint a számlázási cím"
 
 msgid "new address"
-msgstr "nueva dirección"
+msgstr "új cím"
 
 msgid "none"
-msgstr "ninguno"
+msgstr ""
 
 #, php-format
 msgid "order"
-msgstr "pedido"
+msgstr "sorrend"
 
 #, php-format
 msgid "payment"
-msgstr "pago"
+msgstr "fizetés"
 
 #, php-format
 msgid "process"
-msgstr "procesar"
+msgstr "folyamat"
 
 #. / code for "product is in stock"
 msgid "stock-high"
-msgstr "existencia-alta"
+msgstr "bőséges készlet"
 
 #. / code for "only a few products are available"
 msgid "stock-low"
-msgstr "existencia-baja"
+msgstr "fogyóban"
 
 #. / code for "product is out of stock"
 msgid "stock-out"
-msgstr "existencia-agotada"
+msgstr "készlet hiány"
 
 #. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
-msgstr "existencia-ilimitada"
+msgstr "korlátlan készlet"
 
 #, php-format
 msgid "summary"
-msgstr "resumen"
+msgstr "összegzés"
 
 msgid "▲ Name"
-msgstr "▲ Nombre"
+msgstr "▲ Név"
 
 msgid "▲ Price"
-msgstr "▲ Precio"
+msgstr "▲ Ár"
 
 msgid "▶"
 msgstr "▶"
@@ -908,10 +908,10 @@ msgid "▼"
 msgstr "▼"
 
 msgid "▼ Name"
-msgstr "▼ Nombre"
+msgstr "▼ Név"
 
 msgid "▼ Price"
-msgstr "▼ Precio"
+msgstr "▼ Ár"
 
 msgid "◀"
 msgstr "◀"
