@@ -2,6 +2,15 @@
 
 return array(
     'html' => array(
+        'catalog' => array(
+            'lists' => array(
+                'items' => array(
+                    'standard' => array(
+                        'template-body-list' => 'catalog/lists/items-body-list.php',
+                    ),
+                ),
+            ),
+        ),
         'checkout' => array(
             'standard' => array(
                 'address' => array(
