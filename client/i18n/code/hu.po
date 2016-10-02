@@ -7,14 +7,15 @@
 # Translators:
 # Translators:
 # Translators:
+# David Siklaky <siklaky.david@gmail.com>, 2016
 # Péter Kozma <kopegrafika@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-09-28 12:30+0000\n"
-"Last-Translator: Péter Kozma <kopegrafika@gmail.com>\n"
+"PO-Revision-Date: 2016-09-30 08:13+0000\n"
+"Last-Translator: David Siklaky <siklaky.david@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -211,4 +212,4 @@ msgid "package-weight"
 msgstr "csomag súly"
 
 msgid "price:default"
-msgstr "%1$s 00.00 %2$s Ft"
+msgstr "%1$s %2$s"
