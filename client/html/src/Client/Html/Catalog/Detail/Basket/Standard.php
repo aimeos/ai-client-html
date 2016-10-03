@@ -57,6 +57,17 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/detail/basket/standard/subparts';
 
+	/** client/html/catalog/detail/basket/service/name
+	 * Name of the service part used by the catalog detail basket client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Basket\Service\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2016.07
+	 * @category Developer
+	 */
+
 	/** client/html/catalog/detail/basket/selection/name
 	 * Name of the selection part used by the catalog detail basket client implementation
 	 *
