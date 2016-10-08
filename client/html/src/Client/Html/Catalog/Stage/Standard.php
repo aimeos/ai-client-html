@@ -399,16 +399,14 @@ class Standard
 	 */
 	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) )
 	{
-		$list = parent::getClientParams( $params, array_merge( $prefixes, array( 'l', 'd' ) ) );
-
-		if( isset( $list['l_pos'] ) && isset( $list['d_prodid'] ) )
+		if( isset( $params['l_pos'] ) && isset( $params['d_prodid'] ) )
 		{
 			$context = $this->getContext();
 			$site = $context->getLocale()->getSite()->getCode();
-			$list += (array) $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, array() );
+			$params += (array) $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, array() );
 		}
 
-		return $list;
+		return parent::getClientParams( $params, $prefixes );
 	}
 
 
@@ -435,7 +433,7 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
-			$params = $this->getClientParams( $view->param(), array( 'f' ) );
+			$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
 
 			if( isset( $params['f_catid'] ) && $params['f_catid'] != '' )
 			{
