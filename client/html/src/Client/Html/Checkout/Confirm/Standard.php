@@ -475,12 +475,9 @@ class Standard
 			{
 				$context = $this->getContext();
 				$orderid = $context->getSession()->get( 'aimeos/orderid' );
+				$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
 
-				if( $orderid !== null )
-				{
-					$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-					$view->confirmOrderItem = $orderManager->getItem( $orderid );
-				}
+				$view->confirmOrderItem = $orderManager->getItem( $orderid );
 			}
 
 			$this->cache = $view;
