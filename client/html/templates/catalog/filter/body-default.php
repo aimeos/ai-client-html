@@ -80,7 +80,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
 $listParams = array();
 $params = $this->param();
 
-foreach( array( 'f_catid', 'f_name', 'f_sort' ) as $name ) {
+foreach( array( 'f_sort' ) as $name ) {
 	if( isset( $params[$name] ) ) { $listParams[$name] = $params[$name]; }
 }
 
