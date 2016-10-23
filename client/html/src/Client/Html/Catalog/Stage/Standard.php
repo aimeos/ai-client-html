@@ -434,6 +434,7 @@ class Standard
 		if( !isset( $this->cache ) )
 		{
 			$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
+			unset( $params['l_pos'] ); // @todo Rename to d_pos
 
 			if( isset( $params['f_catid'] ) && $params['f_catid'] != '' )
 			{
