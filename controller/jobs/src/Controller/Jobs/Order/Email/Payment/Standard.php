@@ -161,6 +161,9 @@ class Standard
 
 						$mailer->send( $message );
 
+						$str = sprintf( 'Sent order payment e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
+						$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::DEBUG );
+
 						$statusItem = $orderStatusManager->createItem();
 						$statusItem->setParentId( $id );
 						$statusItem->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT );

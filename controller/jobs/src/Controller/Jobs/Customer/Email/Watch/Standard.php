@@ -148,15 +148,19 @@ class Standard
 
 				if( !empty( $custProducts ) )
 				{
-					$this->sendMail( $context, $customers[$custId]->getPaymentAddress(), $custProducts );
+					$addr = $customers[$custId]->getPaymentAddress();
+					$this->sendMail( $context, $addr, $custProducts );
+
+					$str = sprintf( 'Sent product notification e-mail to "%1$s"', $addr->getEmail() );
+					$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::DEBUG );
+
 					$listIds += array_keys( $custProducts );
 				}
 			}
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send product notification e-mail for customer ID "%1$s": %2$s';
-				$msg = sprintf( $str, $custId, $e->getMessage() );
-				$context->getLogger()->log( $msg );
+				$context->getLogger()->log( sprintf( $str, $custId, $e->getMessage() ) );
 			}
 
 			$listManager->deleteItems( $listIds );
