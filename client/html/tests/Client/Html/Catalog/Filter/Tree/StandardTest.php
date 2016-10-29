@@ -30,18 +30,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$tags = array();
-		$expire = null;
-		$output = $this->object->getHeader( 1, $tags, $expire );
-
-		$this->assertNotNull( $output );
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
-		$this->assertEquals( 3, count( $tags ) );
-	}
-
-
 	public function testGetBody()
 	{
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( \TestHelperHtml::getContext() );
@@ -53,7 +41,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$tags = array();
 		$expire = null;
-		$output = $this->object->getBody( 1, $tags, $expire );
+		$this->object->getBody( 1, $tags, $expire );
+		$output = $this->object->getView()->block()->get( 'catalog/filter/tree' );
 
 		$this->assertContains( 'Groups', $output );
 		$this->assertContains( 'Neu', $output );
@@ -77,7 +66,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$tags = array();
 		$expire = null;
-		$output = $this->object->getBody( 1, $tags, $expire );
+		$this->object->getBody( 1, $tags, $expire );
+		$output = $this->object->getView()->block()->get( 'catalog/filter/tree' );
 
 		$this->assertContains( 'level-2', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
@@ -98,7 +88,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$tags = array();
 		$expire = null;
-		$output = $this->object->getBody( 1, $tags, $expire );
+		$this->object->getBody( 1, $tags, $expire );
+		$output = $this->object->getView()->block()->get( 'catalog/filter/tree' );
 
 		$this->assertNotContains( 'level-2', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );

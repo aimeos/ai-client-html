@@ -39,16 +39,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testGetBody()
 	{
-		$output = $this->object->getBody();
+		$this->object->getBody();
+		$output = $this->object->getView()->block()->get( 'catalog/filter/search' );
 		$this->assertStringStartsWith( '<section class="catalog-filter-search">', $output );
 	}
 

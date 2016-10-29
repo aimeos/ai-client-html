@@ -86,25 +86,30 @@ foreach( array( 'f_sort' ) as $name ) {
 
 $enc = $this->encoder();
 
+
 ?>
-<?php $this->block()->start( 'catalog/filter' ); ?>
 <section class="aimeos catalog-filter">
+
 <?php if( isset( $this->filterErrorList ) ) : ?>
 	<ul class="error-list">
-<?php	foreach( (array) $this->filterErrorList as $errmsg ) : ?>
+	<?php foreach( (array) $this->filterErrorList as $errmsg ) : ?>
 		<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
-<?php	endforeach; ?>
+	<?php endforeach; ?>
 	</ul>
 <?php endif; ?>
+
 	<nav>
 		<h1><?php echo $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ); ?></h1>
 		<form method="POST" action="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, array(), $listConfig ) ); ?>">
-<!-- catalog.filter.csrf -->
-<?php echo $this->csrf()->formfield(); ?>
-<!-- catalog.filter.csrf -->
-<?php echo $this->get( 'filterBody' ); ?>
+			<!-- catalog.filter.csrf -->
+			<?php echo $this->csrf()->formfield(); ?>
+			<!-- catalog.filter.csrf -->
+
+			<?php echo $this->block()->get( 'catalog/filter/search' ); ?>
+			<?php echo $this->block()->get( 'catalog/filter/tree' ); ?>
+			<?php echo $this->block()->get( 'catalog/filter/attribute' ); ?>
+
 		</form>
 	</nav>
+
 </section>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/filter' ); ?>

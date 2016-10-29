@@ -56,6 +56,26 @@ abstract class Base
 
 
 	/**
+	 * Returns the HTML string for insertion into the header.
+	 *
+	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return string|null String including HTML tags for the header on error
+	 */
+	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	{
+		$html = '';
+
+		foreach( $this->getSubClients() as $subclient ) {
+			$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+		}
+
+		return $html;
+	}
+
+
+	/**
 	 * Returns the view object that will generate the HTML output.
 	 *
 	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output

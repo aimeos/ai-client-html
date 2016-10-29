@@ -37,8 +37,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
 		$this->assertNotNull( $output );
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
-		$this->assertEquals( 5, count( $tags ) );
 	}
 
 

@@ -100,14 +100,17 @@ $suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', array(
 
 $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, array(), array(), $suggestConfig ) );
 
+
 ?>
-<?php $this->block()->start( 'catalog/search' ); ?>
+<?php $this->block()->start( 'catalog/filter/search' ); ?>
 <section class="catalog-filter-search">
+
 	<h2><?php echo $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
 	<input class="value" type="text" name="<?php echo $name; ?>" value="<?php echo $phrase; ?>" data-url="<?php echo $suggestUrl; ?>" data-hint="<?php echo $hint; ?>" /><!--
 	--><button class="reset" type="reset"><span class="symbol"/></button><!--
 	--><button class="standardbutton" type="submit"><?php echo $enc->html( $this->translate( 'client', 'Go' ), $enc::TRUST ); ?></button>
-<?php echo $this->get( 'searchBody' ); ?>
+
+	<?php echo $this->get( 'searchBody' ); ?>
+
 </section>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/search' ); ?>
