@@ -8,17 +8,19 @@
 
 $enc = $this->encoder();
 
+
 ?>
-<?php $this->block()->start( 'catalog/session' ); ?>
 <section class="aimeos catalog-session">
+
 <?php if( isset( $this->sessionErrorList ) ) : ?>
 	<ul class="error-list">
-<?php foreach( (array) $this->sessionErrorList as $errmsg ) : ?>
+	<?php foreach( (array) $this->sessionErrorList as $errmsg ) : ?>
 		<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 	</ul>
 <?php endif; ?>
-<?php echo $this->get( 'sessionBody' ); ?>
+
+<?php echo $this->block()->get( 'catalog/session/pinned' ); ?>
+<?php echo $this->block()->get( 'catalog/session/seen' ); ?>
+
 </section>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/session' ); ?>

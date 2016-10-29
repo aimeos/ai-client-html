@@ -131,67 +131,6 @@ class Standard
 
 
 	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
-	{
-		$context = $this->getContext();
-		$session = $context->getSession();
-
-		$config = $context->getConfig()->get( 'client/html/catalog/session/pinned', array() );
-		$key = $this->getParamHash( array(), $uid . ':catalog:session-pinned-header', $config );
-
-		if( ( $html = $session->get( $key ) ) === null )
-		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
-
-			$output = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$output .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
-			}
-			$view->pinnedHeader = $output;
-
-			/** client/html/catalog/session/pinned/standard/template-header
-			 * Relative path to the HTML header template of the catalog session pinned client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the HTML code that is inserted into the HTML page header
-			 * of the rendered page in the frontend. The configuration string is the
-			 * path to the template file relative to the templates directory (usually
-			 * in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but with the string "standard" replaced by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, "standard"
-			 * should be replaced by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page head
-			 * @since 2014.03
-			 * @category Developer
-			 * @see client/html/catalog/session/pinned/standard/template-body
-			 */
-			$tplconf = 'client/html/catalog/session/pinned/standard/template-header';
-			$default = 'catalog/session/pinned-header-default.php';
-
-			$html = $view->render( $view->config( $tplconf, $default ) );
-
-			$cached = $session->get( 'aimeos/catalog/session/pinned/cache', array() ) + array( $key => true );
-			$session->set( 'aimeos/catalog/session/pinned/cache', $cached );
-			$session->set( $key, $html );
-		}
-
-		return $html;
-	}
-
-
-	/**
 	 * Returns the sub-client given by its name.
 	 *
 	 * @param string $type Name of the client type

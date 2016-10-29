@@ -101,36 +101,44 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
  */
 $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 
+
 ?>
 <?php $this->block()->start( 'catalog/session/pinned' ); ?>
 <section class="catalog-session-pinned">
+
 	<h2 class="header">
-<?php echo $this->translate( 'client', 'Pinned products' ); ?>
-<?php if( $count ) : ?>
+	<?php echo $this->translate( 'client', 'Pinned products' ); ?>
+	<?php if( $count ) : ?>
 		<span class="count"><?php echo count( $pinList ); ?></span>
-<?php endif; ?>
+	<?php endif; ?>
 	</h2>
+
 	<ul class="pinned-items">
-<?php foreach( $pinList as $id => $productItem ) : ?>
-<?php	$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id ); ?>
+	<?php foreach( $pinList as $id => $productItem ) : ?>
+		<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id ); ?>
+
 		<li class="pinned-item">
 			<a class="modify" href="<?php echo $this->url( $pinTarget, $pinController, $pinAction, array( 'pin_action' => 'delete', 'pin_id' => $id ) + $pinParams, array(), $pinConfig ); ?>"><?php echo $this->translate( 'client', 'X' ); ?></a>
 			<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>">
-<?php	$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
-<?php	if( ( $mediaItem = reset( $mediaItems ) ) !== false ) : ?>
+
+		<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
+		<?php if( ( $mediaItem = reset( $mediaItems ) ) !== false ) : ?>
 				<div class="media-item" style="background-image: url('<?php echo $this->content( $mediaItem->getPreview() ); ?>')"></div>
-<?php	else : ?>
+		<?php else : ?>
 				<div class="media-item"></div>
-<?php	endif; ?>
+		<?php endif; ?>
+
 				<h3 class="name"><?php echo $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
 				<div class="price-list">
-<?php			echo $this->partial( $this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ), array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) ) ); ?>
+		<?php echo $this->partial( $this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ), array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) ) ); ?>
 				</div>
+
 			</a>
 		</li>
-<?php endforeach; ?>
+
+	<?php endforeach; ?>
 	</ul>
-<?php echo $this->pinnedBody; ?>
+
 </section>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'catalog/session/pinned' ); ?>

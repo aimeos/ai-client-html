@@ -24,23 +24,26 @@ $seenList = $this->get( 'seenItems', array() );
  */
 $count = $this->config( 'client/html/catalog/session/seen/count/enable', 1 );
 
+
 ?>
 <?php $this->block()->start( 'catalog/session/seen' ); ?>
 <section class="catalog-session-seen">
+
 	<h2 class="header">
-<?php echo $this->translate( 'client', 'Last seen' ); ?>
-<?php if( $count ) : ?>
+	<?php echo $this->translate( 'client', 'Last seen' ); ?>
+	<?php if( $count ) : ?>
 		<span class="count"><?php echo count( $seenList ); ?></span>
-<?php endif; ?>
+	<?php endif; ?>
 	</h2>
+
 	<ul class="seen-items">
-<?php	foreach( $seenList as $seen ) : ?>
+	<?php foreach( $seenList as $seen ) : ?>
 		<li class="seen-item">
-<?php		echo $seen; ?>
+		<?php echo $seen; ?>
 		</li>
-<?php	endforeach; ?>
+	<?php endforeach; ?>
 	</ul>
-<?php echo $this->seenBody; ?>
+
 </section>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'catalog/session/seen' ); ?>
