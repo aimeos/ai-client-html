@@ -85,3 +85,4 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
 
 </section>
 <?php $this->block()->stop(); ?>
+<?php echo $this->block()->get( 'catalog/filter/tree' ); ?>

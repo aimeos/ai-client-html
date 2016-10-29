@@ -41,8 +41,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$tags = array();
 		$expire = null;
-		$this->object->getBody( 1, $tags, $expire );
-		$output = $this->object->getView()->block()->get( 'catalog/filter/tree' );
+		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertContains( 'Groups', $output );
 		$this->assertContains( 'Neu', $output );
@@ -66,8 +65,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$tags = array();
 		$expire = null;
-		$this->object->getBody( 1, $tags, $expire );
-		$output = $this->object->getView()->block()->get( 'catalog/filter/tree' );
+		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertContains( 'level-2', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
@@ -88,8 +86,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$tags = array();
 		$expire = null;
-		$this->object->getBody( 1, $tags, $expire );
-		$output = $this->object->getView()->block()->get( 'catalog/filter/tree' );
+		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertNotContains( 'level-2', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );

@@ -133,3 +133,4 @@ $params = $this->param();
 
 </section>
 <?php $this->block()->stop(); ?>
+<?php echo $this->block()->get( 'catalog/filter/attribute' ); ?>

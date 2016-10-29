@@ -43,8 +43,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$tags = array();
 		$expire = null;
-		$this->object->getBody( 1, $tags, $expire );
-		$output = $this->object->getView()->block()->get( 'catalog/filter/attribute' );
+		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-length">.*<fieldset class="attr-size">.*<fieldset class="attr-width">/smu';
 		$this->assertRegexp( $regex, $output );
@@ -63,8 +62,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $conf );
 		$view->addHelper( 'config', $helper );
 
-		$this->object->getBody();
-		$output = $this->object->getView()->block()->get( 'catalog/filter/attribute' );
+		$output = $this->object->getBody();
 		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-width">.*<fieldset class="attr-length">/smu';
 
 		$this->assertNotContains( '<fieldset class="attr-size">', $output );
@@ -78,8 +76,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => -1 ) );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->getBody();
-		$output = $this->object->getView()->block()->get( 'catalog/filter/attribute' );
+		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute">', $output );
 	}
 
@@ -90,8 +87,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'test' ) );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->getBody();
-		$output = $this->object->getView()->block()->get( 'catalog/filter/attribute' );
+		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute">', $output );
 	}
 
@@ -102,8 +98,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_attrid' => array( -1, -2 ) ) );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->getBody();
-		$output = $this->object->getView()->block()->get( 'catalog/filter/attribute' );
+		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute">', $output );
 	}
 

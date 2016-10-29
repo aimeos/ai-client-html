@@ -114,3 +114,4 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 
 </section>
 <?php $this->block()->stop(); ?>
+<?php echo $this->block()->get( 'catalog/filter/search' ); ?>
