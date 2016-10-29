@@ -77,10 +77,9 @@ $params = $this->param();
 
 		</ul>
 
-	<?php if( count( $attrIds ) > 1 ) : ?>
-		<?php $current = $params; if( isset( $current['f_attrid'] ) ) { unset( $current['f_attrid'] ); } ?>
+		<?php if( count( $attrIds ) > 1 ) : $current = $params; unset( $current['f_attrid'] ); ?>
 		<a class="selected-all" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>"><?php echo $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?></a>
-	<?php endif; ?>
+		<?php endif; ?>
 
 	</div>
 
