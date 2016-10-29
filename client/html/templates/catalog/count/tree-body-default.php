@@ -22,8 +22,6 @@ $( ".catalog-filter-count li.cat-item" ).each( function( index, item ) {
 		$(item).addClass( 'disabled' );
 	});
 });
-
-<?php echo $this->get( 'treeBody' ); ?>
 // -->
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'catalog/count/tree' ); ?>

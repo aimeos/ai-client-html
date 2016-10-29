@@ -25,8 +25,6 @@ $( ".catalog-filter-attribute .attribute-lists li.attr-item" ).each( function( i
 		$(this).addClass( 'disabled' );
 	});
 });
-
-<?php echo $this->get( 'attributeBody' ); ?>
 // -->
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'catalog/count/attribute' ); ?>
