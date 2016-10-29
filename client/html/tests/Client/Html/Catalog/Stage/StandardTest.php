@@ -97,6 +97,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-stage home categories coffee">', $output );
+		$this->assertContains( '<div class="catalog-stage-image">', $output );
+		$this->assertContains( 'Cafe Stage image', $output );
 		$this->assertEquals( '2019-01-01 00:00:00', $expire );
 		$this->assertEquals( 1, count( $tags ) );
 	}
@@ -180,7 +182,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetSubClient()
 	{
-		$client = $this->object->getSubClient( 'image', 'Standard' );
+		$client = $this->object->getSubClient( 'breadcrumb', 'Standard' );
 		$this->assertInstanceOf( '\\Aimeos\\Client\\HTML\\Iface', $client );
 	}
 

@@ -7,9 +7,10 @@
  */
 
 $enc = $this->encoder();
+$catPath = (array) $this->get( 'stageCatPath', array() );
 
 $classes = '';
-foreach( (array) $this->get( 'stageCatPath', array() ) as $cat )
+foreach( $catPath as $cat )
 {
 	$config = $cat->getConfig();
 	if( isset( $config['css-class'] ) ) {
@@ -17,17 +18,33 @@ foreach( (array) $this->get( 'stageCatPath', array() ) as $cat )
 	}
 }
 
+$mediaItems = array();
+foreach( array_reverse( $catPath ) as $catItem )
+{
+	if( ( $mediaItems = $catItem->getRefItems( 'media', 'default', 'stage' ) ) !== array() ) {
+		break;
+	}
+}
+
+
 ?>
-<?php $this->block()->start( 'catalog/stage' ); ?>
 <section class="aimeos catalog-stage<?php echo $enc->attr( $classes ); ?>">
+
 <?php if( isset( $this->stageErrorList ) ) : ?>
 	<ul class="error-list">
-<?php foreach( (array) $this->stageErrorList as $errmsg ) : ?>
+	<?php foreach( (array) $this->stageErrorList as $errmsg ) : ?>
 		<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 	</ul>
 <?php endif; ?>
-<?php echo $this->get( 'stageBody' ); ?>
+
+	<div class="catalog-stage-image">
+<?php foreach( $mediaItems as $media ) : ?>
+		<img src="<?php echo $this->content( $media->getUrl() ); ?>" alt="<?php echo $enc->attr( $media->getName() ); ?>" />
+<?php endforeach; ?>
+	</div>
+
+<?php echo $this->block()->get( 'catalog/stage/breadcrumb' ); ?>
+<?php echo $this->block()->get( 'catalog/stage/navigator' ); ?>
+
 </section>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/stage' ); ?>

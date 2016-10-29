@@ -8,15 +8,18 @@
 
 $enc = $this->encoder();
 
+
 ?>
 <?php if( $this->param( 'l_pos' ) !== null ) : ?>
 <!-- catalog.stage.navigator -->
-<?php	if( isset( $this->navigationPrev ) ) : ?>
-<link rel="prev" href="<?php echo $enc->attr( $this->navigationPrev ); ?>" />
-<?php	endif; ?>
-<?php	if( isset( $this->navigationNext ) ) : ?>
-<link rel="next prefetch" href="<?php echo $enc->attr( $this->navigationNext ); ?>" />
-<?php	endif; ?>
-<?php	echo $this->get( 'navigatorHeader' ); ?>
+
+	<?php	if( isset( $this->navigationPrev ) ) : ?>
+	<link rel="prev" href="<?php echo $enc->attr( $this->navigationPrev ); ?>" />
+	<?php	endif; ?>
+
+	<?php	if( isset( $this->navigationNext ) ) : ?>
+	<link rel="next prefetch" href="<?php echo $enc->attr( $this->navigationNext ); ?>" />
+	<?php	endif; ?>
+
 <!-- catalog.stage.navigator -->
 <?php endif; ?>
