@@ -68,7 +68,7 @@ abstract class Base
 		$html = '';
 
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+			$html .= $subclient->setView( $this->view )->getHeader( $uid, $tags, $expire );
 		}
 
 		return $html;
