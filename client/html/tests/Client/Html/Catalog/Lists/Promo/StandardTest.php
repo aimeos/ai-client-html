@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$expire = null;
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '<script type="text/javascript"', $output );
+		$this->assertContains( '<script type="text/javascript"', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
 		$this->assertEquals( 1, count( $tags ) );
 	}
@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '<section class="catalog-list-promo">', $output );
+		$this->assertContains( '<section class="catalog-list-promo">', $output );
 		$this->assertRegExp( '/.*Expresso.*Cappuccino.*/smu', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
 		$this->assertEquals( 1, count( $tags ) );
@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="catalog-list-promo">', $output );
+		$this->assertContains( '<section class="catalog-list-promo">', $output );
 		$this->assertRegExp( '/.*Expresso.*Cappuccino.*/smu', $output );
 	}
 

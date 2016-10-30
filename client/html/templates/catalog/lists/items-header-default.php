@@ -8,8 +8,8 @@
 
 $enc = $this->encoder();
 
+
 ?>
 <?php if( ( $url = $this->get( 'itemsStockUrl' ) ) != null ) : ?>
 	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
 <?php endif; ?>
-<?php echo $this->get( 'itemsHeader' ); ?>

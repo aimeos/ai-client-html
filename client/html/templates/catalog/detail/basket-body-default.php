@@ -14,6 +14,22 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 $enc = $this->encoder();
 
+/** client/html/common/partials/price
+ * Relative path to the price partial template file
+ *
+ * Partials are templates which are reused in other templates and generate
+ * reoccuring blocks filled with data from the assigned values. The price
+ * partial creates an HTML block for a list of price items.
+ *
+ * The partial template files are usually stored in the templates/partials/ folder
+ * of the core or the extensions. The configured path to the partial file must
+ * be relative to the templates/ folder, e.g. "partials/price-default.php".
+ *
+ * @param string Relative path to the template file
+ * @since 2015.04
+ * @category Developer
+ */
+
 ?>
 <?php $this->block()->start( 'catalog/detail/basket' ); ?>
 <div class="catalog-detail-basket" data-reqstock="<?php echo $reqstock; ?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">

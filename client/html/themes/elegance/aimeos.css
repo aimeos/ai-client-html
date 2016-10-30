@@ -159,8 +159,10 @@
 }
 
 .aimeos .pagination {
+	text-align: center;
 	display: block;
 	clear: left;
+	color: #555;
 	margin: 0;
 }
 
@@ -898,18 +900,12 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	color: #555;
 }
 
-.catalog-list-head .head-search {
+.catalog-list .list-search {
 	font-weight: bold;
 }
 
-.catalog-list-head .searchstring {
+.catalog-list .searchstring {
 	font-size: 133%;
-	color: #555;
-}
-
-/* Product list, pagination section */
-.catalog-list-pagination {
-	text-align: center;
 	color: #555;
 }
 
@@ -928,7 +924,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	color: #555;
 }
 
-.catalog-list-promo .promo-items {
+.catalog-list-promo .list-items {
     white-space: nowrap;
 	overflow: auto;
 	font-size: 90%;

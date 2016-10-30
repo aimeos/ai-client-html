@@ -8,8 +8,8 @@
 
 $enc = $this->encoder();
 
+
 ?>
 <?php if( ( $url = $this->get( 'promoStockUrl' ) ) != null ) : ?>
-<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
+	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
 <?php endif; ?>
-<?php echo $this->get( 'promoHeader' ); ?>

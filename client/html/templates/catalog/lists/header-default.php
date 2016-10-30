@@ -8,7 +8,10 @@
 
 $enc = $this->encoder();
 
+$params = $this->get( 'listParams', array() );
 $catItems = $this->get( 'listCatPath', array() );
+$total = $this->get( 'listProductTotal', 1 ) / $this->get( 'listPageSize', 1 );
+$current = $this->get( 'listPageCurr', 1 );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
@@ -18,21 +21,41 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
 $params = $this->param();
 unset( $params['f_sort'] );
 
+
 ?>
 <?php if( ( $catItem = end( $catItems ) ) !== false ) : ?>
 	<title><?php echo $enc->html( $catItem->getName() ); ?></title>
-<?php	foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
+
+	<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 	<meta name="keywords" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
-<?php	endforeach; ?>
-<?php	foreach( $catItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
+	<?php endforeach; ?>
+
+	<?php foreach( $catItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
 	<meta name="description" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
-<?php	endforeach; ?>
+	<?php endforeach; ?>
+
 <?php elseif( ( $search = $this->param( 'f_search', null ) ) != null ) : /// Product search hint with user provided search string (%1$s) ?>
 	<title><?php echo $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ); ?></title>
 <?php endif; ?>
+
+
 	<link rel="canonical" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array(), $listConfig ) ); ?>" />
 	<meta name="application-name" content="Aimeos" />
+
+
 <?php if( ( $url = $this->get( 'listStockUrl' ) ) != null ) : ?>
 	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
 <?php endif; ?>
+
+
+<?php if( $current > 1 ) : ?>
+	<link rel="prev" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->pagiPagePrev ) + $params, array(), $listConfig ) ); ?>" />
+<?php endif; ?>
+
+
+<?php if( $current > 1 && $current < $total ) : // Optimization to avoid loading next page while the user is still filtering ?>
+	<link rel="next prefetch" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->pagiPageNext ) + $params, array(), $listConfig ) ); ?>" />
+<?php endif; ?>
+
+
 <?php echo $this->get( 'listHeader' ); ?>

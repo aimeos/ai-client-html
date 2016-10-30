@@ -89,6 +89,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+		$this->assertContains( '<nav class="pagination">', $output );
+
+		$this->assertContains( '<div class="catalog-list-quote">', $output );
+		$this->assertRegExp( '#Kaffee Bewertungen#', $output );
+
+		$this->assertContains( '<div class="catalog-list-head">', $output );
+		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
+
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}
@@ -189,11 +197,12 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodySearchText()
 	{
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'Kaffee' ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => '<b>Search result</b>' ) );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list">', $output );
+		$this->assertContains( '&lt;b&gt;Search result&lt;/b&gt;', $output );
 	}
 
 
