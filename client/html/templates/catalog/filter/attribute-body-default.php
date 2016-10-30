@@ -54,81 +54,91 @@ $params = $this->param();
 <?php $this->block()->start( 'catalog/filter/attribute' ); ?>
 <section class="catalog-filter-attribute">
 
-<?php if( !empty( $attrMap ) ) : ?>
+	<?php if( !empty( $attrMap ) ) : ?>
 
-	<h2><?php echo $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
+		<h2><?php echo $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
 
-	<?php if( !empty( $attrIds ) ) : ?>
 
-	<div class="attribute-selected">
-		<span class="selected-intro"><?php echo $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
-		<ul class="attr-list">
+		<?php if( !empty( $attrIds ) ) : ?>
 
-		<?php foreach( $attrMap as $attrType => $attributes ) : ?>
-			<?php foreach( $attributes as $id => $attribute ) : ?>
-				<?php if( isset( $attrIds[$id] ) ) : ?>
-					<?php $current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$id] ); } ?>
+			<div class="attribute-selected">
+				<span class="selected-intro"><?php echo $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
 
-			<li class="attr-item"><a class="attr-name" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>"><?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?></a></li>
+				<ul class="attr-list">
+					<?php foreach( $attrMap as $attrType => $attributes ) : ?>
+						<?php foreach( $attributes as $id => $attribute ) : ?>
+							<?php if( isset( $attrIds[$id] ) ) : ?>
+								<?php $current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$id] ); } ?>
+								<li class="attr-item">
+									<a class="attr-name" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>">
+										<?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+									</a>
+								</li>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					<?php endforeach; ?>
+				</ul>
+
+				<?php if( count( $attrIds ) > 1 ) : $current = $params; unset( $current['f_attrid'] ); ?>
+					<a class="selected-all" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>">
+						<?php echo $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?>
+					</a>
+				<?php endif; ?>
+			</div>
+
+		<?php endif; ?>
+
+
+		<div class="attribute-lists"><!--
+
+			<?php foreach( $attrMap as $attrType => $attributes ) : ?>
+				<?php if( !empty( $attributes ) ) : ?>
+
+					--><fieldset class="attr-<?php echo $enc->attr( $attrType, $enc::TAINT, '-' ); ?>">
+						<legend><?php echo $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
+						<ul class="attr-list"><!--
+
+							<?php foreach( $attributes as $id => $attribute ) : ?>
+
+								--><li class="attr-item" data-id="<?php echo $enc->attr( $id ); ?>">
+									<input class="attr-item" id="attr-<?php echo $enc->attr( $id ); ?>"
+										name="<?php echo $enc->attr( $this->formparam( array( 'f_attrid', '' ) ) ); ?>" type="checkbox"
+										value="<?php echo $enc->attr( $id ); ?>" <?php echo ( in_array( $id, $attrIds ) ? 'checked="checked"' : '' ); ?> />
+
+									<label class="attr-name" for="attr-<?php echo $enc->attr( $id ); ?>"><!--
+										--><div class="media-list"><!--
+
+											<?php foreach( $attribute->getListItems( 'media', 'icon' ) as $listItem ) : ?>
+												<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
+													<?php echo '-->' . $this->partial(
+														$this->config( 'client/html/common/partials/media', 'common/partials/media-default.php' ),
+														array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
+													) . '<!--'; ?>
+												<?php endif; ?>
+											<?php endforeach; ?>
+
+										--></div>
+										<span><?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?></span><!--
+									--></label>
+								</li><!--
+
+							<?php endforeach; ?>
+						--></ul>
+					</fieldset><!--
 
 				<?php endif; ?>
 			<?php endforeach; ?>
-		<?php endforeach; ?>
 
-		</ul>
-
-		<?php if( count( $attrIds ) > 1 ) : $current = $params; unset( $current['f_attrid'] ); ?>
-		<a class="selected-all" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>"><?php echo $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?></a>
-		<?php endif; ?>
-
-	</div>
+		--></div>
 
 	<?php endif; ?>
+	<?php echo $this->attributeBody; ?>
 
-	<div class="attribute-lists"><!--
-
-	<?php foreach( $attrMap as $attrType => $attributes ) : ?>
-		<?php if( !empty( $attributes ) ) : ?>
-
-		--><fieldset class="attr-<?php echo $enc->attr( $attrType, $enc::TAINT, '-' ); ?>">
-			<legend><?php echo $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
-			<ul class="attr-list"><!--
-
-			<?php foreach( $attributes as $id => $attribute ) : ?>
-
-				--><li class="attr-item" data-id="<?php echo $enc->attr( $id ); ?>">
-					<input class="attr-item" id="attr-<?php echo $enc->attr( $id ); ?>" name="<?php echo $enc->attr( $this->formparam( array( 'f_attrid', '' ) ) ); ?>" type="checkbox" value="<?php echo $enc->attr( $id ); ?>" <?php echo ( in_array( $id, $attrIds ) ? 'checked="checked"' : '' ); ?> />
-					<label class="attr-name" for="attr-<?php echo $enc->attr( $id ); ?>"><!--
-						--><div class="media-list"><!--
-
-				<?php foreach( $attribute->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-					<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
-						<?php echo '-->' . $this->partial( $this->config( 'client/html/common/partials/media', 'common/partials/media-default.php' ), array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) ) ) . '<!--'; ?>
-					<?php endif; ?>
-				<?php endforeach; ?>
-
-						--></div>
-						<span><?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?></span><!--
-					--></label>
-				</li><!--
-
-			<?php endforeach; ?>
-			--></ul>
-		</fieldset><!--
-
-		<?php endif; ?>
-	<?php endforeach; ?>
-
-	--></div>
-
-<?php endif; ?>
-<?php echo $this->attributeBody; ?>
-
-<?php if( $button ) : ?>
-	<noscript>
-		<button class="filter standardbutton btn-action" type="submit"><?php echo $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?></button>
-	</noscript>
-<?php endif; ?>
+	<?php if( $button ) : ?>
+		<noscript>
+			<button class="filter standardbutton btn-action" type="submit"><?php echo $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?></button>
+		</noscript>
+	<?php endif; ?>
 
 </section>
 <?php $this->block()->stop(); ?>

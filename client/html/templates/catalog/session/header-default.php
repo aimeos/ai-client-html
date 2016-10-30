@@ -6,5 +6,6 @@
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 
+echo $this->get( 'sessionHeader' );
+
 ?>
-<?php echo $this->get( 'sessionHeader' ); ?>

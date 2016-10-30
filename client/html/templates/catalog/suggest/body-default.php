@@ -26,5 +26,5 @@ foreach( $this->get( 'suggestItems', array() ) as $id => $item )
 }
 
 echo json_encode( $items );
+
 ?>
-<?php echo $this->get( 'suggestBody' ); ?>

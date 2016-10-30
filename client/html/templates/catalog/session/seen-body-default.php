@@ -30,18 +30,18 @@ $count = $this->config( 'client/html/catalog/session/seen/count/enable', 1 );
 <section class="catalog-session-seen">
 
 	<h2 class="header">
-	<?php echo $this->translate( 'client', 'Last seen' ); ?>
-	<?php if( $count ) : ?>
-		<span class="count"><?php echo count( $seenList ); ?></span>
-	<?php endif; ?>
+		<?php echo $this->translate( 'client', 'Last seen' ); ?>
+		<?php if( $count ) : ?>
+			<span class="count"><?php echo count( $seenList ); ?></span>
+		<?php endif; ?>
 	</h2>
 
 	<ul class="seen-items">
-	<?php foreach( $seenList as $seen ) : ?>
-		<li class="seen-item">
-		<?php echo $seen; ?>
-		</li>
-	<?php endforeach; ?>
+		<?php foreach( $seenList as $seen ) : ?>
+			<li class="seen-item">
+				<?php echo $seen; ?>
+			</li>
+		<?php endforeach; ?>
 	</ul>
 
 </section>

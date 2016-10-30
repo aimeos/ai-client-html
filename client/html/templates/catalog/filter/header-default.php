@@ -10,6 +10,7 @@ $enc = $this->encoder();
 
 ?>
 <?php if( ( $url = $this->get( 'filterCountUrl' ) ) != null ) : ?>
-<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
+	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
 <?php endif; ?>
-<?php echo $this->filterHeader; ?>
+
+<?php echo $this->get( 'filterHeader' ); ?>

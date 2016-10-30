@@ -90,13 +90,13 @@ $enc = $this->encoder();
 ?>
 <section class="aimeos catalog-filter">
 
-<?php if( isset( $this->filterErrorList ) ) : ?>
-	<ul class="error-list">
-	<?php foreach( (array) $this->filterErrorList as $errmsg ) : ?>
-		<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
-	<?php endforeach; ?>
-	</ul>
-<?php endif; ?>
+	<?php if( isset( $this->filterErrorList ) ) : ?>
+		<ul class="error-list">
+			<?php foreach( (array) $this->filterErrorList as $errmsg ) : ?>
+				<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
 
 	<nav>
 		<h1><?php echo $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ); ?></h1>

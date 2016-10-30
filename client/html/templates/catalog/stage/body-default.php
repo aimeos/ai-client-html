@@ -30,21 +30,21 @@ foreach( array_reverse( $catPath ) as $catItem )
 ?>
 <section class="aimeos catalog-stage<?php echo $enc->attr( $classes ); ?>">
 
-<?php if( isset( $this->stageErrorList ) ) : ?>
-	<ul class="error-list">
-	<?php foreach( (array) $this->stageErrorList as $errmsg ) : ?>
-		<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
-	<?php endforeach; ?>
-	</ul>
-<?php endif; ?>
+	<?php if( isset( $this->stageErrorList ) ) : ?>
+		<ul class="error-list">
+			<?php foreach( (array) $this->stageErrorList as $errmsg ) : ?>
+				<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
 
 	<div class="catalog-stage-image">
-<?php foreach( $mediaItems as $media ) : ?>
-		<img src="<?php echo $this->content( $media->getUrl() ); ?>" alt="<?php echo $enc->attr( $media->getName() ); ?>" />
-<?php endforeach; ?>
+		<?php foreach( $mediaItems as $media ) : ?>
+			<img src="<?php echo $this->content( $media->getUrl() ); ?>" alt="<?php echo $enc->attr( $media->getName() ); ?>" />
+		<?php endforeach; ?>
 	</div>
 
-<?php echo $this->block()->get( 'catalog/stage/breadcrumb' ); ?>
-<?php echo $this->block()->get( 'catalog/stage/navigator' ); ?>
+	<?php echo $this->block()->get( 'catalog/stage/breadcrumb' ); ?>
+	<?php echo $this->block()->get( 'catalog/stage/navigator' ); ?>
 
 </section>
