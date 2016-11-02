@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-09-26 21:54+0000\n"
+"PO-Revision-Date: 2016-11-02 06:02+0000\n"
 "Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/aimeos/aimeos-core/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -48,167 +48,167 @@ msgstr "Délka"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "Šířka"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "Barva"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "Možnost"
 
 #. Order type value
 msgid "order:repeat"
-msgstr ""
+msgstr "opakováno"
 
 #. Order type value
 msgid "order:web"
-msgstr ""
+msgstr "internet"
 
 #. Order type value
 msgid "order:phone"
-msgstr ""
+msgstr "telefon"
 
 #. Payment status value
 msgid "pay:-1"
-msgstr ""
+msgstr "nedokončeno"
 
 #. Payment status value
 msgid "pay:0"
-msgstr ""
+msgstr "odstraněno"
 
 #. Payment status value
 msgid "pay:1"
-msgstr ""
+msgstr "zrušeno"
 
 #. Payment status value
 msgid "pay:2"
-msgstr ""
+msgstr "zamítnuto"
 
 #. Payment status value
 msgid "pay:3"
-msgstr ""
+msgstr "vráceno"
 
 #. Payment status value
 msgid "pay:4"
-msgstr ""
+msgstr "nevyřízeno"
 
 #. Payment status value
 msgid "pay:5"
-msgstr ""
+msgstr "autorizováno"
 
 #. Payment status value
 msgid "pay:6"
-msgstr ""
+msgstr "obdrženo"
 
 #. Delivery status value
 msgid "stat:-1"
-msgstr ""
+msgstr "nedokončeno"
 
 #. Delivery status value
 msgid "stat:0"
-msgstr ""
+msgstr "odstraněno"
 
 #. Delivery status value
 msgid "stat:1"
-msgstr ""
+msgstr "nevyřízeno"
 
 #. Delivery status value
 msgid "stat:2"
-msgstr ""
+msgstr "probíhá"
 
 #. Delivery status value
 msgid "stat:3"
-msgstr ""
+msgstr "odesláno"
 
 #. Delivery status value
 msgid "stat:4"
-msgstr ""
+msgstr "doručeno"
 
 #. Delivery status value
 msgid "stat:5"
-msgstr ""
+msgstr "ztraceno"
 
 #. Delivery status value
 msgid "stat:6"
-msgstr ""
+msgstr "odmítnuto"
 
 #. Delivery status value
 msgid "stat:7"
-msgstr ""
+msgstr "vráceno"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Vlastník účtu"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Číslo účtu"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "Kód banky"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "Název banky"
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr ""
+msgstr "Křestní jméno"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr ""
+msgstr "Příjmení"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Číslo kreditní karty"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Ověřovací číslo"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "Měsíc vypršení"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "Rok vypršení"
 
 #. Warehouse code
 msgid "warehouse:default"
-msgstr ""
+msgstr "standardní"
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "oblíbené"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "připnout"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "sledovat"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "balík-délka"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "balík-šířka"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "balík-výška"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "balík-hmotnost"
 
 msgid "price:default"
 msgstr "%1$s %2$s"
