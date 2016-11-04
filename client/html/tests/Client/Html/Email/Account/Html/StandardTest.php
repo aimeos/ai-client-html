@@ -88,8 +88,21 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<html>', $output );
+		$this->assertContains( '<html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
+
+		$this->assertContains( '<p class="email-common-salutation', $output );
+		$this->assertContains( 'Dear mr Our Unittest', $output );
+
+		$this->assertContains( '<p class="email-common-intro', $output );
+		$this->assertContains( 'An account', $output );
+
+		$this->assertRegexp( '#<style.*/style>.*<div class="account-detail content-block">#smU', $output );
+		$this->assertContains( 'Account', $output );
+		$this->assertContains( 'Password', $output );
+
+		$this->assertContains( '<p class="email-common-outro', $output );
+		$this->assertContains( 'If you have any questions', $output );
 	}
 
 

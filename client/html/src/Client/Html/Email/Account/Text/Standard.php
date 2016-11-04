@@ -55,51 +55,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/account/text/standard/subparts';
-
-	/** client/html/email/account/text/salutation/name
-	 * Name of the salutation part used by the account creation email text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Account\Text\Salutation\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.09
-	 * @category Developer
-	 */
-
-	/** client/html/email/account/text/intro/name
-	 * Name of the introduction part used by the account creation email text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Account\Text\Intro\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.09
-	 * @category Developer
-	 */
-
-	/** client/html/email/account/text/detail/name
-	 * Name of the summary part used by the account creation email text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Account\Text\Detail\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.09
-	 * @category Developer
-	 */
-
-	/** client/html/email/account/text/outro/name
-	 * Name of the footer part used by the account creation email text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Account\Text\Outro\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.09
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'salutation', 'intro', 'detail', 'outro' );
+	private $subPartNames = array();
 
 
 	/**
@@ -149,61 +105,9 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/account/text/standard/template-body';
 
-		$text = $view->render( $view->config( $tplconf, 'email/common/text-body-default.php' ) );
+		$text = $view->render( $view->config( $tplconf, 'email/account/text-body-default.php' ) );
 		$view->mail()->setBody( $text );
 		return $text;
-	}
-
-
-	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
-	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
-
-		$content = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$content .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
-		}
-		$view->textHeader = $content;
-
-		/** client/html/email/account/text/standard/template-header
-		 * Relative path to the text header template of the account creation email text client.
-		 *
-		 * The template file contains the text and processing instructions
-		 * to generate the text that is inserted into the header
-		 * of the e-mail. The configuration string is the
-		 * path to the template file relative to the templates directory (usually
-		 * in client/html/templates).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
-		 *
-		 * The email account text client allows to use a different template for
-		 * each account status value. You can create a template for each account
-		 * status and store it in the "email/account/<status number>/" directory
-		 * below the "templates" directory (usually in client/html/templates). If no
-		 * specific layout template is found, the common template in the
-		 * "email/account/" directory is used.
-		 *
-		 * @param string Relative path to the template creating code for the e-mail header
-		 * @since 2015.09
-		 * @category Developer
-		 * @see client/html/email/account/text/standard/template-body
-		 */
-		$tplconf = 'client/html/email/account/text/standard/template-header';
-
-		return $view->render( $view->config( $tplconf, 'email/common/text-header-default.php' ) );
 	}
 
 
