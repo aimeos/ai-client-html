@@ -1,12 +1,14 @@
 <?php
 
-namespace Aimeos\Client\Html\Email\Account\Text;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2015
  */
+
+
+namespace Aimeos\Client\Html\Email\Account\Text;
+
+
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private static $customerItem;
@@ -31,12 +33,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
@@ -55,22 +51,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
-	}
-
-
-	public function testGetHeader()
-	{
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
 	}
 
 
@@ -78,7 +61,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'Dear mr Our Unittest', $output );
 		$this->assertContains( 'An account', $output );
 		$this->assertContains( 'Account', $output );
 		$this->assertContains( 'Password', $output );

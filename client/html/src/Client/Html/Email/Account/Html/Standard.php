@@ -207,4 +207,49 @@ class Standard
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
+
+
+	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	{
+		/** client/html/email/logo
+		 * Path to the logo image displayed in HTML e-mails
+		 *
+		 * The path can either be an absolute local path or an URL to a file on a
+		 * remote server. If the file is stored on a remote server, "allow_url_fopen"
+		 * must be enabled. See {@link http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen php.ini allow_url_fopen}
+		 * documentation for details.
+		 *
+		 * @param string Absolute file system path or remote URL to the logo image
+		 * @since 2014.03
+		 * @category User
+		 * @see client/html/email/from-email
+		 */
+		$file = $view->config( 'client/html/email/logo', 'client/html/themes/elegance/media/aimeos.png' );
+
+		if( file_exists( $file ) && ( $content = file_get_contents( $file ) ) !== false )
+		{
+			$finfo = new \finfo( FILEINFO_MIME_TYPE );
+			$mimetype = $finfo->file( $file );
+
+			$view->htmlLogo = $view->mail()->embedAttachment( $content, $mimetype, basename( $file ) );
+		}
+
+
+		$path = $view->config( 'client/html/common/template/baseurl', 'client/html/themes/elegance' );
+		$filepath = $path . DIRECTORY_SEPARATOR . 'common.css';
+
+		if( file_exists( $filepath ) && ( $css = file_get_contents( $filepath ) ) !== false ) {
+			$view->htmlCss = $css;
+		}
+
+		return $view;
+	}
 }

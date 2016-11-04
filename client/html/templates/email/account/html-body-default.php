@@ -6,66 +6,10 @@
  */
 
 $enc = $this->encoder();
-$logoContent = false;
 
 /// E-mail HTML title
 $title = $this->translate( 'client', 'E-mail notification' );
 
-/** client/html/email/logo
- * Path to the logo image displayed in HTML e-mails
- *
- * The path can either be an absolute local path or an URL to a file on a
- * remote server. If the file is stored on a remote server, "allow_url_fopen"
- * must be enabled. See {@link http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen php.ini allow_url_fopen}
- * documentation for details.
- *
- * @param string Absolute file system path or remote URL to the logo image
- * @since 2014.03
- * @category User
- * @see client/html/email/from-email
- */
-if( ( $logo = $this->config( 'client/html/email/logo', 'client/html/themes/elegance/images/aimeos.png' ) ) != '' )
-{
-	$logoFilename = basename( $logo );
-
-	if( file_exists( $logo ) !== false )
-	{
-		$logoContent = file_get_contents( $logo );
-		$finfo = new finfo( FILEINFO_MIME_TYPE );
-		$logoMimetype = $finfo->file( $logo );
-	}
-}
-
-$path = $this->config( 'client/html/common/template/baseurl', 'client/html/themes/elegance' );
-$filename = $path . DIRECTORY_SEPARATOR . 'common.css';
-$content = '';
-
-if( file_exists( $filename ) !== false ) {
-	$content = file_get_contents( $filename );
-}
-
-
-$salutations = array(
-	\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR,
-	\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MRS,
-	\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MISS,
-);
-
-try
-{
-	$addr = $this->extAddressItem;
-
-	/// E-mail intro with salutation (%1$s), first name (%2$s) and last name (%3$s)
-	$intro = sprintf( $this->translate( 'client', 'Dear %1$s %2$s %3$s' ),
-		( in_array( $addr->getSalutation(), $salutations ) ? $this->translate( 'client/code', $addr->getSalutation() ) : '' ),
-		$addr->getFirstName(),
-		$addr->getLastName()
-	);
-}
-catch( Exception $e )
-{
-	$intro = $this->translate( 'client/html/email', 'Dear Sir or Madam' );
-}
 
 ?>
 <?php $this->block()->start( 'email/account/html' ); ?>
@@ -94,8 +38,6 @@ catch( Exception $e )
 				display: block;
 			}
 
-			<?php echo $content; ?>
-
 			.aimeos .content-block {
 				margin: 1.5em 2%;
 				width: 96%;
@@ -114,16 +56,19 @@ catch( Exception $e )
 			.account-detail .name:after {
 				content: ":";
 			}
+
+			<?php echo $this->get( 'htmlCss' ); ?>
+
 		</style>
 
 		<div class="aimeos">
 
-			<?php if( $logoContent !== false ) : ?>
-				<img class="logo" src="<?php echo $this->mail()->embedAttachment( $logoContent, $logoMimetype, $logoFilename ); ?>" />
+			<?php if( isset( $this->htmlLogo ) ) : ?>
+				<img class="logo" src="<?php echo $this->htmlLogo; ?>" />
 			<?php endif; ?>
 
 			<p class="email-common-salutation content-block">
-				<?php echo $enc->html( $intro ); ?>
+				<?php echo $enc->html( $this->get( 'emailIntro' ) ); ?>
 			</p>
 
 			<p class="email-common-intro content-block">
