@@ -93,11 +93,11 @@ $title = $this->translate( 'client', 'E-mail notification' );
 				</div>
 			</div>
 
-		</div>
+			<p class="email-common-outro content-block">
+				<?php echo $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ); ?>
+			</p>
 
-		<p class="email-common-outro content-block">
-			<?php echo $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ); ?>
-		</p>
+		</div>
 
 	</body>
 </html>
