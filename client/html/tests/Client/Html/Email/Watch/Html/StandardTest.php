@@ -81,13 +81,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testGetBody()
 	{
 		$ds = DIRECTORY_SEPARATOR;
@@ -104,6 +97,18 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertStringStartsWith( '<html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
+
+		$this->assertContains( '<p class="email-common-salutation', $output );
+
+		$this->assertContains( '<p class="email-common-intro', $output );
+		$this->assertContains( 'One or more products', $output );
+
+		$this->assertContains( '<div class="common-summary-detail common-summary container content-block">', $output );
+		$this->assertContains( 'Cafe Noire Cappuccino', $output );
+		$this->assertContains( 'Cafe Noire Expresso', $output );
+
+		$this->assertContains( '<p class="email-common-outro', $output );
+		$this->assertContains( 'If you have any questions', $output );
 	}
 
 

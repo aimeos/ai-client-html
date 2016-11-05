@@ -110,7 +110,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBody()
 	{
 		$output = $this->object->getBody();
-		$this->assertNotNull( $output );
+
+		$this->assertContains( 'Dear mr Our Unittest', $output );
 	}
 
 

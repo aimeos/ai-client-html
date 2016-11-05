@@ -56,62 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/watch/html/standard/subparts';
-
-	/** client/html/email/watch/html/salutation/name
-	 * Name of the salutation part used by the product notification e-mail html client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Watch\Html\Salutation\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.09
-	 * @category Developer
-	 */
-
-	/** client/html/email/watch/html/intro/name
-	 * Name of the introduction part used by the product notification e-mail html client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Watch\Html\Intro\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.09
-	 * @category Developer
-	 */
-
-	/** client/html/email/watch/html/detail/name
-	 * Name of the summary part used by the product notification e-mail html client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Watch\Html\Detail\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.09
-	 * @category Developer
-	 */
-
-	/** client/html/email/watch/html/outro/name
-	 * Name of the footer part used by the product notification e-mail html client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Watch\Html\Outro\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.09
-	 * @category Developer
-	 */
-
-	/** client/html/email/watch/html/legal/name
-	 * Name of the legal part used by the product notification e-mail html client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Watch\Html\Legal\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.09
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'salutation', 'intro', 'detail', 'outro' );
+	private $subPartNames = array();
 
 
 	/**
@@ -161,61 +106,9 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/watch/html/standard/template-body';
 
-		$html = $view->render( $view->config( $tplconf, 'email/common/html-body-default.php' ) );
+		$html = $view->render( $view->config( $tplconf, 'email/watch/html-body-default.php' ) );
 		$view->mail()->setBodyHtml( $html );
 		return $html;
-	}
-
-
-	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
-	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
-
-		$content = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$content .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
-		}
-		$view->htmlHeader = $content;
-
-		/** client/html/email/watch/html/standard/template-header
-		 * Relative path to the HTML header template of the product notification e-mail html client.
-		 *
-		 * The template file contains the HTML code and processing instructions
-		 * to generate the HTML code that is inserted into the header
-		 * of the e-mail. The configuration string is the
-		 * path to the template file relative to the templates directory (usually
-		 * in client/html/templates).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
-		 *
-		 * The product notification e-mail HTML client allows to use a different template for
-		 * each watch status value. You can create a template for each watch
-		 * status and store it in the "email/watch/<status number>/" directory
-		 * below the "templates" directory (usually in client/html/templates). If no
-		 * specific layout template is found, the common template in the
-		 * "email/watch/" directory is used.
-		 *
-		 * @param string Relative path to the template creating code for the e-mail header
-		 * @since 2014.09
-		 * @category Developer
-		 * @see client/html/email/watch/html/standard/template-body
-		 */
-		$tplconf = 'client/html/email/watch/html/standard/template-header';
-
-		return $view->render( $view->config( $tplconf, 'email/common/html-header-default.php' ) );
 	}
 
 
@@ -314,5 +207,50 @@ class Standard
 	protected function getSubClientNames()
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+	}
+
+
+	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	{
+		/** client/html/email/logo
+		 * Path to the logo image displayed in HTML e-mails
+		 *
+		 * The path can either be an absolute local path or an URL to a file on a
+		 * remote server. If the file is stored on a remote server, "allow_url_fopen"
+		 * must be enabled. See {@link http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen php.ini allow_url_fopen}
+		 * documentation for details.
+		 *
+		 * @param string Absolute file system path or remote URL to the logo image
+		 * @since 2014.03
+		 * @category User
+		 * @see client/html/email/from-email
+		 */
+		$file = $view->config( 'client/html/email/logo', 'client/html/themes/elegance/media/aimeos.png' );
+
+		if( file_exists( $file ) && ( $content = file_get_contents( $file ) ) !== false )
+		{
+			$finfo = new \finfo( FILEINFO_MIME_TYPE );
+			$mimetype = $finfo->file( $file );
+
+			$view->htmlLogo = $view->mail()->embedAttachment( $content, $mimetype, basename( $file ) );
+		}
+
+
+		$path = $view->config( 'client/html/common/template/baseurl', 'client/html/themes/elegance' );
+		$filepath = $path . DIRECTORY_SEPARATOR . 'common.css';
+
+		if( file_exists( $filepath ) && ( $css = file_get_contents( $filepath ) ) !== false ) {
+			$view->htmlCss = $css;
+		}
+
+		return $view;
 	}
 }

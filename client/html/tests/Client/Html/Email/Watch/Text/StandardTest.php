@@ -91,11 +91,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBody()
 	{
 		$this->emailMock->expects( $this->once() )->method( 'setBody' )
-			->with( $this->stringContains( 'Dear' ) );
+			->with( $this->stringContains( 'Noire' ) );
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( 'Dear', $output );
+		$this->assertContains( 'One or more products', $output );
+		$this->assertContains( 'Cafe Noire Cappuccino', $output );
+		$this->assertContains( 'Cafe Noire Expresso', $output );
+		$this->assertContains( 'If you have any questions', $output );
 	}
 
 
