@@ -79,6 +79,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'text', 'html' );
+	private $cache;
 
 
 	/**
