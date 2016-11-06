@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$catItems = $catalogManager->searchItems( $search );
 
 		if( ( $catItem = reset( $catItems ) ) === false ) {
-			throw new \Exception( 'No catalog item found' );
+			throw new \RuntimeException( 'No catalog item found' );
 		}
 
 		$view = \TestHelperHtml::getView();

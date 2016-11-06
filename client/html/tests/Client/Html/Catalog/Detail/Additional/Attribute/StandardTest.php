@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$items = $manager->searchItems( $search, array( 'attribute', 'product' ) );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( 'No product item with code "CNE" found' );
+			throw new \RuntimeException( 'No product item with code "CNE" found' );
 		}
 
 		return $item;

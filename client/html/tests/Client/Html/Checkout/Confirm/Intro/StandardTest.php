@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$items = $manager->searchItems( $search );
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( 'No item found' );
+			throw new \RuntimeException( 'No item found' );
 		}
 
 
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$items = $manager->searchItems( $search );
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( 'No item found' );
+			throw new \RuntimeException( 'No item found' );
 		}
 
 

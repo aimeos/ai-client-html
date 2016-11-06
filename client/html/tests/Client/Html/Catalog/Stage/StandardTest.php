@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -160,7 +160,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception( 'test exception' ) ) );
+			->will( $this->throwException( new \RuntimeException( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -215,7 +215,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$items = $catalogManager->searchItems( $search );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( 'No catalog item with code "cafe" found' );
+			throw new \RuntimeException( 'No catalog item with code "cafe" found' );
 		}
 
 		return $item;

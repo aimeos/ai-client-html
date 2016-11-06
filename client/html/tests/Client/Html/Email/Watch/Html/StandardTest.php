@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $manager->searchItems( $search );
 
 		if( ( self::$customerItem = reset( $result ) ) === false ) {
-			throw new \Exception( 'No customer found' );
+			throw new \RuntimeException( 'No customer found' );
 		}
 
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $context );

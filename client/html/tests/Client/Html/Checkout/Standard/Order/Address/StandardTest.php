@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $manager->searchItems( $search );
 
 		if( ( $customerItem = reset( $result ) ) === false ) {
-			throw new \Exception( 'No customer item found' );
+			throw new \RuntimeException( 'No customer item found' );
 		}
 
 		$addrItem = $customerItem->getPaymentAddress();

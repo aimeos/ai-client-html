@@ -247,7 +247,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$mock->expects( $this->once() )->method( 'getOrderServiceCode' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->setView( $view );
 		$mock->process();
@@ -269,7 +269,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $orderManager->searchItems( $search );
 
 		if( ( $item = reset( $result ) ) === false ) {
-			throw new \Exception( 'No order found' );
+			throw new \RuntimeException( 'No order found' );
 		}
 
 		return $item;

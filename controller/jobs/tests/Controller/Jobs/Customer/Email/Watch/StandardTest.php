@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$mailStub->expects( $this->once() )
 			->method( 'createMessage' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$this->context->setMail( $mailStub );
 
@@ -128,7 +128,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$items = $manager->searchItems( $search, array( 'media', 'price', 'text' ) );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( 'No product item with code "CNC" found' );
+			throw new \RuntimeException( 'No product item with code "CNC" found' );
 		}
 
 		return $item;

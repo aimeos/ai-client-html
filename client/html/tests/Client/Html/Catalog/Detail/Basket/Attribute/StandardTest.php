@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$items = $manager->searchItems( $search, array( 'attribute' ) );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( 'No product item with code "U:TESTP" found' );
+			throw new \RuntimeException( 'No product item with code "U:TESTP" found' );
 		}
 
 		return $item;

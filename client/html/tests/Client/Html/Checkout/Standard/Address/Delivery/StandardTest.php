@@ -223,7 +223,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $manager->searchItems( $search );
 
 		if( ( $item = reset( $result ) ) === false ) {
-			throw new \Exception( 'No customer address found' );
+			throw new \RuntimeException( 'No customer address found' );
 		}
 
 		$item->setId( null );
@@ -267,7 +267,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $manager->searchItems( $search );
 
 		if( ( $item = reset( $result ) ) === false ) {
-			throw new \Exception( 'No customer address found' );
+			throw new \RuntimeException( 'No customer address found' );
 		}
 
 		$view = \TestHelperHtml::getView();
@@ -291,7 +291,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $customerManager->searchItems( $search );
 
 		if( ( $customer = reset( $result ) ) === false ) {
-			throw new \Exception( 'Customer item not found' );
+			throw new \RuntimeException( 'Customer item not found' );
 		}
 
 		$customerAddressManager = $customerManager->getSubManager( 'address' );
@@ -300,7 +300,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $customerAddressManager->searchItems( $search );
 
 		if( ( $address = reset( $result ) ) === false ) {
-			throw new \Exception( 'Customer address item not found' );
+			throw new \RuntimeException( 'Customer address item not found' );
 		}
 
 		$this->context->setUserId( $customer->getId() );

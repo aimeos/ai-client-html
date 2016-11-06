@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $serviceManager->searchItems( $search );
 
 		if( ( $service = reset( $result ) ) === false ) {
-			throw new \Exception( 'Service item not found' );
+			throw new \RuntimeException( 'Service item not found' );
 		}
 
 		$view = \TestHelperHtml::getView();
@@ -145,7 +145,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $serviceManager->searchItems( $search );
 
 		if( ( $service = reset( $result ) ) === false ) {
-			throw new \Exception( 'Service item not found' );
+			throw new \RuntimeException( 'Service item not found' );
 		}
 
 		$view = \TestHelperHtml::getView();

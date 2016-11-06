@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$mock->setView( \TestHelperHtml::getView() );
 
 		$mock->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getHeader();
 	}
@@ -155,7 +155,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$mock->setView( \TestHelperHtml::getView() );
 
 		$mock->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getBody();
 	}
@@ -246,7 +246,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$mock->setView( \TestHelperHtml::getView() );
 
 		$mock->expects( $this->once() )->method( 'getClientParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->process();
 	}
@@ -260,7 +260,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$items = $manager->searchItems( $search );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( 'No product item with code "CNC" found' );
+			throw new \RuntimeException( 'No product item with code "CNC" found' );
 		}
 
 		return $item;

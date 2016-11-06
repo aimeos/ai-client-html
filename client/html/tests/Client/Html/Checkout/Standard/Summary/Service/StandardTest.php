@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $customerManager->searchItems( $search );
 
 		if( ( $customer = reset( $result ) ) === false ) {
-			throw new \Exception( 'Customer item not found' );
+			throw new \RuntimeException( 'Customer item not found' );
 		}
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );

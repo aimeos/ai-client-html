@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -273,7 +273,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception( 'test exception' ) ) );
+			->will( $this->throwException( new \RuntimeException( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -374,7 +374,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		->getMock();
 
 		$object->expects( $this->once() )->method( 'getClientParams' )
-		->will( $this->throwException( new \Exception( 'text exception') ) );
+		->will( $this->throwException( new \RuntimeException( 'text exception') ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -392,7 +392,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$items = $catalogManager->searchItems( $search );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( sprintf( 'No catalog item with code "%1$s" found', $code ) );
+			throw new \RuntimeException( sprintf( 'No catalog item with code "%1$s" found', $code ) );
 		}
 
 		return $item;

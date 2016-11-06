@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $orderManager->searchItems( $search );
 
 		if( ( self::$orderItem = reset( $result ) ) === false ) {
-			throw new \Exception( 'No order found' );
+			throw new \RuntimeException( 'No order found' );
 		}
 
 		self::$orderBaseItem = $orderBaseManager->load( self::$orderItem->getBaseId() );

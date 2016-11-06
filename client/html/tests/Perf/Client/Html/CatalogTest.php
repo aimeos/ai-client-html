@@ -26,7 +26,7 @@ class CatalogTest extends \PHPUnit_Framework_TestCase
 		$items = $catalogManager->searchItems( $search );
 
 		if( ( $catalogItem = reset( $items ) ) === false ) {
-			throw new \Exception( 'No catalog item with code "home" found' );
+			throw new \RuntimeException( 'No catalog item with code "home" found' );
 		}
 
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
@@ -35,7 +35,7 @@ class CatalogTest extends \PHPUnit_Framework_TestCase
 		$items = $productManager->searchItems( $search );
 
 		if( ( $productItem = reset( $items ) ) === false ) {
-			throw new \Exception( 'No product item with code "perf-00000" found' );
+			throw new \RuntimeException( 'No product item with code "perf-00000" found' );
 		}
 
 		$this->view = \TestHelperHtml::getView( 'unitperf' );

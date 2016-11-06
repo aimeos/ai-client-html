@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -123,7 +123,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 

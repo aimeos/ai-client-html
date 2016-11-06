@@ -112,7 +112,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $serviceManager->searchItems( $search );
 
 		if( ( $serviceItem = reset( $result ) ) === false ) {
-			throw new \Exception( 'No service item found' );
+			throw new \RuntimeException( 'No service item found' );
 		}
 
 		$controller->setService( 'payment', $serviceItem->getId() );
@@ -135,7 +135,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $baseManager->searchItems( $search );
 
 		if( ( $item = reset( $result ) ) === false ) {
-			throw new \Exception( 'No order placed' );
+			throw new \RuntimeException( 'No order placed' );
 		}
 
 		$baseManager->deleteItem( $item->getId() );

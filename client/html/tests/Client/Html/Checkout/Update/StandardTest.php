@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -115,7 +115,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -181,7 +181,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $orderManager->searchItems( $search );
 
 		if( ( $item = reset( $result ) ) === false ) {
-			throw new \Exception( 'No order found' );
+			throw new \RuntimeException( 'No order found' );
 		}
 
 		return $item;

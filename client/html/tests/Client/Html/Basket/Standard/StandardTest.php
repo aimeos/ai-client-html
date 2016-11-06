@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$mock->setView( \TestHelperHtml::getView() );
 
 		$mock->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getHeader();
 	}
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$mock->setView( \TestHelperHtml::getView() );
 
 		$mock->expects( $this->once() )->method( 'setViewParams' )
-			->will( $this->throwException( new \Exception() ) );
+			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getBody();
 	}
@@ -247,7 +247,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $attrManager->searchItems( $search, array() );
 
 		if( ( $attribute = reset( $result ) ) === false ) {
-			throw new \Exception( 'No attribute' );
+			throw new \RuntimeException( 'No attribute' );
 		}
 
 		$view = $this->object->getView();
@@ -283,7 +283,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $attrManager->searchItems( $search, array() );
 
 		if( ( $attribute = reset( $result ) ) === false ) {
-			throw new \Exception( 'No attribute' );
+			throw new \RuntimeException( 'No attribute' );
 		}
 
 		$view = $this->object->getView();
@@ -319,7 +319,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $attrManager->searchItems( $search, array() );
 
 		if( ( $attribute = reset( $result ) ) === false ) {
-			throw new \Exception( 'No attribute' );
+			throw new \RuntimeException( 'No attribute' );
 		}
 
 		$view = $this->object->getView();
@@ -496,7 +496,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$items = $manager->searchItems( $search );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( sprintf( 'No product item with code "%1$s" found', $code ) );
+			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
 		$view = $this->object->getView();
@@ -525,7 +525,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$items = $manager->searchItems( $search );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Exception( sprintf( 'No product item with code "%1$s" found', $code ) );
+			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
 		return $item;

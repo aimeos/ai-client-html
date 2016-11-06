@@ -119,7 +119,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$result = $manager->searchItems( $search );
 
 		if( ( $item = reset( $result ) ) === false ) {
-			throw new \Exception( sprintf( 'No product item with code "%1$s" found', $code ) );
+			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
 		return $item;
