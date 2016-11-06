@@ -3,33 +3,33 @@
 <project name="ai-client-html extension" default="test">
 
 	<target name="test" description="Executes all tests">
-		<phing target="test" haltonfailure="true" dir="controller/jobs" />
 		<phing target="test" haltonfailure="true" dir="client/html" />
+		<phing target="test" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="testperf" description="Executes all performance tests">
-		<phing target="testperf" haltonfailure="true" dir="controller/jobs" />
 		<phing target="testperf" haltonfailure="true" dir="client/html" />
+		<phing target="testperf" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="coverage" description="Generates the code coverage report">
-		<phing target="coverage" haltonfailure="true" dir="controller/jobs" />
 		<phing target="coverage" haltonfailure="true" dir="client/html" />
+		<phing target="coverage" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="check" description="Checks for code quality">
-		<phing target="check" haltonfailure="true" dir="controller/jobs" />
 		<phing target="check" haltonfailure="true" dir="client/html" />
+		<phing target="check" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="clean" description="Cleans up temporary files">
-		<phing target="clean" haltonfailure="true" dir="controller/jobs" />
 		<phing target="clean" haltonfailure="true" dir="client/html" />
+		<phing target="clean" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="i18n" description="Creates all translation files">
-		<phing target="i18n" haltonfailure="true" dir="controller/jobs" />
 		<phing target="i18n" haltonfailure="true" dir="client" />
+		<phing target="i18n" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="build" description="Builds package for deployment">
