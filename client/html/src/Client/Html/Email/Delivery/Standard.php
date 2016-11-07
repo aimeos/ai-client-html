@@ -80,6 +80,8 @@ class Standard
 	 */
 	private $subPartNames = array( 'text', 'html' );
 
+	private $cache;
+
 
 	/**
 	 * Returns the HTML code for insertion into the body.

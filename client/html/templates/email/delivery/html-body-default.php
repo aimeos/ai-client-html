@@ -73,7 +73,7 @@ $title = $this->translate( 'client', 'E-mail notification' );
 
 			<?php echo $this->block()->get( 'email/delivery/html/intro' ); ?>
 
-			<?php echo $this->block()->get( 'email/delivery/html/summary' ); ?>
+			<?php echo $this->block()->get( 'email/common/html/summary' ); ?>
 
 			<p class="email-common-outro content-block">
 				<?php echo $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ); ?>

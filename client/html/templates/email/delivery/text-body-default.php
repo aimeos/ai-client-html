@@ -14,7 +14,7 @@
 <?php echo $this->block()->get( 'email/delivery/text/intro' ); ?>
 
 
-<?php echo $this->block()->get( 'email/delivery/text/summary' ); ?>
+<?php echo $this->block()->get( 'email/common/text/summary' ); ?>
 
 
 <?php echo wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ); ?>

@@ -67,6 +67,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'The delivery status of your order', $output );
+		$this->assertContains( 'Cafe Noire Expresso', $output );
 		$this->assertContains( 'If you have any questions', $output );
 		$this->assertContains( 'All orders are subject to our terms and conditions.', $output );
 	}

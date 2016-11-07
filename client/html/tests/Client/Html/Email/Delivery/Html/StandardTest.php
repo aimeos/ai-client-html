@@ -76,6 +76,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertStringStartsWith( '<html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
 		$this->assertContains( 'The delivery status of your order', $output );
+		$this->assertContains( 'Cafe Noire Expresso', $output );
 		$this->assertContains( 'If you have any questions', $output );
 		$this->assertContains( 'All orders are subject', $output );
 	}
