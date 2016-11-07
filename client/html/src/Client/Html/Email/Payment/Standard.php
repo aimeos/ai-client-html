@@ -80,6 +80,8 @@ class Standard
 	 */
 	private $subPartNames = array( 'text', 'html' );
 
+	private $cache;
+
 
 	/**
 	 * Returns the HTML code for insertion into the body.
@@ -481,5 +483,49 @@ class Standard
 	protected function getSubClientNames()
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+	}
+
+
+	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	{
+		if( !isset( $this->cache ) )
+		{
+			$salutations = array(
+				\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR,
+				\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MRS,
+				\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MISS,
+			);
+
+			try
+			{
+				$salutation = '';
+				$addr = $view->extAddressItem;
+
+				if( in_array( $addr->getSalutation(), $salutations ) ) {
+					$salutation = $view->translate( 'client/code', $addr->getSalutation() );
+				}
+
+				/// E-mail intro with salutation (%1$s), first name (%2$s) and last name (%3$s)
+				$view->emailIntro = sprintf( $view->translate( 'client', 'Dear %1$s %2$s %3$s' ),
+					$salutation, $addr->getFirstName(), $addr->getLastName()
+				);
+			}
+			catch( \Exception $e )
+			{
+				$view->emailIntro = $view->translate( 'client/html/email', 'Dear Sir or Madam' );
+			}
+
+			$this->cache = $view;
+		}
+
+		return $this->cache;
 	}
 }
