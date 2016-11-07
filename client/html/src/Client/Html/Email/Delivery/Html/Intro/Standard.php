@@ -114,61 +114,6 @@ class Standard
 
 
 	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
-	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
-
-		$content = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$content .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
-		}
-		$view->introHeader = $content;
-
-		/** client/html/email/delivery/html/intro/standard/template-header
-		 * Relative path to the HTML header template of the email delivery html introduction client.
-		 *
-		 * The template file contains the HTML code and processing instructions
-		 * to generate the HTML code that is inserted into the header
-		 * of the e-mail. The configuration string is the
-		 * path to the template file relative to the templates directory (usually
-		 * in client/html/templates).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
-		 *
-		 * The email delivery HTML client allows to use a different template for
-		 * each delivery status value. You can create a template for each delivery
-		 * status and store it in the "email/delivery/<status number>/" directory
-		 * below the "templates" directory (usually in client/html/templates). If no
-		 * specific layout template is found, the common template in the
-		 * "email/delivery/" directory is used.
-		 *
-		 * @param string Relative path to the template creating code for the e-mail header
-		 * @since 2014.03
-		 * @category Developer
-		 * @see client/html/email/delivery/html/intro/standard/template-body
-		 */
-		$tplconf = 'client/html/email/delivery/html/intro/standard/template-header';
-
-		$status = $view->extOrderItem->getDeliveryStatus();
-		$default = array( 'email/delivery/' . $status . '/html-intro-header-default.php', 'email/delivery/html-intro-header-default.php' );
-
-		return $view->render( $view->config( $tplconf, $default ) );
-	}
-
-
-	/**
 	 * Returns the sub-client given by its name.
 	 *
 	 * @param string $type Name of the client type

@@ -106,53 +106,6 @@ class Standard
 
 
 	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
-	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
-
-		$html = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
-		}
-		$view->serviceHeader = $html;
-
-		/** client/html/email/delivery/html/summary/service/standard/template-header
-		 * Relative path to the HTML header template of the summary service section of the delivery HTML e-mail client.
-		 *
-		 * The template file contains the HTML code and processing instructions
-		 * to generate the HTML code that is inserted into the HTML page header
-		 * of the rendered page in the frontend. The configuration string is the
-		 * path to the template file relative to the templates directory (usually
-		 * in client/html/templates).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * (second one) should be replaced by the name of the new class in lower
-		 * case.
-		 *
-		 * @param string Relative path to the template creating code for the HTML page head
-		 * @since 2015.11
-		 * @category Developer
-		 * @see client/html/email/delivery/html/summary/service/standard/template-body
-		 */
-		$tplconf = 'client/html/email/delivery/html/summary/service/standard/template-header';
-		$default = 'common/summary/service-header-default.php';
-
-		return $view->render( $view->config( $tplconf, $default ) );
-	}
-
-
-	/**
 	 * Returns the sub-client given by its name.
 	 *
 	 * @param string $type Name of the client type

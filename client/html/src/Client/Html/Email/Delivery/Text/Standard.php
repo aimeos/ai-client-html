@@ -57,17 +57,6 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/email/delivery/text/standard/subparts';
 
-	/** client/html/email/delivery/text/salutation/name
-	 * Name of the salutation part used by the email delivery text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Delivery\Text\Salutation\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
 	/** client/html/email/delivery/text/intro/name
 	 * Name of the introduction part used by the email delivery text client implementation
 	 *
@@ -89,29 +78,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-
-	/** client/html/email/delivery/text/outro/name
-	 * Name of the footer part used by the email delivery text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Delivery\Text\Outro\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/email/delivery/text/legal/name
-	 * Name of the legal part used by the email delivery text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Delivery\Text\Legal\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'salutation', 'intro', 'summary', 'outro', 'legal' );
+	private $subPartNames = array( 'intro', 'summary' );
 
 
 	/**
@@ -162,7 +129,7 @@ class Standard
 		$tplconf = 'client/html/email/delivery/text/standard/template-body';
 
 		$status = $view->extOrderItem->getDeliveryStatus();
-		$default = array( 'email/delivery/' . $status . '/text-body-default.php', 'email/common/text-body-default.php' );
+		$default = array( 'email/delivery/' . $status . '/text-body-default.php', 'email/delivery/text-body-default.php' );
 
 		$text = $view->render( $view->config( $tplconf, $default ) );
 		$view->mail()->setBody( $text );
