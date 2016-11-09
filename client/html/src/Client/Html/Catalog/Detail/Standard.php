@@ -57,50 +57,6 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/detail/standard/subparts';
 
-	/** client/html/catalog/detail/social/name
-	 * Name of the social part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Social\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.09
-	 * @category Developer
-	 */
-
-	/** client/html/catalog/detail/image/name
-	 * Name of the image part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Image\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/catalog/detail/basic/name
-	 * Name of the basic part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Basic\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/catalog/detail/actions/name
-	 * Name of the actions part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Actions\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.09
-	 * @category Developer
-	 */
-
 	/** client/html/catalog/detail/basket/name
 	 * Name of the basket part used by the catalog detail client implementation
 	 *
@@ -109,50 +65,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/catalog/detail/bundle/name
-	 * Name of the bundle part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Bundle\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.11
-	 * @category Developer
-	 */
-
-	/** client/html/catalog/detail/additional/name
-	 * Name of the additional part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Additional\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/catalog/detail/suggest/name
-	 * Name of the suggest part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Suggest\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/catalog/detail/bought/name
-	 * Name of the bought together part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Bought\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.09
 	 * @category Developer
 	 */
 
@@ -166,7 +78,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'image', 'basic', 'basket', 'actions', 'social', 'bundle', 'additional', 'suggest', 'bought', 'seen' );
+	private $subPartNames = array( 'basket', 'seen' );
 
 	private $tags = array();
 	private $expire;
@@ -497,41 +409,36 @@ class Standard
 		if( !isset( $this->cache ) )
 		{
 			$context = $this->getContext();
+			$prodid = $view->param( 'd_prodid' );
+
 			$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
-			$productItem = $this->getProductItem( $view->param( 'd_prodid' ), $domains );
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
-
-			$attrManager = $controller->createManager( 'attribute' );
-			$attrSearch = $attrManager->createSearch( true );
-			$expr = array(
-				$attrSearch->compare( '==', 'attribute.id', array_keys( $productItem->getRefItems( 'attribute' ) ) ),
-				$attrSearch->getConditions(),
-			);
-			$attrSearch->setConditions( $attrSearch->combine( '&&', $expr ) );
-			$attributes = $attrManager->searchItems( $attrSearch, $domains );
-
-			$this->addMetaItem( $attributes, 'attribute', $this->expire, $this->tags );
-			$this->addMetaList( array_keys( $attributes ), 'attribute', $this->expire );
+			$productItem = $this->getProductItem( $prodid, $domains );
+			$products = $this->getProductItems( $controller, array_keys( $productItem->getRefItems( 'product' ) ), $domains );
 
 
-			$mediaManager = $controller->createManager( 'media' );
-			$mediaSearch = $mediaManager->createSearch( true );
-			$expr = array(
-				$mediaSearch->compare( '==', 'media.id', array_keys( $productItem->getRefItems( 'media' ) ) ),
-				$mediaSearch->getConditions(),
-			);
-			$mediaSearch->setConditions( $mediaSearch->combine( '&&', $expr ) );
-			$media = $mediaManager->searchItems( $mediaSearch, $domains );
-
-			$this->addMetaItem( $media, 'media', $this->expire, $this->tags );
-			$this->addMetaList( array_keys( $media ), 'media', $this->expire );
+			$attrIds = array_keys( $productItem->getRefItems( 'attribute' ) );
+			foreach( $products as $product ) {
+				$attrIds = array_merge( $attrIds, array_keys( $productItem->getRefItems( 'attribute' ) ) );
+			}
+			$attributes = $this->getAttributeItems( $controller, $attrIds, $domains );
 
 
+			$mediaIds = array_keys( $productItem->getRefItems( 'media' ) );
+			foreach( $products as $product ) {
+				$mediaIds = array_merge( $mediaIds, array_keys( $productItem->getRefItems( 'media' ) ) );
+			}
+			$media = $this->getMediaItems( $controller, $mediaIds, $domains );
+
+
+			$view->detailAttributeItems = $attributes;
+			$view->detailMediaItems = $media;
 			$view->detailProductItem = $productItem;
-			$view->detailProductAttributeItems = $attributes;
-			$view->detailProductMediaItems = $media;
+			$view->detailProductItems = $products;
+			$view->detailPropertyItems = $this->getPropertyItems( $controller, $prodid );
 			$view->detailParams = $this->getClientParams( $view->param() );
+			$view->detailUserId = $context->getUserId();
 
 			$this->cache = $view;
 		}
@@ -616,5 +523,111 @@ class Standard
 		$this->addMetaList( $prodid, 'product', $this->expire );
 
 		return $item;
+	}
+
+
+	/**
+	 * Returns the attribute items for the given attribute ID or IDs
+	 *
+	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
+	 * @param array|string $mediaIds Unique attribute IDs
+	 * @param array List of domain names whose items should be fetched too
+	 * @return \Aimeos\MShop\Attribute\Item\Iface[] Attribute items
+	 */
+	protected function getAttributeItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $mediaIds, $domains )
+	{
+		$manager = $controller->createManager( 'attribute' );
+
+		$search = $manager->createSearch( true );
+		$expr = array(
+			$search->compare( '==', 'attribute.id', $mediaIds ),
+			$search->getConditions(),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+
+		$items = $manager->searchItems( $search, $domains );
+
+		$this->addMetaItem( $items, 'attribute', $this->expire, $this->tags );
+		$this->addMetaList( array_keys( $items ), 'attribute', $this->expire );
+
+		return $items;
+	}
+
+
+	/**
+	 * Returns the media items for the given media ID or IDs
+	 *
+	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
+	 * @param array|string $mediaIds Unique media IDs
+	 * @param array List of domain names whose items should be fetched too
+	 * @return \Aimeos\MShop\Media\Item\Iface[] Media items
+	 */
+	protected function getMediaItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $mediaIds, $domains )
+	{
+		$manager = $controller->createManager( 'media' );
+
+		$search = $manager->createSearch( true );
+		$expr = array(
+			$search->compare( '==', 'media.id', $mediaIds ),
+			$search->getConditions(),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+
+		$items = $manager->searchItems( $search, $domains );
+
+		$this->addMetaItem( $items, 'media', $this->expire, $this->tags );
+		$this->addMetaList( array_keys( $items ), 'media', $this->expire );
+
+		return $items;
+	}
+
+
+	/**
+	 * Returns the product items for the given product ID or IDs
+	 *
+	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
+	 * @param array|string $productIds Unique product IDs
+	 * @param array List of domain names whose items should be fetched too
+	 * @return \Aimeos\MShop\Media\Item\Iface[] Media items
+	 */
+	protected function getProductItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $productIds, $domains )
+	{
+		$manager = $controller->createManager( 'product' );
+
+		$search = $manager->createSearch( true );
+		$expr = array(
+			$search->compare( '==', 'product.id', $productIds ),
+			$search->getConditions(),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+
+		$items = $manager->searchItems( $search, $domains );
+
+		$this->addMetaItem( $items, 'product', $this->expire, $this->tags );
+		$this->addMetaList( array_keys( $items ), 'product', $this->expire );
+
+		return $items;
+	}
+
+
+	/**
+	 * Returns the product property items for the given product ID or IDs
+	 *
+	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
+	 * @param array|string $productIds Unique product IDs
+	 * @return \Aimeos\MShop\Product\Item\Property\Iface[] Property items
+	 */
+	protected function getPropertyItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $productIds )
+	{
+		$manager = $controller->createManager( 'product/property' );
+
+		$search = $manager->createSearch( true );
+		$expr = array(
+			$search->compare( '==', 'product.property.parentid', $productIds ),
+			$search->getConditions(),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+
+		return $manager->searchItems( $search );
 	}
 }

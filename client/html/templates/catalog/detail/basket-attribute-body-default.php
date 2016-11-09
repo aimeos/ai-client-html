@@ -7,12 +7,6 @@
 
 $enc = $this->encoder();
 
-$params = array(
-	'attributeConfigItems' => $this->get( 'attributeConfigItems', array() ),
-	'attributeCustomItems' => $this->get( 'attributeCustomItems', array() ),
-	'attributeHiddenItems' => $this->get( 'attributeHiddenItems', array() ),
-);
-
 /** client/html/common/partials/attribute
  * Relative path to the product attribute partial template file
  *
@@ -31,11 +25,20 @@ $params = array(
  * @see client/html/common/partials/selection
  */
 
+
 ?>
 <?php $this->block()->start( 'catalog/detail/basket/attribute' ); ?>
 <div class="catalog-detail-basket-attribute">
-<?php echo $this->partial( $this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ), $params ); ?>
-<?php echo $this->get( 'attributeBody' ); ?>
+
+	<?php echo $this->partial(
+		$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
+		array(
+			'attributeConfigItems' => $this->get( 'attributeConfigItems', array() ),
+			'attributeCustomItems' => $this->get( 'attributeCustomItems', array() ),
+			'attributeHiddenItems' => $this->get( 'attributeHiddenItems', array() ),
+		)
+	); ?>
+
 </div>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'catalog/detail/basket/attribute' ); ?>

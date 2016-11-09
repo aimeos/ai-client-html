@@ -5,6 +5,18 @@
  * @copyright Aimeos (aimeos.org), 2016
  */
 
+/* Expected data:
+ * - products : List of product items
+ * - selectionProductDependencies : List of product dependencies (optional)
+ * - selectionAttributeDependencies : List of attribute dependencies (optional)
+ * - selectionAttributeTypeDependencies : List of attribute type dependencies (optional)
+ * - selectionProducts : List of product variants incl. referenced items (optional)
+ * - attributeConfigItems : List of config attribute items incl. referenced items (optional)
+ * - selectionAttributeItems : List of variant attribute items incl. referenced items (optional)
+ * - basket-add : True to display "add to basket" button, false if not
+ * - itemprop : Schema.org property for the product items
+ */
+
 $enc = $this->encoder();
 $position = $this->get( 'position' );
 
@@ -59,7 +71,7 @@ if( $this->get( 'basket-add', false ) )
 			);
 		?>
 
-		--><li class="product <?php echo $enc->attr( $css ); ?>" data-reqstock="<?php echo (int) $this->get( 'require-stock', true ); ?>" itemscope="" itemtype="http://schema.org/Product">
+		--><li class="product <?php echo $enc->attr( $css ); ?>"data-reqstock="<?php echo (int) $this->get( 'require-stock', true ); ?>" itemprop="<?php echo $this->get( 'itemprop' ); ?>" itemscope="" itemtype="http://schema.org/Product">
 
 
 			<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>">

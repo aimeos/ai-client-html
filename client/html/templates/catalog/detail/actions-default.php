@@ -7,9 +7,8 @@
  */
 
 $enc = $this->encoder();
-$prodid = $this->param( 'd_prodid' );
-$params = $this->get( 'actionsParams', array() );
-$login = ( $this->get( 'actionsUserId', '' ) ? 0 : 1 );
+$prodid = $this->product->getId();
+$login = ( $this->get( 'userId' ) ? 0 : 1 );
 
 $pinTarget = $this->config( 'client/html/catalog/session/pinned/url/target' );
 $pinController = $this->config( 'client/html/catalog/session/pinned/url/controller', 'catalog' );
@@ -47,13 +46,12 @@ $favConfig = $this->config( 'client/html/account/favorite/url/config', array() )
 $list = $this->config( 'client/html/catalog/detail/actions/list', array( 'pin', 'watch', 'favorite' ) );
 
 $urls = array(
-	'pin' => $this->url( $pinTarget, $pinController, $pinAction, array( 'pin_action' => 'add', 'pin_id' => $prodid ) + $params, $pinConfig ),
-	'watch' => $this->url( $watchTarget, $watchController, $watchAction, array( 'wat_action' => 'add', 'wat_id' => $prodid ) + $params, $watchConfig ),
-	'favorite' => $this->url( $favTarget, $favController, $favAction, array( 'fav_action' => 'add', 'fav_id' => $prodid ) + $params, $favConfig ),
+	'pin' => $this->url( $pinTarget, $pinController, $pinAction, array( 'pin_action' => 'add', 'pin_id' => $prodid ), $pinConfig ),
+	'watch' => $this->url( $watchTarget, $watchController, $watchAction, array( 'wat_action' => 'add', 'wat_id' => $prodid ), $watchConfig ),
+	'favorite' => $this->url( $favTarget, $favController, $favAction, array( 'fav_action' => 'add', 'fav_id' => $prodid ), $favConfig ),
 );
 
 ?>
-<?php $this->block()->start( 'catalog/detail/actions' ); ?>
 <!-- catalog.detail.actions -->
 <div class="catalog-detail-actions">
 <?php foreach( $list as $entry ) : ?>
@@ -61,8 +59,5 @@ $urls = array(
 	<a class="actions-button actions-button-<?php echo $enc->attr( $entry ); ?>" data-login="<?php echo $login; ?>" href="<?php echo $enc->attr( $urls[$entry] ); ?>" title="<?php echo $enc->attr( $this->translate( 'client/code', $entry ) ); ?>"></a>
 <?php	endif; ?>
 <?php endforeach; ?>
-<?php echo $this->actionsBody; ?>
 </div>
 <!-- catalog.detail.actions -->
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/detail/actions' ); ?>

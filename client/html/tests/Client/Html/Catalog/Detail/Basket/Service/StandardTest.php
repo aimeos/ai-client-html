@@ -28,18 +28,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$tags = array();
-		$expire = null;
-		$output = $this->object->getHeader( 1, $tags, $expire );
-
-		$this->assertNotNull( $output );
-		$this->assertEquals( null, $expire );
-		$this->assertEquals( 1, count( $tags ) );
-	}
-
-
 	public function testGetBody()
 	{
 		$tags = array();

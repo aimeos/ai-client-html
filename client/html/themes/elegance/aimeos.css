@@ -1605,9 +1605,9 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .account-watch .watch-items,
 .account-favorite .favorite-items,
 .basket-related-bought .bought-items,
-.catalog-detail-bought .bought-items,
-.catalog-detail-bundle .bundle-items,
-.catalog-detail-suggest .suggest-items,
+.catalog-detail-bought .list-items,
+.catalog-detail-bundle .list-items,
+.catalog-detail-suggest .list-items,
 .catalog-session-seen .seen-items,
 .catalog-session-pinned .pinned-items {
 	padding: 0;
@@ -1630,9 +1630,9 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .account-watch .watch-item,
 .account-favorite .favorite-item,
 .basket-related-bought .bought-item,
-.catalog-detail-bought .bought-item,
-.catalog-detail-bundle .bundle-item,
-.catalog-detail-suggest .suggest-item,
+.catalog-detail-bought .product,
+.catalog-detail-bundle .product,
+.catalog-detail-suggest .product,
 .catalog-session-seen .seen-item,
 .catalog-session-pinned .pinned-item {
 	display: inline-block;

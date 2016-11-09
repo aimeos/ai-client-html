@@ -39,21 +39,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$view = $this->object->getView();
-		$view->detailProductItem = $this->getProductItem( 'U:TESTP' );
-
-		$tags = array();
-		$expire = null;
-		$output = $this->object->getHeader( 1, $tags, $expire );
-
-		$this->assertNotNull( $output );
-		$this->assertEquals( null, $expire );
-		$this->assertEquals( 1, count( $tags ) );
-	}
-
-
 	public function testGetBody()
 	{
 		$view = $this->object->getView();

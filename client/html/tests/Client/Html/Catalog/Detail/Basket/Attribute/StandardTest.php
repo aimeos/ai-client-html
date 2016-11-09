@@ -39,16 +39,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$view = $this->object->getView();
-		$view->detailProductItem = $this->getProductItem();
-
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testGetBody()
 	{
 		$view = $this->object->getView();

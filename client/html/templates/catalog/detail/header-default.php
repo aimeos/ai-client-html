@@ -30,17 +30,23 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
 
+
 ?>
 <?php if( isset( $this->detailProductItem ) ) : ?>
 	<title><?php echo $enc->html( $this->detailProductItem->getName() ); ?></title>
-<?php	foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
-	<meta name="keywords" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
-<?php	endforeach; ?>
-<?php	foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
-	<meta name="description" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
-<?php	endforeach; ?>
-<?php $params = array( 'd_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId() ); ?>
+
+	<?php	foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
+		<meta name="keywords" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+	<?php	endforeach; ?>
+	<?php	foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
+		<meta name="description" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+	<?php	endforeach; ?>
+
+	<?php $params = array( 'd_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId() ); ?>
 	<link rel="canonical" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>" />
+
 <?php endif; ?>
-	<meta name="application-name" content="Aimeos" />
+
+<meta name="application-name" content="Aimeos" />
+
 <?php echo $this->get( 'detailHeader' ); ?>

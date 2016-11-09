@@ -94,43 +94,41 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
  */
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
 
-$url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'detailParams', array() ), array(), $detailConfig ) );
-$media = $this->get( 'detailProductMediaItems', array() );
+$url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', array() ), array(), $detailConfig ) );
+$media = $this->get( 'mediaItems', array() );
+
 
 ?>
-<?php $this->block()->start( 'catalog/detail/image' ); ?>
 <div class="catalog-detail-image" data-dir="horizontal">
-<?php if( isset( $this->detailProductItem ) ) : ?>
-<?php	$mediaItems = $this->detailProductItem->getRefItems( 'media', 'default', 'default' ); ?>
+	<?php $mediaItems = $this->product->getRefItems( 'media', 'default', 'default' ); ?>
+
 	<div class="image-single">
 		<div class="carousel">
-<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
-<?php		$mediaUrl = $enc->attr( $this->content( $mediaItem->getUrl() ) ); ?>
-			<div id="image-<?php echo $enc->attr( $id ); ?>" class="item"
-				style="background-image: url('<?php echo $mediaUrl; ?>')"
-				data-image="<?php echo $mediaUrl; ?>"
-				data-zoom-image="<?php echo $mediaUrl; ?>"
-				<?php echo $getVariantData( $id, $media ); ?>
-				itemscope="" itemtype="http://schema.org/ImageObject">
-				<meta itemprop="contentUrl" content="<?php echo $mediaUrl; ?>" />
+			<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
+				<?php $mediaUrl = $enc->attr( $this->content( $mediaItem->getUrl() ) ); ?>
+				<div id="image-<?php echo $enc->attr( $id ); ?>" class="item"
+					style="background-image: url('<?php echo $mediaUrl; ?>')"
+					data-image="<?php echo $mediaUrl; ?>"
+					data-zoom-image="<?php echo $mediaUrl; ?>"
+					<?php echo $getVariantData( $id, $media ); ?>
+					itemscope="" itemtype="http://schema.org/ImageObject">
+					<meta itemprop="contentUrl" content="<?php echo $mediaUrl; ?>" />
+				</div>
+			<?php endforeach; ?>
 			</div>
-<?php endforeach; ?>
-		</div>
 	</div>
+
 	<div class="image-thumbs">
 		<a class="prev-thumbs disabled"></a>
 		<a class="next-thumbs disabled"></a>
 		<div class="thumbs">
-<?php	if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
-<?php		foreach( $mediaItems as $id => $mediaItem ) : ?>
-			<a href="<?php echo $url . '#image-' . $enc->attr( $id ); ?>" class="<?php echo $class; ?>" style="background-image: url('<?php echo $this->content( $mediaItem->getPreview() ); ?>')"></a>
-<?php			$class = 'item'; ?>
-<?php		endforeach; ?>
-<?php	endif; ?>
+			<?php if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
+				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
+					<a href="<?php echo $url . '#image-' . $enc->attr( $id ); ?>" class="<?php echo $class; ?>" style="background-image: url('<?php echo $this->content( $mediaItem->getPreview() ); ?>')"></a>
+					<?php $class = 'item'; ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
 		</div>
 	</div>
-<?php endif; ?>
-<?php echo $this->get( 'imageBody' ); ?>
+
 </div>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/detail/image' ); ?>

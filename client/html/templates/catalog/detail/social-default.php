@@ -6,10 +6,6 @@
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 
-if( !isset( $this->detailProductItem ) ) {
-	return;
-}
-
 $enc = $this->encoder();
 
 /** client/html/catalog/detail/social/list
@@ -135,23 +131,19 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
 $detailConfig['absoluteUri'] = true;
 
-$prodName = $this->detailProductItem->getName();
-$param = array( 'd_prodid' => $this->detailProductItem->getId(), 'd_name' => $prodName );
+$prodName = $this->product->getName();
+$param = array( 'd_prodid' => $this->product->getId(), 'd_name' => $prodName );
 $prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $param, array(), $detailConfig );
 
-$images = $this->detailProductItem->getRefItems( 'media', 'default', 'default' );
+$images = $this->product->getRefItems( 'media', 'default', 'default' );
 $prodImage = ( ( $image = reset( $images ) ) !== false ? $this->content( $image->getUrl() ) : '' );
 
 ?>
-<?php $this->block()->start( 'catalog/detail/seen' ); ?>
 <div class="catalog-detail-social">
 <?php foreach( $list as $entry ) : ?>
-<?php	if( ( $link = $this->config( 'client/html/catalog/detail/social/url/' . $entry, ( isset( $urls[$entry] ) ? $urls[$entry] : null ) ) ) !== null ) : ?>
-<?php		$link = sprintf( $link, $enc->url( $prodUrl ), $enc->url( $prodName ), $enc->url( $prodImage ) ); ?>
-	<a class="social-button social-button-<?php echo $enc->attr( $entry ); ?>" href="<?php echo $enc->attr( $link ); ?>" title="<?php echo $enc->attr( $entry ); ?>" target="_blank"></a>
-<?php	endif; ?>
+	<?php if( ( $link = $this->config( 'client/html/catalog/detail/social/url/' . $entry, ( isset( $urls[$entry] ) ? $urls[$entry] : null ) ) ) !== null ) : ?>
+		<?php $link = sprintf( $link, $enc->url( $prodUrl ), $enc->url( $prodName ), $enc->url( $prodImage ) ); ?>
+		<a class="social-button social-button-<?php echo $enc->attr( $entry ); ?>" href="<?php echo $enc->attr( $link ); ?>" title="<?php echo $enc->attr( $entry ); ?>" target="_blank"></a>
+	<?php endif; ?>
 <?php endforeach; ?>
-<?php echo $this->socialBody; ?>
 </div>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/detail/seen' ); ?>
