@@ -83,6 +83,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$basketCntl->setAddress( $type, $addrItem );
 
 		$view = \TestHelperHtml::getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'cs_option_account' => 1 ) );
+		$view->addHelper( 'param', $helper );
+
 		$view->orderBasket = $basketCntl->get();
 		$this->context->setView( $view );
 		$this->object->setView( $view );
