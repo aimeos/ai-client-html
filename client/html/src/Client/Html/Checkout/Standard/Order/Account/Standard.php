@@ -246,7 +246,7 @@ class Standard
 		$view = $this->getView();
 		$basket = $view->orderBasket;
 
-		if( $basket->getCustomerId() == '' )
+		if( $basket->getCustomerId() == '' && $view->param( 'cs_option_account' ) == 1 )
 		{
 			$email = '<unknown>';
 			$context = $this->getContext();
