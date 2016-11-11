@@ -8,17 +8,19 @@
 $enc = $this->encoder();
 
 ?>
-<?php $this->block()->start( 'basket/related' ); ?>
 <section class="aimeos basket-related">
-<?php if( isset( $this->relatedErrorList ) ) : ?>
-	<ul class="error-list">
-<?php foreach( (array) $this->relatedErrorList as $errmsg ) : ?>
-		<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
-<?php endforeach; ?>
-	</ul>
-<?php endif; ?>
+
+	<?php if( isset( $this->relatedErrorList ) ) : ?>
+		<ul class="error-list">
+			<?php foreach( (array) $this->relatedErrorList as $errmsg ) : ?>
+				<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+
+
 	<h1><?php echo $enc->html( $this->translate( 'client', 'Related' ), $enc::TRUST ); ?></h1>
-<?php echo $this->get( 'relatedBody' ); ?>
+
+	<?php echo $this->block()->get( 'basket/related/bought' ); ?>
+
 </section>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'basket/related' ); ?>

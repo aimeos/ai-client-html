@@ -1604,7 +1604,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .account-watch .watch-items,
 .account-favorite .favorite-items,
-.basket-related-bought .bought-items,
+.basket-related-bought .list-items,
 .catalog-detail-bought .list-items,
 .catalog-detail-bundle .list-items,
 .catalog-detail-suggest .list-items,
@@ -1629,7 +1629,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .account-watch .watch-item,
 .account-favorite .favorite-item,
-.basket-related-bought .bought-item,
+.basket-related-bought .product,
 .catalog-detail-bought .product,
 .catalog-detail-bundle .product,
 .catalog-detail-suggest .product,

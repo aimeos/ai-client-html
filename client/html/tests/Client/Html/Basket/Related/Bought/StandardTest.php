@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="basket-related-bought', $output );
+		$this->assertContains( '<section class="basket-related-bought', $output );
 		$this->assertContains( 'Cafe Noire Expresso', $output );
 	}
 
