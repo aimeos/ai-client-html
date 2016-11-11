@@ -9,16 +9,16 @@
 $enc = $this->encoder();
 
 ?>
-<?php $this->block()->start( 'account/history' ); ?>
 <section class="aimeos account-history">
-<?php if( ( $errors = $this->get( 'historyErrorList', array() ) ) !== array() ) : ?>
-	<ul class="error-list">
-<?php foreach( $errors as $error ) : ?>
-		<li class="error-item"><?php echo $enc->html( $error ); ?></li>
-<?php endforeach; ?>
-	</ul>
-<?php endif; ?>
-<?php echo $this->get( 'historyBody' ); ?>
+
+	<?php if( ( $errors = $this->get( 'historyErrorList', array() ) ) !== array() ) : ?>
+		<ul class="error-list">
+			<?php foreach( $errors as $error ) : ?>
+				<li class="error-item"><?php echo $enc->html( $error ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+
+	<?php echo $this->get( 'historyBody' ); ?>
+
 </section>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'account/history' ); ?>

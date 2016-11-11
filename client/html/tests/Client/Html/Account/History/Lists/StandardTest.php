@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<div class="account-history-list">', $output );
+		$this->assertContains( '<div class="account-history-list">', $output );
 		$this->assertRegExp( '#<li class="history-item">#', $output );
 		$this->assertRegExp( '#<li class="attr-item order-basic">.*<span class="value">[^<]+</span>.*</li>#smuU', $output );
 		$this->assertRegExp( '#<li class="attr-item order-channel">.*<span class="value">[^<]+</span>.*</li>#smuU', $output );
