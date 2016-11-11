@@ -57,8 +57,32 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$output = $this->object->getBody();
 		$miniBasket = $this->object->getView()->miniBasket;
+
 		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Base\Iface );
-		$this->assertStringStartsWith( '<section class="aimeos basket-mini">', $output );
+		$this->assertContains( '<section class="aimeos basket-mini">', $output );
+		$this->assertContains( '<div class="basket-mini-main">', $output );
+		$this->assertContains( '<div class="basket-mini-product">', $output );
+	}
+
+
+	public function testGetBodyAddedOneProduct()
+	{
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+
+		$productItem = $this->getProductItem( 'CNE' );
+
+		$view = $this->object->getView();
+
+		$controller->addProduct( $productItem->getId(), 9, array(), array(), array(), array(), array(), 'default' );
+		$view->miniBasket = $controller->get();
+
+		$output = $this->object->getBody();
+
+		$controller->clear();
+
+		$this->assertContains( '<div class="basket-mini-product">', $output );
+		$this->assertRegExp( '#9#smU', $output );
+		$this->assertRegExp( '#171.00#smU', $output );
 	}
 
 
@@ -110,13 +134,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetSubClient()
-	{
-		$client = $this->object->getSubClient( 'main', 'Standard' );
-		$this->assertInstanceOf( '\\Aimeos\\Client\\HTML\\Iface', $client );
-	}
-
-
 	public function testGetSubClientInvalid()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
@@ -134,5 +151,23 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testProcess()
 	{
 		$this->object->process();
+	}
+
+
+	/**
+	* @param string $code
+	*/
+	protected function getProductItem( $code )
+	{
+		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$search = $manager->createSearch();
+		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
+		$items = $manager->searchItems( $search, array( 'price' ) );
+
+		if( ( $item = reset( $items ) ) === false ) {
+			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
+		}
+
+		return $item;
 	}
 }

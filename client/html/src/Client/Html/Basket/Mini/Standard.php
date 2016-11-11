@@ -56,30 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/basket/mini/standard/subparts';
-
-	/** client/html/basket/mini/main/name
-	 * Name of the main part used by the basket mini client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Basket\Mini\Main\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/basket/mini/product/name
-	 * Name of the product part used by the basket mini client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Basket\Mini\Product\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.09
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'main', 'product' );
-
+	private $subPartNames = array();
 	private $cache;
 
 
