@@ -29,13 +29,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$this->setExpectedException( '\Aimeos\MW\View\Exception' );
-		$this->object->getHeader();
-	}
-
-
 	public function testGetBody()
 	{
 		$this->setExpectedException( '\Aimeos\MW\View\Exception' );

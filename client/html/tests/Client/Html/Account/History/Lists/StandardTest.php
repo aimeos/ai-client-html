@@ -42,16 +42,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$customer = $this->getCustomerItem( 'UTC001' );
-		$this->context->setUserId( $customer->getId() );
-
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testGetBody()
 	{
 		$customer = $this->getCustomerItem( 'UTC001' );

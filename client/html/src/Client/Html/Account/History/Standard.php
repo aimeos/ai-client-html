@@ -202,6 +202,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
+echo $e->getMessage() . PHP_EOL;
 			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 		}
 	}

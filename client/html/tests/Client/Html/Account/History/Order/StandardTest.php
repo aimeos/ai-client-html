@@ -30,33 +30,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$customer = $this->getCustomerItem( 'UTC001' );
-		$this->context->setUserId( $customer->getId() );
-
-		$view = $this->object->getView();
-		$param = array(
-			'his_action' => 'order',
-			'his_id' => $this->getOrderItem( $customer->getId() )->getId()
-		);
-
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-
-		$output = $this->object->getHeader();
-
-		$this->assertEquals( '', $output );
-	}
-
-
-	public function testGetHeaderSkip()
-	{
-		$output = $this->object->getHeader();
-		$this->assertEquals( '', $output );
-	}
-
-
 	public function testGetBody()
 	{
 		$customer = $this->getCustomerItem( 'UTC001' );
