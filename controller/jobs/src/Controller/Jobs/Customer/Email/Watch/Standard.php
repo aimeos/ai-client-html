@@ -178,7 +178,7 @@ class Standard
 	{
 		if( !isset( $this->client ) )
 		{
-			$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html' );
+			$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html/templates' );
 			$this->client = \Aimeos\Client\Html\Email\Watch\Factory::createClient( $context, $templatePaths );
 		}
 
