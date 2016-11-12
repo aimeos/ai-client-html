@@ -43,17 +43,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$view = \TestHelperHtml::getView();
-		$view->standardBasket = $this->getBasket();
-		$this->object->setView( $view );
-
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testGetBody()
 	{
 		$view = \TestHelperHtml::getView();

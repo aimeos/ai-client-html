@@ -1,12 +1,14 @@
 <?php
 
-namespace Aimeos\Client\Html\Email\Payment\Html\Summary\Address;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2016
  */
+
+
+namespace Aimeos\Client\Html\Email\Payment\Html\Summary\Address;
+
+
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
@@ -26,13 +28,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	protected function tearDown()
 	{
 		unset( $this->object );
-	}
-
-
-	public function testGetHeader()
-	{
-		$this->setExpectedException( '\Aimeos\MW\View\Exception' );
-		$this->object->getHeader();
 	}
 
 

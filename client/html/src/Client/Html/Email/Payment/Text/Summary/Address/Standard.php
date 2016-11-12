@@ -105,52 +105,6 @@ class Standard
 
 
 	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
-	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
-
-		$content = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$content .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
-		}
-		$view->summaryHeader = $content;
-
-		/** client/html/email/payment/text/summary/address/standard/template-header
-		 * Relative path to the text header template of the email payment text summary address client.
-		 *
-		 * The template file contains the text and processing instructions
-		 * to generate the text that is inserted into the header
-		 * of the e-mail. The configuration string is the
-		 * path to the template file relative to the templates directory (usually
-		 * in client/html/templates).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
-		 *
-		 * @param string Relative path to the template creating code for the e-mail header
-		 * @since 2014.03
-		 * @category Developer
-		 * @see client/html/email/payment/text/summary/address/standard/template-body
-		 */
-		$tplconf = 'client/html/email/payment/text/summary/address/standard/template-header';
-		$default = 'email/common/text-summary-address-header-default.php';
-
-		return $view->render( $view->config( $tplconf, $default ) );
-	}
-
-
-	/**
 	 * Returns the sub-client given by its name.
 	 *
 	 * @param string $type Name of the client type

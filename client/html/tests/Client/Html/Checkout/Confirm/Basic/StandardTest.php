@@ -42,13 +42,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testGetBody()
 	{
 		$manager = \Aimeos\MShop\Order\Manager\Factory::createManager( $this->context );

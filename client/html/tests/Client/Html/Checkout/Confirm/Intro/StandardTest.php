@@ -42,28 +42,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetHeader()
-	{
-		$manager = \Aimeos\MShop\Order\Manager\Factory::createManager( $this->context );
-
-		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'order.base.service.code', 'paypalexpress' ) );
-
-		$items = $manager->searchItems( $search );
-		if( ( $item = reset( $items ) ) === false ) {
-			throw new \RuntimeException( 'No item found' );
-		}
-
-
-		$view = \TestHelperHtml::getView();
-		$view->confirmOrderItem = $item;
-		$this->object->setView( $view );
-
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testGetBody()
 	{
 		$manager = \Aimeos\MShop\Order\Manager\Factory::createManager( $this->context );

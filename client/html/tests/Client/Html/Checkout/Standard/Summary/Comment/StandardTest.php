@@ -1,12 +1,14 @@
 <?php
 
-namespace Aimeos\Client\Html\Checkout\Standard\Summary\Comment;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2016
  */
+
+
+namespace Aimeos\Client\Html\Checkout\Standard\Summary\Comment;
+
+
 class StandardTest
 	extends \PHPUnit_Framework_TestCase
 {
@@ -28,20 +30,6 @@ class StandardTest
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
 		unset( $this->object );
-	}
-
-
-	public function testGetHeader()
-	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-		$basket = $controller->get();
-
-		$view = \TestHelperHtml::getView();
-		$view->standardBasket = $basket;
-		$this->object->setView( $view );
-
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
 	}
 
 

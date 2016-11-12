@@ -1,12 +1,14 @@
 <?php
 
-namespace Aimeos\Client\Html\Email\Delivery\Html\Summary\Detail;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2016
  */
+
+
+namespace Aimeos\Client\Html\Email\Delivery\Html\Summary\Detail;
+
+
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;

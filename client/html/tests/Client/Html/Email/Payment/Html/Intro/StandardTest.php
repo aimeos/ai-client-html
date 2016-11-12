@@ -1,13 +1,15 @@
 <?php
 
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Metaways Infosystems GmbH, 2013
+ * @copyright Aimeos (aimeos.org), 2015-2016
+ */
+
+
 namespace Aimeos\Client\Html\Email\Payment\Html\Intro;
 
 
-/**
- * @copyright Metaways Infosystems GmbH, 2013
- * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015
- */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private static $orderItem;
@@ -34,12 +36,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
@@ -57,22 +53,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
-	}
-
-
-	public function testGetHeader()
-	{
-		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
 	}
 
 
