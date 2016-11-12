@@ -21,52 +21,66 @@ $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', arr
 $link = true;
 $stepActive = $this->get( 'standardStepActive', false );
 
+
 ?>
-<?php $this->block()->start( 'checkout/standard' ); ?>
 <section class="aimeos checkout-standard">
+
 	<nav>
 		<ol class="steps">
-			<li class="step basket active"><a href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>"><?php echo $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></a></li>
-<?php foreach( $this->get( 'standardSteps', array() ) as $name ) :
 
-		$class = '';
-
-		if( $stepActive )
-		{
-			if( $name === $stepActive )
-			{
-				$class .= ' current';
-				$link = false;
-			}
-
-			if( $link === true ) {
-				$class .= ' active';
-			}
-		}
-?>
-			<li class="step <?php echo $name . $class; ?>">
-<?php	if( $stepActive && $link ) : ?>
-				<a href="<?php echo $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array( 'c_step' => $name ), array(), $checkoutConfig ) ); ?>">
-<?php	endif; ?>
-					<?php echo $enc->html( $this->translate( 'client', $name ) ); ?>
-<?php	if( $stepActive && $link ) : ?>
+			<li class="step basket active">
+				<a href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">
+					<?php echo $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?>
 				</a>
-<?php	endif; ?>
 			</li>
-<?php endforeach; ?>
+
+			<?php foreach( $this->get( 'standardSteps', array() ) as $name ) : ?>
+				<?php
+					$class = '';
+
+					if( $stepActive )
+					{
+						if( $name === $stepActive )
+						{
+							$class .= ' current';
+							$link = false;
+						}
+
+						if( $link === true ) {
+							$class .= ' active';
+						}
+					}
+				?>
+
+				<li class="step <?php echo $name . $class; ?>">
+
+					<?php if( $stepActive && $link ) : ?>
+						<a href="<?php echo $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array( 'c_step' => $name ), array(), $checkoutConfig ) ); ?>">
+							<?php echo $enc->html( $this->translate( 'client', $name ) ); ?>
+						</a>
+					<?php else : ?>
+						<?php echo $enc->html( $this->translate( 'client', $name ) ); ?>
+					<?php endif; ?>
+				</li>
+
+			<?php endforeach; ?>
+
 		</ol>
 	</nav>
-<?php if( isset( $this->standardErrorList ) ) : ?>
-	<ul class="error-list">
-<?php foreach( (array) $this->standardErrorList as $errmsg ) : ?>
-		<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
-<?php endforeach; ?>
-	</ul>
-<?php endif; ?>
+
+
+	<?php if( isset( $this->standardErrorList ) ) : ?>
+		<ul class="error-list">
+			<?php foreach( (array) $this->standardErrorList as $errmsg ) : ?>
+				<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+
+
 	<form method="<?php echo $enc->attr( $this->get( 'standardMethod', 'POST' ) ); ?>" action="<?php echo $enc->attr( $this->get( 'standardUrlNext' ) ); ?>">
-<?php echo $this->csrf()->formfield(); ?>
-<?php echo $this->get( 'standardBody' ); ?>
+		<?php echo $this->csrf()->formfield(); ?>
+		<?php echo $this->get( 'standardBody' ); ?>
 	</form>
+
 </section>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'checkout/standard' ); ?>

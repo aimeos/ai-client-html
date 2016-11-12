@@ -85,113 +85,111 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 <div class="checkout-standard-process">
 	<h2><?php echo $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?></h2>
 
-<?php if( !empty( $errors ) ) : ?>
-	<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'Processing the payment failed' ), $enc::TRUST ); ?></p>
-<?php elseif( !empty( $public ) ) : ?>
-	<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'Please enter your payment details' ), $enc::TRUST ); ?></p>
-<?php else : ?>
-	<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'You will now be forwarded to the next step' ), $enc::TRUST ); ?></p>
-<?php endif; ?>
-
-
-<?php foreach( $hidden as $key => $item ) : ?>
-	<?php if( is_array( $item->getDefault() ) ) : ?>
-		<?php foreach( (array) $item->getDefault() as $key2 => $value ) : ?>
-
-	<input type="hidden"
-		name="<?php echo $enc->attr( $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) ); ?>"
-		value="<?php echo $enc->attr( $value ); ?>" />
-
-		<?php endforeach; ?>
+	<?php if( !empty( $errors ) ) : ?>
+		<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'Processing the payment failed' ), $enc::TRUST ); ?></p>
+	<?php elseif( !empty( $public ) ) : ?>
+		<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'Please enter your payment details' ), $enc::TRUST ); ?></p>
 	<?php else : ?>
-
-	<input type="hidden"
-		name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
-		value="<?php echo $enc->attr( $item->getDefault() ); ?>" />
-
+		<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'You will now be forwarded to the next step' ), $enc::TRUST ); ?></p>
 	<?php endif; ?>
-<?php endforeach; ?>
+
+
+	<?php foreach( $hidden as $key => $item ) : ?>
+		<?php if( is_array( $item->getDefault() ) ) : ?>
+
+			<?php foreach( (array) $item->getDefault() as $key2 => $value ) : ?>
+				<input type="hidden"
+					name="<?php echo $enc->attr( $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) ); ?>"
+					value="<?php echo $enc->attr( $value ); ?>"
+				/>
+			<?php endforeach; ?>
+
+		<?php else : ?>
+
+			<input type="hidden"
+				name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+				value="<?php echo $enc->attr( $item->getDefault() ); ?>"
+			/>
+
+		<?php endif; ?>
+	<?php endforeach; ?>
 
 
 	<ul class="form-list">
-<?php foreach( $public as $key => $item ) : ?>
+		<?php foreach( $public as $key => $item ) : ?>
 
-		<li class="form-item <?php echo $key . ( $item->isRequired() ? ' mandatory' : ' optional' ); ?>" data-regex="<?php echo $testfcn( $regex, $key ); ?>">
-			<label for="process-<?php echo $key; ?>">
-				<?php echo $enc->html( $this->translate( 'client/code', $item->getCode() ), $enc::TRUST ); ?>
-			</label>
+			<li class="form-item <?php echo $key . ( $item->isRequired() ? ' mandatory' : ' optional' ); ?>" data-regex="<?php echo $testfcn( $regex, $key ); ?>">
+				<label for="process-<?php echo $key; ?>">
+					<?php echo $enc->html( $this->translate( 'client/code', $item->getCode() ), $enc::TRUST ); ?>
+				</label>
 
-	<?php switch( $item->getType() ) : case 'select': ?>
+				<?php switch( $item->getType() ) : case 'select': ?>
+						<select id="process-<?php echo $key; ?>" name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>">
+							<option value=""><?php echo $enc->html( $this->translate( 'client', 'Please select' ) ); ?></option>
+							<?php foreach( (array) $item->getDefault() as $option ) : ?>
+								<option value="<?php echo $enc->attr( $option ); ?>"><?php echo $enc->html( $option ); ?></option>
+							<?php endforeach; ?>
+						</select>
 
-			<select id="process-<?php echo $key; ?>" name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>">
-				<option value=""><?php echo $enc->html( $this->translate( 'client', 'Please select' ) ); ?></option>
+					<?php break; case 'boolean': ?>
+						<input type="checkbox" id="process-<?php echo $key; ?>"
+							name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+							value="<?php echo $enc->attr( $item->getDefault() ); ?>"
+							placeholder="<?php echo $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
 
-			<?php foreach( (array) $item->getDefault() as $option ) : ?>
-				<option value="<?php echo $enc->attr( $option ); ?>"><?php echo $enc->html( $option ); ?></option>
-			<?php endforeach; ?>
+					<?php break; case 'integer': case 'number': ?>
+						<input type="number" id="process-<?php echo $key; ?>"
+							name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+							value="<?php echo $enc->attr( $item->getDefault() ); ?>"
+							placeholder="<?php echo $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
 
-			</select>
+					<?php break; case 'date': case 'datetime': case 'time': ?>
+						<input type="<?php echo $attribute->getType(); ?>" id="process-<?php echo $key; ?>"
+							name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+							value="<?php echo $enc->attr( $item->getDefault() ); ?>"
+							placeholder="<?php echo $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
 
-		<?php break; case 'boolean': ?>
+					<?php break; default: ?>
+						<input type="text" id="process-<?php echo $key; ?>"
+							name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+							value="<?php echo $enc->attr( $item->getDefault() ); ?>"
+							placeholder="<?php echo $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
 
-			<input type="checkbox" id="process-<?php echo $key; ?>"
-				name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
-				value="<?php echo $enc->attr( $item->getDefault() ); ?>"
-				placeholder="<?php echo $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
+				<?php endswitch; ?>
 
-		<?php break; case 'integer': case 'number': ?>
+			</li>
 
-			<input type="number" id="process-<?php echo $key; ?>"
-				name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
-				value="<?php echo $enc->attr( $item->getDefault() ); ?>"
-				placeholder="<?php echo $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
-
-		<?php break; case 'date': case 'datetime': case 'time': ?>
-
-			<input type="<?php echo $attribute->getType(); ?>" id="process-<?php echo $key; ?>"
-				name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
-				value="<?php echo $enc->attr( $item->getDefault() ); ?>"
-				placeholder="<?php echo $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
-
-		<?php break; default: ?>
-
-			<input type="text" id="process-<?php echo $key; ?>"
-				name="<?php echo $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
-				value="<?php echo $enc->attr( $item->getDefault() ); ?>"
-				placeholder="<?php echo $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
-
-	<?php endswitch; ?>
-
-		</li>
-
-<?php endforeach; ?>
+		<?php endforeach; ?>
 	</ul>
-
-
-<?php echo $this->get( 'processBody' ); ?>
 
 
 	<div class="button-group">
 
-<?php if( !empty( $errors ) ) : ?>
-		<a class="standardbutton" href="<?php echo $enc->attr( $this->standardUrlPayment ); ?>">
-			<?php echo $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
-		</a>
-		<button class="standardbutton btn-action">
-			<?php echo $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ); ?>
-		</button>
-<?php elseif( !empty( $public ) ) : ?>
-		<a class="standardbutton" href="<?php echo $enc->attr( $this->standardUrlPayment ); ?>">
-			<?php echo $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
-		</a>
-		<button class="standardbutton btn-action">
-			<?php echo $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ); ?>
-		</button>
-<?php else : ?>
-		<button class="standardbutton btn-action">
-			<?php echo $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
-		</button>
-<?php endif; ?>
+		<?php if( !empty( $errors ) ) : ?>
+
+			<a class="standardbutton" href="<?php echo $enc->attr( $this->standardUrlPayment ); ?>">
+				<?php echo $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
+			</a>
+			<button class="standardbutton btn-action">
+				<?php echo $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ); ?>
+			</button>
+
+		<?php elseif( !empty( $public ) ) : ?>
+
+			<a class="standardbutton" href="<?php echo $enc->attr( $this->standardUrlPayment ); ?>">
+				<?php echo $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
+			</a>
+			<button class="standardbutton btn-action">
+				<?php echo $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ); ?>
+			</button>
+
+		<?php else : ?>
+
+			<button class="standardbutton btn-action">
+				<?php echo $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
+			</button>
+
+		<?php endif; ?>
 
 	</div>
 
