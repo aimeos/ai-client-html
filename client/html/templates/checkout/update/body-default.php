@@ -1,13 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (c) Metaways Infosystems GmbH, 2013
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Metaways Infosystems GmbH, 2013
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 
+echo $this->get( 'updateMessage' );
+echo $this->get( 'updateBody' );
+
 ?>
-<?php $this->block()->start( 'checkout/update' ); ?>
-<?php echo $this->get( 'updateMessage' ); ?>
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'checkout/update' ); ?>
