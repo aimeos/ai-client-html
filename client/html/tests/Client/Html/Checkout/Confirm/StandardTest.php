@@ -58,10 +58,15 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
-		$this->context->getSession()->set( 'aimeos/orderid', $this->getOrder( '2011-09-17 16:14:32' )->getId() );
+		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
+		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos checkout-confirm">', $output );
+
+		$this->assertContains( '<section class="aimeos checkout-confirm">', $output );
+		$this->assertContains( '<div class="checkout-confirm-retry">', $output );
+		$this->assertContains( '<div class="checkout-confirm-basic">', $output );
+		$this->assertRegExp( '#<span class="value">' . $orderid . '</span>#smU', $output );
 	}
 
 

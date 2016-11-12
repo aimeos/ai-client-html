@@ -68,28 +68,6 @@ class Standard
 	 * @category Developer
 	 */
 
-	/** client/html/checkout/confirm/basic/name
-	 * Name of the basic part used by the checkout confirm client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Confirm\Basic\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/confirm/retry/name
-	 * Name of the retry part used by the checkout confirm client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Confirm\Retry\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.07
-	 * @category Developer
-	 */
-
 	/** client/html/checkout/confirm/order/name
 	 * Name of the order part used by the checkout confirm client implementation
 	 *
@@ -100,7 +78,7 @@ class Standard
 	 * @since 2015.02
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'intro', 'basic', 'retry', 'order' );
+	private $subPartNames = array( 'intro', 'order' );
 	private $cache;
 
 

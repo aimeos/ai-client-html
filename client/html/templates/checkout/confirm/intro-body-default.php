@@ -11,7 +11,6 @@ $enc = $this->encoder();
 ?>
 <?php $this->block()->start( 'checkout/confirm/intro' ); ?>
 <div class="checkout-confirm-intro">
-<?php echo $this->get( 'introBody' ); ?>
 </div>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'checkout/confirm/intro' ); ?>
