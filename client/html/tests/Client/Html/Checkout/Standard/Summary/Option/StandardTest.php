@@ -42,7 +42,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->object->setView( $view );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<div class="checkout-standard-summary-option container">', $output );
+
+		$this->assertContains( '<div class="checkout-standard-summary-option container">', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option-account">', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option-terms">', $output );
 	}
 
 
@@ -57,5 +60,46 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
+	}
+
+
+	public function testProcess()
+	{
+		$this->object->process();
+		$this->assertEquals( null, $this->object->getView()->get( 'standardStepActive' ) );
+	}
+
+
+	public function testProcessOK()
+	{
+		$view = $this->object->getView();
+
+		$param = array(
+			'cs_option_terms' => '1',
+			'cs_option_terms_value' => '1',
+		);
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+		$this->assertEquals( null, $view->get( 'standardStepActive' ) );
+	}
+
+
+	public function testProcessInvalid()
+	{
+		$view = $this->object->getView();
+
+		$param = array(
+			'cs_option_terms' => '1',
+		);
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+		$this->assertEquals( 'summary', $view->get( 'standardStepActive' ) );
+		$this->assertEquals( true, $view->get( 'termsError' ) );
 	}
 }

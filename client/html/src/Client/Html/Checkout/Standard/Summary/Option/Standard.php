@@ -56,18 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/summary/option/standard/subparts';
-
-	/** client/html/checkout/standard/summary/option/terms/name
-	 * Name of the terms part used by the checkout standard summary option client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Summary\Option\Terms\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'terms' );
+	private $subPartNames = array();
 
 
 	/**
@@ -199,6 +188,33 @@ class Standard
 		 */
 
 		return $this->createSubClient( 'checkout/standard/summary/option/' . $type, $name );
+	}
+
+
+	/**
+	 * Processes the input, e.g. store given values.
+	 * A view must be available and this method doesn't generate any output
+	 * besides setting view variables.
+	 */
+	public function process()
+	{
+		$view = $this->getView();
+
+		// only start if there's something to do
+		if( ( $option = $view->param( 'cs_option_terms', null ) ) === null ) {
+			return;
+		}
+
+		if( ( $option = $view->param( 'cs_option_terms_value', 0 ) ) != 1 )
+		{
+			$view->standardStepActive = 'summary';
+			$view->termsError = true;
+
+			$error = array( $view->translate( 'client', 'Please accept the terms and conditions' ) );
+			$view->standardErrorList = $error + $view->get( 'standardErrorList', array() );
+		}
+
+		parent::process();
 	}
 
 
