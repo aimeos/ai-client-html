@@ -50,19 +50,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetBodyAddressEU()
-	{
-		$config = $this->context->getConfig();
-		$config->set( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-eu.php' );
-
-		$view = \TestHelperHtml::getView( 'unittest', $config );
-		$this->object->setView( $view );
-
-		$output = $this->object->getBody();
-		$this->assertRegexp( '/form-item postal.*form-item city/smU', $output );
-	}
-
-
 	public function testGetSubClientInvalid()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
