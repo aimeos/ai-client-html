@@ -6,18 +6,22 @@
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 
+
 ?>
 <?php $this->block()->start( 'email/common/text/summary/service' ); ?>
 
 
 
-<?php try { ?>
-<?php	$service = $this->extOrderBaseItem->getService( 'delivery' ); ?>
-<?php	echo strip_tags( $this->translate( 'client', 'delivery' ) ); ?>: <?php echo strip_tags( $service->getName() ); ?>
-
-<?php	foreach( $service->getAttributes() as $attribute ) : ?>
-<?php		if( $attribute->getType() === 'delivery' ) : ?>
 <?php
+	try
+	{
+		$service = $this->extOrderBaseItem->getService( 'delivery' );
+		echo strip_tags( $this->translate( 'client', 'delivery' ) ) . ': ' . strip_tags( $service->getName() ) . "\n";
+
+		foreach( $service->getAttributes() as $attribute )
+		{
+			if( $attribute->getType() === 'delivery' )
+			{
 				$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) );
 
 				switch( $attribute->getValue() )
@@ -29,20 +33,23 @@
 					default:
 						$value = $attribute->getValue();
 				}
+
+				echo '- ' . strip_tags( $name ) . ': ' . strip_tags( $value ) . "\n";
+			}
+		}
+	} catch( \Exception $e ) { ; }
 ?>
-- <?php echo strip_tags( $name ); ?>: <?php echo strip_tags( $value ); ?>
 
-<?php		endif; ?>
-<?php	endforeach; ?>
-<?php } catch( Exception $e ) { ; } ?>
-
-<?php try { ?>
-<?php	$service = $this->extOrderBaseItem->getService( 'payment' ); ?>
-<?php	echo strip_tags( $this->translate( 'client', 'payment' ) ); ?>: <?php echo strip_tags( $service->getName() ); ?>
-
-<?php	foreach( $service->getAttributes() as $attribute ) : ?>
-<?php		if( $attribute->getType() === 'payment' ) : ?>
 <?php
+	try
+	{
+		$service = $this->extOrderBaseItem->getService( 'payment' );
+		echo strip_tags( $this->translate( 'client', 'payment' ) ) . ': ' . strip_tags( $service->getName() ) . "\n";
+
+		foreach( $service->getAttributes() as $attribute )
+		{
+			if( $attribute->getType() === 'payment' )
+			{
 				$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) );
 
 				switch( $attribute->getValue() )
@@ -54,11 +61,11 @@
 					default:
 						$value = $attribute->getValue();
 				}
-?>
-- <?php echo strip_tags( $name ); ?>: <?php echo strip_tags( $value ); ?>
 
-<?php		endif; ?>
-<?php	endforeach; ?>
-<?php } catch( Exception $e ) { ; } ?>
+				echo '- ' . strip_tags( $name ) . ': ' . strip_tags( $value ) . "\n";
+			}
+		}
+	} catch( \Exception $e ) { ; }
+?>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'email/common/text/summary/service' ); ?>

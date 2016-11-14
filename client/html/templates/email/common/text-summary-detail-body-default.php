@@ -65,6 +65,7 @@ catch( Exception $e )
 $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 
+
 ?>
 <?php $this->block()->start( 'email/common/text/summary/detail' ); ?>
 
