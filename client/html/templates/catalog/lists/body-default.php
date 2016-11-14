@@ -51,8 +51,27 @@ if( $catPath !== array() && ( $catItem = end( $catPath ) ) !== false ) {
 }
 
 
-$pageParams = array( 'params' => $params, 'total' => $this->get( 'listProductTotal', 0 ), 'current' => $this->get( 'listProductCurr', 0 ), 'size' => $this->get( 'listProductSize', 48 ) );
-$pagination = $this->partial( $this->config( 'client/html/common/partials/pagination', 'common/partials/pagination-default.php' ), $pageParams );
+/** client/html/catalog/lists/partials/pagination
+ * Relative path to the pagination partial template file for catalog lists
+ *
+ * Partials are templates which are reused in other templates and generate
+ * reoccuring blocks filled with data from the assigned values. The pagination
+ * partial creates an HTML block containing a page browser and sorting links
+ * if necessary.
+ *
+ * @param string Relative path to the template file
+ * @since 2017.01
+ * @category Developer
+ */
+$pagination = $this->partial(
+	$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-default.php' ),
+	array(
+		'params' => $params,
+		'total' => $this->get( 'listProductTotal', 0 ),
+		'current' => $this->get( 'listProductCurr', 0 ),
+		'size' => $this->get( 'listProductSize', 48 )
+	)
+);
 
 
 ?>

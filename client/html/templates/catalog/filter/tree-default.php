@@ -61,7 +61,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', array() );
 
 				<?php if( count( $item->getChildren() ) > 0 ) : ?>
 					<?php $values = array( 'nodes' => $item->getChildren(), 'path' => $path, 'params' => $params, 'level' => $level + 1 ); ?>
-					<?php echo $this->partial( $this->config( 'client/html/common/partials/tree', 'common/partials/tree-default.php' ), $values ); ?>
+					<?php echo $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-default.php' ), $values ); ?>
 				<?php endif; ?>
 
 			</li>

@@ -40,19 +40,15 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
  */
 $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false );
 
-/** client/html/common/partials/tree
+/** client/html/catalog/filter/partials/tree
  * Relative path to the category tree partial template file
  *
  * Partials are templates which are reused in other templates and generate
  * reoccuring blocks filled with data from the assigned values. The tree
  * partial creates an HTML block of nested lists for category trees.
  *
- * The partial template files are usually stored in the templates/partials/ folder
- * of the core or the extensions. The configured path to the partial file must
- * be relative to the templates/ folder, e.g. "common/partials/address-default.php".
- *
  * @param string Relative path to the template file
- * @since 2015.08
+ * @since 2017.01
  * @category Developer
  */
 
@@ -78,7 +74,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 	<?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 ) : ?>
 		<?php echo $this->partial(
-			$this->config( 'client/html/common/partials/tree', 'common/partials/tree-default.php' ),
+			$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-default.php' ),
 			array( 'nodes' => array( $this->treeCatalogTree ), 'path' => $path, 'params' => $this->get( 'treeFilterParams', array() ) )
 		); ?>
 	<?php endif; ?>

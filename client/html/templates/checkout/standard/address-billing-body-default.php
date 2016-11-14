@@ -8,19 +8,15 @@
 
 $enc = $this->encoder();
 
-/** client/html/common/partials/address
+/** client/html/checkout/standard/partials/address
  * Relative path to the address partial template file
  *
  * Partials are templates which are reused in other templates and generate
  * reoccuring blocks filled with data from the assigned values. The address
  * partial creates an HTML block with input fields for address forms.
  *
- * The partial template files are usually stored in the templates/partials/ folder
- * of the core or the extensions. The configured path to the partial file must
- * be relative to the templates/ folder, e.g. "common/partials/address-default.php".
- *
  * @param string Relative path to the template file
- * @since 2015.04
+ * @since 2017.01
  * @category Developer
  * @category User
  */
@@ -151,7 +147,7 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 ?>
 			<ul class="form-list">
 				<?php echo $this->partial(
-					$this->config( 'client/html/common/partials/address', 'common/partials/address-default.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-default.php' ),
 					array(
 						'address' => $addrValues,
 						'salutations' => $billingSalutations,
@@ -204,7 +200,7 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 			<ul class="form-list">
 
 				<?php echo $this->partial(
-					$this->config( 'client/html/common/partials/address', 'common/partials/address-default.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-default.php' ),
 					$values
 				); ?>
 
