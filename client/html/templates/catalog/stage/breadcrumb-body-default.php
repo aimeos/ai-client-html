@@ -25,10 +25,18 @@ $params = $this->get( 'stageParams', array() );
 
 			<?php if( isset( $this->stageCatPath ) ) : ?>
 				<?php foreach( (array) $this->stageCatPath as $cat ) : $params['f_catid'] = $cat->getId(); ?>
-					<li><a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array( $cat->getName() ), $listConfig ) ); ?>"><?php echo $enc->html( $cat->getName() ); ?></a></li>
+					<li>
+						<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array( $cat->getName() ), $listConfig ) ); ?>">
+							<?php echo $enc->html( $cat->getName() ); ?>
+						</a>
+					</li>
 				<?php endforeach; ?>
 			<?php else : ?>
-				<li><a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array(), $listConfig ) ); ?>"><?php echo $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ); ?></a></li>
+				<li>
+					<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array(), $listConfig ) ); ?>">
+						<?php echo $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ); ?>
+					</a>
+				</li>
 			<?php endif; ?>
 
 		</ol>

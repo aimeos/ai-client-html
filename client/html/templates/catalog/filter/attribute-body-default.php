@@ -101,9 +101,13 @@ $params = $this->param();
 							<?php foreach( $attributes as $id => $attribute ) : ?>
 
 								--><li class="attr-item" data-id="<?php echo $enc->attr( $id ); ?>">
-									<input class="attr-item" id="attr-<?php echo $enc->attr( $id ); ?>"
-										name="<?php echo $enc->attr( $this->formparam( array( 'f_attrid', '' ) ) ); ?>" type="checkbox"
-										value="<?php echo $enc->attr( $id ); ?>" <?php echo ( in_array( $id, $attrIds ) ? 'checked="checked"' : '' ); ?> />
+
+									<input class="attr-item" type="checkbox"
+										id="attr-<?php echo $enc->attr( $id ); ?>"
+										name="<?php echo $enc->attr( $this->formparam( array( 'f_attrid', '' ) ) ); ?>"
+										value="<?php echo $enc->attr( $id ); ?>"
+										<?php echo ( in_array( $id, $attrIds ) ? 'checked="checked"' : '' ); ?>
+									/>
 
 									<label class="attr-name" for="attr-<?php echo $enc->attr( $id ); ?>"><!--
 										--><div class="media-list"><!--
@@ -132,11 +136,13 @@ $params = $this->param();
 		--></div>
 
 	<?php endif; ?>
-	<?php echo $this->attributeBody; ?>
+
 
 	<?php if( $button ) : ?>
 		<noscript>
-			<button class="filter standardbutton btn-action" type="submit"><?php echo $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?></button>
+			<button class="filter standardbutton btn-action" type="submit">
+				<?php echo $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?>
+			</button>
 		</noscript>
 	<?php endif; ?>
 

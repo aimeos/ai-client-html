@@ -117,7 +117,9 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 							--><?php switch( $attribute->getType() ) : case 'select': ?><!--
 
-									--><select id="payment-<?php echo $enc->attr( $key ); ?>" name="<?php echo $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>">
+									--><select id="payment-<?php echo $enc->attr( $key ); ?>"
+										name="<?php echo $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>">
+
 										<?php foreach( (array) $attribute->getDefault() as $option ) : $code = $key . ':' . $option; ?>
 											<?php $string = ( !is_numeric( $option ) ? $this->translate( 'client/code', $code ) : $option ); ?>
 											<option value="<?php echo $enc->attr( $option ); ?>">

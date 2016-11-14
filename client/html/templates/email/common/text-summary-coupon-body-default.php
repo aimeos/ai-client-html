@@ -15,6 +15,5 @@
 - <?php echo $code; ?>
 
 <?php endforeach; ?>
-<?php echo $this->get( 'couponBody' ); ?>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'email/common/text/summary/coupon' ); ?>

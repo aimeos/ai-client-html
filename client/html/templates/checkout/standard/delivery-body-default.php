@@ -117,12 +117,15 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 							--><?php switch( $attribute->getType() ) : case 'select': ?><!--
 
-									--><select id="delivery-<?php echo $enc->attr( $key ); ?>" name="<?php echo $enc->attr( $this->formparam( array( 'c_delivery', $id, $key ) ) ); ?>">
+									--><select id="delivery-<?php echo $enc->attr( $key ); ?>"
+										name="<?php echo $enc->attr( $this->formparam( array( 'c_delivery', $id, $key ) ) ); ?>">
+
 										<?php foreach( (array) $attribute->getDefault() as $option ) : ?>
 											<option value="<?php echo $enc->attr( $option ); ?>">
 												<?php $code = $key . ':' . $option; echo $enc->html( $this->translate( 'client/code', $code ) ); ?>
 											</option>
 										<?php endforeach; ?>
+
 									</select><!--
 
 								--><?php break; case 'boolean': ?><!--

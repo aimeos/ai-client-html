@@ -95,7 +95,10 @@ $position = $this->get( 'itemPosition', 0 );
 				--><div class="offer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 					<div class="stock" data-prodid="<?php echo $enc->attr( implode( ' ', array_merge( array( $id ), array_keys( $subProducts ) ) ) ); ?>"></div>
 					<div class="price-list price price-actual">
-						<?php echo $this->partial( $this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ), array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) ) ); ?>
+						<?php echo $this->partial(
+							$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
+						); ?>
 					</div>
 				</div>
 
@@ -107,19 +110,37 @@ $position = $this->get( 'itemPosition', 0 );
 						<!-- catalog.lists.items.csrf -->
 
 						<div class="items-selection" data-proddeps="<?php echo $enc->attr( $prodDeps ); ?>" data-attrdeps="<?php echo $enc->attr( $attrDeps ); ?>">
-							<?php echo $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ), $selectParams ); ?>
+							<?php echo $this->partial(
+								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
+								$selectParams
+							); ?>
 						</div>
 
 						<div class="items-attribute">
-							<?php echo $this->partial( $this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ), $attributeParams ); ?>
+							<?php echo $this->partial(
+								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
+								$attributeParams
+							); ?>
 						</div>
 
 						<div class="addbasket">
 							<div class="group">
-								<input name="<?php echo $enc->attr( $this->formparam( 'b_action' ) ); ?>" type="hidden" value="add" />
-								<input name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>" type="hidden" value="<?php echo $id; ?>" />
-								<input name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>" type="number" min="1" max="2147483647" maxlength="10" step="1" required="required" value="1" />
-								<button class="standardbutton btn-action" type="submit" value=""><?php echo $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?></button>
+								<input type="hidden"
+									name="<?php echo $enc->attr( $this->formparam( 'b_action' ) ); ?>"
+									 value="add"
+								/>
+								<input type="hidden"
+									name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+									value="<?php echo $id; ?>"
+								/>
+								<input type="number"
+									min="1" max="2147483647" maxlength="10"
+									step="1" required="required" value="1"
+									name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+								/>
+								<button class="standardbutton btn-action" type="submit" value="">
+									<?php echo $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+								</button>
 							</div>
 						</div>
 

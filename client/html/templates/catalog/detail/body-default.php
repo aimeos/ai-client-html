@@ -196,7 +196,10 @@ $getProductList = function( $posItems, $items )
 								<?php if( isset( $mediaList[$id] ) ) { $item = $mediaList[$id]; } ?>
 								<li class="item">
 									<a href="<?php echo $this->content( $item->getUrl() ); ?>" title="<?php echo $enc->attr( $item->getName() ); ?>">
-										<img class="media-image" src="<?php echo $this->content( $item->getPreview() ); ?>" alt="<?php echo $enc->attr( $item->getName() ); ?>" />
+										<img class="media-image"
+											src="<?php echo $this->content( $item->getPreview() ); ?>"
+											alt="<?php echo $enc->attr( $item->getName() ); ?>"
+										/>
 										<span class="media-name"><?php echo $enc->html( $item->getName() ); ?></span>
 									</a>
 								</li>

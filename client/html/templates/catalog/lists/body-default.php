@@ -91,14 +91,18 @@ $pagination = $this->partial(
 
 			<div class="imagelist-default">
 				<?php foreach( $catItem->getRefItems( 'media', 'head', 'default' ) as $mediaItem ) : ?>
-					<img class="<?php echo $enc->attr( $mediaItem->getType() ); ?>" src="<?php echo $this->content( $mediaItem->getUrl() ); ?>" />
+					<img class="<?php echo $enc->attr( $mediaItem->getType() ); ?>"
+						src="<?php echo $this->content( $mediaItem->getUrl() ); ?>"
+					/>
 				<?php endforeach; ?>
 			</div>
 
 			<h1><?php echo $enc->html( $catItem->getName() ); ?></h1>
 			<?php foreach( (array) $textTypes as $textType ) : ?>
 				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
-					<div class="<?php echo $enc->attr( $textItem->getType() ); ?>"><?php echo $enc->html( $textItem->getContent(), $enc::TRUST ); ?></div>
+					<div class="<?php echo $enc->attr( $textItem->getType() ); ?>">
+						<?php echo $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
+					</div>
 				<?php endforeach; ?>
 			<?php endforeach; ?>
 
@@ -136,10 +140,24 @@ $pagination = $this->partial(
 		<div class="list-search">
 
 			<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
-				<?php $msg = $this->translate( 'client', 'Search result for <span class="searchstring">"%1$s"</span> (%2$d article)', 'Search result for <span class="searchstring">"%1$s"</span> (%2$d articles)', $total ); ?>
-				<?php echo $enc->html( sprintf( $msg, $enc->html( $searchText ), $total ), $enc::TRUST ); ?>
+				<?php echo $enc->html( sprintf(
+					$this->translate(
+						'client',
+						'Search result for <span class="searchstring">"%1$s"</span> (%2$d article)',
+						'Search result for <span class="searchstring">"%1$s"</span> (%2$d articles)',
+						$total
+					),
+					$enc->html( $searchText ),
+					$total
+				), $enc::TRUST ); ?>
 			<?php else : ?>
-				<?php echo $enc->html( sprintf( $this->translate( 'client', 'No articles found for <span class="searchstring">"%1$s"</span>. Please try again with a different keyword.' ), $enc->html( $searchText ) ), $enc::TRUST ); ?>
+				<?php echo $enc->html( sprintf(
+					$this->translate(
+						'client',
+						'No articles found for <span class="searchstring">"%1$s"</span>. Please try again with a different keyword.'
+					),
+					$enc->html( $searchText )
+				), $enc::TRUST ); ?>
 			<?php endif; ?>
 
 		</div>

@@ -238,7 +238,8 @@ $backParams = $this->get( 'summaryParams', array() );
 										<?php foreach( $attributes as $attribute ) : ?>
 											<li class="attr-item">
 
-												<?php if( $modify ) : $params = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity(), 'b_attrconfcode' => $attribute->getCode() ); ?>
+												<?php if( $modify ) : ?>
+													<?php $params = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity(), 'b_attrconfcode' => $attribute->getCode() ); ?>
 													<a class="change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, array(), $basketConfig ) ); ?>">
 												<?php endif; ?>
 
@@ -296,7 +297,8 @@ $backParams = $this->get( 'summaryParams', array() );
 							<td class="quantity">
 								<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 
-									<?php if( $product->getQuantity() > 1 ) : $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) + $backParams; ?>
+									<?php if( $product->getQuantity() > 1 ) : ?>
+										<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) + $backParams; ?>
 										<a class="minibutton change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, array(), $basketConfig ) ); ?>">−</a>
 									<?php else : ?>
 										&nbsp;

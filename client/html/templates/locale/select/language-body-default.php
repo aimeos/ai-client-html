@@ -36,21 +36,26 @@ $config = $this->config( 'client/html/locale/select/language/url/config', array(
 <?php $this->block()->start( 'locale/select/language' ); ?>
 <div class="locale-select-language">
 	<h2 class="header"><?php echo $this->translate( 'client', 'Select language' ); ?></h2>
+
 	<ul class="select-menu">
 		<li class="select-dropdown select-current"><a href="#"><?php echo $this->translate( 'client/language', $langId ); ?></a>
 			<ul class="select-dropdown">
-<?php	foreach( $map as $lang => $list ) : ?>
-<?php		$locParams = ( isset( $list[$currencyId] ) ? (array) $list[$currencyId] : (array) reset( $list ) ); ?>
-				<li class="select-item <?php echo ( $lang === $langId ? 'active' : '' ); ?>">
-					<a href="<?php echo $enc->attr( $this->url( $this->request()->getTarget(), $this->param( 'controller' ), $this->param( 'action' ), array_merge( $params, $locParams ), array(), $config ) ); ?>">
-<?php		echo $enc->html( $this->translate( 'client/language', $lang ), $enc::TRUST ); ?>
-					</a>
-				</li>
-<?php	endforeach; ?>
+
+				<?php foreach( $map as $lang => $list ) : ?>
+					<?php $locParams = ( isset( $list[$currencyId] ) ? (array) $list[$currencyId] : (array) reset( $list ) ); ?>
+					<li class="select-item <?php echo ( $lang === $langId ? 'active' : '' ); ?>">
+						<?php $target = $this->request()->getTarget(); ?>
+						<?php $url = $this->url( $target, $this->param( 'controller' ), $this->param( 'action' ), array_merge( $params, $locParams ), array(), $config ); ?>
+						<a href="<?php echo $enc->attr( $url ); ?>">
+							<?php echo $enc->html( $this->translate( 'client/language', $lang ), $enc::TRUST ); ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+
 			</ul>
 		</li>
 	</ul>
-<?php echo $this->get( 'languageBody' ); ?>
+
 </div>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'locale/select/language' ); ?>

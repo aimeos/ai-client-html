@@ -58,7 +58,10 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 <section class="catalog-filter-tree <?php echo ( $counts == true ? 'catalog-filter-count' : '' ); ?>">
 
 	<?php if( $enforce ) : ?>
-		<input type="hidden" name="<?php echo $enc->attr( $this->formparam( array( 'f_catid' ) ) ); ?>" value="<?php echo $enc->attr( $this->param( 'f_catid' ) ); ?>" />
+		<input type="hidden"
+			name="<?php echo $enc->attr( $this->formparam( array( 'f_catid' ) ) ); ?>"
+			value="<?php echo $enc->attr( $this->param( 'f_catid' ) ); ?>"
+		/>
 	<?php endif; ?>
 
 	<h2><?php echo $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>

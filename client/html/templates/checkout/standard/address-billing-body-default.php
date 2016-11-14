@@ -48,9 +48,13 @@ try {
 }
 
 
-$billingDefault = ( isset( $this->addressCustomerItem ) ? $this->addressCustomerItem->getId() : 'null' );
-$billingOption = $this->param( 'ca_billingoption', ( isset( $addrArray['order.base.address.addressid'] ) && $addrArray['order.base.address.addressid'] != '' ? $addrArray['order.base.address.addressid'] : $billingDefault ) );
+if( !isset( $addrArray['order.base.address.addressid'] ) || $addrArray['order.base.address.addressid'] == '' ) {
+	$billingDefault = ( isset( $this->addressCustomerItem ) ? $this->addressCustomerItem->getId() : 'null' );
+} else {
+	$billingDefault = $addrArray['order.base.address.addressid'];
+}
 
+$billingOption = $this->param( 'ca_billingoption', $billingDefault );
 $billingSalutations = $this->get( 'billingSalutations', array() );
 $billingCountries = $this->get( 'addressCountries', array() );
 $billingStates = $this->get( 'addressStates', array() );
@@ -81,7 +85,12 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 	<?php if( isset( $this->addressPaymentItem )  ) : ?>
 		<div class="item-address">
 			<div class="header">
-				<input type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>" value="<?php echo $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" <?php echo ( $billingOption == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ); ?> />
+
+				<input type="radio"
+					name="<?php echo $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
+					value="<?php echo $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>"
+					<?php echo ( $billingOption == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ); ?>
+				/>
 				<div class="values">
 <?php
 	$addr = $this->addressPaymentItem;
@@ -169,8 +178,16 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 
 		<div class="item-address item-new" data-option="<?php echo $enc->attr( $billingOption ); ?>">
 			<div class="header">
-				<input type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>" value="null" <?php echo ( $billingOption == 'null' ? 'checked="checked"' : '' ); ?> />
-				<div class="values"><span class="value value-new"><?php echo $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?></span></div>
+				<input type="radio"
+					name="<?php echo $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
+					value="null"
+					<?php echo ( $billingOption == 'null' ? 'checked="checked"' : '' ); ?>
+				/>
+				<div class="values">
+					<span class="value value-new">
+						<?php echo $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
+					</span>
+				</div>
 			</div>
 <?php
 	$paymentCss = $paymentCssAll;

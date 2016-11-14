@@ -58,10 +58,20 @@ $enc = $this->encoder();
 		<div class="stock" data-prodid="<?php echo $enc->attr( implode( ' ', $this->get( 'basketProductIds', array() ) ) ); ?>"></div>
 		<div class="addbasket">
 			<div class="group">
-				<input name="<?php echo $enc->attr( $this->formparam( 'b_action' ) ); ?>" type="hidden" value="add" />
-				<input name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>" type="hidden" value="<?php echo $enc->attr( $this->detailProductItem->getId() ); ?>" />
-				<input name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>" type="number" min="1" max="2147483647" maxlength="10" step="1" required="required" value="1" />
-				<button class="standardbutton btn-action" type="submit" value=""><?php echo $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?></button>
+				<input type="hidden" value="add"
+					name="<?php echo $enc->attr( $this->formparam( 'b_action' ) ); ?>"
+				/>
+				<input type="hidden"
+					name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+					value="<?php echo $enc->attr( $this->detailProductItem->getId() ); ?>"
+				/>
+				<input type="number"
+					name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+					min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
+				/>
+				<button class="standardbutton btn-action" type="submit" value="">
+					<?php echo $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+				</button>
 			</div>
 		</div>
 

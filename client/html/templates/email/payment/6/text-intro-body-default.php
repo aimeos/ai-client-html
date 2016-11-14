@@ -24,6 +24,5 @@ $string = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() 
 
 
 <?php echo wordwrap( strip_tags( $string ) ); ?>
-<?php echo $this->get( 'introBody' ); ?>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'email/payment/text/intro' ); ?>

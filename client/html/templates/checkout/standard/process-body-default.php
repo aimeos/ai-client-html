@@ -86,11 +86,17 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 	<h2><?php echo $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?></h2>
 
 	<?php if( !empty( $errors ) ) : ?>
-		<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'Processing the payment failed' ), $enc::TRUST ); ?></p>
+		<p class="order-notice">
+			<?php echo $enc->html( $this->translate( 'client', 'Processing the payment failed' ), $enc::TRUST ); ?>
+		</p>
 	<?php elseif( !empty( $public ) ) : ?>
-		<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'Please enter your payment details' ), $enc::TRUST ); ?></p>
+		<p class="order-notice">
+			<?php echo $enc->html( $this->translate( 'client', 'Please enter your payment details' ), $enc::TRUST ); ?>
+		</p>
 	<?php else : ?>
-		<p class="order-notice"><?php echo $enc->html( $this->translate( 'client', 'You will now be forwarded to the next step' ), $enc::TRUST ); ?></p>
+		<p class="order-notice">
+			<?php echo $enc->html( $this->translate( 'client', 'You will now be forwarded to the next step' ), $enc::TRUST ); ?>
+		</p>
 	<?php endif; ?>
 
 
@@ -118,7 +124,9 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 	<ul class="form-list">
 		<?php foreach( $public as $key => $item ) : ?>
 
-			<li class="form-item <?php echo $key . ( $item->isRequired() ? ' mandatory' : ' optional' ); ?>" data-regex="<?php echo $testfcn( $regex, $key ); ?>">
+			<li class="form-item <?php echo $key . ( $item->isRequired() ? ' mandatory' : ' optional' ); ?>"
+				data-regex="<?php echo $testfcn( $regex, $key ); ?>">
+
 				<label for="process-<?php echo $key; ?>">
 					<?php echo $enc->html( $this->translate( 'client/code', $item->getCode() ), $enc::TRUST ); ?>
 				</label>

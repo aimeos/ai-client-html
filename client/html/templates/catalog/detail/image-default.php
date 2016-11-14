@@ -106,6 +106,7 @@ $media = $this->get( 'mediaItems', array() );
 		<div class="carousel">
 			<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 				<?php $mediaUrl = $enc->attr( $this->content( $mediaItem->getUrl() ) ); ?>
+
 				<div id="image-<?php echo $enc->attr( $id ); ?>" class="item"
 					style="background-image: url('<?php echo $mediaUrl; ?>')"
 					data-image="<?php echo $mediaUrl; ?>"
@@ -114,6 +115,7 @@ $media = $this->get( 'mediaItems', array() );
 					itemscope="" itemtype="http://schema.org/ImageObject">
 					<meta itemprop="contentUrl" content="<?php echo $mediaUrl; ?>" />
 				</div>
+
 			<?php endforeach; ?>
 			</div>
 	</div>
@@ -124,7 +126,12 @@ $media = $this->get( 'mediaItems', array() );
 		<div class="thumbs">
 			<?php if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
 				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
-					<a href="<?php echo $url . '#image-' . $enc->attr( $id ); ?>" class="<?php echo $class; ?>" style="background-image: url('<?php echo $this->content( $mediaItem->getPreview() ); ?>')"></a>
+
+					<a class="<?php echo $class; ?>"
+						style="background-image: url('<?php echo $this->content( $mediaItem->getPreview() ); ?>')"
+						href="<?php echo $url . '#image-' . $enc->attr( $id ); ?>"
+					></a>
+
 					<?php $class = 'item'; ?>
 				<?php endforeach; ?>
 			<?php endif; ?>

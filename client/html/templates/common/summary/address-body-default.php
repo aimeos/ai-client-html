@@ -139,7 +139,9 @@ catch( Exception $e )
 		<div class="header">
 			<h3><?php echo $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
 			<?php if( isset( $this->summaryUrlAddressDelivery ) ) : ?>
-				<a class="modify" href="<?php echo $enc->attr( $this->summaryUrlAddressDelivery ); ?>"><?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?></a>
+				<a class="modify" href="<?php echo $enc->attr( $this->summaryUrlAddressDelivery ); ?>">
+					<?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
+				</a>
 			<?php endif; ?>
 		</div>
 

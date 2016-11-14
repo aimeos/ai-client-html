@@ -13,7 +13,9 @@ $enc = $this->encoder();
 <section class="checkout-standard-address">
 
 	<h1><?php echo $enc->html( $this->translate( 'client', 'address' ), $enc::TRUST ); ?></h1>
-	<p class="note"><?php echo $enc->html( $this->translate( 'client', 'Fields with an * are mandatory' ), $enc::TRUST ); ?></p>
+	<p class="note">
+		<?php echo $enc->html( $this->translate( 'client', 'Fields with an * are mandatory' ), $enc::TRUST ); ?>
+	</p>
 
 
 	<?php echo $this->block()->get( 'checkout/standard/address/billing' ); ?>
@@ -22,8 +24,12 @@ $enc = $this->encoder();
 
 
 	<div class="button-group">
-		<a class="standardbutton btn-back" href="<?php echo $enc->attr( $this->get( 'standardUrlBack' ) ); ?>"><?php echo $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ); ?></a>
-		<button class="standardbutton btn-action"><?php echo $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ); ?></button>
+		<a class="standardbutton btn-back" href="<?php echo $enc->attr( $this->get( 'standardUrlBack' ) ); ?>">
+			<?php echo $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ); ?>
+		</a>
+		<button class="standardbutton btn-action">
+			<?php echo $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ); ?>
+		</button>
 	</div>
 
 </section>

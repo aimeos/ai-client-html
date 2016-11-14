@@ -55,8 +55,13 @@ try {
 						<?php if( $attribute->getType() === 'delivery' ) : ?>
 
 							<li class="da-<?php echo $enc->attr( $attribute->getCode() ); ?>">
+
 								<span class="name">
-									<?php echo $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/html/service', $attribute->getCode() ) ) ); ?>
+									<?php if( $attribute->getName() != '' ) : ?>
+										<?php echo $enc->html( $attribute->getName() ); ?>
+									<?php else : ?>
+										<?php echo $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?>
+									<?php endif; ?>
 								</span>
 
 								<?php switch( $attribute->getValue() ) : case 'array': case 'object': ?>
@@ -107,8 +112,13 @@ try {
 					<?php foreach( $attributes as $attribute ) : ?>
 						<?php if( $attribute->getType() === 'payment' ) : ?>
 							<li class="pa-<?php echo $enc->attr( $attribute->getCode() ); ?>">
+
 								<span class="name">
-									<?php echo $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) ) ); ?>
+									<?php if( $attribute->getName() != '' ) : ?>
+										<?php echo $enc->html( $attribute->getName() ); ?>
+									<?php else : ?>
+										<?php echo $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?>
+									<?php endif; ?>
 								</span>
 
 								<?php switch( $attribute->getValue() ) : case 'array': case 'object': ?>

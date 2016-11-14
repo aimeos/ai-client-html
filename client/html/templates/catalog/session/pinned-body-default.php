@@ -7,7 +7,7 @@
  */
 
 $enc = $this->encoder();
-$pinParams = $this->get( 'pinnedParams', array() );
+$params = $this->get( 'pinnedParams', array() );
 $pinList = $this->get( 'pinnedProductItems', array() );
 
 /** client/html/catalog/session/pinned/url/target
@@ -115,11 +115,16 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 
 	<ul class="pinned-items">
 		<?php foreach( $pinList as $id => $productItem ) : ?>
-			<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id ); ?>
+
+			<?php $pinParams = array( 'pin_action' => 'delete', 'pin_id' => $id ) + $params; ?>
+			<?php $detailParams = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id ); ?>
 
 			<li class="pinned-item">
-				<a class="modify" href="<?php echo $this->url( $pinTarget, $pinController, $pinAction, array( 'pin_action' => 'delete', 'pin_id' => $id ) + $pinParams, array(), $pinConfig ); ?>"><?php echo $this->translate( 'client', 'X' ); ?></a>
-				<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>">
+				<a class="modify" href="<?php echo $this->url( $pinTarget, $pinController, $pinAction, $pinParams, array(), $pinConfig ); ?>">
+					<?php echo $this->translate( 'client', 'X' ); ?>
+				</a>
+
+				<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $detailParams, array(), $detailConfig ) ); ?>">
 
 					<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 					<?php if( ( $mediaItem = reset( $mediaItems ) ) !== false ) : ?>

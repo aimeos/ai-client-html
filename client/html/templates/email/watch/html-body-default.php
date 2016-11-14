@@ -13,6 +13,7 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( 'absoluteUri' => 1 ) );
 
+
 ?>
 <?php $this->block()->start( 'email/watch/html' ); ?>
 <html>

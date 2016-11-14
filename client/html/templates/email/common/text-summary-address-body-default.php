@@ -117,6 +117,5 @@ $salutations = array(
 		echo strip_tags( $this->translate( 'client', 'like billing address' ) );
 	}
 ?>
-<?php echo $this->get( 'addressBody' ); ?>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'email/common/text/summary/address' ); ?>

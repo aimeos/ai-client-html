@@ -64,7 +64,12 @@ foreach( $stockProductIds as $prodId )
 {
 	if( !isset( $stockItemsByProducts[$prodId] ) )
 	{
-		$result[$prodId] = '<div class="stockitem stock-prodid-' . $enc->attr( $prodId ) . ' stock-unlimited" title="' . $enc->attr( $textStock['stock-unlimited'] ) . '"><div class="stocklevel"></div><span class="stocktext">' . $textStock['stock-unlimited'] . '</span></div>';
+		$result[$prodId] = '
+			<div class="stockitem stock-prodid-' . $enc->attr( $prodId ) . ' stock-unlimited" title="' . $enc->attr( $textStock['stock-unlimited'] ) . '">
+				<div class="stocklevel"></div>
+				<span class="stocktext">' . $textStock['stock-unlimited'] . '</span>
+			</div>
+		';
 		continue;
 	}
 
@@ -108,11 +113,13 @@ foreach( $stockProductIds as $prodId )
 		}
 
 		$text = nl2br( $enc->html( $text, $enc::TRUST ) );
-		$stocks[$level] .= '<div class="stockitem stock-prodid-' . $enc->attr( $prodId ) . ' ' . $level . '" title="' . $enc->attr( $textStock[$level] ) . '">
-	<link itemprop="availability" href="' . $link . '" />
-	<div class="stocklevel"></div>
-	<span class="stocktext">' . $text . '</span>
-</div>';
+		$stocks[$level] .= '
+			<div class="stockitem stock-prodid-' . $enc->attr( $prodId ) . ' ' . $level . '" title="' . $enc->attr( $textStock[$level] ) . '">
+				<link itemprop="availability" href="' . $link . '" />
+				<div class="stocklevel"></div>
+				<span class="stocktext">' . $text . '</span>
+			</div>
+		';
 	}
 
 	$result[$prodId] = implode( '', $stocks );

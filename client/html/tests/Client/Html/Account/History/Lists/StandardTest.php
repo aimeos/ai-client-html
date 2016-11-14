@@ -1,25 +1,21 @@
 <?php
 
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Metaways Infosystems GmbH, 2013
+ * @copyright Aimeos (aimeos.org), 2015
+ */
+
+
 namespace Aimeos\Client\Html\Account\History\Lists;
 
 
-/**
- * @copyright Metaways Infosystems GmbH, 2013
- * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015
- */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
 	private $context;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = clone \TestHelperHtml::getContext();
@@ -30,12 +26,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
@@ -51,10 +41,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertContains( '<div class="account-history-list">', $output );
 		$this->assertRegExp( '#<li class="history-item">#', $output );
-		$this->assertRegExp( '#<li class="attr-item order-basic">.*<span class="value">[^<]+</span>.*</li>#smuU', $output );
-		$this->assertRegExp( '#<li class="attr-item order-channel">.*<span class="value">[^<]+</span>.*</li>#smuU', $output );
-		$this->assertRegExp( '#<li class="attr-item order-payment">.*<span class="value">[^<]+</span>.*</li>#smuU', $output );
-		$this->assertRegExp( '#<li class="attr-item order-delivery">.*<span class="value"></span>.*</li>#smuU', $output );
+		$this->assertRegExp( '#<li class="attr-item order-basic">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item order-channel">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item order-payment">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item order-delivery">.*<span class="value">.*</span>.*</li>#smU', $output );
 	}
 
 

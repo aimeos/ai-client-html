@@ -168,8 +168,17 @@ $privacyUrl = $this->url( $privacyTarget, $privacyController, $privacyAction, ar
 		<h3><?php echo $enc->html( $this->translate( 'client', 'Create account' ), $enc::TRUST ); ?></h3>
 
 		<div class="single">
-			<input id="option-account" type="checkbox" name="<?php echo $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ); ?>" value="1" <?php echo ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ); ?> />
-			<p><label for="option-account"><?php echo $enc->html( $this->translate( 'client', 'Create customer account' ), $enc::TRUST ); ?></label></p>
+			<input type="checkbox"
+				name="<?php echo $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ); ?>"
+				id="option-account"
+				value="1"
+				<?php echo ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ); ?>
+			/>
+			<p>
+				<label for="option-account">
+					<?php echo $enc->html( $this->translate( 'client', 'Create customer account' ), $enc::TRUST ); ?>
+				</label>
+			</p>
 		</div>
 
 	</div>

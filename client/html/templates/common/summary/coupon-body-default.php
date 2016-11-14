@@ -20,7 +20,9 @@ if( isset( $this->summaryBasket ) ) {
 
 	<div class="header">
 		<?php if( isset( $this->summaryUrlCoupon ) ) : ?>
-			<a class="modify" href="<?php echo $enc->attr( $this->summaryUrlCoupon ); ?>"><?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?></a>
+			<a class="modify" href="<?php echo $enc->attr( $this->summaryUrlCoupon ); ?>">
+				<?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
+			</a>
 		<?php endif; ?>
 		<h3><?php echo $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
 	</div>
