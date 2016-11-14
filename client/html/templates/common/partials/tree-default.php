@@ -33,29 +33,38 @@ $config = $this->config( 'client/html/catalog/lists/url/config', array() );
 
 ?>
 <ul class="level-<?php echo $enc->attr( $level ); ?>">
-<?php foreach( $this->get( 'nodes', array() ) as $item ) : ?>
-<?php	if( $item->getStatus() > 0 ) : ?>
-<?php		$id = $item->getId(); $config = $item->getConfig(); ?>
-<?php		$params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; ?>
-<?php		$class = ( $item->hasChildren() ? ' withchild' : ' nochild' ) . ( isset( $path[$id] ) ? ' active' : '' ); ?>
-<?php		$class .= ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
-	<li class="cat-item catid-<?php echo $enc->attr( $id . $class ); ?>" data-id="<?php echo $id; ?>" >
-		<a class="cat-item" href="<?php echo $enc->attr( $this->url( $target, $controller, $action, $params, array(), $config ) ); ?>"><!--
-			--><div class="media-list"><!--
-<?php	foreach( $item->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-<?php		if( ( $mediaItem = $listItem->getRefItem() ) !== null ) : ?>
-<?php			$values = array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) ); ?>
-<?php			echo '-->' . $this->partial( $this->config( 'client/html/common/partials/media', 'common/partials/media-default.php' ), $values ) . '<!--'; ?>
-<?php		endif; ?>
-<?php	endforeach; ?>
-			--></div><!--
-			--><span class="cat-name"><?php echo $enc->html( $item->getName(), $enc::TRUST ); ?></span><!--
-		--></a>
-<?php		if( count( $item->getChildren() ) > 0 ) : ?>
-<?php			$values = array( 'nodes' => $item->getChildren(), 'path' => $path, 'params' => $params, 'level' => $level + 1 ); ?>
-<?php			echo $this->partial( $this->config( 'client/html/common/partials/tree', 'common/partials/tree-default.php' ), $values ); ?>
-<?php		endif; ?>
-	</li>
-<?php	endif; ?>
-<?php endforeach; ?>
+	<?php foreach( $this->get( 'nodes', array() ) as $item ) : ?>
+		<?php if( $item->getStatus() > 0 ) : ?>
+
+			<?php $id = $item->getId(); $config = $item->getConfig(); ?>
+			<?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; ?>
+			<?php $class = ( $item->hasChildren() ? ' withchild' : ' nochild' ) . ( isset( $path[$id] ) ? ' active' : '' ); ?>
+			<?php $class .= ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
+
+			<li class="cat-item catid-<?php echo $enc->attr( $id . $class ); ?>" data-id="<?php echo $id; ?>" >
+
+				<a class="cat-item" href="<?php echo $enc->attr( $this->url( $target, $controller, $action, $params, array(), $config ) ); ?>"><!--
+					--><div class="media-list"><!--
+
+						<?php foreach( $item->getListItems( 'media', 'icon' ) as $listItem ) : ?>
+							<?php if( ( $mediaItem = $listItem->getRefItem() ) !== null ) : ?>
+								<?php echo '-->' . $this->partial(
+									$this->config( 'client/html/common/partials/media', 'common/partials/media-default.php' ),
+									array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+								) . '<!--'; ?>
+							<?php endif; ?>
+						<?php endforeach; ?>
+
+					--></div><!--
+					--><span class="cat-name"><?php echo $enc->html( $item->getName(), $enc::TRUST ); ?></span><!--
+				--></a>
+
+				<?php if( count( $item->getChildren() ) > 0 ) : ?>
+					<?php $values = array( 'nodes' => $item->getChildren(), 'path' => $path, 'params' => $params, 'level' => $level + 1 ); ?>
+					<?php echo $this->partial( $this->config( 'client/html/common/partials/tree', 'common/partials/tree-default.php' ), $values ); ?>
+				<?php endif; ?>
+
+			</li>
+		<?php endif; ?>
+	<?php endforeach; ?>
 </ul>

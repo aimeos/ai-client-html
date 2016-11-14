@@ -84,51 +84,85 @@ $attributes = $this->get( 'selectionAttributeItems', array() );
 
 ?>
 <?php foreach( $this->get( 'selectionProducts', array() ) as $prodid => $product ) : ?>
-<?php	$prices = $product->getRefItems( 'price', null, 'default' ); ?>
-<?php	if( !empty( $prices ) ) : ?>
-<div class="price price-prodid-<?php echo $prodid; ?>">
-<?php		echo $this->partial( $this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ), array( 'prices' => $prices ) ); ?>
-</div>
-<?php	endif; ?>
-<?php endforeach; ?>
-<ul class="selection">
-<?php foreach( $this->get( 'selectionAttributeTypeDependencies', array() ) as $code => $attrIds ) : asort( $attrIds ); ?>
-<?php	$layout = $this->config( 'client/html/catalog/detail/basket/selection/type/' . $code, 'select' ); ?>
-<?php	$preselect = (bool) $this->config( 'client/html/catalog/detail/basket/selection/preselect/' . $code, false ); ?>
-<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
-		<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
-		<div class="select-value">
-<?php	if( $layout === 'radio' ) : $first = true; ?>
-			<ul class="select-list" data-index="<?php echo $index++; ?>" data-type="<?php echo $enc->attr( $code ); ?>">
-<?php		foreach( $attrIds as $attrId => $position ) : ?>
-<?php			if( isset( $attributes[$attrId] ) ) : ?>
-				<li class="select-entry">
-					<input class="select-option" id="option-<?php echo $enc->attr( $attrId ); ?>" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>" type="radio" value="<?php echo $enc->attr( $attrId ); ?>" <?php echo ( $preselect && $first ? 'checked="checked"' : '' ); $first = false ?>/>
-					<label class="select-label" for="option-<?php echo $enc->attr( $attrId ); ?>"><!--
-<?php				foreach( $attributes[$attrId]->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-<?php					if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
-<?php						echo '-->' . $this->partial( $this->config( 'client/html/common/partials/media', 'common/partials/media-default.php' ), array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) ) ) . '<!--'; ?>
-<?php					endif; ?>
-<?php				endforeach; ?>
-						--><span><?php echo $enc->html( $attributes[$attrId]->getName() ); ?></span><!--
-					--></label>
-				</li>
-<?php			endif; ?>
-<?php		endforeach; ?>
-				</ul>
-<?php	else : ?>
-			<select class="select-list" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>" data-index="<?php echo $index++; ?>" data-type="<?php echo $enc->attr( $code ); ?>">
-<?php		if( $preselect === false ) : ?>
-				<option class="select-option" value=""><?php echo $enc->attr( $this->translate( 'client', 'Please select' ) ); ?></option>
-<?php		endif; ?>
-<?php		foreach( $attrIds as $attrId => $position ) : ?>
-<?php			if( isset( $attributes[$attrId] ) ) : ?>
-				<option class="select-option" value="<?php echo $enc->attr( $attrId ); ?>"><?php echo $enc->html( $attributes[$attrId]->getName() ); ?></option>
-<?php			endif; ?>
-<?php		endforeach; ?>
-			</select>
-<?php	endif; ?>
+	<?php $prices = $product->getRefItems( 'price', null, 'default' ); ?>
+
+	<?php if( !empty( $prices ) ) : ?>
+		<div class="price price-prodid-<?php echo $prodid; ?>">
+			<?php echo $this->partial(
+				$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+				array( 'prices' => $prices )
+			); ?>
 		</div>
-	</li>
+	<?php endif; ?>
+
 <?php endforeach; ?>
+
+
+<ul class="selection">
+	<?php foreach( $this->get( 'selectionAttributeTypeDependencies', array() ) as $code => $attrIds ) : asort( $attrIds ); ?>
+		<?php $layout = $this->config( 'client/html/catalog/detail/basket/selection/type/' . $code, 'select' ); ?>
+		<?php $preselect = (bool) $this->config( 'client/html/catalog/detail/basket/selection/preselect/' . $code, false ); ?>
+
+		<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
+			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
+			<div class="select-value">
+
+				<?php if( $layout === 'radio' ) : $first = true; ?>
+
+					<ul class="select-list" data-index="<?php echo $index++; ?>" data-type="<?php echo $enc->attr( $code ); ?>">
+						<?php foreach( $attrIds as $attrId => $position ) : ?>
+							<?php if( isset( $attributes[$attrId] ) ) : ?>
+
+								<li class="select-entry">
+									<input class="select-option" type="radio"
+										id="option-<?php echo $enc->attr( $attrId ); ?>"
+										name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>"
+										value="<?php echo $enc->attr( $attrId ); ?>"
+										<?php echo ( $preselect && $first ? 'checked="checked"' : '' ); $first = false ?>
+									/>
+									<label class="select-label" for="option-<?php echo $enc->attr( $attrId ); ?>"><!--
+
+										<?php foreach( $attributes[$attrId]->getListItems( 'media', 'icon' ) as $listItem ) : ?>
+											<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
+												<?php echo '-->' . $this->partial( $this->config(
+													'client/html/common/partials/media', 'common/partials/media-default.php' ),
+													array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
+												) . '<!--'; ?>
+											<?php endif; ?>
+										<?php endforeach; ?>
+
+										--><span><?php echo $enc->html( $attributes[$attrId]->getName() ); ?></span><!--
+									--></label>
+								</li>
+
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</ul>
+
+				<?php else : ?>
+
+					<select class="select-list"
+						name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>"
+						data-index="<?php echo $index++; ?>" data-type="<?php echo $enc->attr( $code ); ?>" >
+
+						<?php if( $preselect === false ) : ?>
+							<option class="select-option" value="">
+								<?php echo $enc->attr( $this->translate( 'client', 'Please select' ) ); ?>
+							</option>
+						<?php endif; ?>
+
+						<?php foreach( $attrIds as $attrId => $position ) : ?>
+							<?php if( isset( $attributes[$attrId] ) ) : ?>
+								<option class="select-option" value="<?php echo $enc->attr( $attrId ); ?>">
+									<?php echo $enc->html( $attributes[$attrId]->getName() ); ?>
+								</option>
+							<?php endif; ?>
+						<?php endforeach; ?>
+
+					</select>
+
+				<?php endif; ?>
+			</div>
+		</li>
+	<?php endforeach; ?>
 </ul>

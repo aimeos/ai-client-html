@@ -55,11 +55,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertStringStartsWith( '<div class="catalog-detail-basket-attribute', $output );
 
 		foreach( $configAttr as $id => $item ) {
-			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
+			$this->assertRegexp( '#<option class="select-option".*value="' . $id . '">#smU', $output );
 		}
 
 		foreach( $hiddenAttr as $id => $item ) {
-			$this->assertRegexp( '#<input type="hidden" .* value="' . $id . '" />#', $output );
+			$this->assertRegexp( '#<input type="hidden".*value="' . $id . '".*/>#smU', $output );
 		}
 	}
 
