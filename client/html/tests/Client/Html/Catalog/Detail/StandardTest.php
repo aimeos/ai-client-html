@@ -41,6 +41,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
 		$this->assertStringStartsWith( '	<title>Cafe Noire Expresso</title>', $output );
+		$this->assertContains( '<script type="text/javascript" defer="defer" src="http://baseurl/catalog/stock/?s_prodid', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}
@@ -105,7 +106,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertRegExp( '/.*Cappuccino.*/', $output );
 
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
-		$this->assertEquals( 5, count( $tags ) );
+		$this->assertEquals( 4, count( $tags ) );
 	}
 
 
@@ -125,6 +126,80 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody();
 
 		$this->assertContains( '<span class="value" itemprop="sku">CNE</span>', $output );
+	}
+
+
+	public function testGetBodyCsrf()
+	{
+		$view = $this->object->getView();
+		$view->detailProductItem = $this->getProductItem();
+
+		$output = $this->object->getBody( 1 );
+		$output = str_replace( '_csrf_value', '_csrf_new', $output );
+
+		$this->assertContains( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_new" />', $output );
+
+		$output = $this->object->modifyBody( $output, 1 );
+
+		$this->assertContains( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_value" />', $output );
+	}
+
+
+	public function testGetBodyAttributes()
+	{
+		$product = $this->getProductItem( 'U:TESTP', array( 'attribute' ) );
+
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $product->getId() ) );
+		$view->addHelper( 'param', $helper );
+
+		$configAttr = $product->getRefItems( 'attribute', null, 'config' );
+		$hiddenAttr = $product->getRefItems( 'attribute', null, 'hidden' );
+
+		$this->assertGreaterThan( 0, count( $configAttr ) );
+		$this->assertGreaterThan( 0, count( $hiddenAttr ) );
+
+		$output = $this->object->getBody();
+		$this->assertContains( '<div class="catalog-detail-basket-attribute', $output );
+
+		foreach( $configAttr as $id => $item ) {
+			$this->assertRegexp( '#<option class="select-option".*value="' . $id . '">#smU', $output );
+		}
+
+		foreach( $hiddenAttr as $id => $item ) {
+			$this->assertRegexp( '#<input type="hidden".*value="' . $id . '".*/>#smU', $output );
+		}
+	}
+
+
+	public function testGetBodySelection()
+	{
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $this->getProductItem( 'U:TEST' )->getId() ) );
+		$view->addHelper( 'param', $helper );
+
+		$variantAttr1 = $this->getProductItem( 'U:TESTSUB02', array( 'attribute' ) )->getRefItems( 'attribute', null, 'variant' );
+		$variantAttr2 = $this->getProductItem( 'U:TESTSUB04', array( 'attribute' ) )->getRefItems( 'attribute', null, 'variant' );
+
+		$this->assertGreaterThan( 0, count( $variantAttr1 ) );
+		$this->assertGreaterThan( 0, count( $variantAttr2 ) );
+
+		$tags = array();
+		$expire = null;
+		$output = $this->object->getBody( 1, $tags, $expire );
+
+		$this->assertContains( '<div class="catalog-detail-basket-selection', $output );
+
+		foreach( $variantAttr1 as $id => $item ) {
+			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
+		}
+
+		foreach( $variantAttr2 as $id => $item ) {
+			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
+		}
+
+		$this->assertEquals( null, $expire );
+		$this->assertEquals( 4, count( $tags ) );
 	}
 
 
@@ -283,15 +358,15 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	protected function getProductItem()
+	protected function getProductItem( $code = 'CNE', $domains = array() )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
 		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'product.code', 'CNE' ) );
-		$items = $manager->searchItems( $search );
+		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
+		$items = $manager->searchItems( $search, $domains );
 
 		if( ( $item = reset( $items ) ) === false ) {
-			throw new \RuntimeException( 'No product item with code "CNE" found' );
+			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
 		return $item;

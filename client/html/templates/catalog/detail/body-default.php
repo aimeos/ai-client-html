@@ -17,9 +17,33 @@
  */
 
 
+$getProductList = function( $posItems, $items )
+{
+	$list = array();
+
+	foreach( $posItems as $id => $posItem )
+	{
+		if( isset( $items[$id] ) ) {
+			$list[$id] = $items[$id];
+		}
+	}
+
+	return $list;
+};
+
+
 $enc = $this->encoder();
+
+$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
+$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
+$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+
+$reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
+
+
 $attrMap = $subAttrDeps = array();
-$attrItems = $this->get( 'detailAttributeItems', true );
+$attrItems = $this->get( 'detailAttributeItems', array() );
 
 foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduct )
 {
@@ -37,19 +61,33 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 }
 
 
-$getProductList = function( $posItems, $items )
+if( isset( $this->detailProductItem ) )
 {
-	$list = array();
-
-	foreach( $posItems as $id => $posItem )
+	$attributeConfigItems = array();
+	foreach( $this->detailProductItem->getRefItems( 'attribute', null, 'config' ) as $id => $attribute )
 	{
-		if( isset( $items[$id] ) ) {
-			$list[$id] = $items[$id];
+		if( isset( $attrItems[$id] ) ) {
+			$attributeConfigItems[$attribute->getType()][$id] = $attrItems[$id];
 		}
 	}
 
-	return $list;
-};
+
+	$attrDeps = $attrTypeDeps = $prodDeps = array();
+	$products = $this->detailProductItem->getRefItems( 'product', 'default', 'default' );
+	$subProducts = $getProductList( $products, $this->get( 'detailProductItems', array() ) );
+
+	foreach( $subProducts as $subProdId => $subProduct )
+	{
+		foreach( $subProduct->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
+		{
+			$attrTypeDeps[$attrItem->getType()][$attrId] = $attrItem->getPosition();
+			$attrDeps[$attrId][] = $subProdId;
+			$prodDeps[$subProdId][] = $attrId;
+		}
+	}
+
+	ksort( $attrTypeDeps );
+}
 
 
 ?>
@@ -70,6 +108,17 @@ $getProductList = function( $posItems, $items )
 		<article class="product <?php echo ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' ); ?>" data-id="<?php echo $this->detailProductItem->getId(); ?>">
 
 			<?php echo $this->partial(
+				/** client/html/catalog/detail/partials/image
+				 * Relative path to the detail image partial template file
+				 *
+				 * Partials are templates which are reused in other templates and generate
+				 * reoccuring blocks filled with data from the assigned values. The image
+				 * partial creates an HTML block for the catalog detail images.
+				 *
+				 * @param string Relative path to the template file
+				 * @since 2017.01
+				 * @category Developer
+				 */
 				$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-default.php' ),
 				array(
 					'product' => $this->detailProductItem,
@@ -91,15 +140,157 @@ $getProductList = function( $posItems, $items )
 			</div>
 
 
-			<?php echo $this->block()->get( 'catalog/detail/basket' ); ?>
+			<div class="catalog-detail-basket" data-reqstock="<?php echo $reqstock; ?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+				<?php if( isset( $this->detailProductItem ) ) : ?>
+					<div class="price price-main price-actual price-prodid-<?php echo $this->detailProductItem->getId(); ?>">
+						<?php echo $this->partial(
+							/** client/html/common/partials/price
+							 * Relative path to the price partial template file
+							 *
+							 * Partials are templates which are reused in other templates and generate
+							 * reoccuring blocks filled with data from the assigned values. The price
+							 * partial creates an HTML block for a list of price items.
+							 *
+							 * The partial template files are usually stored in the templates/partials/ folder
+							 * of the core or the extensions. The configured path to the partial file must
+							 * be relative to the templates/ folder, e.g. "partials/price-default.php".
+							 *
+							 * @param string Relative path to the template file
+							 * @since 2015.04
+							 * @category Developer
+							 */
+							$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+							array( 'prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' ) )
+						); ?>
+					</div>
+				<?php endif; ?>
+
+
+				<?php echo $this->block()->get( 'catalog/detail/basket/service' ); ?>
+
+
+				<form method="POST" action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">
+					<!-- catalog.detail.csrf -->
+					<?php echo $this->csrf()->formfield(); ?>
+					<!-- catalog.detail.csrf -->
+
+					<div class="catalog-detail-basket-selection"
+						data-proddeps="<?php echo $enc->attr( json_encode( $prodDeps ) ); ?>"
+						data-attrdeps="<?php echo $enc->attr( json_encode( $attrDeps ) ); ?>">
+						<?php echo $this->partial(
+							/** client/html/common/partials/selection
+							 * Relative path to the variant attribute partial template file
+							 *
+							 * Partials are templates which are reused in other templates and generate
+							 * reoccuring blocks filled with data from the assigned values. The selection
+							 * partial creates an HTML block for a list of variant product attributes
+							 * assigned to a selection product a customer must select from.
+							 *
+							 * The partial template files are usually stored in the templates/partials/ folder
+							 * of the core or the extensions. The configured path to the partial file must
+							 * be relative to the templates/ folder, e.g. "partials/selection-default.php".
+							 *
+							 * @param string Relative path to the template file
+							 * @since 2015.04
+							 * @category Developer
+							 * @see client/html/common/partials/attribute
+							 */
+							$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
+							array(
+								'selectionProducts' => $subProducts,
+								'selectionAttributeItems' => $attrItems,
+								'selectionAttributeTypeDependencies' => $attrTypeDeps,
+							)
+						); ?>
+					</div>
+
+					<div class="catalog-detail-basket-attribute">
+						<?php echo $this->partial(
+							/** client/html/common/partials/attribute
+							 * Relative path to the product attribute partial template file
+							 *
+							 * Partials are templates which are reused in other templates and generate
+							 * reoccuring blocks filled with data from the assigned values. The attribute
+							 * partial creates an HTML block for a list of optional product attributes a
+							 * customer can select from.
+							 *
+							 * The partial template files are usually stored in the templates/partials/ folder
+							 * of the core or the extensions. The configured path to the partial file must
+							 * be relative to the templates/ folder, e.g. "partials/attribute-default.php".
+							 *
+							 * @param string Relative path to the template file
+							 * @since 2016.01
+							 * @category Developer
+							 * @see client/html/common/partials/selection
+							 */
+							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
+							array(
+								'attributeConfigItems' => $attributeConfigItems,
+								'attributeCustomItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'custom' ),
+								'attributeHiddenItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'hidden' ),
+							)
+						); ?>
+					</div>
+
+					<?php $stockProductIds = array_keys( $this->detailProductItem->getRefItems( 'product', null, 'default' ) ); ?>
+					<?php $stockProductIds[] = $this->detailProductItem->getId(); ?>
+					<div class="stock" data-prodid="<?php echo $enc->attr( implode( ' ', $stockProductIds ) ); ?>"></div>
+
+					<div class="addbasket">
+						<div class="group">
+							<input type="hidden" value="add"
+								name="<?php echo $enc->attr( $this->formparam( 'b_action' ) ); ?>"
+							/>
+							<input type="hidden"
+								name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+								value="<?php echo $enc->attr( $this->detailProductItem->getId() ); ?>"
+							/>
+							<input type="number"
+								name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+								min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
+							/>
+							<button class="standardbutton btn-action" type="submit" value="">
+								<?php echo $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+							</button>
+						</div>
+					</div>
+
+				</form>
+
+			</div>
 
 
 			<?php echo $this->partial(
+				/** client/html/catalog/detail/partials/actions
+				 * Relative path to the detail image partial template file
+				 *
+				 * Partials are templates which are reused in other templates and generate
+				 * reoccuring blocks filled with data from the assigned values. The actions
+				 * partial creates an HTML block for the pinned, favorite and watched products
+				 * in the catalog detail component.
+				 *
+				 * @param string Relative path to the template file
+				 * @since 2017.01
+				 * @category Developer
+				 */
 				$this->config( 'client/html/catalog/detail/partials/actions', 'catalog/detail/actions-default.php' ),
 				array( 'product' => $this->detailProductItem, 'userId' => $this->get( 'detailUserId' ) )
 			); ?>
 
 			<?php echo $this->partial(
+				/** client/html/catalog/detail/partials/social
+				 * Relative path to the social partial template file
+				 *
+				 * Partials are templates which are reused in other templates and generate
+				 * reoccuring blocks filled with data from the assigned values. The social
+				 * partial creates an HTML block for links to social platforms in the
+				 * catalog detail component.
+				 *
+				 * @param string Relative path to the template file
+				 * @since 2017.01
+				 * @category Developer
+				 */
 				$this->config( 'client/html/catalog/detail/partials/social', 'catalog/detail/social-default.php' ),
 				array( 'product' => $this->detailProductItem )
 			); ?>

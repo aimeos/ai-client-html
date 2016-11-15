@@ -57,14 +57,14 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/detail/standard/subparts';
 
-	/** client/html/catalog/detail/basket/name
-	 * Name of the basket part used by the catalog detail client implementation
+	/** client/html/catalog/detail/service/name
+	 * Name of the shipping cost part used by the catalog detail client implementation
 	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Basket\Myname".
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Service\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the client class name
-	 * @since 2014.03
+	 * @since 2017.01
 	 * @category Developer
 	 */
 
@@ -78,7 +78,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'basket', 'seen' );
+	private $subPartNames = array( 'seen' );
 
 	private $tags = array();
 	private $expire;
@@ -343,6 +343,21 @@ class Standard
 
 
 	/**
+	 * Modifies the cached body content to replace content based on sessions or cookies.
+	 *
+	 * @param string $content Cached content
+	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
+	 * @return string Modified body content
+	 */
+	public function modifyBody( $content, $uid )
+	{
+		$content = parent::modifyBody( $content, $uid );
+
+		return $this->replaceSection( $content, $this->getView()->csrf()->formfield(), 'catalog.detail.csrf' );
+	}
+
+
+	/**
 	 * Processes the input, e.g. store given values.
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
@@ -420,14 +435,14 @@ class Standard
 
 			$attrIds = array_keys( $productItem->getRefItems( 'attribute' ) );
 			foreach( $products as $product ) {
-				$attrIds = array_merge( $attrIds, array_keys( $productItem->getRefItems( 'attribute' ) ) );
+				$attrIds = array_merge( $attrIds, array_keys( $product->getRefItems( 'attribute' ) ) );
 			}
 			$attributes = $this->getAttributeItems( $controller, $attrIds, $domains );
 
 
 			$mediaIds = array_keys( $productItem->getRefItems( 'media' ) );
 			foreach( $products as $product ) {
-				$mediaIds = array_merge( $mediaIds, array_keys( $productItem->getRefItems( 'media' ) ) );
+				$mediaIds = array_merge( $mediaIds, array_keys( $product->getRefItems( 'media' ) ) );
 			}
 			$media = $this->getMediaItems( $controller, $mediaIds, $domains );
 
@@ -530,17 +545,17 @@ class Standard
 	 * Returns the attribute items for the given attribute ID or IDs
 	 *
 	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
-	 * @param array|string $mediaIds Unique attribute IDs
+	 * @param array|string $attrIds Unique attribute IDs
 	 * @param array List of domain names whose items should be fetched too
 	 * @return \Aimeos\MShop\Attribute\Item\Iface[] Attribute items
 	 */
-	protected function getAttributeItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $mediaIds, $domains )
+	protected function getAttributeItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $attrIds, $domains )
 	{
 		$manager = $controller->createManager( 'attribute' );
 
 		$search = $manager->createSearch( true );
 		$expr = array(
-			$search->compare( '==', 'attribute.id', $mediaIds ),
+			$search->compare( '==', 'attribute.id', $attrIds ),
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
