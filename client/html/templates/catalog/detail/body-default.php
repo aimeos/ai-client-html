@@ -119,7 +119,7 @@ if( isset( $this->detailProductItem ) )
 				 * @since 2017.01
 				 * @category Developer
 				 */
-				$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-default.php' ),
+				$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-default.php' ),
 				array(
 					'product' => $this->detailProductItem,
 					'params' => $this->get( 'detailParams', array() ),
@@ -274,7 +274,7 @@ if( isset( $this->detailProductItem ) )
 				 * @since 2017.01
 				 * @category Developer
 				 */
-				$this->config( 'client/html/catalog/detail/partials/actions', 'catalog/detail/actions-default.php' ),
+				$this->config( 'client/html/catalog/detail/partials/actions', 'catalog/detail/actions-partial-default.php' ),
 				array( 'product' => $this->detailProductItem, 'userId' => $this->get( 'detailUserId' ) )
 			); ?>
 
@@ -291,7 +291,7 @@ if( isset( $this->detailProductItem ) )
 				 * @since 2017.01
 				 * @category Developer
 				 */
-				$this->config( 'client/html/catalog/detail/partials/social', 'catalog/detail/social-default.php' ),
+				$this->config( 'client/html/catalog/detail/partials/social', 'catalog/detail/social-partial-default.php' ),
 				array( 'product' => $this->detailProductItem )
 			); ?>
 

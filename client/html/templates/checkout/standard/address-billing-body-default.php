@@ -8,19 +8,6 @@
 
 $enc = $this->encoder();
 
-/** client/html/checkout/standard/partials/address
- * Relative path to the address partial template file
- *
- * Partials are templates which are reused in other templates and generate
- * reoccuring blocks filled with data from the assigned values. The address
- * partial creates an HTML block with input fields for address forms.
- *
- * @param string Relative path to the template file
- * @since 2017.01
- * @category Developer
- * @category User
- */
-
 /** client/html/common/address/billing/disable-new
  * Disables the billing address form for a new address
  *
@@ -156,7 +143,19 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 ?>
 			<ul class="form-list">
 				<?php echo $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-default.php' ),
+					/** client/html/checkout/standard/partials/address
+					 * Relative path to the address partial template file
+					 *
+					 * Partials are templates which are reused in other templates and generate
+					 * reoccuring blocks filled with data from the assigned values. The address
+					 * partial creates an HTML block with input fields for address forms.
+					 *
+					 * @param string Relative path to the template file
+					 * @since 2017.01
+					 * @category Developer
+					 * @category User
+					 */
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-default.php' ),
 					array(
 						'address' => $addrValues,
 						'salutations' => $billingSalutations,
@@ -217,7 +216,7 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 			<ul class="form-list">
 
 				<?php echo $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-default.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-default.php' ),
 					$values
 				); ?>
 
