@@ -9,8 +9,8 @@ $enc = $this->encoder();
 $items = $this->get( 'serviceItems', array() );
 
 ?>
-<?php $this->block()->start( 'catalog/detail/basket/service' ); ?>
-<div class="catalog-detail-basket-service">
+<?php $this->block()->start( 'catalog/detail/service' ); ?>
+<div class="catalog-detail-service">
 	<span class="service-intro"><?php echo $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
 
 	<?php if( !empty( $items ) ) : ?>

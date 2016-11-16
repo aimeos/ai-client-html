@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\Client\Html\Catalog\Detail\Basket\Service;
+namespace Aimeos\Client\Html\Catalog\Detail\Service;
 
 
 class StandardTest extends \PHPUnit_Framework_TestCase
@@ -17,7 +17,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Basket\Service\Standard( \TestHelperHtml::getContext(), $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Service\Standard( \TestHelperHtml::getContext(), $paths );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -38,8 +38,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 1, count( $tags ) );
 
-		$rendered = $this->object->getView()->block()->get( 'catalog/detail/basket/service' );
-		$this->assertStringStartsWith( '<div class="catalog-detail-basket-service', $rendered );
+		$rendered = $this->object->getView()->block()->get( 'catalog/detail/service' );
+		$this->assertStringStartsWith( '<div class="catalog-detail-service', $rendered );
 	}
 
 	public function testGetSubClient()

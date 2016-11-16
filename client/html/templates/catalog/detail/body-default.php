@@ -167,7 +167,7 @@ if( isset( $this->detailProductItem ) )
 				<?php endif; ?>
 
 
-				<?php echo $this->block()->get( 'catalog/detail/basket/service' ); ?>
+				<?php echo $this->block()->get( 'catalog/detail/service' ); ?>
 
 
 				<form method="POST" action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">

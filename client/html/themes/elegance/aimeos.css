@@ -1317,7 +1317,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	color: #B0A060;
 }
 
-.catalog-detail-basket-service .service-list {
+.catalog-detail-service .service-list {
 	list-style: none;
 	color: #999;
 	padding: 0;
@@ -1326,27 +1326,27 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
     overflow-y: auto;
 }
 
-.catalog-detail-basket-service .service-name {
+.catalog-detail-service .service-name {
 	display: inline-block;
 	min-width: 8em;
 }
 
-.catalog-detail-basket-service .service-item .price-item {
+.catalog-detail-service .service-item .price-item {
 	display: inline-block;
 	text-align: right;
 	min-width: 4em;
 }
 
-.catalog-detail-basket-service .service-item .price-item .costs {
+.catalog-detail-service .service-item .price-item .costs {
 	display: block;
 }
 
-.catalog-detail-basket-service .service-item .price-item .value,
-.catalog-detail-basket-service .service-item .price-item .taxrate {
+.catalog-detail-service .service-item .price-item .value,
+.catalog-detail-service .service-item .price-item .taxrate {
 	display: none;
 }
 
-.catalog-detail-basket-service .service-item .service-short {
+.catalog-detail-service .service-item .service-short {
 	display: none;
 }
 
