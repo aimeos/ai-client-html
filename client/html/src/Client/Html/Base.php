@@ -578,51 +578,45 @@ abstract class Base
 	 */
 	protected function getCached( $type, $uid, array $prefixes, $confkey )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
-			$config = $context->getConfig();
+		$context = $this->getContext();
+		$config = $context->getConfig();
 
-			/** client/html/common/cache/force
-			 * Enforces content caching regardless of user logins
-			 *
-			 * Caching the component output is normally disabled as soon as the
-			 * user has logged in. This enables displaying user or user group
-			 * specific content without mixing standard and user specific output.
-			 *
-			 * If you don't have any user or user group specific content
-			 * (products, categories, attributes, media, prices, texts, etc.),
-			 * you can enforce content caching nevertheless to keep response
-			 * times as low as possible.
-			 *
-			 * @param boolean True to cache output regardless of login, false for no caching
-			 * @since 2015.08
-			 * @category Developer
-			 * @category User
-			 * @see client/html/common/cache/tag-all
-			 */
-			$force = $config->get( 'client/html/common/cache/force', false );
+		/** client/html/common/cache/force
+		 * Enforces content caching regardless of user logins
+		 *
+		 * Caching the component output is normally disabled as soon as the
+		 * user has logged in. This enables displaying user or user group
+		 * specific content without mixing standard and user specific output.
+		 *
+		 * If you don't have any user or user group specific content
+		 * (products, categories, attributes, media, prices, texts, etc.),
+		 * you can enforce content caching nevertheless to keep response
+		 * times as low as possible.
+		 *
+		 * @param boolean True to cache output regardless of login, false for no caching
+		 * @since 2015.08
+		 * @category Developer
+		 * @category User
+		 * @see client/html/common/cache/tag-all
+		 */
+		$force = $config->get( 'client/html/common/cache/force', false );
 
-			if( $force == false && $context->getUserId() !== null ) {
-				return null;
-			}
-
-			$cfg = $config->get( $confkey, array() );
-
-			$keys = array(
-				'body' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':body', $cfg ),
-				'header' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':header', $cfg ),
-			);
-
-			$entries = $context->getCache()->getList( $keys );
-			$this->cache = array();
-
-			foreach( $keys as $key => $hash ) {
-				$this->cache[$key] = ( array_key_exists( $hash, $entries ) ? $entries[$hash] : null );
-			}
+		if( $force == false && $context->getUserId() !== null ) {
+			return null;
 		}
 
-		return ( array_key_exists( $type, $this->cache ) ? $this->cache[$type] : null );
+		$cfg = $config->get( $confkey, array() );
+
+		$keys = array(
+			'body' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':body', $cfg ),
+			'header' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':header', $cfg ),
+		);
+
+		if( !isset( $this->cache[ $keys[$type] ] ) ) {
+			$this->cache = $context->getCache()->getList( $keys );
+		}
+
+		return ( isset( $this->cache[ $keys[$type] ] ) ? $this->cache[ $keys[$type] ] : null );
 	}
 
 

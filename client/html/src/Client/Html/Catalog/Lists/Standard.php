@@ -152,7 +152,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog#list
 		 */
-		$confkey = 'client/html/catalog/list';
+		$confkey = 'client/html/catalog/lists';
 
 		if( $context->getUserId() != null || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
@@ -254,7 +254,7 @@ class Standard
 	{
 		$prefixes = array( 'f', 'l' );
 		$context = $this->getContext();
-		$confkey = 'client/html/catalog/list';
+		$confkey = 'client/html/catalog/lists';
 
 		if( $context->getUserId() != null || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
