@@ -17,7 +17,7 @@
  */
 
 
-$getProductList = function( $posItems, $items )
+$getProductList = function( array $posItems, array $items )
 {
 	$list = array();
 
@@ -41,7 +41,6 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
-
 $attrMap = $subAttrDeps = array();
 $attrItems = $this->get( 'detailAttributeItems', array() );
 
@@ -58,35 +57,6 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 			$subAttrDeps[$attrId][] = $subProdId;
 		}
 	}
-}
-
-
-if( isset( $this->detailProductItem ) )
-{
-	$attributeConfigItems = array();
-	foreach( $this->detailProductItem->getRefItems( 'attribute', null, 'config' ) as $id => $attribute )
-	{
-		if( isset( $attrItems[$id] ) ) {
-			$attributeConfigItems[$attribute->getType()][$id] = $attrItems[$id];
-		}
-	}
-
-
-	$attrDeps = $attrTypeDeps = $prodDeps = array();
-	$products = $this->detailProductItem->getRefItems( 'product', 'default', 'default' );
-	$subProducts = $getProductList( $products, $this->get( 'detailProductItems', array() ) );
-
-	foreach( $subProducts as $subProdId => $subProduct )
-	{
-		foreach( $subProduct->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
-		{
-			$attrTypeDeps[$attrItem->getType()][$attrId] = $attrItem->getPosition();
-			$attrDeps[$attrId][] = $subProdId;
-			$prodDeps[$subProdId][] = $attrId;
-		}
-	}
-
-	ksort( $attrTypeDeps );
 }
 
 
@@ -175,35 +145,36 @@ if( isset( $this->detailProductItem ) )
 					<?php echo $this->csrf()->formfield(); ?>
 					<!-- catalog.detail.csrf -->
 
-					<div class="catalog-detail-basket-selection"
-						data-proddeps="<?php echo $enc->attr( json_encode( $prodDeps ) ); ?>"
-						data-attrdeps="<?php echo $enc->attr( json_encode( $attrDeps ) ); ?>">
-						<?php echo $this->partial(
-							/** client/html/common/partials/selection
-							 * Relative path to the variant attribute partial template file
-							 *
-							 * Partials are templates which are reused in other templates and generate
-							 * reoccuring blocks filled with data from the assigned values. The selection
-							 * partial creates an HTML block for a list of variant product attributes
-							 * assigned to a selection product a customer must select from.
-							 *
-							 * The partial template files are usually stored in the templates/partials/ folder
-							 * of the core or the extensions. The configured path to the partial file must
-							 * be relative to the templates/ folder, e.g. "partials/selection-default.php".
-							 *
-							 * @param string Relative path to the template file
-							 * @since 2015.04
-							 * @category Developer
-							 * @see client/html/common/partials/attribute
-							 */
-							$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
-							array(
-								'selectionProducts' => $subProducts,
-								'selectionAttributeItems' => $attrItems,
-								'selectionAttributeTypeDependencies' => $attrTypeDeps,
-							)
-						); ?>
-					</div>
+					<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
+						<div class="catalog-detail-basket-selection">
+							<?php echo $this->partial(
+								/** client/html/common/partials/selection
+								 * Relative path to the variant attribute partial template file
+								 *
+								 * Partials are templates which are reused in other templates and generate
+								 * reoccuring blocks filled with data from the assigned values. The selection
+								 * partial creates an HTML block for a list of variant product attributes
+								 * assigned to a selection product a customer must select from.
+								 *
+								 * The partial template files are usually stored in the templates/partials/ folder
+								 * of the core or the extensions. The configured path to the partial file must
+								 * be relative to the templates/ folder, e.g. "partials/selection-default.php".
+								 *
+								 * @param string Relative path to the template file
+								 * @since 2015.04
+								 * @category Developer
+								 * @see client/html/common/partials/attribute
+								 */
+								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
+								array(
+									'products' => $this->detailProductItem->getRefItems( 'product', 'default', 'default' ),
+									'mediaItems' => $this->get( 'detailMediaItems', array() ),
+									'productItems' => $this->get( 'detailProductItems', array() ),
+									'attributeItems' => $this->get( 'detailAttributeItems', array() ),
+								)
+							); ?>
+						</div>
+					<?php endif; ?>
 
 					<div class="catalog-detail-basket-attribute">
 						<?php echo $this->partial(
@@ -226,7 +197,8 @@ if( isset( $this->detailProductItem ) )
 							 */
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
 							array(
-								'attributeConfigItems' => $attributeConfigItems,
+								'attributeItems' => $this->get( 'detailAttributeItems', array() ),
+								'attributeConfigItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'config' ),
 								'attributeCustomItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'custom' ),
 								'attributeHiddenItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'hidden' ),
 							)

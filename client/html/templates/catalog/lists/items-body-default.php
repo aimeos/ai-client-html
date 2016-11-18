@@ -36,16 +36,13 @@ $enc = $this->encoder();
 	<?php echo $this->partial(
 		$this->config( 'client/html/common/partials/products', 'common/partials/products-default.php' ),
 		array(
-			'position' => $this->get( 'itemPosition', 0 ),
-			'products' => $this->get( 'listProductItems', array() ),
-			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
-			'selectionProductDependencies' => $this->get( 'itemsSelectionProductDependencies', array() ),
-			'selectionAttributeDependencies' => $this->get( 'itemsSelectionAttributeDependencies', array() ),
-			'selectionAttributeTypeDependencies' => $this->get( 'itemsSelectionAttributeTypeDependencies', array() ),
-			'selectionAttributeItems' => $this->get( 'itemsSelectionAttributeItems', array() ),
-			'attributeConfigItems' => $this->get( 'itemsAttributeConfigItems', array() ),
-			'selectionProducts' => $this->get( 'itemsSelectionProducts', array() ),
+			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
+			'attributeItems' => $this->get( 'itemsAttributeItems', array() ),
+			'productItems' => $this->get( 'itemsProductItems', array() ),
+			'mediaItems' => $this->get( 'itemsMediaItems', array() ),
+			'products' => $this->get( 'listProductItems', array() ),
+			'position' => $this->get( 'itemPosition', 0 ),
 		)
 	); ?>
 

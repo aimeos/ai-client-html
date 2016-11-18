@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertStringStartsWith( '	<title>Cafe Noire Expresso</title>', $output );
 		$this->assertContains( '<script type="text/javascript" defer="defer" src="http://baseurl/catalog/stock/?s_prodid', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
-		$this->assertEquals( 4, count( $tags ) );
+		$this->assertEquals( 3, count( $tags ) );
 	}
 
 
@@ -108,7 +108,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertContains( '<div class="catalog-detail-service', $output );
 
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
-		$this->assertEquals( 5, count( $tags ) );
+		$this->assertEquals( 4, count( $tags ) );
 	}
 
 
@@ -201,7 +201,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		}
 
 		$this->assertEquals( null, $expire );
-		$this->assertEquals( 5, count( $tags ) );
+		$this->assertEquals( 4, count( $tags ) );
 	}
 
 

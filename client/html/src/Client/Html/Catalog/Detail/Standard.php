@@ -19,7 +19,7 @@ namespace Aimeos\Client\Html\Catalog\Detail;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Catalog\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/catalog/detail/standard/subparts
@@ -429,31 +429,53 @@ class Standard
 			$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
+
 			$productItem = $this->getProductItem( $prodid, $domains );
-			$products = $this->getProductItems( $controller, array_keys( $productItem->getRefItems( 'product' ) ), $domains );
+
+			$this->addMetaItem( $productItem, 'product', $this->expire, $this->tags );
+			$this->addMetaList( $prodid, 'product', $this->expire );
+
+
+			$productManager = $controller->createManager( 'product' );
+			$productIds = array_keys( $productItem->getRefItems( 'product' ) );
+			$products = $this->getDomainItems( $productManager, 'product.id', $productIds, $domains );
 
 
 			$attrIds = array_keys( $productItem->getRefItems( 'attribute' ) );
-			foreach( $products as $product ) {
-				$attrIds = array_merge( $attrIds, array_keys( $product->getRefItems( 'attribute' ) ) );
-			}
-			$attributes = $this->getAttributeItems( $controller, $attrIds, $domains );
-
-
 			$mediaIds = array_keys( $productItem->getRefItems( 'media' ) );
-			foreach( $products as $product ) {
+
+			foreach( $products as $product )
+			{
+				$attrIds = array_merge( $attrIds, array_keys( $product->getRefItems( 'attribute' ) ) );
 				$mediaIds = array_merge( $mediaIds, array_keys( $product->getRefItems( 'media' ) ) );
 			}
-			$media = $this->getMediaItems( $controller, $mediaIds, $domains );
 
 
-			$view->detailAttributeItems = $attributes;
-			$view->detailMediaItems = $media;
+			$attributeManager = $controller->createManager( 'attribute' );
+			$attributeItems = $this->getDomainItems( $attributeManager, 'attribute.id', $attrIds, $domains );
+
+			$this->addMetaItem( $attributeItems, 'attribute', $this->expire, $this->tags );
+			$this->addMetaList( array_keys( $attributeItems ), 'attribute', $this->expire );
+
+
+			$mediaManager = $controller->createManager( 'media' );
+			$mediaItems = $this->getDomainItems( $mediaManager, 'media.id', $mediaIds, $domains );
+
+			$this->addMetaItem( $mediaItems, 'media', $this->expire, $this->tags );
+			$this->addMetaList( array_keys( $mediaItems ), 'media', $this->expire );
+
+
+			$propertyManager = $controller->createManager( 'product/property' );
+			$propertyItems = $this->getDomainItems( $propertyManager, 'product.property.parentid', $productIds, $domains );
+
+
 			$view->detailProductItem = $productItem;
 			$view->detailProductItems = $products;
-			$view->detailPropertyItems = $this->getPropertyItems( $controller, $prodid );
-			$view->detailParams = $this->getClientParams( $view->param() );
+			$view->detailPropertyItems = $propertyItems;
+			$view->detailAttributeItems = $attributeItems;
+			$view->detailMediaItems = $mediaItems;
 			$view->detailUserId = $context->getUserId();
+			$view->detailParams = $this->getClientParams( $view->param() );
 
 			$this->cache = $view;
 		}
@@ -534,115 +556,6 @@ class Standard
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'No product with ID "%1$s" found', $prodid ) );
 		}
 
-		$this->addMetaItem( $item, 'product', $this->expire, $this->tags );
-		$this->addMetaList( $prodid, 'product', $this->expire );
-
 		return $item;
-	}
-
-
-	/**
-	 * Returns the attribute items for the given attribute ID or IDs
-	 *
-	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
-	 * @param array|string $attrIds Unique attribute IDs
-	 * @param array List of domain names whose items should be fetched too
-	 * @return \Aimeos\MShop\Attribute\Item\Iface[] Attribute items
-	 */
-	protected function getAttributeItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $attrIds, $domains )
-	{
-		$manager = $controller->createManager( 'attribute' );
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-			$search->compare( '==', 'attribute.id', $attrIds ),
-			$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$items = $manager->searchItems( $search, $domains );
-
-		$this->addMetaItem( $items, 'attribute', $this->expire, $this->tags );
-		$this->addMetaList( array_keys( $items ), 'attribute', $this->expire );
-
-		return $items;
-	}
-
-
-	/**
-	 * Returns the media items for the given media ID or IDs
-	 *
-	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
-	 * @param array|string $mediaIds Unique media IDs
-	 * @param array List of domain names whose items should be fetched too
-	 * @return \Aimeos\MShop\Media\Item\Iface[] Media items
-	 */
-	protected function getMediaItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $mediaIds, $domains )
-	{
-		$manager = $controller->createManager( 'media' );
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-			$search->compare( '==', 'media.id', $mediaIds ),
-			$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$items = $manager->searchItems( $search, $domains );
-
-		$this->addMetaItem( $items, 'media', $this->expire, $this->tags );
-		$this->addMetaList( array_keys( $items ), 'media', $this->expire );
-
-		return $items;
-	}
-
-
-	/**
-	 * Returns the product items for the given product ID or IDs
-	 *
-	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
-	 * @param array|string $productIds Unique product IDs
-	 * @param array List of domain names whose items should be fetched too
-	 * @return \Aimeos\MShop\Media\Item\Iface[] Media items
-	 */
-	protected function getProductItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $productIds, $domains )
-	{
-		$manager = $controller->createManager( 'product' );
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-			$search->compare( '==', 'product.id', $productIds ),
-			$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$items = $manager->searchItems( $search, $domains );
-
-		$this->addMetaItem( $items, 'product', $this->expire, $this->tags );
-		$this->addMetaList( array_keys( $items ), 'product', $this->expire );
-
-		return $items;
-	}
-
-
-	/**
-	 * Returns the product property items for the given product ID or IDs
-	 *
-	 * @param \Aimeos\Controller\Frontend\Catalog\Iface $controller Catalog controller
-	 * @param array|string $productIds Unique product IDs
-	 * @return \Aimeos\MShop\Product\Item\Property\Iface[] Property items
-	 */
-	protected function getPropertyItems( \Aimeos\Controller\Frontend\Catalog\Iface $controller, $productIds )
-	{
-		$manager = $controller->createManager( 'product/property' );
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-			$search->compare( '==', 'product.property.parentid', $productIds ),
-			$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		return $manager->searchItems( $search );
 	}
 }

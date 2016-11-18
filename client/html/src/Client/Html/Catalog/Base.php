@@ -206,6 +206,28 @@ abstract class Base
 
 
 	/**
+	 * Returns the domain items for the given IDs including the referenced items
+	 *
+	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Domain specific manager
+	 * @param string $key Domain key for seaching the items by ID
+	 * @param string[] $ids Unique domain IDs
+	 * @param string[] List of domain names whose items should be fetched too
+	 * @return \Aimeos\MShop\Common\Item\Iface[] Domain items
+	 */
+	protected function getDomainItems( \Aimeos\MShop\Common\Manager\Iface $manager, $key, array $ids, array $domains )
+	{
+		$search = $manager->createSearch( true );
+		$expr = array(
+			$search->compare( '==', $key, $ids ),
+			$search->getConditions(),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+
+		return $manager->searchItems( $search, $domains );
+	}
+
+
+	/**
 	 * Returns the products found for the current parameters.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View instance with helper for retrieving the required parameters

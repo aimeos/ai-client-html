@@ -6,9 +6,27 @@
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 
-$enc = $this->encoder();
+/* Available data:
+ * - attributeItems : List of attribute items including the referenced items like texts, images, etc.
+ * - attributeConfigItems : List of configuration attributes
+ * - attributeCustomItems : List of custom attributes
+ * - attributeHiddenItems : List of hidden attributes
+ */
 
-/** client/html/catalog/detail/basket/attribute/type
+
+$enc = $this->encoder();
+$attrItems = $this->get( 'attributeItems', array() );
+
+$attributeConfigItems = array();
+foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
+{
+	if( isset( $attrItems[$id] ) ) {
+		$attributeConfigItems[$attribute->getType()][$id] = $attrItems[$id];
+	}
+}
+
+
+/** client/html/catalog/attribute/type
  * List of layout types for the optional attributes
  *
  * Each product can contain optional attributes and this configuration setting
@@ -20,7 +38,7 @@ $enc = $this->encoder();
  * "length", "color" or similar types. You can set the layout for all
  * attributes at once using e.g.
  *
- *  client/html/catalog/detail/basket/attribute/type = array(
+ *  client/html/catalog/attribute/type = array(
  *      'width' => 'select',
  *      'color' => 'radio',
  *  )
@@ -28,34 +46,34 @@ $enc = $this->encoder();
  * Similarly, you can set the layout type for a specific attribute only,
  * leaving the rest untouched:
  *
- *  client/html/catalog/detail/basket/attribute/type/color = radio
+ *  client/html/catalog/attribute/type/color = radio
  *
  * Note: Up to 2015.10 this option was available as
- * client/html/catalog/detail/basket/attribute
+ * client/html/catalog/detail/basket/attribute/type
  *
  * @param array List of attribute types as key and layout types as value, e.g. "select" or "radio"
  * @since 2015.10
  * @category Developer
  * @category User
- * @see client/html/catalog/detail/basket/selection/type
+ * @see client/html/catalog/selection/type
  */
 
-/** client/html/catalog/detail/basket/attribute/type/color
+/** client/html/catalog/attribute/type/color
  * Layout types for the color attribute
  *
- * @see client/html/catalog/detail/basket/attribute/type
+ * @see client/html/catalog/attribute/type
  */
 
-/** client/html/catalog/detail/basket/attribute/type/size
+/** client/html/catalog/attribute/type/size
  * Layout types for the size attribute
  *
- * @see client/html/catalog/detail/basket/attribute/type
+ * @see client/html/catalog/attribute/type
  */
 
 ?>
 <ul class="selection">
-	<?php foreach( $this->get( 'attributeConfigItems', array() ) as $code => $attributes ) : ?>
-		<?php $layout = $this->config( 'client/html/catalog/detail/basket/attribute/type/' . $code, 'select' ); ?>
+	<?php foreach( $attributeConfigItems as $code => $attributes ) : ?>
+		<?php $layout = $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ); ?>
 
 		<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
 			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
