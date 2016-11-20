@@ -233,22 +233,8 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 			</div>
 
 
-			<?php echo $this->partial(
-				/** client/html/catalog/detail/partials/actions
-				 * Relative path to the detail image partial template file
-				 *
-				 * Partials are templates which are reused in other templates and generate
-				 * reoccuring blocks filled with data from the assigned values. The actions
-				 * partial creates an HTML block for the pinned, favorite and watched products
-				 * in the catalog detail component.
-				 *
-				 * @param string Relative path to the template file
-				 * @since 2017.01
-				 * @category Developer
-				 */
-				$this->config( 'client/html/catalog/detail/partials/actions', 'catalog/detail/actions-partial-default.php' ),
-				array( 'product' => $this->detailProductItem, 'userId' => $this->get( 'detailUserId' ) )
-			); ?>
+			<?php echo $this->block()->get( 'catalog/detail/actions' ); ?>
+
 
 			<?php echo $this->partial(
 				/** client/html/catalog/detail/partials/social

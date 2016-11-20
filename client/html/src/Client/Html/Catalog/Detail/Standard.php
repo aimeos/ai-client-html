@@ -57,6 +57,17 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/detail/standard/subparts';
 
+	/** client/html/catalog/detail/actions/name
+	 * Name of the actions part used by the catalog detail client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Actions\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2014.09
+	 * @category Developer
+	 */
+
 	/** client/html/catalog/detail/service/name
 	 * Name of the shipping cost part used by the catalog detail client implementation
 	 *
@@ -78,7 +89,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'service', 'seen' );
+	private $subPartNames = array( 'actions', 'service', 'seen' );
 
 	private $tags = array();
 	private $expire;
