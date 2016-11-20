@@ -72,8 +72,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBodyDetail()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
