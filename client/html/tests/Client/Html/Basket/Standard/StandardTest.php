@@ -1,25 +1,21 @@
 <?php
 
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Metaways Infosystems GmbH, 2012
+ * @copyright Aimeos (aimeos.org), 2015-2016
+ */
+
+
 namespace Aimeos\Client\Html\Basket\Standard;
 
 
-/**
- * @copyright Metaways Infosystems GmbH, 2012
- * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015
- */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
 	private $context;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
@@ -30,12 +26,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
@@ -69,7 +59,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBody()
 	{
 		$output = $this->object->getBody();
+
 		$this->assertStringStartsWith( '<section class="aimeos basket-standard">', $output );
+		$this->assertContains( '<div class="common-summary-detail', $output );
+		$this->assertContains( '<div class="basket-standard-coupon', $output );
 	}
 
 
@@ -462,10 +455,53 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetSubClient()
+	public function testGetBodyAddCoupon()
 	{
-		$client = $this->object->getSubClient( 'detail', 'Standard' );
-		$this->assertInstanceOf( '\\Aimeos\\Client\\HTML\\Iface', $client );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1, array(), array(), array(), array(), array(), 'default' );
+
+		$view = $this->object->getView();
+
+		$param = array( 'b_coupon' => '90AB' );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$view->standardBasket = $controller->get();
+		$output = $this->object->getBody();
+
+		$this->assertRegExp( '#<li class="attr-item">.*90AB.*</li>#smU', $output );
+	}
+
+
+	public function testGetBodyDeleteCoupon()
+	{
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1, array(), array(), array(), array(), array(), 'default' );
+
+		$view = $this->object->getView();
+
+		$param = array( 'b_coupon' => '90AB' );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+
+
+		$param = array( 'b_action' => 'coupon-delete', 'b_coupon' => '90AB' );
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$view->standardBasket = $controller->get();
+		$output = $this->object->getBody();
+
+		$this->assertNotRegExp( '#<ul class="attr-list">#smU', $output );
 	}
 
 

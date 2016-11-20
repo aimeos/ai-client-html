@@ -1,13 +1,15 @@
 <?php
 
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Metaways Infosystems GmbH, 2013
+ * @copyright Aimeos (aimeos.org), 2015-2016
+ */
+
+
 namespace Aimeos\Client\Html\Account\History\Order;
 
 
-/**
- * @copyright Metaways Infosystems GmbH, 2013
- * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015
- */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
@@ -47,6 +49,22 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<div class="account-history-order common-summary">', $output );
+
+		$this->assertContains( 'Our Unittest', $output );
+		$this->assertContains( 'Example company', $output );
+
+		$this->assertContains( '<h4>solucia</h4>', $output );
+		$this->assertContains( '<h4>ogone</h4>', $output );
+
+		$this->assertContains( '>5678<', $output );
+		$this->assertContains( 'This is a comment', $output );
+
+		$this->assertContains( 'Cafe Noire Expresso', $output );
+		$this->assertContains( 'Cafe Noire Cappuccino', $output );
+		$this->assertContains( 'Unittest: Monetary rebate', $output );
+		$this->assertContains( '<td class="price">55.00 EUR</td>', $output );
+		$this->assertContains( '<td class="value">14 articles</td>', $output );
+
 	}
 
 

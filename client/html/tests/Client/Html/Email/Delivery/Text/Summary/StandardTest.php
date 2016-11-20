@@ -62,7 +62,17 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBody()
 	{
 		$output = $this->object->getBody();
-		$this->assertNotNull( $output );
+
+		$this->assertContains( 'Billing address', $output );
+		$this->assertContains( 'Delivery address', $output );
+
+		$this->assertContains( 'delivery', $output );
+		$this->assertContains( 'payment', $output );
+
+		$this->assertContains( 'Coupons', $output );
+		$this->assertContains( 'Your comment', $output );
+
+		$this->assertContains( 'Order details', $output );
 	}
 
 

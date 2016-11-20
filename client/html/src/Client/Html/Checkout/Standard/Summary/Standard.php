@@ -23,7 +23,7 @@ sprintf( 'summary' );
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Common\Client\Summary\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/checkout/standard/summary/standard/subparts
@@ -60,73 +60,8 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/summary/standard/subparts';
-
-	/** client/html/checkout/standard/summary/address/name
-	 * Name of the address part used by the checkout standard summary client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Summary\Address\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/standard/summary/service/name
-	 * Name of the service part used by the checkout standard summary client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Summary\Service\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/standard/summary/coupon/name
-	 * Name of the coupon part used by the checkout standard summary client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Summary\Coupon\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/standard/summary/comment/name
-	 * Name of the comment part used by the checkout standard summary client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Summary\Comment\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2016.08
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/standard/summary/option/name
-	 * Name of the option part used by the checkout standard summary client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Summary\Option\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/standard/summary/detail/name
-	 * Name of the detail part used by the checkout standard summary client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Summary\Detail\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'address', 'service', 'coupon', 'comment', 'option', 'detail' );
+	private $subPartNames = array();
+	private $cache;
 
 
 	/**
@@ -300,15 +235,38 @@ class Standard
 	{
 		$view = $this->getView();
 
-		if( $view->param( 'cs_order', null ) === null ) {
-			return;
-		}
-
 		try
 		{
-			parent::process();
+			if( $view->param( 'cs_order', null ) === null ) {
+				return;
+			}
+
 
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+
+			if( ( $comment = $view->param( 'cs_comment' ) ) !== null )
+			{
+				$controller->get()->setComment( $comment );
+				$controller->save();
+			}
+
+
+			// only start if there's something to do
+			if( $view->param( 'cs_option_terms', null ) !== null
+				&& ( $option = $view->param( 'cs_option_terms_value', 0 ) ) != 1
+			) {
+				$error = $view->translate( 'client', 'Please accept the terms and conditions' );
+				$errors = $view->get( 'summaryErrorCodes', array() );
+				$errors['option']['terms'] = $error;
+
+				$view->summaryErrorCodes = $errors;
+				$view->standardStepActive = 'summary';
+				$view->standardErrorList = array( $error ) + $view->get( 'standardErrorList', array() );
+			}
+
+
+			parent::process();
+
 			$controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL );
 		}
 		catch( \Exception $e )
@@ -327,5 +285,26 @@ class Standard
 	protected function getSubClientNames()
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+	}
+
+
+	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	{
+		if( !isset( $this->cache ) )
+		{
+			$view->summaryTaxRates = $this->getTaxRates( $view->standardBasket );
+
+			$this->cache = $view;
+		}
+
+		return $this->cache;
 	}
 }

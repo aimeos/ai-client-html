@@ -18,7 +18,7 @@ namespace Aimeos\Client\Html\Checkout\Confirm\Order;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Common\Client\Summary\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/checkout/confirm/order/standard/subparts
@@ -55,52 +55,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/confirm/order/standard/subparts';
-
-	/** client/html/checkout/confirm/order/address/name
-	 * Name of the address part used by the checkout confirm order client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Confirm\Details\Address\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.02
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/confirm/order/service/name
-	 * Name of the service part used by the checkout confirm order client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Confirm\Details\Service\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.02
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/confirm/order/coupon/name
-	 * Name of the coupon part used by the checkout confirm order client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Confirm\Details\Coupon\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.05
-	 * @category Developer
-	 */
-
-	/** client/html/checkout/confirm/order/detail/name
-	 * Name of the detail part used by the checkout confirm order client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Confirm\Details\Detail\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.02
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'address', 'service', 'coupon', 'detail' );
-
+	private $subPartNames = array();
 	private $cache;
 
 
@@ -265,7 +220,12 @@ class Standard
 				$context = $this->getContext();
 				$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
 
+				if( $view->confirmOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+					$view->summaryShowDownloadAttributes = true;
+				}
+
 				$view->summaryBasket = $manager->load( $view->confirmOrderItem->getBaseId() );
+				$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 			}
 
 			$this->cache = $view;

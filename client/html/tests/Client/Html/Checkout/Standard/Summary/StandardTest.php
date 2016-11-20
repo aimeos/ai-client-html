@@ -1,25 +1,21 @@
 <?php
 
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Metaways Infosystems GmbH, 2013
+ * @copyright Aimeos (aimeos.org), 2015-2016
+ */
+
+
 namespace Aimeos\Client\Html\Checkout\Standard\Summary;
 
 
-/**
- * @copyright Metaways Infosystems GmbH, 2013
- * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015
- */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
 	private $context;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
@@ -30,12 +26,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
@@ -65,16 +55,33 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
-		$view->standardBasket = $controller->get();
+		$view->standardBasket = $this->getBasket();
 		$view->standardSteps = array( 'before', 'summary' );
 		$this->object->setView( $view );
 
 		$output = $this->object->getBody();
+
 		$this->assertStringStartsWith( '<section class="checkout-standard-summary common-summary">', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option container">', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option-account">', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option-terms">', $output );
+	}
+
+
+	public function testGetBodyDetail()
+	{
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+
+		$view = \TestHelperHtml::getView();
+		$view->standardStepActive = 'summary';
+		$view->standardBasket = $this->getBasket();
+		$this->object->setView( $view );
+
+		$output = $this->object->getBody();
+		$this->assertContains( '<div class="common-summary-detail container">', $output );
+		$this->assertRegExp( '#<tfoot>.*<tr class="tax">.*<td class="price">10.52 EUR</td>.*.*</tfoot>#smU', $output );
 	}
 
 
@@ -111,8 +118,95 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testProcessComment()
+	{
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+
+		$view = \TestHelperHtml::getView();
+		$view->standardBasket = $controller->get();
+
+		$param = array( 'cs_comment' => 'test comment' );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
+
+		$this->object->process();
+	}
+
+
+	public function testProcessOptionOK()
+	{
+		$view = $this->object->getView();
+		$view->standardBasket = $this->getBasket();
+		$this->object->setView( $view );
+
+		$param = array(
+			'cs_order' => '1',
+			'cs_option_terms' => '1',
+			'cs_option_terms_value' => '1',
+		);
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+		$this->assertEquals( null, $view->get( 'standardStepActive' ) );
+	}
+
+
+	public function testProcessOptionInvalid()
+	{
+		$view = $this->object->getView();
+		$view->standardBasket = $this->getBasket();
+		$this->object->setView( $view );
+
+		$param = array(
+			'cs_order' => '1',
+			'cs_option_terms' => '1',
+		);
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+		$this->assertEquals( 'summary', $view->get( 'standardStepActive' ) );
+		$this->assertArrayHasKey( 'option', $view->get( 'summaryErrorCodes', array() ) );
+	}
+
+
 	public function testProcessSkip()
 	{
 		$this->object->process();
+	}
+
+
+	protected function getBasket()
+	{
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+
+
+		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
+		$customer = $customerManager->findItem( 'UTC001' );
+
+		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $customer->getPaymentAddress() );
+		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $customer->getPaymentAddress() );
+
+
+		$productManager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$product = $productManager->findItem( 'CNE' );
+
+		$controller->addProduct( $product->getId(), 2, array(), array(), array(), array(), array(), 'default' );
+
+
+		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $this->context );
+
+		$service = $serviceManager->findItem( 'unitpaymentcode', array(), 'service', 'payment' );
+		$controller->setService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT, $service->getId() );
+
+		$service = $serviceManager->findItem( 'unitcode', array(), 'service', 'delivery' );
+		$controller->setService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY, $service->getId() );
+
+
+		return $controller->get();
 	}
 }

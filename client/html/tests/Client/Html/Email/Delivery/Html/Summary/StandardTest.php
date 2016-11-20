@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertStringStartsWith( '<div class="common-summary content-block">', $output );
 		$this->assertContains( '<div class="common-summary-address container">', $output );
 		$this->assertContains( '<div class="common-summary-service container">', $output );
-		$this->assertContains( '<div class="common-summary-coupon container">', $output );
+		$this->assertContains( '<div class="common-summary-additional container">', $output );
 		$this->assertContains( '<div class="common-summary-detail container">', $output );
 	}
 

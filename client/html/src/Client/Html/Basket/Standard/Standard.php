@@ -56,29 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/basket/standard/standard/subparts';
-
-	/** client/html/basket/standard/detail/name
-	 * Name of the detail part used by the basket standard detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Basket\Standard\Detail\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/basket/standard/coupon/name
-	 * Name of the detail part used by the basket standard coupon client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Basket\Standard\Detail\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'detail', 'coupon' );
+	private $subPartNames = array();
 	private $controller;
 	private $cache;
 
@@ -348,11 +326,15 @@ class Standard
 				case 'add':
 					$this->addProducts( $view, $options );
 					break;
+				case 'coupon-delete':
+					$this->deleteCoupon( $view );
+					break;
 				case 'delete':
 					$this->deleteProducts( $view );
 					break;
 				default:
 					$this->editProducts( $view, $options );
+					$this->addCoupon( $view );
 			}
 
 			parent::process();
@@ -410,7 +392,7 @@ class Standard
 			$errors = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 			$errors = array_merge( $errors, $this->translatePluginErrorCodes( $e->getErrorCodes() ) );
 
-			$view->summaryErrorCodes = $e->getErrorCodes();
+			$view->standardErrorCodes = $e->getErrorCodes();
 			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $errors;
 		}
 		catch( \Aimeos\MShop\Exception $e )
@@ -475,18 +457,56 @@ class Standard
 
 			}
 
-			if( empty( $params ) === false )
-			{
-				$view->standardParams = $this->getClientParams( $view->param() );
+			if( empty( $params ) === false ) {
 				$view->standardBackUrl = $view->url( $target, $controller, $action, $params, array(), $config );
 			}
 
 			$view->standardBasket = $this->getController()->get();
+			$view->standardTaxRates = $this->getTaxRates( $view->standardBasket );
 
 			$this->cache = $view;
 		}
 
 		return $this->cache;
+	}
+
+
+	/**
+	 * Adds the coupon specified by the view parameters from the basket.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 */
+	protected function addCoupon( \Aimeos\MW\View\Iface $view )
+	{
+		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
+		{
+			$controller = $this->getController();
+
+			/** client/html/basket/standard/coupon/allowed
+			 * Number of coupon codes a customer is allowed to enter
+			 *
+			 * This configuration option enables shop owners to limit the number of coupon
+			 * codes that can be added by a customer to his current basket. By default, only
+			 * one coupon code is allowed per order.
+			 *
+			 * Coupon codes are valid until a payed order is placed by the customer. The
+			 * "count" of the codes is decreased afterwards. If codes are not personalized
+			 * the codes can be reused in the next order until their "count" reaches zero.
+			 *
+			 * @param integer Positive number of coupon codes including zero
+			 * @since 2014.05
+			 * @category User
+			 * @category Developer
+			 */
+			$allowed = $this->getContext()->getConfig()->get( 'client/html/basket/standard/coupon/allowed', 1 );
+
+			if( $allowed <= count( $controller->get()->getCoupons() ) ) {
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'Number of coupon codes exceeds the limit' ) );
+			}
+
+			$controller->addCoupon( $coupon );
+			$this->clearCached();
+		}
 	}
 
 
@@ -540,6 +560,22 @@ class Standard
 			( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : array() ),
 			( isset( $values['warehouse'] ) ? (string) $values['warehouse'] : 'default' )
 		);
+	}
+
+
+	/**
+	 * Removes the coupon specified by the view parameters from the basket.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 */
+	protected function deleteCoupon( \Aimeos\MW\View\Iface $view )
+	{
+		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
+		{
+			$this->clearCached();
+			$controller = $this->getController();
+			$controller->deleteCoupon( $coupon );
+		}
 	}
 
 

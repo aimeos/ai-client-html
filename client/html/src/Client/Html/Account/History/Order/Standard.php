@@ -19,7 +19,7 @@ namespace Aimeos\Client\Html\Account\History\Order;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Common\Client\Summary\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/account/history/order/standard/subparts
@@ -56,52 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/account/history/order/standard/subparts';
-
-	/** client/html/account/history/order/address/name
-	 * Name of the address part used by the account history order client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Account\History\Order\Address\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.02
-	 * @category Developer
-	 */
-
-	/** client/html/account/history/order/service/name
-	 * Name of the service part used by the account history order client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Account\History\Order\Service\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.02
-	 * @category Developer
-	 */
-
-	/** client/html/account/history/order/coupon/name
-	 * Name of the coupon part used by the account history order client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Account\History\Order\Coupon\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.02
-	 * @category Developer
-	 */
-
-	/** client/html/account/history/order/detail/name
-	 * Name of the detail part used by the account history order client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Account\History\Order\Detail\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2015.02
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'address', 'service', 'coupon', 'detail' );
-
+	private $subPartNames = array();
 	private $cache;
 
 
@@ -266,13 +221,13 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
-			$context = $this->getContext();
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-
-			$orderId = $view->param( 'his_id', null );
-
-			if( $orderId !== null )
+			if( ($orderId = $view->param( 'his_id', null ) ) !== null )
 			{
+				$context = $this->getContext();
+
+				$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+				$baseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+
 				$search = $manager->createSearch( true );
 				$expr = array(
 					$search->getConditions(),
@@ -289,8 +244,13 @@ class Standard
 					throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $orderId ) );
 				}
 
-				$baseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+
+				if( $orderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+					$view->summaryShowDownloadAttributes = true;
+				}
+
 				$view->summaryBasket = $baseManager->load( $orderItem->getBaseId() );
+				$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 				$view->orderItem = $orderItem;
 			}
 

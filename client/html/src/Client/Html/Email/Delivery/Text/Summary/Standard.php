@@ -19,7 +19,7 @@ namespace Aimeos\Client\Html\Email\Delivery\Text\Summary;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Common\Client\Summary\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/email/delivery/text/summary/standard/subparts
@@ -56,51 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/delivery/text/summary/standard/subparts';
-
-	/** client/html/email/delivery/text/summary/address/name
-	 * Name of the address part used by the email delivery text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Delivery\Text\Summary\Address\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/email/delivery/text/summary/service/name
-	 * Name of the service part used by the email delivery text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Delivery\Text\Summary\Service\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/email/delivery/text/summary/coupon/name
-	 * Name of the coupon part used by the email delivery text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Delivery\Text\Summary\Coupon\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.05
-	 * @category Developer
-	 */
-
-	/** client/html/email/delivery/text/summary/detail/name
-	 * Name of the detail part used by the email delivery text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Delivery\Text\Detail\Address\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'address', 'service', 'coupon', 'detail' );
+	private $subPartNames = array();
 
 
 	/**
@@ -257,6 +213,13 @@ class Standard
 	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
 	{
 		$view->summaryBasket = $view->extOrderBaseItem;
+
+		// we can't cache the calculation because the same client object is used for all e-mails
+		$view->summaryTaxRates = $this->getTaxRates( $view->extOrderBaseItem );
+
+		if( $view->extOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+			$view->summaryShowDownloadAttributes = true;
+		}
 
 		return $view;
 	}
