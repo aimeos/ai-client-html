@@ -78,6 +78,6 @@ $retryUrl = $this->url( $target, $controller, $action, $params, array(), $config
 	</div>
 
 
-	<?php $this->block()->get( 'checkout/confirm/order' ); ?>
+	<?php echo $this->block()->get( 'checkout/confirm/order' ); ?>
 
 </section>

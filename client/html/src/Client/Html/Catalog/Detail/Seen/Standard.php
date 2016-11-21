@@ -295,7 +295,7 @@ class Standard
 			 * @see client/html/catalog/detail/seen/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/detail/seen/standard/template-body';
-			$default = 'catalog/detail/seen-default.php';
+			$default = 'catalog/detail/seen-partial-default.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 

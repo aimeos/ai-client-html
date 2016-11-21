@@ -67,7 +67,7 @@ $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', arr
 				<div class="content">
 					<?php $coupons = $this->standardBasket->getCoupons(); ?>
 
-					<?php if( count( $coupons ) <= $this->config( 'client/html/basket/standard/coupon/allowed', 1 ) ) : ?>
+					<?php if( count( $coupons ) < $this->config( 'client/html/basket/standard/coupon/allowed', 1 ) ) : ?>
 						<div class="coupon-new">
 							<input class="coupon-code" name="<?php echo $enc->attr( $this->formparam( 'b_coupon' ) ); ?>" type="text" maxlength="255" />
 							<button class="standardbutton" type="submit"><?php echo $enc->html( $this->translate( 'client', '+' ) ); ?></button>

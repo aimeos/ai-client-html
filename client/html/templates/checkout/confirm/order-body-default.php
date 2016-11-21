@@ -7,6 +7,9 @@
 
 $enc = $this->encoder();
 
+$addresses = $this->summaryBasket->getAddresses();
+$services = $this->summaryBasket->getServices();
+
 
 ?>
 <?php $this->block()->start( 'checkout/confirm/order' ); ?>

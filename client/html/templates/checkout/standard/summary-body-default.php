@@ -9,6 +9,10 @@
 $enc = $this->encoder();
 $errors = $this->get( 'summaryErrorCodes', array() );
 
+$addresses = $this->standardBasket->getAddresses();
+$services = $this->standardBasket->getServices();
+
+
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 $basketCntl = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );

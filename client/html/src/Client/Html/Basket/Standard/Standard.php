@@ -365,7 +365,7 @@ class Standard
 			 * @category Developer
 			 * @category User
 			 */
-			$check = $view->config( 'client/html/basket/standard/check', 1 );
+			$check = (int) $view->config( 'client/html/basket/standard/check', 1 );
 
 			switch( $check )
 			{

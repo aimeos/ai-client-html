@@ -66,6 +66,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertContains( '<section class="aimeos checkout-confirm">', $output );
 		$this->assertContains( '<div class="checkout-confirm-retry">', $output );
 		$this->assertContains( '<div class="checkout-confirm-basic">', $output );
+		$this->assertContains( '<div class="checkout-confirm-detail', $output );
 		$this->assertRegExp( '#<span class="value">.*' . $orderid . '.*</span>#smU', $output );
 	}
 
