@@ -71,7 +71,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['delivery'] ) ) : ?>
+				<?php if( isset( $services['delivery'] ) ) : ?>
 					<?php echo $this->partial(
 						$this->config( 'client/html/common/summary/service', 'common/summary/service-default.php' ),
 						array( 'service' => $services['delivery'], 'type' => 'delivery' )
@@ -86,7 +86,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['payment'] ) ) : ?>
+				<?php if( isset( $services['payment'] ) ) : ?>
 					<?php echo $this->partial(
 						$this->config( 'client/html/common/summary/service', 'common/summary/service-default.php' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
