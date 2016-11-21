@@ -145,9 +145,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 			</div>
 
 			<div class="content">
-				<textarea class="comment-value" name="<?php echo $this->formparam( array( 'cs_comment' ) ); ?>">
-					<?php echo $enc->html( $this->standardBasket->getComment() ); ?>
-				</textarea>
+				<textarea class="comment-value" name="<?php echo $this->formparam( array( 'cs_comment' ) ); ?>"><?php echo $enc->html( $this->standardBasket->getComment() ); ?></textarea>
 			</div>
 		</div>
 	</div>
