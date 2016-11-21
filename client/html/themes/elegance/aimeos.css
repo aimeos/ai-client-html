@@ -811,7 +811,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 /* text list */
-.product .text-list {
+.aimeos .product .text-list {
 	text-align: left;
 	overflow: hidden;
 	line-height: 1.1;
@@ -824,7 +824,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	margin: 0.5em;
 }
 
-.product .text-list h2 {
+.aimeos .product .text-list h2 {
 	text-transform: uppercase;
 	font-weight: normal;
 	font-size: 100%;
@@ -833,13 +833,13 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	margin: 0;
 }
 
-.product .text-list .text-item {
+.aimeos .product .text-list .text-item {
 	overflow: hidden;
 	height: 2em;
 }
 
 /* price list */
-.product .price {
+.aimeos .product .price {
 	box-sizing: content-box;
 	text-align: left;
 	margin: 0.5em;
