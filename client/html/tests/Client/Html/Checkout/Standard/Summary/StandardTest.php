@@ -67,6 +67,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertContains( '<div class="checkout-standard-summary-option container">', $output );
 		$this->assertContains( '<div class="checkout-standard-summary-option-account">', $output );
 		$this->assertContains( '<div class="checkout-standard-summary-option-terms">', $output );
+
+		$this->assertContains( 'Example company', $output );
+		$this->assertContains( 'unitpaymentlabel', $output );
+		$this->assertContains( 'unitlabel', $output );
 	}
 
 
