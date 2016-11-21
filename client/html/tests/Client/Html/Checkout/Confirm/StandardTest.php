@@ -68,6 +68,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertContains( '<div class="checkout-confirm-basic">', $output );
 		$this->assertContains( '<div class="checkout-confirm-detail', $output );
 		$this->assertRegExp( '#<span class="value">.*' . $orderid . '.*</span>#smU', $output );
+
+		$this->assertContains( 'mr  Our Unittest', $output );
+		$this->assertContains( 'Example company', $output );
+
+		$this->assertContains( 'solucia', $output );
+		$this->assertContains( 'paypal', $output );
+
+		$this->assertContains( 'This is a comment', $output );
 	}
 
 
