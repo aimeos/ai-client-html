@@ -10,7 +10,7 @@ $enc = $this->encoder();
 
 
 ?>
-<?php if( $this->param( 'l_pos' ) !== null ) : ?>
+<?php if( $this->param( 'd_pos' ) !== null ) : ?>
 <!-- catalog.stage.navigator -->
 
 	<?php	if( isset( $this->navigationPrev ) ) : ?>

@@ -12,7 +12,7 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'catalog/stage/navigator' ); ?>
 <!-- catalog.stage.navigator -->
 
-	<?php if( $this->param( 'l_pos' ) !== null ) : ?>
+	<?php if( $this->param( 'd_pos' ) !== null ) : ?>
 		<div class="catalog-stage-navigator">
 			<nav>
 

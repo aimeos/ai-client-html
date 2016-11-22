@@ -287,7 +287,7 @@ class Standard
 	{
 		if( !isset( $this->view ) )
 		{
-			if( ( $pos = $view->param( 'l_pos' ) ) !== null && ( $pid = $view->param( 'd_prodid' ) ) !== null )
+			if( ( $pos = $view->param( 'd_pos' ) ) !== null && ( $pid = $view->param( 'd_prodid' ) ) !== null )
 			{
 				if( $pos < 1 ) {
 					$start = 0; $size = 2;
@@ -321,7 +321,7 @@ class Standard
 						$param = array(
 							'd_prodid' => $product->getId(),
 							'd_name' => $enc->url( $product->getName( 'url ' ) ),
-							'l_pos' => $pos - 1
+							'd_pos' => $pos - 1
 						);
 						$view->navigationPrev = $view->url( $target, $controller, $action, $param, array(), $config );
 					}
@@ -331,7 +331,7 @@ class Standard
 						$param = array(
 							'd_prodid' => $product->getId(),
 							'd_name' => $enc->url( $product->getName( 'url' ) ),
-							'l_pos' => $pos + 1
+							'd_pos' => $pos + 1
 						);
 						$view->navigationNext = $view->url( $target, $controller, $action, $param, array(), $config );
 					}

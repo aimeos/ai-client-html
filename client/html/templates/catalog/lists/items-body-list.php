@@ -29,7 +29,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 			<?php
 				$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
 				$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id );
-				if( $position !== null ) { $params['l_pos'] = $position++; }
+				if( $position !== null ) { $params['d_pos'] = $position++; }
 
 				$url = $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig );
 			?>

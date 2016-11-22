@@ -41,7 +41,7 @@ if( $this->get( 'basket-add', false ) )
 		<?php
 			$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
 			$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id );
-			if( $position !== null ) { $params['l_pos'] = $position++; }
+			if( $position !== null ) { $params['d_pos'] = $position++; }
 		?>
 
 		--><li class="product <?php echo $enc->attr( $css ); ?>"

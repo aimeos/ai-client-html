@@ -388,7 +388,7 @@ class Standard
 	 */
 	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) )
 	{
-		if( isset( $params['l_pos'] ) && isset( $params['d_prodid'] ) )
+		if( isset( $params['d_pos'] ) && isset( $params['d_prodid'] ) )
 		{
 			$context = $this->getContext();
 			$site = $context->getLocale()->getSite()->getCode();
@@ -423,7 +423,6 @@ class Standard
 		if( !isset( $this->cache ) )
 		{
 			$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
-			unset( $params['l_pos'] ); // @todo Rename to d_pos
 
 			if( isset( $params['f_catid'] ) && $params['f_catid'] != '' )
 			{
