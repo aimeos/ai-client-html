@@ -254,11 +254,10 @@ abstract class Base
 	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given item.
 	 *
 	 * @param array|\Aimeos\MShop\Common\Item\Iface $items Item or list of items, maybe with associated list items
-	 * @param string $domain Name of the domain the item is from
 	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
 	 * @param array &$tags List of tags the new tags will be added to
 	 */
-	protected function addMetaItem( $items, $domain, &$expire, array &$tags )
+	protected function addMetaItems( $items, &$expire, array &$tags )
 	{
 		/** client/html/common/cache/tag-all
 		 * Adds tags for all items used in a cache entry
@@ -298,13 +297,32 @@ abstract class Base
 			$items = array( $items );
 		}
 
-		if( $tagAll !== true && !empty( $items ) ) {
-			$tags[] = $domain;
+		$expires = $idMap = array();
+
+		foreach( $items as $item )
+		{
+			if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface )
+			{
+				$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
+				$idMap[ $item->getResourceType() ][] = $item->getId();
+			}
+
+			$this->addMetaItemSingle( $item, $expires, $tags, $tagAll );
 		}
 
-		foreach( $items as $item ) {
-			$this->addMetaItemSingle( $item, $domain, $expire, $tags, $tagAll );
+		foreach( $idMap as $domain => $ids ) {
+			$this->addMetaItemList( $ids, $domain, $expires );
 		}
+
+		if( $expire !== null ) {
+			$expires[] = $expire;
+		}
+
+		if( !empty( $expires ) ) {
+			$expire = min( $expires );
+		}
+
+		$tags = array_unique( $tags );
 	}
 
 
@@ -312,30 +330,22 @@ abstract class Base
 	 * Adds expire date and tags for a single item.
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item, maybe with associated list items
-	 * @param string $domain Name of the domain the item is from
-	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @param array &$expires Will contain the list of expiration dates
 	 * @param array &$tags List of tags the new tags will be added to
 	 * @param boolean $tagAll True of tags for all items should be added, false if only for the main item
 	 */
-	private function addMetaItemSingle( \Aimeos\MShop\Common\Item\Iface $item, $domain, &$expire, array &$tags, $tagAll )
+	private function addMetaItemSingle( \Aimeos\MShop\Common\Item\Iface $item, array &$expires, array &$tags, $tagAll )
 	{
-		$expires = array();
-		$domain = str_replace( '/', '_', $domain ); // maximum compatiblity
+		$domain = str_replace( '/', '_', $item->getResourceType() ); // maximum compatiblity
 
 		if( $tagAll === true ) {
 			$tags[] = $domain . '-' . $item->getId();
+		} else {
+			$tags[] = $domain;
 		}
 
 		if( $item instanceof \Aimeos\MShop\Common\Item\Time\Iface && ( $date = $item->getDateEnd() ) !== null ) {
 			$expires[] = $date;
-		}
-
-		if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface ) {
-			$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
-		}
-
-		if( !empty( $expires ) ) {
-			$expire = min( $expires );
 		}
 	}
 
@@ -344,7 +354,7 @@ abstract class Base
 	 * Adds expire date and tags for referenced items
 	 *
 	 * @param \Aimeos\MShop\Common\Item\ListRef\Iface $item Item with associated list items
-	 * @param array &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @param array &$expires Will contain the list of expiration dates
 	 * @param array &$tags List of tags the new tags will be added to
 	 * @param boolean $tagAll True of tags for all items should be added, false if only for the main item
 	 */
@@ -368,9 +378,9 @@ abstract class Base
 	 *
 	 * @param array|string $ids Item ID or list of item IDs from the given domain
 	 * @param string $domain Name of the domain the item IDs are from
-	 * @param string|null &$expire Expiration date that will be overwritten if an start date in the future is available
+	 * @param array &$expires Will contain the list of expiration dates
 	 */
-	protected function addMetaList( $ids, $domain, &$expire )
+	private function addMetaItemList( $ids, $domain, array &$expires )
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), $domain . '/lists' );
 
@@ -384,7 +394,7 @@ abstract class Base
 		$search->setSlice( 0, 1 );
 
 		foreach( $manager->searchItems( $search ) as $listItem ) {
-			$expire = $this->expires( $expire, $listItem->getDateStart() );
+			$expires[] = $listItem->getDateStart();
 		}
 	}
 
@@ -438,7 +448,6 @@ abstract class Base
 	{
 		return ( $first !== null ? ( $second !== null ? min( $first, $second ) : $first ) : $second );
 	}
-
 
 	/**
 	 * Returns the parameters used by the html client.

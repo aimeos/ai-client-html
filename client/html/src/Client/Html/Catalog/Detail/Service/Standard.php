@@ -266,9 +266,7 @@ class Standard
 			$domains = $config->get( 'client/html/catalog/detail/service/domains', array( 'text', 'price' ) );
 
 			$services = $manager->searchItems( $search, $domains );
-
-			$this->addMetaItem( $services, 'service', $this->expire, $this->tags );
-			$this->addMetaList( array_keys( $services ), 'service', $this->expire );
+			$this->addMetaItems( $services, $this->expire, $this->tags );
 
 			$view->serviceItems = $services;
 

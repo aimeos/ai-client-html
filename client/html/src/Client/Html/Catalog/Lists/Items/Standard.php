@@ -322,25 +322,19 @@ class Standard
 				$productIds = $this->getProductIds( $products );
 				$productManager = $controller->createManager( 'product' );
 				$productItems = $this->getDomainItems( $productManager, 'product.id', $productIds, $domains );
-
-				$this->addMetaItem( $productItems, 'product', $this->expire, $this->tags );
-				$this->addMetaList( array_keys( $productItems ), 'product', $this->expire );
+				$this->addMetaItems( $productItems, $this->expire, $this->tags );
 
 
 				$attrIds = $this->getAttributeIds( $productItems );
 				$attributeManager = $controller->createManager( 'attribute' );
 				$attributeItems = $this->getDomainItems( $attributeManager, 'attribute.id', $attrIds, $domains );
-
-				$this->addMetaItem( $attributeItems, 'attribute', $this->expire, $this->tags );
-				$this->addMetaList( array_keys( $attributeItems ), 'attribute', $this->expire );
+				$this->addMetaItems( $attributeItems, $this->expire, $this->tags );
 
 
 				$mediaIds = $this->getMediaIds( $productItems );
 				$mediaManager = $controller->createManager( 'media' );
 				$mediaItems = $this->getDomainItems( $mediaManager, 'media.id', $mediaIds, $domains );
-
-				$this->addMetaItem( $mediaItems, 'media', $this->expire, $this->tags );
-				$this->addMetaList( array_keys( $mediaItems ), 'media', $this->expire );
+				$this->addMetaItems( $mediaItems, $this->expire, $this->tags );
 
 
 				if( !empty( $productIds ) && $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {

@@ -346,9 +346,7 @@ class Standard
 			}
 
 
-			$this->addMetaItem( $products, 'product', $this->expire, $this->tags );
-			$this->addMetaList( array_keys( $products ), 'product', $this->expire );
-
+			$this->addMetaItems( $products, $this->expire, $this->tags );
 
 			$view->promoItems = $products;
 

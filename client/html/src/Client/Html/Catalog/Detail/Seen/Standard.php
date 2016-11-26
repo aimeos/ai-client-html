@@ -264,9 +264,7 @@ class Standard
 			$domains = $config->get( 'client/html/catalog/detail/seen/domains', $domains );
 
 			$view->seenProductItem = \Aimeos\MShop\Factory::createManager( $context, 'product' )->getItem( $id, $domains );
-
-			$this->addMetaItem( $view->seenProductItem, 'product', $expire, $tags );
-			$this->addMetaList( $view->seenProductItem->getId(), 'product', $expire );
+			$this->addMetaItems( $view->seenProductItem, $expire, $tags );
 
 			$output = '';
 			foreach( $this->getSubClients() as $subclient ) {

@@ -308,7 +308,7 @@ class Standard
 	 */
 	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, &$expire, array &$tags = array() )
 	{
-		$this->addMetaItem( $tree, 'catalog', $expire, $tags );
+		$this->addMetaItems( $tree, $expire, $tags );
 
 		foreach( $tree->getChildren() as $child ) {
 			$this->addMetaItemCatalog( $child, $expire, $tags );

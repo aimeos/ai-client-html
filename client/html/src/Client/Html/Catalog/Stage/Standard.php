@@ -467,8 +467,7 @@ class Standard
 					$view->stageCurrentCatItem = $categoryItem;
 				}
 
-				$this->addMetaItem( $stageCatPath, 'catalog', $this->expire, $this->tags );
-				$this->addMetaList( array_keys( $stageCatPath ), 'catalog', $this->expire );
+				$this->addMetaItems( $stageCatPath, $this->expire, $this->tags );
 
 				$view->stageCatPath = $stageCatPath;
 			}

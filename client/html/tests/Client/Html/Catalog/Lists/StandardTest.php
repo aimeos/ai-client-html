@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
 		$this->assertStringStartsWith( '	<title>Kaffee</title>', $output );
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
+		$this->assertEquals( '2019-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}
 
@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertContains( '<div class="catalog-list-head">', $output );
 		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
 
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
+		$this->assertEquals( '2019-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}
 

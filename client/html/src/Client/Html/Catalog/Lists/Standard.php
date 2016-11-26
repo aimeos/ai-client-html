@@ -462,9 +462,7 @@ class Standard
 				}
 
 				$view->listCatPath = $listCatPath;
-
-				$this->addMetaItem( $listCatPath, 'catalog', $this->expire, $this->tags );
-				$this->addMetaList( array_keys( $listCatPath ), 'catalog', $this->expire );
+				$this->addMetaItems( $listCatPath, $this->expire, $this->tags );
 			}
 
 			/** client/html/catalog/lists/stock/enable
@@ -493,9 +491,7 @@ class Standard
 			}
 
 
-			$this->addMetaItem( $products, 'product', $this->expire, $this->tags );
-			$this->addMetaList( array_keys( $products ), 'product', $this->expire );
-
+			$this->addMetaItems( $products, $this->expire, $this->tags );
 			// Delete cache when products are added or deleted even when in "tag-all" mode
 			$this->tags[] = 'product';
 

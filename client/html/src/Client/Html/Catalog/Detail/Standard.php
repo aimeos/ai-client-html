@@ -442,9 +442,7 @@ class Standard
 
 
 			$productItem = $this->getProductItem( $prodid, $domains );
-
-			$this->addMetaItem( $productItem, 'product', $this->expire, $this->tags );
-			$this->addMetaList( $prodid, 'product', $this->expire );
+			$this->addMetaItems( $productItem, $this->expire, $this->tags );
 
 
 			$productManager = $controller->createManager( 'product' );
@@ -464,16 +462,12 @@ class Standard
 
 			$attributeManager = $controller->createManager( 'attribute' );
 			$attributeItems = $this->getDomainItems( $attributeManager, 'attribute.id', $attrIds, $domains );
-
-			$this->addMetaItem( $attributeItems, 'attribute', $this->expire, $this->tags );
-			$this->addMetaList( array_keys( $attributeItems ), 'attribute', $this->expire );
+			$this->addMetaItems( $attributeItems, $this->expire, $this->tags );
 
 
 			$mediaManager = $controller->createManager( 'media' );
 			$mediaItems = $this->getDomainItems( $mediaManager, 'media.id', $mediaIds, $domains );
-
-			$this->addMetaItem( $mediaItems, 'media', $this->expire, $this->tags );
-			$this->addMetaList( array_keys( $mediaItems ), 'media', $this->expire );
+			$this->addMetaItems( $mediaItems, $this->expire, $this->tags );
 
 
 			$propertyManager = $controller->createManager( 'product/property' );
