@@ -57,17 +57,6 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/stage/standard/subparts';
 
-	/** client/html/catalog/stage/breadcrumb/name
-	 * Name of the breadcrumb part used by the catalog stage client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Stage\Breadcrumb\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
 	/** client/html/catalog/stage/navigator/name
 	 * Name of the navigator part used by the catalog stage client implementation
 	 *
@@ -78,7 +67,7 @@ class Standard
 	 * @since 2014.09
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'breadcrumb', 'navigator' );
+	private $subPartNames = array( 'navigator' );
 
 	private $tags = array();
 	private $expire;

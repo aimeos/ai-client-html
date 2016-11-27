@@ -26,6 +26,13 @@ foreach( array_reverse( $catPath ) as $catItem )
 	}
 }
 
+$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
+$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
+$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
+$listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
+
+$params = $this->get( 'stageParams', array() );
+
 
 ?>
 <section class="aimeos catalog-stage<?php echo $enc->attr( $classes ); ?>">
@@ -38,13 +45,40 @@ foreach( array_reverse( $catPath ) as $catItem )
 		</ul>
 	<?php endif; ?>
 
+
 	<div class="catalog-stage-image">
 		<?php foreach( $mediaItems as $media ) : ?>
 			<img src="<?php echo $this->content( $media->getUrl() ); ?>" alt="<?php echo $enc->attr( $media->getName() ); ?>" />
 		<?php endforeach; ?>
 	</div>
 
-	<?php echo $this->block()->get( 'catalog/stage/breadcrumb' ); ?>
+
+	<div class="catalog-stage-breadcrumb">
+		<nav class="breadcrumb">
+			<span class="title"><?php echo $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ); ?></span>
+			<ol>
+
+				<?php if( isset( $this->stageCatPath ) ) : ?>
+					<?php foreach( (array) $this->stageCatPath as $cat ) : $params['f_catid'] = $cat->getId(); ?>
+						<li>
+							<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array( $cat->getName() ), $listConfig ) ); ?>">
+								<?php echo $enc->html( $cat->getName() ); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				<?php else : ?>
+					<li>
+						<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array(), $listConfig ) ); ?>">
+							<?php echo $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ); ?>
+						</a>
+					</li>
+				<?php endif; ?>
+
+			</ol>
+		</nav>
+	</div>
+
+
 	<?php echo $this->block()->get( 'catalog/stage/navigator' ); ?>
 
 </section>
