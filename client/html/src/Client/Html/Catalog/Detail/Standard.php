@@ -121,7 +121,7 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/detail';
 
-		if( $context->getUserId() != null || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->getView();
 
@@ -209,7 +209,7 @@ class Standard
 		$confkey = 'client/html/catalog/detail';
 
 
-		if( $context->getUserId() != null || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
+		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->getView();
 
