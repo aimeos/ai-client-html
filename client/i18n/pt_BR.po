@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
+"POT-Creation-Date: 2016-12-02 10:51+0100\n"
 "PO-Revision-Date: 2016-08-15 10:58+0000\n"
 "Last-Translator: Bruno Rodrigues <brunojti@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #, php-format
@@ -25,14 +25,10 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d item"
 msgstr[1] "%1$d itens"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -48,7 +44,20 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -60,8 +69,7 @@ msgstr "%2$s %1$s"
 msgid "%1$s %2$s off"
 msgstr "%2$s %1$s de desconto"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
+#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%3$s%2$s )"
@@ -76,8 +84,7 @@ msgstr "%1$s em %2$s"
 msgid "%1$s%%"
 msgstr "%1$s%%"
 
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
+#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%3$s%1$s + %3$s%2$s"
@@ -85,8 +92,7 @@ msgstr "%3$s%1$s + %3$s%2$s"
 msgid "+"
 msgstr "+"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %2$s %1$s/item"
@@ -136,12 +142,21 @@ msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
 "\n"
 "This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Todas as encomendas enviadas estão sujeitas aos nossos termos e condições, os quais estão disponíveis em nosso site e que você aceitou ao realizar seu pedido.\n\nEste e-mail contêm informação confidencial e é de uso exclusivo à pessoa ao qual está endereçado. Caso você não seja esta pessoa por favor responda este e-mail e após isso exclua-o juntamente com seus anexos."
+msgstr ""
+"Todas as encomendas enviadas estão sujeitas aos nossos termos e condições, os quais estão disponíveis em nosso site e que você aceitou ao realizar seu pedido.\n"
+"\n"
+"Este e-mail contêm informação confidencial e é de uso exclusivo à pessoa ao qual está endereçado. Caso você não seja esta pessoa por favor responda este e-mail e após isso exclua-o juntamente com seus anexos."
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
-msgstr "Todos os pedidos estão sujeitos aos nossos termos e condições, os quais estão disponíveis em nosso site e que você aceitou ao realizar seu pedido.\n\nEste e-mail contêm informação confidencial e é de uso exclusivo à pessoa ao qual está endereçado. Caso você não seja esta pessoa por favor responda este e-mail e após isso exclua-o juntamente com seus anexos."
+msgstr ""
+"Todos os pedidos estão sujeitos aos nossos termos e condições, os quais estão disponíveis em nosso site e que você aceitou ao realizar seu pedido.\n"
+"\n"
+"Este e-mail contêm informação confidencial e é de uso exclusivo à pessoa ao qual está endereçado. Caso você não seja esta pessoa por favor responda este e-mail e após isso exclua-o juntamente com seus anexos."
 
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
 msgid "An account has been created for you."
 msgstr "Uma conta foi criada para você"
 
@@ -176,12 +191,26 @@ msgstr "Parte \"%1$s\" do endereço de cobrança é inválida"
 msgid "Billing address part \"%1$s\" is missing"
 msgstr "Parte \"%1$s\" do endereço de cobrança está faltando"
 
+msgid "Birthday"
+msgstr ""
+
 msgid "Bundled products"
 msgstr "Produtos em pacotes"
 
 msgid "Buy now"
 msgstr "Comprar agora"
 
+#. /html/catalog/filter/partials/tree
+#. * Relative path to the category tree partial template file
+#. *
+#. * Partials are templates which are reused in other templates and generate
+#. * reoccuring blocks filled with data from the assigned values. The tree
+#. * partial creates an HTML block of nested lists for category trees.
+#. *
+#. * @param string Relative path to the template file
+#. * @since 2017.01
+#. * @category Developer
+#.
 msgid "Categories"
 msgstr "Categorias"
 
@@ -245,14 +274,22 @@ msgstr "Códigos de cupons"
 msgid "Coupons"
 msgstr "Cupons"
 
+#, fuzzy
+msgid "Create account"
+msgstr "Sua conta"
+
+#, fuzzy
+msgid "Create customer account"
+msgstr "Outros clientes também compraram"
+
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
 msgstr "Cliente com ID %1$s não encontrado"
 
 #. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
 #. and last name (%3$s)
-#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
-#. and last name (%3$s)
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s) and last name (%3$s)
+#. / E-mail intro with salutation (%1$s), first name (%2$s) and last name (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Prezado %1$s %2$s %3$s"
@@ -299,6 +336,10 @@ msgstr "Fax"
 msgid "Fields with an * are mandatory"
 msgstr "Os campos com * são obrigatórios"
 
+#, php-format
+msgid "File \"1%s\" doesn't exist"
+msgstr ""
+
 msgid "Filter"
 msgstr "Filtro"
 
@@ -312,11 +353,7 @@ msgid "Go"
 msgstr "Ir"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr "Eu aceito os <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">termos e condições</a> e a <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">política de privacidade</a>"
 
 msgid "If back in stock"
@@ -326,6 +363,9 @@ msgid "If price decreases"
 msgstr "Se o preço baixar"
 
 #. / E-mail outro
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Se tiver alguma dúvida, por favor responda este e-mail"
 
@@ -381,9 +421,7 @@ msgid "Next"
 msgstr "Próximo"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "Nenhum item encontrado para <span class=\"searchstring\">\"%1$s\"</span>. Por favor, tente novamente com outra palavra-chave."
 
 #, php-format
@@ -536,9 +574,7 @@ msgstr "Pesquisar"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "Resultado da busca por  <span class=\"searchstring\">\"%1$s\"</span> (%2$d item)"
 msgstr[1] "Resultado da busca por  <span class=\"searchstring\">\"%1$s\"</span> (%2$d itens)"
 
@@ -580,16 +616,14 @@ msgstr "Estado"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
+#. / Stock string composition with stock type (%1$s, normally left out) and stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Estoque: %1$s, %2$s"
 
 #. / Stock string composition with stock type (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
+#. / Stock string composition with stock type (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Estoque: %1$s, %2$s, de volta em %3$s"
@@ -618,63 +652,68 @@ msgstr "Termos e condições"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Obrigado pelo seu pedido %1$s de %2$s."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Obrigado pelo seu pedido %1$s de %2$s.\n\nO pedido estará pendente até o recebimento do pagamento. Se você preferir adiantar o pagamento, por favor transfira o dinheiro para a nossa conta bancária com o ID do pedido %1$s como referência."
+msgstr ""
+"Obrigado pelo seu pedido %1$s de %2$s.\n"
+"\n"
+"O pedido estará pendente até o recebimento do pagamento. Se você preferir adiantar o pagamento, por favor transfira o dinheiro para a nossa conta bancária com o ID do pedido %1$s como referência."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr "Obrigado pelo seu pedido %1$s de %2$s.\n\nNós recebemos o pagamento e iremos providenciar o envio."
+msgstr ""
+"Obrigado pelo seu pedido %1$s de %2$s.\n"
+"\n"
+"Nós recebemos o pagamento e iremos providenciar o envio."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Obrigado pelo seu pedido e por autorizar o pagamento.\nEm breve lhe será enviado um e-mail com os detalhes do pedido."
+msgstr ""
+"Obrigado pelo seu pedido e por autorizar o pagamento.\n"
+"Em breve lhe será enviado um e-mail com os detalhes do pedido."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Obrigado pelo seu pedido.\nRecebemos seu pagamento e em breve será enviado um e-mail com os detalhes do pedido."
+msgstr ""
+"Obrigado pelo seu pedido.\n"
+"Recebemos seu pagamento e em breve será enviado um e-mail com os detalhes do pedido."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "O status do pedido %1$s foi alterado de %2$s para \"%3$s\"."
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr "O pedido foi cancelado.\nDeseja refazer seu pedido?"
+msgstr ""
+"O pedido foi cancelado.\n"
+"Deseja refazer seu pedido?"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "O seu pedido %1$s de %2$s não pôde ser entregue."
@@ -682,12 +721,13 @@ msgstr "O seu pedido %1$s de %2$s não pôde ser entregue."
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "A confirmação de pagamento do seu pedido ainda está pendente.\nVocê irá receber um e-mail assim que o pagamento for autorizado."
+msgstr ""
+"A confirmação de pagamento do seu pedido ainda está pendente.\n"
+"Você irá receber um e-mail assim que o pagamento for autorizado."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "O pagamento do pedido %1$s de %2$s foi ressarcido"
@@ -732,7 +772,9 @@ msgstr "Não foi possível definir a entrada de cache: %1$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr "Infelizmente o pagamento do seu pedido foi recusado.\nDeseja tentar novamente?"
+msgstr ""
+"Infelizmente o pagamento do seu pedido foi recusado.\n"
+"Deseja tentar novamente?"
 
 msgid "Update"
 msgstr "Atualizar"
@@ -748,8 +790,7 @@ msgstr "Produtos acompanhados"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "Nós recebemos a devolução de seu pedido %1$s de %2$s."
@@ -760,8 +801,7 @@ msgstr "Site"
 msgid "X"
 msgstr "X"
 
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
+#. / Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
@@ -777,6 +817,14 @@ msgstr "Sua conta"
 msgid "Your choice"
 msgstr "Sua escolha"
 
+#, fuzzy
+msgid "Your comment"
+msgstr "Sua conta"
+
+#. / Account creation e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
 #. / Account creation e-mail subject
 msgid "Your new account"
 msgstr "Sua nova conta"
@@ -815,14 +863,40 @@ msgstr "Sua nova conta"
 #. / Payment e-mail subject with order ID
 #. / Delivery e-mail subject with order ID
 #. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
 msgstr "Seu pedido %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Seu pedido %1$s de %2$s foi despachado."
@@ -830,6 +904,10 @@ msgstr "Seu pedido %1$s de %2$s foi despachado."
 msgid "Your search result"
 msgstr "Resultados da pesquisa"
 
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Seus produtos observados"
@@ -856,6 +934,47 @@ msgstr "igual ao endereço de cobrança"
 msgid "new address"
 msgstr "novo endereço"
 
+#. /html/catalog/attribute/type
+#. * List of layout types for the optional attributes
+#. *
+#. * Each product can contain optional attributes and this configuration setting
+#. * allows you to change how these attributs will be displayed, either as
+#. * drop-down menu (value: "select") or as list of radio buttons (value:
+#. * "radio").
+#. *
+#. * The key for each value must be the type code of the attribute, e.g. "width",
+#. * "length", "color" or similar types. You can set the layout for all
+#. * attributes at once using e.g.
+#. *
+#. *  client/html/catalog/attribute/type = array(
+#. *      'width' => 'select',
+#. *      'color' => 'radio',
+#. *  )
+#. *
+#. * Similarly, you can set the layout type for a specific attribute only,
+#. * leaving the rest untouched:
+#. *
+#. *  client/html/catalog/attribute/type/color = radio
+#. *
+#. * Note: Up to 2015.10 this option was available as
+#. /html/catalog/detail/basket/attribute/type
+#. *
+#. * @param array List of attribute types as key and layout types as value, e.g. "select" or "radio"
+#. * @since 2015.10
+#. * @category Developer
+#. * @category User
+#. * @see client/html/catalog/selection/type
+#.
+#. /html/catalog/attribute/type/color
+#. * Layout types for the color attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+#.
+#. /html/catalog/attribute/type/size
+#. * Layout types for the size attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+#.
 msgid "none"
 msgstr "nenhum"
 

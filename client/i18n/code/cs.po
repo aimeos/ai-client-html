@@ -16,15 +16,47 @@ msgstr ""
 "PO-Revision-Date: 2016-11-02 06:02+0000\n"
 "Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/aimeos/aimeos-core/language/cs/)\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. Product attribute
+msgid "color"
+msgstr "Barva"
 
 #. Address salutation
 msgid "company"
 msgstr "Společnost"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Číslo účtu"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "Vlastník účtu"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "Kód banky"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "Název banky"
+
+#. Favorite action
+msgid "favorite"
+msgstr "oblíbené"
+
+#. Product attribute
+msgid "length"
+msgstr "Délka"
+
+#. Address salutation
+msgid "miss"
+msgstr "Slečna"
 
 #. Address salutation
 msgid "mr"
@@ -34,29 +66,13 @@ msgstr "Pan"
 msgid "mrs"
 msgstr "Paní"
 
-#. Address salutation
-msgid "miss"
-msgstr "Slečna"
-
-#. Product attribute
-msgid "size"
-msgstr "Velikost"
-
-#. Product attribute
-msgid "length"
-msgstr "Délka"
-
-#. Product attribute
-msgid "width"
-msgstr "Šířka"
-
-#. Product attribute
-msgid "color"
-msgstr "Barva"
-
 #. Product attribute
 msgid "option"
 msgstr "Možnost"
+
+#. Order type value
+msgid "order:phone"
+msgstr "telefon"
 
 #. Order type value
 msgid "order:repeat"
@@ -66,9 +82,21 @@ msgstr "opakováno"
 msgid "order:web"
 msgstr "internet"
 
-#. Order type value
-msgid "order:phone"
-msgstr "telefon"
+#. Product property package-height
+msgid "package-height"
+msgstr "balík-výška"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "balík-délka"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "balík-hmotnost"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "balík-šířka"
 
 #. Payment status value
 msgid "pay:-1"
@@ -101,6 +129,41 @@ msgstr "autorizováno"
 #. Payment status value
 msgid "pay:6"
 msgstr "obdrženo"
+
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr "Číslo kreditní karty"
+
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr "Ověřovací číslo"
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr "Měsíc vypršení"
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr "Rok vypršení"
+
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Křestní jméno"
+
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Příjmení"
+
+#. Pin action
+msgid "pin"
+msgstr "připnout"
+
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
+msgstr "Velikost"
 
 #. Delivery status value
 msgid "stat:-1"
@@ -138,77 +201,14 @@ msgstr "odmítnuto"
 msgid "stat:7"
 msgstr "vráceno"
 
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "Vlastník účtu"
-
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "Číslo účtu"
-
-#. Direct debit service provider
-msgid "directdebit.bankcode"
-msgstr "Kód banky"
-
-#. Direct debit service provider
-msgid "directdebit.bankname"
-msgstr "Název banky"
-
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Křestní jméno"
-
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Příjmení"
-
-#. Omnipay service provider
-msgid "payment.cardno"
-msgstr "Číslo kreditní karty"
-
-#. Omnipay service provider
-msgid "payment.cvv"
-msgstr "Ověřovací číslo"
-
-#. Omnipay service provider
-msgid "payment.expirymonth"
-msgstr "Měsíc vypršení"
-
-#. Omnipay service provider
-msgid "payment.expiryyear"
-msgstr "Rok vypršení"
-
 #. Stock type
 msgid "stocktype:default"
 msgstr "standardní"
-
-#. Favorite action
-msgid "favorite"
-msgstr "oblíbené"
-
-#. Pin action
-msgid "pin"
-msgstr "připnout"
 
 #. Watch action
 msgid "watch"
 msgstr "sledovat"
 
-#. Product property package-length
-msgid "package-length"
-msgstr "balík-délka"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "balík-šířka"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "balík-výška"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "balík-hmotnost"
-
-msgid "price:default"
-msgstr "%1$s %2$s"
+#. Product attribute
+msgid "width"
+msgstr "Šířka"

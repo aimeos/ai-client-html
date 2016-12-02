@@ -16,15 +16,47 @@ msgstr ""
 "PO-Revision-Date: 2016-08-11 18:58+0000\n"
 "Last-Translator: Tadeu Pagliarini <tadeu_up@hotmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Product attribute
+msgid "color"
+msgstr "Cor"
 
 #. Address salutation
 msgid "company"
 msgstr "Empresa"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Número da conta"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "Titular da conta"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "Código do banco"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "Nome do Banco"
+
+#. Favorite action
+msgid "favorite"
+msgstr "adicionar aos favoritos"
+
+#. Product attribute
+msgid "length"
+msgstr "Comprimento"
+
+#. Address salutation
+msgid "miss"
+msgstr "Srta"
 
 #. Address salutation
 msgid "mr"
@@ -34,29 +66,13 @@ msgstr "Sr"
 msgid "mrs"
 msgstr "Sra"
 
-#. Address salutation
-msgid "miss"
-msgstr "Srta"
-
-#. Product attribute
-msgid "size"
-msgstr "Tamanho"
-
-#. Product attribute
-msgid "length"
-msgstr "Comprimento"
-
-#. Product attribute
-msgid "width"
-msgstr "Largura"
-
-#. Product attribute
-msgid "color"
-msgstr "Cor"
-
 #. Product attribute
 msgid "option"
 msgstr "Opção"
+
+#. Order type value
+msgid "order:phone"
+msgstr "tefefoneído"
 
 #. Order type value
 msgid "order:repeat"
@@ -66,9 +82,21 @@ msgstr "Mês de validade"
 msgid "order:web"
 msgstr "A"
 
-#. Order type value
-msgid "order:phone"
-msgstr "tefefoneído"
+#. Product property package-height
+msgid "package-height"
+msgstr "pacote-altura"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "pacote-comprimento"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "pacote-peso"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "pacote-largura"
 
 #. Payment status value
 msgid "pay:-1"
@@ -101,6 +129,41 @@ msgstr "autorizado"
 #. Payment status value
 msgid "pay:6"
 msgstr "recebido"
+
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr "Número do cartão de crédito"
+
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr "Dígito de verificação"
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr "Mês de validade"
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr "Ano de validade"
+
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Nome"
+
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Sobrenome"
+
+#. Pin action
+msgid "pin"
+msgstr "marcar"
+
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
+msgstr "Tamanho"
 
 #. Delivery status value
 msgid "stat:-1"
@@ -138,77 +201,14 @@ msgstr "recusado"
 msgid "stat:7"
 msgstr "devolvido"
 
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "Titular da conta"
-
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "Número da conta"
-
-#. Direct debit service provider
-msgid "directdebit.bankcode"
-msgstr "Código do banco"
-
-#. Direct debit service provider
-msgid "directdebit.bankname"
-msgstr "Nome do Banco"
-
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Nome"
-
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Sobrenome"
-
-#. Omnipay service provider
-msgid "payment.cardno"
-msgstr "Número do cartão de crédito"
-
-#. Omnipay service provider
-msgid "payment.cvv"
-msgstr "Dígito de verificação"
-
-#. Omnipay service provider
-msgid "payment.expirymonth"
-msgstr "Mês de validade"
-
-#. Omnipay service provider
-msgid "payment.expiryyear"
-msgstr "Ano de validade"
-
 #. Stock type
 msgid "stocktype:default"
 msgstr "armazém:padrão"
-
-#. Favorite action
-msgid "favorite"
-msgstr "adicionar aos favoritos"
-
-#. Pin action
-msgid "pin"
-msgstr "marcar"
 
 #. Watch action
 msgid "watch"
 msgstr "acompanhar"
 
-#. Product property package-length
-msgid "package-length"
-msgstr "pacote-comprimento"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "pacote-largura"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "pacote-altura"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "pacote-peso"
-
-msgid "price:default"
-msgstr "%1$s %2$s"
+#. Product attribute
+msgid "width"
+msgstr "Largura"

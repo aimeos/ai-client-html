@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
+"POT-Creation-Date: 2016-12-02 10:51+0100\n"
 "PO-Revision-Date: 2016-10-17 13:13+0000\n"
 "Last-Translator: Péter Kozma <kopegrafika@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
@@ -26,14 +26,10 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d cikk"
 msgstr[1] "%1$d cikk"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -49,7 +45,20 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
@@ -61,8 +70,7 @@ msgstr "%2$s %1$s"
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
+#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
@@ -77,8 +85,7 @@ msgstr "%1$s: %2$s"
 msgid "%1$s%%"
 msgstr "%1$s%%"
 
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
+#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s %3$s + %2$s %3$s"
@@ -86,8 +93,7 @@ msgstr "%1$s %3$s + %2$s %3$s"
 msgid "+"
 msgstr "+"
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
+#. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/db"
@@ -137,12 +143,21 @@ msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
 "\n"
 "This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "A kézbesítések menetéről az Általános Szerződési Feltételekben tájékozódhat, mely elérhető weboldalunkon, és amelyet megrendeléskor elfogad.\n\nJelen e-mailünk bizalmas információkat tartalmaz és kizárólag személyes felhasználásra címeztünk. Ha nem Ön a címzett, kérjük, válaszoljon az e-mailre, majd törölje a csatolmánnyal együtt."
+msgstr ""
+"A kézbesítések menetéről az Általános Szerződési Feltételekben tájékozódhat, mely elérhető weboldalunkon, és amelyet megrendeléskor elfogad.\n"
+"\n"
+"Jelen e-mailünk bizalmas információkat tartalmaz és kizárólag személyes felhasználásra címeztünk. Ha nem Ön a címzett, kérjük, válaszoljon az e-mailre, majd törölje a csatolmánnyal együtt."
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
-msgstr "Minden megrendelésre az Általános Szerződési Feltételek szabályozása érvényes, mely elérhető weboldalunkon, és amelyet megrendeléskor elfogad.\n\nJelen e-mailünk bizalmas információkat tartalmaz és kizárólag személyes felhasználásra címeztünk. Ha nem Ön a címzett, kérjük, válaszoljon az e-mailre, majd törölje a csatolmánnyal együtt."
+msgstr ""
+"Minden megrendelésre az Általános Szerződési Feltételek szabályozása érvényes, mely elérhető weboldalunkon, és amelyet megrendeléskor elfogad.\n"
+"\n"
+"Jelen e-mailünk bizalmas információkat tartalmaz és kizárólag személyes felhasználásra címeztünk. Ha nem Ön a címzett, kérjük, válaszoljon az e-mailre, majd törölje a csatolmánnyal együtt."
 
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
 msgid "An account has been created for you."
 msgstr "Felhasználói fiókja elkészült"
 
@@ -177,12 +192,26 @@ msgstr "A következő számlázási cím rész érvénytelen: \"%1$s\" "
 msgid "Billing address part \"%1$s\" is missing"
 msgstr "A következő számlázási cím rész hiányzik: \"%1$s\" "
 
+msgid "Birthday"
+msgstr ""
+
 msgid "Bundled products"
 msgstr "Csomagtermékek"
 
 msgid "Buy now"
 msgstr "Vásárlás"
 
+#. /html/catalog/filter/partials/tree
+#. * Relative path to the category tree partial template file
+#. *
+#. * Partials are templates which are reused in other templates and generate
+#. * reoccuring blocks filled with data from the assigned values. The tree
+#. * partial creates an HTML block of nested lists for category trees.
+#. *
+#. * @param string Relative path to the template file
+#. * @since 2017.01
+#. * @category Developer
+#.
 msgid "Categories"
 msgstr "Kategóriák"
 
@@ -246,14 +275,22 @@ msgstr "Kupon kódok"
 msgid "Coupons"
 msgstr "Kuponok"
 
+#, fuzzy
+msgid "Create account"
+msgstr "Fiókja"
+
+#, fuzzy
+msgid "Create customer account"
+msgstr "Mások is vásárolták"
+
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
 msgstr "\"%1$s\" azonosítóval nem található vásárló"
 
 #. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
 #. and last name (%3$s)
-#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
-#. and last name (%3$s)
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s) and last name (%3$s)
+#. / E-mail intro with salutation (%1$s), first name (%2$s) and last name (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Kedves %1$s %3$s %2$s"
@@ -300,6 +337,10 @@ msgstr "Fax"
 msgid "Fields with an * are mandatory"
 msgstr "A *-gal jelölt mezőket kötelező kitölteni "
 
+#, php-format
+msgid "File \"1%s\" doesn't exist"
+msgstr ""
+
 msgid "Filter"
 msgstr "Szűrő"
 
@@ -313,11 +354,7 @@ msgid "Go"
 msgstr "Mehet"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr "Elfogadom a <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">Általános Szerződési Feltételeket</a> és a <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">Adatkezelési Szabályzatot</a>"
 
 msgid "If back in stock"
@@ -327,6 +364,9 @@ msgid "If price decreases"
 msgstr "Ha az ár csökken"
 
 #. / E-mail outro
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Ha bármilyen kérdése van, kérjük, válaszoljon erre az e-mailre"
 
@@ -382,9 +422,7 @@ msgid "Next"
 msgstr "Következő"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "Nincs találtat a következő kulcsszóra: <span class=\"searchstring\">\"%1$s\"</span>. Kérjük, próbálkozzon egy másik kulcsszóval."
 
 #, php-format
@@ -537,9 +575,7 @@ msgstr "Keresés"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "Találat a következő keresési kifejezésre  <span class=\"searchstring\">\"%1$s\"</span> (%2$d cikk)"
 msgstr[1] "Találatok a következő keresési kifejezésre: <span class=\"searchstring\">\"%1$s\"</span> (%2$d cikk)"
 
@@ -581,16 +617,14 @@ msgstr "Állam"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
+#. / Stock string composition with stock type (%1$s, normally left out) and stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Raktáron: %1$s, %2$s"
 
 #. / Stock string composition with stock type (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
+#. / Stock string composition with stock type (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Raktáron: %1$s, %2$s, újra raktáron: %3$s"
@@ -619,27 +653,27 @@ msgstr "Általános Szerződési Feltételek"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
 msgstr "Köszönjük megrendelését! A megrendelés azonosítója: %1$s, a megrendelés dátuma:  %2$s"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Köszönjük megrendelését! A megrendelés azonosítója: %1$s, a megrendelés dátuma:  %2$s\n\nMegrendelése mindaddig függőben marad, amíg számlája teljesítésre nem kerül. Ha Ön az előre utalást választotta, kérjük utalja a megrendelés végösszegét bankszámlánkra, a megjegyzés rovatban feltüntetve %1$s számú rendelés azonosítóját."
+msgstr ""
+"Köszönjük megrendelését! A megrendelés azonosítója: %1$s, a megrendelés dátuma:  %2$s\n"
+"\n"
+"Megrendelése mindaddig függőben marad, amíg számlája teljesítésre nem kerül. Ha Ön az előre utalást választotta, kérjük utalja a megrendelés végösszegét bankszámlánkra, a megjegyzés rovatban feltüntetve %1$s számú rendelés azonosítóját."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid ""
 "Thank you for your order %1$s from %2$s.\n"
@@ -655,16 +689,15 @@ msgstr "Köszönjük megrendelését és a befizetés hitelesítését, Hamarosa
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "köszönjük megrendelését! \nMegkaptuk befizetését, és hamarosan küldünk egy e-mailt a megrendelés részleteiről."
+msgstr ""
+"köszönjük megrendelését! \n"
+"Megkaptuk befizetését, és hamarosan küldünk egy e-mailt a megrendelés részleteiről."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
+msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr "%2$s-i %1$s azonosítószámú megrendelésének kézbesítési állapota megváltozott. Új állapot:  \"%3$s\"."
 
 msgid ""
@@ -674,8 +707,7 @@ msgstr "Megrendelés visszavonva. Szeretné megpróbálni újra?"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
 msgstr "%2$s-i %1$s azonosítószámú megrendelésének csomagját nem sikerült kikézbesíteni."
@@ -687,8 +719,7 @@ msgstr "Megrendelésének fizetés megerősítése függőben van. Amint a fizet
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "%2$s-i %1$s azonosítószámú megrendelésének összege visszatérítésre került."
@@ -749,8 +780,7 @@ msgstr "Megtekintett termékek"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr "%2$s-i %1$s azonosítószámú megrendelésének visszaküldött csomagját megkaptuk."
@@ -761,8 +791,7 @@ msgstr "Weboldal"
 msgid "X"
 msgstr "X"
 
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
+#. / Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
@@ -778,6 +807,14 @@ msgstr "Fiókja"
 msgid "Your choice"
 msgstr "Választásod"
 
+#, fuzzy
+msgid "Your comment"
+msgstr "Fiókja"
+
+#. / Account creation e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
 #. / Account creation e-mail subject
 msgid "Your new account"
 msgstr "Új fiók"
@@ -816,14 +853,40 @@ msgstr "Új fiók"
 #. / Payment e-mail subject with order ID
 #. / Delivery e-mail subject with order ID
 #. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
 msgstr "Rendelésed %1$s"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$s-i %1$s azonosítószámú megrendelése kézbesítésre került."
@@ -831,6 +894,10 @@ msgstr "%2$s-i %1$s azonosítószámú megrendelése kézbesítésre került."
 msgid "Your search result"
 msgstr "Keresési eredmény"
 
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Figyelt termékek"
@@ -857,6 +924,47 @@ msgstr "mint a számlázási cím"
 msgid "new address"
 msgstr "új cím"
 
+#. /html/catalog/attribute/type
+#. * List of layout types for the optional attributes
+#. *
+#. * Each product can contain optional attributes and this configuration setting
+#. * allows you to change how these attributs will be displayed, either as
+#. * drop-down menu (value: "select") or as list of radio buttons (value:
+#. * "radio").
+#. *
+#. * The key for each value must be the type code of the attribute, e.g. "width",
+#. * "length", "color" or similar types. You can set the layout for all
+#. * attributes at once using e.g.
+#. *
+#. *  client/html/catalog/attribute/type = array(
+#. *      'width' => 'select',
+#. *      'color' => 'radio',
+#. *  )
+#. *
+#. * Similarly, you can set the layout type for a specific attribute only,
+#. * leaving the rest untouched:
+#. *
+#. *  client/html/catalog/attribute/type/color = radio
+#. *
+#. * Note: Up to 2015.10 this option was available as
+#. /html/catalog/detail/basket/attribute/type
+#. *
+#. * @param array List of attribute types as key and layout types as value, e.g. "select" or "radio"
+#. * @since 2015.10
+#. * @category Developer
+#. * @category User
+#. * @see client/html/catalog/selection/type
+#.
+#. /html/catalog/attribute/type/color
+#. * Layout types for the color attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+#.
+#. /html/catalog/attribute/type/size
+#. * Layout types for the size attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+#.
 msgid "none"
 msgstr ""
 

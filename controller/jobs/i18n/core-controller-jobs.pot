@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 23:34+0200\n"
+"POT-Creation-Date: 2016-12-02 10:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,4 +55,20 @@ msgid "Sends order confirmation or payment status update e-mails"
 msgstr ""
 
 msgid "Sends order delivery status update e-mails"
+msgstr ""
+
+#, php-format
+msgid "Sent customer account e-mail to \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Sent order delivery e-mail for status \"%1$s\" to \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Sent order payment e-mail for status \"%1$s\" to \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Sent product notification e-mail to \"%1$s\""
 msgstr ""
