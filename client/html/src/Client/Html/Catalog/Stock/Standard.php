@@ -297,12 +297,12 @@ class Standard
 			$siteConfig = $context->getLocale()->getSite()->getConfig();
 
 			/** client/html/catalog/stock/sort
-			 * Sortation key if stock levels for different warehouses exist
+			 * Sortation key if stock levels for different types exist
 			 *
 			 * Products can be shipped from several warehouses with a different
 			 * stock level for each one. The stock levels for each warehouse will
 			 * be shown in the product detail page. To get a consistent sortation
-			 * of this list, the configured key of the product warehouse manager
+			 * of this list, the configured key of the product stock type manager
 			 * will be used.
 			 *
 			 * @param string Key for sorting
@@ -310,7 +310,7 @@ class Standard
 			 * @category Developer
 			 * @see client/html/catalog/stock/level/low
 			 */
-			$sortkey = $context->getConfig()->get( 'client/html/catalog/stock/sort', 'product.stock.warehouseid' );
+			$sortkey = $context->getConfig()->get( 'client/html/catalog/stock/sort', 'product.stock.typeid' );
 			$productIds = $view->param( 's_prodid' );
 
 			if( !is_array( $productIds ) ) {
@@ -323,8 +323,8 @@ class Standard
 			$search = $stockManager->createSearch( true );
 			$expr = array( $search->compare( '==', 'product.stock.parentid', $productIds ) );
 
-			if( isset( $siteConfig['warehouse'] ) ) {
-				$expr[] = $search->compare( '==', 'product.stock.warehouse.code', $siteConfig['warehouse'] );
+			if( isset( $siteConfig['stocktype'] ) ) {
+				$expr[] = $search->compare( '==', 'product.stock.type.code', $siteConfig['stocktype'] );
 			}
 
 			$expr[] = $search->getConditions();
@@ -343,25 +343,25 @@ class Standard
 
 			if( !empty( $stockItems ) )
 			{
-				$warehouseIds = $stockItemsByProducts = array();
+				$typeIds = $stockItemsByProducts = array();
 
 				foreach( $stockItems as $item )
 				{
-					$warehouseIds[$item->getWarehouseId()] = null;
+					$typeIds[$item->getTypeId()] = null;
 					$stockItemsByProducts[$item->getParentId()][] = $item;
 				}
 
-				$warehouseIds = array_keys( $warehouseIds );
+				$typeIds = array_keys( $typeIds );
 
 
-				$warehouseManager = \Aimeos\MShop\Factory::createManager( $context, 'product/stock/warehouse' );
+				$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'product/stock/type' );
 
-				$search = $warehouseManager->createSearch();
-				$search->setConditions( $search->compare( '==', 'product.stock.warehouse.id', $warehouseIds ) );
-				$search->setSlice( 0, count( $warehouseIds ) );
+				$search = $typeManager->createSearch();
+				$search->setConditions( $search->compare( '==', 'product.stock.type.id', $typeIds ) );
+				$search->setSlice( 0, count( $typeIds ) );
 
 
-				$view->stockWarehouseItems = $warehouseManager->searchItems( $search );
+				$view->stockTypeItems = $typeManager->searchItems( $search );
 				$view->stockItemsByProducts = $stockItemsByProducts;
 			}
 

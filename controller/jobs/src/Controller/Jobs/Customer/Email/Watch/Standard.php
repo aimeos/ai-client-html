@@ -23,7 +23,7 @@ class Standard
 	implements \Aimeos\Controller\Jobs\Iface
 {
 	private $client;
-	private $warehouses;
+	private $types;
 
 
 	/**
@@ -113,7 +113,7 @@ class Standard
 	protected function execute( \Aimeos\MShop\Context\Item\Iface $context, array $customers, $listTypeId )
 	{
 		$prodIds = $custIds = array();
-		$whItem = $this->getWarehouseItem( 'default' );
+		$typeItem = $this->getStockTypeItem( 'default' );
 		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 		$listItems = $this->getListItems( $context, array_keys( $customers ), $listTypeId );
 
@@ -125,7 +125,7 @@ class Standard
 		}
 
 		$date = date( 'Y-m-d H:i:s' );
-		$products = $this->getProducts( $context, $prodIds, $whItem->getId() );
+		$products = $this->getProducts( $context, $prodIds, $typeItem->getId() );
 
 		foreach( $custIds as $custId => $list )
 		{
@@ -254,13 +254,13 @@ class Standard
 
 
 	/**
-	 * Returns the products for the given IDs which are in stock in the warehouse
+	 * Returns the products for the given IDs which are in stock
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $prodIds List of product IDs
-	 * @param string $whId Unique warehouse ID
+	 * @param string $typeId Unique stock type ID
 	 */
-	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, $whId )
+	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, $typeId )
 	{
 		$productManager = \Aimeos\MShop\Factory::createManager( $context, 'product' );
 		$search = $productManager->createSearch( true );
@@ -274,7 +274,7 @@ class Standard
 		$expr = array(
 			$search->compare( '==', 'product.id', $prodIds ),
 			$search->getConditions(),
-			$search->compare( '==', 'product.stock.warehouseid', $whId ),
+			$search->compare( '==', 'product.stock.typeid', $typeId ),
 			$search->combine( '||', $stockExpr ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
@@ -308,30 +308,30 @@ class Standard
 
 
 	/**
-	 * Returns the warehouse item for the given code.
+	 * Returns the type item for the given code.
 	 *
-	 * @param string $code Unique code of the warehouse item
-	 * @return \Aimeos\MShop\Product\Item\Stock\Warehouse\Iface Warehouse item
-	 * @throws \Aimeos\Controller\Jobs\Exception If the warehouse item wasn't found
+	 * @param string $code Unique code of the type item
+	 * @return \Aimeos\MShop\Product\Item\Stock\Type\Iface Type item
+	 * @throws \Aimeos\Controller\Jobs\Exception If the type item wasn't found
 	 */
-	protected function getWarehouseItem( $code )
+	protected function getStockTypeItem( $code )
 	{
-		if( !isset( $this->warehouses ) )
+		if( !isset( $this->types ) )
 		{
-			$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/stock/warehouse' );
+			$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/stock/type' );
 			$search = $manager->createSearch( true );
 
-			$this->warehouses = array();
-			foreach( $manager->searchItems( $search ) as $whItem ) {
-				$this->warehouses[ $whItem->getCode() ] = $whItem;
+			$this->types = array();
+			foreach( $manager->searchItems( $search ) as $typeItem ) {
+				$this->types[ $typeItem->getCode() ] = $typeItem;
 			}
 		}
 
-		if( !isset( $this->warehouses[$code] ) ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No warehouse "%1$s" found', $code ) );
+		if( !isset( $this->types[$code] ) ) {
+			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No stock type "%1$s" found', $code ) );
 		}
 
-		return $this->warehouses[$code];
+		return $this->types[$code];
 	}
 
 

@@ -195,8 +195,8 @@ msgstr "refused"
 msgid "stat:7"
 msgstr "returned"
 
-#. Warehouse code
-msgid "warehouse:default"
+#. Stock type
+msgid "stocktype:default"
 msgstr " "
 
 #. Watch action

@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
-# 
+#
+#
 # Translators:
 # Translators:
 # Translators:
@@ -179,8 +179,8 @@ msgstr "Месяц окончания действия"
 msgid "payment.expiryyear"
 msgstr "Год окончания действия"
 
-#. Warehouse code
-msgid "warehouse:default"
+#. Stock type
+msgid "stocktype:default"
 msgstr "склад:стандартный"
 
 #. Favorite action

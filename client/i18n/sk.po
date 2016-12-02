@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Tomas G <tomas.gmitro@gmail.com>, 2016
 msgid ""
@@ -579,17 +579,17 @@ msgstr ""
 msgid "State"
 msgstr "Štát"
 
-#. / Stock string composition with warehouse name (%1$s, normally left out)
+#. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out)
+#. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr ""
 
-#. / Stock string composition with warehouse name (%1$s, normally left out),
+#. / Stock string composition with stock type (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out),
+#. / Stock string composition with stock type (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"

@@ -137,7 +137,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
 			'b_quantity' => 1,
-			'b_warehouse' => 'default',
+			'b_stocktype' => 'default',
 		);
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -163,12 +163,12 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 				array(
 					'prodid' => $this->getProductItem( 'CNC' )->getId(),
 					'quantity' => 1,
-					'warehouse' => 'default',
+					'stocktype' => 'default',
 				),
 				array(
 					'prodid' => $this->getProductItem( 'CNE' )->getId(),
 					'quantity' => 1,
-					'warehouse' => 'default',
+					'stocktype' => 'default',
 				),
 			),
 		);
@@ -249,7 +249,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
 			'b_quantity' => 1,
 			'b_attrconfid' => $attribute->getId(),
-			'b_warehouse' => 'default',
+			'b_stocktype' => 'default',
 		);
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -285,7 +285,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
 			'b_quantity' => 1,
 			'b_attrhideid' => $attribute->getId(),
-			'b_warehouse' => 'default',
+			'b_stocktype' => 'default',
 		);
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -321,7 +321,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 				'b_prodid' => $this->getProductItem( 'U:TESTP' )->getId(),
 				'b_quantity' => 1,
 				'b_attrcustid' => array( $attribute->getId() => '2000-01-01' ),
-				'b_warehouse' => 'default',
+				'b_stocktype' => 'default',
 		);
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -522,9 +522,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @param string $code
 	 * @param integer $quantity
-	 * @param string $warehouse
+	 * @param string $stockType
 	 */
-	protected function addProduct( $code, $quantity, $warehouse )
+	protected function addProduct( $code, $quantity, $stockType )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
 		$search = $manager->createSearch();
@@ -540,7 +540,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			'b_action' => 'add',
 			'b_prodid' => $item->getId(),
 			'b_quantity' => $quantity,
-			'b_warehouse' => $warehouse,
+			'b_stocktype' => $stockType,
 		);
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );

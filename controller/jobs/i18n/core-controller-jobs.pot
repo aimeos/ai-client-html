@@ -33,7 +33,7 @@ msgid "List type for domain \"%1$s\" and code \"%2$s\" not found"
 msgstr ""
 
 #, php-format
-msgid "No warehouse \"%1$s\" found"
+msgid "No stock type \"%1$s\" found"
 msgstr ""
 
 msgid "Order delivery related e-mails"

@@ -11,7 +11,7 @@ $enc = $this->encoder();
 
 $stockProductIds = $this->get( 'stockProductIds', array() );
 $stockItemsByProducts = $this->get( 'stockItemsByProducts', array() );
-$warehouseItems = $this->get( 'stockWarehouseItems', array() );
+$typeItems = $this->get( 'stockTypeItems', array() );
 
 /** client/html/catalog/stock/level/low
  * The number of products in stock below it's considered a low stock level
@@ -42,9 +42,9 @@ $warehouseItems = $this->get( 'stockWarehouseItems', array() );
  */
 $stockLow = $this->config( 'client/html/catalog/stock/level/low', 5 );
 
-/// Stock string composition with warehouse name (%1$s, normally left out) and stock level string (%2$s)
+/// Stock string composition with stock type (%1$s, normally left out) and stock level string (%2$s)
 $textStockIn = $this->translate( 'client', 'Stock: %1$s, %2$s' );
-/// Stock string composition with warehouse name (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
+/// Stock string composition with stock type (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
 $textStockOut = $this->translate( 'client', 'Stock: %1$s, %2$s, back on %3$s' );
 $dateFormat = $this->translate( 'client', 'Y-m-d' );
 
@@ -77,8 +77,8 @@ foreach( $stockProductIds as $prodId )
 
 	foreach( (array) $stockItemsByProducts[$prodId] as $item )
 	{
-		$whId = $item->getWarehouseId();
-		$whCode = ( isset( $warehouseItems[$whId] ) ? 'warehouse:' . $warehouseItems[$whId]->getCode() : 'default' );
+		$whId = $item->getTypeId();
+		$whCode = ( isset( $typeItems[$whId] ) ? 'stocktype:' . $typeItems[$whId]->getCode() : 'default' );
 
 		if( !isset( $whText[$whCode] ) ) {
 			$whText[$whCode] = $this->translate( 'client/code', $whCode );

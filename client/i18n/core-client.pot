@@ -580,16 +580,16 @@ msgstr "Sort by:"
 msgid "State"
 msgstr "State"
 
-#. / Stock string composition with warehouse name (%1$s, normally left out)
+#. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out) and stock level string (%2$s)
+#. / Stock string composition with stock type (%1$s, normally left out) and stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Stock: %1$s, %2$s"
 
-#. / Stock string composition with warehouse name (%1$s, normally left out),
+#. / Stock string composition with stock type (%1$s, normally left out),
 #. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with warehouse name (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
+#. / Stock string composition with stock type (%1$s, normally left out), stock level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Stock: %1$s, %2$s, back on %3$s"

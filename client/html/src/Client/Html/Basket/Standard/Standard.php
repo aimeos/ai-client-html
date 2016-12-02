@@ -531,7 +531,7 @@ class Standard
 				'attrconfid' => array_filter( (array) $view->param( 'b_attrconfid', array() ) ),
 				'attrhideid' => array_filter( (array) $view->param( 'b_attrhideid', array() ) ),
 				'attrcustid' => array_filter( (array) $view->param( 'b_attrcustid', array() ) ),
-				'warehouse' => $view->param( 'b_warehouse', 'default' ),
+				'stocktype' => $view->param( 'b_stocktype', 'default' ),
 			);
 		}
 
@@ -558,7 +558,7 @@ class Standard
 			( isset( $values['attrconfid'] ) ? array_filter( (array) $values['attrconfid'] ) : array() ),
 			( isset( $values['attrhideid'] ) ? array_filter( (array) $values['attrhideid'] ) : array() ),
 			( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : array() ),
-			( isset( $values['warehouse'] ) ? (string) $values['warehouse'] : 'default' )
+			( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' )
 		);
 	}
 
