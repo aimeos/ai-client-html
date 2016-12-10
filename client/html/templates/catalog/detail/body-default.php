@@ -113,26 +113,15 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 			<div class="catalog-detail-basket" data-reqstock="<?php echo $reqstock; ?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
 				<?php if( isset( $this->detailProductItem ) ) : ?>
-					<div class="price price-main price-actual price-prodid-<?php echo $this->detailProductItem->getId(); ?>">
-						<?php echo $this->partial(
-							/** client/html/common/partials/price
-							 * Relative path to the price partial template file
-							 *
-							 * Partials are templates which are reused in other templates and generate
-							 * reoccuring blocks filled with data from the assigned values. The price
-							 * partial creates an HTML block for a list of price items.
-							 *
-							 * The partial template files are usually stored in the templates/partials/ folder
-							 * of the core or the extensions. The configured path to the partial file must
-							 * be relative to the templates/ folder, e.g. "partials/price-default.php".
-							 *
-							 * @param string Relative path to the template file
-							 * @since 2015.04
-							 * @category Developer
-							 */
-							$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
-							array( 'prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' ) )
-						); ?>
+					<div class="price-list">
+						<div class="articleitem price-actual"
+							data-prodid="<?php echo $enc->attr( $this->detailProductItem->getId() ); ?>"
+							data-prodcode="<?php echo $enc->attr( $this->detailProductItem->getCode() ); ?>">
+							<?php echo $this->partial(
+								$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+								array( 'prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' ) )
+							); ?>
+						</div>
 					</div>
 				<?php endif; ?>
 
@@ -205,9 +194,20 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 						); ?>
 					</div>
 
-					<?php $stockProductIds = array_keys( $this->detailProductItem->getRefItems( 'product', null, 'default' ) ); ?>
-					<?php $stockProductIds[] = $this->detailProductItem->getId(); ?>
-					<div class="stock" data-prodid="<?php echo $enc->attr( implode( ' ', $stockProductIds ) ); ?>"></div>
+
+					<div class="stock">
+						<div class="articleitem stock-actual"
+							data-prodid="<?php echo $enc->attr( $this->detailProductItem->getId() ); ?>"
+							data-prodcode="<?php echo $enc->attr( $this->detailProductItem->getCode() ); ?>">
+						</div>
+						<?php foreach( $this->detailProductItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+							<div class="articleitem"
+								data-prodid="<?php echo $enc->attr( $articleId ); ?>"
+								data-prodcode="<?php echo $enc->attr( $articleItem->getCode() ); ?>">
+							</div>
+						<?php endforeach; ?>
+					</div>
+
 
 					<div class="addbasket">
 						<div class="group">

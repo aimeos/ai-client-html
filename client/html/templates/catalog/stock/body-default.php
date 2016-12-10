@@ -6,12 +6,8 @@
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 
-$result = array();
 $enc = $this->encoder();
 
-$stockProductIds = $this->get( 'stockProductIds', array() );
-$stockItemsByProducts = $this->get( 'stockItemsByProducts', array() );
-$typeItems = $this->get( 'stockTypeItems', array() );
 
 /** client/html/catalog/stock/level/low
  * The number of products in stock below it's considered a low stock level
@@ -60,12 +56,16 @@ $textStock = array(
 );
 
 
-foreach( $stockProductIds as $prodId )
+$result = array();
+$stockItemsByProducts = $this->get( 'stockItemsByProducts', array() );
+
+
+foreach( $this->get( 'stockProductCodes', array() ) as $prodCode )
 {
-	if( !isset( $stockItemsByProducts[$prodId] ) )
+	if( !isset( $stockItemsByProducts[$prodCode] ) )
 	{
-		$result[$prodId] = '
-			<div class="stockitem stock-prodid-' . $enc->attr( $prodId ) . ' stock-unlimited" title="' . $enc->attr( $textStock['stock-unlimited'] ) . '">
+		$result[$prodCode] = '
+			<div class="stockitem stock-unlimited" data-prodcode="' . $enc->attr( $prodCode ) . '" title="' . $enc->attr( $textStock['stock-unlimited'] ) . '">
 				<div class="stocklevel"></div>
 				<span class="stocktext">' . $textStock['stock-unlimited'] . '</span>
 			</div>
@@ -75,13 +75,12 @@ foreach( $stockProductIds as $prodId )
 
 	$stocks = array( 'stock-unlimited' => '', 'stock-high' => '', 'stock-low' => '', 'stock-out' => '' );
 
-	foreach( (array) $stockItemsByProducts[$prodId] as $item )
+	foreach( (array) $stockItemsByProducts[$prodCode] as $item )
 	{
-		$whId = $item->getTypeId();
-		$whCode = ( isset( $typeItems[$whId] ) ? 'stocktype:' . $typeItems[$whId]->getCode() : 'default' );
+		$stockType = 'stocktype:' . $item->getType();
 
-		if( !isset( $whText[$whCode] ) ) {
-			$whText[$whCode] = $this->translate( 'client/code', $whCode );
+		if( !isset( $typeText[$stockType] ) ) {
+			$typeText[$stockType] = $this->translate( 'client/code', $stockType );
 		}
 
 		$stocklevel = $item->getStockLevel();
@@ -99,7 +98,7 @@ foreach( $stockProductIds as $prodId )
 		if( $stocklevel <= 0 && ( $date = $item->getDateBack() ) != '' )
 		{
 			$text = sprintf( $textStockOut,
-				$whText[$whCode],
+				$typeText[$stockType],
 				$textStock[$level],
 				date_create( $date )->format( $dateFormat )
 			);
@@ -107,44 +106,35 @@ foreach( $stockProductIds as $prodId )
 		else
 		{
 			$text = sprintf( $textStockIn,
-				$whText[$whCode],
+				$typeText[$stockType],
 				$textStock[$level]
 			);
 		}
 
-		$text = nl2br( $enc->html( $text, $enc::TRUST ) );
 		$stocks[$level] .= '
-			<div class="stockitem stock-prodid-' . $enc->attr( $prodId ) . ' ' . $level . '" title="' . $enc->attr( $textStock[$level] ) . '">
+			<div class="stockitem ' . $level . '" title="' . $enc->attr( $textStock[$level] ) . '">
 				<link itemprop="availability" href="' . $link . '" />
 				<div class="stocklevel"></div>
-				<span class="stocktext">' . $text . '</span>
+				<span class="stocktext">' . nl2br( $enc->html( $text, $enc::TRUST ) ) . '</span>
 			</div>
 		';
 	}
 
-	$result[$prodId] = implode( '', $stocks );
+	$result[$prodCode] = implode( '', $stocks );
 }
 
+
 ?>
-<?php $this->block()->start( 'catalog/stock' ); ?>
 // <!--
 var aimeosStockHtml = <?php echo json_encode( $result, JSON_FORCE_OBJECT ); ?>;
 
-$(".aimeos .product .stock").each(function() {
+$(".aimeos .product .stock .articleitem").each(function() {
 
-	var html = "";
 	var elem = $(this);
-	var productIds = String( elem.data("prodid") ).split(" ");
+	var prodcode = elem.data("prodcode");
 
-	for( var i=0; i<productIds.length; i++ ) {
-		if( aimeosStockHtml.hasOwnProperty( productIds[i] ) ) {
-			html += aimeosStockHtml[productIds[i]];
-		}
-	}
-
-	if( html !== '' ) {
-		elem.html( elem.html() + html );
-		$(".stockitem:first-child", elem).addClass("stock-actual");
+	if( aimeosStockHtml.hasOwnProperty( prodcode ) ) {
+		elem.html( aimeosStockHtml[prodcode] );
 	}
 });
 
@@ -157,5 +147,3 @@ $(".aimeos .catalog-detail-basket").each(function() {
 	}
 });
 // -->
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/stock' ); ?>

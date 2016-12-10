@@ -474,6 +474,11 @@ class Standard
 			$propertyItems = $this->getDomainItems( $propertyManager, 'product.property.parentid', $productIds, $domains );
 
 
+			$productCodes = $this->getProductCodes( $products );
+			$productCodes[] = $productItem->getCode();
+
+
+			$view->detailProductCodes = $productCodes;
 			$view->detailProductItem = $productItem;
 			$view->detailProductItems = $products;
 			$view->detailPropertyItems = $propertyItems;

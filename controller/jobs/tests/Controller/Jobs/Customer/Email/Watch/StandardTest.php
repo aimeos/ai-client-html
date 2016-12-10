@@ -80,10 +80,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Customer\\Email\\Watch\\Standard' )
 			->setConstructorArgs( array( $this->context, $this->aimeos ) )
-			->setMethods( array( 'getListProducts' ) )
+			->setMethods( array( 'getProductList' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'getListProducts' )
+		$object->expects( $this->once() )->method( 'getProductList' )
 			->will( $this->returnValue( array( -1 => array( 'item' => $product, 'price' => reset( $prices ) ) ) ) );
 
 
@@ -109,10 +109,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Customer\\Email\\Watch\\Standard' )
 			->setConstructorArgs( array( $this->context, $this->aimeos ) )
-			->setMethods( array( 'getListProducts' ) )
+			->setMethods( array( 'getProductList' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'getListProducts' )
+		$object->expects( $this->once() )->method( 'getProductList' )
 			->will( $this->returnValue( array( -1 => array( 'item' => $product, 'price' => reset( $prices ) ) ) ) );
 
 

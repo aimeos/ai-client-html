@@ -57,7 +57,6 @@ class Standard
 	{
 		$langIds = array();
 		$context = $this->getContext();
-		$typeId = $this->getListTypeItem( 'watch' )->getId();
 
 		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
 		$custManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
@@ -79,8 +78,8 @@ class Standard
 			$search = $custManager->createSearch( true );
 			$expr = array(
 				$search->compare( '==', 'customer.languageid', $langId ),
-				$search->compare( '==', 'customer.lists.typeid', $typeId ),
 				$search->compare( '==', 'customer.lists.domain', 'product' ),
+				$search->compare( '==', 'customer.lists.type.code', 'watch' ),
 				$search->getConditions(),
 			);
 			$search->setConditions( $search->combine( '&&', $expr ) );
@@ -90,13 +89,13 @@ class Standard
 
 			do
 			{
+				$search->setSlice( $start );
 				$customers = $custManager->searchItems( $search );
 
-				$this->execute( $context, $customers, $typeId );
+				$this->execute( $context, $customers );
 
 				$count = count( $customers );
 				$start += $count;
-				$search->setSlice( $start );
 			}
 			while( $count >= $search->getSliceSize() );
 		}
@@ -108,14 +107,12 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $customers List of customer items implementing \Aimeos\MShop\Customer\Item\Iface
-	 * @param string $listTypeId Customer list type ID
 	 */
-	protected function execute( \Aimeos\MShop\Context\Item\Iface $context, array $customers, $listTypeId )
+	protected function execute( \Aimeos\MShop\Context\Item\Iface $context, array $customers )
 	{
 		$prodIds = $custIds = array();
-		$typeItem = $this->getStockTypeItem( 'default' );
+		$listItems = $this->getListItems( $context, array_keys( $customers ) );
 		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
-		$listItems = $this->getListItems( $context, array_keys( $customers ), $listTypeId );
 
 		foreach( $listItems as $id => $listItem )
 		{
@@ -125,7 +122,7 @@ class Standard
 		}
 
 		$date = date( 'Y-m-d H:i:s' );
-		$products = $this->getProducts( $context, $prodIds, $typeItem->getId() );
+		$products = $this->getProducts( $context, $prodIds, 'default' );
 
 		foreach( $custIds as $custId => $list )
 		{
@@ -144,7 +141,7 @@ class Standard
 
 			try
 			{
-				$custProducts = $this->getListProducts( $custListItems, $products );
+				$custProducts = $this->getProductList( $products, $custListItems );
 
 				if( !empty( $custProducts ) )
 				{
@@ -191,18 +188,17 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $custIds List of customer IDs
-	 * @param string $listTypeId Customer list type ID
 	 * @return array List of customer list items implementing \Aimeos\MShop\Common\Item\Lists\Iface
 	 */
-	protected function getListItems( \Aimeos\MShop\Context\Item\Iface $context, array $custIds, $listTypeId )
+	protected function getListItems( \Aimeos\MShop\Context\Item\Iface $context, array $custIds )
 	{
 		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
 		$search = $listManager->createSearch();
 		$expr = array(
-			$search->compare( '==', 'customer.lists.parentid', $custIds ),
-			$search->compare( '==', 'customer.lists.typeid', $listTypeId ),
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
+			$search->compare( '==', 'customer.lists.parentid', $custIds ),
+			$search->compare( '==', 'customer.lists.type.code', 'watch' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSlice( 0, 0x7fffffff );
@@ -214,11 +210,11 @@ class Standard
 	/**
 	 * Returns a filtered list of products for which a notification should be sent
 	 *
-	 * @param array $listItems List of customer list items implementing \Aimeos\MShop\Common\Item\Lists\Iface
-	 * @param array $products List of product items implementing \Aimeos\MShop\Product\Item\Iface
+	 * @param \Aimeos\MShop\Product\Item\Iface[] $products List of product items
+	 * @param \Aimeos\MShop\Common\Item\Lists\Iface[] $listItems List of customer list items
 	 * @return array Multi-dimensional associative list of list IDs as key and product / price item maps as values
 	 */
-	protected function getListProducts( array $listItems, array $products )
+	protected function getProductList( array $products, array $listItems )
 	{
 		$result = array();
 		$priceManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'price' );
@@ -258,80 +254,79 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $prodIds List of product IDs
-	 * @param string $typeId Unique stock type ID
+	 * @param string $stockType Stock type code
 	 */
-	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, $typeId )
+	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, $stockType )
+	{
+		$productCodes = $stockMap = array();
+		$productItems = $this->getProductItems( $context, $prodIds );
+
+		foreach( $productItems as $productItem ) {
+			$productCodes[] = $productItem->getCode();
+		}
+
+		foreach( $this->getStockItems( $context, $productCodes, $stockType ) as $stockItem ) {
+			$stockMap[ $stockItem->getProductCode() ] = true;
+		}
+
+		foreach( $productItems as $productId => $productItem )
+		{
+			if( !isset( $stockMap[ $productItem->getCode() ] ) ) {
+				unset( $productItems[$productId] );
+			}
+		}
+
+		return $productItems;
+	}
+
+
+	/**
+	 * Returns the product items for the given product IDs
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
+	 * @param array $prodIds List of product IDs
+	 */
+	protected function getProductItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds )
 	{
 		$productManager = \Aimeos\MShop\Factory::createManager( $context, 'product' );
+
 		$search = $productManager->createSearch( true );
-		$domains = array( 'text', 'price', 'media' );
-
-		$stockExpr = array(
-			$search->compare( '==', 'product.stock.stocklevel', null ),
-			$search->compare( '>', 'product.stock.stocklevel', 0 ),
-		);
-
 		$expr = array(
 			$search->compare( '==', 'product.id', $prodIds ),
 			$search->getConditions(),
-			$search->compare( '==', 'product.stock.typeid', $typeId ),
-			$search->combine( '||', $stockExpr ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSlice( 0, 0x7fffffff );
 
-		return $productManager->searchItems( $search, $domains );
+		return $productManager->searchItems( $search, array( 'text', 'price', 'media' ) );
 	}
 
 
 	/**
-	 * Returns the customer list type item for the given type code.
+	 * Returns the stock items for the given product codes
 	 *
-	 * @param string $code Unique code of the list type item
-	 * @return \Aimeos\MShop\Common\Item\Type\Iface List type item
-	 * @throws \Aimeos\Controller\Jobs\Exception If the list type item wasn't found
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
+	 * @param array $prodCodes List of product codes
+	 * @param string $stockType Stock type code
 	 */
-	protected function getListTypeItem( $code )
+	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodCodes, $stockType )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer/lists/type' );
+		$stockManager = \Aimeos\MShop\Factory::createManager( $context, 'stock' );
 
-		$search = $manager->createSearch( true );
-		$search->setConditions( $search->compare( '==', 'customer.lists.type.code', $code ) );
-		$result = $manager->searchItems( $search );
+		$search = $stockManager->createSearch( true );
+		$expr = array(
+			$search->compare( '==', 'stock.productcode', $prodCodes ),
+			$search->compare( '==', 'stock.type.code', $stockType ),
+			$search->combine( '||', array(
+				$search->compare( '==', 'stock.stocklevel', null ),
+				$search->compare( '>', 'stock.stocklevel', 0 ),
+			)),
+			$search->getConditions(),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setSlice( 0, 0x7fffffff );
 
-		if( ( $item = reset( $result ) ) === false ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'List type for domain "%1$s" and code "%2$s" not found', 'customer', $code ) );
-		}
-
-		return $item;
-	}
-
-
-	/**
-	 * Returns the type item for the given code.
-	 *
-	 * @param string $code Unique code of the type item
-	 * @return \Aimeos\MShop\Product\Item\Stock\Type\Iface Type item
-	 * @throws \Aimeos\Controller\Jobs\Exception If the type item wasn't found
-	 */
-	protected function getStockTypeItem( $code )
-	{
-		if( !isset( $this->types ) )
-		{
-			$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/stock/type' );
-			$search = $manager->createSearch( true );
-
-			$this->types = array();
-			foreach( $manager->searchItems( $search ) as $typeItem ) {
-				$this->types[ $typeItem->getCode() ] = $typeItem;
-			}
-		}
-
-		if( !isset( $this->types[$code] ) ) {
-			throw new \Aimeos\Controller\Jobs\Exception( sprintf( 'No stock type "%1$s" found', $code ) );
-		}
-
-		return $this->types[$code];
+		return $stockManager->searchItems( $search );
 	}
 
 

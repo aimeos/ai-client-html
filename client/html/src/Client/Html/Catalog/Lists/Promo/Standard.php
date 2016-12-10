@@ -331,18 +331,8 @@ class Standard
 			}
 
 
-			if( !empty( $products ) && $config->get( 'client/html/catalog/lists/stock/enable', true ) === true )
-			{
-				$stockTarget = $config->get( 'client/html/catalog/stock/url/target' );
-				$stockController = $config->get( 'client/html/catalog/stock/url/controller', 'catalog' );
-				$stockAction = $config->get( 'client/html/catalog/stock/url/action', 'stock' );
-				$stockConfig = $config->get( 'client/html/catalog/stock/url/config', array() );
-
-				$productIds = array_keys( $products );
-				sort( $productIds );
-
-				$params = array( 's_prodid' => implode( ' ', $productIds ) );
-				$view->promoStockUrl = $view->url( $stockTarget, $stockController, $stockAction, $params, array(), $stockConfig );
+			if( !empty( $products ) && $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
+				$view->promoProductCodes = $this->getProductCodes( $products );
 			}
 
 

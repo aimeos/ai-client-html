@@ -337,8 +337,8 @@ class Standard
 				$this->addMetaItems( $mediaItems, $this->expire, $this->tags );
 
 
-				if( !empty( $productIds ) && $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
-					$view->itemsStockUrl = $this->getStockUrl( $view, $productIds );
+				if( !empty( $products ) && $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
+					$view->itemsProductCodes = $this->getProductCodes( $products );
 				}
 
 				$view->itemsAttributeItems = $attributeItems;
@@ -414,26 +414,5 @@ class Standard
 		}
 
 		return $prodIds;
-	}
-
-
-	/**
-	 * Returns the URL to fetch the stock level details of the given products
-	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param array $productIds List of product IDs
-	 * @return string Generated stock level URL
-	 */
-	protected function getStockUrl( \Aimeos\MW\View\Iface $view, array $productIds )
-	{
-		$stockTarget = $view->config( 'client/html/catalog/stock/url/target' );
-		$stockController = $view->config( 'client/html/catalog/stock/url/controller', 'catalog' );
-		$stockAction = $view->config( 'client/html/catalog/stock/url/action', 'stock' );
-		$stockConfig = $view->config( 'client/html/catalog/stock/url/config', array() );
-
-		sort( $productIds );
-
-		$params = array( 's_prodid' => implode( ' ', $productIds ) );
-		return $view->url( $stockTarget, $stockController, $stockAction, $params, array(), $stockConfig );
 	}
 }

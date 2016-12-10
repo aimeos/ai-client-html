@@ -55,25 +55,23 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
-		$productId = $this->getProductItem()->getId();
-
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_prodid' => $productId ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_prodcode' => 'CNC' ) );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertRegExp( '/"' . $productId . '".*stock-high/', $output );
+		$this->assertRegExp( '/"CNC".*stock-high/', $output );
 	}
 
 
 	public function testGetBodyStockUnlimited()
 	{
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_prodid' => -1 ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_prodcode' => 'XYZ' ) );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertRegExp( '/"-1".*stock-unlimited/', $output );
+		$this->assertRegExp( '/"XYZ".*stock-unlimited/', $output );
 	}
 
 
@@ -104,20 +102,5 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
-	}
-
-
-	protected function getProductItem()
-	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
-		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'product.code', 'CNC' ) );
-		$items = $manager->searchItems( $search );
-
-		if( ( $item = reset( $items ) ) === false ) {
-			throw new \RuntimeException( 'No product item with code "CNC" found' );
-		}
-
-		return $item;
 	}
 }

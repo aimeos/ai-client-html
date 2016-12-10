@@ -82,17 +82,46 @@ if( $this->get( 'basket-add', false ) )
 
 
 			<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-				<div class="stock"
-					data-prodid="<?php echo $enc->attr(
-						implode( ' ', array_merge( array( $id ), array_keys( $productItem->getRefItems( 'product', 'default', 'default' ) ) ) )
-					); ?>">
+
+				<div class="stock-list">
+					<div class="articleitem stock-actual"
+						data-prodid="<?php echo $enc->attr( $productItem->getId() ); ?>"
+						data-prodcode="<?php echo $enc->attr( $productItem->getCode() ); ?>">
+					</div>
+					<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+						<div class="articleitem"
+							data-prodid="<?php echo $enc->attr( $articleId ); ?>"
+							data-prodcode="<?php echo $enc->attr( $articleItem->getCode() ); ?>">
+						</div>
+					<?php endforeach; ?>
 				</div>
-				<div class="price-list price price-actual">
-					<?php echo $this->partial(
-						$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
-						array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
-					); ?>
+
+				<div class="price-list">
+					<div class="articleitem price-actual"
+						data-prodid="<?php echo $enc->attr( $productItem->getId() ); ?>"
+						data-prodcode="<?php echo $enc->attr( $productItem->getCode() ); ?>">
+						<?php echo $this->partial(
+							/** client/html/common/partials/price
+							 * Relative path to the price partial template file
+							 *
+							 * Partials are templates which are reused in other templates and generate
+							 * reoccuring blocks filled with data from the assigned values. The price
+							 * partial creates an HTML block for a list of price items.
+							 *
+							 * The partial template files are usually stored in the templates/partials/ folder
+							 * of the core or the extensions. The configured path to the partial file must
+							 * be relative to the templates/ folder, e.g. "partials/price-default.php".
+							 *
+							 * @param string Relative path to the template file
+							 * @since 2015.04
+							 * @category Developer
+							 */
+							$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
+						); ?>
+					</div>
 				</div>
+
 			</div>
 
 

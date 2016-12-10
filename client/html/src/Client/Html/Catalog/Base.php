@@ -435,6 +435,26 @@ abstract class Base
 
 
 	/**
+	 * Returns the sorted product codes of the given products
+	 *
+	 * @param \Aimeos\MShop\Product\Item\Iface[] $products List of product items
+	 * @return array List of product codes
+	 */
+	protected function getProductCodes( array $products )
+	{
+		$productCodes = array();
+
+		foreach( $products as $product ) {
+			$productCodes[] = $product->getCode();
+		}
+
+		sort( $productCodes );
+
+		return $productCodes;
+	}
+
+
+	/**
 	 * Searches for the products based on the current paramters.
 	 *
 	 * The found products and the total number of available products can be
