@@ -64,17 +64,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testGetBodyStockUnlimited()
-	{
-		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_prodcode' => 'XYZ' ) );
-		$view->addHelper( 'param', $helper );
-
-		$output = $this->object->getBody();
-		$this->assertRegExp( '/"XYZ".*stock-unlimited/', $output );
-	}
-
-
 	public function testGetBodyException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Stock\Standard' )
