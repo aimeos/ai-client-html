@@ -19,7 +19,7 @@ namespace Aimeos\Client\Html\Catalog\Lists\Promo;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Catalog\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/catalog/lists/promo/standard/subparts
@@ -328,17 +328,16 @@ class Standard
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 				$filter = $controller->createIndexFilterCategory( $catId, 'relevance', '+', 0, $size, 'promotion' );
 				$products = $controller->getIndexItems( $filter, $domains, $total );
+
+				$this->addMetaItems( $products, $this->expire, $this->tags );
+
+
+				if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) == true ) {
+					$view->promoProductCodes = $this->getProductCodes( $products );
+				}
+
+				$view->promoItems = $products;
 			}
-
-
-			if( !empty( $products ) && $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
-				$view->promoProductCodes = $this->getProductCodes( $products );
-			}
-
-
-			$this->addMetaItems( $products, $this->expire, $this->tags );
-
-			$view->promoItems = $products;
 
 			$this->cache = $view;
 		}

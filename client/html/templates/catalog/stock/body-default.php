@@ -62,14 +62,7 @@ $stockItemsByProducts = $this->get( 'stockItemsByProducts', array() );
 
 foreach( $this->get( 'stockProductCodes', array() ) as $prodCode )
 {
-	if( !isset( $stockItemsByProducts[$prodCode] ) )
-	{
-		$result[$prodCode] = '
-			<div class="stockitem stock-unlimited" data-prodcode="' . $enc->attr( $prodCode ) . '" title="' . $enc->attr( $textStock['stock-unlimited'] ) . '">
-				<div class="stocklevel"></div>
-				<span class="stocktext">' . $textStock['stock-unlimited'] . '</span>
-			</div>
-		';
+	if( !isset( $stockItemsByProducts[$prodCode] ) ) {
 		continue;
 	}
 
@@ -112,7 +105,7 @@ foreach( $this->get( 'stockProductCodes', array() ) as $prodCode )
 		}
 
 		$stocks[$level] .= '
-			<div class="stockitem ' . $level . '" title="' . $enc->attr( $textStock[$level] ) . '">
+			<div class="stockitem ' . $level . '" data-prodcode="' . $enc->attr( $prodCode ) . '" title="' . $enc->attr( $textStock[$level] ) . '">
 				<link itemprop="availability" href="' . $link . '" />
 				<div class="stocklevel"></div>
 				<span class="stocktext">' . nl2br( $enc->html( $text, $enc::TRUST ) ) . '</span>
@@ -128,7 +121,7 @@ foreach( $this->get( 'stockProductCodes', array() ) as $prodCode )
 // <!--
 var aimeosStockHtml = <?php echo json_encode( $result, JSON_FORCE_OBJECT ); ?>;
 
-$(".aimeos .product .stock .articleitem").each(function() {
+$(".aimeos .product .stock-list .articleitem").each(function() {
 
 	var elem = $(this);
 	var prodcode = elem.data("prodcode");

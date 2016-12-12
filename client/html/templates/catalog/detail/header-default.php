@@ -76,7 +76,7 @@ $stockConfig = $this->config( 'client/html/catalog/stock/url/config', array() );
 	<link rel="canonical" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>" />
 
 	<?php if( $stock == true ) : ?>
-		<?php $url = $this->url( $stockTarget, $stockCntl, $stockAction, array( 's_prodcodes' => $this->get( 'detailProductCodes', array() ) ), array(), $stockConfig ); ?>
+		<?php $url = $this->url( $stockTarget, $stockCntl, $stockAction, array( 's_prodcode' => $this->get( 'detailProductCodes', array() ) ), array(), $stockConfig ); ?>
 		<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
 	<?php endif; ?>
 

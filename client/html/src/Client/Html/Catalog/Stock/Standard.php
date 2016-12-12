@@ -293,14 +293,10 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
-			$siteConfig = $this->getContext()->getLocale()->getSite()->getConfig();
-			$productCodes = $view->param( 's_prodcode' );
-
-			if( !is_array( $productCodes ) ) {
-				$productCodes = explode( ' ', $productCodes );
-			}
-
 			$stockItemsByProducts = array();
+			$productCodes = (array) $view->param( 's_prodcode', array() );
+
+			$siteConfig = $this->getContext()->getLocale()->getSite()->getConfig();
 			$stockType = ( isset( $siteConfig['stocktype'] ) ? $siteConfig['stocktype'] : null );
 
 			foreach( $this->getStockItems( $productCodes, $stockType ) as $stockItem ){

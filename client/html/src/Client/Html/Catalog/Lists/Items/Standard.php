@@ -310,11 +310,11 @@ class Standard
 		{
 			$context = $this->getContext();
 			$config = $context->getConfig();
+			$products = $view->get( 'listProductItems', array() );
 
 
 			if( $config->get( 'client/html/catalog/lists/basket-add', false ) )
 			{
-				$products = $view->get( 'listProductItems', array() );
 				$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
@@ -337,15 +337,15 @@ class Standard
 				$this->addMetaItems( $mediaItems, $this->expire, $this->tags );
 
 
-				if( !empty( $products ) && $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
-					$view->itemsProductCodes = $this->getProductCodes( $products );
-				}
-
 				$view->itemsAttributeItems = $attributeItems;
 				$view->itemsProductItems = $productItems;
 				$view->itemsMediaItems = $mediaItems;
 			}
 
+
+			if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) == true ) {
+				$view->itemsProductCodes = $this->getProductCodes( $products );
+			}
 
 			$view->itemPosition = ( $this->getProductListPage( $view ) - 1 ) * $this->getProductListSize( $view );
 

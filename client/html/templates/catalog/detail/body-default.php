@@ -89,7 +89,7 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 				 * @since 2017.01
 				 * @category Developer
 				 */
-				$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-default.php' ),
+				$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-bottom.php' ),
 				array(
 					'product' => $this->detailProductItem,
 					'params' => $this->get( 'detailParams', array() ),

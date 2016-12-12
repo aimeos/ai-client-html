@@ -81,7 +81,7 @@ if( $this->get( 'basket-add', false ) )
 			</a>
 
 
-			<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+			<div class="offer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
 				<div class="stock-list">
 					<div class="articleitem stock-actual"
