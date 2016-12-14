@@ -304,7 +304,7 @@ class Standard
 			{
 				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 				$customerManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer' );
-				$view->summaryCustomerId = $customerManager->find( $addr->getEmail() )->getId();
+				$view->summaryCustomerId = $customerManager->findItem( $addr->getEmail() )->getId();
 			}
 			catch( \Exception $e )
 			{
