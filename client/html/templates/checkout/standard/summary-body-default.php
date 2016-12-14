@@ -175,7 +175,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 	<div class="checkout-standard-summary-option container">
 		<?php echo $this->partial(
 			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-default.php' ),
-			array( 'errors' => $this->get( 'summaryErrorCodes', array() ) )
+			array( 'errors' => $this->get( 'summaryErrorCodes', array() ), 'customerId' => $this->get( 'summaryCustomerId' ) )
 		); ?>
 	</div>
 

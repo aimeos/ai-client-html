@@ -158,36 +158,31 @@ $privacyUrl = $this->url( $privacyTarget, $privacyController, $privacyAction, ar
 
 
 ?>
-<div class="checkout-standard-summary-option-account">
-	<h3><?php echo $enc->html( $this->translate( 'client', 'Create account' ), $enc::TRUST ); ?></h3>
+<?php if( !isset( $this->customerId ) ) : ?>
+	<div class="checkout-standard-summary-option-account">
+		<h3><?php echo $enc->html( $this->translate( 'client', 'Create account' ), $enc::TRUST ); ?></h3>
 
-	<div class="single <?php echo ( isset( $errors['option']['account'] ) ? 'error' : '' ); ?>">
-		<input type="checkbox"
-			name="<?php echo $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ); ?>"
-			id="option-account"
-			value="1"
-			<?php echo ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ); ?>
-		/>
-		<p>
-			<label for="option-account">
-				<?php echo $enc->html( $this->translate( 'client', 'Create customer account' ), $enc::TRUST ); ?>
-			</label>
-		</p>
+		<div class="single <?php echo ( isset( $errors['option']['account'] ) ? 'error' : '' ); ?>">
+			<input id="option-account" type="checkbox" value="1"
+				name="<?php echo $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ); ?>"
+				<?php echo ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ); ?>
+			/>
+			<p>
+				<label for="option-account">
+					<?php echo $enc->html( $this->translate( 'client', 'Create customer account' ), $enc::TRUST ); ?>
+				</label>
+			</p>
+		</div>
 	</div>
-
-</div>
-
+<?php endif; ?>
 
 <div class="checkout-standard-summary-option-terms">
 	<h3><?php echo $enc->html( $this->translate( 'client', 'Terms and conditions' ), $enc::TRUST ); ?></h3>
 
 	<div class="single <?php echo ( isset( $errors['option']['terms'] ) ? 'error' : '' ); ?>">
-
 		<input type="hidden" name="<?php echo $enc->attr( $this->formparam( array( 'cs_option_terms' ) ) ); ?>" value="1" />
-
-		<input id="option-terms-accept" type="checkbox"
+		<input id="option-terms-accept" type="checkbox" value="1"
 			name="<?php echo $enc->attr( $this->formparam( array( 'cs_option_terms_value' ) ) ); ?>"
-			value="1"
 			<?php echo ( $this->param( 'cs_option_terms_value', null ) == 1 ? 'checked="checked"' : '' ); ?>
 		/>
 
@@ -202,5 +197,4 @@ $privacyUrl = $this->url( $privacyTarget, $privacyController, $privacyAction, ar
 		</p>
 
 	</div>
-
 </div>

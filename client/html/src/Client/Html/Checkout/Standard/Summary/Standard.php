@@ -300,6 +300,17 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
+			try
+			{
+				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+				$customerManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer' );
+				$view->summaryCustomerId = $customerManager->find( $addr->getEmail() )->getId();
+			}
+			catch( \Exception $e )
+			{
+				$view->summaryCustomerId = $this->getContext()->getUserId();
+			}
+
 			$view->summaryTaxRates = $this->getTaxRates( $view->standardBasket );
 
 			$this->cache = $view;
