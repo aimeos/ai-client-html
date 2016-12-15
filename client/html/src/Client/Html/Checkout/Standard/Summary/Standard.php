@@ -300,15 +300,15 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
-			try
+			if( ( $view->summaryCustomerId = $this->getContext()->getUserId() ) === null )
 			{
-				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-				$customerManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer' );
-				$view->summaryCustomerId = $customerManager->findItem( $addr->getEmail() )->getId();
-			}
-			catch( \Exception $e )
-			{
-				$view->summaryCustomerId = $this->getContext()->getUserId();
+				try
+				{
+					$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+					$customerManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer' );
+					$view->summaryCustomerId = $customerManager->findItem( $addr->getEmail() )->getId();
+				}
+				catch( \Exception $e ) {}
 			}
 
 			$view->summaryTaxRates = $this->getTaxRates( $view->standardBasket );
