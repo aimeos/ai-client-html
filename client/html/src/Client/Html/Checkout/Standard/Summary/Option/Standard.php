@@ -68,6 +68,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'terms' );
+	private $cache;
 
 
 	/**
@@ -256,5 +257,35 @@ class Standard
 	protected function getSubClientNames()
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+	}
+
+
+	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	{
+		if( !isset( $this->cache ) )
+		{
+			if( ( $view->optionCustomerId = $this->getContext()->getUserId() ) === null )
+			{
+				try
+				{
+					$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+					$customerManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer' );
+					$view->optionCustomerId = $customerManager->findItem( $addr->getEmail() )->getId();
+				}
+				catch( \Exception $e ) {}
+			}
+
+			$this->cache = $view;
+		}
+
+		return $this->cache;
 	}
 }

@@ -12,6 +12,7 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'checkout/standard/summary/option' ); ?>
 <div class="checkout-standard-summary-option container">
 	<h2 class="header"><?php echo $enc->html( $this->translate( 'client', 'Options' ), $enc::TRUST ); ?></h2>
+<?php if( !isset( $this->optionCustomerId ) ) : ?>
 	<div class="checkout-standard-summary-option-account">
 		<h3><?php echo $enc->html( $this->translate( 'client', 'Create account' ), $enc::TRUST ); ?></h3>
 		<div class="single">
@@ -19,6 +20,7 @@ $enc = $this->encoder();
 			<p><label for="option-account"><?php echo $enc->html( $this->translate( 'client', 'Create customer account' ), $enc::TRUST ); ?></label></p>
 		</div>
 	</div>
+<?php endif; ?>
 <?php echo $this->get( 'optionBody' ); ?>
 </div>
 <?php $this->block()->stop(); ?>
