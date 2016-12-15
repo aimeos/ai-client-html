@@ -478,12 +478,19 @@ class Standard
 
 			// use first step if default step isn't available
 			$default = ( !in_array( $default, $steps ) ? reset( $steps ) : $default );
-
 			$current = $view->param( 'c_step', $default );
-			// use $onestep if current step isn't available due to one page layout
-			$current = ( !in_array( $current, $steps ) ? $onestep : $current );
 
-			$cpos = $cpos = array_search( $current, $steps );
+			// use $onestep if the current step isn't available due to one page layout
+			if( !in_array( $current, $steps ) ) {
+				$current = $onestep;
+			}
+
+			// use $onestep if the active step isn't available due to one page layout
+			if( isset( $view->standardStepActive ) && in_array( $view->standardStepActive, $onepage ) ) {
+				$view->standardStepActive = $onestep;
+			}
+
+			$cpos = array_search( $current, $steps );
 
 			if( !isset( $view->standardStepActive )
 				|| ( ( $apos = array_search( $view->standardStepActive, $steps ) ) !== false
