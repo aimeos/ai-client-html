@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'We received the payment', $output );
+		$this->assertContains( 'We have received your payment', $output );
 	}
 
 

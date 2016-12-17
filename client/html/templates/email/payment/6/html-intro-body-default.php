@@ -10,21 +10,22 @@ $enc = $this->encoder();
 $order = $this->extOrderItem;
 
 /// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
-$msg = $this->translate( 'client', 'Thank you for your order %1$s from %2$s.
-
-We received the payment and will care about your order immediately.' );
+$msg = $this->translate( 'client', 'Thank you for your order %1$s from %2$s.' );
+$msg2 = $this->translate( 'client', 'We have received your payment, and will take care of your order immediately.' );
 
 $key = 'pay:' . $order->getPaymentStatus();
 $status = $this->translate( 'client/code', $key );
 $format = $this->translate( 'client', 'Y-m-d' );
 
-$string = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
+$intro = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
+$details = sprintf( $msg2, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
 
 
 ?>
 <?php $this->block()->start( 'email/payment/html/intro' ); ?>
 <p class="email-common-intro content-block">
-	<?php echo $enc->html( nl2br( $string ), $enc::TRUST ); ?>
+	<span class="intro-thank"><?php echo $enc->html( nl2br( $intro ), $enc::TRUST ); ?></span>
+	<span class="intro-details"><?php echo $enc->html( nl2br( $details ), $enc::TRUST ); ?></span>
 </p>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'email/payment/html/intro' ); ?>

@@ -22,7 +22,7 @@ $string = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() 
 ?>
 <?php $this->block()->start( 'email/payment/html/intro' ); ?>
 <p class="email-common-intro content-block">
-	<?php echo $enc->html( nl2br( $string ), $enc::TRUST ); ?>
+	<span class="intro-thank"><?php echo $enc->html( nl2br( $string ), $enc::TRUST ); ?></span>
 </p>
 <?php $this->block()->stop(); ?>
 <?php echo $this->block()->get( 'email/payment/html/intro' ); ?>

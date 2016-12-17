@@ -109,7 +109,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<p class="email-common-intro', $output );
-		$this->assertContains( 'We received the payment', $output );
+		$this->assertContains( 'We have received your payment', $output );
 	}
 
 
