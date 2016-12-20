@@ -1,13 +1,15 @@
 <?php
 
-namespace Aimeos\Client\Html\Catalog\Detail;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
+
+
+namespace Aimeos\Client\Html\Catalog\Detail;
+
+
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
@@ -40,7 +42,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$expire = null;
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '	<title>Cafe Noire Expresso</title>', $output );
+		$this->assertContains( '<title>Cafe Noire Expresso</title>', $output );
 		$this->assertContains( '<script type="text/javascript" defer="defer" src="http://baseurl/catalog/stock/?s_prodcode', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
 		$this->assertEquals( 3, count( $tags ) );

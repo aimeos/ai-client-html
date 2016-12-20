@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$expire = null;
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '	<title>Kaffee</title>', $output );
+		$this->assertContains( '<title>Kaffee</title>', $output );
 		$this->assertEquals( '2019-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}

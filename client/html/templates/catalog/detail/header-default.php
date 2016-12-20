@@ -60,28 +60,51 @@ $stockAction = $this->config( 'client/html/catalog/stock/url/action', 'stock' );
 $stockConfig = $this->config( 'client/html/catalog/stock/url/config', array() );
 
 
+/** client/html/catalog/detail/metatags
+ * Adds the title, meta and link tags to the HTML header
+ *
+ * By default, each instance of the catalog list component adds some HTML meta
+ * tags to the page head section, like page title, meta keywords and description
+ * as well as some link tags to support browser navigation. If several instances
+ * are placed on one page, this leads to adding several title and meta tags used
+ * by search engine. This setting enables you to suppress these tags in the page
+ * header and maybe add your own to the page manually.
+ *
+ * @param boolean True to display the meta tags, false to hide it
+ * @since 2017.01
+ * @category Developer
+ * @category User
+ * @see client/html/catalog/lists/metatags
+ */
+
+
 ?>
-<?php if( isset( $this->detailProductItem ) ) : ?>
-	<title><?php echo $enc->html( $this->detailProductItem->getName() ); ?></title>
+<?php if( (bool) $this->config( 'client/html/catalog/detail/metatags', true ) === true ) : ?>
 
-	<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
-		<meta name="keywords" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
-	<?php endforeach; ?>
+	<?php if( isset( $this->detailProductItem ) ) : ?>
 
-	<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
-		<meta name="description" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
-	<?php endforeach; ?>
+		<title><?php echo $enc->html( $this->detailProductItem->getName() ); ?></title>
 
-	<?php $params = array( 'd_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId() ); ?>
-	<link rel="canonical" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>" />
+		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
+			<meta name="keywords" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+		<?php endforeach; ?>
 
-	<?php if( $stock == true ) : ?>
-		<?php $url = $this->url( $stockTarget, $stockCntl, $stockAction, array( 's_prodcode' => $this->get( 'detailProductCodes', array() ) ), array(), $stockConfig ); ?>
-		<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
+		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
+			<meta name="description" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+		<?php endforeach; ?>
+
+		<?php $params = array( 'd_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId() ); ?>
+		<link rel="canonical" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>" />
+
 	<?php endif; ?>
+
+	<meta name="application-name" content="Aimeos" />
 
 <?php endif; ?>
 
-<meta name="application-name" content="Aimeos" />
+<?php if( $stock == true ) : ?>
+	<?php $url = $this->url( $stockTarget, $stockCntl, $stockAction, array( 's_prodcode' => $this->get( 'detailProductCodes', array() ) ), array(), $stockConfig ); ?>
+	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
+<?php endif; ?>
 
 <?php echo $this->get( 'detailHeader' ); ?>
