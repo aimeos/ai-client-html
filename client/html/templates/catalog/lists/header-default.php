@@ -57,6 +57,8 @@ unset( $params['f_sort'] );
 
 	<?php elseif( ( $search = $this->param( 'f_search', null ) ) != null ) : /// Product search hint with user provided search string (%1$s) ?>
 		<title><?php echo $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ); ?></title>
+	<?php else : ?>
+		<title><?php echo $enc->html( $this->translate( 'client', 'Our products' ) ); ?></title>
 	<?php endif; ?>
 
 
