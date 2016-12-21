@@ -60,8 +60,8 @@ $params = $this->param();
 		<ul class="attr-list">
 <?php		foreach( $attrMap as $attrType => $attributes ) : ?>
 <?php			foreach( $attributes as $id => $attribute ) : ?>
-<?php				if( isset( $attrIds[$id] ) ) : ?>
-<?php					$current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$id] ); } ?>
+<?php				if( ( $key = array_search( $id, $attrIds ) ) !== false ) : ?>
+<?php					$current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$key] ); } ?>
 			<li class="attr-item"><a class="attr-name" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>"><?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?></a></li>
 <?php				endif; ?>
 <?php			endforeach; ?>
