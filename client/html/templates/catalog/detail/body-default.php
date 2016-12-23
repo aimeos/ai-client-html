@@ -134,6 +134,13 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 					<?php echo $this->csrf()->formfield(); ?>
 					<!-- catalog.detail.csrf -->
 
+					<?php foreach( $this->detailProductItem->getRefItems( 'attribute', null, 'hidden' ) as $attrItem ) : ?>
+						<input type="hidden"
+							name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrhideid', $attrItem->getType() ) ) ); ?>"
+							value="<?php echo $enc->attr( $attrItem->getId() ); ?>"
+						/>
+					<?php endforeach; ?>
+
 					<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
 						<div class="catalog-detail-basket-selection">
 							<?php echo $this->partial(
