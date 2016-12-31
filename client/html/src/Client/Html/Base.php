@@ -642,7 +642,7 @@ abstract class Base
 		);
 
 		if( !isset( $this->cache[ $keys[$type] ] ) ) {
-			$this->cache = $context->getCache()->getList( $keys );
+			$this->cache = $context->getCache()->getMultiple( $keys );
 		}
 
 		return ( isset( $this->cache[ $keys[$type] ] ) ? $this->cache[ $keys[$type] ] : null );
@@ -676,7 +676,7 @@ abstract class Base
 			$cfg = $config->get( $confkey, array() );
 			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
-			$context->getCache()->set( $key, $value, array_unique( $tags ), $expire );
+			$context->getCache()->set( $key, $value, $expire, array_unique( $tags ) );
 		}
 		catch( \Exception $e )
 		{
