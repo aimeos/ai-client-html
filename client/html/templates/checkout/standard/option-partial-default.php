@@ -160,7 +160,7 @@ $privacyUrl = $this->url( $privacyTarget, $privacyController, $privacyAction, ar
 ?>
 <?php if( !isset( $this->customerId ) ) : ?>
 	<div class="checkout-standard-summary-option-account">
-		<h3><?php echo $enc->html( $this->translate( 'client', 'Create account' ), $enc::TRUST ); ?></h3>
+		<h3><?php echo $enc->html( $this->translate( 'client', 'Customer account' ), $enc::TRUST ); ?></h3>
 
 		<div class="single <?php echo ( isset( $errors['option']['account'] ) ? 'error' : '' ); ?>">
 			<input id="option-account" type="checkbox" value="1"
@@ -169,7 +169,7 @@ $privacyUrl = $this->url( $privacyTarget, $privacyController, $privacyAction, ar
 			/>
 			<p>
 				<label for="option-account">
-					<?php echo $enc->html( $this->translate( 'client', 'Create customer account' ), $enc::TRUST ); ?>
+					<?php echo $enc->html( $this->translate( 'client', 'Create a customer account for me' ), $enc::TRUST ); ?>
 				</label>
 			</p>
 		</div>

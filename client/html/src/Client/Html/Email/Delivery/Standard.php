@@ -511,7 +511,7 @@ class Standard
 		foreach( $files as $filename )
 		{
 			if( ( $content = @file_get_contents( $filename ) ) === false ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'File "1%s" doesn\'t exist', $filename ) );
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'File "%1$s" doesn\'t exist', $filename ) );
 			}
 
 			if( class_exists( 'finfo' ) )
