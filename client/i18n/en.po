@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-02 10:51+0100\n"
+"POT-Creation-Date: 2017-01-03 12:40+0100\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <n.sendetzky@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -267,10 +267,10 @@ msgstr ""
 msgid "Coupons"
 msgstr ""
 
-msgid "Create account"
+msgid "Create a customer account for me"
 msgstr ""
 
-msgid "Create customer account"
+msgid "Customer account"
 msgstr ""
 
 #, php-format
@@ -330,7 +330,7 @@ msgid "Fields with an * are mandatory"
 msgstr ""
 
 #, php-format
-msgid "File \"1%s\" doesn't exist"
+msgid "File \"%1$s\" doesn't exist"
 msgstr ""
 
 msgid "Filter"
@@ -476,6 +476,9 @@ msgstr ""
 msgid "Other customers also bought"
 msgstr ""
 
+msgid "Our products"
+msgstr ""
+
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr ""
@@ -595,6 +598,9 @@ msgstr ""
 msgid "Services"
 msgstr ""
 
+msgid "Share"
+msgstr ""
+
 msgid "Shipping"
 msgstr ""
 
@@ -690,6 +696,10 @@ msgstr ""
 msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
 msgstr ""
 
+#, php-format
+msgid "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgstr ""
+
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
@@ -718,6 +728,9 @@ msgid "Three month"
 msgstr ""
 
 msgid "Time frame"
+msgstr ""
+
+msgid "Toggle fullscreen"
 msgstr ""
 
 msgid "Top seller"
@@ -766,6 +779,9 @@ msgid "Watch"
 msgstr ""
 
 msgid "Watched products"
+msgstr ""
+
+msgid "We have received your payment, and will take care of your order immediately."
 msgstr ""
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
@@ -869,6 +885,46 @@ msgstr ""
 #. * @copyright Aimeos (aimeos.org), 2015-2016
 #.
 #. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
 msgstr ""
@@ -888,7 +944,15 @@ msgstr ""
 #. * @copyright Aimeos (aimeos.org), 2015-2016
 #.
 #. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Product notification e-mail subject
 msgid "Your watched products"
+msgstr ""
+
+msgid "Zoom in/out"
 msgstr ""
 
 #, php-format

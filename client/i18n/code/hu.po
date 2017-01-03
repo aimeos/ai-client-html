@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-#
+# 
+# 
 # Translators:
 # Translators:
 # Translators:
@@ -14,50 +14,18 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-10-17 13:03+0000\n"
-"Last-Translator: Péter Kozma <kopegrafika@gmail.com>\n"
+"PO-Revision-Date: 2016-12-02 09:52+0000\n"
+"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
-"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. Product attribute
-msgid "color"
-msgstr "Szín"
 
 #. Address salutation
 msgid "company"
 msgstr "Cég"
-
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "Számlaszám"
-
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "Számla tulajdonos"
-
-#. Direct debit service provider
-msgid "directdebit.bankcode"
-msgstr "Bank kód"
-
-#. Direct debit service provider
-msgid "directdebit.bankname"
-msgstr "Bank név"
-
-#. Favorite action
-msgid "favorite"
-msgstr "kedvenc"
-
-#. Product attribute
-msgid "length"
-msgstr "Hossz"
-
-#. Address salutation
-msgid "miss"
-msgstr "Kisasszony"
 
 #. Address salutation
 msgid "mr"
@@ -67,13 +35,29 @@ msgstr "Úr"
 msgid "mrs"
 msgstr "Asszony"
 
+#. Address salutation
+msgid "miss"
+msgstr "Kisasszony"
+
+#. Product attribute
+msgid "size"
+msgstr "Méret"
+
+#. Product attribute
+msgid "length"
+msgstr "Hossz"
+
+#. Product attribute
+msgid "width"
+msgstr "Szélesség"
+
+#. Product attribute
+msgid "color"
+msgstr "Szín"
+
 #. Product attribute
 msgid "option"
 msgstr "Választási lehetőség"
-
-#. Order type value
-msgid "order:phone"
-msgstr "telefon"
 
 #. Order type value
 msgid "order:repeat"
@@ -83,21 +67,9 @@ msgstr "megismételt"
 msgid "order:web"
 msgstr "internet"
 
-#. Product property package-height
-msgid "package-height"
-msgstr "csomag magasság"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "csomag hossz"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "csomag súly"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "csomag szélesség"
+#. Order type value
+msgid "order:phone"
+msgstr "telefon"
 
 #. Payment status value
 msgid "pay:-1"
@@ -130,41 +102,6 @@ msgstr "jóváhagyva"
 #. Payment status value
 msgid "pay:6"
 msgstr "elfogadva"
-
-#. Omnipay service provider
-msgid "payment.cardno"
-msgstr "Bankkártya száma"
-
-#. Omnipay service provider
-msgid "payment.cvv"
-msgstr "Ellenőrző szám"
-
-#. Omnipay service provider
-msgid "payment.expirymonth"
-msgstr "Érvényességi hónap"
-
-#. Omnipay service provider
-msgid "payment.expiryyear"
-msgstr "Érvényességi év"
-
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Keresztnév"
-
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Vezetéknév"
-
-#. Pin action
-msgid "pin"
-msgstr "kitűzés"
-
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Product attribute
-msgid "size"
-msgstr "Méret"
 
 #. Delivery status value
 msgid "stat:-1"
@@ -202,14 +139,77 @@ msgstr "visszautasítva"
 msgid "stat:7"
 msgstr "visszaküldött"
 
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "Számla tulajdonos"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Számlaszám"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "Bank kód"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "Bank név"
+
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Keresztnév"
+
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Vezetéknév"
+
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr "Bankkártya száma"
+
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr "Ellenőrző szám"
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr "Érvényességi hónap"
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr "Érvényességi év"
+
 #. Stock type
 msgid "stocktype:default"
-msgstr "raktár:alapértelmezett"
+msgstr ""
+
+#. Favorite action
+msgid "favorite"
+msgstr "kedvenc"
+
+#. Pin action
+msgid "pin"
+msgstr "kitűzés"
 
 #. Watch action
 msgid "watch"
 msgstr "Megtekintés"
 
-#. Product attribute
-msgid "width"
-msgstr "Szélesség"
+#. Product property package-length
+msgid "package-length"
+msgstr "csomag hossz"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "csomag szélesség"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "csomag magasság"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "csomag súly"
+
+msgid "price:default"
+msgstr "%1$s %2$s"
