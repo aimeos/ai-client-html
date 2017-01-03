@@ -67,9 +67,12 @@ $pagination = $this->partial(
 	$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-default.php' ),
 	array(
 		'params' => $params,
+		'size' => $this->get( 'listPageSize', 48 ),
 		'total' => $this->get( 'listProductTotal', 0 ),
 		'current' => $this->get( 'listPageCurr', 0 ),
-		'size' => $this->get( 'listPageSize', 48 )
+		'prev' => $this->get( 'listPagePrev', 0 ),
+		'next' => $this->get( 'listPageNext', 0 ),
+		'last' => $this->get( 'listPageLast', 0 ),
 	)
 );
 
