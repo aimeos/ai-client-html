@@ -67,6 +67,24 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	public function testProcessNoCache()
+	{
+		$prodid = $this->getProductItem()->getId();
+		$session = $this->context->getSession();
+
+		$view = $this->object->getView();
+		$param = array( 'd_prodid' => $prodid );
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+
+		$str = $session->get( 'aimeos/catalog/session/seen/list' );
+		$this->assertInternalType( 'array', $str );
+	}
+
+
 	protected function getProductItem()
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( \TestHelperHtml::getContext() );

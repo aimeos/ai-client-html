@@ -297,7 +297,7 @@ class Standard
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$cache->set( $key, $html, $tags, $expire );
+			$cache->set( $key, $html, $expire, $tags );
 		}
 
 		return $html;
