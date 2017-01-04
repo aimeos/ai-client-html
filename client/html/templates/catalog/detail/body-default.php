@@ -41,6 +41,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
+
 $attrMap = $subAttrDeps = array();
 $attrItems = $this->get( 'detailAttributeItems', array() );
 
@@ -58,6 +59,15 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 		}
 	}
 }
+
+$propMap = array();
+
+foreach( $this->get( 'detailPropertyItems', array() ) as $propItem ) {
+	$propMap[ $propItem->getType() ][] = $propItem;
+}
+
+ksort( $attrMap );
+ksort( $propMap );
 
 
 ?>
@@ -318,17 +328,19 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 					</div>
 				<?php endif; ?>
 
-				<?php if( ( $propertyItems = $this->get( 'detailPropertyItems', array() ) ) !== array() ) : ?>
+				<?php if( count( $propMap ) > 0 ) : ?>
 					<div class="additional-box">
 						<h2 class="header properties"><?php echo $enc->html( $this->translate( 'client', 'Properties' ), $enc::TRUST ); ?></h2>
 						<div class="content properties">
 							<table class="properties">
 								<tbody>
-									<?php foreach( $propertyItems as $propertyItem ) : ?>
-										<tr class="item">
-											<td class="name"><?php echo $enc->html( $this->translate( 'client/code', $propertyItem->getType() ), $enc::TRUST ); ?></td>
-											<td class="value"><?php echo $enc->html( $propertyItem->getValue() ); ?></td>
-										</tr>
+									<?php foreach( $propMap as $type => $propItems ) : ?>
+										<?php foreach( $propItems as $propertyItem ) : ?>
+											<tr class="item">
+												<td class="name"><?php echo $enc->html( $this->translate( 'client/code', $propertyItem->getType() ), $enc::TRUST ); ?></td>
+												<td class="value"><?php echo $enc->html( $propertyItem->getValue() ); ?></td>
+											</tr>
+										<?php endforeach; ?>
 									<?php endforeach; ?>
 								</tbody>
 							</table>
