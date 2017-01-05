@@ -50,7 +50,23 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 			<div class="content">
 				<?php if( isset( $addresses['payment'] ) ) : ?>
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/address', 'common/summary/address-default.php' ),
+						/** client/html/checkout/standard/summary/address
+						 * Location of the address partial template for the checkout summary
+						 *
+						 * To configure an alternative template for the address partial, you
+						 * have to configure its path relative to the template directory
+						 * (usually client/html/templates/). It's then used to display the
+						 * payment or delivery address block on the summary page during the
+						 * checkout process.
+						 *
+						 * @param string Relative path to the address partial
+						 * @since 2017.01
+						 * @category Developer
+						 * @see client/html/checkout/standard/summary/detail
+						 * @see client/html/checkout/standard/summary/options
+						 * @see client/html/checkout/standard/summary/service
+						 */
+						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-default.php' ),
 						array( 'address' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -68,7 +84,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/address', 'common/summary/address-default.php' ),
+						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-default.php' ),
 						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
@@ -91,7 +107,23 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 			<div class="content">
 				<?php if( isset( $services['delivery'] ) ) : ?>
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/service', 'common/summary/service-default.php' ),
+						/** client/html/checkout/standard/summary/service
+						 * Location of the service partial template for the checkout summary
+						 *
+						 * To configure an alternative template for the service partial, you
+						 * have to configure its path relative to the template directory
+						 * (usually client/html/templates/). It's then used to display the
+						 * payment or delivery service block on the summary page during the
+						 * checkout process.
+						 *
+						 * @param string Relative path to the service partial
+						 * @since 2017.01
+						 * @category Developer
+						 * @see client/html/checkout/standard/summary/address
+						 * @see client/html/checkout/standard/summary/detail
+						 * @see client/html/checkout/standard/summary/options
+						 */
+						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-default.php' ),
 						array( 'service' => $services['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php endif; ?>
@@ -109,7 +141,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/service', 'common/summary/service-default.php' ),
+						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-default.php' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -161,7 +193,22 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 
 		<div class="basket">
 			<?php echo $this->partial(
-				$this->config( 'client/html/common/summary/detail', 'common/summary/detail-default.php' ),
+				/** client/html/checkout/standard/summary/detail
+				 * Location of the detail partial template for the checkout summary
+				 *
+				 * To configure an alternative template for the detail partial, you
+				 * have to configure its path relative to the template directory
+				 * (usually client/html/templates/). It's then used to display the
+				 * product detail block on the summary page during the checkout process.
+				 *
+				 * @param string Relative path to the detail partial
+				 * @since 2017.01
+				 * @category Developer
+				 * @see client/html/checkout/standard/summary/address
+				 * @see client/html/checkout/standard/summary/options
+				 * @see client/html/checkout/standard/summary/service
+				 */
+				$this->config( 'client/html/checkout/standard/summary/detail', 'common/summary/detail-default.php' ),
 				array(
 					'summaryBasket' => $this->standardBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),
@@ -174,6 +221,21 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 
 	<div class="checkout-standard-summary-option container">
 		<?php echo $this->partial(
+			/** client/html/checkout/standard/summary/options
+			 * Location of the options partial template for the checkout summary
+			 *
+			 * To configure an alternative template for the options partial, you
+			 * have to configure its path relative to the template directory
+			 * (usually client/html/templates/). It's then used to display the
+			 * options block on the summary page during the checkout process.
+			 *
+			 * @param string Relative path to the options partial
+			 * @since 2017.01
+			 * @category Developer
+			 * @see client/html/checkout/standard/summary/address
+			 * @see client/html/checkout/standard/summary/detail
+			 * @see client/html/checkout/standard/summary/service
+			 */
 			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-default.php' ),
 			array( 'errors' => $this->get( 'summaryErrorCodes', array() ), 'customerId' => $this->get( 'summaryCustomerId' ) )
 		); ?>

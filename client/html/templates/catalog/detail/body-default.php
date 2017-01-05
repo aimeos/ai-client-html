@@ -39,6 +39,19 @@ $basketController = $this->config( 'client/html/basket/standard/url/controller',
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
 
+
+/** client/html/basket/require-stock
+ * Customers can order products only if there are enough products in stock
+ *
+ * Checks that the requested product quantity is in stock before
+ * the customer can add them to his basket and order them. If there
+ * are not enough products available, the customer will get a notice.
+ *
+ * @param boolean True if products must be in stock, false if products can be sold without stock
+ * @since 2014.03
+ * @category Developer
+ * @category User
+ */
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 

@@ -47,7 +47,19 @@ $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', arr
 
 				<div class="basket">
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/detail', 'common/summary/detail-default.php' ),
+						/** client/html/basket/standard/summary/detail
+						 * Location of the detail partial template for the basket standard component
+						 *
+						 * To configure an alternative template for the detail partial, you
+						 * have to configure its path relative to the template directory
+						 * (usually client/html/templates/). It's then used to display the
+						 * product detail block in the basket standard component.
+						 *
+						 * @param string Relative path to the detail partial
+						 * @since 2017.01
+						 * @category Developer
+						 */
+						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail-default.php' ),
 						array(
 							'summaryEnableModify' => true,
 							'summaryBasket' => $this->standardBasket,

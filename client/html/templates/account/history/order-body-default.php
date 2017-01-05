@@ -38,7 +38,21 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $addresses['payment'] ) ) : ?>
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/address', 'common/summary/address-default.php' ),
+						/** client/html/account/history/summary/address
+						 * Location of the address partial template for the account history component
+						 *
+						 * To configure an alternative template for the address partial, you
+						 * have to configure its path relative to the template directory
+						 * (usually client/html/templates/). It's then used to display the
+						 * payment or delivery address block in the account history component.
+						 *
+						 * @param string Relative path to the address partial
+						 * @since 2017.01
+						 * @category Developer
+						 * @see client/html/account/history/summary/detail
+						 * @see client/html/account/history/summary/service
+						 */
+						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-default.php' ),
 						array( 'address' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -53,7 +67,7 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/address', 'common/summary/address-default.php' ),
+						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-default.php' ),
 						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
@@ -73,7 +87,21 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $services['delivery'] ) ) : ?>
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/service', 'common/summary/service-default.php' ),
+						/** client/html/account/history/summary/service
+						 * Location of the service partial template for the account history component
+						 *
+						 * To configure an alternative template for the service partial, you
+						 * have to configure its path relative to the template directory
+						 * (usually client/html/templates/). It's then used to display the
+						 * payment or delivery service block in the account history component
+						 *
+						 * @param string Relative path to the service partial
+						 * @since 2017.01
+						 * @category Developer
+						 * @see client/html/account/history/summary/address
+						 * @see client/html/account/history/summary/detail
+						 */
+						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-default.php' ),
 						array( 'service' => $services['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php endif; ?>
@@ -88,7 +116,7 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
 					<?php echo $this->partial(
-						$this->config( 'client/html/common/summary/service', 'common/summary/service-default.php' ),
+						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-default.php' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -134,7 +162,21 @@ $services = $this->summaryBasket->getServices();
 
 		<div class="basket">
 			<?php echo $this->partial(
-				$this->config( 'client/html/common/summary/detail', 'common/summary/detail-default.php' ),
+				/** client/html/account/history/summary/detail
+				 * Location of the detail partial template for the account history component
+				 *
+				 * To configure an alternative template for the detail partial, you
+				 * have to configure its path relative to the template directory
+				 * (usually client/html/templates/). It's then used to display the
+				 * product detail block in the account history component.
+				 *
+				 * @param string Relative path to the detail partial
+				 * @since 2017.01
+				 * @category Developer
+				 * @see client/html/account/history/summary/address
+				 * @see client/html/account/history/summary/service
+				 */
+				$this->config( 'client/html/account/history/summary/detail', 'common/summary/detail-default.php' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),
