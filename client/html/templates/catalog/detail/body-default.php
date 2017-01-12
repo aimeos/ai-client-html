@@ -218,7 +218,7 @@ ksort( $propMap );
 					</div>
 
 
-					<div class="stock">
+					<div class="stock-list">
 						<div class="articleitem stock-actual"
 							data-prodid="<?php echo $enc->attr( $this->detailProductItem->getId() ); ?>"
 							data-prodcode="<?php echo $enc->attr( $this->detailProductItem->getCode() ); ?>">
