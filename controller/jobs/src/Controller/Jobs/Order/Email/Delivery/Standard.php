@@ -189,7 +189,7 @@ class Standard
 	/**
 	 * Returns an initialized view object
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface Context item
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
 	 * @param string $langId ISO language code, maybe country specific
 	 * @return \Aimeos\MW\View\Iface Initialized view object
 	 */
