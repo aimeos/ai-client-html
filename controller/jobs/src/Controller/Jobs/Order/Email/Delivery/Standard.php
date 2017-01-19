@@ -51,22 +51,13 @@ class Standard
 	 */
 	public function run()
 	{
-		$aimeos = $this->getAimeos();
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$mailer = $context->getMail();
-		$view = $context->getView();
 
-		$templatePaths = $aimeos->getCustomPaths( 'client/html/templates' );
+		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
-		$view->addHelper( 'config', $helper );
-
+		$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html/templates' );
 		$client = \Aimeos\Client\Html\Email\Delivery\Factory::createClient( $context, $templatePaths );
-
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( $context );
-		$orderStatusManager = $orderManager->getSubManager( 'status' );
-		$orderBaseManager = $orderManager->getSubManager( 'base' );
 
 		/** controller/jobs/order/email/delivery/standard/limit-days
 		 * Only send delivery e-mails of orders that were created in the past within the configured number of days
@@ -120,6 +111,7 @@ class Standard
 		 */
 		foreach( (array) $config->get( 'controller/jobs/order/email/delivery/standard/status', $default ) as $status )
 		{
+			$start = 0;
 			$orderSearch = $orderManager->createSearch();
 
 			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, $status );
@@ -132,64 +124,132 @@ class Standard
 			);
 			$orderSearch->setConditions( $orderSearch->combine( '&&', $expr ) );
 
-			$start = 0;
-
 			do
 			{
+				$orderSearch->setSlice( $start );
 				$items = $orderManager->searchItems( $orderSearch );
 
-				foreach( $items as $id => $item )
-				{
-					try
-					{
-						$orderBaseItem = $orderBaseManager->load( $item->getBaseId() );
-
-						try {
-							$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
-						} catch( \Exception $e ) {
-							$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-						}
-
-						$view->extAddressItem = $addr;
-						$view->extOrderBaseItem = $orderBaseItem;
-						$view->extOrderItem = $item;
-
-						$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $addr->getLanguageId() ) );
-						$view->addHelper( 'translate', $helper );
-
-						$message = $mailer->createMessage();
-						$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message );
-						$view->addHelper( 'mail', $helper );
-
-						$client->setView( $view );
-						$client->getHeader();
-						$client->getBody();
-
-						$mailer->send( $message );
-
-						$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
-						$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::DEBUG );
-
-						$statusItem = $orderStatusManager->createItem();
-						$statusItem->setParentId( $id );
-						$statusItem->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY );
-						$statusItem->setValue( $status );
-
-						$orderStatusManager->saveItem( $statusItem );
-					}
-					catch( \Exception $e )
-					{
-						$str = 'Error while trying to send delivery e-mail for order ID "%1$s" and status "%2$s": %3$s';
-						$msg = sprintf( $str, $item->getId(), $item->getDeliveryStatus(), $e->getMessage() );
-						$context->getLogger()->log( $msg );
-					}
-				}
+				$this->process( $client, $items, $status );
 
 				$count = count( $items );
 				$start += $count;
-				$orderSearch->setSlice( $start );
 			}
 			while( $count >= $orderSearch->getSliceSize() );
+		}
+	}
+
+
+	/**
+	 * Adds the status of the delivered e-mail for the given order ID
+	 *
+	 * @param string $orderId Unique order ID
+	 * @param integer $value Status value
+	 */
+	protected function addOrderStatus( $orderId, $value )
+	{
+		$orderStatusManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/status' );
+
+		$statusItem = $orderStatusManager->createItem();
+		$statusItem->setParentId( $orderId );
+		$statusItem->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY );
+		$statusItem->setValue( $value );
+
+		$orderStatusManager->saveItem( $statusItem );
+	}
+
+
+	/**
+	 * Returns the delivery address item of the order
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including address items
+	 * @return \Aimeos\MShop\Order\Item\Base\Address\Iface Delivery or payment address item
+	 * @throws \Aimeos\MShop\Order\Exception If no address item is available
+	 */
+	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
+	{
+		try
+		{
+			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+
+			if( $addr->getEmail() == '' )
+			{
+				$payAddr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+				$addr->setEmail( $payAddr->getEmail() );
+			}
+		}
+		catch( \Exception $e )
+		{
+			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+		}
+
+		return $addr;
+	}
+
+
+	/**
+	 * Returns an initialized view object
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface Context item
+	 * @param string $langId ISO language code, maybe country specific
+	 * @return \Aimeos\MW\View\Iface Initialized view object
+	 */
+	protected function getView( $context, $langId )
+	{
+		$view = $context->getView();
+
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
+		$view->addHelper( 'config', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $context->getMail()->createMessage() );
+		$view->addHelper( 'mail', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $langId ) );
+		$view->addHelper( 'translate', $helper );
+
+		return $view;
+	}
+
+
+	/**
+	 * Sends the delivery e-mail for the given orders
+	 *
+	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the delivery e-mails
+	 * @param \Aimeos\MShop\Order\Item\Iface[] $items Associative list of order items with their IDs as keys
+	 * @param integer $status Delivery status value
+	 */
+	protected function process( \Aimeos\Client\Html\Iface $client, array $items, $status )
+	{
+		$context = $this->getContext();
+		$orderBaseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+
+		foreach( $items as $id => $item )
+		{
+			try
+			{
+				$orderBaseItem = $orderBaseManager->load( $item->getBaseId() );
+				$addr = $this->getAddressItem( $orderBaseItem );
+
+				$view = $this->getView( $context, $addr->getLanguageId() );
+				$view->extAddressItem = $addr;
+				$view->extOrderBaseItem = $orderBaseItem;
+				$view->extOrderItem = $item;
+
+				$client->setView( $view );
+				$client->getHeader();
+				$client->getBody();
+
+				$context->getMail()->send( $view->mail() );
+				$this->addOrderStatus( $id, $status );
+
+				$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
+				$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::INFO );
+			}
+			catch( \Exception $e )
+			{
+				$str = 'Error while trying to send delivery e-mail for order ID "%1$s" and status "%2$s": %3$s';
+				$msg = sprintf( $str, $item->getId(), $item->getDeliveryStatus(), $e->getMessage() );
+				$context->getLogger()->log( $msg );
+			}
 		}
 	}
 }
