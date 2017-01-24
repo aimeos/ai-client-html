@@ -79,7 +79,7 @@ $params = $this->param();
 		<h2><?php echo $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
 
 
-		<?php if( !empty( $attrIds ) ) : ?>
+		<?php if( !empty( $attrIds ) || !empty( $optIds ) ) : ?>
 
 			<div class="attribute-selected">
 				<span class="selected-intro"><?php echo $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
@@ -90,7 +90,7 @@ $params = $this->param();
 							<?php if( ( $key = array_search( $id, $attrIds ) ) !== false ) : ?>
 								<?php $current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$key] ); } ?>
 							<?php elseif( isset( $optIds[$attrType] ) && ( $key = array_search( $id, (array) $optIds[$attrType] ) ) !== false ) : ?>
-								<?php $current = $params; if( is_array( $current['f_optid'] ) ) { unset( $current['f_optid'][$attrType][$key] ); } ?>
+								<?php $current = $params; if( is_array( $current['f_optid'][$attrType] ) ) { unset( $current['f_optid'][$attrType][$key] ); } ?>
 							<?php else : continue; ?>
 							<?php endif; ?>
 							<li class="attr-item">
@@ -102,7 +102,7 @@ $params = $this->param();
 					<?php endforeach; ?>
 				</ul>
 
-				<?php if( count( $attrIds ) > 1 ) : $current = $params; unset( $current['f_attrid'] ); ?>
+				<?php if( count( $attrIds ) > 1 || count( $optIds ) > 1 ) : $current = $params; unset( $current['f_attrid'],  $current['f_optid'] ); ?>
 					<a class="selected-all" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>">
 						<?php echo $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?>
 					</a>
@@ -130,7 +130,7 @@ $params = $this->param();
 										id="attr-<?php echo $enc->attr( $id ); ?>"
 										name="<?php echo $enc->attr( $this->formparam( $fparam ) ); ?>"
 										value="<?php echo $enc->attr( $id ); ?>"
-										<?php echo ( in_array( $id, $attrIds ) ? 'checked="checked"' : '' ); ?>
+										<?php echo ( in_array( $id, $attrIds ) || isset( $optIds[$attrType] ) && in_array( $id, (array) $optIds[$attrType] ) ? 'checked="checked"' : '' ); ?>
 									/>
 
 									<label class="attr-name" for="attr-<?php echo $enc->attr( $id ); ?>"><!--
