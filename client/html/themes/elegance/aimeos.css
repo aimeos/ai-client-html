@@ -306,7 +306,7 @@
 }
 
 .locale-select ul.select-menu ul {
-	list-style: outside none none;
+	list-style: none outside none;
 	background-color: #FFF;
 	position: absolute;
 	visibility: hidden;
