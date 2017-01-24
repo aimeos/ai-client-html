@@ -26,6 +26,33 @@ foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
 }
 
 
+/** client/html/catalog/attribute/preselect
+ * Pre-select first item in selection list
+ *
+ * No option of the available selections for a product is pre-selected by
+ * default. This setting removes the hint to select an option, so the first one
+ * is selected by default.
+ *
+ * The key for each value must be the type code of the attribute, e.g. "width",
+ * "length", "color" or similar types. You can set the layout for all
+ * attributes at once using e.g.
+ *
+ *  client/html/catalog/attribute/preselect = array(
+ *      'width' => false,
+ *      'color' => true,
+ *  )
+ *
+ * Similarly, you can set the pre-selection for a specific attribute only,
+ * leaving the rest untouched:
+ *
+ *  client/html/catalog/attribute/preselect/color = true
+ *
+ * @param boolean True to select the first option by default, false to display the select hint
+ * @since 2017.??
+ * @category Developer
+ * @category User
+ */
+
 /** client/html/catalog/attribute/type
  * List of layout types for the optional attributes
  *
@@ -74,13 +101,16 @@ foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
 <ul class="selection">
 	<?php foreach( $attributeConfigItems as $code => $attributes ) : ?>
 		<?php $layout = $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ); ?>
+		<?php $preselect = (bool) $this->config( 'client/html/catalog/attribute/preselect/' . $code, false ); ?>
 
 		<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
 			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
 			<div class="select-value">
 
 				<select class="select-list" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid' ) ) ); ?>">
-					<option class="select-option" value=""><?php echo $enc->html( $this->translate( 'client', 'none' ) ); ?></option>
+					<?php if( $preselect === false ) : ?>
+						<option class="select-option" value=""><?php echo $enc->html( $this->translate( 'client', 'none' ) ); ?></option>
+					<?php endif; ?>
 					<?php foreach( $attributes as $id => $attribute ) : ?>
 						<option class="select-option" value="<?php echo $enc->attr( $id ); ?>">
 
