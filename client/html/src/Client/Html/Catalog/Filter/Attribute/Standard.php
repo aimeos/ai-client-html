@@ -238,6 +238,7 @@ class Standard
 			 * @since 2015.05
 			 * @category User
 			 * @category Developer
+			 * @see client/html/catalog/filter/attribute/types-option
 			 * @see client/html/catalog/filter/attribute/domains
 			 */
 			$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', array() );

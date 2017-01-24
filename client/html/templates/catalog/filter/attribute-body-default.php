@@ -24,6 +24,25 @@ $enc = $this->encoder();
  */
 $contentUrl = $this->config( 'client/html/common/content/baseurl' );
 
+/** client/html/catalog/filter/attribute/types-option
+ * List of attribute types whose values should be used as "OR" condition
+ *
+ * The attribute section in the catalog filter component can display all
+ * attributes a visitor can use to filter the listed products to those that
+ * contains one or more attributes.
+ *
+ * This configuration setting lists the attribute types where at least one of
+ * the attributes must be referenced by the found products. If not, all
+ * attributes selected by the visitor must be associated to the products.
+ *
+ * @param array List of attribute type codes
+ * @since 2016.10
+ * @category User
+ * @category Developer
+ * @see client/html/catalog/filter/attribute/types
+ */
+$options = $this->config( 'client/html/catalog/filter/attribute/types-option', array() );
+
 /** client/html/catalog/filter/standard/button
  * Displays the "Search" button in the catalog filter if Javascript is disabled
  *
@@ -47,6 +66,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
 
 $attrMap = $this->get( 'attributeMap', array() );
 $attrIds = $this->param( 'f_attrid', array() );
+$optIds = $this->param( 'f_optid', array() );
 $params = $this->param();
 
 
@@ -69,12 +89,15 @@ $params = $this->param();
 						<?php foreach( $attributes as $id => $attribute ) : ?>
 							<?php if( ( $key = array_search( $id, $attrIds ) ) !== false ) : ?>
 								<?php $current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$key] ); } ?>
-								<li class="attr-item">
-									<a class="attr-name" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>">
-										<?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?>
-									</a>
-								</li>
+							<?php elseif( isset( $optIds[$attrType] ) && ( $key = array_search( $id, (array) $optIds[$attrType] ) ) !== false ) : ?>
+								<?php $current = $params; if( is_array( $current['f_optid'] ) ) { unset( $current['f_optid'][$attrType][$key] ); } ?>
+							<?php else : continue; ?>
 							<?php endif; ?>
+							<li class="attr-item">
+								<a class="attr-name" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>">
+									<?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+								</a>
+							</li>
 						<?php endforeach; ?>
 					<?php endforeach; ?>
 				</ul>
@@ -98,13 +121,14 @@ $params = $this->param();
 						<legend><?php echo $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
 						<ul class="attr-list"><!--
 
+							<?php $fparam = ( in_array( $attrType, $options ) ? array( 'f_optid', $attrType, '' ) : array( 'f_attrid', '' ) ); ?>
 							<?php foreach( $attributes as $id => $attribute ) : ?>
 
 								--><li class="attr-item" data-id="<?php echo $enc->attr( $id ); ?>">
 
 									<input class="attr-item" type="checkbox"
 										id="attr-<?php echo $enc->attr( $id ); ?>"
-										name="<?php echo $enc->attr( $this->formparam( array( 'f_attrid', '' ) ) ); ?>"
+										name="<?php echo $enc->attr( $this->formparam( $fparam ) ); ?>"
 										value="<?php echo $enc->attr( $id ); ?>"
 										<?php echo ( in_array( $id, $attrIds ) ? 'checked="checked"' : '' ); ?>
 									/>

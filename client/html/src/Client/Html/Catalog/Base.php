@@ -34,26 +34,52 @@ abstract class Base
 	 */
 	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter )
 	{
-		$attrids = array();
-
 		if( isset( $params['f_attrid'] ) )
 		{
+			$attrids = array();
+
 			foreach( (array) $params['f_attrid'] as $attrid )
 			{
 				if( $attrid != '' ) {
 					$attrids[] = (int) $attrid;
 				}
 			}
+
+			if( !empty( $attrids ) )
+			{
+				$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
+				$expr = array(
+					$filter->getConditions(),
+					$filter->compare( '==', $func, count( $attrids ) ),
+				);
+				$filter->setConditions( $filter->combine( '&&', $expr ) );
+			}
 		}
 
-		if( !empty( $attrids ) )
+
+		if( isset( $params['f_optid'] ) )
 		{
-			$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
-			$expr = array(
-				$filter->getConditions(),
-				$filter->compare( '==', $func, count( $attrids ) ),
-			);
-			$filter->setConditions( $filter->combine( '&&', $expr ) );
+			foreach( (array) $params['f_optid'] as $type => $list )
+			{
+				$attrids = array();
+
+				foreach( (array) $list as $attrid )
+				{
+					if( $attrid != '' ) {
+						$attrids[] = (int) $attrid;
+					}
+				}
+
+				if( !empty( $attrids ) )
+				{
+					$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
+					$expr = array(
+						$filter->getConditions(),
+						$filter->compare( '>', $func, 0 ),
+					);
+					$filter->setConditions( $filter->combine( '&&', $expr ) );
+				}
+			}
 		}
 	}
 
