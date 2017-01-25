@@ -48,7 +48,7 @@ foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
  *  client/html/catalog/attribute/preselect/color = true
  *
  * @param boolean True to select the first option by default, false to display the select hint
- * @since 2017.??
+ * @since 2017.04
  * @category Developer
  * @category User
  */
