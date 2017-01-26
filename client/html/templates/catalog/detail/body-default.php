@@ -65,18 +65,21 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 
 	foreach( $subItems as $attrId => $attrItem )
 	{
-		if( isset( $attrItems[$attrId] ) )
+		if( isset( $attrItems[ $attrId ] ) )
 		{
-			$attrMap[ $attrItem->getType() ][$attrId] = $attrItems[$attrId];
-			$subAttrDeps[$attrId][] = $subProdId;
+			$attrMap[ $attrItem->getType() ][ $attrId ] = $attrItems[ $attrId ];
+			$subAttrDeps[ $attrId ][] = $subProdId;
 		}
 	}
 }
 
-$propMap = array();
+$propMap = $subPropDeps = array();
+$propItems = $this->get( 'detailPropertyItems', array() );
 
-foreach( $this->get( 'detailPropertyItems', array() ) as $propItem ) {
-	$propMap[ $propItem->getType() ][] = $propItem;
+foreach( $propItems as $propId => $propItem )
+{
+	$propMap[ $propItem->getType() ][ $propId ] = $propItem;
+	$subPropDeps[ $propId ][] = $propItem->getParentId();
 }
 
 ksort( $attrMap );
@@ -348,8 +351,12 @@ ksort( $propMap );
 							<table class="properties">
 								<tbody>
 									<?php foreach( $propMap as $type => $propItems ) : ?>
-										<?php foreach( $propItems as $propertyItem ) : ?>
-											<tr class="item">
+										<?php foreach( $propItems as $propertyItem ) : $classes = ""; ?>
+											<?php if( isset( $subPropDeps[ $propertyItem->getId() ] ) ) : ?>
+												<?php $classes .= ' subproduct'; ?>
+												<?php foreach( $subPropDeps[ $propertyItem->getId() ] as $prodid ) { $classes .= ' subproduct-' . $prodid; } ?>
+											<?php endif; ?>
+											<tr class="item<?php echo $classes; ?>">
 												<td class="name"><?php echo $enc->html( $this->translate( 'client/code', $propertyItem->getType() ), $enc::TRUST ); ?></td>
 												<td class="value"><?php echo $enc->html( $propertyItem->getValue() ); ?></td>
 											</tr>
