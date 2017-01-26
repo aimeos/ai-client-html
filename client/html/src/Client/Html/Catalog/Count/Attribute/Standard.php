@@ -232,6 +232,9 @@ class Standard
 			 */
 			if( $config->get( 'client/html/catalog/count/attribute/aggregate', true ) == true )
 			{
+				$filter = $this->getProductListFilter( $view, true, true, false );
+				$filter = $this->addAttributeFilter( $view, $filter, false );
+
 				/** client/html/catalog/count/limit
 				 * Limits the number of records that are used for product counts in the catalog filter
 				 *
@@ -255,7 +258,6 @@ class Standard
 				 * @category Developer
 				 * @category User
 				 */
-				$filter = $this->getProductListFilter( $view );
 				$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
 				$filter->setSortations( array() ); // it's not necessary and slows down the query
 

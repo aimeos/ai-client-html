@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -31,8 +31,10 @@ abstract class Base
 	 *
 	 * @param array $params Associative list of parameters that should be used for filtering
 	 * @param \Aimeos\MW\Criteria\Iface $filter Criteria object for searching
+	 * @param boolean $options True to add options to filter, false for attributes only
+	 * @return \Aimeos\MW\Criteria\Iface Search filter with conditions for attribute added
 	 */
-	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter )
+	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter, $options = true )
 	{
 		if( isset( $params['f_attrid'] ) )
 		{
@@ -57,7 +59,7 @@ abstract class Base
 		}
 
 
-		if( isset( $params['f_optid'] ) )
+		if( isset( $params['f_optid'] ) && $options === true )
 		{
 			foreach( (array) $params['f_optid'] as $type => $list )
 			{
@@ -81,6 +83,8 @@ abstract class Base
 				}
 			}
 		}
+
+		return $filter;
 	}
 
 
@@ -89,10 +93,12 @@ abstract class Base
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View instance with helper for retrieving the required parameters
 	 * @param \Aimeos\MW\Criteria\Iface $filter Criteria object for searching
+	 * @param boolean $options True to add options to filter, false for attributes only
+	 * @return \Aimeos\MW\Criteria\Iface Search filter with conditions for attribute added
 	 */
-	protected function addAttributeFilter( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Criteria\Iface $filter )
+	protected function addAttributeFilter( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Criteria\Iface $filter, $options = true )
 	{
-		$this->addAttributeFilterByParam( $view->param(), $filter );
+		return $this->addAttributeFilterByParam( $view->param(), $filter, $options );
 	}
 
 
