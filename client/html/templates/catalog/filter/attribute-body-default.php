@@ -25,23 +25,46 @@ $enc = $this->encoder();
 $contentUrl = $this->config( 'client/html/common/content/baseurl' );
 
 /** client/html/catalog/filter/attribute/types-option
- * List of attribute types whose values should be used as "OR" condition
+ * List of attribute types whose IDs should be used in a global "OR" condition
  *
  * The attribute section in the catalog filter component can display all
  * attributes a visitor can use to filter the listed products to those that
  * contains one or more attributes.
  *
  * This configuration setting lists the attribute types where at least one of
- * the attributes must be referenced by the found products. If not, all
- * attributes selected by the visitor must be associated to the products.
+ * all attributes must be referenced by the found products. Only one attribute
+ * of all listed attributes types (whatever matches) in enough. This setting is
+ * different from "client/html/catalog/filter/attribute/types-oneof" because
+ * it's not limited within the same attribute type
  *
  * @param array List of attribute type codes
  * @since 2016.10
  * @category User
  * @category Developer
  * @see client/html/catalog/filter/attribute/types
+ * @see client/html/catalog/filter/attribute/types-oneof
  */
 $options = $this->config( 'client/html/catalog/filter/attribute/types-option', array() );
+
+/** client/html/catalog/filter/attribute/types-oneof
+ * List of attribute types whose values should be used in a type specific "OR" condition
+ *
+ * The attribute section in the catalog filter component can display all
+ * attributes a visitor can use to filter the listed products to those that
+ * contains one or more attributes.
+ *
+ * This configuration setting lists the attribute types where at least one of
+ * the attributes within the same attribute type must be referenced by the found
+ * products.
+ *
+ * @param array List of attribute type codes
+ * @since 2016.10
+ * @category User
+ * @category Developer
+ * @see client/html/catalog/filter/attribute/types
+ * @see client/html/catalog/filter/attribute/types-option
+ */
+$oneof = $this->config( 'client/html/catalog/filter/attribute/types-oneof', array() );
 
 /** client/html/catalog/filter/standard/button
  * Displays the "Search" button in the catalog filter if Javascript is disabled
@@ -66,6 +89,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
 
 $attrMap = $this->get( 'attributeMap', array() );
 $attrIds = $this->param( 'f_attrid', array() );
+$oneIds = $this->param( 'f_oneid', array() );
 $optIds = $this->param( 'f_optid', array() );
 $params = $this->param();
 
@@ -82,18 +106,20 @@ $params = $this->param();
 <?php			foreach( $attributes as $id => $attribute ) : ?>
 <?php				if( ( $key = array_search( $id, $attrIds ) ) !== false ) : ?>
 <?php					$current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$key] ); } ?>
-<?php				elseif( isset( $optIds[$attrType] ) && ( $key = array_search( $id, (array) $optIds[$attrType] ) ) !== false ) : ?>
-<?php					$current = $params; if( is_array( $current['f_optid'][$attrType] ) ) { unset( $current['f_optid'][$attrType][$key] ); } ?>
+<?php				elseif( ( $key = array_search( $id, $optIds ) ) !== false ) : ?>
+<?php					$current = $params; if( is_array( $current['f_optid'] ) ) { unset( $current['f_optid'][$key] ); } ?>
+<?php				elseif( isset( $oneIds[$attrType] ) && ( $key = array_search( $id, (array) $oneIds[$attrType] ) ) !== false ) : ?>
+<?php					$current = $params; if( is_array( $current['f_oneid'][$attrType] ) ) { unset( $current['f_oneid'][$attrType][$key] ); } ?>
 <?php				else : continue; ?>
 <?php				endif; ?>
 			<li class="attr-item"><a class="attr-name" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>"><?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?></a></li>
 <?php			endforeach; ?>
 <?php		endforeach; ?>
 		</ul>
-<?php	if( count( $attrIds ) > 1 || count( $optIds ) > 1  ) : ?>
-<?php		$current = $params; if( isset( $current['f_attrid'] ) ) { unset( $current['f_attrid'],  $current['f_optid'] ); } ?>
+<?php		if( count( $attrIds ) > 1 || count( $optIds ) > 1 || count( $oneIds ) > 1 ) : ?>
+<?php			$current = $params; unset( $current['f_attrid'],  $current['f_optid'],  $current['f_oneid'] ); ?>
 		<a class="selected-all" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>"><?php echo $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?></a>
-<?php	endif; ?>
+<?php		endif; ?>
 	</div>
 <?php	endif; ?>
 	<div class="attribute-lists"><!--
@@ -102,10 +128,14 @@ $params = $this->param();
 --><fieldset class="attr-<?php echo $enc->attr( $attrType, $enc::TAINT, '-' ); ?>">
 		<legend><?php echo $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
 		<ul class="attr-list"><!--
-<?php			$fparam = ( in_array( $attrType, $options ) ? array( 'f_optid', $attrType, '' ) : array( 'f_attrid', '' ) ); ?>
+<?php			$fparam = ( in_array( $attrType, $oneof ) ? array( 'f_oneid', $attrType, '' ) : ( in_array( $attrType, $options ) ? array( 'f_optid', '' ) : array( 'f_attrid', '' ) ) ); ?>
 <?php			foreach( $attributes as $id => $attribute ) : ?>
 			--><li class="attr-item" data-id="<?php echo $enc->attr( $id ); ?>">
-				<input class="attr-item" id="attr-<?php echo $enc->attr( $id ); ?>" name="<?php echo $enc->attr( $this->formparam( $fparam ) ); ?>" type="checkbox" value="<?php echo $enc->attr( $id ); ?>" <?php echo ( in_array( $id, $attrIds ) || isset( $optIds[$attrType] ) && in_array( $id, (array) $optIds[$attrType] ) ? 'checked="checked"' : '' ); ?> />
+				<input class="attr-item" id="attr-<?php echo $enc->attr( $id ); ?>"
+					name="<?php echo $enc->attr( $this->formparam( $fparam ) ); ?>"
+					type="checkbox" value="<?php echo $enc->attr( $id ); ?>"
+<?php				echo ( in_array( $id, $attrIds ) || in_array( $id, $optIds ) || isset( $oneIds[$attrType] ) && in_array( $id, (array) $oneIds[$attrType] ) ? 'checked="checked"' : '' ); ?>
+				/>
 				<label class="attr-name" for="attr-<?php echo $enc->attr( $id ); ?>"><!--
 					--><div class="media-list"><!--
 <?php				foreach( $attribute->getListItems( 'media', 'icon' ) as $listItem ) : ?>

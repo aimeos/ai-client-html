@@ -31,57 +31,50 @@ abstract class Base
 	 *
 	 * @param array $params Associative list of parameters that should be used for filtering
 	 * @param \Aimeos\MW\Criteria\Iface $filter Criteria object for searching
-	 * @param boolean $options True to add options to filter, false for attributes only
+	 * @param boolean $useOr True to add attributes for "OR" filter, false for "AND" attributes only
 	 * @return \Aimeos\MW\Criteria\Iface Search filter with conditions for attribute added
 	 */
-	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter, $options = true )
+	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter, $useOr = true )
 	{
-		if( isset( $params['f_attrid'] ) )
-		{
-			$attrids = array();
-
-			foreach( (array) $params['f_attrid'] as $attrid )
-			{
-				if( $attrid != '' ) {
-					$attrids[] = (int) $attrid;
-				}
-			}
-
-
-			if( !empty( $attrids ) )
-			{
-				$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
-				$expr = array(
-					$filter->getConditions(),
-					$filter->compare( '==', $func, count( $attrids ) ),
-				);
-				$filter->setConditions( $filter->combine( '&&', $expr ) );
-			}
+		if( isset( $params['f_attrid'] )
+			&& ( $attrids = $this->validateIds( (array) $params['f_attrid'] ) ) !== array()
+		) {
+			$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
+			$expr = array(
+				$filter->getConditions(),
+				$filter->compare( '==', $func, count( $attrids ) ),
+			);
+			$filter->setConditions( $filter->combine( '&&', $expr ) );
 		}
 
 
-		if( isset( $params['f_optid'] ) && $options === true )
+		if( $useOr === true )
 		{
-			foreach( (array) $params['f_optid'] as $type => $list )
+			if( isset( $params['f_optid'] )
+				&& ( $attrids = $this->validateIds( (array) $params['f_optid'] ) ) !== array()
+			) {
+				$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
+				$expr = array(
+					$filter->getConditions(),
+					$filter->compare( '>', $func, 0 ),
+				);
+				$filter->setConditions( $filter->combine( '&&', $expr ) );
+			}
+
+
+			if( isset( $params['f_oneid'] ) )
 			{
-				$attrids = array();
-
-				foreach( (array) $list as $attrid )
+				foreach( (array) $params['f_oneid'] as $type => $list )
 				{
-					if( $attrid != '' ) {
-						$attrids[] = (int) $attrid;
+					if( ( $attrids = $this->validateIds( (array) $params['f_oneid'] ) ) !== array() )
+					{
+						$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
+						$expr = array(
+							$filter->getConditions(),
+							$filter->compare( '>', $func, 0 ),
+						);
+						$filter->setConditions( $filter->combine( '&&', $expr ) );
 					}
-				}
-
-
-				if( !empty( $attrids ) )
-				{
-					$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
-					$expr = array(
-						$filter->getConditions(),
-						$filter->compare( '>', $func, 0 ),
-					);
-					$filter->setConditions( $filter->combine( '&&', $expr ) );
 				}
 			}
 		}
@@ -515,5 +508,26 @@ abstract class Base
 		$productFilter = $this->getProductListFilter( $view );
 
 		$this->productList = $controller->getIndexItems( $productFilter, $domains, $this->productTotal );
+	}
+
+
+	/**
+	 * Validates the given IDs as integers
+	 *
+	 * @param array $ids List of IDs to validate
+	 * @return array List of validated IDs
+	 */
+	protected function validateIds( array $ids )
+	{
+		$list = array();
+
+		foreach( $ids as $id )
+		{
+			if( $id != '' ) {
+				$list[] = (int) $id;
+			}
+		}
+
+		return $ids;
 	}
 }
