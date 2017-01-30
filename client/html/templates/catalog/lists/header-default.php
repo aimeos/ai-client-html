@@ -30,6 +30,8 @@ $params = $this->get( 'listParams', array() );
 $catItems = $this->get( 'listCatPath', array() );
 $total = $this->get( 'listProductTotal', 1 ) / $this->get( 'listPageSize', 1 );
 $current = $this->get( 'listPageCurr', 1 );
+$prev = $this->get( 'listPagePrev', 1 );
+$next = $this->get( 'listPageNext', 1 );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
@@ -63,12 +65,12 @@ unset( $params['f_sort'] );
 
 
 	<?php if( $current > 1 ) : ?>
-		<link rel="prev" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->pagiPagePrev ) + $params, array(), $listConfig ) ); ?>" />
+		<link rel="prev" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $prev ) + $params, array(), $listConfig ) ); ?>" />
 	<?php endif; ?>
 
 
 	<?php if( $current > 1 && $current < $total ) : // Optimization to avoid loading next page while the user is still filtering ?>
-		<link rel="next prefetch" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->pagiPageNext ) + $params, array(), $listConfig ) ); ?>" />
+		<link rel="next prefetch" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $next ) + $params, array(), $listConfig ) ); ?>" />
 	<?php endif; ?>
 
 
