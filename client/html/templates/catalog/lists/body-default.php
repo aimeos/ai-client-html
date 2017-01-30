@@ -68,8 +68,8 @@ $pagination = $this->partial(
 	array(
 		'params' => $params,
 		'total' => $this->get( 'listProductTotal', 0 ),
-		'current' => $this->get( 'listProductCurr', 0 ),
-		'size' => $this->get( 'listProductSize', 48 )
+		'current' => $this->get( 'listPageCurr', 0 ),
+		'size' => $this->get( 'listPageSize', 48 )
 	)
 );
 

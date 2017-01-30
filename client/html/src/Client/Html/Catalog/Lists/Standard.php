@@ -496,11 +496,16 @@ class Standard
 			$this->tags[] = 'product';
 
 			$view->listParams = $this->getClientParams( $view->param() );
-			$view->listPageCurr = $this->getProductListPage( $view );
-			$view->listPageSize = $this->getProductListSize( $view );
+
 			$view->listProductTotal = $this->getProductListTotal( $view );
 			$view->listProductSort = $view->param( 'f_sort', 'relevance' );
 			$view->listProductItems = $products;
+
+			$view->listPageSize = $this->getProductListSize( $view );
+			$view->listPageCurr = $this->getProductListPage( $view );
+			$view->listPagePrev = ( $view->listPageCurr > 1 ? $view->listPageCurr - 1 : 1 );
+			$view->listPageLast = ( $view->listProductTotal != 0 ? ceil( $view->listProductTotal / $view->listPageSize ) : 1 );
+			$view->listPageNext = ( $view->listPageCurr < $view->listPageLast ? $view->listPageCurr + 1 : $view->listPageLast );
 
 			$this->cache = $view;
 		}
