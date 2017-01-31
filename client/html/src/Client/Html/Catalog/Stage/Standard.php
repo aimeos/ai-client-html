@@ -411,12 +411,19 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
+			$context = $this->getContext();
+			$config = $context->getConfig();
+
 			$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
 
-			if( isset( $params['f_catid'] ) && $params['f_catid'] != '' )
+			$catid = (string) $params['f_catid'];
+
+			if( $catid === '' ) {
+				$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
+			}
+
+			if( $catid !== '' )
 			{
-				$context = $this->getContext();
-				$config = $context->getConfig();
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
 				$default = array( 'attribute', 'media', 'text' );
@@ -450,7 +457,7 @@ class Standard
 				 * @see client/html/catalog/lists/domains
 				 */
 				$domains = $config->get( 'client/html/catalog/stage/standard/domains', $domains );
-				$stageCatPath = $controller->getCatalogPath( $params['f_catid'], $domains );
+				$stageCatPath = $controller->getCatalogPath( $catid, $domains );
 
 				if( ( $categoryItem = end( $stageCatPath ) ) !== false ) {
 					$view->stageCurrentCatItem = $categoryItem;
@@ -459,6 +466,7 @@ class Standard
 				$this->addMetaItems( $stageCatPath, $this->expire, $this->tags );
 
 				$view->stageCatPath = $stageCatPath;
+				$view->stageCatId = $catid;
 			}
 
 			$view->stageParams = $params;
