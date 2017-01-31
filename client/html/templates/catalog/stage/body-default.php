@@ -59,9 +59,9 @@ $params = $this->get( 'stageParams', array() );
 			<ol>
 
 				<?php if( isset( $this->stageCatPath ) ) : ?>
-					<?php foreach( (array) $this->stageCatPath as $cat ) : $params['f_catid'] = $cat->getId(); ?>
+					<?php foreach( (array) $this->stageCatPath as $cat ) : $params['f_name'] = $cat->getName( 'url' ); $params['f_catid'] = $cat->getId(); ?>
 						<li>
-							<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array( $cat->getName() ), $listConfig ) ); ?>">
+							<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array(), $listConfig ) ); ?>">
 								<?php echo $enc->html( $cat->getName() ); ?>
 							</a>
 						</li>
