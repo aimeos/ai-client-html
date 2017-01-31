@@ -343,8 +343,30 @@ class Standard
 			}
 
 
-			if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) == true ) {
-				$view->itemsProductCodes = $this->getProductCodes( $products );
+			/** client/html/catalog/lists/stock/enable
+			 * Enables or disables displaying product stock levels in product list views
+			 *
+			 * This configuration option allows shop owners to display product
+			 * stock levels for each product in list views or to disable
+			 * fetching product stock information.
+			 *
+			 * The stock information is fetched via AJAX and inserted via Javascript.
+			 * This allows to cache product items by leaving out such highly
+			 * dynamic content like stock levels which changes with each order.
+			 *
+			 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
+			 * @since 2014.03
+			 * @category User
+			 * @category Developer
+			 * @see client/html/catalog/detail/stock/enable
+			 * @see client/html/catalog/stock/url/target
+			 * @see client/html/catalog/stock/url/controller
+			 * @see client/html/catalog/stock/url/action
+			 * @see client/html/catalog/stock/url/config
+			 */
+
+			if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
+				$view->itemsStockUrl = $this->getStockUrl( $view, $products );
 			}
 
 			$view->itemPosition = ( $this->getProductListPage( $view ) - 1 ) * $this->getProductListSize( $view );

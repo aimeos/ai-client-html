@@ -31,35 +31,6 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
 
 
-/** client/html/catalog/detail/stock/enable
- * Enables or disables displaying product stock levels in product detail view
- *
- * This configuration option allows shop owners to display product
- * stock levels for each product in the detail views or to disable
- * fetching product stock information.
- *
- * The stock information is fetched via AJAX and inserted via Javascript.
- * This allows to cache product items by leaving out such highly
- * dynamic content like stock levels which changes with each order.
- *
- * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
- * @since 2014.03
- * @category User
- * @category Developer
- * @see client/html/catalog/lists/stock/enable
- * @see client/html/catalog/stock/url/target
- * @see client/html/catalog/stock/url/controller
- * @see client/html/catalog/stock/url/action
- * @see client/html/catalog/stock/url/config
- */
-$stock = $this->config( 'client/html/catalog/detail/stock/enable', true );
-
-$stockTarget = $this->config( 'client/html/catalog/stock/url/target' );
-$stockCntl = $this->config( 'client/html/catalog/stock/url/controller', 'catalog' );
-$stockAction = $this->config( 'client/html/catalog/stock/url/action', 'stock' );
-$stockConfig = $this->config( 'client/html/catalog/stock/url/config', array() );
-
-
 /** client/html/catalog/detail/metatags
  * Adds the title, meta and link tags to the HTML header
  *
@@ -102,9 +73,8 @@ $stockConfig = $this->config( 'client/html/catalog/stock/url/config', array() );
 
 <?php endif; ?>
 
-<?php if( $stock == true ) : ?>
-	<?php $url = $this->url( $stockTarget, $stockCntl, $stockAction, array( 's_prodcode' => $this->get( 'detailProductCodes', array() ) ), array(), $stockConfig ); ?>
-	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $url ); ?>"></script>
+<?php if( isset( $this->detailStockUrl ) ) : ?>
+	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $this->detailStockUrl ); ?>"></script>
 <?php endif; ?>
 
 <?php echo $this->get( 'detailHeader' ); ?>

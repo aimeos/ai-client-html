@@ -332,8 +332,8 @@ class Standard
 				$this->addMetaItems( $products, $this->expire, $this->tags );
 
 
-				if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) == true ) {
-					$view->promoProductCodes = $this->getProductCodes( $products );
+				if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
+					$view->promoStockUrl = $this->getStockUrl( $view, $products );
 				}
 
 				$view->promoItems = $products;

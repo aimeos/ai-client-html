@@ -474,11 +474,32 @@ class Standard
 			$propertyItems = $this->getDomainItems( $propertyManager, 'product.property.parentid', $productIds, $domains );
 
 
-			$productCodes = $this->getProductCodes( $products );
-			$productCodes[] = $productItem->getCode();
+			/** client/html/catalog/detail/stock/enable
+			 * Enables or disables displaying product stock levels in product detail view
+			 *
+			 * This configuration option allows shop owners to display product
+			 * stock levels for each product in the detail views or to disable
+			 * fetching product stock information.
+			 *
+			 * The stock information is fetched via AJAX and inserted via Javascript.
+			 * This allows to cache product items by leaving out such highly
+			 * dynamic content like stock levels which changes with each order.
+			 *
+			 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
+			 * @since 2014.03
+			 * @category User
+			 * @category Developer
+			 * @see client/html/catalog/lists/stock/enable
+			 * @see client/html/catalog/stock/url/target
+			 * @see client/html/catalog/stock/url/controller
+			 * @see client/html/catalog/stock/url/action
+			 * @see client/html/catalog/stock/url/config
+			 */
 
+			if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
+				$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, array( $productItem ) ) );
+			}
 
-			$view->detailProductCodes = $productCodes;
 			$view->detailProductItem = $productItem;
 			$view->detailProductItems = $products;
 			$view->detailPropertyItems = $propertyItems;
