@@ -107,7 +107,7 @@ foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
 			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
 			<div class="select-value">
 
-				<select class="select-list" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid' ) ) ); ?>">
+				<select class="select-list" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', $code ) ) ); ?>">
 					<?php if( $preselect === false ) : ?>
 						<option class="select-option" value=""><?php echo $enc->html( $this->translate( 'client', 'none' ) ); ?></option>
 					<?php endif; ?>
