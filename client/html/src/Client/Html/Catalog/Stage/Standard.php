@@ -415,8 +415,7 @@ class Standard
 			$config = $context->getConfig();
 
 			$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
-
-			$catid = (string) $params['f_catid'];
+			$catid = ( isset( $params['f_catid'] ) ? (string) $params['f_catid'] : '' );
 
 			if( $catid === '' ) {
 				$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
