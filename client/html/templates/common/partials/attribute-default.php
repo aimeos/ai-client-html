@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 /* Available data:
@@ -105,6 +105,9 @@ foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
 
 		<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
 			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
+			<?php $hint = $enc->html( $this->translate( 'client/code', $code . '-hint' ) ); if( !empty( $hint ) && $hint !== $code . '-hint' ) : ?>
+			<div class="select-hint"><?php echo $hint; ?></div>
+			<?php endif; ?>
 			<div class="select-value">
 
 				<select class="select-list" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', $code ) ) ); ?>">
@@ -142,6 +145,9 @@ foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
 	<?php foreach( $this->get( 'attributeCustomItems', array() ) as $id => $attribute ) : ?>
 		<li class="select-item <?php echo $enc->attr( $attribute->getCode() ); ?>">
 			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $attribute->getType() ) ); ?></div>
+			<?php $hint = $enc->html( $this->translate( 'client/code', $attribute->getType() . '-hint' ) ); if( !empty( $hint ) && $hint !== $attribute->getType() . '-hint' ) : ?>
+			<div class="select-hint"><?php echo $hint; ?></div>
+			<?php endif; ?>
 			<div class="select-value">
 				<input type="text" value=""
 					name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>"

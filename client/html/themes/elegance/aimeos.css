@@ -2,7 +2,7 @@
  * Aimeos elegance template CSS
  *
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2014-2016
+ * @copyright Aimeos (aimeos.org), 2014-2017
  */
 
 @font-face {
@@ -1410,6 +1410,13 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .catalog-list-items .selection .select-name,
 .catalog-detail-basket-selection .select-name,
 .catalog-detail-basket-attribute .select-name {
+	min-width: 5em;
+}
+
+.catalog-list-items .selection .select-hint,
+.catalog-detail-basket-selection .select-hint,
+.catalog-detail-basket-attribute .select-hint {
+	font-size: 80%;
 	min-width: 5em;
 }
 
