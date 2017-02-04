@@ -1413,6 +1413,13 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	min-width: 5em;
 }
 
+.catalog-list-items .selection .select-hint,
+.catalog-detail-basket-selection .select-hint,
+.catalog-detail-basket-attribute .select-hint {
+	font-size: 80%;
+	min-width: 5em;
+}
+
 .catalog-list-items .selection .select .select-value,
 .catalog-detail-basket-selection .select .select-value,
 .catalog-detail-basket-attribute .select .select-value {
