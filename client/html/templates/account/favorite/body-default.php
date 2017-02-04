@@ -109,13 +109,12 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 				<?php if( isset( $productItems[$id] ) ) : $productItem = $productItems[$id]; ?>
 
 					<li class="favorite-item">
-						<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId() ); ?>
-
 						<?php $params = array( 'fav_action' => 'delete', 'fav_id' => $id ) + $favParams; ?>
 						<a class="modify" href="<?php echo $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, array(), $favConfig ) ); ?>">
 							<?php echo $this->translate( 'client', 'X' ); ?>
 						</a>
 
+						<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId() ); ?>
 						<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 

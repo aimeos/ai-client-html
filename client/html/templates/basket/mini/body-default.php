@@ -7,7 +7,6 @@
  */
 
 $enc = $this->encoder();
-$quantity = 0;
 
 
 /** client/html/basket/standard/url/target
@@ -99,8 +98,15 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 	<?php if( isset( $this->miniBasket ) ) : ?>
-		<?php $priceItem = $this->miniBasket->getPrice(); ?>
-		<?php $priceCurrency = $this->translate( 'client/currency', $priceItem->getCurrencyId() ); ?>
+		<?php
+			$priceItem = $this->miniBasket->getPrice();
+			$priceCurrency = $this->translate( 'client/currency', $priceItem->getCurrencyId() );
+
+			$quantity = 0;
+			foreach( $this->miniBasket->getProducts() as $product ) {
+				$quantity += $product->getQuantity();
+			}
+		?>
 
 		<h1><?php echo $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
 

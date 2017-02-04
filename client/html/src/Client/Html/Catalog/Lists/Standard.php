@@ -470,11 +470,12 @@ class Standard
 			// Delete cache when products are added or deleted even when in "tag-all" mode
 			$this->tags[] = 'product';
 
+
 			$view->listParams = $this->getClientParams( $view->param() );
 
-			$view->listProductTotal = $this->getProductListTotal( $view );
-			$view->listProductSort = $view->param( 'f_sort', 'relevance' );
 			$view->listProductItems = $products;
+			$view->listProductSort = $view->param( 'f_sort', 'relevance' );
+			$view->listProductTotal = $this->getProductListTotal( $view );
 
 			$view->listPageSize = $this->getProductListSize( $view );
 			$view->listPageCurr = $this->getProductListPage( $view );

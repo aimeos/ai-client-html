@@ -107,16 +107,15 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 		<ul class="watch-items">
 			<?php foreach( $listItems as $listItem ) : $id = $listItem->getRefId(); ?>
 				<?php if( isset( $productItems[$id] ) ) : $productItem = $productItems[$id]; ?>
+					<?php $prices = $productItem->getRefItems( 'price', null, 'default' ); ?>
 
 					<li class="watch-item">
-						<?php $prices = $productItem->getRefItems( 'price', null, 'default' ); ?>
-						<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId() ); ?>
-
 						<?php $params = array( 'wat_action' => 'delete', 'wat_id' => $id ) + $watchParams; ?>
 						<a class="modify" href="<?php echo $this->url( $watchTarget, $watchController, $watchAction, $params, array(), $watchConfig ); ?>">
 							<?php echo $this->translate( 'client', 'X' ); ?>
 						</a>
 
+						<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId() ); ?>
 						<a class="watch-item" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 

@@ -14,14 +14,7 @@ $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
 
 
-$total = $this->total;
-$current = $this->current;
-$prev = ( $current > 1 ? $current - 1 : 1 );
-$last = ( $total != 0 ? ceil( $total / $this->size ) : 1 );
-$next = ( $current < $last ? $current + 1 : $last );
 $params = $this->get( 'params', array() );
-
-
 $sort = ( isset( $params['f_sort'] ) ? $params['f_sort'] : 'relevance' );
 $sortname = ltrim( $sort, '-' );
 $nameDir = $priceDir = '';
@@ -70,7 +63,7 @@ if( $sort === 'price' ) {
 		</ul>
 	</div>
 
-	<?php if( $last > 1 ) : ?>
+	<?php if( $this->last > 1 ) : ?>
 		<div class="browser">
 
 			<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'l_page' => 1 ) + $params, array(), $listConfig ); ?>
@@ -78,19 +71,19 @@ if( $sort === 'price' ) {
 				<?php echo $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ); ?>
 			</a>
 
-			<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $prev ) + $params, array(), $listConfig ); ?>
+			<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->prev ) + $params, array(), $listConfig ); ?>
 			<a class="prev" href="<?php echo $enc->attr( $url ); ?>" rel="prev">
 				<?php echo $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ); ?>
 			</a>
 
-			<span><?php echo $enc->html( sprintf( $this->translate( 'client', 'Page %1$d of %2$d' ), $current, $last ) ); ?></span>
+			<span><?php echo $enc->html( sprintf( $this->translate( 'client', 'Page %1$d of %2$d' ), $this->current, $this->last ) ); ?></span>
 
-			<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $next ) + $params, array(), $listConfig ); ?>
+			<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->next ) + $params, array(), $listConfig ); ?>
 			<a class="next" href="<?php echo $enc->attr( $url ); ?>" rel="next">
 				<?php echo $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ); ?>
 			</a>
 
-			<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $last ) + $params, array(), $listConfig ); ?>
+			<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->last ) + $params, array(), $listConfig ); ?>
 			<a class="last" href="<?php echo $enc->attr( $url ); ?>">
 				<?php echo $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ); ?>
 			</a>
