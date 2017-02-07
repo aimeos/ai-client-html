@@ -17,8 +17,8 @@
 		"php": ">=5.3.3",
 		"composer/installers": "^1.0",
 		"aimeos/aimeos-core": "~2017.02",
-		"aimeos/ai-controller-jobs": "dev-master",
-		"aimeos/ai-controller-frontend": "dev-master"
+		"aimeos/ai-controller-jobs": "~2017.02",
+		"aimeos/ai-controller-frontend": "~2017.02"
 	},
 	"autoload": {
 		"psr-4": {
