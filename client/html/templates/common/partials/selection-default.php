@@ -135,9 +135,12 @@ ksort( $attrTypeDeps );
 
 		<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
 			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
-			<?php $hint = $enc->html( $this->translate( 'client/code', $code . '-hint' ) ); if( !empty( $hint ) && $hint !== $code . '-hint' ) : ?>
-			<div class="select-hint"><?php echo $hint; ?></div>
+
+			<?php $hintcode = $code . '-hint'; $hint = $enc->html( $this->translate( 'client/code', $hintcode ) ); ?>
+			<?php if( !empty( $hint ) && $hint !== $hintcode ) : ?>
+				<div class="select-hint"><?php echo $hint; ?></div>
 			<?php endif; ?>
+
 			<div class="select-value">
 
 				<?php if( $layout === 'radio' ) : $first = true; ?>
