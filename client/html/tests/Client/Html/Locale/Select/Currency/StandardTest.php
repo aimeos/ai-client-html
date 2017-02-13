@@ -36,10 +36,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->selectLanguageId = 'de';
 		$view->selectMap = array(
 			'de' => array(
-				'EUR' => array( 'locale' => 'de', 'currencyid' => 'EUR' ),
-				'CHF' => array( 'locale' => 'de', 'currencyid' => 'CHF' ),
+				'EUR' => array( 'locale' => 'de', 'currency' => 'EUR' ),
+				'CHF' => array( 'locale' => 'de', 'currency' => 'CHF' ),
 			),
-			'en' => array( 'USD' => array( 'locale' => 'en', 'currencyid' => 'USD' ) ),
+			'en' => array( 'USD' => array( 'locale' => 'en', 'currency' => 'USD' ) ),
 		);
 
 		$request = $this->getMockBuilder( '\Psr\Http\Message\ServerRequestInterface' )->getMock();
