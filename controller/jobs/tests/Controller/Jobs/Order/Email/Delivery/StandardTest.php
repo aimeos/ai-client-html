@@ -125,10 +125,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Delivery\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
-			->setMethods( array( 'addOrderStatus', 'processItem' ) )
+			->setMethods( array( 'addOrderStatus', 'getAddressItem', 'processItem' ) )
 			->getMock();
 
 		$addrItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' )->createItem();
+		$object->expects( $this->once() )->method( 'getAddressItem' )->will( $this->returnValue( $addrItem ) );
 		$object->expects( $this->once() )->method( 'addOrderStatus' );
 		$object->expects( $this->once() )->method( 'processItem' );
 
@@ -174,11 +175,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Delivery\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
-			->setMethods( array( 'getAddressItem' ) )
 			->getMock();
-
-		$addrItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' )->createItem();
-		$object->expects( $this->once() )->method( 'getAddressItem' )->will( $this->returnValue( $addrItem ) );
 
 
 		$clientStub = $this->getMockBuilder( '\Aimeos\Client\Html\Email\Delivery\Standard' )
@@ -192,8 +189,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
 		$orderBaseItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
+		$addrItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' )->createItem();
 
-		$this->access( 'processItem' )->invokeArgs( $object, array( $clientStub, $orderItem, $orderBaseItem ) );
+		$this->access( 'processItem' )->invokeArgs( $object, array( $clientStub, $orderItem, $orderBaseItem, $addrItem ) );
 	}
 
 
