@@ -54,10 +54,10 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-
 		$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html/templates' );
 		$client = \Aimeos\Client\Html\Email\Delivery\Factory::createClient( $context, $templatePaths );
+
+		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
 
 		/** controller/jobs/order/email/delivery/standard/limit-days
 		 * Only send delivery e-mails of orders that were created in the past within the configured number of days
@@ -227,18 +227,8 @@ class Standard
 			try
 			{
 				$orderBaseItem = $orderBaseManager->load( $item->getBaseId() );
-				$addr = $this->getAddressItem( $orderBaseItem );
 
-				$view = $this->getView( $context, $addr->getLanguageId() );
-				$view->extAddressItem = $addr;
-				$view->extOrderBaseItem = $orderBaseItem;
-				$view->extOrderItem = $item;
-
-				$client->setView( $view );
-				$client->getHeader();
-				$client->getBody();
-
-				$context->getMail()->send( $view->mail() );
+				$this->processItem( $client, $item, $orderBaseItem );
 				$this->addOrderStatus( $id, $status );
 
 				$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
@@ -251,5 +241,31 @@ class Standard
 				$context->getLogger()->log( $msg );
 			}
 		}
+	}
+
+
+	/**
+	 * Sends the delivery related e-mail for a single order
+	 *
+	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the delivery e-mails
+	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Order item the delivery related e-mail should be sent for
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
+	 */
+	protected function processItem( \Aimeos\Client\Html\Iface $client, \Aimeos\MShop\Order\Item\Iface $orderItem,
+		\Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
+	{
+		$context = $this->getContext();
+		$addr = $this->getAddressItem( $orderBaseItem );
+
+		$view = $this->getView( $context, $addr->getLanguageId() );
+		$view->extAddressItem = $addr;
+		$view->extOrderBaseItem = $orderBaseItem;
+		$view->extOrderItem = $orderItem;
+
+		$client->setView( $view );
+		$client->getHeader();
+		$client->getBody();
+
+		$context->getMail()->send( $view->mail() );
 	}
 }
