@@ -203,7 +203,7 @@ class Standard
 		$config = $context->getConfig();
 		$session = $context->getSession();
 
-		$name = $config->get( 'client/html/locale/select/language/param-name', 'loc_languageid' );
+		$name = $config->get( 'client/html/locale/select/language/param-name', 'locale' );
 
 		if( ( $languageId = $view->param( $name ) ) !== null ) {
 			$session->set( 'aimeos/locale/languageid', $languageId );
