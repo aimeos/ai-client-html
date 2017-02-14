@@ -51,22 +51,13 @@ class Standard
 	 */
 	public function run()
 	{
-		$aimeos = $this->getAimeos();
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$mailer = $context->getMail();
-		$view = $context->getView();
 
-		$templatePaths = $aimeos->getCustomPaths( 'client/html/templates' );
-
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
-		$view->addHelper( 'config', $helper );
-
+		$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html/templates' );
 		$client = \Aimeos\Client\Html\Email\Payment\Factory::createClient( $context, $templatePaths );
 
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( $context );
-		$orderStatusManager = $orderManager->getSubManager( 'status' );
-		$orderBaseManager = $orderManager->getSubManager( 'base' );
+		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
 
 		/** controller/jobs/order/email/payment/standard/limit-days
 		 * Only send payment e-mails of orders that were created in the past within the configured number of days
@@ -136,48 +127,7 @@ class Standard
 			{
 				$items = $orderManager->searchItems( $orderSearch );
 
-				foreach( $items as $id => $item )
-				{
-					try
-					{
-						$orderBaseItem = $orderBaseManager->load( $item->getBaseId() );
-
-						$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-
-						$view->extAddressItem = $addr;
-						$view->extOrderBaseItem = $orderBaseItem;
-						$view->extOrderItem = $item;
-
-						$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $addr->getLanguageId() ) );
-						$view->addHelper( 'translate', $helper );
-
-						$message = $mailer->createMessage();
-						$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message );
-						$view->addHelper( 'mail', $helper );
-
-						$client->setView( $view );
-						$client->getHeader();
-						$client->getBody();
-
-						$mailer->send( $message );
-
-						$str = sprintf( 'Sent order payment e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
-						$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::DEBUG );
-
-						$statusItem = $orderStatusManager->createItem();
-						$statusItem->setParentId( $id );
-						$statusItem->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT );
-						$statusItem->setValue( $status );
-
-						$orderStatusManager->saveItem( $statusItem );
-					}
-					catch( \Exception $e )
-					{
-						$str = 'Error while trying to send payment e-mail for order ID "%1$s" and status "%2$s": %3$s';
-						$msg = sprintf( $str, $item->getId(), $item->getPaymentStatus(), $e->getMessage() );
-						$context->getLogger()->log( $msg );
-					}
-				}
+				$this->process( $client, $items, $status );
 
 				$count = count( $items );
 				$start += $count;
@@ -185,5 +135,122 @@ class Standard
 			}
 			while( $count >= $orderSearch->getSliceSize() );
 		}
+	}
+
+
+	/**
+	 * Adds the status of the delivered e-mail for the given order ID
+	 *
+	 * @param string $orderId Unique order ID
+	 * @param integer $value Status value
+	 */
+	protected function addOrderStatus( $orderId, $value )
+	{
+		$orderStatusManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/status' );
+
+		$statusItem = $orderStatusManager->createItem();
+		$statusItem->setParentId( $orderId );
+		$statusItem->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT );
+		$statusItem->setValue( $value );
+
+		$orderStatusManager->saveItem( $statusItem );
+	}
+
+
+	/**
+	 * Returns the delivery address item of the order
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including address items
+	 * @return \Aimeos\MShop\Order\Item\Base\Address\Iface Delivery or payment address item
+	 * @throws \Aimeos\MShop\Order\Exception If no address item is available
+	 */
+	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
+	{
+		return $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+	}
+
+
+	/**
+	 * Returns an initialized view object
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
+	 * @param string $langId ISO language code, maybe country specific
+	 * @return \Aimeos\MW\View\Iface Initialized view object
+	 */
+	protected function getView( $context, $langId )
+	{
+		$view = $context->getView();
+
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
+		$view->addHelper( 'config', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $context->getMail()->createMessage() );
+		$view->addHelper( 'mail', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $langId ) );
+		$view->addHelper( 'translate', $helper );
+
+		return $view;
+	}
+
+
+	/**
+	 * Sends the payment e-mail for the given orders
+	 *
+	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the payment e-mails
+	 * @param \Aimeos\MShop\Order\Item\Iface[] $items Associative list of order items with their IDs as keys
+	 * @param integer $status Delivery status value
+	 */
+	protected function process( \Aimeos\Client\Html\Iface $client, array $items, $status )
+	{
+		$context = $this->getContext();
+		$orderBaseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+
+		foreach( $items as $id => $item )
+		{
+			try
+			{
+				$orderBaseItem = $orderBaseManager->load( $item->getBaseId() );
+				$addr = $this->getAddressItem( $orderBaseItem );
+
+				$this->processItem( $client, $item, $orderBaseItem, $addr );
+				$this->addOrderStatus( $id, $status );
+
+				$str = sprintf( 'Sent order payment e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
+				$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::INFO );
+			}
+			catch( \Exception $e )
+			{
+				$str = 'Error while trying to send payment e-mail for order ID "%1$s" and status "%2$s": %3$s';
+				$msg = sprintf( $str, $item->getId(), $item->getPaymentStatus(), $e->getMessage() );
+				$context->getLogger()->log( $msg );
+			}
+		}
+	}
+
+
+	/**
+	 * Sends the payment related e-mail for a single order
+	 *
+	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the payment e-mails
+	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Order item the payment related e-mail should be sent for
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
+	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $addrItem Address item to send the e-mail to
+	 */
+	protected function processItem( \Aimeos\Client\Html\Iface $client, \Aimeos\MShop\Order\Item\Iface $orderItem,
+		\Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\MShop\Order\Item\Base\Address\Iface $addrItem )
+	{
+		$context = $this->getContext();
+
+		$view = $this->getView( $context, $addrItem->getLanguageId() );
+		$view->extAddressItem = $addrItem;
+		$view->extOrderBaseItem = $orderBaseItem;
+		$view->extOrderItem = $orderItem;
+
+		$client->setView( $view );
+		$client->getHeader();
+		$client->getBody();
+
+		$context->getMail()->send( $view->mail() );
 	}
 }

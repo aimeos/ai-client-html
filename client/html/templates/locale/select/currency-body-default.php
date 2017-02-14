@@ -33,7 +33,6 @@ $currencies = ( isset( $map[$langId] ) ? (array) $map[$langId] : array() );
  */
 $config = $this->config( 'client/html/locale/select/currency/url/config', array() );
 
-$paramname = $this->config( 'client/html/locale/select/currency/param-name', 'loc_currencyid' );
 
 ?>
 <?php $this->block()->start( 'locale/select/currency' ); ?>
