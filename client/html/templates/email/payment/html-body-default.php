@@ -17,6 +17,7 @@ $title = $this->translate( 'client', 'E-mail notification' );
 	<head>
 		<title><?php echo $enc->html( $title, $enc::TRUST ); ?></title>
 		<meta name="application-name" content="Aimeos" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	</head>
 	<body>
 		<style type="text/css">

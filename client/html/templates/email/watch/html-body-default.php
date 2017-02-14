@@ -20,6 +20,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
 	<head>
 		<title><?php echo $enc->html( $this->translate( 'client', 'E-mail notification' ), $enc::TRUST ); ?></title>
 		<meta name="application-name" content="Aimeos" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	</head>
 	<body>
 		<style type="text/css">
