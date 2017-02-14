@@ -203,7 +203,7 @@ class Standard
 		$config = $context->getConfig();
 		$session = $context->getSession();
 
-		$name = $config->get( 'client/html/locale/select/currency/param-name', 'loc_currencyid' );
+		$name = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
 
 		if( ( $currencyId = $view->param( $name ) ) !== null ) {
 			$session->set( 'aimeos/locale/currencyId', $currencyId );

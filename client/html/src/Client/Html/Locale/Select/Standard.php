@@ -334,7 +334,7 @@ class Standard
 			 * @since 2015.06
 			 * @see client/html/locale/select/currency/param-name
 			 */
-			$langname = $config->get( 'client/html/locale/select/language/param-name', 'loc_languageid' );
+			$langname = $config->get( 'client/html/locale/select/language/param-name', 'locale' );
 
 			/** client/html/locale/select/currency/param-name
 			 * Name of the parameter that contains the currency ID value
@@ -348,7 +348,7 @@ class Standard
 			 * @since 2015.06
 			 * @see client/html/locale/select/language/param-name
 			 */
-			$curname = $config->get( 'client/html/locale/select/currency/param-name', 'loc_currencyid' );
+			$curname = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
 
 
 			$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );

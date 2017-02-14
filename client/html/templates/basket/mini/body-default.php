@@ -134,7 +134,6 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 					</thead>
 					<tbody>
 						<?php foreach( $this->miniBasket->getProducts() as $product ) : ?>
-							<?php $quantity += $product->getQuantity(); ?>
 							<tr class="product">
 								<td class="name">
 									<?php echo $enc->html( $product->getName() ) ?>

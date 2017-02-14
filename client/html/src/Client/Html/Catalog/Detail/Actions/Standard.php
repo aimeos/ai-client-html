@@ -114,11 +114,7 @@ class Standard
 	 */
 	public function modifyBody( $content, $uid )
 	{
-		if( $this->getContext()->getUserId() == null ) {
-			return $this->replaceSection( $content, $this->getBody( $uid ), 'catalog.detail.actions' );
-		}
-
-		return $content;
+		return $this->replaceSection( $content, $this->getBody( $uid ), 'catalog.detail.actions' );
 	}
 
 
