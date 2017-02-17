@@ -36,50 +36,16 @@ abstract class Base
 	 */
 	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter, $useOr = true )
 	{
-		if( isset( $params['f_attrid'] )
-			&& ( $attrids = $this->validateIds( (array) $params['f_attrid'] ) ) !== array()
-		) {
-			$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
-			$expr = array(
-				$filter->getConditions(),
-				$filter->compare( '==', $func, count( $attrids ) ),
-			);
-			$filter->setConditions( $filter->combine( '&&', $expr ) );
-		}
-
+		$optIds = $oneIds = array();
+		$attrIds = ( isset( $params['f_attrid'] ) ? (array) $params['f_attrid'] : array() );
 
 		if( $useOr === true )
 		{
-			if( isset( $params['f_optid'] )
-				&& ( $attrids = $this->validateIds( (array) $params['f_optid'] ) ) !== array()
-			) {
-				$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
-				$expr = array(
-					$filter->getConditions(),
-					$filter->compare( '>', $func, 0 ),
-				);
-				$filter->setConditions( $filter->combine( '&&', $expr ) );
-			}
-
-
-			if( isset( $params['f_oneid'] ) )
-			{
-				foreach( (array) $params['f_oneid'] as $type => $list )
-				{
-					if( ( $attrids = $this->validateIds( (array) $params['f_oneid'] ) ) !== array() )
-					{
-						$func = $filter->createFunction( 'index.attributeaggregate', array( $attrids ) );
-						$expr = array(
-							$filter->getConditions(),
-							$filter->compare( '>', $func, 0 ),
-						);
-						$filter->setConditions( $filter->combine( '&&', $expr ) );
-					}
-				}
-			}
+			$optIds = ( isset( $params['f_optid'] ) ? (array) $params['f_optid'] : array() );
+			$oneIds = ( isset( $params['f_oneid'] ) ? (array) $params['f_oneid'] : array() );
 		}
 
-		return $filter;
+		return $this->getController()->addFilterAttribute( $filter, $attrIds, $optIds, $oneIds );
 	}
 
 
@@ -112,123 +78,69 @@ abstract class Base
 	 */
 	protected function createProductListFilter( $text, $catid, $sort, $sortdir, $page, $size, $catfilter, $textfilter )
 	{
-		$controller = $this->getCatalogController();
+		$start = ( $page - 1 ) * $size;
+		$controller = $this->getController();
+		$filter = $controller->createFilter( $sort, $sortdir, $start, $size );
 
-		if( $text !== '' && $textfilter === true )
+		if( $catid !== '' && $catfilter === true )
 		{
-			$filter = $controller->createIndexFilterText( $text, $sort, $sortdir, ( $page - 1 ) * $size, $size );
+			/** client/html/catalog/lists/levels
+			 * Include products of sub-categories in the product list of the current category
+			 *
+			 * Sometimes it may be useful to show products of sub-categories in the
+			 * current category product list, e.g. if the current category contains
+			 * no products at all or if there are only a few products in all categories.
+			 *
+			 * Possible constant values for this setting are:
+			 * * 1 : Only products from the current category
+			 * * 2 : Products from the current category and the direct child categories
+			 * * 3 : Products from the current category and the whole category sub-tree
+			 *
+			 * Caution: Please keep in mind that displaying products of sub-categories
+			 * can slow down your shop, especially if it contains more than a few
+			 * products! You have no real control over the positions of the products
+			 * in the result list too because all products from different categories
+			 * with the same position value are placed randomly.
+			 *
+			 * Usually, a better way is to associate products to all categories they
+			 * should be listed in. This can be done manually if there are only a few
+			 * ones or during the product import automatically.
+			 *
+			 * @param integer Tree level constant
+			 * @since 2015.11
+			 * @category Developer
+			 * @see client/html/catalog/lists/catid-default
+			 * @see client/html/catalog/lists/domains
+			 * @see client/html/catalog/lists/size
+			 */
+			$default = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
+			$level = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/levels', $default );
 
-			if( $catid !== '' && $catfilter === true ) {
-				$filter = $controller->addIndexFilterCategory( $filter, $this->getCatalogIds( $catid ) );
-			}
+			$filter = $controller->addFilterCategory( $filter, $catid, $level, $sort, $sortdir );
+		}
 
-			return $filter;
+		if( $text !== '' && $textfilter === true ) {
+			$filter = $controller->addFilterText( $filter, $text );
 		}
-		elseif( $catid !== '' && $catfilter === true )
-		{
-			$catIds = $this->getCatalogIds( $catid );
-			return $controller->createIndexFilterCategory( $catIds, $sort, $sortdir, ( $page - 1 ) * $size, $size );
-		}
-		else
-		{
-			return $controller->createIndexFilter( $sort, $sortdir, ( $page - 1 ) * $size, $size );
-		}
+
+		return $filter;
 	}
 
 
 	/**
-	 * Returns the catalog controller object
+	 * Returns the index controller object
 	 *
-	 * @return \Aimeos\Controller\Frontend\Catalog\Interface Catalog controller
+	 * @return \Aimeos\Controller\Frontend\Index\Interface Index controller
 	 */
-	protected function getCatalogController()
+	protected function getController()
 	{
 		if( !isset( $this->controller ) )
 		{
 			$context = $this->getContext();
-			$this->controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+			$this->controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'index' );
 		}
 
 		return $this->controller;
-	}
-
-
-	/**
-	 * Returns the list of catetory IDs if subcategories should be included
-	 *
-	 * @param string|array $catId Category ID or list of category IDs
-	 * @return string|array Cateogory ID or list of catetory IDs
-	 */
-	protected function getCatalogIds( $catId )
-	{
-		$config = $this->getContext()->getConfig();
-		$default = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
-
-		/** client/html/catalog/lists/levels
-		 * Include products of sub-categories in the product list of the current category
-		 *
-		 * Sometimes it may be useful to show products of sub-categories in the
-		 * current category product list, e.g. if the current category contains
-		 * no products at all or if there are only a few products in all categories.
-		 *
-		 * Possible constant values for this setting are:
-		 * * 1 : Only products from the current category
-		 * * 2 : Products from the current category and the direct child categories
-		 * * 3 : Products from the current category and the whole category sub-tree
-		 *
-		 * Caution: Please keep in mind that displaying products of sub-categories
-		 * can slow down your shop, especially if it contains more than a few
-		 * products! You have no real control over the positions of the products
-		 * in the result list too because all products from different categories
-		 * with the same position value are placed randomly.
-		 *
-		 * Usually, a better way is to associate products to all categories they
-		 * should be listed in. This can be done manually if there are only a few
-		 * ones or during the product import automatically.
-		 *
-		 * @param integer Tree level constant
-		 * @since 2015.11
-		 * @category Developer
-		 * @see client/html/catalog/lists/catid-default
-		 * @see client/html/catalog/lists/domains
-		 * @see client/html/catalog/lists/size
-		 */
-		$level = $config->get( 'client/html/catalog/lists/levels', $default );
-
-		$catIds = ( !is_array( $catId ) ? explode( ',', $catId ) : $catId );
-
-		if( $level != $default )
-		{
-			$list = array();
-
-			foreach( $catIds as $catId )
-			{
-				$tree = $this->getCatalogController()->getCatalogTree( $catId, array(), $level );
-				$list = array_merge( $list, $this->getCatalogIdsFromTree( $tree ) );
-			}
-
-			$catIds = $list;
-		}
-
-		return array_unique( $catIds );
-	}
-
-
-	/**
-	 * Returns the list of catalog IDs for the given catalog tree
-	 *
-	 * @param \Aimeos\MShop\Catalog\Item\Iface $item Catalog item with children
-	 * @return array List of catalog IDs
-	 */
-	protected function getCatalogIdsFromTree( \Aimeos\MShop\Catalog\Item\Iface $item )
-	{
-		$list = array( $item->getId() );
-
-		foreach( $item->getChildren() as $child ) {
-			$list = array_merge( $list, $this->getCatalogIdsFromTree( $child ) );
-		}
-
-		return $list;
 	}
 
 
@@ -267,99 +179,6 @@ abstract class Base
 		}
 
 		return $this->productList;
-	}
-
-
-	/**
-	 * Returns the URL for retrieving the stock levels
-	 *
-	 * @param \Aimeos\MW\View\Iface $view View instance with helper
-	 * @param \Aimeos\MShop\Product\Item\Iface[] List of products with their IDs as keys
-	 * @return string URL to retrieve the stock levels for the given products
-	 */
-	protected function getStockUrl( \Aimeos\MW\View\Iface $view, array $products )
-	{
-		/** client/html/catalog/stock/url/target
-		 * Destination of the URL where the controller specified in the URL is known
-		 *
-		 * The destination can be a page ID like in a content management system or the
-		 * module of a software development framework. This "target" must contain or know
-		 * the controller that should be called by the generated URL.
-		 *
-		 * @param string Destination of the URL
-		 * @since 2014.03
-		 * @category Developer
-		 * @see client/html/catalog/stock/url/controller
-		 * @see client/html/catalog/stock/url/action
-		 * @see client/html/catalog/stock/url/config
-		 */
-		$target = $view->config( 'client/html/catalog/stock/url/target' );
-
-		/** client/html/catalog/stock/url/controller
-		 * Name of the controller whose action should be called
-		 *
-		 * In Model-View-Controller (MVC) applications, the controller contains the methods
-		 * that create parts of the output displayed in the generated HTML page. Controller
-		 * names are usually alpha-numeric.
-		 *
-		 * @param string Name of the controller
-		 * @since 2014.03
-		 * @category Developer
-		 * @see client/html/catalog/stock/url/target
-		 * @see client/html/catalog/stock/url/action
-		 * @see client/html/catalog/stock/url/config
-		*/
-		$cntl = $view->config( 'client/html/catalog/stock/url/controller', 'catalog' );
-
-		/** client/html/catalog/stock/url/action
-		 * Name of the action that should create the output
-		 *
-		 * In Model-View-Controller (MVC) applications, actions are the methods of a
-		 * controller that create parts of the output displayed in the generated HTML page.
-		 * Action names are usually alpha-numeric.
-		 *
-		 * @param string Name of the action
-		 * @since 2014.03
-		 * @category Developer
-		 * @see client/html/catalog/stock/url/target
-		 * @see client/html/catalog/stock/url/controller
-		 * @see client/html/catalog/stock/url/config
-		*/
-		$action = $view->config( 'client/html/catalog/stock/url/action', 'stock' );
-
-		/** client/html/catalog/stock/url/config
-		 * Associative list of configuration options used for generating the URL
-		 *
-		 * You can specify additional options as key/value pairs used when generating
-		 * the URLs, like
-		 *
-		 *  client/html/<clientname>/url/config = array( 'absoluteUri' => true )
-		 *
-		 * The available key/value pairs depend on the application that embeds the e-commerce
-		 * framework. This is because the infrastructure of the application is used for
-		 * generating the URLs. The full list of available config options is referenced
-		 * in the "see also" section of this page.
-		 *
-		 * @param string Associative list of configuration options
-		 * @since 2014.03
-		 * @category Developer
-		 * @see client/html/catalog/stock/url/target
-		 * @see client/html/catalog/stock/url/controller
-		 * @see client/html/catalog/stock/url/action
-		 * @see client/html/url/config
-		*/
-		$config = $view->config( 'client/html/catalog/stock/url/config', array() );
-
-
-		$codes = array();
-
-		foreach( $products as $product ) {
-			$codes[] = $product->getCode();
-		}
-
-		sort( $codes );
-
-		return $view->url( $target, $cntl, $action, array( "s_prodcode" => $codes ), array(), $config );
 	}
 
 
@@ -432,22 +251,6 @@ abstract class Base
 	protected function getProductListFilter( \Aimeos\MW\View\Iface $view, $catfilter = true, $textfilter = true, $attrfilter = true )
 	{
 		return $this->getProductListFilterByParam( $view->param(), $catfilter, $textfilter, $attrfilter );
-	}
-
-
-	/**
-	 * Returns the total number of products available for the current parameters.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view View instance with helper for retrieving the required parameters
-	 * @return integer Total number of products
-	 */
-	protected function getProductListTotal( \Aimeos\MW\View\Iface $view )
-	{
-		if( $this->productList === null ) {
-			$this->searchProducts( $view );
-		}
-
-		return $this->productTotal;
 	}
 
 
@@ -555,6 +358,115 @@ abstract class Base
 
 
 	/**
+	 * Returns the total number of products available for the current parameters.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View instance with helper for retrieving the required parameters
+	 * @return integer Total number of products
+	 */
+	protected function getProductListTotal( \Aimeos\MW\View\Iface $view )
+	{
+		if( $this->productList === null ) {
+			$this->searchProducts( $view );
+		}
+
+		return $this->productTotal;
+	}
+
+
+	/**
+	 * Returns the URL for retrieving the stock levels
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View instance with helper
+	 * @param \Aimeos\MShop\Product\Item\Iface[] List of products with their IDs as keys
+	 * @return string URL to retrieve the stock levels for the given products
+	 */
+	protected function getStockUrl( \Aimeos\MW\View\Iface $view, array $products )
+	{
+		/** client/html/catalog/stock/url/target
+		 * Destination of the URL where the controller specified in the URL is known
+		 *
+		 * The destination can be a page ID like in a content management system or the
+		 * module of a software development framework. This "target" must contain or know
+		 * the controller that should be called by the generated URL.
+		 *
+		 * @param string Destination of the URL
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/stock/url/controller
+		 * @see client/html/catalog/stock/url/action
+		 * @see client/html/catalog/stock/url/config
+		 */
+		$target = $view->config( 'client/html/catalog/stock/url/target' );
+
+		/** client/html/catalog/stock/url/controller
+		 * Name of the controller whose action should be called
+		 *
+		 * In Model-View-Controller (MVC) applications, the controller contains the methods
+		 * that create parts of the output displayed in the generated HTML page. Controller
+		 * names are usually alpha-numeric.
+		 *
+		 * @param string Name of the controller
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/stock/url/target
+		 * @see client/html/catalog/stock/url/action
+		 * @see client/html/catalog/stock/url/config
+		*/
+		$cntl = $view->config( 'client/html/catalog/stock/url/controller', 'catalog' );
+
+		/** client/html/catalog/stock/url/action
+		 * Name of the action that should create the output
+		 *
+		 * In Model-View-Controller (MVC) applications, actions are the methods of a
+		 * controller that create parts of the output displayed in the generated HTML page.
+		 * Action names are usually alpha-numeric.
+		 *
+		 * @param string Name of the action
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/stock/url/target
+		 * @see client/html/catalog/stock/url/controller
+		 * @see client/html/catalog/stock/url/config
+		*/
+		$action = $view->config( 'client/html/catalog/stock/url/action', 'stock' );
+
+		/** client/html/catalog/stock/url/config
+		 * Associative list of configuration options used for generating the URL
+		 *
+		 * You can specify additional options as key/value pairs used when generating
+		 * the URLs, like
+		 *
+		 *  client/html/<clientname>/url/config = array( 'absoluteUri' => true )
+		 *
+		 * The available key/value pairs depend on the application that embeds the e-commerce
+		 * framework. This is because the infrastructure of the application is used for
+		 * generating the URLs. The full list of available config options is referenced
+		 * in the "see also" section of this page.
+		 *
+		 * @param string Associative list of configuration options
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/stock/url/target
+		 * @see client/html/catalog/stock/url/controller
+		 * @see client/html/catalog/stock/url/action
+		 * @see client/html/url/config
+		*/
+		$config = $view->config( 'client/html/catalog/stock/url/config', array() );
+
+
+		$codes = array();
+
+		foreach( $products as $product ) {
+			$codes[] = $product->getCode();
+		}
+
+		sort( $codes );
+
+		return $view->url( $target, $cntl, $action, array( "s_prodcode" => $codes ), array(), $config );
+	}
+
+
+	/**
 	 * Searches for the products based on the current paramters.
 	 *
 	 * The found products and the total number of available products can be
@@ -619,10 +531,72 @@ abstract class Base
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
-		$controller = $this->getCatalogController();
 		$productFilter = $this->getProductListFilter( $view );
+		$this->productList = $this->getController()->getItems( $productFilter, $domains, $this->productTotal );
+	}
 
-		$this->productList = $controller->getIndexItems( $productFilter, $domains, $this->productTotal );
+
+	/**
+	 * Returns the catalog controller object
+	 *
+	 * @return \Aimeos\Controller\Frontend\Catalog\Interface Catalog controller
+	 * @deprecated Create catalog frontend controller yourself
+	 */
+	protected function getCatalogController()
+	{
+		return \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'catalog' );
+	}
+
+
+	/**
+	 * Returns the list of catetory IDs if subcategories should be included
+	 *
+	 * @param string|array $catId Category ID or list of category IDs
+	 * @return string|array Cateogory ID or list of catetory IDs
+	 * @deprecated Moved to createProductListFilter() and index controller
+	 */
+	protected function getCatalogIds( $catId )
+	{
+		$config = $this->getContext()->getConfig();
+		$default = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
+
+		$level = $config->get( 'client/html/catalog/lists/levels', $default );
+
+		$catIds = ( !is_array( $catId ) ? explode( ',', $catId ) : $catId );
+
+		if( $level != $default )
+		{
+			$list = array();
+
+			foreach( $catIds as $catId )
+			{
+				$tree = $this->getCatalogController()->getCatalogTree( $catId, array(), $level );
+				$list = array_merge( $list, $this->getCatalogIdsFromTree( $tree ) );
+			}
+
+			$catIds = $list;
+		}
+
+		return array_unique( $catIds );
+	}
+
+
+	/**
+	 * Returns the list of catalog IDs for the given catalog tree
+	 *
+	 * @param \Aimeos\MShop\Catalog\Item\Iface $item Catalog item with children
+	 * @return array List of catalog IDs
+	 * @deprecated Moved to index controller
+	 */
+	protected function getCatalogIdsFromTree( \Aimeos\MShop\Catalog\Item\Iface $item )
+	{
+		$list = array( $item->getId() );
+
+		foreach( $item->getChildren() as $child ) {
+			$list = array_merge( $list, $this->getCatalogIdsFromTree( $child ) );
+		}
+
+		return $list;
 	}
 
 
@@ -631,6 +605,7 @@ abstract class Base
 	 *
 	 * @param array $ids List of IDs to validate
 	 * @return array List of validated IDs
+	 * @deprecated Moved to index controller
 	 */
 	protected function validateIds( array $ids )
 	{

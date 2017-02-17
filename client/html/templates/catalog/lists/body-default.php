@@ -19,9 +19,9 @@ $config = $this->config( 'client/html/catalog/lists/url/config', array() );
 $classes = '';
 foreach( (array) $this->get( 'listCatPath', array() ) as $cat )
 {
-	$config = $cat->getConfig();
-	if( isset( $config['css-class'] ) ) {
-		$classes .= ' ' . $config['css-class'];
+	$catConfig = $cat->getConfig();
+	if( isset( $catConfig['css-class'] ) ) {
+		$classes .= ' ' . $catConfig['css-class'];
 	}
 }
 
