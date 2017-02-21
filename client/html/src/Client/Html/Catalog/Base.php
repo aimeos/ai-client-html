@@ -532,7 +532,7 @@ abstract class Base
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
 		$productFilter = $this->getProductListFilter( $view );
-		$this->productList = $this->getController()->getItems( $productFilter, $domains, $this->productTotal );
+		$this->productList = $this->getController()->searchItems( $productFilter, $domains, $this->productTotal );
 	}
 
 
