@@ -46,13 +46,6 @@ class ExampleTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testCallInvalid()
-	{
-		$this->setExpectedException( '\Aimeos\Client\Html\Exception' );
-		$this->object->invalidMethod();
-	}
-
-
 	public function testGetSubClient()
 	{
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Iface', $this->object->getSubClient( 'tree' ) );

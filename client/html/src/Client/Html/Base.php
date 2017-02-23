@@ -43,19 +43,6 @@ abstract class Base
 
 
 	/**
-	 * Catches unknown methods
-	 *
-	 * @param string $name Name of the method
-	 * @param array $param List of method parameter
-	 * @return boolean False in every case
-	 */
-	public function __call( $name, array $param )
-	{
-		return false;
-	}
-
-
-	/**
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
