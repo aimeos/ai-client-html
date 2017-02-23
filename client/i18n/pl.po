@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #, php-format
 msgid "%1$d article"
@@ -25,6 +25,7 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d produkt"
 msgstr[1] "%1$d produkty"
 msgstr[2] "%1$d produktów"
+msgstr[3] "%1$d produktów"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -575,6 +576,7 @@ msgid_plural ""
 msgstr[0] "Wynik wyszukiwania <span class=\"searchstring\">\"%1$s\"</span> (%2$d produkt)"
 msgstr[1] "Wynik wyszukiwania <span class=\"searchstring\">\"%1$s\"</span> (%2$d produkty)"
 msgstr[2] "Wynik wyszukiwania <span class=\"searchstring\">\"%1$s\"</span> (%2$d produktów)"
+msgstr[3] "Wynik wyszukiwania <span class=\"searchstring\">\"%1$s\"</span> (%2$d produktów)"
 
 msgid "Select country"
 msgstr "Wybierz kraj"
