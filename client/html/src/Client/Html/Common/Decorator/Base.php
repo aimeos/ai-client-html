@@ -52,7 +52,7 @@ abstract class Base
 	 */
 	public function __call( $name, array $param )
 	{
-		return call_user_func_array( array( $this->client, $name ), $param );
+		return @call_user_func_array( array( $this->client, $name ), $param );
 	}
 
 

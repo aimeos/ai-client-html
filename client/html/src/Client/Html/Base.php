@@ -43,6 +43,19 @@ abstract class Base
 
 
 	/**
+	 * Catch unknown methods
+	 *
+	 * @param string $name Name of the method
+	 * @param array $param List of method parameter
+	 * @throws \Aimeos\Client\Html\Exception If method call failed
+	 */
+	public function __call( $name, array $param )
+	{
+		throw new \Aimeos\Client\Html\Exception( sprintf( 'Unable to call method "%1$s"', $name ) );
+	}
+
+
+	/**
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
