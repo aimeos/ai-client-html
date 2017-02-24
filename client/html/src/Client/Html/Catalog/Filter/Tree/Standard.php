@@ -268,22 +268,22 @@ class Standard
 
 
 			if( $currentid !== null ) {
-				$catItems = $this->filterCatalogPath( $controller->getCatalogPath( $currentid ), $startid );
+				$catItems = $this->filterCatalogPath( $controller->getPath( $currentid ), $startid );
 			}
 
 			if( ( $node = reset( $catItems ) ) === false )
 			{
-				$node = $controller->getCatalogTree( $startid, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+				$node = $controller->getTree( $startid, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 				$catItems = array( $node->getId() => $node );
 			}
 
 
 			$catIds = array_keys( $catItems );
-			$search = $this->addSearchConditions( $controller->createCatalogFilter(), $catIds, $node->getId() );
+			$search = $this->addSearchConditions( $controller->createFilter(), $catIds, $node->getId() );
 			$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE;
 
 			$view->treeCatalogPath = $catItems;
-			$view->treeCatalogTree = $controller->getCatalogTree( $startid, $ref, $level, $search );
+			$view->treeCatalogTree = $controller->getTree( $startid, $ref, $level, $search );
 			$view->treeCatalogIds = $this->getCatalogIds( $view->treeCatalogTree, $catItems, $currentid );
 			$view->treeFilterParams = $this->getClientParams( $view->param(), array( 'f' ) );
 

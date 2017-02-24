@@ -455,7 +455,7 @@ class Standard
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
 				$catids = ( !is_array( $catid ) ? explode( ',', $catid ) : $catid );
-				$listCatPath = $controller->getCatalogPath( reset( $catids ), $domains );
+				$listCatPath = $controller->getPath( reset( $catids ), $domains );
 
 				if( ( $categoryItem = end( $listCatPath ) ) !== false ) {
 					$view->listCurrentCatItem = $categoryItem;

@@ -456,7 +456,7 @@ class Standard
 				 * @see client/html/catalog/lists/domains
 				 */
 				$domains = $config->get( 'client/html/catalog/stage/standard/domains', $domains );
-				$stageCatPath = $controller->getCatalogPath( $catid, $domains );
+				$stageCatPath = $controller->getPath( $catid, $domains );
 
 				if( ( $categoryItem = end( $stageCatPath ) ) !== false ) {
 					$view->stageCurrentCatItem = $categoryItem;

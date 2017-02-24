@@ -570,7 +570,7 @@ abstract class Base
 
 			foreach( $catIds as $catId )
 			{
-				$tree = $this->getCatalogController()->getCatalogTree( $catId, array(), $level );
+				$tree = $this->getCatalogController()->getTree( $catId, array(), $level );
 				$list = array_merge( $list, $this->getCatalogIdsFromTree( $tree ) );
 			}
 
