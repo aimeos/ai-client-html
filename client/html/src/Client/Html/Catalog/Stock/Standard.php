@@ -296,10 +296,7 @@ class Standard
 			$stockItemsByProducts = array();
 			$productCodes = (array) $view->param( 's_prodcode', array() );
 
-			$siteConfig = $this->getContext()->getLocale()->getSite()->getConfig();
-			$stockType = ( isset( $siteConfig['stocktype'] ) ? $siteConfig['stocktype'] : null );
-
-			foreach( $this->getStockItems( $productCodes, $stockType ) as $stockItem ){
+			foreach( $this->getStockItems( $productCodes ) as $stockItem ){
 				$stockItemsByProducts[ $stockItem->getProductCode() ][] = $stockItem;
 			}
 
@@ -317,10 +314,9 @@ class Standard
 	 * Returns the list of stock items for the given product codes and the stock type
 	 *
 	 * @param array $productCodes List of product codes
-	 * @param string|null $stockType Stock type code
 	 * @return \Aimeos\MShop\Stock\Item\Iface[] Associative list stock IDs as keys and stock items as values
 	 */
-	protected function getStockItems( array $productCodes, $stockType )
+	protected function getStockItems( array $productCodes )
 	{
 		$context = $this->getContext();
 
@@ -349,28 +345,24 @@ class Standard
 		$default = array( 'stock.productcode' => '+', 'stock.type.code' => '+' );
 		$sortKeys = $context->getConfig()->get( 'client/html/catalog/stock/sort', $default );
 
+		$siteConfig = $context->getLocale()->getSite()->getConfig();
+		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'stock' );
 
-		$stockManager = \Aimeos\MShop\Factory::createManager( $context, 'stock' );
+		$filter = $cntl->createFilter();
+		$filter = $cntl->addFilterCodes( $filter, $productCodes );
 
-		$search = $stockManager->createSearch( true );
-		$expr = array(
-			$search->compare( '==', 'stock.productcode', $productCodes ),
-			$search->getConditions(),
-		);
-
-		if( $stockType !== null ) {
-			$expr[] = $search->compare( '==', 'stock.type.code', $stockType );
+		if( isset( $siteConfig['stocktype'] ) ) {
+			$filter = $cntl->addFilterTypes( $filter, [$siteConfig['stocktype']] );
 		}
 
 		$sortations = array();
 		foreach( $sortKeys as $key => $dir ) {
-			$sortations[] = $search->sort( $dir, $key );
+			$sortations[] = $filter->sort( $dir, $key );
 		}
 
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( $sortations );
-		$search->setSlice( 0, 0x7fffffff );
+		$filter->setSortations( $sortations );
+		$filter->setSlice( 0, 0x7fffffff );
 
-		return $stockManager->searchItems( $search );
+		return $cntl->searchItems( $filter );
 	}
 }
