@@ -237,8 +237,8 @@ class Standard
 				$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
 				$filter->setSortations( array() ); // it's not necessary and slows down the query
 
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-				$view->treeCountList = $controller->aggregateIndex( $filter, 'index.catalog.id' );
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+				$view->treeCountList = $controller->aggregate( $filter, 'index.catalog.id' );
 			}
 
 			$this->cache = $view;

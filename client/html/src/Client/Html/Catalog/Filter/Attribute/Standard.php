@@ -218,7 +218,6 @@ class Standard
 		if( !isset( $this->cache ) )
 		{
 			$attrMap = array();
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'catalog' );
 
 			/** client/html/catalog/filter/attribute/types
 			 * List of attribute types that should be displayed in this order in the catalog filter
@@ -244,22 +243,12 @@ class Standard
 			 */
 			$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', array() );
 
-			$manager = $controller->createManager( 'attribute' );
-			$search = $manager->createSearch( true );
+			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'attribute' );
 
-			$expr = array();
-			if( !empty( $attrTypes ) ) {
-				$expr[] = $search->compare( '==', 'attribute.type.code', $attrTypes );
-			}
+			$filter = $cntl->createFilter();
+			$filter = $cntl->addFilterTypes( $filter, $attrTypes );
+			$filter->setSlice( 0, 0x7fffffff );
 
-			$expr[] = $search->compare( '==', 'attribute.domain', 'product' );
-			$expr[] = $search->getConditions();
-
-			$sort = array( $search->sort( '+', 'attribute.position' ) );
-
-			$search->setConditions( $search->combine( '&&', $expr ) );
-			$search->setSortations( $sort );
-			$search->setSlice( 0, 0x7fffffff );
 
 			/** client/html/catalog/filter/attribute/domains
 			 * List of domain names whose items should be fetched with the filter attributes
@@ -279,7 +268,7 @@ class Standard
 			 */
 			$domains = $view->config( 'client/html/catalog/filter/attribute/domains', array( 'text', 'media' ) );
 
-			$attributes = $manager->searchItems( $search, $domains );
+			$attributes = $cntl->searchItems( $filter, $domains );
 
 			foreach( $attributes as $id => $item ) {
 				$attrMap[$item->getType()][$id] = $item;
