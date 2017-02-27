@@ -306,8 +306,27 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
+			$types = ['name'];
 			$context = $this->getContext();
 			$input = $view->param( 'f_search' );
+			$langid = $context->getLocale()->getLanguageId();
+
+
+			/** client/html/catalog/suggest/usecode
+			 * Enables product suggestions based on using the product code
+			 *
+			 * The suggested entries for the full text search in the catalog filter component
+			 * are based on the product names by default. By setting this option to true or 1,
+			 * you can add suggestions based on the product codes as well.
+			 *
+			 * @param boolean True to search for product codes too, false for product names only
+			 * @since 2016.09
+			 * @category Developer
+			 */
+
+			if( $context->getConfig()->get( 'client/html/catalog/suggest/usecode', false ) ) {
+				$types[] = 'code';
+			}
 
 			/** client/html/catalog/suggest/domains
 			 * List of domain items that should be fetched along with the products
@@ -327,34 +346,17 @@ class Standard
 			 */
 			$domains = $context->getConfig()->get( 'client/html/catalog/suggest/domains', array( 'text' ) );
 
+
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 
-			$filter = $controller->createFilter( null, '+', 0, 24, 'default', 'name' );
-			$filter = $controller->addFilterText( $filter, $input, null, '+', 'default', 'name' );
-			$products = $controller->searchItems( $filter, $domains );
+			$filter = $controller->createFilter( null, '+', 0, 24, 'default' );
+			$expr = array(
+				$filter->compare( '>', $filter->createFunction( 'index.text.relevance', array( 'default', $langid, $input ) ), 0 ),
+				$filter->compare( '>', $filter->createFunction( 'index.text.value', array( 'default', $langid, $types, 'product' ) ), '' ),
+			);
+			$filter->setConditions( $filter->combine( '&&', $expr ) );
 
-
-			/** client/html/catalog/suggest/usecode
-			 * Enables product suggestions based on using the product code
-			 *
-			 * The suggested entries for the full text search in the catalog filter component
-			 * are based on the product names by default. By setting this option to true or 1,
-			 * you can add suggestions based on the product codes as well.
-			 *
-			 * @param boolean True to search for product codes too, false for product names only
-			 * @since 2016.09
-			 * @category Developer
-			 */
-
-			if( $context->getConfig()->get( 'client/html/catalog/suggest/usecode', false ) )
-			{
-				$filter = $controller->createFilter( null, '+', 0, 24, 'default', 'code' );
-				$filter = $controller->addFilterText( $filter, $input, null, '+', 'default', 'code' );
-				$products += $controller->searchItems( $filter, $domains );
-			}
-
-
-			$view->suggestItems = $products;
+			$view->suggestItems = $controller->searchItems( $filter, $domains );
 
 			$this->cache = $view;
 		}
