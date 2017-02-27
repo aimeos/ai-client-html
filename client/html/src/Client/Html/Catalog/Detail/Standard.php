@@ -435,19 +435,72 @@ class Standard
 		if( !isset( $this->cache ) )
 		{
 			$context = $this->getContext();
+			$config = $context->getConfig();
 			$prodid = $view->param( 'd_prodid' );
 
+			if( $prodid == '' )
+			{
+				/** client/html/catalog/detail/prodid-default
+				 * The default product ID used if none is given as parameter
+				 *
+				 * To display a product detail view or a part of it for a specific
+				 * product, you can configure its ID using this setting. This is
+				 * most useful in a CMS where the product ID can be configured
+				 * separately for each content node.
+				 *
+				 * @param string Product ID
+				 * @since 2016.01
+				 * @category User
+				 * @category Developer
+				 * @see client/html/catalog/lists/catid-default
+				 */
+				$prodid = $config->get( 'client/html/catalog/detail/prodid-default', '' );
+			}
+
+
 			$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
+
+			/** client/html/catalog/domains
+			 * A list of domain names whose items should be available in the catalog view templates
+			 *
+			 * @see client/html/catalog/detail/domains
+			 */
+			$domains = $config->get( 'client/html/catalog/domains', $domains );
+
+			/** client/html/catalog/detail/domains
+			 * A list of domain names whose items should be available in the product detail view template
+			 *
+			 * The templates rendering product details usually add the images,
+			 * prices, texts, attributes, products, etc. associated to the product
+			 * item. If you want to display additional or less content, you can
+			 * configure your own list of domains (attribute, media, price, product,
+			 * text, etc. are domains) whose items are fetched from the storage.
+			 * Please keep in mind that the more domains you add to the configuration,
+			 * the more time is required for fetching the content!
+			 *
+			 * Since version 2014.05 this configuration option overwrites the
+			 * "client/html/catalog/domains" option that allows to configure the
+			 * domain names of the items fetched for all catalog related data.
+			 *
+			 * @param array List of domain names
+			 * @since 2014.03
+			 * @category Developer
+			 * @see client/html/catalog/domains
+			 * @see client/html/catalog/lists/domains
+			 */
+			$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
+
+
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+			$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$attrCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'attribute' );
 
 
-			$productItem = $this->getProductItem( $prodid, $domains );
+			$productItem = $prodCntl->getItem( $prodid, $domains );
 			$this->addMetaItems( $productItem, $this->expire, $this->tags );
 
-
-			$productManager = $controller->createManager( 'product' );
 			$productIds = array_keys( $productItem->getRefItems( 'product' ) );
-			$products = $this->getDomainItems( $productManager, 'product.id', $productIds, $domains );
+			$products = $prodCntl->getItems( $productIds, $domains );
 
 
 			$attrIds = array_keys( $productItem->getRefItems( 'attribute' ) );
@@ -460,8 +513,7 @@ class Standard
 			}
 
 
-			$attributeManager = $controller->createManager( 'attribute' );
-			$attributeItems = $this->getDomainItems( $attributeManager, 'attribute.id', $attrIds, $domains );
+			$attributeItems = $attrCntl->getItems( $attrIds, $domains );
 			$this->addMetaItems( $attributeItems, $this->expire, $this->tags );
 
 
@@ -515,78 +567,5 @@ class Standard
 		$tags = array_merge( $tags, $this->tags );
 
 		return $this->cache;
-	}
-
-
-	/**
-	 * Returns the product item for the given ID including the domain items
-	 *
-	 * @param string $prodid Unique product ID
-	 * @param array List of domain items that should be fetched too
-	 * @throws \Aimeos\Client\Html\Exception If no product item was found
-	 * @return \Aimeos\MShop\Product\Item\Iface Product item object
-	 */
-	protected function getProductItem( $prodid, array $domains )
-	{
-		$context = $this->getContext();
-		$config = $context->getConfig();
-
-		if( $prodid == '' )
-		{
-			/** client/html/catalog/detail/prodid-default
-			 * The default product ID used if none is given as parameter
-			 *
-			 * To display a product detail view or a part of it for a specific
-			 * product, you can configure its ID using this setting. This is
-			 * most useful in a CMS where the product ID can be configured
-			 * separately for each content node.
-			 *
-			 * @param string Product ID
-			 * @since 2016.01
-			 * @category User
-			 * @category Developer
-			 * @see client/html/catalog/lists/catid-default
-			 */
-			$prodid = $config->get( 'client/html/catalog/detail/prodid-default', '' );
-		}
-
-		/** client/html/catalog/domains
-		 * A list of domain names whose items should be available in the catalog view templates
-		 *
-		 * @see client/html/catalog/detail/domains
-		 */
-		$domains = $config->get( 'client/html/catalog/domains', $domains );
-
-		/** client/html/catalog/detail/domains
-		 * A list of domain names whose items should be available in the product detail view template
-		 *
-		 * The templates rendering product details usually add the images,
-		 * prices, texts, attributes, products, etc. associated to the product
-		 * item. If you want to display additional or less content, you can
-		 * configure your own list of domains (attribute, media, price, product,
-		 * text, etc. are domains) whose items are fetched from the storage.
-		 * Please keep in mind that the more domains you add to the configuration,
-		 * the more time is required for fetching the content!
-		 *
-		 * Since version 2014.05 this configuration option overwrites the
-		 * "client/html/catalog/domains" option that allows to configure the
-		 * domain names of the items fetched for all catalog related data.
-		 *
-		 * @param array List of domain names
-		 * @since 2014.03
-		 * @category Developer
-		 * @see client/html/catalog/domains
-		 * @see client/html/catalog/lists/domains
-		 */
-		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
-
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-		$items = $controller->getProductItems( array( $prodid ), $domains );
-
-		if( ( $item = reset( $items ) ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'No product with ID "%1$s" found', $prodid ) );
-		}
-
-		return $item;
 	}
 }

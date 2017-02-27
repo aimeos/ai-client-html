@@ -323,11 +323,13 @@ class Standard
 				$size = $config->get( 'client/html/catalog/lists/promo/size', 6 );
 				$domains = $config->get( 'client/html/catalog/lists/domains', array( 'media', 'price', 'text' ) );
 
-				$total = null;
+				$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
+				$level = $config->get( 'client/html/catalog/lists/levels', $level );
 
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-				$filter = $controller->createIndexFilterCategory( $catId, 'relevance', '+', 0, $size, 'promotion' );
-				$products = $controller->getIndexItems( $filter, $domains, $total );
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+				$filter = $controller->createFilter( 'relevance', '+', 0, $size, 'promotion' );
+				$filter = $controller->addFilterCategory( $filter, $catId, $level, 'relevance', '+', 'promotion' );
+				$products = $controller->searchItems( $filter, $domains );
 
 				$this->addMetaItems( $products, $this->expire, $this->tags );
 

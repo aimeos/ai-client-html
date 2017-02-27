@@ -316,20 +316,25 @@ class Standard
 			if( $config->get( 'client/html/catalog/lists/basket-add', false ) )
 			{
 				$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
+
+				/** client/html/catalog/domains
+				 * A list of domain names whose items should be available in the catalog view templates
+				 *
+				 * @see client/html/catalog/detail/domains
+				 */
+				$domains = $config->get( 'client/html/catalog/domains', $domains );
+
+
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+				$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+				$attrCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'attribute' );
 
 
-				$productIds = $this->getProductIds( $products );
-				$productManager = $controller->createManager( 'product' );
-				$productItems = $this->getDomainItems( $productManager, 'product.id', $productIds, $domains );
+				$productItems = $prodCntl->getItems( $this->getProductIds( $products ), $domains );
 				$this->addMetaItems( $productItems, $this->expire, $this->tags );
 
-
-				$attrIds = $this->getAttributeIds( $productItems );
-				$attributeManager = $controller->createManager( 'attribute' );
-				$attributeItems = $this->getDomainItems( $attributeManager, 'attribute.id', $attrIds, $domains );
+				$attributeItems = $attrCntl->getItems( $this->getAttributeIds( $productItems ), $domains );
 				$this->addMetaItems( $attributeItems, $this->expire, $this->tags );
-
 
 				$mediaIds = $this->getMediaIds( $productItems );
 				$mediaManager = $controller->createManager( 'media' );
