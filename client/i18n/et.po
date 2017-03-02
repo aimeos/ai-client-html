@@ -1,0 +1,1077 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Alex Kay <alex110504@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: aimeos-core\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-03 12:40+0100\n"
+"PO-Revision-Date: 2017-02-26 02:42+0000\n"
+"Last-Translator: Alex Kay <alex110504@gmail.com>\n"
+"Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, php-format
+msgid "%1$d article"
+msgid_plural "%1$d articles"
+msgstr[0] "%1$d toodet"
+msgstr[1] "%1$d toodet"
+
+#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
+#. first name (%4$s), last name (%5$s),
+#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
+#. number), address part three (%8$s, e.g additional information),
+#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
+#. language (%13$s),
+#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
+#. (%17$s), vatid (%18$s)
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+
+#. / Price format with price value (%1$s) and currency (%2$s)
+#, php-format
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#. / Rebate format with rebate value (%1$s) and currency (%2$s)
+#, php-format
+msgid "%1$s %2$s off"
+msgstr ""
+
+#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
+#. value (%2$s) and currency (%3$s)
+#, php-format
+msgid "%1$s ( %4$s%2$s%3$s )"
+msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%2$s %1$s"
+
+#. / Percent format with value (%1$s) and % sign
+#, php-format
+msgid "%1$s%%"
+msgstr "%1$s%%"
+
+#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
+#. (%3$s)
+#, php-format
+msgid "%1$s%3$s + %2$s%3$s"
+msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "+"
+msgstr "+"
+
+#. / Price shipping format with shipping / payment cost value (%1$s) and
+#. currency (%2$s)
+#, php-format
+msgid "+ %1$s %2$s/item"
+msgstr ""
+
+#. / Tax rate format with tax rate in percent (%1$s)
+#, php-format
+msgid "+ %1$s%% VAT"
+msgstr "+ %1$s%% Käibemaks"
+
+msgid "+ Payment costs"
+msgstr "+ Maksmiskulu"
+
+msgid "+ Shipping"
+msgstr "+ Saatmine"
+
+msgid "+ shipping costs"
+msgstr "+ postikulu"
+
+msgid "+1 123 456 7890"
+msgstr "+372 123 4567"
+
+#. / Rebate percent format with rebate percent value (%1$s)
+#, php-format
+msgid "-%1$s%%"
+msgstr "-%1$s%%"
+
+msgid "Account"
+msgstr "Konto"
+
+msgid "Add to basket"
+msgstr "Lisa ostukorvi"
+
+msgid "Additional"
+msgstr "Lisa"
+
+msgid "Additional 2"
+msgstr "Lisa 2"
+
+#, php-format
+msgid "Address with ID \"%1$s\" not found"
+msgstr "Aadress ID-ga \"%1$s\" ei ole leitav"
+
+msgid "Addresses"
+msgstr "Addressid"
+
+msgid ""
+"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
+"\n"
+"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
+msgstr "Kõik teele saadetud tellimused on reguleeritud meie kasutustingimustega, millega saab tutvuda meie veebilehel ning millega nõustusite tellimuse esitamisel.\n\nSee e-mail sisaldab konfidentsiaalset infot ja on mõeldud ainult adressaadina märgitud isikule. Kui see pole Teile mõeldud, siis palun andke meile sellest teada ja kustutage see e-kiri koos kõigi lisadega."
+
+#. / Payment e-mail legal information
+msgid "All orders are subject to our terms and conditions."
+msgstr "Kõik tellimused on reguleeritud meie kasutustingimustega, millega saab tutvuda meie veebilehel ning millega nõustusite tellimuse esitamisel.\n\nSee e-mail sisaldab konfidentsiaalset infot ja on mõeldud ainult adressaadina märgitud isikule. Kui see pole Teile mõeldud, siis palun andke meile sellest teada ja kustutage see e-kiri koos kõigi lisadega."
+
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+msgid "An account has been created for you."
+msgstr "Teie konto on loodud."
+
+msgid "Article no.:"
+msgstr "Toode nr.:"
+
+#, php-format
+msgid "At least one billing address part is missing or invalid"
+msgstr "Vähemalt üks arve esitamise aadressi lahter on tühi või vigane"
+
+#, php-format
+msgid "At least one delivery address part is missing or invalid"
+msgstr "Vähemalt üks postiaadressi lahter on tühi või vigane"
+
+msgid "Attributes"
+msgstr "Omadused"
+
+msgid "Back"
+msgstr "Tagasi"
+
+msgid "Basket"
+msgstr "Ostukorv"
+
+msgid "Billing address"
+msgstr "Arve esitamise aadress"
+
+#, php-format
+msgid "Billing address part \"%1$s\" is invalid"
+msgstr "Arve esitamise aadressi lahter \"%1$s\" on vigane"
+
+#, php-format
+msgid "Billing address part \"%1$s\" is missing"
+msgstr "Arve esitamise aadressi lahter \"%1$s\" on puudu"
+
+msgid "Birthday"
+msgstr "Sünnipäev"
+
+msgid "Bundled products"
+msgstr "Komplekteeritud tooted"
+
+msgid "Buy now"
+msgstr "Osta kohe"
+
+#. /html/catalog/filter/partials/tree
+#. * Relative path to the category tree partial template file
+#. *
+#. * Partials are templates which are reused in other templates and generate
+#. * reoccuring blocks filled with data from the assigned values. The tree
+#. * partial creates an HTML block of nested lists for category trees.
+#. *
+#. * @param string Relative path to the template file
+#. * @since 2017.01
+#. * @category Developer
+msgid "Categories"
+msgstr "Kategooriad"
+
+msgid "Change"
+msgstr "Muuda"
+
+msgid "Change payment"
+msgstr "Muuda makseviisi"
+
+msgid "Characteristics"
+msgstr "Iseloomulikud omadused"
+
+msgid "Check"
+msgstr "Arve"
+
+msgid "Checkout"
+msgstr "Maksa"
+
+msgid "City"
+msgstr "Linn"
+
+#, php-format
+msgid "Class \"%1$s\" does not implement \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Class \"%1$s\" does not implement interface \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Class \"%1$s\" not available"
+msgstr ""
+
+#, php-format
+msgid "Class \"%1$s\" not found"
+msgstr ""
+
+#, php-format
+msgid "Client HTML type is empty"
+msgstr ""
+
+#, php-format
+msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
+msgstr ""
+
+msgid "Close"
+msgstr "Sulge"
+
+msgid "Company"
+msgstr "Ettevõte"
+
+msgid "Confirmation"
+msgstr "Kinnitus"
+
+msgid "Country"
+msgstr "Riik"
+
+msgid "Coupon codes"
+msgstr "Allahindluskoodid"
+
+msgid "Coupons"
+msgstr "Allahindluskoodid"
+
+msgid "Create a customer account for me"
+msgstr ""
+
+msgid "Customer account"
+msgstr ""
+
+#, php-format
+msgid "Customer with ID \"%1$s\" not found"
+msgstr "Klient ID-ga \\\"%1$s\\\" pole leitav"
+
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
+#. and last name (%3$s)
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
+#. and last name (%3$s)
+#. / E-mail intro with salutation (%1$s), first name (%2$s) and last name
+#. (%3$s)
+#, php-format
+msgid "Dear %1$s %2$s %3$s"
+msgstr "Lugupeetud %1$s %2$s %3$s"
+
+msgid "Dear Sir or Madam"
+msgstr "Lugupeetud härra/proua"
+
+msgid "Delivery"
+msgstr "Saadetis"
+
+msgid "Delivery address"
+msgstr "Saadetise kättetoimetamise aadress"
+
+#, php-format
+msgid "Delivery address part \"%1$s\" is invalid"
+msgstr "Kauba kättetoimetamise aadressi osa \\\"%1$s\\\" on vigane"
+
+#, php-format
+msgid "Delivery address part \"%1$s\" is missing"
+msgstr "Kauba kättetoimetamise aadressi osa \\\"%1$s\\\" on puudu"
+
+msgid "Description"
+msgstr "Kirjeldus"
+
+msgid "Details"
+msgstr "Detailid"
+
+msgid "Downloads"
+msgstr "Allalaetav info"
+
+msgid "E-Mail"
+msgstr "E-kiri"
+
+#. / E-mail HTML title
+msgid "E-mail notification"
+msgstr "Teavitus e-kirja teel"
+
+msgid "Favorite products"
+msgstr "Lemmiktooted"
+
+msgid "Fax"
+msgstr "Faks"
+
+msgid "Fields with an * are mandatory"
+msgstr "Tärniga tähistatud väljad on kohustuslikud"
+
+#, php-format
+msgid "File \"%1$s\" doesn't exist"
+msgstr ""
+
+msgid "Filter"
+msgstr "Filtreeri"
+
+msgid "First name"
+msgstr "Eesnimi"
+
+msgid "GB999999973"
+msgstr "GB999999973"
+
+msgid "Go"
+msgstr "Otsi"
+
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a>"
+msgstr "Nõustun <a href=\"%1$s\" target=\"_blank\" title=\"Kasutustingimuste\" alt=\"\nKasutustingimuste\">Kasutustingimuste</a> ja <a href=\"%2$s\" target=\n\"_blank\" title=\"Privaatsustingimustega\" alt=\"Privaatsustingimustega\"\n>Privaatsustingimustega</a>"
+
+msgid "If back in stock"
+msgstr "Kui kaup on laos"
+
+msgid "If price decreases"
+msgstr "Kui hind langeb"
+
+#. / E-mail outro
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+msgid "If you have any questions, please reply to this e-mail"
+msgstr "Kui Teil on veel küsimusi, palun vastake sellele e-kirjale"
+
+#. / Tax rate format with tax rate in percent (%1$s)
+#, php-format
+msgid "Incl. %1$s%% VAT"
+msgstr "Sisaldab %1$s%% käibemaksu"
+
+msgid "Included rebates"
+msgstr "Sisaldavad soodustust"
+
+#, php-format
+msgid "Invalid characters in class name \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Invalid characters in client name \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
+msgstr ""
+
+#, php-format
+msgid "Invalid class name \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Invalid domain \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Invalid factory \"%1$s\""
+msgstr "factory \"%1$s\" on vigane"
+
+#, php-format
+msgid "Invalid process response from service provider with code \"%1$s\""
+msgstr ""
+
+msgid "Language"
+msgstr "Keel"
+
+msgid "Last name"
+msgstr "Perekonnanimi"
+
+msgid "Last seen"
+msgstr "Viimati sisse logitud"
+
+msgid "Name"
+msgstr "Nimi"
+
+msgid "Next"
+msgstr "Järgmine"
+
+#, php-format
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
+msgstr "Otsingule <span class=\"searchstring\">\"%1$s\"</span> tulemusi ei leitud. Palun proovige uuesti muu märksõnaga."
+
+#, php-format
+msgid "No product with ID \"%1$s\" found"
+msgstr "Ühtegi toodet ID-ga \"%1$s\" ei leitud"
+
+#, php-format
+msgid "No service for code \"%1$s\" found"
+msgstr "Ühtegi teenust koodiga \"%1$s\" ei leitud"
+
+#, php-format
+msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
+msgstr "Kategooriast \"%3$s\" ei leitud ühtegi toodet nimega \"%1$s/%2$s\""
+
+#, php-format
+msgid "No view available"
+msgstr "Toote pilt pole kahjuks saadaval"
+
+#, php-format
+msgid "Number of coupon codes exceeds the limit"
+msgstr "Allahindluskoodide arv ületab lubatud piiri"
+
+#, php-format
+msgid "Object doesn't implement \"%1$s\""
+msgstr ""
+
+msgid "One month"
+msgstr "Üks kuu"
+
+msgid "One or more products you are watching have been updated."
+msgstr "Ühte või mitut toodet, mida te jälgite, on uuendatud."
+
+msgid "One week"
+msgstr "Üks nädal"
+
+msgid "Options"
+msgstr "Valikud"
+
+msgid "Order ID"
+msgstr "Tellimuse ID"
+
+msgid "Order channel"
+msgstr "Tellimise viis"
+
+msgid "Order details"
+msgstr "Tellimuse detailid"
+
+msgid "Order history"
+msgstr "Tellimuste ajalugu"
+
+msgid "Order status"
+msgstr "Tellimise staatus"
+
+#, php-format
+msgid "Order with ID \"%1$s\" not found"
+msgstr "Tellimust ID-ga \"%1$s\" ei leitud"
+
+msgid "Other customers also bought"
+msgstr "Teised kliendid ostsid ka"
+
+msgid "Our products"
+msgstr ""
+
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr "Lehekülg %1$d %2$d-st"
+
+msgid "Password"
+msgstr "Salasõna"
+
+msgid "Pay now"
+msgstr "Maksa kohe"
+
+msgid "Payment"
+msgstr "Makse"
+
+msgid "Payment costs"
+msgstr "Maksmiskulu"
+
+msgid "Payment status"
+msgstr "Makse staatus"
+
+msgid "Pinned products"
+msgstr "Äramärgitud tooted"
+
+msgid "Please accept the terms and conditions"
+msgstr "Palun nõustuge Kasutustingimustega"
+
+msgid "Please check your order"
+msgstr "Palun kontrollige oma tellimust"
+
+msgid "Please choose your delivery method"
+msgstr "Palun valige kauba kättetoimetamise viis"
+
+msgid "Please choose your payment method"
+msgstr "Palun valige maksemeetod"
+
+msgid "Please enter at least three characters"
+msgstr "Palun sisestage vähemalt kolm tähemärki"
+
+msgid "Please enter your payment details"
+msgstr "Palun sisestage oma makseandmed"
+
+msgid "Please select"
+msgstr "Palun valige"
+
+msgid "Postal code"
+msgstr "Postiindeks"
+
+msgid "Previous"
+msgstr "Eelmine"
+
+msgid "Price"
+msgstr "Hind"
+
+msgid "Proceed"
+msgstr "Edasi"
+
+msgid "Processing the payment failed"
+msgstr "Makse teostamine ebaõnnestus"
+
+msgid "Product"
+msgstr "Toode"
+
+msgid "Products you might be also interested in"
+msgstr "Tooted, mis võiksid Teile veel huvi pakkuda"
+
+msgid "Properties"
+msgstr "Detailsem info"
+
+msgid "Qty"
+msgstr "Tk"
+
+msgid "Quantity"
+msgstr "Kogus"
+
+msgid "Related"
+msgstr "Seotud"
+
+msgid "Relevance"
+msgstr "Täpsus"
+
+#. / Product search hint with user provided search string (%1$s)
+#, php-format
+msgid "Result for \"%1$s\""
+msgstr "Tulemused otsingule \"%1$s\""
+
+msgid "Salutation"
+msgstr "Pöördumine"
+
+msgid "Search"
+msgstr "Otsi"
+
+#, php-format
+msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
+msgstr[0] "Tulemused otsingule <span class=\"searchstring\">\"%1$s\"</span> (%2$d toodet)"
+msgstr[1] "Tulemused otsingule <span class=\"searchstring\">\"%1$s\"</span> (%2$d toodet)"
+
+msgid "Select country"
+msgstr "Vali riik"
+
+msgid "Select currency"
+msgstr "Vali valuuta"
+
+msgid "Select language"
+msgstr "Vali keel"
+
+msgid "Select salutation"
+msgstr "Vali pöördumisviis"
+
+msgid "Select state"
+msgstr "Vali maakond"
+
+msgid "Service fees"
+msgstr "Teenustasud"
+
+msgid "Services"
+msgstr "Teenused"
+
+msgid "Share"
+msgstr "Jaga"
+
+msgid "Shipping"
+msgstr "Kauba kättetoimetamine"
+
+msgid "Show"
+msgstr "Näita"
+
+msgid "Show all quotes"
+msgstr "Näita kõiki arvamusi"
+
+msgid "Sort by:"
+msgstr "Sorteeri:"
+
+msgid "State"
+msgstr "Maakond"
+
+#. / Stock string composition with stock type (%1$s, normally left out)
+#. and stock level string (%2$s)
+#. / Stock string composition with stock type (%1$s, normally left out) and
+#. stock level string (%2$s)
+#, php-format
+msgid "Stock: %1$s, %2$s"
+msgstr "Laos: %2$s %1$s"
+
+#. / Stock string composition with stock type (%1$s, normally left out),
+#. stock level string (%2$s) and back in stock date (%3$s)
+#. / Stock string composition with stock type (%1$s, normally left out), stock
+#. level string (%2$s) and back in stock date (%3$s)
+#, php-format
+msgid "Stock: %1$s, %2$s, back on %3$s"
+msgstr "Laos: %1$s, %2$s, uuesti laos %3$s"
+
+msgid "Street"
+msgstr "Tänav"
+
+msgid "Sub-total"
+msgstr "Vahesumma"
+
+msgid "Suggested products"
+msgstr "Soovitatud tooted"
+
+msgid "Sum"
+msgstr "Summa"
+
+msgid "Telephone"
+msgstr "Telefon"
+
+#, php-format
+msgid "Template \"%1$s\" not available"
+msgstr ""
+
+msgid "Terms and conditions"
+msgstr "Kasutustingimused"
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
+#, php-format
+msgid "Thank you for your order %1$s from %2$s."
+msgstr "Täname Teid tellimuse %1$s eest leheküljelt %2$s."
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
+#, php-format
+msgid ""
+"Thank you for your order %1$s from %2$s.\n"
+"\n"
+"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgstr "Täname Teid tellimuse %1$s eest leheküljelt %2$s.\n\nTellimus on ootel, kuni saame viimase makse. Kui olete valinud ettemakse, palun lisage maksele selgituseks tellimuse ID %1$s."
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
+#, php-format
+msgid ""
+"Thank you for your order %1$s from %2$s.\n"
+"\n"
+"We received the payment and will care about your order immediately."
+msgstr "Täname Teid tellimuse %1$s eest leheküljelt %2$s.\n\nOleme Teie makse kätte saanud ja asume Teie tellimusega kohe tööle."
+
+msgid ""
+"Thank you for your order and authorizing the payment.\n"
+"An e-mail with the order details will be sent to you within the next few minutes."
+msgstr "Täname Teid tellimuse ja tasumise eest.\nMõne minuti jooksul peaksite saama tellimust kinnitava E-kirja."
+
+msgid ""
+"Thank you for your order.\n"
+"We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
+msgstr "Täname tellimuse eest.\nOleme Teie makse kätte saanud ja mõne minuti jooksul peaksite saama tellimust kinnitava E-kirja."
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid ""
+"The delivery status of your order %1$s from %2$s has been changed to "
+"\"%3$s\"."
+msgstr "Teie tellimuse %1$s from %2$s staatus on muudetud \"%3$s\"."
+
+#, php-format
+msgid ""
+"The order is pending until we receive the final payment. If you've chosen to"
+" pay in advance, please transfer the money to our bank account with the "
+"order ID %1$s as reference."
+msgstr "Tellimus on ootel, kuni saame viimase makse. Kui olete valinud ettemakse, palun lisage maksele selgituseks tellimuse ID %1$s."
+
+msgid ""
+"The order was canceled.\n"
+"Do you wish to retry your order?"
+msgstr "Tellimus tühistati.\nKas soovite tellimuse uuesti esitada?"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "The parcel for your order %1$s from %2$s could not be delivered."
+msgstr "Teie tellimust %1$s leheküljelt %2$s ei saanud kohale toimetada."
+
+msgid ""
+"The payment confirmation for your order is still pending.\n"
+"You will get an e-mail as soon as the payment is authorized."
+msgstr "Makse Teie tellimuse eest ootab endiselt kinnitamist.\nTe saate kohe e-kirja, kui makse on kinnitatud."
+
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
+#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
+#. status (%3%s)
+#, php-format
+msgid "The payment for your order %1$s from %2$s has been refunded."
+msgstr "Tagastasime makse Teie tellimuse %1$s eest leheküljelt %2$s."
+
+msgid "Three month"
+msgstr "Kolm kuud"
+
+msgid "Time frame"
+msgstr "Kestus"
+
+msgid "Toggle fullscreen"
+msgstr ""
+
+msgid "Top seller"
+msgstr "Enim müüdud"
+
+msgid "Total"
+msgstr "Summa"
+
+msgid "Total quantity"
+msgstr "Lõplik kogus"
+
+msgid "Try again"
+msgstr "Palun poovige uuesti"
+
+msgid "Two weeks"
+msgstr "Kaks nädalat"
+
+#, php-format
+msgid "Unable to call method \"%1$s\""
+msgstr ""
+
+#, php-format
+msgid "Unable to create an account for \"%1$s\": %2$s"
+msgstr ""
+
+#, php-format
+msgid "Unable to save address for customer \"%1$s\": %2$s"
+msgstr ""
+
+#, php-format
+msgid "Unable to set cache entry: %1$s"
+msgstr ""
+
+msgid ""
+"Unfortunately, the payment for your order was refused.\n"
+"Do you wish to retry?"
+msgstr "Kahjuks on Teie makse panga poolt tagasi lükatud.\nKas soovite uuesti proovida?"
+
+msgid "Update"
+msgstr "Uuenda"
+
+msgid "Vat ID"
+msgstr "Käibemaksu määr"
+
+msgid "Watch"
+msgstr "Lisa jälgimisnimekirja"
+
+msgid "Watched products"
+msgstr "Vaadatud tooted"
+
+msgid ""
+"We have received your payment, and will take care of your order immediately."
+msgstr "Oleme Teie makse kätte saanud ja asume Teie tellimusega kohe tööle."
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "We received the returned parcel for your order %1$s from %2$s."
+msgstr "Me saime kätte Teie tagastatud toote %1$s leheküljelt %2$s."
+
+msgid "Web site"
+msgstr "Veebileht"
+
+msgid "X"
+msgstr "X"
+
+#. / Date format with year (Y), month (m) and day (d). See
+#. http://php.net/manual/en/function.date.php
+msgid "Y-m-d"
+msgstr "Y-m-d"
+
+msgid "You are here:"
+msgstr "Te olete siin:"
+
+msgid "You will now be forwarded to the next step"
+msgstr "Teid suunatakse nüüd edasi järgmise sammuni"
+
+msgid "Your account"
+msgstr "Teie konto"
+
+msgid "Your choice"
+msgstr "Teie valik"
+
+msgid "Your comment"
+msgstr ""
+
+#. / Account creation e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Account creation e-mail subject
+msgid "Your new account"
+msgstr "Teie uus konto"
+
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#, php-format
+msgid "Your order %1$s"
+msgstr "Teie tellimus %1$s"
+
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
+#. delivery status (%3%s)
+#, php-format
+msgid "Your order %1$s from %2$s has been dispatched."
+msgstr "Teie tellimus %1$s leheküljelt %2$s on teele saadetud."
+
+msgid "Your search result"
+msgstr "Teie otsingu tulemus"
+
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Product notification e-mail subject
+msgid "Your watched products"
+msgstr "Teie jälgimisnimekirjas olevad tooted"
+
+msgid "Zoom in/out"
+msgstr ""
+
+#, php-format
+msgid "address"
+msgstr "address"
+
+msgid "clear all"
+msgstr "kustuta kõik"
+
+#, php-format
+msgid "delivery"
+msgstr "saadetis"
+
+#. / Price quantity format with quantity (%1$s)
+#, php-format
+msgid "from %1$s"
+msgstr "alates %1$s"
+
+msgid "like billing address"
+msgstr "sama, mis arve aadress"
+
+msgid "new address"
+msgstr "uus aadress"
+
+#. /html/catalog/attribute/type
+#. * List of layout types for the optional attributes
+#. *
+#. * Each product can contain optional attributes and this configuration
+#. setting
+#. * allows you to change how these attributs will be displayed, either as
+#. * drop-down menu (value: "select") or as list of radio buttons (value:
+#. * "radio").
+#. *
+#. * The key for each value must be the type code of the attribute, e.g.
+#. "width",
+#. * "length", "color" or similar types. You can set the layout for all
+#. * attributes at once using e.g.
+#. *
+#. *  client/html/catalog/attribute/type = array(
+#. *      'width' => 'select',
+#. *      'color' => 'radio',
+#. *  )
+#. *
+#. * Similarly, you can set the layout type for a specific attribute only,
+#. * leaving the rest untouched:
+#. *
+#. *  client/html/catalog/attribute/type/color = radio
+#. *
+#. * Note: Up to 2015.10 this option was available as
+#. /html/catalog/detail/basket/attribute/type
+#. *
+#. * @param array List of attribute types as key and layout types as value,
+#. e.g. "select" or "radio"
+#. * @since 2015.10
+#. * @category Developer
+#. * @category User
+#. * @see client/html/catalog/selection/type
+#. /html/catalog/attribute/type/color
+#. * Layout types for the color attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+#. /html/catalog/attribute/type/size
+#. * Layout types for the size attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+msgid "none"
+msgstr "mitte ühtegi"
+
+#, php-format
+msgid "order"
+msgstr "tellimus"
+
+#, php-format
+msgid "payment"
+msgstr "makse"
+
+#, php-format
+msgid "process"
+msgstr "töötlemine"
+
+#. / code for "product is in stock"
+msgid "stock-high"
+msgstr "Laoseis-olemas"
+
+#. / code for "only a few products are available"
+msgid "stock-low"
+msgstr "Laoseis-viimased tooted"
+
+#. / code for "product is out of stock"
+msgid "stock-out"
+msgstr "toode on laost otsas"
+
+#. / code for "product is available (without stock limit)"
+msgid "stock-unlimited"
+msgstr "Laoseis-piiramatult"
+
+#, php-format
+msgid "summary"
+msgstr "kokkuvõte"
+
+msgid "▲ Name"
+msgstr "▲ Nimi"
+
+msgid "▲ Price"
+msgstr "▲ Hind"
+
+msgid "▶"
+msgstr "▶"
+
+msgid "▶▶"
+msgstr "▶▶"
+
+msgid "▼"
+msgstr "▼"
+
+msgid "▼ Name"
+msgstr "▼ Nimi"
+
+msgid "▼ Price"
+msgstr "▼ Hind"
+
+msgid "◀"
+msgstr "◀"
+
+msgid "◀◀"
+msgstr "◀◀"
