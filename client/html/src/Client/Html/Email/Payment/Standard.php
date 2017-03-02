@@ -296,7 +296,7 @@ class Standard
 		 * This configuration option overwrites the e-mail address set via
 		 * "client/html/email/bcc-email".
 		 *
-		 * @param string E-mail address
+		 * @param string|array E-mail address or list of e-mail addresses
 		 * @since 2014.03
 		 * @category User
 		 * @category Developer
@@ -304,8 +304,11 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
 		 */
-		if( ( $bccEmailPayment = $view->config( 'client/html/email/payment/bcc-email', $bccEmail ) ) != null ) {
-			$msg->addBcc( $bccEmailPayment );
+		if( ( $bccEmailPayment = $view->config( 'client/html/email/payment/bcc-email', $bccEmail ) ) != null )
+		{
+			foreach( (array) $bccEmailPayment as $emailAddr ) {
+				$msg->addBcc( $emailAddr );
+			}
 		}
 
 
