@@ -522,6 +522,9 @@ class Standard
 			$this->addMetaItems( $mediaItems, $this->expire, $this->tags );
 
 
+			$productIds = array_keys( $productItem->getRefItems( 'product', null, 'default' ) );
+			$productIds[] = $prodid;
+
 			$propertyManager = $controller->createManager( 'product/property' );
 			$propertyItems = $this->getDomainItems( $propertyManager, 'product.property.parentid', $productIds, $domains );
 

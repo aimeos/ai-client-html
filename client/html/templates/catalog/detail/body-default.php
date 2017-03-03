@@ -314,12 +314,36 @@ ksort( $propMap );
 						<div class="content attributes">
 							<table class="attributes">
 								<tbody>
+									<?php foreach( $this->detailProductItem->getRefItems( 'attribute', null, 'default' ) as $attrId => $attrItem ) : ?>
+										<?php if( isset( $attrItems[ $attrId ] ) ) { $attrItem = $attrItems[ $attrId ]; } ?>
+										<tr class="item">
+											<td class="name"><?php echo $enc->html( $this->translate( 'client/code', $attrItem->getType() ), $enc::TRUST ); ?></td>
+											<td class="value">
+												<div class="media-list">
+													<?php foreach( $attrItem->getListItems( 'media', 'icon' ) as $listItem ) : ?>
+														<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
+															<?php echo $this->partial(
+																$this->config( 'client/html/common/partials/media', 'common/partials/media-default.php' ),
+																array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
+															); ?>
+														<?php endif; ?>
+													<?php endforeach; ?>
+												</div>
+												<span class="attr-name"><?php echo $enc->html( $attrItem->getName() ); ?></span>
+											</td>
+										</tr>
+									<?php endforeach; ?>
 									<?php foreach( $attrMap as $type => $attrItems ) : ?>
 										<?php foreach( $attrItems as $attrItem ) : $classes = ""; ?>
-											<?php if( isset( $subAttrDeps[ $attrItem->getId() ] ) ) : ?>
-												<?php $classes .= ' subproduct'; ?>
-												<?php foreach( $subAttrDeps[ $attrItem->getId() ] as $prodid ) { $classes .= ' subproduct-' . $prodid; } ?>
-											<?php endif; ?>
+											<?php
+												if( isset( $subAttrDeps[ $attrItem->getId() ] ) )
+												{
+													$classes .= ' subproduct';
+													foreach( $subAttrDeps[ $attrItem->getId() ] as $prodid ) {
+														$classes .= ' subproduct-' . $prodid;
+													}
+												}
+											?>
 											<tr class="item<?php echo $classes; ?>">
 												<td class="name"><?php echo $enc->html( $this->translate( 'client/code', $type ), $enc::TRUST ); ?></td>
 												<td class="value">
@@ -351,11 +375,17 @@ ksort( $propMap );
 							<table class="properties">
 								<tbody>
 									<?php foreach( $propMap as $type => $propItems ) : ?>
-										<?php foreach( $propItems as $propertyItem ) : $classes = ""; ?>
-											<?php if( isset( $subPropDeps[ $propertyItem->getId() ] ) ) : ?>
-												<?php $classes .= ' subproduct'; ?>
-												<?php foreach( $subPropDeps[ $propertyItem->getId() ] as $prodid ) { $classes .= ' subproduct-' . $prodid; } ?>
-											<?php endif; ?>
+										<?php foreach( $propItems as $propertyItem ) : $classes = ''; ?>
+											<?php
+												if( $propertyItem->getParentId() != $this->detailProductItem->getId()
+													&& isset( $subPropDeps[ $propertyItem->getId() ] )
+												) {
+													$classes .= ' subproduct';
+													foreach( $subPropDeps[ $propertyItem->getId() ] as $prodid ) {
+														$classes .= ' subproduct-' . $prodid;
+													}
+												}
+											?>
 											<tr class="item<?php echo $classes; ?>">
 												<td class="name"><?php echo $enc->html( $this->translate( 'client/code', $propertyItem->getType() ), $enc::TRUST ); ?></td>
 												<td class="value"><?php echo $enc->html( $propertyItem->getValue() ); ?></td>
