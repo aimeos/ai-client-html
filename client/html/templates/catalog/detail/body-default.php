@@ -308,7 +308,7 @@ ksort( $propMap );
 					</div>
 				<?php endif; ?>
 
-				<?php if( count( $attrMap ) > 0 ) : ?>
+				<?php if( count( $attrMap ) > 0 || count( $this->detailProductItem->getRefItems( 'attribute', null, 'default' ) ) > 0 ) : ?>
 					<div class="additional-box">
 						<h2 class="header attributes"><?php echo $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ); ?></h2>
 						<div class="content attributes">
