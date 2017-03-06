@@ -7,14 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
-# Aimeos <aimeos@aimeos.org>, 2015-2016
+# Aimeos <aimeos@aimeos.org>, 2015-2017
 # nsendetzky, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-06-09 12:22+0000\n"
+"PO-Revision-Date: 2017-01-03 11:45+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -179,8 +179,8 @@ msgstr "Ablaufmonat"
 msgid "payment.expiryyear"
 msgstr "Ablaufjahr"
 
-#. Warehouse code
-msgid "warehouse:default"
+#. Stock type
+msgid "stocktype:default"
 msgstr " "
 
 #. Favorite action

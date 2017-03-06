@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-06-07 09:37+0000\n"
+"PO-Revision-Date: 2016-12-02 09:52+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -178,9 +178,9 @@ msgstr ""
 msgid "payment.expiryyear"
 msgstr ""
 
-#. Warehouse code
-msgid "warehouse:default"
-msgstr "仓库代码"
+#. Stock type
+msgid "stocktype:default"
+msgstr ""
 
 #. Favorite action
 msgid "favorite"
