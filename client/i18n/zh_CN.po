@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-03 12:40+0100\n"
-"PO-Revision-Date: 2017-01-03 11:40+0000\n"
+"PO-Revision-Date: 2017-03-06 14:11+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -810,7 +810,7 @@ msgstr "X"
 #. / Date format with year (Y), month (m) and day (d). See
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
-msgstr "年-月-日"
+msgstr "Y-m-d"
 
 msgid "You are here:"
 msgstr "您现在的位置："

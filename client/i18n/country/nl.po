@@ -9,13 +9,14 @@
 # Translators:
 # Maurice Lourens <mlourens@gmail.com>, 2015
 # Sten Pelzer <pelzersten@gmail.com>, 2015
+# Vincent Mans <vincent@vibis.nl>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-06-07 09:37+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"PO-Revision-Date: 2017-03-06 09:13+0000\n"
+"Last-Translator: Vincent Mans <vincent@vibis.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -240,7 +241,7 @@ msgid "FK"
 msgstr "Falkland Islands (Malvinas)"
 
 msgid "FM"
-msgstr ""
+msgstr "Micronesia, Federale Staten van"
 
 msgid "FO"
 msgstr "Faroe Islands"
@@ -333,13 +334,13 @@ msgid "IL"
 msgstr "Israel"
 
 msgid "IM"
-msgstr ""
+msgstr "Man (eiland)"
 
 msgid "IN"
 msgstr "India"
 
 msgid "IO"
-msgstr ""
+msgstr "Brits Indische Oceaanterritorium"
 
 msgid "IQ"
 msgstr "Irak"
@@ -354,13 +355,13 @@ msgid "IT"
 msgstr "Italie"
 
 msgid "JE"
-msgstr ""
+msgstr "Jersey"
 
 msgid "JM"
 msgstr "Jamaica"
 
 msgid "JO"
-msgstr ""
+msgstr "Jordanië"
 
 msgid "JP"
 msgstr "Japan"
@@ -369,22 +370,22 @@ msgid "KE"
 msgstr "Kenia"
 
 msgid "KG"
-msgstr ""
+msgstr "Kirgizië"
 
 msgid "KH"
-msgstr ""
+msgstr "Cambodja"
 
 msgid "KI"
-msgstr ""
+msgstr "Kiribati"
 
 msgid "KM"
-msgstr ""
+msgstr "Comoren"
 
 msgid "KN"
-msgstr ""
+msgstr "Saint Kitts en Nevis"
 
 msgid "KP"
-msgstr ""
+msgstr "Noord-Korea"
 
 msgid "KR"
 msgstr "Korea, Republiek van"
@@ -393,34 +394,34 @@ msgid "KW"
 msgstr "Koeweit"
 
 msgid "KY"
-msgstr ""
+msgstr "Kaaimaneilanden"
 
 msgid "KZ"
 msgstr "Kazachstan"
 
 msgid "LA"
-msgstr ""
+msgstr "Laos"
 
 msgid "LB"
 msgstr "Libanon"
 
 msgid "LC"
-msgstr ""
+msgstr "Saint Lucia"
 
 msgid "LI"
-msgstr ""
+msgstr "Liechtenstein"
 
 msgid "LK"
 msgstr "Sri Lanka"
 
 msgid "LR"
-msgstr ""
+msgstr "Liberia"
 
 msgid "LS"
-msgstr ""
+msgstr "Lesotho"
 
 msgid "LT"
-msgstr ""
+msgstr "Litouwen"
 
 msgid "LU"
 msgstr "Luxemburg"
@@ -444,13 +445,13 @@ msgid "ME"
 msgstr "Montenegro"
 
 msgid "MF"
-msgstr ""
+msgstr "Saint-Martin"
 
 msgid "MG"
 msgstr "Madagascar"
 
 msgid "MH"
-msgstr ""
+msgstr "Marshalleilanden"
 
 msgid "MK"
 msgstr "Macedonië"
@@ -459,313 +460,313 @@ msgid "ML"
 msgstr "Mali"
 
 msgid "MM"
-msgstr ""
+msgstr "Myanmar (Birma)"
 
 msgid "MN"
 msgstr "Mongolië"
 
 msgid "MO"
-msgstr ""
+msgstr "Macau"
 
 msgid "MP"
-msgstr ""
+msgstr "Noordelijke Marianen"
 
 msgid "MQ"
-msgstr ""
+msgstr "Martinique"
 
 msgid "MR"
-msgstr ""
+msgstr "Mauritanië"
 
 msgid "MS"
-msgstr ""
+msgstr "Montserrat"
 
 msgid "MT"
 msgstr "Malta"
 
 msgid "MU"
-msgstr ""
+msgstr "Mauritius"
 
 msgid "MV"
-msgstr ""
+msgstr "Maldiven"
 
 msgid "MW"
-msgstr ""
+msgstr "Malawi"
 
 msgid "MX"
-msgstr ""
+msgstr "Mexico"
 
 msgid "MY"
-msgstr ""
+msgstr "Maleisië"
 
 msgid "MZ"
-msgstr ""
+msgstr "Mozambique"
 
 msgid "NA"
-msgstr ""
+msgstr "Namibië"
 
 msgid "NC"
-msgstr ""
+msgstr "Nieuw-Caledonië"
 
 msgid "NE"
-msgstr ""
+msgstr "Niger"
 
 msgid "NF"
-msgstr ""
+msgstr "Norfolk"
 
 msgid "NG"
-msgstr ""
+msgstr "Nigeria"
 
 msgid "NI"
-msgstr ""
+msgstr "Nicaragua"
 
 msgid "NL"
-msgstr ""
+msgstr "Nederland"
 
 msgid "NO"
-msgstr ""
+msgstr "Noorwegen"
 
 msgid "NP"
-msgstr ""
+msgstr "Nepal"
 
 msgid "NR"
 msgstr "Nauru"
 
 msgid "NU"
-msgstr ""
+msgstr "Niue"
 
 msgid "NZ"
-msgstr ""
+msgstr "Nieuw-Zeeland"
 
 msgid "OM"
-msgstr ""
+msgstr "Oman"
 
 msgid "PA"
-msgstr ""
+msgstr "Panama"
 
 msgid "PE"
-msgstr ""
+msgstr "Peru"
 
 msgid "PF"
-msgstr ""
+msgstr "Frans-Polynesië"
 
 msgid "PG"
-msgstr ""
+msgstr "Papoea-Nieuw-Guinea"
 
 msgid "PH"
-msgstr ""
+msgstr "Filipijnen"
 
 msgid "PK"
-msgstr ""
+msgstr "Pakistan"
 
 msgid "PL"
-msgstr ""
+msgstr "Polen"
 
 msgid "PM"
-msgstr ""
+msgstr "Saint-Pierre en Miquelon"
 
 msgid "PN"
-msgstr ""
+msgstr "Pitcairneilanden"
 
 msgid "PR"
-msgstr ""
+msgstr "Puerto Rico"
 
 msgid "PS"
-msgstr ""
+msgstr "Palestina"
 
 msgid "PT"
-msgstr ""
+msgstr "Portugal"
 
 msgid "PW"
-msgstr ""
+msgstr "Palau"
 
 msgid "PY"
-msgstr ""
+msgstr "Paraguay"
 
 msgid "QA"
-msgstr ""
+msgstr "Qatar"
 
 msgid "RE"
-msgstr ""
+msgstr "Réunion"
 
 msgid "RO"
-msgstr ""
+msgstr "Roemenië"
 
 msgid "RS"
-msgstr ""
+msgstr "Servië"
 
 msgid "RU"
-msgstr ""
+msgstr "Russische Federatie (Rusland)"
 
 msgid "RW"
-msgstr ""
+msgstr "Rwanda"
 
 msgid "SA"
-msgstr ""
+msgstr "Saoedi-Arabië"
 
 msgid "SB"
-msgstr ""
+msgstr "Salomonseilanden"
 
 msgid "SC"
-msgstr ""
+msgstr "Seychellen"
 
 msgid "SD"
-msgstr ""
+msgstr "Soedan"
 
 msgid "SE"
-msgstr ""
+msgstr "Zweden"
 
 msgid "SG"
-msgstr ""
+msgstr "Singapore"
 
 msgid "SH"
-msgstr ""
+msgstr "Sint-Helena, Ascension en Tristan da Cunha"
 
 msgid "SI"
-msgstr ""
+msgstr "Slovenië"
 
 msgid "SJ"
-msgstr ""
+msgstr "Spitsbergen en Jan Mayen"
 
 msgid "SK"
-msgstr ""
+msgstr "Slowakije"
 
 msgid "SL"
-msgstr ""
+msgstr "Sierra Leone"
 
 msgid "SM"
-msgstr ""
+msgstr "San Marino"
 
 msgid "SN"
-msgstr ""
+msgstr "Senegal"
 
 msgid "SO"
-msgstr ""
+msgstr "Somalië"
 
 msgid "SR"
-msgstr ""
+msgstr "Suriname"
 
 msgid "SS"
-msgstr ""
+msgstr "Zuid-Soedan"
 
 msgid "ST"
-msgstr ""
+msgstr "Sao Tomé en Principe"
 
 msgid "SV"
-msgstr ""
+msgstr "El Salvador"
 
 msgid "SX"
-msgstr ""
+msgstr "Sint-Maarten"
 
 msgid "SY"
-msgstr ""
+msgstr "Syrië"
 
 msgid "SZ"
-msgstr ""
+msgstr "Swaziland"
 
 msgid "TC"
-msgstr ""
+msgstr "Turks- en Caicoseilanden"
 
 msgid "TD"
-msgstr ""
+msgstr "Tsjaad"
 
 msgid "TF"
-msgstr ""
+msgstr "Franse Zuidelijke en Antarctische Gebieden"
 
 msgid "TG"
-msgstr ""
+msgstr "Togo"
 
 msgid "TH"
-msgstr ""
+msgstr "Thailand"
 
 msgid "TJ"
-msgstr ""
+msgstr "Tadzjikistan"
 
 msgid "TK"
-msgstr ""
+msgstr "Tokelau"
 
 msgid "TL"
-msgstr ""
+msgstr "Oost-Timor"
 
 msgid "TM"
-msgstr ""
+msgstr "Turkmenistan"
 
 msgid "TN"
-msgstr ""
+msgstr "Tunesië"
 
 msgid "TO"
-msgstr ""
+msgstr "Tonga"
 
 msgid "TR"
-msgstr ""
+msgstr "Turkije"
 
 msgid "TT"
-msgstr ""
+msgstr "Trinidad en Tobago"
 
 msgid "TV"
-msgstr ""
+msgstr "Tuvalu"
 
 msgid "TW"
-msgstr ""
+msgstr "Taiwan"
 
 msgid "TZ"
-msgstr ""
+msgstr "Tanzania"
 
 msgid "UA"
-msgstr ""
+msgstr "Oekraïne"
 
 msgid "UG"
-msgstr ""
+msgstr "Oeganda"
 
 msgid "UM"
-msgstr ""
+msgstr "Verenigde Staten, Kleine afgelegen eilanden van de"
 
 msgid "US"
-msgstr ""
+msgstr "Verenigde Staten van Amerika"
 
 msgid "UY"
-msgstr ""
+msgstr "Uruguay"
 
 msgid "UZ"
-msgstr ""
+msgstr "Oezbekistan"
 
 msgid "VA"
-msgstr ""
+msgstr "Vaticaanstad"
 
 msgid "VC"
-msgstr ""
+msgstr "Saint Vincent en de Grenadines"
 
 msgid "VE"
-msgstr ""
+msgstr "Venezuela"
 
 msgid "VG"
-msgstr ""
+msgstr "Britse Maagdeneilanden"
 
 msgid "VI"
-msgstr ""
+msgstr "Amerikaanse Maagdeneilanden"
 
 msgid "VN"
-msgstr ""
+msgstr "Vietnam"
 
 msgid "VU"
-msgstr ""
+msgstr "Vanuatu"
 
 msgid "WF"
-msgstr ""
+msgstr "Wallis en Futuna"
 
 msgid "WS"
-msgstr ""
+msgstr "Samoa"
 
 msgid "YE"
-msgstr ""
+msgstr "Jemen"
 
 msgid "YT"
-msgstr ""
+msgstr "Mayotte"
 
 msgid "ZA"
-msgstr ""
+msgstr "Zuid-Afrika"
 
 msgid "ZM"
-msgstr ""
+msgstr "Zambia"
 
 msgid "ZW"
-msgstr ""
+msgstr "Zimbabwe"

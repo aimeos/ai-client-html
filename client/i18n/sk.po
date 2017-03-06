@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Adam Murin <adam.murin@gmail.com>, 2017
 # Tomas G <tomas.gmitro@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-03 12:40+0100\n"
-"PO-Revision-Date: 2017-01-03 11:40+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"PO-Revision-Date: 2017-03-04 09:48+0000\n"
+"Last-Translator: Adam Murin <adam.murin@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/aimeos/aimeos-core/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -152,11 +153,11 @@ msgstr "Č. artiklu:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr ""
+msgstr "Aspoň jedna časť fakturačnej adresy je neplatná alebo nevyplnená."
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
-msgstr ""
+msgstr "Aspoň jedna časť adresy doručenia je neplatná alebo nevyplnená."
 
 msgid "Attributes"
 msgstr "Atribúty"
@@ -261,10 +262,10 @@ msgid "Coupons"
 msgstr "Kupóny"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Vytvoriť používateľský účet"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Používateľský účet"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -278,49 +279,49 @@ msgstr "Zákazník s ID \"%1$s\" nebol nájdený"
 #. (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
-msgstr ""
+msgstr "Milý/á %1$s %2$s %3$s"
 
 msgid "Dear Sir or Madam"
 msgstr ""
 
 msgid "Delivery"
-msgstr ""
+msgstr "Doručenie"
 
 msgid "Delivery address"
 msgstr "Adresa doručenia"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "Časť adresy doručenia je neplatná - \"%1$s\""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
-msgstr ""
+msgstr "Chýba časť adresy doručenia - \"%1$s\""
 
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
 msgid "Details"
 msgstr "Detaily"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Na stiahnutie"
 
 msgid "E-Mail"
 msgstr "E-mail"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
-msgstr ""
+msgstr "E-mailová notifikácia"
 
 msgid "Favorite products"
-msgstr ""
+msgstr "Obľúbený tovar"
 
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 msgid "Fields with an * are mandatory"
-msgstr ""
+msgstr "Polia označené * sú povinné"
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
@@ -544,7 +545,7 @@ msgid "Properties"
 msgstr "Vlastnosti"
 
 msgid "Qty"
-msgstr ""
+msgstr "Počet"
 
 msgid "Quantity"
 msgstr "Množstvo"
@@ -553,7 +554,7 @@ msgid "Related"
 msgstr ""
 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevantnosť"
 
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
@@ -609,7 +610,7 @@ msgid "Show all quotes"
 msgstr ""
 
 msgid "Sort by:"
-msgstr ""
+msgstr "Zoradiť podľa"
 
 msgid "State"
 msgstr "Štát"
@@ -1052,28 +1053,28 @@ msgid "summary"
 msgstr ""
 
 msgid "▲ Name"
-msgstr ""
+msgstr "▲ Názov"
 
 msgid "▲ Price"
-msgstr ""
+msgstr "▲ Cena"
 
 msgid "▶"
-msgstr ""
+msgstr "▶"
 
 msgid "▶▶"
-msgstr ""
+msgstr "▶▶"
 
 msgid "▼"
-msgstr ""
+msgstr "▼"
 
 msgid "▼ Name"
-msgstr ""
+msgstr "▼ Názov"
 
 msgid "▼ Price"
-msgstr ""
+msgstr "▼ Cena"
 
 msgid "◀"
-msgstr ""
+msgstr "◀"
 
 msgid "◀◀"
-msgstr ""
+msgstr "◀◀"

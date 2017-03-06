@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aimeos <aimeos@aimeos.org>, 2017
 # nsendetzky, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-03 12:40+0100\n"
-"PO-Revision-Date: 2017-01-03 11:40+0000\n"
+"PO-Revision-Date: 2017-03-06 14:00+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: French (http://www.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -811,7 +812,7 @@ msgstr "X"
 #. / Date format with year (Y), month (m) and day (d). See
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
-msgstr "Année-mois-jour"
+msgstr "d/m/Y"
 
 msgid "You are here:"
 msgstr "Vous êtes ici :"

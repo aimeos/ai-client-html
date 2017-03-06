@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Dávid Siklaky <siklaky.david@gmail.com>, 2016
+# Dávid Siklaky <siklaky.david@gmail.com>, 2016
 # Nóra Antal <nora1984antal@gmail.com>, 2016
 # Péter Kozma <kopegrafika@gmail.com>, 2016
 msgid ""
