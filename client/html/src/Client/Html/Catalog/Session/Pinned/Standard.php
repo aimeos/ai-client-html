@@ -70,6 +70,7 @@ class Standard
 	 */
 	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
 	{
+		$view = $this->getView();
 		$context = $this->getContext();
 		$session = $context->getSession();
 
@@ -88,7 +89,7 @@ class Standard
 
 		if( ( $html = $session->get( $key ) ) === null )
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			$view = $this->setViewParams( $view, $tags, $expire );
 
 			$output = '';
 			foreach( $this->getSubClients() as $subclient ) {
@@ -125,6 +126,8 @@ class Standard
 			$session->set( 'aimeos/catalog/session/pinned/cache', $cached );
 			$session->set( $key, $html );
 		}
+
+		$view->block()->set( 'catalog/session/pinned', $html );
 
 		return $html;
 	}
