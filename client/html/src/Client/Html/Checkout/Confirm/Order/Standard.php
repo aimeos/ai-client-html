@@ -217,14 +217,14 @@ class Standard
 		{
 			if( isset( $view->confirmOrderItem ) )
 			{
-				$context = $this->getContext();
-				$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
-
 				if( $view->confirmOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
 					$view->summaryShowDownloadAttributes = true;
 				}
 
-				$view->summaryBasket = $manager->load( $view->confirmOrderItem->getBaseId() );
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+				$parts = \Aimeos\MShop\Order\Manager\Base\Base::PARTS_ALL;
+
+				$view->summaryBasket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
 				$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 			}
 

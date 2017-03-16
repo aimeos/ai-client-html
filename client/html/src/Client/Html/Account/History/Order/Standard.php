@@ -226,7 +226,7 @@ class Standard
 				$context = $this->getContext();
 
 				$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-				$baseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 				$search = $manager->createSearch( true );
 				$expr = array(
@@ -249,7 +249,7 @@ class Standard
 					$view->summaryShowDownloadAttributes = true;
 				}
 
-				$view->summaryBasket = $baseManager->load( $orderItem->getBaseId() );
+				$view->summaryBasket = $controller->load( $orderItem->getBaseId() );
 				$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 				$view->orderItem = $orderItem;
 			}

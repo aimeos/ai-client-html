@@ -262,9 +262,9 @@ class Standard
 			}
 
 			$context = $this->getContext();
-			$orderBaseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
-			$basket = $orderBaseManager->getSession();
+			$basket = $cntl->get();
 			$basket->setCustomerId( $context->getUserId() );
 			$basket->finish();
 
