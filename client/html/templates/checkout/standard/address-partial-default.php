@@ -246,7 +246,9 @@ $fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
 			name="<?php echo $enc->attr( $this->formparam( array( $fname, 'order.base.address.countryid' ) ) ); ?>"
 			<?php echo $disablefcn( $css, 'order.base.address.countryid' ); ?> >
 
-			<option value=""><?php echo $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ); ?></option>
+			<?php if( count( $countries ) > 1 ) : ?>
+        			<option value=""><?php echo $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ); ?></option>
+      			<?php endif; ?>
 			<?php foreach( $countries as $countryId ) : ?>
 				<option value="<?php echo $enc->attr( $countryId ); ?>" <?php echo $selectfcn( $addr, 'order.base.address.countryid', $countryId ); ?> >
 					<?php echo $enc->html( $this->translate( 'client/country', $countryId ) ); ?>
