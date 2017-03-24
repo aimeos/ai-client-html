@@ -6,6 +6,12 @@
  * @copyright Aimeos (aimeos.org), 2014-2016
  */
 
+/* Available data:
+ * - productItem : Product item incl. referenced items
+ * - params : Request parameters for this detail view
+ * - mediaItems : Media items incl. referenced items
+ */
+
 $enc = $this->encoder();
 
 $getVariantData = function( $mediaId, array $mediaItems ) use ( $enc )
@@ -34,7 +40,7 @@ $media = $this->get( 'mediaItems', array() );
 
 ?>
 <div class="catalog-detail-image">
-	<?php $mediaItems = $this->product->getRefItems( 'media', 'default', 'default' ); ?>
+	<?php $mediaItems = $this->productItem->getRefItems( 'media', 'default', 'default' ); ?>
 
 	<div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 

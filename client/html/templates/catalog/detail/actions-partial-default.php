@@ -3,13 +3,18 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
+ */
+
+/* Available data:
+ * - productItem : Product item incl. referenced items
+ * - params : Request parameters for this detail view
  */
 
 $enc = $this->encoder();
-$prodid = $this->param( 'd_prodid' );
-$params = $this->get( 'actionsParams', array() );
-$login = ( $this->get( 'actionsUserId', '' ) ? 0 : 1 );
+$params = $this->get( 'params', [] );
+$prodid = $this->productItem->getId();
+
 
 $pinTarget = $this->config( 'client/html/catalog/session/pinned/url/target' );
 $pinController = $this->config( 'client/html/catalog/session/pinned/url/controller', 'catalog' );
@@ -27,7 +32,7 @@ $favAction = $this->config( 'client/html/account/favorite/url/action', 'favorite
 $favConfig = $this->config( 'client/html/account/favorite/url/config', array() );
 
 
-/** client/html/catalog/detail/actions/list
+/** client/html/catalog/actions/list
  * List of user action names that should be displayed in the catalog detail view
  *
  * Users can add products to several personal lists that are either only
@@ -40,11 +45,11 @@ $favConfig = $this->config( 'client/html/account/favorite/url/config', array() )
  * the actions on the catalog detail page.
  *
  * @param array List of user action names
- * @since 2014.09
+ * @since 2017.04
  * @category User
  * @category Developer
  */
-$list = $this->config( 'client/html/catalog/detail/actions/list', array( 'pin', 'watch', 'favorite' ) );
+$list = $this->config( 'client/html/catalog/actions/list', array( 'pin', 'watch', 'favorite' ) );
 
 $urls = array(
 	'pin' => $this->url( $pinTarget, $pinController, $pinAction, array( 'pin_action' => 'add', 'pin_id' => $prodid ) + $params, $pinConfig ),
@@ -52,17 +57,14 @@ $urls = array(
 	'favorite' => $this->url( $favTarget, $favController, $favAction, array( 'fav_action' => 'add', 'fav_id' => $prodid ) + $params, $favConfig ),
 );
 
+
 ?>
-<?php $this->block()->start( 'catalog/detail/actions' ); ?>
-<!-- catalog.detail.actions -->
-<div class="catalog-detail-actions">
-<?php foreach( $list as $entry ) : ?>
-<?php	if( isset( $urls[$entry] ) ) : ?>
-	<a class="actions-button actions-button-<?php echo $enc->attr( $entry ); ?>" data-login="<?php echo $login; ?>" href="<?php echo $enc->attr( $urls[$entry] ); ?>" title="<?php echo $enc->attr( $this->translate( 'client/code', $entry ) ); ?>"></a>
-<?php	endif; ?>
-<?php endforeach; ?>
-<?php echo $this->actionsBody; ?>
+<div class="catalog-actions">
+	<?php foreach( $list as $entry ) : ?>
+		<?php if( isset( $urls[$entry] ) ) : ?>
+
+			<a class="actions-button actions-button-<?php echo $enc->attr( $entry ); ?>" href="<?php echo $enc->attr( $urls[$entry] ); ?>" title="<?php echo $enc->attr( $this->translate( 'client/code', $entry ) ); ?>"></a>
+
+		<?php endif; ?>
+	<?php endforeach; ?>
 </div>
-<!-- catalog.detail.actions -->
-<?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/detail/actions' ); ?>

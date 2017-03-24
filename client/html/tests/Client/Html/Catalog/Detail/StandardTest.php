@@ -79,10 +79,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertContains( '<div class="catalog-detail-basic">', $output );
 		$this->assertContains( '<div class="catalog-detail-image', $output );
 
-		$this->assertContains( '<div class="catalog-detail-social">', $output );
+		$this->assertContains( '<div class="catalog-social">', $output );
 		$this->assertRegExp( '/.*facebook.*/', $output );
 
-		$this->assertContains( '<!-- catalog.detail.actions -->', $output );
+		$this->assertContains( '<div class="catalog-actions">', $output );
 		$this->assertContains( 'actions-button-pin', $output );
 		$this->assertContains( 'actions-button-watch', $output );
 		$this->assertContains( 'actions-button-favorite', $output );

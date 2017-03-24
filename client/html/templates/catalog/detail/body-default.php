@@ -13,7 +13,6 @@
  * - detailAttributeItems : Attributes items incl. referenced items
  * - detailMediaItems : Media items incl. referenced items
  * - detailParams : Request parameters for this detail view
- * - detailUserId : User ID if logged in
  */
 
 
@@ -117,7 +116,7 @@ ksort( $propMap );
 				 */
 				$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-bottom.php' ),
 				array(
-					'product' => $this->detailProductItem,
+					'productItem' => $this->detailProductItem,
 					'params' => $this->get( 'detailParams', array() ),
 					'mediaItems' => $this->get( 'detailMediaItems', array() )
 				)
@@ -259,7 +258,25 @@ ksort( $propMap );
 			</div>
 
 
-			<?php echo $this->block()->get( 'catalog/detail/actions' ); ?>
+			<?php echo $this->partial(
+				/** client/html/catalog/detail/partials/actions
+				 * Relative path to the detail actions partial template file
+				 *
+				 * Partials are templates which are reused in other templates and generate
+				 * reoccuring blocks filled with data from the assigned values. The actions
+				 * partial creates an HTML block for the product actions (pin, like and watch
+				 * products).
+				 *
+				 * @param string Relative path to the template file
+				 * @since 2017.04
+				 * @category Developer
+				 */
+				$this->config( 'client/html/catalog/detail/partials/actions', 'catalog/detail/actions-partial-default.php' ),
+				array(
+					'productItem' => $this->detailProductItem,
+					'params' => $this->get( 'detailParams', array() )
+				)
+			); ?>
 
 
 			<?php echo $this->partial(
@@ -276,7 +293,7 @@ ksort( $propMap );
 				 * @category Developer
 				 */
 				$this->config( 'client/html/catalog/detail/partials/social', 'catalog/detail/social-partial-default.php' ),
-				array( 'product' => $this->detailProductItem )
+				array( 'productItem' => $this->detailProductItem )
 			); ?>
 
 

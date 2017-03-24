@@ -6,22 +6,26 @@
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 
+/* Available data:
+ * - productItem : Product item incl. referenced items
+ */
+
 $enc = $this->encoder();
 
-/** client/html/catalog/detail/social/list
- * List of social network names that should be displayed in the catalog detail view
+/** client/html/catalog/social/list
+ * List of social network names that should be displayed in the catalog views
  *
  * Users can share product links in several social networks. The order of the
  * social network names in the configuration determines the order of the links
- * on the catalog detail page.
+ * on the catalog pages.
  *
  * You can add more social links only by configuration if you define a
  * corresponding URL for the added social network. For example, if you would
  * like to add Tumblr as social network, you also need to configure a link with
  * the placeholder for the URL:
  *
- *  client/html/catalog/detail/social/list = array( ..., 'tumblr' )
- *  client/html/catalog/detail/social/url/tumblr = http://www.tumblr.com/share/link?url=%1$s&name=%2$s
+ *  client/html/catalog/social/list = array( ..., 'tumblr' )
+ *  client/html/catalog/social/url/tumblr = http://www.tumblr.com/share/link?url=%1$s&name=%2$s
  *
  * Possible placeholders and replaced values are:
  * * %1$s : Shop URL of the product detail page
@@ -29,18 +33,18 @@ $enc = $this->encoder();
  * * %3$s : URL of the first product image
  *
  * @param array List of social network names
- * @since 2014.09
+ * @since 2017.04
  * @category User
  * @category Developer
- * @see client/html/catalog/detail/social/url/facebook
- * @see client/html/catalog/detail/social/url/gplus
- * @see client/html/catalog/detail/social/url/twitter
- * @see client/html/catalog/detail/social/url/pinterest
+ * @see client/html/catalog/social/url/facebook
+ * @see client/html/catalog/social/url/gplus
+ * @see client/html/catalog/social/url/twitter
+ * @see client/html/catalog/social/url/pinterest
  */
-$list = $this->config( 'client/html/catalog/detail/social/list', array( 'facebook', 'gplus', 'twitter', 'pinterest' ) );
+$list = $this->config( 'client/html/catalog/social/list', array( 'facebook', 'gplus', 'twitter', 'pinterest' ) );
 
 $urls = array(
-	/** client/html/catalog/detail/social/url/facebook
+	/** client/html/catalog/social/url/facebook
 	 * URL for sharing product links on Facebook
 	 *
 	 * Users can share product links on Facebook. This requires a URL defined
@@ -54,14 +58,14 @@ $urls = array(
 	 * * %3$s : URL of the first product image
 	 *
 	 * @param string URL to share products on Facebook
-	 * @since 2014.09
+	 * @since 2017.04
 	 * @category User
 	 * @category Developer
-	 * @see client/html/catalog/detail/social/list
+	 * @see client/html/catalog/social/list
 	 */
 	'facebook' => 'https://www.facebook.com/sharer.php?u=%1$s&t=%2$s',
 
-	/** client/html/catalog/detail/social/url/gplus
+	/** client/html/catalog/social/url/gplus
 	 * URL for sharing product links on Google Plus
 	 *
 	 * Users can share product links on Google Plus. This requires a URL defined
@@ -75,14 +79,14 @@ $urls = array(
 	 * * %3$s : URL of the first product image
 	 *
 	 * @param string URL to share products on Google Plus
-	 * @since 2014.09
+	 * @since 2017.04
 	 * @category User
 	 * @category Developer
-	 * @see client/html/catalog/detail/social/list
+	 * @see client/html/catalog/social/list
 	 */
 	'gplus' => 'https://plus.google.com/share?url=%1$s',
 
-	/** client/html/catalog/detail/social/url/twitter
+	/** client/html/catalog/social/url/twitter
 	 * URL for sharing product links on Twitter
 	 *
 	 * Users can share product links on Twitter. This requires a URL defined
@@ -96,14 +100,14 @@ $urls = array(
 	 * * %3$s : URL of the first product image
 	 *
 	 * @param string URL to share products on Twitter
-	 * @since 2014.09
+	 * @since 2017.04
 	 * @category User
 	 * @category Developer
-	 * @see client/html/catalog/detail/social/list
+	 * @see client/html/catalog/social/list
 	 */
 	'twitter' => 'https://twitter.com/share?url=%1$s&text=%2$s',
 
-	/** client/html/catalog/detail/social/url/pinterest
+	/** client/html/catalog/social/url/pinterest
 	 * URL for sharing product links on Pinterest
 	 *
 	 * Users can share product links on Pinterest. This requires a URL defined
@@ -117,10 +121,10 @@ $urls = array(
 	 * * %3$s : URL of the first product image
 	 *
 	 * @param string URL to share products on Pinterest
-	 * @since 2014.09
+	 * @since 2017.04
 	 * @category User
 	 * @category Developer
-	 * @see client/html/catalog/detail/social/list
+	 * @see client/html/catalog/social/list
 	 */
 	'pinterest' => 'https://pinterest.com/pin/create/button/?url=%1$s&description=%2$s&media=%3$s',
 );
@@ -131,17 +135,17 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
 $detailConfig['absoluteUri'] = true;
 
-$prodName = $this->product->getName();
-$param = array( 'd_prodid' => $this->product->getId(), 'd_name' => $prodName );
+$prodName = $this->productItem->getName();
+$param = array( 'd_prodid' => $this->productItem->getId(), 'd_name' => $prodName );
 $prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $param, array(), $detailConfig );
 
-$images = $this->product->getRefItems( 'media', 'default', 'default' );
+$images = $this->productItem->getRefItems( 'media', 'default', 'default' );
 $prodImage = ( ( $image = reset( $images ) ) !== false ? $this->content( $image->getUrl() ) : '' );
 
 ?>
-<div class="catalog-detail-social">
+<div class="catalog-social">
 <?php foreach( $list as $entry ) : $default = ( isset( $urls[$entry] ) ? $urls[$entry] : null ); ?>
-	<?php if( ( $link = $this->config( 'client/html/catalog/detail/social/url/' . $entry, $default ) ) !== null ) : ?>
+	<?php if( ( $link = $this->config( 'client/html/catalog/social/url/' . $entry, $default ) ) !== null ) : ?>
 
 		<a class="social-button social-button-<?php echo $enc->attr( $entry ); ?>"
 			href="<?php echo $enc->attr( sprintf( $link, $enc->url( $prodUrl ), $enc->url( $prodName ), $enc->url( $prodImage ) ) ); ?>"
