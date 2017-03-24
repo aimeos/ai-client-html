@@ -130,13 +130,18 @@ $pagination = $this->partial(
 	<?php echo $this->block()->get( 'catalog/lists/promo' ); ?>
 
 
-	<div class="catalog-list-type">
-		<a class="type-item type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, array(), $config ) ); ?>"></a>
-		<a class="type-item type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, array(), $config ) ); ?>"></a>
-	</div>
+	<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
+		<div class="catalog-list-type">
+			<a class="type-item type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, array(), $config ) ); ?>"></a>
+			<a class="type-item type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, array(), $config ) ); ?>"></a>
+		</div>
+	<?php endif; ?>
 
 
-	<?php echo $pagination; ?>
+	<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 1 ) : ?>	
+	  <?php echo $pagination; ?>
+	<?php endif; ?>
+
 
 
 	<?php if( ( $searchText = $this->param( 'f_search', null ) ) != null ) : ?>
@@ -170,7 +175,10 @@ $pagination = $this->partial(
 	<?php echo $this->block()->get( 'catalog/lists/items' ); ?>
 
 
-	<?php echo $pagination; ?>
+	<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 1 ) : ?>	
+	  <?php echo $pagination; ?>
+	<?php endif; ?>
+
 
 
 </section>
