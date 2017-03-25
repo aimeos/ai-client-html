@@ -259,8 +259,8 @@ ksort( $propMap );
 
 
 			<?php echo $this->partial(
-				/** client/html/catalog/detail/partials/actions
-				 * Relative path to the detail actions partial template file
+				/** client/html/catalog/partials/actions
+				 * Relative path to the catalog actions partial template file
 				 *
 				 * Partials are templates which are reused in other templates and generate
 				 * reoccuring blocks filled with data from the assigned values. The actions
@@ -271,7 +271,7 @@ ksort( $propMap );
 				 * @since 2017.04
 				 * @category Developer
 				 */
-				$this->config( 'client/html/catalog/detail/partials/actions', 'catalog/detail/actions-partial-default.php' ),
+				$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial-default.php' ),
 				array(
 					'productItem' => $this->detailProductItem,
 					'params' => $this->get( 'detailParams', array() )
@@ -280,19 +280,19 @@ ksort( $propMap );
 
 
 			<?php echo $this->partial(
-				/** client/html/catalog/detail/partials/social
+				/** client/html/catalog/partials/social
 				 * Relative path to the social partial template file
 				 *
 				 * Partials are templates which are reused in other templates and generate
 				 * reoccuring blocks filled with data from the assigned values. The social
 				 * partial creates an HTML block for links to social platforms in the
-				 * catalog detail component.
+				 * catalog components.
 				 *
 				 * @param string Relative path to the template file
-				 * @since 2017.01
+				 * @since 2017.04
 				 * @category Developer
 				 */
-				$this->config( 'client/html/catalog/detail/partials/social', 'catalog/detail/social-partial-default.php' ),
+				$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial-default.php' ),
 				array( 'productItem' => $this->detailProductItem )
 			); ?>
 
