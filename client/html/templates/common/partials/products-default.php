@@ -229,7 +229,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 							<input type="hidden" value="add"
 								name="<?php echo $enc->attr( $this->formparam( 'b_action' ) ); ?>"
 							/>
-							<inputtype="hidden" value="<?php echo $id; ?>"
+							<input type="hidden" value="<?php echo $id; ?>"
 								name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 							/>
 							<input type="number" value="1"
