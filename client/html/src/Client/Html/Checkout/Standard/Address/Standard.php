@@ -316,6 +316,7 @@ class Standard
 
 			try
 			{
+				$deliveryAddressItems = [];
 				$item = $controller->getItem( $context->getUserId(), ['address'] );
 
 				foreach( $item->getAddressItems() as $id => $addrItem ) {

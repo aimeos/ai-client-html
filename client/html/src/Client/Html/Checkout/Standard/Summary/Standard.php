@@ -300,7 +300,9 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
-			if( ( $view->summaryCustomerId = $this->getContext()->getUserId() ) === null )
+			$context = $this->getContext();
+
+			if( ( $view->summaryCustomerId = $context->getUserId() ) === null )
 			{
 				try
 				{
