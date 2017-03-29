@@ -344,8 +344,8 @@ class Standard
 		$domains = array( 'text', 'price', 'media' );
 		$domains = $config->get( 'client/html/basket/related/bought/standard/domains', $domains );
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 
-		return $controller->getProductItems( $ids, $domains );
+		return $controller->getItems( $ids, $domains );
 	}
 }

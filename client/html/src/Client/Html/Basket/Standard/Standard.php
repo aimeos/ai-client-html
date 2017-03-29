@@ -282,34 +282,14 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$controller = $this->getController();
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 		try
 		{
-			$options = array(
-				/** client/html/basket/require-variant
-				 * A variant of a selection product must be chosen
-				 *
-				 * Selection products normally consist of several article variants and by default
-				 * exactly one article variant of a selection product can be put into the basket.
-				 *
-				 * By setting this option to false, the selection product including the chosen
-				 * attributes (if any attribute values were selected) can be put into the basket
-				 * as well. This makes it possible to get all articles or a subset of articles
-				 * (e.g. all of a color) at once.
-				 *
-				 * @param boolean True if a variant must be chosen, false if also the selection product with attributes can be added
-				 * @since 2014.03
-				 * @category Developer
-				 * @category User
-				 */
-				'variant' => $view->config( 'client/html/basket/require-variant', true ),
-			);
-
 			switch( $view->param( 'b_action' ) )
 			{
 				case 'add':
-					$this->addProducts( $view, $options );
+					$this->addProducts( $view, [] );
 					break;
 				case 'coupon-delete':
 					$this->deleteCoupon( $view );
@@ -318,7 +298,7 @@ class Standard
 					$this->deleteProducts( $view );
 					break;
 				default:
-					$this->editProducts( $view, $options );
+					$this->editProducts( $view, [] );
 					$this->addCoupon( $view );
 			}
 
@@ -446,7 +426,9 @@ class Standard
 				$view->standardBackUrl = $view->url( $target, $controller, $action, $params, array(), $config );
 			}
 
-			$view->standardBasket = $this->getController()->get();
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+
+			$view->standardBasket = $controller->get();
 			$view->standardTaxRates = $this->getTaxRates( $view->standardBasket );
 
 			$this->cache = $view;
@@ -465,7 +447,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = $this->getController();
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 
 			/** client/html/basket/standard/coupon/allowed
 			 * Number of coupon codes a customer is allowed to enter
@@ -503,8 +485,7 @@ class Standard
 	 */
 	protected function addProducts( \Aimeos\MW\View\Iface $view, array $options )
 	{
-		$this->clearCached();
-		$controller = $this->getController();
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', array() );
 
 		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' )
@@ -523,6 +504,8 @@ class Standard
 		foreach( $products as $values ) {
 			$this->addProduct( $controller, $values, $options );
 		}
+
+		$this->clearCached();
 	}
 
 
@@ -557,9 +540,9 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$this->clearCached();
-			$controller = $this->getController();
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 			$controller->deleteCoupon( $coupon );
+			$this->clearCached();
 		}
 	}
 
@@ -571,13 +554,14 @@ class Standard
 	 */
 	protected function deleteProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$this->clearCached();
-		$controller = $this->getController();
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_position', array() );
 
 		foreach( $products as $position ) {
 			$controller->deleteProduct( $position );
 		}
+
+		$this->clearCached();
 	}
 
 
@@ -589,8 +573,7 @@ class Standard
 	 */
 	protected function editProducts( \Aimeos\MW\View\Iface $view, array $options )
 	{
-		$this->clearCached();
-		$controller = $this->getController();
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', array() );
 
 		if( ( $position = $view->param( 'b_position', '' ) ) !== '' )
@@ -611,20 +594,7 @@ class Standard
 				( isset( $values['attrconf-code'] ) ? array_filter( (array) $values['attrconf-code'] ) : array() )
 			);
 		}
-	}
 
-
-	/**
-	 * Returns the basket controller object
-	 *
-	 * @return \Controller\Frontend\Basket\Iface Basket controller
-	 */
-	protected function getController()
-	{
-		if( !isset( $this->controller ) ) {
-			$this->controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
-		}
-
-		return $this->controller;
+		$this->clearCached();
 	}
 }
