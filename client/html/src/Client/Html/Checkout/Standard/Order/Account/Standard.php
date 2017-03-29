@@ -183,28 +183,28 @@ class Standard
 
 			try
 			{
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
 				$addr = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 				$email = $addr->getEmail();
 
-				$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-				$search = $manager->createSearch();
-				$search->setConditions( $search->compare( '==', 'customer.code', $email ) );
-				$search->setSlice( 0, 1 );
-				$result = $manager->searchItems( $search );
-
-				if( ( $item = reset( $result ) ) === false )
+				try
+				{
+					$item = $controller->findItem( $email );
+				}
+				catch( \Exception $e )
 				{
 					$password = substr( md5( microtime( true ) . getmypid() . rand() ), -8 );
-					$item = $this->addCustomerData( $manager->createItem(), $addr, $addr->getEmail(), $password );
-					$manager->saveItem( $item );
+					$item = $this->addCustomerData( $controller->createItem(), $addr, $addr->getEmail(), $password );
+
+					$controller->saveItem( $item );
 
 					$msg = $item->toArray();
 					$msg['customer.password'] = $password;
 					$context->getMessageQueue( 'mq-email', 'customer/email/account' )->add( json_encode( $msg ) );
-					$context->setUserId( $item->getId() );
 				}
 
 				$basket->setCustomerId( $item->getId() );
+				$context->setUserId( $item->getId() );
 
 				$orderBaseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
 				$orderBaseManager->saveItem( $basket, false );

@@ -176,22 +176,19 @@ class Standard
 	{
 		$view = $this->getView();
 		$basket = $view->orderBasket;
-		$customerId = $basket->getCustomerId();
+		$context = $this->getContext();
 
 		try
 		{
 			$addr = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
 
-			if( $customerId != '' && $addr->getAddressId() == '' )
+			if( $addr->getAddressId() == '' )
 			{
-				$addrManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer/address' );
-				$orderAddrManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/base/address' );
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+				$orderAddrManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/address' );
 
-				$item = $addrManager->createItem();
-				$item->setParentId( $customerId );
-				$item->copyFrom( $addr );
-
-				$addrManager->saveItem( $item );
+				$item = $controller->createAddressItem()->copyFrom( $addr );
+				$controller->saveAddressItem( $item );
 
 				$addr->setAddressId( $item->getId() );
 				$orderAddrManager->saveItem( $addr, false );
@@ -199,8 +196,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$msg = sprintf( 'Unable to save address for customer "%1$s": %2$s', $customerId, $e->getMessage() );
-			$this->getContext()->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+			$msg = sprintf( 'Unable to save address for customer "%1$s": %2$s', $basket->getCustomerId(), $e->getMessage() );
+			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
 		}
 
 		parent::process();

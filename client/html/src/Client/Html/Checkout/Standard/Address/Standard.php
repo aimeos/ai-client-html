@@ -311,44 +311,24 @@ class Standard
 		if( !isset( $this->cache ) )
 		{
 			$context = $this->getContext();
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+			$orderAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/address' );
 
-
-			$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-
-			$search = $customerManager->createSearch( true );
-			$expr = array(
-				$search->compare( '==', 'customer.id', $context->getUserId() ),
-				$search->getConditions(),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
-
-			$items = $customerManager->searchItems( $search );
-
-			if( ( $item = reset( $items ) ) !== false )
+			try
 			{
-				$deliveryAddressItems = array();
+				$item = $controller->getItem( $context->getUserId(), ['address'] );
 
-				$orderAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/address' );
-				$customerAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
-
-				$search = $customerAddressManager->createSearch();
-				$search->setConditions( $search->compare( '==', 'customer.address.parentid', $item->getId() ) );
-
-				foreach( $customerAddressManager->searchItems( $search ) as $id => $address )
-				{
-					$deliveryAddressItem = $orderAddressManager->createItem();
-					$deliveryAddressItem->copyFrom( $address );
-
-					$deliveryAddressItems[$id] = $deliveryAddressItem;
+				foreach( $item->getAddressItems() as $id => $addrItem ) {
+					$deliveryAddressItems[$id] = $orderAddressManager->createItem()->copyFrom( $addrItem );
 				}
 
-				$paymentAddressItem = $orderAddressManager->createItem();
-				$paymentAddressItem->copyFrom( $item->getPaymentAddress() );
+				$paymentAddressItem = $orderAddressManager->createItem()->copyFrom( $item->getPaymentAddress() );
 
 				$view->addressCustomerItem = $item;
 				$view->addressPaymentItem = $paymentAddressItem;
 				$view->addressDeliveryItems = $deliveryAddressItems;
 			}
+			catch( \Exception $e ) {} // customer has no account yet
 
 
 			$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );

@@ -507,9 +507,8 @@ class Standard
 		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
 			$params = $view->param( 'ca_billing', array() );
-			$invalid = $this->checkFields( $params );
 
-			if( count( $invalid ) > 0 )
+			if( ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
 				$view->billingError = $invalid;
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
@@ -519,35 +518,23 @@ class Standard
 		}
 		else // existing address
 		{
-			$item = $this->getCustomerItem( $option );
-			$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-
-			$invalid = array();
-			$addr = $item->getPaymentAddress();
+			$list = [];
 			$params = $view->param( 'ca_billing_' . $option, array() );
 
-			if( !empty( $params ) )
-			{
-				$list = array();
-				$invalid = $this->checkFields( $params );
-
-				foreach( $params as $key => $value ) {
-					$list[str_replace( 'order.base', 'customer', $key )] = $value;
-				}
-
-				$addr->fromArray( $list );
-				$item->setPaymentAddress( $addr );
-
-				$customerManager->saveItem( $item );
-			}
-
-			if( count( $invalid ) > 0 )
+			if( !empty( $params ) && ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
 				$view->billingError = $invalid;
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 
-			$basketCtrl->setAddress( $type, $addr );
+			foreach( $params as $key => $value ) {
+				$list[str_replace( 'order.base', 'customer', $key )] = $value;
+			}
+
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+			$customer = $controller->editItem( $option, $list );
+
+			$basketCtrl->setAddress( $type, $customer->getPaymentAddress() );
 		}
 	}
 

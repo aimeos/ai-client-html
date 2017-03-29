@@ -68,6 +68,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			throw new \RuntimeException( 'No customer item found' );
 		}
 
+		$this->context->setUserId( $customerItem->getId() );
+
 		$addrItem = $customerItem->getPaymentAddress();
 		$addrItem->setId( null );
 
