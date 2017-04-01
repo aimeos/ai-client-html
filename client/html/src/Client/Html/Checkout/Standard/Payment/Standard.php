@@ -246,14 +246,7 @@ class Standard
 				$serviceCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
 
 				$attributes = $view->param( 'c_payment/' . $serviceId, array() );
-				$errors = $serviceCtrl->checkServiceAttributes( 'payment', $serviceId, $attributes );
-
-				foreach( $errors as $key => $msg )
-				{
-					if( $msg === null ) {
-						unset( $errors[$key] );
-					}
-				}
+				$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
 
 				if( count( $errors ) === 0 ) {
 					$basketCtrl->setService( 'payment', $serviceId, $attributes );
@@ -313,19 +306,22 @@ class Standard
 			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
 
 			$basket = $basketCntl->get();
+			$services = $attributes = $prices = [];
+			$providers = $serviceCntl->getProviders( 'payment' );
 
-			$services = $serviceCntl->getServices( 'payment', $basket );
-			$serviceAttributes = $servicePrices = array();
-
-			foreach( $services as $id => $service )
+			foreach( $providers as $id => $provider )
 			{
-				$serviceAttributes[$id] = $serviceCntl->getServiceAttributes( 'payment', $id, $basket );
-				$servicePrices[$id] = $serviceCntl->getServicePrice( 'payment', $id, $basket );
+				if( $provider->isAvailable( $basket ) === true )
+				{
+					$services[$id] = $provider->getServiceItem();
+					$prices[$id] = $provider->calcPrice( $basket );
+					$attributes[$id] = $provider->getConfigFE( $basket );
+				}
 			}
 
 			$view->paymentServices = $services;
-			$view->paymentServiceAttributes = $serviceAttributes;
-			$view->paymentServicePrices = $servicePrices;
+			$view->paymentServicePrices = $prices;
+			$view->paymentServiceAttributes = $attributes;
 
 			$this->cache = $view;
 		}
