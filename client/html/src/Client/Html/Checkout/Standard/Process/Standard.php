@@ -59,7 +59,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/process/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = array( 'account', 'address' );
 	private $cache;
 
 
@@ -75,7 +75,7 @@ class Standard
 	{
 		$view = $this->getView();
 
-		if( !in_array( $view->get( 'standardStepActive' ), array( 'order', 'process' ) ) ) {
+		if( $view->get( 'standardStepActive' ) !== 'process' ) {
 			return '';
 		}
 
@@ -126,7 +126,7 @@ class Standard
 	{
 		$view = $this->getView();
 
-		if( !in_array( $view->param( 'standardStepActive' ), array( 'order', 'process' ) ) ) {
+		if( $view->get( 'standardStepActive' ) !== 'process' ) {
 			return '';
 		}
 
@@ -229,55 +229,33 @@ class Standard
 	public function process()
 	{
 		$view = $this->getView();
-		$errors = $view->get( 'standardErrorList', array() );
+		$context = $this->getContext();
 
-		if( !in_array( $view->param( 'c_step' ), array( 'order', 'process' ) ) || !empty( $errors ) ) {
+		if( $view->param( 'cs_order', null ) === null
+			|| $view->param( 'c_step' ) !== 'process'
+			|| $view->get( 'standardErrorList', [] ) !== []
+			|| $view->get( 'standardStepActive' ) !== null
+		) {
 			return;
 		}
 
-		$context = $this->getContext();
-		$session = $context->getSession();
-		$orderid = $session->get( 'aimeos/orderid' );
-		$config = array( 'absoluteUri' => true, 'namespace' => false );
-
 		try
 		{
-			$orderItem = \Aimeos\MShop\Factory::createManager( $context, 'order' )->getItem( $orderid );
+			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
-			if( ( $code = $this->getOrderServiceCode( $orderItem->getBaseId() ) ) !== null )
+			$basketCntl->get()->setCustomerId( $context->getUserId() );
+
+			parent::process();
+
+			$basket = $basketCntl->store();
+			$orderItem = $orderCntl->addItem( $basket->getId(), 'web' );
+			$orderCntl->block( $orderItem );
+
+			$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
+
+			if( ( $form = $this->getPaymentForm( $basket, $orderItem ) ) !== null )
 			{
-				$serviceItem = $this->getServiceItem( $code );
-
-				$serviceManager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
-				$provider = $serviceManager->getProvider( $serviceItem );
-
-				$args = array( 'code' => $serviceItem->getCode(), 'orderid' => $orderid );
-				$urls = array(
-					'payment.url-self' => $this->getUrlSelf( $view, $args + array( 'c_step' => 'process' ), array() ),
-					'payment.url-success' => $this->getUrlConfirm( $view, $args, $config ),
-					'payment.url-update' => $this->getUrlUpdate( $view, $args, $config ),
-					'client.ipaddress' => $view->request()->getClientAddress(),
-				);
-				$provider->injectGlobalConfigBE( $urls );
-				$params = $view->param();
-
-				try
-				{
-					$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
-					$attrs = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT )->getAttributes();
-
-					foreach( $attrs as $item ) {
-						$params[$item->getCode()] = $item->getValue();
-					}
-				}
-				catch( \Exception $e ) {} // nothing available
-
-				if( ( $form = $provider->process( $orderItem, $params ) ) === null )
-				{
-					$msg = sprintf( 'Invalid process response from service provider with code "%1$s"', $serviceItem->getCode() );
-					throw new \Aimeos\Client\Html\Exception( $msg );
-				}
-
 				$view->standardUrlNext = $form->getUrl();
 				$view->standardMethod = $form->getMethod();
 				$view->standardProcessParams = $form->getValues();
@@ -288,9 +266,6 @@ class Standard
 				$view->standardUrlNext = $this->getUrlConfirm( $view, array(), array() );
 				$view->standardMethod = 'GET';
 			}
-
-
-			parent::process();
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
@@ -318,57 +293,35 @@ class Standard
 
 
 	/**
-	 * Returns the payment service code from the order with the given base ID.
+	 * Returns the form helper object for building the payment form in the frontend
 	 *
-	 * @param string $baseid ID of the order base item
-	 * @return string|null Code of the service item or null if not found
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Saved basket object including payment service object
+	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Saved order item created for the basket object
+	 * @return \Aimeos\MShop\Common\Item\Helper\Form\Iface|null Form object with URL, parameters, etc.
+	 * 	or null if no form data is required
 	 */
-	protected function getOrderServiceCode( $baseid )
+	protected function getPaymentForm( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/base/service' );
+		$view = $this->getView();
+		$service = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 
-		$search = $manager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'order.base.service.baseid', $baseid ),
-			$search->compare( '==', 'order.base.service.type', \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ),
+		$config = array( 'absoluteUri' => true, 'namespace' => false );
+		$args = array( 'code' => $service->getCode(), 'orderid' => $orderItem->getId() );
+		$urls = array(
+			'payment.url-self' => $this->getUrlSelf( $view, $args + array( 'c_step' => 'process' ), array() ),
+			'payment.url-success' => $this->getUrlConfirm( $view, $args, $config ),
+			'payment.url-update' => $this->getUrlUpdate( $view, $args, $config ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
 
-		$result = $manager->searchItems( $search );
-
-		if( ( $item = reset( $result ) ) !== false ) {
-			return $item->getCode();
-		}
-	}
-
-
-	/**
-	 * Returns the payment service item for the given code.
-	 *
-	 * @param string $code Unique service code
-	 * @throws \Aimeos\Client\Html\Exception If no service item for this code is found
-	 * @return \Aimeos\MShop\Service\Item\Iface Service item object
-	 */
-	protected function getServiceItem( $code )
-	{
-		$serviceManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'service' );
-
-		$search = $serviceManager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'service.code', $code ),
-			$search->compare( '==', 'service.type.code', 'payment' ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$result = $serviceManager->searchItems( $search );
-
-		if( ( $serviceItem = reset( $result ) ) === false )
-		{
-			$msg = sprintf( 'No service for code "%1$s" found', $code );
-			throw new \Aimeos\Client\Html\Exception( $msg );
+		$params = $view->param();
+		foreach( $service->getAttributes() as $item ) {
+			$params[$item->getCode()] = $item->getValue();
 		}
 
-		return $serviceItem;
+		$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'service' );
+		$service = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
+
+		return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 	}
 
 

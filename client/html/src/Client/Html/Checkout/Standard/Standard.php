@@ -101,17 +101,6 @@ class Standard
 	 * @category Developer
 	 */
 
-	/** client/html/checkout/standard/order/name
-	 * Name of the order part used by the checkout standard client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Order\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
 	/** client/html/checkout/standard/process/name
 	 * Name of the process part used by the checkout standard client implementation
 	 *
@@ -122,7 +111,7 @@ class Standard
 	 * @since 2015.07
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'address', 'delivery', 'payment', 'summary', 'order', 'process' );
+	private $subPartNames = array( 'address', 'delivery', 'payment', 'summary', 'process' );
 	private $cache;
 
 
@@ -616,7 +605,7 @@ class Standard
 			$param = array( 'c_step' => $nextStep );
 			$view->standardUrlNext = $view->url( $cTarget, $cCntl, $cAction, $param, array(), $cConfig );
 		}
-		// don't overwrite $view->standardUrlNext so order step URL is used
+		// don't overwrite $view->standardUrlNext so process step URL is used
 
 		return $view;
 	}
