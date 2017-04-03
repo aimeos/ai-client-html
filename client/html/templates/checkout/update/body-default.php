@@ -6,7 +6,7 @@
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
 
-echo $this->get( 'updateMessage' );
+echo $this->response()->getBody();
 echo $this->get( 'updateBody' );
 
 ?>

@@ -57,6 +57,12 @@ class TestHelperHtml
 		$helper = new \Aimeos\MW\View\Helper\Csrf\Standard( $view, '_csrf_token', '_csrf_value' );
 		$view->addHelper( 'csrf', $helper );
 
+		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, new \Zend\Diactoros\ServerRequest() );
+		$view->addHelper( 'request', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Response\Standard( $view, new \Zend\Diactoros\Response() );
+		$view->addHelper( 'response', $helper );
+
 		return $view;
 	}
 
