@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-03-06 09:13+0000\n"
+"PO-Revision-Date: 2017-03-08 07:14+0000\n"
 "Last-Translator: Vincent Mans <vincent@vibis.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -28,22 +28,22 @@ msgid "AD"
 msgstr "Andorra"
 
 msgid "AE"
-msgstr "United Arab Emirates"
+msgstr "Verenigde Arabische Emiraten"
 
 msgid "AF"
 msgstr "Afghanistan"
 
 msgid "AG"
-msgstr "Antigua and Barbuda"
+msgstr "Antigua en Barbuda"
 
 msgid "AI"
 msgstr "Anguilla"
 
 msgid "AL"
-msgstr "Albania"
+msgstr "Albanië"
 
 msgid "AM"
-msgstr "Armenia"
+msgstr "Armenië"
 
 msgid "AO"
 msgstr "Angola"
@@ -52,28 +52,28 @@ msgid "AQ"
 msgstr "Antarctica"
 
 msgid "AR"
-msgstr "Argentina"
+msgstr "Argentinië"
 
 msgid "AS"
-msgstr "American Samoa"
+msgstr "Amerikaans-Samoa"
 
 msgid "AT"
-msgstr "Austria"
+msgstr "Oostenrijk"
 
 msgid "AU"
-msgstr "Australia"
+msgstr "Australië"
 
 msgid "AW"
 msgstr "Aruba"
 
 msgid "AX"
-msgstr "Åland Islands"
+msgstr "Åland"
 
 msgid "AZ"
-msgstr "Azerbaijan"
+msgstr "Azerbeidzjan"
 
 msgid "BA"
-msgstr "Bosnia and Herzegovina"
+msgstr "Bosnië en Herzegovina"
 
 msgid "BB"
 msgstr "Barbados"
@@ -82,13 +82,13 @@ msgid "BD"
 msgstr "Bangladesh"
 
 msgid "BE"
-msgstr "Belgium"
+msgstr "België"
 
 msgid "BF"
 msgstr "Burkina Faso"
 
 msgid "BG"
-msgstr "Bulgaria"
+msgstr "Bulgarije"
 
 msgid "BH"
 msgstr "Bahrain"
@@ -100,7 +100,7 @@ msgid "BJ"
 msgstr "Benin"
 
 msgid "BL"
-msgstr "Saint Barthélemy"
+msgstr "Saint-Barthélemy"
 
 msgid "BM"
 msgstr "Bermuda"
@@ -109,13 +109,13 @@ msgid "BN"
 msgstr "Brunei Darussalam"
 
 msgid "BO"
-msgstr "Bolivia, Plurinational State of"
+msgstr "Bolivië"
 
 msgid "BQ"
-msgstr "Bonaire, Sint Eustatius and Saba"
+msgstr "Bonaire, Sint Eustatius en Saba"
 
 msgid "BR"
-msgstr "Brazil"
+msgstr "Brazilië"
 
 msgid "BS"
 msgstr "Bahamas"
@@ -124,13 +124,13 @@ msgid "BT"
 msgstr "Bhutan"
 
 msgid "BV"
-msgstr "Bouvet Island"
+msgstr "Bouveteiland"
 
 msgid "BW"
 msgstr "Botswana"
 
 msgid "BY"
-msgstr "Belarus"
+msgstr "Wit-Rusland"
 
 msgid "BZ"
 msgstr "Belize"
@@ -139,31 +139,31 @@ msgid "CA"
 msgstr "Canada"
 
 msgid "CC"
-msgstr "Cocos (Keeling) Islands"
+msgstr "Cocoseilanden"
 
 msgid "CD"
-msgstr "Congo, the Democratic Republic of the"
+msgstr "Congo-Kinshasa"
 
 msgid "CF"
-msgstr "Central African Republic"
+msgstr "Centraal-Afrikaanse Republiek"
 
 msgid "CG"
-msgstr "Congo"
+msgstr "Congo-Brazzaville"
 
 msgid "CH"
-msgstr "Switzerland"
+msgstr "Zwitserland"
 
 msgid "CI"
-msgstr "Côte d'Ivoire"
+msgstr "Ivoorkust"
 
 msgid "CK"
-msgstr "Cook Islands"
+msgstr "Cookeilanden"
 
 msgid "CL"
-msgstr "Chile"
+msgstr "Chili"
 
 msgid "CM"
-msgstr "Cameroon"
+msgstr "Kameroen"
 
 msgid "CN"
 msgstr "China"
@@ -178,58 +178,58 @@ msgid "CU"
 msgstr "Cuba"
 
 msgid "CV"
-msgstr "Cape Verde"
+msgstr "Kaapverdië"
 
 msgid "CW"
 msgstr "Curaçao"
 
 msgid "CX"
-msgstr "Christmas Island"
+msgstr "Christmaseiland"
 
 msgid "CY"
 msgstr "Cyprus"
 
 msgid "CZ"
-msgstr "Czech Republic"
+msgstr "Tsjechië"
 
 msgid "DE"
-msgstr "Germany"
+msgstr "Duitsland"
 
 msgid "DJ"
 msgstr "Djibouti"
 
 msgid "DK"
-msgstr "Denmark"
+msgstr "Denemarken"
 
 msgid "DM"
 msgstr "Dominica"
 
 msgid "DO"
-msgstr "Dominican Republic"
+msgstr "Dominicaanse Republiek"
 
 msgid "DZ"
-msgstr "Algeria"
+msgstr "Algerije"
 
 msgid "EC"
 msgstr "Ecuador"
 
 msgid "EE"
-msgstr "Estonia"
+msgstr "Estland"
 
 msgid "EG"
-msgstr "Egypt"
+msgstr "Egypte"
 
 msgid "EH"
-msgstr "Western Sahara"
+msgstr "Westelijke Sahara"
 
 msgid "ER"
 msgstr "Eritrea"
 
 msgid "ES"
-msgstr "Spain"
+msgstr "Spanje"
 
 msgid "ET"
-msgstr "Ethiopia"
+msgstr "Ethiopië"
 
 msgid "FI"
 msgstr "Finland"
@@ -238,31 +238,31 @@ msgid "FJ"
 msgstr "Fiji"
 
 msgid "FK"
-msgstr "Falkland Islands (Malvinas)"
+msgstr "Falklandeilanden (Malvinas)"
 
 msgid "FM"
-msgstr "Micronesia, Federale Staten van"
+msgstr "Micronesia"
 
 msgid "FO"
-msgstr "Faroe Islands"
+msgstr "Faeröer"
 
 msgid "FR"
-msgstr "France"
+msgstr "Frankrijk"
 
 msgid "GA"
 msgstr "Gabon"
 
 msgid "GB"
-msgstr "United Kingdom"
+msgstr "Verenigd Koninkrijk"
 
 msgid "GD"
 msgstr "Grenada"
 
 msgid "GE"
-msgstr "Georgia"
+msgstr "Georgië"
 
 msgid "GF"
-msgstr "French Guiana"
+msgstr "Frans-Guyana"
 
 msgid "GG"
 msgstr "Guernsey"
@@ -286,13 +286,13 @@ msgid "GP"
 msgstr "Guadeloupe"
 
 msgid "GQ"
-msgstr "Equatorial Guinea"
+msgstr "Equatoriaal-Guinea"
 
 msgid "GR"
-msgstr "Greece"
+msgstr "Griekenland"
 
 msgid "GS"
-msgstr "South Georgia and the South Sandwich Islands"
+msgstr "Zuid-Georgia en de Zuidelijke Sandwicheilanden"
 
 msgid "GT"
 msgstr "Guatemala"
@@ -301,37 +301,37 @@ msgid "GU"
 msgstr "Guam"
 
 msgid "GW"
-msgstr "Guinea-Bissau"
+msgstr "Guinee-Bissau"
 
 msgid "GY"
 msgstr "Guyana"
 
 msgid "HK"
-msgstr "Hong Kong"
+msgstr "Hongkong"
 
 msgid "HM"
-msgstr "Heard Island and McDonald Islands"
+msgstr "Heard en McDonaldeilanden"
 
 msgid "HN"
 msgstr "Honduras"
 
 msgid "HR"
-msgstr "Croatia"
+msgstr "Kroatië"
 
 msgid "HT"
-msgstr "Haiti"
+msgstr "Haïti"
 
 msgid "HU"
-msgstr "Hungary"
+msgstr "Hongarije"
 
 msgid "ID"
-msgstr "Indonesia"
+msgstr "Indonesië"
 
 msgid "IE"
-msgstr "Ireland"
+msgstr "Ierland"
 
 msgid "IL"
-msgstr "Israel"
+msgstr "Israël"
 
 msgid "IM"
 msgstr "Man (eiland)"
@@ -346,13 +346,13 @@ msgid "IQ"
 msgstr "Irak"
 
 msgid "IR"
-msgstr "Iran, Islamitische republiek van"
+msgstr "Iran"
 
 msgid "IS"
 msgstr "Ijsland"
 
 msgid "IT"
-msgstr "Italie"
+msgstr "Italië"
 
 msgid "JE"
 msgstr "Jersey"
@@ -388,7 +388,7 @@ msgid "KP"
 msgstr "Noord-Korea"
 
 msgid "KR"
-msgstr "Korea, Republiek van"
+msgstr "Zuid-Korea"
 
 msgid "KW"
 msgstr "Koeweit"
@@ -430,7 +430,7 @@ msgid "LV"
 msgstr "Letland"
 
 msgid "LY"
-msgstr "Libie"
+msgstr "Libië"
 
 msgid "MA"
 msgstr "Marokko"
@@ -439,7 +439,7 @@ msgid "MC"
 msgstr "Monaco"
 
 msgid "MD"
-msgstr "Moldavie, Republiek van"
+msgstr "Moldavië"
 
 msgid "ME"
 msgstr "Montenegro"
