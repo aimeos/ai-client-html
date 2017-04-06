@@ -81,7 +81,6 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 				<div class="values">
 <?php
 	$addr = $this->addressPaymentItem;
-	$id = $this->addressPaymentItem->getAddressId();
 
 	echo preg_replace( "/\n+/m", "<br/>", trim( $enc->html( sprintf(
 		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
@@ -128,7 +127,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 
 <?php
 	$paymentCss = $paymentCssAll;
-	if( $billingOption == $id )
+	if( $billingOption == $addr->getAddressId() )
 	{
 		foreach( $this->get( 'billingError', [] ) as $name => $msg ) {
 			$paymentCss[$name][] = 'error';
@@ -164,7 +163,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 						'states' => $billingStates,
 						'type' => 'billing',
 						'css' => $paymentCss,
-						'id' => $id,
+						'id' => $addr->getAddressId(),
 					)
 				); ?>
 			</ul>
