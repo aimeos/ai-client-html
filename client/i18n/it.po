@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-03 12:40+0100\n"
-"PO-Revision-Date: 2017-01-03 11:40+0000\n"
+"PO-Revision-Date: 2017-04-04 10:21+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -118,7 +118,7 @@ msgid "Add to basket"
 msgstr ""
 
 msgid "Additional"
-msgstr ""
+msgstr "Aggiuntivo"
 
 msgid "Additional 2"
 msgstr ""
@@ -157,7 +157,7 @@ msgid "At least one delivery address part is missing or invalid"
 msgstr ""
 
 msgid "Attributes"
-msgstr ""
+msgstr "Attributi"
 
 msgid "Back"
 msgstr ""
@@ -166,7 +166,7 @@ msgid "Basket"
 msgstr ""
 
 msgid "Billing address"
-msgstr ""
+msgstr "Indirizzo di fatturazione"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
@@ -177,7 +177,7 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Birthday"
-msgstr ""
+msgstr "Data di nascita"
 
 msgid "Bundled products"
 msgstr ""
@@ -196,7 +196,7 @@ msgstr ""
 #. * @since 2017.01
 #. * @category Developer
 msgid "Categories"
-msgstr ""
+msgstr "Categorie"
 
 msgid "Change"
 msgstr ""
@@ -205,7 +205,7 @@ msgid "Change payment"
 msgstr ""
 
 msgid "Characteristics"
-msgstr ""
+msgstr "Caratteristiche"
 
 msgid "Check"
 msgstr ""
@@ -214,7 +214,7 @@ msgid "Checkout"
 msgstr ""
 
 msgid "City"
-msgstr ""
+msgstr "Città"
 
 #, php-format
 msgid "Class \"%1$s\" does not implement \"%2$s\""
@@ -241,22 +241,22 @@ msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 msgid "Company"
-msgstr ""
+msgstr "Società"
 
 msgid "Confirmation"
 msgstr ""
 
 msgid "Country"
-msgstr ""
+msgstr "Nazione"
 
 msgid "Coupon codes"
 msgstr ""
 
 msgid "Coupons"
-msgstr ""
+msgstr "Buoni sconto"
 
 msgid "Create a customer account for me"
 msgstr ""
@@ -285,7 +285,7 @@ msgid "Delivery"
 msgstr ""
 
 msgid "Delivery address"
-msgstr ""
+msgstr "Indirizzo di spedizione"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -299,13 +299,13 @@ msgid "Description"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "Dettagli"
 
 msgid "Downloads"
 msgstr ""
 
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
@@ -325,10 +325,10 @@ msgid "File \"%1$s\" doesn't exist"
 msgstr ""
 
 msgid "Filter"
-msgstr ""
+msgstr "Filtr"
 
 msgid "First name"
-msgstr ""
+msgstr "Nome"
 
 msgid "GB999999973"
 msgstr ""
@@ -393,10 +393,10 @@ msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 msgid "Last name"
-msgstr ""
+msgstr "Cognome"
 
 msgid "Last seen"
 msgstr ""
