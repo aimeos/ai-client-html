@@ -19,6 +19,6 @@ class Example
 {
 	protected function getSubClientNames()
 	{
-		return array();
+		return [];
 	}
 }

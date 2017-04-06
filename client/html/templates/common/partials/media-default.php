@@ -10,8 +10,8 @@ if( !isset( $this->item ) ) {
 }
 
 $enc = $this->encoder();
-$boxAttributes = $this->get( 'boxAttributes', array() );
-$itemAttributes = $this->get( 'itemAttributes', array() );
+$boxAttributes = $this->get( 'boxAttributes', [] );
+$itemAttributes = $this->get( 'itemAttributes', [] );
 
 $item = $this->item;
 $url = $item->getUrl();

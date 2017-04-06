@@ -95,11 +95,11 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive', 'address' );
-		$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
 		if( $step != 'address' && !( in_array( 'address', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
@@ -148,11 +148,11 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
-		$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
 		if( $step != 'address' && !( in_array( 'address', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
@@ -306,7 +306,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
@@ -335,7 +335,7 @@ class Standard
 			$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
 			$locales = $localeManager->searchItems( $localeManager->createSearch( true ) );
 
-			$languages = array();
+			$languages = [];
 			foreach( $locales as $locale ) {
 				$languages[$locale->getLanguageId()] = $locale->getLanguageId();
 			}
@@ -373,7 +373,7 @@ class Standard
 			 * @see client/html/checkout/standard/address/delivery/mandatory
 			 * @see client/html/checkout/standard/address/delivery/optional
 			 */
-			$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', array() );
+			$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
 
 			/** client/html/checkout/standard/address/states
 			 * List of available states that that users can select from in the front-end
@@ -420,9 +420,9 @@ class Standard
 			 * @see client/html/checkout/standard/address/delivery/mandatory
 			 * @see client/html/checkout/standard/address/delivery/optional
 			 */
-			$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', array() );
+			$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
 
-			$view->addressExtra = $context->getSession()->get( 'client/html/checkout/standard/address/extra', array() );
+			$view->addressExtra = $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
 
 			$this->cache = $view;
 		}

@@ -7,8 +7,8 @@
 
 $enc = $this->encoder();
 $iface = '\Aimeos\MShop\Price\Item\Iface';
-$priceItems = $this->get( 'prices', array() );
-$prices = array();
+$priceItems = $this->get( 'prices', [] );
+$prices = [];
 
 if( !is_array( $priceItems ) ) {
 	$priceItems = array( $priceItems );

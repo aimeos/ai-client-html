@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/stage/navigator/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $view;
 
 
@@ -68,7 +68,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -224,7 +224,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->view ) )
 		{
@@ -238,7 +238,7 @@ class Standard
 
 				$context = $this->getContext();
 				$site = $context->getLocale()->getSite()->getCode();
-				$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, array() );
+				$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 
 				$filter = $this->getProductListFilterByParam( $params );
 				$filter->setSlice( $start, $size );
@@ -255,7 +255,7 @@ class Standard
 					$target = $view->config( 'client/html/catalog/detail/url/target' );
 					$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 					$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
-					$config = $view->config( 'client/html/catalog/detail/url/config', array() );
+					$config = $view->config( 'client/html/catalog/detail/url/config', [] );
 
 					if( $listPos > 0 && ( $product = reset( $products ) ) !== false )
 					{
@@ -264,7 +264,7 @@ class Standard
 							'd_name' => $enc->url( $product->getName( 'url ' ) ),
 							'd_pos' => $pos - 1
 						);
-						$view->navigationPrev = $view->url( $target, $controller, $action, $param, array(), $config );
+						$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
 					}
 
 					if( $listPos < $count - 1 && ( $product = end( $products ) ) !== false )
@@ -274,7 +274,7 @@ class Standard
 							'd_name' => $enc->url( $product->getName( 'url' ) ),
 							'd_pos' => $pos + 1
 						);
-						$view->navigationNext = $view->url( $target, $controller, $action, $param, array(), $config );
+						$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
 					}
 				}
 			}

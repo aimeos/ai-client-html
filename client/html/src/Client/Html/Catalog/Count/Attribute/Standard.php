@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/count/attribute/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 
@@ -68,7 +68,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -211,7 +211,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
@@ -259,7 +259,7 @@ class Standard
 				 * @category User
 				 */
 				$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
-				$filter->setSortations( array() ); // it's not necessary and slows down the query
+				$filter->setSortations( [] ); // it's not necessary and slows down the query
 
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 				$view->attributeCountList = $controller->aggregate( $filter, 'index.attribute.id' );

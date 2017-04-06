@@ -8,9 +8,9 @@
 
 $enc = $this->encoder();
 
-$services = $this->get( 'paymentServices', array() );
-$servicePrices = $this->get( 'paymentServicePrices', array() );
-$serviceAttributes = $this->get( 'paymentServiceAttributes', array() );
+$services = $this->get( 'paymentServices', [] );
+$servicePrices = $this->get( 'paymentServicePrices', [] );
+$serviceAttributes = $this->get( 'paymentServiceAttributes', [] );
 
 try
 {
@@ -29,8 +29,8 @@ catch( Exception $e )
 
 $serviceOption = $this->param( 'c_paymentoption', $orderServiceId );
 
-$paymentCss = array();
-foreach( $this->get( 'paymentError', array() ) as $name => $msg ) {
+$paymentCss = [];
+foreach( $this->get( 'paymentError', [] ) as $name => $msg ) {
 	$paymentCss[$name][] = 'error';
 }
 

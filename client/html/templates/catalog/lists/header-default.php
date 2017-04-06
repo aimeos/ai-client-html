@@ -26,8 +26,8 @@
 
 $enc = $this->encoder();
 
-$params = $this->get( 'listParams', array() );
-$catItems = $this->get( 'listCatPath', array() );
+$params = $this->get( 'listParams', [] );
+$catItems = $this->get( 'listCatPath', [] );
 $current = $this->get( 'listPageCurr', 0 );
 $prev = $this->get( 'listPagePrev', 0 );
 $next = $this->get( 'listPageNext', 0 );
@@ -36,7 +36,7 @@ $last = $this->get( 'listPageLast', 0 );
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
+$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 $params = $this->param();
 unset( $params['f_sort'] );
@@ -65,16 +65,16 @@ unset( $params['f_sort'] );
 
 
 	<?php if( $current > 1 ) : ?>
-		<link rel="prev" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $prev ) + $params, array(), $listConfig ) ); ?>" />
+		<link rel="prev" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $prev ) + $params, [], $listConfig ) ); ?>" />
 	<?php endif; ?>
 
 
 	<?php if( $current > 1 && $current < $last ) : // Optimization to avoid loading next page while the user is still filtering ?>
-		<link rel="next prefetch" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $next ) + $params, array(), $listConfig ) ); ?>" />
+		<link rel="next prefetch" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $next ) + $params, [], $listConfig ) ); ?>" />
 	<?php endif; ?>
 
 
-	<link rel="canonical" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array(), $listConfig ) ); ?>" />
+	<link rel="canonical" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>" />
 	<meta name="application-name" content="Aimeos" />
 
 <?php endif; ?>

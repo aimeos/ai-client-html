@@ -55,7 +55,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/process/account/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 
 
 	/**
@@ -66,7 +66,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 

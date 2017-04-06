@@ -123,7 +123,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
@@ -141,24 +141,24 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 
 		/** client/html/checkout/standard/standard/template-body
@@ -196,7 +196,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		try
 		{
@@ -345,12 +345,12 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Plugin\Provider\Exception $e )
 		{
@@ -358,19 +358,19 @@ class Standard
 			$errors = array_merge( $errors, $this->translatePluginErrorCodes( $e->getErrorCodes() ) );
 
 			$view->summaryErrorCodes = $e->getErrorCodes();
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $errors;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 	}
 
@@ -394,7 +394,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
@@ -459,7 +459,7 @@ class Standard
 			 * @since 2015.05
 			 * @category Developer
 			 */
-			$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+			$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 			$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
 
 			$steps = (array) $context->getConfig()->get( $this->subPartPath, $this->subPartNames );
@@ -578,13 +578,13 @@ class Standard
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/url/config
 		*/
-		$cConfig = $view->config( 'client/html/checkout/standard/url/config', array() );
+		$cConfig = $view->config( 'client/html/checkout/standard/url/config', [] );
 
 
 		$bTarget = $view->config( 'client/html/basket/standard/url/target' );
 		$bCntl = $view->config( 'client/html/basket/standard/url/controller', 'basket' );
 		$bAction = $view->config( 'client/html/basket/standard/url/action', 'index' );
-		$bConfig = $view->config( 'client/html/basket/standard/url/config', array() );
+		$bConfig = $view->config( 'client/html/basket/standard/url/config', [] );
 
 
 		$step = null;
@@ -596,14 +596,14 @@ class Standard
 
 		if( $lastStep !== null ) {
 			$param = array( 'c_step' => $lastStep );
-			$view->standardUrlBack = $view->url( $cTarget, $cCntl, $cAction, $param, array(), $cConfig );
+			$view->standardUrlBack = $view->url( $cTarget, $cCntl, $cAction, $param, [], $cConfig );
 		} else {
-			$view->standardUrlBack = $view->url( $bTarget, $bCntl, $bAction, array(), array(), $bConfig );
+			$view->standardUrlBack = $view->url( $bTarget, $bCntl, $bAction, [], [], $bConfig );
 		}
 
 		if( !isset( $view->standardUrlNext ) && ( $nextStep = array_shift( $steps ) ) !== null ) {
 			$param = array( 'c_step' => $nextStep );
-			$view->standardUrlNext = $view->url( $cTarget, $cCntl, $cAction, $param, array(), $cConfig );
+			$view->standardUrlNext = $view->url( $cTarget, $cCntl, $cAction, $param, [], $cConfig );
 		}
 		// don't overwrite $view->standardUrlNext so process step URL is used
 

@@ -7,8 +7,8 @@
  */
 
 $enc = $this->encoder();
-$params = $this->get( 'pinnedParams', array() );
-$pinList = $this->get( 'pinnedProductItems', array() );
+$params = $this->get( 'pinnedParams', [] );
+$pinList = $this->get( 'pinnedProductItems', [] );
 
 /** client/html/catalog/session/pinned/url/target
  * Destination of the URL where the controller specified in the URL is known
@@ -79,12 +79,12 @@ $pinAction = $this->config( 'client/html/catalog/session/pinned/url/action', 'de
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/url/config
  */
-$pinConfig = $this->config( 'client/html/catalog/session/pinned/url/config', array() );
+$pinConfig = $this->config( 'client/html/catalog/session/pinned/url/config', [] );
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 /** client/html/catalog/session/pinned/count/enable
  * Displays the number of pinned products in the header of the pinned list
@@ -120,11 +120,11 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 			<?php $detailParams = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id ); ?>
 
 			<li class="pinned-item">
-				<a class="modify" href="<?php echo $this->url( $pinTarget, $pinController, $pinAction, $pinParams, array(), $pinConfig ); ?>">
+				<a class="modify" href="<?php echo $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ); ?>">
 					<?php echo $this->translate( 'client', 'X' ); ?>
 				</a>
 
-				<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $detailParams, array(), $detailConfig ) ); ?>">
+				<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $detailParams, [], $detailConfig ) ); ?>">
 
 					<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 					<?php if( ( $mediaItem = reset( $mediaItems ) ) !== false ) : ?>

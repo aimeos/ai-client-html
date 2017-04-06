@@ -71,7 +71,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->getView();
 
@@ -122,7 +122,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->getView();
 
@@ -263,31 +263,31 @@ class Standard
 			}
 			else
 			{
-				$view->standardUrlNext = $this->getUrlConfirm( $view, array(), array() );
+				$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
 				$view->standardMethod = 'GET';
 			}
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', array() ) + $error;
+			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 	}
 
@@ -308,7 +308,7 @@ class Standard
 		$config = array( 'absoluteUri' => true, 'namespace' => false );
 		$args = array( 'code' => $service->getCode(), 'orderid' => $orderItem->getId() );
 		$urls = array(
-			'payment.url-self' => $this->getUrlSelf( $view, $args + array( 'c_step' => 'process' ), array() ),
+			'payment.url-self' => $this->getUrlSelf( $view, $args + array( 'c_step' => 'process' ), [] ),
 			'payment.url-success' => $this->getUrlConfirm( $view, $args, $config ),
 			'payment.url-update' => $this->getUrlUpdate( $view, $args, $config ),
 		);
@@ -417,7 +417,7 @@ class Standard
 		 */
 		$config = $view->config( 'client/html/checkout/confirm/url/config', $config );
 
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
+		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 
 
@@ -502,7 +502,7 @@ class Standard
 		 */
 		$config = $view->config( 'client/html/checkout/standard/url/config', $config );
 
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
+		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 
 
@@ -587,7 +587,7 @@ class Standard
 		 */
 		$config = $view->config( 'client/html/checkout/update/url/config', $config );
 
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
+		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 
 
@@ -599,11 +599,11 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
-			$view->standardUrlPayment = $this->getUrlSelf( $view, array( 'c_step' => 'payment' ), array() );
+			$view->standardUrlPayment = $this->getUrlSelf( $view, array( 'c_step' => 'payment' ), [] );
 
 			$this->cache = $view;
 		}

@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $request, '127.0.0.1', 'test' );
 		$view->addHelper( 'request', $helper );
 
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 

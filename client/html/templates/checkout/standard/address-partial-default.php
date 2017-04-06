@@ -23,15 +23,15 @@ $disablefcn = function( $list, $key ) {
 	return ( !isset( $list[$key] ) ? 'disabled="disabled"' : '' );
 };
 
-$regex = $this->config( 'client/html/checkout/standard/address/validate', array() );
+$regex = $this->config( 'client/html/checkout/standard/address/validate', [] );
 
-$addr = $this->get( 'address', array() );
-$salutations = $this->get( 'salutations', array() );
-$languages = $this->get( 'languages', array() );
-$countries = $this->get( 'countries', array() );
-$states = $this->get( 'states', array() );
+$addr = $this->get( 'address', [] );
+$salutations = $this->get( 'salutations', [] );
+$languages = $this->get( 'languages', [] );
+$countries = $this->get( 'countries', [] );
+$states = $this->get( 'states', [] );
 $type = $this->get( 'type', 'billing' );
-$css = $this->get( 'css', array() );
+$css = $this->get( 'css', [] );
 $id = $this->get( 'id' );
 
 $idstr = ( $id != null ? '-' . $id : '' );

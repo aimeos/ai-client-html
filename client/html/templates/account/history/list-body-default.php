@@ -7,7 +7,7 @@
  */
 
 $enc = $this->encoder();
-$orderItems = $this->get( 'listsOrderItems', array() );
+$orderItems = $this->get( 'listsOrderItems', [] );
 
 
 /** client/html/account/history/url/target
@@ -79,7 +79,7 @@ $accountAction = $this->config( 'client/html/account/history/url/action', 'histo
  * @see client/html/account/history/url/action
  * @see client/html/url/config
  */
-$accountConfig = $this->config( 'client/html/account/history/url/config', array() );
+$accountConfig = $this->config( 'client/html/account/history/url/config', [] );
 
 
 /// Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
@@ -101,7 +101,7 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 					<li class="history-item">
 
 						<?php $params = array( 'his_action' => 'order', 'his_id' => $id ); ?>
-						<a href="<?php echo $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, array(), $accountConfig ) ); ?>">
+						<a href="<?php echo $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
 							<ul class="attr-list">
 
 								<li class="attr-item order-basic">

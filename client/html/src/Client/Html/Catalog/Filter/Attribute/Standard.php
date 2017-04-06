@@ -56,8 +56,8 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/filter/attribute/standard/subparts';
-	private $subPartNames = array();
-	private $tags = array();
+	private $subPartNames = [];
+	private $tags = [];
 	private $expire;
 	private $cache;
 
@@ -70,7 +70,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -213,11 +213,11 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
-			$attrMap = array();
+			$attrMap = [];
 
 			/** client/html/catalog/filter/attribute/types
 			 * List of attribute types that should be displayed in this order in the catalog filter
@@ -241,7 +241,7 @@ class Standard
 			 * @see client/html/catalog/filter/attribute/types-oneof
 			 * @see client/html/catalog/filter/attribute/types-option
 			 */
-			$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', array() );
+			$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
 
 			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'attribute' );
 
@@ -276,7 +276,7 @@ class Standard
 
 			if( !empty( $attrTypes ) )
 			{
-				$sortedMap = array();
+				$sortedMap = [];
 
 				foreach( $attrTypes as $type )
 				{

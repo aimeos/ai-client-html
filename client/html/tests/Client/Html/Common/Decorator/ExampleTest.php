@@ -31,10 +31,10 @@ class ExampleTest extends \PHPUnit_Framework_TestCase
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
 			->setMethods( array( 'getHeader', 'getBody', 'testMethod' ) )
-			->setConstructorArgs( array( $context, array() ) )
+			->setConstructorArgs( array( $context, [] ) )
 			->getMock();
 
-		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, array() );
+		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, [] );
 		$this->object->setView( \TestHelperHtml::getView());
 	}
 

@@ -11,12 +11,12 @@ $position = $this->get( 'itemPosition' );
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 $basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 
 ?>
@@ -25,13 +25,13 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 
 	<ul class="list-items list"><!--
 
-		<?php foreach( $this->get( 'listProductItems', array() ) as $id => $productItem ) : $firstImage = true; ?>
+		<?php foreach( $this->get( 'listProductItems', [] ) as $id => $productItem ) : $firstImage = true; ?>
 			<?php
 				$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
 				$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id );
 				if( $position !== null ) { $params['d_pos'] = $position++; }
 
-				$url = $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig );
+				$url = $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig );
 			?>
 
 			--><li class="product <?php echo $enc->attr( $css ); ?>"
@@ -86,7 +86,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 
 				<?php if( $this->config( 'client/html/catalog/lists/basket-add', false ) ) : ?>
 					<form class="basket" method="POST"
-						action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">
+						action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 						<!-- catalog.lists.items.csrf -->
 						<?php echo $this->csrf()->formfield(); ?>
 						<!-- catalog.lists.items.csrf -->
@@ -97,9 +97,9 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
 									array(
 										'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
-										'attributeItems' => $this->get( 'itemsAttributeItems', array() ),
-										'productItems' => $this->get( 'itemsProductItems', array() ),
-										'mediaItems' => $this->get( 'itemsMediaItems', array() ),
+										'attributeItems' => $this->get( 'itemsAttributeItems', [] ),
+										'productItems' => $this->get( 'itemsProductItems', [] ),
+										'mediaItems' => $this->get( 'itemsMediaItems', [] ),
 									)
 								); ?>
 							</div>
@@ -109,7 +109,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 							<?php echo $this->partial(
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
 								array(
-									'attributeItems' => $this->get( 'itemsAttributeItems', array() ),
+									'attributeItems' => $this->get( 'itemsAttributeItems', [] ),
 									'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
 									'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
 									'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),

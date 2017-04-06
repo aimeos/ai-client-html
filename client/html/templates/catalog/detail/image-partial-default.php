@@ -32,10 +32,10 @@ $getVariantData = function( $mediaId, array $mediaItems ) use ( $enc )
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
-$url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', array() ), array(), $detailConfig ) );
-$media = $this->get( 'mediaItems', array() );
+$url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', [] ), [], $detailConfig ) );
+$media = $this->get( 'mediaItems', [] );
 
 
 ?>

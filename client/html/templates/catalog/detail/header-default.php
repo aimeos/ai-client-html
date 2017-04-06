@@ -28,7 +28,7 @@ $templateUrl = $this->config( 'client/html/common/template/baseurl' );
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 
 /** client/html/catalog/detail/metatags
@@ -65,7 +65,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 		<?php endforeach; ?>
 
 		<?php $params = array( 'd_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId() ); ?>
-		<link rel="canonical" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>" />
+		<link rel="canonical" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>" />
 
 	<?php endif; ?>
 

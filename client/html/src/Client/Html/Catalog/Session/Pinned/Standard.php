@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/session/pinned/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 
@@ -68,7 +68,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
@@ -84,8 +84,8 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/session#pinned
 		 */
-		$config = $context->getConfig()->get( 'client/html/catalog/session/pinned', array() );
-		$key = $this->getParamHash( array(), $uid . ':catalog:session-pinned-body', $config );
+		$config = $context->getConfig()->get( 'client/html/catalog/session/pinned', [] );
+		$key = $this->getParamHash( [], $uid . ':catalog:session-pinned-body', $config );
 
 		if( ( $html = $session->get( $key ) ) === null )
 		{
@@ -122,7 +122,7 @@ class Standard
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$cached = $session->get( 'aimeos/catalog/session/pinned/cache', array() ) + array( $key => true );
+			$cached = $session->get( 'aimeos/catalog/session/pinned/cache', [] ) + array( $key => true );
 			$session->set( 'aimeos/catalog/session/pinned/cache', $cached );
 			$session->set( $key, $html );
 		}
@@ -231,13 +231,13 @@ class Standard
 		$view = $this->getView();
 		$context = $this->getContext();
 		$session = $context->getSession();
-		$pinned = $session->get( 'aimeos/catalog/session/pinned/list', array() );
+		$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
 
 		switch( $view->param( 'pin_action' ) )
 		{
 			case 'add':
 
-				foreach( (array) $view->param( 'pin_id', array() ) as $id ) {
+				foreach( (array) $view->param( 'pin_id', [] ) as $id ) {
 					$pinned[$id] = $id;
 				}
 
@@ -266,7 +266,7 @@ class Standard
 
 			case 'delete':
 
-				foreach( (array) $view->param( 'pin_id', array() ) as $id ) {
+				foreach( (array) $view->param( 'pin_id', [] ) as $id ) {
 					unset( $pinned[$id] );
 				}
 
@@ -279,7 +279,7 @@ class Standard
 		{
 			$session->set( 'aimeos/catalog/session/pinned/list', $pinned );
 
-			foreach( $session->get( 'aimeos/catalog/session/pinned/cache', array() ) as $key => $value ) {
+			foreach( $session->get( 'aimeos/catalog/session/pinned/cache', [] ) as $key => $value ) {
 				$session->set( $key, null );
 			}
 		}
@@ -307,12 +307,12 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
 			$expire = null;
-			$tags = $items = array();
+			$tags = $items = [];
 			$context = $this->getContext();
 			$config = $context->getConfig();
 			$session = $context->getSession();
@@ -343,7 +343,7 @@ class Standard
 			 */
 			$domains = $config->get( 'client/html/catalog/session/pinned/domains', $domains );
 
-			$pinned = $session->get( 'aimeos/catalog/session/pinned/list', array() );
+			$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
 
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 			$result = $controller->getProductItems( $pinned, $domains );

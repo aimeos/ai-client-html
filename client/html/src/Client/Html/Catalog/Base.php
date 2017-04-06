@@ -36,13 +36,13 @@ abstract class Base
 	 */
 	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter, $useOr = true )
 	{
-		$optIds = $oneIds = array();
-		$attrIds = ( isset( $params['f_attrid'] ) ? (array) $params['f_attrid'] : array() );
+		$optIds = $oneIds = [];
+		$attrIds = ( isset( $params['f_attrid'] ) ? (array) $params['f_attrid'] : [] );
 
 		if( $useOr === true )
 		{
-			$optIds = ( isset( $params['f_optid'] ) ? (array) $params['f_optid'] : array() );
-			$oneIds = ( isset( $params['f_oneid'] ) ? (array) $params['f_oneid'] : array() );
+			$optIds = ( isset( $params['f_optid'] ) ? (array) $params['f_optid'] : [] );
+			$oneIds = ( isset( $params['f_oneid'] ) ? (array) $params['f_oneid'] : [] );
 		}
 
 		return $this->getController()->addFilterAttribute( $filter, $attrIds, $optIds, $oneIds );
@@ -451,10 +451,10 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/url/config
 		*/
-		$config = $view->config( 'client/html/catalog/stock/url/config', array() );
+		$config = $view->config( 'client/html/catalog/stock/url/config', [] );
 
 
-		$codes = array();
+		$codes = [];
 
 		foreach( $products as $product ) {
 			$codes[] = $product->getCode();
@@ -462,7 +462,7 @@ abstract class Base
 
 		sort( $codes );
 
-		return $view->url( $target, $cntl, $action, array( "s_prodcode" => $codes ), array(), $config );
+		return $view->url( $target, $cntl, $action, array( "s_prodcode" => $codes ), [], $config );
 	}
 
 
@@ -566,11 +566,11 @@ abstract class Base
 
 		if( $level != $default )
 		{
-			$list = array();
+			$list = [];
 
 			foreach( $catIds as $catId )
 			{
-				$tree = $this->getCatalogController()->getTree( $catId, array(), $level );
+				$tree = $this->getCatalogController()->getTree( $catId, [], $level );
 				$list = array_merge( $list, $this->getCatalogIdsFromTree( $tree ) );
 			}
 
@@ -609,7 +609,7 @@ abstract class Base
 	 */
 	protected function validateIds( array $ids )
 	{
-		$list = array();
+		$list = [];
 
 		foreach( $ids as $id )
 		{

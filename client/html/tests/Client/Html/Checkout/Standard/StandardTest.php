@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetHeaderException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
@@ -138,7 +138,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
@@ -154,7 +154,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
@@ -170,7 +170,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyMShopException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
@@ -186,7 +186,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 

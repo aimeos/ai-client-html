@@ -11,7 +11,7 @@ $enc = $this->encoder();
 ?>
 <?php $this->block()->start( 'locale/select' ); ?>
 <section class="aimeos locale-select">
-<?php if( ( $errors = $this->get( 'selectErrorList', array() ) ) !== array() ) : ?>
+<?php if( ( $errors = $this->get( 'selectErrorList', [] ) ) !== [] ) : ?>
 	<ul class="error-list">
 <?php foreach( $errors as $error ) : ?>
 		<li class="error-item"><?php echo $enc->html( $error ); ?></li>

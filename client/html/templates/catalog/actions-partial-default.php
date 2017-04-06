@@ -19,17 +19,17 @@ $prodid = $this->productItem->getId();
 $pinTarget = $this->config( 'client/html/catalog/session/pinned/url/target' );
 $pinController = $this->config( 'client/html/catalog/session/pinned/url/controller', 'catalog' );
 $pinAction = $this->config( 'client/html/catalog/session/pinned/url/action', 'detail' );
-$pinConfig = $this->config( 'client/html/catalog/session/pinned/url/config', array() );
+$pinConfig = $this->config( 'client/html/catalog/session/pinned/url/config', [] );
 
 $watchTarget = $this->config( 'client/html/account/watch/url/target' );
 $watchController = $this->config( 'client/html/account/watch/url/controller', 'account' );
 $watchAction = $this->config( 'client/html/account/watch/url/action', 'watch' );
-$watchConfig = $this->config( 'client/html/account/watch/url/config', array() );
+$watchConfig = $this->config( 'client/html/account/watch/url/config', [] );
 
 $favTarget = $this->config( 'client/html/account/favorite/url/target' );
 $favController = $this->config( 'client/html/account/favorite/url/controller', 'account' );
 $favAction = $this->config( 'client/html/account/favorite/url/action', 'favorite' );
-$favConfig = $this->config( 'client/html/account/favorite/url/config', array() );
+$favConfig = $this->config( 'client/html/account/favorite/url/config', [] );
 
 
 /** client/html/catalog/actions/list

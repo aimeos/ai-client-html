@@ -132,12 +132,12 @@ $urls = array(
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailConfig['absoluteUri'] = true;
 
 $prodName = $this->productItem->getName();
 $param = array( 'd_prodid' => $this->productItem->getId(), 'd_name' => $prodName );
-$prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $param, array(), $detailConfig );
+$prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $param, [], $detailConfig );
 
 $images = $this->productItem->getRefItems( 'media', 'default', 'default' );
 $prodImage = ( ( $image = reset( $images ) ) !== false ? $this->content( $image->getUrl() ) : '' );

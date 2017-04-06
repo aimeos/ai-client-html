@@ -6,7 +6,7 @@
  */
 
 $enc = $this->encoder();
-$products = $this->get( 'promoItems', array() );
+$products = $this->get( 'promoItems', [] );
 
 ?>
 <?php $this->block()->start( 'catalog/lists/promo' ); ?>

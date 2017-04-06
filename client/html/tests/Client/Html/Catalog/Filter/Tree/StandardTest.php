@@ -33,13 +33,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBody()
 	{
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( \TestHelperHtml::getContext() );
-		$node = $catalogManager->getTree( null, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
+		$node = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
 
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $node->getChild( 1 )->getId() ) );
 		$view->addHelper( 'param', $helper );
 
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyLevelsAlways()
 	{
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( \TestHelperHtml::getContext() );
-		$node = $catalogManager->getTree( null, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+		$node = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 		$this->context->getConfig()->set( 'client/html/catalog/filter/tree/levels-always', 2 );
 
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $node->getId() ) );
 		$view->addHelper( 'param', $helper );
 
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyLevelsOnly()
 	{
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( \TestHelperHtml::getContext() );
-		$node = $catalogManager->getTree( null, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
+		$node = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
 
 		$this->context->getConfig()->set( 'client/html/catalog/filter/tree/levels-only', 1 );
 
@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $node->getChild( 0 )->getId() ) );
 		$view->addHelper( 'param', $helper );
 
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 

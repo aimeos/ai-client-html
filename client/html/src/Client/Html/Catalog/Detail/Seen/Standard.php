@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/detail/seen/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 
 
 	/**
@@ -67,7 +67,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		return '';
 	}
@@ -182,7 +182,7 @@ class Standard
 		{
 			$context = $this->getContext();
 			$session = $context->getSession();
-			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', array() );
+			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
 			if( isset( $lastSeen[$id] ) )
 			{
@@ -212,7 +212,7 @@ class Standard
 
 			$session->set( 'aimeos/catalog/session/seen/list', $lastSeen );
 
-			foreach( $session->get( 'aimeos/catalog/session/seen/cache', array() ) as $key => $value ) {
+			foreach( $session->get( 'aimeos/catalog/session/seen/cache', [] ) as $key => $value ) {
 				$session->set( $key, null );
 			}
 		}
@@ -236,7 +236,7 @@ class Standard
 		if( ( $html = $cache->get( $key ) ) === null )
 		{
 			$expire = null;
-			$tags = array();
+			$tags = [];
 			$view = $this->getView();
 			$config = $context->getConfig();
 

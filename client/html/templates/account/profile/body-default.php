@@ -10,7 +10,7 @@ $enc = $this->encoder();
 ?>
 <section class="aimeos account-profile">
 
-	<?php if( ( $errors = $this->get( 'profileErrorList', array() ) ) !== array() ) : ?>
+	<?php if( ( $errors = $this->get( 'profileErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
 				<li class="error-item"><?php echo $enc->html( $error ); ?></li>

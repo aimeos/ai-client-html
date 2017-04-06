@@ -21,7 +21,7 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', array( 'ab
 try {
 	$products = $this->summaryBasket->getProducts();
 } catch( Exception $e ) {
-	$products = array();
+	$products = [];
 }
 
 $priceTaxvalue = '0.00';
@@ -85,7 +85,7 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	endforeach; ?>
 <?php	foreach( $product->getAttributes( 'hidden' ) as $attribute ) : ?>
 <?php		if( $unhide && $attribute->getCode() === 'download' ) : ?>
-- <?php 		echo strip_tags( $attribute->getName()); ?>: <?php echo $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), array(), $dlConfig ); ?>
+- <?php 		echo strip_tags( $attribute->getName()); ?>: <?php echo $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ); ?>
 
 <?php		endif; ?>
 <?php	endforeach; ?>
@@ -117,7 +117,7 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	echo strip_tags( $this->translate( 'client', 'Total' ) ); ?>: <?php printf( $priceFormat, $this->number( $priceValue + $priceService ), $priceCurrency ); ?>
 
 <?php endif; ?>
-<?php foreach( $this->get( 'summaryTaxRates', array() ) as $taxRate => $priceItem ) : $taxValue = $priceItem->getTaxValue(); ?>
+<?php foreach( $this->get( 'summaryTaxRates', [] ) as $taxRate => $priceItem ) : $taxValue = $priceItem->getTaxValue(); ?>
 <?php	if( $taxRate > '0.00' && $taxValue > '0.00' ) : $priceTaxvalue += $taxValue; ?>
 <?php		$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% VAT' ) : $this->translate( 'client', '+ %1$s%% VAT' ) ); ?>
 <?php		echo strip_tags( sprintf( $taxFormat, $this->number( $taxRate ) ) ); ?>: <?php printf( $priceFormat, $this->number( $taxValue ), $priceCurrency ); ?>

@@ -11,12 +11,12 @@ $enc = $this->encoder();
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 $basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 $checkoutTarget = $this->config( 'client/html/checkout/standard/url/target' );
 $checkoutController = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
 $checkoutAction = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', array() );
+$checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', [] );
 
 $link = true;
 $stepActive = $this->get( 'standardStepActive', false );
@@ -29,12 +29,12 @@ $stepActive = $this->get( 'standardStepActive', false );
 		<ol class="steps">
 
 			<li class="step basket active">
-				<a href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">
+				<a href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 					<?php echo $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?>
 				</a>
 			</li>
 
-			<?php foreach( $this->get( 'standardSteps', array() ) as $name ) : ?>
+			<?php foreach( $this->get( 'standardSteps', [] ) as $name ) : ?>
 				<?php
 					$class = '';
 
@@ -55,7 +55,7 @@ $stepActive = $this->get( 'standardStepActive', false );
 				<li class="step <?php echo $name . $class; ?>">
 
 					<?php if( $stepActive && $link ) : ?>
-						<a href="<?php echo $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array( 'c_step' => $name ), array(), $checkoutConfig ) ); ?>">
+						<a href="<?php echo $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array( 'c_step' => $name ), [], $checkoutConfig ) ); ?>">
 							<?php echo $enc->html( $this->translate( 'client', $name ) ); ?>
 						</a>
 					<?php else : ?>

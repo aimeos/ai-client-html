@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 

@@ -15,10 +15,10 @@
 
 
 $enc = $this->encoder();
-$attrItems = $this->get( 'attributeItems', array() );
+$attrItems = $this->get( 'attributeItems', [] );
 
-$attributeConfigItems = array();
-foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
+$attributeConfigItems = [];
+foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 {
 	if( isset( $attrItems[$id] ) ) {
 		$attributeConfigItems[$attribute->getType()][$id] = $attrItems[$id];
@@ -145,7 +145,7 @@ foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
 </ul>
 
 <ul class="selection">
-	<?php foreach( $this->get( 'attributeCustomItems', array() ) as $id => $attribute ) : ?>
+	<?php foreach( $this->get( 'attributeCustomItems', [] ) as $id => $attribute ) : ?>
 		<li class="select-item <?php echo $enc->attr( $attribute->getCode() ); ?>">
 			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $attribute->getType() ) ); ?></div>
 
@@ -164,7 +164,7 @@ foreach( $this->get( 'attributeConfigItems', array() ) as $id => $attribute )
 	<?php endforeach; ?>
 </ul>
 
-<?php foreach( $this->get( 'attributeHiddenItems', array() ) as $id => $attribute ) : ?>
+<?php foreach( $this->get( 'attributeHiddenItems', [] ) as $id => $attribute ) : ?>
 	<input type="hidden"
 		name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrhideid', $id ) ) ); ?>"
 		value="<?php echo $enc->attr( $id ); ?>"

@@ -29,18 +29,18 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$config = $this->context->getConfig();
 
-		$config->set( 'client/html/common/decorators/default', array() );
-		$config->set( 'client/html/admin/decorators/global', array() );
-		$config->set( 'client/html/admin/decorators/local', array() );
+		$config->set( 'client/html/common/decorators/default', [] );
+		$config->set( 'client/html/admin/decorators/global', [] );
+		$config->set( 'client/html/admin/decorators/local', [] );
 	}
 
 
 	public function testInjectClient()
 	{
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, array(), 'Standard' );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, [], 'Standard' );
 		\Aimeos\Client\Html\Catalog\Filter\Factory::injectClient( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard', $client );
 
-		$injectedClient = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, array(), 'Standard' );
+		$injectedClient = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, [], 'Standard' );
 
 		$this->assertSame( $client, $injectedClient );
 	}
@@ -48,11 +48,11 @@ class BaseTest extends \PHPUnit_Framework_TestCase
 
 	public function testInjectClientReset()
 	{
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, array(), 'Standard' );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, [], 'Standard' );
 		\Aimeos\Client\Html\Catalog\Filter\Factory::injectClient( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard', $client );
 		\Aimeos\Client\Html\Catalog\Filter\Factory::injectClient( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard', null );
 
-		$new = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, array(), 'Standard' );
+		$new = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, [], 'Standard' );
 
 		$this->assertNotSame( $client, $new );
 	}

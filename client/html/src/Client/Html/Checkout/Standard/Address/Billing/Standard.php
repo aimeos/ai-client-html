@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/address/billing/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 	private $mandatory = array(
@@ -87,7 +87,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -506,7 +506,7 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$params = $view->param( 'ca_billing', array() );
+			$params = $view->param( 'ca_billing', [] );
 
 			if( ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
@@ -519,7 +519,7 @@ class Standard
 		else // existing address
 		{
 			$list = [];
-			$params = $view->param( 'ca_billing_' . $option, array() );
+			$params = $view->param( 'ca_billing_' . $option, [] );
 
 			if( !empty( $params ) && ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
@@ -547,7 +547,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
@@ -600,9 +600,9 @@ class Standard
 			 * @see client/html/checkout/standard/address/billing/optional
 			 * @see client/html/checkout/standard/address/countries
 			 */
-			$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', array() );
+			$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
 
-			if( count( $view->get( 'addressLanguages', array() ) ) === 1 ) {
+			if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
 				$hidden[] = 'order.base.address.languageid';
 			}
 
@@ -763,7 +763,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		$invalid = array();
+		$invalid = [];
 
 		foreach( $params as $key => $value )
 		{

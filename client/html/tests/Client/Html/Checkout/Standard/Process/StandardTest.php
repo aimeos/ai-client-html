@@ -119,7 +119,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertEquals( 0, count( $view->get( 'standardErrorList', array() ) ) );
+		$this->assertEquals( 0, count( $view->get( 'standardErrorList', [] ) ) );
 		$this->assertEquals( 'url', $view->standardUrlNext );
 		$this->assertEquals( 'POST', $view->standardMethod );
 		$this->assertEquals( [], $view->standardProcessParams );
@@ -165,7 +165,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertEquals( 0, count( $view->get( 'standardErrorList', array() ) ) );
+		$this->assertEquals( 0, count( $view->get( 'standardErrorList', [] ) ) );
 		$this->assertTrue( isset( $view->standardUrlNext ) );
 		$this->assertEquals( 'GET', $view->standardMethod );
 	}

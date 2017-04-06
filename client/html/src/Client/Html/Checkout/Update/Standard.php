@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/update/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 
 
 	/**
@@ -67,7 +67,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
@@ -85,24 +85,24 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->updateErrorList = $view->get( 'updateErrorList', array() ) + $error;
+			$view->updateErrorList = $view->get( 'updateErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->updateErrorList = $view->get( 'updateErrorList', array() ) + $error;
+			$view->updateErrorList = $view->get( 'updateErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->updateErrorList = $view->get( 'updateErrorList', array() ) + $error;
+			$view->updateErrorList = $view->get( 'updateErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->updateErrorList = $view->get( 'updateErrorList', array() ) + $error;
+			$view->updateErrorList = $view->get( 'updateErrorList', [] ) + $error;
 		}
 
 		/** client/html/checkout/update/standard/template-body
@@ -140,7 +140,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		try
 		{
@@ -339,7 +339,7 @@ class Standard
 		$action = $view->config( 'client/html/checkout/confirm/url/action', 'confirm' );
 		$config = $view->config( 'client/html/checkout/confirm/url/config', $config );
 
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
+		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 
 
@@ -358,6 +358,6 @@ class Standard
 		$action = $view->config( 'client/html/checkout/update/url/action', 'update' );
 		$config = $view->config( 'client/html/checkout/update/url/config', $config );
 
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
+		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 }

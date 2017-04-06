@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/account/watch/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 
@@ -68,7 +68,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
@@ -86,24 +86,24 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', array() ) + $error;
+			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', array() ) + $error;
+			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', array() ) + $error;
+			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', array() ) + $error;
+			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
 		}
 
 		/** client/html/account/watch/standard/template-body
@@ -141,7 +141,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		try
 		{
@@ -283,7 +283,7 @@ class Standard
 		$view = $this->getView();
 		$context = $this->getContext();
 		$userId = $context->getUserId();
-		$ids = (array) $view->param( 'wat_id', array() );
+		$ids = (array) $view->param( 'wat_id', [] );
 
 		if( $userId != null && !empty( $ids ) )
 		{
@@ -319,7 +319,7 @@ class Standard
 					if( $this->checkLimit( $manager, $typeId, $userId, $max, $cnt ) === false )
 					{
 						$error = sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max );
-						$view->watchErrorList = $view->get( 'watchErrorList', array() ) + array( $error );
+						$view->watchErrorList = $view->get( 'watchErrorList', [] ) + array( $error );
 						break;
 					}
 
@@ -371,7 +371,7 @@ class Standard
 		$search->setSlice( 0, 0 );
 
 		$total = 0;
-		$manager->searchItems( $search, array(), $total );
+		$manager->searchItems( $search, [], $total );
 
 		if( $total + $cnt > $max ) {
 			return false;
@@ -421,7 +421,7 @@ class Standard
 	 */
 	protected function deleteItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids )
 	{
-		$listIds = array();
+		$listIds = [];
 
 		foreach( $ids as $id )
 		{
@@ -480,7 +480,7 @@ class Standard
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
-		$items = array();
+		$items = [];
 		foreach( $manager->searchItems( $search ) as $item ) {
 			$items[$item->getRefId()] = $item;
 		}
@@ -555,12 +555,12 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
 			$total = 0;
-			$productIds = array();
+			$productIds = [];
 			$context = $this->getContext();
 			$typeItem = $this->getTypeItem( 'customer/lists/type', 'product', 'watch' );
 
@@ -581,7 +581,7 @@ class Standard
 			$search->setSortations( array( $search->sort( '-', 'customer.lists.position' ) ) );
 			$search->setSlice( ( $current - 1 ) * $size, $size );
 
-			$view->watchListItems = $manager->searchItems( $search, array(), $total );
+			$view->watchListItems = $manager->searchItems( $search, [], $total );
 
 
 			/** client/html/account/watch/domains

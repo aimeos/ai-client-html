@@ -11,12 +11,12 @@ $enc = $this->encoder();
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 $basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 $checkoutTarget = $this->config( 'client/html/checkout/standard/url/target' );
 $checkoutController = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
 $checkoutAction = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', array() );
+$checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', [] );
 
 
 ?>
@@ -36,7 +36,7 @@ $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', arr
 
 		<h1><?php echo $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
 
-		<form method="POST" action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">
+		<form method="POST" action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 			<?php echo $this->csrf()->formfield(); ?>
 
 
@@ -63,8 +63,8 @@ $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', arr
 						array(
 							'summaryEnableModify' => true,
 							'summaryBasket' => $this->standardBasket,
-							'summaryTaxRates' => $this->get( 'standardTaxRates', array() ),
-							'summaryErrorCodes' => $this->get( 'standardErrorCodes', array() ),
+							'summaryTaxRates' => $this->get( 'standardTaxRates', [] ),
+							'summaryErrorCodes' => $this->get( 'standardErrorCodes', [] ),
 						)
 					); ?>
 				</div>
@@ -92,7 +92,7 @@ $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', arr
 							<li class="attr-item">
 								<span class="coupon-code"><?php echo $enc->html( $code ); ?></span>
 								<a class="minibutton change"
-									href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, array(), $basketConfig ) ); ?>">
+									href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ); ?>">
 									<?php echo $enc->html( $this->translate( 'client', 'X' ) ); ?>
 								</a>
 							</li>
@@ -117,12 +117,12 @@ $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', arr
 
 				<?php if( $this->get( 'standardCheckout', false ) === true ) : ?>
 					<a class="standardbutton btn-action"
-						href="<?php echo $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array(), array(), $checkoutConfig ) ); ?>">
+						href="<?php echo $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, [], [], $checkoutConfig ) ); ?>">
 						<?php echo $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ); ?>
 					</a>
 				<?php else : ?>
 					<a class="standardbutton btn-action"
-						href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array( 'b_check' => 1 ), array(), $basketConfig ) ); ?>">
+						href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array( 'b_check' => 1 ), [], $basketConfig ) ); ?>">
 						<?php echo $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ); ?>
 					</a>
 				<?php endif; ?>

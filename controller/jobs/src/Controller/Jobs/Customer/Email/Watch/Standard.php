@@ -55,7 +55,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$langIds = array();
+		$langIds = [];
 		$context = $this->getContext();
 
 		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
@@ -110,7 +110,7 @@ class Standard
 	 */
 	protected function execute( \Aimeos\MShop\Context\Item\Iface $context, array $customers )
 	{
-		$prodIds = $custIds = array();
+		$prodIds = $custIds = [];
 		$listItems = $this->getListItems( $context, array_keys( $customers ) );
 		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
@@ -126,7 +126,7 @@ class Standard
 
 		foreach( $custIds as $custId => $list )
 		{
-			$custListItems = $listIds = array();
+			$custListItems = $listIds = [];
 
 			foreach( $list as $listId => $prodId )
 			{
@@ -216,7 +216,7 @@ class Standard
 	 */
 	protected function getProductList( array $products, array $listItems )
 	{
-		$result = array();
+		$result = [];
 		$priceManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'price' );
 
 		foreach( $listItems as $id => $listItem )
@@ -258,7 +258,7 @@ class Standard
 	 */
 	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, $stockType )
 	{
-		$productCodes = $stockMap = array();
+		$productCodes = $stockMap = [];
 		$productItems = $this->getProductItems( $context, $prodIds );
 
 		foreach( $productItems as $productItem ) {

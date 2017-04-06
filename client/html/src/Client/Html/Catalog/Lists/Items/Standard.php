@@ -56,8 +56,8 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/lists/items/standard/subparts';
-	private $subPartNames = array();
-	private $tags = array();
+	private $subPartNames = [];
+	private $tags = [];
 	private $expire;
 	private $cache;
 
@@ -70,7 +70,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -130,7 +130,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -304,13 +304,13 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
 			$context = $this->getContext();
 			$config = $context->getConfig();
-			$products = $view->get( 'listProductItems', array() );
+			$products = $view->get( 'listProductItems', [] );
 
 
 			if( $config->get( 'client/html/catalog/lists/basket-add', false ) )
@@ -391,7 +391,7 @@ class Standard
 	 */
 	protected function getAttributeIds( array $productItems )
 	{
-		$attrIds = array();
+		$attrIds = [];
 		$types = array( 'config', 'custom', 'hidden', 'variant' );
 
 		foreach( $productItems as $product ) {
@@ -410,7 +410,7 @@ class Standard
 	 */
 	protected function getMediaIds( array $productItems )
 	{
-		$mediaIds = array();
+		$mediaIds = [];
 
 		foreach( $productItems as $product )
 		{
@@ -431,7 +431,7 @@ class Standard
 	 */
 	protected function getProductIds( array $productItems )
 	{
-		$prodIds = array();
+		$prodIds = [];
 
 		foreach( $productItems as $product )
 		{

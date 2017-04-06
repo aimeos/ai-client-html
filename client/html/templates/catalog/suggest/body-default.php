@@ -8,16 +8,16 @@
 $target = $this->config( 'client/html/catalog/detail/url/target' );
 $cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$config = $this->config( 'client/html/catalog/detail/url/config', array() );
+$config = $this->config( 'client/html/catalog/detail/url/config', [] );
 
-$items = array();
+$items = [];
 $enc = $this->encoder();
 
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
-foreach( $this->get( 'suggestItems', array() ) as $id => $productItem )
+foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 {
 	$media = $price = '';
 	$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );

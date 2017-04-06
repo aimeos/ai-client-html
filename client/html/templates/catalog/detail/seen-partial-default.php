@@ -11,7 +11,7 @@ $enc = $this->encoder();
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 
 ?>
@@ -20,7 +20,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 	<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 	<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId() ); ?>
 
-	<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>">
+	<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 
 		<?php if( ( $mediaItem = reset( $mediaItems ) ) !== false ) : ?>
 			<div class="media-item" style="background-image: url('<?php echo $this->content( $mediaItem->getPreview() ); ?>')"></div>

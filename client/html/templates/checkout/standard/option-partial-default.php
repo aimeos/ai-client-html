@@ -6,7 +6,7 @@
  */
 
 $enc = $this->encoder();
-$errors = $this->get( 'errors', array() );
+$errors = $this->get( 'errors', [] );
 
 
 /** client/html/checkout/standard/summary/option/terms/url/target
@@ -78,9 +78,9 @@ $termsAction = $this->config( 'client/html/checkout/standard/summary/option/term
  * @see client/html/checkout/standard/summary/option/terms/url/action
  * @see client/html/url/config
  */
-$termsConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/url/config', array() );
+$termsConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/url/config', [] );
 
-$termsUrl = $this->url( $termsTarget, $termsController, $termsAction, array(), array(), $termsConfig );
+$termsUrl = $this->url( $termsTarget, $termsController, $termsAction, [], [], $termsConfig );
 
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/target
@@ -152,9 +152,9 @@ $privacyAction = $this->config( 'client/html/checkout/standard/summary/option/te
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
  * @see client/html/url/config
  */
-$privacyConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/privacy/url/config', array() );
+$privacyConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/privacy/url/config', [] );
 
-$privacyUrl = $this->url( $privacyTarget, $privacyController, $privacyAction, array(), array(), $privacyConfig );
+$privacyUrl = $this->url( $privacyTarget, $privacyController, $privacyAction, [], [], $privacyConfig );
 
 
 ?>

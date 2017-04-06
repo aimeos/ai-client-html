@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/address/delivery/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 	private $mandatory = array(
@@ -86,7 +86,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -429,7 +429,7 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$params = $view->param( 'ca_delivery', array() );
+			$params = $view->param( 'ca_delivery', [] );
 			$invalid = $this->checkFields( $params );
 
 			if( count( $invalid ) > 0 )
@@ -475,7 +475,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
@@ -528,9 +528,9 @@ class Standard
 			 * @see client/html/checkout/standard/address/delivery/optional
 			 * @see client/html/checkout/standard/address/countries
 			 */
-			$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', array() );
+			$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );
 
-			if( count( $view->get( 'addressLanguages', array() ) ) === 1 ) {
+			if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
 				$hidden[] = 'order.base.address.languageid';
 			}
 
@@ -692,7 +692,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		$invalid = array();
+		$invalid = [];
 
 		foreach( $params as $key => $value )
 		{

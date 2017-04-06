@@ -44,7 +44,7 @@ $contentUrl = $this->config( 'client/html/common/content/baseurl' );
  * @see client/html/catalog/filter/attribute/types
  * @see client/html/catalog/filter/attribute/types-oneof
  */
-$options = $this->config( 'client/html/catalog/filter/attribute/types-option', array() );
+$options = $this->config( 'client/html/catalog/filter/attribute/types-option', [] );
 
 /** client/html/catalog/filter/attribute/types-oneof
  * List of attribute types whose values should be used in a type specific "OR" condition
@@ -64,7 +64,7 @@ $options = $this->config( 'client/html/catalog/filter/attribute/types-option', a
  * @see client/html/catalog/filter/attribute/types
  * @see client/html/catalog/filter/attribute/types-option
  */
-$oneof = $this->config( 'client/html/catalog/filter/attribute/types-oneof', array() );
+$oneof = $this->config( 'client/html/catalog/filter/attribute/types-oneof', [] );
 
 /** client/html/catalog/filter/standard/button
  * Displays the "Search" button in the catalog filter if Javascript is disabled
@@ -85,12 +85,12 @@ $button = $this->config( 'client/html/catalog/filter/standard/button', true );
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
+$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
-$attrMap = $this->get( 'attributeMap', array() );
-$attrIds = $this->param( 'f_attrid', array() );
-$oneIds = $this->param( 'f_oneid', array() );
-$optIds = $this->param( 'f_optid', array() );
+$attrMap = $this->get( 'attributeMap', [] );
+$attrIds = $this->param( 'f_attrid', [] );
+$oneIds = $this->param( 'f_oneid', [] );
+$optIds = $this->param( 'f_optid', [] );
 $params = $this->param();
 
 
@@ -120,7 +120,7 @@ $params = $this->param();
 							<?php else : continue; ?>
 							<?php endif; ?>
 							<li class="attr-item">
-								<a class="attr-name" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>">
+								<a class="attr-name" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, [], $listConfig ) ); ?>">
 									<?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?>
 								</a>
 							</li>
@@ -130,7 +130,7 @@ $params = $this->param();
 
 				<?php if( count( $attrIds ) > 1 || count( $optIds ) > 1 || count( $oneIds ) > 1 ) : ?>
 					<?php $current = $params; unset( $current['f_attrid'],  $current['f_optid'],  $current['f_oneid'] ); ?>
-					<a class="selected-all" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, array(), $listConfig ) ); ?>">
+					<a class="selected-all" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, [], $listConfig ) ); ?>">
 						<?php echo $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?>
 					</a>
 				<?php endif; ?>

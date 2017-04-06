@@ -7,7 +7,7 @@
  */
 
 $enc = $this->encoder();
-$errors = $this->get( 'summaryErrorCodes', array() );
+$errors = $this->get( 'summaryErrorCodes', [] );
 
 $addresses = $this->standardBasket->getAddresses();
 $services = $this->standardBasket->getServices();
@@ -16,17 +16,17 @@ $services = $this->standardBasket->getServices();
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 $basketCntl = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 $coTarget = $this->config( 'client/html/checkout/standard/url/target' );
 $coCntl = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
 $coAction = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$coConfig = $this->config( 'client/html/checkout/standard/url/config', array() );
+$coConfig = $this->config( 'client/html/checkout/standard/url/config', [] );
 
-$checkoutAddressUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'address' ), array(), $coConfig );
-$checkoutDeliveryUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'delivery' ), array(), $coConfig );
-$checkoutPaymentUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'payment' ), array(), $coConfig );
-$basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), array(), $basketConfig );
+$checkoutAddressUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'address' ), [], $coConfig );
+$checkoutDeliveryUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'delivery' ), [], $coConfig );
+$checkoutPaymentUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'payment' ), [], $coConfig );
+$basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $basketConfig );
 
 
 ?>
@@ -161,7 +161,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 			</div>
 
 			<div class="content">
-				<?php if( ( $coupons = $this->standardBasket->getCoupons() ) !== array() ) : ?>
+				<?php if( ( $coupons = $this->standardBasket->getCoupons() ) !== [] ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
 							<li class="attr-item"><?php echo $enc->html( $code ); ?></li>
@@ -237,7 +237,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, array(), arr
 			 * @see client/html/checkout/standard/summary/service
 			 */
 			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-default.php' ),
-			array( 'errors' => $this->get( 'summaryErrorCodes', array() ), 'customerId' => $this->get( 'summaryCustomerId' ) )
+			array( 'errors' => $this->get( 'summaryErrorCodes', [] ), 'customerId' => $this->get( 'summaryCustomerId' ) )
 		); ?>
 	</div>
 

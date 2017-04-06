@@ -18,14 +18,14 @@
 
 $enc = $this->encoder();
 $position = $this->get( 'position' );
-$productItems = $this->get( 'productItems', array() );
+$productItems = $this->get( 'productItems', [] );
 
 if( $this->get( 'basket-add', false ) )
 {
 	$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 	$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 	$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-	$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+	$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 }
 
 
@@ -98,13 +98,13 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
  * @see client/html/catalog/detail/url/action
  * @see client/html/url/config
  */
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 
 ?>
 <ul class="list-items"><!--
 
-	<?php foreach( $this->get( 'products', array() ) as $id => $productItem ) : $firstImage = true; ?>
+	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true; ?>
 		<?php
 			$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
 			$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id );
@@ -118,7 +118,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 			itemscope="" >
 
 
-			<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>">
+			<a href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 
 				<div class="media-list">
 					<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
@@ -193,7 +193,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 
 
 			<?php if( $this->get( 'basket-add', false ) ) : ?>
-				<form method="POST" action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">
+				<form method="POST" action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 					<!-- catalog.lists.items.csrf -->
 					<?php echo $this->csrf()->formfield(); ?>
 					<!-- catalog.lists.items.csrf -->
@@ -204,9 +204,9 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
 								array(
 									'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
-									'attributeItems' => $this->get( 'attributeItems', array() ),
-									'productItems' => $this->get( 'productItems', array() ),
-									'mediaItems' => $this->get( 'mediaItems', array() ),
+									'attributeItems' => $this->get( 'attributeItems', [] ),
+									'productItems' => $this->get( 'productItems', [] ),
+									'mediaItems' => $this->get( 'mediaItems', [] ),
 								)
 							); ?>
 						</div>
@@ -216,7 +216,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() 
 						<?php echo $this->partial(
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
 							array(
-								'attributeItems' => $this->get( 'attributeItems', array() ),
+								'attributeItems' => $this->get( 'attributeItems', [] ),
 								'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
 								'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
 								'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),

@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		}
 
 		$this->view = \TestHelperHtml::getView();
-		$this->view->listParams = array();
+		$this->view->listParams = [];
 		$this->view->listCurrentCatItem = $this->catItem;
 		$this->object->setView( $this->view );
 	}
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetHeader()
 	{
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 

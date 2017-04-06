@@ -7,17 +7,17 @@
  */
 
 $enc = $this->encoder();
-$params = $this->get( 'listParams', array() );
-$catPath = $this->get( 'listCatPath', array() );
+$params = $this->get( 'listParams', [] );
+$catPath = $this->get( 'listCatPath', [] );
 
 $target = $this->config( 'client/html/catalog/lists/url/target' );
 $cntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$config = $this->config( 'client/html/catalog/lists/url/config', array() );
+$config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 
 $classes = '';
-foreach( (array) $this->get( 'listCatPath', array() ) as $cat )
+foreach( (array) $this->get( 'listCatPath', [] ) as $cat )
 {
 	$catConfig = $cat->getConfig();
 	if( isset( $catConfig['css-class'] ) ) {
@@ -45,8 +45,8 @@ foreach( (array) $this->get( 'listCatPath', array() ) as $cat )
 $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 'short', 'long' ) );
 
 
-$quoteItems = array();
-if( $catPath !== array() && ( $catItem = end( $catPath ) ) !== false ) {
+$quoteItems = [];
+if( $catPath !== [] && ( $catItem = end( $catPath ) ) !== false ) {
 	$quoteItems = $catItem->getRefItems( 'text', 'quote', 'default' );
 }
 
@@ -131,8 +131,8 @@ $pagination = $this->partial(
 
 
 	<div class="catalog-list-type">
-		<a class="type-item type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, array(), $config ) ); ?>"></a>
-		<a class="type-item type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, array(), $config ) ); ?>"></a>
+		<a class="type-item type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, [], $config ) ); ?>"></a>
+		<a class="type-item type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, [], $config ) ); ?>"></a>
 	</div>
 
 

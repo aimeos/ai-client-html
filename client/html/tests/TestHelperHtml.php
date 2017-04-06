@@ -8,7 +8,7 @@
 class TestHelperHtml
 {
 	private static $aimeos;
-	private static $context = array();
+	private static $context = [];
 
 
 	public static function bootstrap()
