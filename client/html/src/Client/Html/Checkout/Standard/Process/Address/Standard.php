@@ -178,16 +178,17 @@ class Standard
 
 		try
 		{
+			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
 			$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
-			$addr = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+			$addresses = $basket->getAddresses();
 
-			if( $context->getUserId() != null && $addr->getAddressId() == '' )
+			if( $context->getUserId() != null && isset( $addresses[$type] ) && $addresses[$type]->getAddressId() == '' )
 			{
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-				$item = $controller->createAddressItem()->copyFrom( $addr );
+				$item = $controller->createAddressItem()->copyFrom( $addresses[$type] );
 				$controller->saveAddressItem( $item );
 
-				$addr->setAddressId( $item->getId() );
+				$addresses[$type]->setAddressId( $item->getId() );
 			}
 		}
 		catch( \Exception $e )

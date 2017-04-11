@@ -250,7 +250,7 @@ class Standard
 			$label .= ' (' . $part . ')';
 		}
 
-		$customer->setPaymentAddress( $address );
+		$customer->setPaymentAddress( clone $address ); // don't store new ID in order address
 		$customer->setPassword( $password );
 		$customer->setLabel( $label );
 		$customer->setCode( $code );
