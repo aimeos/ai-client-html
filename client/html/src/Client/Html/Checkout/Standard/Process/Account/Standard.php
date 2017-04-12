@@ -173,43 +173,27 @@ class Standard
 	 */
 	public function process()
 	{
+		$email = '<unknown>';
 		$context = $this->getContext();
-		$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
 
-		if( $basket->getCustomerId() == '' && $this->getView()->param( 'cs_option_account' ) == 1 )
+		try
 		{
-			$email = '<unknown>';
+			$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
+			$addresses = $basket->getAddresses();
 
-			try
-			{
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-				$addr = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+			if( $basket->getCustomerId() == '' && $this->getView()->param( 'cs_option_account' ) == 1
+				&& isset( $addresses[\Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT] )
+			) {
+				$addr = $addresses[\Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT];
 				$email = $addr->getEmail();
 
-				try
-				{
-					$item = $controller->findItem( $email );
-				}
-				catch( \Exception $e )
-				{
-					$password = substr( md5( microtime( true ) . getmypid() . rand() ), -8 );
-					$item = $this->addCustomerData( $controller->createItem(), $addr, $addr->getEmail(), $password );
-
-					$controller->saveItem( $item );
-
-					$msg = $item->toArray();
-					$msg['customer.password'] = $password;
-					$context->getMessageQueue( 'mq-email', 'customer/email/account' )->add( json_encode( $msg ) );
-				}
-
-				$basket->setCustomerId( $item->getId() );
-				$context->setUserId( $item->getId() );
+				$basket->setCustomerId( $this->getCustomerId( $addr ) );
 			}
-			catch( \Exception $e )
-			{
-				$msg = sprintf( 'Unable to create an account for "%1$s": %2$s', $email, $e->getMessage() );
-				$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
-			}
+		}
+		catch( \Exception $e )
+		{
+			$msg = sprintf( 'Unable to create an account for "%1$s": %2$s', $email, $e->getMessage() );
+			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
 		}
 
 		parent::process();
@@ -232,12 +216,11 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Customer\Item\Iface $customer Customer object
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Billing address object
-	 * @param string $code Unique customer code, e.g. user name or e-mail address
 	 * @param string $password Plain-text password for the customer
 	 * @return \Aimeos\MShop\Customer\Item\Iface Customer object filled with data
 	 */
 	protected function addCustomerData( \Aimeos\MShop\Customer\Item\Iface $customer,
-		\Aimeos\MShop\Common\Item\Address\Iface $address, $code, $password )
+		\Aimeos\MShop\Common\Item\Address\Iface $address, $password )
 	{
 		$extra = $this->getContext()->getSession()->get( 'client/html/checkout/standard/address/extra' );
 		$label = $address->getLastname();
@@ -251,9 +234,9 @@ class Standard
 		}
 
 		$customer->setPaymentAddress( clone $address ); // don't store new ID in order address
+		$customer->setCode( $address->getEmail() );
 		$customer->setPassword( $password );
 		$customer->setLabel( $label );
-		$customer->setCode( $code );
 		$customer->setStatus( 1 );
 
 		try {
@@ -280,5 +263,35 @@ class Standard
 		$customer->setGroups( $gids );
 
 		return $customer;
+	}
+
+
+	/**
+	 * Returns the customer ID and creates a new account if necessary and requested
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $addr Customer address object from order
+	 */
+	protected function getCustomerId( \Aimeos\MShop\Order\Item\Base\Address\Iface $addr )
+	{
+		$context = $this->getContext();
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+
+		try
+		{
+			$item = $controller->findItem( $addr->getEmail() );
+		}
+		catch( \Exception $e )
+		{
+			$password = substr( md5( microtime( true ) . getmypid() . rand() ), -8 );
+			$item = $this->addCustomerData( $controller->createItem(), $addr, $password );
+
+			$controller->saveItem( $item );
+
+			$msg = $item->toArray();
+			$msg['customer.password'] = $password;
+			$context->getMessageQueue( 'mq-email', 'customer/email/account' )->add( json_encode( $msg ) );
+		}
+
+		return $item->getId();
 	}
 }
