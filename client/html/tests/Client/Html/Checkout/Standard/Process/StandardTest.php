@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Process\Standard' )
 			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
-			->setMethods( ['getPaymentForm'] )
+			->setMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $view );
 
@@ -106,7 +106,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$form = new \Aimeos\MShop\Common\Item\Helper\Form\Standard( 'url', 'POST', [], true );
 		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
 
-		$object->expects( $this->once() )->method( 'getPaymentForm' )->will( $this->returnValue( $form ) );
+		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( $form ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
 		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
 		$orderMock->expects( $this->once() )->method( 'block' );
@@ -136,7 +136,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Process\Standard' )
 			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
-			->setMethods( ['getPaymentForm'] )
+			->setMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $view );
 
@@ -152,7 +152,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
 
-		$object->expects( $this->once() )->method( 'getPaymentForm' )->will( $this->returnValue( null ) );
+		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( null ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
 		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
 		$orderMock->expects( $this->once() )->method( 'block' );

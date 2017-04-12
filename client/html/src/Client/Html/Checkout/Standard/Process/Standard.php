@@ -254,7 +254,7 @@ class Standard
 
 			$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
 
-			if( ( $form = $this->getPaymentForm( $basket, $orderItem ) ) !== null )
+			if( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
 			{
 				$view->standardUrlNext = $form->getUrl();
 				$view->standardMethod = $form->getMethod();
@@ -300,7 +300,7 @@ class Standard
 	 * @return \Aimeos\MShop\Common\Item\Helper\Form\Iface|null Form object with URL, parameters, etc.
 	 * 	or null if no form data is required
 	 */
-	protected function getPaymentForm( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )
+	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )
 	{
 		$view = $this->getView();
 		$service = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
