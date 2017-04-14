@@ -72,8 +72,8 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 
 	<div class="item-address item-like">
 		<div class="header">
-			<input type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="-1" <?php echo ( $deliveryOption == -1 ? 'checked="checked"' : '' ); ?> />
-			<div class="values"><span class="value value-like"><?php echo $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?></span></div>
+			<input id="ca_deliveryoption-like" type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="-1" <?php echo ( $deliveryOption == -1 ? 'checked="checked"' : '' ); ?> />
+			<label for="ca_deliveryoption-like" class="values value-like"><?php echo $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?></label>
 		</div>
 	</div>
 
@@ -84,8 +84,8 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 
 			<div class="header">
 				<a class="modify minibutton" href="<?php echo $enc->attr( $this->url( $target, $controller, $action, array( 'step' => 'address', 'ca_delivery_delete' => $id ), [], $config ) ); ?>">X</a>
-				<input type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="<?php echo $enc->attr( $addr->getAddressId() ); ?>" <?php echo ( $deliveryOption == $id ? 'checked="checked"' : '' ); ?> />
-				<div class="values">
+				<input id="ca_deliveryoption-<?php echo $id; ?>" type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="<?php echo $enc->attr( $addr->getAddressId() ); ?>" <?php echo ( $deliveryOption == $id ? 'checked="checked"' : '' ); ?> />
+				<label for="ca_deliveryoption-<?php echo $id; ?>" class="values">
 <?php
 	echo preg_replace( "/\n+/m", "<br/>", trim( $enc->html( sprintf(
 		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
@@ -127,7 +127,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 		$addr->getVatID()
 	) ) ) );
 ?>
-				</div>
+				</label>
 			</div>
 
 <?php
@@ -170,8 +170,8 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 		<div class="item-address item-new" data-option="<?php echo $enc->attr( $deliveryOption ); ?>">
 
 			<div class="header">
-				<input type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="null" <?php echo ( $deliveryOption == 'null' ? 'checked="checked"' : '' ); ?> />
-				<div class="values"><span class="value value-new"><?php echo $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?></span></div>
+				<input id="ca_deliveryoption-null" type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="null" <?php echo ( $deliveryOption == 'null' ? 'checked="checked"' : '' ); ?> />
+				<label for="ca_deliveryoption-null" class="values value-new"><?php echo $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?></label>
 			</div>
 
 <?php

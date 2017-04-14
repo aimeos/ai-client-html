@@ -73,12 +73,12 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 		<div class="item-address">
 			<div class="header">
 
-				<input type="radio"
+				<input id="ca_billingoption-<?php echo $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" type="radio"
 					name="<?php echo $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
 					value="<?php echo $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>"
 					<?php echo ( $billingOption == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ); ?>
 				/>
-				<div class="values">
+				<label for="ca_billingoption-<?php echo $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" class="values">
 <?php
 	$addr = $this->addressPaymentItem;
 
@@ -122,7 +122,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 		$addr->getVatID()
 	) ) ) );
 ?>
-				</div>
+				</label>
 			</div>
 
 <?php
@@ -176,16 +176,14 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 
 		<div class="item-address item-new" data-option="<?php echo $enc->attr( $billingOption ); ?>">
 			<div class="header">
-				<input type="radio"
+				<input id="ca_billingoption-new" type="radio"
 					name="<?php echo $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
 					value="null"
 					<?php echo ( $billingOption == 'null' ? 'checked="checked"' : '' ); ?>
 				/>
-				<div class="values">
-					<span class="value value-new">
-						<?php echo $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
-					</span>
-				</div>
+				<label for="ca_billingoption-new" class="values value-new">
+					<?php echo $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
+				</label>
 			</div>
 <?php
 	$paymentCss = $paymentCssAll;
