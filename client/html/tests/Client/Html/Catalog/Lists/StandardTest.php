@@ -89,7 +89,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
-		$this->assertContains( '<nav class="pagination">', $output );
 
 		$this->assertContains( '<div class="catalog-list-quote">', $output );
 		$this->assertRegExp( '#Kaffee Bewertungen#', $output );
@@ -110,6 +109,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list">', $output );
+		$this->assertContains( '<nav class="pagination">', $output );
 		$this->assertNotRegExp( '#.*U:TESTPSUB01.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB03.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB04.*#smu', $output );
