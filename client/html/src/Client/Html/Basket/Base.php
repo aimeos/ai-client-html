@@ -28,7 +28,7 @@ abstract class Base
 	{
 		$session = $this->getContext()->getSession();
 
-		foreach( $session->get( 'aimeos/basket/cache', array() ) as $key => $value ) {
+		foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
 			$session->set( $key, null );
 		}
 	}
@@ -76,7 +76,7 @@ abstract class Base
 		{
 			$session = $context->getSession();
 
-			$cached = $session->get( 'aimeos/basket/cache', array() ) + array( $key => true );
+			$cached = $session->get( 'aimeos/basket/cache', [] ) + array( $key => true );
 			$session->set( 'aimeos/basket/cache', $cached );
 			$session->set( $key, $value );
 		}

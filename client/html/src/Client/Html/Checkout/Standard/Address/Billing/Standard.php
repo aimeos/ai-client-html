@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/address/billing/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 	private $mandatory = array(
@@ -87,7 +87,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -506,10 +506,9 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$params = $view->param( 'ca_billing', array() );
-			$invalid = $this->checkFields( $params );
+			$params = $view->param( 'ca_billing', [] );
 
-			if( count( $invalid ) > 0 )
+			if( ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
 				$view->billingError = $invalid;
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
@@ -519,35 +518,23 @@ class Standard
 		}
 		else // existing address
 		{
-			$item = $this->getCustomerItem( $option );
-			$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+			$list = [];
+			$params = $view->param( 'ca_billing_' . $option, [] );
 
-			$invalid = array();
-			$addr = $item->getPaymentAddress();
-			$params = $view->param( 'ca_billing_' . $option, array() );
-
-			if( !empty( $params ) )
-			{
-				$list = array();
-				$invalid = $this->checkFields( $params );
-
-				foreach( $params as $key => $value ) {
-					$list[str_replace( 'order.base', 'customer', $key )] = $value;
-				}
-
-				$addr->fromArray( $list );
-				$item->setPaymentAddress( $addr );
-
-				$customerManager->saveItem( $item );
-			}
-
-			if( count( $invalid ) > 0 )
+			if( !empty( $params ) && ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
 				$view->billingError = $invalid;
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 
-			$basketCtrl->setAddress( $type, $addr );
+			foreach( $params as $key => $value ) {
+				$list[str_replace( 'order.base', 'customer', $key )] = $value;
+			}
+
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+			$customer = $controller->editItem( $option, $list );
+
+			$basketCtrl->setAddress( $type, $customer->getPaymentAddress() );
 		}
 	}
 
@@ -560,7 +547,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
@@ -613,9 +600,9 @@ class Standard
 			 * @see client/html/checkout/standard/address/billing/optional
 			 * @see client/html/checkout/standard/address/countries
 			 */
-			$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', array() );
+			$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
 
-			if( count( $view->get( 'addressLanguages', array() ) ) === 1 ) {
+			if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
 				$hidden[] = 'order.base.address.languageid';
 			}
 
@@ -776,7 +763,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		$invalid = array();
+		$invalid = [];
 
 		foreach( $params as $key => $value )
 		{

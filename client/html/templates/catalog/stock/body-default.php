@@ -56,11 +56,11 @@ $textStock = array(
 );
 
 
-$result = array();
-$stockItemsByProducts = $this->get( 'stockItemsByProducts', array() );
+$result = [];
+$stockItemsByProducts = $this->get( 'stockItemsByProducts', [] );
 
 
-foreach( $this->get( 'stockProductCodes', array() ) as $prodCode )
+foreach( $this->get( 'stockProductCodes', [] ) as $prodCode )
 {
 	if( !isset( $stockItemsByProducts[$prodCode] ) ) {
 		continue;

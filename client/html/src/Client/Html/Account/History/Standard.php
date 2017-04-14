@@ -89,7 +89,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
@@ -107,24 +107,24 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', array() ) + $error;
+			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', array() ) + $error;
+			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', array() ) + $error;
+			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', array() ) + $error;
+			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
 		}
 
 		/** client/html/account/history/standard/template-body
@@ -162,7 +162,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		try
 		{
@@ -311,24 +311,24 @@ class Standard
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', array() ) + $error;
+			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', array() ) + $error;
+			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', array() ) + $error;
+			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', array() ) + $error;
+			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
 		}
 	}
 

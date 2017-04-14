@@ -98,7 +98,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->object->process();
 
 		$pinned = $this->context->getSession()->get( 'aimeos/catalog/session/pinned/list' );
-		$this->assertEquals( array(), $pinned );
+		$this->assertEquals( [], $pinned );
 	}
 
 

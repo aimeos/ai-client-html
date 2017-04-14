@@ -11,13 +11,13 @@ $enc = $this->encoder();
 $target = $this->config( 'client/html/checkout/standard/url/target' );
 $controller = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
 $action = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$config = $this->config( 'client/html/checkout/standard/url/config', array() );
+$config = $this->config( 'client/html/checkout/standard/url/config', [] );
 
 $params = array( 'c_step' => 'payment' );
-$changeUrl = $this->url( $target, $controller, $action, $params, array(), $config );
+$changeUrl = $this->url( $target, $controller, $action, $params, [], $config );
 
 $params = array( 'c_step' => 'order', 'cs_option_terms' => 1, 'cs_option_terms_value' => 1, 'cs_order' => 1 );
-$retryUrl = $this->url( $target, $controller, $action, $params, array(), $config );
+$retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
 
 
 ?>

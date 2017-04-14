@@ -27,7 +27,7 @@ $type = $this->get( 'type' );
 	<h4><?php echo $enc->html( $service->getName() ); ?></h4>
 </div>
 
-<?php if( ( $attributes = $service->getAttributes() ) !== array() ) : ?>
+<?php if( ( $attributes = $service->getAttributes() ) !== [] ) : ?>
 	<ul class="attr-list">
 
 		<?php foreach( $attributes as $attribute ) : ?>

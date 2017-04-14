@@ -63,7 +63,7 @@ abstract class Base
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$html = '';
 
@@ -225,8 +225,8 @@ abstract class Base
 		$localClass = str_replace( ' ', '\\', ucwords( str_replace( '/', ' ', $path ) ) );
 		$config = $this->context->getConfig();
 
-		$decorators = $config->get( 'client/html/common/decorators/default', array() );
-		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', array() );
+		$decorators = $config->get( 'client/html/common/decorators/default', [] );
+		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
 		{
@@ -239,11 +239,11 @@ abstract class Base
 		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', array() );
+		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
 		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', array() );
+		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', [] );
 		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
 
 		return $client;
@@ -297,7 +297,7 @@ abstract class Base
 			$items = array( $items );
 		}
 
-		$expires = $idMap = array();
+		$expires = $idMap = [];
 
 		foreach( $items as $item )
 		{
@@ -458,7 +458,7 @@ abstract class Base
 	 */
 	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) )
 	{
-		$list = array();
+		$list = [];
 
 		foreach( $params as $key => $value )
 		{
@@ -490,7 +490,7 @@ abstract class Base
 	 * @param array $config Multi-dimensional array of configuration options used by the client and sub-clients
 	 * @return string Unique hash
 	 */
-	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), $key = '', array $config = array() )
+	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), $key = '', array $config = [] )
 	{
 		$locale = $this->getContext()->getLocale();
 		$params = $this->getClientParams( $this->getView()->param(), $prefixes );
@@ -521,7 +521,7 @@ abstract class Base
 	{
 		if( !isset( $this->subclients ) )
 		{
-			$this->subclients = array();
+			$this->subclients = [];
 
 			foreach( $this->getSubClientNames() as $name ) {
 				$this->subclients[] = $this->getSubClient( $name );
@@ -634,7 +634,7 @@ abstract class Base
 			return null;
 		}
 
-		$cfg = $config->get( $confkey, array() );
+		$cfg = $config->get( $confkey, [] );
 
 		$keys = array(
 			'body' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':body', $cfg ),
@@ -673,7 +673,7 @@ abstract class Base
 
 		try
 		{
-			$cfg = $config->get( $confkey, array() );
+			$cfg = $config->get( $confkey, [] );
 			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
 			$context->getCache()->set( $key, $value, $expire, array_unique( $tags ) );
@@ -720,7 +720,7 @@ abstract class Base
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		return $view;
 	}
@@ -734,7 +734,7 @@ abstract class Base
 	 */
 	protected function translatePluginErrorCodes( array $codes )
 	{
-		$errors = array();
+		$errors = [];
 		$i18n = $this->getContext()->getI18n();
 
 		foreach( $codes as $scope => $list )

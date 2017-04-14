@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/update/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 
 
 	/**
@@ -67,7 +67,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
@@ -85,24 +85,24 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->updateErrorList = $view->get( 'updateErrorList', array() ) + $error;
+			$view->updateErrorList = $view->get( 'updateErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->updateErrorList = $view->get( 'updateErrorList', array() ) + $error;
+			$view->updateErrorList = $view->get( 'updateErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->updateErrorList = $view->get( 'updateErrorList', array() ) + $error;
+			$view->updateErrorList = $view->get( 'updateErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->updateErrorList = $view->get( 'updateErrorList', array() ) + $error;
+			$view->updateErrorList = $view->get( 'updateErrorList', [] ) + $error;
 		}
 
 		/** client/html/checkout/update/standard/template-body
@@ -140,7 +140,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		try
 		{
@@ -284,93 +284,32 @@ class Standard
 
 		try
 		{
-			$provider = $this->getServiceProvider( $view->param( 'code' ) );
-
 			$config = array( 'absoluteUri' => true, 'namespace' => false );
 			$params = array( 'code' => $view->param( 'code' ), 'orderid' => $view->param( 'orderid' ) );
 			$urls = array(
 				'payment.url-success' => $this->getUrlConfirm( $view, $params, $config ),
 				'payment.url-update' => $this->getUrlUpdate( $view, $params, $config ),
+				'client.ipaddress' => $view->request()->getClientAddress(),
 			);
 			$urls['payment.url-self'] = $urls['payment.url-update'];
-			$provider->injectGlobalConfigBE( $urls );
 
-			$response = null;
-			$headers = array();
-
-			try
-			{
-				$body = $view->request()->getBody();
-
-				if( ( $orderItem = $provider->updateSync( $view->param(), $body, $response, $headers ) ) !== null ) {
-					\Aimeos\Controller\Frontend\Factory::createController( $context, 'order' )->update( $orderItem ); // stock, coupons
-				}
-
-				$view->updateMessage = $response;
-			}
-			catch( \Aimeos\MShop\Service\Exception $e )
-			{
-				$view->updateMessage = $e->getMessage();
-			}
-
-			if( !empty( $headers ) ) {
-				$view->updateHttpHeaders = $headers;
-			}
+			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+			$cntl->updateSync( $view->request(), $view->response(), $urls );
 
 			parent::process();
+
+			$view->response()->withStatus( 200, 'OK' );
 		}
 		catch( \Exception $e )
 		{
-			/** client/html/checkout/standard/update/http-error
-			 * HTTP header sent for failed attempts to update the order status
-			 *
-			 * This HTTP header is returned to the remote system if the status
-			 * update failed due to an error in the application. This header is
-			 * not sent if e.g. a payment was refused by the payment gateway!
-			 * It should be one of the 5xx HTTP headers.
-			 *
-			 * @param array List of valid HTTP headers
-			 * @since 2015.07
-			 * @category Developer
-			 * @see client/html/checkout/standard/update/http-success
-			 */
-			$default = array( 'HTTP/1.1 500 Error updating order status' );
-			$headerList = $context->getConfig()->get( 'client/html/checkout/standard/update/http-error', $default );
-
-			$view->updateHttpHeaders = $headerList;
-			$view->updateMessage = $e->getMessage();
+			$view->response()->withStatus( 500, 'Error updating order status' );
+			$view->response()->getBody()->write( $e->getMessage() );
 
 			$body = $view->request()->getBody();
 			$params = print_r( $view->param(), true );
 			$msg = "Updating order status failed: %1\$s\n%2\$s\n%3\$s";
 			$context->getLogger()->log( sprintf( $msg, $e->getMessage(), $params, $body ) );
 		}
-	}
-
-
-	/**
-	 * Returns the service provider for the given code
-	 *
-	 * @param string $code Unique service code
-	 * @throws \Aimeos\Client\Html\Exception If no service item could be found
-	 * @return \Aimeos\MShop\Service\Provider\Iface Service provider object
-	 */
-	protected function getServiceProvider( $code )
-	{
-		$serviceManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'service' );
-
-		$search = $serviceManager->createSearch();
-		$search->setConditions( $search->compare( '==', 'service.code', $code ) );
-
-		$result = $serviceManager->searchItems( $search );
-
-		if( ( $serviceItem = reset( $result ) ) === false )
-		{
-			$msg = sprintf( 'No service for code "%1$s" found', $code );
-			throw new \Aimeos\Client\Html\Exception( $msg );
-		}
-
-		return $serviceManager->getProvider( $serviceItem );
 	}
 
 
@@ -400,7 +339,7 @@ class Standard
 		$action = $view->config( 'client/html/checkout/confirm/url/action', 'confirm' );
 		$config = $view->config( 'client/html/checkout/confirm/url/config', $config );
 
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
+		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 
 
@@ -419,6 +358,6 @@ class Standard
 		$action = $view->config( 'client/html/checkout/update/url/action', 'update' );
 		$config = $view->config( 'client/html/checkout/update/url/config', $config );
 
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
+		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 }

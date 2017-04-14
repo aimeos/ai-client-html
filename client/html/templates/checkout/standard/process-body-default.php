@@ -32,9 +32,9 @@ $testfcn = function( $list, $key, $default = '' ) {
 
 
 $enc = $this->encoder();
-$public = $hidden = array();
-$errors = $this->get( 'standardErrorList', array() );
-$params = $this->get( 'standardProcessParams', array() );
+$public = $hidden = [];
+$errors = $this->get( 'standardErrorList', [] );
+$params = $this->get( 'standardProcessParams', [] );
 
 foreach( $params as $key => $item )
 {

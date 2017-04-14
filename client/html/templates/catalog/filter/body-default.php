@@ -75,9 +75,9 @@ $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
  * @see client/html/catalog/lists/url/action
  * @see client/html/url/config
  */
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
+$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
-$listParams = array();
+$listParams = [];
 $params = $this->param();
 
 foreach( array( 'f_sort' ) as $name ) {
@@ -100,7 +100,7 @@ $enc = $this->encoder();
 
 	<nav>
 		<h1><?php echo $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ); ?></h1>
-		<form method="POST" action="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, array(), $listConfig ) ); ?>">
+		<form method="POST" action="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, [], $listConfig ) ); ?>">
 			<!-- catalog.filter.csrf -->
 			<?php echo $this->csrf()->formfield(); ?>
 			<!-- catalog.filter.csrf -->

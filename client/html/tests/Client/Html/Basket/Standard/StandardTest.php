@@ -206,7 +206,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			) ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$attributes = $attrManager->searchItems( $search, array() );
+		$attributes = $attrManager->searchItems( $search, [] );
 
 		$view = $this->object->getView();
 		$param = array(
@@ -237,7 +237,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			$search->compare( '==', 'attribute.type.code', 'color' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$result = $attrManager->searchItems( $search, array() );
+		$result = $attrManager->searchItems( $search, [] );
 
 		if( ( $attribute = reset( $result ) ) === false ) {
 			throw new \RuntimeException( 'No attribute' );
@@ -273,7 +273,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			$search->compare( '==', 'attribute.type.code', 'size' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$result = $attrManager->searchItems( $search, array() );
+		$result = $attrManager->searchItems( $search, [] );
 
 		if( ( $attribute = reset( $result ) ) === false ) {
 			throw new \RuntimeException( 'No attribute' );
@@ -309,7 +309,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 				$search->compare( '==', 'attribute.type.code', 'date' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$result = $attrManager->searchItems( $search, array() );
+		$result = $attrManager->searchItems( $search, [] );
 
 		if( ( $attribute = reset( $result ) ) === false ) {
 			throw new \RuntimeException( 'No attribute' );
@@ -451,14 +451,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->object->process();
 
-		$this->assertEquals( 1, count( $view->get( 'standardErrorList', array() ) ) );
+		$this->assertEquals( 1, count( $view->get( 'standardErrorList', [] ) ) );
 	}
 
 
 	public function testGetBodyAddCoupon()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1, array(), array(), array(), array(), array(), 'default' );
+		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1, [], [], [], [], [], 'default' );
 
 		$view = $this->object->getView();
 
@@ -479,7 +479,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyDeleteCoupon()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1, array(), array(), array(), array(), array(), 'default' );
+		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1, [], [], [], [], [], 'default' );
 
 		$view = $this->object->getView();
 

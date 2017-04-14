@@ -78,7 +78,7 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index'
  * @see client/html/basket/standard/url/action
  * @see client/html/url/config
  */
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 
 /// Price format with price value (%1$s) and currency (%2$s)
@@ -88,7 +88,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 ?>
 <section class="aimeos basket-mini">
 
-	<?php if( ( $errors = $this->get( 'miniErrorList', array() ) ) !== array() ) : ?>
+	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
 				<li class="error-item"><?php echo $enc->html( $error ); ?></li>
@@ -110,7 +110,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 		<h1><?php echo $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
 
-		<a href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">
+		<a href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 			<div class="basket-mini-main">
 				<span class="quantity">
 					<?php echo $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $quantity ), $quantity ) ); ?>

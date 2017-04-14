@@ -8,8 +8,8 @@
 
 $enc = $this->encoder();
 
-$map = $this->get( 'selectMap', array() );
-$params = $this->get( 'selectParams', array() );
+$map = $this->get( 'selectMap', [] );
+$params = $this->get( 'selectParams', [] );
 $langId = $this->get( 'selectLanguageId', 'en' );
 $currencyId = $this->get( 'selectCurrencyId', 'EUR' );
 
@@ -30,7 +30,7 @@ $currencyId = $this->get( 'selectCurrencyId', 'EUR' );
  * @since 2014.09
  * @category Developer
  */
-$config = $this->config( 'client/html/locale/select/language/url/config', array() );
+$config = $this->config( 'client/html/locale/select/language/url/config', [] );
 
 ?>
 <?php $this->block()->start( 'locale/select/language' ); ?>
@@ -45,7 +45,7 @@ $config = $this->config( 'client/html/locale/select/language/url/config', array(
 					<?php $locParams = ( isset( $list[$currencyId] ) ? (array) $list[$currencyId] : (array) reset( $list ) ); ?>
 					<li class="select-item <?php echo ( $lang === $langId ? 'active' : '' ); ?>">
 						<?php $target = $this->request()->getTarget(); ?>
-						<?php $url = $this->url( $target, $this->param( 'controller' ), $this->param( 'action' ), array_merge( $params, $locParams ), array(), $config ); ?>
+						<?php $url = $this->url( $target, $this->param( 'controller' ), $this->param( 'action' ), array_merge( $params, $locParams ), [], $config ); ?>
 						<a href="<?php echo $enc->attr( $url ); ?>">
 							<?php echo $enc->html( $this->translate( 'client/language', $lang ), $enc::TRUST ); ?>
 						</a>

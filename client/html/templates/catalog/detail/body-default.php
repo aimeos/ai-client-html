@@ -13,13 +13,12 @@
  * - detailAttributeItems : Attributes items incl. referenced items
  * - detailMediaItems : Media items incl. referenced items
  * - detailParams : Request parameters for this detail view
- * - detailUserId : User ID if logged in
  */
 
 
 $getProductList = function( array $posItems, array $items )
 {
-	$list = array();
+	$list = [];
 
 	foreach( $posItems as $id => $posItem )
 	{
@@ -37,7 +36,7 @@ $enc = $this->encoder();
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 $basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 
 /** client/html/basket/require-stock
@@ -55,10 +54,10 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', array()
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
-$attrMap = $subAttrDeps = array();
-$attrItems = $this->get( 'detailAttributeItems', array() );
+$attrMap = $subAttrDeps = [];
+$attrItems = $this->get( 'detailAttributeItems', [] );
 
-foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduct )
+foreach( $this->get( 'detailProductItems', [] ) as $subProdId => $subProduct )
 {
 	$subItems = $subProduct->getRefItems( 'attribute', null, 'default' );
 	$subItems += $subProduct->getRefItems( 'attribute', null, 'variant' ); // show product variant attributes as well
@@ -73,8 +72,8 @@ foreach( $this->get( 'detailProductItems', array() ) as $subProdId => $subProduc
 	}
 }
 
-$propMap = $subPropDeps = array();
-$propItems = $this->get( 'detailPropertyItems', array() );
+$propMap = $subPropDeps = [];
+$propItems = $this->get( 'detailPropertyItems', [] );
 
 foreach( $propItems as $propId => $propItem )
 {
@@ -117,9 +116,9 @@ ksort( $propMap );
 				 */
 				$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-bottom.php' ),
 				array(
-					'product' => $this->detailProductItem,
-					'params' => $this->get( 'detailParams', array() ),
-					'mediaItems' => $this->get( 'detailMediaItems', array() )
+					'productItem' => $this->detailProductItem,
+					'params' => $this->get( 'detailParams', [] ),
+					'mediaItems' => $this->get( 'detailMediaItems', [] )
 				)
 			); ?>
 
@@ -155,7 +154,7 @@ ksort( $propMap );
 				<?php echo $this->block()->get( 'catalog/detail/service' ); ?>
 
 
-				<form method="POST" action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array(), array(), $basketConfig ) ); ?>">
+				<form method="POST" action="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 					<!-- catalog.detail.csrf -->
 					<?php echo $this->csrf()->formfield(); ?>
 					<!-- catalog.detail.csrf -->
@@ -183,9 +182,9 @@ ksort( $propMap );
 								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
 								array(
 									'products' => $this->detailProductItem->getRefItems( 'product', 'default', 'default' ),
-									'mediaItems' => $this->get( 'detailMediaItems', array() ),
-									'productItems' => $this->get( 'detailProductItems', array() ),
-									'attributeItems' => $this->get( 'detailAttributeItems', array() ),
+									'mediaItems' => $this->get( 'detailMediaItems', [] ),
+									'productItems' => $this->get( 'detailProductItems', [] ),
+									'attributeItems' => $this->get( 'detailAttributeItems', [] ),
 								)
 							); ?>
 						</div>
@@ -212,7 +211,7 @@ ksort( $propMap );
 							 */
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
 							array(
-								'attributeItems' => $this->get( 'detailAttributeItems', array() ),
+								'attributeItems' => $this->get( 'detailAttributeItems', [] ),
 								'attributeConfigItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'config' ),
 								'attributeCustomItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'custom' ),
 								'attributeHiddenItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'hidden' ),
@@ -259,30 +258,48 @@ ksort( $propMap );
 			</div>
 
 
-			<?php echo $this->block()->get( 'catalog/detail/actions' ); ?>
+			<?php echo $this->partial(
+				/** client/html/catalog/partials/actions
+				 * Relative path to the catalog actions partial template file
+				 *
+				 * Partials are templates which are reused in other templates and generate
+				 * reoccuring blocks filled with data from the assigned values. The actions
+				 * partial creates an HTML block for the product actions (pin, like and watch
+				 * products).
+				 *
+				 * @param string Relative path to the template file
+				 * @since 2017.04
+				 * @category Developer
+				 */
+				$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial-default.php' ),
+				array(
+					'productItem' => $this->detailProductItem,
+					'params' => $this->get( 'detailParams', [] )
+				)
+			); ?>
 
 
 			<?php echo $this->partial(
-				/** client/html/catalog/detail/partials/social
+				/** client/html/catalog/partials/social
 				 * Relative path to the social partial template file
 				 *
 				 * Partials are templates which are reused in other templates and generate
 				 * reoccuring blocks filled with data from the assigned values. The social
 				 * partial creates an HTML block for links to social platforms in the
-				 * catalog detail component.
+				 * catalog components.
 				 *
 				 * @param string Relative path to the template file
-				 * @since 2017.01
+				 * @since 2017.04
 				 * @category Developer
 				 */
-				$this->config( 'client/html/catalog/detail/partials/social', 'catalog/detail/social-partial-default.php' ),
-				array( 'product' => $this->detailProductItem )
+				$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial-default.php' ),
+				array( 'productItem' => $this->detailProductItem )
 			); ?>
 
 
 			<?php if( $this->detailProductItem->getType() === 'bundle'
-				&& ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' ) ) !== array()
-				&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', array() ) ) ) !== array() ) : ?>
+				&& ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' ) ) !== []
+				&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', [] ) ) ) !== [] ) : ?>
 
 				<section class="catalog-detail-bundle">
 					<h2 class="header"><?php echo $this->translate( 'client', 'Bundled products' ); ?></h2>
@@ -297,7 +314,7 @@ ksort( $propMap );
 
 			<div class="catalog-detail-additional">
 
-				<?php if( ( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) ) !== array() ) : ?>
+				<?php if( ( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) ) !== [] ) : ?>
 					<div class="additional-box">
 						<h2 class="header description"><?php echo $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ); ?></h2>
 						<div class="content description">
@@ -398,8 +415,8 @@ ksort( $propMap );
 					</div>
 				<?php endif; ?>
 
-				<?php $mediaList = $this->get( 'detailMediaItems', array() ); ?>
-				<?php if( ( $mediaItems = $this->detailProductItem->getRefItems( 'media', null, 'download' ) ) !== array() ) : ?>
+				<?php $mediaList = $this->get( 'detailMediaItems', [] ); ?>
+				<?php if( ( $mediaItems = $this->detailProductItem->getRefItems( 'media', null, 'download' ) ) !== [] ) : ?>
 					<div class="additional-box">
 						<h2 class="header downloads"><?php echo $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ); ?></h2>
 						<ul class="content downloads">
@@ -422,8 +439,8 @@ ksort( $propMap );
 			</div>
 
 
-			<?php if( ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) ) !== array()
-				&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', array() ) ) ) !== array() ) : ?>
+			<?php if( ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) ) !== []
+				&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', [] ) ) ) !== [] ) : ?>
 
 				<section class="catalog-detail-suggest">
 					<h2 class="header"><?php echo $this->translate( 'client', 'Suggested products' ); ?></h2>
@@ -436,8 +453,8 @@ ksort( $propMap );
 			<?php endif; ?>
 
 
-			<?php if( ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) ) !== array()
-				&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', array() ) ) ) !== array() ) : ?>
+			<?php if( ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) ) !== []
+				&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', [] ) ) ) !== [] ) : ?>
 
 				<section class="catalog-detail-bought">
 					<h2 class="header"><?php echo $this->translate( 'client', 'Other customers also bought' ); ?></h2>

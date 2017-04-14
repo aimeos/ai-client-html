@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetHeaderException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Suggest\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$suggestItems = $this->object->getView()->suggestItems;
 
 		$this->assertRegExp( '#\[\{"label":"Unterpro.*","html":".*Unterpro.*"\}\]#smU', $output );
-		$this->assertNotEquals( array(), $suggestItems );
+		$this->assertNotEquals( [], $suggestItems );
 
 		foreach( $suggestItems as $item ) {
 			$this->assertInstanceOf( '\Aimeos\MShop\Product\Item\Iface', $item );
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$suggestItems = $this->object->getView()->suggestItems;
 
 		$this->assertRegExp( '#\[\{"label":"Unit.*","html":".*Unit.*"\}.*\]#smU', $output );
-		$this->assertNotEquals( array(), $suggestItems );
+		$this->assertNotEquals( [], $suggestItems );
 
 		foreach( $suggestItems as $item ) {
 			$this->assertInstanceOf( '\Aimeos\MShop\Product\Item\Iface', $item );
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Suggest\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 

@@ -20,7 +20,7 @@ namespace Aimeos\Client\Html\Common\Factory;
  */
 class Base
 {
-	private static $objects = array();
+	private static $objects = [];
 
 
 	/**
@@ -118,8 +118,8 @@ class Base
 		 * @since 2014.03
 		 * @category Developer
 		 */
-		$decorators = $config->get( 'client/html/common/decorators/default', array() );
-		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', array() );
+		$decorators = $config->get( 'client/html/common/decorators/default', [] );
+		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
 		{
@@ -132,11 +132,11 @@ class Base
 		$client = self::addDecorators( $context, $client, $templatePaths, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', array() );
+		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
 		$client = self::addDecorators( $context, $client, $templatePaths, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', array() );
+		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', [] );
 		$client = self::addDecorators( $context, $client, $templatePaths, $decorators, $classprefix );
 
 		return $client;

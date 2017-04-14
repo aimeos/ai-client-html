@@ -56,8 +56,8 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/filter/tree/standard/subparts';
-	private $subPartNames = array();
-	private $tags = array();
+	private $subPartNames = [];
+	private $tags = [];
 	private $expire;
 	private $cache;
 
@@ -70,7 +70,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -213,11 +213,11 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
-			$catItems = array();
+			$catItems = [];
 			$context = $this->getContext();
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
@@ -273,7 +273,7 @@ class Standard
 
 			if( ( $node = reset( $catItems ) ) === false )
 			{
-				$node = $controller->getTree( $startid, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+				$node = $controller->getTree( $startid, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 				$catItems = array( $node->getId() => $node );
 			}
 
@@ -306,7 +306,7 @@ class Standard
 	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
 	 * @param array &$tags List of tags the new tags will be added to
 	 */
-	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, &$expire, array &$tags = array() )
+	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, &$expire, array &$tags = [] )
 	{
 		$this->addMetaItems( $tree, $expire, $tags );
 
@@ -403,7 +403,7 @@ class Standard
 	{
 		if( $tree->getId() == $currentId )
 		{
-			$ids = array();
+			$ids = [];
 			foreach( $tree->getChildren() as $item ) {
 				$ids[] = $item->getId();
 			}
@@ -418,7 +418,7 @@ class Standard
 			}
 		}
 
-		return array();
+		return [];
 	}
 
 

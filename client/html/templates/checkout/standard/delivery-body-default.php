@@ -8,9 +8,9 @@
 
 $enc = $this->encoder();
 
-$services = $this->get( 'deliveryServices', array() );
-$servicePrices = $this->get( 'deliveryServicePrices', array() );
-$serviceAttributes = $this->get( 'deliveryServiceAttributes', array() );
+$services = $this->get( 'deliveryServices', [] );
+$servicePrices = $this->get( 'deliveryServicePrices', [] );
+$serviceAttributes = $this->get( 'deliveryServiceAttributes', [] );
 
 try
 {
@@ -29,8 +29,8 @@ catch( Exception $e )
 
 $serviceOption = $this->param( 'c_deliveryoption', $orderServiceId );
 
-$deliveryCss = array();
-foreach( $this->get( 'deliveryError', array() ) as $name => $msg ) {
+$deliveryCss = [];
+foreach( $this->get( 'deliveryError', [] ) as $name => $msg ) {
 	$deliveryCss[$name][] = 'error';
 }
 

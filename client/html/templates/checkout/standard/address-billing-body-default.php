@@ -31,7 +31,7 @@ $disablenew = (bool) $this->config( 'client/html/common/address/billing/disable-
 try {
 	$addrArray = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT )->toArray();
 } catch( Exception $e ) {
-	$addrArray = array();
+	$addrArray = [];
 }
 
 
@@ -42,23 +42,23 @@ if( !isset( $addrArray['order.base.address.addressid'] ) || $addrArray['order.ba
 }
 
 $billingOption = $this->param( 'ca_billingoption', $billingDefault );
-$billingSalutations = $this->get( 'billingSalutations', array() );
-$billingCountries = $this->get( 'addressCountries', array() );
-$billingStates = $this->get( 'addressStates', array() );
-$billingLanguages = $this->get( 'addressLanguages', array() );
+$billingSalutations = $this->get( 'billingSalutations', [] );
+$billingCountries = $this->get( 'addressCountries', [] );
+$billingStates = $this->get( 'addressStates', [] );
+$billingLanguages = $this->get( 'addressLanguages', [] );
 
 
-$paymentCssAll = array();
+$paymentCssAll = [];
 
-foreach( $this->get( 'billingMandatory', array() ) as $name ) {
+foreach( $this->get( 'billingMandatory', [] ) as $name ) {
 	$paymentCssAll[$name][] = 'mandatory';
 }
 
-foreach( $this->get( 'billingOptional', array() ) as $name ) {
+foreach( $this->get( 'billingOptional', [] ) as $name ) {
 	$paymentCssAll[$name][] = 'optional';
 }
 
-foreach( $this->get( 'billingHidden', array() ) as $name ) {
+foreach( $this->get( 'billingHidden', [] ) as $name ) {
 	$paymentCssAll[$name][] = 'hidden';
 }
 
@@ -81,7 +81,6 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 				<div class="values">
 <?php
 	$addr = $this->addressPaymentItem;
-	$id = $this->addressPaymentItem->getAddressId();
 
 	echo preg_replace( "/\n+/m", "<br/>", trim( $enc->html( sprintf(
 		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
@@ -128,9 +127,9 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 
 <?php
 	$paymentCss = $paymentCssAll;
-	if( $billingOption == $id )
+	if( $billingOption == $addr->getAddressId() )
 	{
-		foreach( $this->get( 'billingError', array() ) as $name => $msg ) {
+		foreach( $this->get( 'billingError', [] ) as $name => $msg ) {
 			$paymentCss[$name][] = 'error';
 		}
 	}
@@ -164,7 +163,7 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 						'states' => $billingStates,
 						'type' => 'billing',
 						'css' => $paymentCss,
-						'id' => $id,
+						'id' => $addr->getAddressId(),
 					)
 				); ?>
 			</ul>
@@ -192,12 +191,12 @@ foreach( $this->get( 'billingHidden', array() ) as $name ) {
 	$paymentCss = $paymentCssAll;
 	if( $billingOption == 'null' )
 	{
-		foreach( $this->get( 'billingError', array() ) as $name => $msg ) {
+		foreach( $this->get( 'billingError', [] ) as $name => $msg ) {
 			$paymentCss[$name][] = 'error';
 		}
 	}
 
-	$addrValues = array_merge( $addrArray, $this->param( 'ca_billing', array() ) );
+	$addrValues = array_merge( $addrArray, $this->param( 'ca_billing', [] ) );
 
 	if( !isset( $addrValues['order.base.address.languageid'] ) || $addrValues['order.base.address.languageid'] == '' ) {
 		$addrValues['order.base.address.languageid'] = $this->get( 'billingLanguage', 'en' );

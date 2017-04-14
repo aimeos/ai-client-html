@@ -21,7 +21,7 @@ $enc = $this->encoder();
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 $basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', array() );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
@@ -173,7 +173,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 $modify = $this->get( 'summaryEnableModify', false );
-$errors = $this->get( 'summaryErrorCodes', array() );
+$errors = $this->get( 'summaryErrorCodes', [] );
 
 
 ?>
@@ -203,7 +203,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 					<?php endif; ?>
 
 					<?php $params = array( 'd_prodid' => $product->getProductId(), 'd_name' => $product->getName( 'url' ) ); ?>
-					<a class="product-name" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, array(), $detailConfig ) ); ?>">
+					<a class="product-name" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 						<?php echo $enc->html( $product->getName(), $enc::TRUST ); ?>
 					</a>
 
@@ -224,7 +224,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 					<?php endforeach; ?>
 
 
-					<?php if( ( $attributes = $product->getAttributes( 'config' ) ) !== array() ) : ?>
+					<?php if( ( $attributes = $product->getAttributes( 'config' ) ) !== [] ) : ?>
 						<ul class="attr-list attr-list-config">
 
 							<?php foreach( $attributes as $attribute ) : ?>
@@ -232,7 +232,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 
 									<?php if( $modify ) : ?>
 										<?php $params = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity(), 'b_attrconfcode' => $attribute->getCode() ); ?>
-										<a class="change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, array(), $basketConfig ) ); ?>">
+										<a class="change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ); ?>">
 									<?php endif; ?>
 
 									<span class="sign">−</span>
@@ -250,7 +250,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 					<?php endif; ?>
 
 
-					<?php if( ( $attributes = $product->getAttributes( 'custom' ) ) !== array() ) : ?>
+					<?php if( ( $attributes = $product->getAttributes( 'custom' ) ) !== [] ) : ?>
 						<ul class="attr-list attr-list-custom">
 
 							<?php foreach( $attributes as $attribute ) : ?>
@@ -264,7 +264,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 					<?php endif; ?>
 
 
-					<?php if( $unhide && ( $attributes = $product->getAttributes( 'hidden' ) ) !== array() ) : ?>
+					<?php if( $unhide && ( $attributes = $product->getAttributes( 'hidden' ) ) !== [] ) : ?>
 						<ul class="attr-list attr-list-hidden">
 
 							<?php foreach( $attributes as $attribute ) : ?>
@@ -272,7 +272,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 									<li class="attr-item">
 										<span class="name"><?php echo $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
 										<span class="value">
-											<a href="<?php echo $enc->attr( $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), array(), $dlConfig ) ); ?>" >
+											<a href="<?php echo $enc->attr( $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ) ); ?>" >
 												<?php echo $enc->html( $attribute->getName() ); ?>
 											</a>
 										</span>
@@ -291,7 +291,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 
 						<?php if( $product->getQuantity() > 1 ) : ?>
 							<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ); ?>
-							<a class="minibutton change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, array(), $basketConfig ) ); ?>">−</a>
+							<a class="minibutton change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">−</a>
 						<?php else : ?>
 							&nbsp;
 						<?php endif; ?>
@@ -306,7 +306,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 						/>
 
 						<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() + 1 ); ?>
-						<a class="minibutton change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, array(), $basketConfig ) ); ?>">+</a>
+						<a class="minibutton change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">+</a>
 
 					<?php else : ?>
 						<?php echo $enc->html( $product->getQuantity() ); ?>
@@ -321,7 +321,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 				<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 					<td class="action">
 						<?php $basketParams = array( 'b_action' => 'delete', 'b_position' => $position ); ?>
-						<a class="minibutton change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, array(), $basketConfig ) ); ?>">
+						<a class="minibutton change" href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
 							<?php echo $this->translate( 'client', 'X' ); ?>
 						</a>
 					</td>
@@ -399,7 +399,7 @@ $errors = $this->get( 'summaryErrorCodes', array() );
 			</tr>
 		<?php endif; ?>
 
-		<?php foreach( $this->get( 'summaryTaxRates', array() ) as $taxRate => $priceItem ) : $taxValue = $priceItem->getTaxValue(); ?>
+		<?php foreach( $this->get( 'summaryTaxRates', [] ) as $taxRate => $priceItem ) : $taxValue = $priceItem->getTaxValue(); ?>
 			<?php if( $taxRate > '0.00' && $taxValue > '0.00' ) : $priceTaxvalue += $taxValue; ?>
 				<tr class="tax">
 					<?php if( $priceItem->getTaxFlag() ) : ?>

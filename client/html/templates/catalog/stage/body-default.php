@@ -7,7 +7,7 @@
  */
 
 $enc = $this->encoder();
-$catPath = (array) $this->get( 'stageCatPath', array() );
+$catPath = (array) $this->get( 'stageCatPath', [] );
 
 $classes = '';
 foreach( $catPath as $cat )
@@ -18,10 +18,10 @@ foreach( $catPath as $cat )
 	}
 }
 
-$mediaItems = array();
+$mediaItems = [];
 foreach( array_reverse( $catPath ) as $catItem )
 {
-	if( ( $mediaItems = $catItem->getRefItems( 'media', 'default', 'stage' ) ) !== array() ) {
+	if( ( $mediaItems = $catItem->getRefItems( 'media', 'default', 'stage' ) ) !== [] ) {
 		break;
 	}
 }
@@ -29,9 +29,9 @@ foreach( array_reverse( $catPath ) as $catItem )
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', array() );
+$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
-$params = $this->get( 'stageParams', array() );
+$params = $this->get( 'stageParams', [] );
 
 
 ?>
@@ -61,14 +61,14 @@ $params = $this->get( 'stageParams', array() );
 				<?php if( isset( $this->stageCatPath ) ) : ?>
 					<?php foreach( (array) $this->stageCatPath as $cat ) : $params['f_name'] = $cat->getName( 'url' ); $params['f_catid'] = $cat->getId(); ?>
 						<li>
-							<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array(), $listConfig ) ); ?>">
+							<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
 								<?php echo $enc->html( $cat->getName() ); ?>
 							</a>
 						</li>
 					<?php endforeach; ?>
 				<?php else : ?>
 					<li>
-						<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, array(), $listConfig ) ); ?>">
+						<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
 							<?php echo $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ); ?>
 						</a>
 					</li>

@@ -6,12 +6,12 @@
  */
 
 $enc = $this->encoder();
-$productItems = $this->get( 'boughtItems', array() );
+$productItems = $this->get( 'boughtItems', [] );
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array() );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 
 ?>

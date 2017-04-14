@@ -69,7 +69,7 @@ class Standard
 	 */
 	private $subPartNames = array( 'navigator' );
 
-	private $tags = array();
+	private $tags = [];
 	private $expire;
 	private $cache;
 
@@ -82,7 +82,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$prefixes = array( 'f' );
 		$context = $this->getContext();
@@ -116,24 +116,24 @@ class Standard
 			catch( \Aimeos\Client\Html\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-				$view->stageErrorList = $view->get( 'stageErrorList', array() ) + $error;
+				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 			}
 			catch( \Aimeos\Controller\Frontend\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-				$view->stageErrorList = $view->get( 'stageErrorList', array() ) + $error;
+				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 			}
 			catch( \Aimeos\MShop\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-				$view->stageErrorList = $view->get( 'stageErrorList', array() ) + $error;
+				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 			}
 			catch( \Exception $e )
 			{
 				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-				$view->stageErrorList = $view->get( 'stageErrorList', array() ) + $error;
+				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 			}
 
 			/** client/html/catalog/stage/standard/template-body
@@ -180,7 +180,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$prefixes = array( 'f' );
 		$context = $this->getContext();
@@ -345,17 +345,17 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->stageErrorList = $view->get( 'stageErrorList', array() ) + $error;
+			$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->stageErrorList = $view->get( 'stageErrorList', array() ) + $error;
+			$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->stageErrorList = $view->get( 'stageErrorList', array() ) + $error;
+			$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
@@ -363,7 +363,7 @@ class Standard
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->stageErrorList = $view->get( 'stageErrorList', array() ) + $error;
+			$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 		}
 	}
 
@@ -381,7 +381,7 @@ class Standard
 		{
 			$context = $this->getContext();
 			$site = $context->getLocale()->getSite()->getCode();
-			$params += (array) $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, array() );
+			$params += (array) $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 		}
 
 		return parent::getClientParams( $params, $prefixes );
@@ -407,7 +407,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{

@@ -96,9 +96,9 @@ $suggestAction = $this->config( 'client/html/catalog/suggest/url/action', 'sugge
  * @see client/html/url/config
  * @see client/html/catalog/listsimple/url/config
  */
-$suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', array() );
+$suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', [] );
 
-$suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, array(), array(), $suggestConfig ) );
+$suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, [], [], $suggestConfig ) );
 
 
 ?>

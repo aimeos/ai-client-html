@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->listProductTotal = $total;
 		$view->listPageSize = 100;
 		$view->listPageCurr = 1;
-		$view->listParams = array();
+		$view->listParams = [];
 		$view->listCatPath = array( $catalogManager->createItem(), $catItem );
 
 		$this->object->setView( $view );

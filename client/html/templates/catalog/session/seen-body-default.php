@@ -7,7 +7,7 @@
  */
 
 $enc = $this->encoder();
-$seenList = $this->get( 'seenItems', array() );
+$seenList = $this->get( 'seenItems', [] );
 
 /** client/html/catalog/session/seen/count/enable
  * Displays the number of last seen products in the header of the last seen list

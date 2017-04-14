@@ -55,7 +55,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/basket/related/bought/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 
@@ -67,7 +67,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -210,13 +210,13 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
 			if( isset( $view->relatedBasket ) )
 			{
-				$refIds = $items = array();
+				$refIds = $items = [];
 				$context = $this->getContext();
 
 				$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
@@ -300,7 +300,7 @@ class Standard
 	 */
 	protected function getProductIdsFromBasket( \Aimeos\MShop\Order\Item\Base\Iface $basket )
 	{
-		$list = array();
+		$list = [];
 
 		foreach( $basket->getProducts() as $orderProduct )
 		{
@@ -344,8 +344,8 @@ class Standard
 		$domains = array( 'text', 'price', 'media' );
 		$domains = $config->get( 'client/html/basket/related/bought/standard/domains', $domains );
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 
-		return $controller->getProductItems( $ids, $domains );
+		return $controller->getItems( $ids, $domains );
 	}
 }

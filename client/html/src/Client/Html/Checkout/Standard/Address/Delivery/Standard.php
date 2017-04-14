@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/address/delivery/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 	private $mandatory = array(
@@ -86,7 +86,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->setViewParams( $this->getView(), $tags, $expire );
 
@@ -220,16 +220,8 @@ class Standard
 
 		try
 		{
-			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null )
-			{
-				$customerAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
-				$address = $customerAddressManager->getItem( $id );
-
-				if( $address->getParentId() != $context->getUserId() ) {
-					throw new \Aimeos\Client\Html\Exception( sprintf( 'Address with ID "%1$s" not found', $id ) );
-				}
-
-				$customerAddressManager->deleteItem( $id );
+			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null ) {
+				\Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' )->deleteAddressItem( $id );
 			}
 
 			// only start if there's something to do
@@ -437,7 +429,7 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$params = $view->param( 'ca_delivery', array() );
+			$params = $view->param( 'ca_delivery', [] );
 			$invalid = $this->checkFields( $params );
 
 			if( count( $invalid ) > 0 )
@@ -450,34 +442,21 @@ class Standard
 		}
 		else if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) !== '-1' ) // existing address
 		{
-			$customerAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
-			$address = $customerAddressManager->getItem( $option );
+			$list = [];
+			$params = $view->param( 'ca_delivery_' . $option, [] );
 
-			if( $address->getParentId() != $context->getUserId() ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'Address with ID "%1$s" not found', $option ) );
-			}
-
-			$invalid = array();
-			$params = $view->param( 'ca_delivery_' . $option, array() );
-
-			if( !empty( $params ) )
-			{
-				$list = array();
-				$invalid = $this->checkFields( $params );
-
-				foreach( $params as $key => $value ) {
-					$list[str_replace( 'order.base', 'customer', $key )] = $value;
-				}
-
-				$address->fromArray( $list );
-				$customerAddressManager->saveItem( $address );
-			}
-
-			if( count( $invalid ) > 0 )
+			if( !empty( $params ) && ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
 				$view->deliveryError = $invalid;
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
+
+			foreach( $params as $key => $value ) {
+				$list[str_replace( 'order.base', 'customer', $key )] = $value;
+			}
+
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+			$address = $controller->editAddressItem( $option, $list );
 
 			$basketCtrl->setAddress( $type, $address );
 		}
@@ -496,7 +475,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
@@ -549,9 +528,9 @@ class Standard
 			 * @see client/html/checkout/standard/address/delivery/optional
 			 * @see client/html/checkout/standard/address/countries
 			 */
-			$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', array() );
+			$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );
 
-			if( count( $view->get( 'addressLanguages', array() ) ) === 1 ) {
+			if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
 				$hidden[] = 'order.base.address.languageid';
 			}
 
@@ -713,7 +692,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		$invalid = array();
+		$invalid = [];
 
 		foreach( $params as $key => $value )
 		{

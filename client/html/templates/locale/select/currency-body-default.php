@@ -8,11 +8,11 @@
 
 $enc = $this->encoder();
 
-$map = $this->get( 'selectMap', array() );
-$params = $this->get( 'selectParams', array() );
+$map = $this->get( 'selectMap', [] );
+$params = $this->get( 'selectParams', [] );
 $langId = $this->get( 'selectLanguageId', 'en' );
 $currencyId = $this->get( 'selectCurrencyId', 'EUR' );
-$currencies = ( isset( $map[$langId] ) ? (array) $map[$langId] : array() );
+$currencies = ( isset( $map[$langId] ) ? (array) $map[$langId] : [] );
 
 /** client/html/locale/select/currency/url/config
  * Associative list of configuration options used for generating the URL
@@ -31,7 +31,7 @@ $currencies = ( isset( $map[$langId] ) ? (array) $map[$langId] : array() );
  * @since 2014.09
  * @category Developer
  */
-$config = $this->config( 'client/html/locale/select/currency/url/config', array() );
+$config = $this->config( 'client/html/locale/select/currency/url/config', [] );
 
 
 ?>
@@ -46,7 +46,7 @@ $config = $this->config( 'client/html/locale/select/currency/url/config', array(
 				<?php foreach( $currencies as $currency => $locParam ) : ?>
 					<li class="select-item <?php echo ( $currency === $currencyId ? 'active' : '' ); ?>">
 						<?php $target = $this->request()->getTarget(); ?>
-						<?php $url = $this->url( $target, $this->param( 'controller' ), $this->param( 'action' ), array_merge( $params, $locParam ), array(), $config ); ?>
+						<?php $url = $this->url( $target, $this->param( 'controller' ), $this->param( 'action' ), array_merge( $params, $locParam ), [], $config ); ?>
 						<a href="<?php echo $enc->attr( $url ); ?>">
 							<?php echo $enc->html( $this->translate( 'client/currency', $currency ), $enc::TRUST ); ?>
 						</a>

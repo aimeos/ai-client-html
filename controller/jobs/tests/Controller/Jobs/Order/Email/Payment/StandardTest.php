@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$orderItem = $orderManagerStub->createItem();
 
 		$orderManagerStub->expects( $this->exactly( 4 ) )->method( 'searchItems' )
-			->will( $this->onConsecutiveCalls( array( $orderItem ), array(), array(), array() ) );
+			->will( $this->onConsecutiveCalls( array( $orderItem ), [], [], [] ) );
 
 		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Payment\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )

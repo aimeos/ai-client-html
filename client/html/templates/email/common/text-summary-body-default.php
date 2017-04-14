@@ -130,7 +130,7 @@ $services = $this->summaryBasket->getServices();
 		$this->config( 'client/html/email/common/summary/detail/text', 'email/common/text-summary-detail-partial-default.php' ),
 		array(
 			'summaryBasket' => $this->summaryBasket,
-			'summaryTaxRates' => $this->get( 'summaryTaxRates', array() ),
+			'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
 			'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes', false ),
 		)
 	);

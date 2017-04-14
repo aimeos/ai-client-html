@@ -16,11 +16,11 @@
 
 $index = 0;
 $enc = $this->encoder();
-$attrTypeDeps = $attrDeps = $prodDeps = array();
+$attrTypeDeps = $attrDeps = $prodDeps = [];
 
-$articleItems = $this->get( 'products', array() );
-$productItems = $this->get( 'productItems', array() );
-$attributeItems = $this->get( 'attributeItems', array() );
+$articleItems = $this->get( 'products', [] );
+$productItems = $this->get( 'productItems', [] );
+$attributeItems = $this->get( 'attributeItems', [] );
 
 foreach( $articleItems as $articleId => $articleItem )
 {
@@ -110,7 +110,7 @@ ksort( $attrTypeDeps );
  */
 
 ?>
-<?php foreach( $this->get( 'products', array() ) as $prodid => $product ) : ?>
+<?php foreach( $this->get( 'products', [] ) as $prodid => $product ) : ?>
 	<?php $prices = $product->getRefItems( 'price', null, 'default' ); ?>
 
 	<?php if( !empty( $prices ) ) : ?>

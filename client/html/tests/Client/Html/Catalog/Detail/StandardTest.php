@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $this->getProductItem()->getId() ) );
 		$view->addHelper( 'param', $helper );
 
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $this->getProductItem()->getId() ) );
 		$view->addHelper( 'param', $helper );
 
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
@@ -79,10 +79,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertContains( '<div class="catalog-detail-basic">', $output );
 		$this->assertContains( '<div class="catalog-detail-image', $output );
 
-		$this->assertContains( '<div class="catalog-detail-social">', $output );
+		$this->assertContains( '<div class="catalog-social">', $output );
 		$this->assertRegExp( '/.*facebook.*/', $output );
 
-		$this->assertContains( '<!-- catalog.detail.actions -->', $output );
+		$this->assertContains( '<div class="catalog-actions">', $output );
 		$this->assertContains( 'actions-button-pin', $output );
 		$this->assertContains( 'actions-button-watch', $output );
 		$this->assertContains( 'actions-button-favorite', $output );
@@ -124,7 +124,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->object->setView( \TestHelperHtml::getView() );
 
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array() );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
@@ -188,7 +188,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->assertGreaterThan( 0, count( $variantAttr1 ) );
 		$this->assertGreaterThan( 0, count( $variantAttr2 ) );
 
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
@@ -301,7 +301,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testProcessClientHtmlException()
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
 
@@ -317,7 +317,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testProcessControllerFrontendException()
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
 
@@ -333,7 +333,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testProcessMShopException()
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
 
@@ -349,7 +349,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testProcessException()
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
 
@@ -362,7 +362,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	protected function getProductItem( $code = 'CNE', $domains = array() )
+	protected function getProductItem( $code = 'CNE', $domains = [] )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
 		$search = $manager->createSearch();

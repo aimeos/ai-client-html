@@ -11,7 +11,7 @@ $enc = $this->encoder();
 $accountTarget = $this->config( 'client/html/account/history/url/target' );
 $accountController = $this->config( 'client/html/account/history/url/controller', 'account' );
 $accountAction = $this->config( 'client/html/account/history/url/action', 'history' );
-$accountConfig = $this->config( 'client/html/account/history/url/config', array() );
+$accountConfig = $this->config( 'client/html/account/history/url/config', [] );
 
 $addresses = $this->summaryBasket->getAddresses();
 $services = $this->summaryBasket->getServices();
@@ -22,7 +22,7 @@ $services = $this->summaryBasket->getServices();
 <div class="account-history-order common-summary">
 
 	<a class="modify minibutton btn-close"
-		href="<?php echo $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, array(), array(), $accountConfig ) ); ?>">
+		href="<?php echo $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
 		<?php echo $enc->html( $this->translate( 'client', 'X' ), $enc::TRUST ); ?>
 	</a>
 
@@ -133,7 +133,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( ( $coupons = $this->summaryBasket->getCoupons() ) !== array() ) : ?>
+				<?php if( ( $coupons = $this->summaryBasket->getCoupons() ) !== [] ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
 							<li class="attr-item"><?php echo $enc->html( $code ); ?></li>
@@ -189,7 +189,7 @@ $services = $this->summaryBasket->getServices();
 
 	<div class="button-group">
 		<a class="standardbutton btn-close"
-			href="<?php echo $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, array(), array(), $accountConfig ) ); ?>">
+			href="<?php echo $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
 			<?php echo $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ); ?>
 		</a>
 	</div>

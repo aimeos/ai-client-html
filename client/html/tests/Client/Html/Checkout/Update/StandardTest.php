@@ -10,6 +10,7 @@ namespace Aimeos\Client\Html\Checkout\Update;
  */
 class StandardTest extends \PHPUnit_Framework_TestCase
 {
+	private $view;
 	private $object;
 	private $context;
 
@@ -18,15 +19,16 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->context = \TestHelperHtml::getContext();
+		$this->view = \TestHelperHtml::getView();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Update\Standard( $this->context, $paths );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->context, $this->object, $this->view );
 	}
 
 
@@ -40,14 +42,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetHeaderException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Update\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( $this->view );
 
 		$this->assertEquals( null, $object->getHeader() );
 	}
@@ -62,14 +64,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Update\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( $this->view );
 
 		$object->getBody();
 	}
@@ -78,14 +80,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Update\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( $this->view );
 
 		$object->getBody();
 	}
@@ -94,14 +96,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyMShopException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Update\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( $this->view );
 
 		$object->getBody();
 	}
@@ -110,14 +112,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Update\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'setViewParams' ) )
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'setViewParams' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( $this->view );
 
 		$object->getBody();
 	}
@@ -156,15 +158,21 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	public function testProcessNoService()
+	public function testProcessException()
 	{
-		$view = $this->object->getView();
+		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Service\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['updateSync'] )
+			->getMock();
 
-		$request = $this->getMockBuilder( '\Psr\Http\Message\ServerRequestInterface' )->getMock();
-		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $request, '127.0.0.1', 'test' );
-		$view->addHelper( 'request', $helper );
+		$mock->expects( $this->once() )->method( 'updateSync' )
+			->will( $this->throwException( new \RuntimeException() ) );
 
+		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
 		$this->object->process();
+		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
+
+		$this->assertEquals( 500, $this->view->response()->getStatusCode() );
 	}
 
 

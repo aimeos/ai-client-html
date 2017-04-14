@@ -6,7 +6,7 @@
  */
 
 $enc = $this->encoder();
-$items = $this->get( 'serviceItems', array() );
+$items = $this->get( 'serviceItems', [] );
 
 ?>
 <?php $this->block()->start( 'catalog/detail/service' ); ?>

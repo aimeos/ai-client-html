@@ -60,7 +60,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/summary/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 
@@ -72,11 +72,11 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
-		$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
 		if( $step != 'summary' && !( in_array( 'summary', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
@@ -125,11 +125,11 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
-		$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
 		if( $step != 'summary' && !( in_array( 'summary', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
@@ -256,12 +256,12 @@ class Standard
 				&& ( $option = $view->param( 'cs_option_terms_value', 0 ) ) != 1
 			) {
 				$error = $view->translate( 'client', 'Please accept the terms and conditions' );
-				$errors = $view->get( 'summaryErrorCodes', array() );
+				$errors = $view->get( 'summaryErrorCodes', [] );
 				$errors['option']['terms'] = $error;
 
 				$view->summaryErrorCodes = $errors;
 				$view->standardStepActive = 'summary';
-				$view->standardErrorList = array( $error ) + $view->get( 'standardErrorList', array() );
+				$view->standardErrorList = array( $error ) + $view->get( 'standardErrorList', [] );
 			}
 
 
@@ -296,17 +296,19 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
-			if( ( $view->summaryCustomerId = $this->getContext()->getUserId() ) === null )
+			$context = $this->getContext();
+
+			if( ( $view->summaryCustomerId = $context->getUserId() ) === null )
 			{
 				try
 				{
 					$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-					$customerManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer' );
-					$view->summaryCustomerId = $customerManager->findItem( $addr->getEmail() )->getId();
+					$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+					$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
 				}
 				catch( \Exception $e ) {}
 			}

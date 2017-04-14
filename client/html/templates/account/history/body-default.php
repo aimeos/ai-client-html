@@ -11,7 +11,7 @@ $enc = $this->encoder();
 ?>
 <section class="aimeos account-history">
 
-	<?php if( ( $errors = $this->get( 'historyErrorList', array() ) ) !== array() ) : ?>
+	<?php if( ( $errors = $this->get( 'historyErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
 				<li class="error-item"><?php echo $enc->html( $error ); ?></li>

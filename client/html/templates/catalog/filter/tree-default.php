@@ -7,13 +7,13 @@
 
 $enc = $this->encoder();
 $level = $this->get( 'level', 0 );
-$path = $this->get( 'path', array() );
-$params = $this->get( 'params', array() );
+$path = $this->get( 'path', [] );
+$params = $this->get( 'params', [] );
 
 $target = $this->config( 'client/html/catalog/lists/url/target' );
 $controller = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$config = $this->config( 'client/html/catalog/lists/url/config', array() );
+$config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 /** client/html/common/partials/media
  * Relative path to the media partial template file
@@ -33,7 +33,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', array() );
 
 ?>
 <ul class="level-<?php echo $enc->attr( $level ); ?>">
-	<?php foreach( $this->get( 'nodes', array() ) as $item ) : ?>
+	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
 
 			<?php $id = $item->getId(); $config = $item->getConfig(); ?>
@@ -43,7 +43,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', array() );
 
 			<li class="cat-item catid-<?php echo $enc->attr( $id . $class ); ?>" data-id="<?php echo $id; ?>" >
 
-				<a class="cat-item" href="<?php echo $enc->attr( $this->url( $target, $controller, $action, $params, array(), $config ) ); ?>"><!--
+				<a class="cat-item" href="<?php echo $enc->attr( $this->url( $target, $controller, $action, $params, [], $config ) ); ?>"><!--
 					--><div class="media-list"><!--
 
 						<?php foreach( $item->getListItems( 'media', 'icon' ) as $listItem ) : ?>

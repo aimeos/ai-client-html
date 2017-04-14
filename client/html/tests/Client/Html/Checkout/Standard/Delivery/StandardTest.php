@@ -134,7 +134,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->object->setView( $view );
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Frontend\\Service\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\MShop\\Exception' );
 		$this->object->process();
 	}
 

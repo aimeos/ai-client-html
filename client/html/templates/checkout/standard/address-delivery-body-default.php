@@ -31,35 +31,35 @@ $disablenew = (bool) $this->config( 'client/html/common/address/delivery/disable
 $target = $this->config( 'client/html/checkout/standard/url/target' );
 $controller = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
 $action = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$config = $this->config( 'client/html/checkout/standard/url/config', array() );
+$config = $this->config( 'client/html/checkout/standard/url/config', [] );
 
 try {
 	$addrArray = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY )->toArray();
 } catch( Exception $e ) {
-	$addrArray = array();
+	$addrArray = [];
 }
 
 
-$deliveryDefault = ( $addrArray === array() ? -1 : 'null' );
+$deliveryDefault = ( $addrArray === [] ? -1 : 'null' );
 $deliveryOption = $this->param( 'ca_deliveryoption', ( isset( $addrArray['order.base.address.addressid'] ) && $addrArray['order.base.address.addressid'] != '' ? $addrArray['order.base.address.addressid'] : $deliveryDefault ) );
 
-$deliverySalutations = $this->get( 'deliverySalutations', array() );
-$deliveryCountries = $this->get( 'addressCountries', array() );
-$deliveryStates = $this->get( 'addressStates', array() );
-$deliveryLanguages = $this->get( 'addressLanguages', array() );
+$deliverySalutations = $this->get( 'deliverySalutations', [] );
+$deliveryCountries = $this->get( 'addressCountries', [] );
+$deliveryStates = $this->get( 'addressStates', [] );
+$deliveryLanguages = $this->get( 'addressLanguages', [] );
 
 
-$deliveryCssAll = array();
+$deliveryCssAll = [];
 
-foreach( $this->get( 'deliveryMandatory', array() ) as $name ) {
+foreach( $this->get( 'deliveryMandatory', [] ) as $name ) {
 	$deliveryCssAll[$name][] = 'mandatory';
 }
 
-foreach( $this->get( 'deliveryOptional', array() ) as $name ) {
+foreach( $this->get( 'deliveryOptional', [] ) as $name ) {
 	$deliveryCssAll[$name][] = 'optional';
 }
 
-foreach( $this->get( 'deliveryHidden', array() ) as $name ) {
+foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 	$deliveryCssAll[$name][] = 'hidden';
 }
 
@@ -78,12 +78,12 @@ foreach( $this->get( 'deliveryHidden', array() ) as $name ) {
 	</div>
 
 
-	<?php foreach( $this->get( 'addressDeliveryItems', array() ) as $id => $addr ) : ?>
+	<?php foreach( $this->get( 'addressDeliveryItems', [] ) as $id => $addr ) : ?>
 
 		<div class="item-address">
 
 			<div class="header">
-				<a class="modify minibutton" href="<?php echo $enc->attr( $this->url( $target, $controller, $action, array( 'step' => 'address', 'ca_delivery_delete' => $id ), array(), $config ) ); ?>">X</a>
+				<a class="modify minibutton" href="<?php echo $enc->attr( $this->url( $target, $controller, $action, array( 'step' => 'address', 'ca_delivery_delete' => $id ), [], $config ) ); ?>">X</a>
 				<input type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="<?php echo $enc->attr( $addr->getAddressId() ); ?>" <?php echo ( $deliveryOption == $id ? 'checked="checked"' : '' ); ?> />
 				<div class="values">
 <?php
@@ -134,7 +134,7 @@ foreach( $this->get( 'deliveryHidden', array() ) as $name ) {
 	$deliveryCss = $deliveryCssAll;
 	if( $deliveryOption == $id )
 	{
-		foreach( $this->get( 'deliveryError', array() ) as $name => $msg ) {
+		foreach( $this->get( 'deliveryError', [] ) as $name => $msg ) {
 			$deliveryCss[$name][] = 'error';
 		}
 	}
@@ -178,12 +178,12 @@ foreach( $this->get( 'deliveryHidden', array() ) as $name ) {
 	$deliveryCss = $deliveryCssAll;
 	if( $deliveryOption == 'null' )
 	{
-		foreach( $this->get( 'deliveryError', array() ) as $name => $msg ) {
+		foreach( $this->get( 'deliveryError', [] ) as $name => $msg ) {
 			$deliveryCss[$name][] = 'error';
 		}
 	}
 
-	$addrValues = array_merge( $addrArray, $this->param( 'ca_delivery', array() ) );
+	$addrValues = array_merge( $addrArray, $this->param( 'ca_delivery', [] ) );
 
 	if( !isset( $addrValues['order.base.address.languageid'] ) || $addrValues['order.base.address.languageid'] == '' ) {
 		$addrValues['order.base.address.languageid'] = $this->get( 'deliveryLanguage', 'en' );

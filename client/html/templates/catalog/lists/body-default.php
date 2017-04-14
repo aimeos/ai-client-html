@@ -7,17 +7,17 @@
  */
 
 $enc = $this->encoder();
-$params = $this->get( 'listParams', array() );
-$catPath = $this->get( 'listCatPath', array() );
+$params = $this->get( 'listParams', [] );
+$catPath = $this->get( 'listCatPath', [] );
 
 $target = $this->config( 'client/html/catalog/lists/url/target' );
 $cntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$config = $this->config( 'client/html/catalog/lists/url/config', array() );
+$config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 
 $classes = '';
-foreach( (array) $this->get( 'listCatPath', array() ) as $cat )
+foreach( (array) $this->get( 'listCatPath', [] ) as $cat )
 {
 	$catConfig = $cat->getConfig();
 	if( isset( $catConfig['css-class'] ) ) {
@@ -45,37 +45,40 @@ foreach( (array) $this->get( 'listCatPath', array() ) as $cat )
 $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 'short', 'long' ) );
 
 
-$quoteItems = array();
-if( $catPath !== array() && ( $catItem = end( $catPath ) ) !== false ) {
+$quoteItems = [];
+if( $catPath !== [] && ( $catItem = end( $catPath ) ) !== false ) {
 	$quoteItems = $catItem->getRefItems( 'text', 'quote', 'default' );
 }
 
 
-/** client/html/catalog/lists/partials/pagination
- * Relative path to the pagination partial template file for catalog lists
- *
- * Partials are templates which are reused in other templates and generate
- * reoccuring blocks filled with data from the assigned values. The pagination
- * partial creates an HTML block containing a page browser and sorting links
- * if necessary.
- *
- * @param string Relative path to the template file
- * @since 2017.01
- * @category Developer
- */
-$pagination = $this->partial(
-	$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-default.php' ),
-	array(
-		'params' => $params,
-		'size' => $this->get( 'listPageSize', 48 ),
-		'total' => $this->get( 'listProductTotal', 0 ),
-		'current' => $this->get( 'listPageCurr', 0 ),
-		'prev' => $this->get( 'listPagePrev', 0 ),
-		'next' => $this->get( 'listPageNext', 0 ),
-		'last' => $this->get( 'listPageLast', 0 ),
-	)
-);
-
+$pagination = '';
+if( $this->get( 'listProductTotal', 0 ) ) > 1 )
+{
+	/** client/html/catalog/lists/partials/pagination
+	 * Relative path to the pagination partial template file for catalog lists
+	 *
+	 * Partials are templates which are reused in other templates and generate
+	 * reoccuring blocks filled with data from the assigned values. The pagination
+	 * partial creates an HTML block containing a page browser and sorting links
+	 * if necessary.
+	 *
+	 * @param string Relative path to the template file
+	 * @since 2017.01
+	 * @category Developer
+	 */
+	$pagination = $this->partial(
+		$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-default.php' ),
+		array(
+			'params' => $params,
+			'size' => $this->get( 'listPageSize', 48 ),
+			'total' => $this->get( 'listProductTotal', 0 ),
+			'current' => $this->get( 'listPageCurr', 0 ),
+			'prev' => $this->get( 'listPagePrev', 0 ),
+			'next' => $this->get( 'listPageNext', 0 ),
+			'last' => $this->get( 'listPageLast', 0 ),
+		)
+	);
+}
 
 ?>
 <section class="aimeos catalog-list<?php echo $enc->attr( $classes ); ?>">
@@ -132,16 +135,13 @@ $pagination = $this->partial(
 
 	<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
 		<div class="catalog-list-type">
-			<a class="type-item type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, array(), $config ) ); ?>"></a>
-			<a class="type-item type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, array(), $config ) ); ?>"></a>
+			<a class="type-item type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, [], $config ) ); ?>"></a>
+			<a class="type-item type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, [], $config ) ); ?>"></a>
 		</div>
 	<?php endif; ?>
 
 
-	<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 1 ) : ?>	
-	  <?php echo $pagination; ?>
-	<?php endif; ?>
-
+	<?php echo $pagination; ?>
 
 
 	<?php if( ( $searchText = $this->param( 'f_search', null ) ) != null ) : ?>
@@ -175,9 +175,7 @@ $pagination = $this->partial(
 	<?php echo $this->block()->get( 'catalog/lists/items' ); ?>
 
 
-	<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 1 ) : ?>	
-	  <?php echo $pagination; ?>
-	<?php endif; ?>
+  <?php echo $pagination; ?>
 
 
 

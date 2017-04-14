@@ -56,7 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/session/seen/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 	private $cache;
 
 
@@ -68,7 +68,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
@@ -84,8 +84,8 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog#session
 		 */
-		$config = $context->getConfig()->get( 'client/html/catalog/session/seen', array() );
-		$key = $this->getParamHash( array(), $uid . ':catalog:session-seen-body', $config );
+		$config = $context->getConfig()->get( 'client/html/catalog/session/seen', [] );
+		$key = $this->getParamHash( [], $uid . ':catalog:session-seen-body', $config );
 
 		if( ( $html = $session->get( $key ) ) === null )
 		{
@@ -122,7 +122,7 @@ class Standard
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$cached = $session->get( 'aimeos/catalog/session/seen/cache', array() ) + array( $key => true );
+			$cached = $session->get( 'aimeos/catalog/session/seen/cache', [] ) + array( $key => true );
 			$session->set( 'aimeos/catalog/session/seen/cache', $cached );
 			$session->set( $key, $html );
 		}
@@ -239,12 +239,12 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		if( !isset( $this->cache ) )
 		{
 			$session = $this->getContext()->getSession();
-			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', array() );
+			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
 			$view->seenItems = array_reverse( $lastSeen );
 

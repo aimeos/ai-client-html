@@ -28,7 +28,7 @@ abstract class Base
 	 */
 	protected function getTaxRates( \Aimeos\MShop\Order\Item\Base\Iface $basket )
 	{
-		$taxrates = array();
+		$taxrates = [];
 
 		foreach( $basket->getProducts() as $product )
 		{

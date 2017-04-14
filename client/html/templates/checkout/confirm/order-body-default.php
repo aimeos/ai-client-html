@@ -122,7 +122,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( ( $coupons = $this->summaryBasket->getCoupons() ) !== array() ) : ?>
+				<?php if( ( $coupons = $this->summaryBasket->getCoupons() ) !== [] ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
 							<li class="attr-item"><?php echo $enc->html( $code ); ?></li>
