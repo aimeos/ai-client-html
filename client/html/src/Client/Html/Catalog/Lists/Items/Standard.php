@@ -333,7 +333,7 @@ class Standard
 				$productItems = $prodCntl->getItems( $this->getProductIds( $products ), $domains );
 				$this->addMetaItems( $productItems, $this->expire, $this->tags );
 
-				$attributeItems = $attrCntl->getItems( $this->getAttributeIds( $productItems ), $domains );
+				$attributeItems = $attrCntl->getItems( $this->getAttributeIds( $productItems + $products ), $domains );
 				$this->addMetaItems( $attributeItems, $this->expire, $this->tags );
 
 				$mediaIds = $this->getMediaIds( $productItems );
