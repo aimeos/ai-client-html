@@ -9,7 +9,7 @@
 namespace Aimeos\Client\Html\Account\Profile;
 
 
-class FactoryTest extends \PHPUnit_Framework_TestCase
+class FactoryTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
 	private $templatePaths;

@@ -8,7 +8,7 @@ namespace Aimeos\Perf\Client\Html;
  * @copyright Metaways Infosystems GmbH, 2012
  * @copyright Aimeos (aimeos.org), 2015-2016
  */
-class CatalogTest extends \PHPUnit_Framework_TestCase
+class CatalogTest extends \PHPUnit\Framework\TestCase
 {
 	protected $context;
 	protected $paths;

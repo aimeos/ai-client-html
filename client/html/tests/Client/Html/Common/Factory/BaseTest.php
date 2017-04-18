@@ -13,7 +13,7 @@ namespace Aimeos\Client\Html\Common\Factory;
 /**
  * Test class for \Aimeos\Client\Html\Common\Factory\BaseTest.
  */
-class BaseTest extends \PHPUnit_Framework_TestCase
+class BaseTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
 

@@ -10,7 +10,7 @@
 namespace Aimeos\Client\Html\Email\Delivery\Text;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $orderItem;
 	private static $orderBaseItem;
