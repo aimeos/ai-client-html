@@ -21,8 +21,10 @@ $attributeConfigItems = [];
 foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 {
 	if( isset( $attrItems[$id] ) ) {
-		$attributeConfigItems[$attribute->getType()][$id] = $attrItems[$id];
+		$attribute = $attrItems[$id];
 	}
+
+	$attributeConfigItems[$attribute->getType()][$id] = $attribute;
 }
 
 
@@ -103,27 +105,27 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 		<?php $layout = $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ); ?>
 		<?php $preselect = (bool) $this->config( 'client/html/catalog/attribute/preselect/' . $code, false ); ?>
 
-		<li class="select-item <?php echo $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
-			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
+		<li class="select-item <?= $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
+			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
 
 			<?php $hintcode = $code . '-hint'; $hint = $enc->html( $this->translate( 'client/code', $hintcode ) ); ?>
 			<?php if( !empty( $hint ) && $hint !== $hintcode ) : ?>
-				<div class="select-hint"><?php echo $hint; ?></div>
+				<div class="select-hint"><?= $hint; ?></div>
 			<?php endif; ?>
 
 			<div class="select-value">
 
-				<select class="select-list" name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', $code ) ) ); ?>">
+				<select class="select-list" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', $code ) ) ); ?>">
 					<?php if( $preselect === false ) : ?>
-						<option class="select-option" value=""><?php echo $enc->html( $this->translate( 'client', 'none' ) ); ?></option>
+						<option class="select-option" value=""><?= $enc->html( $this->translate( 'client', 'none' ) ); ?></option>
 					<?php endif; ?>
 					<?php foreach( $attributes as $id => $attribute ) : ?>
-						<option class="select-option" value="<?php echo $enc->attr( $id ); ?>">
+						<option class="select-option" value="<?= $enc->attr( $id ); ?>">
 
 							<?php $priceItems = $attribute->getRefItems( 'price', 'default', 'default' ); ?>
 							<?php if( ( $priceItem = reset( $priceItems ) ) !== false ) : ?>
 								<?php $value = $priceItem->getValue() + $priceItem->getCosts(); ?>
-								<?php echo $enc->html( sprintf( /// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
+								<?= $enc->html( sprintf( /// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 									$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
 									$attribute->getName(),
 									$this->number( abs( $value ) ),
@@ -131,7 +133,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 									( $value < 0 ? '−' : '+' )
 								), $enc::TRUST ); ?>
 							<?php else : ?>
-								<?php echo $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+								<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
 							<?php endif; ?>
 
 						</option>
@@ -146,18 +148,18 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 
 <ul class="selection">
 	<?php foreach( $this->get( 'attributeCustomItems', [] ) as $id => $attribute ) : ?>
-		<li class="select-item <?php echo $enc->attr( $attribute->getCode() ); ?>">
-			<div class="select-name"><?php echo $enc->html( $this->translate( 'client/code', $attribute->getType() ) ); ?></div>
+		<li class="select-item <?= $enc->attr( $attribute->getCode() ); ?>">
+			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getType() ) ); ?></div>
 
 			<?php $hintcode = $attribute->getType() . '-hint'; $hint = $enc->html( $this->translate( 'client/code', $hintcode ) ); ?>
 			<?php if( !empty( $hint ) && $hint !== $hintcode ) : ?>
-				<div class="select-hint"><?php echo $hint; ?></div>
+				<div class="select-hint"><?= $hint; ?></div>
 			<?php endif; ?>
 
 			<div class="select-value">
 				<input type="text" value=""
-					name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>"
-					placeholder="<?php echo $enc->attr( $attribute->getName() ); ?>"
+					name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>"
+					placeholder="<?= $enc->attr( $attribute->getName() ); ?>"
 				/>
 			</div>
 		</li>
@@ -166,7 +168,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 
 <?php foreach( $this->get( 'attributeHiddenItems', [] ) as $id => $attribute ) : ?>
 	<input type="hidden"
-		name="<?php echo $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrhideid', $id ) ) ); ?>"
-		value="<?php echo $enc->attr( $id ); ?>"
+		name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrhideid', $id ) ) ); ?>"
+		value="<?= $enc->attr( $id ); ?>"
 	/>
 <?php endforeach; ?>

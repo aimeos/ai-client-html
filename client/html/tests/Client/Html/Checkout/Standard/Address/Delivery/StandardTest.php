@@ -307,7 +307,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$view = \TestHelperHtml::getView();
 
-		$param = array( 'ca_deliveryoption' => -1 );
+		$param = array( 'ca_deliveryoption' => 0 );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
