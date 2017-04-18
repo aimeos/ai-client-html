@@ -19,9 +19,9 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 	<?php if( !empty( $productItems ) ) : ?>
 
 		<section class="basket-related-bought">
-			<h2 class="header"><?php echo $this->translate( 'client', 'Products you might be also interested in' ); ?></h2>
+			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ); ?></h2>
 
-			<?php echo $this->partial(
+			<?= $this->partial(
 				$this->config( 'client/html/common/partials/products', 'common/partials/products-default.php' ),
 				array( 'products' => $productItems, 'itemprop' => 'isRelatedTo' )
 			); ?>
@@ -30,4 +30,4 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 	<?php endif; ?>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'basket/related/bought' ); ?>
+<?= $this->block()->get( 'basket/related/bought' ); ?>

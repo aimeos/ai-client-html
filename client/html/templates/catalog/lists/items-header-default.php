@@ -11,5 +11,5 @@ $enc = $this->encoder();
 
 ?>
 <?php if( isset( $this->itemsStockUrl ) ) : ?>
-	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $this->itemsStockUrl ); ?>"></script>
+	<script type="text/javascript" defer="defer" src="<?= $enc->attr( $this->itemsStockUrl ); ?>"></script>
 <?php endif; ?>

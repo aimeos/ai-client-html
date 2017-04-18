@@ -35,19 +35,19 @@ $config = $this->config( 'client/html/locale/select/language/url/config', [] );
 ?>
 <?php $this->block()->start( 'locale/select/language' ); ?>
 <div class="locale-select-language">
-	<h2 class="header"><?php echo $this->translate( 'client', 'Select language' ); ?></h2>
+	<h2 class="header"><?= $this->translate( 'client', 'Select language' ); ?></h2>
 
 	<ul class="select-menu">
-		<li class="select-dropdown select-current"><a href="#"><?php echo $this->translate( 'client/language', $langId ); ?></a>
+		<li class="select-dropdown select-current"><a href="#"><?= $this->translate( 'client/language', $langId ); ?></a>
 			<ul class="select-dropdown">
 
 				<?php foreach( $map as $lang => $list ) : ?>
 					<?php $locParams = ( isset( $list[$currencyId] ) ? (array) $list[$currencyId] : (array) reset( $list ) ); ?>
-					<li class="select-item <?php echo ( $lang === $langId ? 'active' : '' ); ?>">
+					<li class="select-item <?= ( $lang === $langId ? 'active' : '' ); ?>">
 						<?php $target = $this->request()->getTarget(); ?>
 						<?php $url = $this->url( $target, $this->param( 'controller' ), $this->param( 'action' ), array_merge( $params, $locParams ), [], $config ); ?>
-						<a href="<?php echo $enc->attr( $url ); ?>">
-							<?php echo $enc->html( $this->translate( 'client/language', $lang ), $enc::TRUST ); ?>
+						<a href="<?= $enc->attr( $url ); ?>">
+							<?= $enc->html( $this->translate( 'client/language', $lang ), $enc::TRUST ); ?>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -58,4 +58,4 @@ $config = $this->config( 'client/html/locale/select/language/url/config', [] );
 
 </div>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'locale/select/language' ); ?>
+<?= $this->block()->get( 'locale/select/language' ); ?>

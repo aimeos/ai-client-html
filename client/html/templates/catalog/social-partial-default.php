@@ -147,9 +147,9 @@ $prodImage = ( ( $image = reset( $images ) ) !== false ? $this->content( $image-
 <?php foreach( $list as $entry ) : $default = ( isset( $urls[$entry] ) ? $urls[$entry] : null ); ?>
 	<?php if( ( $link = $this->config( 'client/html/catalog/social/url/' . $entry, $default ) ) !== null ) : ?>
 
-		<a class="social-button social-button-<?php echo $enc->attr( $entry ); ?>"
-			href="<?php echo $enc->attr( sprintf( $link, $enc->url( $prodUrl ), $enc->url( $prodName ), $enc->url( $prodImage ) ) ); ?>"
-			title="<?php echo $enc->attr( $entry ); ?>"
+		<a class="social-button social-button-<?= $enc->attr( $entry ); ?>"
+			href="<?= $enc->attr( sprintf( $link, $enc->url( $prodUrl ), $enc->url( $prodName ), $enc->url( $prodImage ) ) ); ?>"
+			title="<?= $enc->attr( $entry ); ?>"
 			target="_blank"
 		></a>
 

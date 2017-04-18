@@ -15,7 +15,7 @@ $title = $this->translate( 'client', 'E-mail notification' );
 <?php $this->block()->start( 'email/account/html' ); ?>
 <html>
 	<head>
-		<title><?php echo $enc->html( $title, $enc::TRUST ); ?></title>
+		<title><?= $enc->html( $title, $enc::TRUST ); ?></title>
 		<meta name="application-name" content="Aimeos" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	</head>
@@ -58,44 +58,44 @@ $title = $this->translate( 'client', 'E-mail notification' );
 				content: ":";
 			}
 
-			<?php echo $this->get( 'htmlCss' ); ?>
+			<?= $this->get( 'htmlCss' ); ?>
 
 		</style>
 
 		<div class="aimeos">
 
 			<?php if( isset( $this->htmlLogo ) ) : ?>
-				<img class="logo" src="<?php echo $this->htmlLogo; ?>" />
+				<img class="logo" src="<?= $this->htmlLogo; ?>" />
 			<?php endif; ?>
 
 			<p class="email-common-salutation content-block">
-				<?php echo $enc->html( $this->get( 'emailIntro' ) ); ?>
+				<?= $enc->html( $this->get( 'emailIntro' ) ); ?>
 			</p>
 
 			<p class="email-common-intro content-block">
-				<?php echo $enc->html( nl2br( $this->translate( 'client', 'An account has been created for you.' ) ), $enc::TRUST ); ?>
+				<?= $enc->html( nl2br( $this->translate( 'client', 'An account has been created for you.' ) ), $enc::TRUST ); ?>
 			</p>
 
 			<div class="account-detail content-block">
 				<div class="header">
-					<h2><?php echo $enc->html( $this->translate( 'client', 'Your account' ), $enc::TRUST ); ?></h2>
+					<h2><?= $enc->html( $this->translate( 'client', 'Your account' ), $enc::TRUST ); ?></h2>
 				</div>
 				<div class="details">
 					<ul class="attr-list">
 						<li class="attr-item account-code">
-							<span class="name"><?php echo $enc->html( $this->translate( 'client', 'Account' ), $enc::TRUST ); ?></span>
-							<span class="value"><?php echo $enc->html( $this->extAccountCode, $enc::TRUST ); ?></span>
+							<span class="name"><?= $enc->html( $this->translate( 'client', 'Account' ), $enc::TRUST ); ?></span>
+							<span class="value"><?= $enc->html( $this->extAccountCode, $enc::TRUST ); ?></span>
 						</li><!--
 						--><li class="attr-item account-password">
-							<span class="name"><?php echo $enc->html( $this->translate( 'client', 'Password' ), $enc::TRUST ); ?></span>
-							<span class="value"><?php echo $enc->html( $this->extAccountPassword, $enc::TRUST ); ?></span>
+							<span class="name"><?= $enc->html( $this->translate( 'client', 'Password' ), $enc::TRUST ); ?></span>
+							<span class="value"><?= $enc->html( $this->extAccountPassword, $enc::TRUST ); ?></span>
 						</li>
 					</ul>
 				</div>
 			</div>
 
 			<p class="email-common-outro content-block">
-				<?php echo $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ); ?>
+				<?= $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ); ?>
 			</p>
 
 		</div>
@@ -103,4 +103,4 @@ $title = $this->translate( 'client', 'E-mail notification' );
 	</body>
 </html>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'email/account/html' ); ?>
+<?= $this->block()->get( 'email/account/html' ); ?>

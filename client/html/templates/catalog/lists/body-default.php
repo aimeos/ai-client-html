@@ -81,12 +81,12 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 }
 
 ?>
-<section class="aimeos catalog-list<?php echo $enc->attr( $classes ); ?>">
+<section class="aimeos catalog-list<?= $enc->attr( $classes ); ?>">
 
 	<?php if( isset( $this->listErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->listErrorList as $errmsg ) : ?>
-				<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
+				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
@@ -97,17 +97,17 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 
 			<div class="imagelist-default">
 				<?php foreach( $catItem->getRefItems( 'media', 'head', 'default' ) as $mediaItem ) : ?>
-					<img class="<?php echo $enc->attr( $mediaItem->getType() ); ?>"
-						src="<?php echo $this->content( $mediaItem->getUrl() ); ?>"
+					<img class="<?= $enc->attr( $mediaItem->getType() ); ?>"
+						src="<?= $this->content( $mediaItem->getUrl() ); ?>"
 					/>
 				<?php endforeach; ?>
 			</div>
 
-			<h1><?php echo $enc->html( $catItem->getName() ); ?></h1>
+			<h1><?= $enc->html( $catItem->getName() ); ?></h1>
 			<?php foreach( (array) $textTypes as $textType ) : ?>
 				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
-					<div class="<?php echo $enc->attr( $textItem->getType() ); ?>">
-						<?php echo $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
+					<div class="<?= $enc->attr( $textItem->getType() ); ?>">
+						<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
 					</div>
 				<?php endforeach; ?>
 			<?php endforeach; ?>
@@ -121,34 +121,34 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 
 			<div class="content">
 				<?php foreach( $quoteItems as $quoteItem ) : ?>
-					<article><?php echo $enc->html( $quoteItem->getContent() ); ?></article>
+					<article><?= $enc->html( $quoteItem->getContent() ); ?></article>
 				<?php endforeach; ?>
-				<a href="#"><?php echo $enc->html( $this->translate( 'client', 'Show all quotes' ), $enc::TRUST ); ?></a>
+				<a href="#"><?= $enc->html( $this->translate( 'client', 'Show all quotes' ), $enc::TRUST ); ?></a>
 			</div>
 
 		</div>
 	<?php endif; ?>
 
 
-	<?php echo $this->block()->get( 'catalog/lists/promo' ); ?>
+	<?= $this->block()->get( 'catalog/lists/promo' ); ?>
 
 
 	<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
 		<div class="catalog-list-type">
-			<a class="type-item type-grid" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, [], $config ) ); ?>"></a>
-			<a class="type-item type-list" href="<?php echo $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, [], $config ) ); ?>"></a>
+			<a class="type-item type-grid" href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, [], $config ) ); ?>"></a>
+			<a class="type-item type-list" href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, [], $config ) ); ?>"></a>
 		</div>
 	<?php endif; ?>
 
 
-	<?php echo $pagination; ?>
+	<?= $pagination; ?>
 
 
 	<?php if( ( $searchText = $this->param( 'f_search', null ) ) != null ) : ?>
 		<div class="list-search">
 
 			<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
-				<?php echo $enc->html( sprintf(
+				<?= $enc->html( sprintf(
 					$this->translate(
 						'client',
 						'Search result for <span class="searchstring">"%1$s"</span> (%2$d article)',
@@ -159,7 +159,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 					$total
 				), $enc::TRUST ); ?>
 			<?php else : ?>
-				<?php echo $enc->html( sprintf(
+				<?= $enc->html( sprintf(
 					$this->translate(
 						'client',
 						'No articles found for <span class="searchstring">"%1$s"</span>. Please try again with a different keyword.'
@@ -172,9 +172,9 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 	<?php endif; ?>
 
 
-	<?php echo $this->block()->get( 'catalog/lists/items' ); ?>
+	<?= $this->block()->get( 'catalog/lists/items' ); ?>
 
 
- 	<?php echo $pagination; ?>
+ 	<?= $pagination; ?>
 
 </section>

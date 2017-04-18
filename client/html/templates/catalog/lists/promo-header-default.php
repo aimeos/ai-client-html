@@ -11,5 +11,5 @@ $enc = $this->encoder();
 
 ?>
 <?php if( isset( $this->promoStockUrl ) ) : ?>
-	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $this->promoStockUrl ); ?>"></script>
+	<script type="text/javascript" defer="defer" src="<?= $enc->attr( $this->promoStockUrl ); ?>"></script>
 <?php endif; ?>

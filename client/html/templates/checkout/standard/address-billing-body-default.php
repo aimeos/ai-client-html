@@ -66,19 +66,19 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 ?>
 <?php $this->block()->start( 'checkout/standard/address/billing' ); ?>
 <div class="checkout-standard-address-billing">
-	<h2><?php echo $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
+	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
 
 
 	<?php if( isset( $this->addressPaymentItem )  ) : ?>
 		<div class="item-address">
 			<div class="header">
 
-				<input id="ca_billingoption-<?php echo $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" type="radio"
-					name="<?php echo $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
-					value="<?php echo $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>"
-					<?php echo ( $billingOption == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ); ?>
+				<input id="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" type="radio"
+					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
+					value="<?= $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>"
+					<?= ( $billingOption == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ); ?>
 				/>
-				<label for="ca_billingoption-<?php echo $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" class="values">
+				<label for="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" class="values">
 <?php
 	$addr = $this->addressPaymentItem;
 
@@ -141,7 +141,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 	}
 ?>
 			<ul class="form-list">
-				<?php echo $this->partial(
+				<?= $this->partial(
 					/** client/html/checkout/standard/partials/address
 					 * Relative path to the address partial template file
 					 *
@@ -174,15 +174,15 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 
 	<?php if( $disablenew === false ) : ?>
 
-		<div class="item-address item-new" data-option="<?php echo $enc->attr( $billingOption ); ?>">
+		<div class="item-address item-new" data-option="<?= $enc->attr( $billingOption ); ?>">
 			<div class="header">
 				<input id="ca_billingoption-new" type="radio"
-					name="<?php echo $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
+					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
 					value="null"
-					<?php echo ( $billingOption == 'null' ? 'checked="checked"' : '' ); ?>
+					<?= ( $billingOption == 'null' ? 'checked="checked"' : '' ); ?>
 				/>
 				<label for="ca_billingoption-new" class="values value-new">
-					<?php echo $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
+					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
 				</label>
 			</div>
 <?php
@@ -212,19 +212,19 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 ?>
 			<ul class="form-list">
 
-				<?php echo $this->partial(
+				<?= $this->partial(
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-default.php' ),
 					$values
 				); ?>
 
 				<li class="form-item birthday">
 					<label for="customer-birthday">
-						<?php echo $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
+						<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
 					</label><!--
 					--><input type="date" class="birthday"
 						id="customer-birthday"
-						name="<?php echo $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
-						value="<?php echo $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
+						name="<?= $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
+						value="<?= $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
 					/>
 				</li>
 			</ul>
@@ -234,4 +234,4 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 
 </div>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'checkout/standard/address/billing' ); ?>
+<?= $this->block()->get( 'checkout/standard/address/billing' ); ?>

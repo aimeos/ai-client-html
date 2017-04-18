@@ -26,37 +26,37 @@ $retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
 	<?php if( isset( $this->confirmErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->confirmErrorList as $errmsg ) : ?>
-				<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
+				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
 
 
-	<h1><?php echo $enc->html( $this->translate( 'client', 'Confirmation' ), $enc::TRUST ); ?></h1>
+	<h1><?= $enc->html( $this->translate( 'client', 'Confirmation' ), $enc::TRUST ); ?></h1>
 
 
 	<?php $this->block()->get( 'checkout/confirm/intro' ); ?>
 
 
 	<div class="checkout-confirm-basic">
-		<h2><?php echo $enc->html( $this->translate( 'client', 'Order status' ), $enc::TRUST ); ?></h2>
+		<h2><?= $enc->html( $this->translate( 'client', 'Order status' ), $enc::TRUST ); ?></h2>
 		<?php if( isset( $this->confirmOrderItem ) ) : ?>
 			<ul class="attr-list">
 				<li class="form-item">
 					<span class="name">
-						<?php echo $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ); ?>
+						<?= $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ); ?>
 					</span>
 					<span class="value">
-						<?php echo $enc->html( $this->confirmOrderItem->getId() ); ?>
+						<?= $enc->html( $this->confirmOrderItem->getId() ); ?>
 					</span>
 				</li>
 				<li class="form-item">
 					<span class="name">
-						<?php echo $enc->html( $this->translate( 'client', 'Payment status' ), $enc::TRUST ); ?>
+						<?= $enc->html( $this->translate( 'client', 'Payment status' ), $enc::TRUST ); ?>
 					</span>
 					<span class="value">
 						<?php $code = 'pay:' . $this->confirmOrderItem->getPaymentStatus(); ?>
-						<?php echo $enc->html( $this->translate( 'client/code', $code ) ); ?>
+						<?= $enc->html( $this->translate( 'client/code', $code ) ); ?>
 					</span>
 				</li>
 			</ul>
@@ -67,17 +67,17 @@ $retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
 	<div class="checkout-confirm-retry">
 		<?php if( isset( $this->confirmOrderItem ) && $this->confirmOrderItem->getPaymentStatus() < \Aimeos\MShop\Order\Item\Base::PAY_REFUND ) : ?>
 			<div class="button-group">
-				<a class="standardbutton" href="<?php echo $enc->attr( $changeUrl ); ?>">
-					<?php echo $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
+				<a class="standardbutton" href="<?= $enc->attr( $changeUrl ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 				</a>
-				<a class="standardbutton" href="<?php echo $enc->attr( $retryUrl ); ?>">
-					<?php echo $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ); ?>
+				<a class="standardbutton" href="<?= $enc->attr( $retryUrl ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ); ?>
 				</a>
 			</div>
 		<?php endif; ?>
 	</div>
 
 
-	<?php echo $this->block()->get( 'checkout/confirm/order' ); ?>
+	<?= $this->block()->get( 'checkout/confirm/order' ); ?>
 
 </section>

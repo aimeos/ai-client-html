@@ -32,24 +32,24 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 ?>
 <?php $this->block()->start( 'checkout/standard/summary' ); ?>
 <section class="checkout-standard-summary common-summary">
-	<input type="hidden" name="<?php echo $enc->attr( $this->formparam( array( 'cs_order' ) ) ); ?>" value="1" />
+	<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_order' ) ) ); ?>" value="1" />
 
-	<h1><?php echo $enc->html( $this->translate( 'client', 'summary' ), $enc::TRUST ); ?></h1>
-	<p class="note"><?php echo $enc->html( $this->translate( 'client', 'Please check your order' ), $enc::TRUST ); ?></p>
+	<h1><?= $enc->html( $this->translate( 'client', 'summary' ), $enc::TRUST ); ?></h1>
+	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please check your order' ), $enc::TRUST ); ?></p>
 
 
 	<div class="common-summary-address container">
-		<div class="item payment <?php echo ( isset( $errors['address']['payment'] ) ? 'error' : '' ); ?>">
+		<div class="item payment <?= ( isset( $errors['address']['payment'] ) ? 'error' : '' ); ?>">
 			<div class="header">
-				<a class="modify" href="<?php echo $enc->attr( $checkoutAddressUrl ); ?>">
-					<?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
+				<a class="modify" href="<?= $enc->attr( $checkoutAddressUrl ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
 				</a>
-				<h3><?php echo $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( isset( $addresses['payment'] ) ) : ?>
-					<?php echo $this->partial(
+					<?= $this->partial(
 						/** client/html/checkout/standard/summary/address
 						 * Location of the address partial template for the checkout summary
 						 *
@@ -73,22 +73,22 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 		</div><!--
 
-		--><div class="item delivery <?php echo ( isset( $errors['address']['delivery'] ) ? 'error' : '' ); ?>">
+		--><div class="item delivery <?= ( isset( $errors['address']['delivery'] ) ? 'error' : '' ); ?>">
 			<div class="header">
-				<a class="modify" href="<?php echo $enc->attr( $checkoutAddressUrl ); ?>">
-					<?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
+				<a class="modify" href="<?= $enc->attr( $checkoutAddressUrl ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
 				</a>
-				<h3><?php echo $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
-					<?php echo $this->partial(
+					<?= $this->partial(
 						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-default.php' ),
 						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
-					<?php echo $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
+					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -96,17 +96,17 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="common-summary-service container">
-		<div class="item delivery <?php echo ( isset( $errors['service']['delivery'] ) ? 'error' : '' ); ?>">
+		<div class="item delivery <?= ( isset( $errors['service']['delivery'] ) ? 'error' : '' ); ?>">
 			<div class="header">
-				<a class="modify" href="<?php echo $enc->attr( $checkoutDeliveryUrl ); ?>">
-					<?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
+				<a class="modify" href="<?= $enc->attr( $checkoutDeliveryUrl ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
 				</a>
-				<h3><?php echo $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( isset( $services['delivery'] ) ) : ?>
-					<?php echo $this->partial(
+					<?= $this->partial(
 						/** client/html/checkout/standard/summary/service
 						 * Location of the service partial template for the checkout summary
 						 *
@@ -130,17 +130,17 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 		</div><!--
 
-		--><div class="item payment <?php echo ( isset( $errors['service']['payment'] ) ? 'error' : '' ); ?>">
+		--><div class="item payment <?= ( isset( $errors['service']['payment'] ) ? 'error' : '' ); ?>">
 			<div class="header">
-				<a class="modify" href="<?php echo $enc->attr( $checkoutPaymentUrl ); ?>">
-					<?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
+				<a class="modify" href="<?= $enc->attr( $checkoutPaymentUrl ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
 				</a>
-				<h3><?php echo $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
-					<?php echo $this->partial(
+					<?= $this->partial(
 						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-default.php' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
 					); ?>
@@ -152,19 +152,19 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="common-summary-additional container">
-		<div class="item coupon <?php echo ( isset( $errors['coupon'] ) ? 'error' : '' ); ?>">
+		<div class="item coupon <?= ( isset( $errors['coupon'] ) ? 'error' : '' ); ?>">
 			<div class="header">
-				<a class="modify" href="<?php echo $enc->attr( $basketUrl ); ?>">
-					<?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
+				<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
 				</a>
-				<h3><?php echo $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( ( $coupons = $this->standardBasket->getCoupons() ) !== [] ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
-							<li class="attr-item"><?php echo $enc->html( $code ); ?></li>
+							<li class="attr-item"><?= $enc->html( $code ); ?></li>
 						<?php endforeach; ?>
 					</ul>
 				<?php endif; ?>
@@ -173,11 +173,11 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 		--><div class="item comment">
 			<div class="header">
-				<h3><?php echo $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
-				<textarea class="comment-value" name="<?php echo $this->formparam( array( 'cs_comment' ) ); ?>"><?php echo $enc->html( $this->standardBasket->getComment() ); ?></textarea>
+				<textarea class="comment-value" name="<?= $this->formparam( array( 'cs_comment' ) ); ?>"><?= $enc->html( $this->standardBasket->getComment() ); ?></textarea>
 			</div>
 		</div>
 	</div>
@@ -185,14 +185,14 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 	<div class="common-summary-detail container">
 		<div class="header">
-			<a class="modify" href="<?php echo $enc->attr( $basketUrl ); ?>">
-				<?php echo $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
+			<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
+				<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
 			</a>
-			<h2><?php echo $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
+			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 		</div>
 
 		<div class="basket">
-			<?php echo $this->partial(
+			<?= $this->partial(
 				/** client/html/checkout/standard/summary/detail
 				 * Location of the detail partial template for the checkout summary
 				 *
@@ -220,7 +220,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="checkout-standard-summary-option container">
-		<?php echo $this->partial(
+		<?= $this->partial(
 			/** client/html/checkout/standard/summary/options
 			 * Location of the options partial template for the checkout summary
 			 *
@@ -243,14 +243,14 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="button-group">
-		<a class="standardbutton btn-back" href="<?php echo $enc->attr( $this->get( 'standardUrlBack' ) ); ?>">
-			<?php echo $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ); ?>
+		<a class="standardbutton btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ); ?>">
+			<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ); ?>
 		</a>
 		<button class="standardbutton btn-action">
-			<?php echo $enc->html( $this->translate( 'client', 'Buy now' ), $enc::TRUST ); ?>
+			<?= $enc->html( $this->translate( 'client', 'Buy now' ), $enc::TRUST ); ?>
 		</button>
 	</div>
 
 </section>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'checkout/standard/summary' ); ?>
+<?= $this->block()->get( 'checkout/standard/summary' ); ?>

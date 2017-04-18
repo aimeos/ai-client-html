@@ -29,8 +29,8 @@ $stepActive = $this->get( 'standardStepActive', false );
 		<ol class="steps">
 
 			<li class="step basket active">
-				<a href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
-					<?php echo $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?>
+				<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?>
 				</a>
 			</li>
 
@@ -52,14 +52,14 @@ $stepActive = $this->get( 'standardStepActive', false );
 					}
 				?>
 
-				<li class="step <?php echo $name . $class; ?>">
+				<li class="step <?= $name . $class; ?>">
 
 					<?php if( $stepActive && $link ) : ?>
-						<a href="<?php echo $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array( 'c_step' => $name ), [], $checkoutConfig ) ); ?>">
-							<?php echo $enc->html( $this->translate( 'client', $name ) ); ?>
+						<a href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array( 'c_step' => $name ), [], $checkoutConfig ) ); ?>">
+							<?= $enc->html( $this->translate( 'client', $name ) ); ?>
 						</a>
 					<?php else : ?>
-						<?php echo $enc->html( $this->translate( 'client', $name ) ); ?>
+						<?= $enc->html( $this->translate( 'client', $name ) ); ?>
 					<?php endif; ?>
 				</li>
 
@@ -72,15 +72,15 @@ $stepActive = $this->get( 'standardStepActive', false );
 	<?php if( isset( $this->standardErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->standardErrorList as $errmsg ) : ?>
-				<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
+				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
 
 
-	<form method="<?php echo $enc->attr( $this->get( 'standardMethod', 'POST' ) ); ?>" action="<?php echo $enc->attr( $this->get( 'standardUrlNext' ) ); ?>">
-		<?php echo $this->csrf()->formfield(); ?>
-		<?php echo $this->get( 'standardBody' ); ?>
+	<form method="<?= $enc->attr( $this->get( 'standardMethod', 'POST' ) ); ?>" action="<?= $enc->attr( $this->get( 'standardUrlNext' ) ); ?>">
+		<?= $this->csrf()->formfield(); ?>
+		<?= $this->get( 'standardBody' ); ?>
 	</form>
 
 </section>

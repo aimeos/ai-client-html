@@ -14,11 +14,11 @@ $enc = $this->encoder();
 	<?php if( ( $errors = $this->get( 'historyErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?php echo $enc->html( $error ); ?></li>
+				<li class="error-item"><?= $enc->html( $error ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
 
-	<?php echo $this->get( 'historyBody' ); ?>
+	<?= $this->get( 'historyBody' ); ?>
 
 </section>

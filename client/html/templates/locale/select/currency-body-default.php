@@ -37,18 +37,18 @@ $config = $this->config( 'client/html/locale/select/currency/url/config', [] );
 ?>
 <?php $this->block()->start( 'locale/select/currency' ); ?>
 <div class="locale-select-currency">
-	<h2 class="header"><?php echo $this->translate( 'client', 'Select currency' ); ?></h2>
+	<h2 class="header"><?= $this->translate( 'client', 'Select currency' ); ?></h2>
 
 	<ul class="select-menu">
-		<li class="select-dropdown select-current"><a href="#"><?php echo $this->translate( 'client/currency', $currencyId ); ?></a>
+		<li class="select-dropdown select-current"><a href="#"><?= $this->translate( 'client/currency', $currencyId ); ?></a>
 			<ul class="select-dropdown">
 
 				<?php foreach( $currencies as $currency => $locParam ) : ?>
-					<li class="select-item <?php echo ( $currency === $currencyId ? 'active' : '' ); ?>">
+					<li class="select-item <?= ( $currency === $currencyId ? 'active' : '' ); ?>">
 						<?php $target = $this->request()->getTarget(); ?>
 						<?php $url = $this->url( $target, $this->param( 'controller' ), $this->param( 'action' ), array_merge( $params, $locParam ), [], $config ); ?>
-						<a href="<?php echo $enc->attr( $url ); ?>">
-							<?php echo $enc->html( $this->translate( 'client/currency', $currency ), $enc::TRUST ); ?>
+						<a href="<?= $enc->attr( $url ); ?>">
+							<?= $enc->html( $this->translate( 'client/currency', $currency ), $enc::TRUST ); ?>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -59,4 +59,4 @@ $config = $this->config( 'client/html/locale/select/currency/url/config', [] );
 
 </div>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'locale/select/currency' ); ?>
+<?= $this->block()->get( 'locale/select/currency' ); ?>

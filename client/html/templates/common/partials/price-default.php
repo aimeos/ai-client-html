@@ -59,42 +59,42 @@ $first = true;
 	?>
 
 	<?php if( $first === true ) : $first = false; ?>
-		<meta itemprop="price" content="<?php echo $priceItem->getValue(); ?>" />
+		<meta itemprop="price" content="<?= $priceItem->getValue(); ?>" />
 	<?php endif; ?>
 
 
-	<div class="price-item <?php echo $enc->attr( $priceItem->getType() ); ?>" itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification">
+	<div class="price-item <?= $enc->attr( $priceItem->getType() ); ?>" itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification">
 
-		<meta itemprop="valueAddedTaxIncluded" content="<?php echo ( $priceItem->getTaxFlag() ? 'true' : 'false' ); ?>" />
-		<meta itemprop="priceCurrency" content="<?php echo $priceItem->getCurrencyId(); ?>" />
-		<meta itemprop="price" content="<?php echo $priceItem->getValue(); ?>" />
+		<meta itemprop="valueAddedTaxIncluded" content="<?= ( $priceItem->getTaxFlag() ? 'true' : 'false' ); ?>" />
+		<meta itemprop="priceCurrency" content="<?= $priceItem->getCurrencyId(); ?>" />
+		<meta itemprop="price" content="<?= $priceItem->getValue(); ?>" />
 
 		<span class="quantity" itemscope="" itemtype="http://schema.org/QuantitativeValue">
-			<meta itemprop="minValue" content="<?php echo $priceItem->getQuantity(); ?>" />
-			<?php echo $enc->html( sprintf( $format['quantity'], $priceItem->getQuantity() ), $enc::TRUST ); ?>
+			<meta itemprop="minValue" content="<?= $priceItem->getQuantity(); ?>" />
+			<?= $enc->html( sprintf( $format['quantity'], $priceItem->getQuantity() ), $enc::TRUST ); ?>
 		</span>
 
 		<span class="value">
-			<?php echo $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue() ), $currency ), $enc::TRUST ); ?>
+			<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue() ), $currency ), $enc::TRUST ); ?>
 		</span>
 
 		<?php if( $rebate > 0 ) : ?>
 			<span class="rebate">
-				<?php echo $enc->html( sprintf( $format['rebate'], $this->number( $rebate ), $currency ), $enc::TRUST ); ?>
+				<?= $enc->html( sprintf( $format['rebate'], $this->number( $rebate ), $currency ), $enc::TRUST ); ?>
 			</span>
 			<span class="rebatepercent">
-				<?php echo $enc->html( sprintf( $format['rebate%'], $this->number( round( $rebate * 100 / ( $priceItem->getValue() + $rebate ) ), 0 ) ), $enc::TRUST ); ?>
+				<?= $enc->html( sprintf( $format['rebate%'], $this->number( round( $rebate * 100 / ( $priceItem->getValue() + $rebate ) ), 0 ) ), $enc::TRUST ); ?>
 			</span>
 		<?php endif; ?>
 
 		<?php if( $costs > 0 ) : ?>
 			<span class="costs">
-				<?php echo $enc->html( sprintf( $format['costs'], $this->number( $costs ), $currency ), $enc::TRUST ); ?>
+				<?= $enc->html( sprintf( $format['costs'], $this->number( $costs ), $currency ), $enc::TRUST ); ?>
 			</span>
 		<?php endif; ?>
 
 		<span class="taxrate">
-			<?php echo $enc->html( sprintf( $taxformat, $this->number( $priceItem->getTaxrate() ) ), $enc::TRUST ); ?>
+			<?= $enc->html( sprintf( $taxformat, $this->number( $priceItem->getTaxrate() ) ), $enc::TRUST ); ?>
 		</span>
 	</div>
 

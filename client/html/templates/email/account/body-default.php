@@ -7,6 +7,6 @@
 
 ?>
 <?php $this->block()->start( 'email/account' ); ?>
-<?php echo $this->get( 'accountBody' ); ?>
+<?= $this->get( 'accountBody' ); ?>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'email/account' ); ?>
+<?= $this->block()->get( 'email/account' ); ?>

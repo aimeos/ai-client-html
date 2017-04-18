@@ -119,7 +119,7 @@ foreach( $this->get( 'stockProductCodes', [] ) as $prodCode )
 
 ?>
 // <!--
-var aimeosStockHtml = <?php echo json_encode( $result, JSON_FORCE_OBJECT ); ?>;
+var aimeosStockHtml = <?= json_encode( $result, JSON_FORCE_OBJECT ); ?>;
 
 $(".aimeos .product .stock-list .articleitem").each(function() {
 

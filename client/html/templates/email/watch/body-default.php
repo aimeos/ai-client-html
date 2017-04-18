@@ -8,6 +8,6 @@
 
 ?>
 <?php $this->block()->start( 'email/watch' ); ?>
-<?php echo $this->get( 'watchBody' ); ?>
+<?= $this->get( 'watchBody' ); ?>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'email/watch' ); ?>
+<?= $this->block()->get( 'email/watch' ); ?>

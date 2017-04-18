@@ -21,10 +21,10 @@ $type = $this->get( 'type' );
 <div class="item">
 	<?php if( ( $url = $service->getMediaUrl() ) != '' ) : ?>
 		<div class="item-icons">
-			<img src="<?php echo $enc->attr( $this->content( $url ) ); ?>" />
+			<img src="<?= $enc->attr( $this->content( $url ) ); ?>" />
 		</div>
 	<?php endif; ?>
-	<h4><?php echo $enc->html( $service->getName() ); ?></h4>
+	<h4><?= $enc->html( $service->getName() ); ?></h4>
 </div>
 
 <?php if( ( $attributes = $service->getAttributes() ) !== [] ) : ?>
@@ -33,20 +33,20 @@ $type = $this->get( 'type' );
 		<?php foreach( $attributes as $attribute ) : ?>
 			<?php if( $attribute->getType() === $type ) : ?>
 
-				<li class="<?php echo $enc->attr( $type . '-' . $attribute->getCode() ); ?>">
+				<li class="<?= $enc->attr( $type . '-' . $attribute->getCode() ); ?>">
 
 					<span class="name">
 						<?php if( $attribute->getName() != '' ) : ?>
-							<?php echo $enc->html( $attribute->getName() ); ?>
+							<?= $enc->html( $attribute->getName() ); ?>
 						<?php else : ?>
-							<?php echo $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?>
+							<?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?>
 						<?php endif; ?>
 					</span>
 
 					<?php switch( $attribute->getValue() ) : case 'array': case 'object': ?>
-						<span class="value"><?php echo $enc->html( join( ', ', (array) $attribute->getValue() ) ); ?></span>
+						<span class="value"><?= $enc->html( join( ', ', (array) $attribute->getValue() ) ); ?></span>
 					<?php break; default: ?>
-						<span class="value"><?php echo $enc->html( $attribute->getValue() ); ?></span>
+						<span class="value"><?= $enc->html( $attribute->getValue() ); ?></span>
 					<?php endswitch; ?>
 
 				</li>

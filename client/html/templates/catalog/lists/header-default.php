@@ -47,37 +47,37 @@ unset( $params['f_sort'] );
 
 	<?php if( ( $catItem = end( $catItems ) ) !== false ) : ?>
 
-		<title><?php echo $enc->html( $catItem->getName() ); ?></title>
+		<title><?= $enc->html( $catItem->getName() ); ?></title>
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
-		<meta name="keywords" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
 		<?php endforeach; ?>
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
-		<meta name="description" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+		<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
 		<?php endforeach; ?>
 
 	<?php elseif( ( $search = $this->param( 'f_search', null ) ) != null ) : /// Product search hint with user provided search string (%1$s) ?>
-		<title><?php echo $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ); ?></title>
+		<title><?= $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ); ?></title>
 	<?php else : ?>
-		<title><?php echo $enc->html( $this->translate( 'client', 'Our products' ) ); ?></title>
+		<title><?= $enc->html( $this->translate( 'client', 'Our products' ) ); ?></title>
 	<?php endif; ?>
 
 
 	<?php if( $current > 1 ) : ?>
-		<link rel="prev" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $prev ) + $params, [], $listConfig ) ); ?>" />
+		<link rel="prev" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $prev ) + $params, [], $listConfig ) ); ?>" />
 	<?php endif; ?>
 
 
 	<?php if( $current > 1 && $current < $last ) : // Optimization to avoid loading next page while the user is still filtering ?>
-		<link rel="next prefetch" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $next ) + $params, [], $listConfig ) ); ?>" />
+		<link rel="next prefetch" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $next ) + $params, [], $listConfig ) ); ?>" />
 	<?php endif; ?>
 
 
-	<link rel="canonical" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>" />
+	<link rel="canonical" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>" />
 	<meta name="application-name" content="Aimeos" />
 
 <?php endif; ?>
 
 
-<?php echo $this->get( 'listHeader' ); ?>
+<?= $this->get( 'listHeader' ); ?>

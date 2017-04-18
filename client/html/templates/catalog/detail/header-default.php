@@ -54,18 +54,18 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 	<?php if( isset( $this->detailProductItem ) ) : ?>
 
-		<title><?php echo $enc->html( $this->detailProductItem->getName() ); ?></title>
+		<title><?= $enc->html( $this->detailProductItem->getName() ); ?></title>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
-			<meta name="keywords" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
 		<?php endforeach; ?>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
-			<meta name="description" content="<?php echo $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+			<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
 		<?php endforeach; ?>
 
 		<?php $params = array( 'd_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId() ); ?>
-		<link rel="canonical" href="<?php echo $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>" />
+		<link rel="canonical" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>" />
 
 	<?php endif; ?>
 
@@ -74,7 +74,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 <?php endif; ?>
 
 <?php if( isset( $this->detailStockUrl ) ) : ?>
-	<script type="text/javascript" defer="defer" src="<?php echo $enc->attr( $this->detailStockUrl ); ?>"></script>
+	<script type="text/javascript" defer="defer" src="<?= $enc->attr( $this->detailStockUrl ); ?>"></script>
 <?php endif; ?>
 
-<?php echo $this->get( 'detailHeader' ); ?>
+<?= $this->get( 'detailHeader' ); ?>

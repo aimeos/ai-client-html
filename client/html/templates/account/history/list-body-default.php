@@ -92,7 +92,7 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 <?php $this->block()->start( 'account/history/list' ); ?>
 <?php if( !empty( $orderItems ) ) : ?>
 	<div class="account-history-list">
-		<h1 class="header"><?php echo $enc->html( $this->translate( 'client', 'Order history' ), $enc::TRUST ); ?></h1>
+		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Order history' ), $enc::TRUST ); ?></h1>
 
 		<?php if( empty( $orderItems ) === false ) : ?>
 			<ul class="history-list">
@@ -101,15 +101,15 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 					<li class="history-item">
 
 						<?php $params = array( 'his_action' => 'order', 'his_id' => $id ); ?>
-						<a href="<?php echo $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+						<a href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
 							<ul class="attr-list">
 
 								<li class="attr-item order-basic">
 									<span class="name">
-										<?php echo $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ); ?>
 									</span>
 									<span class="value">
-										<?php echo $enc->html( sprintf(
+										<?= $enc->html( sprintf(
 											$this->translate( 'client', '%1$s at %2$s' ),
 												$id,
 												date_create( $orderItem->getTimeCreated() )->format( $dateformat )
@@ -119,34 +119,34 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 								--><li class="attr-item order-channel">
 									<span class="name">
-										<?php echo $enc->html( $this->translate( 'client', 'Order channel' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Order channel' ), $enc::TRUST ); ?>
 									</span>
 									<span class="value">
 										<?php $code = 'order:' . $orderItem->getType(); ?>
-										<?php echo $enc->html( $this->translate( 'client/code', $code ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client/code', $code ), $enc::TRUST ); ?>
 									</span>
 								</li><!--
 
 								--><li class="attr-item order-payment">
 									<span class="name">
-										<?php echo $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?>
 									</span>
 									<span class="value">
 										<?php if( ( $date = $orderItem->getDatePayment() ) !== null ) : ?>
 											<?php $code = 'pay:' . $orderItem->getPaymentStatus(); $paystatus = $this->translate( 'client/code', $code ); ?>
-											<?php echo $enc->html( sprintf( $attrformat, $paystatus, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
+											<?= $enc->html( sprintf( $attrformat, $paystatus, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
 										<?php endif; ?>
 									</span>
 								</li><!--
 
 								--><li class="attr-item order-delivery">
 									<span class="name">
-										<?php echo $enc->html( $this->translate( 'client', 'Delivery' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Delivery' ), $enc::TRUST ); ?>
 									</span>
 									<span class="value">
 										<?php if( ( $date = $orderItem->getDateDelivery() ) !== null ) : ?>
 											<?php $code = 'stat:' . $orderItem->getDeliveryStatus(); $status = $this->translate( 'client/code', $code ); ?>
-											<?php echo $enc->html( sprintf( $attrformat, $status, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
+											<?= $enc->html( sprintf( $attrformat, $status, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
 										<?php endif; ?>
 									</span>
 								</li>
@@ -162,4 +162,4 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 	</div>
 <?php endif; ?>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'account/history/list' ); ?>
+<?= $this->block()->get( 'account/history/list' ); ?>

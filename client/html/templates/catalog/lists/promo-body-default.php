@@ -13,8 +13,8 @@ $products = $this->get( 'promoItems', [] );
 
 <?php if( !empty( $products ) ) : ?>
 	<section class="catalog-list-promo">
-		<h2 class="header"><?php echo $this->translate( 'client', 'Top seller' ); ?></h2>
-		<?php echo $this->partial(
+		<h2 class="header"><?= $this->translate( 'client', 'Top seller' ); ?></h2>
+		<?= $this->partial(
 			/** client/html/common/partials/products
 			 * Relative path to the products partial template file
 			 *
@@ -33,4 +33,4 @@ $products = $this->get( 'promoItems', [] );
 <?php endif; ?>
 
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/lists/promo' ); ?>
+<?= $this->block()->get( 'catalog/lists/promo' ); ?>

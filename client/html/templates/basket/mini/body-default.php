@@ -91,7 +91,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?php echo $enc->html( $error ); ?></li>
+				<li class="error-item"><?= $enc->html( $error ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
@@ -108,41 +108,41 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 			}
 		?>
 
-		<h1><?php echo $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
+		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
 
-		<a href="<?php echo $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
+		<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 			<div class="basket-mini-main">
 				<span class="quantity">
-					<?php echo $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $quantity ), $quantity ) ); ?>
+					<?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $quantity ), $quantity ) ); ?>
 				</span>
 				<span class="value">
-					<?php echo $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts() ), $priceCurrency ) ); ?>
+					<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts() ), $priceCurrency ) ); ?>
 				</span>
 			</div>
 		</a>
 
 		<div class="basket-mini-product">
-			<span class="minibutton"><?php echo $enc->html( $this->translate( 'client', '▼' ), $enc::TRUST ); ?></span>
+			<span class="minibutton"><?= $enc->html( $this->translate( 'client', '▼' ), $enc::TRUST ); ?></span>
 			<div class="basket">
 				<table>
 					<thead>
 						<tr>
-							<th class="name"><?php echo $enc->html( $this->translate( 'client', 'Product' ), $enc::TRUST ); ?></th>
-							<th class="quantity"><?php echo $enc->html( $this->translate( 'client', 'Qty' ), $enc::TRUST ); ?></th>
-							<th class="price"><?php echo $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></th>
+							<th class="name"><?= $enc->html( $this->translate( 'client', 'Product' ), $enc::TRUST ); ?></th>
+							<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Qty' ), $enc::TRUST ); ?></th>
+							<th class="price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach( $this->miniBasket->getProducts() as $product ) : ?>
 							<tr class="product">
 								<td class="name">
-									<?php echo $enc->html( $product->getName() ) ?>
+									<?= $enc->html( $product->getName() ) ?>
 								</td>
 								<td class="quantity">
-									<?php echo $enc->html( $product->getQuantity() ) ?>
+									<?= $enc->html( $product->getQuantity() ) ?>
 								</td>
 								<td class="price">
-									<?php echo $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() ), $priceCurrency ) ); ?>
+									<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() ), $priceCurrency ) ); ?>
 								</td>
 							</tr>
 						<?php endforeach; ?>
@@ -150,18 +150,18 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 					<tfoot>
 						<tr class="delivery">
 							<td class="name" colspan="2">
-								<?php echo $enc->html( $this->translate( 'client', 'Shipping' ), $enc::TRUST ); ?>
+								<?= $enc->html( $this->translate( 'client', 'Shipping' ), $enc::TRUST ); ?>
 							</td>
 							<td class="price">
-								<?php echo $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts() ), $priceCurrency ) ); ?>
+								<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts() ), $priceCurrency ) ); ?>
 							</td>
 						</tr>
 						<tr class="total">
 							<td class="name" colspan="2">
-								<?php echo $enc->html( $this->translate( 'client', 'Total' ), $enc::TRUST ); ?>
+								<?= $enc->html( $this->translate( 'client', 'Total' ), $enc::TRUST ); ?>
 							</td>
 							<td class="price">
-								<?php echo $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts() ), $priceCurrency ) ); ?>
+								<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts() ), $priceCurrency ) ); ?>
 							</td>
 						</tr>
 					</tfoot>

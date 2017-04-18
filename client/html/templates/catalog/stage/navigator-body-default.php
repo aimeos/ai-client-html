@@ -17,14 +17,14 @@ $enc = $this->encoder();
 			<nav>
 
 				<?php if( isset( $this->navigationPrev ) ) : ?>
-					<a class="prev" href="<?php echo $enc->attr( $this->navigationPrev ); ?>" rel="prev">
-						<?php echo $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ); ?>
+					<a class="prev" href="<?= $enc->attr( $this->navigationPrev ); ?>" rel="prev">
+						<?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ); ?>
 					</a>
 				<?php endif; ?>
 
 				<?php if( isset( $this->navigationNext ) ) : ?>
-					<a class="next" href="<?php echo $enc->attr( $this->navigationNext ); ?>" rel="next">
-						<?php echo $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ); ?>
+					<a class="next" href="<?= $enc->attr( $this->navigationNext ); ?>" rel="next">
+						<?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ); ?>
 					</a>
 				<?php endif; ?>
 
@@ -34,4 +34,4 @@ $enc = $this->encoder();
 
 <!-- catalog.stage.navigator -->
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/stage/navigator' ); ?>
+<?= $this->block()->get( 'catalog/stage/navigator' ); ?>

@@ -68,12 +68,12 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 <?php $this->block()->start( 'checkout/standard/address/delivery' ); ?>
 <div class="checkout-standard-address-delivery">
 
-	<h2><?php echo $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h2>
+	<h2><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h2>
 
 	<div class="item-address item-like">
 		<div class="header">
-			<input id="ca_deliveryoption-like" type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="-1" <?php echo ( $deliveryOption == -1 ? 'checked="checked"' : '' ); ?> />
-			<label for="ca_deliveryoption-like" class="values value-like"><?php echo $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?></label>
+			<input id="ca_deliveryoption-like" type="radio" name="<?= $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="-1" <?= ( $deliveryOption == -1 ? 'checked="checked"' : '' ); ?> />
+			<label for="ca_deliveryoption-like" class="values value-like"><?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?></label>
 		</div>
 	</div>
 
@@ -83,9 +83,9 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 		<div class="item-address">
 
 			<div class="header">
-				<a class="modify minibutton" href="<?php echo $enc->attr( $this->url( $target, $controller, $action, array( 'step' => 'address', 'ca_delivery_delete' => $id ), [], $config ) ); ?>">X</a>
-				<input id="ca_deliveryoption-<?php echo $id; ?>" type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="<?php echo $enc->attr( $addr->getAddressId() ); ?>" <?php echo ( $deliveryOption == $id ? 'checked="checked"' : '' ); ?> />
-				<label for="ca_deliveryoption-<?php echo $id; ?>" class="values">
+				<a class="modify minibutton" href="<?= $enc->attr( $this->url( $target, $controller, $action, array( 'step' => 'address', 'ca_delivery_delete' => $id ), [], $config ) ); ?>">X</a>
+				<input id="ca_deliveryoption-<?= $id; ?>" type="radio" name="<?= $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="<?= $enc->attr( $addr->getAddressId() ); ?>" <?= ( $deliveryOption == $id ? 'checked="checked"' : '' ); ?> />
+				<label for="ca_deliveryoption-<?= $id; ?>" class="values">
 <?php
 	echo preg_replace( "/\n+/m", "<br/>", trim( $enc->html( sprintf(
 		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
@@ -146,7 +146,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 	}
 ?>
 			<ul class="form-list">
-				<?php echo $this->partial(
+				<?= $this->partial(
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-default.php' ),
 					array(
 						'address' => $addrValues,
@@ -167,11 +167,11 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 
 	<?php if( $disablenew === false ) : ?>
 
-		<div class="item-address item-new" data-option="<?php echo $enc->attr( $deliveryOption ); ?>">
+		<div class="item-address item-new" data-option="<?= $enc->attr( $deliveryOption ); ?>">
 
 			<div class="header">
-				<input id="ca_deliveryoption-null" type="radio" name="<?php echo $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="null" <?php echo ( $deliveryOption == 'null' ? 'checked="checked"' : '' ); ?> />
-				<label for="ca_deliveryoption-null" class="values value-new"><?php echo $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?></label>
+				<input id="ca_deliveryoption-null" type="radio" name="<?= $enc->attr( $this->formparam( array( 'ca_deliveryoption' ) ) ); ?>" value="null" <?= ( $deliveryOption == 'null' ? 'checked="checked"' : '' ); ?> />
+				<label for="ca_deliveryoption-null" class="values value-new"><?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?></label>
 			</div>
 
 <?php
@@ -190,7 +190,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 	}
 ?>
 			<ul class="form-list">
-				<?php echo $this->partial(
+				<?= $this->partial(
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-default.php' ),
 					array(
 						'address' => $addrValues,
@@ -210,4 +210,4 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 
 </div>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'checkout/standard/address/delivery' ); ?>
+<?= $this->block()->get( 'checkout/standard/address/delivery' ); ?>

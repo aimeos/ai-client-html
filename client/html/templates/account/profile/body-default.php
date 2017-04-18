@@ -13,7 +13,7 @@ $enc = $this->encoder();
 	<?php if( ( $errors = $this->get( 'profileErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?php echo $enc->html( $error ); ?></li>
+				<li class="error-item"><?= $enc->html( $error ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>

@@ -63,7 +63,7 @@ $urls = array(
 	<?php foreach( $list as $entry ) : ?>
 		<?php if( isset( $urls[$entry] ) ) : ?>
 
-			<a class="actions-button actions-button-<?php echo $enc->attr( $entry ); ?>" href="<?php echo $enc->attr( $urls[$entry] ); ?>" title="<?php echo $enc->attr( $this->translate( 'client/code', $entry ) ); ?>"></a>
+			<a class="actions-button actions-button-<?= $enc->attr( $entry ); ?>" href="<?= $enc->attr( $urls[$entry] ); ?>" title="<?= $enc->attr( $this->translate( 'client/code', $entry ) ); ?>"></a>
 
 		<?php endif; ?>
 	<?php endforeach; ?>

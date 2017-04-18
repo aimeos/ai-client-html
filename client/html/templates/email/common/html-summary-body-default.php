@@ -18,12 +18,12 @@ $services = $this->summaryBasket->getServices();
 	<div class="common-summary-address container">
 		<div class="item payment">
 			<div class="header">
-				<h3><?php echo $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( isset( $addresses['payment'] ) ) : ?>
-					<?php echo $this->partial(
+					<?= $this->partial(
 						/** client/html/email/common/summary/address/html
 						 * Location of the address partial template for the HTML e-mails
 						 *
@@ -47,17 +47,17 @@ $services = $this->summaryBasket->getServices();
 
 		--><div class="item delivery">
 			<div class="header">
-				<h3><?php echo $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
-					<?php echo $this->partial(
+					<?= $this->partial(
 						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-default.php' ),
 						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
-					<?php echo $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
+					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -67,12 +67,12 @@ $services = $this->summaryBasket->getServices();
 	<div class="common-summary-service container">
 		<div class="item delivery">
 			<div class="header">
-				<h3><?php echo $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( isset( $services['delivery'] ) ) : ?>
-					<?php echo $this->partial(
+					<?= $this->partial(
 						/** client/html/email/common/summary/service/html
 						 * Location of the service partial template for the HTML e-mails
 						 *
@@ -96,12 +96,12 @@ $services = $this->summaryBasket->getServices();
 
 		--><div class="item payment">
 			<div class="header">
-				<h3><?php echo $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
-					<?php echo $this->partial(
+					<?= $this->partial(
 						$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-default.php' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
 					); ?>
@@ -115,14 +115,14 @@ $services = $this->summaryBasket->getServices();
 	<div class="common-summary-additional container">
 		<div class="item coupon">
 			<div class="header">
-				<h3><?php echo $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( ( $coupons = $this->summaryBasket->getCoupons() ) !== [] ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
-							<li class="attr-item"><?php echo $enc->html( $code ); ?></li>
+							<li class="attr-item"><?= $enc->html( $code ); ?></li>
 						<?php endforeach; ?>
 					</ul>
 				<?php endif; ?>
@@ -131,11 +131,11 @@ $services = $this->summaryBasket->getServices();
 
 		--><div class="item comment">
 			<div class="header">
-				<h3><?php echo $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
-				<?php echo $enc->html( $this->summaryBasket->getComment() ); ?>
+				<?= $enc->html( $this->summaryBasket->getComment() ); ?>
 			</div>
 		</div>
 	</div>
@@ -143,11 +143,11 @@ $services = $this->summaryBasket->getServices();
 
 	<div class="common-summary-detail container">
 		<div class="header">
-			<h2><?php echo $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
+			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 		</div>
 
 		<div class="basket">
-			<?php echo $this->partial(
+			<?= $this->partial(
 				/** client/html/email/common/summary/detail/html
 				 * Location of the detail partial template for the HTML e-mails
 				 *
@@ -174,4 +174,4 @@ $services = $this->summaryBasket->getServices();
 
 </div>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'email/common/html/summary' ); ?>
+<?= $this->block()->get( 'email/common/html/summary' ); ?>

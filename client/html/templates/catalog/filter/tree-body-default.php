@@ -55,28 +55,28 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 ?>
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
-<section class="catalog-filter-tree <?php echo ( $counts == true ? 'catalog-filter-count' : '' ); ?>">
+<section class="catalog-filter-tree <?= ( $counts == true ? 'catalog-filter-count' : '' ); ?>">
 
 	<?php if( $enforce ) : ?>
 		<input type="hidden"
-			name="<?php echo $enc->attr( $this->formparam( array( 'f_catid' ) ) ); ?>"
-			value="<?php echo $enc->attr( $this->param( 'f_catid' ) ); ?>"
+			name="<?= $enc->attr( $this->formparam( array( 'f_catid' ) ) ); ?>"
+			value="<?= $enc->attr( $this->param( 'f_catid' ) ); ?>"
 		/>
 	<?php endif; ?>
 
-	<h2><?php echo $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>
+	<h2><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>
 
 	<?php if( isset( $params['f_catid'] ) ) : unset( $params['f_catid'], $params['f_name'] ); ?>
 		<div class="category-selected">
-			<span class="selected-intro"><?php echo $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
-			<a class="selected-category" href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
-				<?php echo $enc->html( $name, $enc::TRUST ); ?>
+			<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
+			<a class="selected-category" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
+				<?= $enc->html( $name, $enc::TRUST ); ?>
 			</a>
 		</div>
 	<?php endif; ?>
 
 	<?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 ) : ?>
-		<?php echo $this->partial(
+		<?= $this->partial(
 			$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-default.php' ),
 			array( 'nodes' => array( $this->treeCatalogTree ), 'path' => $path, 'params' => $this->get( 'treeFilterParams', [] ) )
 		); ?>
@@ -84,4 +84,4 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 </section>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/filter/tree' ); ?>
+<?= $this->block()->get( 'catalog/filter/tree' ); ?>

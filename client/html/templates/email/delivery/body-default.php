@@ -7,4 +7,4 @@
  */
 
 ?>
-<?php echo $this->get( 'deliveryBody' ); ?>
+<?= $this->get( 'deliveryBody' ); ?>

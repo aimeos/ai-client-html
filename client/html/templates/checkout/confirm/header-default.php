@@ -7,4 +7,4 @@
  */
 
 ?>
-<?php echo $this->get( 'confirmHeader' ); ?>
+<?= $this->get( 'confirmHeader' ); ?>

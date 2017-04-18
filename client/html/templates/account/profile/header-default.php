@@ -6,4 +6,4 @@
  */
 
 ?>
-<?php echo $this->get( 'profileHeader' ); ?>
+<?= $this->get( 'profileHeader' ); ?>

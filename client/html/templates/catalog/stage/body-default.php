@@ -35,12 +35,12 @@ $params = $this->get( 'stageParams', [] );
 
 
 ?>
-<section class="aimeos catalog-stage<?php echo $enc->attr( $classes ); ?>">
+<section class="aimeos catalog-stage<?= $enc->attr( $classes ); ?>">
 
 	<?php if( isset( $this->stageErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->stageErrorList as $errmsg ) : ?>
-				<li class="error-item"><?php echo $enc->html( $errmsg ); ?></li>
+				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
@@ -48,28 +48,28 @@ $params = $this->get( 'stageParams', [] );
 
 	<div class="catalog-stage-image">
 		<?php foreach( $mediaItems as $media ) : ?>
-			<img src="<?php echo $this->content( $media->getUrl() ); ?>" alt="<?php echo $enc->attr( $media->getName() ); ?>" />
+			<img src="<?= $this->content( $media->getUrl() ); ?>" alt="<?= $enc->attr( $media->getName() ); ?>" />
 		<?php endforeach; ?>
 	</div>
 
 
 	<div class="catalog-stage-breadcrumb">
 		<nav class="breadcrumb">
-			<span class="title"><?php echo $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ); ?></span>
+			<span class="title"><?= $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ); ?></span>
 			<ol>
 
 				<?php if( isset( $this->stageCatPath ) ) : ?>
 					<?php foreach( (array) $this->stageCatPath as $cat ) : $params['f_name'] = $cat->getName( 'url' ); $params['f_catid'] = $cat->getId(); ?>
 						<li>
-							<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
-								<?php echo $enc->html( $cat->getName() ); ?>
+							<a href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
+								<?= $enc->html( $cat->getName() ); ?>
 							</a>
 						</li>
 					<?php endforeach; ?>
 				<?php else : ?>
 					<li>
-						<a href="<?php echo $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
-							<?php echo $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ); ?>
+						<a href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
+							<?= $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ); ?>
 						</a>
 					</li>
 				<?php endif; ?>
@@ -79,6 +79,6 @@ $params = $this->get( 'stageParams', [] );
 	</div>
 
 
-	<?php echo $this->block()->get( 'catalog/stage/navigator' ); ?>
+	<?= $this->block()->get( 'catalog/stage/navigator' ); ?>
 
 </section>

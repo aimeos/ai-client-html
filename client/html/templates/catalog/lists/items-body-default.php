@@ -33,7 +33,7 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'catalog/lists/items' ); ?>
 <div class="catalog-list-items">
 
-	<?php echo $this->partial(
+	<?= $this->partial(
 		$this->config( 'client/html/common/partials/products', 'common/partials/products-default.php' ),
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
@@ -48,4 +48,4 @@ $enc = $this->encoder();
 
 </div>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/lists/items' ); ?>
+<?= $this->block()->get( 'catalog/lists/items' ); ?>

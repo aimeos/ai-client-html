@@ -15,7 +15,7 @@ $title = $this->translate( 'client', 'E-mail notification' );
 <?php $this->block()->start( 'email/delivery/html' ); ?>
 <html>
 	<head>
-		<title><?php echo $enc->html( $title, $enc::TRUST ); ?></title>
+		<title><?= $enc->html( $title, $enc::TRUST ); ?></title>
 		<meta name="application-name" content="Aimeos" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	</head>
@@ -58,30 +58,30 @@ $title = $this->translate( 'client', 'E-mail notification' );
 				content: ":";
 			}
 
-			<?php echo $this->get( 'htmlCss' ); ?>
+			<?= $this->get( 'htmlCss' ); ?>
 
 		</style>
 
 		<div class="aimeos">
 
 			<?php if( isset( $this->htmlLogo ) ) : ?>
-				<img class="logo" src="<?php echo $this->htmlLogo; ?>" />
+				<img class="logo" src="<?= $this->htmlLogo; ?>" />
 			<?php endif; ?>
 
 			<p class="email-common-salutation content-block">
-				<?php echo $enc->html( $this->get( 'emailIntro' ) ); ?>
+				<?= $enc->html( $this->get( 'emailIntro' ) ); ?>
 			</p>
 
-			<?php echo $this->block()->get( 'email/delivery/html/intro' ); ?>
+			<?= $this->block()->get( 'email/delivery/html/intro' ); ?>
 
-			<?php echo $this->block()->get( 'email/common/html/summary' ); ?>
+			<?= $this->block()->get( 'email/common/html/summary' ); ?>
 
 			<p class="email-common-outro content-block">
-				<?php echo $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ); ?>
+				<?= $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ); ?>
 			</p>
 
 			<p class="email-common-legal content-block">
-				<?php echo nl2br( $enc->html( $this->translate( 'client',  'All orders are subject to our terms and conditions.' ), $enc::TRUST ) ); ?>
+				<?= nl2br( $enc->html( $this->translate( 'client',  'All orders are subject to our terms and conditions.' ), $enc::TRUST ) ); ?>
 			</p>
 
 		</div>
@@ -89,4 +89,4 @@ $title = $this->translate( 'client', 'E-mail notification' );
 	</body>
 </html>
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'email/delivery/html' ); ?>
+<?= $this->block()->get( 'email/delivery/html' ); ?>

@@ -9,7 +9,7 @@
 ?>
 <?php $this->block()->start( 'catalog/count/tree' ); ?>
 // <!--
-var categoryCounts = <?php echo json_encode( $this->get( 'treeCountList', [] ), JSON_FORCE_OBJECT ); ?>;
+var categoryCounts = <?= json_encode( $this->get( 'treeCountList', [] ), JSON_FORCE_OBJECT ); ?>;
 
 $( ".catalog-filter-count li.cat-item" ).each( function( index, item ) {
 	var itemId = $(item).data( "id" );
@@ -24,4 +24,4 @@ $( ".catalog-filter-count li.cat-item" ).each( function( index, item ) {
 });
 // -->
 <?php $this->block()->stop(); ?>
-<?php echo $this->block()->get( 'catalog/count/tree' ); ?>
+<?= $this->block()->get( 'catalog/count/tree' ); ?>
