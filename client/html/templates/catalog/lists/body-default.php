@@ -150,7 +150,7 @@ $pagination = $this->partial(
 						'Search result for <span class="searchstring">"%1$s"</span> (%2$d articles)',
 						$total
 					),
-					$enc->html( $searchText ),
+					$searchText,
 					$total
 				), $enc::TRUST ); ?>
 			<?php else : ?>
@@ -159,7 +159,7 @@ $pagination = $this->partial(
 						'client',
 						'No articles found for <span class="searchstring">"%1$s"</span>. Please try again with a different keyword.'
 					),
-					$enc->html( $searchText )
+					$searchText
 				), $enc::TRUST ); ?>
 			<?php endif; ?>
 
