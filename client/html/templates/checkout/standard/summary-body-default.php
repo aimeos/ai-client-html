@@ -183,6 +183,29 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 	</div>
 
 
+	<div class="checkout-standard-summary-option container">
+		<?= $this->partial(
+			/** client/html/checkout/standard/summary/options
+			 * Location of the options partial template for the checkout summary
+			 *
+			 * To configure an alternative template for the options partial, you
+			 * have to configure its path relative to the template directory
+			 * (usually client/html/templates/). It's then used to display the
+			 * options block on the summary page during the checkout process.
+			 *
+			 * @param string Relative path to the options partial
+			 * @since 2017.01
+			 * @category Developer
+			 * @see client/html/checkout/standard/summary/address
+			 * @see client/html/checkout/standard/summary/detail
+			 * @see client/html/checkout/standard/summary/service
+			 */
+			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-default.php' ),
+			array( 'errors' => $this->get( 'summaryErrorCodes', [] ), 'customerId' => $this->get( 'summaryCustomerId' ) )
+		); ?>
+	</div>
+
+
 	<div class="common-summary-detail container">
 		<div class="header">
 			<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
@@ -216,29 +239,6 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 				)
 			); ?>
 		</div>
-	</div>
-
-
-	<div class="checkout-standard-summary-option container">
-		<?= $this->partial(
-			/** client/html/checkout/standard/summary/options
-			 * Location of the options partial template for the checkout summary
-			 *
-			 * To configure an alternative template for the options partial, you
-			 * have to configure its path relative to the template directory
-			 * (usually client/html/templates/). It's then used to display the
-			 * options block on the summary page during the checkout process.
-			 *
-			 * @param string Relative path to the options partial
-			 * @since 2017.01
-			 * @category Developer
-			 * @see client/html/checkout/standard/summary/address
-			 * @see client/html/checkout/standard/summary/detail
-			 * @see client/html/checkout/standard/summary/service
-			 */
-			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-default.php' ),
-			array( 'errors' => $this->get( 'summaryErrorCodes', [] ), 'customerId' => $this->get( 'summaryCustomerId' ) )
-		); ?>
 	</div>
 
 
