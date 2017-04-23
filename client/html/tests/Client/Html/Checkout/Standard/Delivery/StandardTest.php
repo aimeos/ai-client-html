@@ -78,14 +78,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -134,7 +134,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $view );
 
-		$this->expectException( '\\Aimeos\\MShop\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\MShop\\Exception' );
 		$this->object->process();
 	}
 
@@ -165,7 +165,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $view );
 
-		$this->expectException( '\\Aimeos\\Controller\\Frontend\\Basket\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Controller\\Frontend\\Basket\\Exception' );
 		$this->object->process();
 	}
 }

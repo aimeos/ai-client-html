@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClient()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 }

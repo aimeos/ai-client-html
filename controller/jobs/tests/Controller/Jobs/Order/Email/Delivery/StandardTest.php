@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' );
 
-		$this->expectException( '\Aimeos\MShop\Order\Exception' );
+		$this->setExpectedException( '\Aimeos\MShop\Order\Exception' );
 		$this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $manager->createItem() ) );
 	}
 
