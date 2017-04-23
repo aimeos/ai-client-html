@@ -118,21 +118,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/email/delivery/attachments', array( 'invalid' ) );
 
-		$this->setExpectedException( '\Aimeos\Client\Html\Exception' );
+		$this->expectException( '\Aimeos\Client\Html\Exception' );
 		$this->object->getBody();
 	}
 
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 

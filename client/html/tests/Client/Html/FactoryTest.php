@@ -54,28 +54,28 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateClientNameEmpty()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Factory::createClient( $this->context, $this->templatePaths, '' );
 	}
 
 
 	public function testCreateClientNameParts()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Factory::createClient( $this->context, $this->templatePaths, 'account_favorite' );
 	}
 
 
 	public function testCreateClientNameInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Factory::createClient( $this->context, $this->templatePaths, '%account/favorite' );
 	}
 
 
 	public function testCreateClientNameNotFound()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Account\Favorite\Factory::createClient( $this->context, $this->templatePaths, 'account/fav' );
 	}
 

@@ -54,14 +54,14 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateClientNameInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Email\Account\Factory::createClient( $this->context, $this->templatePaths, '$$$' );
 	}
 
 
 	public function testCreateClientNameNotFound()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Email\Account\Factory::createClient( $this->context, $this->templatePaths, 'notfound' );
 	}
 
