@@ -59,6 +59,28 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/process/standard/subparts';
+
+	/** client/html/checkout/standard/process/account/name
+	 * Name of the account part used by the checkout standard process client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Process\Account\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2017.04
+	 * @category Developer
+	 */
+
+	/** client/html/checkout/standard/process/address/name
+	 * Name of the address part used by the checkout standard process client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Process\Address\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2017.04
+	 * @category Developer
+	 */
 	private $subPartNames = array( 'account', 'address' );
 	private $cache;
 
