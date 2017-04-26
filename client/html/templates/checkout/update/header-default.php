@@ -6,6 +6,14 @@
  */
 
 @header( 'HTTP/1.1 ' . $this->response()->getStatusCode() . ' ' . $this->response()->getReasonPhrase() );
+
+foreach( $this->response()->getHeaders() as $key => $value )
+{
+	foreach( (array) $value as $val ) {
+		@header( $key . ': ' . $val );
+	}
+}
+
 echo $this->get( 'updateHeader' );
 
 ?>

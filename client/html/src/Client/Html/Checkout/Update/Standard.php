@@ -305,8 +305,8 @@ class Standard
 			$view->response()->withStatus( 500, 'Error updating order status' );
 			$view->response()->getBody()->write( $e->getMessage() );
 
-			$body = $view->request()->getBody();
 			$params = print_r( $view->param(), true );
+			$body = (string) $view->request()->getBody();
 			$msg = "Updating order status failed: %1\$s\n%2\$s\n%3\$s";
 			$context->getLogger()->log( sprintf( $msg, $e->getMessage(), $params, $body ) );
 		}
