@@ -247,14 +247,17 @@ class Standard
 
 				$attributes = $view->param( 'c_delivery/' . $serviceId, [] );
 				$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
-
-				if( count( $errors ) === 0 ) {
-					$basketCtrl->setService( 'delivery', $serviceId, $attributes );
-				} else {
-					$view->standardStepActive = 'delivery';
-				}
-
 				$view->deliveryError = $errors;
+
+				if( count( $errors ) > 0 )
+				{
+					$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
+					throw new \Aimeos\Client\Html\Exception( sprintf( 'Please recheck your delivery choice' ) );
+				}
+				else
+				{
+					$basketCtrl->setService( 'delivery', $serviceId, $attributes );
+				}
 			}
 
 

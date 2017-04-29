@@ -247,14 +247,17 @@ class Standard
 
 				$attributes = $view->param( 'c_payment/' . $serviceId, [] );
 				$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
-
-				if( count( $errors ) === 0 ) {
-					$basketCtrl->setService( 'payment', $serviceId, $attributes );
-				} else {
-					$view->standardStepActive = 'payment';
-				}
-
 				$view->paymentError = $errors;
+
+				if( count( $errors ) > 0 )
+				{
+					$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
+					throw new \Aimeos\Client\Html\Exception( sprintf( 'Please recheck your payment choice' ) );
+				}
+				else
+				{
+					$basketCtrl->setService( 'payment', $serviceId, $attributes );
+				}
 			}
 
 
