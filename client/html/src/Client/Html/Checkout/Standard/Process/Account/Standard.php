@@ -187,7 +187,7 @@ class Standard
 				$addr = $addresses[\Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT];
 				$email = $addr->getEmail();
 
-				$basket->setCustomerId( $this->getCustomerId( $addr ) );
+				$basket->setCustomerId( $this->getCustomer( $addr )->getId() );
 			}
 		}
 		catch( \Exception $e )
@@ -267,11 +267,12 @@ class Standard
 
 
 	/**
-	 * Returns the customer ID and creates a new account if necessary and requested
+	 * Creates a new account (if necessary) and returns the customer item
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $addr Customer address object from order
+	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
+	 * @return \Aimeos\MShop\Customer\Item\Iface Customer item object
 	 */
-	protected function getCustomerId( \Aimeos\MShop\Order\Item\Base\Address\Iface $addr )
+	protected function getCustomer( \Aimeos\MShop\Common\Item\Address\Iface $addr )
 	{
 		$context = $this->getContext();
 		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
@@ -292,6 +293,6 @@ class Standard
 			$context->getMessageQueue( 'mq-email', 'customer/email/account' )->add( json_encode( $msg ) );
 		}
 
-		return $item->getId();
+		return $item;
 	}
 }
