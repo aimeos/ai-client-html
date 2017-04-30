@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-stage">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-stage"', $output );
 		$this->assertContains( '<div class="catalog-stage-breadcrumb">', $output );
 		$this->assertRegExp( '#Your search result#smU', $output );
 
@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-stage home categories coffee">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-stage home categories coffee"', $output );
 		$this->assertContains( '<div class="catalog-stage-image">', $output );
 		$this->assertContains( 'Cafe Stage image', $output );
 

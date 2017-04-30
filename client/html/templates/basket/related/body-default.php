@@ -7,8 +7,14 @@
 
 $enc = $this->encoder();
 
+$optTarget = $this->config( 'client/jsonapi/url/options/target' );
+$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+
+
 ?>
-<section class="aimeos basket-related">
+<section class="aimeos basket-related" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( isset( $this->relatedErrorList ) ) : ?>
 		<ul class="error-list">

@@ -38,6 +38,11 @@ $basketController = $this->config( 'client/html/basket/standard/url/controller',
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
+$optTarget = $this->config( 'client/jsonapi/url/options/target' );
+$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+
 
 /** client/html/basket/require-stock
  * Customers can order products only if there are enough products in stock
@@ -86,7 +91,7 @@ ksort( $propMap );
 
 
 ?>
-<section class="aimeos catalog-detail" itemscope="" itemtype="http://schema.org/Product">
+<section class="aimeos catalog-detail" itemscope="" itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( isset( $this->detailErrorList ) ) : ?>
 		<ul class="error-list">

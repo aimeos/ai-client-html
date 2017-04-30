@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( $manager->findItem( 'UTC001' )->getId() );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos account-profile">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos account-profile"', $output );
 	}
 
 

@@ -88,9 +88,14 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
+$optTarget = $this->config( 'client/jsonapi/url/options/target' );
+$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+
 
 ?>
-<section class="aimeos account-watch">
+<section class="aimeos account-watch" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( ( $errors = $this->get( 'watchErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">

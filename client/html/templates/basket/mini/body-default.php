@@ -81,12 +81,23 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index'
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 
+$jsonTarget = $this->config( 'client/jsonapi/url/target' );
+$jsonController = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
+$jsonAction = $this->config( 'client/jsonapi/url/action', 'index' );
+$jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
+
+$optTarget = $this->config( 'client/jsonapi/url/options/target' );
+$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+
+
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>
-<section class="aimeos basket-mini">
+<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">

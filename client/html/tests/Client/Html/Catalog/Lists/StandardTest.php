@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
 
 		$this->assertContains( '<div class="catalog-list-quote">', $output );
 		$this->assertRegExp( '#Kaffee Bewertungen#', $output );
@@ -108,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
 		$this->assertContains( '<nav class="pagination">', $output );
 		$this->assertNotRegExp( '#.*U:TESTPSUB01.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB03.*#smu', $output );
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
 	}
 
 
@@ -150,7 +150,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
 	}
 
 
@@ -169,7 +169,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
 	}
 
 
@@ -201,7 +201,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
 		$this->assertContains( '&lt;b&gt;Search result&lt;/b&gt;', $output );
 	}
 
@@ -213,7 +213,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
 	}
 
 

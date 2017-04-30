@@ -77,6 +77,12 @@ $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
  */
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
+$optTarget = $this->config( 'client/jsonapi/url/options/target' );
+$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+
+
 $listParams = [];
 $params = $this->param();
 
@@ -88,7 +94,7 @@ $enc = $this->encoder();
 
 
 ?>
-<section class="aimeos catalog-filter">
+<section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( isset( $this->filterErrorList ) ) : ?>
 		<ul class="error-list">

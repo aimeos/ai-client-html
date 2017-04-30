@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<section class="aimeos checkout-confirm">', $output );
+		$this->assertContains( '<section class="aimeos checkout-confirm"', $output );
 		$this->assertContains( '<div class="checkout-confirm-retry">', $output );
 		$this->assertContains( '<div class="checkout-confirm-basic">', $output );
 		$this->assertContains( '<div class="checkout-confirm-detail', $output );

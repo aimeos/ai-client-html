@@ -18,12 +18,18 @@ $checkoutController = $this->config( 'client/html/checkout/standard/url/controll
 $checkoutAction = $this->config( 'client/html/checkout/standard/url/action', 'index' );
 $checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', [] );
 
+$optTarget = $this->config( 'client/jsonapi/url/options/target' );
+$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+
+
 $link = true;
 $stepActive = $this->get( 'standardStepActive', false );
 
 
 ?>
-<section class="aimeos checkout-standard">
+<section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
 
 	<nav>
 		<ol class="steps">
