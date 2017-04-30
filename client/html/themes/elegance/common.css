@@ -26,6 +26,10 @@
 	width: 98%;
 }
 
+.aimeos .prototype {
+	display: none;
+}
+
 .aimeos .price-list {
 	font-weight: normal;
 	text-align: left;

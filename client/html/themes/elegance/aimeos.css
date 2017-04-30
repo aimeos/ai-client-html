@@ -1861,32 +1861,35 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 /* Mini basket */
 .basket-mini {
-	line-height: 125%;
+	background-color: #B0A060;
 	margin: 0 1em;
 	color: #555;
-	width: 14em;
-}
-
-.basket-mini > a {
-	white-space: nowrap;
-}
-
-.basket-mini > a:before {
-	font: normal normal normal 14px/1 FontAwesome;
-	font-size: 125%;
-	content: "\f07a";
 }
 
 .basket-mini h1 {
 	display: none;
 }
 
+.basket-mini > a {
+	display: inline-block;
+	white-space: nowrap;
+	padding: 0.75em 1em;
+}
+
+.basket-mini > a:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	vertical-align: middle;
+	content: "\f07a";
+	font-size: 150%;
+	color: #FFF;
+}
+
 .basket-mini-main {
 	display: inline-block;
+	color: #FFF;
 }
 
 .basket-mini-main .quantity {
-	line-height: 32px;
 	display: block;
 }
 
@@ -1906,23 +1909,41 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	display: inline;
 }
 
-.basket-mini-product .minibutton {
-	display: inline-block;
+.basket-mini-product .basket-toggle {
+	font: normal normal normal 14px/1 FontAwesome;
+	vertical-align: middle;
 	text-decoration: none;
-	line-height: 32px;
+	display: inline-block;
 	cursor: pointer;
 	color: #B0A060;
-	margin: 0 1em;
+	color: #FFF;
+	padding: 1em;
+}
+
+.basket-mini-product .basket-toggle.toggle-close:after {
+	content: "\f100";
+}
+
+.basket-mini-product .basket-toggle.toggle-open:after {
+	content: "\f101";
 }
 
 .basket-mini-product .basket {
-	background-color: #FFFFFF;
+	background-color: #F8F8F8;
 	position: absolute;
-	padding: 0.5em 1em;
 	display: none;
 	opacity: 1.0;
-	width: 14em;
 	z-index: 2;
+}
+
+.basket-mini-product tr {
+	border-left: 1em solid transparent;
+	border-right: 1em solid transparent;
+}
+
+.basket-mini-product th,
+.basket-mini-product td {
+	padding: 1em 0;
 }
 
 .basket-mini-product th,
@@ -1932,22 +1953,32 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .basket-mini-product .basket .name {
 	text-align: left;
-	width: 60%;
+	width: 50%;
 }
 
 .basket-mini-product .basket .price {
 	white-space: nowrap;
 	text-align: right;
-	width: 25%;
+}
+
+.basket-mini-product .basket .action {
+	padding-left: 1em;
+	font-weight: bold;
+}
+
+.basket-mini-product .basket .delete:after {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f014";
+}
+
+.basket-mini-product .basket-header tr {
+	border-bottom: 1px solid #D0D0D0;
 }
 
 .basket-mini-product tr.delivery,
 .basket-mini-product tr.total {
 	border-top: 1px solid #D0D0D0;
-}
-
-.basket-mini-product .total {
-	content: "= ";
+	font-weight: bold;
 }
 
 .basket-mini-product .delivery .name:before {
@@ -1957,6 +1988,11 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .basket-mini-product .total .name:before {
 	content: "= ";
 }
+
+.basket-mini-product .checkout .button {
+	text-align: center;
+}
+
 
 
 /* Standard basket */
