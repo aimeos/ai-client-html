@@ -235,8 +235,8 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 							<input type="number" value="1"
 								 min="1" max="2147483647" maxlength="10" step="1" required="required"
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
-							/>
-							<button class="standardbutton btn-action" type="submit" value="">
+							/><!--
+							--><button class="standardbutton btn-action" type="submit" value="">
 								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
 							</button>
 						</div>

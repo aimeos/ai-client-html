@@ -26,10 +26,6 @@
 	width: 98%;
 }
 
-.aimeos .prototype {
-	display: none;
-}
-
 .aimeos .price-list {
 	font-weight: normal;
 	text-align: left;
@@ -175,7 +171,7 @@
 }
 
 .common-summary-detail tr.subtotal {
-  color: #555;
+	color: #555;
 }
 
 .common-summary-detail tr.total {
@@ -250,6 +246,7 @@
 	text-align: center;
 	display: inline;
 	width: 3em;
+	padding: 0.75em;
 }
 
 .common-summary-detail th.action,

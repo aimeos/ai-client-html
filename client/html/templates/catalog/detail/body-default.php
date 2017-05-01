@@ -251,8 +251,8 @@ ksort( $propMap );
 							<input type="number"
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 								min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
-							/>
-							<button class="standardbutton btn-action" type="submit" value="">
+							/><!--
+							--><button class="standardbutton btn-action" type="submit" value="">
 								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
 							</button>
 						</div>

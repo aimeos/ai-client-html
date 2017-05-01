@@ -40,18 +40,17 @@
 }
 
 .aimeos .standardbutton {
-	background-color: #B0A060;
-	border: none;
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 100%;
-	color: #FFFFFF;
-	min-width: 6em;
-	padding: 0.25em 1em;
-	margin: 0.25em;
-	line-height: 1;
 	display: inline-block;
-	vertical-align: middle;
+	background-color: #BBB;
+	border: solid 1px #BBB;
+	text-decoration: none;
+	vertical-align: top;
+	font-weight: bold;
+	font-size: 125%;
+	color: #FFFFFF;
+	min-width: 12em;
+	padding: 0.5em 1em;
+	margin: 0.25em 0;
 	cursor: pointer;
 }
 
@@ -61,12 +60,12 @@
 }
 
 .aimeos .standardbutton:hover {
-	background-color: #B0A060;
+	background-color: #BBB;
 }
 
 /* Buttons calculate width incl. padding, links not! */
 .aimeos button.standardbutton {
-	min-width: 8.01em;
+	min-width: 12.01em;
 }
 
 .aimeos .minibutton {
@@ -86,7 +85,7 @@
 
 .aimeos .btn-action {
 	background-color: #B0A060;
-	line-height: normal;
+	border: solid 1px #B0A060;
 	font-size: 125%;
 }
 
@@ -95,7 +94,7 @@
 }
 
 .aimeos .btn-disabled {
-	background-color: #AAA;
+	background-color: #F8F8F8;
 	box-shadow: none;
 	cursor: not-allowed;
 
@@ -388,25 +387,14 @@
 
 .catalog-filter-search {
 	background-color: #B0A060;
-	background-repeat: repeat-x;
-	background-size: 100% 100%;
-	background-color: #B0A060;
 	border: 1px solid #B0A060;
-	border-radius: 1em;
 	white-space: nowrap;
-	margin: 1em 0;
-}
-
-.catalog-filter-search:hover {
-	background-color: #B0A060;
 }
 
 .catalog-filter-search .value {
 	background-color: #FFFFFF;
-	border-radius: 1em 0 0 1em;
 	border: none;
-	padding: 0 1em;
-	height: 1.525em;
+	padding: 0.5em;
 	min-width: 5em;
 	width: 70%;
 }
@@ -417,18 +405,15 @@
 }
 
 .catalog-filter-search .reset {
-	height: 1.525em;
-	vertical-align: top;
-	background-color: #FFFFFF;
-	border-style: none;
 	border: none;
+	background-color: #FFFFFF;
+	padding: 0.5em;
 	width: 10%;
 }
 
 .catalog-filter-search .reset .symbol {
 	vertical-align: top;
 	font-weight: bold;
-	font-size: 105%;
 	color: #AAAAAA;
 }
 
@@ -441,15 +426,13 @@
 }
 
 .catalog-filter-search button.standardbutton {
-	line-height: 1.525em;
 	vertical-align: top;
 	background: none;
 	box-shadow: none;
-	border-radius: 0;
+	font-size: 100%;
 	border: 0 none;
-	height: 1.525em;
 	min-width: 2em;
-	padding: 0;
+	padding: 0.5em;
 	margin: 0;
 	width: 20%;
 }
@@ -1363,33 +1346,27 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 /* add to basket */
 .catalog-detail-basket .addbasket {
-	text-align: center;
 	margin-top: 1em;
 }
 
-.catalog-detail-basket .group {
+.catalog-detail-basket button.btn-action {
 	background-color: #B0A060;
+	vertical-align: inherit;
 	padding: 0.5em 1em;
 }
 
-.catalog-detail-basket .group:hover {
-	background-color: #C0B070;
-}
-
-.catalog-detail-basket .btn-action {
-	background-color: inherit;
-	padding: 0;
-	margin: 0;
+.catalog-list-items .addbasket button.btn-action {
+	vertical-align: inherit;
+	min-width: 8em;
+	margin: 0.33em 0;
 }
 
 .catalog-list-items .addbasket input,
 .catalog-detail-basket .group input {
-	text-align: center;
-	vertical-align: middle;
 	border: 1px solid #B0A060;
-	line-height: normal;
+	text-align: center;
 	font-size: 125%;
-	padding: 0.2em;
+	padding: 0.5em;
 	width: 4em;
 }
 
@@ -1641,7 +1618,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 /* Stock level */
 .catalog-detail .stock-list {
-	text-align: center;
 	padding: 0.5em 0;
 }
 
@@ -1862,7 +1838,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 /* Mini basket */
 .basket-mini {
 	background-color: #B0A060;
-	margin: 0 1em;
 	color: #555;
 }
 
@@ -2038,14 +2013,10 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .basket-standard-coupon .coupon-new {
 	background-color: #B0A060;
-	background-repeat: repeat-x;
-	background-size: 100% 100%;
-	background-color: #B0A060;
 	border: 1px solid #B0A060;
-	border-radius: 0.4em;
 	display: inline-block;
 	white-space: nowrap;
-	max-width: 12em;
+	max-width: 16em;
 	margin: 0.5em;
 }
 
@@ -2055,20 +2026,22 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .basket-standard-coupon .coupon-new .coupon-code {
 	background-color: #FFFFFF;
-	border-radius: 0.4em 0 0 0.4em;
 	border: none;
-	min-width: 5em;
-	height: 1.55em;
+	padding: 0.5em;
+	min-width: 8em;
 	width: 80%;
+	font-size: 125%;
 }
 
 .basket-standard-coupon .coupon-new button.standardbutton {
+	vertical-align: top;
+	font-weight: bold;
 	background: none;
 	box-shadow: none;
 	border-radius: 0;
-	border: 0 none;
+	border: none;
 	min-width: 2em;
-	padding: 0;
+	padding: 0.5em 1em;
 	margin: 0;
 }
 
