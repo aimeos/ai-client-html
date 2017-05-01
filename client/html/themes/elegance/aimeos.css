@@ -37,6 +37,7 @@
 
 .aimeos input {
 	border: solid 1px #D0D0D0;
+	padding: 0.5em 0;
 }
 
 .aimeos .standardbutton {
@@ -139,15 +140,16 @@
 	display: inline;
 	width: 210px;
 	margin: 0.25em 0;
+	padding: 0.5em 0;
 }
 
 .aimeos .form-list input {
 	width: 215px;
-	height: 1.5em;
 	background-color: #F0F0F0;
 	border: solid 1px #D0D0D0;
 	vertical-align: bottom;
 	margin: 0.25em 0;
+	padding: 0.5em 0;
 }
 
 .aimeos .form-list select {
@@ -155,6 +157,7 @@
 	border: 1px solid #D0D0D0;
 	vertical-align: bottom;
 	margin: 0.25em 0;
+	padding: 0.5em 0;
 }
 
 .aimeos .pagination {
@@ -1466,6 +1469,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	border: none;
 	font-weight: normal;
 	text-transform: none;
+	padding: 0.5em 0;
 	width: 15em;
 }
 
@@ -2144,7 +2148,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	background-color: #F0F0F0;
 	border: solid 1px #D0D0D0;
 	vertical-align: bottom;
-	height: 1.5em;
 	width: 220px;
 }
 
@@ -2236,7 +2239,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .checkout-standard-address .item-address .header {
 	background-color: #F0F0F0;
-	padding: 1%;
+	padding: 1em 1%;
 }
 
 .checkout-standard-address .item-address .modify {
