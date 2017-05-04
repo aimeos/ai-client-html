@@ -17,6 +17,10 @@
 	padding: 0;
 }
 
+.aimeos .prototype {
+	display: none;
+}
+
 .aimeos .container {
 	border: solid 1px #D0D0D0;
 	min-width: 240px;
@@ -246,7 +250,12 @@
 	text-align: center;
 	display: inline;
 	width: 3em;
-	padding: 0.75em;
+}
+
+.common-summary-detail .action .delete:after {
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: 100%;
+	content: "\f014";
 }
 
 .common-summary-detail th.action,
