@@ -318,12 +318,12 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity() ), $priceCurrency ) ); ?></td>
 
 
-				<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+				<?php if( $modify ) : ?>
 					<td class="action">
-						<?php $basketParams = array( 'b_action' => 'delete', 'b_position' => $position ); ?>
-						<a class="minibutton change" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
-							<?= $this->translate( 'client', 'X' ); ?>
-						</a>
+						<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+							<?php $basketParams = array( 'b_action' => 'delete', 'b_position' => $position ); ?>
+							<a class="minibutton delete" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>"></a>
+						<?php endif; ?>
 					</td>
 				<?php endif; ?>
 
