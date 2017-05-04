@@ -37,6 +37,7 @@
 
 .aimeos input {
 	border: solid 1px #D0D0D0;
+	text-indent: 0.25em;
 	padding: 0.5em 0;
 }
 
@@ -73,6 +74,7 @@
 	color: #D0D0D0;
 	font-size: 150%;
 	font-weight: bold;
+	vertical-align: middle;
 	min-width: 1em;
 	padding: 0;
 	margin: 0;
@@ -1988,6 +1990,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .basket-standard-coupon {
 	padding: 1em !important;
+	text-align: center;
 	margin: 0;
 }
 
@@ -2016,41 +2019,32 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 .basket-standard-coupon .coupon-new {
-	background-color: #B0A060;
-	border: 1px solid #B0A060;
 	display: inline-block;
-	white-space: nowrap;
-	max-width: 16em;
 	margin: 0.5em;
-}
-
-.basket-standard-coupon .coupon-new:hover {
-	background-color: #B0A060;
+	width: 240px;
 }
 
 .basket-standard-coupon .coupon-new .coupon-code {
-	background-color: #FFFFFF;
-	border: none;
-	padding: 0.5em;
-	min-width: 8em;
-	width: 80%;
-	font-size: 125%;
+	border: 1px solid #B0A060;
 }
 
-.basket-standard-coupon .coupon-new button.standardbutton {
+.basket-standard-coupon .coupon-new button.minibutton {
+	background-color: #B0A060;
+	border: 1px solid #B0A060;
 	vertical-align: top;
 	font-weight: bold;
-	background: none;
-	box-shadow: none;
-	border-radius: 0;
-	border: none;
+	font-size: 100%;
+	color: #FFFFFF;
+	padding: 0.5em;
 	min-width: 2em;
-	padding: 0.5em 1em;
 	margin: 0;
 }
 
-.basket-standard-coupon .coupon-new .standardbutton:hover {
-	background: none;
+.basket-standard-coupon .minibutton.delete:after {
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: 125%;
+	content: "\f014";
+	display: inline-block;
 }
 
 @media (max-width: 480px) {
@@ -2141,21 +2135,24 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 .checkout-standard .form-list select {
-	width: 220px;
+	min-width: 220px;
+	width: 50%;
 }
 
 .checkout-standard .form-list input {
 	background-color: #F0F0F0;
 	border: solid 1px #D0D0D0;
 	vertical-align: bottom;
-	width: 220px;
+	min-width: 220px;
+	width: 50%;
 }
 
 .checkout-standard .form-list label {
 	display: inline-block;
 	vertical-align: top;
 	text-align: left;
-	width: 220px;
+	min-width: 220px;
+	width: 33%;
 }
 
 .checkout-standard .item-service .description {
@@ -2255,6 +2252,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 .checkout-standard-address .item-address .values {
+	display: inline-block;
 	margin: 0;
 }
 

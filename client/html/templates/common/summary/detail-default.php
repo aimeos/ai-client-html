@@ -361,13 +361,15 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<tfoot>
 
-		<tr class="subtotal">
-			<td colspan="3"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
-			<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceValue ), $priceCurrency ) ); ?></td>
-			<?php if( $modify ) : ?>
-				<td class="action"></td>
-			<?php endif; ?>
-		</tr>
+		<?php if( $priceService > 0 || $paymentPriceService > 0 ) : ?>
+			<tr class="subtotal">
+				<td colspan="3"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceValue ), $priceCurrency ) ); ?></td>
+				<?php if( $modify ) : ?>
+					<td class="action"></td>
+				<?php endif; ?>
+			</tr>
+		<?php endif; ?>
 
 		<?php if( $priceService - $paymentPriceService > 0 ) : ?>
 			<tr class="delivery">

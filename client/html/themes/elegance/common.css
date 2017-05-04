@@ -203,6 +203,10 @@
 	display: block;
 }
 
+.common-summary-detail .code {
+    margin: 0.5em;
+}
+
 .common-summary-detail .attr-list {
 	color: #555;
 	margin: 0.5em;

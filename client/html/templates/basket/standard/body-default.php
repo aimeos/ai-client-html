@@ -96,10 +96,7 @@ $optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
 							<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ); ?>
 							<li class="attr-item">
 								<span class="coupon-code"><?= $enc->html( $code ); ?></span>
-								<a class="minibutton change"
-									href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ); ?>">
-									<?= $enc->html( $this->translate( 'client', 'X' ) ); ?>
-								</a>
+								<a class="minibutton change" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ); ?>"></a>
 							</li>
 							<?php endforeach; ?>
 						</ul>
