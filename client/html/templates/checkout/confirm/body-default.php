@@ -35,7 +35,7 @@ $retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
 	<h1><?php echo $enc->html( $this->translate( 'client', 'Confirmation' ), $enc::TRUST ); ?></h1>
 
 
-	<?php $this->block()->get( 'checkout/confirm/intro' ); ?>
+	<?= $this->block()->get( 'checkout/confirm/intro' ); ?>
 
 
 	<div class="checkout-confirm-basic">
