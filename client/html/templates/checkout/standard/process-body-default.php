@@ -83,6 +83,8 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 ?>
 <?php $this->block()->start( 'checkout/standard/process' ); ?>
 <div class="checkout-standard-process">
+	<input type="hidden" name="<?php echo $enc->attr( $this->formparam( array( 'cp_payment' ) ) ); ?>" value="1" />
+
 	<h2><?php echo $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?></h2>
 
 	<?php if( !empty( $errors ) ) : ?>
