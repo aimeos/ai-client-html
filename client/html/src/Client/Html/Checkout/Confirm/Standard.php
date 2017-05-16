@@ -305,17 +305,15 @@ class Standard
 		$view = $this->getView();
 		$context = $this->getContext();
 
-		if( ( $code = $view->param( 'code' ) ) === null || ( $orderid = $view->param( 'orderid' ) ) === null ) {
+		if( ( $code = $view->param( 'code' ) ) === null ) {
 			return;
 		}
 
 		try
 		{
 			$config = array( 'absoluteUri' => true, 'namespace' => false );
-			$params = array( 'code' => $code, 'orderid' => $orderid );
 			$urls = array(
-				'payment.url-success' => $this->getUrlConfirm( $view, $params, $config ),
-				'payment.url-update' => $this->getUrlUpdate( $view, $params, $config ),
+				'payment.url-success' => $this->getUrlConfirm( $view, ['code' => $code], $config ),
 				'client.ipaddress' => $view->request()->getClientAddress(),
 			);
 			$urls['payment.url-self'] = $urls['payment.url-success'];
@@ -326,7 +324,7 @@ class Standard
 			{
 				// If update already arrived at the "checkout update" component
 				$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-				$orderItem = $cntl->getItem( $orderid );
+				$orderItem = $cntl->getItem( $context->getSession()->get( 'aimeos/orderid' ), false );
 			}
 
 
@@ -434,10 +432,8 @@ class Standard
 			if( !isset( $view->confirmOrderItem ) )
 			{
 				$context = $this->getContext();
-				$orderid = $context->getSession()->get( 'aimeos/orderid' );
-
 				$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-				$view->confirmOrderItem = $cntl->getItem( $orderid );
+				$view->confirmOrderItem = $cntl->getItem( $context->getSession()->get( 'aimeos/orderid' ), false );
 			}
 
 			$this->cache = $view;
