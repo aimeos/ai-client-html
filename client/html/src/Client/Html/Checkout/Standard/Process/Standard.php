@@ -328,11 +328,11 @@ class Standard
 		$service = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 
 		$config = array( 'absoluteUri' => true, 'namespace' => false );
-		$args = array( 'code' => $service->getCode(), 'orderid' => $orderItem->getId() );
+		$args = array( 'code' => $service->getCode() );
 		$urls = array(
-			'payment.url-self' => $this->getUrlSelf( $view, $args + array( 'c_step' => 'process' ), [] ),
+			'payment.url-self' => $this->getUrlSelf( $view, $args + ['c_step' => 'process'], [] ),
+			'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], $config ),
 			'payment.url-success' => $this->getUrlConfirm( $view, $args, $config ),
-			'payment.url-update' => $this->getUrlUpdate( $view, $args, $config ),
 		);
 
 		$params = $view->param();

@@ -34,10 +34,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetHeader()
 	{
-		$item = \Aimeos\MShop\Factory::createManager( $this->context, 'customer' )->findItem( 'UTC001' );
-
-		$this->context->setUserId( $item->getId() );
-		$this->context->getSession()->set( 'aimeos/orderid', $this->getOrder( '2011-09-17 16:14:32' )->getId() );
+		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
+		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -62,9 +60,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
-		$item = \Aimeos\MShop\Factory::createManager( $this->context, 'customer' )->findItem( 'UTC001' );
-
-		$this->context->setUserId( $item->getId() );
 		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
 		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
 
