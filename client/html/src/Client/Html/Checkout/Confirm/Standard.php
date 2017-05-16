@@ -311,20 +311,23 @@ class Standard
 
 		try
 		{
+			$orderid = $context->getSession()->get( 'aimeos/orderid' );
+
 			$config = array( 'absoluteUri' => true, 'namespace' => false );
 			$urls = array(
-				'payment.url-success' => $this->getUrlConfirm( $view, ['code' => $code], $config ),
+				'payment.url-update' => $this->getUrlUpdate( $view, ['code' => $code, 'orderid' => $orderid], $config ),
+				'payment.url-success' => $this->getUrlConfirm( $view, [], $config ),
 				'client.ipaddress' => $view->request()->getClientAddress(),
 			);
 			$urls['payment.url-self'] = $urls['payment.url-success'];
 
 			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
 
-			if( ( $orderItem = $cntl->updateSync( $view->request(), $view->response(), $urls ) ) === null )
+			if( ( $orderItem = $cntl->updateSync( $view->request(), $view->response(), $urls, $code, $orderid ) ) === null )
 			{
 				// If update already arrived at the "checkout update" component
 				$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-				$orderItem = $cntl->getItem( $context->getSession()->get( 'aimeos/orderid' ), false );
+				$orderItem = $cntl->getItem( $orderid, false );
 			}
 
 

@@ -284,17 +284,19 @@ class Standard
 
 		try
 		{
+			$code = $view->param( 'code' );
+			$orderid = $view->param( 'orderid' );
+
 			$config = array( 'absoluteUri' => true, 'namespace' => false );
-			$params = array( 'code' => $view->param( 'code' ), 'orderid' => $view->param( 'orderid' ) );
 			$urls = array(
-				'payment.url-success' => $this->getUrlConfirm( $view, $params, $config ),
-				'payment.url-update' => $this->getUrlUpdate( $view, $params, $config ),
+				'payment.url-update' => $this->getUrlUpdate( $view, ['code' => $code, 'orderid' => $orderid], $config ),
+				'payment.url-success' => $this->getUrlConfirm( $view, [], $config ),
 				'client.ipaddress' => $view->request()->getClientAddress(),
 			);
 			$urls['payment.url-self'] = $urls['payment.url-update'];
 
 			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
-			$cntl->updateSync( $view->request(), $view->response(), $urls );
+			$cntl->updateSync( $view->request(), $view->response(), $urls, $code, $orderid );
 
 			parent::process();
 
