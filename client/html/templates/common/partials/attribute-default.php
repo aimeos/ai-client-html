@@ -157,8 +157,17 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 			<?php endif; ?>
 
 			<div class="select-value">
-				<input type="text" value=""
+				<?php
+					switch( $attribute->getType() )
+					{
+						case 'price': $type = 'number'; break;
+						case 'date': $type = 'date'; break;
+						default: $type = 'text'; break;
+					}
+				?>
+				<input type="<?= $enc->attr( $type ); ?>"
 					name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>"
+					value="<?= $enc->attr( $attribute->getCode() ); ?>"
 					placeholder="<?= $enc->attr( $attribute->getName() ); ?>"
 				/>
 			</div>
