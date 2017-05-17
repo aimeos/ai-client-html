@@ -1521,6 +1521,11 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	opacity: 0.25;
 }
 
+.catalog-list-items .selection .custom input[type=number],
+.catalog-detail-basket-selection .custom input[type=number] {
+	text-align: center;
+}
+
 .catalog-list-items .selection .media-item,
 .catalog-detail-basket-selection .media-item {
 	display: inline-block;
