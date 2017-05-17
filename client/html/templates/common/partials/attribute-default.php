@@ -149,7 +149,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 <ul class="selection">
 	<?php foreach( $this->get( 'attributeCustomItems', [] ) as $id => $attribute ) : ?>
 		<li class="select-item <?= $enc->attr( $attribute->getCode() ); ?>">
-			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getType() ) ); ?></div>
+			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ); ?></div>
 
 			<?php $hintcode = $attribute->getType() . '-hint'; $hint = $enc->html( $this->translate( 'client/code', $hintcode ) ); ?>
 			<?php if( !empty( $hint ) && $hint !== $hintcode ) : ?>
@@ -157,19 +157,13 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 			<?php endif; ?>
 
 			<div class="select-value">
-				<?php
-					switch( $attribute->getType() )
-					{
-						case 'price': $type = 'number'; break;
-						case 'date': $type = 'date'; break;
-						default: $type = 'text'; break;
-					}
-				?>
-				<input type="<?= $enc->attr( $type ); ?>"
-					name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>"
-					value="<?= $enc->attr( $attribute->getCode() ); ?>"
-					placeholder="<?= $enc->attr( $attribute->getName() ); ?>"
-				/>
+				<?php switch( $attribute->getType() ) : case 'price': ?>
+					<input type="number" min="0.01" step="0.01" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
+				<?php break; case 'date': ?>
+					<input type="date" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
+				<?php break; default: ?>
+					<input type="text" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
+				<?php endswitch; ?>
 			</div>
 		</li>
 	<?php endforeach; ?>
