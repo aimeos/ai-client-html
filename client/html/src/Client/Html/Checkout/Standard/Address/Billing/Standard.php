@@ -528,7 +528,7 @@ class Standard
 			}
 
 			foreach( $params as $key => $value ) {
-				$list[str_replace( 'order.base', 'customer', $key )] = $value;
+				$list[str_replace( 'order.base.address', 'customer', $key )] = $value;
 			}
 
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
