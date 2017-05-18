@@ -2250,10 +2250,10 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .checkout-standard-address .item-address .header input {
 	display: inline-block;
-	vertical-align: middle;
-	margin-right: 1em;
+	vertical-align: top;
 	border: none;
-	margin: 0;
+	margin: 0.25em;
+	margin-right: 1em;
 }
 
 .checkout-standard-address .item-address .values {
