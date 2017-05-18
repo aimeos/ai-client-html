@@ -207,6 +207,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 									'attributeItems' => $this->get( 'attributeItems', [] ),
 									'productItems' => $this->get( 'productItems', [] ),
 									'mediaItems' => $this->get( 'mediaItems', [] ),
+									'productItem' => $productItem,
 								)
 							); ?>
 						</div>
@@ -216,6 +217,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
 							array(
+								'productItem' => $productItem,
 								'attributeItems' => $this->get( 'attributeItems', [] ),
 								'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
 								'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),

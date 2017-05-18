@@ -7,6 +7,7 @@
  */
 
 /* Available data:
+ * - productItem : Product item the attributes are associated with (optional)
  * - attributeItems : List of attribute items including the referenced items like texts, images, etc.
  * - attributeConfigItems : List of configuration attributes
  * - attributeCustomItems : List of custom attributes
@@ -158,7 +159,12 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 
 			<div class="select-value">
 				<?php switch( $attribute->getType() ) : case 'price': ?>
-					<input type="number" min="0.01" step="0.01" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
+					<input type="number" min="0.01" step="0.01"
+						name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>"
+						<?php if( isset( $this->productItem ) && ( $prices = $this->productItem->getRefItems( 'price', 'default', 'default' ) ) !== [] && ( $price = reset( $prices ) ) !== false ) : ?>
+							value="<?= $enc->attr( $price->getValue() ); ?>"
+						<?php endif; ?>
+					/>
 				<?php break; case 'date': ?>
 					<input type="date" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
 				<?php break; default: ?>

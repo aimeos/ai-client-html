@@ -187,9 +187,10 @@ ksort( $propMap );
 								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
 								array(
 									'products' => $this->detailProductItem->getRefItems( 'product', 'default', 'default' ),
-									'mediaItems' => $this->get( 'detailMediaItems', [] ),
-									'productItems' => $this->get( 'detailProductItems', [] ),
 									'attributeItems' => $this->get( 'detailAttributeItems', [] ),
+									'productItems' => $this->get( 'detailProductItems', [] ),
+									'mediaItems' => $this->get( 'detailMediaItems', [] ),
+									'productItem' => $this->detailProductItem,
 								)
 							); ?>
 						</div>
@@ -216,6 +217,7 @@ ksort( $propMap );
 							 */
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
 							array(
+								'productItem' => $this->detailProductItem,
 								'attributeItems' => $this->get( 'detailAttributeItems', [] ),
 								'attributeConfigItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'config' ),
 								'attributeCustomItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'custom' ),
