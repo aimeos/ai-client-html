@@ -212,7 +212,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'U:TEST' )->getId(),
-			'b_quantity' => 1,
+			'b_quantity' => 2,
 			'b_attrvarid' => array_keys( $attributes ),
 		);
 
@@ -222,7 +222,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		$output = $this->object->getBody();
 
-		$this->assertRegExp( '#<li class="attr-item">.*<span class="value">30</span>.*</li>.*<li class="attr-item">.*<span class="value">30</span>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item.*<span class="value">30</span>.*</li>.*<li class="attr-item.*<span class="value">30</span>.*</li>#smU', $output );
 	}
 
 
@@ -247,7 +247,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
-			'b_quantity' => 1,
+			'b_quantity' => 2,
 			'b_attrconfid' => $attribute->getId(),
 			'b_stocktype' => 'default',
 		);
@@ -258,7 +258,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		$output = $this->object->getBody();
 
-		$this->assertRegExp( '#<li class="attr-item">.*<a class="change" href=[^>]*>.*<span class="value">weiß</span>.*</a>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item.*<a class="change" href=[^>]*>.*<span class="value">weiß</span>.*</a>.*</li>#smU', $output );
 	}
 
 
@@ -283,7 +283,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
-			'b_quantity' => 1,
+			'b_quantity' => 2,
 			'b_attrhideid' => $attribute->getId(),
 			'b_stocktype' => 'default',
 		);
@@ -294,7 +294,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		$output = $this->object->getBody();
 
-		$this->assertNotRegExp( '#<li class="attr-item">.*<span class="value">m</span>.*</li>#smU', $output );
+		$this->assertNotRegExp( '#<li class="attr-item.*<span class="value">m</span>.*</li>#smU', $output );
 	}
 
 
@@ -319,7 +319,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$param = array(
 				'b_action' => 'add',
 				'b_prodid' => $this->getProductItem( 'U:TESTP' )->getId(),
-				'b_quantity' => 1,
+				'b_quantity' => 2,
 				'b_attrcustid' => array( $attribute->getId() => '2000-01-01' ),
 				'b_stocktype' => 'default',
 		);
@@ -330,7 +330,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		$output = $this->object->getBody();
 
-		$this->assertRegExp( '#<li class="attr-item">.*<span class="value">2000-01-01</span>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item.*<span class="value">2000-01-01</span>.*</li>#smU', $output );
 	}
 
 

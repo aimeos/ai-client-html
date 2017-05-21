@@ -213,9 +213,9 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					</p>
 
 					<?php foreach( $attrTypes as $attrType ) : ?>
-						<ul class="attr-list <?= $enc->attr( 'attr-list-' . $attrType ); ?>">
+						<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
 							<?php foreach( $product->getAttributes( $attrType ) as $attribute ) : ?>
-								<li class="attr-item">
+								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
 									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
 									<span class="value"><?= $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?></span>
 								</li>
@@ -228,7 +228,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						<ul class="attr-list attr-list-config">
 
 							<?php foreach( $attributes as $attribute ) : ?>
-								<li class="attr-item">
+								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
 
 									<?php if( $modify ) : ?>
 										<?php $params = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity(), 'b_attrconfcode' => $attribute->getCode() ); ?>
@@ -254,7 +254,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						<ul class="attr-list attr-list-custom">
 
 							<?php foreach( $attributes as $attribute ) : ?>
-								<li class="attr-item">
+								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
 									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
 									<span class="value"><?= $enc->html( $attribute->getValue() ); ?></span>
 								</li>
@@ -269,7 +269,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 							<?php foreach( $attributes as $attribute ) : ?>
 								<?php if( $attribute->getCode() === 'download' ) : ?>
-									<li class="attr-item">
+									<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
 										<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
 										<span class="value">
 											<a href="<?= $enc->attr( $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ) ); ?>" >
