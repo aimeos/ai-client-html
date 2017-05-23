@@ -100,6 +100,8 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 	<?php endif; ?>
 
 
+	<input type="hidden" name="<?php echo $enc->attr( $this->formparam( array( 'cp_payment' ) ) ); ?>" value="1" />
+
 	<?php foreach( $hidden as $key => $item ) : ?>
 		<?php if( is_array( $item->getDefault() ) ) : ?>
 
