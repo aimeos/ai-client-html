@@ -253,12 +253,7 @@ class Standard
 		$view = $this->getView();
 		$context = $this->getContext();
 
-		if(
-			(
-				$view->param( 'cs_order', null ) === null
-				&& $view->param( 'cp_payment', null ) === null
-			)
-			|| $view->param( 'c_step' ) !== 'process'
+		if( $view->param( 'c_step' ) !== 'process'
 			|| $view->get( 'standardErrorList', [] ) !== []
 			|| $view->get( 'standardStepActive' ) !== null
 		) {
@@ -271,7 +266,8 @@ class Standard
 			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 
-			if ( $view->param( 'cs_order', null ) !== null ) {
+			if ( $view->param( 'cs_order', null ) !== null )
+			{
 				$basketCntl->get()->setCustomerId( $context->getUserId() );
 
 				parent::process();
@@ -288,6 +284,10 @@ class Standard
 
 				$orderItem = $orderCntl->getItem($orderId);
 				$basket = $basketCntl->load($orderItem->getBaseId(), \Aimeos\MShop\Order\Manager\Base\Base::PARTS_ALL, false);
+			}
+			else
+			{
+				return;
 			}
 
 			if( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
