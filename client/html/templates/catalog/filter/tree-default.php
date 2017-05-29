@@ -31,6 +31,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
  * @category Developer
  */
 
+
 ?>
 <ul class="level-<?= $enc->attr( $level ); ?>">
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
@@ -43,7 +44,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 			<li class="cat-item catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
 
-				<a class="cat-item" href="<?= $enc->attr( $this->url( $target, $controller, $action, $params, [], $config ) ); ?>"><!--
+				<a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
 					--><div class="media-list"><!--
 
 						<?php foreach( $item->getListItems( 'media', 'icon' ) as $listItem ) : ?>

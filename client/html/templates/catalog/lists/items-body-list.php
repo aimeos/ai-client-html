@@ -31,7 +31,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 				$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id );
 				if( $position !== null ) { $params['d_pos'] = $position++; }
 
-				$url = $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig );
+				$url = $this->url( ($productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 			?>
 
 			--><li class="product <?= $enc->attr( $css ); ?>"
@@ -46,8 +46,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 						<?php if( $firstImage === true ) : $firstImage = false; ?>
 							<noscript>
 								<div class="media-item" style="background-image: url('<?= $mediaUrl; ?>')"
-									itemtype="http://schema.org/ImageObject"
-									itemscope="" >
+									itemtype="http://schema.org/ImageObject" itemscope="">
 									<meta itemprop="contentUrl" content="<?= $mediaUrl; ?>" />
 								</div>
 							</noscript>
