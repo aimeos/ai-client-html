@@ -55,7 +55,7 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 <?php if( $price->getTaxrate() > 0 ) { echo ', ' . strip_tags( sprintf( $vatFormat, $this->number( $price->getTaxrate() ) ) ); } ?>
 
 <?php $params = array( 'd_prodid' => $product->getId(), 'd_name' => $product->getName( 'url' ) ); ?>
-<?= $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ); ?>
+<?= $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ); ?>
 
 <?php endforeach; ?>
 

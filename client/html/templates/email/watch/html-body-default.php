@@ -95,7 +95,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
 										<?php endif; ?>
 
 										<?php $params = array( 'd_prodid' => $product->getId(), 'd_name' => $product->getName( 'url' ) ); ?>
-										<a class="product-name" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
+										<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 											<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 										</a>
 
