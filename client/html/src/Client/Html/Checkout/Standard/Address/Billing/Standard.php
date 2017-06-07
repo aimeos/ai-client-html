@@ -327,6 +327,47 @@ class Standard
 		 */
 		$optional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
 
+		/** client/html/checkout/standard/address/billing/hidden
+		 * List of billing address input fields that are optional and should be hidden
+		 *
+		 * You can configure the list of billing address fields that
+		 * are hidden when a customer enters his new billing address.
+		 * Available field keys are:
+		 * * order.base.address.company
+		 * * order.base.address.vatid
+		 * * order.base.address.salutation
+		 * * order.base.address.firstname
+		 * * order.base.address.lastname
+		 * * order.base.address.address1
+		 * * order.base.address.address2
+		 * * order.base.address.address3
+		 * * order.base.address.postal
+		 * * order.base.address.city
+		 * * order.base.address.state
+		 * * order.base.address.languageid
+		 * * order.base.address.countryid
+		 * * order.base.address.telephone
+		 * * order.base.address.telefax
+		 * * order.base.address.email
+		 * * order.base.address.website
+		 *
+		 * Caution: Only hide fields that don't require any input
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/billing/hidden" starting from 2014-03.
+		 *
+		 * @param array List of field keys
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/billing/disable-new
+		 * @see client/html/checkout/standard/address/billing/salutations
+		 * @see client/html/checkout/standard/address/billing/mandatory
+		 * @see client/html/checkout/standard/address/billing/optional
+		 * @see client/html/checkout/standard/address/countries
+		 */
+		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
+
 		/** client/html/checkout/standard/address/validate
 		 * List of regular expressions to validate the data of the address fields
 		 *
@@ -384,7 +425,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/optional
 		 */
 
-		$allFields = array_flip( array_merge( $mandatory, $optional ) );
+		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
 		$invalid = $this->validateFields( $params, $allFields );
 		$this->checkSalutation( $params, $mandatory );
 
@@ -561,45 +602,6 @@ class Standard
 			}
 			$view->billingLanguage = $langid;
 
-			/** client/html/checkout/standard/address/billing/hidden
-			 * List of billing address input fields that are optional and should be hidden
-			 *
-			 * You can configure the list of billing address fields that
-			 * are hidden when a customer enters his new billing address.
-			 * Available field keys are:
-			 * * order.base.address.company
-			 * * order.base.address.vatid
-			 * * order.base.address.salutation
-			 * * order.base.address.firstname
-			 * * order.base.address.lastname
-			 * * order.base.address.address1
-			 * * order.base.address.address2
-			 * * order.base.address.address3
-			 * * order.base.address.postal
-			 * * order.base.address.city
-			 * * order.base.address.state
-			 * * order.base.address.languageid
-			 * * order.base.address.countryid
-			 * * order.base.address.telephone
-			 * * order.base.address.telefax
-			 * * order.base.address.email
-			 * * order.base.address.website
-			 *
-			 * Caution: Only hide fields that don't require any input
-			 *
-			 * Until 2015-02, the configuration option was available as
-			 * "client/html/common/address/billing/hidden" starting from 2014-03.
-			 *
-			 * @param array List of field keys
-			 * @since 2015.02
-			 * @category User
-			 * @category Developer
-			 * @see client/html/checkout/standard/address/billing/disable-new
-			 * @see client/html/checkout/standard/address/billing/salutations
-			 * @see client/html/checkout/standard/address/billing/mandatory
-			 * @see client/html/checkout/standard/address/billing/optional
-			 * @see client/html/checkout/standard/address/countries
-			 */
 			$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
 
 			if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
