@@ -209,7 +209,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 		$item->setId( null );
-		$manager->saveItem( $item );
+		$item = $manager->saveItem( $item );
 
 		$view = \TestHelperHtml::getView();
 		$this->context->setUserId( $item->getParentId() );

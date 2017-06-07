@@ -78,7 +78,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'saveItem' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'saveItem' );
+		$customerStub->expects( $this->once() )->method( 'saveItem' )
+			->will( $this->returnValue( $customerStub->createItem() ) );
 
 		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
 		$this->object->process();

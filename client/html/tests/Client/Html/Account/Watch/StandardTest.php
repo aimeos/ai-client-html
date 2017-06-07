@@ -162,8 +162,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$managerStub->expects( $this->atLeastOnce() )->method( 'getSubManager' )
 			->will( $this->returnValue( $listManagerStub ) );
 
-		$listManagerStub->expects( $this->once() )->method( 'saveItem' );
 		$listManagerStub->expects( $this->once() )->method( 'moveItem' );
+		$listManagerStub->expects( $this->once() )->method( 'saveItem' )
+			->will( $this->returnValue( $listManagerStub->createItem() ) );
 
 
 		$this->object->process();

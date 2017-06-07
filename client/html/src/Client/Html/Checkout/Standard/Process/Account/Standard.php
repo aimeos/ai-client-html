@@ -285,8 +285,7 @@ class Standard
 		{
 			$password = substr( md5( microtime( true ) . getmypid() . rand() ), -8 );
 			$item = $this->addCustomerData( $controller->createItem(), $addr, $password );
-
-			$controller->saveItem( $item );
+			$item = $controller->saveItem( $item );
 
 			$msg = $item->toArray();
 			$msg['customer.password'] = $password;

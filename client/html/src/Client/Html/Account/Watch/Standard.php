@@ -405,7 +405,7 @@ class Standard
 				$item->setId( null );
 				$item->setRefId( $id );
 
-				$manager->saveItem( $item );
+				$item = $manager->saveItem( $item );
 				$manager->moveItem( $item->getId() );
 			}
 		}
