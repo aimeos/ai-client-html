@@ -15,10 +15,10 @@ $cntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
-$optTarget = $this->config( 'client/jsonapi/url/options/target' );
-$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
-$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+$optTarget = $this->config( 'client/jsonapi/url/target' );
+$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 $classes = '';
@@ -86,7 +86,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 }
 
 ?>
-<section class="aimeos catalog-list<?= $enc->attr( $classes ); ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos catalog-list<?= $enc->attr( $classes ); ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( isset( $this->listErrorList ) ) : ?>
 		<ul class="error-list">

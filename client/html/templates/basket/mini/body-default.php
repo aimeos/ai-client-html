@@ -86,18 +86,13 @@ $jsonController = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
 $jsonAction = $this->config( 'client/jsonapi/url/action', 'index' );
 $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
-$optTarget = $this->config( 'client/jsonapi/url/options/target' );
-$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
-$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
-
 
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>
-<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, [], [], $jsonConfig ) ); ?>">
 
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">

@@ -8,14 +8,14 @@
 
 $enc = $this->encoder();
 
-$optTarget = $this->config( 'client/jsonapi/url/options/target' );
-$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
-$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+$optTarget = $this->config( 'client/jsonapi/url/target' );
+$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos account-history" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos account-history" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( ( $errors = $this->get( 'historyErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">

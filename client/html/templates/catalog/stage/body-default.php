@@ -31,16 +31,16 @@ $listController = $this->config( 'client/html/catalog/lists/url/controller', 'ca
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
-$optTarget = $this->config( 'client/jsonapi/url/options/target' );
-$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
-$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+$optTarget = $this->config( 'client/jsonapi/url/target' );
+$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 $params = $this->get( 'stageParams', [] );
 
 
 ?>
-<section class="aimeos catalog-stage<?= $enc->attr( $classes ); ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos catalog-stage<?= $enc->attr( $classes ); ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( isset( $this->stageErrorList ) ) : ?>
 		<ul class="error-list">

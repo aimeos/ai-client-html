@@ -8,15 +8,15 @@
 
 $enc = $this->encoder();
 
-$optTarget = $this->config( 'client/jsonapi/url/options/target' );
-$optController = $this->config( 'client/jsonapi/url/options/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/options/action', 'index' );
-$optConfig = $this->config( 'client/jsonapi/url/options/config', [] );
+$optTarget = $this->config( 'client/jsonapi/url/target' );
+$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
+$optAction = $this->config( 'client/jsonapi/url/action', 'index' );
+$optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
 <?php $this->block()->start( 'locale/select' ); ?>
-<section class="aimeos locale-select" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optController, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos locale-select" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( ( $errors = $this->get( 'selectErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
