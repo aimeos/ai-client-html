@@ -99,6 +99,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 			--><?php if( isset( $serviceAttributes[$id] ) && !empty( $serviceAttributes[$id] ) ) : ?><!--
+
 				--><ul class="form-list">
 
 					<?php foreach( $serviceAttributes[$id] as $key => $attribute ) : ?>
@@ -113,53 +114,58 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 						<?php $css = ( isset( $paymentCss[$key] ) ? ' ' . join( ' ', $paymentCss[$key] ) : '' ) . ( $attribute->isRequired() ? ' mandatory' : '' ); ?>
 
 						<li class="form-item <?= $enc->attr( $key ) . $css; ?>">
-							<label for="payment-<?= $enc->attr( $key ); ?>"><?= $enc->html( $this->translate( 'client/code', $key ) ); ?></label><!--
+							<label for="payment-<?= $enc->attr( $key ); ?>" class="form-item-label">
+								<?= $enc->html( $this->translate( 'client/code', $key ) ); ?>
+							</label><!--
 
 							--><?php switch( $attribute->getType() ) : case 'select': ?><!--
 
-									--><select id="payment-<?= $enc->attr( $key ); ?>"
+									--><select id="payment-<?= $enc->attr( $key ); ?>" class="form-item-value"
 										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>">
 
 										<?php foreach( (array) $attribute->getDefault() as $option ) : $code = $key . ':' . $option; ?>
-											<?php $string = ( !is_numeric( $option ) ? $this->translate( 'client/code', $code ) : $option ); ?>
 											<option value="<?= $enc->attr( $option ); ?>">
-												<?= $enc->html( $string ); ?>
+												<?= $enc->html( $this->translate( 'client/code', $code ) ); ?>
 											</option>
 										<?php endforeach; ?>
 									</select><!--
 
-								--><?php break; case 'list': ?><!--
-									<?php foreach( $attribute->getDefault() as $code => $name ) : ?>
-										--><input type="radio" id="delivery-<?= $enc->attr( $key . '-' . $code ); ?>"
-											name="<?= $enc->attr( $this->formparam( array( 'c_delivery', $id, $key ) ) ); ?>"
-											selected="<?= ( $this->param( 'c_delivery/' . $id . '/' . $key, $value ) === $code ? 'selected' : '' ); ?>"
-											value="<?= $code ?>"
-										/>
-										<label for="delivery-<?= $enc->attr( $key . '-' . $code ); ?>" class="attr-list-item">
-											<?= nl2br( $enc->html( $name ) ); ?>
-										</label><!--
-									--><?php endforeach; ?><!--
+								--><?php break; case 'list': ?>
+									<div class="form-item-value">
+										<?php $checked = 'checked="checked"'; ?>
+										<?php foreach( $attribute->getDefault() as $code => $name ) : ?>
+											<input type="radio" id="delivery-<?= $enc->attr( $key . '-' . $code ); ?>"
+												name="<?= $enc->attr( $this->formparam( array( 'c_delivery', $id, $key ) ) ); ?>"
+												selected="<?= ( $this->param( 'c_delivery/' . $id . '/' . $key, $value ) === $code ? 'selected' : '' ); ?>"
+												value="<?= $code ?>" <?= $checked; ?>
+											/>
+											<label for="delivery-<?= $enc->attr( $key . '-' . $code ); ?>" class="attr-list-item">
+												<?= nl2br( $enc->html( $name ) ); ?>
+											</label>
+											<?php $checked = ''; ?>
+										<?php endforeach; ?>
+									</div><!--
 
 								--><?php break; case 'boolean': ?><!--
-									--><input type="checkbox" id="payment-<?= $enc->attr( $key ); ?>"
+									--><input type="checkbox" id="payment-<?= $enc->attr( $key ); ?>" class="form-item--value"
 										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
 										value="<?= $enc->attr( $this->param( 'c_payment/' . $id . '/' . $key, $value ) ); ?>"
 									/><!--
 
 								--><?php break; case 'integer': case 'number': ?><!--
-									--><input type="number" id="payment-<?= $enc->attr( $key ); ?>"
+									--><input type="number" id="payment-<?= $enc->attr( $key ); ?>" class="form-item--value"
 										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
 										value="<?= $enc->attr( $this->param( 'c_payment/' . $id . '/' . $key, $value ) ); ?>"
 									/><!--
 
 								--><?php break; case 'date': case 'datetime': case 'time': ?><!--
-									--><input type="<?= $attribute->getType(); ?>" id="payment-<?= $enc->attr( $key ); ?>"
+									--><input type="<?= $attribute->getType(); ?>" id="payment-<?= $enc->attr( $key ); ?>" class="form-item--value"
 										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
 										value="<?= $enc->attr( $this->param( 'c_payment/' . $id . '/' . $key, $value ) ); ?>"
 									/><!--
 
 								--><?php break; default: ?><!--
-									--><input type="text" id="payment-<?= $enc->attr( $key ); ?>"
+									--><input type="text" id="payment-<?= $enc->attr( $key ); ?>" class="form-item--value"
 										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
 										value="<?= $enc->attr( $this->param( 'c_payment/' . $id . '/' . $key, $value ) ); ?>"
 									/><!--
