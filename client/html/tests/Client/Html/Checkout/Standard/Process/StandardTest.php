@@ -180,20 +180,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessHtmlException()
 	{
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cp_payment' => 1] );
 		$view->addHelper( 'param', $helper );
 
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
+		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
 			->disableOriginalConstructor()
-			->setMethods( ['get'] )
+			->setMethods( ['getItem'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'get' )
+		$mock->expects( $this->once() )->method( 'getItem' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $mock );
+		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $mock );
 		$this->object->process();
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
+		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 
 		$this->assertInternalType( 'array', $view->standardErrorList );
 	}
@@ -202,20 +202,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessFrontendException()
 	{
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cp_payment' => 1] );
 		$view->addHelper( 'param', $helper );
 
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
+		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
 			->disableOriginalConstructor()
-			->setMethods( ['get'] )
+			->setMethods( ['getItem'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'get' )
+		$mock->expects( $this->once() )->method( 'getItem' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $mock );
+		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $mock );
 		$this->object->process();
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
+		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 
 		$this->assertInternalType( 'array', $view->standardErrorList );
 	}
@@ -224,20 +224,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessMShopException()
 	{
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cp_payment' => 1] );
 		$view->addHelper( 'param', $helper );
 
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
+		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
 			->disableOriginalConstructor()
-			->setMethods( ['get'] )
+			->setMethods( ['getItem'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'get' )
+		$mock->expects( $this->once() )->method( 'getItem' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $mock );
+		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $mock );
 		$this->object->process();
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
+		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 
 		$this->assertInternalType( 'array', $view->standardErrorList );
 	}
@@ -246,20 +246,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessException()
 	{
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cp_payment' => 1] );
 		$view->addHelper( 'param', $helper );
 
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
+		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
 			->disableOriginalConstructor()
-			->setMethods( ['get'] )
+			->setMethods( ['getItem'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'get' )
+		$mock->expects( $this->once() )->method( 'getItem' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $mock );
+		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $mock );
 		$this->object->process();
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
+		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 
 		$this->assertInternalType( 'array', $view->standardErrorList );
 	}

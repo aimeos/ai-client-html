@@ -268,8 +268,6 @@ class Standard
 
 			if ( $view->param( 'cs_order', null ) !== null )
 			{
-				$basketCntl->get()->setCustomerId( $context->getUserId() );
-
 				parent::process();
 
 				$basket = $basketCntl->store();

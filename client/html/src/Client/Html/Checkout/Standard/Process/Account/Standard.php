@@ -181,13 +181,13 @@ class Standard
 			$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
 			$addresses = $basket->getAddresses();
 
-			if( $basket->getCustomerId() == '' && $this->getView()->param( 'cs_option_account' ) == 1
+			if( $context->getUserId() == '' && $this->getView()->param( 'cs_option_account' ) == 1
 				&& isset( $addresses[\Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT] )
 			) {
 				$addr = $addresses[\Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT];
 				$email = $addr->getEmail();
 
-				$basket->setCustomerId( $this->getCustomer( $addr )->getId() );
+				$context->setUserId( $this->getCustomer( $addr )->getId() );
 			}
 		}
 		catch( \Exception $e )
