@@ -401,7 +401,7 @@
 	white-space: nowrap;
 }
 
-.catalog-filter-search .value {
+.catalog-filter-search input.value {
 	background-color: #FFFFFF;
 	border: none;
 	padding: 0.5em;
@@ -2428,6 +2428,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .checkout-standard-summary-option input[type="checkbox"] {
 	margin-left: 0.5em;
+	width: auto;
 }
 
 /* Checkout order */
