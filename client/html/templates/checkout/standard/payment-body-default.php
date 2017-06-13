@@ -128,6 +128,18 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 										<?php endforeach; ?>
 									</select><!--
 
+								--><?php break; case 'list': ?><!--
+									<?php foreach( $attribute->getDefault() as $code => $name ) : ?>
+										--><input type="radio" id="delivery-<?= $enc->attr( $key . '-' . $code ); ?>"
+											name="<?= $enc->attr( $this->formparam( array( 'c_delivery', $id, $key ) ) ); ?>"
+											selected="<?= ( $this->param( 'c_delivery/' . $id . '/' . $key, $value ) === $code ? 'selected' : '' ); ?>"
+											value="<?= $code ?>"
+										/>
+										<label for="delivery-<?= $enc->attr( $key . '-' . $code ); ?>" class="attr-list-item">
+											<?= nl2br( $enc->html( $name ) ); ?>
+										</label><!--
+									--><?php endforeach; ?><!--
+
 								--><?php break; case 'boolean': ?><!--
 									--><input type="checkbox" id="payment-<?= $enc->attr( $key ); ?>"
 										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
