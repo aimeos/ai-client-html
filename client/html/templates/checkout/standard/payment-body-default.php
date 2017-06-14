@@ -98,10 +98,14 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 			</label><!--
 
 
-			--><?php if( isset( $serviceAttributes[$id] ) && !empty( $serviceAttributes[$id] ) ) : ?><!--
-				<?php
-					/*
-					 * Displays the required and optional payment service attributes depending on their type
+			<?php if( isset( $serviceAttributes[$id] ) && !empty( $serviceAttributes[$id] ) ) : ?>
+				--><?= $this->partial(
+					/** client/html/checkout/standard/partials/serviceattr
+					 * Relative path to the checkout service attribute partial template file
+					 *
+					 * Partials are templates which are reused in other templates and generate reoccuring
+					 * blocks filled with data from the assigned values. The service attribute partial creates
+					 * an HTML block for the checkout delivery/payment option input/select fields.
 					 *
 					 * This is a very generic way to generate the list of service attribute pairs that will be
 					 * added as order service attributes in the basket. Depending on the type of the attribute,
@@ -112,124 +116,34 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 					 * If you want to adapt the output to your own project and you know you only have a specific
 					 * list of attributes, you can create the input and selections in a non-generic, straight
 					 * forward way. The $serviceAttributes[$id] array contains an associative list of codes as
-					 * keys (e.g. "time.hourminute") and items implementing \Aimeos\MW\Criteria\Attribute\Iface
+					 * keys (e.g. "directdebit.bankcode") and items implementing \Aimeos\MW\Criteria\Attribute\Iface
 					 * as values, e.g.
-					 *   time.hourminute => \Aimeos\MW\Criteria\Attribute\Iface (
-					 *	   code => 'time.hourminute',
-					 *	   internalcode => 'hourminute',
-					 *	   label => 'Delivery time',
-					 *	   type => 'time',
-					 *	   internaltype => 'time',
+					 *   directdebit.bankcode => \Aimeos\MW\Criteria\Attribute\Iface (
+					 *	   code => 'directdebit.bankcode',
+					 *	   internalcode => 'bankcode',
+					 *	   label => 'Bank code',
+					 *	   type => 'string',
+					 *	   internaltype => 'string',
 					 *	   default => '',
 					 *	   required => true
 					 *   )
 					 *
-					 * Only "code", "type", "default" and "required" are relevant as the rest is for internal use.
-					 * Dump the array for each service option by using print_r() to see what's available. See also
-					 * https://github.com/aimeos/aimeos-core/blob/master/lib/mwlib/src/MW/Criteria/Attribute/Iface.php
-					 *
-					 * The key (e.g. "time.hourminute") must be in the name property of the input/select field:
-					 * - $this->formparam( ['c_delivery', $id, 'time.hourminute'] ) or
-					 * - $this->formparam( ['c_payment', $id, 'directdebit.name'] )
-					 *
-					 * $id is the unique ID of the delivery/payment option. The value for the input tag should be
-					 * the value that was entered by the user before (in case of errors), the value that is already
-					 * stored in the basket as order service attribute the attribute default value:
-					 * - $value = ($orderService->getAttribute( $key ) ?: $attribute->getDefault())
-					 * - $this->param( 'c_delivery/' . $id . '/' . $key, $value )
-					 *
-					 * For select tags and lists of options the customer can choose from, $attribute->getDefault()
-					 * returns a list of available options as code/value pairs.
-					 *
-					 * The label of the attribute item is only for internal use. To be able to translate all strings
-					 * to different languages, you should use the attribute codes resp. the select list codes and
-					 * pass them to
-					 * - $this->translate( 'client/code', $code )
-					 *
-					 * If you have values that should be named differently depending on the attribute, you can prefix
-					 * them with an arbitrary string or the code of the attribute.
+					 * @param string Relative path to the template file
+					 * @since 2017.07
+					 * @category Developer
 					 */
-				?>
-
-				--><ul class="form-list">
-
-					<?php foreach( $serviceAttributes[$id] as $key => $attribute ) : ?>
-						<?php
-							if( !isset( $orderService ) || (
-								( $value = $orderService->getAttribute( $key . '/hidden' ) ) === null
-								&& ( $value = $orderService->getAttribute( $key ) ) === null )
-							) {
-								$value = $attribute->getDefault();
-							}
-						?>
-						<?php $css = ( isset( $paymentCss[$key] ) ? ' ' . join( ' ', $paymentCss[$key] ) : '' ) . ( $attribute->isRequired() ? ' mandatory' : '' ); ?>
-
-						<li class="form-item <?= $enc->attr( $key ) . $css; ?>">
-							<label for="payment-<?= $enc->attr( $key ); ?>" class="form-item-label">
-								<?= $enc->html( $this->translate( 'client/code', $key ) ); ?>
-							</label><!--
-
-							--><?php switch( $attribute->getType() ) : case 'select': ?><!--
-
-									--><select id="payment-<?= $enc->attr( $key ); ?>" class="form-item-value"
-										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>">
-
-										<?php foreach( (array) $attribute->getDefault() as $option ) : $code = $key . ':' . $option; ?>
-											<option value="<?= $enc->attr( $option ); ?>">
-												<?= $enc->html( $this->translate( 'client/code', $code ) ); ?>
-											</option>
-										<?php endforeach; ?>
-									</select><!--
-
-								--><?php break; case 'list': ?>
-									<div class="form-item-value">
-										<?php $checked = 'checked="checked"'; ?>
-										<?php foreach( $attribute->getDefault() as $code => $name ) : ?>
-											<input type="radio" id="delivery-<?= $enc->attr( $key . '-' . $code ); ?>"
-												name="<?= $enc->attr( $this->formparam( array( 'c_delivery', $id, $key ) ) ); ?>"
-												selected="<?= ( $this->param( 'c_delivery/' . $id . '/' . $key, $value ) === $code ? 'selected' : '' ); ?>"
-												value="<?= $code ?>" <?= $checked; ?>
-											/>
-											<label for="delivery-<?= $enc->attr( $key . '-' . $code ); ?>" class="attr-list-item">
-												<?= nl2br( $enc->html( $name ) ); ?>
-											</label>
-											<?php $checked = ''; ?>
-										<?php endforeach; ?>
-									</div><!--
-
-								--><?php break; case 'boolean': ?><!--
-									--><input type="checkbox" id="payment-<?= $enc->attr( $key ); ?>" class="form-item-value"
-										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
-										value="<?= $enc->attr( $this->param( 'c_payment/' . $id . '/' . $key, $value ) ); ?>"
-									/><!--
-
-								--><?php break; case 'integer': case 'number': ?><!--
-									--><input type="number" id="payment-<?= $enc->attr( $key ); ?>" class="form-item-value"
-										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
-										value="<?= $enc->attr( $this->param( 'c_payment/' . $id . '/' . $key, $value ) ); ?>"
-									/><!--
-
-								--><?php break; case 'date': case 'datetime': case 'time': ?><!--
-									--><input type="<?= $attribute->getType(); ?>" id="payment-<?= $enc->attr( $key ); ?>" class="form-item-value"
-										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
-										value="<?= $enc->attr( $this->param( 'c_payment/' . $id . '/' . $key, $value ) ); ?>"
-									/><!--
-
-								--><?php break; default: ?><!--
-									--><input type="text" id="payment-<?= $enc->attr( $key ); ?>" class="form-item-value"
-										name="<?= $enc->attr( $this->formparam( array( 'c_payment', $id, $key ) ) ); ?>"
-										value="<?= $enc->attr( $this->param( 'c_payment/' . $id . '/' . $key, $value ) ); ?>"
-									/><!--
-
-							--><?php endswitch; ?>
-
-						</li>
-					<?php endforeach; ?>
-
-				</ul>
+					$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial-default.php' ),
+					array(
+						'attributes' => $serviceAttributes[$id],
+						'orderService' => $orderService,
+						'css' => $paymentCss,
+						'type' => 'payment',
+						'id' => $id,
+					)
+				); ?><!--
 			<?php endif; ?>
 
-		</div>
+		--></div>
 	<?php endforeach; ?>
 
 
