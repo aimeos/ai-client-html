@@ -212,61 +212,6 @@ class Standard
 
 
 	/**
-	 * Adds the customer and address data to the given customer item
-	 *
-	 * @param \Aimeos\MShop\Customer\Item\Iface $customer Customer object
-	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Billing address object
-	 * @param string $password Plain-text password for the customer
-	 * @return \Aimeos\MShop\Customer\Item\Iface Customer object filled with data
-	 */
-	protected function addCustomerData( \Aimeos\MShop\Customer\Item\Iface $customer,
-		\Aimeos\MShop\Common\Item\Address\Iface $address, $password )
-	{
-		$extra = $this->getContext()->getSession()->get( 'client/html/checkout/standard/address/extra' );
-		$label = $address->getLastname();
-
-		if( ( $part = $address->getFirstname() ) !== '' ) {
-			$label = $part . ' ' . $label;
-		}
-
-		if( ( $part = $address->getCompany() ) !== '' ) {
-			$label .= ' (' . $part . ')';
-		}
-
-		$customer->setPaymentAddress( clone $address ); // don't store new ID in order address
-		$customer->setCode( $address->getEmail() );
-		$customer->setPassword( $password );
-		$customer->setLabel( $label );
-		$customer->setStatus( 1 );
-
-		try {
-			$customer->setBirthday( (string) $extra['customer.birthday'] );
-		} catch( \Aimeos\MShop\Exception $e ) {
-			// don't break on invalid birthdays
-		}
-
-		/** client/html/checkout/standard/process/account/standard/groupids
-		 * List of groups new customers should be assigned to
-		 *
-		 * Newly created customers will be assigned automatically to the groups
-		 * given by their IDs. This is especially useful if those groups limit
-		 * functionality for those users.
-		 *
-		 * @param array List of group IDs
-		 * @since 2016.03
-		 * @category User
-		 * @category Developer
-		 */
-		$config = $this->getContext()->getConfig();
-		$gids = $config->get( 'client/html/checkout/standard/order/account/standard/groupids', [] ); // @deprecated
-		$gids = (array) $config->get( 'client/html/checkout/standard/process/account/standard/groupids', $gids );
-		$customer->setGroups( $gids );
-
-		return $customer;
-	}
-
-
-	/**
 	 * Creates a new account (if necessary) and returns the customer item
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
@@ -283,13 +228,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$password = substr( md5( microtime( true ) . getmypid() . rand() ), -8 );
-			$item = $this->addCustomerData( $controller->createItem(), $addr, $password );
-			$item = $controller->saveItem( $item );
-
-			$msg = $item->toArray();
-			$msg['customer.password'] = $password;
-			$context->getMessageQueue( 'mq-email', 'customer/email/account' )->add( json_encode( $msg ) );
+			$extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
+			$item = $controller->addItem( array_merge( $addr->toArray(), $extra ) );
 		}
 
 		return $item;

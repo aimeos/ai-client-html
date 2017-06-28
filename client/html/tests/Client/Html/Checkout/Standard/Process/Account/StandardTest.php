@@ -75,10 +75,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$customerStub = $this->getMockBuilder( '\Aimeos\Controller\Frontend\Customer\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'saveItem' ) )
+			->setMethods( array( 'addItem' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'saveItem' )
+		$customerStub->expects( $this->once() )->method( 'addItem' )
 			->will( $this->returnValue( $customerStub->createItem() ) );
 
 		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
