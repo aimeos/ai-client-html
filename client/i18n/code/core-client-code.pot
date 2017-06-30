@@ -211,3 +211,6 @@ msgstr "package-weight"
 msgid "price:default"
 msgstr "%1$s %2$s"
 
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Pick-up"
