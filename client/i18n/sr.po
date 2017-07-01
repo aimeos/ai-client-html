@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 18:59+0200\n"
-"PO-Revision-Date: 2017-06-28 10:28+0000\n"
+"POT-Creation-Date: 2017-07-01 15:26+0200\n"
+"PO-Revision-Date: 2017-07-01 13:26+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Serbian (http://www.transifex.com/aimeos/aimeos-core/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -403,6 +403,9 @@ msgstr "Prezime"
 
 msgid "Last seen"
 msgstr "Poslednje gledano"
+
+msgid "Like entered by you"
+msgstr ""
 
 msgid "Name"
 msgstr "Ime"
@@ -899,6 +902,14 @@ msgstr ""
 #. * @copyright Aimeos (aimeos.org), 2015-2016
 #. / Delivery e-mail subject with order ID
 #. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
 #. * @copyright Aimeos (aimeos.org), 2015-2016
 #. / Payment e-mail subject with order ID
 #. //opensource.org/licenses/LGPL-3.0

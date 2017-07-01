@@ -199,6 +199,14 @@ msgstr "returned"
 msgid "stocktype:default"
 msgstr " "
 
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Pick-up location"
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "Pick-up time"
+
 #. Watch action
 msgid "watch"
 msgstr ""

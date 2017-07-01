@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 18:59+0200\n"
+"POT-Creation-Date: 2017-07-01 15:26+0200\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <n.sendetzky@metaways.de>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -405,6 +405,9 @@ msgid "Last name"
 msgstr ""
 
 msgid "Last seen"
+msgstr ""
+
+msgid "Like entered by you"
 msgstr ""
 
 msgid "Name"
@@ -890,6 +893,16 @@ msgstr ""
 #.
 #. / Delivery e-mail subject with order ID
 #. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#.
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
 #. * @copyright Aimeos (aimeos.org), 2015-2016
 #.
 #. / Payment e-mail subject with order ID
