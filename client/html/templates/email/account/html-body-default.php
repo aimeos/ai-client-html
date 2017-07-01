@@ -87,7 +87,11 @@ $title = $this->translate( 'client', 'E-mail notification' );
 						</li><!--
 						--><li class="attr-item account-password">
 							<span class="name"><?= $enc->html( $this->translate( 'client', 'Password' ), $enc::TRUST ); ?></span>
-							<span class="value"><?= $enc->html( $this->extAccountPassword, $enc::TRUST ); ?></span>
+							<?php if( ( $pass = $this->get( 'extAccountPassword' ) ) !== null ) : ?>
+								<span class="value"><?= $enc->html( $pass, $enc::TRUST ); ?></span>
+							<php else : ?>
+								<span class="value"><?= $enc->html( $this->translate( 'client', 'Like entered by you' ) ); ?></span>
+							<?php endif; ?>
 						</li>
 					</ul>
 				</div>

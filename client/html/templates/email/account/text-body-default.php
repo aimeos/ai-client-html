@@ -16,9 +16,13 @@
 
 <?= strip_tags( $this->translate( 'client', 'Your account' ) ); ?>
 
-<?= $this->translate( 'client', 'Account' ); ?>: <?php	echo $this->extAccountCode; ?>
+<?= $this->translate( 'client', 'Account' ); ?>: <?= $this->extAccountCode; ?>
 
-<?= $this->translate( 'client', 'Password' ); ?>: <?php	echo $this->extAccountPassword; ?>
+<?php if( ( $pass = $this->get( 'extAccountPassword' ) ) !== null ) : ?>
+	<?= $this->translate( 'client', 'Password' ); ?>: <?= $pass; ?>
+<php else : ?>
+	<?= $this->translate( 'client', 'Password' ); ?>: <?= $this->translate( 'client', 'Like entered by you' ); ?>
+<?php endif; ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ); ?>

@@ -67,7 +67,7 @@ class Standard
 					throw new \Aimeos\Controller\Jobs\Exception( $str );
 				}
 
-				$password = ( isset( $list['customer.password'] ) ? $list['customer.password'] : '' );
+				$password = ( isset( $list['customer.password'] ) ? $list['customer.password'] : null );
 				$item = $custManager->createItem();
 				$item->fromArray( $list );
 
