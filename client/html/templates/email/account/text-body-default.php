@@ -20,7 +20,7 @@
 
 <?php if( ( $pass = $this->get( 'extAccountPassword' ) ) !== null ) : ?>
 	<?= $this->translate( 'client', 'Password' ); ?>: <?= $pass; ?>
-<php else : ?>
+<?php else : ?>
 	<?= $this->translate( 'client', 'Password' ); ?>: <?= $this->translate( 'client', 'Like entered by you' ); ?>
 <?php endif; ?>
 
