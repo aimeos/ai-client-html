@@ -276,7 +276,7 @@ class Standard
 
 				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
 			}
-			else if ( $view->param( 'cp_payment', null ) !== null )
+			elseif ( $view->param( 'cp_payment', null ) !== null )
 			{
 				$orderId = $context->getSession()->get( 'aimeos/orderid' );
 
@@ -288,7 +288,19 @@ class Standard
 				return;
 			}
 
-			if( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
+			if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00' )
+			{
+				$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+
+				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
+				$orderItem->setDatePayment( date( 'Y-m-d H:i:s' ) );
+				$orderItem = $manager->saveItem( $orderItem );
+
+				$config = ['absoluteUri' => true, 'namespace' => false];
+				$view->standardUrlNext = $this->getUrlConfirm( $view, [], $config );
+
+			}
+			elseif( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
 			{
 				$view->standardUrlNext = $form->getUrl();
 				$view->standardMethod = $form->getMethod();
