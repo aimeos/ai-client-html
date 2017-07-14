@@ -152,7 +152,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['addItem', 'block', 'saveItem'] )
 			->getMock();
 
-		$form = new \Aimeos\MShop\Common\Item\Helper\Form\Standard( 'url', 'POST', [], true );
 		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
 
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
