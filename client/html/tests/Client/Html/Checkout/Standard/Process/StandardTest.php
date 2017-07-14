@@ -105,7 +105,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$form = new \Aimeos\MShop\Common\Item\Helper\Form\Standard( 'url', 'POST', [], true );
 		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
+		$prodId = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNE' )->getId();
 
+		$basketMock->addProduct( $prodId );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( $form ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
 		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
@@ -124,6 +126,49 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( 'POST', $view->standardMethod );
 		$this->assertEquals( [], $view->standardProcessParams );
 		$this->assertEquals( true, $view->standardUrlExternal );
+	}
+
+
+	public function testProcessNoPayment()
+	{
+		$view = $this->object->getView();
+		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Process\Standard' )
+			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
+			->setMethods( ['processPayment'] )
+			->getMock();
+		$object->setView( $view );
+
+		$basketMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['store'] )
+			->getMock();
+
+		$orderMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['addItem', 'block', 'saveItem'] )
+			->getMock();
+
+		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
+
+		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
+		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
+		$orderMock->expects( $this->once() )->method( 'saveItem' );
+		$orderMock->expects( $this->once() )->method( 'block' );
+
+		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $basketMock );
+		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $orderMock );
+
+		$object->process();
+
+		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
+		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
+
+		$this->assertEquals( 0, count( $view->get( 'standardErrorList', [] ) ) );
+		$this->assertEquals( 'http://baseurl/checkout/confirm/', $view->standardUrlNext );
 	}
 
 
@@ -151,7 +196,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
+		$prodId = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNE' )->getId();
 
+		$basketMock->addProduct( $prodId );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( null ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
 		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );

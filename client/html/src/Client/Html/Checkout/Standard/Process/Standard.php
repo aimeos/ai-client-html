@@ -276,7 +276,7 @@ class Standard
 
 				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
 			}
-			else if ( $view->param( 'cp_payment', null ) !== null )
+			elseif ( $view->param( 'cp_payment', null ) !== null )
 			{
 				$orderId = $context->getSession()->get( 'aimeos/orderid' );
 
@@ -288,18 +288,27 @@ class Standard
 				return;
 			}
 
-			if( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
+			if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00' )
+			{
+				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
+				$orderItem->setDatePayment( date( 'Y-m-d H:i:s' ) );
+
+				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+				$orderCntl->saveItem( $orderItem );
+
+			}
+			elseif( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
 			{
 				$view->standardUrlNext = $form->getUrl();
 				$view->standardMethod = $form->getMethod();
 				$view->standardProcessParams = $form->getValues();
 				$view->standardUrlExternal = $form->getExternal();
+
+				return;
 			}
-			else
-			{
-				$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
-				$view->standardMethod = 'GET';
-			}
+
+			$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
+			$view->standardMethod = 'GET';
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
