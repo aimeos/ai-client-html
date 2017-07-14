@@ -290,14 +290,11 @@ class Standard
 
 			if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00' )
 			{
-				$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-
 				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
 				$orderItem->setDatePayment( date( 'Y-m-d H:i:s' ) );
-				$orderItem = $manager->saveItem( $orderItem );
 
-				$config = ['absoluteUri' => true, 'namespace' => false];
-				$view->standardUrlNext = $this->getUrlConfirm( $view, [], $config );
+				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+				$orderCntl->saveItem( $orderItem );
 
 			}
 			elseif( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
@@ -306,12 +303,12 @@ class Standard
 				$view->standardMethod = $form->getMethod();
 				$view->standardProcessParams = $form->getValues();
 				$view->standardUrlExternal = $form->getExternal();
+
+				return;
 			}
-			else
-			{
-				$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
-				$view->standardMethod = 'GET';
-			}
+
+			$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
+			$view->standardMethod = 'GET';
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
