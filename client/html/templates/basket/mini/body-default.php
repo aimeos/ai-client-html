@@ -83,7 +83,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 $jsonTarget = $this->config( 'client/jsonapi/url/target' );
 $jsonController = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$jsonAction = $this->config( 'client/jsonapi/url/action', 'index' );
+$jsonAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
