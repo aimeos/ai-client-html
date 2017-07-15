@@ -9,7 +9,7 @@ $enc = $this->encoder();
 
 $optTarget = $this->config( 'client/jsonapi/url/target' );
 $optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'index' );
+$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
