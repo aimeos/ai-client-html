@@ -84,12 +84,10 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<div class="content">
 					<?php $coupons = $this->standardBasket->getCoupons(); ?>
 
-					<?php if( count( $coupons ) < $this->config( 'client/html/basket/standard/coupon/allowed', 1 ) ) : ?>
-						<div class="coupon-new">
-							<input class="coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ); ?>" type="text" maxlength="255" /><!--
-							--><button class="minibutton" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ); ?></button>
-						</div>
-					<?php endif; ?>
+					<div class="coupon-new">
+						<input class="coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ); ?>" type="text" maxlength="255" /><!--
+						--><button class="minibutton" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ); ?></button>
+					</div>
 
 					<?php if( !empty( $coupons ) ) : ?>
 						<ul class="attr-list">
