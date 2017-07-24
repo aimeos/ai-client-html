@@ -103,7 +103,18 @@ ksort( $propMap );
 
 
 	<?php if( isset( $this->detailProductItem ) ) : ?>
-		<?php $conf = $this->detailProductItem->getConfig(); ?>
+		<?php
+			$conf = $this->detailProductItem->getConfig();
+
+			$disabled = '';
+			$curdate = date( 'Y-m-d H:i:00' );
+
+			if( ( $startDate = $this->detailProductItem->getDateStart() ) !== null && $startDate > $curdate
+				|| ( $endDate = $this->detailProductItem->getDateEnd() ) !== null && $endDate < $curdate
+			) {
+				$disabled = 'disabled';
+			}
+		?>
 
 		<article class="product <?= ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' ); ?>" data-id="<?= $this->detailProductItem->getId(); ?>">
 
@@ -254,7 +265,7 @@ ksort( $propMap );
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 								min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
 							/><!--
-							--><button class="standardbutton btn-action" type="submit" value="">
+							--><button class="standardbutton btn-action" type="submit" value="" <?= $disabled ?> >
 								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
 							</button>
 						</div>
