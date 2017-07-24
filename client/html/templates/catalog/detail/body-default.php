@@ -261,7 +261,7 @@ ksort( $propMap );
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 								value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
 							/>
-							<input type="number"
+							<input type="number" <?= $disabled ?>
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 								min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
 							/><!--

@@ -109,6 +109,15 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 			$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
 			$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id );
 			if( $position !== null ) { $params['d_pos'] = $position++; }
+
+			$disabled = '';
+			$curdate = date( 'Y-m-d H:i:00' );
+
+			if( ( $startDate = $productItem->getDateStart() ) !== null && $startDate > $curdate
+				|| ( $endDate = $productItem->getDateEnd() ) !== null && $endDate < $curdate
+			) {
+				$disabled = 'disabled';
+			}
 		?>
 
 		--><li class="product <?= $enc->attr( $css ); ?>"
@@ -235,10 +244,10 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 							/>
 							<input type="number" value="1"
-								 min="1" max="2147483647" maxlength="10" step="1" required="required"
+								 min="1" max="2147483647" maxlength="10" step="1" required="required" <?= $disabled ?>
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 							/><!--
-							--><button class="standardbutton btn-action" type="submit" value="">
+							--><button class="standardbutton btn-action" type="submit" value="" <?= $disabled ?> >
 								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
 							</button>
 						</div>

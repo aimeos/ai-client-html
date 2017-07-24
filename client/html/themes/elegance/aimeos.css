@@ -65,6 +65,20 @@
 	background-color: #BBB;
 }
 
+.aimeos input:disabled {
+	border-color: #D0D0D0;
+}
+
+.aimeos .standardbutton:disabled {
+	background-color: #D0D0D0;
+	border-color: #D0D0D0;
+	cursor: not-allowed;
+}
+
+.aimeos .standardbutton:disabled:hover {
+	background-color: #D0D0D0;
+}
+
 /* Buttons calculate width incl. padding, links not! */
 .aimeos button.standardbutton {
 	min-width: 12.01em;
