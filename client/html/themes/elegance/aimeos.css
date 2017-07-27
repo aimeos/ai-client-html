@@ -1327,6 +1327,14 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	color: #555;
 }
 
+.catalog-detail-basket .price {
+	display: none;
+}
+
+.catalog-detail-basket .price-actual {
+	display: inline-block;
+}
+
 .catalog-detail-basket .price-item:first-of-type {
 	display: block;
 	cursor: pointer;
@@ -1358,10 +1366,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .catalog-detail-basket .price-item .rebatepercent {
 	min-width: auto;
-}
-
-.catalog-detail-basket .price-actual {
-	display: inline-block;
 }
 
 .catalog-detail-basket .price-item:first-of-type .taxrate {

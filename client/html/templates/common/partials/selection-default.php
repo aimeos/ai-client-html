@@ -110,21 +110,6 @@ ksort( $attrTypeDeps );
  */
 
 ?>
-<?php foreach( $this->get( 'products', [] ) as $prodid => $product ) : ?>
-	<?php $prices = $product->getRefItems( 'price', null, 'default' ); ?>
-
-	<?php if( !empty( $prices ) ) : ?>
-		<div class="price price-prodid-<?= $prodid; ?>">
-			<?= $this->partial(
-				$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
-				array( 'prices' => $prices )
-			); ?>
-		</div>
-	<?php endif; ?>
-
-<?php endforeach; ?>
-
-
 <ul class="selection"
 	data-proddeps="<?= $enc->attr( json_encode( $prodDeps ) ); ?>"
 	data-attrdeps="<?= $enc->attr( json_encode( $attrDeps ) ); ?>">
