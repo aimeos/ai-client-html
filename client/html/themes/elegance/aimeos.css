@@ -1361,6 +1361,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .catalog-detail-basket .price-item .costs,
 .catalog-detail-basket .price-item .rebate,
 .catalog-detail-basket .price-item .taxrate {
+	vertical-align: middle;
 	display: inline-block;
 	margin: 0.25em 0;
 	min-width: 4em;
