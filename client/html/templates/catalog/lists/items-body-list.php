@@ -7,6 +7,7 @@
 
 $enc = $this->encoder();
 $position = $this->get( 'itemPosition' );
+$productItems = $this->get( 'itemsProductItems', [] );
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
@@ -69,16 +70,45 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 
 				--><div class="offer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-					<div class="stock"
-						data-prodid="<?= $enc->attr(
-							implode( ' ', array_merge( array( $id ), array_keys( $productItem->getRefItems( 'product', 'default', 'default' ) ) ) )
-						); ?>">
+					<div class="stock-list">
+						<div class="articleitem stock-actual"
+							data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
+							data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
+						</div>
+						<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+							<div class="articleitem"
+								data-prodid="<?= $enc->attr( $articleId ); ?>"
+								data-prodcode="<?= $enc->attr( $articleItem->getCode() ); ?>">
+							</div>
+						<?php endforeach; ?>
 					</div>
-					<div class="price-list price price-actual">
-						<?= $this->partial(
-							$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
-							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
-						); ?>
+					<div class="price-list">
+						<div class="articleitem price price-actual"
+							data-prodid="<?= $enc->attr( $id ); ?>"
+							data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
+							<?= $this->partial(
+								$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+								array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
+							); ?>
+						</div>
+
+						<?php if( $productItem->getType() === 'select' ) : ?>
+							<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
+								<?php if( $productItems[$prodid] ) { $product = $productItems[$prodid]; } ?>
+
+								<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
+									<div class="articleitem price"
+										data-prodid="<?= $enc->attr( $prodid ); ?>"
+										data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
+										<?= $this->partial(
+											$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+											array( 'prices' => $prices )
+										); ?>
+									</div>
+								<?php endif; ?>
+
+							<?php endforeach; ?>
+						<?php endif; ?>
 					</div>
 				</div>
 

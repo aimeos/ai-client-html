@@ -165,21 +165,23 @@ ksort( $propMap );
 							); ?>
 						</div>
 
-						<?php foreach( $this->detailProductItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-							<?php if( $productItems[$prodid] ) { $product = $productItems[$prodid]; } ?>
+						<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
+							<?php foreach( $this->detailProductItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
+								<?php if( $productItems[$prodid] ) { $product = $productItems[$prodid]; } ?>
 
-							<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
-								<div class="articleitem price"
-									data-prodid="<?= $enc->attr( $prodid ); ?>"
-									data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
-									<?= $this->partial(
-										$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
-										array( 'prices' => $prices )
-									); ?>
-								</div>
-							<?php endif; ?>
+								<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
+									<div class="articleitem price"
+										data-prodid="<?= $enc->attr( $prodid ); ?>"
+										data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
+										<?= $this->partial(
+											$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+											array( 'prices' => $prices )
+										); ?>
+									</div>
+								<?php endif; ?>
 
-						<?php endforeach; ?>
+							<?php endforeach; ?>
+						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 

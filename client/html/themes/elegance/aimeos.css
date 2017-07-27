@@ -1327,10 +1327,12 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	color: #555;
 }
 
+.catalog-list-items .price,
 .catalog-detail-basket .price {
 	display: none;
 }
 
+.catalog-list-items .price-actual,
 .catalog-detail-basket .price-actual {
 	display: inline-block;
 }

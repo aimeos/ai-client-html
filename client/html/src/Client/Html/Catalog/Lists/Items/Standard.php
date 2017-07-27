@@ -308,6 +308,7 @@ class Standard
 	{
 		if( !isset( $this->cache ) )
 		{
+			$productItems = [];
 			$context = $this->getContext();
 			$config = $context->getConfig();
 			$products = $view->get( 'listProductItems', [] );
@@ -371,7 +372,7 @@ class Standard
 			 */
 
 			if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
-				$view->itemsStockUrl = $this->getStockUrl( $view, $products );
+				$view->itemsStockUrl = $this->getStockUrl( $view, $products + $productItems );
 			}
 
 			$view->itemPosition = ( $this->getProductListPage( $view ) - 1 ) * $this->getProductListSize( $view );
