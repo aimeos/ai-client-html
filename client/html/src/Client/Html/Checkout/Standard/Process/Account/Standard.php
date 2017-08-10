@@ -173,7 +173,6 @@ class Standard
 	 */
 	public function process()
 	{
-		$email = '<unknown>';
 		$context = $this->getContext();
 
 		try
