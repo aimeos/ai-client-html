@@ -179,21 +179,20 @@ class Standard
 		try
 		{
 			$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
+			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
 			$addresses = $basket->getAddresses();
 
-			if( $context->getUserId() == '' && $this->getView()->param( 'cs_option_account' ) == 1
-				&& isset( $addresses[\Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT] )
-			) {
-				$addr = $addresses[\Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT];
-				$email = $addr->getEmail();
-
-				$context->setUserId( $this->getCustomer( $addr )->getId() );
+			if( $context->getUserId() == '' && isset( $addresses[$type] ) )
+			{
+				$create = (bool) $this->getView()->param( 'cs_option_account' );
+				$userId = $this->getCustomerId( $addresses[$type], $create );
+				$context->setUserId( $userId );
 			}
 		}
 		catch( \Exception $e )
 		{
-			$msg = sprintf( 'Unable to create an account for "%1$s": %2$s', $email, $e->getMessage() );
-			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+			$msg = sprintf( 'Unable to create an account: %1$s', $e->getMessage() );
+			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::NOTICE );
 		}
 
 		parent::process();
@@ -212,26 +211,30 @@ class Standard
 
 
 	/**
-	 * Creates a new account (if necessary) and returns the customer item
+	 * Creates a new account (if necessary) and returns its customer ID
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
-	 * @return \Aimeos\MShop\Customer\Item\Iface Customer item object
+	 * @return string|null Customer ID
 	 */
-	protected function getCustomer( \Aimeos\MShop\Common\Item\Address\Iface $addr )
+	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, $create )
 	{
+		$id = null;
 		$context = $this->getContext();
 		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
 
 		try
 		{
-			$item = $controller->findItem( $addr->getEmail() );
+			$id = $controller->findItem( $addr->getEmail() )->getId();
 		}
 		catch( \Exception $e )
 		{
-			$extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
-			$item = $controller->addItem( array_merge( $addr->toArray(), $extra ) );
+			if( $create === true )
+			{
+				$extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
+				$id = $controller->addItem( array_merge( $addr->toArray(), $extra ) )->getId();
+			}
 		}
 
-		return $item;
+		return $id;
 	}
 }
