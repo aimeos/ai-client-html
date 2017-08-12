@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertContains( 'Example company', $output );
 		$this->assertContains( 'unitpaymentlabel', $output );
-		$this->assertContains( 'unitlabel', $output );
+		$this->assertContains( 'Unittest service name', $output );
 	}
 
 
