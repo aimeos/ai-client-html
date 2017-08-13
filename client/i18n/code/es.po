@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-06-30 03:57+0000\n"
+"PO-Revision-Date: 2017-08-13 11:58+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -180,6 +180,10 @@ msgstr "Año de caducidad"
 
 #. Stock type
 msgid "stocktype:default"
+msgstr ""
+
+#. Warehouse type (pre 2017.x)
+msgid "warehouse:default"
 msgstr ""
 
 #. Favorite action

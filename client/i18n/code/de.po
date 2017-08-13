@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
-# 
+#
+#
 # Translators:
 # Translators:
 # Translators:
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-06-30 03:58+0000\n"
+"PO-Revision-Date: 2017-08-13 11:58+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -181,7 +181,11 @@ msgstr "Ablaufjahr"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr " "
+msgstr ""
+
+#. Warehouse type (pre 2017.x)
+msgid "warehouse:default"
+msgstr ""
 
 #. Favorite action
 msgid "favorite"
