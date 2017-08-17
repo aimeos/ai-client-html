@@ -161,7 +161,9 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 								<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() ), $priceCurrency ) ); ?>
 							</td>
 							<td class="action">
-								<a class="delete" href="#"></a>
+								<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+									<a class="delete" href="#"></a>
+								<?php endif; ?>
 							</td>
 						</tr>
 					<?php endforeach; ?>
