@@ -15,7 +15,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 
 $params = $this->get( 'params', [] );
-$sort = ( isset( $params['f_sort'] ) ? $params['f_sort'] : 'relevance' );
+$sort = $this->get( 'params/f_sort', 'relevance' );
 $sortname = ltrim( $sort, '-' );
 $nameDir = $priceDir = '';
 
@@ -46,6 +46,12 @@ if( $sort === 'price' ) {
 				<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'f_sort' => 'relevance' ) + $params, [], $listConfig ); ?>
 				<a class="option-relevance <?= ( $sort === 'relevance' ? 'active' : '' ); ?>" href="<?= $enc->attr( $url ); ?>" >
 					<?= $enc->html( $this->translate( 'client', 'Relevance' ), $enc::TRUST ); ?>
+				</a>
+			</li>
+			<li>
+				<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'f_sort' => '-ctime' ) + $params, [], $listConfig ); ?>
+				<a class="option-relevance <?= ( $sort === '-ctime' ? 'active' : '' ); ?>" href="<?= $enc->attr( $url ); ?>" >
+					<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ); ?>
 				</a>
 			</li>
 			<li>
