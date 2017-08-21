@@ -308,7 +308,7 @@ class Standard
 			}
 
 			$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
-			$view->standardMethod = 'GET';
+			$view->standardMethod = 'POST';
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
