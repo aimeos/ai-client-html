@@ -214,7 +214,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 0, count( $view->get( 'standardErrorList', [] ) ) );
 		$this->assertTrue( isset( $view->standardUrlNext ) );
-		$this->assertEquals( 'GET', $view->standardMethod );
+		$this->assertEquals( 'POST', $view->standardMethod );
 	}
 
 
