@@ -5,7 +5,7 @@ namespace Aimeos\Controller\Jobs\Customer\Email\Account;
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016
+ * @copyright Aimeos (aimeos.org), 2016-2017-2017
  */
 class FactoryTest extends \PHPUnit\Framework\TestCase
 {

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# alessandro massarelli <alessandro@botteega.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-01 15:26+0200\n"
-"PO-Revision-Date: 2017-08-03 10:15+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"PO-Revision-Date: 2017-08-21 10:06+0000\n"
+"Last-Translator: alessandro massarelli <alessandro@botteega.com>\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,10 +99,10 @@ msgid "+ Payment costs"
 msgstr ""
 
 msgid "+ Shipping"
-msgstr ""
+msgstr "Spedizione"
 
 msgid "+ shipping costs"
-msgstr ""
+msgstr "Costi di spedizione"
 
 msgid "+1 123 456 7890"
 msgstr ""
@@ -112,16 +113,16 @@ msgid "-%1$s%%"
 msgstr ""
 
 msgid "Account"
-msgstr ""
+msgstr "Account"
 
 msgid "Add to basket"
-msgstr ""
+msgstr "Aggiungi al carrello"
 
 msgid "Additional"
 msgstr "Aggiuntivo"
 
 msgid "Additional 2"
-msgstr ""
+msgstr "Aggiuntivo"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -143,38 +144,38 @@ msgstr ""
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2016
 msgid "An account has been created for you."
-msgstr ""
+msgstr "Il tuo account è stato creato."
 
 msgid "Article no.:"
-msgstr ""
+msgstr "Articolo n."
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr ""
+msgstr "Manca una parte dell'indirizzo di fatturazione, oppure non è valida"
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
-msgstr ""
+msgstr "Manca una parte dell'indirizzo di spedizione, oppure non è valido."
 
 msgid "Attributes"
 msgstr "Attributi"
 
 msgid "Back"
-msgstr ""
+msgstr "Indietro"
 
 msgid "Basket"
-msgstr ""
+msgstr "Carrello"
 
 msgid "Billing address"
 msgstr "Indirizzo di fatturazione"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "La seguente parte dell'indirizzo di fatturazione non è valido: \"%1$s\""
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr ""
+msgstr "La seguente parte dell'indirizzo di fatturazione è mancante: \"%1$s\""
 
 msgid "Birthday"
 msgstr "Data di nascita"
@@ -183,7 +184,7 @@ msgid "Bundled products"
 msgstr ""
 
 msgid "Buy now"
-msgstr ""
+msgstr "Acquista"
 
 #. /html/catalog/filter/partials/tree
 #. * Relative path to the category tree partial template file
@@ -199,10 +200,10 @@ msgid "Categories"
 msgstr "Categorie"
 
 msgid "Change"
-msgstr ""
+msgstr "Modifica"
 
 msgid "Change payment"
-msgstr ""
+msgstr "Modifica metodo di pagamento"
 
 msgid "Characteristics"
 msgstr "Caratteristiche"
@@ -211,7 +212,7 @@ msgid "Check"
 msgstr ""
 
 msgid "Checkout"
-msgstr ""
+msgstr "Cassa"
 
 msgid "City"
 msgstr "Città"
@@ -244,25 +245,25 @@ msgid "Close"
 msgstr "Chiudi"
 
 msgid "Company"
-msgstr "Società"
+msgstr "Azienda"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Conferma"
 
 msgid "Country"
 msgstr "Nazione"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "Buoni sconto"
 
 msgid "Coupons"
 msgstr "Buoni sconto"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Crea un account cliente"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Account cliente"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -282,10 +283,10 @@ msgid "Dear Sir or Madam"
 msgstr ""
 
 msgid "Delivery"
-msgstr ""
+msgstr "Consegna"
 
 msgid "Delivery address"
-msgstr "Indirizzo di spedizione"
+msgstr "Indirizzo di consegna"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -296,36 +297,36 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 msgid "Details"
 msgstr "Dettagli"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Download"
 
 msgid "E-Mail"
 msgstr "E-Mail"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
-msgstr ""
+msgstr "Notifica E-mail"
 
 msgid "Favorite products"
-msgstr ""
+msgstr "Prodotti preferiti"
 
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 msgid "Fields with an * are mandatory"
-msgstr ""
+msgstr "I campi con * sono obbligatori"
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
 msgstr ""
 
 msgid "Filter"
-msgstr "Filtr"
+msgstr "Filtro"
 
 msgid "First name"
 msgstr "Nome"
@@ -334,7 +335,7 @@ msgid "GB999999973"
 msgstr ""
 
 msgid "Go"
-msgstr ""
+msgstr "Vai"
 
 #, php-format
 msgid ""
@@ -342,7 +343,7 @@ msgid ""
 "conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
 "policy\">privacy policy</a>"
-msgstr ""
+msgstr "Ho letto e accettato <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">i termini e condizioni</a> e <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">la privacy policy</a>"
 
 msgid "If back in stock"
 msgstr ""

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://www.gnu.org/licenses/lgpl.php
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 $enc = $this->encoder();
