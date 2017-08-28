@@ -255,7 +255,6 @@ class Standard
 			if( $customerId != '' && $addr->getAddressId() == '' )
 			{
 				$addrManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer/address' );
-				$orderAddrManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/base/address' );
 
 				$item = $addrManager->createItem();
 				$item->setParentId( $customerId );
@@ -264,7 +263,6 @@ class Standard
 				$addrManager->saveItem( $item );
 
 				$addr->setAddressId( $item->getId() );
-				$orderAddrManager->saveItem( $addr, false );
 			}
 		}
 		catch( \Exception $e )

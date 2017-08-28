@@ -297,6 +297,10 @@ class Standard
 			$orderBaseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
 
 			$basket = $orderBaseManager->getSession();
+			$view->orderBasket = $basket;
+
+			parent::process();
+
 			$basket->setCustomerId( $context->getUserId() );
 			$basket->finish();
 
@@ -305,14 +309,6 @@ class Standard
 			$cntl->block( $orderItem );
 
 			$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
-
-			$view->orderItem = $orderItem;
-			$view->orderBasket = $basket;
-
-			parent::process();
-
-			// save again after sub-clients modified it's state
-			\Aimeos\MShop\Factory::createManager( $context, 'order' )->saveItem( $orderItem );
 		}
 		catch( \Exception $e )
 		{

@@ -90,21 +90,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->context->setView( $view );
 		$this->object->setView( $view );
 
-		$orderBaseStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Standard' )
-			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'saveItem' ) )
-			->getMock();
-
 		$customerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
 			->setMethods( array( 'saveItem' ) )
 			->getMock();
 
-		$orderBaseStub->expects( $this->once() )->method( 'saveItem' );
 		$customerStub->expects( $this->once() )->method( 'saveItem' );
 
 		\Aimeos\MShop\Factory::injectManager( $this->context, 'customer', $customerStub );
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'order/base', $orderBaseStub );
 
 		$this->object->process();
 	}

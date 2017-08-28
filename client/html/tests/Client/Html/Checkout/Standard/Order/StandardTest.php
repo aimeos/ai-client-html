@@ -140,7 +140,6 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$baseManager->deleteItem( $item->getId() );
 
-		$this->assertInstanceOf( '\\Aimeos\\MShop\\Order\\Item\\Iface', $view->orderItem );
-		$this->assertEquals( $item->getId(), $view->orderItem->getBaseId() );
+		$this->assertEquals( $item->getId(), $view->orderBasket->getId() );
 	}
 }

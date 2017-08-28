@@ -244,46 +244,27 @@ class Standard
 	public function process()
 	{
 		$view = $this->getView();
-		$basket = $view->orderBasket;
+		$context = $this->getContext();
 
-		if( $basket->getCustomerId() == '' && $view->param( 'cs_option_account' ) == 1 )
+		try
 		{
-			$email = '<unknown>';
-			$context = $this->getContext();
+			$basket = $view->orderBasket;
+			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
+			$addresses = $basket->getAddresses();
 
-			try
+			if( $context->getUserId() == '' && isset( $addresses[$type] ) )
 			{
-				$addr = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-				$email = $addr->getEmail();
+				$create = (bool) $this->getView()->param( 'cs_option_account' );
+				$userId = $this->getCustomerId( $addresses[$type], $create );
 
-				$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-				$search = $manager->createSearch();
-				$search->setConditions( $search->compare( '==', 'customer.code', $email ) );
-				$search->setSlice( 0, 1 );
-				$result = $manager->searchItems( $search );
-
-				if( ( $item = reset( $result ) ) === false )
-				{
-					$password = substr( md5( microtime( true ) . getmypid() . rand() ), -8 );
-					$item = $this->addCustomerData( $manager->createItem(), $addr, $addr->getEmail(), $password );
-					$manager->saveItem( $item );
-
-					$msg = $item->toArray();
-					$msg['customer.password'] = $password;
-					$context->getMessageQueue( 'mq-email', 'customer/email/account' )->add( json_encode( $msg ) );
-					$context->setUserId( $item->getId() );
-				}
-
-				$basket->setCustomerId( $item->getId() );
-
-				$orderBaseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
-				$orderBaseManager->saveItem( $basket, false );
+				$basket->setCustomerId( $userId );
+				$context->setUserId( $userId );
 			}
-			catch( \Exception $e )
-			{
-				$msg = sprintf( 'Unable to create an account for "%1$s": %2$s', $email, $e->getMessage() );
-				$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
-			}
+		}
+		catch( \Exception $e )
+		{
+			$msg = sprintf( 'Unable to create an account: %1$s', $e->getMessage() );
+			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::NOTICE );
 		}
 
 		parent::process();
@@ -353,5 +334,40 @@ class Standard
 		$customer->setGroups( $gids );
 
 		return $customer;
+	}
+
+
+	/**
+	 * Creates a new account (if necessary) and returns its customer ID
+	 *
+	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
+	 * @return string|null Customer ID
+	 */
+	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, $create )
+	{
+		$id = null;
+		$context = $this->getContext();
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+
+		try
+		{
+			$id = $manager->findItem( $addr->getEmail() )->getId();
+		}
+		catch( \Exception $e )
+		{
+			if( $create === true )
+			{
+				$password = substr( md5( microtime( true ) . getmypid() . rand() ), -8 );
+				$item = $this->addCustomerData( $manager->createItem(), $addr, $addr->getEmail(), $password );
+				$manager->saveItem( $item );
+				$id = $item->getId();
+
+				$msg = $item->toArray();
+				$msg['customer.password'] = $password;
+				$context->getMessageQueue( 'mq-email', 'customer/email/account' )->add( json_encode( $msg ) );
+			}
+		}
+
+		return $id;
 	}
 }
