@@ -291,8 +291,6 @@ class Standard
 			if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00' )
 			{
 				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
-				$orderItem->setDatePayment( date( 'Y-m-d H:i:s' ) );
-
 				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
 				$orderCntl->saveItem( $orderItem );
 
