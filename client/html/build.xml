@@ -6,7 +6,7 @@
 		<echo msg="Executing unit tests" />
 		<delete file="tests/unittest.log" quiet="true" failonerror="false" />
 		<exec command="${bindir}phpunit -d memory_limit=-1 --include-path ${coredir} --configuration=phpunit.xml"
-			  dir="tests" checkreturn="true" logoutput="true"/>
+			  dir="tests" checkreturn="true" logoutput="true" passthru="true" />
 	</target>
 
 	<target name="testperf" description="Executes performance tests">
@@ -14,7 +14,7 @@
 		<delete file="tests/unitperf.log" quiet="true" failonerror="false" />
 		<delete file="tests/client-html-jperf.xml" quiet="true" failonerror="false" />
 		<exec command="${bindir}phpunit -d memory_limit=-1 --include-path ${coredir} --configuration=phpunit-perf.xml --repeat 5"
-			  dir="tests" checkreturn="true" logoutput="true"/>
+			  dir="tests" checkreturn="true" logoutput="true" passthru="true" />
 	</target>
 
 	<target name="coverage" description="Generates code coverage report">
@@ -22,7 +22,7 @@
 		<delete file="tests/unittest.log" quiet="true" failonerror="false" />
 		<delete file="tests/coverage.xml" quiet="true" failonerror="false" />
 		<exec command="${bindir}phpunit -d memory_limit=-1 --include-path ${coredir} --configuration=phpunit-coverage.xml"
-			  dir="tests" checkreturn="true" logoutput="true"/>
+			  dir="tests" checkreturn="true" logoutput="true" passthru="true" />
 	</target>
 
 	<target name="check" description="Executes code sniffer">
