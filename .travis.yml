@@ -14,7 +14,7 @@ before_script:
   - cd ../aimeos-core && mv ../ai-client-html ext/
   - composer self-update && composer require "aimeos/ai-controller-frontend:2017.07.*"
   - mysql -e 'create database aimeos;'
-  - echo "<?php return array( 'db' => array( 'adapter' => 'mysql', 'host' => '127.0.0.1', 'database' => 'aimeos', 'username' => 'root', 'password' => '', 'limit' => 2, 'opt-persistent' => false, 'stmt' => array( \"SET NAMES 'utf8'\", \"SET SESSION sql_mode='ANSI'\" ) ), 'mq' => array( 'adapter' => 'Standard', 'db' => 'db' ) );" > config/resource.php
+  - echo "<?php return array( 'db' => array( 'adapter' => 'mysql', 'host' => '127.0.0.1', 'database' => 'aimeos', 'username' => 'root', 'password' => '', 'limit' => 2, 'opt-persistent' => false, 'stmt' => array( \"SET SESSIOn sort_buffer_size=2097144; SET NAMES 'utf8'; SET SESSION sql_mode='ANSI'\" ) ), 'mq' => array( 'adapter' => 'Standard', 'db' => 'db' ) );" > config/resource.php
 
 script:
   - vendor/bin/phing -Ddir=ext/ai-client-html setup coverageext checkext
