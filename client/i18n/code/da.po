@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-08-13 11:58+0000\n"
+"PO-Revision-Date: 2017-09-13 12:16+0000\n"
 "Last-Translator: Aimeos <aimeos@aimeos.org>\n"
 "Language-Team: Danish (http://www.transifex.com/aimeos/aimeos-core/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #. Address salutation
 msgid "company"
-msgstr ""
+msgstr "Firma"
 
 #. Address salutation
 msgid "mr"
@@ -155,11 +155,11 @@ msgstr ""
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr ""
+msgstr "Fornavn"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr ""
+msgstr "Efternavn"
 
 #. Omnipay service provider
 msgid "payment.cardno"

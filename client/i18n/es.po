@@ -5,14 +5,15 @@
 # Translators:
 # Aldemar Hernández <napalm-beach@lycos.com>, 2016
 # Daniel Vega <danielvega131990@gmail.com>, 2015
+# Juan Ramos <juancagb.17@gmail.com>, 2017
 # nsendetzky, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-01 15:26+0200\n"
-"PO-Revision-Date: 2017-08-03 10:15+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"PO-Revision-Date: 2017-09-13 21:08+0000\n"
+"Last-Translator: Juan Ramos <juancagb.17@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -265,7 +266,7 @@ msgid "Create a customer account for me"
 msgstr ""
 
 msgid "Customer account"
-msgstr ""
+msgstr "Cuenta de cliente"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
