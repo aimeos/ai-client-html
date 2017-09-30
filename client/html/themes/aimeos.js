@@ -12,8 +12,6 @@
  */
 Aimeos = {
 
-	jsonOptions: null,
-
 
 	/**
 	 * Creates a floating container over the page displaying the given content node
@@ -141,12 +139,6 @@ Aimeos = {
 	 * Initializes the setup methods
 	 */
 	init: function() {
-
-		this.jsonOptions = $.ajax($(".aimeos[data-jsonurl]").first().data("jsonurl"), {
-			"method": "OPTIONS",
-			"dataType": "json"
-		});
-
 		this.setupContainerClose();
 	}
 };
@@ -334,10 +326,13 @@ AimeosBasketMini = {
 	 */
 	update: function() {
 
-		$.when(Aimeos.jsonOptions).then(function(options) {
+		$.ajax($(".aimeos.basket-mini[data-jsonurl]").data("jsonurl"), {
+			"method": "OPTIONS",
+			"dataType": "json"
+		}).then(function(options) {
 			$.ajax({
 				dataType: "json",
-				url: options.meta.resources['basket'] || null
+				url: options.meta.resources['basket']
 			}).then(function(basket) {
 				AimeosBasketMini.updateBasket(basket);
 			});
