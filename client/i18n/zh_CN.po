@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-01 15:26+0200\n"
-"PO-Revision-Date: 2017-08-03 10:15+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"POT-Creation-Date: 2017-10-02 17:37+0200\n"
+"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,6 +143,8 @@ msgstr "提交订单意味着接受我们的条款，这些条款可以从我们
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2016
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 msgid "An account has been created for you."
 msgstr "已经为您生成一个账户。"
 
@@ -354,6 +356,8 @@ msgstr "如果价格下调"
 #. / E-mail outro
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2016
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "如果您有任何疑问，请回复此邮件"
 
@@ -401,6 +405,9 @@ msgstr "姓名"
 
 msgid "Last seen"
 msgstr "最近浏览过的"
+
+msgid "Latest"
+msgstr ""
 
 msgid "Like entered by you"
 msgstr ""
@@ -776,6 +783,10 @@ msgid "Unable to create an account for \"%1$s\": %2$s"
 msgstr "不能为\"%1$s\": %2$s生成账户"
 
 #, php-format
+msgid "Unable to create an account: %1$s"
+msgstr ""
+
+#, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr "无法保存客户 \"%1$s\": %2$s地址"
 
@@ -841,6 +852,9 @@ msgstr ""
 #. / Account creation e-mail subject
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Account creation e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 #. / Account creation e-mail subject
 msgid "Your new account"
 msgstr "您的新账户"
@@ -980,6 +994,30 @@ msgstr "您的新账户"
 #. * @copyright Metaways Infosystems GmbH, 2013
 #. * @copyright Aimeos (aimeos.org), 2015-2016
 #. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
 msgstr "您的订单 %1$s"
@@ -1002,6 +1040,10 @@ msgstr "您搜索过的产品"
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Metaways Infosystems GmbH, 2014
 #. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "您浏览过的产品"

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-01 15:26+0200\n"
-"PO-Revision-Date: 2017-08-03 10:15+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"POT-Creation-Date: 2017-10-02 17:37+0200\n"
+"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,6 +143,8 @@ msgstr "Kõik tellimused on reguleeritud meie kasutustingimustega, millega saab 
 
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2016
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 msgid "An account has been created for you."
 msgstr "Teie konto on loodud."
 
@@ -354,6 +356,8 @@ msgstr "Kui hind langeb"
 #. / E-mail outro
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2016
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Kui Teil on veel küsimusi, palun vastake sellele e-kirjale"
 
@@ -401,6 +405,9 @@ msgstr "Perekonnanimi"
 
 msgid "Last seen"
 msgstr "Viimati sisse logitud"
+
+msgid "Latest"
+msgstr ""
 
 msgid "Like entered by you"
 msgstr ""
@@ -777,6 +784,10 @@ msgid "Unable to create an account for \"%1$s\": %2$s"
 msgstr ""
 
 #, php-format
+msgid "Unable to create an account: %1$s"
+msgstr ""
+
+#, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr ""
 
@@ -842,6 +853,9 @@ msgstr ""
 #. / Account creation e-mail subject
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Account creation e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 #. / Account creation e-mail subject
 msgid "Your new account"
 msgstr "Teie uus konto"
@@ -981,6 +995,30 @@ msgstr "Teie uus konto"
 #. * @copyright Metaways Infosystems GmbH, 2013
 #. * @copyright Aimeos (aimeos.org), 2015-2016
 #. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
 msgstr "Teie tellimus %1$s"
@@ -1003,6 +1041,10 @@ msgstr "Teie otsingu tulemus"
 #. //opensource.org/licenses/LGPL-3.0
 #. * @copyright Metaways Infosystems GmbH, 2014
 #. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Teie jälgimisnimekirjas olevad tooted"

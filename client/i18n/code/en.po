@@ -207,6 +207,11 @@ msgstr "Pick-up location"
 msgid "time.hourminute"
 msgstr "Pick-up time"
 
+#. Warehouse type (pre 2017.x)
+#, fuzzy
+msgid "warehouse:default"
+msgstr "%2$s %1$s"
+
 #. Watch action
 msgid "watch"
 msgstr ""
