@@ -417,11 +417,11 @@ class Standard
 			$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
 			$catid = ( isset( $params['f_catid'] ) ? (string) $params['f_catid'] : '' );
 
-			if( $catid === '' ) {
+			if( $catid == '' ) {
 				$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
 			}
 
-			if( $catid !== '' )
+			if( $catid != '' )
 			{
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
