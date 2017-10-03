@@ -444,6 +444,13 @@ class Standard
 	 */
 	protected function addCoupon( \Aimeos\MW\View\Iface $view )
 	{
+		/** client/html/basket/standard/coupon/allowed
+		 * Number of coupon codes a customer is allowed to enter
+		 *
+		 * @param integer Positive number of coupon codes including zero
+		 * @deprecated Use controller/frontend/basket/standard/coupon/allowed instead
+		 */
+
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
