@@ -199,7 +199,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 					<?php if( $productItem->getType() === 'select' ) : ?>
 						<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-							<?php if( $productItems[$prodid] ) { $product = $productItems[$prodid]; } ?>
+							<?php if( isset( $productItems[$prodid] ) ) { $product = $productItems[$prodid]; } ?>
 
 							<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
 								<div class="articleitem price"
