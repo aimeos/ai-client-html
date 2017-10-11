@@ -42,9 +42,9 @@ abstract class Base
 			}
 		}
 
-		try
+		foreach( $basket->getService( 'delivery' ) as $service )
 		{
-			$price = clone $basket->getService( 'delivery' )->getPrice();
+			$price = clone $service->getPrice();
 			$taxrate = $price->getTaxrate();
 
 			if( isset( $taxrates[$taxrate] ) ) {
@@ -53,11 +53,10 @@ abstract class Base
 				$taxrates[$taxrate] = $price;
 			}
 		}
-		catch( \Exception $e ) { ; } // if delivery service isn't available
 
-		try
+		foreach( $basket->getService( 'payment' ) as $service )
 		{
-			$price = clone $basket->getService( 'payment' )->getPrice();
+			$price = clone $service->getPrice();
 			$taxrate = $price->getTaxrate();
 
 			if( isset( $taxrates[$taxrate] ) ) {
@@ -66,7 +65,6 @@ abstract class Base
 				$taxrates[$taxrate] = $price;
 			}
 		}
-		catch( \Exception $e ) { ; } // if payment service isn't available
 
 		return $taxrates;
 	}

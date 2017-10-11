@@ -12,22 +12,21 @@ $services = $this->get( 'paymentServices', [] );
 $servicePrices = $this->get( 'paymentServicePrices', [] );
 $serviceAttributes = $this->get( 'paymentServiceAttributes', [] );
 
-try
-{
-	$orderService = $this->standardBasket->getService( 'payment' );
-	$orderServiceId = $orderService->getServiceId();
-}
-catch( Exception $e )
-{
-	$orderService = null;
-	$orderServiceId = null;
 
-	if( ( $service = reset( $services ) ) !== false ) {
-		$orderServiceId = $service->getId();
-	}
+$orderService = $orderServiceId = null;
+
+if( ( $service = reset( $services ) ) !== false ) {
+	$orderServiceId = $service->getId();
+}
+
+foreach( $this->standardBasket->getService( 'payment' ) as $service )
+{
+	$orderService = $service;
+	$orderServiceId = $service->getServiceId();
 }
 
 $serviceOption = $this->param( 'c_paymentoption', $orderServiceId );
+
 
 $paymentCss = [];
 foreach( $this->get( 'paymentError', [] ) as $name => $msg ) {

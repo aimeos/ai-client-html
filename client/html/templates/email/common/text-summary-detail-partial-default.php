@@ -44,29 +44,27 @@ catch( Exception $e )
 	$priceCurrency = '';
 }
 
-try
+
+$deliveryPriceValue = '0.00';
+$deliveryPriceService = '0.00';
+
+foreach( $this->summaryBasket->getService( 'delivery' ) as $service )
 {
-	$deliveryPriceItem = $this->summaryBasket->getService( 'delivery' )->getPrice();
-	$deliveryPriceService = $deliveryPriceItem->getCosts();
-	$deliveryPriceValue = $deliveryPriceItem->getValue();
-}
-catch( Exception $e )
-{
-	$deliveryPriceValue = '0.00';
-	$deliveryPriceService = '0.00';
+	$deliveryPriceItem = $service->getPrice();
+	$deliveryPriceService += $deliveryPriceItem->getCosts();
+	$deliveryPriceValue += $deliveryPriceItem->getValue();
 }
 
-try
+$paymentPriceValue = '0.00';
+$paymentPriceService = '0.00';
+
+foreach( $this->summaryBasket->getService( 'payment' ) as $service )
 {
-	$paymentPriceItem = $this->summaryBasket->getService( 'payment' )->getPrice();
-	$paymentPriceService = $paymentPriceItem->getCosts();
-	$paymentPriceValue = $paymentPriceItem->getValue();
+	$paymentPriceItem = $service->getPrice();
+	$paymentPriceService += $paymentPriceItem->getCosts();
+	$paymentPriceValue += $paymentPriceItem->getValue();
 }
-catch( Exception $e )
-{
-	$paymentPriceValue = '0.00';
-	$paymentPriceService = '0.00';
-}
+
 
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $this->translate( 'client', '%1$s %2$s' );

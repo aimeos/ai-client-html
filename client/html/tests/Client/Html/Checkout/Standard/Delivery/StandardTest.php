@@ -54,9 +54,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$view = \TestHelperHtml::getView();
-		$this->object->setView( $view );
 		$view->standardStepActive = 'delivery';
 		$view->standardSteps = array( 'before', 'delivery', 'after' );
+		$view->standardBasket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
+		$this->object->setView( $view );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="checkout-standard-delivery">', $output );
@@ -120,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
-		$this->assertEquals( 'unitcode', $basket->getService( 'delivery' )->getCode() );
+		$this->assertEquals( 'unitcode', $basket->getService( 'delivery', 'unitcode' )->getCode() );
 	}
 
 

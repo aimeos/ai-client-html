@@ -12,22 +12,21 @@ $services = $this->get( 'deliveryServices', [] );
 $servicePrices = $this->get( 'deliveryServicePrices', [] );
 $serviceAttributes = $this->get( 'deliveryServiceAttributes', [] );
 
-try
-{
-	$orderService = $this->standardBasket->getService( 'delivery' );
-	$orderServiceId = $orderService->getServiceId();
-}
-catch( Exception $e )
-{
-	$orderService = null;
-	$orderServiceId = null;
 
-	if( ( $service = reset( $services ) ) !== false ) {
-		$orderServiceId = $service->getId();
-	}
+$orderService = $orderServiceId = null;
+
+if( ( $service = reset( $services ) ) !== false ) {
+	$orderServiceId = $service->getId();
+}
+
+foreach( $this->standardBasket->getService( 'delivery' ) as $service )
+{
+	$orderService = $service;
+	$orderServiceId = $service->getServiceId();
 }
 
 $serviceOption = $this->param( 'c_deliveryoption', $orderServiceId );
+
 
 $deliveryCss = [];
 foreach( $this->get( 'deliveryError', [] ) as $name => $msg ) {

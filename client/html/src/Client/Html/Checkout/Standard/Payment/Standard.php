@@ -256,7 +256,8 @@ class Standard
 				}
 				else
 				{
-					$basketCtrl->setService( 'payment', $serviceId, $attributes );
+					$basketCtrl->deleteService( 'payment' );
+					$basketCtrl->addService( 'payment', $serviceId, $attributes );
 				}
 			}
 

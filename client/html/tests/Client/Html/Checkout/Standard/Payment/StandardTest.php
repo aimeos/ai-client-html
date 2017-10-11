@@ -56,6 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'payment';
 		$view->standardSteps = array( 'before', 'payment', 'after' );
+		$view->standardBasket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
 		$this->object->setView( $view );
 
 		$output = $this->object->getBody();
@@ -124,7 +125,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
-		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment' )->getCode() );
+		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment', 'unitpaymentcode' )->getCode() );
 	}
 
 

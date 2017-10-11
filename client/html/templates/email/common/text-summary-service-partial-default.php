@@ -6,29 +6,32 @@
  */
 
 /** Available data
- * - service : Order service item (delivery or payment)
+ * - service : List of order service items (delivery or payment)
  * - type : Service type (delivery or payment)
  */
 
-$service = $this->service;
-echo strip_tags( $service->getName() ) . "\n";
 
-foreach( $service->getAttributes() as $attribute )
+foreach( $this->service as $service )
 {
-	if( $attribute->getType() === $this->type )
+	echo strip_tags( $service->getName() ) . "\n";
+
+	foreach( $service->getAttributes() as $attribute )
 	{
-		$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) );
-
-		switch( $attribute->getValue() )
+		if( $attribute->getType() === $this->type )
 		{
-			case 'array':
-			case 'object':
-				$value = join( ', ', (array) $attribute->getValue() );
-				break;
-			default:
-				$value = $attribute->getValue();
-		}
+			$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) );
 
-		echo '- ' . strip_tags( $name ) . ': ' . strip_tags( $value ) . "\n";
+			switch( $attribute->getValue() )
+			{
+				case 'array':
+				case 'object':
+					$value = join( ', ', (array) $attribute->getValue() );
+					break;
+				default:
+					$value = $attribute->getValue();
+			}
+
+			echo '- ' . strip_tags( $name ) . ': ' . strip_tags( $value ) . "\n";
+		}
 	}
 }

@@ -256,7 +256,8 @@ class Standard
 				}
 				else
 				{
-					$basketCtrl->setService( 'delivery', $serviceId, $attributes );
+					$basketCtrl->deleteService( 'delivery' );
+					$basketCtrl->addService( 'delivery', $serviceId, $attributes );
 				}
 			}
 

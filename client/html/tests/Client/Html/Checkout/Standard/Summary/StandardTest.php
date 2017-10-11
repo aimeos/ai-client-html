@@ -203,10 +203,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $this->context );
 
 		$service = $serviceManager->findItem( 'unitpaymentcode', [], 'service', 'payment' );
-		$controller->setService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT, $service->getId() );
+		$controller->addService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT, $service->getId() );
 
 		$service = $serviceManager->findItem( 'unitcode', [], 'service', 'delivery' );
-		$controller->setService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY, $service->getId() );
+		$controller->addService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY, $service->getId() );
 
 
 		return $controller->get();

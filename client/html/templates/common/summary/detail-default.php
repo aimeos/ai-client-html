@@ -138,35 +138,31 @@ else
 	$priceCurrency = '';
 }
 
-try
+
+$deliveryName = '';
+$deliveryPriceValue = '0.00';
+$deliveryPriceService = '0.00';
+
+foreach( $this->summaryBasket->getService( 'delivery' ) as $service )
 {
-	$deliveryItem = $this->summaryBasket->getService( 'delivery' );
-	$deliveryName = $deliveryItem->getName();
-	$deliveryPriceItem = $deliveryItem->getPrice();
-	$deliveryPriceService = $deliveryPriceItem->getCosts();
-	$deliveryPriceValue = $deliveryPriceItem->getValue();
-}
-catch( Exception $e )
-{
-	$deliveryName = '';
-	$deliveryPriceValue = '0.00';
-	$deliveryPriceService = '0.00';
+	$deliveryName = $service->getName();
+	$deliveryPriceItem = $service->getPrice();
+	$deliveryPriceService += $deliveryPriceItem->getCosts();
+	$deliveryPriceValue += $deliveryPriceItem->getValue();
 }
 
-try
+$paymentName = '';
+$paymentPriceValue = '0.00';
+$paymentPriceService = '0.00';
+
+foreach( $this->summaryBasket->getService( 'payment' ) as $service )
 {
-	$paymentItem = $this->summaryBasket->getService( 'payment' );
-	$paymentName = $paymentItem->getName();
-	$paymentPriceItem = $paymentItem->getPrice();
-	$paymentPriceService = $paymentPriceItem->getCosts();
-	$paymentPriceValue = $paymentPriceItem->getValue();
+	$paymentName = $service->getName();
+	$paymentPriceItem = $service->getPrice();
+	$paymentPriceService += $paymentPriceItem->getCosts();
+	$paymentPriceValue += $paymentPriceItem->getValue();
 }
-catch( Exception $e )
-{
-	$paymentName = '';
-	$paymentPriceValue = '0.00';
-	$paymentPriceService = '0.00';
-}
+
 
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $this->translate( 'client', '%1$s %2$s' );
