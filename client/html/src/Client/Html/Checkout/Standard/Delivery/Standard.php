@@ -241,23 +241,27 @@ class Standard
 			$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 			// only start if there's something to do
-			if( ( $serviceId = $view->param( 'c_deliveryoption', null ) ) !== null )
+			if( ( $serviceIds = $view->param( 'c_deliveryoption', null ) ) !== null )
 			{
-				$serviceCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+				$basketCtrl->deleteService( 'delivery' );
 
-				$attributes = $view->param( 'c_delivery/' . $serviceId, [] );
-				$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
-				$view->deliveryError = $errors;
+				foreach( (array) $serviceIds as $serviceId )
+				{
+					$serviceCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
 
-				if( count( $errors ) > 0 )
-				{
-					$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
-					throw new \Aimeos\Client\Html\Exception( sprintf( 'Please recheck your delivery choice' ) );
-				}
-				else
-				{
-					$basketCtrl->deleteService( 'delivery' );
-					$basketCtrl->addService( 'delivery', $serviceId, $attributes );
+					$attributes = $view->param( 'c_delivery/' . $serviceId, [] );
+					$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
+					$view->deliveryError = $errors;
+
+					if( count( $errors ) > 0 )
+					{
+						$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
+						throw new \Aimeos\Client\Html\Exception( sprintf( 'Please recheck your delivery choice' ) );
+					}
+					else
+					{
+						$basketCtrl->addService( 'delivery', $serviceId, $attributes );
+					}
 				}
 			}
 

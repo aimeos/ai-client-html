@@ -344,25 +344,28 @@ class Standard
 	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )
 	{
 		$view = $this->getView();
-		$service = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
+		$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 
-		$args = array( 'code' => $service->getCode() );
-		$config = array( 'absoluteUri' => true, 'namespace' => false );
-		$urls = array(
-			'payment.url-self' => $this->getUrlSelf( $view, ['c_step' => 'process'], [] ),
-			'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], $config ),
-			'payment.url-success' => $this->getUrlConfirm( $view, $args, $config ),
-		);
+		if( ( $service = reset( $services ) ) !== false )
+		{
+			$args = array( 'code' => $service->getCode() );
+			$config = array( 'absoluteUri' => true, 'namespace' => false );
+			$urls = array(
+				'payment.url-self' => $this->getUrlSelf( $view, ['c_step' => 'process'], [] ),
+				'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], $config ),
+				'payment.url-success' => $this->getUrlConfirm( $view, $args, $config ),
+			);
 
-		$params = $view->param();
-		foreach( $service->getAttributes() as $item ) {
-			$params[$item->getCode()] = $item->getValue();
+			$params = $view->param();
+			foreach( $service->getAttributes() as $item ) {
+				$params[$item->getCode()] = $item->getValue();
+			}
+
+			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'service' );
+			$service = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
+
+			return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 		}
-
-		$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'service' );
-		$service = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
-
-		return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 	}
 
 
