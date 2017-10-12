@@ -362,8 +362,6 @@ class Standard
 			}
 
 			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'service' );
-			$service = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
-
 			return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 		}
 	}
