@@ -248,7 +248,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
 			'b_quantity' => 2,
-			'b_attrconfid' => $attribute->getId(),
+			'b_attrconfid' => ['id' => [0 => $attribute->getId()], 'qty' => [0 =>1]],
 			'b_stocktype' => 'default',
 		);
 

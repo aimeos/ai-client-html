@@ -476,10 +476,10 @@ class Standard
 			$products[] = array(
 				'prodid' => $prodid,
 				'quantity' => $view->param( 'b_quantity', 1 ),
-				'attrvarid' => array_filter( (array) $view->param( 'b_attrvarid', [] ) ),
-				'attrconfid' => array_filter( (array) $view->param( 'b_attrconfid', [] ) ),
-				'attrhideid' => array_filter( (array) $view->param( 'b_attrhideid', [] ) ),
-				'attrcustid' => array_filter( (array) $view->param( 'b_attrcustid', [] ) ),
+				'attrvarid' => $view->param( 'b_attrvarid', [] ),
+				'attrconfid' => $view->param( 'b_attrconfid', [] ),
+				'attrhideid' => $view->param( 'b_attrhideid', [] ),
+				'attrcustid' => $view->param( 'b_attrcustid', [] ),
 				'stocktype' => $view->param( 'b_stocktype', 'default' ),
 			);
 		}
@@ -501,12 +501,23 @@ class Standard
 	 */
 	protected function addProduct( \Aimeos\Controller\Frontend\Basket\Iface $controller, array $values, array $options )
 	{
+		$list = [];
+		$confIds = ( isset( $values['attrconfid']['id'] ) ? array_filter( (array) $values['attrconfid']['id'] ) : [] );
+		$confQty = ( isset( $values['attrconfid']['qty'] ) ? array_filter( (array) $values['attrconfid']['qty'] ) : [] );
+
+		foreach( $confIds as $idx => $id )
+		{
+			if( isset( $confQty[$idx] ) && $confQty[$idx] > 0 ) {
+				$list[$id] = $confQty[$idx];
+			}
+		}
+
 		$controller->addProduct(
 			( isset( $values['prodid'] ) ? (string) $values['prodid'] : '' ),
 			( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
 			$options,
 			( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
-			( isset( $values['attrconfid'] ) ? array_filter( (array) $values['attrconfid'] ) : [] ),
+			$list,
 			( isset( $values['attrhideid'] ) ? array_filter( (array) $values['attrhideid'] ) : [] ),
 			( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] ),
 			( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' )
