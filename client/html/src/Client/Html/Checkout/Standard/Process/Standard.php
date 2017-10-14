@@ -288,9 +288,10 @@ class Standard
 				return;
 			}
 
-			if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00' )
-			{
-				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
+			if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00'
+				|| $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) === []
+			) {
+				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
 				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
 				$orderCntl->saveItem( $orderItem );
 
