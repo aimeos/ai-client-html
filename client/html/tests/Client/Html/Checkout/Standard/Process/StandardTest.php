@@ -106,8 +106,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$form = new \Aimeos\MShop\Common\Item\Helper\Form\Standard( 'url', 'POST', [], true );
 		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
 		$prodId = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNE' )->getId();
+		$servId = \Aimeos\MShop\Factory::createManager( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
 
 		$basketMock->addProduct( $prodId );
+		$basketMock->addService( 'payment', $servId );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( $form ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
 		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
@@ -197,8 +199,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
 		$prodId = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNE' )->getId();
+		$servId = \Aimeos\MShop\Factory::createManager( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
 
 		$basketMock->addProduct( $prodId );
+		$basketMock->addService( 'payment', $servId );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( null ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
 		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );

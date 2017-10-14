@@ -278,18 +278,17 @@ class Standard
 			}
 			elseif ( $view->param( 'cp_payment', null ) !== null )
 			{
-				$orderId = $context->getSession()->get( 'aimeos/orderid' );
-
-				$orderItem = $orderCntl->getItem($orderId);
-				$basket = $basketCntl->load($orderItem->getBaseId(), \Aimeos\MShop\Order\Manager\Base\Base::PARTS_ALL, false);
+				$parts = \Aimeos\MShop\Order\Manager\Base\Base::PARTS_ALL;
+				$orderItem = $orderCntl->getItem( $context->getSession()->get( 'aimeos/orderid' ) );
+				$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
 			}
 			else
 			{
 				return;
 			}
 
-			if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00'
-				|| $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) === []
+			if( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) === []
+				|| $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00'
 			) {
 				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
 				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
