@@ -118,37 +118,34 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 
 				<?php if( $layout === 'input' ) : ?>
 
-					<ul class="select-list" data-index="<?= $index++; ?>" data-type="<?= $enc->attr( $code ); ?>">
+					<ul class="select-list">
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
-							<?php if( isset( $attributeItems[$attrId] ) ) : ?>
 
-								<li class="select-entry">
-									<input type="hidden" value="<?= $enc->attr( $attrId ); ?>"
-										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'id', '' ) ) ); ?>"
-									/>
-									<input class="select-option" id="option-<?= $enc->attr( $attrId ); ?>" type="number" value="0" step="1" min="0"
-										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'qty', '' ) ) ); ?>"
-									/>
-									<label class="select-label" for="option-<?= $enc->attr( $attrId ); ?>">
+							<li class="select-entry">
+								<input type="hidden" value="<?= $enc->attr( $attrId ); ?>"
+									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'id', '' ) ) ); ?>"
+								/>
+								<input class="select-option" id="option-<?= $enc->attr( $attrId ); ?>" type="number" value="0" step="1" min="0"
+									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'qty', '' ) ) ); ?>"
+								/><label class="select-label" for="option-<?= $enc->attr( $attrId ); ?>">
 
-										<?php $priceItems = $attribute->getRefItems( 'price', 'default', 'default' ); ?>
-										<?php if( ( $priceItem = reset( $priceItems ) ) !== false ) : ?>
-											<?php $value = $priceItem->getValue() + $priceItem->getCosts(); ?>
-											<?= $enc->html( sprintf( /// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
-												$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
-												$attribute->getName(),
-												$this->number( abs( $value ) ),
-												$this->translate( 'client/currency', $priceItem->getCurrencyId() ),
-												( $value < 0 ? '−' : '+' )
-											), $enc::TRUST ); ?>
-										<?php else : ?>
-											<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
-										<?php endif; ?>
+									<?php $priceItems = $attribute->getRefItems( 'price', 'default', 'default' ); ?>
+									<?php if( ( $priceItem = reset( $priceItems ) ) !== false ) : ?>
+										<?php $value = $priceItem->getValue() + $priceItem->getCosts(); ?>
+										<?= $enc->html( sprintf( /// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
+											$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
+											$attribute->getName(),
+											$this->number( abs( $value ) ),
+											$this->translate( 'client/currency', $priceItem->getCurrencyId() ),
+											( $value < 0 ? '−' : '+' )
+										), $enc::TRUST ); ?>
+									<?php else : ?>
+										<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+									<?php endif; ?>
 
-									</label>
-								</li>
+								</label>
+							</li>
 
-							<?php endif; ?>
 						<?php endforeach; ?>
 					</ul>
 
