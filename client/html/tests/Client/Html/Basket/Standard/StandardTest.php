@@ -457,7 +457,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyAddCoupon()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1, [], [], [], [], [], 'default' );
+		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1 );
 
 		$view = $this->object->getView();
 
@@ -478,7 +478,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyDeleteCoupon()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1, [], [], [], [], [], 'default' );
+		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1 );
 
 		$view = $this->object->getView();
 

@@ -288,7 +288,7 @@ class Standard
 			switch( $view->param( 'b_action' ) )
 			{
 				case 'add':
-					$this->addProducts( $view, [] );
+					$this->addProducts( $view );
 					break;
 				case 'coupon-delete':
 					$this->deleteCoupon( $view );
@@ -297,7 +297,7 @@ class Standard
 					$this->deleteProducts( $view );
 					break;
 				default:
-					$this->editProducts( $view, [] );
+					$this->editProducts( $view );
 					$this->addCoupon( $view );
 			}
 
@@ -464,9 +464,8 @@ class Standard
 	 * Adds the products specified by the view parameters to the basket.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param array $options List of options for addProducts() in basket controller
 	 */
-	protected function addProducts( \Aimeos\MW\View\Iface $view, array $options )
+	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
 		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
@@ -485,7 +484,7 @@ class Standard
 		}
 
 		foreach( $products as $values ) {
-			$this->addProduct( $controller, $values, $options );
+			$this->addProduct( $controller, $values );
 		}
 
 		$this->clearCached();
@@ -497,9 +496,8 @@ class Standard
 	 *
 	 * @param \Aimeos\Controller\Frontend\Basket\Iface $controller Basket frontend controller
 	 * @param array $values Associative list of key/value pairs from the view specifying the product
-	 * @param array $options List of options for addProducts() in basket frontend controller
 	 */
-	protected function addProduct( \Aimeos\Controller\Frontend\Basket\Iface $controller, array $values, array $options )
+	protected function addProduct( \Aimeos\Controller\Frontend\Basket\Iface $controller, array $values )
 	{
 		$list = [];
 		$confIds = ( isset( $values['attrconfid']['id'] ) ? array_filter( (array) $values['attrconfid']['id'] ) : [] );
@@ -515,12 +513,11 @@ class Standard
 		$controller->addProduct(
 			( isset( $values['prodid'] ) ? (string) $values['prodid'] : '' ),
 			( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
-			$options,
+			( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' ),
 			( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
 			$list,
 			( isset( $values['attrhideid'] ) ? array_filter( (array) $values['attrhideid'] ) : [] ),
-			( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] ),
-			( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' )
+			( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] )
 		);
 	}
 
@@ -563,9 +560,8 @@ class Standard
 	 * Edits the products specified by the view parameters to the basket.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param array $options List of options for editProducts() in basket controller
 	 */
-	protected function editProducts( \Aimeos\MW\View\Iface $view, array $options )
+	protected function editProducts( \Aimeos\MW\View\Iface $view )
 	{
 		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
@@ -584,7 +580,6 @@ class Standard
 			$controller->editProduct(
 				( isset( $values['position'] ) ? (int) $values['position'] : 0 ),
 				( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
-				$options,
 				( isset( $values['attrconf-code'] ) ? array_filter( (array) $values['attrconf-code'] ) : [] )
 			);
 		}
