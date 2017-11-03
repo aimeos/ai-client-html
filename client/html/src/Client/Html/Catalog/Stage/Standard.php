@@ -377,7 +377,7 @@ class Standard
 	 */
 	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) )
 	{
-		if( isset( $params['d_pos'] ) && isset( $params['d_prodid'] ) )
+		if( isset( $params['d_prodid'] ) )
 		{
 			$context = $this->getContext();
 			$site = $context->getLocale()->getSite()->getCode();
