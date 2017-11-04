@@ -607,9 +607,9 @@ class Standard
 				$productIds[] = $listItem->getRefId();
 			}
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 
-			$view->watchProductItems = $controller->getProductItems( $productIds, $domains );
+			$view->watchProductItems = $controller->getItems( $productIds, $domains );
 			$view->watchPageFirst = 1;
 			$view->watchPagePrev = ( $current > 1 ? $current - 1 : 1 );
 			$view->watchPageNext = ( $current < $last ? $current + 1 : $last );

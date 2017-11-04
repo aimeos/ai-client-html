@@ -345,8 +345,8 @@ class Standard
 
 			$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-			$result = $controller->getProductItems( $pinned, $domains );
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$result = $controller->getItems( $pinned, $domains );
 
 			foreach( array_reverse( $pinned ) as $id )
 			{

@@ -533,9 +533,9 @@ class Standard
 				$productIds[] = $listItem->getRefId();
 			}
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 
-			$view->favoriteProductItems = $controller->getProductItems( $productIds, $domains );
+			$view->favoriteProductItems = $controller->getItems( $productIds, $domains );
 			$view->favoritePageFirst = 1;
 			$view->favoritePagePrev = ( $current > 1 ? $current - 1 : 1 );
 			$view->favoritePageNext = ( $current < $last ? $current + 1 : $last );
