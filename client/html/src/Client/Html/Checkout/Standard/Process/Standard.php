@@ -278,7 +278,7 @@ class Standard
 			}
 			elseif ( $view->param( 'cp_payment', null ) !== null )
 			{
-				$parts = \Aimeos\MShop\Order\Manager\Base\Base::PARTS_ALL;
+				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
 				$orderItem = $orderCntl->getItem( $context->getSession()->get( 'aimeos/orderid' ) );
 				$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
 			}

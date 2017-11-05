@@ -222,7 +222,7 @@ class Standard
 				}
 
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
-				$parts = \Aimeos\MShop\Order\Manager\Base\Base::PARTS_ALL;
+				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
 
 				$view->summaryBasket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
 				$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
