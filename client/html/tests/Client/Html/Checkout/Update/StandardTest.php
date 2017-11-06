@@ -1,13 +1,15 @@
 <?php
 
-namespace Aimeos\Client\Html\Checkout\Update;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
  * @copyright Aimeos (aimeos.org), 2015-2017
  */
+
+
+namespace Aimeos\Client\Html\Checkout\Update;
+
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $view;
@@ -162,10 +164,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Service\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['updateSync'] )
+			->setMethods( ['updatePush'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'updateSync' )
+		$mock->expects( $this->once() )->method( 'updatePush' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
