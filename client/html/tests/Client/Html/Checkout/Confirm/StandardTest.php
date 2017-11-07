@@ -183,6 +183,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessClientException()
 	{
+		$this->context->getSession()->set( 'aimeos/orderid', -1 );
+
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => -1] );
 		$this->view->addHelper( 'param', $helper );
 
@@ -204,6 +206,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessControllerException()
 	{
+		$this->context->getSession()->set( 'aimeos/orderid', -1 );
+
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => -1] );
 		$this->view->addHelper( 'param', $helper );
 
@@ -225,6 +229,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessMShopException()
 	{
+		$this->context->getSession()->set( 'aimeos/orderid', -1 );
+
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => -1] );
 		$this->view->addHelper( 'param', $helper );
 
@@ -246,6 +252,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessException()
 	{
+		$this->context->getSession()->set( 'aimeos/orderid', -1 );
+
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => -1] );
 		$this->view->addHelper( 'param', $helper );
 

@@ -311,40 +311,28 @@ class Standard
 
 		try
 		{
-			$orderid = $context->getSession()->get( 'aimeos/orderid' );
+			$session = $context->getSession();
 
-			$config = array( 'absoluteUri' => true, 'namespace' => false );
-			$urls = array(
-				'payment.url-update' => $this->getUrlUpdate( $view, ['code' => $code, 'orderid' => $orderid], $config ),
-				'payment.url-success' => $this->getUrlConfirm( $view, [], $config ),
-				'client.ipaddress' => $view->request()->getClientAddress(),
-			);
-			$urls['payment.url-self'] = $urls['payment.url-success'];
-
-			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
-
-			if( ( $orderItem = $cntl->updateSync( $view->request(), $view->response(), $urls, $code, $orderid ) ) === null )
-			{
-				// If update already arrived at the "checkout update" component
-				$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-				$orderItem = $cntl->getItem( $orderid, false );
+			if( ( $orderid = $session->get( 'aimeos/orderid' ) ) === null ) {
+				throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 			}
 
+			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+
+			$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
+			$orderCntl->update( $orderItem );  // update stock, coupons, etc.
 
 			parent::process();
 
-
 			if( $orderItem->getPaymentStatus() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
 			{
-				$session = $context->getSession();
 				\Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->clear();
 
 				foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
 					$session->set( $key, null );
 				}
 			}
-
-			$view->confirmOrderItem = $orderItem;
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
@@ -383,44 +371,6 @@ class Standard
 
 
 	/**
-	 * Returns the URL to the confirm page.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param array $params Parameters that should be part of the URL
-	 * @param array $config Default URL configuration
-	 * @return string URL string
-	 */
-	protected function getUrlConfirm( \Aimeos\MW\View\Iface $view, array $params, array $config )
-	{
-		$target = $view->config( 'client/html/checkout/confirm/url/target' );
-		$cntl = $view->config( 'client/html/checkout/confirm/url/controller', 'checkout' );
-		$action = $view->config( 'client/html/checkout/confirm/url/action', 'confirm' );
-		$config = $view->config( 'client/html/checkout/confirm/url/config', $config );
-
-		return $view->url( $target, $cntl, $action, $params, [], $config );
-	}
-
-
-	/**
-	 * Returns the URL to the update page.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param array $params Parameters that should be part of the URL
-	 * @param array $config Default URL configuration
-	 * @return string URL string
-	 */
-	protected function getUrlUpdate( \Aimeos\MW\View\Iface $view, array $params, array $config )
-	{
-		$target = $view->config( 'client/html/checkout/update/url/target' );
-		$cntl = $view->config( 'client/html/checkout/update/url/controller', 'checkout' );
-		$action = $view->config( 'client/html/checkout/update/url/action', 'update' );
-		$config = $view->config( 'client/html/checkout/update/url/config', $config );
-
-		return $view->url( $target, $cntl, $action, $params, [], $config );
-	}
-
-
-	/**
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
@@ -430,14 +380,12 @@ class Standard
 	 */
 	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+
+		if( !isset( $this->cache ) && ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) != null )
 		{
-			if( !isset( $view->confirmOrderItem ) )
-			{
-				$context = $this->getContext();
-				$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-				$view->confirmOrderItem = $cntl->getItem( $context->getSession()->get( 'aimeos/orderid' ), false );
-			}
+			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+			$view->confirmOrderItem = $cntl->getItem( $orderid, false );
 
 			$this->cache = $view;
 		}
