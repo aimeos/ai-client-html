@@ -244,8 +244,8 @@ class Standard
 				$filter->setSlice( $start, $size );
 				$total = null;
 
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-				$products = $controller->getIndexItems( $filter, array( 'text' ), $total );
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+				$products = $controller->searchItems( $filter, array( 'text' ), $total );
 
 				if( ( $count = count( $products ) ) > 1 )
 				{
