@@ -382,10 +382,13 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		if( !isset( $this->cache ) && ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) != null )
+		if( !isset( $this->cache ) )
 		{
-			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-			$view->confirmOrderItem = $cntl->getItem( $orderid, false );
+			if( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) != null )
+			{
+				$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+				$view->confirmOrderItem = $cntl->getItem( $orderid, false );
+			}
 
 			$this->cache = $view;
 		}
