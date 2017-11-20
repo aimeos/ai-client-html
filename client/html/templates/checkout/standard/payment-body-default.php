@@ -56,7 +56,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 				/>
 
 				<?php if( isset( $servicePrices[$id] ) ) : ?>
-					<?php $currency = $this->translate( 'client/currency', $servicePrices[$id]->getCurrencyId() ); ?>
+					<?php $currency = $this->translate( 'currency', $servicePrices[$id]->getCurrencyId() ); ?>
 					<?php if( $servicePrices[$id]->getValue() > 0 ) : ?>
 						<span class="price-value">
 							<?= $enc->html( sprintf( /// Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)

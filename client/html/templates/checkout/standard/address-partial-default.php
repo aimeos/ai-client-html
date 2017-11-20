@@ -202,7 +202,7 @@ $fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
 
 			<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ); ?></option>
 			<?php foreach( $states as $regioncode => $stateList ) : ?>
-				<optgroup class="<?= $regioncode; ?>" label="<?= $enc->attr( $this->translate( 'client/country', $regioncode ) ); ?>">
+				<optgroup class="<?= $regioncode; ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ); ?>">
 					<?php foreach( $stateList as $stateCode => $stateName ) : ?>
 						<option value="<?= $enc->attr( $stateCode ); ?>" <?= $selectfcn( $addr, 'order.base.address.state', $stateCode ); ?> >
 							<?= $enc->html( $stateName ); ?>
@@ -251,7 +251,7 @@ $fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
 			<?php endif; ?>
 			<?php foreach( $countries as $countryId ) : ?>
 				<option value="<?= $enc->attr( $countryId ); ?>" <?= $selectfcn( $addr, 'order.base.address.countryid', $countryId ); ?> >
-					<?= $enc->html( $this->translate( 'client/country', $countryId ) ); ?>
+					<?= $enc->html( $this->translate( 'country', $countryId ) ); ?>
 				</option>
 			<?php endforeach; ?>
 		</select>
@@ -272,7 +272,7 @@ $fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
 
 		<?php foreach( $languages as $languageId ) : ?>
 			<option value="<?= $enc->attr( $languageId ); ?>" <?= $selectfcn( $addr, 'order.base.address.languageid', $languageId ); ?> >
-				<?= $enc->html( $this->translate( 'client/language', $languageId ) ); ?>
+				<?= $enc->html( $this->translate( 'language', $languageId ) ); ?>
 			</option>
 		<?php endforeach; ?>
 

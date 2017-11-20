@@ -13,21 +13,3 @@ file_filter = client/i18n/code/<lang>.po
 source_file = client/i18n/code/core-client-code.pot
 source_lang = en
 type = PO
-
-[aimeos-core.client-country]
-file_filter = client/i18n/country/<lang>.po
-source_file = client/i18n/country/core-client-country.pot
-source_lang = en
-type = PO
-
-[aimeos-core.client-language]
-file_filter = client/i18n/language/<lang>.po
-source_file = client/i18n/language/core-client-language.pot
-source_lang = en
-type = PO
-
-[aimeos-core.client-currency]
-file_filter = client/i18n/currency/<lang>.po
-source_file = client/i18n/currency/core-client-currency.pot
-source_lang = en
-type = PO

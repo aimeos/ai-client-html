@@ -136,7 +136,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 											$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
 											$attribute->getName(),
 											$this->number( abs( $value ) ),
-											$this->translate( 'client/currency', $priceItem->getCurrencyId() ),
+											$this->translate( 'currency', $priceItem->getCurrencyId() ),
 											( $value < 0 ? '−' : '+' )
 										), $enc::TRUST ); ?>
 									<?php else : ?>
@@ -169,7 +169,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 										$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
 										$attribute->getName(),
 										$this->number( abs( $value ) ),
-										$this->translate( 'client/currency', $priceItem->getCurrencyId() ),
+										$this->translate( 'currency', $priceItem->getCurrencyId() ),
 										( $value < 0 ? '−' : '+' )
 									), $enc::TRUST ); ?>
 								<?php else : ?>

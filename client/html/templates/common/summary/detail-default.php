@@ -127,7 +127,7 @@ if( isset( $this->summaryBasket ) )
 	$priceService = $price->getCosts();
 	$priceRebate = $price->getRebate();
 	$priceTaxflag = $price->getTaxFlag();
-	$priceCurrency = $this->translate( 'client/currency', $price->getCurrencyId() );
+	$priceCurrency = $this->translate( 'currency', $price->getCurrencyId() );
 }
 else
 {

@@ -107,7 +107,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 		<?php
 			$quantity = 0;
 			$priceItem = $this->miniBasket->getPrice();
-			$priceCurrency = $this->translate( 'client/currency', $priceItem->getCurrencyId() );
+			$priceCurrency = $this->translate( 'currency', $priceItem->getCurrencyId() );
 
 			foreach( $this->miniBasket->getProducts() as $product ) {
 				$quantity += $product->getQuantity();
