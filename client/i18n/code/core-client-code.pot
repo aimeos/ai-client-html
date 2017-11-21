@@ -20,21 +20,30 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Address salutation
-msgid "company"
-msgstr "Company"
 
-#. Address salutation
-msgid "mr"
-msgstr "Mr"
+msgid "price:default"
+msgstr "%1$s %2$s"
 
-#. Address salutation
-msgid "mrs"
-msgstr "Mrs"
+#. Stock type
+msgid "stocktype:default"
+msgstr " "
 
-#. Address salutation
-msgid "miss"
-msgstr "Miss"
+#. Warehouse type (pre 2017.x)
+msgid "warehouse:default"
+msgstr " "
+
+#. Favorite action
+msgid "favorite"
+msgstr "favorite"
+
+#. Pin action
+msgid "pin"
+msgstr "pin"
+
+#. Watch action
+msgid "watch"
+msgstr "watch"
+
 
 #. Product attribute
 msgid "size"
@@ -56,85 +65,22 @@ msgstr "Color"
 msgid "option"
 msgstr "Option"
 
-#. Order type value
-msgid "order:repeat"
-msgstr "repeated"
+#. Product property package-length
+msgid "package-length"
+msgstr "package-length"
 
-#. Order type value
-msgid "order:web"
-msgstr "internet"
+#. Product property package-width
+msgid "package-width"
+msgstr "package-width"
 
-#. Order type value
-msgid "order:phone"
-msgstr "telephone"
+#. Product property package-height
+msgid "package-height"
+msgstr "package-height"
 
-#. Payment status value
-msgid "pay:-1"
-msgstr "unfinished"
+#. Product property package-weight
+msgid "package-weight"
+msgstr "package-weight"
 
-#. Payment status value
-msgid "pay:0"
-msgstr "deleted"
-
-#. Payment status value
-msgid "pay:1"
-msgstr "canceled"
-
-#. Payment status value
-msgid "pay:2"
-msgstr "refused"
-
-#. Payment status value
-msgid "pay:3"
-msgstr "refunded"
-
-#. Payment status value
-msgid "pay:4"
-msgstr "pending"
-
-#. Payment status value
-msgid "pay:5"
-msgstr "authorized"
-
-#. Payment status value
-msgid "pay:6"
-msgstr "received"
-
-#. Delivery status value
-msgid "stat:-1"
-msgstr "unfinished"
-
-#. Delivery status value
-msgid "stat:0"
-msgstr "deleted"
-
-#. Delivery status value
-msgid "stat:1"
-msgstr "pending"
-
-#. Delivery status value
-msgid "stat:2"
-msgstr "in progress"
-
-#. Delivery status value
-msgid "stat:3"
-msgstr "dispatched"
-
-#. Delivery status value
-msgid "stat:4"
-msgstr "delivered"
-
-#. Delivery status value
-msgid "stat:5"
-msgstr "lost"
-
-#. Delivery status value
-msgid "stat:6"
-msgstr "refused"
-
-#. Delivery status value
-msgid "stat:7"
-msgstr "returned"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
@@ -175,45 +121,6 @@ msgstr "Expiry month"
 #. Omnipay service provider
 msgid "payment.expiryyear"
 msgstr "Expiry year"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr " "
-
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr " "
-
-#. Favorite action
-msgid "favorite"
-msgstr "favorite"
-
-#. Pin action
-msgid "pin"
-msgstr "pin"
-
-#. Watch action
-msgid "watch"
-msgstr "watch"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "package-length"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "package-width"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "package-height"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "package-weight"
-
-msgid "price:default"
-msgstr "%1$s %2$s"
 
 #. Pick-up time
 msgid "time.hourminute"

@@ -62,7 +62,7 @@ $retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
 					</span>
 					<span class="value">
 						<?php $code = 'pay:' . $this->confirmOrderItem->getPaymentStatus(); ?>
-						<?= $enc->html( $this->translate( 'client/code', $code ) ); ?>
+						<?= $enc->html( $this->translate( 'mshop/code', $code ) ); ?>
 					</span>
 				</li>
 			</ul>

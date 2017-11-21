@@ -13,7 +13,7 @@ $order = $this->extOrderItem;
 $msg = $this->translate( 'client', 'The payment for your order %1$s from %2$s has been refunded.' );
 
 $key = 'pay:' . $order->getPaymentStatus();
-$status = $this->translate( 'client/code', $key );
+$status = $this->translate( 'mshop/code', $key );
 $format = $this->translate( 'client', 'Y-m-d' );
 
 $string = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );

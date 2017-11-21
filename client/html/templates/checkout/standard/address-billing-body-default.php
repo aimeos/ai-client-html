@@ -103,7 +103,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 '
 		),
 		$addr->getCompany(),
-		( !in_array( $addr->getSalutation(), array( 'company' ) ) ? $this->translate( 'client/code', $addr->getSalutation() ) : '' ),
+		( !in_array( $addr->getSalutation(), array( 'company' ) ) ? $this->translate( 'mshop/code', $addr->getSalutation() ) : '' ),
 		$addr->getTitle(),
 		$addr->getFirstName(),
 		$addr->getLastName(),

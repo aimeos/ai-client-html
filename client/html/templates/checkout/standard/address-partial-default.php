@@ -55,7 +55,7 @@ $fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
 
 		<?php foreach( $salutations as $salutation ) : ?>
 			<option value="<?= $enc->attr( $salutation ); ?>" <?= $selectfcn( $addr, 'order.base.address.salutation', $salutation ); ?> >
-				<?= $enc->html( $this->translate( 'client/code', $salutation ) ); ?>
+				<?= $enc->html( $this->translate( 'mshop/code', $salutation ) ); ?>
 			</option>
 		<?php endforeach; ?>
 

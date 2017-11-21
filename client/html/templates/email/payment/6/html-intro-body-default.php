@@ -14,7 +14,7 @@ $msg = $this->translate( 'client', 'Thank you for your order %1$s from %2$s.' );
 $msg2 = $this->translate( 'client', 'We have received your payment, and will take care of your order immediately.' );
 
 $key = 'pay:' . $order->getPaymentStatus();
-$status = $this->translate( 'client/code', $key );
+$status = $this->translate( 'mshop/code', $key );
 $format = $this->translate( 'client', 'Y-m-d' );
 
 $intro = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
