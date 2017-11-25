@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-09-23 01:24+0000\n"
+"PO-Revision-Date: 2017-11-21 22:32+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -22,21 +22,28 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Address salutation
-msgid "company"
-msgstr "Empresa"
+msgid "price:default"
+msgstr "%1$s %2$s"
 
-#. Address salutation
-msgid "mr"
-msgstr "Sr"
+#. Stock type
+msgid "stocktype:default"
+msgstr ""
 
-#. Address salutation
-msgid "mrs"
-msgstr "Sra"
+#. Warehouse type (pre 2017.x)
+msgid "warehouse:default"
+msgstr ""
 
-#. Address salutation
-msgid "miss"
-msgstr "Srta"
+#. Favorite action
+msgid "favorite"
+msgstr "adicionar aos favoritos"
+
+#. Pin action
+msgid "pin"
+msgstr "marcar"
+
+#. Watch action
+msgid "watch"
+msgstr "acompanhar"
 
 #. Product attribute
 msgid "size"
@@ -58,85 +65,21 @@ msgstr "Cor"
 msgid "option"
 msgstr "Opção"
 
-#. Order type value
-msgid "order:repeat"
-msgstr "Mês de validade"
+#. Product property package-length
+msgid "package-length"
+msgstr "pacote-comprimento"
 
-#. Order type value
-msgid "order:web"
-msgstr "A"
+#. Product property package-width
+msgid "package-width"
+msgstr "pacote-largura"
 
-#. Order type value
-msgid "order:phone"
-msgstr "tefefoneído"
+#. Product property package-height
+msgid "package-height"
+msgstr "pacote-altura"
 
-#. Payment status value
-msgid "pay:-1"
-msgstr "não-concluído"
-
-#. Payment status value
-msgid "pay:0"
-msgstr "removido"
-
-#. Payment status value
-msgid "pay:1"
-msgstr "cancelado"
-
-#. Payment status value
-msgid "pay:2"
-msgstr "recusado"
-
-#. Payment status value
-msgid "pay:3"
-msgstr "reembolsado"
-
-#. Payment status value
-msgid "pay:4"
-msgstr "pendente"
-
-#. Payment status value
-msgid "pay:5"
-msgstr "autorizado"
-
-#. Payment status value
-msgid "pay:6"
-msgstr "recebido"
-
-#. Delivery status value
-msgid "stat:-1"
-msgstr "não-concluído"
-
-#. Delivery status value
-msgid "stat:0"
-msgstr "removido"
-
-#. Delivery status value
-msgid "stat:1"
-msgstr "pendente"
-
-#. Delivery status value
-msgid "stat:2"
-msgstr "em progresso"
-
-#. Delivery status value
-msgid "stat:3"
-msgstr "despachado"
-
-#. Delivery status value
-msgid "stat:4"
-msgstr "entregue"
-
-#. Delivery status value
-msgid "stat:5"
-msgstr "perdido"
-
-#. Delivery status value
-msgid "stat:6"
-msgstr "recusado"
-
-#. Delivery status value
-msgid "stat:7"
-msgstr "devolvido"
+#. Product property package-weight
+msgid "package-weight"
+msgstr "pacote-peso"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
@@ -177,45 +120,6 @@ msgstr "Mês de validade"
 #. Omnipay service provider
 msgid "payment.expiryyear"
 msgstr "Ano de validade"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr ""
-
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr ""
-
-#. Favorite action
-msgid "favorite"
-msgstr "adicionar aos favoritos"
-
-#. Pin action
-msgid "pin"
-msgstr "marcar"
-
-#. Watch action
-msgid "watch"
-msgstr "acompanhar"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "pacote-comprimento"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "pacote-largura"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "pacote-altura"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "pacote-peso"
-
-msgid "price:default"
-msgstr "%1$s %2$s"
 
 #. Pick-up time
 msgid "time.hourminute"
