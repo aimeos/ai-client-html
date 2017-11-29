@@ -56,24 +56,21 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/basket/related/bought/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->boughtBody = $html;
 
@@ -210,60 +207,55 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		if( isset( $view->relatedBasket ) )
 		{
-			if( isset( $view->relatedBasket ) )
+			$refIds = $items = [];
+			$context = $this->getContext();
+
+			$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
+
+			foreach( $this->getListItems( $prodIds ) as $listItem )
 			{
-				$refIds = $items = [];
-				$context = $this->getContext();
+				$refId = $listItem->getRefId();
 
-				$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
-
-				foreach( $this->getListItems( $prodIds ) as $listItem )
-				{
-					$refId = $listItem->getRefId();
-
-					if( !isset( $prodIds[$refId] ) ) {
-						$refIds[$refId] = $refId;
-					}
+				if( !isset( $prodIds[$refId] ) ) {
+					$refIds[$refId] = $refId;
 				}
-
-				$products = $this->getProductItems( $refIds );
-
-				foreach( $refIds as $id )
-				{
-					if( isset( $products[$id] ) ) {
-						$items[$id] = $products[$id];
-					}
-				}
-
-				/** client/html/basket/related/bought/standard/limit
-				 * Number of items in the list of bought together products
-				 *
-				 * This option limits the number of suggested products in the
-				 * list of bought together products. The suggested items are
-				 * calculated using the products that are in the current basket
-				 * of the customer.
-				 *
-				 * Note: You need to start the job controller for calculating
-				 * the bought together products regularly to get up to date
-				 * product suggestions.
-				 *
-				 * @param integer Number of products
-				 * @since 2014.09
-				 */
-				$size = $context->getConfig()->get( 'client/html/basket/related/bought/standard/limit', 6 );
-
-
-				$view->boughtItems = array_slice( $items, 0, $size, true );
 			}
 
-			$this->cache = $view;
+			$products = $this->getProductItems( $refIds );
+
+			foreach( $refIds as $id )
+			{
+				if( isset( $products[$id] ) ) {
+					$items[$id] = $products[$id];
+				}
+			}
+
+			/** client/html/basket/related/bought/standard/limit
+			 * Number of items in the list of bought together products
+			 *
+			 * This option limits the number of suggested products in the
+			 * list of bought together products. The suggested items are
+			 * calculated using the products that are in the current basket
+			 * of the customer.
+			 *
+			 * Note: You need to start the job controller for calculating
+			 * the bought together products regularly to get up to date
+			 * product suggestions.
+			 *
+			 * @param integer Number of products
+			 * @since 2014.09
+			 */
+			$size = $context->getConfig()->get( 'client/html/basket/related/bought/standard/limit', 6 );
+
+
+			$view->boughtItems = array_slice( $items, 0, $size, true );
 		}
 
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 
 

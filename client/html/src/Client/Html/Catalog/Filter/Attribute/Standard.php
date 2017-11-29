@@ -59,24 +59,22 @@ class Standard
 	private $subPartNames = [];
 	private $tags = [];
 	private $expire;
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->attributeBody = $html;
 
@@ -213,98 +211,90 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$attrMap = [];
+		$attrMap = [];
 
-			/** client/html/catalog/filter/attribute/types
-			 * List of attribute types that should be displayed in this order in the catalog filter
-			 *
-			 * The attribute section in the catalog filter component can display
-			 * all attributes a visitor can use to reduce the listed products
-			 * to those that contains one or more attributes. By default, all
-			 * available attributes will be displayed and ordered by their
-			 * attribute type.
-			 *
-			 * With this setting, you can limit the attribute types to only thoses
-			 * whose names are part of the setting value. Furthermore, a particular
-			 * order for the attribute types can be enforced that is different
-			 * from the standard order.
-			 *
-			 * @param array List of attribute type codes
-			 * @since 2015.05
-			 * @category User
-			 * @category Developer
-			 * @see client/html/catalog/filter/attribute/domains
-			 * @see client/html/catalog/filter/attribute/types-oneof
-			 * @see client/html/catalog/filter/attribute/types-option
-			 */
-			$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
-			$attrTypes = ( !is_array( $attrTypes ) ? explode( ',', $attrTypes ) : $attrTypes );
+		/** client/html/catalog/filter/attribute/types
+		 * List of attribute types that should be displayed in this order in the catalog filter
+		 *
+		 * The attribute section in the catalog filter component can display
+		 * all attributes a visitor can use to reduce the listed products
+		 * to those that contains one or more attributes. By default, all
+		 * available attributes will be displayed and ordered by their
+		 * attribute type.
+		 *
+		 * With this setting, you can limit the attribute types to only thoses
+		 * whose names are part of the setting value. Furthermore, a particular
+		 * order for the attribute types can be enforced that is different
+		 * from the standard order.
+		 *
+		 * @param array List of attribute type codes
+		 * @since 2015.05
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/filter/attribute/domains
+		 * @see client/html/catalog/filter/attribute/types-oneof
+		 * @see client/html/catalog/filter/attribute/types-option
+		 */
+		$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
+		$attrTypes = ( !is_array( $attrTypes ) ? explode( ',', $attrTypes ) : $attrTypes );
 
-			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'attribute' );
+		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'attribute' );
 
-			$filter = $cntl->createFilter();
-			$filter = $cntl->addFilterTypes( $filter, $attrTypes );
-			$filter->setSlice( 0, 0x7fffffff );
+		$filter = $cntl->createFilter();
+		$filter = $cntl->addFilterTypes( $filter, $attrTypes );
+		$filter->setSlice( 0, 0x7fffffff );
 
 
-			/** client/html/catalog/filter/attribute/domains
-			 * List of domain names whose items should be fetched with the filter attributes
-			 *
-			 * The templates rendering the attributes in the catalog filter usually
-			 * add the images and texts associated to each item. If you want to
-			 * display additional content, you can configure your own list of
-			 * domains (attribute, media, price, product, text, etc. are domains)
-			 * whose items are fetched from the storage. Please keep in mind that
-			 * the more domains you add to the configuration, the more time is
-			 * required for fetching the content!
-			 *
-			 * @param array List of domain item names
-			 * @since 2015.05
-			 * @category Developer
-			 * @see client/html/catalog/filter/attribute/types
-			 */
-			$domains = $view->config( 'client/html/catalog/filter/attribute/domains', array( 'text', 'media' ) );
+		/** client/html/catalog/filter/attribute/domains
+		 * List of domain names whose items should be fetched with the filter attributes
+		 *
+		 * The templates rendering the attributes in the catalog filter usually
+		 * add the images and texts associated to each item. If you want to
+		 * display additional content, you can configure your own list of
+		 * domains (attribute, media, price, product, text, etc. are domains)
+		 * whose items are fetched from the storage. Please keep in mind that
+		 * the more domains you add to the configuration, the more time is
+		 * required for fetching the content!
+		 *
+		 * @param array List of domain item names
+		 * @since 2015.05
+		 * @category Developer
+		 * @see client/html/catalog/filter/attribute/types
+		 */
+		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', array( 'text', 'media' ) );
 
-			$attributes = $cntl->searchItems( $filter, $domains );
+		$attributes = $cntl->searchItems( $filter, $domains );
 
-			foreach( $attributes as $id => $item ) {
-				$attrMap[$item->getType()][$id] = $item;
-			}
-
-			if( !empty( $attrTypes ) )
-			{
-				$sortedMap = [];
-
-				foreach( $attrTypes as $type )
-				{
-					if( isset( $attrMap[$type] ) ) {
-						$sortedMap[$type] = $attrMap[$type];
-					}
-				}
-
-				$attrMap = $sortedMap;
-			}
-			else
-			{
-				ksort( $attrMap );
-			}
-
-			$this->addMetaItems( $attributes, $this->expire, $this->tags );
-			// Delete cache when attributes are added or deleted even in "tag-all" mode
-			$this->tags[] = 'attribute';
-
-			$view->attributeMap = $attrMap;
-
-			$this->cache = $view;
+		foreach( $attributes as $id => $item ) {
+			$attrMap[$item->getType()][$id] = $item;
 		}
 
-		$expire = $this->expires( $this->expire, $expire );
-		$tags = array_merge( $tags, $this->tags );
+		if( !empty( $attrTypes ) )
+		{
+			$sortedMap = [];
 
-		return $this->cache;
+			foreach( $attrTypes as $type )
+			{
+				if( isset( $attrMap[$type] ) ) {
+					$sortedMap[$type] = $attrMap[$type];
+				}
+			}
+
+			$attrMap = $sortedMap;
+		}
+		else
+		{
+			ksort( $attrMap );
+		}
+
+		$this->addMetaItems( $attributes, $expire, $tags );
+		// Delete cache when attributes are added or deleted even in "tag-all" mode
+		$this->tags[] = 'attribute';
+
+		$view->attributeMap = $attrMap;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

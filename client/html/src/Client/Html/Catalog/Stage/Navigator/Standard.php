@@ -57,24 +57,21 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/stage/navigator/standard/subparts';
 	private $subPartNames = [];
-	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
 	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->navigatorBody = $html;
 
@@ -224,64 +221,59 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->view ) )
+		if( ( $pos = $view->param( 'd_pos' ) ) !== null && ( $pid = $view->param( 'd_prodid' ) ) !== null )
 		{
-			if( ( $pos = $view->param( 'd_pos' ) ) !== null && ( $pid = $view->param( 'd_prodid' ) ) !== null )
-			{
-				if( $pos < 1 ) {
-					$start = 0; $size = 2;
-				} else {
-					$start = $pos - 1; $size = 3;
-				}
-
-				$context = $this->getContext();
-				$site = $context->getLocale()->getSite()->getCode();
-				$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
-
-				$filter = $this->getProductListFilterByParam( $params );
-				$filter->setSlice( $start, $size );
-				$total = null;
-
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-				$products = $controller->searchItems( $filter, array( 'text' ), $total );
-
-				if( ( $count = count( $products ) ) > 1 )
-				{
-					$enc = $view->encoder();
-					$listPos = array_search( $pid, array_keys( $products ) );
-
-					$target = $view->config( 'client/html/catalog/detail/url/target' );
-					$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-					$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
-					$config = $view->config( 'client/html/catalog/detail/url/config', [] );
-
-					if( $listPos > 0 && ( $product = reset( $products ) ) !== false )
-					{
-						$param = array(
-							'd_prodid' => $product->getId(),
-							'd_name' => $enc->url( $product->getName( 'url ' ) ),
-							'd_pos' => $pos - 1
-						);
-						$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
-					}
-
-					if( $listPos < $count - 1 && ( $product = end( $products ) ) !== false )
-					{
-						$param = array(
-							'd_prodid' => $product->getId(),
-							'd_name' => $enc->url( $product->getName( 'url' ) ),
-							'd_pos' => $pos + 1
-						);
-						$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
-					}
-				}
+			if( $pos < 1 ) {
+				$start = 0; $size = 2;
+			} else {
+				$start = $pos - 1; $size = 3;
 			}
 
-			$this->view = $view;
+			$context = $this->getContext();
+			$site = $context->getLocale()->getSite()->getCode();
+			$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+
+			$filter = $this->getProductListFilterByParam( $params );
+			$filter->setSlice( $start, $size );
+			$total = null;
+
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$products = $controller->searchItems( $filter, array( 'text' ), $total );
+
+			if( ( $count = count( $products ) ) > 1 )
+			{
+				$enc = $view->encoder();
+				$listPos = array_search( $pid, array_keys( $products ) );
+
+				$target = $view->config( 'client/html/catalog/detail/url/target' );
+				$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
+				$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
+				$config = $view->config( 'client/html/catalog/detail/url/config', [] );
+
+				if( $listPos > 0 && ( $product = reset( $products ) ) !== false )
+				{
+					$param = array(
+						'd_prodid' => $product->getId(),
+						'd_name' => $enc->url( $product->getName( 'url ' ) ),
+						'd_pos' => $pos - 1
+					);
+					$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
+				}
+
+				if( $listPos < $count - 1 && ( $product = end( $products ) ) !== false )
+				{
+					$param = array(
+						'd_prodid' => $product->getId(),
+						'd_name' => $enc->url( $product->getName( 'url' ) ),
+						'd_pos' => $pos + 1
+					);
+					$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
+				}
+			}
 		}
 
-		return $this->view;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

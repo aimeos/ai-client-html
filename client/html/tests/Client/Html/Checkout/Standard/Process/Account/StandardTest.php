@@ -33,12 +33,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Factory::setCache( false );
 
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
-		unset( $this->object );
+
+		unset( $this->object, $this->object );
 	}
 
 
 	public function testGetBody()
 	{
+		$view = \TestHelperHtml::getView();
+		$this->object->setView( $this->object->addData( $view ) );
+
 		$output = $this->object->getBody();
 		$this->assertNotNull( $output );
 	}

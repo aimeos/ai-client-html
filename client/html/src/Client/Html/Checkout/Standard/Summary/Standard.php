@@ -61,18 +61,15 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/checkout/standard/summary/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
@@ -81,8 +78,6 @@ class Standard
 		if( $step != 'summary' && !( in_array( 'summary', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
 		}
-
-		$view = $this->setViewParams( $view, $tags, $expire );
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -121,11 +116,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
@@ -135,7 +128,7 @@ class Standard
 			return '';
 		}
 
-		return parent::getHeader( $uid, $tags, $expire );
+		return parent::getHeader( $uid );
 	}
 
 
@@ -296,28 +289,23 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+
+		if( ( $view->summaryCustomerId = $context->getUserId() ) === null )
 		{
-			$context = $this->getContext();
-
-			if( ( $view->summaryCustomerId = $context->getUserId() ) === null )
+			try
 			{
-				try
-				{
-					$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-					$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-					$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
-				}
-				catch( \Exception $e ) {}
+				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+				$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
 			}
-
-			$view->summaryTaxRates = $this->getTaxRates( $view->standardBasket );
-
-			$this->cache = $view;
+			catch( \Exception $e ) {}
 		}
 
-		return $this->cache;
+		$view->summaryTaxRates = $this->getTaxRates( $view->standardBasket );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

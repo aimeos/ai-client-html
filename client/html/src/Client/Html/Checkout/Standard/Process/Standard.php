@@ -82,18 +82,15 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'account', 'address' );
-	private $cache;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
 
@@ -101,11 +98,9 @@ class Standard
 			return '';
 		}
 
-		$view = $this->setViewParams( $view, $tags, $expire );
-
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->processBody = $html;
 
@@ -140,11 +135,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$view = $this->getView();
 
@@ -152,7 +145,7 @@ class Standard
 			return '';
 		}
 
-		return parent::getHeader( $uid, $tags, $expire );
+		return parent::getHeader( $uid );
 	}
 
 
@@ -641,15 +634,10 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$view->standardUrlPayment = $this->getUrlSelf( $view, array( 'c_step' => 'payment' ), [] );
+		$view->standardUrlPayment = $this->getUrlSelf( $view, array( 'c_step' => 'payment' ), [] );
 
-			$this->cache = $view;
-		}
-
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

@@ -44,12 +44,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getHeader();
@@ -70,12 +70,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
 		$mock->getBody();
@@ -86,12 +86,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
 		$mock->getBody();
@@ -102,12 +102,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
 		$mock->getBody();
@@ -118,12 +118,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getBody();

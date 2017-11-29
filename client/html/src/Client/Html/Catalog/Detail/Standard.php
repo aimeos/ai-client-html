@@ -82,18 +82,16 @@ class Standard
 
 	private $tags = [];
 	private $expire;
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$prefixes = array( 'd' );
 		$context = $this->getContext();
@@ -116,11 +114,13 @@ class Standard
 
 			try
 			{
-				$view = $this->setViewParams( $view, $tags, $expire );
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
 				$output = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+					$output .= $subclient->setView( $view )->getBody( $uid );
 				}
 				$view->detailBody = $output;
 			}
@@ -172,7 +172,7 @@ class Standard
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -187,11 +187,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$prefixes = array( 'd' );
 		$context = $this->getContext();
@@ -204,11 +202,13 @@ class Standard
 
 			try
 			{
-				$view = $this->setViewParams( $view, $tags, $expire );
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
 				$output = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+					$output .= $subclient->setView( $view )->getHeader( $uid );
 				}
 				$view->detailHeader = $output;
 			}
@@ -244,7 +244,7 @@ class Standard
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -419,144 +419,136 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+		$config = $context->getConfig();
+		$prodid = $view->param( 'd_prodid' );
+
+		if( $prodid == '' )
 		{
-			$context = $this->getContext();
-			$config = $context->getConfig();
-			$prodid = $view->param( 'd_prodid' );
-
-			if( $prodid == '' )
-			{
-				/** client/html/catalog/detail/prodid-default
-				 * The default product ID used if none is given as parameter
-				 *
-				 * To display a product detail view or a part of it for a specific
-				 * product, you can configure its ID using this setting. This is
-				 * most useful in a CMS where the product ID can be configured
-				 * separately for each content node.
-				 *
-				 * @param string Product ID
-				 * @since 2016.01
-				 * @category User
-				 * @category Developer
-				 * @see client/html/catalog/lists/catid-default
-				 */
-				$prodid = $config->get( 'client/html/catalog/detail/prodid-default', '' );
-			}
-
-
-			$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
-
-			/** client/html/catalog/domains
-			 * A list of domain names whose items should be available in the catalog view templates
+			/** client/html/catalog/detail/prodid-default
+			 * The default product ID used if none is given as parameter
 			 *
-			 * @see client/html/catalog/detail/domains
-			 */
-			$domains = $config->get( 'client/html/catalog/domains', $domains );
-
-			/** client/html/catalog/detail/domains
-			 * A list of domain names whose items should be available in the product detail view template
+			 * To display a product detail view or a part of it for a specific
+			 * product, you can configure its ID using this setting. This is
+			 * most useful in a CMS where the product ID can be configured
+			 * separately for each content node.
 			 *
-			 * The templates rendering product details usually add the images,
-			 * prices, texts, attributes, products, etc. associated to the product
-			 * item. If you want to display additional or less content, you can
-			 * configure your own list of domains (attribute, media, price, product,
-			 * text, etc. are domains) whose items are fetched from the storage.
-			 * Please keep in mind that the more domains you add to the configuration,
-			 * the more time is required for fetching the content!
-			 *
-			 * Since version 2014.05 this configuration option overwrites the
-			 * "client/html/catalog/domains" option that allows to configure the
-			 * domain names of the items fetched for all catalog related data.
-			 *
-			 * @param array List of domain names
-			 * @since 2014.03
-			 * @category Developer
-			 * @see client/html/catalog/domains
-			 * @see client/html/catalog/lists/domains
-			 */
-			$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
-
-
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-			$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$attrCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'attribute' );
-
-
-			$productItem = $prodCntl->getItem( $prodid, $domains );
-			$this->addMetaItems( $productItem, $this->expire, $this->tags );
-
-			$productIds = array_keys( $productItem->getRefItems( 'product' ) );
-			$products = $prodCntl->getItems( $productIds, $domains );
-
-
-			$attrIds = array_keys( $productItem->getRefItems( 'attribute' ) );
-			$mediaIds = array_keys( $productItem->getRefItems( 'media' ) );
-
-			foreach( $products as $product )
-			{
-				$attrIds = array_merge( $attrIds, array_keys( $product->getRefItems( 'attribute' ) ) );
-				$mediaIds = array_merge( $mediaIds, array_keys( $product->getRefItems( 'media' ) ) );
-			}
-
-
-			$attributeItems = $attrCntl->getItems( $attrIds, $domains );
-			$this->addMetaItems( $attributeItems, $this->expire, $this->tags );
-
-
-			$mediaManager = $controller->createManager( 'media' );
-			$mediaItems = $this->getDomainItems( $mediaManager, 'media.id', $mediaIds, $domains );
-			$this->addMetaItems( $mediaItems, $this->expire, $this->tags );
-
-
-			$productIds = array_keys( $productItem->getRefItems( 'product', null, 'default' ) );
-			$productIds[] = $prodid;
-
-			$propertyManager = $controller->createManager( 'product/property' );
-			$propertyItems = $this->getDomainItems( $propertyManager, 'product.property.parentid', $productIds, $domains );
-
-
-			/** client/html/catalog/detail/stock/enable
-			 * Enables or disables displaying product stock levels in product detail view
-			 *
-			 * This configuration option allows shop owners to display product
-			 * stock levels for each product in the detail views or to disable
-			 * fetching product stock information.
-			 *
-			 * The stock information is fetched via AJAX and inserted via Javascript.
-			 * This allows to cache product items by leaving out such highly
-			 * dynamic content like stock levels which changes with each order.
-			 *
-			 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
-			 * @since 2014.03
+			 * @param string Product ID
+			 * @since 2016.01
 			 * @category User
 			 * @category Developer
-			 * @see client/html/catalog/lists/stock/enable
-			 * @see client/html/catalog/stock/url/target
-			 * @see client/html/catalog/stock/url/controller
-			 * @see client/html/catalog/stock/url/action
-			 * @see client/html/catalog/stock/url/config
+			 * @see client/html/catalog/lists/catid-default
 			 */
-
-			if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
-				$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, array( $productItem ) ) );
-			}
-
-			$view->detailMediaItems = $mediaItems;
-			$view->detailProductItem = $productItem;
-			$view->detailProductItems = $products;
-			$view->detailPropertyItems = $propertyItems;
-			$view->detailAttributeItems = $attributeItems;
-			$view->detailParams = $this->getClientParams( $view->param() );
-
-			$this->cache = $view;
+			$prodid = $config->get( 'client/html/catalog/detail/prodid-default', '' );
 		}
 
-		$expire = $this->expires( $this->expire, $expire );
-		$tags = array_merge( $tags, $this->tags );
 
-		return $this->cache;
+		$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
+
+		/** client/html/catalog/domains
+		 * A list of domain names whose items should be available in the catalog view templates
+		 *
+		 * @see client/html/catalog/detail/domains
+		 */
+		$domains = $config->get( 'client/html/catalog/domains', $domains );
+
+		/** client/html/catalog/detail/domains
+		 * A list of domain names whose items should be available in the product detail view template
+		 *
+		 * The templates rendering product details usually add the images,
+		 * prices, texts, attributes, products, etc. associated to the product
+		 * item. If you want to display additional or less content, you can
+		 * configure your own list of domains (attribute, media, price, product,
+		 * text, etc. are domains) whose items are fetched from the storage.
+		 * Please keep in mind that the more domains you add to the configuration,
+		 * the more time is required for fetching the content!
+		 *
+		 * Since version 2014.05 this configuration option overwrites the
+		 * "client/html/catalog/domains" option that allows to configure the
+		 * domain names of the items fetched for all catalog related data.
+		 *
+		 * @param array List of domain names
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/domains
+		 * @see client/html/catalog/lists/domains
+		 */
+		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
+
+
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+		$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+		$attrCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'attribute' );
+
+
+		$productItem = $prodCntl->getItem( $prodid, $domains );
+		$this->addMetaItems( $productItem, $expire, $tags );
+
+		$productIds = array_keys( $productItem->getRefItems( 'product' ) );
+		$products = $prodCntl->getItems( $productIds, $domains );
+
+
+		$attrIds = array_keys( $productItem->getRefItems( 'attribute' ) );
+		$mediaIds = array_keys( $productItem->getRefItems( 'media' ) );
+
+		foreach( $products as $product )
+		{
+			$attrIds = array_merge( $attrIds, array_keys( $product->getRefItems( 'attribute' ) ) );
+			$mediaIds = array_merge( $mediaIds, array_keys( $product->getRefItems( 'media' ) ) );
+		}
+
+
+		$attributeItems = $attrCntl->getItems( $attrIds, $domains );
+		$this->addMetaItems( $attributeItems, $expire, $tags );
+
+
+		$mediaManager = $controller->createManager( 'media' );
+		$mediaItems = $this->getDomainItems( $mediaManager, 'media.id', $mediaIds, $domains );
+		$this->addMetaItems( $mediaItems, $expire, $tags );
+
+
+		$productIds = array_keys( $productItem->getRefItems( 'product', null, 'default' ) );
+		$productIds[] = $prodid;
+
+		$propertyManager = $controller->createManager( 'product/property' );
+		$propertyItems = $this->getDomainItems( $propertyManager, 'product.property.parentid', $productIds, $domains );
+
+
+		/** client/html/catalog/detail/stock/enable
+		 * Enables or disables displaying product stock levels in product detail view
+		 *
+		 * This configuration option allows shop owners to display product
+		 * stock levels for each product in the detail views or to disable
+		 * fetching product stock information.
+		 *
+		 * The stock information is fetched via AJAX and inserted via Javascript.
+		 * This allows to cache product items by leaving out such highly
+		 * dynamic content like stock levels which changes with each order.
+		 *
+		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
+		 * @since 2014.03
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/stock/enable
+		 * @see client/html/catalog/stock/url/target
+		 * @see client/html/catalog/stock/url/controller
+		 * @see client/html/catalog/stock/url/action
+		 * @see client/html/catalog/stock/url/config
+		 */
+
+		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
+			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, array( $productItem ) ) );
+		}
+
+		$view->detailMediaItems = $mediaItems;
+		$view->detailProductItem = $productItem;
+		$view->detailProductItems = $products;
+		$view->detailPropertyItems = $propertyItems;
+		$view->detailAttributeItems = $attributeItems;
+		$view->detailParams = $this->getClientParams( $view->param() );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

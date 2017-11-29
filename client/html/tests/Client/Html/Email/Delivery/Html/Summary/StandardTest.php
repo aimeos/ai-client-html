@@ -1,13 +1,15 @@
 <?php
 
-namespace Aimeos\Client\Html\Email\Delivery\Html\Summary;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
  * @copyright Aimeos (aimeos.org), 2015-2017
  */
+
+
+namespace Aimeos\Client\Html\Email\Delivery\Html\Summary;
+
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $orderItem;
@@ -53,12 +55,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->emailMock );
 	}
 
 
 	public function testGetBody()
 	{
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<div class="common-summary content-block">', $output );

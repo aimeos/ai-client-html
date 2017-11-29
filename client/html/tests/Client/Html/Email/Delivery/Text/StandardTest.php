@@ -64,6 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setBody' )
 			->with( $this->stringContains( 'delivery status' ) );
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'The delivery status of your order', $output );

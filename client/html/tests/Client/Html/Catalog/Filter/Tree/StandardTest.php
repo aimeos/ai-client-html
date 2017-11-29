@@ -41,7 +41,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$tags = [];
 		$expire = null;
-		$output = $this->object->getBody( 1, $tags, $expire );
+
+		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$output = $this->object->getBody();
 
 		$this->assertContains( 'Groups', $output );
 		$this->assertContains( 'Neu', $output );
@@ -65,7 +67,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$tags = [];
 		$expire = null;
-		$output = $this->object->getBody( 1, $tags, $expire );
+
+		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$output = $this->object->getBody();
 
 		$this->assertContains( 'level-2', $output );
 		$this->assertEquals( '2019-01-01 00:00:00', $expire );
@@ -86,7 +90,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$tags = [];
 		$expire = null;
-		$output = $this->object->getBody( 1, $tags, $expire );
+
+		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$output = $this->object->getBody();
 
 		$this->assertNotContains( 'level-2', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );

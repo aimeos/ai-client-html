@@ -57,18 +57,15 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/session/pinned/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
@@ -89,11 +86,9 @@ class Standard
 
 		if( ( $html = $session->get( $key ) ) === null )
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
-
 			$output = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$output .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$output .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->pinnedBody = $output;
 
@@ -307,60 +302,54 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$items = [];
+		$context = $this->getContext();
+		$config = $context->getConfig();
+		$session = $context->getSession();
+
+		$default = array( 'media', 'price', 'text' );
+		$domains = $config->get( 'client/html/catalog/domains', $default );
+
+		/** client/html/catalog/session/pinned/domains
+		 * A list of domain names whose items should be available in the pinned view template for the product
+		 *
+		 * The templates rendering product details usually add the images,
+		 * prices and texts, etc. associated to the product
+		 * item. If you want to display additional or less content, you can
+		 * configure your own list of domains (attribute, media, price, product,
+		 * text, etc. are domains) whose items are fetched from the storage.
+		 * Please keep in mind that the more domains you add to the configuration,
+		 * the more time is required for fetching the content!
+		 *
+		 * From 2014.09 to 2015.03, this setting was available as
+		 * client/html/catalog/detail/pinned/domains
+		 *
+		 * @param array List of domain names
+		 * @since 2015.04
+		 * @category Developer
+		 * @see client/html/catalog/domains
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/detail/domains
+		 */
+		$domains = $config->get( 'client/html/catalog/session/pinned/domains', $domains );
+
+		$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
+
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+		$result = $controller->getItems( $pinned, $domains );
+
+		foreach( array_reverse( $pinned ) as $id )
 		{
-			$expire = null;
-			$tags = $items = [];
-			$context = $this->getContext();
-			$config = $context->getConfig();
-			$session = $context->getSession();
-
-			$default = array( 'media', 'price', 'text' );
-			$domains = $config->get( 'client/html/catalog/domains', $default );
-
-			/** client/html/catalog/session/pinned/domains
-			 * A list of domain names whose items should be available in the pinned view template for the product
-			 *
-			 * The templates rendering product details usually add the images,
-			 * prices and texts, etc. associated to the product
-			 * item. If you want to display additional or less content, you can
-			 * configure your own list of domains (attribute, media, price, product,
-			 * text, etc. are domains) whose items are fetched from the storage.
-			 * Please keep in mind that the more domains you add to the configuration,
-			 * the more time is required for fetching the content!
-			 *
-			 * From 2014.09 to 2015.03, this setting was available as
-			 * client/html/catalog/detail/pinned/domains
-			 *
-			 * @param array List of domain names
-			 * @since 2015.04
-			 * @category Developer
-			 * @see client/html/catalog/domains
-			 * @see client/html/catalog/lists/domains
-			 * @see client/html/catalog/detail/domains
-			 */
-			$domains = $config->get( 'client/html/catalog/session/pinned/domains', $domains );
-
-			$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
-
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$result = $controller->getItems( $pinned, $domains );
-
-			foreach( array_reverse( $pinned ) as $id )
-			{
-				if( isset( $result[$id] ) ) {
-					$items[$id] = $result[$id];
-				}
+			if( isset( $result[$id] ) ) {
+				$items[$id] = $result[$id];
 			}
-
-			$view->pinnedProductItems = $items;
-			$view->pinnedParams = $this->getClientParams( $view->param() );
-
-			$this->cache = $view;
 		}
 
-		return $this->cache;
+		$view->pinnedProductItems = $items;
+		$view->pinnedParams = $this->getClientParams( $view->param() );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

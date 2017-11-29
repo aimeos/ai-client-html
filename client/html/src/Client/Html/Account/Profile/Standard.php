@@ -56,29 +56,29 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/account/profile/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->profileBody = $html;
 		}
@@ -136,19 +136,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->profileHeader = $html;
 
@@ -330,43 +332,37 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
-			$userId = $context->getUserId();
+		$context = $this->getContext();
+		$userId = $context->getUserId();
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-			$addrManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+		$addrManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
 
 
-			/** client/html/account/profile/domains
-			 * A list of domain names whose items should be available in the account profile view template
-			 *
-			 * The templates rendering customer details can contain additional
-			 * items. If you want to display additional content, you can configure
-			 * your own list of domains (attribute, media, price, product, text,
-			 * etc. are domains) whose items are fetched from the storage.
-			 *
-			 * @param array List of domain names
-			 * @since 2016.10
-			 * @category Developer
-			 */
-			$domains = $context->getConfig()->get( 'client/html/account/profile/domains', [] );
+		/** client/html/account/profile/domains
+		 * A list of domain names whose items should be available in the account profile view template
+		 *
+		 * The templates rendering customer details can contain additional
+		 * items. If you want to display additional content, you can configure
+		 * your own list of domains (attribute, media, price, product, text,
+		 * etc. are domains) whose items are fetched from the storage.
+		 *
+		 * @param array List of domain names
+		 * @since 2016.10
+		 * @category Developer
+		 */
+		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', [] );
 
-			$view->profileCustomerItem = $manager->getItem( $userId, $domains );
-
-
-			$search = $addrManager->createSearch();
-			$search->setConditions( $search->compare( '==', 'customer.address.parentid', $userId ) );
-
-			$view->profileAddressItems = $manager->searchItems( $search );
+		$view->profileCustomerItem = $manager->getItem( $userId, $domains );
 
 
-			$this->cache = $view;
-		}
+		$search = $addrManager->createSearch();
+		$search->setConditions( $search->compare( '==', 'customer.address.parentid', $userId ) );
 
-		return $this->cache;
+		$view->profileAddressItems = $manager->searchItems( $search );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

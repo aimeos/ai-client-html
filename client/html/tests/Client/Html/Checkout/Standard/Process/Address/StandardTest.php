@@ -29,12 +29,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
-		unset( $this->object );
+
+		unset( $this->object, $this->context );
 	}
 
 
 	public function testGetBody()
 	{
+		$view = \TestHelperHtml::getView();
+		$this->object->setView( $this->object->addData( $view ) );
+
 		$output = $this->object->getBody();
 		$this->assertNotNull( $output );
 	}

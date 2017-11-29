@@ -57,24 +57,21 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/count/tree/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->treeBody = $html;
 
@@ -207,43 +204,36 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+		$config = $context->getConfig();
+
+		/** client/html/catalog/count/tree/aggregate
+		 * Enables or disables generating product counts for the category catalog filter
+		 *
+		 * This configuration option allows shop owners to enable or disable product counts
+		 * for the tree section of the catalog filter HTML client.
+		 *
+		 * @param boolean Disabled if "0", enabled if "1"
+		 * @since 2014.03
+		 * @see client/html/catalog/count/limit
+		 */
+		if( $config->get( 'client/html/catalog/count/tree/aggregate', true ) == true )
 		{
-			$context = $this->getContext();
-			$config = $context->getConfig();
-
-			/** client/html/catalog/count/tree/aggregate
-			 * Enables or disables generating product counts for the category catalog filter
-			 *
-			 * This configuration option allows shop owners to enable or disable product counts
-			 * for the tree section of the catalog filter HTML client.
-			 *
-			 * @param boolean Disabled if "0", enabled if "1"
-			 * @since 2014.03
-			 * @see client/html/catalog/count/limit
+			/** client/html/catalog/count/limit
+			 * @see client/html/catalog/count/tree/aggregate
 			 */
-			if( $config->get( 'client/html/catalog/count/tree/aggregate', true ) == true )
-			{
-				/** client/html/catalog/count/limit
-				 * @see client/html/catalog/count/tree/aggregate
-				 */
-				$filter = $this->getProductListFilter( $view, false );
-				$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
-				$filter->setSortations( [] ); // it's not necessary and slows down the query
+			$filter = $this->getProductListFilter( $view, false );
+			$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
+			$filter->setSortations( [] ); // it's not necessary and slows down the query
 
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-				$view->treeCountList = $controller->aggregate( $filter, 'index.catalog.id' );
-			}
-
-			$this->cache = $view;
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$view->treeCountList = $controller->aggregate( $filter, 'index.catalog.id' );
 		}
 
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

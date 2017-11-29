@@ -79,29 +79,32 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'language', 'currency' );
-	private $cache;
+
+	private $tags = [];
+	private $expire;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->selectBody = $html;
 		}
@@ -159,19 +162,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->selectHeader = $html;
 
@@ -313,66 +318,61 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$map = [];
+		$context = $this->getContext();
+		$config = $context->getConfig();
+		$locale = $context->getLocale();
+
+		/** client/html/locale/select/language/param-name
+		 * Name of the parameter that contains the language ID value
+		 *
+		 * Frameworks and applications normally use its own predefined parameter
+		 * that contains the current language ID if they are multi-language
+		 * capable. To adapt the Aimeos parameter name to the already used name,
+		 * you are able to configure it by using this setting.
+		 *
+		 * @param string Parameter name for language ID
+		 * @since 2015.06
+		 * @see client/html/locale/select/currency/param-name
+		 */
+		$langname = $config->get( 'client/html/locale/select/language/param-name', 'locale' );
+
+		/** client/html/locale/select/currency/param-name
+		 * Name of the parameter that contains the currency ID value
+		 *
+		 * Frameworks and applications normally use its own predefined parameter
+		 * that contains the current currency ID if they already support multiple
+		 * currencies. To adapt the Aimeos parameter name to the already used name,
+		 * you are able to configure it by using this setting.
+		 *
+		 * @param string Parameter name for currency ID
+		 * @since 2015.06
+		 * @see client/html/locale/select/language/param-name
+		 */
+		$curname = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
+
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+
+		$search = $manager->createSearch( true );
+		$search->setSortations( array( $search->sort( '+', 'locale.position' ) ) );
+
+		foreach( $manager->searchItems( $search ) as $item )
 		{
-			$map = [];
-			$context = $this->getContext();
-			$config = $context->getConfig();
-			$locale = $context->getLocale();
-
-			/** client/html/locale/select/language/param-name
-			 * Name of the parameter that contains the language ID value
-			 *
-			 * Frameworks and applications normally use its own predefined parameter
-			 * that contains the current language ID if they are multi-language
-			 * capable. To adapt the Aimeos parameter name to the already used name,
-			 * you are able to configure it by using this setting.
-			 *
-			 * @param string Parameter name for language ID
-			 * @since 2015.06
-			 * @see client/html/locale/select/currency/param-name
-			 */
-			$langname = $config->get( 'client/html/locale/select/language/param-name', 'locale' );
-
-			/** client/html/locale/select/currency/param-name
-			 * Name of the parameter that contains the currency ID value
-			 *
-			 * Frameworks and applications normally use its own predefined parameter
-			 * that contains the current currency ID if they already support multiple
-			 * currencies. To adapt the Aimeos parameter name to the already used name,
-			 * you are able to configure it by using this setting.
-			 *
-			 * @param string Parameter name for currency ID
-			 * @since 2015.06
-			 * @see client/html/locale/select/language/param-name
-			 */
-			$curname = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
-
-
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
-
-			$search = $manager->createSearch( true );
-			$search->setSortations( array( $search->sort( '+', 'locale.position' ) ) );
-
-			foreach( $manager->searchItems( $search ) as $item )
-			{
-				$curId = $item->getCurrencyId();
-				$langId = $item->getLanguageId();
-				$map[$langId][$curId] = array( $langname => $langId, $curname => $curId );
-			}
-
-			$params = $view->param();
-
-			$view->selectMap = $map;
-			$view->selectParams = $params;
-			$view->selectLanguageId = $locale->getLanguageId();
-			$view->selectCurrencyId = $locale->getCurrencyId();
-
-			$this->cache = $view;
+			$curId = $item->getCurrencyId();
+			$langId = $item->getLanguageId();
+			$map[$langId][$curId] = array( $langname => $langId, $curname => $curId );
 		}
 
-		return $this->cache;
+		$params = $view->param();
+
+		$view->selectMap = $map;
+		$view->selectParams = $params;
+		$view->selectLanguageId = $locale->getLanguageId();
+		$view->selectCurrencyId = $locale->getCurrencyId();
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

@@ -57,7 +57,6 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/checkout/standard/address/delivery/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
 
 	private $mandatory = array(
 		'order.base.address.salutation',
@@ -82,17 +81,15 @@ class Standard
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->deliveryBody = $html;
 
@@ -516,67 +513,61 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$context = $this->getContext();
+		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
-			try {
-				$langid = $basketCntl->get()->getAddress( 'delivery' )->getLanguageId();
-			} catch( \Exception $e ) {
-				$langid = $view->param( 'ca_delivery/order.base.address.languageid', $context->getLocale()->getLanguageId() );
-			}
-			$view->deliveryLanguage = $langid;
+		try {
+			$langid = $basketCntl->get()->getAddress( 'delivery' )->getLanguageId();
+		} catch( \Exception $e ) {
+			$langid = $view->param( 'ca_delivery/order.base.address.languageid', $context->getLocale()->getLanguageId() );
+		}
+		$view->deliveryLanguage = $langid;
 
-			$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );
+		$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );
 
-			if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
-				$hidden[] = 'order.base.address.languageid';
-			}
-
-			$salutations = array( 'company', 'mr', 'mrs' );
-
-			/** client/html/checkout/standard/address/delivery/salutations
-			 * List of salutions the customer can select from for the delivery address
-			 *
-			 * The following salutations are available:
-			 * * empty string for "unknown"
-			 * * company
-			 * * mr
-			 * * mrs
-			 * * miss
-			 *
-			 * You can modify the list of salutation codes and remove the ones
-			 * which shouldn't be used. Adding new salutations is a little bit
-			 * more difficult because you have to adapt a few areas in the source
-			 * code.
-			 *
-			 * Until 2015-02, the configuration option was available as
-			 * "client/html/common/address/delivery/salutations" starting from 2014-03.
-			 *
-			 * @param array List of available salutation codes
-			 * @since 2015.02
-			 * @category User
-			 * @category Developer
-			 * @see client/html/checkout/standard/address/delivery/disable-new
-			 * @see client/html/checkout/standard/address/delivery/mandatory
-			 * @see client/html/checkout/standard/address/delivery/optional
-			 * @see client/html/checkout/standard/address/delivery/hidden
-			 * @see client/html/checkout/standard/address/countries
-			 */
-			$view->deliverySalutations = $view->config( 'client/html/checkout/standard/address/delivery/salutations', $salutations );
-
-			$view->deliveryMandatory = $view->config( 'client/html/checkout/standard/address/delivery/mandatory', $this->mandatory );
-			$view->deliveryOptional = $view->config( 'client/html/checkout/standard/address/delivery/optional', $this->optional );
-			$view->deliveryHidden = $hidden;
-
-
-			$this->cache = $view;
+		if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
+			$hidden[] = 'order.base.address.languageid';
 		}
 
-		return $this->cache;
+		$salutations = array( 'company', 'mr', 'mrs' );
+
+		/** client/html/checkout/standard/address/delivery/salutations
+		 * List of salutions the customer can select from for the delivery address
+		 *
+		 * The following salutations are available:
+		 * * empty string for "unknown"
+		 * * company
+		 * * mr
+		 * * mrs
+		 * * miss
+		 *
+		 * You can modify the list of salutation codes and remove the ones
+		 * which shouldn't be used. Adding new salutations is a little bit
+		 * more difficult because you have to adapt a few areas in the source
+		 * code.
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/delivery/salutations" starting from 2014-03.
+		 *
+		 * @param array List of available salutation codes
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/delivery/disable-new
+		 * @see client/html/checkout/standard/address/delivery/mandatory
+		 * @see client/html/checkout/standard/address/delivery/optional
+		 * @see client/html/checkout/standard/address/delivery/hidden
+		 * @see client/html/checkout/standard/address/countries
+		 */
+		$view->deliverySalutations = $view->config( 'client/html/checkout/standard/address/delivery/salutations', $salutations );
+
+		$view->deliveryMandatory = $view->config( 'client/html/checkout/standard/address/delivery/mandatory', $this->mandatory );
+		$view->deliveryOptional = $view->config( 'client/html/checkout/standard/address/delivery/optional', $this->optional );
+		$view->deliveryHidden = $hidden;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 
 

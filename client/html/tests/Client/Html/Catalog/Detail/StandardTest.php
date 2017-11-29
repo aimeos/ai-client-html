@@ -40,12 +40,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$tags = [];
 		$expire = null;
-		$output = $this->object->getHeader( 1, $tags, $expire );
+
+		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
+		$output = $this->object->getHeader();
 
 		$this->assertContains( '<title>Cafe Noire Expresso</title>', $output );
 		$this->assertContains( '<script type="text/javascript" defer="defer" src="http://baseurl/catalog/stock/?s_prodcode', $output );
 		$this->assertEquals( '2022-01-01 00:00:00', $expire );
-		$this->assertEquals( 3, count( $tags ) );
+		$this->assertEquals( 4, count( $tags ) );
 	}
 
 
@@ -53,12 +55,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getHeader();
@@ -73,7 +75,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$tags = [];
 		$expire = null;
-		$output = $this->object->getBody( 1, $tags, $expire );
+
+		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-detail"', $output );
 		$this->assertContains( '<div class="catalog-detail-basic">', $output );
@@ -127,6 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
+		$this->object->setView( $this->object->addData( $view ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( '<span class="value" itemprop="sku">CNE</span>', $output );
@@ -190,6 +195,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$tags = [];
 		$expire = null;
+
+		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertContains( '<div class="catalog-detail-basket-selection', $output );
@@ -211,12 +218,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
 		$mock->getBody();
@@ -227,12 +234,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
 		$mock->getBody();
@@ -243,12 +250,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
 		$mock->getBody();
@@ -259,12 +266,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Detail\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
 		$mock->setView( \TestHelperHtml::getView() );
 
-		$mock->expects( $this->once() )->method( 'setViewParams' )
+		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getBody();

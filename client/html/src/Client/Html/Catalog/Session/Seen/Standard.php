@@ -57,18 +57,15 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/session/seen/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
@@ -89,11 +86,9 @@ class Standard
 
 		if( ( $html = $session->get( $key ) ) === null )
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
-
 			$output = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$output .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$output .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->seenBody = $output;
 
@@ -239,18 +234,13 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$session = $this->getContext()->getSession();
-			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
+		$session = $this->getContext()->getSession();
+		$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
-			$view->seenItems = array_reverse( $lastSeen );
+		$view->seenItems = array_reverse( $lastSeen );
 
-			$this->cache = $view;
-		}
-
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

@@ -18,17 +18,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		$this->context = clone \TestHelperHtml::getContext();
-
+		$this->context = \TestHelperHtml::getContext();
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+
 		$this->object = new \Aimeos\Client\Html\Account\History\Lists\Standard( $this->context, $paths );
-		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
@@ -36,6 +35,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$customer = $this->getCustomerItem( 'UTC001' );
 		$this->context->setUserId( $customer->getId() );
+
+		$this->object->setView( $this->object->addData( \TestHelperHtml::getView() ) );
 
 		$output = $this->object->getBody();
 

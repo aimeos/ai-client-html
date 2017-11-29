@@ -57,19 +57,36 @@ abstract class Base
 
 
 	/**
+	 * Adds the data to the view object required by the templates
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
+	 * @since 2018.01
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	{
+		foreach( $this->getSubClients() as $name => $subclient ) {
+			$view = $subclient->addData( $view, $tags, $expire );
+		}
+
+		return $view;
+	}
+
+
+	/**
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$html = '';
 
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $this->view )->getHeader( $uid, $tags, $expire );
+			$html .= $subclient->setView( $this->view )->getHeader( $uid );
 		}
 
 		return $html;
@@ -553,7 +570,7 @@ abstract class Base
 			$this->subclients = [];
 
 			foreach( $this->getSubClientNames() as $name ) {
-				$this->subclients[] = $this->getSubClient( $name );
+				$this->subclients[$name] = $this->getSubClient( $name );
 			}
 		}
 
@@ -601,6 +618,7 @@ abstract class Base
 	 * @param string $code Code of the type item
 	 * @return \Aimeos\MShop\Common\Item\Type\Iface Type item
 	 * @throws \Aimeos\Controller\Jobs\Exception If no item is found
+	 * @deprecated 2018.01
 	 */
 	protected function getTypeItem( $prefix, $domain, $code )
 	{

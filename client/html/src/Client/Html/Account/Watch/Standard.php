@@ -57,29 +57,29 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/account/watch/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->watchBody = $html;
 		}
@@ -137,19 +137,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->watchHeader = $html;
 
@@ -555,70 +557,65 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$total = 0;
-			$productIds = [];
-			$context = $this->getContext();
-			$typeItem = $this->getTypeItem( 'customer/lists/type', 'product', 'watch' );
+		$total = 0;
+		$productIds = [];
+		$context = $this->getContext();
+		$typeItem = $this->getTypeItem( 'customer/lists/type', 'product', 'watch' );
 
-			$size = $this->getProductListSize( $view );
-			$current = $this->getProductListPage( $view );
-			$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
+		$size = $this->getProductListSize( $view );
+		$current = $this->getProductListPage( $view );
+		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
 
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
-			$search = $manager->createSearch();
-			$expr = array(
-				$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
-				$search->compare( '==', 'customer.lists.typeid', $typeItem->getId() ),
-				$search->compare( '==', 'customer.lists.domain', 'product' ),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
-			$search->setSortations( array( $search->sort( '-', 'customer.lists.position' ) ) );
-			$search->setSlice( ( $current - 1 ) * $size, $size );
+		$search = $manager->createSearch();
+		$expr = array(
+			$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
+			$search->compare( '==', 'customer.lists.typeid', $typeItem->getId() ),
+			$search->compare( '==', 'customer.lists.domain', 'product' ),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setSortations( array( $search->sort( '-', 'customer.lists.position' ) ) );
+		$search->setSlice( ( $current - 1 ) * $size, $size );
 
-			$view->watchListItems = $manager->searchItems( $search, [], $total );
+		$view->watchListItems = $manager->searchItems( $search, [], $total );
 
 
-			/** client/html/account/watch/domains
-			 * A list of domain names whose items should be available in the account watch view template
-			 *
-			 * The templates rendering product details usually add the images,
-			 * prices and texts associated to the product item. If you want to
-			 * display additional or less content, you can configure your own
-			 * list of domains (attribute, media, price, product, text, etc. are
-			 * domains) whose items are fetched from the storage. Please keep
-			 * in mind that the more domains you add to the configuration, the
-			 * more time is required for fetching the content!
-			 *
-			 * @param array List of domain names
-			 * @since 2014.09
-			 * @category Developer
-			 * @see client/html/catalog/domains
-			 */
-			$default = array( 'text', 'price', 'media' );
-			$domains = $context->getConfig()->get( 'client/html/account/watch/domains', $default );
+		/** client/html/account/watch/domains
+		 * A list of domain names whose items should be available in the account watch view template
+		 *
+		 * The templates rendering product details usually add the images,
+		 * prices and texts associated to the product item. If you want to
+		 * display additional or less content, you can configure your own
+		 * list of domains (attribute, media, price, product, text, etc. are
+		 * domains) whose items are fetched from the storage. Please keep
+		 * in mind that the more domains you add to the configuration, the
+		 * more time is required for fetching the content!
+		 *
+		 * @param array List of domain names
+		 * @since 2014.09
+		 * @category Developer
+		 * @see client/html/catalog/domains
+		 */
+		$default = array( 'text', 'price', 'media' );
+		$domains = $context->getConfig()->get( 'client/html/account/watch/domains', $default );
 
-			foreach( $view->watchListItems as $listItem ) {
-				$productIds[] = $listItem->getRefId();
-			}
-
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-
-			$view->watchProductItems = $controller->getItems( $productIds, $domains );
-			$view->watchPageFirst = 1;
-			$view->watchPagePrev = ( $current > 1 ? $current - 1 : 1 );
-			$view->watchPageNext = ( $current < $last ? $current + 1 : $last );
-			$view->watchPageLast = $last;
-			$view->watchPageCurr = $current;
-
-			$this->cache = $view;
+		foreach( $view->watchListItems as $listItem ) {
+			$productIds[] = $listItem->getRefId();
 		}
 
-		return $this->cache;
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+
+		$view->watchProductItems = $controller->getItems( $productIds, $domains );
+		$view->watchPageFirst = 1;
+		$view->watchPagePrev = ( $current > 1 ? $current - 1 : 1 );
+		$view->watchPageNext = ( $current < $last ? $current + 1 : $last );
+		$view->watchPageLast = $last;
+		$view->watchPageCurr = $current;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

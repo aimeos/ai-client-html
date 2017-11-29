@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $controller->get();
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
 		$view->standardSteps = array( 'before', 'summary' );
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 
@@ -79,7 +79,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertContains( '<div class="common-summary-detail container">', $output );

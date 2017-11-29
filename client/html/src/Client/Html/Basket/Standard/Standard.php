@@ -57,29 +57,29 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/basket/standard/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->standardBody = $html;
 		}
@@ -137,19 +137,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->standardHeader = $html;
 		}
@@ -396,44 +398,39 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+		$site = $context->getLocale()->getSite()->getCode();
+
+		if( ( $params = $context->getSession()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) !== null )
 		{
-			$context = $this->getContext();
-			$site = $context->getLocale()->getSite()->getCode();
+			$target = $view->config( 'client/html/catalog/detail/url/target' );
+			$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
+			$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
+			$config = $view->config( 'client/html/catalog/detail/url/config', [] );
+		}
+		else
+		{
+			$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 
-			if( ( $params = $context->getSession()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) !== null )
-			{
-				$target = $view->config( 'client/html/catalog/detail/url/target' );
-				$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-				$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
-				$config = $view->config( 'client/html/catalog/detail/url/config', [] );
-			}
-			else
-			{
-				$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+			$target = $view->config( 'client/html/catalog/lists/url/target' );
+			$controller = $view->config( 'client/html/catalog/lists/url/controller', 'catalog' );
+			$action = $view->config( 'client/html/catalog/lists/url/action', 'list' );
+			$config = $view->config( 'client/html/catalog/lists/url/config', [] );
 
-				$target = $view->config( 'client/html/catalog/lists/url/target' );
-				$controller = $view->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-				$action = $view->config( 'client/html/catalog/lists/url/action', 'list' );
-				$config = $view->config( 'client/html/catalog/lists/url/config', [] );
-
-			}
-
-			if( empty( $params ) === false ) {
-				$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
-			}
-
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
-
-			$view->standardBasket = $controller->get();
-			$view->standardTaxRates = $this->getTaxRates( $view->standardBasket );
-
-			$this->cache = $view;
 		}
 
-		return $this->cache;
+		if( empty( $params ) === false ) {
+			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
+		}
+
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+
+		$view->standardBasket = $controller->get();
+		$view->standardTaxRates = $this->getTaxRates( $view->standardBasket );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 
 

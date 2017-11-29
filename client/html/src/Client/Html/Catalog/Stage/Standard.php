@@ -78,11 +78,9 @@ class Standard
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$prefixes = array( 'f' );
 		$context = $this->getContext();
@@ -105,11 +103,13 @@ class Standard
 
 			try
 			{
-				$view = $this->setViewParams( $view, $tags, $expire );
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
 				$output = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+					$output .= $subclient->setView( $view )->getBody( $uid );
 				}
 				$view->stageBody = $output;
 			}
@@ -161,7 +161,7 @@ class Standard
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -176,11 +176,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$prefixes = array( 'f' );
 		$context = $this->getContext();
@@ -192,11 +190,13 @@ class Standard
 
 			try
 			{
-				$view = $this->setViewParams( $view, $tags, $expire );
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
 				$html = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+					$html .= $subclient->setView( $view )->getHeader( $uid );
 				}
 				$view->stageHeader = $html;
 			}
@@ -232,7 +232,7 @@ class Standard
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -407,75 +407,67 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
-			$config = $context->getConfig();
+		$context = $this->getContext();
+		$config = $context->getConfig();
 
-			$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
-			$catid = ( isset( $params['f_catid'] ) ? (string) $params['f_catid'] : '' );
+		$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
+		$catid = ( isset( $params['f_catid'] ) ? (string) $params['f_catid'] : '' );
 
-			if( $catid == '' ) {
-				$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
-			}
-
-			if( $catid != '' )
-			{
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-
-				$default = array( 'attribute', 'media', 'text' );
-
-				/** client/html/catalog/domains
-				 * A list of domain names whose items should be available in the catalog view templates
-				 *
-				 * @see client/html/catalog/stage/domains
-				 */
-				$domains = $config->get( 'client/html/catalog/domains', $default );
-
-				/** client/html/catalog/stage/standard/domains
-				 * A list of domain names whose items should be available in the catalog stage view template
-				 *
-				 * The templates rendering the catalog stage section use the texts and
-				 * maybe images and attributes associated to the categories. You can
-				 * configure your own list of domains (attribute, media, price, product,
-				 * text, etc. are domains) whose items are fetched from the storage.
-				 * Please keep in mind that the more domains you add to the configuration,
-				 * the more time is required for fetching the content!
-				 *
-				 * This configuration option overwrites the "client/html/catalog/domains"
-				 * option that allows to configure the domain names of the items fetched
-				 * for all catalog related data.
-				 *
-				 * @param array List of domain names
-				 * @since 2014.03
-				 * @category Developer
-				 * @see client/html/catalog/domains
-				 * @see client/html/catalog/detail/domains
-				 * @see client/html/catalog/lists/domains
-				 */
-				$domains = $config->get( 'client/html/catalog/stage/standard/domains', $domains );
-				$stageCatPath = $controller->getPath( $catid, $domains );
-
-				if( ( $categoryItem = end( $stageCatPath ) ) !== false ) {
-					$view->stageCurrentCatItem = $categoryItem;
-				}
-
-				$this->addMetaItems( $stageCatPath, $this->expire, $this->tags );
-
-				$view->stageCatPath = $stageCatPath;
-				$view->stageCatId = $catid;
-			}
-
-			$view->stageParams = $params;
-
-			$this->cache = $view;
+		if( $catid == '' ) {
+			$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
 		}
 
-		$expire = $this->expires( $this->expire, $expire );
-		$tags = array_merge( $tags, $this->tags );
+		if( $catid != '' )
+		{
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
-		return $this->cache;
+			$default = array( 'attribute', 'media', 'text' );
+
+			/** client/html/catalog/domains
+			 * A list of domain names whose items should be available in the catalog view templates
+			 *
+			 * @see client/html/catalog/stage/domains
+			 */
+			$domains = $config->get( 'client/html/catalog/domains', $default );
+
+			/** client/html/catalog/stage/standard/domains
+			 * A list of domain names whose items should be available in the catalog stage view template
+			 *
+			 * The templates rendering the catalog stage section use the texts and
+			 * maybe images and attributes associated to the categories. You can
+			 * configure your own list of domains (attribute, media, price, product,
+			 * text, etc. are domains) whose items are fetched from the storage.
+			 * Please keep in mind that the more domains you add to the configuration,
+			 * the more time is required for fetching the content!
+			 *
+			 * This configuration option overwrites the "client/html/catalog/domains"
+			 * option that allows to configure the domain names of the items fetched
+			 * for all catalog related data.
+			 *
+			 * @param array List of domain names
+			 * @since 2014.03
+			 * @category Developer
+			 * @see client/html/catalog/domains
+			 * @see client/html/catalog/detail/domains
+			 * @see client/html/catalog/lists/domains
+			 */
+			$domains = $config->get( 'client/html/catalog/stage/standard/domains', $domains );
+			$stageCatPath = $controller->getPath( $catid, $domains );
+
+			if( ( $categoryItem = end( $stageCatPath ) ) !== false ) {
+				$view->stageCurrentCatItem = $categoryItem;
+			}
+
+			$this->addMetaItems( $stageCatPath, $expire, $tags );
+
+			$view->stageCatPath = $stageCatPath;
+			$view->stageCatId = $catid;
+		}
+
+		$view->stageParams = $params;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

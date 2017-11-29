@@ -1,24 +1,20 @@
 <?php
 
-namespace Aimeos\Client\Html\Catalog\Session\Pinned;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2015-2017
  */
+
+
+namespace Aimeos\Client\Html\Catalog\Session\Pinned;
+
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
@@ -29,12 +25,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', null );
@@ -47,6 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$pinned = array( $this->getProductItem( 'CNC' )->getId() );
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', $pinned );
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smU', $output );

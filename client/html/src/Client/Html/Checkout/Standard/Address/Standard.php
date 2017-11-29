@@ -84,18 +84,14 @@ class Standard
 	 */
 	private $subPartNames = array( 'billing', 'delivery' );
 
-	private $cache;
-
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive', 'address' );
@@ -105,11 +101,9 @@ class Standard
 			return '';
 		}
 
-		$view = $this->setViewParams( $view, $tags, $expire );
-
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->addressBody = $html;
 
@@ -144,11 +138,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
@@ -158,7 +150,7 @@ class Standard
 			return '';
 		}
 
-		return parent::getHeader( $uid, $tags, $expire );
+		return parent::getHeader( $uid );
 	}
 
 
@@ -306,127 +298,122 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+		$orderAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/address' );
+
+		try
 		{
-			$context = $this->getContext();
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-			$orderAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/address' );
+			$deliveryAddressItems = [];
+			$item = $controller->getItem( $context->getUserId(), ['address'] );
 
-			try
-			{
-				$deliveryAddressItems = [];
-				$item = $controller->getItem( $context->getUserId(), ['address'] );
-
-				foreach( $item->getAddressItems() as $id => $addrItem ) {
-					$deliveryAddressItems[$id] = $orderAddressManager->createItem()->copyFrom( $addrItem );
-				}
-
-				$paymentAddressItem = $orderAddressManager->createItem()->copyFrom( $item->getPaymentAddress() );
-
-				$view->addressCustomerItem = $item;
-				$view->addressPaymentItem = $paymentAddressItem;
-				$view->addressDeliveryItems = $deliveryAddressItems;
-			}
-			catch( \Exception $e ) {} // customer has no account yet
-
-
-			$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
-			$locales = $localeManager->searchItems( $localeManager->createSearch( true ) );
-
-			$languages = [];
-			foreach( $locales as $locale ) {
-				$languages[$locale->getLanguageId()] = $locale->getLanguageId();
+			foreach( $item->getAddressItems() as $id => $addrItem ) {
+				$deliveryAddressItems[$id] = $orderAddressManager->createItem()->copyFrom( $addrItem );
 			}
 
-			$view->addressLanguages = $languages;
+			$paymentAddressItem = $orderAddressManager->createItem()->copyFrom( $item->getPaymentAddress() );
 
-			/** client/html/checkout/standard/address/countries
-			 * List of available countries that that users can select from in the front-end
-			 *
-			 * This configration option is used whenever a list of countries is
-			 * shown in the front-end users can select from. It's used e.g.
-			 * if the customer should select the country he is living in the
-			 * checkout process. In case that the list is empty, no country
-			 * selection is shown.
-			 *
-			 * Each list entry must be a two letter ISO country code that is then
-			 * translated into its name. The codes have to be upper case
-			 * characters like "DE" for Germany or "GB" for Great Britain, e.g.
-			 *
-			 *  array( 'DE', 'GB', ... )
-			 *
-			 * To display the country selection, you have to add the key for the
-			 * country ID (order.base.address.languageid) to the "mandatory" or
-			 * "optional" configuration option for billing and delivery addresses.
-			 *
-			 * Until 2015-02, the configuration option was available as
-			 * "client/html/common/address/countries" starting from 2014-03.
-			 *
-			 * @param array List of two letter ISO country codes
-			 * @since 2015.02
-			 * @category User
-			 * @category Developer
-			 * @see client/html/checkout/standard/address/billing/mandatory
-			 * @see client/html/checkout/standard/address/billing/optional
-			 * @see client/html/checkout/standard/address/delivery/mandatory
-			 * @see client/html/checkout/standard/address/delivery/optional
-			 */
-			$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
+			$view->addressCustomerItem = $item;
+			$view->addressPaymentItem = $paymentAddressItem;
+			$view->addressDeliveryItems = $deliveryAddressItems;
+		}
+		catch( \Exception $e ) {} // customer has no account yet
 
-			/** client/html/checkout/standard/address/states
-			 * List of available states that that users can select from in the front-end
-			 *
-			 * This configration option is used whenever a list of states is
-			 * shown in the front-end users can select from. It's used e.g.
-			 * if the customer should select the state he is living in the
-			 * checkout process. In case that the list is empty, no state
-			 * selection is shown.
-			 *
-			 * A two letter ISO country code must be the key for the list of
-			 * states that belong to this country. The list of states must then
-			 * contain the state code as key and its name as values, e.g.
-			 *
-			 *  array(
-			 *      'US' => array(
-			 *          'CA' => 'California',
-			 *          'NY' => 'New York',
-			 *          ...
-			 *      ),
-			 *      ...
-			 *  );
-			 *
-			 * The codes have to be upper case characters like "US" for the
-			 * United States or "DE" for Germany. The order of the country and
-			 * state codes determine the order of the states in the frontend and
-			 * the state codes are later used for per state tax calculation.
-			 *
-			 * To display the country selection, you have to add the key for the
-			 * state (order.base.address.state) to the "mandatory" or
-			 * "optional" configuration option for billing and delivery addresses.
-			 * You also need to add order.base.address.countryid as well because
-			 * it is required to display the states that belong to this country.
-			 *
-			 * Until 2015-02, the configuration option was available as
-			 * "client/html/common/address/states" starting from 2014-09.
-			 *
-			 * @param array Multi-dimensional list ISO country codes and state codes/names
-			 * @since 2015.02
-			 * @category User
-			 * @category Developer
-			 * @see client/html/checkout/standard/address/billing/mandatory
-			 * @see client/html/checkout/standard/address/billing/optional
-			 * @see client/html/checkout/standard/address/delivery/mandatory
-			 * @see client/html/checkout/standard/address/delivery/optional
-			 */
-			$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
 
-			$view->addressExtra = $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
+		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+		$locales = $localeManager->searchItems( $localeManager->createSearch( true ) );
 
-			$this->cache = $view;
+		$languages = [];
+		foreach( $locales as $locale ) {
+			$languages[$locale->getLanguageId()] = $locale->getLanguageId();
 		}
 
-		return $this->cache;
+		$view->addressLanguages = $languages;
+
+		/** client/html/checkout/standard/address/countries
+		 * List of available countries that that users can select from in the front-end
+		 *
+		 * This configration option is used whenever a list of countries is
+		 * shown in the front-end users can select from. It's used e.g.
+		 * if the customer should select the country he is living in the
+		 * checkout process. In case that the list is empty, no country
+		 * selection is shown.
+		 *
+		 * Each list entry must be a two letter ISO country code that is then
+		 * translated into its name. The codes have to be upper case
+		 * characters like "DE" for Germany or "GB" for Great Britain, e.g.
+		 *
+		 *  array( 'DE', 'GB', ... )
+		 *
+		 * To display the country selection, you have to add the key for the
+		 * country ID (order.base.address.languageid) to the "mandatory" or
+		 * "optional" configuration option for billing and delivery addresses.
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/countries" starting from 2014-03.
+		 *
+		 * @param array List of two letter ISO country codes
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/billing/mandatory
+		 * @see client/html/checkout/standard/address/billing/optional
+		 * @see client/html/checkout/standard/address/delivery/mandatory
+		 * @see client/html/checkout/standard/address/delivery/optional
+		 */
+		$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
+
+		/** client/html/checkout/standard/address/states
+		 * List of available states that that users can select from in the front-end
+		 *
+		 * This configration option is used whenever a list of states is
+		 * shown in the front-end users can select from. It's used e.g.
+		 * if the customer should select the state he is living in the
+		 * checkout process. In case that the list is empty, no state
+		 * selection is shown.
+		 *
+		 * A two letter ISO country code must be the key for the list of
+		 * states that belong to this country. The list of states must then
+		 * contain the state code as key and its name as values, e.g.
+		 *
+		 *  array(
+		 *      'US' => array(
+		 *          'CA' => 'California',
+		 *          'NY' => 'New York',
+		 *          ...
+		 *      ),
+		 *      ...
+		 *  );
+		 *
+		 * The codes have to be upper case characters like "US" for the
+		 * United States or "DE" for Germany. The order of the country and
+		 * state codes determine the order of the states in the frontend and
+		 * the state codes are later used for per state tax calculation.
+		 *
+		 * To display the country selection, you have to add the key for the
+		 * state (order.base.address.state) to the "mandatory" or
+		 * "optional" configuration option for billing and delivery addresses.
+		 * You also need to add order.base.address.countryid as well because
+		 * it is required to display the states that belong to this country.
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/states" starting from 2014-09.
+		 *
+		 * @param array Multi-dimensional list ISO country codes and state codes/names
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/billing/mandatory
+		 * @see client/html/checkout/standard/address/billing/optional
+		 * @see client/html/checkout/standard/address/delivery/mandatory
+		 * @see client/html/checkout/standard/address/delivery/optional
+		 */
+		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
+
+		$view->addressExtra = $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

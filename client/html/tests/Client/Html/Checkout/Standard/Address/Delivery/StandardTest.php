@@ -28,13 +28,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
-		unset( $this->object );
+
+		unset( $this->object, $this->context );
 	}
 
 
 	public function testGetBody()
 	{
 		$view = $this->object->getView();
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-delivery">', $output );

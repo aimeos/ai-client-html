@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'delivery';
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'delivery';
 		$view->standardSteps = array( 'before', 'delivery', 'after' );
 		$view->standardBasket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="checkout-standard-delivery">', $output );
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyOtherStep()
 	{
 		$view = \TestHelperHtml::getView();
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertEquals( '', $output );

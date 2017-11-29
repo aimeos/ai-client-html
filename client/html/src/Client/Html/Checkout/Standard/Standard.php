@@ -112,29 +112,29 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'address', 'delivery', 'payment', 'summary', 'process' );
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->standardBody = $html;
 		}
@@ -192,19 +192,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->standardHeader = $html;
 
@@ -394,107 +396,102 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
+		$context = $this->getContext();
 
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
-			$view->standardBasket = $basketCntl->get();
+		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$view->standardBasket = $basketCntl->get();
 
 
-			/** client/html/checkout/standard/url/step-active
-			 * Name of the checkout process step to jump to if no previous step requires attention
-			 *
-			 * The checkout process consists of several steps which are usually
-			 * displayed one by another to the customer. If the data of a step
-			 * is already available, then that step is skipped. The active step
-			 * is the one that is displayed if all other steps are skipped.
-			 *
-			 * If one of the previous steps misses some data the customer has
-			 * to enter, then this step is displayed first. After providing
-			 * the missing data, the whole series of steps are tested again
-			 * and if no other step requests attention, the configured active
-			 * step will be displayed.
-			 *
-			 * The order of the steps is determined by the order of sub-parts
-			 * that are configured for the checkout client.
-			 *
-			 * @param string Name of the confirm standard HTML client
-			 * @since 2014.07
-			 * @category Developer
-			 * @category User
-			 * @see client/html/checkout/standard/standard/subparts
-			 */
-			$default = $view->config( 'client/html/checkout/standard/url/step-active', 'summary' );
+		/** client/html/checkout/standard/url/step-active
+		 * Name of the checkout process step to jump to if no previous step requires attention
+		 *
+		 * The checkout process consists of several steps which are usually
+		 * displayed one by another to the customer. If the data of a step
+		 * is already available, then that step is skipped. The active step
+		 * is the one that is displayed if all other steps are skipped.
+		 *
+		 * If one of the previous steps misses some data the customer has
+		 * to enter, then this step is displayed first. After providing
+		 * the missing data, the whole series of steps are tested again
+		 * and if no other step requests attention, the configured active
+		 * step will be displayed.
+		 *
+		 * The order of the steps is determined by the order of sub-parts
+		 * that are configured for the checkout client.
+		 *
+		 * @param string Name of the confirm standard HTML client
+		 * @since 2014.07
+		 * @category Developer
+		 * @category User
+		 * @see client/html/checkout/standard/standard/subparts
+		 */
+		$default = $view->config( 'client/html/checkout/standard/url/step-active', 'summary' );
 
-			/** client/html/checkout/standard/onepage
-			 * Shows all named checkout subparts at once for a one page checkout
-			 *
-			 * Normally, the checkout process is divided into several steps for entering
-			 * addresses, select delivery and payment options as well as showing the
-			 * summary page. This enables dependencies between two steps like showing
-			 * delivery options based on the address entered by the customer. Furthermore,
-			 * this is good way to limit the amount of information displayed which is
-			 * preferred by mobile users.
-			 *
-			 * Contrary to that, a one page checkout displays all information on only
-			 * one page and customers get an immediate overview of which information
-			 * they have to enter and what options they can select from. This is an
-			 * advantage if only a very limited amount of information must be entered
-			 * or if there are almost no options to choose from and no dependencies
-			 * between exist.
-			 *
-			 * Using this config options, shop developers are able to define which
-			 * checkout subparts are combined to a one page view. Simply add the names
-			 * of all checkout subparts to the list. Available checkout subparts for
-			 * a one page checkout are:
-			 * * address
-			 * * delivery
-			 * * payment
-			 * * summary
-			 *
-			 * @param array List of checkout subparts name
-			 * @since 2015.05
-			 * @category Developer
-			 */
-			$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
-			$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
+		/** client/html/checkout/standard/onepage
+		 * Shows all named checkout subparts at once for a one page checkout
+		 *
+		 * Normally, the checkout process is divided into several steps for entering
+		 * addresses, select delivery and payment options as well as showing the
+		 * summary page. This enables dependencies between two steps like showing
+		 * delivery options based on the address entered by the customer. Furthermore,
+		 * this is good way to limit the amount of information displayed which is
+		 * preferred by mobile users.
+		 *
+		 * Contrary to that, a one page checkout displays all information on only
+		 * one page and customers get an immediate overview of which information
+		 * they have to enter and what options they can select from. This is an
+		 * advantage if only a very limited amount of information must be entered
+		 * or if there are almost no options to choose from and no dependencies
+		 * between exist.
+		 *
+		 * Using this config options, shop developers are able to define which
+		 * checkout subparts are combined to a one page view. Simply add the names
+		 * of all checkout subparts to the list. Available checkout subparts for
+		 * a one page checkout are:
+		 * * address
+		 * * delivery
+		 * * payment
+		 * * summary
+		 *
+		 * @param array List of checkout subparts name
+		 * @since 2015.05
+		 * @category Developer
+		 */
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
+		$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
 
-			$steps = (array) $context->getConfig()->get( $this->subPartPath, $this->subPartNames );
-			$steps = array_diff( $steps, $onepage ); // remove all remaining steps in $onepage
+		$steps = (array) $context->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		$steps = array_diff( $steps, $onepage ); // remove all remaining steps in $onepage
 
-			// use first step if default step isn't available
-			$default = ( !in_array( $default, $steps ) ? reset( $steps ) : $default );
-			$current = $view->param( 'c_step', $default );
+		// use first step if default step isn't available
+		$default = ( !in_array( $default, $steps ) ? reset( $steps ) : $default );
+		$current = $view->param( 'c_step', $default );
 
-			// use $onestep if the current step isn't available due to one page layout
-			if( !in_array( $current, $steps ) ) {
-				$current = $onestep;
-			}
-
-			// use $onestep if the active step isn't available due to one page layout
-			if( isset( $view->standardStepActive ) && in_array( $view->standardStepActive, $onepage ) ) {
-				$view->standardStepActive = $onestep;
-			}
-
-			$cpos = array_search( $current, $steps );
-
-			if( !isset( $view->standardStepActive )
-				|| ( ( $apos = array_search( $view->standardStepActive, $steps ) ) !== false
-				&& $cpos !== false && $cpos < $apos )
-			) {
-				$view->standardStepActive = $current;
-			}
-
-			$view->standardSteps = $steps;
-
-
-			$this->cache = $this->addNavigationUrls( $view, $steps, $view->standardStepActive );
+		// use $onestep if the current step isn't available due to one page layout
+		if( !in_array( $current, $steps ) ) {
+			$current = $onestep;
 		}
 
-		return $this->cache;
+		// use $onestep if the active step isn't available due to one page layout
+		if( isset( $view->standardStepActive ) && in_array( $view->standardStepActive, $onepage ) ) {
+			$view->standardStepActive = $onestep;
+		}
+
+		$cpos = array_search( $current, $steps );
+
+		if( !isset( $view->standardStepActive )
+			|| ( ( $apos = array_search( $view->standardStepActive, $steps ) ) !== false
+			&& $cpos !== false && $cpos < $apos )
+		) {
+			$view->standardStepActive = $current;
+		}
+
+		$view = $this->addNavigationUrls( $view, $steps, $view->standardStepActive );
+		$view->standardSteps = $steps;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 
 

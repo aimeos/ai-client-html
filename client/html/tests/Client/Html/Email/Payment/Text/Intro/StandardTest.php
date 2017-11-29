@@ -61,6 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'Thank you for your order', $output );
@@ -75,6 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_REFUND );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'The payment for your order', $output );
@@ -89,6 +91,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_PENDING );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'The order is pending until we receive the final payment', $output );
@@ -103,6 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'We have received your payment', $output );

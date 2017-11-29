@@ -17,25 +17,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		$this->context = clone \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::getContext();
 
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->object = new \Aimeos\Client\Html\Checkout\Confirm\Order\Standard( $this->context, $paths );
-		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
 	public function testGetBody()
 	{
-		$view = $this->object->getView();
+		$view = \TestHelperHtml::getView();
 		$customer = $this->getCustomerItem( 'UTC001' );
 		$view->confirmOrderItem = $this->getOrderItem( $customer->getId() );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 

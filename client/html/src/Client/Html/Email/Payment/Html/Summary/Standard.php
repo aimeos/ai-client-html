@@ -63,17 +63,15 @@ class Standard
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$content .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$content .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->summaryBody = $content;
 
@@ -217,7 +215,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$view->summaryBasket = $view->extOrderBaseItem;
 
@@ -228,6 +226,6 @@ class Standard
 			$view->summaryShowDownloadAttributes = true;
 		}
 
-		return $view;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

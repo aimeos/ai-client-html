@@ -56,25 +56,21 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/checkout/confirm/order/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
-		$view = $this->setViewParams( $view, $tags, $expire );
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->orderBody = $html;
 
@@ -211,26 +207,21 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		if( isset( $view->confirmOrderItem ) )
 		{
-			if( isset( $view->confirmOrderItem ) )
-			{
-				if( $view->confirmOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
-					$view->summaryShowDownloadAttributes = true;
-				}
-
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
-				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
-
-				$view->summaryBasket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
-				$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
+			if( $view->confirmOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+				$view->summaryShowDownloadAttributes = true;
 			}
 
-			$this->cache = $view;
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
+
+			$view->summaryBasket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
+			$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 		}
 
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

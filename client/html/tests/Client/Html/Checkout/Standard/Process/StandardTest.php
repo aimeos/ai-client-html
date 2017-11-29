@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Factory::setCache( false );
 		\Aimeos\MShop\Factory::clear();
 
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
@@ -42,6 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'process';
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -59,6 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'process';
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<div class="checkout-standard-process">', $output );

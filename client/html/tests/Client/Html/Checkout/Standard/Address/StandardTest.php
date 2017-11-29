@@ -29,15 +29,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
-		unset( $this->object );
+
+		unset( $this->object, $this->context );
 	}
 
 
 	public function testGetHeader()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = $this->object->getView();
 		$view->standardStepActive = 'address';
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -53,9 +54,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderOtherStep()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = $this->object->getView();
 		$view->standardStepActive = 'xyz';
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertEquals( '', $output );
@@ -67,10 +68,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = $this->getCustomerItem();
 		$this->context->setUserId( $item->getId() );
 
-		$view = \TestHelperHtml::getView();
+		$view = $this->object->getView();
 		$view->standardStepActive = 'address';
 		$view->standardSteps = array( 'address', 'after' );
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="checkout-standard-address">', $output );
@@ -82,9 +83,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyOtherStep()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = $this->object->getView();
 		$view->standardStepActive = 'xyz';
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertEquals( '', $output );

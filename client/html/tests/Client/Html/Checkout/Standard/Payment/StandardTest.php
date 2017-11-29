@@ -29,7 +29,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
-		unset( $this->object );
+
+		unset( $this->object, $this->context );
 	}
 
 
@@ -37,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'payment';
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -57,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'payment';
 		$view->standardSteps = array( 'before', 'payment', 'after' );
 		$view->standardBasket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="checkout-standard-payment">', $output );

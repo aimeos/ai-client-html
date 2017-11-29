@@ -61,6 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<p class="email-common-intro', $output );
@@ -76,6 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem->setDeliveryStatus( \Aimeos\MShop\Order\Item\Base::STAT_DISPATCHED );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<p class="email-common-intro', $output );
@@ -91,6 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem->setDeliveryStatus( \Aimeos\MShop\Order\Item\Base::STAT_REFUSED );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<p class="email-common-intro', $output );
@@ -106,6 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem->setDeliveryStatus( \Aimeos\MShop\Order\Item\Base::STAT_RETURNED );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<p class="email-common-intro', $output );

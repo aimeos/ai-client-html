@@ -57,26 +57,28 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/stock/standard/subparts';
 	private $subPartNames = [];
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->stockBody = $html;
 
@@ -116,19 +118,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = [], &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->stockHeader = $html;
 
@@ -289,24 +293,19 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$stockItemsByProducts = [];
-			$productCodes = (array) $view->param( 's_prodcode', [] );
+		$stockItemsByProducts = [];
+		$productCodes = (array) $view->param( 's_prodcode', [] );
 
-			foreach( $this->getStockItems( $productCodes ) as $stockItem ){
-				$stockItemsByProducts[ $stockItem->getProductCode() ][] = $stockItem;
-			}
-
-			$view->stockItemsByProducts = $stockItemsByProducts;
-			$view->stockProductCodes = $productCodes;
-
-			$this->cache = $view;
+		foreach( $this->getStockItems( $productCodes ) as $stockItem ){
+			$stockItemsByProducts[ $stockItem->getProductCode() ][] = $stockItem;
 		}
 
-		return $this->cache;
+		$view->stockItemsByProducts = $stockItemsByProducts;
+		$view->stockProductCodes = $productCodes;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 
 
