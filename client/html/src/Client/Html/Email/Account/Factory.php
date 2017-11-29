@@ -79,7 +79,8 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Email\\Account\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'email/account' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'email/account' );
+		return $client->setObject( $client );
 	}
 }

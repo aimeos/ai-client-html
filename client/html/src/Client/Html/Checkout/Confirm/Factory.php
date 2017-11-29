@@ -80,8 +80,9 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Checkout\\Confirm\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'checkout/confirm' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'checkout/confirm' );
+		return $client->setObject( $client );
 	}
 }
 

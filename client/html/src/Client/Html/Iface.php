@@ -52,7 +52,7 @@ interface Iface
 	/**
 	 * Returns the view object that will generate the HTML output.
 	 *
-	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @return \Aimeos\MW\View\Iface The view object which generates the HTML output
 	 */
 	public function getView();
 
@@ -84,10 +84,19 @@ interface Iface
 
 	/**
 	 * Processes the input, e.g. store given values.
+	 *
 	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables.
+	 * besides setting view variables if necessary.
 	 *
 	 * @return boolean False if processing is stopped, otherwise all processing was completed successfully
 	 */
 	public function process();
+
+	/**
+	 * Injects the reference of the outmost client object or decorator
+	 *
+	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
+	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
+	 */
+	public function setObject( \Aimeos\Client\Html\Iface $object );
 }

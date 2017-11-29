@@ -80,8 +80,9 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Catalog\\Suggest\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'catalog/suggest' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'catalog/suggest' );
+		return $client->setObject( $client );
 	}
 }
 

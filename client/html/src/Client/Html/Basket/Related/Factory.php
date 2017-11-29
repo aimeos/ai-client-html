@@ -79,8 +79,9 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Basket\\Related\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'basket/related' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'basket/related' );
+		return $client->setObject( $client );
 	}
 }
 

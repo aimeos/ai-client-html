@@ -80,7 +80,8 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Locale\\Select\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'locale/select' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'locale/select' );
+		return $client->setObject( $client );
 	}
 }

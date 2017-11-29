@@ -80,8 +80,9 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Account\\History\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'account/history' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'account/history' );
+		return $client->setObject( $client );
 	}
 
 }

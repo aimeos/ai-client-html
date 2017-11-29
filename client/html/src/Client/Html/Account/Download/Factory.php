@@ -79,8 +79,9 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Account\\Download\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'account/download' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'account/download' );
+		return $client->setObject( $client );
 	}
 
 }

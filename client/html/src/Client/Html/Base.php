@@ -23,6 +23,7 @@ abstract class Base
 {
 	private $view;
 	private $cache;
+	private $object;
 	private $context;
 	private $subclients;
 	private $templatePaths;
@@ -72,6 +73,21 @@ abstract class Base
 		}
 
 		return $html;
+	}
+
+
+	/**
+	 * Returns the outmost decorator of the decorator stack
+	 *
+	 * @return \Aimeos\Client\Html\Iface Outmost decorator object
+	 */
+	protected function getObject()
+	{
+		if( $this->object !== null ) {
+			return $this->object;
+		}
+
+		return $this;
 	}
 
 
@@ -153,6 +169,19 @@ abstract class Base
 		}
 
 		return true;
+	}
+
+
+	/**
+	 * Injects the reference of the outmost client object or decorator
+	 *
+	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
+	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
+	 */
+	public function setObject( \Aimeos\Client\Html\Iface $object )
+	{
+		$this->object = $object;
+		return $this;
 	}
 
 

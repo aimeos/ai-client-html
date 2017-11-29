@@ -159,6 +159,22 @@ abstract class Base
 
 
 	/**
+	 * Injects the reference of the outmost client object or decorator
+	 *
+	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
+	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
+	 */
+	public function setObject( \Aimeos\Client\Html\Iface $object )
+	{
+		parent::setObject( $object );
+
+		$this->client->setObject( $object );
+
+		return $this;
+	}
+
+
+	/**
 	 * Returns the inner client object
 	 *
 	 * @return \Aimeos\Client\Html\Iface HTML client

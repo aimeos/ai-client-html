@@ -98,4 +98,10 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 	}
 
+
+	public function testSetObject()
+	{
+		$this->object->setObject( $this->object );
+	}
+
 }

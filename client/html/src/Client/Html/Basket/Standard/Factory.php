@@ -80,8 +80,9 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Basket\\Standard\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'basket/standard' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'basket/standard' );
+		return $client->setObject( $client );
 	}
 }
 

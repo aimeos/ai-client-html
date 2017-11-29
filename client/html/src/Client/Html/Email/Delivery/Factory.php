@@ -80,8 +80,9 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Email\\Delivery\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'email/delivery' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'email/delivery' );
+		return $client->setObject( $client );
 	}
 }
 

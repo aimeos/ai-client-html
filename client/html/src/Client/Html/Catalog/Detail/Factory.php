@@ -80,8 +80,9 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Catalog\\Detail\\' . $name;
 
 		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
+		$client = self::addClientDecorators( $context, $client, $templatePaths, 'catalog/detail' );
 
-		return self::addClientDecorators( $context, $client, $templatePaths, 'catalog/detail' );
+		return $client->setObject( $client );
 	}
 }
 
