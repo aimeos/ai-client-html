@@ -288,7 +288,7 @@ class Standard
 
 		$this->addMetaItems( $attributes, $expire, $tags );
 		// Delete cache when attributes are added or deleted even in "tag-all" mode
-		$this->tags[] = 'attribute';
+		$tags[] = 'attribute';
 
 		$view->attributeMap = $attrMap;
 
