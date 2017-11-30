@@ -302,8 +302,9 @@ abstract class Base
 	 * @param array|\Aimeos\MShop\Common\Item\Iface $items Item or list of items, maybe with associated list items
 	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
 	 * @param array &$tags List of tags the new tags will be added to
+	 * @param array $custom List of custom tags which are added too
 	 */
-	protected function addMetaItems( $items, &$expire, array &$tags )
+	protected function addMetaItems( $items, &$expire, array &$tags, array $custom = [] )
 	{
 		/** client/html/common/cache/tag-all
 		 * Adds tags for all items used in a cache entry
@@ -368,7 +369,7 @@ abstract class Base
 			$expire = min( $expires );
 		}
 
-		$tags = array_unique( $tags );
+		$tags = array_unique( array_merge( $tags, $custom ) );
 	}
 
 

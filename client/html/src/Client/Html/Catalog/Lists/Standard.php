@@ -464,9 +464,8 @@ class Standard
 		}
 
 
-		$this->addMetaItems( $products, $expire, $tags );
 		// Delete cache when products are added or deleted even when in "tag-all" mode
-		$tags[] = 'product';
+		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
 		$view->listParams = $this->getClientParams( $view->param() );
 
