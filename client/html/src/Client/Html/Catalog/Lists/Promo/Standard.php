@@ -284,7 +284,6 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$products = [];
 		$context = $this->getContext();
 		$config = $context->getConfig();
 

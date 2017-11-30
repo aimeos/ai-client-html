@@ -57,9 +57,6 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/catalog/filter/attribute/standard/subparts';
 	private $subPartNames = [];
-	private $tags = [];
-	private $expire;
-	private $view;
 
 
 	/**

@@ -71,7 +71,7 @@ class Standard
 
 	private $tags = [];
 	private $expire;
-	private $cache;
+	private $view;
 
 
 	/**

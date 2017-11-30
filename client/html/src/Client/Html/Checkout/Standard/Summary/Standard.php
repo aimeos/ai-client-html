@@ -81,7 +81,7 @@ class Standard
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->summaryBody = $html;
 
