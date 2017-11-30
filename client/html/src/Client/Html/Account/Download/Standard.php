@@ -350,7 +350,8 @@ class Standard
 	 */
 	protected function getListItem( $customerId, $refId )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer/lists' );
+		$context = $this->getContext();
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(
@@ -366,8 +367,10 @@ class Standard
 
 		if( ( $listItem = reset( $listItems ) ) === false )
 		{
+			$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
+
 			$listItem = $manager->createItem();
-			$listItem->setTypeId( $this->getTypeItem( 'customer/lists/type', 'order', 'download' )->getId() );
+			$listItem->setTypeId( $typeManager->findItem( 'download', [], 'order' )->getId() );
 			$listItem->setParentId( $customerId );
 			$listItem->setDomain( 'order' );
 			$listItem->setRefId( $refId );

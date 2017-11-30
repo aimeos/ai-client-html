@@ -267,8 +267,12 @@ class Standard
 	 */
 	protected function getListItems( array $prodIds )
 	{
-		$typeItem = $this->getTypeItem( 'product/lists/type', 'product', 'bought-together' );
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/lists' );
+		$context = $this->getContext();
+
+		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists/type' );
+		$typeItem = $typeManager->findItem( 'bought-together', [], 'product' );
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists' );
 
 		$search = $manager->createSearch( true );
 		$expr = array(

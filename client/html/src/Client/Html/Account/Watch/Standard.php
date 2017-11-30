@@ -289,7 +289,9 @@ class Standard
 
 		if( $userId != null && !empty( $ids ) )
 		{
-			$typeId = $this->getTypeItem( 'customer/lists/type', 'product', 'watch' )->getId();
+			$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
+			$typeId = $typeManager->findItem( 'watch', [], 'product' )->getId();
+
 			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 			$items = $this->getListItems( $manager, $ids, $typeId, $userId );
 
@@ -562,7 +564,9 @@ class Standard
 		$total = 0;
 		$productIds = [];
 		$context = $this->getContext();
-		$typeItem = $this->getTypeItem( 'customer/lists/type', 'product', 'watch' );
+
+		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
+		$typeItem = $typeManager->findItem( 'watch', [], 'product' );
 
 		$size = $this->getProductListSize( $view );
 		$current = $this->getProductListPage( $view );

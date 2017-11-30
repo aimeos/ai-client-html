@@ -368,7 +368,9 @@ class Standard
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
-		$typeId = $this->getTypeItem( 'customer/lists/type', 'product', 'favorite' )->getId();
+		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
+		$typeId = $typeManager->findItem( 'favorite', [], 'product' )->getId();
+
 		$listItems = $this->getListItems( $ids, $userId, $typeId );
 
 		$item = $manager->createItem();
@@ -403,7 +405,9 @@ class Standard
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
-		$typeId = $this->getTypeItem( 'customer/lists/type', 'product', 'favorite' )->getId();
+		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
+		$typeId = $typeManager->findItem( 'favorite', [], 'product' )->getId();
+
 		$listItems = $this->getListItems( $ids, $userId, $typeId );
 
 		foreach( $ids as $id )
@@ -488,7 +492,9 @@ class Standard
 		$total = 0;
 		$productIds = [];
 		$context = $this->getContext();
-		$typeItem = $this->getTypeItem( 'customer/lists/type', 'product', 'favorite' );
+
+		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
+		$typeItem = $typeManager->findItem( 'favorite', [], 'product' );
 
 		$size = $this->getProductListSize( $view );
 		$current = $this->getProductListPage( $view );

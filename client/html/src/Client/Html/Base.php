@@ -611,39 +611,6 @@ abstract class Base
 
 
 	/**
-	 * Returns the attribute type item specified by the code.
-	 *
-	 * @param string $prefix Domain prefix for the manager, e.g. "media/type"
-	 * @param string $domain Domain of the type item
-	 * @param string $code Code of the type item
-	 * @return \Aimeos\MShop\Common\Item\Type\Iface Type item
-	 * @throws \Aimeos\Controller\Jobs\Exception If no item is found
-	 * @deprecated 2018.01
-	 */
-	protected function getTypeItem( $prefix, $domain, $code )
-	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), $prefix );
-		$prefix = str_replace( '/', '.', $prefix );
-
-		$search = $manager->createSearch();
-		$expr = array(
-				$search->compare( '==', $prefix . '.domain', $domain ),
-				$search->compare( '==', $prefix . '.code', $code ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$result = $manager->searchItems( $search );
-
-		if( ( $item = reset( $result ) ) === false )
-		{
-			$msg = sprintf( 'No type item for "%1$s/%2$s" in "%3$s" found', $domain, $code, $prefix );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		return $item;
-	}
-
-
-	/**
 	 * Returns the cache entry for the given unique ID and type.
 	 *
 	 * @param string $type Type of the cache entry, i.e. "body" or "header"
@@ -756,20 +723,6 @@ abstract class Base
 		}
 
 		return $content;
-	}
-
-
-	/**
-	 * Sets the necessary parameter values in the view.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
-	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
-	{
-		return $view;
 	}
 
 
