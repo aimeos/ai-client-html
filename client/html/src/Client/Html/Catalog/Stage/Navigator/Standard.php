@@ -65,7 +65,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = [], &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
 
@@ -198,6 +198,8 @@ class Standard
 	 */
 	public function modifyBody( $content, $uid )
 	{
+		$this->setView( $this->addData( $this->getView() ) );
+
 		return $this->replaceSection( $content, $this->getBody( $uid ), 'catalog.stage.navigator' );
 	}
 
