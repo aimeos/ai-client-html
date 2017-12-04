@@ -243,10 +243,10 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="button-group">
-		<a class="standardbutton btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ); ?>">
+		<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ); ?>">
 			<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ); ?>
 		</a>
-		<button class="standardbutton btn-action">
+		<button class="btn btn-primary btn-lg btn-action">
 			<?= $enc->html( $this->translate( 'client', 'Buy now' ), $enc::TRUST ); ?>
 		</button>
 	</div>

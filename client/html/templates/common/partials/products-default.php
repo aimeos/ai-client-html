@@ -254,18 +254,18 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 					</div>
 
 					<div class="addbasket">
-						<div class="group">
+						<div class="input-group">
 							<input type="hidden" value="add"
 								name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
 							/>
 							<input type="hidden" value="<?= $id; ?>"
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 							/>
-							<input type="number" value="1"
+							<input type="number" class="form-control" value="1"
 								 min="1" max="2147483647" maxlength="10" step="1" required="required" <?= $disabled ?>
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 							/><!--
-							--><button class="standardbutton btn-action" type="submit" value="" <?= $disabled ?> >
+							--><button class="btn btn-primary" type="submit" value="" <?= $disabled ?> >
 								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
 							</button>
 						</div>

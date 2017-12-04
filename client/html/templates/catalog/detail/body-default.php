@@ -272,7 +272,7 @@ ksort( $propMap );
 
 
 					<div class="addbasket">
-						<div class="group">
+						<div class="input-group">
 							<input type="hidden" value="add"
 								name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
 							/>
@@ -280,11 +280,11 @@ ksort( $propMap );
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 								value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
 							/>
-							<input type="number" <?= $disabled ?>
+							<input type="number" class="input-lg" <?= $disabled ?>
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 								min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
-							/><!--
-							--><button class="standardbutton btn-action" type="submit" value="" <?= $disabled ?> >
+							/>
+							<button class="btn btn-primary btn-lg" type="submit" value="" <?= $disabled ?> >
 								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
 							</button>
 						</div>

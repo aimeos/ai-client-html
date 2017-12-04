@@ -191,7 +191,7 @@ $params = $this->param();
 
 	<?php if( $button ) : ?>
 		<noscript>
-			<button class="filter standardbutton btn-action" type="submit">
+			<button class="filter btn btn-primary" type="submit">
 				<?= $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?>
 			</button>
 		</noscript>

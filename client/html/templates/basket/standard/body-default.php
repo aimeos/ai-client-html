@@ -84,9 +84,9 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<div class="content">
 					<?php $coupons = $this->standardBasket->getCoupons(); ?>
 
-					<div class="coupon-new">
-						<input class="coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ); ?>" type="text" maxlength="255" /><!--
-						--><button class="minibutton" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ); ?></button>
+					<div class="form-inline coupon-new">
+						<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ); ?>" type="text" maxlength="255" /><!--
+						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ); ?></button>
 					</div>
 
 					<?php if( !empty( $coupons ) ) : ?>
@@ -106,22 +106,22 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 			<div class="button-group">
 
 				<?php if( isset( $this->standardBackUrl ) ) : ?>
-					<a class="standardbutton btn-back" href="<?= $enc->attr( $this->standardBackUrl ); ?>">
+					<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->standardBackUrl ); ?>">
 						<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ); ?>
 					</a>
 				<?php endif; ?>
 
-				<button class="standardbutton btn-update" type="submit">
+				<button class="btn btn-default btn-lg btn-update" type="submit">
 					<?= $enc->html( $this->translate( 'client', 'Update' ), $enc::TRUST ); ?>
 				</button>
 
 				<?php if( $this->get( 'standardCheckout', false ) === true ) : ?>
-					<a class="standardbutton btn-action"
+					<a class="btn btn-primary btn-lg btn-action"
 						href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, [], [], $checkoutConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ); ?>
 					</a>
 				<?php else : ?>
-					<a class="standardbutton btn-action"
+					<a class="btn btn-primary btn-lg btn-action"
 						href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array( 'b_check' => 1 ), [], $basketConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ); ?>
 					</a>

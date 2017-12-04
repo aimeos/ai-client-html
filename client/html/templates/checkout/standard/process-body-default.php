@@ -177,25 +177,25 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 		<?php if( !empty( $errors ) ) : ?>
 
-			<a class="standardbutton" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
+			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
-			<button class="standardbutton btn-action">
+			<button class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ); ?>
 			</button>
 
 		<?php elseif( !empty( $public ) ) : ?>
 
-			<a class="standardbutton" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
+			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
-			<button class="standardbutton btn-action">
+			<button class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ); ?>
 			</button>
 
 		<?php else : ?>
 
-			<button class="standardbutton btn-action">
+			<button class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
 			</button>
 

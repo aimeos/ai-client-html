@@ -73,10 +73,10 @@ $retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
 	<div class="checkout-confirm-retry">
 		<?php if( isset( $this->confirmOrderItem ) && $this->confirmOrderItem->getPaymentStatus() < \Aimeos\MShop\Order\Item\Base::PAY_REFUND ) : ?>
 			<div class="button-group">
-				<a class="standardbutton" href="<?= $enc->attr( $changeUrl ); ?>">
+				<a class="btn btn-default btn-lg" href="<?= $enc->attr( $changeUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 				</a>
-				<a class="standardbutton" href="<?= $enc->attr( $retryUrl ); ?>">
+				<a class="btn btn-primary btn-lg" href="<?= $enc->attr( $retryUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ); ?>
 				</a>
 			</div>

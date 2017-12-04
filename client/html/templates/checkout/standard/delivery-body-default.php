@@ -154,10 +154,10 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 	<div class="button-group">
-		<a class="standardbutton btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ); ?>">
+		<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ); ?>">
 			<?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ); ?>
 		</a>
-		<button class="standardbutton btn-action">
+		<button class="btn btn-primary btn-lg btn-action">
 			<?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ); ?>
 		</button>
 	</div>

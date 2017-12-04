@@ -106,16 +106,18 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 <section class="catalog-filter-search">
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
-	<input class="value" type="text"
-		name="<?= $name; ?>" value="<?= $phrase; ?>"
-		data-url="<?= $suggestUrl; ?>" data-hint="<?= $hint; ?>"
-	/><!--
-	--><button class="reset" type="reset">
-		<span class="symbol"/>
-	</button><!--
-	--><button class="standardbutton" type="submit">
-		<?= $enc->html( $this->translate( 'client', 'Go' ), $enc::TRUST ); ?>
-	</button>
+	<div class="form-inline">
+		<input class="form-control value" type="text"
+			name="<?= $name; ?>" value="<?= $phrase; ?>"
+			data-url="<?= $suggestUrl; ?>" data-hint="<?= $hint; ?>"
+		/><!--
+		--><button class="btn btn-default reset" type="reset">
+			<span class="symbol"/>
+		</button><!--
+		--><button class="btn btn-primary" type="submit">
+			<?= $enc->html( $this->translate( 'client', 'Go' ), $enc::TRUST ); ?>
+		</button>
+	</div>
 
 </section>
 <?php $this->block()->stop(); ?>

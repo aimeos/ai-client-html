@@ -196,7 +196,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							</ul>
 
 							<div class="button-group">
-								<button class="standardbutton btn-action"><?= $enc->html( $this->translate( 'client', 'Watch' ), $enc::TRUST ); ?></button>
+								<button class="btn btn-primary btn-action"><?= $enc->html( $this->translate( 'client', 'Watch' ), $enc::TRUST ); ?></button>
 							</div>
 						</form>
 

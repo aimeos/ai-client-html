@@ -188,7 +188,7 @@ $services = $this->summaryBasket->getServices();
 
 
 	<div class="button-group">
-		<a class="standardbutton btn-close"
+		<a class="btn btn-primary btn-close"
 			href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
 			<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ); ?>
 		</a>
