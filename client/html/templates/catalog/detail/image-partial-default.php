@@ -61,24 +61,24 @@ $media = $this->get( 'mediaItems', [] );
 
 	</div><!--
 
-	--><?php if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?><!--
-		--><div class="image-thumbs thumbs-horizontal" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
-			<button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button>
-			<div class="thumbs">
+	--><?php if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
+		<div class="image-thumbs thumbs-horizontal" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'><!--
+			--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button><!--
+			--><div class="thumbs"><!--
 
 				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 					<?php $previewUrl = $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>
 
-					<a class="<?= $class; ?>" style="background-image: url('<?= $previewUrl; ?>')"
+					--><a class="<?= $class; ?>" style="background-image: url('<?= $previewUrl; ?>')"
 						href="<?= $url . '#image-' . $enc->attr( $id ); ?>"
-					></a>
+					></a><!--
 
 					<?php $class = 'item'; ?>
 				<?php endforeach; ?>
 
-			</div>
-			<button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button>
-		</div>
+			--></div><!--
+			--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button><!--
+		--></div>
 	<?php endif; ?>
 
 

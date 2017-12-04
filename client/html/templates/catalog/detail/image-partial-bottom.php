@@ -44,23 +44,23 @@ $media = $this->get( 'mediaItems', [] );
 
 	<?php if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
 		<div class="image-thumbs thumbs-vertical" data-slick='{"slidesToShow": 4, "slidesToScroll": 4, "vertical": true, "verticalSwiping": true}'>
-			<button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button>
-			<div class="thumbs">
+			<button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button><!--
+			--><div class="thumbs"><!--
 
 				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 					<?php $previewUrl = $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>
 
-					<a class="<?= $class; ?>" style="background-image: url('<?= $previewUrl; ?>')"
+					--><a class="<?= $class; ?>" style="background-image: url('<?= $previewUrl; ?>')"
 						href="<?= $url . '#image-' . $enc->attr( $id ); ?>"
-					></a>
+					></a><!--
 
 					<?php $class = 'item'; ?>
 				<?php endforeach; ?>
 
-			</div>
-			<button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button>
-		</div><!--
-	--><?php endif; ?><!--
+			--></div><!--
+			--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button><!--
+		--></div>
+	<?php endif; ?><!--
 
 	--><div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 

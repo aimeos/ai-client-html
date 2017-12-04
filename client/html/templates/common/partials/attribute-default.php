@@ -121,13 +121,13 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 					<ul class="select-list">
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
 
-							<li class="select-entry">
+							<li class="form-inline select-entry">
 								<input type="hidden" value="<?= $enc->attr( $attrId ); ?>"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'id', '' ) ) ); ?>"
 								/>
-								<input class="select-option" id="option-<?= $enc->attr( $attrId ); ?>" type="number" value="0" step="1" min="0"
+								<input class="form-control select-option" id="option-<?= $enc->attr( $attrId ); ?>" type="number" value="0" step="1" min="0"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'qty', '' ) ) ); ?>"
-								/><label class="select-label" for="option-<?= $enc->attr( $attrId ); ?>">
+								/><label class="form-control select-label" for="option-<?= $enc->attr( $attrId ); ?>">
 
 									<?php $priceItems = $attribute->getRefItems( 'price', 'default', 'default' ); ?>
 									<?php if( ( $priceItem = reset( $priceItems ) ) !== false ) : ?>
@@ -155,7 +155,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 						name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'qty', '' ) ) ); ?>"
 					/>
 
-					<select class="select-list" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'id', '' ) ) ); ?>">
+					<select class="form-control select-list" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'id', '' ) ) ); ?>">
 						<?php if( $preselect === false ) : ?>
 							<option class="select-option" value=""><?= $enc->html( $this->translate( 'client', 'none' ) ); ?></option>
 						<?php endif; ?>
@@ -200,16 +200,16 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
 
 			<div class="select-value">
 				<?php switch( $attribute->getType() ) : case 'price': ?>
-					<input type="number" min="0.01" step="0.01"
+					<input class="form-control" type="number" min="0.01" step="0.01"
 						name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>"
 						<?php if( isset( $this->productItem ) && ( $prices = $this->productItem->getRefItems( 'price', 'default', 'default' ) ) !== [] && ( $price = reset( $prices ) ) !== false ) : ?>
 							value="<?= $enc->attr( $price->getValue() ); ?>"
 						<?php endif; ?>
 					/>
 				<?php break; case 'date': ?>
-					<input type="date" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
+					<input class="form-control" type="date" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
 				<?php break; default: ?>
-					<input type="text" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
+					<input class="form-control" type="text" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>" />
 				<?php endswitch; ?>
 			</div>
 		</li>

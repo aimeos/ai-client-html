@@ -162,7 +162,7 @@ ksort( $attrTypeDeps );
 
 				<?php else : ?>
 
-					<select class="select-list"
+					<select class="form-control select-list"
 						name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>"
 						data-index="<?= $index++; ?>" data-type="<?= $enc->attr( $code ); ?>" >
 
