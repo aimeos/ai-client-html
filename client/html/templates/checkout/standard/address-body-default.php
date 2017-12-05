@@ -18,9 +18,11 @@ $enc = $this->encoder();
 	</p>
 
 
-	<?= $this->block()->get( 'checkout/standard/address/billing' ); ?>
+	<div class="form-horizontal row">
+		<?= $this->block()->get( 'checkout/standard/address/billing' ); ?>
 
-	<?= $this->block()->get( 'checkout/standard/address/delivery' ); ?>
+		<?= $this->block()->get( 'checkout/standard/address/delivery' ); ?>
+	</div>
 
 
 	<div class="button-group">

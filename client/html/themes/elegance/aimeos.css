@@ -84,7 +84,6 @@
 .aimeos input {
 	border: solid 1px #D0D0D0;
 	text-indent: 0.25em;
-	padding: 0.5em 0;
 }
 
 .aimeos input:disabled {
@@ -128,30 +127,6 @@
 .aimeos .form-list {
 	padding: 0;
 	margin: 0;
-}
-
-.aimeos .form-list label {
-	display: inline;
-	width: 210px;
-	margin: 0.25em 0;
-	padding: 0.5em 0;
-}
-
-.aimeos .form-list input:not([type=radio]):not([type=checkbox]) {
-	width: 215px;
-	background-color: #F0F0F0;
-	border: solid 1px #D0D0D0;
-	vertical-align: bottom;
-	margin: 0.25em 0;
-	padding: 0.5em 0;
-}
-
-.aimeos .form-list select {
-	width: 219px;
-	border: 1px solid #D0D0D0;
-	vertical-align: bottom;
-	margin: 0.25em 0;
-	padding: 0.5em 0;
 }
 
 .aimeos .pagination {
@@ -1439,6 +1414,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .catalog-detail-basket .selection input.select-option[type=number] {
 	border: solid 1px #B0A060;
 	text-align: center;
+	padding: 0;
 	width: 3em;
 }
 
@@ -2033,33 +2009,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	content: "*";
 }
 
-.checkout-standard li.form-item {
-	vertical-align: bottom;
-	text-align: center;
-	padding-top: 0.75em;
-}
-
-.checkout-standard .form-list select {
-	min-width: 220px;
-	width: 50%;
-}
-
-.checkout-standard .form-list input:not([type=radio]):not([type=checkbox]) {
-	background-color: #F0F0F0;
-	border: solid 1px #D0D0D0;
-	vertical-align: bottom;
-	min-width: 220px;
-	width: 50%;
-}
-
-.checkout-standard .form-list label {
-	display: inline-block;
-	vertical-align: top;
-	text-align: left;
-	min-width: 220px;
-	width: 50%;
-}
-
 .checkout-standard .item-service .description {
 	display: inline-block;
 	vertical-align: top;
@@ -2118,21 +2067,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 /* Checkout address */
 .checkout-standard-address h2 {
 	padding: 1%;
-}
-
-.checkout-standard-address-billing,
-.checkout-standard-address-delivery {
-	display: inline-block;
-	vertical-align: top;
-	min-width: 220px;
-	width: 49%;
-}
-
-@media (max-width: 580px) {
-	.checkout-standard-address-billing,
-	.checkout-standard-address-delivery {
-		width: 100%;
-	}
 }
 
 .checkout-standard-address .item-address {
@@ -2208,13 +2142,11 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	background-color: #bbffbb;
 }
 
-.checkout-standard .item-service .form-list {
-	display: inline-block;
-	vertical-align: top;
-	min-width: 240px;
-	max-width: 480px;
-	width: 50%;
-	padding: 0.5em 1em 1em 1em;
+.checkout-standard .form-item label {
+	border-left: 2px solid transparent;
+	padding-left: 1em;
+	margin-bottom: 7px;
+	margin-top: 7px;
 }
 
 .checkout-standard .item-service .icon {
@@ -2225,21 +2157,8 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	padding-top: 0;
 }
 
-.checkout-standard .item-service .form-item-value {
-	display: inline-block;
-	min-width: 220px;
-	max-width: 66%;
-	width: 50%;
-}
-
 .checkout-standard .item-service .form-item-value input {
 	display: none;
-}
-
-.checkout-standard .item-service .form-item-value label {
-	border-left: 2px solid transparent;
-	padding: 0.5em 0;
-	padding-left: 1em;
 }
 
 .checkout-standard .item-service .form-item-value input:checked + label {

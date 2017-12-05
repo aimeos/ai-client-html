@@ -42,8 +42,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing">', $output );
-		$this->assertRegexp( '/form-item city.*form-item postal/smU', $output );
+		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing', $output );
+		$this->assertRegexp( '/form-item form-group city.*form-item form-group postal/smU', $output );
 
 		$this->assertGreaterThan( 0, count( $view->billingMandatory ) );
 		$this->assertGreaterThan( 0, count( $view->billingOptional ) );

@@ -51,7 +51,7 @@ $orderService = $this->get( 'orderService' );
 
 
 ?>
-<ul class="form-list">
+<ul class="form-list form-horizontal">
 
 	<?php foreach( $this->get( 'attributes', [] ) as $key => $attribute ) : ?>
 		<?php
@@ -64,28 +64,32 @@ $orderService = $this->get( 'orderService' );
 		?>
 		<?php $css = ( isset( $css[$key] ) ? ' ' . join( ' ', $css[$key] ) : '' ) . ( $attribute->isRequired() ? ' mandatory' : '' ); ?>
 
-		<li class="form-item <?= $enc->attr( $key ) . $css; ?>"><!--
-			--><label for="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-label">
+		<li class="form-item form-group <?= $enc->attr( $key ) . $css; ?>">
+
+			<label class="col-md-5" for="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-label">
 				<?= $enc->html( $this->translate( 'client/code', $key ) ); ?>
-			</label><!--
+			</label>
 
 			<?php switch( $attribute->getType() ) : case 'select': ?>
 
-				--><select id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
-					name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>">
+					<div class="col-md-7">
+						<select class="form-control" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>">
 
-					<?php foreach( (array) $attribute->getDefault() as $option ) : $code = $key . ':' . $option; ?>
-						<option value="<?= $enc->attr( $option ); ?>">
-							<?= $enc->html( $this->translate( 'client/code', $code ) ); ?>
-						</option>
-					<?php endforeach; ?>
-				</select><!--
+							<?php foreach( (array) $attribute->getDefault() as $option ) : $code = $key . ':' . $option; ?>
+								<option value="<?= $enc->attr( $option ); ?>">
+									<?= $enc->html( $this->translate( 'client/code', $code ) ); ?>
+								</option>
+							<?php endforeach; ?>
+						</select>
+					</div>
 
 				<?php break; case 'list': ?>
-					--><div class="form-item-value">
+
+					<div class="form-item-value col-md-7">
 						<?php $checked = 'checked="checked"'; ?>
 						<?php foreach( $attribute->getDefault() as $code => $name ) : ?>
-							<input type="radio" id="<?= $enc->attr( $type . '-' . $key . '-' . $code ); ?>"
+							<input class="form-control" type="radio" id="<?= $enc->attr( $type . '-' . $key . '-' . $code ); ?>"
 								name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
 								selected="<?= ( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) === $code ? 'selected' : '' ); ?>"
 								value="<?= $code ?>" <?= $checked; ?>
@@ -95,32 +99,44 @@ $orderService = $this->get( 'orderService' );
 							</label>
 							<?php $checked = ''; ?>
 						<?php endforeach; ?>
-					</div><!--
+					</div>
 
 				<?php break; case 'boolean': ?>
-					--><input type="checkbox" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
-						name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
-						value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
-					/><!--
+
+					<div class="col-md-7">
+						<input class="form-control col-md-7" type="checkbox" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
+						/>
+					</div>
 
 				<?php break; case 'integer': case 'number': ?>
-					--><input type="number" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
-						name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
-						value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
-					/><!--
+
+					<div class="col-md-7">
+						<input class="form-control col-md-7" type="number" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
+						/>
+					</div>
 
 				<?php break; case 'date': case 'datetime': case 'time': ?>
-					--><input type="<?= $attribute->getType(); ?>"
-						id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
-						name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
-						value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
-					/><!--
+
+					<div class="col-md-7">
+						<input class="form-control col-md-7" type="<?= $attribute->getType(); ?>"
+							id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
+						/>
+					</div>
 
 				<?php break; default: ?>
-					--><input type="text" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
-						name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
-						value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
-					/><!--
+
+					<div class="col-md-7">
+						<input class="form-control col-md-7" type="text" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
+						/>
+					</div>
 
 			<?php endswitch; ?>
 

@@ -66,7 +66,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 
 ?>
 <?php $this->block()->start( 'checkout/standard/address/delivery' ); ?>
-<div class="checkout-standard-address-delivery">
+<div class="checkout-standard-address-delivery col-sm-6">
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h2>
 
