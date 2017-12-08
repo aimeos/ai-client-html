@@ -26,20 +26,16 @@ abstract class Base
 	private $object;
 	private $context;
 	private $subclients;
-	private $templatePaths;
 
 
 	/**
 	 * Initializes the class instance.
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param array $templatePaths Associative list of the file system paths to the core or the extensions as key
-	 * 	and a list of relative paths inside the core or the extension as values
 	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $templatePaths )
+	public function __construct( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		$this->context = $context;
-		$this->templatePaths = $templatePaths;
 	}
 
 
@@ -219,13 +215,11 @@ abstract class Base
 	 * Adds the decorators to the client object
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client Client object
-	 * @param array $templatePaths List of file system paths where the templates are stored
 	 * @param array $decorators List of decorator name that should be wrapped around the client
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected function addDecorators( \Aimeos\Client\Html\Iface $client, array $templatePaths,
-		array $decorators, $classprefix )
+	protected function addDecorators( \Aimeos\Client\Html\Iface $client, array $decorators, $classprefix )
 	{
 		$iface = '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface';
 
@@ -243,7 +237,7 @@ abstract class Base
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
 			}
 
-			$client = new $classname( $client, $this->context, $this->templatePaths );
+			$client = new $classname( $client, $this->context );
 
 			if( !( $client instanceof $iface ) ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $iface ) );
@@ -258,11 +252,10 @@ abstract class Base
 	 * Adds the decorators to the client object
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client Client object
-	 * @param array $templatePaths List of file system paths where the templates are stored
 	 * @param string $path Client string in lower case, e.g. "catalog/detail/basic"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected function addClientDecorators( \Aimeos\Client\Html\Iface $client, array $templatePaths, $path )
+	protected function addClientDecorators( \Aimeos\Client\Html\Iface $client, $path )
 	{
 		if( !is_string( $path ) || $path === '' ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
@@ -282,15 +275,15 @@ abstract class Base
 		}
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
+		$client = $this->addDecorators( $client, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
 		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
-		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
+		$client = $this->addDecorators( $client, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
 		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', [] );
-		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
+		$client = $this->addDecorators( $client, $decorators, $classprefix );
 
 		return $client;
 	}
@@ -474,13 +467,13 @@ abstract class Base
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not available', $classname ) );
 		}
 
-		$object = new $classname( $this->context, $this->templatePaths );
+		$object = new $classname( $this->context );
 
 		if( ( $object instanceof $interface ) === false ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" does not implement interface "%2$s"', $classname, $interface ) );
 		}
 
-		return $this->addClientDecorators( $object, $this->templatePaths, $path );
+		return $this->addClientDecorators( $object, $path );
 	}
 
 
@@ -596,18 +589,6 @@ abstract class Base
 		}
 
 		return $this->view->config( $confkey, $default );
-	}
-
-
-	/**
-	 * Returns the paths where the layout templates can be found
-	 *
-	 * @return array List of template paths
-	 * @since 2015.09
-	 */
-	protected function getTemplatePaths()
-	{
-		return $this->templatePaths;
 	}
 
 

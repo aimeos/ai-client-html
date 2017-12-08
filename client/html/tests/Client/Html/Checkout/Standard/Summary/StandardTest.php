@@ -20,8 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Summary\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Summary\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 

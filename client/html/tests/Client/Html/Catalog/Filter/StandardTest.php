@@ -1,13 +1,15 @@
 <?php
 
-namespace Aimeos\Client\Html\Catalog\Filter;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
  * @copyright Aimeos (aimeos.org), 2015-2017
  */
+
+
+namespace Aimeos\Client\Html\Catalog\Filter;
+
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
@@ -16,10 +18,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->context = \TestHelperHtml::getContext();
 
-		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 

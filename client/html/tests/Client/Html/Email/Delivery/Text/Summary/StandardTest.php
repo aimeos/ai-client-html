@@ -41,14 +41,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Email\Delivery\Text\Summary\Standard( $this->context, $paths );
-
 		$view = \TestHelperHtml::getView();
 		$view->extOrderItem = self::$orderItem;
 		$view->extOrderBaseItem = self::$orderBaseItem;
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
 
+		$this->object = new \Aimeos\Client\Html\Email\Delivery\Text\Summary\Standard( $this->context );
 		$this->object->setView( $view );
 	}
 

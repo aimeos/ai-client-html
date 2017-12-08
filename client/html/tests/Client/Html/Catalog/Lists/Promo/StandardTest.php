@@ -21,8 +21,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Promo\Standard( $this->context, $paths );
 
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
 		$search = $catalogManager->createSearch();
@@ -36,6 +34,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view = \TestHelperHtml::getView();
 		$this->view->listParams = [];
 		$this->view->listCurrentCatItem = $this->catItem;
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Promo\Standard( $this->context );
 		$this->object->setView( $this->view );
 	}
 

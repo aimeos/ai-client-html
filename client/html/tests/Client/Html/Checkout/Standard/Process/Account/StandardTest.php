@@ -20,9 +20,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Factory::setCache( true );
 
 		$this->context = \TestHelperHtml::getContext();
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 
-		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Account\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Account\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 

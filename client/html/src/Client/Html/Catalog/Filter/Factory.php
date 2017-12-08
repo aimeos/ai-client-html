@@ -26,12 +26,11 @@ class Factory
 	 * Creates a filter client object.
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Shop context instance with necessary objects
-	 * @param array $templatePaths List of file system paths where the templates are stored
 	 * @param string|null $name Client name (default: "Standard")
 	 * @return \Aimeos\Client\Html\Iface Filter part implementing \Aimeos\Client\Html\Iface
 	 * @throws \Aimeos\Client\Html\Exception If requested client implementation couldn't be found or initialisation fails
 	 */
-	public static function createClient( \Aimeos\MShop\Context\Item\Iface $context, array $templatePaths, $name = null )
+	public static function createClient( \Aimeos\MShop\Context\Item\Iface $context, $name = null )
 	{
 		/** client/html/catalog/filter/name
 		 * Class name of the used catalog filter client implementation
@@ -79,8 +78,8 @@ class Factory
 		$iface = '\\Aimeos\\Client\\Html\\Iface';
 		$classname = '\\Aimeos\\Client\\Html\\Catalog\\Filter\\' . $name;
 
-		$client = self::createClientBase( $context, $classname, $iface, $templatePaths );
-		$client = self::addClientDecorators( $context, $client, $templatePaths, 'catalog/filter' );
+		$client = self::createClientBase( $context, $classname, $iface );
+		$client = self::addClientDecorators( $context, $client, 'catalog/filter' );
 
 		return $client->setObject( $client );
 	}

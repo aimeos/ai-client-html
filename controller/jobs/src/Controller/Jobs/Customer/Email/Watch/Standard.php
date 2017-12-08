@@ -173,10 +173,8 @@ class Standard
 	 */
 	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
 	{
-		if( !isset( $this->client ) )
-		{
-			$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html/templates' );
-			$this->client = \Aimeos\Client\Html\Email\Watch\Factory::createClient( $context, $templatePaths );
+		if( !isset( $this->client ) ) {
+			$this->client = \Aimeos\Client\Html\Email\Watch\Factory::createClient( $context );
 		}
 
 		return $this->client;

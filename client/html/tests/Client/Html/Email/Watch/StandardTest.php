@@ -1,13 +1,15 @@
 <?php
 
-namespace Aimeos\Client\Html\Email\Watch;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2017
  */
+
+
+namespace Aimeos\Client\Html\Email\Watch;
+
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $productItems;
@@ -57,14 +59,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Email\Watch\Standard( $this->context, $paths );
-
 		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
 		$view->extProducts = self::$productItems;
 		$view->extAddressItem = self::$customerItem->getPaymentAddress();
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
 
+		$this->object = new \Aimeos\Client\Html\Email\Watch\Standard( $this->context );
 		$this->object->setView( $view );
 	}
 

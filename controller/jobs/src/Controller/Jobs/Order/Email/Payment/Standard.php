@@ -54,8 +54,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html/templates' );
-		$client = \Aimeos\Client\Html\Email\Payment\Factory::createClient( $context, $templatePaths );
+		$client = \Aimeos\Client\Html\Email\Payment\Factory::createClient( $context );
 
 		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
 
