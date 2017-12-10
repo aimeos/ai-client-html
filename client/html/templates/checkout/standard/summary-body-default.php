@@ -38,8 +38,8 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please check your order' ), $enc::TRUST ); ?></p>
 
 
-	<div class="common-summary-address container">
-		<div class="item payment <?= ( isset( $errors['address']['payment'] ) ? 'error' : '' ); ?>">
+	<div class="common-summary-address row">
+		<div class="item payment <?= ( isset( $errors['address']['payment'] ) ? 'error' : '' ); ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $checkoutAddressUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -73,7 +73,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 		</div><!--
 
-		--><div class="item delivery <?= ( isset( $errors['address']['delivery'] ) ? 'error' : '' ); ?>">
+		--><div class="item delivery <?= ( isset( $errors['address']['delivery'] ) ? 'error' : '' ); ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $checkoutAddressUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -95,8 +95,8 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 	</div>
 
 
-	<div class="common-summary-service container">
-		<div class="item delivery <?= ( isset( $errors['service']['delivery'] ) ? 'error' : '' ); ?>">
+	<div class="common-summary-service row">
+		<div class="item delivery <?= ( isset( $errors['service']['delivery'] ) ? 'error' : '' ); ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $checkoutDeliveryUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -130,7 +130,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 		</div><!--
 
-		--><div class="item payment <?= ( isset( $errors['service']['payment'] ) ? 'error' : '' ); ?>">
+		--><div class="item payment <?= ( isset( $errors['service']['payment'] ) ? 'error' : '' ); ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $checkoutPaymentUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -151,8 +151,8 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 	</div>
 
 
-	<div class="common-summary-additional container">
-		<div class="item coupon <?= ( isset( $errors['coupon'] ) ? 'error' : '' ); ?>">
+	<div class="common-summary-additional row">
+		<div class="item coupon <?= ( isset( $errors['coupon'] ) ? 'error' : '' ); ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -171,7 +171,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 		</div><!--
 
-		--><div class="item comment">
+		--><div class="item comment col-sm-6">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -183,7 +183,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 	</div>
 
 
-	<div class="checkout-standard-summary-option container">
+	<div class="checkout-standard-summary-option row">
 		<?= $this->partial(
 			/** client/html/checkout/standard/summary/options
 			 * Location of the options partial template for the checkout summary
@@ -206,7 +206,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 	</div>
 
 
-	<div class="common-summary-detail container">
+	<div class="common-summary-detail row">
 		<div class="header">
 			<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>

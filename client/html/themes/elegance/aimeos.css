@@ -148,15 +148,6 @@
 	display: none;
 }
 
-.aimeos .container {
-	border: solid 1px #D0D0D0;
-	min-width: 240px;
-	max-width: 98%;
-	margin: 1em 1%;
-	padding: 0;
-	width: 98%;
-}
-
 .aimeos .pagination {
 	text-align: center;
 	display: block;
@@ -2276,14 +2267,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	border-bottom: 1px solid #FF3300;
 }
 
-.aimeos .common-summary .item {
-	display: inline-block;
-	vertical-align: top;
-	min-width: 232px;
-	width: 50%;
-	clear: both;
-}
-
 .aimeos .common-summary .item li {
 	vertical-align: top;
 	padding-top: 0.5em;
@@ -2494,15 +2477,8 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .aimeos .common-summary-additional .coupon,
 .aimeos .common-summary-additional .comment {
-	display: inline-block;
 	vertical-align: top;
-	min-width: 232px;
-	width: 48.75%;
-	clear: both;
 	height: 8em;
-	margin: 0.5em;
-	margin-left: 1%;
-	margin-right: 0.25%;
 }
 
 .aimeos .common-summary-additional .comment .content textarea {
@@ -2512,11 +2488,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 @media (max-width: 480px) {
-	.aimeos .common-summary .item {
-		display: block;
-		width: 100%;
-	}
-
 	.aimeos .common-summary-detail td.quantity .change {
 		display: block;
 	}
@@ -2524,13 +2495,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	.aimeos .common-summary-detail .unitprice {
 		display: table-column;
 		width: 0;
-	}
-
-	.aimeos .common-summary-additional .coupon,
-	.aimeos .common-summary-additional .comment {
-		display: block;
-		margin: 1em 1%;
-		width: 98%;
 	}
 }
 

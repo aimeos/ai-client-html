@@ -45,7 +45,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 			<?= $this->csrf()->formfield(); ?>
 
 
-			<div class="common-summary-detail container">
+			<div class="common-summary-detail">
 				<div class="header">
 					<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 				</div>
@@ -76,7 +76,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 			</div>
 
 
-			<div class="basket-standard-coupon container">
+			<div class="basket-standard-coupon">
 				<div class="header">
 					<h2><?= $enc->html( $this->translate( 'client', 'Coupon codes' ) ); ?></h2>
 				</div>

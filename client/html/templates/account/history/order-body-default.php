@@ -29,8 +29,8 @@ $services = $this->summaryBasket->getServices();
 	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Order details' ), $enc::TRUST ); ?></h2>
 
 
-	<div class="common-summary-address container">
-		<div class="item payment">
+	<div class="common-summary-address row">
+		<div class="item payment col-sm-6">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -59,7 +59,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 		</div><!--
 
-		--><div class="item delivery">
+		--><div class="item delivery col-sm-6">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -78,8 +78,8 @@ $services = $this->summaryBasket->getServices();
 	</div>
 
 
-	<div class="common-summary-service container">
-		<div class="item delivery">
+	<div class="common-summary-service row">
+		<div class="item delivery col-sm-6">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -108,7 +108,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 		</div><!--
 
-		--><div class="item payment">
+		--><div class="item payment col-sm-6">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -126,8 +126,8 @@ $services = $this->summaryBasket->getServices();
 	</div>
 
 
-	<div class="common-summary-additional container">
-		<div class="item coupon">
+	<div class="common-summary-additional row">
+		<div class="item coupon col-sm-6">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -143,7 +143,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 		</div><!--
 
-		--><div class="item comment">
+		--><div class="item comment col-sm-6">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -155,7 +155,7 @@ $services = $this->summaryBasket->getServices();
 	</div>
 
 
-	<div class="common-summary-detail container">
+	<div class="common-summary-detail row">
 		<div class="header">
 			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 		</div>
