@@ -243,7 +243,7 @@ class Standard
 
 
 		$path = $view->config( 'client/html/common/template/baseurl', 'client/html/themes/elegance' );
-		$filepath = $path . DIRECTORY_SEPARATOR . 'common.css';
+		$filepath = $path . DIRECTORY_SEPARATOR . 'email.css';
 
 		if( file_exists( $filepath ) && ( $css = file_get_contents( $filepath ) ) !== false ) {
 			$view->htmlCss = $css;

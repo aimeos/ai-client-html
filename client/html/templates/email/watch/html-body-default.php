@@ -40,19 +40,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
                 display: block;
             }
 
-            .aimeos .content-block {
-                margin: 1.5em 2%;
-                width: 96%;
-            }
-            .aimeos .logo {
-                margin: 1.5em 2%;
-                margin-top: 0;
-                float: right;
-            }
-            .aimeos .common-summary {
-                clear: both;
-            }
-
             <?= $this->get( 'htmlCss' ); ?>
 
         </style>

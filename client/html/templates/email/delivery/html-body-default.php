@@ -37,25 +37,6 @@ $title = $this->translate( 'client', 'E-mail notification' );
                 display: block;
             }
 
-            .aimeos .content-block {
-                margin: 1.5em 2%;
-                width: 96%;
-            }
-            .aimeos .logo {
-                margin: 1.5em 2%;
-                margin-top: 0;
-                float: right;
-            }
-            .aimeos .common-summary {
-                clear: both;
-            }
-            .account-detail h2 {
-                font-weight: bold;
-            }
-            .account-detail .name:after {
-                content: ":";
-            }
-
             <?= $this->get( 'htmlCss' ); ?>
 
         </style>
