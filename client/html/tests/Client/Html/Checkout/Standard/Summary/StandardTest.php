@@ -63,9 +63,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="checkout-standard-summary common-summary">', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option container">', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option-account">', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option-terms">', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option-account', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option-terms', $output );
 
 		$this->assertContains( 'Example company', $output );
 		$this->assertContains( 'unitpaymentlabel', $output );
@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
-		$this->assertContains( '<div class="common-summary-detail container">', $output );
+		$this->assertContains( '<div class="common-summary-detail', $output );
 		$this->assertRegExp( '#<tfoot>.*<tr class="tax">.*<td class="price">10.52 EUR</td>.*.*</tfoot>#smU', $output );
 	}
 
