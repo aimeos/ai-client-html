@@ -460,8 +460,6 @@ class Standard
 			&& in_array( 'order.base.address.company', $mandatory ) === false
 		) {
 			$mandatory[] = 'order.base.address.company';
-		} else {
-			$params['order.base.address.company'] = $params['order.base.address.vatid'] = '';
 		}
 	}
 
