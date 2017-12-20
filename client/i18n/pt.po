@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
+"POT-Creation-Date: 2017-10-02 17:37+0200\n"
 "PO-Revision-Date: 2017-10-02 15:52+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
@@ -141,6 +141,10 @@ msgstr "Todas as encomendas enviadas estão sujeitas aos nossos termos e condiç
 msgid "All orders are subject to our terms and conditions."
 msgstr "Todos os pedidos estão sujeitos aos nossos termos e condições, os quais estão disponíveis em nosso site e que você aceitou ao realizar seu pedido.\n\nEste e-mail contêm informação confidencial e é de uso exclusivo à pessoa ao qual está endereçado. Caso você não seja esta pessoa por favor responda este e-mail e após isso exclua-o juntamente com seus anexos."
 
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 msgid "An account has been created for you."
 msgstr "Uma conta foi criada para você"
 
@@ -184,6 +188,16 @@ msgstr "Produtos em pacotes"
 msgid "Buy now"
 msgstr "Comprar agora"
 
+#. /html/catalog/filter/partials/tree
+#. * Relative path to the category tree partial template file
+#. *
+#. * Partials are templates which are reused in other templates and generate
+#. * reoccuring blocks filled with data from the assigned values. The tree
+#. * partial creates an HTML block of nested lists for category trees.
+#. *
+#. * @param string Relative path to the template file
+#. * @since 2017.01
+#. * @category Developer
 msgid "Categories"
 msgstr "Categorias"
 
@@ -257,6 +271,12 @@ msgstr ""
 msgid "Customer with ID \"%1$s\" not found"
 msgstr "Cliente com ID %1$s não encontrado"
 
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
+#. and last name (%3$s)
+#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
+#. and last name (%3$s)
+#. / E-mail intro with salutation (%1$s), first name (%2$s) and last name
+#. (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Prezado %1$s %2$s %3$s"
@@ -333,6 +353,11 @@ msgstr "Se tiver em estoque"
 msgid "If price decreases"
 msgstr "Se o preço baixar"
 
+#. / E-mail outro
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Se tiver alguma dúvida, por favor responda este e-mail"
 
@@ -826,9 +851,173 @@ msgid "Your comment"
 msgstr ""
 
 #. / Account creation e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Account creation e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Account creation e-mail subject
 msgid "Your new account"
 msgstr "Sua nova conta"
 
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. / Delivery e-mail subject with order ID
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Payment e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
+#. / Delivery e-mail subject with order ID
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2013
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 #. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
@@ -845,6 +1034,17 @@ msgstr "Seu pedido %1$s de %2$s foi despachado."
 msgid "Your search result"
 msgstr "Resultados da pesquisa"
 
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2016
+#. / Product notification e-mail subject
+#. //opensource.org/licenses/LGPL-3.0
+#. * @copyright Metaways Infosystems GmbH, 2014
+#. * @copyright Aimeos (aimeos.org), 2015-2017
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Seus produtos observados"
@@ -874,6 +1074,116 @@ msgstr "igual ao endereço de cobrança"
 msgid "new address"
 msgstr "novo endereço"
 
+#. /html/catalog/attribute/type
+#. * List of layout types for the optional attributes
+#. *
+#. * Each product can contain optional attributes and this configuration
+#. setting
+#. * allows you to change how these attributs will be displayed, either as
+#. * drop-down menu (value: "select") or as list of radio buttons (value:
+#. * "radio").
+#. *
+#. * The key for each value must be the type code of the attribute, e.g.
+#. "width",
+#. * "length", "color" or similar types. You can set the layout for all
+#. * attributes at once using e.g.
+#. *
+#. *  client/html/catalog/attribute/type = array(
+#. *      'width' => 'select',
+#. *      'color' => 'radio',
+#. *  )
+#. *
+#. * Similarly, you can set the layout type for a specific attribute only,
+#. * leaving the rest untouched:
+#. *
+#. *  client/html/catalog/attribute/type/color = radio
+#. *
+#. * Note: Up to 2015.10 this option was available as
+#. /html/catalog/detail/basket/attribute/type
+#. *
+#. * @param array List of attribute types as key and layout types as value,
+#. e.g. "select" or "radio"
+#. * @since 2015.10
+#. * @category Developer
+#. * @category User
+#. * @see client/html/catalog/selection/type
+#. /html/catalog/attribute/type/color
+#. * Layout types for the color attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+#. /html/catalog/attribute/type/size
+#. * Layout types for the size attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+#. /html/catalog/attribute/preselect
+#. * Pre-select first item in selection list
+#. *
+#. * No option of the available selections for a product is pre-selected by
+#. * default. This setting removes the hint to select an option, so the first
+#. one
+#. * is selected by default.
+#. *
+#. * The key for each value must be the type code of the attribute, e.g.
+#. "width",
+#. * "length", "color" or similar types. You can set the layout for all
+#. * attributes at once using e.g.
+#. *
+#. *  client/html/catalog/attribute/preselect = array(
+#. *      'width' => false,
+#. *      'color' => true,
+#. *  )
+#. *
+#. * Similarly, you can set the pre-selection for a specific attribute only,
+#. * leaving the rest untouched:
+#. *
+#. *  client/html/catalog/attribute/preselect/color = true
+#. *
+#. * @param boolean True to select the first option by default, false to
+#. display the select hint
+#. * @since 2017.04
+#. * @category Developer
+#. * @category User
+#. /html/catalog/attribute/type
+#. * List of layout types for the optional attributes
+#. *
+#. * Each product can contain optional attributes and this configuration
+#. setting
+#. * allows you to change how these attributs will be displayed, either as
+#. * drop-down menu (value: "select") or as list of radio buttons (value:
+#. * "radio").
+#. *
+#. * The key for each value must be the type code of the attribute, e.g.
+#. "width",
+#. * "length", "color" or similar types. You can set the layout for all
+#. * attributes at once using e.g.
+#. *
+#. *  client/html/catalog/attribute/type = array(
+#. *      'width' => 'select',
+#. *      'color' => 'radio',
+#. *  )
+#. *
+#. * Similarly, you can set the layout type for a specific attribute only,
+#. * leaving the rest untouched:
+#. *
+#. *  client/html/catalog/attribute/type/color = radio
+#. *
+#. * Note: Up to 2015.10 this option was available as
+#. /html/catalog/detail/basket/attribute/type
+#. *
+#. * @param array List of attribute types as key and layout types as value,
+#. e.g. "select" or "radio"
+#. * @since 2015.10
+#. * @category Developer
+#. * @category User
+#. * @see client/html/catalog/selection/type
+#. /html/catalog/attribute/type/color
+#. * Layout types for the color attribute
+#. *
+#. * @see client/html/catalog/attribute/type
+#. /html/catalog/attribute/type/size
+#. * Layout types for the size attribute
+#. *
+#. * @see client/html/catalog/attribute/type
 msgid "none"
 msgstr "nenhum"
 

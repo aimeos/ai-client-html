@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"PO-Revision-Date: 2017-09-23 02:49+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -23,28 +23,21 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "price:default"
-msgstr "%1$s %2$s"
+#. Address salutation
+msgid "company"
+msgstr "Cég"
 
-#. Stock type
-msgid "stocktype:default"
-msgstr ""
+#. Address salutation
+msgid "mr"
+msgstr "Úr"
 
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr ""
+#. Address salutation
+msgid "mrs"
+msgstr "Asszony"
 
-#. Favorite action
-msgid "favorite"
-msgstr "kedvenc"
-
-#. Pin action
-msgid "pin"
-msgstr "kitűzés"
-
-#. Watch action
-msgid "watch"
-msgstr "Megtekintés"
+#. Address salutation
+msgid "miss"
+msgstr "Kisasszony"
 
 #. Product attribute
 msgid "size"
@@ -66,21 +59,85 @@ msgstr "Szín"
 msgid "option"
 msgstr "Választási lehetőség"
 
-#. Product property package-length
-msgid "package-length"
-msgstr "csomag hossz"
+#. Order type value
+msgid "order:repeat"
+msgstr "megismételt"
 
-#. Product property package-width
-msgid "package-width"
-msgstr "csomag szélesség"
+#. Order type value
+msgid "order:web"
+msgstr "internet"
 
-#. Product property package-height
-msgid "package-height"
-msgstr "csomag magasság"
+#. Order type value
+msgid "order:phone"
+msgstr "telefon"
 
-#. Product property package-weight
-msgid "package-weight"
-msgstr "csomag súly"
+#. Payment status value
+msgid "pay:-1"
+msgstr "befejezetlen"
+
+#. Payment status value
+msgid "pay:0"
+msgstr "törölve"
+
+#. Payment status value
+msgid "pay:1"
+msgstr "visszavonva"
+
+#. Payment status value
+msgid "pay:2"
+msgstr "visszautasítva"
+
+#. Payment status value
+msgid "pay:3"
+msgstr "visszatérítve"
+
+#. Payment status value
+msgid "pay:4"
+msgstr "elintézetlen"
+
+#. Payment status value
+msgid "pay:5"
+msgstr "jóváhagyva"
+
+#. Payment status value
+msgid "pay:6"
+msgstr "elfogadva"
+
+#. Delivery status value
+msgid "stat:-1"
+msgstr "befejezetlen"
+
+#. Delivery status value
+msgid "stat:0"
+msgstr "törölve"
+
+#. Delivery status value
+msgid "stat:1"
+msgstr "elintézetlen"
+
+#. Delivery status value
+msgid "stat:2"
+msgstr "folyamatban"
+
+#. Delivery status value
+msgid "stat:3"
+msgstr "feladott"
+
+#. Delivery status value
+msgid "stat:4"
+msgstr "kézbesített"
+
+#. Delivery status value
+msgid "stat:5"
+msgstr "Elvesztett"
+
+#. Delivery status value
+msgid "stat:6"
+msgstr "visszautasítva"
+
+#. Delivery status value
+msgid "stat:7"
+msgstr "visszaküldött"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
@@ -121,6 +178,45 @@ msgstr "Érvényességi hónap"
 #. Omnipay service provider
 msgid "payment.expiryyear"
 msgstr "Érvényességi év"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr ""
+
+#. Warehouse type (pre 2017.x)
+msgid "warehouse:default"
+msgstr ""
+
+#. Favorite action
+msgid "favorite"
+msgstr "kedvenc"
+
+#. Pin action
+msgid "pin"
+msgstr "kitűzés"
+
+#. Watch action
+msgid "watch"
+msgstr "Megtekintés"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "csomag hossz"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "csomag szélesség"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "csomag magasság"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "csomag súly"
+
+msgid "price:default"
+msgstr "%1$s %2$s"
 
 #. Pick-up time
 msgid "time.hourminute"

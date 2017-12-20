@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"PO-Revision-Date: 2017-09-22 18:34+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -23,28 +23,21 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "price:default"
-msgstr "%1$s %2$s"
+#. Address salutation
+msgid "company"
+msgstr "Компания"
 
-#. Stock type
-msgid "stocktype:default"
-msgstr ""
+#. Address salutation
+msgid "mr"
+msgstr "Г-н"
 
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr ""
+#. Address salutation
+msgid "mrs"
+msgstr "Г-жа"
 
-#. Favorite action
-msgid "favorite"
-msgstr "предпочитани"
-
-#. Pin action
-msgid "pin"
-msgstr "отбележи"
-
-#. Watch action
-msgid "watch"
-msgstr "разгледай"
+#. Address salutation
+msgid "miss"
+msgstr "Г-ца"
 
 #. Product attribute
 msgid "size"
@@ -66,21 +59,85 @@ msgstr "Цвят"
 msgid "option"
 msgstr "Опции"
 
-#. Product property package-length
-msgid "package-length"
-msgstr "дължина на пакета"
+#. Order type value
+msgid "order:repeat"
+msgstr "многократен"
 
-#. Product property package-width
-msgid "package-width"
-msgstr "широчина на пакета"
+#. Order type value
+msgid "order:web"
+msgstr "интернет"
 
-#. Product property package-height
-msgid "package-height"
-msgstr "височина на пакета"
+#. Order type value
+msgid "order:phone"
+msgstr "телефон"
 
-#. Product property package-weight
-msgid "package-weight"
-msgstr "тегло на пакета"
+#. Payment status value
+msgid "pay:-1"
+msgstr "незавършен"
+
+#. Payment status value
+msgid "pay:0"
+msgstr "изтрит"
+
+#. Payment status value
+msgid "pay:1"
+msgstr "отменен"
+
+#. Payment status value
+msgid "pay:2"
+msgstr "отказан"
+
+#. Payment status value
+msgid "pay:3"
+msgstr "върнат"
+
+#. Payment status value
+msgid "pay:4"
+msgstr "в очакване"
+
+#. Payment status value
+msgid "pay:5"
+msgstr "упълномощен"
+
+#. Payment status value
+msgid "pay:6"
+msgstr "получен"
+
+#. Delivery status value
+msgid "stat:-1"
+msgstr "незавършен"
+
+#. Delivery status value
+msgid "stat:0"
+msgstr "изтрит"
+
+#. Delivery status value
+msgid "stat:1"
+msgstr "в очакване"
+
+#. Delivery status value
+msgid "stat:2"
+msgstr "в процес на изпълнение"
+
+#. Delivery status value
+msgid "stat:3"
+msgstr "изпратен"
+
+#. Delivery status value
+msgid "stat:4"
+msgstr "получен"
+
+#. Delivery status value
+msgid "stat:5"
+msgstr "изгубен"
+
+#. Delivery status value
+msgid "stat:6"
+msgstr "отказан"
+
+#. Delivery status value
+msgid "stat:7"
+msgstr "върнат"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
@@ -121,6 +178,45 @@ msgstr "Изтичане на месец"
 #. Omnipay service provider
 msgid "payment.expiryyear"
 msgstr "Изтичане на година"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr ""
+
+#. Warehouse type (pre 2017.x)
+msgid "warehouse:default"
+msgstr ""
+
+#. Favorite action
+msgid "favorite"
+msgstr "предпочитани"
+
+#. Pin action
+msgid "pin"
+msgstr "отбележи"
+
+#. Watch action
+msgid "watch"
+msgstr "разгледай"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "дължина на пакета"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "широчина на пакета"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "височина на пакета"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "тегло на пакета"
+
+msgid "price:default"
+msgstr "%1$s %2$s"
 
 #. Pick-up time
 msgid "time.hourminute"

@@ -7,14 +7,13 @@
 # Translators:
 # Translators:
 # Translators:
-# alessandro massarelli <alessandro@botteega.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-29 10:38+0000\n"
-"Last-Translator: alessandro massarelli <alessandro@botteega.com>\n"
+"PO-Revision-Date: 2017-09-22 11:36+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,32 +21,25 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "price:default"
-msgstr "%1$s %2$s"
+#. Address salutation
+msgid "company"
+msgstr "Società"
 
-#. Stock type
-msgid "stocktype:default"
-msgstr " "
+#. Address salutation
+msgid "mr"
+msgstr ""
 
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr " "
+#. Address salutation
+msgid "mrs"
+msgstr ""
 
-#. Favorite action
-msgid "favorite"
-msgstr "favoriti"
-
-#. Pin action
-msgid "pin"
-msgstr "pin"
-
-#. Watch action
-msgid "watch"
-msgstr "osserva"
+#. Address salutation
+msgid "miss"
+msgstr ""
 
 #. Product attribute
 msgid "size"
-msgstr "Misura"
+msgstr ""
 
 #. Product attribute
 msgid "length"
@@ -55,47 +47,111 @@ msgstr "Lunghezza"
 
 #. Product attribute
 msgid "width"
-msgstr "Larghezza"
+msgstr ""
 
 #. Product attribute
 msgid "color"
-msgstr "Colore"
+msgstr ""
 
 #. Product attribute
 msgid "option"
-msgstr "Opzione"
+msgstr ""
 
-#. Product property package-length
-msgid "package-length"
-msgstr "Lunghezza del pacco"
+#. Order type value
+msgid "order:repeat"
+msgstr ""
 
-#. Product property package-width
-msgid "package-width"
-msgstr "Larghezza del pacco"
+#. Order type value
+msgid "order:web"
+msgstr ""
 
-#. Product property package-height
-msgid "package-height"
-msgstr "Altezza del pacco"
+#. Order type value
+msgid "order:phone"
+msgstr ""
 
-#. Product property package-weight
-msgid "package-weight"
-msgstr "Peso del pacco"
+#. Payment status value
+msgid "pay:-1"
+msgstr ""
+
+#. Payment status value
+msgid "pay:0"
+msgstr ""
+
+#. Payment status value
+msgid "pay:1"
+msgstr ""
+
+#. Payment status value
+msgid "pay:2"
+msgstr ""
+
+#. Payment status value
+msgid "pay:3"
+msgstr ""
+
+#. Payment status value
+msgid "pay:4"
+msgstr ""
+
+#. Payment status value
+msgid "pay:5"
+msgstr ""
+
+#. Payment status value
+msgid "pay:6"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:-1"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:0"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:1"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:2"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:3"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:4"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:5"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:6"
+msgstr ""
+
+#. Delivery status value
+msgid "stat:7"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "Intestatario del conto"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "Numero conto"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "Codice bancario"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "Nome della Banca"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -107,24 +163,63 @@ msgstr "Cognome"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "Numero della carta di credito"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Numero di verifica"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "Mese di scadenza"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "Anno di scadenza"
+msgstr ""
+
+#. Stock type
+msgid "stocktype:default"
+msgstr ""
+
+#. Warehouse type (pre 2017.x)
+msgid "warehouse:default"
+msgstr ""
+
+#. Favorite action
+msgid "favorite"
+msgstr ""
+
+#. Pin action
+msgid "pin"
+msgstr ""
+
+#. Watch action
+msgid "watch"
+msgstr ""
+
+#. Product property package-length
+msgid "package-length"
+msgstr ""
+
+#. Product property package-width
+msgid "package-width"
+msgstr ""
+
+#. Product property package-height
+msgid "package-height"
+msgstr ""
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr ""
+
+msgid "price:default"
+msgstr "%1$s %2$s"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "Orario di ritiro"
+msgstr ""
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "Luogo di ritiro"
+msgstr ""
