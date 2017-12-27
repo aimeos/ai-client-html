@@ -87,7 +87,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 							data-prodid="<?= $enc->attr( $id ); ?>"
 							data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
 								array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 							); ?>
 						</div>
@@ -101,7 +101,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 										data-prodid="<?= $enc->attr( $prodid ); ?>"
 										data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
 										<?= $this->partial(
-											$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
 											array( 'prices' => $prices )
 										); ?>
 									</div>
@@ -123,7 +123,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 						<?php if( $productItem->getType() === 'select' ) : ?>
 							<div class="items-selection">
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
+									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard.php' ),
 									array(
 										'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
 										'attributeItems' => $this->get( 'itemsAttributeItems', [] ),
@@ -136,7 +136,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 						<div class="items-attribute">
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
+								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
 								array(
 									'attributeItems' => $this->get( 'itemsAttributeItems', [] ),
 									'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),

@@ -168,7 +168,7 @@ class Standard
 			 * @see client/html/catalog/detail/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/detail/standard/template-body';
-			$default = 'catalog/detail/body-default.php';
+			$default = 'catalog/detail/body-standard.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
@@ -240,7 +240,7 @@ class Standard
 			 * @see client/html/catalog/detail/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/detail/standard/template-header';
-			$default = 'catalog/detail/header-default.php';
+			$default = 'catalog/detail/header-standard.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 

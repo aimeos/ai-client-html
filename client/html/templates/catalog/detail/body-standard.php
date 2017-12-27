@@ -132,7 +132,7 @@ ksort( $propMap );
 					 * @since 2017.01
 					 * @category Developer
 					 */
-					$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-default.php' ),
+					$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-standard.php' ),
 					array(
 						'productItem' => $this->detailProductItem,
 						'params' => $this->get( 'detailParams', [] ),
@@ -164,7 +164,7 @@ ksort( $propMap );
 								data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
 								data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ); ?>">
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
 									array( 'prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' ) )
 								); ?>
 							</div>
@@ -178,7 +178,7 @@ ksort( $propMap );
 											data-prodid="<?= $enc->attr( $prodid ); ?>"
 											data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
 											<?= $this->partial(
-												$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+												$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
 												array( 'prices' => $prices )
 											); ?>
 										</div>
@@ -211,14 +211,14 @@ ksort( $propMap );
 									 *
 									 * The partial template files are usually stored in the templates/partials/ folder
 									 * of the core or the extensions. The configured path to the partial file must
-									 * be relative to the templates/ folder, e.g. "partials/selection-default.php".
+									 * be relative to the templates/ folder, e.g. "partials/selection-standard.php".
 									 *
 									 * @param string Relative path to the template file
 									 * @since 2015.04
 									 * @category Developer
 									 * @see client/html/common/partials/attribute
 									 */
-									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
+									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard.php' ),
 									array(
 										'products' => $this->detailProductItem->getRefItems( 'product', 'default', 'default' ),
 										'attributeItems' => $this->get( 'detailAttributeItems', [] ),
@@ -242,14 +242,14 @@ ksort( $propMap );
 								 *
 								 * The partial template files are usually stored in the templates/partials/ folder
 								 * of the core or the extensions. The configured path to the partial file must
-								 * be relative to the templates/ folder, e.g. "partials/attribute-default.php".
+								 * be relative to the templates/ folder, e.g. "partials/attribute-standard.php".
 								 *
 								 * @param string Relative path to the template file
 								 * @since 2016.01
 								 * @category Developer
 								 * @see client/html/common/partials/selection
 								 */
-								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
+								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
 								array(
 									'productItem' => $this->detailProductItem,
 									'attributeItems' => $this->get( 'detailAttributeItems', [] ),
@@ -312,7 +312,7 @@ ksort( $propMap );
 					 * @since 2017.04
 					 * @category Developer
 					 */
-					$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial-default.php' ),
+					$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial-standard.php' ),
 					array(
 						'productItem' => $this->detailProductItem,
 						'params' => $this->get( 'detailParams', [] )
@@ -333,7 +333,7 @@ ksort( $propMap );
 					 * @since 2017.04
 					 * @category Developer
 					 */
-					$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial-default.php' ),
+					$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial-standard.php' ),
 					array( 'productItem' => $this->detailProductItem )
 				); ?>
 
@@ -349,7 +349,7 @@ ksort( $propMap );
 					<section class="catalog-detail-bundle">
 						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ); ?></h2>
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-default.php' ),
+							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
 							array( 'products' => $products, 'itemprop' => 'isRelatedTo' )
 						); ?>
 					</section>
@@ -385,7 +385,7 @@ ksort( $propMap );
 														<?php foreach( $attrItem->getListItems( 'media', 'icon' ) as $listItem ) : ?>
 															<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
 																<?= $this->partial(
-																	$this->config( 'client/html/common/partials/media', 'common/partials/media-default.php' ),
+																	$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
 																	array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
 																); ?>
 															<?php endif; ?>
@@ -413,7 +413,7 @@ ksort( $propMap );
 															<?php foreach( $attrItem->getListItems( 'media', 'icon' ) as $listItem ) : ?>
 																<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
 																	<?= $this->partial(
-																		$this->config( 'client/html/common/partials/media', 'common/partials/media-default.php' ),
+																		$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
 																		array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
 																	); ?>
 																<?php endif; ?>
@@ -490,7 +490,7 @@ ksort( $propMap );
 					<section class="catalog-detail-suggest">
 						<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ); ?></h2>
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-default.php' ),
+							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
 							array( 'products' => $products, 'itemprop' => 'isRelatedTo' )
 						); ?>
 					</section>
@@ -504,7 +504,7 @@ ksort( $propMap );
 					<section class="catalog-detail-bought">
 						<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ); ?></h2>
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-default.php' ),
+							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
 							array( 'products' => $products, 'itemprop' => 'isRelatedTo' )
 						); ?>
 					</section>

@@ -34,7 +34,7 @@ $enc = $this->encoder();
 <div class="catalog-list-items">
 
 	<?= $this->partial(
-		$this->config( 'client/html/common/partials/products', 'common/partials/products-default.php' ),
+		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),

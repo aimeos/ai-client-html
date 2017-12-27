@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/stage/navigator/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/stage/navigator/standard/template-body';
-		$default = 'catalog/stage/navigator-body-default.php';
+		$default = 'catalog/stage/navigator-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

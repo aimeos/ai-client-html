@@ -95,7 +95,7 @@ class Standard
 		 * @see client/html/basket/related/bought/standard/template-header
 		 */
 		$tplconf = 'client/html/basket/related/bought/standard/template-body';
-		$default = 'basket/related/bought-body-default.php';
+		$default = 'basket/related/bought-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

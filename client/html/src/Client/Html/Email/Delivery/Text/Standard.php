@@ -127,7 +127,7 @@ class Standard
 		$tplconf = 'client/html/email/delivery/text/standard/template-body';
 
 		$status = $view->extOrderItem->getDeliveryStatus();
-		$default = array( 'email/delivery/' . $status . '/text-body-default.php', 'email/delivery/text-body-default.php' );
+		$default = array( 'email/delivery/' . $status . '/text-body-standard.php', 'email/delivery/text-body-standard.php' );
 
 		$text = $view->render( $view->config( $tplconf, $default ) );
 		$view->mail()->setBody( $text );

@@ -105,7 +105,7 @@ class Standard
 		$tplconf = 'client/html/email/delivery/text/intro/standard/template-body';
 
 		$status = $view->extOrderItem->getDeliveryStatus();
-		$default = array( 'email/delivery/' . $status . '/text-intro-body-default.php', 'email/delivery/text-intro-body-default.php' );
+		$default = array( 'email/delivery/' . $status . '/text-intro-body-standard.php', 'email/delivery/text-intro-body-standard.php' );
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

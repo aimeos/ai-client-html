@@ -152,7 +152,7 @@ class Standard
 		 * @see client/html/locale/select/standard/template-header
 		 */
 		$tplconf = 'client/html/locale/select/standard/template-body';
-		$default = 'locale/select/body-default.php';
+		$default = 'locale/select/body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -202,7 +202,7 @@ class Standard
 			 * @see client/html/locale/select/standard/template-body
 			 */
 			$tplconf = 'client/html/locale/select/standard/template-header';
-			$default = 'locale/select/header-default.php';
+			$default = 'locale/select/header-standard.php';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

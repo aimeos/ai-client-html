@@ -146,7 +146,7 @@ ksort( $attrTypeDeps );
 										<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'icon' ) as $listItem ) : ?>
 											<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
 												<?= '-->' . $this->partial( $this->config(
-													'client/html/common/partials/media', 'common/partials/media-default.php' ),
+													'client/html/common/partials/media', 'common/partials/media-standard.php' ),
 													array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
 												) . '<!--'; ?>
 											<?php endif; ?>

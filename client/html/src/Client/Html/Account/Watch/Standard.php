@@ -127,7 +127,7 @@ class Standard
 		 * @see client/html/account/watch/standard/template-header
 		 */
 		$tplconf = 'client/html/account/watch/standard/template-body';
-		$default = 'account/watch/body-default.php';
+		$default = 'account/watch/body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -177,7 +177,7 @@ class Standard
 			 * @see client/html/account/watch/standard/template-body
 			 */
 			$tplconf = 'client/html/account/watch/standard/template-header';
-			$default = 'account/watch/header-default.php';
+			$default = 'account/watch/header-standard.php';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

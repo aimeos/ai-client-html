@@ -87,7 +87,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
 										</a>
 
 										<div class="price-list">
-											<?= $this->partial( $this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ), array( 'prices' => array( $entry['price'] ) ) ); ?>
+											<?= $this->partial( $this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ), array( 'prices' => array( $entry['price'] ) ) ); ?>
 										</div>
 									</td>
 								</tr>

@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/filter/tree/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/filter/tree/standard/template-body';
-		$default = 'catalog/filter/tree-body-default.php';
+		$default = 'catalog/filter/tree-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

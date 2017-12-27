@@ -113,7 +113,7 @@ class Standard
 			 * @see client/html/catalog/session/seen/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/session/seen/standard/template-body';
-			$default = 'catalog/session/seen-body-default.php';
+			$default = 'catalog/session/seen-body-standard.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 

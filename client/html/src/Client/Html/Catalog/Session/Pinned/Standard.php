@@ -113,7 +113,7 @@ class Standard
 			 * @see client/html/catalog/session/pinned/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/session/pinned/standard/template-body';
-			$default = 'catalog/session/pinned-body-default.php';
+			$default = 'catalog/session/pinned-body-standard.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 

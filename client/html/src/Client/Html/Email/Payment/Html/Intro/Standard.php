@@ -105,7 +105,7 @@ class Standard
 		$tplconf = 'client/html/email/payment/html/intro/standard/template-body';
 
 		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/html-intro-body-default.php', 'email/payment/html-intro-body-default.php' );
+		$default = array( 'email/payment/' . $status . '/html-intro-body-standard.php', 'email/payment/html-intro-body-standard.php' );
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

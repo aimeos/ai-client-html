@@ -32,7 +32,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 		<div class="price-list">
 			<?= $this->partial(
-				$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+				$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
 				array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 			); ?>
 		</div>

@@ -64,7 +64,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						 * @since 2017.01
 						 * @category Developer
 						 */
-						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail-default.php' ),
+						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail-standard.php' ),
 						array(
 							'summaryEnableModify' => true,
 							'summaryBasket' => $this->standardBasket,

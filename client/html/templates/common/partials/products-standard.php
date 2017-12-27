@@ -186,13 +186,13 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 							 *
 							 * The partial template files are usually stored in the templates/partials/ folder
 							 * of the core or the extensions. The configured path to the partial file must
-							 * be relative to the templates/ folder, e.g. "partials/price-default.php".
+							 * be relative to the templates/ folder, e.g. "partials/price-standard.php".
 							 *
 							 * @param string Relative path to the template file
 							 * @since 2015.04
 							 * @category Developer
 							 */
-							$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
 							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 						); ?>
 					</div>
@@ -206,7 +206,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 									data-prodid="<?= $enc->attr( $prodid ); ?>"
 									data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
 									<?= $this->partial(
-										$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
 										array( 'prices' => $prices )
 									); ?>
 								</div>
@@ -228,7 +228,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 					<?php if( $productItem->getType() === 'select' ) : ?>
 						<div class="items-selection">
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-default.php' ),
+								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard.php' ),
 								array(
 									'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
 									'attributeItems' => $this->get( 'attributeItems', [] ),
@@ -242,7 +242,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 					<div class="items-attribute">
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-default.php' ),
+							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
 							array(
 								'productItem' => $productItem,
 								'attributeItems' => $this->get( 'attributeItems', [] ),

@@ -100,7 +100,7 @@ class Standard
 		 * @see client/html/account/history/order/standard/template-header
 		 */
 		$tplconf = 'client/html/account/history/order/standard/template-body';
-		$default = 'account/history/order-body-default.php';
+		$default = 'account/history/order-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

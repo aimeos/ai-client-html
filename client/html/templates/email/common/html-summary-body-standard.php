@@ -38,7 +38,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/email/common/summary/detail/html
 						 * @see client/html/email/common/summary/service/html
 						 */
-						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-default.php' ),
+						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-standard.php' ),
 						array( 'address' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -53,7 +53,7 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-default.php' ),
+						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-standard.php' ),
 						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
@@ -88,7 +88,7 @@ $services = $this->summaryBasket->getServices();
 							 * @see client/html/email/common/summary/address/html
 							 * @see client/html/email/common/summary/detail/html
 							 */
-							$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-default.php' ),
+							$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard.php' ),
 							array( 'service' => $service, 'type' => 'delivery' )
 						); ?>
 					<?php endforeach; ?>
@@ -105,7 +105,7 @@ $services = $this->summaryBasket->getServices();
 				<?php if( isset( $services['payment'] ) ) : ?>
 					<?php foreach( (array) $services['payment'] as $service ) : ?>
 						<?= $this->partial(
-							$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-default.php' ),
+							$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard.php' ),
 							array( 'service' => $service, 'type' => 'payment' )
 						); ?>
 					<?php endforeach; ?>
@@ -166,7 +166,7 @@ $services = $this->summaryBasket->getServices();
 				 * @see client/html/email/common/summary/address/html
 				 * @see client/html/email/commonsummary/service/html
 				 */
-				$this->config( 'client/html/email/common/summary/detail/html', 'common/summary/detail-default.php' ),
+				$this->config( 'client/html/email/common/summary/detail/html', 'common/summary/detail-standard.php' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),

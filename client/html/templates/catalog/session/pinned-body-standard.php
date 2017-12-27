@@ -136,7 +136,7 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 					<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
 					<div class="price-list">
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/price', 'common/partials/price-default.php' ),
+							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
 							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 						); ?>
 					</div>

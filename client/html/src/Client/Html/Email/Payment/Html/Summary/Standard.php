@@ -103,7 +103,7 @@ class Standard
 		 * @see client/html/email/payment/html/summary/standard/template-header
 		 */
 		$tplconf = 'client/html/email/payment/html/summary/standard/template-body';
-		$default = 'email/common/html-summary-body-default.php';
+		$default = 'email/common/html-summary-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

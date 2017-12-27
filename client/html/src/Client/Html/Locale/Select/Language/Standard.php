@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/locale/select/language/standard/template-header
 		 */
 		$tplconf = 'client/html/locale/select/language/standard/template-body';
-		$default = 'locale/select/language-body-default.php';
+		$default = 'locale/select/language-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

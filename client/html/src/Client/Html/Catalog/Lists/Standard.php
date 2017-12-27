@@ -183,7 +183,7 @@ class Standard
 			 * @see client/html/catalog/lists/type/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/lists/standard/template-body';
-			$default = 'catalog/lists/body-default.php';
+			$default = 'catalog/lists/body-standard.php';
 
 			$html = $view->render( $this->getTemplatePath( $tplconf, $default ) );
 
@@ -269,7 +269,7 @@ class Standard
 			 * @see client/html/catalog/lists/type/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/lists/standard/template-header';
-			$default = 'catalog/lists/header-default.php';
+			$default = 'catalog/lists/header-standard.php';
 
 			$html = $view->render( $this->getTemplatePath( $tplconf, $default ) );
 

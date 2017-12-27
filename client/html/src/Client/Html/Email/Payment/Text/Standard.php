@@ -127,7 +127,7 @@ class Standard
 		$tplconf = 'client/html/email/payment/text/standard/template-body';
 
 		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/text-body-default.php', 'email/payment/text-body-default.php' );
+		$default = array( 'email/payment/' . $status . '/text-body-standard.php', 'email/payment/text-body-standard.php' );
 
 		$text = $view->render( $view->config( $tplconf, $default ) );
 		$view->mail()->setBody( $text );
