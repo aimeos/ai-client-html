@@ -184,7 +184,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 <ul class="selection">
 	<?php foreach( $this->get( 'attributeCustomItems', [] ) as $id => $attribute ) : ?>
 		<li class="select-item <?= $enc->attr( $attribute->getCode() ); ?>">
-			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ); ?></div>
+			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></div>
 
 			<?php $hintcode = $attribute->getType() . '-hint'; $hint = $enc->html( $this->translate( 'client/code', $hintcode ) ); ?>
 			<?php if( !empty( $hint ) && $hint !== $hintcode ) : ?>
