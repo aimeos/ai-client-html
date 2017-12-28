@@ -126,9 +126,7 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard.php' ),
 									array(
 										'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
-										'attributeItems' => $this->get( 'itemsAttributeItems', [] ),
 										'productItems' => $this->get( 'itemsProductItems', [] ),
-										'mediaItems' => $this->get( 'itemsMediaItems', [] ),
 									)
 								); ?>
 							</div>
@@ -138,7 +136,6 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
 								array(
-									'attributeItems' => $this->get( 'itemsAttributeItems', [] ),
 									'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
 									'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
 									'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),

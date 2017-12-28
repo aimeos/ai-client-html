@@ -9,9 +9,6 @@
 /* Available data:
  * - detailProductItem : Product item incl. referenced items
  * - detailProductItems : Referenced products (bundle, variant, suggested, bought, etc) incl. referenced items
- * - detailPropertyItems : Properties for all products
- * - detailAttributeItems : Attributes items incl. referenced items
- * - detailMediaItems : Media items incl. referenced items
  * - detailParams : Request parameters for this detail view
  */
 
@@ -78,8 +75,15 @@ foreach( $productItems as $subProdId => $subProduct )
 	}
 }
 
-$propMap = $subPropDeps = [];
-$propItems = $this->get( 'detailPropertyItems', [] );
+$propMap = $subPropDeps = $propItems = [];
+
+if( isset( $this->detailProductItem ) ) {
+	$propItems = $this->detailProductItem->getPropertyItems();
+}
+
+foreach( $this->get( 'detailProductItems', [] ) as $prodItem ) {
+	$propItems = array_merge( $propItems, $prodItem->getPropertyItems() );
+}
 
 foreach( $propItems as $propId => $propItem )
 {

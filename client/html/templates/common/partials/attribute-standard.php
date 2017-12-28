@@ -8,7 +8,6 @@
 
 /* Available data:
  * - productItem : Product item the attributes are associated with (optional)
- * - attributeItems : List of attribute items including the referenced items like texts, images, etc.
  * - attributeConfigItems : List of configuration attributes
  * - attributeCustomItems : List of custom attributes
  * - attributeHiddenItems : List of hidden attributes
@@ -16,15 +15,9 @@
 
 
 $enc = $this->encoder();
-$attrItems = $this->get( 'attributeItems', [] );
 
 $attributeConfigItems = [];
-foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute )
-{
-	if( isset( $attrItems[$id] ) ) {
-		$attribute = $attrItems[$id];
-	}
-
+foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 	$attributeConfigItems[$attribute->getType()][$id] = $attribute;
 }
 

@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-length">.*<fieldset class="attr-size">.*<fieldset class="attr-width">/smu';
 		$this->assertRegexp( $regex, $output );
 
-		$this->assertEquals( 1, count( $tags ) );
+		$this->assertGreaterThan( 3, count( $tags ) );
 		$this->assertEquals( null, $expire );
 	}
 

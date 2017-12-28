@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( '', $output );
 		$this->assertEquals( null, $expire );
-		$this->assertEquals( 1, count( $tags ) );
+		$this->assertEquals( 3, count( $tags ) );
 
 		$rendered = $this->object->getView()->block()->get( 'catalog/detail/service' );
 		$this->assertStringStartsWith( '<div class="catalog-detail-service', $rendered );

@@ -7,9 +7,7 @@
 
 /* Expected data:
  * - products : List of product items
- * - mediaItems : List of media items incl. referenced items (optional)
  * - productItems : List of product variants incl. referenced items (optional)
- * - attributeItems : List of attribute items incl. referenced items (optional)
  * - basket-add : True to display "add to basket" button, false if not (optional)
  * - require-stock : True if the stock level should be displayed (optional)
  * - itemprop : Schema.org property for the product items (optional)
@@ -231,9 +229,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard.php' ),
 								array(
 									'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
-									'attributeItems' => $this->get( 'attributeItems', [] ),
 									'productItems' => $this->get( 'productItems', [] ),
-									'mediaItems' => $this->get( 'mediaItems', [] ),
 									'productItem' => $productItem,
 								)
 							); ?>
@@ -245,7 +241,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
 							array(
 								'productItem' => $productItem,
-								'attributeItems' => $this->get( 'attributeItems', [] ),
 								'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
 								'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
 								'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),

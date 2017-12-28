@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertContains( '<title>Kaffee</title>', $output );
 		$this->assertEquals( '2019-01-01 00:00:00', $expire );
-		$this->assertEquals( 2, count( $tags ) );
+		$this->assertEquals( 5, count( $tags ) );
 	}
 
 
@@ -104,7 +104,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
 
 		$this->assertEquals( '2019-01-01 00:00:00', $expire );
-		$this->assertEquals( 2, count( $tags ) );
+		$this->assertEquals( 5, count( $tags ) );
 	}
 
 

@@ -402,6 +402,10 @@ abstract class Base
 	{
 		foreach( $item->getListItems() as $listitem )
 		{
+			if( ( $refItem = $listitem->getRefItem() ) === null ) {
+				continue;
+			}
+
 			if( $tagAll === true ) {
 				$tags[] = str_replace( '/', '_', $listitem->getDomain() ) . '-' . $listitem->getRefId();
 			}
@@ -409,6 +413,8 @@ abstract class Base
 			if( ( $date = $listitem->getDateEnd() ) !== null ) {
 				$expires[] = $date;
 			}
+
+			$this->addMetaItemSingle( $refItem, $expires, $tags, $tagAll );
 		}
 	}
 

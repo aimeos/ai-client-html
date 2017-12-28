@@ -317,26 +317,12 @@ class Standard
 			$domains = $config->get( 'client/html/catalog/domains', $domains );
 
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 			$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$attrCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'attribute' );
-
-
 			$productItems = $prodCntl->getItems( $this->getProductIds( $products ), $domains );
 			$this->addMetaItems( $productItems, $expire, $tags );
 
-			$attributeItems = $attrCntl->getItems( $this->getAttributeIds( $productItems + $products ), $domains );
-			$this->addMetaItems( $attributeItems, $expire, $tags );
 
-			$mediaIds = $this->getMediaIds( $productItems );
-			$mediaManager = $controller->createManager( 'media' );
-			$mediaItems = $this->getDomainItems( $mediaManager, 'media.id', $mediaIds, $domains );
-			$this->addMetaItems( $mediaItems, $expire, $tags );
-
-
-			$view->itemsAttributeItems = $attributeItems;
 			$view->itemsProductItems = $productItems;
-			$view->itemsMediaItems = $mediaItems;
 		}
 
 
@@ -369,46 +355,6 @@ class Standard
 		$view->itemPosition = ( $this->getProductListPage( $view ) - 1 ) * $this->getProductListSize( $view );
 
 		return parent::addData( $view, $tags, $expire );
-	}
-
-
-	/**
-	 * Returns the config, custom, hidden and variant attribute IDs of the given products
-	 *
-	 * @param \Aimeos\MShop\Product\Item\Iface[] $productItems List of product items
-	 * @return string[] List of attribute IDs
-	 */
-	protected function getAttributeIds( array $productItems )
-	{
-		$attrIds = [];
-		$types = array( 'config', 'custom', 'hidden', 'variant' );
-
-		foreach( $productItems as $product ) {
-			$attrIds = array_merge( $attrIds, array_keys( $product->getRefItems( 'attribute', null, $types ) ) );
-		}
-
-		return $attrIds;
-	}
-
-
-	/**
-	 * Returns the media IDs of the selection products
-	 *
-	 * @param \Aimeos\MShop\Product\Item\Iface[] $productItems List of product items
-	 * @return string[] List of media IDs
-	 */
-	protected function getMediaIds( array $productItems )
-	{
-		$mediaIds = [];
-
-		foreach( $productItems as $product )
-		{
-			if( $product->getType() === 'select' ) {
-				$mediaIds = array_merge( $mediaIds, array_keys( $product->getRefItems( 'media', 'default', 'default' ) ) );
-			}
-		}
-
-		return $mediaIds;
 	}
 
 

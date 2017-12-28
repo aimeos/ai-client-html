@@ -445,7 +445,7 @@ class Standard
 		}
 
 
-		$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
+		$domains = array( 'media', 'price', 'text', 'attribute', 'product', 'product/property' );
 
 		/** client/html/catalog/domains
 		 * A list of domain names whose items should be available in the catalog view templates
@@ -480,40 +480,12 @@ class Standard
 
 		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 		$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-		$attrCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'attribute' );
-
 
 		$productItem = $prodCntl->getItem( $prodid, $domains );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
-		$productIds = array_keys( $productItem->getRefItems( 'product' ) );
-		$products = $prodCntl->getItems( $productIds, $domains );
-
-
-		$attrIds = array_keys( $productItem->getRefItems( 'attribute' ) );
-		$mediaIds = array_keys( $productItem->getRefItems( 'media' ) );
-
-		foreach( $products as $product )
-		{
-			$attrIds = array_merge( $attrIds, array_keys( $product->getRefItems( 'attribute' ) ) );
-			$mediaIds = array_merge( $mediaIds, array_keys( $product->getRefItems( 'media' ) ) );
-		}
-
-
-		$attributeItems = $attrCntl->getItems( $attrIds, $domains );
-		$this->addMetaItems( $attributeItems, $expire, $tags );
-
-
-		$mediaManager = $controller->createManager( 'media' );
-		$mediaItems = $this->getDomainItems( $mediaManager, 'media.id', $mediaIds, $domains );
-		$this->addMetaItems( $mediaItems, $expire, $tags );
-
-
-		$productIds = array_keys( $productItem->getRefItems( 'product', null, 'default' ) );
-		$productIds[] = $prodid;
-
-		$propertyManager = $controller->createManager( 'product/property' );
-		$propertyItems = $this->getDomainItems( $propertyManager, 'product.property.parentid', $productIds, $domains );
+		$products = $prodCntl->getItems( array_keys( $productItem->getRefItems( 'product' ) ), $domains );
+		$this->addMetaItems( $products, $expire, $tags );
 
 
 		/** client/html/catalog/detail/stock/enable
@@ -542,11 +514,8 @@ class Standard
 			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, array( $productItem ) ) );
 		}
 
-		$view->detailMediaItems = $mediaItems;
-		$view->detailProductItem = $productItem;
 		$view->detailProductItems = $products;
-		$view->detailPropertyItems = $propertyItems;
-		$view->detailAttributeItems = $attributeItems;
+		$view->detailProductItem = $productItem;
 		$view->detailParams = $this->getClientParams( $view->param() );
 
 		return parent::addData( $view, $tags, $expire );

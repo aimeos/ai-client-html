@@ -9,18 +9,15 @@
 /* Available data:
  * - products : List of variant product items without references
  * - productItems : List of product items including the referenced items like texts, attributes, etc.
- * - attributeItems : List of attribute items including the referenced items like texts, images, etc.
- * - mediaItems : List of media items including the referenced items like texts, images, etc.
  */
 
 
 $index = 0;
 $enc = $this->encoder();
-$attrTypeDeps = $attrDeps = $prodDeps = [];
+$attrTypeDeps = $attrDeps = $prodDeps = $attributeItems = [];
 
 $articleItems = $this->get( 'products', [] );
 $productItems = $this->get( 'productItems', [] );
-$attributeItems = $this->get( 'attributeItems', [] );
 
 foreach( $articleItems as $articleId => $articleItem )
 {
@@ -29,6 +26,7 @@ foreach( $articleItems as $articleId => $articleItem )
 		foreach( $productItems[$articleId]->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
 		{
 			$attrTypeDeps[$attrItem->getType()][$attrId] = $attrItem->getPosition();
+			$attributeItems[$attrId] = $attrItem;
 			$attrDeps[$attrId][] = $articleId;
 			$prodDeps[$articleId][] = $attrId;
 		}
@@ -132,31 +130,29 @@ ksort( $attrTypeDeps );
 
 					<ul class="select-list" data-index="<?= $index++; ?>" data-type="<?= $enc->attr( $code ); ?>">
 						<?php foreach( $positions as $attrId => $position ) : ?>
-							<?php if( isset( $attributeItems[$attrId] ) ) : ?>
 
-								<li class="select-entry">
-									<input class="select-option" type="radio"
-										id="option-<?= $enc->attr( $attrId ); ?>"
-										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>"
-										value="<?= $enc->attr( $attrId ); ?>"
-										<?= ( $preselect && $first ? 'checked="checked"' : '' ); $first = false ?>
-									/>
-									<label class="select-label" for="option-<?= $enc->attr( $attrId ); ?>"><!--
+							<li class="select-entry">
+								<input class="select-option" type="radio"
+									id="option-<?= $enc->attr( $attrId ); ?>"
+									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>"
+									value="<?= $enc->attr( $attrId ); ?>"
+									<?= ( $preselect && $first ? 'checked="checked"' : '' ); $first = false ?>
+								/>
+								<label class="select-label" for="option-<?= $enc->attr( $attrId ); ?>"><!--
 
-										<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-											<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
-												<?= '-->' . $this->partial( $this->config(
-													'client/html/common/partials/media', 'common/partials/media-standard.php' ),
-													array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
-												) . '<!--'; ?>
-											<?php endif; ?>
-										<?php endforeach; ?>
+									<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'icon' ) as $listItem ) : ?>
+										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
+											<?= '-->' . $this->partial( $this->config(
+												'client/html/common/partials/media', 'common/partials/media-standard.php' ),
+												array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
+											) . '<!--'; ?>
+										<?php endif; ?>
+									<?php endforeach; ?>
 
-										--><span><?= $enc->html( $attributeItems[$attrId]->getName() ); ?></span><!--
-									--></label>
-								</li>
+									--><span><?= $enc->html( $attributeItems[$attrId]->getName() ); ?></span><!--
+								--></label>
+							</li>
 
-							<?php endif; ?>
 						<?php endforeach; ?>
 					</ul>
 
@@ -173,11 +169,9 @@ ksort( $attrTypeDeps );
 						<?php endif; ?>
 
 						<?php foreach( $positions as $attrId => $position ) : ?>
-							<?php if( isset( $attributeItems[$attrId] ) ) : ?>
-								<option class="select-option" value="<?= $enc->attr( $attrId ); ?>">
-									<?= $enc->html( $attributeItems[$attrId]->getName() ); ?>
-								</option>
-							<?php endif; ?>
+							<option class="select-option" value="<?= $enc->attr( $attrId ); ?>">
+								<?= $enc->html( $attributeItems[$attrId]->getName() ); ?>
+							</option>
 						<?php endforeach; ?>
 
 					</select>

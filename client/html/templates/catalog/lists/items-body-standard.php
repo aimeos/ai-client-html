@@ -38,9 +38,7 @@ $enc = $this->encoder();
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
-			'attributeItems' => $this->get( 'itemsAttributeItems', [] ),
 			'productItems' => $this->get( 'itemsProductItems', [] ),
-			'mediaItems' => $this->get( 'itemsMediaItems', [] ),
 			'products' => $this->get( 'listProductItems', [] ),
 			'position' => $this->get( 'itemPosition', 0 ),
 		)
