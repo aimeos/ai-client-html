@@ -350,10 +350,6 @@ abstract class Base
 			$this->addMetaItemSingle( $item, $expires, $tags, $tagAll );
 		}
 
-		foreach( $idMap as $domain => $ids ) {
-			$this->addMetaItemList( $ids, $domain, $expires );
-		}
-
 		if( $expire !== null ) {
 			$expires[] = $expire;
 		}
@@ -415,32 +411,6 @@ abstract class Base
 			}
 
 			$this->addMetaItemSingle( $refItem, $expires, $tags, $tagAll );
-		}
-	}
-
-
-	/**
-	 * Adds a new expiration date if a list item is activated in the future.
-	 *
-	 * @param array|string $ids Item ID or list of item IDs from the given domain
-	 * @param string $domain Name of the domain the item IDs are from
-	 * @param array &$expires Will contain the list of expiration dates
-	 */
-	private function addMetaItemList( $ids, $domain, array &$expires )
-	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), $domain . '/lists' );
-
-		$search = $manager->createSearch();
-		$expr = array(
-			$search->compare( '==', $domain . '.lists.parentid', $ids ),
-			$search->compare( '>', $domain . '.lists.datestart', date( 'Y-m-d H:i:00' ) ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( array( $search->sort( '+', $domain . '.lists.datestart' ) ) );
-		$search->setSlice( 0, 1 );
-
-		foreach( $manager->searchItems( $search ) as $listItem ) {
-			$expires[] = $listItem->getDateStart();
 		}
 	}
 
