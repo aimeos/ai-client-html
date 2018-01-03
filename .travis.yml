@@ -12,8 +12,8 @@ matrix:
   fast_finish: true
 
 before_script:
-  - git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
-  - git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
+  - git clone --depth=50 --branch=2018.01 git://github.com/aimeos/aimeos-core.git ../aimeos-core
+  - git clone --depth=50 --branch=2018.01 git://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
   - cd ../aimeos-core && mv ../ai-client-html ext/
   - composer update
   - mysql -e 'create database aimeos;'
