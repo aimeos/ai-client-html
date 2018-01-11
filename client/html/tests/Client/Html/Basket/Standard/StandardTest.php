@@ -221,7 +221,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		$output = $this->object->getBody();
 
-		$this->assertRegExp( '#<li class="attr-item.*<span class="value">30</span>.*</li>.*<li class="attr-item.*<span class="value">30</span>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item.*<span class="value">.*30.*</span>.*</li>.*<li class="attr-item.*<span class="value">.*30.*</span>.*</li>#smU', $output );
 	}
 
 

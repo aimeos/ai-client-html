@@ -213,7 +213,12 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 							<?php foreach( $product->getAttributes( $attrType ) as $attribute ) : ?>
 								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
 									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
-									<span class="value"><?= $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?></span>
+									<span class="value">
+										<?php if( $attribute->getQuantity() > 1 ) : ?>
+											<?= $enc->html( $attribute->getQuantity() ); ?>×
+										<?php endif; ?>
+										<?= $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?>
+									</span>
 								</li>
 							<?php endforeach; ?>
 						</ul>
