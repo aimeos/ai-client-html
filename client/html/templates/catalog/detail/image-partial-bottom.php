@@ -14,15 +14,12 @@
 
 $enc = $this->encoder();
 
-$getVariantData = function( $mediaId, array $mediaItems ) use ( $enc )
+$getVariantData = function( \Aimeos\MShop\Media\Item\Iface $mediaItem ) use ( $enc )
 {
 	$string = '';
 
-	if( isset( $mediaItems[$mediaId] ) )
-	{
-		foreach( $mediaItems[$mediaId]->getRefItems( 'attribute', null, 'variant' ) as $id => $item ) {
-			$string .= ' data-variant-' . $item->getType() . '="' . $enc->attr( $id ) . '"';
-		}
+	foreach( $mediaItem->getRefItems( 'attribute', null, 'variant' ) as $id => $item ) {
+		$string .= ' data-variant-' . $item->getType() . '="' . $enc->attr( $id ) . '"';
 	}
 
 	return $string;
@@ -35,12 +32,11 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 $url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', [] ), [], $detailConfig ) );
-$media = $this->get( 'mediaItems', [] );
+$mediaItems = $this->get( 'mediaItems', [] );
 
 
 ?>
 <div class="catalog-detail-image">
-	<?php $mediaItems = $this->productItem->getRefItems( 'media', 'default', 'default' ); ?>
 
 	<?php if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
 		<div class="image-thumbs thumbs-vertical" data-slick='{"slidesToShow": 4, "slidesToScroll": 4, "vertical": true, "verticalSwiping": true}'>
@@ -72,7 +68,7 @@ $media = $this->get( 'mediaItems', [] );
 				class="item" style="background-image: url('<?= $mediaUrl; ?>')"
 				itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
 				data-image="<?= $previewUrl; ?>"
-				<?= $getVariantData( $id, $media ); ?> >
+				<?= $getVariantData( $mediaItem ); ?> >
 				<a href="<?= $enc->attr( $mediaUrl ); ?>" itemprop="contentUrl"></a>
 				<figcaption itemprop="caption description"><?= $enc->html( $mediaItem->getName() ); ?></figcaption>
 			</figure>

@@ -56,7 +56,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
-$attrMap = $subAttrDeps = [];
+$attrMap = $subAttrDeps = $mediaItems = [];
 $attrItems = $this->get( 'detailAttributeItems', [] );
 $productItems = $this->get( 'detailProductItems', [] );
 
@@ -64,6 +64,7 @@ foreach( $productItems as $subProdId => $subProduct )
 {
 	$subItems = $subProduct->getRefItems( 'attribute', null, 'default' );
 	$subItems += $subProduct->getRefItems( 'attribute', null, 'variant' ); // show product variant attributes as well
+	$mediaItems = array_merge( $mediaItems, $subProduct->getRefItems( 'media' ) );
 
 	foreach( $subItems as $attrId => $attrItem )
 	{
@@ -140,7 +141,7 @@ ksort( $propMap );
 					array(
 						'productItem' => $this->detailProductItem,
 						'params' => $this->get( 'detailParams', [] ),
-						'mediaItems' => $this->get( 'detailMediaItems', [] )
+						'mediaItems' => $mediaItems
 					)
 				); ?>
 			</div>
