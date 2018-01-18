@@ -4,7 +4,7 @@
 	"keywords": ["aimeos", "extension", "client", "html"],
 	"homepage": "https://aimeos.org/",
 	"type": "aimeos-extension",
-	"license": "LGPL-3.0",
+	"license": "LGPL-3.0-or-later",
 	"support": {
 		"source": "https://github.com/aimeos/ai-client-html",
 		"issues": "https://github.com/aimeos/ai-client-html/issues",
