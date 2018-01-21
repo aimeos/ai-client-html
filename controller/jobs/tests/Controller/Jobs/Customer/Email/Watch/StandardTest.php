@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'getProductList' )
-			->will( $this->returnValue( array( -1 => array( 'item' => $product, 'price' => reset( $prices ) ) ) ) );
+			->will( $this->returnValue( array( -1 => array( 'item' => $product, 'price' => reset( $prices ), 'currency' => 'EUR' ) ) ) );
 
 
 		$object->run();
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'getProductList' )
-			->will( $this->returnValue( array( -1 => array( 'item' => $product, 'price' => reset( $prices ) ) ) ) );
+			->will( $this->returnValue( array( -1 => array( 'item' => $product, 'price' => reset( $prices ), 'currency' => 'EUR' ) ) ) );
 
 
 		$object->run();
