@@ -94,7 +94,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
 											<img src="<?= $enc->attr( $this->content( $url ) ); ?>" />
 										<?php endif; ?>
 
-										<?php $params = array( 'd_prodid' => $product->getId(), 'd_name' => $product->getName( 'url' ) ); ?>
+										<?php $params = array_merge( $this->param(), ['currency' => $entry['currency'], 'd_prodid' => $product->getId(), 'd_name' => $product->getName( 'url' )] ); ?>
 										<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 											<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 										</a>

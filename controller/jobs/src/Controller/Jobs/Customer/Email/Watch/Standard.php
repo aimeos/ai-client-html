@@ -238,6 +238,7 @@ class Standard
 						isset( $config['pricevalue'] ) && $config['pricevalue'] > $price->getValue()
 					) {
 						$result[$id]['item'] = $products[$refId];
+						$result[$id]['currencyId'] = $currencyId;
 						$result[$id]['price'] = $price;
 					}
 				}
@@ -343,6 +344,14 @@ class Standard
 		$view = $context->getView();
 		$view->extProducts = $products;
 		$view->extAddressItem = $address;
+
+		$params = [
+			'locale' => $context->getLocale()->getLanguageId(),
+			'site' => $context->getLocale()->getSite()->getCode(),
+		];
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
+		$view->addHelper( 'param', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ) );
 		$view->addHelper( 'translate', $helper );
