@@ -174,12 +174,22 @@ class Standard
 	 * Returns an initialized view object
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
 	 * @param string $langId ISO language code, maybe country specific
 	 * @return \Aimeos\MW\View\Iface Initialized view object
 	 */
-	protected function getView( $context, $langId )
+	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, $langId )
 	{
 		$view = $context->getView();
+
+		$params = [
+			'locale' => $langId,
+			'site' => $orderBaseItem->getSiteCode(),
+			'currency' => $orderBaseItem->getLocale()->getCurrencyId()
+		];
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
+		$view->addHelper( 'param', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
 		$view->addHelper( 'config', $helper );
@@ -242,7 +252,7 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$view = $this->getView( $context, $addrItem->getLanguageId() );
+		$view = $this->getView( $context, $orderBaseItem, $addrItem->getLanguageId() );
 		$view->extAddressItem = $addrItem;
 		$view->extOrderBaseItem = $orderBaseItem;
 		$view->extOrderItem = $orderItem;

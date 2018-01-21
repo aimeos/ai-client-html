@@ -114,8 +114,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( $mailMsgStub ) );
 
 		$this->context->setMail( $mailStub );
+		$baseItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
 
-		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, 'de' ) );
+		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, $baseItem, 'de' ) );
 
 		$this->assertInstanceof( '\Aimeos\MW\View\Iface', $result );
 	}
