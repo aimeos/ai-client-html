@@ -266,8 +266,9 @@ class Standard
 		\Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\MShop\Order\Item\Base\Address\Iface $addrItem )
 	{
 		$context = $this->getContext();
+		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->getLocale()->getLanguageId() );
 
-		$view = $this->getView( $context, $orderBaseItem, $addrItem->getLanguageId() );
+		$view = $this->getView( $context, $orderBaseItem, $langId );
 		$view->extAddressItem = $addrItem;
 		$view->extOrderBaseItem = $orderBaseItem;
 		$view->extOrderItem = $orderItem;
