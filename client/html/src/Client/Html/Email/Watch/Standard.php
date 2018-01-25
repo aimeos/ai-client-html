@@ -79,7 +79,6 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'text', 'html' );
-	private $view;
 
 
 	/**
@@ -90,11 +89,7 @@ class Standard
 	 */
 	public function getBody( $uid = '' )
 	{
-		$view = $this->getView();
-
-		if( !isset( $this->view ) ) {
-			$view = $this->view = $this->getObject()->addData( $view );
-		}
+		$view = $this->getObject()->addData( $this->getView() );
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -143,11 +138,7 @@ class Standard
 	 */
 	public function getHeader( $uid = '' )
 	{
-		$view = $this->getView();
-
-		if( !isset( $this->view ) ) {
-			$view = $this->view = $this->getObject()->addData( $view );
-		}
+		$view = $this->getObject()->addData( $this->getView() );
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
