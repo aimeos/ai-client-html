@@ -440,7 +440,7 @@ class Standard
 			$addr = $view->extAddressItem;
 
 			if( in_array( $addr->getSalutation(), $salutations ) ) {
-				$salutation = $view->translate( 'client/code', $addr->getSalutation() );
+				$salutation = $view->translate( 'mshop/code', $addr->getSalutation() );
 			}
 
 			/// E-mail intro with salutation (%1$s), first name (%2$s) and last name (%3$s)

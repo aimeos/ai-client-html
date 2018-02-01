@@ -42,7 +42,7 @@ echo preg_replace( "/\n+/m", "<br/>", trim( $enc->html( sprintf(
 '
 	),
 	$addr->getCompany(),
-	( in_array( $addr->getSalutation(), $salutations ) ? $this->translate( 'client/code', $addr->getSalutation() ) : '' ),
+	( in_array( $addr->getSalutation(), $salutations ) ? $this->translate( 'mshop/code', $addr->getSalutation() ) : '' ),
 	$addr->getTitle(),
 	$addr->getFirstName(),
 	$addr->getLastName(),
