@@ -86,7 +86,15 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 $listParams = [];
 $params = $this->param();
 
-foreach( array( 'f_sort' ) as $name ) {
+/*
+ * Use this array instead if you want to keep the selected category and the
+ * entered search string as well:
+ *
+ * ['f_catid', 'f_search', 'f_sort']
+ *
+ * Downside: It will be impossible for customers to deselect the category!
+ */
+foreach( ['f_sort'] as $name ) {
 	if( isset( $params[$name] ) ) { $listParams[$name] = $params[$name]; }
 }
 
