@@ -335,7 +335,7 @@ abstract class Base
 	 */
 	protected function getProductListSortByParam( array $params, &$sortdir )
 	{
-		$sortation = ( isset( $params['f_sort'] ) ? (string) $params['f_sort'] : 'relevance' );
+		$sortation = ( isset( $params['f_sort'] ) && $params['f_sort'] != '' ? (string) $params['f_sort'] : 'relevance' );
 
 		$sortdir = ( $sortation[0] === '-' ? '-' : '+' );
 		$sort = ltrim( $sortation, '-' );
