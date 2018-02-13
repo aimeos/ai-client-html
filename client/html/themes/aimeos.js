@@ -1064,7 +1064,9 @@ AimeosCatalogFilter = {
 
 		$(".catalog-filter-search").on("click", ".reset", function(ev) {
 			$(".symbol", this).css("visibility", "hidden");
+			$(".value", ev.delegateTarget).val("");
 			$(".value", ev.delegateTarget).focus();
+			return false;
 		});
 	},
 
