@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -56,27 +56,22 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/lists/promo/standard/subparts';
-	private $subPartNames = array();
-	private $tags = array();
-	private $expire;
-	private $cache;
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->promoBody = $html;
 
@@ -116,7 +111,7 @@ class Standard
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/promo/standard/template-body';
-		$default = 'catalog/lists/promo-body-default.php';
+		$default = 'catalog/lists/promo-body-standard.php';
 
 		return $view->render( $this->getTemplatePath( $tplconf, $default, 'aimeos/catalog/lists/type' ) );
 	}
@@ -126,17 +121,15 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getHeader( $uid );
 		}
 		$view->promoHeader = $html;
 
@@ -177,7 +170,7 @@ class Standard
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/promo/standard/template-header';
-		$default = 'catalog/lists/promo-header-default.php';
+		$default = 'catalog/lists/promo-header-standard.php';
 
 		return $view->render( $this->getTemplatePath( $tplconf, $default, 'aimeos/catalog/lists/type' ) );
 	}
@@ -289,62 +282,55 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$products = array();
-			$context = $this->getContext();
-			$config = $context->getConfig();
+		$context = $this->getContext();
+		$config = $context->getConfig();
 
-			if( isset( $view->listCurrentCatItem ) ) {
-				$catId = $view->listCurrentCatItem->getId();
-			} else {
-				$catId = $config->get( 'client/html/catalog/lists/catid-default', '' );
-			}
-
-			if( $catId != '' )
-			{
-				/** client/html/catalog/lists/promo/size
-				 * The maximum number of products that should be shown in the promotion section
-				 *
-				 * Each product list can render a list of promoted products on
-				 * top if there are any products associated to that category whose
-				 * list type is "promotion". This option limits the maximum number
-				 * of products that are displayed. It takes only effect if more
-				 * promotional products are added to this category than the set
-				 * value.
-				 *
-				 * @param integer Number of promotion products
-				 * @since 2014.03
-				 * @category User
-				 * @category Developer
-				 */
-				$size = $config->get( 'client/html/catalog/lists/promo/size', 6 );
-				$domains = $config->get( 'client/html/catalog/lists/domains', array( 'media', 'price', 'text' ) );
-
-				$total = null;
-
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-				$filter = $controller->createIndexFilterCategory( $catId, 'relevance', '+', 0, $size, 'promotion' );
-				$products = $controller->getIndexItems( $filter, $domains, $total );
-
-				$this->addMetaItems( $products, $this->expire, $this->tags );
-
-
-				if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
-					$view->promoStockUrl = $this->getStockUrl( $view, $products );
-				}
-
-				$view->promoItems = $products;
-			}
-
-			$this->cache = $view;
+		if( isset( $view->listCurrentCatItem ) ) {
+			$catId = $view->listCurrentCatItem->getId();
+		} else {
+			$catId = $config->get( 'client/html/catalog/lists/catid-default', '' );
 		}
 
-		$expire = $this->expires( $this->expire, $expire );
-		$tags = array_merge( $tags, $this->tags );
+		if( $catId != '' )
+		{
+			/** client/html/catalog/lists/promo/size
+			 * The maximum number of products that should be shown in the promotion section
+			 *
+			 * Each product list can render a list of promoted products on
+			 * top if there are any products associated to that category whose
+			 * list type is "promotion". This option limits the maximum number
+			 * of products that are displayed. It takes only effect if more
+			 * promotional products are added to this category than the set
+			 * value.
+			 *
+			 * @param integer Number of promotion products
+			 * @since 2014.03
+			 * @category User
+			 * @category Developer
+			 */
+			$size = $config->get( 'client/html/catalog/lists/promo/size', 6 );
+			$domains = $config->get( 'client/html/catalog/lists/domains', array( 'media', 'price', 'text' ) );
 
-		return $this->cache;
+			$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
+			$level = $config->get( 'client/html/catalog/lists/levels', $level );
+
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$filter = $controller->createFilter( 'relevance', '+', 0, $size, 'promotion' );
+			$filter = $controller->addFilterCategory( $filter, $catId, $level, 'relevance', '+', 'promotion' );
+			$products = $controller->searchItems( $filter, $domains );
+
+			$this->addMetaItems( $products, $expire, $tags );
+
+
+			if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
+				$view->promoStockUrl = $this->getStockUrl( $view, $products );
+			}
+
+			$view->promoItems = $products;
+		}
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -92,18 +92,18 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'search', 'tree', 'attribute' );
-	private $cache;
+	private $tags = [];
+	private $expire;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$prefixes = array( 'f' );
 		$context = $this->getContext();
@@ -126,35 +126,37 @@ class Standard
 
 			try
 			{
-				$view = $this->setViewParams( $view, $tags, $expire );
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
 				$html = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+					$html .= $subclient->setView( $view )->getBody( $uid );
 				}
 				$view->filterBody = $html;
 			}
 			catch( \Aimeos\Client\Html\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-				$view->filterErrorList = $view->get( 'filterErrorList', array() ) + $error;
+				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
 			}
 			catch( \Aimeos\Controller\Frontend\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-				$view->filterErrorList = $view->get( 'filterErrorList', array() ) + $error;
+				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
 			}
 			catch( \Aimeos\MShop\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-				$view->filterErrorList = $view->get( 'filterErrorList', array() ) + $error;
+				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
 			}
 			catch( \Exception $e )
 			{
 				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-				$view->filterErrorList = $view->get( 'filterErrorList', array() ) + $error;
+				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
 			}
 
 			/** client/html/catalog/filter/standard/template-body
@@ -178,11 +180,11 @@ class Standard
 			 * @see client/html/catalog/filter/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/filter/standard/template-body';
-			$default = 'catalog/filter/body-default.php';
+			$default = 'catalog/filter/body-standard.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -197,11 +199,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		if( self::$headerSingleton !== null ) {
 			return '';
@@ -219,11 +219,13 @@ class Standard
 
 			try
 			{
-				$view = $this->setViewParams( $view, $tags, $expire );
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
 				$html = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+					$html .= $subclient->setView( $view )->getHeader( $uid );
 				}
 				$view->filterHeader = $html;
 			}
@@ -255,11 +257,11 @@ class Standard
 			 * @see client/html/catalog/filter/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/filter/standard/template-header';
-			$default = 'catalog/filter/header-default.php';
+			$default = 'catalog/filter/header-standard.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -389,24 +391,24 @@ class Standard
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->filterErrorList = $view->get( 'filterErrorList', array() ) + $error;
+			$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->filterErrorList = $view->get( 'filterErrorList', array() ) + $error;
+			$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->filterErrorList = $view->get( 'filterErrorList', array() ) + $error;
+			$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->filterErrorList = $view->get( 'filterErrorList', array() ) + $error;
+			$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
 		}
 	}
 
@@ -425,114 +427,109 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$config = $this->getContext()->getConfig();
+		$config = $this->getContext()->getConfig();
 
-			/** client/html/catalog/count/enable
-			 * Enables or disables displaying product counts in the catalog filter
+		/** client/html/catalog/count/enable
+		 * Enables or disables displaying product counts in the catalog filter
+		 *
+		 * This configuration option allows shop owners to display product
+		 * counts in the catalog filter or to disable fetching product count
+		 * information.
+		 *
+		 * The product count information is fetched via AJAX and inserted via
+		 * Javascript. This allows to cache parts of the catalog filter by
+		 * leaving out such highly dynamic content like product count which
+		 * changes with used filter parameter.
+		 *
+		 * @param boolean Value of "1" to display product counts, "0" to disable them
+		 * @since 2014.03
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/count/url/target
+		 * @see client/html/catalog/count/url/controller
+		 * @see client/html/catalog/count/url/action
+		 * @see client/html/catalog/count/url/config
+		 */
+		if( $config->get( 'client/html/catalog/count/enable', true ) == true )
+		{
+			/** client/html/catalog/count/url/target
+			 * Destination of the URL where the controller specified in the URL is known
 			 *
-			 * This configuration option allows shop owners to display product
-			 * counts in the catalog filter or to disable fetching product count
-			 * information.
+			 * The destination can be a page ID like in a content management system or the
+			 * module of a software development framework. This "target" must contain or know
+			 * the controller that should be called by the generated URL.
 			 *
-			 * The product count information is fetched via AJAX and inserted via
-			 * Javascript. This allows to cache parts of the catalog filter by
-			 * leaving out such highly dynamic content like product count which
-			 * changes with used filter parameter.
-			 *
-			 * @param boolean Value of "1" to display product counts, "0" to disable them
+			 * @param string Destination of the URL
 			 * @since 2014.03
-			 * @category User
 			 * @category Developer
-			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/catalog/count/url/config
 			 */
-			if( $config->get( 'client/html/catalog/count/enable', true ) == true )
-			{
-				/** client/html/catalog/count/url/target
-				 * Destination of the URL where the controller specified in the URL is known
-				 *
-				 * The destination can be a page ID like in a content management system or the
-				 * module of a software development framework. This "target" must contain or know
-				 * the controller that should be called by the generated URL.
-				 *
-				 * @param string Destination of the URL
-				 * @since 2014.03
-				 * @category Developer
-				 * @see client/html/catalog/count/url/controller
-				 * @see client/html/catalog/count/url/action
-				 * @see client/html/catalog/count/url/config
-				 */
-				$target = $config->get( 'client/html/catalog/count/url/target' );
+			$target = $config->get( 'client/html/catalog/count/url/target' );
 
-				/** client/html/catalog/count/url/controller
-				 * Name of the controller whose action should be called
-				 *
-				 * In Model-View-Controller (MVC) applications, the controller contains the methods
-				 * that create parts of the output displayed in the generated HTML page. Controller
-				 * names are usually alpha-numeric.
-				 *
-				 * @param string Name of the controller
-				 * @since 2014.03
-				 * @category Developer
-				 * @see client/html/catalog/count/url/target
-				 * @see client/html/catalog/count/url/action
-				 * @see client/html/catalog/count/url/config
-				 */
-				$controller = $config->get( 'client/html/catalog/count/url/controller', 'catalog' );
+			/** client/html/catalog/count/url/controller
+			 * Name of the controller whose action should be called
+			 *
+			 * In Model-View-Controller (MVC) applications, the controller contains the methods
+			 * that create parts of the output displayed in the generated HTML page. Controller
+			 * names are usually alpha-numeric.
+			 *
+			 * @param string Name of the controller
+			 * @since 2014.03
+			 * @category Developer
+			 * @see client/html/catalog/count/url/target
+			 * @see client/html/catalog/count/url/action
+			 * @see client/html/catalog/count/url/config
+			 */
+			$controller = $config->get( 'client/html/catalog/count/url/controller', 'catalog' );
 
-				/** client/html/catalog/count/url/action
-				 * Name of the action that should create the output
-				 *
-				 * In Model-View-Controller (MVC) applications, actions are the methods of a
-				 * controller that create parts of the output displayed in the generated HTML page.
-				 * Action names are usually alpha-numeric.
-				 *
-				 * @param string Name of the action
-				 * @since 2014.03
-				 * @category Developer
-				 * @see client/html/catalog/count/url/target
-				 * @see client/html/catalog/count/url/controller
-				 * @see client/html/catalog/count/url/config
-				 */
-				$action = $config->get( 'client/html/catalog/count/url/action', 'count' );
+			/** client/html/catalog/count/url/action
+			 * Name of the action that should create the output
+			 *
+			 * In Model-View-Controller (MVC) applications, actions are the methods of a
+			 * controller that create parts of the output displayed in the generated HTML page.
+			 * Action names are usually alpha-numeric.
+			 *
+			 * @param string Name of the action
+			 * @since 2014.03
+			 * @category Developer
+			 * @see client/html/catalog/count/url/target
+			 * @see client/html/catalog/count/url/controller
+			 * @see client/html/catalog/count/url/config
+			 */
+			$action = $config->get( 'client/html/catalog/count/url/action', 'count' );
 
-				/** client/html/catalog/count/url/config
-				 * Associative list of configuration options used for generating the URL
-				 *
-				 * You can specify additional options as key/value pairs used when generating
-				 * the URLs, like
-				 *
-				 *  client/html/<clientname>/url/config = array( 'absoluteUri' => true )
-				 *
-				 * The available key/value pairs depend on the application that embeds the e-commerce
-				 * framework. This is because the infrastructure of the application is used for
-				 * generating the URLs. The full list of available config options is referenced
-				 * in the "see also" section of this page.
-				 *
-				 * @param string Associative list of configuration options
-				 * @since 2014.03
-				 * @category Developer
-				 * @see client/html/catalog/count/url/target
-				 * @see client/html/catalog/count/url/controller
-				 * @see client/html/catalog/count/url/action
-				 * @see client/html/url/config
-				 */
-				$config = $config->get( 'client/html/catalog/count/url/config', array() );
+			/** client/html/catalog/count/url/config
+			 * Associative list of configuration options used for generating the URL
+			 *
+			 * You can specify additional options as key/value pairs used when generating
+			 * the URLs, like
+			 *
+			 *  client/html/<clientname>/url/config = array( 'absoluteUri' => true )
+			 *
+			 * The available key/value pairs depend on the application that embeds the e-commerce
+			 * framework. This is because the infrastructure of the application is used for
+			 * generating the URLs. The full list of available config options is referenced
+			 * in the "see also" section of this page.
+			 *
+			 * @param string Associative list of configuration options
+			 * @since 2014.03
+			 * @category Developer
+			 * @see client/html/catalog/count/url/target
+			 * @see client/html/catalog/count/url/controller
+			 * @see client/html/catalog/count/url/action
+			 * @see client/html/url/config
+			 */
+			$config = $config->get( 'client/html/catalog/count/url/config', [] );
 
-				$params = $this->getClientParams( $view->param(), array( 'f' ) );
+			$params = $this->getClientParams( $view->param(), array( 'f' ) );
 
-				$view->filterCountUrl = $view->url( $target, $controller, $action, $params, array(), $config );
-			}
-
-			$this->cache = $view;
+			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $config );
 		}
 
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-03 12:40+0100\n"
-"PO-Revision-Date: 2017-01-03 11:40+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"POT-Creation-Date: 2017-11-25 22:56+0100\n"
+"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Vietnamese (http://www.transifex.com/aimeos/aimeos-core/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,8 +141,6 @@ msgstr ""
 msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2016
 msgid "An account has been created for you."
 msgstr ""
 
@@ -186,16 +184,6 @@ msgstr ""
 msgid "Buy now"
 msgstr "Mua ngay bây giờ"
 
-#. /html/catalog/filter/partials/tree
-#. * Relative path to the category tree partial template file
-#. *
-#. * Partials are templates which are reused in other templates and generate
-#. * reoccuring blocks filled with data from the assigned values. The tree
-#. * partial creates an HTML block of nested lists for category trees.
-#. *
-#. * @param string Relative path to the template file
-#. * @since 2017.01
-#. * @category Developer
 msgid "Categories"
 msgstr ""
 
@@ -269,12 +257,6 @@ msgstr ""
 msgid "Customer with ID \"%1$s\" not found"
 msgstr ""
 
-#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
-#. and last name (%3$s)
-#. / Payment e-mail form of address with salutation (%1$s), first name (%2$s)
-#. and last name (%3$s)
-#. / E-mail intro with salutation (%1$s), first name (%2$s) and last name
-#. (%3$s)
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Thân gửi %1$s  %2$s %3$s"
@@ -351,9 +333,6 @@ msgstr ""
 msgid "If price decreases"
 msgstr ""
 
-#. / E-mail outro
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2016
 msgid "If you have any questions, please reply to this e-mail"
 msgstr ""
 
@@ -400,6 +379,12 @@ msgid "Last name"
 msgstr "Họ"
 
 msgid "Last seen"
+msgstr ""
+
+msgid "Latest"
+msgstr ""
+
+msgid "Like entered by you"
 msgstr ""
 
 msgid "Name"
@@ -513,6 +498,14 @@ msgid "Please enter at least three characters"
 msgstr ""
 
 msgid "Please enter your payment details"
+msgstr ""
+
+#, php-format
+msgid "Please recheck your delivery choice"
+msgstr ""
+
+#, php-format
+msgid "Please recheck your payment choice"
 msgstr ""
 
 msgid "Please select"
@@ -765,6 +758,10 @@ msgid "Unable to create an account for \"%1$s\": %2$s"
 msgstr ""
 
 #, php-format
+msgid "Unable to create an account: %1$s"
+msgstr ""
+
+#, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr ""
 
@@ -810,7 +807,7 @@ msgstr ""
 #. / Date format with year (Y), month (m) and day (d). See
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
-msgstr "Năm-tháng-ngày"
+msgstr "Y-m-d"
 
 msgid "You are here:"
 msgstr "Bạn đang ở đây"
@@ -828,98 +825,9 @@ msgid "Your comment"
 msgstr ""
 
 #. / Account creation e-mail subject
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Account creation e-mail subject
 msgid "Your new account"
 msgstr ""
 
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. / Delivery e-mail subject with order ID
-#. / Payment e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2014
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Delivery e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Payment e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2014
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Delivery e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Payment e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2014
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Delivery e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Payment e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2014
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Delivery e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2013
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Payment e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2014
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Delivery e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2013
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Payment e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2014
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Delivery e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2013
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Payment e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2014
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Delivery e-mail subject with order ID
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2013
-#. * @copyright Aimeos (aimeos.org), 2015-2016
 #. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
@@ -936,13 +844,6 @@ msgstr ""
 msgid "Your search result"
 msgstr ""
 
-#. / Product notification e-mail subject
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Aimeos (aimeos.org), 2015-2016
-#. / Product notification e-mail subject
-#. //opensource.org/licenses/LGPL-3.0
-#. * @copyright Metaways Infosystems GmbH, 2014
-#. * @copyright Aimeos (aimeos.org), 2015-2016
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr ""
@@ -972,47 +873,6 @@ msgstr "giống như địa chỉ trên hóa đơn"
 msgid "new address"
 msgstr "địa chỉ mới"
 
-#. /html/catalog/attribute/type
-#. * List of layout types for the optional attributes
-#. *
-#. * Each product can contain optional attributes and this configuration
-#. setting
-#. * allows you to change how these attributs will be displayed, either as
-#. * drop-down menu (value: "select") or as list of radio buttons (value:
-#. * "radio").
-#. *
-#. * The key for each value must be the type code of the attribute, e.g.
-#. "width",
-#. * "length", "color" or similar types. You can set the layout for all
-#. * attributes at once using e.g.
-#. *
-#. *  client/html/catalog/attribute/type = array(
-#. *      'width' => 'select',
-#. *      'color' => 'radio',
-#. *  )
-#. *
-#. * Similarly, you can set the layout type for a specific attribute only,
-#. * leaving the rest untouched:
-#. *
-#. *  client/html/catalog/attribute/type/color = radio
-#. *
-#. * Note: Up to 2015.10 this option was available as
-#. /html/catalog/detail/basket/attribute/type
-#. *
-#. * @param array List of attribute types as key and layout types as value,
-#. e.g. "select" or "radio"
-#. * @since 2015.10
-#. * @category Developer
-#. * @category User
-#. * @see client/html/catalog/selection/type
-#. /html/catalog/attribute/type/color
-#. * Layout types for the color attribute
-#. *
-#. * @see client/html/catalog/attribute/type
-#. /html/catalog/attribute/type/size
-#. * Layout types for the size attribute
-#. *
-#. * @see client/html/catalog/attribute/type
 msgid "none"
 msgstr ""
 

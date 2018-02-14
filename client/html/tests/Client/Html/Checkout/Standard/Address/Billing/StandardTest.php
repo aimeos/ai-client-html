@@ -3,14 +3,14 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
 namespace Aimeos\Client\Html\Checkout\Standard\Address\Billing;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
@@ -20,8 +20,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Billing\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Billing\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -39,11 +38,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->context->setUserId( $customer->getId() );
 
 		$view = \TestHelperHtml::getView();
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing">', $output );
-		$this->assertRegexp( '/form-item city.*form-item postal/smU', $output );
+		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing', $output );
+		$this->assertRegexp( '/form-item form-group city.*form-item form-group postal/smU', $output );
 
 		$this->assertGreaterThan( 0, count( $view->billingMandatory ) );
 		$this->assertGreaterThan( 0, count( $view->billingOptional ) );
@@ -237,7 +236,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->object->setView( $view );
 
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->setExpectedException( '\Aimeos\Controller\Frontend\Customer\Exception' );
 		$this->object->process();
 	}
 

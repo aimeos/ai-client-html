@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -23,35 +23,51 @@ abstract class Base
 {
 	private $view;
 	private $cache;
+	private $object;
 	private $context;
 	private $subclients;
-	private $templatePaths;
 
 
 	/**
 	 * Initializes the class instance.
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param array $templatePaths Associative list of the file system paths to the core or the extensions as key
-	 * 	and a list of relative paths inside the core or the extension as values
 	 */
-	public function __construct( \Aimeos\MShop\Context\Item\Iface $context, array $templatePaths )
+	public function __construct( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		$this->context = $context;
-		$this->templatePaths = $templatePaths;
 	}
 
 
 	/**
-	 * Catches unknown methods
+	 * Catch unknown methods
 	 *
 	 * @param string $name Name of the method
 	 * @param array $param List of method parameter
-	 * @return boolean False in every case
+	 * @throws \Aimeos\Client\Html\Exception If method call failed
 	 */
 	public function __call( $name, array $param )
 	{
-		return false;
+		throw new \Aimeos\Client\Html\Exception( sprintf( 'Unable to call method "%1$s"', $name ) );
+	}
+
+
+	/**
+	 * Adds the data to the view object required by the templates
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
+	 * @since 2018.01
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	{
+		foreach( $this->getSubClients() as $name => $subclient ) {
+			$view = $subclient->addData( $view, $tags, $expire );
+		}
+
+		return $view;
 	}
 
 
@@ -59,19 +75,32 @@ abstract class Base
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$html = '';
 
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $this->view )->getHeader( $uid, $tags, $expire );
+			$html .= $subclient->setView( $this->view )->getHeader( $uid );
 		}
 
 		return $html;
+	}
+
+
+	/**
+	 * Returns the outmost decorator of the decorator stack
+	 *
+	 * @return \Aimeos\Client\Html\Iface Outmost decorator object
+	 */
+	protected function getObject()
+	{
+		if( $this->object !== null ) {
+			return $this->object;
+		}
+
+		return $this;
 	}
 
 
@@ -157,6 +186,19 @@ abstract class Base
 
 
 	/**
+	 * Injects the reference of the outmost client object or decorator
+	 *
+	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
+	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
+	 */
+	public function setObject( \Aimeos\Client\Html\Iface $object )
+	{
+		$this->object = $object;
+		return $this;
+	}
+
+
+	/**
 	 * Sets the view object that will generate the HTML output.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
@@ -173,13 +215,11 @@ abstract class Base
 	 * Adds the decorators to the client object
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client Client object
-	 * @param array $templatePaths List of file system paths where the templates are stored
 	 * @param array $decorators List of decorator name that should be wrapped around the client
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected function addDecorators( \Aimeos\Client\Html\Iface $client, array $templatePaths,
-		array $decorators, $classprefix )
+	protected function addDecorators( \Aimeos\Client\Html\Iface $client, array $decorators, $classprefix )
 	{
 		$iface = '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface';
 
@@ -197,7 +237,7 @@ abstract class Base
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
 			}
 
-			$client = new $classname( $client, $this->context, $this->templatePaths );
+			$client = new $classname( $client, $this->context );
 
 			if( !( $client instanceof $iface ) ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $iface ) );
@@ -212,11 +252,10 @@ abstract class Base
 	 * Adds the decorators to the client object
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client Client object
-	 * @param array $templatePaths List of file system paths where the templates are stored
 	 * @param string $path Client string in lower case, e.g. "catalog/detail/basic"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected function addClientDecorators( \Aimeos\Client\Html\Iface $client, array $templatePaths, $path )
+	protected function addClientDecorators( \Aimeos\Client\Html\Iface $client, $path )
 	{
 		if( !is_string( $path ) || $path === '' ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
@@ -225,8 +264,8 @@ abstract class Base
 		$localClass = str_replace( ' ', '\\', ucwords( str_replace( '/', ' ', $path ) ) );
 		$config = $this->context->getConfig();
 
-		$decorators = $config->get( 'client/html/common/decorators/default', array() );
-		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', array() );
+		$decorators = $config->get( 'client/html/common/decorators/default', [] );
+		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
 		{
@@ -236,15 +275,15 @@ abstract class Base
 		}
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
+		$client = $this->addDecorators( $client, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', array() );
-		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
+		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
+		$client = $this->addDecorators( $client, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', array() );
-		$client = $this->addDecorators( $client, $templatePaths, $decorators, $classprefix );
+		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', [] );
+		$client = $this->addDecorators( $client, $decorators, $classprefix );
 
 		return $client;
 	}
@@ -256,8 +295,9 @@ abstract class Base
 	 * @param array|\Aimeos\MShop\Common\Item\Iface $items Item or list of items, maybe with associated list items
 	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
 	 * @param array &$tags List of tags the new tags will be added to
+	 * @param array $custom List of custom tags which are added too
 	 */
-	protected function addMetaItems( $items, &$expire, array &$tags )
+	protected function addMetaItems( $items, &$expire, array &$tags, array $custom = [] )
 	{
 		/** client/html/common/cache/tag-all
 		 * Adds tags for all items used in a cache entry
@@ -297,7 +337,7 @@ abstract class Base
 			$items = array( $items );
 		}
 
-		$expires = $idMap = array();
+		$expires = $idMap = [];
 
 		foreach( $items as $item )
 		{
@@ -310,10 +350,6 @@ abstract class Base
 			$this->addMetaItemSingle( $item, $expires, $tags, $tagAll );
 		}
 
-		foreach( $idMap as $domain => $ids ) {
-			$this->addMetaItemList( $ids, $domain, $expires );
-		}
-
 		if( $expire !== null ) {
 			$expires[] = $expire;
 		}
@@ -322,7 +358,7 @@ abstract class Base
 			$expire = min( $expires );
 		}
 
-		$tags = array_unique( $tags );
+		$tags = array_unique( array_merge( $tags, $custom ) );
 	}
 
 
@@ -362,6 +398,10 @@ abstract class Base
 	{
 		foreach( $item->getListItems() as $listitem )
 		{
+			if( ( $refItem = $listitem->getRefItem() ) === null ) {
+				continue;
+			}
+
 			if( $tagAll === true ) {
 				$tags[] = str_replace( '/', '_', $listitem->getDomain() ) . '-' . $listitem->getRefId();
 			}
@@ -369,32 +409,8 @@ abstract class Base
 			if( ( $date = $listitem->getDateEnd() ) !== null ) {
 				$expires[] = $date;
 			}
-		}
-	}
 
-
-	/**
-	 * Adds a new expiration date if a list item is activated in the future.
-	 *
-	 * @param array|string $ids Item ID or list of item IDs from the given domain
-	 * @param string $domain Name of the domain the item IDs are from
-	 * @param array &$expires Will contain the list of expiration dates
-	 */
-	private function addMetaItemList( $ids, $domain, array &$expires )
-	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), $domain . '/lists' );
-
-		$search = $manager->createSearch();
-		$expr = array(
-			$search->compare( '==', $domain . '.lists.parentid', $ids ),
-			$search->compare( '>', $domain . '.lists.datestart', date( 'Y-m-d H:i:00' ) ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( array( $search->sort( '+', $domain . '.lists.datestart' ) ) );
-		$search->setSlice( 0, 1 );
-
-		foreach( $manager->searchItems( $search ) as $listItem ) {
-			$expires[] = $listItem->getDateStart();
+			$this->addMetaItemSingle( $refItem, $expires, $tags, $tagAll );
 		}
 	}
 
@@ -427,13 +443,13 @@ abstract class Base
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not available', $classname ) );
 		}
 
-		$object = new $classname( $this->context, $this->templatePaths );
+		$object = new $classname( $this->context );
 
 		if( ( $object instanceof $interface ) === false ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" does not implement interface "%2$s"', $classname, $interface ) );
 		}
 
-		return $this->addClientDecorators( $object, $this->templatePaths, $path );
+		return $this->addClientDecorators( $object, $path );
 	}
 
 
@@ -458,7 +474,7 @@ abstract class Base
 	 */
 	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) )
 	{
-		$list = array();
+		$list = [];
 
 		foreach( $params as $key => $value )
 		{
@@ -490,7 +506,7 @@ abstract class Base
 	 * @param array $config Multi-dimensional array of configuration options used by the client and sub-clients
 	 * @return string Unique hash
 	 */
-	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), $key = '', array $config = array() )
+	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), $key = '', array $config = [] )
 	{
 		$locale = $this->getContext()->getLocale();
 		$params = $this->getClientParams( $this->getView()->param(), $prefixes );
@@ -521,10 +537,10 @@ abstract class Base
 	{
 		if( !isset( $this->subclients ) )
 		{
-			$this->subclients = array();
+			$this->subclients = [];
 
 			foreach( $this->getSubClientNames() as $name ) {
-				$this->subclients[] = $this->getSubClient( $name );
+				$this->subclients[$name] = $this->getSubClient( $name );
 			}
 		}
 
@@ -549,50 +565,6 @@ abstract class Base
 		}
 
 		return $this->view->config( $confkey, $default );
-	}
-
-
-	/**
-	 * Returns the paths where the layout templates can be found
-	 *
-	 * @return array List of template paths
-	 * @since 2015.09
-	 */
-	protected function getTemplatePaths()
-	{
-		return $this->templatePaths;
-	}
-
-
-	/**
-	 * Returns the attribute type item specified by the code.
-	 *
-	 * @param string $prefix Domain prefix for the manager, e.g. "media/type"
-	 * @param string $domain Domain of the type item
-	 * @param string $code Code of the type item
-	 * @return \Aimeos\MShop\Common\Item\Type\Iface Type item
-	 * @throws \Aimeos\Controller\Jobs\Exception If no item is found
-	 */
-	protected function getTypeItem( $prefix, $domain, $code )
-	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), $prefix );
-		$prefix = str_replace( '/', '.', $prefix );
-
-		$search = $manager->createSearch();
-		$expr = array(
-				$search->compare( '==', $prefix . '.domain', $domain ),
-				$search->compare( '==', $prefix . '.code', $code ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$result = $manager->searchItems( $search );
-
-		if( ( $item = reset( $result ) ) === false )
-		{
-			$msg = sprintf( 'No type item for "%1$s/%2$s" in "%3$s" found', $domain, $code, $prefix );
-			throw new \Aimeos\Controller\Jobs\Exception( $msg );
-		}
-
-		return $item;
 	}
 
 
@@ -634,7 +606,7 @@ abstract class Base
 			return null;
 		}
 
-		$cfg = $config->get( $confkey, array() );
+		$cfg = $config->get( $confkey, [] );
 
 		$keys = array(
 			'body' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':body', $cfg ),
@@ -673,7 +645,7 @@ abstract class Base
 
 		try
 		{
-			$cfg = $config->get( $confkey, array() );
+			$cfg = $config->get( $confkey, [] );
 			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
 			$context->getCache()->set( $key, $value, $expire, array_unique( $tags ) );
@@ -713,20 +685,6 @@ abstract class Base
 
 
 	/**
-	 * Sets the necessary parameter values in the view.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
-	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
-	{
-		return $view;
-	}
-
-
-	/**
 	 * Translates the plugin error codes to human readable error strings.
 	 *
 	 * @param array $codes Associative list of scope and object as key and error code as value
@@ -734,7 +692,7 @@ abstract class Base
 	 */
 	protected function translatePluginErrorCodes( array $codes )
 	{
-		$errors = array();
+		$errors = [];
 		$i18n = $this->getContext()->getI18n();
 
 		foreach( $codes as $scope => $list )

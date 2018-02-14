@@ -1,14 +1,16 @@
 <?php
 
-namespace Aimeos\Client\Html\Email\Delivery;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+
+
+namespace Aimeos\Client\Html\Email\Delivery;
+
+
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $orderItem;
 	private static $orderBaseItem;
@@ -34,19 +36,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	}
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
-
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Email\Delivery\Standard( $this->context, $paths );
 
 		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
 		$view->extOrderItem = self::$orderItem;
@@ -54,16 +47,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->extAddressItem = self::$orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
 
+		$this->object = new \Aimeos\Client\Html\Email\Delivery\Standard( $this->context );
 		$this->object->setView( $view );
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );

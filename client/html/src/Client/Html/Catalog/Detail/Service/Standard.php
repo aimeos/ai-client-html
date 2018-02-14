@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016
+ * @copyright Aimeos (aimeos.org), 2016-2017
  * @package Client
  * @subpackage Html
  */
@@ -55,28 +55,22 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/detail/service/standard/subparts';
-	private $subPartNames = array();
-
-	private $tags = array();
-	private $expire;
-	private $cache;
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->serviceBody = $html;
 
@@ -101,7 +95,7 @@ class Standard
 		 * @see client/html/catalog/detail/service/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/detail/service/standard/template-body';
-		$default = 'catalog/detail/service-body-default.php';
+		$default = 'catalog/detail/service-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -213,69 +207,61 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
-			$config = $context->getConfig();
+		$context = $this->getContext();
+		$config = $context->getConfig();
 
-			/** client/html/catalog/detail/service/types
-			 * The service types available in the service template
-			 *
-			 * By default, only delivery services will be available in the
-			 * template but you can extend the list to payment services too.
-			 *
-			 * @param array List of type codes
-			 * @since 2016.05
-			 * @category Developer
-			 * @see client/html/catalog/detail/service/domains
-			 */
-			$types = $config->get( 'client/html/catalog/detail/service/types', array( 'delivery' ) );
+		/** client/html/catalog/detail/service/types
+		 * The service types available in the service template
+		 *
+		 * By default, only delivery services will be available in the
+		 * template but you can extend the list to payment services too.
+		 *
+		 * @param array List of type codes
+		 * @since 2016.05
+		 * @category Developer
+		 * @see client/html/catalog/detail/service/domains
+		 */
+		$types = $config->get( 'client/html/catalog/detail/service/types', array( 'delivery' ) );
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
-			$search = $manager->createSearch( true );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
+		$search = $manager->createSearch( true );
 
-			$expr = array(
-				$search->compare( '==', 'service.type.code', $types ),
-				$search->getConditions(),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
+		$expr = array(
+			$search->compare( '==', 'service.type.code', $types ),
+			$search->getConditions(),
+		);
+		$search->setConditions( $search->combine( '&&', $expr ) );
 
-			$sortation = array(
-				$search->sort( '+', 'service.type.code' ),
-				$search->sort( '+', 'service.position' ),
-			);
-			$search->setSortations( $sortation );
+		$sortation = array(
+			$search->sort( '+', 'service.type.code' ),
+			$search->sort( '+', 'service.position' ),
+		);
+		$search->setSortations( $sortation );
 
-			/** client/html/catalog/detail/service/domains
-			 * A list of domain names whose items should be available for the services
-			 * in the services part of the catalog detail view templates
-			 *
-			 * Usually, service prices and texts are available in the templates
-			 * rendering services related data. If you want to
-			 * display additional content like the attributes, you can configure
-			 * your own list of domains (attribute, media, price, text,
-			 * etc. are domains) whose items are fetched from the storage.
-			 *
-			 * @param array List of domain names
-			 * @since 2016.05
-			 * @category Developer
-			 * @see client/html/catalog/detail/service/types
-			 */
-			$domains = $config->get( 'client/html/catalog/detail/service/domains', array( 'text', 'price' ) );
+		/** client/html/catalog/detail/service/domains
+		 * A list of domain names whose items should be available for the services
+		 * in the services part of the catalog detail view templates
+		 *
+		 * Usually, service prices and texts are available in the templates
+		 * rendering services related data. If you want to
+		 * display additional content like the attributes, you can configure
+		 * your own list of domains (attribute, media, price, text,
+		 * etc. are domains) whose items are fetched from the storage.
+		 *
+		 * @param array List of domain names
+		 * @since 2016.05
+		 * @category Developer
+		 * @see client/html/catalog/detail/service/types
+		 */
+		$domains = $config->get( 'client/html/catalog/detail/service/domains', array( 'text', 'price' ) );
 
-			$services = $manager->searchItems( $search, $domains );
-			$this->addMetaItems( $services, $this->expire, $this->tags );
+		$services = $manager->searchItems( $search, $domains );
+		$this->addMetaItems( $services, $expire, $tags );
 
-			$view->serviceItems = $services;
+		$view->serviceItems = $services;
 
-			$this->cache = $view;
-		}
-
-		$expire = $this->expires( $this->expire, $expire );
-		$tags = array_merge( $tags, $this->tags );
-
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

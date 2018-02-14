@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -79,25 +79,28 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'tree', 'attribute' );
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->countBody = $html;
 
@@ -122,7 +125,7 @@ class Standard
 			 * @see client/html/catalog/count/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/count/standard/template-body';
-			$default = 'catalog/count/body-default.php';
+			$default = 'catalog/count/body-standard.php';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -137,19 +140,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->countHeader = $html;
 
@@ -175,7 +180,7 @@ class Standard
 			 * @see client/html/catalog/count/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/count/standard/template-header';
-			$default = 'catalog/count/header-default.php';
+			$default = 'catalog/count/header-standard.php';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

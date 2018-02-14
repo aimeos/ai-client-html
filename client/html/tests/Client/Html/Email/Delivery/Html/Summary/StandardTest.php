@@ -1,14 +1,16 @@
 <?php
 
-namespace Aimeos\Client\Html\Email\Delivery\Html\Summary;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+
+
+namespace Aimeos\Client\Html\Email\Delivery\Html\Summary;
+
+
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $orderItem;
 	private static $orderBaseItem;
@@ -39,26 +41,25 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Email\Delivery\Html\Summary\Standard( $this->context, $paths );
-
 		$view = \TestHelperHtml::getView();
 		$view->extOrderItem = self::$orderItem;
 		$view->extOrderBaseItem = self::$orderBaseItem;
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
 
+		$this->object = new \Aimeos\Client\Html\Email\Delivery\Html\Summary\Standard( $this->context );
 		$this->object->setView( $view );
 	}
 
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->emailMock );
 	}
 
 
 	public function testGetBody()
 	{
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<div class="common-summary content-block">', $output );

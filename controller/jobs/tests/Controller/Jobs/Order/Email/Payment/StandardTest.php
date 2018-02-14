@@ -3,14 +3,14 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
 namespace Aimeos\Controller\Jobs\Order\Email\Payment;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
 	private $object;
@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$orderItem = $orderManagerStub->createItem();
 
 		$orderManagerStub->expects( $this->exactly( 4 ) )->method( 'searchItems' )
-			->will( $this->onConsecutiveCalls( array( $orderItem ), array(), array(), array() ) );
+			->will( $this->onConsecutiveCalls( array( $orderItem ), [], [], [] ) );
 
 		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Payment\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
@@ -114,8 +114,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			->will( $this->returnValue( $mailMsgStub ) );
 
 		$this->context->setMail( $mailStub );
+		$baseItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
 
-		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, 'de' ) );
+		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, $baseItem, 'de' ) );
 
 		$this->assertInstanceof( '\Aimeos\MW\View\Iface', $result );
 	}

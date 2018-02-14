@@ -36,13 +36,13 @@ abstract class Base
 	 */
 	protected function addAttributeFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter, $useOr = true )
 	{
-		$optIds = $oneIds = array();
-		$attrIds = ( isset( $params['f_attrid'] ) ? (array) $params['f_attrid'] : array() );
+		$optIds = $oneIds = [];
+		$attrIds = ( isset( $params['f_attrid'] ) ? (array) $params['f_attrid'] : [] );
 
 		if( $useOr === true )
 		{
-			$optIds = ( isset( $params['f_optid'] ) ? (array) $params['f_optid'] : array() );
-			$oneIds = ( isset( $params['f_oneid'] ) ? (array) $params['f_oneid'] : array() );
+			$optIds = ( isset( $params['f_optid'] ) ? (array) $params['f_optid'] : [] );
+			$oneIds = ( isset( $params['f_oneid'] ) ? (array) $params['f_oneid'] : [] );
 		}
 
 		return $this->getController()->addFilterAttribute( $filter, $attrIds, $optIds, $oneIds );
@@ -137,7 +137,7 @@ abstract class Base
 		if( !isset( $this->controller ) )
 		{
 			$context = $this->getContext();
-			$this->controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'index' );
+			$this->controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 		}
 
 		return $this->controller;
@@ -335,7 +335,7 @@ abstract class Base
 	 */
 	protected function getProductListSortByParam( array $params, &$sortdir )
 	{
-		$sortation = ( isset( $params['f_sort'] ) ? (string) $params['f_sort'] : 'relevance' );
+		$sortation = ( isset( $params['f_sort'] ) && $params['f_sort'] != '' ? (string) $params['f_sort'] : 'relevance' );
 
 		$sortdir = ( $sortation[0] === '-' ? '-' : '+' );
 		$sort = ltrim( $sortation, '-' );
@@ -451,10 +451,10 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/url/config
 		*/
-		$config = $view->config( 'client/html/catalog/stock/url/config', array() );
+		$config = $view->config( 'client/html/catalog/stock/url/config', [] );
 
 
-		$codes = array();
+		$codes = [];
 
 		foreach( $products as $product ) {
 			$codes[] = $product->getCode();
@@ -462,7 +462,7 @@ abstract class Base
 
 		sort( $codes );
 
-		return $view->url( $target, $cntl, $action, array( "s_prodcode" => $codes ), array(), $config );
+		return $view->url( $target, $cntl, $action, array( "s_prodcode" => $codes ), [], $config );
 	}
 
 
@@ -532,92 +532,6 @@ abstract class Base
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
 		$productFilter = $this->getProductListFilter( $view );
-		$this->productList = $this->getController()->getItems( $productFilter, $domains, $this->productTotal );
-	}
-
-
-	/**
-	 * Returns the catalog controller object
-	 *
-	 * @return \Aimeos\Controller\Frontend\Catalog\Interface Catalog controller
-	 * @deprecated Create catalog frontend controller yourself
-	 */
-	protected function getCatalogController()
-	{
-		return \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'catalog' );
-	}
-
-
-	/**
-	 * Returns the list of catetory IDs if subcategories should be included
-	 *
-	 * @param string|array $catId Category ID or list of category IDs
-	 * @return string|array Cateogory ID or list of catetory IDs
-	 * @deprecated Moved to createProductListFilter() and index controller
-	 */
-	protected function getCatalogIds( $catId )
-	{
-		$config = $this->getContext()->getConfig();
-		$default = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
-
-		$level = $config->get( 'client/html/catalog/lists/levels', $default );
-
-		$catIds = ( !is_array( $catId ) ? explode( ',', $catId ) : $catId );
-
-		if( $level != $default )
-		{
-			$list = array();
-
-			foreach( $catIds as $catId )
-			{
-				$tree = $this->getCatalogController()->getCatalogTree( $catId, array(), $level );
-				$list = array_merge( $list, $this->getCatalogIdsFromTree( $tree ) );
-			}
-
-			$catIds = $list;
-		}
-
-		return array_unique( $catIds );
-	}
-
-
-	/**
-	 * Returns the list of catalog IDs for the given catalog tree
-	 *
-	 * @param \Aimeos\MShop\Catalog\Item\Iface $item Catalog item with children
-	 * @return array List of catalog IDs
-	 * @deprecated Moved to index controller
-	 */
-	protected function getCatalogIdsFromTree( \Aimeos\MShop\Catalog\Item\Iface $item )
-	{
-		$list = array( $item->getId() );
-
-		foreach( $item->getChildren() as $child ) {
-			$list = array_merge( $list, $this->getCatalogIdsFromTree( $child ) );
-		}
-
-		return $list;
-	}
-
-
-	/**
-	 * Validates the given IDs as integers
-	 *
-	 * @param array $ids List of IDs to validate
-	 * @return array List of validated IDs
-	 * @deprecated Moved to index controller
-	 */
-	protected function validateIds( array $ids )
-	{
-		$list = array();
-
-		foreach( $ids as $id )
-		{
-			if( $id != '' ) {
-				$list[] = (int) $id;
-			}
-		}
-
-		return $ids;
+		$this->productList = $this->getController()->searchItems( $productFilter, $domains, $this->productTotal );
 	}
 }

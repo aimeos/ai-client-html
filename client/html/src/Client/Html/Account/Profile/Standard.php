@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016
+ * @copyright Aimeos (aimeos.org), 2016-2017
  * @package Client
  * @subpackage Html
  */
@@ -55,54 +55,54 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/account/profile/standard/subparts';
-	private $subPartNames = array();
-	private $cache;
+	private $subPartNames = [];
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->profileBody = $html;
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
 		}
 
 		/** client/html/account/profile/standard/template-body
@@ -126,7 +126,7 @@ class Standard
 		 * @see client/html/account/profile/standard/template-header
 		 */
 		$tplconf = 'client/html/account/profile/standard/template-body';
-		$default = 'account/profile/body-default.php';
+		$default = 'account/profile/body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -136,19 +136,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->profileHeader = $html;
 
@@ -174,7 +176,7 @@ class Standard
 			 * @see client/html/account/profile/standard/template-body
 			 */
 			$tplconf = 'client/html/account/profile/standard/template-header';
-			$default = 'account/profile/header-default.php';
+			$default = 'account/profile/header-standard.php';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -289,24 +291,24 @@ class Standard
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', array() ) + $error;
+			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
 		}
 	}
 
@@ -330,43 +332,37 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
-			$userId = $context->getUserId();
+		$context = $this->getContext();
+		$userId = $context->getUserId();
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-			$addrManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+		$addrManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
 
 
-			/** client/html/account/profile/domains
-			 * A list of domain names whose items should be available in the account profile view template
-			 *
-			 * The templates rendering customer details can contain additional
-			 * items. If you want to display additional content, you can configure
-			 * your own list of domains (attribute, media, price, product, text,
-			 * etc. are domains) whose items are fetched from the storage.
-			 *
-			 * @param array List of domain names
-			 * @since 2016.10
-			 * @category Developer
-			 */
-			$domains = $context->getConfig()->get( 'client/html/account/profile/domains', array() );
+		/** client/html/account/profile/domains
+		 * A list of domain names whose items should be available in the account profile view template
+		 *
+		 * The templates rendering customer details can contain additional
+		 * items. If you want to display additional content, you can configure
+		 * your own list of domains (attribute, media, price, product, text,
+		 * etc. are domains) whose items are fetched from the storage.
+		 *
+		 * @param array List of domain names
+		 * @since 2016.10
+		 * @category Developer
+		 */
+		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', [] );
 
-			$view->profileCustomerItem = $manager->getItem( $userId, $domains );
-
-
-			$search = $addrManager->createSearch();
-			$search->setConditions( $search->compare( '==', 'customer.address.parentid', $userId ) );
-
-			$view->profileAddressItems = $manager->searchItems( $search );
+		$view->profileCustomerItem = $manager->getItem( $userId, $domains );
 
 
-			$this->cache = $view;
-		}
+		$search = $addrManager->createSearch();
+		$search->setConditions( $search->compare( '==', 'customer.address.parentid', $userId ) );
 
-		return $this->cache;
+		$view->profileAddressItems = $manager->searchItems( $search );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

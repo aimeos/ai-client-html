@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -20,7 +20,7 @@ namespace Aimeos\Client\Html\Common\Factory;
  */
 class Base
 {
-	private static $objects = array();
+	private static $objects = [];
 
 
 	/**
@@ -42,13 +42,12 @@ class Base
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context instance with necessary objects
 	 * @param \Aimeos\Client\Html\Iface $client Client object
-	 * @param array $templatePaths List of file system paths where the templates are stored
 	 * @param array $decorators List of decorator name that should be wrapped around the client
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
 	protected static function addDecorators( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\Client\Html\Iface $client, array $templatePaths, array $decorators, $classprefix )
+		\Aimeos\Client\Html\Iface $client, array $decorators, $classprefix )
 	{
 		$iface = '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface';
 
@@ -66,7 +65,7 @@ class Base
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
 			}
 
-			$client = new $classname( $client, $context, $templatePaths );
+			$client = new $classname( $client, $context );
 
 			if( !( $client instanceof $iface ) ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $iface ) );
@@ -82,12 +81,11 @@ class Base
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context instance with necessary objects
 	 * @param \Aimeos\Client\Html\Iface $client Client object
-	 * @param array $templatePaths List of file system paths where the templates are stored
 	 * @param string $path Path of the client in lower case, e.g. "catalog/detail"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
 	protected static function addClientDecorators( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\Client\Html\Iface $client, array $templatePaths, $path )
+		\Aimeos\Client\Html\Iface $client, $path )
 	{
 		if( !is_string( $path ) || $path === '' ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
@@ -118,8 +116,8 @@ class Base
 		 * @since 2014.03
 		 * @category Developer
 		 */
-		$decorators = $config->get( 'client/html/common/decorators/default', array() );
-		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', array() );
+		$decorators = $config->get( 'client/html/common/decorators/default', [] );
+		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
 		{
@@ -129,15 +127,15 @@ class Base
 		}
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$client = self::addDecorators( $context, $client, $templatePaths, $decorators, $classprefix );
+		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', array() );
-		$client = self::addDecorators( $context, $client, $templatePaths, $decorators, $classprefix );
+		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
+		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', array() );
-		$client = self::addDecorators( $context, $client, $templatePaths, $decorators, $classprefix );
+		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', [] );
+		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
 		return $client;
 	}
@@ -149,11 +147,10 @@ class Base
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context instance with necessary objects
 	 * @param string $classname Name of the client class
 	 * @param string $interface Name of the client interface
-	 * @param array $templatePaths List of file system paths where the templates are stored
 	 * @return \Aimeos\Client\Html\\Iface Client object
 	 * @throws \Aimeos\Client\Html\Exception If client couldn't be found or doesn't implement the interface
 	 */
-	protected static function createClientBase( \Aimeos\MShop\Context\Item\Iface $context, $classname, $interface, $templatePaths )
+	protected static function createClientBase( \Aimeos\MShop\Context\Item\Iface $context, $classname, $interface )
 	{
 		if( isset( self::$objects[$classname] ) ) {
 			return self::$objects[$classname];
@@ -163,7 +160,7 @@ class Base
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not available', $classname ) );
 		}
 
-		$client = new $classname( $context, $templatePaths );
+		$client = new $classname( $context );
 
 		if( !( $client instanceof $interface ) ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" does not implement interface "%2$s"', $classname, $interface ) );

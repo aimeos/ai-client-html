@@ -2,18 +2,22 @@ sudo: false
 language: php
 
 php:
-  - hhvm
+  - 7.1
   - 7.0
   - 5.6
   - 5.5
   - 5.4
 
+matrix:
+  fast_finish: true
+
 before_script:
   - git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
+  - git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
   - cd ../aimeos-core && mv ../ai-client-html ext/
-  - composer self-update && composer require "aimeos/ai-controller-frontend:dev-master"
+  - composer update
   - mysql -e 'create database aimeos;'
-  - echo "<?php return array( 'db' => array( 'adapter' => 'mysql', 'host' => '127.0.0.1', 'database' => 'aimeos', 'username' => 'root', 'password' => '', 'limit' => 2, 'opt-persistent' => false, 'stmt' => array( \"SET NAMES 'utf8'\", \"SET SESSION sql_mode='ANSI'\" ) ), 'mq' => array( 'adapter' => 'Standard', 'db' => 'db' ) );" > config/resource.php
+  - echo "<?php return array( 'db' => array( 'adapter' => 'mysql', 'host' => '127.0.0.1', 'database' => 'aimeos', 'username' => 'root', 'password' => '', 'limit' => 2, 'opt-persistent' => false, 'stmt' => array( \"SET SESSIOn sort_buffer_size=2097144; SET NAMES 'utf8'; SET SESSION sql_mode='ANSI'\" ) ), 'mq' => array( 'adapter' => 'Standard', 'db' => 'db' ) );" > config/resource.php
 
 script:
   - vendor/bin/phing -Ddir=ext/ai-client-html setup coverageext checkext

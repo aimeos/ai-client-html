@@ -1,24 +1,20 @@
 <?php
 
-namespace Aimeos\Client\Html\Catalog\Lists\Items;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+
+
+namespace Aimeos\Client\Html\Catalog\Lists\Items;
+
+
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$context = \TestHelperHtml::getContext();
@@ -51,19 +47,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->listProductTotal = $total;
 		$view->listPageSize = 100;
 		$view->listPageCurr = 1;
-		$view->listParams = array();
+		$view->listParams = [];
 		$view->listCatPath = array( $catalogManager->createItem(), $catItem );
 
 		$this->object->setView( $view );
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
@@ -79,6 +69,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
+
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<div class="catalog-list-items">', $output );
@@ -107,6 +99,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyTemplate()
 	{
 		$view = $this->object->getView();
+		$this->object->setView( $this->object->addData( $view ) );
+
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
 		$view->addHelper( 'param', $helper );
 

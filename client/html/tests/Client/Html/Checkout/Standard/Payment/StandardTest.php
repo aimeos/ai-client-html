@@ -3,14 +3,14 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
 namespace Aimeos\Client\Html\Checkout\Standard\Payment;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
@@ -20,8 +20,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Payment\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Payment\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -29,7 +28,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
-		unset( $this->object );
+
+		unset( $this->object, $this->context );
 	}
 
 
@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'payment';
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -56,14 +56,15 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'payment';
 		$view->standardSteps = array( 'before', 'payment', 'after' );
-		$this->object->setView( $view );
+		$view->standardBasket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="checkout-standard-payment">', $output );
-		$this->assertRegExp( '#<li class="form-item directdebit.accountowner mandatory">#smU', $output );
-		$this->assertRegExp( '#<li class="form-item directdebit.accountno mandatory">#smU', $output );
-		$this->assertRegExp( '#<li class="form-item directdebit.bankcode mandatory">#smU', $output );
-		$this->assertRegExp( '#<li class="form-item directdebit.bankname mandatory">#smU', $output );
+		$this->assertRegExp( '#<li class="form-item form-group directdebit.accountowner mandatory">#smU', $output );
+		$this->assertRegExp( '#<li class="form-item form-group directdebit.accountno mandatory">#smU', $output );
+		$this->assertRegExp( '#<li class="form-item form-group directdebit.bankcode mandatory">#smU', $output );
+		$this->assertRegExp( '#<li class="form-item form-group directdebit.bankname mandatory">#smU', $output );
 
 		$this->assertGreaterThan( 0, count( $view->paymentServices ) );
 		$this->assertGreaterThanOrEqual( 0, count( $view->paymentServiceAttributes ) );
@@ -124,7 +125,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->object->process();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
-		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment' )->getCode() );
+		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment', 'unitpaymentcode' )->getCode() );
 	}
 
 
@@ -138,7 +139,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->object->setView( $view );
 
-		$this->setExpectedException( '\\Aimeos\\Controller\\Frontend\\Service\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\MShop\\Exception' );
 		$this->object->process();
 	}
 

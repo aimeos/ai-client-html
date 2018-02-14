@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -30,13 +30,10 @@ abstract class Base
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client Client object
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object with required objects
-	 * @param array $templatePaths Associative list of the file system paths to the core or the extensions as key
-	 * 	and a list of relative paths inside the core or the extension as values
 	 */
-	public function __construct( \Aimeos\Client\Html\Iface $client,
-		\Aimeos\MShop\Context\Item\Iface $context, array $templatePaths )
+	public function __construct( \Aimeos\Client\Html\Iface $client, \Aimeos\MShop\Context\Item\Iface $context )
 	{
-		parent::__construct( $context, $templatePaths );
+		parent::__construct( $context );
 
 		$this->client = $client;
 	}
@@ -52,11 +49,22 @@ abstract class Base
 	 */
 	public function __call( $name, array $param )
 	{
-		if( ( $result = @call_user_func_array( array( $this->client, $name ), $param ) ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Unable to call method "%1$s"', $name ) );
-		}
+		return @call_user_func_array( array( $this->client, $name ), $param );
+	}
 
-		return $result;
+
+	/**
+	 * Adds the data to the view object required by the templates
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
+	 * @since 2018.01
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	{
+		return $this->client->addData( $view, $tags, $expire );
 	}
 
 
@@ -77,13 +85,11 @@ abstract class Base
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
-		return $this->client->getHeader( $uid, $tags, $expire );
+		return $this->client->getHeader( $uid );
 	}
 
 
@@ -91,13 +97,11 @@ abstract class Base
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		return $this->client->getBody( $uid, $tags, $expire );
+		return $this->client->getBody( $uid );
 	}
 
 
@@ -163,6 +167,22 @@ abstract class Base
 
 
 	/**
+	 * Injects the reference of the outmost client object or decorator
+	 *
+	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
+	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
+	 */
+	public function setObject( \Aimeos\Client\Html\Iface $object )
+	{
+		parent::setObject( $object );
+
+		$this->client->setObject( $object );
+
+		return $this;
+	}
+
+
+	/**
 	 * Returns the inner client object
 	 *
 	 * @return \Aimeos\Client\Html\Iface HTML client
@@ -180,6 +200,6 @@ abstract class Base
 	 */
 	protected function getSubClientNames()
 	{
-		return array();
+		return [];
 	}
 }

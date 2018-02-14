@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -56,24 +56,22 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/locale/select/language/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->languageBody = $html;
 
@@ -98,7 +96,7 @@ class Standard
 		 * @see client/html/locale/select/language/standard/template-header
 		 */
 		$tplconf = 'client/html/locale/select/language/standard/template-body';
-		$default = 'locale/select/language-body-default.php';
+		$default = 'locale/select/language-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

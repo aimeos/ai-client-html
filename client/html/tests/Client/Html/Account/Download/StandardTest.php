@@ -1,13 +1,15 @@
 <?php
 
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Aimeos (aimeos.org), 2016-2017
+ */
+
+
 namespace Aimeos\Client\Html\Account\Download;
 
 
-/**
- * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016
- */
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
 	private $object;
@@ -18,9 +20,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->view = \TestHelperHtml::getView();
 		$this->context = \TestHelperHtml::getContext();
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 
-		$this->object = new \Aimeos\Client\Html\Account\Download\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Account\Download\Standard( $this->context );
 		$this->object->setView( $this->view );
 	}
 

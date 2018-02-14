@@ -1,14 +1,16 @@
 <?php
 
-namespace Aimeos\Client\Html\Catalog\Count;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+
+
+namespace Aimeos\Client\Html\Catalog\Count;
+
+
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
 	private $object;
@@ -16,10 +18,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	protected function setUp()
 	{
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->context = \TestHelperHtml::getContext();
 
-		$this->object = new \Aimeos\Client\Html\Catalog\Count\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Count\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -32,7 +33,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetHeader()
 	{
+		$this->object->setView( $this->object->addData( \TestHelperHtml::getView() ) );
+
 		$output = $this->object->getHeader();
+
 		$this->assertNotNull( $output );
 	}
 
@@ -40,11 +44,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetHeaderException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Count\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -55,6 +59,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
+		$this->object->setView( $this->object->addData( \TestHelperHtml::getView() ) );
+
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'var categoryCounts', $output );
@@ -64,11 +70,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Count\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );

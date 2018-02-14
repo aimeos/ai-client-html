@@ -6,9 +6,9 @@ namespace Aimeos\Perf\Client\Html;
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
-class CatalogTest extends \PHPUnit_Framework_TestCase
+class CatalogTest extends \PHPUnit\Framework\TestCase
 {
 	protected $context;
 	protected $paths;

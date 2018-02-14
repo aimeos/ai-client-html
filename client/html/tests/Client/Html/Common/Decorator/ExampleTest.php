@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
@@ -13,7 +13,7 @@ namespace Aimeos\Client\Html\Common\Decorator;
 /**
  * Test class for \Aimeos\Client\Html\Common\Decorator\Example.
  */
-class ExampleTest extends \PHPUnit_Framework_TestCase
+class ExampleTest extends \PHPUnit\Framework\TestCase
 {
 	private $client;
 	private $object;
@@ -31,10 +31,10 @@ class ExampleTest extends \PHPUnit_Framework_TestCase
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
 			->setMethods( array( 'getHeader', 'getBody', 'testMethod' ) )
-			->setConstructorArgs( array( $context, array() ) )
+			->setConstructorArgs( array( $context, [] ) )
 			->getMock();
 
-		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, array() );
+		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, [] );
 		$this->object->setView( \TestHelperHtml::getView());
 	}
 
@@ -43,13 +43,6 @@ class ExampleTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->client->expects( $this->once() )->method( 'testMethod' ) ->will( $this->returnValue( true ) );
 		$this->assertTrue( $this->object->testMethod() );
-	}
-
-
-	public function testCallInvalid()
-	{
-		$this->setExpectedException( '\Aimeos\Client\Html\Exception' );
-		$this->object->invalidMethod();
 	}
 
 
@@ -103,6 +96,12 @@ class ExampleTest extends \PHPUnit_Framework_TestCase
 	public function testProcess()
 	{
 		$this->object->process();
+	}
+
+
+	public function testSetObject()
+	{
+		$this->object->setObject( $this->object );
 	}
 
 }

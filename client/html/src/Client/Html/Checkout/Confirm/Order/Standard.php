@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -55,26 +55,22 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/confirm/order/standard/subparts';
-	private $subPartNames = array();
-	private $cache;
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
-		$view = $this->setViewParams( $view, $tags, $expire );
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->orderBody = $html;
 
@@ -99,7 +95,7 @@ class Standard
 		 * @see client/html/checkout/confirm/order/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/confirm/order/standard/template-body';
-		$default = 'checkout/confirm/order-body-default.php';
+		$default = 'checkout/confirm/order-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -211,26 +207,21 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		if( isset( $view->confirmOrderItem ) )
 		{
-			if( isset( $view->confirmOrderItem ) )
-			{
-				$context = $this->getContext();
-				$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
-
-				if( $view->confirmOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
-					$view->summaryShowDownloadAttributes = true;
-				}
-
-				$view->summaryBasket = $manager->load( $view->confirmOrderItem->getBaseId() );
-				$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
+			if( $view->confirmOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+				$view->summaryShowDownloadAttributes = true;
 			}
 
-			$this->cache = $view;
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
+
+			$view->summaryBasket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
+			$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 		}
 
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

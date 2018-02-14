@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -56,20 +56,18 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/session/seen/standard/subparts';
-	private $subPartNames = array();
-	private $cache;
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
+		$view = $this->getView();
 		$context = $this->getContext();
 		$session = $context->getSession();
 
@@ -83,16 +81,14 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog#session
 		 */
-		$config = $context->getConfig()->get( 'client/html/catalog/session/seen', array() );
-		$key = $this->getParamHash( array(), $uid . ':catalog:session-seen-body', $config );
+		$config = $context->getConfig()->get( 'client/html/catalog/session/seen', [] );
+		$key = $this->getParamHash( [], $uid . ':catalog:session-seen-body', $config );
 
 		if( ( $html = $session->get( $key ) ) === null )
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
-
 			$output = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$output .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$output .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->seenBody = $output;
 
@@ -117,14 +113,16 @@ class Standard
 			 * @see client/html/catalog/session/seen/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/session/seen/standard/template-body';
-			$default = 'catalog/session/seen-body-default.php';
+			$default = 'catalog/session/seen-body-standard.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 
-			$cached = $session->get( 'aimeos/catalog/session/seen/cache', array() ) + array( $key => true );
+			$cached = $session->get( 'aimeos/catalog/session/seen/cache', [] ) + array( $key => true );
 			$session->set( 'aimeos/catalog/session/seen/cache', $cached );
 			$session->set( $key, $html );
 		}
+
+		$view->block()->set( 'catalog/session/seen', $html );
 
 		return $html;
 	}
@@ -236,18 +234,13 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$session = $this->getContext()->getSession();
-			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', array() );
+		$session = $this->getContext()->getSession();
+		$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
-			$view->seenItems = array_reverse( $lastSeen );
+		$view->seenItems = array_reverse( $lastSeen );
 
-			$this->cache = $view;
-		}
-
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -60,33 +60,28 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/summary/standard/subparts';
-	private $subPartNames = array();
-	private $cache;
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
-		$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
 		if( $step != 'summary' && !( in_array( 'summary', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
 		}
 
-		$view = $this->setViewParams( $view, $tags, $expire );
-
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->summaryBody = $html;
 
@@ -111,7 +106,7 @@ class Standard
 		 * @see client/html/checkout/standard/summary/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/summary/standard/template-body';
-		$default = 'checkout/standard/summary-body-default.php';
+		$default = 'checkout/standard/summary-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -121,21 +116,19 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
-		$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
 		if( $step != 'summary' && !( in_array( 'summary', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
 		}
 
-		return parent::getHeader( $uid, $tags, $expire );
+		return parent::getHeader( $uid );
 	}
 
 
@@ -256,12 +249,12 @@ class Standard
 				&& ( $option = $view->param( 'cs_option_terms_value', 0 ) ) != 1
 			) {
 				$error = $view->translate( 'client', 'Please accept the terms and conditions' );
-				$errors = $view->get( 'summaryErrorCodes', array() );
+				$errors = $view->get( 'summaryErrorCodes', [] );
 				$errors['option']['terms'] = $error;
 
 				$view->summaryErrorCodes = $errors;
 				$view->standardStepActive = 'summary';
-				$view->standardErrorList = array( $error ) + $view->get( 'standardErrorList', array() );
+				$view->standardErrorList = array( $error ) + $view->get( 'standardErrorList', [] );
 			}
 
 
@@ -296,26 +289,23 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+
+		if( ( $view->summaryCustomerId = $context->getUserId() ) === null )
 		{
-			if( ( $view->summaryCustomerId = $this->getContext()->getUserId() ) === null )
+			try
 			{
-				try
-				{
-					$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-					$customerManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer' );
-					$view->summaryCustomerId = $customerManager->findItem( $addr->getEmail() )->getId();
-				}
-				catch( \Exception $e ) {}
+				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+				$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
 			}
-
-			$view->summaryTaxRates = $this->getTaxRates( $view->standardBasket );
-
-			$this->cache = $view;
+			catch( \Exception $e ) {}
 		}
 
-		return $this->cache;
+		$view->summaryTaxRates = $this->getTaxRates( $view->standardBasket );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

@@ -3,14 +3,14 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
 namespace Aimeos\Client\Html\Catalog\Detail\Seen;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
@@ -19,9 +19,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 
-		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Seen\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Seen\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -34,6 +33,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 		$this->assertEquals( '', $output );
 	}

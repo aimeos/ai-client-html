@@ -2,14 +2,14 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
 namespace Aimeos\Client\Html\Checkout\Confirm\Order;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
@@ -17,25 +17,25 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	protected function setUp()
 	{
-		$this->context = clone \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::getContext();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Checkout\Confirm\Order\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Checkout\Confirm\Order\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
 	public function testGetBody()
 	{
-		$view = $this->object->getView();
+		$view = \TestHelperHtml::getView();
 		$customer = $this->getCustomerItem( 'UTC001' );
 		$view->confirmOrderItem = $this->getOrderItem( $customer->getId() );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 

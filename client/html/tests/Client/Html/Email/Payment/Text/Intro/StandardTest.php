@@ -3,14 +3,14 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
 namespace Aimeos\Client\Html\Email\Payment\Text\Intro;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $orderItem;
 	private static $orderBaseItem;
@@ -41,14 +41,12 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Email\Payment\Text\Intro\Standard( $this->context, $paths );
-
 		$view = \TestHelperHtml::getView();
 		$view->extOrderItem = self::$orderItem;
 		$view->extOrderBaseItem = self::$orderBaseItem;
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
 
+		$this->object = new \Aimeos\Client\Html\Email\Payment\Text\Intro\Standard( $this->context );
 		$this->object->setView( $view );
 	}
 
@@ -61,6 +59,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetBody()
 	{
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'Thank you for your order', $output );
@@ -75,6 +74,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_REFUND );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'The payment for your order', $output );
@@ -89,6 +89,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_PENDING );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'The order is pending until we receive the final payment', $output );
@@ -103,6 +104,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
 		$view->extOrderItem = $orderItem;
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertContains( 'We have received your payment', $output );

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Controller
  * @subpackage Order
  */
@@ -54,8 +54,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html/templates' );
-		$client = \Aimeos\Client\Html\Email\Payment\Factory::createClient( $context, $templatePaths );
+		$client = \Aimeos\Client\Html\Email\Payment\Factory::createClient( $context );
 
 		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
 
@@ -174,12 +173,22 @@ class Standard
 	 * Returns an initialized view object
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
 	 * @param string $langId ISO language code, maybe country specific
 	 * @return \Aimeos\MW\View\Iface Initialized view object
 	 */
-	protected function getView( $context, $langId )
+	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, $langId )
 	{
 		$view = $context->getView();
+
+		$params = [
+			'locale' => $langId,
+			'site' => $orderBaseItem->getSiteCode(),
+			'currency' => $orderBaseItem->getLocale()->getCurrencyId()
+		];
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
+		$view->addHelper( 'param', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
 		$view->addHelper( 'config', $helper );
@@ -241,8 +250,9 @@ class Standard
 		\Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\MShop\Order\Item\Base\Address\Iface $addrItem )
 	{
 		$context = $this->getContext();
+		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->getLocale()->getLanguageId() );
 
-		$view = $this->getView( $context, $addrItem->getLanguageId() );
+		$view = $this->getView( $context, $orderBaseItem, $langId );
 		$view->extAddressItem = $addrItem;
 		$view->extOrderBaseItem = $orderBaseItem;
 		$view->extOrderItem = $orderItem;

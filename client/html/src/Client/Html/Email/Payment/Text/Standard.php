@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -85,17 +85,15 @@ class Standard
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$content .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$content .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->textBody = $content;
 
@@ -129,7 +127,7 @@ class Standard
 		$tplconf = 'client/html/email/payment/text/standard/template-body';
 
 		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/text-body-default.php', 'email/payment/text-body-default.php' );
+		$default = array( 'email/payment/' . $status . '/text-body-standard.php', 'email/payment/text-body-standard.php' );
 
 		$text = $view->render( $view->config( $tplconf, $default ) );
 		$view->mail()->setBody( $text );

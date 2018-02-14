@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -56,27 +56,22 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/filter/tree/standard/subparts';
-	private $subPartNames = array();
-	private $tags = array();
-	private $expire;
-	private $cache;
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '', array &$tags = [], &$expire = null )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->treeBody = $html;
 
@@ -101,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/filter/tree/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/filter/tree/standard/template-body';
-		$default = 'catalog/filter/tree-body-default.php';
+		$default = 'catalog/filter/tree-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -213,89 +208,81 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$catItems = array();
-			$context = $this->getContext();
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+		$catItems = [];
+		$context = $this->getContext();
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
-			$currentid = (string) $view->param( 'f_catid', '' );
-			$currentid = ( $currentid != '' ? $currentid : null );
+		$currentid = (string) $view->param( 'f_catid', '' );
+		$currentid = ( $currentid != '' ? $currentid : null );
 
-			/** client/html/catalog/filter/tree/startid
-			 * The ID of the category node that should be the root of the displayed category tree
-			 *
-			 * If you want to display only a part of your category tree, you can
-			 * configure the ID of the category node from which rendering the
-			 * remaining sub-tree should start.
-			 *
-			 * In most cases you can set this value via the administration interface
-			 * of the shop application. In that case you often can configure the
-			 * start ID individually for each catalog filter.
-			 *
-			 * @param string Category ID
-			 * @since 2014.03
-			 * @category User
-			 * @category Developer
-			 * @see client/html/catalog/filter/tree/levels-always
-			 * @see client/html/catalog/filter/tree/levels-only
-			 * @see client/html/catalog/filter/tree/domains
-			 */
-			$startid = $view->config( 'client/html/catalog/filter/tree/startid', '' );
-			$startid = ( $startid != '' ? $startid : null );
+		/** client/html/catalog/filter/tree/startid
+		 * The ID of the category node that should be the root of the displayed category tree
+		 *
+		 * If you want to display only a part of your category tree, you can
+		 * configure the ID of the category node from which rendering the
+		 * remaining sub-tree should start.
+		 *
+		 * In most cases you can set this value via the administration interface
+		 * of the shop application. In that case you often can configure the
+		 * start ID individually for each catalog filter.
+		 *
+		 * @param string Category ID
+		 * @since 2014.03
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/filter/tree/levels-always
+		 * @see client/html/catalog/filter/tree/levels-only
+		 * @see client/html/catalog/filter/tree/domains
+		 */
+		$startid = $view->config( 'client/html/catalog/filter/tree/startid', '' );
+		$startid = ( $startid != '' ? $startid : null );
 
-			/** client/html/catalog/filter/tree/domains
-			 * List of domain names whose items should be fetched with the filter categories
-			 *
-			 * The templates rendering the categories in the catalog filter usually
-			 * add the images and texts associated to each item. If you want to
-			 * display additional content, you can configure your own list of
-			 * domains (attribute, media, price, product, text, etc. are domains)
-			 * whose items are fetched from the storage. Please keep in mind that
-			 * the more domains you add to the configuration, the more time is
-			 * required for fetching the content!
-			 *
-			 * @param array List of domain item names
-			 * @since 2014.03
-			 * @category Developer
-			 * @see client/html/catalog/filter/tree/startid
-			 * @see client/html/catalog/filter/tree/levels-always
-			 * @see client/html/catalog/filter/tree/levels-only
-			 */
-			$ref = $view->config( 'client/html/catalog/filter/tree/domains', array( 'text', 'media' ) );
+		/** client/html/catalog/filter/tree/domains
+		 * List of domain names whose items should be fetched with the filter categories
+		 *
+		 * The templates rendering the categories in the catalog filter usually
+		 * add the images and texts associated to each item. If you want to
+		 * display additional content, you can configure your own list of
+		 * domains (attribute, media, price, product, text, etc. are domains)
+		 * whose items are fetched from the storage. Please keep in mind that
+		 * the more domains you add to the configuration, the more time is
+		 * required for fetching the content!
+		 *
+		 * @param array List of domain item names
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/filter/tree/startid
+		 * @see client/html/catalog/filter/tree/levels-always
+		 * @see client/html/catalog/filter/tree/levels-only
+		 */
+		$ref = $view->config( 'client/html/catalog/filter/tree/domains', array( 'text', 'media' ) );
 
 
-			if( $currentid !== null ) {
-				$catItems = $this->filterCatalogPath( $controller->getCatalogPath( $currentid ), $startid );
-			}
-
-			if( ( $node = reset( $catItems ) ) === false )
-			{
-				$node = $controller->getCatalogTree( $startid, array(), \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
-				$catItems = array( $node->getId() => $node );
-			}
-
-
-			$catIds = array_keys( $catItems );
-			$search = $this->addSearchConditions( $controller->createCatalogFilter(), $catIds, $node->getId() );
-			$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE;
-
-			$view->treeCatalogPath = $catItems;
-			$view->treeCatalogTree = $controller->getCatalogTree( $startid, $ref, $level, $search );
-			$view->treeCatalogIds = $this->getCatalogIds( $view->treeCatalogTree, $catItems, $currentid );
-			$view->treeFilterParams = $this->getClientParams( $view->param(), array( 'f' ) );
-
-			$this->addMetaItemCatalog( $view->treeCatalogTree, $this->expire, $this->tags );
-
-			$this->cache = $view;
+		if( $currentid !== null ) {
+			$catItems = $this->filterCatalogPath( $controller->getPath( $currentid ), $startid );
 		}
 
-		$expire = $this->expires( $this->expire, $expire );
-		$tags = array_merge( $tags, $this->tags );
+		if( ( $node = reset( $catItems ) ) === false )
+		{
+			$node = $controller->getTree( $startid, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+			$catItems = array( $node->getId() => $node );
+		}
 
-		return $this->cache;
+
+		$catIds = array_keys( $catItems );
+		$search = $this->addSearchConditions( $controller->createFilter(), $catIds, $node->getId() );
+		$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE;
+
+		$view->treeCatalogPath = $catItems;
+		$view->treeCatalogTree = $controller->getTree( $startid, $ref, $level, $search );
+		$view->treeCatalogIds = $this->getCatalogIds( $view->treeCatalogTree, $catItems, $currentid );
+		$view->treeFilterParams = $this->getClientParams( $view->param(), array( 'f' ) );
+
+		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 
 
@@ -306,7 +293,7 @@ class Standard
 	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
 	 * @param array &$tags List of tags the new tags will be added to
 	 */
-	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, &$expire, array &$tags = array() )
+	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, &$expire, array &$tags = [] )
 	{
 		$this->addMetaItems( $tree, $expire, $tags );
 
@@ -403,7 +390,7 @@ class Standard
 	{
 		if( $tree->getId() == $currentId )
 		{
-			$ids = array();
+			$ids = [];
 			foreach( $tree->getChildren() as $item ) {
 				$ids[] = $item->getId();
 			}
@@ -418,7 +405,7 @@ class Standard
 			}
 		}
 
-		return array();
+		return [];
 	}
 
 

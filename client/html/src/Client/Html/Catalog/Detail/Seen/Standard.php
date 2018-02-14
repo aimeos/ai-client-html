@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -56,18 +56,16 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/detail/seen/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		return '';
 	}
@@ -182,7 +180,7 @@ class Standard
 		{
 			$context = $this->getContext();
 			$session = $context->getSession();
-			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', array() );
+			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
 			if( isset( $lastSeen[$id] ) )
 			{
@@ -212,7 +210,7 @@ class Standard
 
 			$session->set( 'aimeos/catalog/session/seen/list', $lastSeen );
 
-			foreach( $session->get( 'aimeos/catalog/session/seen/cache', array() ) as $key => $value ) {
+			foreach( $session->get( 'aimeos/catalog/session/seen/cache', [] ) as $key => $value ) {
 				$session->set( $key, null );
 			}
 		}
@@ -236,7 +234,7 @@ class Standard
 		if( ( $html = $cache->get( $key ) ) === null )
 		{
 			$expire = null;
-			$tags = array();
+			$tags = [];
 			$view = $this->getView();
 			$config = $context->getConfig();
 
@@ -263,7 +261,8 @@ class Standard
 			 */
 			$domains = $config->get( 'client/html/catalog/detail/seen/domains', $domains );
 
-			$view->seenProductItem = \Aimeos\MShop\Factory::createManager( $context, 'product' )->getItem( $id, $domains );
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$view->seenProductItem = $controller->getItem( $id, $domains );
 			$this->addMetaItems( $view->seenProductItem, $expire, $tags );
 
 			$output = '';
@@ -293,7 +292,7 @@ class Standard
 			 * @see client/html/catalog/detail/seen/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/detail/seen/standard/template-body';
-			$default = 'catalog/detail/seen-partial-default.php';
+			$default = 'catalog/detail/seen-partial-standard.php';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 

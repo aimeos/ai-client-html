@@ -3,12 +3,12 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2011
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 class TestHelperHtml
 {
 	private static $aimeos;
-	private static $context = array();
+	private static $context = [];
 
 
 	public static function bootstrap()
@@ -50,12 +50,18 @@ class TestHelperHtml
 		$helper = new \Aimeos\MW\View\Helper\Date\Standard( $view, 'Y-m-d' );
 		$view->addHelper( 'date', $helper );
 
-		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, array( 'client/html' ) );
+		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, array( 'client' ) );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Csrf\Standard( $view, '_csrf_token', '_csrf_value' );
 		$view->addHelper( 'csrf', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, new \Zend\Diactoros\ServerRequest() );
+		$view->addHelper( 'request', $helper );
+
+		$helper = new \Aimeos\MW\View\Helper\Response\Standard( $view, new \Zend\Diactoros\Response() );
+		$view->addHelper( 'response', $helper );
 
 		return $view;
 	}
@@ -91,7 +97,7 @@ class TestHelperHtml
 		$aimeos = self::getAimeos();
 
 
-		$paths = $aimeos->getConfigPaths( 'mysql' );
+		$paths = $aimeos->getConfigPaths();
 		$paths[] = __DIR__ . DIRECTORY_SEPARATOR . 'config';
 		$file = __DIR__ . DIRECTORY_SEPARATOR . 'confdoc.ser';
 		$local = array( 'resource' => array( 'fs' => array( 'adapter' => 'Standard', 'basedir' => __DIR__ . '/tmp' ) ) );

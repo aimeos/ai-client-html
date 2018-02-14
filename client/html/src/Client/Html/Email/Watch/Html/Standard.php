@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -56,24 +56,22 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/watch/html/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$content .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$content .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->htmlBody = $content;
 
@@ -106,7 +104,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/watch/html/standard/template-body';
 
-		$html = $view->render( $view->config( $tplconf, 'email/watch/html-body-default.php' ) );
+		$html = $view->render( $view->config( $tplconf, 'email/watch/html-body-standard.php' ) );
 		$view->mail()->setBodyHtml( $html );
 		return $html;
 	}
@@ -218,7 +216,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		/** client/html/email/logo
 		 * Path to the logo image displayed in HTML e-mails
@@ -245,12 +243,12 @@ class Standard
 
 
 		$path = $view->config( 'client/html/common/template/baseurl', 'client/html/themes/elegance' );
-		$filepath = $path . DIRECTORY_SEPARATOR . 'common.css';
+		$filepath = $path . DIRECTORY_SEPARATOR . 'email.css';
 
 		if( file_exists( $filepath ) && ( $css = file_get_contents( $filepath ) ) !== false ) {
 			$view->htmlCss = $css;
 		}
 
-		return $view;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

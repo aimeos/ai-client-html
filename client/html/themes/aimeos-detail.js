@@ -24,7 +24,7 @@ d.slice(e-c+1,e+c+2).addClass("slick-active").attr("aria-hidden","false")),0===a
  *
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2014-2016
+ * @copyright Aimeos (aimeos.org), 2014-2017
  */
 
 
@@ -58,15 +58,8 @@ AimeosCatalogDetail = {
 
 		$(".catalog-detail-image").on("click", ".thumbs .item", {}, function(ev) {
 
-			var imageId = this.href.split("#").pop();
-			var container = $(".image-single", ev.delegateTarget);
-
-			window.location.hash = '#' + imageId;
-
 			$(".thumbs .item", ev.delegateTarget).removeClass("selected");
 			$(this).addClass("selected");
-
-			return false;
 		});
 	},
 
@@ -156,60 +149,8 @@ AimeosCatalogDetail = {
 		$(".catalog-detail-additional .content").hide();
 
 		$(".catalog-detail-additional .additional-box").on("click", ".header", function(ev) {
-	        $(".content", ev.delegateTarget).slideToggle();
-	    	$(".header", ev.delegateTarget).toggleClass("toggle-js");
-	    });
-	},
-
-
-	/**
-	 * Adds a product to the favorite list without page reload
-	 */
-	setupFavoriteAction: function() {
-
-		$(".catalog-detail-actions .actions-button-favorite").on("click", function(ev) {
-
-		    if($(this).data("login")) {
-		        return true;
-		    }
-
-		    Aimeos.createOverlay();
-
-		    $.get($(this).attr("href"), function(data) {
-
-		        var doc = document.createElement("html");
-		        doc.innerHTML = data;
-
-		        Aimeos.createContainer($(".account-favorite", doc));
-		    });
-
-		    return false;
-		});
-	},
-
-
-	/**
-	 * Adds a product to the watch list without page reload
-	 */
-	setupWatchAction: function() {
-
-		$(".catalog-detail-actions .actions-button-watch").on("click", function(ev) {
-
-		    if($(this).data("login")) {
-		        return true;
-		    }
-
-		    Aimeos.createOverlay();
-
-		    $.get($(this).attr("href"), function(data) {
-
-		        var doc = document.createElement("html");
-		        doc.innerHTML = data;
-
-		        Aimeos.createContainer($(".account-watch", doc));
-		    });
-
-		    return false;
+			$(".content", ev.delegateTarget).slideToggle();
+			$(".header", ev.delegateTarget).toggleClass("toggle-js");
 		});
 	},
 
@@ -226,9 +167,6 @@ AimeosCatalogDetail = {
 		this.setupThumbnailSlider();
 		this.setupImageLightbox();
 		this.setupImageSwap();
-
-		this.setupFavoriteAction();
-		this.setupWatchAction();
 	}
 };
 

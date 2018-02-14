@@ -2,14 +2,14 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
 namespace Aimeos\Client\Html\Basket\Related\Bought;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
@@ -19,8 +19,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Basket\Related\Bought\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Basket\Related\Bought\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -40,6 +39,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$view = $this->object->getView();
 		$view->relatedBasket = $basket;
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 

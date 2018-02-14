@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Controller
  * @subpackage Customer
  */
@@ -55,7 +55,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$langIds = array();
+		$langIds = [];
 		$context = $this->getContext();
 
 		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
@@ -110,7 +110,7 @@ class Standard
 	 */
 	protected function execute( \Aimeos\MShop\Context\Item\Iface $context, array $customers )
 	{
-		$prodIds = $custIds = array();
+		$prodIds = $custIds = [];
 		$listItems = $this->getListItems( $context, array_keys( $customers ) );
 		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
@@ -126,7 +126,7 @@ class Standard
 
 		foreach( $custIds as $custId => $list )
 		{
-			$custListItems = $listIds = array();
+			$custListItems = $listIds = [];
 
 			foreach( $list as $listId => $prodId )
 			{
@@ -173,10 +173,8 @@ class Standard
 	 */
 	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
 	{
-		if( !isset( $this->client ) )
-		{
-			$templatePaths = $this->getAimeos()->getCustomPaths( 'client/html/templates' );
-			$this->client = \Aimeos\Client\Html\Email\Watch\Factory::createClient( $context, $templatePaths );
+		if( !isset( $this->client ) ) {
+			$this->client = \Aimeos\Client\Html\Email\Watch\Factory::createClient( $context );
 		}
 
 		return $this->client;
@@ -216,7 +214,7 @@ class Standard
 	 */
 	protected function getProductList( array $products, array $listItems )
 	{
-		$result = array();
+		$result = [];
 		$priceManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'price' );
 
 		foreach( $listItems as $id => $listItem )
@@ -238,6 +236,7 @@ class Standard
 						isset( $config['pricevalue'] ) && $config['pricevalue'] > $price->getValue()
 					) {
 						$result[$id]['item'] = $products[$refId];
+						$result[$id]['currencyId'] = $currencyId;
 						$result[$id]['price'] = $price;
 					}
 				}
@@ -258,7 +257,7 @@ class Standard
 	 */
 	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, $stockType )
 	{
-		$productCodes = $stockMap = array();
+		$productCodes = $stockMap = [];
 		$productItems = $this->getProductItems( $context, $prodIds );
 
 		foreach( $productItems as $productItem ) {
@@ -343,6 +342,14 @@ class Standard
 		$view = $context->getView();
 		$view->extProducts = $products;
 		$view->extAddressItem = $address;
+
+		$params = [
+			'locale' => $context->getLocale()->getLanguageId(),
+			'site' => $context->getLocale()->getSite()->getCode(),
+		];
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
+		$view->addHelper( 'param', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ) );
 		$view->addHelper( 'translate', $helper );

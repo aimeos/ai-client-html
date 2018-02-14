@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016
+ * @copyright Aimeos (aimeos.org), 2016-2017
  * @package Client
  * @subpackage Html
  */
@@ -55,18 +55,16 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/account/download/standard/subparts';
-	private $subPartNames = array();
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		return '';
 	}
@@ -76,11 +74,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		return '';
 	}
@@ -354,7 +350,8 @@ class Standard
 	 */
 	protected function getListItem( $customerId, $refId )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'customer/lists' );
+		$context = $this->getContext();
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(
@@ -370,8 +367,10 @@ class Standard
 
 		if( ( $listItem = reset( $listItems ) ) === false )
 		{
+			$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
+
 			$listItem = $manager->createItem();
-			$listItem->setTypeId( $this->getTypeItem( 'customer/lists/type', 'order', 'download' )->getId() );
+			$listItem->setTypeId( $typeManager->findItem( 'download', [], 'order' )->getId() );
 			$listItem->setParentId( $customerId );
 			$listItem->setDomain( 'order' );
 			$listItem->setRefId( $refId );

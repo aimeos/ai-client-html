@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -67,53 +67,53 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'bought' );
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->relatedBody = $html;
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->relatedErrorList = $view->get( 'relatedErrorList', array() ) + $error;
+			$view->relatedErrorList = $view->get( 'relatedErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->relatedErrorList = $view->get( 'relatedErrorList', array() ) + $error;
+			$view->relatedErrorList = $view->get( 'relatedErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->relatedErrorList = $view->get( 'relatedErrorList', array() ) + $error;
+			$view->relatedErrorList = $view->get( 'relatedErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->relatedErrorList = $view->get( 'relatedErrorList', array() ) + $error;
+			$view->relatedErrorList = $view->get( 'relatedErrorList', [] ) + $error;
 		}
 
 		/** client/html/basket/related/standard/template-body
@@ -137,7 +137,7 @@ class Standard
 		 * @see client/html/basket/related/standard/template-header
 		 */
 		$tplconf = 'client/html/basket/related/standard/template-body';
-		$default = 'basket/related/body-default.php';
+		$default = 'basket/related/body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -147,19 +147,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->relatedHeader = $html;
 		}
@@ -191,7 +193,7 @@ class Standard
 		 * @see client/html/basket/related/standard/template-body
 		 */
 		$tplconf = 'client/html/basket/related/standard/template-header';
-		$default = 'basket/related/header-default.php';
+		$default = 'basket/related/header-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -303,17 +305,12 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
+		$context = $this->getContext();
 
-			$view->relatedBasket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
+		$view->relatedBasket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
 
-			$this->cache = $view;
-		}
-
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 }

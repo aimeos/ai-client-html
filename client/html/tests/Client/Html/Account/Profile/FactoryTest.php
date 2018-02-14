@@ -2,42 +2,40 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016
+ * @copyright Aimeos (aimeos.org), 2016-2017
  */
 
 
 namespace Aimeos\Client\Html\Account\Profile;
 
 
-class FactoryTest extends \PHPUnit_Framework_TestCase
+class FactoryTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
-	private $templatePaths;
 
 
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$this->templatePaths = \TestHelperHtml::getHtmlTemplatePaths();
 	}
 
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->context );
 	}
 
 
 	public function testCreateClient()
 	{
-		$client = \Aimeos\Client\Html\Account\Profile\Factory::createClient( $this->context, $this->templatePaths );
+		$client = \Aimeos\Client\Html\Account\Profile\Factory::createClient( $this->context );
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Iface', $client );
 	}
 
 
 	public function testCreateClientName()
 	{
-		$client = \Aimeos\Client\Html\Account\Profile\Factory::createClient( $this->context, $this->templatePaths, 'Standard' );
+		$client = \Aimeos\Client\Html\Account\Profile\Factory::createClient( $this->context, 'Standard' );
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Iface', $client );
 	}
 
@@ -45,14 +43,14 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 	public function testCreateClientNameInvalid()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Account\Profile\Factory::createClient( $this->context, $this->templatePaths, '$$$' );
+		\Aimeos\Client\Html\Account\Profile\Factory::createClient( $this->context, '$$$' );
 	}
 
 
 	public function testCreateClientNameNotFound()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Account\Profile\Factory::createClient( $this->context, $this->templatePaths, 'notfound' );
+		\Aimeos\Client\Html\Account\Profile\Factory::createClient( $this->context, 'notfound' );
 	}
 
 }

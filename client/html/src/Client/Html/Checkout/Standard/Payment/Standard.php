@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -60,33 +60,28 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/payment/standard/subparts';
-	private $subPartNames = array();
-	private $cache;
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
-		$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
 		if( $step != 'payment' && !( in_array( 'payment', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
 		}
 
-		$view = $this->setViewParams( $view, $tags, $expire );
-
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->paymentBody = $html;
 
@@ -111,7 +106,7 @@ class Standard
 		 * @see client/html/checkout/standard/payment/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/payment/standard/template-body';
-		$default = 'checkout/standard/payment-body-default.php';
+		$default = 'checkout/standard/payment-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -121,21 +116,19 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
-		$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
+		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
 		if( $step != 'payment' && !( in_array( 'payment', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
 		}
 
-		return parent::getHeader( $uid, $tags, $expire );
+		return parent::getHeader( $uid );
 	}
 
 
@@ -241,27 +234,28 @@ class Standard
 			$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 			// only start if there's something to do
-			if( ( $serviceId = $view->param( 'c_paymentoption', null ) ) !== null )
+			if( ( $serviceIds = $view->param( 'c_paymentoption', null ) ) !== null )
 			{
-				$serviceCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+				$basketCtrl->deleteService( 'payment' );
 
-				$attributes = $view->param( 'c_payment/' . $serviceId, array() );
-				$errors = $serviceCtrl->checkServiceAttributes( 'payment', $serviceId, $attributes );
-
-				foreach( $errors as $key => $msg )
+				foreach( (array) $serviceIds as $serviceId )
 				{
-					if( $msg === null ) {
-						unset( $errors[$key] );
+					$serviceCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+
+					$attributes = $view->param( 'c_payment/' . $serviceId, [] );
+					$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
+					$view->paymentError = $errors;
+
+					if( count( $errors ) > 0 )
+					{
+						$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
+						throw new \Aimeos\Client\Html\Exception( sprintf( 'Please recheck your payment choice' ) );
+					}
+					else
+					{
+						$basketCtrl->addService( 'payment', $serviceId, $attributes );
 					}
 				}
-
-				if( count( $errors ) === 0 ) {
-					$basketCtrl->setService( 'payment', $serviceId, $attributes );
-				} else {
-					$view->standardStepActive = 'payment';
-				}
-
-				$view->paymentError = $errors;
 			}
 
 
@@ -303,33 +297,31 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+
+		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+
+		$basket = $basketCntl->get();
+		$services = $attributes = $prices = [];
+		$providers = $serviceCntl->getProviders( 'payment' );
+
+		foreach( $providers as $id => $provider )
 		{
-			$context = $this->getContext();
-
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
-			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
-
-			$basket = $basketCntl->get();
-
-			$services = $serviceCntl->getServices( 'payment', $basket );
-			$serviceAttributes = $servicePrices = array();
-
-			foreach( $services as $id => $service )
+			if( $provider->isAvailable( $basket ) === true )
 			{
-				$serviceAttributes[$id] = $serviceCntl->getServiceAttributes( 'payment', $id, $basket );
-				$servicePrices[$id] = $serviceCntl->getServicePrice( 'payment', $id, $basket );
+				$services[$id] = $provider->getServiceItem();
+				$prices[$id] = $provider->calcPrice( $basket );
+				$attributes[$id] = $provider->getConfigFE( $basket );
 			}
-
-			$view->paymentServices = $services;
-			$view->paymentServiceAttributes = $serviceAttributes;
-			$view->paymentServicePrices = $servicePrices;
-
-			$this->cache = $view;
 		}
 
-		return $this->cache;
+		$view->paymentServices = $services;
+		$view->paymentServicePrices = $prices;
+		$view->paymentServiceAttributes = $attributes;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

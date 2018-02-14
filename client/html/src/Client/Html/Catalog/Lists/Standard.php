@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -80,20 +80,18 @@ class Standard
 	 */
 	private $subPartNames = array( 'promo', 'items' );
 
-	private $tags = array();
+	private $tags = [];
 	private $expire;
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$prefixes = array( 'f', 'l' );
 		$context = $this->getContext();
@@ -116,35 +114,37 @@ class Standard
 
 			try
 			{
-				$view = $this->setViewParams( $view, $tags, $expire );
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
 				$html = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+					$html .= $subclient->setView( $view )->getBody( $uid );
 				}
 				$view->listBody = $html;
 			}
 			catch( \Aimeos\Client\Html\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-				$view->listErrorList = $view->get( 'listErrorList', array() ) + $error;
+				$view->listErrorList = $view->get( 'listErrorList', [] ) + $error;
 			}
 			catch( \Aimeos\Controller\Frontend\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-				$view->listErrorList = $view->get( 'listErrorList', array() ) + $error;
+				$view->listErrorList = $view->get( 'listErrorList', [] ) + $error;
 			}
 			catch( \Aimeos\MShop\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-				$view->listErrorList = $view->get( 'listErrorList', array() ) + $error;
+				$view->listErrorList = $view->get( 'listErrorList', [] ) + $error;
 			}
 			catch( \Exception $e )
 			{
 				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-				$view->listErrorList = $view->get( 'listErrorList', array() ) + $error;
+				$view->listErrorList = $view->get( 'listErrorList', [] ) + $error;
 			}
 
 			/** client/html/catalog/lists/standard/template-body
@@ -183,11 +183,11 @@ class Standard
 			 * @see client/html/catalog/lists/type/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/lists/standard/template-body';
-			$default = 'catalog/lists/body-default.php';
+			$default = 'catalog/lists/body-standard.php';
 
 			$html = $view->render( $this->getTemplatePath( $tplconf, $default ) );
 
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -202,11 +202,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
 		$prefixes = array( 'f', 'l' );
 		$context = $this->getContext();
@@ -218,11 +216,13 @@ class Standard
 
 			try
 			{
-				$view = $this->setViewParams( $view, $tags, $expire );
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
 				$html = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+					$html .= $subclient->setView( $view )->getHeader( $uid );
 				}
 				$view->listHeader = $html;
 			}
@@ -269,11 +269,11 @@ class Standard
 			 * @see client/html/catalog/lists/type/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/lists/standard/template-header';
-			$default = 'catalog/lists/header-default.php';
+			$default = 'catalog/lists/header-standard.php';
 
 			$html = $view->render( $this->getTemplatePath( $tplconf, $default ) );
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $tags, $expire );
+			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -392,24 +392,24 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->listErrorList = $view->get( 'listErrorList', array() ) + $error;
+			$view->listErrorList = $view->get( 'listErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->listErrorList = $view->get( 'listErrorList', array() ) + $error;
+			$view->listErrorList = $view->get( 'listErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->listErrorList = $view->get( 'listErrorList', array() ) + $error;
+			$view->listErrorList = $view->get( 'listErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->listErrorList = $view->get( 'listErrorList', array() ) + $error;
+			$view->listErrorList = $view->get( 'listErrorList', [] ) + $error;
 		}
 	}
 
@@ -433,62 +433,52 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
-			$config = $context->getConfig();
+		$context = $this->getContext();
+		$config = $context->getConfig();
 
-			$products = $this->getProductList( $view );
+		$products = $this->getProductList( $view );
 
-			$text = (string) $view->param( 'f_search' );
-			$catid = (string) $view->param( 'f_catid' );
+		$text = (string) $view->param( 'f_search' );
+		$catid = (string) $view->param( 'f_catid' );
 
-			if( $catid == '' ) {
-				$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
-			}
-
-			if( $text === '' && $catid !== '' )
-			{
-				$domains = $config->get( 'client/html/catalog/domains', array( 'media', 'text' ) );
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-
-				$catids = ( !is_array( $catid ) ? explode( ',', $catid ) : $catid );
-				$listCatPath = $controller->getCatalogPath( reset( $catids ), $domains );
-
-				if( ( $categoryItem = end( $listCatPath ) ) !== false ) {
-					$view->listCurrentCatItem = $categoryItem;
-				}
-
-				$view->listCatPath = $listCatPath;
-				$this->addMetaItems( $listCatPath, $this->expire, $this->tags );
-			}
-
-
-			$this->addMetaItems( $products, $this->expire, $this->tags );
-			// Delete cache when products are added or deleted even when in "tag-all" mode
-			$this->tags[] = 'product';
-
-
-			$view->listParams = $this->getClientParams( $view->param() );
-
-			$view->listProductItems = $products;
-			$view->listProductSort = $view->param( 'f_sort', 'relevance' );
-			$view->listProductTotal = $this->getProductListTotal( $view );
-
-			$view->listPageSize = $this->getProductListSize( $view );
-			$view->listPageCurr = $this->getProductListPage( $view );
-			$view->listPagePrev = ( $view->listPageCurr > 1 ? $view->listPageCurr - 1 : 1 );
-			$view->listPageLast = ( $view->listProductTotal != 0 ? ceil( $view->listProductTotal / $view->listPageSize ) : 1 );
-			$view->listPageNext = ( $view->listPageCurr < $view->listPageLast ? $view->listPageCurr + 1 : $view->listPageLast );
-
-			$this->cache = $view;
+		if( $catid == '' ) {
+			$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
 		}
 
-		$expire = $this->expires( $this->expire, $expire );
-		$tags = array_merge( $tags, $this->tags );
+		if( $text === '' && $catid !== '' )
+		{
+			$domains = $config->get( 'client/html/catalog/domains', array( 'media', 'text' ) );
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
 
-		return $this->cache;
+			$catids = ( !is_array( $catid ) ? explode( ',', $catid ) : $catid );
+			$listCatPath = $controller->getPath( reset( $catids ), $domains );
+
+			if( ( $categoryItem = end( $listCatPath ) ) !== false ) {
+				$view->listCurrentCatItem = $categoryItem;
+			}
+
+			$view->listCatPath = $listCatPath;
+			$this->addMetaItems( $listCatPath, $expire, $tags );
+		}
+
+
+		// Delete cache when products are added or deleted even when in "tag-all" mode
+		$this->addMetaItems( $products, $expire, $tags, ['product'] );
+
+		$view->listParams = $this->getClientParams( $view->param() );
+
+		$view->listProductItems = $products;
+		$view->listProductSort = $view->param( 'f_sort', 'relevance' );
+		$view->listProductTotal = $this->getProductListTotal( $view );
+
+		$view->listPageSize = $this->getProductListSize( $view );
+		$view->listPageCurr = $this->getProductListPage( $view );
+		$view->listPagePrev = ( $view->listPageCurr > 1 ? $view->listPageCurr - 1 : 1 );
+		$view->listPageLast = ( $view->listProductTotal != 0 ? ceil( $view->listProductTotal / $view->listPageSize ) : 1 );
+		$view->listPageNext = ( $view->listPageCurr < $view->listPageLast ? $view->listPageCurr + 1 : $view->listPageLast );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

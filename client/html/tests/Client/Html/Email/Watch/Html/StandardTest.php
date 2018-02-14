@@ -1,14 +1,16 @@
 <?php
 
-namespace Aimeos\Client\Html\Email\Watch\Html;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+
+
+namespace Aimeos\Client\Html\Email\Watch\Html;
+
+
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private static $productItems;
 	private static $customerItem;
@@ -41,40 +43,27 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 			$prices = $product->getRefItems( 'price', 'default', 'default' );
 
 			self::$productItems[$id]['price'] = reset( $prices );
+			self::$productItems[$id]['currency'] = 'EUR';
 			self::$productItems[$id]['item'] = $product;
 		}
 	}
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
-
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Email\Watch\Html\Standard( $this->context, $paths );
 
 		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
 		$view->extProducts = self::$productItems;
 		$view->extAddressItem = self::$customerItem->getPaymentAddress();
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
 
+		$this->object = new \Aimeos\Client\Html\Email\Watch\Html\Standard( $this->context );
 		$this->object->setView( $view );
 	}
 
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function tearDown()
 	{
 		unset( $this->object );
@@ -93,6 +82,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
 			->with( $this->matchesRegularExpression( '#<html>.*<title>E-mail notification</title>.*<meta.*Aimeos.*<body>#smu' ) );
 
+		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<html>', $output );

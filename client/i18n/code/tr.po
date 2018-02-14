@@ -7,14 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
-# Metal <meteoramic@yahoo.com>, 2015-2016
+# Metal <meteoramic@yahoo.com>, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2016-12-22 19:46+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>\n"
+"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,21 +22,28 @@ msgstr ""
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. Address salutation
-msgid "company"
-msgstr "Şirket"
+msgid "price:default"
+msgstr "%1$s %2$s"
 
-#. Address salutation
-msgid "mr"
-msgstr "Bay"
+#. Stock type
+msgid "stocktype:default"
+msgstr ""
 
-#. Address salutation
-msgid "mrs"
-msgstr "Hanım"
+#. Warehouse type (pre 2017.x)
+msgid "warehouse:default"
+msgstr ""
 
-#. Address salutation
-msgid "miss"
-msgstr "Bayan"
+#. Favorite action
+msgid "favorite"
+msgstr "Favorilere Ekle"
+
+#. Pin action
+msgid "pin"
+msgstr "Sayfaya Sabitle"
+
+#. Watch action
+msgid "watch"
+msgstr "İzlemeye Al"
 
 #. Product attribute
 msgid "size"
@@ -58,85 +65,21 @@ msgstr "Renk"
 msgid "option"
 msgstr "Seçenek"
 
-#. Order type value
-msgid "order:repeat"
-msgstr "tekrarlandı"
+#. Product property package-length
+msgid "package-length"
+msgstr "ambalaj-uzunluğu"
 
-#. Order type value
-msgid "order:web"
-msgstr "internet"
+#. Product property package-width
+msgid "package-width"
+msgstr "ambalaj-genişliği"
 
-#. Order type value
-msgid "order:phone"
-msgstr "telefon"
+#. Product property package-height
+msgid "package-height"
+msgstr "ambalaj-yüksekliği"
 
-#. Payment status value
-msgid "pay:-1"
-msgstr "tamamlanmadı"
-
-#. Payment status value
-msgid "pay:0"
-msgstr "silindi"
-
-#. Payment status value
-msgid "pay:1"
-msgstr "iptal edildi"
-
-#. Payment status value
-msgid "pay:2"
-msgstr "reddedildi"
-
-#. Payment status value
-msgid "pay:3"
-msgstr "geri ödendi"
-
-#. Payment status value
-msgid "pay:4"
-msgstr "beklemede"
-
-#. Payment status value
-msgid "pay:5"
-msgstr "onaylanmış"
-
-#. Payment status value
-msgid "pay:6"
-msgstr "teslim alındı"
-
-#. Delivery status value
-msgid "stat:-1"
-msgstr "tamamlanmadı"
-
-#. Delivery status value
-msgid "stat:0"
-msgstr "silindi"
-
-#. Delivery status value
-msgid "stat:1"
-msgstr "beklemede"
-
-#. Delivery status value
-msgid "stat:2"
-msgstr "devam etmekte"
-
-#. Delivery status value
-msgid "stat:3"
-msgstr "sevk edildi"
-
-#. Delivery status value
-msgid "stat:4"
-msgstr "teslim edildi"
-
-#. Delivery status value
-msgid "stat:5"
-msgstr "kayıp"
-
-#. Delivery status value
-msgid "stat:6"
-msgstr "reddedildi"
-
-#. Delivery status value
-msgid "stat:7"
-msgstr "geri döndü"
+#. Product property package-weight
+msgid "package-weight"
+msgstr "ambalaj-ağırlığı"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
@@ -178,37 +121,10 @@ msgstr "Geçerli olduğu son ay"
 msgid "payment.expiryyear"
 msgstr "Geçerli olduğu son yıl"
 
-#. Stock type
-msgid "stocktype:default"
-msgstr "stocktype:default"
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "Yerinden alma zamanı"
 
-#. Favorite action
-msgid "favorite"
-msgstr "Favorilere Ekle"
-
-#. Pin action
-msgid "pin"
-msgstr "Sayfaya Sabitle"
-
-#. Watch action
-msgid "watch"
-msgstr "İzlemeye Al"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "ambalaj-uzunluğu"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "ambalaj-genişliği"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "ambalaj-yüksekliği"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "ambalaj-ağırlığı"
-
-msgid "price:default"
-msgstr "%1$s %2$s"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Yerinden alma konumu"

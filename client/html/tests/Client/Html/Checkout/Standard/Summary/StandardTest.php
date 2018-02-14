@@ -3,14 +3,14 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
 
 
 namespace Aimeos\Client\Html\Checkout\Standard\Summary;
 
 
-class StandardTest extends \PHPUnit_Framework_TestCase
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
@@ -20,15 +20,14 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Summary\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Summary\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
 	protected function tearDown()
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
@@ -39,7 +38,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $controller->get();
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -59,18 +58,18 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
 		$view->standardSteps = array( 'before', 'summary' );
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="checkout-standard-summary common-summary">', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option container">', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option-account">', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option-terms">', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option-account', $output );
+		$this->assertContains( '<div class="checkout-standard-summary-option-terms', $output );
 
 		$this->assertContains( 'Example company', $output );
 		$this->assertContains( 'unitpaymentlabel', $output );
-		$this->assertContains( 'unitlabel', $output );
+		$this->assertContains( 'Unittest service name', $output );
 	}
 
 
@@ -79,10 +78,10 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
-		$this->object->setView( $view );
+		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
-		$this->assertContains( '<div class="common-summary-detail container">', $output );
+		$this->assertContains( '<div class="common-summary-detail', $output );
 		$this->assertRegExp( '#<tfoot>.*<tr class="tax">.*<td class="price">10.52 EUR</td>.*.*</tfoot>#smU', $output );
 	}
 
@@ -172,7 +171,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$this->object->process();
 		$this->assertEquals( 'summary', $view->get( 'standardStepActive' ) );
-		$this->assertArrayHasKey( 'option', $view->get( 'summaryErrorCodes', array() ) );
+		$this->assertArrayHasKey( 'option', $view->get( 'summaryErrorCodes', [] ) );
 	}
 
 
@@ -197,16 +196,16 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
 		$product = $productManager->findItem( 'CNE' );
 
-		$controller->addProduct( $product->getId(), 2, array(), array(), array(), array(), array(), 'default' );
+		$controller->addProduct( $product->getId(), 2 );
 
 
 		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $this->context );
 
-		$service = $serviceManager->findItem( 'unitpaymentcode', array(), 'service', 'payment' );
-		$controller->setService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT, $service->getId() );
+		$service = $serviceManager->findItem( 'unitpaymentcode', [], 'service', 'payment' );
+		$controller->addService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT, $service->getId() );
 
-		$service = $serviceManager->findItem( 'unitcode', array(), 'service', 'delivery' );
-		$controller->setService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY, $service->getId() );
+		$service = $serviceManager->findItem( 'unitcode', [], 'service', 'delivery' );
+		$controller->addService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY, $service->getId() );
 
 
 		return $controller->get();

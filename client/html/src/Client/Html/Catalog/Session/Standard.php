@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -80,51 +80,55 @@ class Standard
 	 */
 	private $subPartNames = array( 'pinned', 'seen' );
 
+	private $tags = [];
+	private $expire;
+	private $view;
+
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->sessionBody = $html;
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->sessionErrorList = $view->get( 'sessionErrorList', array() ) + $error;
+			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->sessionErrorList = $view->get( 'sessionErrorList', array() ) + $error;
+			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->sessionErrorList = $view->get( 'sessionErrorList', array() ) + $error;
+			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->sessionErrorList = $view->get( 'sessionErrorList', array() ) + $error;
+			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 
 		/** client/html/catalog/session/standard/template-body
@@ -148,7 +152,7 @@ class Standard
 		 * @see client/html/catalog/session/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/session/standard/template-body';
-		$default = 'catalog/session/body-default.php';
+		$default = 'catalog/session/body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -158,19 +162,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->sessionHeader = $html;
 
@@ -196,7 +202,7 @@ class Standard
 			 * @see client/html/catalog/session/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/session/standard/template-header';
-			$default = 'catalog/session/header-default.php';
+			$default = 'catalog/session/header-standard.php';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -309,19 +315,19 @@ class Standard
 		{
 			$view = $this->getView();
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->sessionErrorList = $view->get( 'sessionErrorList', array() ) + $error;
+			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$view = $this->getView();
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->sessionErrorList = $view->get( 'sessionErrorList', array() ) + $error;
+			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$view = $this->getView();
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->sessionErrorList = $view->get( 'sessionErrorList', array() ) + $error;
+			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
@@ -330,7 +336,7 @@ class Standard
 
 			$view = $this->getView();
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->sessionErrorList = $view->get( 'sessionErrorList', array() ) + $error;
+			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 	}
 

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -55,25 +55,22 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/basket/related/bought/standard/subparts';
-	private $subPartNames = array();
-	private $cache;
+	private $subPartNames = [];
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->boughtBody = $html;
 
@@ -98,7 +95,7 @@ class Standard
 		 * @see client/html/basket/related/bought/standard/template-header
 		 */
 		$tplconf = 'client/html/basket/related/bought/standard/template-body';
-		$default = 'basket/related/bought-body-default.php';
+		$default = 'basket/related/bought-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -210,60 +207,55 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		if( isset( $view->relatedBasket ) )
 		{
-			if( isset( $view->relatedBasket ) )
+			$refIds = $items = [];
+			$context = $this->getContext();
+
+			$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
+
+			foreach( $this->getListItems( $prodIds ) as $listItem )
 			{
-				$refIds = $items = array();
-				$context = $this->getContext();
+				$refId = $listItem->getRefId();
 
-				$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
-
-				foreach( $this->getListItems( $prodIds ) as $listItem )
-				{
-					$refId = $listItem->getRefId();
-
-					if( !isset( $prodIds[$refId] ) ) {
-						$refIds[$refId] = $refId;
-					}
+				if( !isset( $prodIds[$refId] ) ) {
+					$refIds[$refId] = $refId;
 				}
-
-				$products = $this->getProductItems( $refIds );
-
-				foreach( $refIds as $id )
-				{
-					if( isset( $products[$id] ) ) {
-						$items[$id] = $products[$id];
-					}
-				}
-
-				/** client/html/basket/related/bought/standard/limit
-				 * Number of items in the list of bought together products
-				 *
-				 * This option limits the number of suggested products in the
-				 * list of bought together products. The suggested items are
-				 * calculated using the products that are in the current basket
-				 * of the customer.
-				 *
-				 * Note: You need to start the job controller for calculating
-				 * the bought together products regularly to get up to date
-				 * product suggestions.
-				 *
-				 * @param integer Number of products
-				 * @since 2014.09
-				 */
-				$size = $context->getConfig()->get( 'client/html/basket/related/bought/standard/limit', 6 );
-
-
-				$view->boughtItems = array_slice( $items, 0, $size, true );
 			}
 
-			$this->cache = $view;
+			$products = $this->getProductItems( $refIds );
+
+			foreach( $refIds as $id )
+			{
+				if( isset( $products[$id] ) ) {
+					$items[$id] = $products[$id];
+				}
+			}
+
+			/** client/html/basket/related/bought/standard/limit
+			 * Number of items in the list of bought together products
+			 *
+			 * This option limits the number of suggested products in the
+			 * list of bought together products. The suggested items are
+			 * calculated using the products that are in the current basket
+			 * of the customer.
+			 *
+			 * Note: You need to start the job controller for calculating
+			 * the bought together products regularly to get up to date
+			 * product suggestions.
+			 *
+			 * @param integer Number of products
+			 * @since 2014.09
+			 */
+			$size = $context->getConfig()->get( 'client/html/basket/related/bought/standard/limit', 6 );
+
+
+			$view->boughtItems = array_slice( $items, 0, $size, true );
 		}
 
-		return $this->cache;
+		return parent::addData( $view, $tags, $expire );
 	}
 
 
@@ -275,8 +267,12 @@ class Standard
 	 */
 	protected function getListItems( array $prodIds )
 	{
-		$typeItem = $this->getTypeItem( 'product/lists/type', 'product', 'bought-together' );
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/lists' );
+		$context = $this->getContext();
+
+		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists/type' );
+		$typeItem = $typeManager->findItem( 'bought-together', [], 'product' );
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists' );
 
 		$search = $manager->createSearch( true );
 		$expr = array(
@@ -300,7 +296,7 @@ class Standard
 	 */
 	protected function getProductIdsFromBasket( \Aimeos\MShop\Order\Item\Base\Iface $basket )
 	{
-		$list = array();
+		$list = [];
 
 		foreach( $basket->getProducts() as $orderProduct )
 		{
@@ -344,8 +340,8 @@ class Standard
 		$domains = array( 'text', 'price', 'media' );
 		$domains = $config->get( 'client/html/basket/related/bought/standard/domains', $domains );
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 
-		return $controller->getProductItems( $ids, $domains );
+		return $controller->getItems( $ids, $domains );
 	}
 }

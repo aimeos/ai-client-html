@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -59,27 +59,29 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/suggest/standard/subparts';
-	private $subPartNames = array();
-	private $cache;
+	private $subPartNames = [];
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->suggestBody = $html;
 		}
@@ -114,7 +116,7 @@ class Standard
 		 * @see client/html/catalog/suggest/domains
 		 */
 		$tplconf = 'client/html/catalog/suggest/standard/template-body';
-		$default = 'catalog/suggest/body-default.php';
+		$default = 'catalog/suggest/body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -124,19 +126,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->suggestHeader = $html;
 		}
@@ -172,7 +176,7 @@ class Standard
 		 * @see client/html/catalog/suggest/domains
 		 */
 		$tplconf = 'client/html/catalog/suggest/standard/template-header';
-		$default = 'catalog/suggest/header-default.php';
+		$default = 'catalog/suggest/header-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -302,80 +306,60 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$codes = array();
-			$context = $this->getContext();
-			$input = $view->param( 'f_search' );
-
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-
-			$filter = $controller->createTextFilter( $input, null, '+', 0, 25, 'default', 'name' );
-			$texts = $controller->getTextList( $filter );
+		$types = ['name'];
+		$context = $this->getContext();
+		$input = $view->param( 'f_search' );
+		$langid = $context->getLocale()->getLanguageId();
 
 
-			/** client/html/catalog/suggest/usecode
-			 * Enables product suggestions based on using the product code
-			 *
-			 * The suggested entries for the full text search in the catalog filter component
-			 * are based on the product names by default. By setting this option to true or 1,
-			 * you can add suggestions based on the product codes as well.
-			 *
-			 * @param boolean True to search for product codes too, false for product names only
-			 * @since 2016.09
-			 * @category Developer
-			 */
+		/** client/html/catalog/suggest/usecode
+		 * Enables product suggestions based on using the product code
+		 *
+		 * The suggested entries for the full text search in the catalog filter component
+		 * are based on the product names by default. By setting this option to true or 1,
+		 * you can add suggestions based on the product codes as well.
+		 *
+		 * @param boolean True to search for product codes too, false for product names only
+		 * @since 2016.09
+		 * @category Developer
+		 */
 
-			if( $context->getConfig()->get( 'client/html/catalog/suggest/usecode', false ) )
-			{
-				$filter = $controller->createTextFilter( $input, null, '+', 0, 25, 'default', 'code' );
-				$codes = $controller->getTextList( $filter );
-			}
-
-
-			/** client/html/catalog/suggest/domains
-			 * List of domain items that should be fetched along with the products
-			 *
-			 * The suggsted entries for the full text search in the catalog filter component
-			 * usually consist of the names of the matched products. By default, only the
-			 * product item including the localized name is available. You can add more domains
-			 * like e.g. "media" to get the images of the product as well.
-			 *
-			 * '''Note:''' The more domains you will add, the slower the autocomplete requests
-			 * will be! Keep it to an absolute minium for user friendly response times.
-			 *
-			 * @param array List of domain names
-			 * @since 2016.08
-			 * @category Developer
-			 * @see client/html/catalog/suggest/standard/template-body
-			 */
-			$domains = $context->getConfig()->get( 'client/html/catalog/suggest/domains', array() );
-
-			$manager = $controller->createManager( 'product' );
-			$search = $manager->createSearch( true );
-			$expr = array(
-				$search->compare( '==', 'product.id', array_merge( array_keys( $texts ), array_keys( $codes ) ) ),
-				$search->getConditions(),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
-			$result = $manager->searchItems( $search, $domains );
-
-
-			// shortcut to avoid having to fetch the text items to get the the localized name
-			foreach( $result as $id => $item )
-			{
-				if( isset( $texts[$id] ) ) {
-					$item->setLabel( $texts[$id] );
-				}
-			}
-
-			$view->suggestItems = $result;
-
-			$this->cache = $view;
+		if( $context->getConfig()->get( 'client/html/catalog/suggest/usecode', false ) ) {
+			$types[] = 'code';
 		}
 
-		return $this->cache;
+		/** client/html/catalog/suggest/domains
+		 * List of domain items that should be fetched along with the products
+		 *
+		 * The suggsted entries for the full text search in the catalog filter component
+		 * usually consist of the names of the matched products. By default, only the
+		 * product item including the localized name is available. You can add more domains
+		 * like e.g. "media" to get the images of the product as well.
+		 *
+		 * '''Note:''' The more domains you will add, the slower the autocomplete requests
+		 * will be! Keep it to an absolute minium for user friendly response times.
+		 *
+		 * @param array List of domain names
+		 * @since 2016.08
+		 * @category Developer
+		 * @see client/html/catalog/suggest/standard/template-body
+		 */
+		$domains = $context->getConfig()->get( 'client/html/catalog/suggest/domains', array( 'text' ) );
+
+
+		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+
+		$filter = $controller->createFilter( null, '+', 0, 24, 'default' );
+		$expr = array(
+			$filter->compare( '>', $filter->createFunction( 'index.text.relevance', array( 'default', $langid, $input ) ), 0 ),
+			$filter->compare( '>', $filter->createFunction( 'index.text.value', array( 'default', $langid, $types, 'product' ) ), '' ),
+		);
+		$filter->setConditions( $filter->combine( '&&', $expr ) );
+
+		$view->suggestItems = $controller->searchItems( $filter, $domains );
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

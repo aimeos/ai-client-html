@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -21,6 +21,17 @@ namespace Aimeos\Client\Html;
 interface Iface
 {
 	/**
+	 * Adds the data to the view object required by the templates
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
+	 * @since 2018.01
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null );
+
+	/**
 	 * Returns the sub-client given by its name.
 	 *
 	 * @param string $type Name of the client type
@@ -33,26 +44,22 @@ interface Iface
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null );
+	public function getHeader( $uid = '' );
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null );
+	public function getBody( $uid = '' );
 
 	/**
 	 * Returns the view object that will generate the HTML output.
 	 *
-	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @return \Aimeos\MW\View\Iface The view object which generates the HTML output
 	 */
 	public function getView();
 
@@ -84,10 +91,19 @@ interface Iface
 
 	/**
 	 * Processes the input, e.g. store given values.
+	 *
 	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables.
+	 * besides setting view variables if necessary.
 	 *
 	 * @return boolean False if processing is stopped, otherwise all processing was completed successfully
 	 */
 	public function process();
+
+	/**
+	 * Injects the reference of the outmost client object or decorator
+	 *
+	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
+	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
+	 */
+	public function setObject( \Aimeos\Client\Html\Iface $object );
 }

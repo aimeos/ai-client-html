@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -56,8 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/address/billing/standard/subparts';
-	private $subPartNames = array();
-	private $cache;
+	private $subPartNames = [];
 
 	private $mandatory = array(
 		'order.base.address.salutation',
@@ -83,17 +82,15 @@ class Standard
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
-		$view = $this->setViewParams( $this->getView(), $tags, $expire );
+		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+			$html .= $subclient->setView( $view )->getBody( $uid );
 		}
 		$view->billingBody = $html;
 
@@ -118,7 +115,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/address/billing/standard/template-body';
-		$default = 'checkout/standard/address-billing-body-default.php';
+		$default = 'checkout/standard/address-billing-body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -327,6 +324,47 @@ class Standard
 		 */
 		$optional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
 
+		/** client/html/checkout/standard/address/billing/hidden
+		 * List of billing address input fields that are optional and should be hidden
+		 *
+		 * You can configure the list of billing address fields that
+		 * are hidden when a customer enters his new billing address.
+		 * Available field keys are:
+		 * * order.base.address.company
+		 * * order.base.address.vatid
+		 * * order.base.address.salutation
+		 * * order.base.address.firstname
+		 * * order.base.address.lastname
+		 * * order.base.address.address1
+		 * * order.base.address.address2
+		 * * order.base.address.address3
+		 * * order.base.address.postal
+		 * * order.base.address.city
+		 * * order.base.address.state
+		 * * order.base.address.languageid
+		 * * order.base.address.countryid
+		 * * order.base.address.telephone
+		 * * order.base.address.telefax
+		 * * order.base.address.email
+		 * * order.base.address.website
+		 *
+		 * Caution: Only hide fields that don't require any input
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/billing/hidden" starting from 2014-03.
+		 *
+		 * @param array List of field keys
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/billing/disable-new
+		 * @see client/html/checkout/standard/address/billing/salutations
+		 * @see client/html/checkout/standard/address/billing/mandatory
+		 * @see client/html/checkout/standard/address/billing/optional
+		 * @see client/html/checkout/standard/address/countries
+		 */
+		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
+
 		/** client/html/checkout/standard/address/validate
 		 * List of regular expressions to validate the data of the address fields
 		 *
@@ -384,7 +422,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/optional
 		 */
 
-		$allFields = array_flip( array_merge( $mandatory, $optional ) );
+		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
 		$invalid = $this->validateFields( $params, $allFields );
 		$this->checkSalutation( $params, $mandatory );
 
@@ -422,8 +460,6 @@ class Standard
 			&& in_array( 'order.base.address.company', $mandatory ) === false
 		) {
 			$mandatory[] = 'order.base.address.company';
-		} else {
-			$params['order.base.address.company'] = $params['order.base.address.vatid'] = '';
 		}
 	}
 
@@ -506,10 +542,9 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$params = $view->param( 'ca_billing', array() );
-			$invalid = $this->checkFields( $params );
+			$params = $view->param( 'ca_billing', [] );
 
-			if( count( $invalid ) > 0 )
+			if( ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
 				$view->billingError = $invalid;
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
@@ -519,35 +554,23 @@ class Standard
 		}
 		else // existing address
 		{
-			$item = $this->getCustomerItem( $option );
-			$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+			$list = [];
+			$params = $view->param( 'ca_billing_' . $option, [] );
 
-			$invalid = array();
-			$addr = $item->getPaymentAddress();
-			$params = $view->param( 'ca_billing_' . $option, array() );
-
-			if( !empty( $params ) )
-			{
-				$list = array();
-				$invalid = $this->checkFields( $params );
-
-				foreach( $params as $key => $value ) {
-					$list[str_replace( 'order.base', 'customer', $key )] = $value;
-				}
-
-				$addr->fromArray( $list );
-				$item->setPaymentAddress( $addr );
-
-				$customerManager->saveItem( $item );
-			}
-
-			if( count( $invalid ) > 0 )
+			if( !empty( $params ) && ( $invalid = $this->checkFields( $params ) ) !== [] )
 			{
 				$view->billingError = $invalid;
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 
-			$basketCtrl->setAddress( $type, $addr );
+			foreach( $params as $key => $value ) {
+				$list[str_replace( 'order.base.address', 'customer', $key )] = $value;
+			}
+
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+			$customer = $controller->editItem( $option, $list );
+
+			$basketCtrl->setAddress( $type, $customer->getPaymentAddress() );
 		}
 	}
 
@@ -560,105 +583,61 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
-		{
-			$context = $this->getContext();
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$context = $this->getContext();
+		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
-			try {
-				$langid = $basketCntl->get()->getAddress( 'payment' )->getLanguageId();
-			} catch( \Exception $e ) {
-				$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
-			}
-			$view->billingLanguage = $langid;
+		try {
+			$langid = $basketCntl->get()->getAddress( 'payment' )->getLanguageId();
+		} catch( \Exception $e ) {
+			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
+		}
+		$view->billingLanguage = $langid;
 
-			/** client/html/checkout/standard/address/billing/hidden
-			 * List of billing address input fields that are optional and should be hidden
-			 *
-			 * You can configure the list of billing address fields that
-			 * are hidden when a customer enters his new billing address.
-			 * Available field keys are:
-			 * * order.base.address.company
-			 * * order.base.address.vatid
-			 * * order.base.address.salutation
-			 * * order.base.address.firstname
-			 * * order.base.address.lastname
-			 * * order.base.address.address1
-			 * * order.base.address.address2
-			 * * order.base.address.address3
-			 * * order.base.address.postal
-			 * * order.base.address.city
-			 * * order.base.address.state
-			 * * order.base.address.languageid
-			 * * order.base.address.countryid
-			 * * order.base.address.telephone
-			 * * order.base.address.telefax
-			 * * order.base.address.email
-			 * * order.base.address.website
-			 *
-			 * Caution: Only hide fields that don't require any input
-			 *
-			 * Until 2015-02, the configuration option was available as
-			 * "client/html/common/address/billing/hidden" starting from 2014-03.
-			 *
-			 * @param array List of field keys
-			 * @since 2015.02
-			 * @category User
-			 * @category Developer
-			 * @see client/html/checkout/standard/address/billing/disable-new
-			 * @see client/html/checkout/standard/address/billing/salutations
-			 * @see client/html/checkout/standard/address/billing/mandatory
-			 * @see client/html/checkout/standard/address/billing/optional
-			 * @see client/html/checkout/standard/address/countries
-			 */
-			$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', array() );
+		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
 
-			if( count( $view->get( 'addressLanguages', array() ) ) === 1 ) {
-				$hidden[] = 'order.base.address.languageid';
-			}
-
-			$salutations = array( 'company', 'mr', 'mrs' );
-
-			/** client/html/checkout/standard/address/billing/salutations
-			 * List of salutions the customer can select from for the billing address
-			 *
-			 * The following salutations are available:
-			 * * empty string for "unknown"
-			 * * company
-			 * * mr
-			 * * mrs
-			 * * miss
-			 *
-			 * You can modify the list of salutation codes and remove the ones
-			 * which shouldn't be used. Adding new salutations is a little bit
-			 * more difficult because you have to adapt a few areas in the source
-			 * code.
-			 *
-			 * Until 2015-02, the configuration option was available as
-			 * "client/html/common/address/billing/salutations" starting from 2014-03.
-			 *
-			 * @param array List of available salutation codes
-			 * @since 2015.02
-			 * @category User
-			 * @category Developer
-			 * @see client/html/checkout/standard/address/billing/disable-new
-			 * @see client/html/checkout/standard/address/billing/mandatory
-			 * @see client/html/checkout/standard/address/billing/optional
-			 * @see client/html/checkout/standard/address/billing/hidden
-			 * @see client/html/checkout/standard/address/countries
-			 */
-			$view->billingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
-
-			$view->billingMandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
-			$view->billingOptional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
-			$view->billingHidden = $hidden;
-
-			$this->cache = $view;
+		if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
+			$hidden[] = 'order.base.address.languageid';
 		}
 
-		return $this->cache;
+		$salutations = array( 'company', 'mr', 'mrs' );
+
+		/** client/html/checkout/standard/address/billing/salutations
+		 * List of salutions the customer can select from for the billing address
+		 *
+		 * The following salutations are available:
+		 * * empty string for "unknown"
+		 * * company
+		 * * mr
+		 * * mrs
+		 * * miss
+		 *
+		 * You can modify the list of salutation codes and remove the ones
+		 * which shouldn't be used. Adding new salutations is a little bit
+		 * more difficult because you have to adapt a few areas in the source
+		 * code.
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/billing/salutations" starting from 2014-03.
+		 *
+		 * @param array List of available salutation codes
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/billing/disable-new
+		 * @see client/html/checkout/standard/address/billing/mandatory
+		 * @see client/html/checkout/standard/address/billing/optional
+		 * @see client/html/checkout/standard/address/billing/hidden
+		 * @see client/html/checkout/standard/address/countries
+		 */
+		$view->billingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
+
+		$view->billingMandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
+		$view->billingOptional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
+		$view->billingHidden = $hidden;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 
 
@@ -776,7 +755,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		$invalid = array();
+		$invalid = [];
 
 		foreach( $params as $key => $value )
 		{

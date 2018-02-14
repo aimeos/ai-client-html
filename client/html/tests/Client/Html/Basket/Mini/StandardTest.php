@@ -1,14 +1,16 @@
 <?php
 
-namespace Aimeos\Client\Html\Basket\Mini;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+
+
+namespace Aimeos\Client\Html\Basket\Mini;
+
+
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
@@ -18,8 +20,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Basket\Mini\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Basket\Mini\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -40,11 +41,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetHeaderException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Mini\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -59,7 +60,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$miniBasket = $this->object->getView()->miniBasket;
 
 		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Base\Iface );
-		$this->assertContains( '<section class="aimeos basket-mini">', $output );
+		$this->assertContains( '<section class="aimeos basket-mini"', $output );
 		$this->assertContains( '<div class="basket-mini-main">', $output );
 		$this->assertContains( '<div class="basket-mini-product">', $output );
 	}
@@ -73,7 +74,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 		$view = $this->object->getView();
 
-		$controller->addProduct( $productItem->getId(), 9, array(), array(), array(), array(), array(), 'default' );
+		$controller->addProduct( $productItem->getId(), 9 );
 		$view->miniBasket = $controller->get();
 
 		$output = $this->object->getBody();
@@ -89,11 +90,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Mini\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -105,11 +106,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Mini\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -121,11 +122,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyMShopException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Mini\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );

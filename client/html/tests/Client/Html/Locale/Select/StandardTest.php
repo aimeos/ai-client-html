@@ -1,14 +1,16 @@
 <?php
 
-namespace Aimeos\Client\Html\Locale\Select;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  */
-class StandardTest extends \PHPUnit_Framework_TestCase
+
+
+namespace Aimeos\Client\Html\Locale\Select;
+
+
+class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $context;
 	private $object;
@@ -17,9 +19,8 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 
-		$this->object = new \Aimeos\Client\Html\Locale\Select\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Locale\Select\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -32,7 +33,7 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
 	public function testGetHeader()
 	{
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getHeader( 1, $tags, $expire );
 
@@ -45,11 +46,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetHeaderException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -65,11 +66,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $request, '127.0.0.1', 'test' );
 		$view->addHelper( 'request', $helper );
 
-		$tags = array();
+		$tags = [];
 		$expire = null;
 		$output = $this->object->getBody( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '<section class="aimeos locale-select">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos locale-select"', $output );
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 0, count( $tags ) );
 	}
@@ -78,11 +79,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -94,11 +95,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -110,11 +111,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyMShopException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -126,11 +127,11 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 	public function testGetBodyException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Locale\Select\Standard' )
-			->setConstructorArgs( array( $this->context, array() ) )
-			->setMethods( array( 'setViewParams' ) )
+			->setConstructorArgs( array( $this->context, [] ) )
+			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'setViewParams' )
+		$object->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );

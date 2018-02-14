@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2016
+ * @copyright Aimeos (aimeos.org), 2015-2017
  * @package Client
  * @subpackage Html
  */
@@ -79,53 +79,53 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartNames = array( 'intro', 'order' );
-	private $cache;
+	private $view;
 
 
 	/**
 	 * Returns the HTML code for insertion into the body.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '', array &$tags = array(), &$expire = null )
+	public function getBody( $uid = '' )
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
 		{
-			$view = $this->setViewParams( $view, $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getBody( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getBody( $uid );
 			}
 			$view->confirmBody = $html;
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', array() ) + $error;
+			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', array() ) + $error;
+			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', array() ) + $error;
+			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', array() ) + $error;
+			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
 		}
 
 		/** client/html/checkout/confirm/standard/template-body
@@ -149,7 +149,7 @@ class Standard
 		 * @see client/html/checkout/confirm/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/confirm/standard/template-body';
-		$default = 'checkout/confirm/body-default.php';
+		$default = 'checkout/confirm/body-standard.php';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -159,19 +159,21 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '', array &$tags = array(), &$expire = null )
+	public function getHeader( $uid = '' )
 	{
+		$view = $this->getView();
+
 		try
 		{
-			$view = $this->setViewParams( $this->getView(), $tags, $expire );
+			if( !isset( $this->view ) ) {
+				$view = $this->view = $this->getObject()->addData( $view );
+			}
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->getHeader( $uid, $tags, $expire );
+				$html .= $subclient->setView( $view )->getHeader( $uid );
 			}
 			$view->confirmHeader = $html;
 
@@ -197,7 +199,7 @@ class Standard
 			 * @see client/html/checkout/confirm/standard/template-body
 			 */
 			$tplconf = 'client/html/checkout/confirm/standard/template-header';
-			$default = 'checkout/confirm/header-default.php';
+			$default = 'checkout/confirm/header-standard.php';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -304,87 +306,58 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$session = $context->getSession();
-		$orderid = $session->get( 'aimeos/orderid' );
+
+		if( ( $code = $view->param( 'code' ) ) === null ) {
+			return;
+		}
 
 		try
 		{
-			if( ( $orderItem = $this->updatePayment( $view, $orderid ) ) === null )
-			{
-				$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-				$orderItem = $orderManager->getItem( $orderid );
+			$session = $context->getSession();
+
+			if( ( $orderid = $session->get( 'aimeos/orderid' ) ) === null ) {
+				throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 			}
 
-			$view->confirmOrderItem = $orderItem;
+			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
 
+			$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
+			$orderCntl->update( $orderItem );  // update stock, coupons, etc.
 
 			parent::process();
 
-
 			if( $orderItem->getPaymentStatus() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
 			{
-				foreach( $session->get( 'aimeos/basket/cache', array() ) as $key => $value ) {
+				\Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->clear();
+
+				foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
 					$session->set( $key, null );
 				}
-
-				\Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->clear();
 			}
-
-			// Update stock, coupons, etc.
-			\Aimeos\Controller\Frontend\Factory::createController( $context, 'order' )->update( $orderItem );
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', array() ) + $error;
+			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', array() ) + $error;
+			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', array() ) + $error;
+			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
 			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
 
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', array() ) + $error;
+			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
 		}
-	}
-
-
-	/**
-	 * Returns the payment service providere for the given code
-	 *
-	 * @param string $code Unique service code
-	 * @throws \Aimeos\Client\Html\Exception If no payment service item could be found
-	 * @return \Aimeos\MShop\Service\Provider\Iface Service provider object
-	 */
-	protected function getServiceProvider( $code )
-	{
-		$serviceManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'service' );
-
-		$search = $serviceManager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'service.code', $code ),
-			$search->compare( '==', 'service.type.code', 'payment' ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$result = $serviceManager->searchItems( $search );
-
-		if( ( $serviceItem = reset( $result ) ) === false )
-		{
-			$msg = sprintf( 'No service for code "%1$s" found', $code );
-			throw new \Aimeos\Client\Html\Exception( $msg );
-		}
-
-		return $serviceManager->getProvider( $serviceItem );
 	}
 
 
@@ -400,44 +373,6 @@ class Standard
 
 
 	/**
-	 * Returns the URL to the confirm page.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param array $params Parameters that should be part of the URL
-	 * @param array $config Default URL configuration
-	 * @return string URL string
-	 */
-	protected function getUrlConfirm( \Aimeos\MW\View\Iface $view, array $params, array $config )
-	{
-		$target = $view->config( 'client/html/checkout/confirm/url/target' );
-		$cntl = $view->config( 'client/html/checkout/confirm/url/controller', 'checkout' );
-		$action = $view->config( 'client/html/checkout/confirm/url/action', 'confirm' );
-		$config = $view->config( 'client/html/checkout/confirm/url/config', $config );
-
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
-	}
-
-
-	/**
-	 * Returns the URL to the update page.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param array $params Parameters that should be part of the URL
-	 * @param array $config Default URL configuration
-	 * @return string URL string
-	 */
-	protected function getUrlUpdate( \Aimeos\MW\View\Iface $view, array $params, array $config )
-	{
-		$target = $view->config( 'client/html/checkout/update/url/target' );
-		$cntl = $view->config( 'client/html/checkout/update/url/controller', 'checkout' );
-		$action = $view->config( 'client/html/checkout/update/url/action', 'update' );
-		$config = $view->config( 'client/html/checkout/update/url/config', $config );
-
-		return $view->url( $target, $cntl, $action, $params, array(), $config );
-	}
-
-
-	/**
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
@@ -445,61 +380,16 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function setViewParams( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( !isset( $this->cache ) )
+		$context = $this->getContext();
+
+		if( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) != null )
 		{
-			if( !isset( $view->confirmOrderItem ) )
-			{
-				$context = $this->getContext();
-				$orderid = $context->getSession()->get( 'aimeos/orderid' );
-				$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-
-				$view->confirmOrderItem = $orderManager->getItem( $orderid );
-			}
-
-			$this->cache = $view;
+			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+			$view->confirmOrderItem = $cntl->getItem( $orderid, false );
 		}
 
-		return $this->cache;
-	}
-
-
-	/**
-	 * Updates the payment status for the given order ID and returns the order item
-	 *
-	 * @param \Aimeos\MW\View\Iface $view View object of the HTML client
-	 * @param string $orderid ID of the order whose payment status should be updated
-	 * @return void|\Aimeos\MShop\Order\Item\Iface Order item that has been updated
-	 */
-	protected function updatePayment( \Aimeos\MW\View\Iface $view, $orderid )
-	{
-		if( ( $code = $view->param( 'code' ) ) === null ) {
-			return;
-		}
-
-		$provider = $this->getServiceProvider( $code );
-
-		$config = array( 'absoluteUri' => true, 'namespace' => false );
-		$params = array( 'code' => $code, 'orderid' => $orderid );
-		$urls = array(
-			'payment.url-success' => $this->getUrlConfirm( $view, $params, $config ),
-			'payment.url-update' => $this->getUrlUpdate( $view, $params, $config ),
-			'client.ipaddress' => $view->request()->getClientAddress(),
-		);
-		$urls['payment.url-self'] = $urls['payment.url-success'];
-		$provider->injectGlobalConfigBE( $urls );
-
-		$reqParams = $view->param();
-		$reqParams['orderid'] = $orderid;
-
-		if( ( $orderItem = $provider->updateSync( $reqParams, $view->request()->getBody() ) ) !== null
-			&& $orderItem->getPaymentStatus() === \Aimeos\MShop\Order\Item\Base::PAY_UNFINISHED
-			&& $provider->isImplemented( \Aimeos\MShop\Service\Provider\Payment\Base::FEAT_QUERY )
-		) {
-			$provider->query( $orderItem );
-		}
-
-		return $orderItem;
+		return parent::addData( $view, $tags, $expire );
 	}
 }
