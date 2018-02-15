@@ -283,72 +283,98 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$userId = $context->getUserId();
-		$ids = (array) $view->param( 'wat_id', [] );
 
-		if( $userId != null && !empty( $ids ) )
+
+		try
 		{
-			$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-			$typeId = $typeManager->findItem( 'watch', [], 'product' )->getId();
+			$userId = $context->getUserId();
+			$ids = (array) $view->param( 'wat_id', [] );
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
-			$items = $this->getListItems( $manager, $ids, $typeId, $userId );
-
-			switch( $view->param( 'wat_action' ) )
+			if( $userId != null && !empty( $ids ) )
 			{
-				case 'add':
+				$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
+				$typeId = $typeManager->findItem( 'watch', [], 'product' )->getId();
 
-					/** client/html/account/watch/standard/maxitems
-					 * Maximum number of products that can be watched in parallel
-					 *
-					 * This option limits the number of products that can be watched
-					 * after the users added the products to their watch list.
-					 * It must be a positive integer value greater than 0.
-					 *
-					 * Note: It's recommended to set this value not too high as this
-					 * leads to a high memory consumption when the e-mails are generated
-					 * to notify the customers. The memory used will up to 100*maxitems
-					 * of the footprint of one product item including the associated
-					 * texts, prices and media.
-					 *
-					 * @param integer Number of products
-					 * @since 2014.09
-					 * @category User
-					 * @category Developer
-					 */
-					$max = $context->getConfig()->get( 'client/html/account/watch/standard/maxitems', 100 );
-					$cnt = count( $ids );
+				$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+				$items = $this->getListItems( $manager, $ids, $typeId, $userId );
 
-					if( $this->checkLimit( $manager, $typeId, $userId, $max, $cnt ) === false )
-					{
-						$error = sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max );
-						$view->watchErrorList = $view->get( 'watchErrorList', [] ) + array( $error );
+				switch( $view->param( 'wat_action' ) )
+				{
+					case 'add':
+
+						/** client/html/account/watch/standard/maxitems
+						 * Maximum number of products that can be watched in parallel
+						 *
+						 * This option limits the number of products that can be watched
+						 * after the users added the products to their watch list.
+						 * It must be a positive integer value greater than 0.
+						 *
+						 * Note: It's recommended to set this value not too high as this
+						 * leads to a high memory consumption when the e-mails are generated
+						 * to notify the customers. The memory used will up to 100*maxitems
+						 * of the footprint of one product item including the associated
+						 * texts, prices and media.
+						 *
+						 * @param integer Number of products
+						 * @since 2014.09
+						 * @category User
+						 * @category Developer
+						 */
+						$max = $context->getConfig()->get( 'client/html/account/watch/standard/maxitems', 100 );
+						$cnt = count( $ids );
+
+						if( $this->checkLimit( $manager, $typeId, $userId, $max, $cnt ) === false )
+						{
+							$error = sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max );
+							$view->watchErrorList = $view->get( 'watchErrorList', [] ) + array( $error );
+							break;
+						}
+
+						$this->addItems( $manager, $items, $ids, $typeId, $userId );
 						break;
-					}
 
-					$this->addItems( $manager, $items, $ids, $typeId, $userId );
-					break;
+					case 'edit':
 
-				case 'edit':
+						$config = array(
+							'timeframe' => $view->param( 'wat_timeframe', 7 ),
+							'pricevalue' => $view->param( 'wat_pricevalue', '0.00' ),
+							'price' => $view->param( 'wat_price', 0 ),
+							'stock' => $view->param( 'wat_stock', 0 ),
+							'currency' => $context->getLocale()->getCurrencyId(),
+						);
+						$this->editItems( $manager, $items, $ids, $config );
+						break;
 
-					$config = array(
-						'timeframe' => $view->param( 'wat_timeframe', 7 ),
-						'pricevalue' => $view->param( 'wat_pricevalue', '0.00' ),
-						'price' => $view->param( 'wat_price', 0 ),
-						'stock' => $view->param( 'wat_stock', 0 ),
-						'currency' => $context->getLocale()->getCurrencyId(),
-					);
-					$this->editItems( $manager, $items, $ids, $config );
-					break;
+					case 'delete':
 
-				case 'delete':
-
-					$this->deleteItems( $manager, $items, $ids );
-					break;
+						$this->deleteItems( $manager, $items, $ids );
+						break;
+				}
 			}
-		}
 
-		parent::process();
+			parent::process();
+		}
+		catch( \Aimeos\MShop\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+		}
+		catch( \Aimeos\Controller\Frontend\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+		}
+		catch( \Aimeos\Client\Html\Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+		}
+		catch( \Exception $e )
+		{
+			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$this->logException( $e );
+		}
 	}
 
 
