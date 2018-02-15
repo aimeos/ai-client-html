@@ -209,7 +209,6 @@ class Standard
 		self::$headerSingleton = true;
 
 		$prefixes = array( 'f' );
-		$context = $this->getContext();
 		$confkey = 'client/html/catalog/filter';
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )

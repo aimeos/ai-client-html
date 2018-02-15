@@ -180,7 +180,6 @@ class Standard
 	public function getHeader( $uid = '' )
 	{
 		$prefixes = array( 'f' );
-		$context = $this->getContext();
 		$confkey = 'client/html/catalog/stage';
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )

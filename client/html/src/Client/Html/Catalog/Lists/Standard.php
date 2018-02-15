@@ -206,7 +206,6 @@ class Standard
 	public function getHeader( $uid = '' )
 	{
 		$prefixes = array( 'f', 'l' );
-		$context = $this->getContext();
 		$confkey = 'client/html/catalog/lists';
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )

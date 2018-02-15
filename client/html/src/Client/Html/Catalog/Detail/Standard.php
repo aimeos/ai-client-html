@@ -191,7 +191,6 @@ class Standard
 	public function getHeader( $uid = '' )
 	{
 		$prefixes = array( 'd' );
-		$context = $this->getContext();
 		$confkey = 'client/html/catalog/detail';
 
 
