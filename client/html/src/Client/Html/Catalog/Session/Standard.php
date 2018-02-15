@@ -110,25 +110,24 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
 			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
+			$this->logException( $e );
 		}
 
 		/** client/html/catalog/session/standard/template-body
@@ -208,7 +207,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$this->logException( $e );
 		}
 	}
 
@@ -307,36 +306,33 @@ class Standard
 	 */
 	public function process()
 	{
+		$context = $this->getContext();
+		$view = $this->getView();
+
 		try
 		{
 			parent::process();
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$view = $this->getView();
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
 			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$view = $this->getView();
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$view = $this->getView();
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
-			$context = $this->getContext();
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
-			$view = $this->getView();
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 			$view->sessionErrorList = $view->get( 'sessionErrorList', [] ) + $error;
+			$this->logException( $e );
 		}
 	}
 

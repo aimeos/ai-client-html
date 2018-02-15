@@ -130,10 +130,9 @@ class Standard
 			}
 			catch( \Exception $e )
 			{
-				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
+				$this->logException( $e );
 			}
 
 			/** client/html/catalog/stage/standard/template-body
@@ -202,7 +201,7 @@ class Standard
 			}
 			catch( \Exception $e )
 			{
-				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+				$this->logException( $e );
 				return;
 			}
 
@@ -336,6 +335,7 @@ class Standard
 	 */
 	public function process()
 	{
+		$context = $this->getContext();
 		$view = $this->getView();
 
 		try
@@ -344,26 +344,24 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
 			$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 			$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 			$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
 		{
-			$context = $this->getContext();
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 			$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
+			$this->logException( $e );
 		}
 	}
 

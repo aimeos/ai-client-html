@@ -116,10 +116,9 @@ class Standard
 			}
 			catch( \Exception $e )
 			{
-				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 				$view->miniErrorList = $view->get( 'miniErrorList', [] ) + $error;
+				$this->logException( $e );
 			}
 
 			/** client/html/basket/mini/standard/template-body
@@ -215,7 +214,7 @@ class Standard
 			}
 			catch( \Exception $e )
 			{
-				$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+				$this->logException( $e );
 			}
 		}
 		else

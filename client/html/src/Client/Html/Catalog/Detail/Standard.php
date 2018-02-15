@@ -141,10 +141,9 @@ class Standard
 			}
 			catch( \Exception $e )
 			{
-				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 				$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
+				$this->logException( $e );
 			}
 
 			/** client/html/catalog/detail/standard/template-body
@@ -214,7 +213,7 @@ class Standard
 			}
 			catch( \Exception $e )
 			{
-				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+				$this->logException( $e );
 				return;
 			}
 
@@ -392,10 +391,9 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 			$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
+			$this->logException( $e );
 		}
 	}
 

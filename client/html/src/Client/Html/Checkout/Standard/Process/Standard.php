@@ -318,10 +318,9 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$this->logException( $e );
 		}
 	}
 

@@ -202,7 +202,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() );
+			$this->logException( $e );
 		}
 	}
 

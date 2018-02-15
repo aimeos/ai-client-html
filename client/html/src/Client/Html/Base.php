@@ -659,6 +659,20 @@ abstract class Base
 
 
 	/**
+	 * Writes the exception details to the log
+	 *
+	 * @param \Exception $e Exception object
+	 */
+	protected function logException( \Exception $e )
+	{
+		$logger = $this->context->getLogger();
+
+		$logger->log( $e->getMessage(), \Aimeos\MW\Logger\Base::WARN, 'client/html' );
+		$logger->log( $e->getTraceAsString(), \Aimeos\MW\Logger\Base::WARN, 'client/html' );
+	}
+
+
+	/**
 	 * Replaces the section in the content that is enclosed by the marker.
 	 *
 	 * @param string $content Cached content
