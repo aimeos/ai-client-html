@@ -110,17 +110,17 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
 			$view->selectErrorList = $view->get( 'selectErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 			$view->selectErrorList = $view->get( 'selectErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 			$view->selectErrorList = $view->get( 'selectErrorList', [] ) + $error;
 		}
 		catch( \Exception $e )
