@@ -141,7 +141,7 @@ ksort( $propMap );
 					array(
 						'productItem' => $this->detailProductItem,
 						'params' => $this->get( 'detailParams', [] ),
-						'mediaItems' => $mediaItems
+						'mediaItems' => array_merge( $this->detailProductItem->getRefItems( 'media' ), $mediaItems )
 					)
 				); ?>
 			</div>
