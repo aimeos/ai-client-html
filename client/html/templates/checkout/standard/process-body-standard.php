@@ -193,6 +193,33 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 				<?= $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ); ?>
 			</button>
 
+		<?php elseif( $this->get( 'standardMethod', 'POST' ) === 'GET' ) : ?>
+			<?php
+				$urlParams = [];
+				$url = $this->get( 'standardUrlNext' );
+
+				foreach( $params as $key => $item )
+				{
+					if( is_array( $item->getDefault() ) )
+					{
+						foreach( (array) $item->getDefault() as $key2 => $value ){
+							$urlParams[] = $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) . '=' . urlencode( $value );
+						}
+					}
+					else
+					{
+						$urlParams[] = $namefcn( $this, $item->getInternalCode() ) . '=' . urlencode( $item->getDefault() );
+					}
+				}
+
+				$char = ( strpos( $url, '?' ) === false ? '?' : '&' );
+				$url .= $char . implode( '&', $urlParams );
+			?>
+
+			<a class="btn btn-primary btn-lg btn-action" href="<?= $enc->attr( $url ); ?>">
+				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
+			</a>
+
 		<?php else : ?>
 
 			<button class="btn btn-primary btn-lg btn-action">
