@@ -236,7 +236,17 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $id ) );
 			}
 
-			$view->summaryBasket = $controller->load( $item->getOrderBaseId() );
+			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT | \Aimeos\MShop\Order\Item\Base\Base::PARTS_ADDRESS;
+			$basket = $controller->load( $item->getOrderBaseId(), $parts );
+
+			foreach( $basket->getProducts() as $pos => $orderProduct )
+			{
+				if( $orderProduct->getId() != $item->getOrderProductId() ) {
+					$basket->deleteProduct( $pos );
+				}
+			}
+
+			$view->summaryBasket = $basket;
 			$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 			$view->detailItem = $item;
 		}

@@ -54,7 +54,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( 'Example company', $output );
 
 		$this->assertContains( 'Cafe Noire Expresso', $output );
-		$this->assertContains( 'Cafe Noire Cappuccino', $output );
 	}
 
 
