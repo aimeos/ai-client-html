@@ -108,7 +108,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									</span>
 									<span class="value">
 										<?= $enc->html( sprintf(
-											$this->translate( 'client', '%1$s at %2$s' ),
+												$this->translate( 'client', '%1$s at %2$s' ),
 												$id,
 												date_create( $item->getTimeCreated() )->format( $dateformat )
 											), $enc::TRUST ); ?>
@@ -122,14 +122,15 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									<span class="value">
 										<?php if( isset( $intervals[$item->getInterval()] ) ) : ?>
 											<?= $enc->html( $intervals[$item->getInterval()]->getName(), $enc::TRUST ); ?>
+										<?php else : ?>
+											<?= $enc->html( $item->getInterval(), $enc::TRUST ); ?>
 										<?php endif; ?>
-										<?= $enc->html( $item->getInterval(), $enc::TRUST ); ?>
 									</span>
 								</li><!--
 
 								--><li class="attr-item subscription-datenext">
 									<span class="name">
-										<?= $enc->html( $this->translate( 'client', 'Renew date' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ); ?>
 									</span>
 									<span class="value">
 										<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
