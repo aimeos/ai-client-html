@@ -24,6 +24,9 @@ if( $this->get( 'basket-add', false ) )
 	$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 	$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
 	$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
+	$basketSite = $this->config( 'client/html/basket/standard/url/site' );
+
+	$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 }
 
 
@@ -218,10 +221,14 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 
 			<?php if( $this->get( 'basket-add', false ) ) : ?>
-				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
+				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
 					<!-- catalog.lists.items.csrf -->
 					<?= $this->csrf()->formfield(); ?>
 					<!-- catalog.lists.items.csrf -->
+
+					<?php if( $basketSite ) : ?>
+						<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
+					<?php endif ?>
 
 					<?php if( $productItem->getType() === 'select' ) : ?>
 						<div class="items-selection">

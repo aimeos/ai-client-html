@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -22,6 +22,7 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/site
  */
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 
@@ -38,6 +39,7 @@ $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/site
  */
 $basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 
@@ -54,6 +56,7 @@ $basketController = $this->config( 'client/html/basket/standard/url/controller',
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/site
  */
 $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
 
@@ -76,9 +79,29 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index'
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
+ * @see client/html/basket/standard/url/site
  * @see client/html/url/config
  */
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
+
+/** client/html/basket/standard/url/site
+ * Locale site code where products will be added to the basket
+ *
+ * In more complex setups with several shop sites, this setting allows to to
+ * define the shop site that will manage the basket of the customer. For example
+ * in market place setups where all vendors have there own shop sites, the basket
+ * site should be the site code of the market place ("default" by default).
+ *
+ * @param string Code of the locale site
+ * @since 2018.04
+ * @category Developer
+ * @see client/html/basket/standard/url/target
+ * @see client/html/basket/standard/url/controller
+ * @see client/html/basket/standard/url/config
+ */
+$basketSite = $this->config( 'client/html/basket/standard/url/site' );
+
+$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 
 $jsonTarget = $this->config( 'client/jsonapi/url/target' );
@@ -92,7 +115,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>
-<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, [], [], $jsonConfig ) ); ?>">
+<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $basketParams, [], $jsonConfig ) ); ?>">
 
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
@@ -116,7 +139,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
 
-		<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
+		<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
 			<div class="basket-mini-main">
 				<span class="quantity">
 					<?= $enc->html( $quantity ); ?>
@@ -146,7 +169,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 						<td class="action"><a class="delete" href="#"></a></td>
 					</tr>
 					<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
-						<?php $param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos]; ?>
+						<?php $param = ['site' => $basketSite, 'resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos]; ?>
 						<tr class="product"
 							data-url="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $param, [], $jsonConfig ) ); ?>"
 							data-urldata="<?= $enc->attr( $this->csrf()->name() . '=' . $this->csrf()->value() ); ?>"

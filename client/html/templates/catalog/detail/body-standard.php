@@ -30,15 +30,18 @@ $getProductList = function( array $posItems, array $items )
 
 $enc = $this->encoder();
 
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
-
 $optTarget = $this->config( 'client/jsonapi/url/target' );
 $optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
 $optAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $optConfig = $this->config( 'client/jsonapi/url/config', [] );
+
+$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
+$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
+$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
+$basketSite = $this->config( 'client/html/basket/standard/url/site' );
+
+$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 
 /** client/html/basket/require-stock
@@ -198,10 +201,14 @@ ksort( $propMap );
 					<?= $this->block()->get( 'catalog/detail/service' ); ?>
 
 
-					<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
+					<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
 						<!-- catalog.detail.csrf -->
 						<?= $this->csrf()->formfield(); ?>
 						<!-- catalog.detail.csrf -->
+
+						<?php if( $basketSite ) : ?>
+							<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
+						<?php endif ?>
 
 						<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
 							<div class="catalog-detail-basket-selection">
