@@ -9,6 +9,7 @@ return array(
 	'include' => array(
 		'client/html/src',
 		'controller/jobs/src',
+		'controller/common/src',
 	),
 	'i18n' => array(
 		'client' => 'client/i18n',

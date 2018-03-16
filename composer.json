@@ -23,11 +23,13 @@
 	"autoload": {
 		"psr-4": {
 			"Aimeos\\Client\\Html\\": "client/html/src/Client/Html/",
-			"Aimeos\\Controller\\Jobs\\": "client/html/src/Controller/Jobs/"
+			"Aimeos\\Controller\\Jobs\\": "controller/jobs/src/Controller/Jobs/",
+			"Aimeos\\Controller\\Common\\": "controller/common/src/Controller/Common/"
 		},
 		"classmap": [
 			"client/html/src",
-			"controller/jobs/src"
+			"controller/jobs/src",
+			"controller/common/src"
 		]
 	}
 }
