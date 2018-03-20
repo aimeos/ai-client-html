@@ -169,7 +169,10 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 						<td class="action"><a class="delete" href="#"></a></td>
 					</tr>
 					<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
-						<?php $param = ['site' => $basketSite, 'resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos]; ?>
+						<?php
+							$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
+							if( $basketSite ) { $param['site'] = $basketSite; }
+						?>
 						<tr class="product"
 							data-url="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $param, [], $jsonConfig ) ); ?>"
 							data-urldata="<?= $enc->attr( $this->csrf()->name() . '=' . $this->csrf()->value() ); ?>"
