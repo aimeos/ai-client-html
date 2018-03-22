@@ -60,7 +60,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 $attrMap = $subAttrDeps = $mediaItems = [];
-$attrItems = $this->get( 'detailAttributeItems', [] );
 $productItems = $this->get( 'detailProductItems', [] );
 
 foreach( $productItems as $subProdId => $subProduct )
@@ -71,11 +70,8 @@ foreach( $productItems as $subProdId => $subProduct )
 
 	foreach( $subItems as $attrId => $attrItem )
 	{
-		if( isset( $attrItems[ $attrId ] ) )
-		{
-			$attrMap[ $attrItem->getType() ][ $attrId ] = $attrItems[ $attrId ];
-			$subAttrDeps[ $attrId ][] = $subProdId;
-		}
+		$attrMap[ $attrItem->getType() ][ $attrId ] = $attrItem;
+		$subAttrDeps[ $attrId ][] = $subProdId;
 	}
 }
 
