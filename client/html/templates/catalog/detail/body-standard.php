@@ -400,6 +400,12 @@ ksort( $propMap );
 														<?php endforeach; ?>
 													</div>
 													<span class="attr-name"><?= $enc->html( $attrItem->getName() ); ?></span>
+													<?php foreach( $attrItem->getRefItems( 'text', 'short' ) as $textItem ) : ?>
+														<div class="attr-short"><?= $enc->html( $textItem->getContent() ); ?></div>
+													<?php endforeach ?>
+													<?php foreach( $attrItem->getRefItems( 'text', 'long' ) as $textItem ) : ?>
+														<div class="attr-long"><?= $enc->html( $textItem->getContent() ); ?></div>
+													<?php endforeach ?>
 												</td>
 											</tr>
 										<?php endforeach; ?>
@@ -428,6 +434,12 @@ ksort( $propMap );
 															<?php endforeach; ?>
 														</div>
 														<span class="attr-name"><?= $enc->html( $attrItem->getName() ); ?></span>
+														<?php foreach( $attrItem->getRefItems( 'text', 'short' ) as $textItem ) : ?>
+															<div class="attr-short"><?= $enc->html( $textItem->getContent() ); ?></div>
+														<?php endforeach ?>
+														<?php foreach( $attrItem->getRefItems( 'text', 'long' ) as $textItem ) : ?>
+															<div class="attr-long"><?= $enc->html( $textItem->getContent() ); ?></div>
+														<?php endforeach ?>
 													</td>
 												</tr>
 											<?php endforeach; ?>
