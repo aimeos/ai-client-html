@@ -2647,14 +2647,16 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 .account-subscription-list .attr-list {
+	display: inline-block;
 	padding: 0.25em 0;
+	width: 90%;
 }
 
 .account-subscription-list li.attr-item {
 	display: inline-block;
 	padding: 0.25em 1em;
 	margin: 0;
-	width: 50%;
+	width: 45%;
 }
 
 .account-subscription-list li.attr-item .name,
@@ -2666,6 +2668,16 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .account-subscription-list li.attr-item .name:after {
 	content: ": ";
+}
+
+.account-subscription-item subscription-data {
+	display: inline-block;
+	width: 90%;
+}
+
+.account-subscription-item subscription-cancel {
+	display: inline-block;
+	width: 10%;
 }
 
 .account-subscription-detail a:hover {
