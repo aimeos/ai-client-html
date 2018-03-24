@@ -45,11 +45,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertContains( '<div class="account-subscription-list">', $output );
-		$this->assertRegExp( '#<li class="subscription-item">#', $output );
-		$this->assertRegExp( '#<li class="attr-item subscription-basic">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
-		$this->assertRegExp( '#<li class="attr-item subscription-interval">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
-		$this->assertRegExp( '#<li class="attr-item subscription-datenext">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
-		$this->assertRegExp( '#<li class="attr-item subscription-dateend">.*<span class="value">.*</span>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="subscription-item#', $output );
+		$this->assertRegExp( '#<div class="attr-item subscription-basic.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="attr-item subscription-interval.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="attr-item subscription-datenext.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="attr-item subscription-dateend.*<span class="value.*</span>.*</div>#smU', $output );
 	}
 
 

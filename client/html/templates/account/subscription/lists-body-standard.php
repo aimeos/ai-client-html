@@ -96,68 +96,71 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 			<ul class="subscription-list">
 
 				<?php foreach( $items as $id => $item ) : ?>
-					<li class="subscription-item">
+					<li class="subscription-item row">
 
 						<?php $params = array( 'sub_action' => 'detail', 'sub_id' => $id ); ?>
-						<a class="subscription-data" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
-							<ul class="attr-list">
+						<a class="subscription-data col-xs-10" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
 
-								<li class="attr-item subscription-basic">
-									<span class="name">
+							<div class="row">
+								<div class="attr-item subscription-basic col-sm-6 row">
+									<span class="name col-xs-6">
 										<?= $enc->html( $this->translate( 'client', 'Subscription ID' ), $enc::TRUST ); ?>
 									</span>
-									<span class="value">
+									<span class="value col-xs-6">
 										<?= $enc->html( sprintf(
 												$this->translate( 'client', '%1$s at %2$s' ),
 												$id,
 												date_create( $item->getTimeCreated() )->format( $dateformat )
 											), $enc::TRUST ); ?>
 									</span>
-								</li><!--
+								</div>
 
-								--><li class="attr-item subscription-interval">
-									<span class="name">
+								<div class="attr-item subscription-interval col-sm-6 row">
+									<span class="name col-xs-6">
 										<?= $enc->html( $this->translate( 'client', 'Subscription interval' ), $enc::TRUST ); ?>
 									</span>
-									<span class="value">
+									<span class="value col-xs-6">
 										<?php if( isset( $intervals[$item->getInterval()] ) ) : ?>
 											<?= $enc->html( $intervals[$item->getInterval()]->getName(), $enc::TRUST ); ?>
 										<?php else : ?>
 											<?= $enc->html( $item->getInterval(), $enc::TRUST ); ?>
 										<?php endif; ?>
 									</span>
-								</li><!--
+								</div>
+							</div>
 
-								--><li class="attr-item subscription-datenext">
-									<span class="name">
+							<div class="row">
+								<div class="attr-item subscription-datenext col-sm-6 row">
+									<span class="name col-xs-6">
 										<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ); ?>
 									</span>
-									<span class="value">
+									<span class="value col-xs-6">
 										<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
 											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
 										<?php endif; ?>
 									</span>
-								</li><!--
+								</div>
 
-								--><li class="attr-item subscription-dateend">
-									<span class="name">
+								<div class="attr-item subscription-dateend col-sm-6 row">
+									<span class="name col-xs-6">
 										<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ); ?>
 									</span>
-									<span class="value">
+									<span class="value col-xs-6">
 										<?php if( ( $date = $item->getDateEnd() ) != null ) : ?>
 											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
 										<?php endif; ?>
 									</span>
-								</li>
-							</ul>
+								</div>
+							</div>
 						</a>
 
-						<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $id ); ?>
-						<?php if( $item->getDateEnd() == null ) : ?>
-							<a class="subscription-cancel" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
-								<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ); ?>
-							</a>
-						<?php endif; ?>
+						<div class="subscription-cancel col-xs-2">
+							<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $id ); ?>
+							<?php if( $item->getDateEnd() == null ) : ?>
+							<a class="minibutton delete"
+								href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>"></a>
+							<?php endif; ?>
+						</div>
 
 					</li>
 				<?php endforeach; ?>
