@@ -21,11 +21,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object = new \Aimeos\Client\Html\Account\Subscription\Lists\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
+
+		\Aimeos\MShop\Factory::setCache( true );
 	}
 
 
 	protected function tearDown()
 	{
+		\Aimeos\MShop\Factory::setCache( false );
+		\Aimeos\MShop\Factory::clear();
+
 		unset( $this->object, $this->context );
 	}
 
@@ -45,6 +50,32 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertRegExp( '#<li class="attr-item subscription-interval">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
 		$this->assertRegExp( '#<li class="attr-item subscription-datenext">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
 		$this->assertRegExp( '#<li class="attr-item subscription-dateend">.*<span class="value">.*</span>.*</li>#smU', $output );
+	}
+
+
+	public function testProcess()
+	{
+		$view = \TestHelperHtml::getView();
+		$param = array(
+			'sub_action' => 'cancel',
+			'sub_id' => $this->getSubscription()->getId()
+		);
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->setView( $this->object->addData( $view ) );
+
+		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['saveItem'] )
+			->getMock();
+
+		\Aimeos\MShop\Factory::injectManager( $this->context, 'subscription', $managerStub );
+
+		$managerStub->expects( $this->once() )->method( 'saveItem' );
+
+		$this->object->process();
 	}
 
 
@@ -77,5 +108,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 		return $item;
+	}
+
+
+	protected function getSubscription()
+	{
+		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'subscription' );
+
+		$search = $manager->createSearch();
+		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
+
+		$items = $manager->searchItems( $search );
+
+		if( ( $item = reset( $items ) ) !== false ) {
+			return $item;
+		}
+
+		throw new \Exception( 'No subscription item found' );
 	}
 }

@@ -68,7 +68,7 @@ class Standard
 	{
 		$view = $this->getView();
 
-		if( $view->param( 'sub_action', 'list' ) != 'list' ) {
+		if( !in_array( $view->param( 'sub_action', 'list' ), ['cancel', 'list'], true ) ) {
 			return '';
 		}
 
@@ -189,6 +189,40 @@ class Standard
 		 */
 
 		return $this->createSubClient( 'account/subscription/lists/' . $type, $name );
+	}
+
+
+	/**
+	 * Processes the input, e.g. store given values.
+	 * A view must be available and this method doesn't generate any output
+	 * besides setting view variables.
+	 */
+	public function process()
+	{
+		try
+		{
+			$view = $this->getView();
+			$context = $this->getContext();
+			$id = $view->param( 'sub_id' );
+			$customerId = $context->getUserId();
+
+			if( $id && $view->param( 'sub_action' ) === 'cancel' )
+			{
+				$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
+				$item = $manager->getItem( $id );
+
+				$interval = \DateInterval::createFromDateString( $item->getInterval() );
+				$item->setDateEnd( date_create( $item->getDateNext() )->add( $interval )->format( 'Y-m-d' ) );
+
+				$manager->saveItem( $item );
+			}
+
+			parent::process();
+		}
+		catch( \Exception $e )
+		{
+			$this->logException( $e );
+		}
 	}
 
 

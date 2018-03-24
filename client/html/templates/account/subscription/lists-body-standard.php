@@ -99,7 +99,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 					<li class="subscription-item">
 
 						<?php $params = array( 'sub_action' => 'detail', 'sub_id' => $id ); ?>
-						<a href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+						<a class="subscription-data" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
 							<ul class="attr-list">
 
 								<li class="attr-item subscription-basic">
@@ -151,6 +151,13 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 								</li>
 							</ul>
 						</a>
+
+						<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $id ); ?>
+						<?php if( $item->getDateEnd() == null ) : ?>
+							<a class="subscription-cancel" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+								<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ); ?>
+							</a>
+						<?php endif; ?>
 
 					</li>
 				<?php endforeach; ?>
