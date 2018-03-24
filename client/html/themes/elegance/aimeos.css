@@ -2569,7 +2569,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 /* Account history */
 .account-history {
-	min-width: 240px;
 	margin: 0 auto;
 }
 
@@ -2587,18 +2586,8 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	padding: 0.25em 0;
 }
 
-.account-history-list li.attr-item {
-	display: inline-block;
+.account-history-list .attr-item {
 	padding: 0.25em 1em;
-	margin: 0;
-	width: 50%;
-}
-
-.account-history-list li.attr-item .name,
-.account-history-list li.attr-item .value {
-	display: inline-block;
-	vertical-align: top;
-	min-width: 208px;
 }
 
 .account-history-list li.attr-item .name:after {
