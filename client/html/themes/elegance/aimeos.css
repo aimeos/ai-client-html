@@ -2652,7 +2652,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .account-subscription-list .subscription-cancel .delete {
 	display: block;
-	margin: 1.75em 0;
+	margin: 0.5em 0;
 }
 
 .account-subscription-list .subscription-cancel .delete:after {
