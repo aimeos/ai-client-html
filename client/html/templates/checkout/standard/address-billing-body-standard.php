@@ -222,8 +222,8 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 						<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
 					</label>
 					<div class="col-md-7">
-						<input class="form-control" type="date" class="birthday"
-							id="customer-birthday"
+						<input class="form-control birthday" type="date" 
+						       id="customer-birthday"
 							name="<?= $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
 							value="<?= $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
 						/>
