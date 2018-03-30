@@ -72,26 +72,24 @@ $services = $this->summaryBasket->getServices();
 
 			<div class="content">
 				<?php if( isset( $services['delivery'] ) ) : ?>
-					<?php foreach( (array) $services['delivery'] as $service ) : ?>
-						<?= $this->partial(
-							/** client/html/email/common/summary/service/html
-							 * Location of the service partial template for the HTML e-mails
-							 *
-							 * To configure an alternative template for the service partial, you
-							 * have to configure its path relative to the template directory
-							 * (usually client/html/templates/). It's then used to display the
-							 * payment or delivery service block in the HTML e-mails.
-							 *
-							 * @param string Relative path to the service partial
-							 * @since 2017.01
-							 * @category Developer
-							 * @see client/html/email/common/summary/address/html
-							 * @see client/html/email/common/summary/detail/html
-							 */
-							$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard.php' ),
-							array( 'service' => $service, 'type' => 'delivery' )
-						); ?>
-					<?php endforeach; ?>
+					<?= $this->partial(
+						/** client/html/email/common/summary/service/html
+						 * Location of the service partial template for the HTML e-mails
+						 *
+						 * To configure an alternative template for the service partial, you
+						 * have to configure its path relative to the template directory
+						 * (usually client/html/templates/). It's then used to display the
+						 * payment or delivery service block in the HTML e-mails.
+						 *
+						 * @param string Relative path to the service partial
+						 * @since 2017.01
+						 * @category Developer
+						 * @see client/html/email/common/summary/address/html
+						 * @see client/html/email/common/summary/detail/html
+						 */
+						$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard.php' ),
+						array( 'service' => $services['delivery'], 'type' => 'delivery' )
+					); ?>
 				<?php endif; ?>
 			</div>
 		</div><!--
@@ -103,12 +101,10 @@ $services = $this->summaryBasket->getServices();
 
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
-					<?php foreach( (array) $services['payment'] as $service ) : ?>
-						<?= $this->partial(
-							$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard.php' ),
-							array( 'service' => $service, 'type' => 'payment' )
-						); ?>
-					<?php endforeach; ?>
+					<?= $this->partial(
+						$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard.php' ),
+						array( 'service' => $services['payment'], 'type' => 'payment' )
+					); ?>
 				<?php endif; ?>
 			</div>
 		</div>
