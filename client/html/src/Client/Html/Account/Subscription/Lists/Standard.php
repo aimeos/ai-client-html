@@ -202,19 +202,9 @@ class Standard
 		try
 		{
 			$view = $this->getView();
-			$context = $this->getContext();
-			$id = $view->param( 'sub_id' );
-			$customerId = $context->getUserId();
 
-			if( $id && $view->param( 'sub_action' ) === 'cancel' )
-			{
-				$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
-				$item = $manager->getItem( $id );
-
-				$interval = \DateInterval::createFromDateString( $item->getInterval() );
-				$item->setDateEnd( date_create( $item->getDateNext() )->add( $interval )->format( 'Y-m-d' ) );
-
-				$manager->saveItem( $item );
+			if( ( $id = $view->param( 'sub_id' ) ) != null && $view->param( 'sub_action' ) === 'cancel' ) {
+				\Aimeos\Controller\Frontend\Subscription\Factory::createController( $this->getContext() )->cancel( $id );
 			}
 
 			parent::process();
@@ -247,44 +237,10 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$intervals = [];
-		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
-		$attrManager = \Aimeos\MShop\Factory::createManager( $context, 'attribute' );
+		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'subscription' );
 
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-			$search->getConditions(),
-			$search->compare( '==', 'order.base.customerid', $context->getUserId() ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( array( $search->sort( '-', 'subscription.id' ) ) );
-
-		$items = $manager->searchItems( $search );
-
-		foreach( $items as $item ) {
-			$intervals[$item->getInterval()] = null;
-		}
-
-
-		$search = $attrManager->createSearch( true );
-		$expr = array(
-			$search->getConditions(),
-			$search->compare( '==', 'attribute.domain', 'product' ),
-			$search->compare( '==', 'attribute.type.code', 'interval' ),
-			$search->compare( '==', 'attribute.code', array_keys( $intervals ) ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 0x7fffffff );
-
-		foreach( $attrManager->searchItems( $search, ['text'] ) as $attrItem ) {
-			$intervals[$attrItem->getCode()] = $attrItem;
-		}
-
-
-		$view->listsItems = $items;
-		$view->listsIntervalItems = $intervals;
+		$view->listsItems = $cntl->searchItems( $cntl->createFilter() );
+		$view->listsIntervalItems = $cntl->getIntervals();
 
 		return parent::addData( $view, $tags, $expire );
 	}

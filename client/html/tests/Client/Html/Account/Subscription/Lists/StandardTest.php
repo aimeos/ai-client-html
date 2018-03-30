@@ -66,14 +66,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $this->object->addData( $view ) );
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Subscription\\Manager\\Standard' )
+		$cntlStub = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Subscription\\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['saveItem'] )
+			->setMethods( ['cancel'] )
 			->getMock();
 
-		\Aimeos\MShop\Factory::injectManager( $this->context, 'subscription', $managerStub );
+		\Aimeos\Controller\Frontend\Subscription\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Subscription\\Standard', $cntlStub );
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' );
+		$cntlStub->expects( $this->once() )->method( 'cancel' );
 
 		$this->object->process();
 	}
