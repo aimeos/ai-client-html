@@ -248,7 +248,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
 							array(
 								'productItem' => $productItem,
-								'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, ['config', 'subscription'] ),
+								'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
 								'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
 								'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),
 							)

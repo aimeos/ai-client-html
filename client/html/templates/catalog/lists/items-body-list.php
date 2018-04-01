@@ -142,7 +142,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
 								array(
-									'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, ['config', 'subscription'] ),
+									'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
 									'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
 									'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),
 								)
