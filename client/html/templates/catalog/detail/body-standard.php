@@ -261,7 +261,7 @@ ksort( $propMap );
 								array(
 									'productItem' => $this->detailProductItem,
 									'attributeItems' => $this->get( 'detailAttributeItems', [] ),
-									'attributeConfigItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'config' ),
+									'attributeConfigItems' => $this->detailProductItem->getRefItems( 'attribute', null, ['config', 'subscription'] ),
 									'attributeCustomItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'custom' ),
 									'attributeHiddenItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'hidden' ),
 								)
