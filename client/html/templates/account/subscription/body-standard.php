@@ -14,7 +14,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos account-subscription container" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( ( $errors = $this->get( 'subscriptionErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
