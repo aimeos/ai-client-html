@@ -2579,7 +2579,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .account-history-list .history-item {
 	border: solid 1px #D0D0D0;
 	display: block;
-	padding: 15px;
+	margin: 1em;
 }
 
 .account-history-list .attr-list {
@@ -2596,7 +2596,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .account-history-order {
 	padding-top: 1em;
-	clear: both;
 }
 
 .account-history-order a:hover {
@@ -2669,6 +2668,10 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	display: -webkit-flex;
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.account-subscription-detail {
+	padding-top: 1em;
 }
 
 .account-subscription-detail a:hover {

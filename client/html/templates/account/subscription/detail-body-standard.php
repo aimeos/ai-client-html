@@ -17,7 +17,7 @@ $addresses = $this->summaryBasket->getAddresses();
 
 ?>
 <?php $this->block()->start( 'account/subscription/detail' ); ?>
-<div class="account-subscription-detail common-summary">
+<div class="account-subscription-detail common-summary col-xs-12">
 
 	<a class="modify minibutton btn-close"
 		href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">

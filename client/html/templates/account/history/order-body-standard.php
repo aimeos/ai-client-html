@@ -19,7 +19,7 @@ $services = $this->summaryBasket->getServices();
 
 ?>
 <?php $this->block()->start( 'account/history/order' ); ?>
-<div class="account-history-order common-summary">
+<div class="account-history-order common-summary col-xs-12">
 
 	<a class="modify minibutton btn-close"
 		href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
