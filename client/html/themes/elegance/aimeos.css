@@ -2579,7 +2579,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .account-history-list .history-item {
 	border: solid 1px #D0D0D0;
 	display: block;
-	margin: 1em;
+	padding: 15px;
 }
 
 .account-history-list .attr-list {
@@ -2592,6 +2592,11 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .account-history-list li.attr-item .name:after {
 	content: ": ";
+}
+
+.account-history-order {
+	padding-top: 1em;
+	clear: both;
 }
 
 .account-history-order a:hover {
