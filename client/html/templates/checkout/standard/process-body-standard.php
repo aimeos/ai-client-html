@@ -35,6 +35,7 @@ $enc = $this->encoder();
 $public = $hidden = [];
 $errors = $this->get( 'standardErrorList', [] );
 $params = $this->get( 'standardProcessParams', [] );
+$html = $this->get( 'standardHtml', '' );
 
 foreach( $params as $key => $item )
 {
@@ -172,6 +173,9 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 		<?php endforeach; ?>
 	</ul>
 
+    <?php //Custom html from Provider ?>
+    <?=$html;?>
+
 
 	<div class="button-group">
 
@@ -189,7 +193,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
-			<button class="btn btn-primary btn-lg btn-action">
+			<button class="btn btn-primary btn-lg btn-action" id="purchase-order-btn">
 				<?= $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ); ?>
 			</button>
 
