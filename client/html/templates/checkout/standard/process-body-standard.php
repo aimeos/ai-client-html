@@ -172,7 +172,6 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 		<?php endforeach; ?>
 	</ul>
 
-    <?php  ?>
     <?= $this->get( 'standardHtml', '' ); //Custom html from Provider ?>
 
 
