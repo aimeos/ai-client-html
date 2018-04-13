@@ -35,7 +35,6 @@ $enc = $this->encoder();
 $public = $hidden = [];
 $errors = $this->get( 'standardErrorList', [] );
 $params = $this->get( 'standardProcessParams', [] );
-$html = $this->get( 'standardHtml', '' );
 
 foreach( $params as $key => $item )
 {
@@ -173,8 +172,8 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 		<?php endforeach; ?>
 	</ul>
 
-    <?php //Custom html from Provider ?>
-    <?=$html;?>
+    <?php  ?>
+    <?= $this->get( 'standardHtml', '' ); //Custom html from Provider ?>
 
 
 	<div class="button-group">
