@@ -172,6 +172,8 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 		<?php endforeach; ?>
 	</ul>
 
+	<?= $this->get( 'standardHtml', '' ); //Custom html from Provider ?>
+
 
 	<div class="button-group">
 
@@ -189,7 +191,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
-			<button class="btn btn-primary btn-lg btn-action">
+			<button class="btn btn-primary btn-lg btn-action" id="payment-button">
 				<?= $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ); ?>
 			</button>
 

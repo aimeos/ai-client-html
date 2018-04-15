@@ -294,6 +294,7 @@ class Standard
 				$view->standardMethod = $form->getMethod();
 				$view->standardProcessParams = $form->getValues();
 				$view->standardUrlExternal = $form->getExternal();
+				$view->standardHtml = $form->getHtml();
 
 				return;
 			}
