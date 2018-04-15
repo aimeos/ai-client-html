@@ -172,7 +172,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 		<?php endforeach; ?>
 	</ul>
 
-    <?= $this->get( 'standardHtml', '' ); //Custom html from Provider ?>
+	<?= $this->get( 'standardHtml', '' ); //Custom html from Provider ?>
 
 
 	<div class="button-group">
