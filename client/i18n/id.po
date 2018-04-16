@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Ranu Yulianto <vanarif@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Indonesian (http://www.transifex.com/aimeos/aimeos-core/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,23 +112,23 @@ msgid "-%1$s%%"
 msgstr ""
 
 msgid "Account"
-msgstr ""
+msgstr "Akun"
 
 msgid "Add to basket"
-msgstr ""
+msgstr "Tambah ke keranjang belanja"
 
 msgid "Additional"
-msgstr ""
+msgstr "Tambahan"
 
 msgid "Additional 2"
-msgstr ""
+msgstr "Tambahan 2"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Addresses"
-msgstr ""
+msgstr "Alamat"
 
 msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
@@ -140,10 +141,10 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 msgid "An account has been created for you."
-msgstr ""
+msgstr "Akun anda sudah dibuat"
 
 msgid "Article no.:"
-msgstr ""
+msgstr "Artikel nomor:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -154,16 +155,16 @@ msgid "At least one delivery address part is missing or invalid"
 msgstr ""
 
 msgid "Attributes"
-msgstr ""
+msgstr "Atribut "
 
 msgid "Back"
-msgstr ""
+msgstr "Kembali"
 
 msgid "Basket"
-msgstr ""
+msgstr "Keranjang belanja"
 
 msgid "Billing address"
-msgstr ""
+msgstr "Alamat penagihan"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
@@ -174,16 +175,16 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Birthday"
-msgstr ""
+msgstr "Tanggal lahir"
 
 msgid "Bundled products"
 msgstr ""
 
 msgid "Buy now"
-msgstr ""
+msgstr "Beli sekarang"
 
 msgid "Categories"
-msgstr ""
+msgstr "Kategori"
 
 msgid "Change"
 msgstr ""
@@ -192,7 +193,7 @@ msgid "Change payment"
 msgstr ""
 
 msgid "Characteristics"
-msgstr ""
+msgstr "Karakteristik"
 
 msgid "Check"
 msgstr ""
@@ -201,7 +202,7 @@ msgid "Checkout"
 msgstr ""
 
 msgid "City"
-msgstr ""
+msgstr "Kota"
 
 #, php-format
 msgid "Class \"%1$s\" does not implement \"%2$s\""
@@ -228,28 +229,28 @@ msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "Tutup"
 
 msgid "Company"
-msgstr ""
+msgstr "Perusahaan"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmasi"
 
 msgid "Country"
-msgstr ""
+msgstr "Negara"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "Kode kupon"
 
 msgid "Coupons"
-msgstr ""
+msgstr "Kupon"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Buat akun untuk saya"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Akun pelanggan"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -263,10 +264,10 @@ msgid "Dear Sir or Madam"
 msgstr ""
 
 msgid "Delivery"
-msgstr ""
+msgstr "Pegiriman"
 
 msgid "Delivery address"
-msgstr ""
+msgstr "Alamat pengiriman"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -277,23 +278,26 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Description"
-msgstr ""
+msgstr "Deskripsi"
 
 msgid "Details"
-msgstr ""
+msgstr "Detail"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Unduh"
 
 msgid "E-Mail"
 msgstr ""
 
 #. / E-mail HTML title
 msgid "E-mail notification"
+msgstr "Notifikasi E-mail"
+
+msgid "End date"
 msgstr ""
 
 msgid "Favorite products"
-msgstr ""
+msgstr "Produk favorit"
 
 msgid "Fax"
 msgstr ""
@@ -309,7 +313,7 @@ msgid "Filter"
 msgstr ""
 
 msgid "First name"
-msgstr ""
+msgstr "Nama depan"
 
 msgid "GB999999973"
 msgstr ""
@@ -374,7 +378,7 @@ msgid "Language"
 msgstr ""
 
 msgid "Last name"
-msgstr ""
+msgstr "Nama akhir (keluarga)"
 
 msgid "Last seen"
 msgstr ""
@@ -389,6 +393,9 @@ msgid "Name"
 msgstr ""
 
 msgid "Next"
+msgstr ""
+
+msgid "Next order"
 msgstr ""
 
 #, php-format
@@ -469,7 +476,7 @@ msgid "Pay now"
 msgstr ""
 
 msgid "Payment"
-msgstr ""
+msgstr "Pembayaran"
 
 msgid "Payment costs"
 msgstr ""
@@ -507,40 +514,40 @@ msgid "Please recheck your payment choice"
 msgstr ""
 
 msgid "Please select"
-msgstr ""
+msgstr "Silahkan pilih"
 
 msgid "Postal code"
-msgstr ""
+msgstr "Kode pos"
 
 msgid "Previous"
-msgstr ""
+msgstr "Sebelumnya"
 
 msgid "Price"
-msgstr ""
+msgstr "Harga"
 
 msgid "Proceed"
-msgstr ""
+msgstr "Lanjutkan"
 
 msgid "Processing the payment failed"
 msgstr ""
 
 msgid "Product"
-msgstr ""
+msgstr "Produk"
 
 msgid "Products you might be also interested in"
-msgstr ""
+msgstr "Produk yang mungkin Anda minati juga"
 
 msgid "Properties"
-msgstr ""
+msgstr "Properti"
 
 msgid "Qty"
-msgstr ""
+msgstr "Jml"
 
 msgid "Quantity"
-msgstr ""
+msgstr "Jumlah"
 
 msgid "Related"
-msgstr ""
+msgstr "Terkait"
 
 msgid "Relevance"
 msgstr ""
@@ -554,7 +561,7 @@ msgid "Salutation"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Cari"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
@@ -564,13 +571,13 @@ msgid_plural ""
 msgstr[0] ""
 
 msgid "Select country"
-msgstr ""
+msgstr "Pilih negara"
 
 msgid "Select currency"
-msgstr ""
+msgstr "Pilih mata uang"
 
 msgid "Select language"
-msgstr ""
+msgstr "Pilih bahasa"
 
 msgid "Select salutation"
 msgstr ""
@@ -579,13 +586,13 @@ msgid "Select state"
 msgstr ""
 
 msgid "Service fees"
-msgstr ""
+msgstr "Biaya layanan"
 
 msgid "Services"
-msgstr ""
+msgstr "layanan"
 
 msgid "Share"
-msgstr ""
+msgstr "Bagikan"
 
 msgid "Shipping"
 msgstr ""
@@ -597,7 +604,7 @@ msgid "Show all quotes"
 msgstr ""
 
 msgid "Sort by:"
-msgstr ""
+msgstr "Urut berdasarkan:"
 
 msgid "State"
 msgstr ""
@@ -619,16 +626,35 @@ msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr ""
 
 msgid "Street"
-msgstr ""
+msgstr "Jalan"
 
 msgid "Sub-total"
+msgstr "Sub-total"
+
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
 msgstr ""
 
 msgid "Suggested products"
 msgstr ""
 
 msgid "Sum"
-msgstr ""
+msgstr "Jumlah"
 
 msgid "Telephone"
 msgstr ""
@@ -723,8 +749,11 @@ msgstr ""
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr ""
 
-msgid "Three month"
+msgid "The subscription for the product has ended."
 msgstr ""
+
+msgid "Three month"
+msgstr "Tiga bulan"
 
 msgid "Time frame"
 msgstr ""
@@ -739,17 +768,17 @@ msgid "Total"
 msgstr ""
 
 msgid "Total quantity"
-msgstr ""
+msgstr "Jumlah barang total"
 
 msgid "Try again"
-msgstr ""
+msgstr "Coba lagi"
 
 msgid "Two weeks"
-msgstr ""
+msgstr "Dua minggu"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr ""
+msgstr "Tidak bisa memanggil method \"%1$s\""
 
 #, php-format
 msgid "Unable to create an account for \"%1$s\": %2$s"
@@ -773,7 +802,7 @@ msgid ""
 msgstr ""
 
 msgid "Update"
-msgstr ""
+msgstr "Perbarui"
 
 msgid "Vat ID"
 msgstr ""
@@ -840,6 +869,9 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr ""
 
 msgid "Your search result"
+msgstr ""
+
+msgid "Your subscription product"
 msgstr ""
 
 #. / Product notification e-mail subject

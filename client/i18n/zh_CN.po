@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Cent Os <kylin5108@gmail.com>, 2018
 # Henry LIU <dadaycm@hotmail.com>, 2016
 # shihua16165 <shihua16165@163.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -176,7 +177,7 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr "账单地址 \"%1$s\" 有误"
 
 msgid "Birthday"
-msgstr ""
+msgstr "生日"
 
 msgid "Bundled products"
 msgstr "打包产品"
@@ -197,7 +198,7 @@ msgid "Characteristics"
 msgstr "特色"
 
 msgid "Check"
-msgstr ""
+msgstr "检查"
 
 msgid "Checkout"
 msgstr "结帐"
@@ -248,10 +249,10 @@ msgid "Coupons"
 msgstr "优惠券"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "为我创建一个顾客账户"
 
 msgid "Customer account"
-msgstr ""
+msgstr "顾客账户"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -294,6 +295,9 @@ msgstr "电子邮件"
 msgid "E-mail notification"
 msgstr "电子邮件通知"
 
+msgid "End date"
+msgstr "结束日期"
+
 msgid "Favorite products"
 msgstr "喜欢的产品"
 
@@ -305,7 +309,7 @@ msgstr "带*栏目为必填项"
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
-msgstr ""
+msgstr "文件“1%1$s”不存在"
 
 msgid "Filter"
 msgstr "筛选"
@@ -382,16 +386,19 @@ msgid "Last seen"
 msgstr "最近浏览过的"
 
 msgid "Latest"
-msgstr ""
+msgstr "最新"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "与你输入的保持一致"
 
 msgid "Name"
 msgstr "名"
 
 msgid "Next"
 msgstr "下"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -458,7 +465,7 @@ msgid "Other customers also bought"
 msgstr "其他客户已经购买"
 
 msgid "Our products"
-msgstr ""
+msgstr "我们销售的产品"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -502,11 +509,11 @@ msgstr "请输入付款详情"
 
 #, php-format
 msgid "Please recheck your delivery choice"
-msgstr ""
+msgstr "请重新检查你的快递选项"
 
 #, php-format
 msgid "Please recheck your payment choice"
-msgstr ""
+msgstr "请重新检查你的支付选项"
 
 msgid "Please select"
 msgstr "请选择"
@@ -587,7 +594,7 @@ msgid "Services"
 msgstr "服务"
 
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 msgid "Shipping"
 msgstr "送货费"
@@ -625,6 +632,25 @@ msgstr "街道"
 
 msgid "Sub-total"
 msgstr "小计"
+
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
 
 msgid "Suggested products"
 msgstr "建议产品"
@@ -724,6 +750,9 @@ msgstr "对您的订单的付款确认尚未完成。\n一旦付款被授权，�
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "日期为%2$s的订单%1$s退款已经完成。"
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "三个月"
@@ -843,6 +872,9 @@ msgstr "您的订单%1$s（日期为 %2$s）已经安排送货"
 
 msgid "Your search result"
 msgstr "您搜索过的产品"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

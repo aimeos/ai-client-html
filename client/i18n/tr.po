@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Metal <meteoramic@yahoo.com>, 2015-2017
+# Metal <meteoramic@yahoo.com>, 2015-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-11-19 20:33+0000\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-11 23:50+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -102,10 +102,10 @@ msgid "+ Shipping"
 msgstr "+ Nakliye"
 
 msgid "+ shipping costs"
-msgstr "+ nakliye masrafları"
+msgstr "+ Nakliye masrafları"
 
 msgid "+1 123 456 7890"
-msgstr "+1 123 456 7890"
+msgstr "+90 232 222 22 22"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
@@ -116,13 +116,13 @@ msgid "Account"
 msgstr "Hesap"
 
 msgid "Add to basket"
-msgstr "Sepete ekle"
+msgstr "Sepete Ekle"
 
 msgid "Additional"
-msgstr "Ek"
+msgstr "Devam"
 
 msgid "Additional 2"
-msgstr "Ek 2"
+msgstr "Devam 2"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -145,7 +145,7 @@ msgid "An account has been created for you."
 msgstr "Sizin için bir hesap oluşturuldu."
 
 msgid "Article no.:"
-msgstr "Ürün kodu:"
+msgstr "Ürün Kodu:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -285,7 +285,7 @@ msgid "Details"
 msgstr "Detaylar"
 
 msgid "Downloads"
-msgstr "İndirmeler"
+msgstr "İndirilebilir Dökümanlar"
 
 msgid "E-Mail"
 msgstr "E-Posta"
@@ -293,6 +293,9 @@ msgstr "E-Posta"
 #. / E-mail HTML title
 msgid "E-mail notification"
 msgstr "E-posta bildirimi"
+
+msgid "End date"
+msgstr "Bitiş tarihi"
 
 msgid "Favorite products"
 msgstr "Favori ürünler"
@@ -314,7 +317,7 @@ msgid "First name"
 msgstr "Ad"
 
 msgid "GB999999973"
-msgstr "GB999999973"
+msgstr "Ör: Bornova / 123 456 789 11"
 
 msgid "Go"
 msgstr "Ara"
@@ -370,7 +373,7 @@ msgstr "Geçersiz fabrika \"%1$s\""
 
 #, php-format
 msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "\"%1$s\" kodlu servis sağlayıcısından geçersiz işlem yanıtı"
+msgstr "\"%1$s\" kodlu hizmet sağlayıcısından geçersiz işlem yanıtı"
 
 msgid "Language"
 msgstr "Dil"
@@ -392,6 +395,9 @@ msgstr "Ad"
 
 msgid "Next"
 msgstr "Sonraki"
+
+msgid "Next order"
+msgstr "Sonraki sipariş"
 
 #, php-format
 msgid ""
@@ -582,10 +588,10 @@ msgid "Select state"
 msgstr "Bir Eyalet seçin"
 
 msgid "Service fees"
-msgstr "Servis ücretleri"
+msgstr "Hizmet ücretleri"
 
 msgid "Services"
-msgstr "Servisler"
+msgstr "Hizmetler"
 
 msgid "Share"
 msgstr "Paylaş"
@@ -626,6 +632,25 @@ msgstr "Sokak"
 
 msgid "Sub-total"
 msgstr "Ara-toplam"
+
+msgid "Subscription ID"
+msgstr "Abonelik ID’si"
+
+msgid "Subscription details"
+msgstr "Abonelik detayları"
+
+msgid "Subscription interval"
+msgstr "Abonelik aralığı"
+
+msgid "Subscription product"
+msgstr "Abonelik ürünü"
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr "\"%1$s\" ID’li abonelik bulunamadı"
+
+msgid "Subscriptions"
+msgstr "Abonelikler"
 
 msgid "Suggested products"
 msgstr "Önerilen ürünler"
@@ -725,6 +750,9 @@ msgstr "Siparişiniz için ödeme onayı hala bekliyor.\nÖdeme yetkilendirildi�
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "%2$s 'dan %1$s siparişinizin ödemesi iade edilmiştir."
+
+msgid "The subscription for the product has ended."
+msgstr "Ürün için abonelik sona erdi."
 
 msgid "Three month"
 msgstr "Üç ay"
@@ -845,6 +873,9 @@ msgstr "%2$s 'dan siparişiniz %1$s sevk edildi."
 msgid "Your search result"
 msgstr "Arama sonucunuz"
 
+msgid "Your subscription product"
+msgstr "Abonelik ürününüz"
+
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "İzlediğiniz ürünler"
@@ -857,7 +888,7 @@ msgid "address"
 msgstr "Adres"
 
 msgid "clear all"
-msgstr "hepsini temizle"
+msgstr "Hepsini temizle"
 
 #, php-format
 msgid "delivery"
@@ -869,17 +900,17 @@ msgid "from %1$s"
 msgstr "%1$s adet için"
 
 msgid "like billing address"
-msgstr "fatura adresi ile aynı"
+msgstr "Fatura adresi ile aynı"
 
 msgid "new address"
-msgstr "yeni adres"
+msgstr "Yeni adres"
 
 msgid "none"
-msgstr "hiçbiri"
+msgstr "Hiçbiri"
 
 #, php-format
 msgid "order"
-msgstr "sipariş"
+msgstr "Sipariş"
 
 #, php-format
 msgid "payment"

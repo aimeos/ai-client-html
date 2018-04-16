@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -294,6 +294,9 @@ msgstr "E-kiri"
 msgid "E-mail notification"
 msgstr "Teavitus e-kirja teel"
 
+msgid "End date"
+msgstr ""
+
 msgid "Favorite products"
 msgstr "Lemmiktooted"
 
@@ -392,6 +395,9 @@ msgstr "Nimi"
 
 msgid "Next"
 msgstr "Järgmine"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -627,6 +633,25 @@ msgstr "Tänav"
 msgid "Sub-total"
 msgstr "Vahesumma"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "Soovitatud tooted"
 
@@ -725,6 +750,9 @@ msgstr "Makse Teie tellimuse eest ootab endiselt kinnitamist.\nTe saate kohe e-k
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Tagastasime makse Teie tellimuse %1$s eest leheküljelt %2$s."
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "Kolm kuud"
@@ -844,6 +872,9 @@ msgstr "Teie tellimus %1$s leheküljelt %2$s on teele saadetud."
 
 msgid "Your search result"
 msgstr "Teie otsingu tulemus"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

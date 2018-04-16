@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
+"Last-Translator: Péter Kozma <kopegrafika@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -297,6 +297,9 @@ msgstr "E-mail"
 msgid "E-mail notification"
 msgstr "E-mail figyelmeztetés"
 
+msgid "End date"
+msgstr "Befejezés dátuma"
+
 msgid "Favorite products"
 msgstr "Kedvenc termékek"
 
@@ -395,6 +398,9 @@ msgstr "Név"
 
 msgid "Next"
 msgstr "Következő"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -630,6 +636,25 @@ msgstr "Utca"
 msgid "Sub-total"
 msgstr "Részösszeg"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "Javasolt termékek"
 
@@ -728,6 +753,9 @@ msgstr "Megrendelésének fizetés megerősítése függőben van. Amint a fizet
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "%2$s-i %1$s azonosítószámú megrendelésének összege visszatérítésre került."
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "Három hónap"
@@ -847,6 +875,9 @@ msgstr "%2$s-i %1$s azonosítószámú megrendelése kézbesítésre került."
 
 msgid "Your search result"
 msgstr "Keresési eredmény"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

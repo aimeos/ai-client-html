@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
+"Last-Translator: Bruce Liu <zcon.bruce@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -294,6 +294,9 @@ msgstr "電子郵件"
 msgid "E-mail notification"
 msgstr "E-mail通知"
 
+msgid "End date"
+msgstr "結束日期"
+
 msgid "Favorite products"
 msgstr "最愛的商品"
 
@@ -392,6 +395,9 @@ msgstr "姓名"
 
 msgid "Next"
 msgstr "下一個"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -626,6 +632,25 @@ msgstr "街道"
 msgid "Sub-total"
 msgstr "小計"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "建議商品"
 
@@ -724,6 +749,9 @@ msgstr "您的訂單正在進行確認支付中。\n在支付通過之後我們�
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "您從%2$s下單的訂單%1$s已退款完成。"
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "三個月"
@@ -843,6 +871,9 @@ msgstr "您從%2$s下訂的訂單%1$s已出貨。"
 
 msgid "Your search result"
 msgstr "您的搜尋結果"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
