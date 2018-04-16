@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aimeos, 2015-2017
+# Aimeos, 2015-2018
 # cmann <c.mann@metaways.de>, 2013
 # Janosch Ott <janosch.ott@bluewin.ch>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:54+0000\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:49+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -296,6 +296,9 @@ msgstr "E-Mail"
 msgid "E-mail notification"
 msgstr "E-Mail Benachrichtigung"
 
+msgid "End date"
+msgstr "Enddatum"
+
 msgid "Favorite products"
 msgstr "Lieblingsprodukte"
 
@@ -394,6 +397,9 @@ msgstr "Name"
 
 msgid "Next"
 msgstr "Weiter"
+
+msgid "Next order"
+msgstr "Nächste Bestellung"
 
 #, php-format
 msgid ""
@@ -629,6 +635,25 @@ msgstr "Straße"
 msgid "Sub-total"
 msgstr "Zwischensumme"
 
+msgid "Subscription ID"
+msgstr "Abo-ID"
+
+msgid "Subscription details"
+msgstr "Abodetails"
+
+msgid "Subscription interval"
+msgstr "Abointervall"
+
+msgid "Subscription product"
+msgstr "Aboprodukt"
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr "Abo mit ID \"%1$s\" nicht gefunden"
+
+msgid "Subscriptions"
+msgstr "Abonnements"
+
 msgid "Suggested products"
 msgstr "Empfohlene Produkte"
 
@@ -727,6 +752,9 @@ msgstr "Die Zahlung für Ihre Bestellung ist noch nicht bestätigt.\nSie bekomme
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Die Zahlung für Ihre Bestellung %1$s vom %2$s wurde erstattet."
+
+msgid "The subscription for the product has ended."
+msgstr "Das Abo für das Produkt ist ausgelaufen."
 
 msgid "Three month"
 msgstr "Drei Monate"
@@ -846,6 +874,9 @@ msgstr "Ihre Bestellung %1$s vom %2$s wurde versandt."
 
 msgid "Your search result"
 msgstr "Ihr Suchergebnis"
+
+msgid "Your subscription product"
+msgstr "Ihr Aboprodukt"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

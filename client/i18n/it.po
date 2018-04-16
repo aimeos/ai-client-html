@@ -4,13 +4,14 @@
 # 
 # Translators:
 # alessandro massarelli <alessandro@botteega.com>, 2017
+# Enrico Porceddu <porceddu_enrico@yahoo.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-11-29 09:27+0000\n"
-"Last-Translator: alessandro massarelli <alessandro@botteega.com>\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
+"Last-Translator: Matteo Schiona <ms@kiboko.it>\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +123,7 @@ msgid "Additional"
 msgstr "Aggiuntivo"
 
 msgid "Additional 2"
-msgstr "Aggiuntivo"
+msgstr "Aggiuntivo 2"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -215,7 +216,7 @@ msgstr "La classe \"%1$s\" non implementa l'interfaccia \"%2$s\""
 
 #, php-format
 msgid "Class \"%1$s\" not available"
-msgstr ""
+msgstr "Classe \"%1$s\" non disponibile"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
@@ -293,6 +294,9 @@ msgstr "E-Mail"
 #. / E-mail HTML title
 msgid "E-mail notification"
 msgstr "Notifica E-mail"
+
+msgid "End date"
+msgstr "Scadenza"
 
 msgid "Favorite products"
 msgstr "Prodotti preferiti"
@@ -393,6 +397,9 @@ msgstr "Nome"
 msgid "Next"
 msgstr "Procedi"
 
+msgid "Next order"
+msgstr ""
+
 #, php-format
 msgid ""
 "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
@@ -413,7 +420,7 @@ msgstr ""
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "Nessuna vista disponibile"
 
 #, php-format
 msgid "Number of coupon codes exceeds the limit"
@@ -627,6 +634,25 @@ msgstr "Indirizzo"
 msgid "Sub-total"
 msgstr "Subtotale"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "Prodotti suggeriti"
 
@@ -725,6 +751,9 @@ msgstr "Il pagamento per il tuo ordine è ancora in sospeso.\nRiceverai un'email
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Il pagamento per il tuo ordine %1$s del %2$s è stato rimborsato."
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "Tre mesi"
@@ -844,6 +873,9 @@ msgstr "Il tuo ordine %1$s del %2$sè stato spedito."
 
 msgid "Your search result"
 msgstr "I tuoi risultati di ricerca"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

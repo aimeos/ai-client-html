@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -297,6 +297,9 @@ msgstr "Correo electrónico"
 msgid "E-mail notification"
 msgstr "Notificación de correo electrónico"
 
+msgid "End date"
+msgstr "Fecha final"
+
 msgid "Favorite products"
 msgstr "Productos favoritos"
 
@@ -395,6 +398,9 @@ msgstr "Nombre"
 
 msgid "Next"
 msgstr "Siguiente"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -630,6 +636,25 @@ msgstr "Calle"
 msgid "Sub-total"
 msgstr "Subtotal"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "Productos recomendados"
 
@@ -728,6 +753,9 @@ msgstr "La confirmación de pago de su pedido se encuentra pendiente.\nSe le env
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "El pago de su pedido %1$s desde %2$s le ha sido devuelto."
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "Tres meses"
@@ -847,6 +875,9 @@ msgstr "Su pedido %1$s desde %2$s ha sido enviado."
 
 msgid "Your search result"
 msgstr "Resultado de su búsqueda"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

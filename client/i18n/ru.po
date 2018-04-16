@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -298,6 +298,9 @@ msgstr "E-Mail"
 msgid "E-mail notification"
 msgstr "Уведомление по e-mail"
 
+msgid "End date"
+msgstr "Конечная дата"
+
 msgid "Favorite products"
 msgstr "Избранные товары"
 
@@ -396,6 +399,9 @@ msgstr "названию"
 
 msgid "Next"
 msgstr "Далее"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -633,6 +639,25 @@ msgstr "Улица"
 msgid "Sub-total"
 msgstr "Промежуточная сумма"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "Рекомендованные товары"
 
@@ -731,6 +756,9 @@ msgstr "Подтверждение оплаты за заказ пока ещё 
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Оплата за заказ %1$s от %2$s была возвращена."
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "Три месяца"
@@ -850,6 +878,9 @@ msgstr "Отослан Ваш заказ %1$s от %2$s."
 
 msgid "Your search result"
 msgstr "Результат поиска"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

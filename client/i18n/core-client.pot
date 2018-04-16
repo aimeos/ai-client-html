@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -306,6 +306,9 @@ msgstr "E-Mail"
 msgid "E-mail notification"
 msgstr "E-mail notification"
 
+msgid "End date"
+msgstr ""
+
 msgid "Favorite products"
 msgstr "Favorite products"
 
@@ -400,6 +403,9 @@ msgstr "Name"
 
 msgid "Next"
 msgstr "Next"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
@@ -629,6 +635,25 @@ msgstr "Street"
 msgid "Sub-total"
 msgstr "Sub-total"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "Suggested products"
 
@@ -730,6 +755,9 @@ msgstr ""
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "The payment for your order %1$s from %2$s has been refunded."
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "Three month"
@@ -847,6 +875,9 @@ msgstr "Your order %1$s from %2$s has been dispatched."
 
 msgid "Your search result"
 msgstr "Your search result"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

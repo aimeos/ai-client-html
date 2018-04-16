@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# elragoubi <elragoubi@yahoo.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Arabic (http://www.transifex.com/aimeos/aimeos-core/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +120,7 @@ msgid "Account"
 msgstr ""
 
 msgid "Add to basket"
-msgstr ""
+msgstr "إضافة إلى السلة"
 
 msgid "Additional"
 msgstr ""
@@ -242,7 +243,7 @@ msgid "Confirmation"
 msgstr ""
 
 msgid "Country"
-msgstr ""
+msgstr "الدولة"
 
 msgid "Coupon codes"
 msgstr ""
@@ -291,17 +292,20 @@ msgid "Downloads"
 msgstr ""
 
 msgid "E-Mail"
-msgstr ""
+msgstr "البريد الإلكتروني"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
+msgstr ""
+
+msgid "End date"
 msgstr ""
 
 msgid "Favorite products"
 msgstr ""
 
 msgid "Fax"
-msgstr ""
+msgstr "الفاكس"
 
 msgid "Fields with an * are mandatory"
 msgstr ""
@@ -314,7 +318,7 @@ msgid "Filter"
 msgstr ""
 
 msgid "First name"
-msgstr ""
+msgstr "الإسم الأول"
 
 msgid "GB999999973"
 msgstr ""
@@ -376,10 +380,10 @@ msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "اللغة"
 
 msgid "Last name"
-msgstr ""
+msgstr "اللقب"
 
 msgid "Last seen"
 msgstr ""
@@ -391,9 +395,12 @@ msgid "Like entered by you"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "الإسم"
 
 msgid "Next"
+msgstr ""
+
+msgid "Next order"
 msgstr ""
 
 #, php-format
@@ -427,7 +434,7 @@ msgid "Object doesn't implement \"%1$s\""
 msgstr ""
 
 msgid "One month"
-msgstr ""
+msgstr "شهر واحد"
 
 msgid "One or more products you are watching have been updated."
 msgstr ""
@@ -468,7 +475,7 @@ msgid "Page %1$d of %2$d"
 msgstr ""
 
 msgid "Password"
-msgstr ""
+msgstr "كلمة المرور"
 
 msgid "Pay now"
 msgstr ""
@@ -521,7 +528,7 @@ msgid "Previous"
 msgstr ""
 
 msgid "Price"
-msgstr ""
+msgstr "السعر"
 
 msgid "Proceed"
 msgstr ""
@@ -559,7 +566,7 @@ msgid "Salutation"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "البحث"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
@@ -577,10 +584,10 @@ msgid "Select country"
 msgstr ""
 
 msgid "Select currency"
-msgstr ""
+msgstr "إختيار العملة"
 
 msgid "Select language"
-msgstr ""
+msgstr "إختيار اللغة"
 
 msgid "Select salutation"
 msgstr ""
@@ -634,6 +641,25 @@ msgstr ""
 msgid "Sub-total"
 msgstr ""
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr ""
 
@@ -641,7 +667,7 @@ msgid "Sum"
 msgstr ""
 
 msgid "Telephone"
-msgstr ""
+msgstr "الهاتف"
 
 #, php-format
 msgid "Template \"%1$s\" not available"
@@ -733,6 +759,9 @@ msgstr ""
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr ""
 
+msgid "The subscription for the product has ended."
+msgstr ""
+
 msgid "Three month"
 msgstr ""
 
@@ -746,7 +775,7 @@ msgid "Top seller"
 msgstr ""
 
 msgid "Total"
-msgstr ""
+msgstr "المجموع"
 
 msgid "Total quantity"
 msgstr ""
@@ -783,7 +812,7 @@ msgid ""
 msgstr ""
 
 msgid "Update"
-msgstr ""
+msgstr "تحديث"
 
 msgid "Vat ID"
 msgstr ""
@@ -824,13 +853,13 @@ msgid "You will now be forwarded to the next step"
 msgstr ""
 
 msgid "Your account"
-msgstr ""
+msgstr "حسابك"
 
 msgid "Your choice"
 msgstr ""
 
 msgid "Your comment"
-msgstr ""
+msgstr "تعليقك"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
@@ -852,6 +881,9 @@ msgstr ""
 msgid "Your search result"
 msgstr ""
 
+msgid "Your subscription product"
+msgstr ""
+
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr ""
@@ -861,7 +893,7 @@ msgstr ""
 
 #, php-format
 msgid "address"
-msgstr ""
+msgstr "العنوان"
 
 msgid "clear all"
 msgstr ""
@@ -879,7 +911,7 @@ msgid "like billing address"
 msgstr ""
 
 msgid "new address"
-msgstr ""
+msgstr "عنوان جديد"
 
 msgid "none"
 msgstr ""

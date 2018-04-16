@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-11-10 14:52+0000\n"
-"Last-Translator: basi nonam <basi@ethersports.org>\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Persian (http://www.transifex.com/aimeos/aimeos-core/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -294,6 +294,9 @@ msgstr "پست الکترونیک"
 msgid "E-mail notification"
 msgstr "اعلان پست الکترونیک"
 
+msgid "End date"
+msgstr "تاریخ پایان"
+
 msgid "Favorite products"
 msgstr "محصولات محبوب"
 
@@ -392,6 +395,9 @@ msgstr "نام"
 
 msgid "Next"
 msgstr "بعدی"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -626,6 +632,25 @@ msgstr "خیابان"
 msgid "Sub-total"
 msgstr "زیر کل"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "محصولات پیشنهادی"
 
@@ -723,6 +748,9 @@ msgstr ""
 #. status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
+msgstr ""
+
+msgid "The subscription for the product has ended."
 msgstr ""
 
 msgid "Three month"
@@ -843,6 +871,9 @@ msgstr "سفارش شما %1$s از %2$s ارسال گردید"
 
 msgid "Your search result"
 msgstr "نتیجه‌ی جستجوی شما"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

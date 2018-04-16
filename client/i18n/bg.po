@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"PO-Revision-Date: 2018-04-08 16:18+0000\n"
+"Last-Translator: Bistra Kumanova <b.kumanova@creato.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -295,6 +295,9 @@ msgstr "E-Mail"
 msgid "E-mail notification"
 msgstr "Уведомление по e-mail"
 
+msgid "End date"
+msgstr "Крайна дата"
+
 msgid "Favorite products"
 msgstr "Предпочитани продукти"
 
@@ -393,6 +396,9 @@ msgstr "Име"
 
 msgid "Next"
 msgstr "Следващ"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -628,6 +634,25 @@ msgstr "Улица"
 msgid "Sub-total"
 msgstr "Междинна сума"
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr "Предложени продукти"
 
@@ -726,6 +751,9 @@ msgstr "Потвърждение за заплащане на поръчката
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Плащането на поръчка %1$s от %2$s беше върнато."
+
+msgid "The subscription for the product has ended."
+msgstr ""
 
 msgid "Three month"
 msgstr "Три месеца"
@@ -845,6 +873,9 @@ msgstr "Вашата поръчка %1$s от %2$s беше изпратена."
 
 msgid "Your search result"
 msgstr "Резултат от търсенето"
+
+msgid "Your subscription product"
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
