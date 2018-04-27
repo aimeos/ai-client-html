@@ -46,7 +46,7 @@ $mediaItems = $this->get( 'mediaItems', [] );
 
 			<figure id="image-<?= $enc->attr( $id ); ?>"
 				class="item" style="background-image: url('<?= $mediaUrl; ?>')"
-				itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
+				itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
 				data-image="<?= $previewUrl; ?>"
 				<?= $getVariantData( $mediaItem ); ?> >
 				<a href="<?= $enc->attr( $mediaUrl ); ?>" itemprop="contentUrl"></a>
