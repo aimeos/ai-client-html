@@ -58,41 +58,40 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
  */
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
-
-$attrMap = $subAttrDeps = $mediaItems = [];
-$productItems = $this->get( 'detailProductItems', [] );
-
-foreach( $productItems as $subProdId => $subProduct )
-{
-	$subItems = $subProduct->getRefItems( 'attribute', null, 'default' );
-	$subItems += $subProduct->getRefItems( 'attribute', null, 'variant' ); // show product variant attributes as well
-	$mediaItems = array_merge( $mediaItems, $subProduct->getRefItems( 'media' ) );
-
-	foreach( $subItems as $attrId => $attrItem )
-	{
-		$attrMap[ $attrItem->getType() ][ $attrId ] = $attrItem;
-		$subAttrDeps[ $attrId ][] = $subProdId;
-	}
-}
+$prodItems = $this->get( 'detailProductItems', [] );
 
 $propMap = $subPropDeps = $propItems = [];
+$attrMap = $subAttrDeps = $mediaItems = [];
 
-if( isset( $this->detailProductItem ) ) {
-	$propItems = $this->detailProductItem->getPropertyItems();
-}
-
-foreach( $this->get( 'detailProductItems', [] ) as $prodItem ) {
-	$propItems = array_merge( $propItems, $prodItem->getPropertyItems() );
-}
-
-foreach( $propItems as $propId => $propItem )
+if( isset( $this->detailProductItem ) )
 {
-	$propMap[ $propItem->getType() ][ $propId ] = $propItem;
-	$subPropDeps[ $propId ][] = $propItem->getParentId();
-}
+	$propItems = $this->detailProductItem->getPropertyItems();
+	$posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' );
 
-ksort( $attrMap );
-ksort( $propMap );
+	foreach( $getProductList( $posItems, $prodItems ) as $subProdId => $subProduct )
+	{
+		$subItems = $subProduct->getRefItems( 'attribute', null, 'default' );
+		$subItems += $subProduct->getRefItems( 'attribute', null, 'variant' ); // show product variant attributes as well
+		$mediaItems = array_merge( $mediaItems, $subProduct->getRefItems( 'media', 'default', 'default' ) );
+
+		foreach( $subItems as $attrId => $attrItem )
+		{
+			$attrMap[ $attrItem->getType() ][ $attrId ] = $attrItem;
+			$subAttrDeps[ $attrId ][] = $subProdId;
+		}
+
+		$propItems = array_merge( $propItems, $subProduct->getPropertyItems() );
+	}
+
+	foreach( $propItems as $propId => $propItem )
+	{
+		$propMap[ $propItem->getType() ][ $propId ] = $propItem;
+		$subPropDeps[ $propId ][] = $propItem->getParentId();
+	}
+
+	ksort( $attrMap );
+	ksort( $propMap );
+}
 
 
 ?>
@@ -174,8 +173,7 @@ ksort( $propMap );
 							</div>
 
 							<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
-								<?php foreach( $this->detailProductItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-									<?php if( $productItems[$prodid] ) { $product = $productItems[$prodid]; } ?>
+								<?php foreach( $getProductList( $this->detailProductItem->getRefItems( 'product', 'default', 'default' ), $prodItems ) as $prodid => $product ) : ?>
 
 									<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
 										<div class="articleitem price"
@@ -352,7 +350,7 @@ ksort( $propMap );
 
 				<?php if( $this->detailProductItem->getType() === 'bundle'
 					&& ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' ) ) !== []
-					&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', [] ) ) ) !== [] ) : ?>
+					&& ( $products = $getProductList( $posItems, $prodItems ) ) !== [] ) : ?>
 
 					<section class="catalog-detail-bundle">
 						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ); ?></h2>
@@ -505,7 +503,7 @@ ksort( $propMap );
 
 
 				<?php if( ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) ) !== []
-					&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', [] ) ) ) !== [] ) : ?>
+					&& ( $products = $getProductList( $posItems, $prodItems ) ) !== [] ) : ?>
 
 					<section class="catalog-detail-suggest">
 						<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ); ?></h2>
@@ -519,7 +517,7 @@ ksort( $propMap );
 
 
 				<?php if( ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) ) !== []
-					&& ( $products = $getProductList( $posItems, $this->get( 'detailProductItems', [] ) ) ) !== [] ) : ?>
+					&& ( $products = $getProductList( $posItems, $prodItems ) ) !== [] ) : ?>
 
 					<section class="catalog-detail-bought">
 						<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ); ?></h2>
