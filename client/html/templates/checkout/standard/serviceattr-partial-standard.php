@@ -105,8 +105,8 @@ $orderService = $this->get( 'orderService' );
 
 					<div class="col-md-7">
 						<input class="form-control col-md-7" type="checkbox" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
-							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
-							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>" value="1"
+							<?= $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ? 'checked="checked"' : '' ?>
 						/>
 					</div>
 
