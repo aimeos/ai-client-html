@@ -129,6 +129,15 @@ $orderService = $this->get( 'orderService' );
 						/>
 					</div>
 
+				<?php break; case 'text': ?>
+
+					<div class="col-md-7">
+						<textarea class="form-control col-md-7"
+							id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
+						><?= $enc->html( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?></textarea>
+					</div>
+
 				<?php break; default: ?>
 
 					<div class="col-md-7">
