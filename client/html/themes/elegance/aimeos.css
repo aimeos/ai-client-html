@@ -47,9 +47,8 @@
 	vertical-align: top;
 }
 
-.aimeos .form-inline .btn,
 .aimeos .input-group .btn {
-	width: auto;
+	width: calc(100% - 4em);
 }
 
 .aimeos .addbasket input {
@@ -1084,8 +1083,9 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	display: inline-block;
 	position: relative;
 	overflow: hidden;
-	width: 400px;
+	max-width: 400px;
 	height: 533px;
+	width: 100%;
 }
 
 .catalog-detail-image .image-single figcaption {
@@ -1101,8 +1101,9 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .catalog-detail-image .image-single .item {
 	display: inline-block;
-	width: 400px;
+	max-width: 400px;
 	height: 533px;
+	width: 100%;
 }
 
 .catalog-detail-image .thumbs .item {
@@ -1144,8 +1145,9 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .catalog-detail-image .thumbs-horizontal {
 	overflow: hidden;
+	max-width: 400px;
+	width: 100%;
 	height: 105px;
-	width: 400px;
 }
 
 .catalog-detail-image .thumbs-horizontal button {
@@ -1157,7 +1159,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .catalog-detail-image .thumbs-horizontal .thumbs {
 	display: inline-block !important;
-	width: 320px;
+	width: calc(100% - 80px);
 }
 
 .catalog-detail-image .thumbs-horizontal .item {
@@ -1432,7 +1434,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .catalog-list-items .selection .select-label,
 .catalog-detail-basket .selection .select-label {
-	width: calc(100% - 3em);
+	width: calc(100% - 4em);
 	font-weight: normal;
 }
 
@@ -1468,7 +1470,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	border: solid 1px #B0A060;
 	text-align: center;
 	padding: 0;
-	width: 3em;
+	width: 4em;
 }
 
 .catalog-list-items .selection .custom input[type=number],
@@ -1979,8 +1981,13 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	padding: 0.5em;
 }
 
+.basket-standard-coupon .coupon-new .btn {
+	width: 3em;
+}
+
 .basket-standard-coupon .coupon-new .coupon-code {
 	border: 1px solid #B0A060;
+	width: calc(100% - 3em);
 }
 
 .basket-standard-coupon .minibutton.delete:after {
