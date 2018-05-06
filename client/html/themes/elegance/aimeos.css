@@ -397,6 +397,10 @@
 	display: none;
 }
 
+.catalog-filter-search > .input-group {
+	width: 100%;
+}
+
 .catalog-filter .search-hint {
 	position: absolute;
 	background-color: #ffeeee;
