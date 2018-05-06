@@ -106,7 +106,7 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 <section class="catalog-filter-search">
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
-	<div class="form-inline">
+	<div class="input-group">
 		<input class="form-control value" type="text"
 			name="<?= $name; ?>" value="<?= $phrase; ?>"
 			data-url="<?= $suggestUrl; ?>" data-hint="<?= $hint; ?>"
