@@ -84,7 +84,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<div class="content">
 					<?php $coupons = $this->standardBasket->getCoupons(); ?>
 
-					<div class="form-inline coupon-new">
+					<div class="input-group coupon-new">
 						<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ); ?>" type="text" maxlength="255" /><!--
 						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ); ?></button>
 					</div>

@@ -114,7 +114,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 					<ul class="select-list">
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
 
-							<li class="form-inline select-entry">
+							<li class="input-group select-entry">
 								<input type="hidden" value="<?= $enc->attr( $attrId ); ?>"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'id', '' ) ) ); ?>"
 								/>

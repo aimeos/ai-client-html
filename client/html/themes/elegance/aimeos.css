@@ -58,6 +58,10 @@
 	width: 4em;
 }
 
+.aimeos .input-group {
+	width: 100%;
+}
+
 .aimeos .input-lg {
 	height: auto;
 }
@@ -395,10 +399,6 @@
 /* Catalog filter search section */
 .catalog-filter-search > h2 {
 	display: none;
-}
-
-.catalog-filter-search > .input-group {
-	width: 100%;
 }
 
 .catalog-filter .search-hint {
@@ -801,7 +801,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	outline: none;
 }
 
-.aimeos .product .list-items {
+.aimeos .list-items {
 	text-align: center;
 	font-size: 90%;
 	padding: 0;
