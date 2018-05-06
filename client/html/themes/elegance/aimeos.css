@@ -21,6 +21,7 @@
 	vertical-align: top;
 	font-weight: bold;
 	border-radius: 0;
+	margin: 0.25em;
 	width: 12em;
 }
 
@@ -593,8 +594,8 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	vertical-align: top;
 	font-weight: normal;
 	text-align: left;
-	min-width: 280px;
-	width: 24.9%;
+	min-width: 160px;
+	width: 29.9%;
 	color: #555;
 	line-height: 1;
 	margin: 0.5em 0;
@@ -1004,7 +1005,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 .catalog-list-items .addbasket .input-group {
-	padding: 0.5em 0;
+	padding: 2.25em 0;
 	margin: auto;
 }
 
