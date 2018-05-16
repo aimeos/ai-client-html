@@ -378,6 +378,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
+        $config = $context->getConfig();
 
 		try
 		{
