@@ -384,8 +384,10 @@ class Standard
 			$site = $context->getLocale()->getSite()->getCode();
 			$params = $this->getClientParams( $view->param() );
 
-			if( !isset( $params['f_catid'] ) || $params['f_catid'] == '' ) {
-				$params['f_catid'] = $config->get( 'client/html/catalog/lists/catid-default', '' );
+			if( ( !isset( $params['f_catid'] ) || $params['f_catid'] == '' )
+				&& ( $value = $context->getConfig()->get( 'client/html/catalog/lists/catid-default', '' ) ) != ''
+			) {
+				$params['f_catid'] = $value;
 			}
 
 			$context->getSession()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
