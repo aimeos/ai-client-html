@@ -231,6 +231,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testGetBodySearchSupplier()
+	{
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => array( -1, -2 ) ) );
+		$view->addHelper( 'param', $helper );
+
+		$output = $this->object->getBody();
+
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
+	}
+
+
 	public function testGetBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )

@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getBody();
 
-		$regex = '#<fieldset class="suppliers">.*<ul class="attr-list">.*<li.*<li.*</ul>.*</fieldset>#smu';
+		$regex = '#<fieldset class="supplier-lists">.*<ul class="attr-list">.*<li.*<li.*</ul>.*</fieldset>#smu';
 		$this->assertRegexp( $regex, $output );
 
 		$this->assertGreaterThan( 2, count( $tags ) );

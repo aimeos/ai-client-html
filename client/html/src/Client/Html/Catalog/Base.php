@@ -64,6 +64,20 @@ abstract class Base
 
 
 	/**
+	 * Adds the conditions for the selected suppliers to the given search filter.
+	 *
+	 * @param array $params Associative list of parameters that should be used for filtering
+	 * @param \Aimeos\MW\Criteria\Iface $filter Criteria object for searching
+	 * @return \Aimeos\MW\Criteria\Iface Search filter with conditions for suppliers added
+	 */
+	protected function addSupplierFilterByParam( array $params, \Aimeos\MW\Criteria\Iface $filter )
+	{
+		$supIds = ( isset( $params['f_supid'] ) ? (array) $params['f_supid'] : [] );
+		return $this->getController()->addFilterSupplier( $filter, $supIds );
+	}
+
+
+	/**
 	 * Creates the filter from the given parameters for the product list.
 	 *
 	 * @param string $text Text to search for
@@ -189,9 +203,11 @@ abstract class Base
 	 * @param boolean $catfilter True to include catalog criteria in product filter, false if not
 	 * @param boolean $textfilter True to include text criteria in product filter, false if not
 	 * @param boolean $attrfilter True to include attribute criteria in product filter, false if not
+	 * @param boolean $supfilter True to include supplier criteria in product filter, false if not
 	 * @return \Aimeos\MW\Criteria\Iface Search criteria object
 	 */
-	protected function getProductListFilterByParam( array $params, $catfilter = true, $textfilter = true, $attrfilter = true )
+	protected function getProductListFilterByParam( array $params, $catfilter = true, $textfilter = true,
+		$attrfilter = true, $supfilter = true )
 	{
 		$sortdir = '+';
 		$context = $this->getContext();
@@ -234,6 +250,9 @@ abstract class Base
 			$this->addAttributeFilterByParam( $params, $filter );
 		}
 
+		if( $supfilter === true ) {
+			$this->addSupplierFilterByParam( $params, $filter );
+		}
 
 		return $filter;
 	}
@@ -246,11 +265,13 @@ abstract class Base
 	 * @param boolean $catfilter True to include catalog criteria in product filter, false if not
 	 * @param boolean $textfilter True to include text criteria in product filter, false if not
 	 * @param boolean $attrfilter True to include attribute criteria in product filter, false if not
+	 * @param boolean $supfilter True to include supplier criteria in product filter, false if not
 	 * @return \Aimeos\MW\Criteria\Iface Search criteria object
 	 */
-	protected function getProductListFilter( \Aimeos\MW\View\Iface $view, $catfilter = true, $textfilter = true, $attrfilter = true )
+	protected function getProductListFilter( \Aimeos\MW\View\Iface $view, $catfilter = true, $textfilter = true,
+		$attrfilter = true, $supfilter = true )
 	{
-		return $this->getProductListFilterByParam( $view->param(), $catfilter, $textfilter, $attrfilter );
+		return $this->getProductListFilterByParam( $view->param(), $catfilter, $textfilter, $attrfilter, $supfilter );
 	}
 
 
