@@ -91,7 +91,18 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'search', 'tree', 'attribute' );
+
+	/** client/html/catalog/filter/supplier/name
+	 * Name of the supplier part used by the catalog filter client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Filter\Supplier\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2018.07
+	 * @category Developer
+	 */
+	private $subPartNames = array( 'search', 'tree', 'attribute', 'supplier' );
 	private $tags = [];
 	private $expire;
 	private $view;
