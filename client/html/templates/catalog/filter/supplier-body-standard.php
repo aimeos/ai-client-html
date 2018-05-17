@@ -27,7 +27,7 @@ $params = $this->param();
 
 		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ); ?></h2>
 
-		<fieldset class="suppliers">
+		<fieldset class="supplier-lists">
 			<ul class="attr-list"><!--
 
 				<?php foreach( $suppliers as $id => $supplier ) : ?>
