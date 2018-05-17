@@ -78,6 +78,19 @@ abstract class Base
 
 
 	/**
+	 * Adds the conditions for the selected suppliers to the given search filter.
+	 *
+	 * @param array $params Associative list of parameters that should be used for filtering
+	 * @param \Aimeos\MW\Criteria\Iface $filter Criteria object for searching
+	 * @return \Aimeos\MW\Criteria\Iface Search filter with conditions for suppliers added
+	 */
+	protected function addSupplierFilter( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Criteria\Iface $filter )
+	{
+		return $this->addSupplierFilterByParam( $view->param(), $filter );
+	}
+
+
+	/**
 	 * Creates the filter from the given parameters for the product list.
 	 *
 	 * @param string $text Text to search for
