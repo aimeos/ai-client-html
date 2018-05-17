@@ -378,7 +378,6 @@ class Standard
 	{
 		$context = $this->getContext();
 		$view = $this->getView();
-        $config = $context->getConfig();
 
 		try
 		{
@@ -386,8 +385,8 @@ class Standard
 			$params = $this->getClientParams( $view->param() );
 
 			if( !isset( $params['f_catid'] ) || $params['f_catid'] == '' ) {
-				$params['f_catid'] = $config->get( 'client/html/catalog/lists/catid-default', '' );
-			}
+				$params['f_catid'] = $context->getConfig()->get( 'client/html/catalog/lists/catid-default', '' );
+            }
 
 			$context->getSession()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
 
