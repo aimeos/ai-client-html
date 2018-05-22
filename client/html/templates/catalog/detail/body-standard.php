@@ -139,7 +139,7 @@ if( isset( $this->detailProductItem ) )
 					array(
 						'productItem' => $this->detailProductItem,
 						'params' => $this->get( 'detailParams', [] ),
-						'mediaItems' => array_merge( $this->detailProductItem->getRefItems( 'media' ), $mediaItems )
+						'mediaItems' => array_merge( $this->detailProductItem->getRefItems( 'media', 'default', 'default' ), $mediaItems )
 					)
 				); ?>
 			</div>
