@@ -55,7 +55,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/attribute/standard/subparts';
-	private $subPartNames = ['attribute'];
+	private $subPartNames = ['attribute', 'supplier'];
 
 
 	/**
