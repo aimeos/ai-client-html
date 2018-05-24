@@ -88,9 +88,9 @@ $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 $attrMap = $this->get( 'attributeMap', [] );
-$attrIds = $this->param( 'f_attrid', [] );
-$oneIds = $this->param( 'f_oneid', [] );
-$optIds = $this->param( 'f_optid', [] );
+$attrIds = array_filter( $this->param( 'f_attrid', [] ) );
+$oneIds = array_filter( $this->param( 'f_oneid', [] ) );
+$optIds = array_filter( $this->param( 'f_optid', [] ) );
 $params = $this->param();
 
 
