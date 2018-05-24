@@ -102,7 +102,7 @@ class Standard
 	 * @since 2018.07
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'search', 'tree', 'attribute', 'supplier' );
+	private $subPartNames = array( 'search', 'tree', 'supplier', 'attribute' );
 	private $tags = [];
 	private $expire;
 	private $view;
