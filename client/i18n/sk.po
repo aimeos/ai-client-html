@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 18:06+0200\n"
-"PO-Revision-Date: 2018-04-08 16:18+0000\n"
-"Last-Translator: Tomas G <tomas.gmitro@gmail.com>\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
+"PO-Revision-Date: 2018-05-28 12:30+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Slovak (http://www.transifex.com/aimeos/aimeos-core/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #, php-format
 msgid "%1$d article"
@@ -25,6 +25,7 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d artikel"
 msgstr[1] "%1$d articles"
 msgstr[2] "%1$d artikle"
+msgstr[3] "%1$d artikle"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -332,6 +333,16 @@ msgid ""
 "policy\">privacy policy</a>"
 msgstr ""
 
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
+msgstr ""
+
 msgid "If back in stock"
 msgstr ""
 
@@ -574,6 +585,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 msgid "Select country"
 msgstr ""
@@ -659,6 +671,9 @@ msgid "Suggested products"
 msgstr ""
 
 msgid "Sum"
+msgstr ""
+
+msgid "Suppliers"
 msgstr ""
 
 msgid "Telephone"

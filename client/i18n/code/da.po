@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"PO-Revision-Date: 2018-05-28 12:30+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Danish (http://www.transifex.com/aimeos/aimeos-core/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -118,6 +118,10 @@ msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
+msgstr ""
+
+#. Pick-up date
+msgid "date.value"
 msgstr ""
 
 #. Pick-up time

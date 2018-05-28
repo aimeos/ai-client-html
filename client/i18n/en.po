@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 18:06+0200\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -334,6 +334,10 @@ msgstr ""
 msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr ""
 
+#, php-format
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgstr ""
+
 msgid "If back in stock"
 msgstr ""
 
@@ -658,6 +662,9 @@ msgid "Suggested products"
 msgstr ""
 
 msgid "Sum"
+msgstr ""
+
+msgid "Suppliers"
 msgstr ""
 
 msgid "Telephone"

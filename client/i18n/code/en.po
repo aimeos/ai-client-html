@@ -20,6 +20,10 @@ msgstr ""
 msgid "color"
 msgstr "Color"
 
+#. Pick-up date
+msgid "date.value"
+msgstr "Pick-up date"
+
 #. Direct debit service provider
 msgid "directdebit.accountno"
 msgstr "Account number"
