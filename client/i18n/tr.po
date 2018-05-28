@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 18:06+0200\n"
-"PO-Revision-Date: 2018-04-11 23:50+0000\n"
+"POT-Creation-Date: 2018-05-28 14:28+0200\n"
+"PO-Revision-Date: 2018-05-28 12:30+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -329,6 +329,16 @@ msgid ""
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
 "policy\">privacy policy</a>"
 msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">Hükümler ve koşullar</a> ve<a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">gizlilik politikası</a> şartlarını kabul ediyorum."
+
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
+msgstr ""
 
 msgid "If back in stock"
 msgstr "Stoğa girdiğinde"
@@ -658,6 +668,9 @@ msgstr "Önerilen ürünler"
 msgid "Sum"
 msgstr "Toplam"
 
+msgid "Suppliers"
+msgstr "Tedarikçiler"
+
 msgid "Telephone"
 msgstr "Telefon"
 
@@ -860,7 +873,7 @@ msgstr "Yeni hesabınız"
 #. / Payment e-mail subject with order ID
 #, php-format
 msgid "Your order %1$s"
-msgstr "Siparişiniz %1$s"
+msgstr "%1$s No'lu siparişiniz"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -868,7 +881,7 @@ msgstr "Siparişiniz %1$s"
 #. delivery status (%3%s)
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "%2$s 'dan siparişiniz %1$s sevk edildi."
+msgstr "%2$s tarihinde vermiş olduğunuz %1$s No'lu siparişiniz sevk edildi."
 
 msgid "Your search result"
 msgstr "Arama sonucunuz"

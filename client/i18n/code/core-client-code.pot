@@ -122,6 +122,10 @@ msgstr "Expiry month"
 msgid "payment.expiryyear"
 msgstr "Expiry year"
 
+#. Pick-up date
+msgid "date.value"
+msgstr "Pick-up date"
+
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "Pick-up time"
