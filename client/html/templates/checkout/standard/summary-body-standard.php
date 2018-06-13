@@ -201,7 +201,11 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			 * @see client/html/checkout/standard/summary/service
 			 */
 			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-standard.php' ),
-			array( 'errors' => $this->get( 'summaryErrorCodes', [] ), 'customerId' => $this->get( 'summaryCustomerId' ) )
+			array(
+				'summaryBasket' => $this->standardBasket,
+				'errors' => $this->get( 'summaryErrorCodes', [] ),
+				'customerId' => $this->get( 'summaryCustomerId' ) // deprecated
+			)
 		); ?>
 	</div>
 
