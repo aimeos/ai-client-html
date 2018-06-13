@@ -17,21 +17,18 @@ foreach( $this->service as $service )
 
 	foreach( $service->getAttributes() as $attribute )
 	{
-		if( $attribute->getType() === $this->type )
+		$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) );
+
+		switch( $attribute->getValue() )
 		{
-			$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) );
-
-			switch( $attribute->getValue() )
-			{
-				case 'array':
-				case 'object':
-					$value = join( ', ', (array) $attribute->getValue() );
-					break;
-				default:
-					$value = $attribute->getValue();
-			}
-
-			echo '- ' . strip_tags( $name ) . ': ' . strip_tags( $value ) . "\n";
+			case 'array':
+			case 'object':
+				$value = join( ', ', (array) $attribute->getValue() );
+				break;
+			default:
+				$value = $attribute->getValue();
 		}
+
+		echo '- ' . strip_tags( $name ) . ': ' . strip_tags( $value ) . "\n";
 	}
 }
