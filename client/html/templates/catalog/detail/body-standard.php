@@ -88,9 +88,6 @@ if( isset( $this->detailProductItem ) )
 		$propMap[ $propItem->getType() ][ $propId ] = $propItem;
 		$subPropDeps[ $propId ][] = $propItem->getParentId();
 	}
-
-	ksort( $attrMap );
-	ksort( $propMap );
 }
 
 
