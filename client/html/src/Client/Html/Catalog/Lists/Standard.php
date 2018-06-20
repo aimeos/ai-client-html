@@ -441,6 +441,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
+		$sort = $config->get( 'client/html/catalog/lists/sort', 'relevance' );
 
 		$products = $this->getProductList( $view );
 
@@ -474,7 +475,7 @@ class Standard
 		$view->listParams = $this->getClientParams( $view->param() );
 
 		$view->listProductItems = $products;
-		$view->listProductSort = $view->param( 'f_sort', 'relevance' );
+		$view->listProductSort = $view->param( 'f_sort', $sort );
 		$view->listProductTotal = $this->getProductListTotal( $view );
 
 		$view->listPageSize = $this->getProductListSize( $view );

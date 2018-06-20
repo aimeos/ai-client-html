@@ -13,9 +13,10 @@ $listController = $this->config( 'client/html/catalog/lists/url/controller', 'ca
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
+$sort = $this->config( 'client/html/catalog/lists/sort', 'relevance' );
 
 $params = $this->get( 'params', [] );
-$sort = $this->get( 'params/f_sort', 'relevance' );
+$sort = $this->get( 'params/f_sort', $sort );
 $sortname = ltrim( $sort, '-' );
 $nameDir = $priceDir = '';
 

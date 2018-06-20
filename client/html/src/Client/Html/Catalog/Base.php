@@ -139,6 +139,7 @@ abstract class Base
 			 * @see client/html/catalog/lists/catid-default
 			 * @see client/html/catalog/lists/domains
 			 * @see client/html/catalog/lists/size
+			 * @see client/html/catalog/lists/sort
 			 */
 			$default = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
 			$level = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/levels', $default );
@@ -245,6 +246,7 @@ abstract class Base
 			 * @since 2014.03
 			 * @category User
 			 * @category Developer
+			 * @see client/html/catalog/lists/sort
 			 * @see client/html/catalog/lists/size
 			 * @see client/html/catalog/lists/domains
 			 * @see client/html/catalog/lists/levels
@@ -340,6 +342,7 @@ abstract class Base
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/sort
 		 */
 		$defaultSize = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/size', 48 );
 
@@ -369,12 +372,30 @@ abstract class Base
 	 */
 	protected function getProductListSortByParam( array $params, &$sortdir )
 	{
-		$sortation = ( isset( $params['f_sort'] ) && $params['f_sort'] != '' ? (string) $params['f_sort'] : 'relevance' );
+		/** client/html/catalog/lists/sort
+		 * Default sorting of product list if no other sorting is given by parameter
+		 *
+		 * Configures the standard sorting of products in list views. This sorting is used
+		 * as long as it's not overwritten by an URL parameter. Except "relevance", all
+		 * other sort codes can be prefixed by a "-" (minus) sign to sort the products in
+		 * a descending order. By default, the sorting is ascending.
+		 *
+		 * @param string Sort code "relevance", "name", "-name", "price", "-price", "ctime" or "-ctime"
+		 * @since 2018.07
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/size
+		 */
+		$sort = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/sort', 'relevance' );
+		$sortation = ( isset( $params['f_sort'] ) && $params['f_sort'] != '' ? (string) $params['f_sort'] : $sort );
 
 		$sortdir = ( $sortation[0] === '-' ? '-' : '+' );
 		$sort = ltrim( $sortation, '-' );
 
-		return ( strlen( $sort ) > 0 ? $sort : 'relevance' );
+		return ( strlen( $sort ) > 0 ? $sort : $sort );
 	}
 
 
@@ -535,6 +556,7 @@ abstract class Base
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/sort
 		 */
 		$domains = $config->get( 'client/html/catalog/domains', array( 'media', 'price', 'text' ) );
 
@@ -562,6 +584,7 @@ abstract class Base
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/sort
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
