@@ -9,4 +9,4 @@
 $this->mail()->setSubject( $this->translate( 'client', 'Your subscription product' ) );
 
 ?>
-<?= $this->get( 'watchHeader' ); ?>
+<?= $this->get( 'subscriptionHeader' ); ?>
