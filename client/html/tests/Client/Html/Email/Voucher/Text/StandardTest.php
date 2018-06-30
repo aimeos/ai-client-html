@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\Client\Text\Email\Voucher\Text;
+namespace Aimeos\Client\Html\Email\Voucher\Text;
 
 
 class StandardTest extends \PHPUnit\Framework\TestCase
@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function setUpBeforeClass()
 	{
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( \TestHelperText::getContext() );
+		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( \TestHelperHtml::getContext() );
 		$orderBaseManager = $orderManager->getSubManager( 'base' );
 
 		$search = $orderManager->createSearch();
@@ -37,11 +37,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		$this->context = \TestHelperText::getContext();
+		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
 		$products = self::$orderBaseItem->getProducts();
-		$view = \TestHelperText::getView( 'unittest', $this->context->getConfig() );
+		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
 
 		$view->extAddressItem = self::$orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
 		$view->extOrderProductItem = reset( $products );
@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
 
-		$this->object = new \Aimeos\Client\Text\Email\Voucher\Text\Standard( $this->context );
+		$this->object = new \Aimeos\Client\Html\Email\Voucher\Text\Standard( $this->context );
 		$this->object->setView( $view );
 	}
 
@@ -80,14 +80,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Text\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Text\\Exception' );
+		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 

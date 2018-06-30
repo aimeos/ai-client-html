@@ -248,6 +248,31 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testSaveCouponCode()
+	{
+		$couponCodeStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard' )
+			->setConstructorArgs( array( $this->context ) )
+			->setMethods( array( 'saveItem' ) )
+			->getMock();
+
+		\Aimeos\MShop\Factory::injectManager( $this->context, 'coupon/code', $couponCodeStub );
+
+		$couponCodeStub->expects( $this->once() )->method( 'saveItem' );
+
+		$this->access( 'saveCouponCode' )->invokeArgs( $this->object, [-1, 'abc', 123] );
+	}
+
+
+	public function testStoreCouponCode()
+	{
+		$orderProductItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/product' )->createItem();
+
+		$orderProductItem = $this->access( 'storeCouponCode' )->invokeArgs( $this->object, [$orderProductItem, 'abc'] );
+
+		$this->assertGreaterThan( 0, count( $orderProductItem->getAttributeItems() ) );
+	}
+
+
 	protected function access( $name )
 	{
 		$class = new \ReflectionClass( '\Aimeos\Controller\Jobs\Order\Email\Voucher\Standard' );

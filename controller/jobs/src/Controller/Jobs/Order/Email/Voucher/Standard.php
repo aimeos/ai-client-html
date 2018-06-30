@@ -347,6 +347,6 @@ class Standard
 		$item->setType( 'coupon' );
 		$item->setValue( $code );
 
-		return $orderProductItem->setAttribute( $item );
+		return $orderProductItem->setAttributeItem( $item );
 	}
 }
