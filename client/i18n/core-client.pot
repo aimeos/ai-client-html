@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 14:28+0200\n"
+"POT-Creation-Date: 2018-07-04 10:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -766,6 +766,10 @@ msgstr "The payment for your order %1$s from %2$s has been refunded."
 msgid "The subscription for the product has ended."
 msgstr ""
 
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgstr ""
+
 msgid "Three month"
 msgstr "Three month"
 
@@ -852,6 +856,9 @@ msgstr "Y-m-d"
 msgid "You are here:"
 msgstr "You are here:"
 
+msgid "You can use your voucher any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "You will now be forwarded to the next step"
 
@@ -884,6 +891,12 @@ msgid "Your search result"
 msgstr "Your search result"
 
 msgid "Your subscription product"
+msgstr ""
+
+msgid "Your voucher"
+msgstr ""
+
+msgid "Your voucher: "
 msgstr ""
 
 #. / Product notification e-mail subject

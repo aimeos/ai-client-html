@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 14:28+0200\n"
-"PO-Revision-Date: 2018-05-28 12:30+0000\n"
+"POT-Creation-Date: 2018-07-03 21:45+0200\n"
+"PO-Revision-Date: 2018-07-03 20:43+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -767,6 +767,10 @@ msgstr "日期为%2$s的订单%1$s退款已经完成。"
 msgid "The subscription for the product has ended."
 msgstr ""
 
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgstr ""
+
 msgid "Three month"
 msgstr "三个月"
 
@@ -854,6 +858,9 @@ msgstr "Y-m-d"
 msgid "You are here:"
 msgstr "您现在的位置："
 
+msgid "You can use your voucher any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "正在转到下一步"
 
@@ -887,6 +894,12 @@ msgid "Your search result"
 msgstr "您搜索过的产品"
 
 msgid "Your subscription product"
+msgstr ""
+
+msgid "Your voucher"
+msgstr ""
+
+msgid "Your voucher: "
 msgstr ""
 
 #. / Product notification e-mail subject

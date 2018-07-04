@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# David Haška <dhaska93@gmail.com>, 2018
 # Martin Vyšohlíd <vysohlidm@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 14:28+0200\n"
-"PO-Revision-Date: 2018-05-28 12:30+0000\n"
+"POT-Creation-Date: 2018-07-03 21:45+0200\n"
+"PO-Revision-Date: 2018-07-03 20:43+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Czech (http://www.transifex.com/aimeos/aimeos-core/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +148,7 @@ msgid "An account has been created for you."
 msgstr "Byl pro vás vytvořen účet."
 
 msgid "Article no.:"
-msgstr "Článek č.:"
+msgstr "Produkt č.:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -771,6 +772,10 @@ msgstr "Platba vaší objednávky %1$s z %2$s byla vrácena."
 msgid "The subscription for the product has ended."
 msgstr ""
 
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgstr ""
+
 msgid "Three month"
 msgstr "Tříměsíční"
 
@@ -858,6 +863,9 @@ msgstr "Y-m-d"
 msgid "You are here:"
 msgstr "Vy jste tady:"
 
+msgid "You can use your voucher any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "Nyní budete přesměrováni k dalšímu kroku"
 
@@ -891,6 +899,12 @@ msgid "Your search result"
 msgstr "Váš výsledek hledání"
 
 msgid "Your subscription product"
+msgstr ""
+
+msgid "Your voucher"
+msgstr ""
+
+msgid "Your voucher: "
 msgstr ""
 
 #. / Product notification e-mail subject

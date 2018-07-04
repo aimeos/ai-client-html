@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 14:28+0200\n"
-"PO-Revision-Date: 2018-05-28 12:30+0000\n"
+"POT-Creation-Date: 2018-07-03 21:45+0200\n"
+"PO-Revision-Date: 2018-07-03 20:43+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Arabic (http://www.transifex.com/aimeos/aimeos-core/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -775,6 +775,10 @@ msgstr ""
 msgid "The subscription for the product has ended."
 msgstr ""
 
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgstr ""
+
 msgid "Three month"
 msgstr ""
 
@@ -862,6 +866,9 @@ msgstr ""
 msgid "You are here:"
 msgstr ""
 
+msgid "You can use your voucher any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr ""
 
@@ -895,6 +902,12 @@ msgid "Your search result"
 msgstr ""
 
 msgid "Your subscription product"
+msgstr ""
+
+msgid "Your voucher"
+msgstr ""
+
+msgid "Your voucher: "
 msgstr ""
 
 #. / Product notification e-mail subject

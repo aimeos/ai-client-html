@@ -3,19 +3,18 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Ranu Yulianto <vanarif@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-03 21:45+0200\n"
-"PO-Revision-Date: 2018-07-03 20:43+0000\n"
-"Last-Translator: Aimeos\n"
-"Language-Team: Indonesian (http://www.transifex.com/aimeos/aimeos-core/language/id/)\n"
+"PO-Revision-Date: 2018-07-04 06:01+0000\n"
+"Last-Translator: Darshan Sampat <darshan@usindia.com>\n"
+"Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, php-format
@@ -112,23 +111,23 @@ msgid "-%1$s%%"
 msgstr ""
 
 msgid "Account"
-msgstr "Akun"
+msgstr ""
 
 msgid "Add to basket"
-msgstr "Tambah ke keranjang belanja"
+msgstr ""
 
 msgid "Additional"
-msgstr "Tambahan"
+msgstr "追加"
 
 msgid "Additional 2"
-msgstr "Tambahan 2"
+msgstr ""
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Addresses"
-msgstr "Alamat"
+msgstr "住所"
 
 msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
@@ -141,10 +140,10 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 msgid "An account has been created for you."
-msgstr "Akun anda sudah dibuat"
+msgstr ""
 
 msgid "Article no.:"
-msgstr "Artikel nomor:"
+msgstr ""
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -155,16 +154,16 @@ msgid "At least one delivery address part is missing or invalid"
 msgstr ""
 
 msgid "Attributes"
-msgstr "Atribut "
+msgstr "属性"
 
 msgid "Back"
-msgstr "Kembali"
+msgstr ""
 
 msgid "Basket"
-msgstr "Keranjang belanja"
+msgstr "バスケット"
 
 msgid "Billing address"
-msgstr "Alamat penagihan"
+msgstr "請求先住所"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
@@ -175,16 +174,16 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Birthday"
-msgstr "Tanggal lahir"
+msgstr "お誕生日"
 
 msgid "Bundled products"
 msgstr ""
 
 msgid "Buy now"
-msgstr "Beli sekarang"
+msgstr ""
 
 msgid "Categories"
-msgstr "Kategori"
+msgstr "カテゴリ"
 
 msgid "Change"
 msgstr ""
@@ -193,7 +192,7 @@ msgid "Change payment"
 msgstr ""
 
 msgid "Characteristics"
-msgstr "Karakteristik"
+msgstr "特性"
 
 msgid "Check"
 msgstr ""
@@ -202,23 +201,23 @@ msgid "Checkout"
 msgstr ""
 
 msgid "City"
-msgstr "Kota"
+msgstr "都市"
 
 #, php-format
 msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr ""
+msgstr "クラス「%1$s」は、「%2$s」を実行しません"
 
 #, php-format
 msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr ""
+msgstr "クラス \"%1$s\"はインターフェイス \"2 %2$s\"を実行しません"
 
 #, php-format
 msgid "Class \"%1$s\" not available"
-msgstr ""
+msgstr "\"1 %1$s\"クラスは利用できません"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr ""
+msgstr "クラス \"1 %1$s\"が見つかりません"
 
 #, php-format
 msgid "Client HTML type is empty"
@@ -229,28 +228,28 @@ msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr ""
 
 msgid "Close"
-msgstr "Tutup"
+msgstr "閉じる"
 
 msgid "Company"
-msgstr "Perusahaan"
+msgstr "会社"
 
 msgid "Confirmation"
-msgstr "Konfirmasi"
+msgstr ""
 
 msgid "Country"
-msgstr "Negara"
+msgstr "国"
 
 msgid "Coupon codes"
-msgstr "Kode kupon"
+msgstr ""
 
 msgid "Coupons"
-msgstr "Kupon"
+msgstr "クーポン"
 
 msgid "Create a customer account for me"
-msgstr "Buat akun untuk saya"
+msgstr ""
 
 msgid "Customer account"
-msgstr "Akun pelanggan"
+msgstr ""
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -264,10 +263,10 @@ msgid "Dear Sir or Madam"
 msgstr ""
 
 msgid "Delivery"
-msgstr "Pegiriman"
+msgstr "配達"
 
 msgid "Delivery address"
-msgstr "Alamat pengiriman"
+msgstr "配達先"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -278,26 +277,26 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Description"
-msgstr "Deskripsi"
+msgstr ""
 
 msgid "Details"
-msgstr "Detail"
+msgstr "詳細"
 
 msgid "Downloads"
-msgstr "Unduh"
+msgstr ""
 
 msgid "E-Mail"
-msgstr ""
+msgstr "電子メイル"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
-msgstr "Notifikasi E-mail"
-
-msgid "End date"
 msgstr ""
 
+msgid "End date"
+msgstr "終了日"
+
 msgid "Favorite products"
-msgstr "Produk favorit"
+msgstr ""
 
 msgid "Fax"
 msgstr ""
@@ -313,7 +312,7 @@ msgid "Filter"
 msgstr ""
 
 msgid "First name"
-msgstr "Nama depan"
+msgstr ""
 
 msgid "GB999999973"
 msgstr ""
@@ -388,7 +387,7 @@ msgid "Language"
 msgstr ""
 
 msgid "Last name"
-msgstr "Nama akhir (keluarga)"
+msgstr ""
 
 msgid "Last seen"
 msgstr ""
@@ -486,7 +485,7 @@ msgid "Pay now"
 msgstr ""
 
 msgid "Payment"
-msgstr "Pembayaran"
+msgstr ""
 
 msgid "Payment costs"
 msgstr ""
@@ -524,40 +523,40 @@ msgid "Please recheck your payment choice"
 msgstr ""
 
 msgid "Please select"
-msgstr "Silahkan pilih"
+msgstr ""
 
 msgid "Postal code"
-msgstr "Kode pos"
+msgstr ""
 
 msgid "Previous"
-msgstr "Sebelumnya"
+msgstr ""
 
 msgid "Price"
-msgstr "Harga"
+msgstr ""
 
 msgid "Proceed"
-msgstr "Lanjutkan"
+msgstr ""
 
 msgid "Processing the payment failed"
 msgstr ""
 
 msgid "Product"
-msgstr "Produk"
+msgstr ""
 
 msgid "Products you might be also interested in"
-msgstr "Produk yang mungkin Anda minati juga"
+msgstr ""
 
 msgid "Properties"
-msgstr "Properti"
+msgstr ""
 
 msgid "Qty"
-msgstr "Jml"
+msgstr ""
 
 msgid "Quantity"
-msgstr "Jumlah"
+msgstr ""
 
 msgid "Related"
-msgstr "Terkait"
+msgstr ""
 
 msgid "Relevance"
 msgstr ""
@@ -571,7 +570,7 @@ msgid "Salutation"
 msgstr ""
 
 msgid "Search"
-msgstr "Cari"
+msgstr ""
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
@@ -581,13 +580,13 @@ msgid_plural ""
 msgstr[0] ""
 
 msgid "Select country"
-msgstr "Pilih negara"
+msgstr ""
 
 msgid "Select currency"
-msgstr "Pilih mata uang"
+msgstr ""
 
 msgid "Select language"
-msgstr "Pilih bahasa"
+msgstr ""
 
 msgid "Select salutation"
 msgstr ""
@@ -596,13 +595,13 @@ msgid "Select state"
 msgstr ""
 
 msgid "Service fees"
-msgstr "Biaya layanan"
+msgstr ""
 
 msgid "Services"
-msgstr "layanan"
+msgstr ""
 
 msgid "Share"
-msgstr "Bagikan"
+msgstr ""
 
 msgid "Shipping"
 msgstr ""
@@ -614,7 +613,7 @@ msgid "Show all quotes"
 msgstr ""
 
 msgid "Sort by:"
-msgstr "Urut berdasarkan:"
+msgstr ""
 
 msgid "State"
 msgstr ""
@@ -636,10 +635,10 @@ msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr ""
 
 msgid "Street"
-msgstr "Jalan"
+msgstr ""
 
 msgid "Sub-total"
-msgstr "Sub-total"
+msgstr ""
 
 msgid "Subscription ID"
 msgstr ""
@@ -664,7 +663,7 @@ msgid "Suggested products"
 msgstr ""
 
 msgid "Sum"
-msgstr "Jumlah"
+msgstr ""
 
 msgid "Suppliers"
 msgstr ""
@@ -770,7 +769,7 @@ msgid "The value of your voucher is %1$s"
 msgstr ""
 
 msgid "Three month"
-msgstr "Tiga bulan"
+msgstr ""
 
 msgid "Time frame"
 msgstr ""
@@ -785,17 +784,17 @@ msgid "Total"
 msgstr ""
 
 msgid "Total quantity"
-msgstr "Jumlah barang total"
+msgstr ""
 
 msgid "Try again"
-msgstr "Coba lagi"
+msgstr ""
 
 msgid "Two weeks"
-msgstr "Dua minggu"
+msgstr ""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr "Tidak bisa memanggil method \"%1$s\""
+msgstr ""
 
 #, php-format
 msgid "Unable to create an account for \"%1$s\": %2$s"
@@ -819,7 +818,7 @@ msgid ""
 msgstr ""
 
 msgid "Update"
-msgstr "Perbarui"
+msgstr ""
 
 msgid "Vat ID"
 msgstr ""

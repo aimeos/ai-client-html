@@ -7,31 +7,30 @@
 # Translators:
 # Translators:
 # Translators:
-# Miro Sertić <miro.sertic0606@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2018-06-21 01:37+0000\n"
-"Last-Translator: Miro Sertić <miro.sertic0606@gmail.com>\n"
-"Language-Team: Croatian (http://www.transifex.com/aimeos/aimeos-core/language/hr/)\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "price:default"
-msgstr "%1$s %2$s"
+msgstr ""
 
 #. Stock type
 msgid "stocktype:default"
-msgstr " "
+msgstr ""
 
 #. Warehouse type (pre 2017.x)
 msgid "warehouse:default"
-msgstr " "
+msgstr ""
 
 #. Favorite action
 msgid "favorite"
@@ -47,7 +46,7 @@ msgstr ""
 
 #. Product attribute
 msgid "size"
-msgstr "Veličina"
+msgstr ""
 
 #. Product attribute
 msgid "length"
@@ -55,7 +54,7 @@ msgstr ""
 
 #. Product attribute
 msgid "width"
-msgstr "Širina"
+msgstr ""
 
 #. Product attribute
 msgid "color"
@@ -99,11 +98,11 @@ msgstr ""
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr "Ime"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr "Prezime"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -123,12 +122,12 @@ msgstr ""
 
 #. Pick-up date
 msgid "date.value"
-msgstr "Datum preuzimanja"
+msgstr ""
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "Vrijeme preuzimanja"
+msgstr ""
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "Lokacija za preuzimanje"
+msgstr ""

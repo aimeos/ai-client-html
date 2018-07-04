@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
+# Six byNine <wwinx@hotmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2018-05-28 12:30+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2018-06-27 05:26+0000\n"
+"Last-Translator: Six byNine <wwinx@hotmail.com>\n"
 "Language-Team: French (http://www.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,23 +27,23 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr " "
 
 #. Warehouse type (pre 2017.x)
 msgid "warehouse:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "favori"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "épingler"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "consulter"
 
 #. Product attribute
 msgid "size"
@@ -66,19 +67,19 @@ msgstr "Attribut produit"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "longueur-du-colis"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "largeur-du-colis"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "hauteur-du-colis"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "poids-du-colis"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
@@ -106,28 +107,28 @@ msgstr "Nom"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Numéro de carte bancaire"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Code de vérification"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "Mois d'expiration"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "Année d'expiration"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "Date de récupération"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Heure de récupération"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "Lieu de récupération"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 14:28+0200\n"
-"PO-Revision-Date: 2018-05-28 12:32+0000\n"
+"POT-Creation-Date: 2018-07-03 21:45+0200\n"
+"PO-Revision-Date: 2018-07-04 07:46+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -769,6 +769,10 @@ msgstr "Die Zahlung für Ihre Bestellung %1$s vom %2$s wurde erstattet."
 msgid "The subscription for the product has ended."
 msgstr "Das Abo für das Produkt ist ausgelaufen."
 
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgstr "Der Wert ihres Gutscheins beträgt %1$s"
+
 msgid "Three month"
 msgstr "Drei Monate"
 
@@ -856,6 +860,9 @@ msgstr "d.m.Y"
 msgid "You are here:"
 msgstr "Sie befinden sich hier:"
 
+msgid "You can use your voucher any time in our online shop"
+msgstr "Sie können Ihren Gutschein jederzeit in unserem Onlineshop einlösen"
+
 msgid "You will now be forwarded to the next step"
 msgstr "Sie werden jetzt zu unserem Zahlungsanbieter weiter geleitet"
 
@@ -890,6 +897,12 @@ msgstr "Ihr Suchergebnis"
 
 msgid "Your subscription product"
 msgstr "Ihr Aboprodukt"
+
+msgid "Your voucher"
+msgstr "Ihr Gutschein"
+
+msgid "Your voucher: "
+msgstr "Ihr Gutschein:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

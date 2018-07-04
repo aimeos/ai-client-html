@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Miro Sertić <miro.sertic0606@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 14:28+0200\n"
-"PO-Revision-Date: 2018-06-09 23:37+0000\n"
-"Last-Translator: Miro Sertić <miro.sertic0606@gmail.com>\n"
+"POT-Creation-Date: 2018-07-03 21:45+0200\n"
+"PO-Revision-Date: 2018-07-03 20:43+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Croatian (http://www.transifex.com/aimeos/aimeos-core/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,9 +21,9 @@ msgstr ""
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%1$d članak"
+msgstr[1] "%1$d članaka"
+msgstr[2] "%1$d članaka "
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -63,7 +64,7 @@ msgstr ""
 #. value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr ""
+msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -73,16 +74,16 @@ msgstr ""
 #. / Percent format with value (%1$s) and % sign
 #, php-format
 msgid "%1$s%%"
-msgstr ""
+msgstr "%1$s%%"
 
 #. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
 #. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr ""
+msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -99,10 +100,10 @@ msgid "+ Payment costs"
 msgstr ""
 
 msgid "+ Shipping"
-msgstr ""
+msgstr "+ dostava"
 
 msgid "+ shipping costs"
-msgstr ""
+msgstr "+ troškovi dostave"
 
 msgid "+1 123 456 7890"
 msgstr ""
@@ -110,10 +111,10 @@ msgstr ""
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "Account"
-msgstr ""
+msgstr "Korisnički račun"
 
 msgid "Add to basket"
 msgstr ""
@@ -145,7 +146,7 @@ msgid "An account has been created for you."
 msgstr ""
 
 msgid "Article no.:"
-msgstr ""
+msgstr "Članak br.:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -159,10 +160,10 @@ msgid "Attributes"
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "Nazad"
 
 msgid "Basket"
-msgstr ""
+msgstr "Košarica"
 
 msgid "Billing address"
 msgstr "Adresa za račun"
@@ -176,13 +177,13 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Birthday"
-msgstr ""
+msgstr "Rođendan"
 
 msgid "Bundled products"
 msgstr ""
 
 msgid "Buy now"
-msgstr ""
+msgstr "Kupi"
 
 msgid "Categories"
 msgstr "Kategorije"
@@ -203,7 +204,7 @@ msgid "Checkout"
 msgstr ""
 
 msgid "City"
-msgstr ""
+msgstr "Grad"
 
 #, php-format
 msgid "Class \"%1$s\" does not implement \"%2$s\""
@@ -230,16 +231,16 @@ msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 msgid "Company"
 msgstr "Poduzeće"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Potvrda"
 
 msgid "Country"
-msgstr ""
+msgstr "Država"
 
 msgid "Coupon codes"
 msgstr ""
@@ -282,26 +283,26 @@ msgid "Description"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "Detalji"
 
 msgid "Downloads"
 msgstr "Preuzimanje"
 
 msgid "E-Mail"
-msgstr ""
+msgstr "E-mail"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
-msgstr ""
+msgstr "E-mail obavijest"
 
 msgid "End date"
-msgstr ""
+msgstr "Posljednji datum"
 
 msgid "Favorite products"
 msgstr ""
 
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 msgid "Fields with an * are mandatory"
 msgstr ""
@@ -311,10 +312,10 @@ msgid "File \"%1$s\" doesn't exist"
 msgstr ""
 
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 msgid "First name"
-msgstr ""
+msgstr "Ime"
 
 msgid "GB999999973"
 msgstr ""
@@ -386,10 +387,10 @@ msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 msgid "Last name"
-msgstr ""
+msgstr "Prezime"
 
 msgid "Last seen"
 msgstr ""
@@ -401,10 +402,10 @@ msgid "Like entered by you"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 msgid "Next"
-msgstr ""
+msgstr "Slijedeće"
 
 msgid "Next order"
 msgstr ""
@@ -440,7 +441,7 @@ msgid "Object doesn't implement \"%1$s\""
 msgstr ""
 
 msgid "One month"
-msgstr ""
+msgstr "Jedan mjesec"
 
 msgid "One or more products you are watching have been updated."
 msgstr ""
@@ -458,7 +459,7 @@ msgid "Order channel"
 msgstr ""
 
 msgid "Order details"
-msgstr ""
+msgstr "Detalji narudžbe"
 
 msgid "Order history"
 msgstr ""
@@ -478,10 +479,10 @@ msgstr ""
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr ""
+msgstr "Stranica %1$d od %2$d"
 
 msgid "Password"
-msgstr ""
+msgstr "Lozinka"
 
 msgid "Pay now"
 msgstr ""
@@ -493,7 +494,7 @@ msgid "Payment costs"
 msgstr ""
 
 msgid "Payment status"
-msgstr ""
+msgstr "Status plaćanja"
 
 msgid "Pinned products"
 msgstr ""
@@ -528,13 +529,13 @@ msgid "Please select"
 msgstr ""
 
 msgid "Postal code"
-msgstr ""
+msgstr "Poštanski broj"
 
 msgid "Previous"
 msgstr ""
 
 msgid "Price"
-msgstr ""
+msgstr "Cijena"
 
 msgid "Proceed"
 msgstr ""
@@ -543,7 +544,7 @@ msgid "Processing the payment failed"
 msgstr ""
 
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 msgid "Products you might be also interested in"
 msgstr ""
@@ -572,7 +573,7 @@ msgid "Salutation"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Traži"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
@@ -587,10 +588,10 @@ msgid "Select country"
 msgstr ""
 
 msgid "Select currency"
-msgstr ""
+msgstr "Odaberite valutu"
 
 msgid "Select language"
-msgstr ""
+msgstr "Odaberite jezik"
 
 msgid "Select salutation"
 msgstr ""
@@ -639,35 +640,35 @@ msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr ""
 
 msgid "Street"
-msgstr ""
+msgstr "Ulica"
 
 msgid "Sub-total"
 msgstr ""
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "ID pretplate"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Detalji pretplate"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "Interval pretplate"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Pretplaćeni proizvod"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Pretplate"
 
 msgid "Suggested products"
 msgstr ""
 
 msgid "Sum"
-msgstr ""
+msgstr "Sum"
 
 msgid "Suppliers"
 msgstr "Dobavljači"
@@ -768,6 +769,10 @@ msgstr ""
 msgid "The subscription for the product has ended."
 msgstr ""
 
+#, php-format
+msgid "The value of your voucher is %1$s"
+msgstr ""
+
 msgid "Three month"
 msgstr ""
 
@@ -787,10 +792,10 @@ msgid "Total quantity"
 msgstr ""
 
 msgid "Try again"
-msgstr ""
+msgstr "Pokušajte ponovno"
 
 msgid "Two weeks"
-msgstr ""
+msgstr "Dva tjedna"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -845,7 +850,7 @@ msgid "Web site"
 msgstr "Web stranica"
 
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #. / Date format with year (Y), month (m) and day (d). See
 #. http://php.net/manual/en/function.date.php
@@ -853,6 +858,9 @@ msgid "Y-m-d"
 msgstr ""
 
 msgid "You are here:"
+msgstr ""
+
+msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
@@ -885,9 +893,15 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr ""
 
 msgid "Your search result"
-msgstr ""
+msgstr "Rezultati pretraživanja"
 
 msgid "Your subscription product"
+msgstr ""
+
+msgid "Your voucher"
+msgstr ""
+
+msgid "Your voucher: "
 msgstr ""
 
 #. / Product notification e-mail subject
@@ -911,7 +925,7 @@ msgstr ""
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "od %1$s"
 
 msgid "like billing address"
 msgstr ""
@@ -961,13 +975,13 @@ msgid "▲ Price"
 msgstr ""
 
 msgid "▶"
-msgstr ""
+msgstr "▶"
 
 msgid "▶▶"
-msgstr ""
+msgstr "▶▶"
 
 msgid "▼"
-msgstr ""
+msgstr "▼"
 
 msgid "▼ Name"
 msgstr ""
@@ -976,7 +990,7 @@ msgid "▼ Price"
 msgstr ""
 
 msgid "◀"
-msgstr ""
+msgstr "◀"
 
 msgid "◀◀"
-msgstr ""
+msgstr "◀◀"
