@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Darshan Sampat <darshan@usindia.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-03 21:45+0200\n"
-"PO-Revision-Date: 2018-07-04 08:58+0000\n"
+"PO-Revision-Date: 2018-07-09 10:55+0000\n"
 "Last-Translator: Darshan Sampat <darshan@usindia.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +21,7 @@ msgstr ""
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] ""
+msgstr[0] "\"%1$d\"個の記事"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -45,23 +46,23 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
+msgstr "%1$s%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%10$s%11$s%12$s%13$s%14$s%15$s%16$s%17$s%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s%2$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s%2$sオフ　"
 
 #. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
 #. value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr ""
+msgstr "%1$s（%4$s%2$s%3$s）"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -80,7 +81,7 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr ""
 
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -94,7 +95,7 @@ msgid "+ %1$s%% VAT"
 msgstr ""
 
 msgid "+ Payment costs"
-msgstr ""
+msgstr "+支払費用"
 
 msgid "+ Shipping"
 msgstr ""
@@ -157,7 +158,7 @@ msgid "Attributes"
 msgstr "属性"
 
 msgid "Back"
-msgstr ""
+msgstr "戻り"
 
 msgid "Basket"
 msgstr "バスケット"
@@ -283,7 +284,7 @@ msgid "Details"
 msgstr "詳細"
 
 msgid "Downloads"
-msgstr ""
+msgstr "ダウンロード"
 
 msgid "E-Mail"
 msgstr "電子メイル"
@@ -357,11 +358,11 @@ msgstr ""
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr ""
+msgstr "クラス名 \"1%1$s\"に無効な文字があります"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr ""
+msgstr "クライアント名 \"1%1$s\"に無効な文字があります"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
@@ -369,40 +370,40 @@ msgstr ""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "無効なクラス名 \"1%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr ""
+msgstr "無効なドメイン \"1%1$s\""
 
 #, php-format
 msgid "Invalid factory \"%1$s\""
-msgstr ""
+msgstr "無効なファクトリ \"1%1$s\""
 
 #, php-format
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "言語"
 
 msgid "Last name"
-msgstr ""
+msgstr "名字"
 
 msgid "Last seen"
 msgstr ""
 
 msgid "Latest"
-msgstr ""
+msgstr "最新"
 
 msgid "Like entered by you"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 msgid "Next"
-msgstr ""
+msgstr "次"
 
 msgid "Next order"
 msgstr ""
@@ -427,7 +428,7 @@ msgstr ""
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "利用可能なビューがありません"
 
 #, php-format
 msgid "Number of coupon codes exceeds the limit"
@@ -447,7 +448,7 @@ msgid "One week"
 msgstr ""
 
 msgid "Options"
-msgstr ""
+msgstr "オプション"
 
 msgid "Order ID"
 msgstr ""
@@ -476,22 +477,22 @@ msgstr ""
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr ""
+msgstr "2%2$d のページ1%1$d"
 
 msgid "Password"
-msgstr ""
+msgstr "パスワード"
 
 msgid "Pay now"
 msgstr ""
 
 msgid "Payment"
-msgstr ""
+msgstr "支払い"
 
 msgid "Payment costs"
 msgstr ""
 
 msgid "Payment status"
-msgstr ""
+msgstr "支払い状況"
 
 msgid "Pinned products"
 msgstr ""
@@ -523,16 +524,16 @@ msgid "Please recheck your payment choice"
 msgstr ""
 
 msgid "Please select"
-msgstr ""
+msgstr "選んでください"
 
 msgid "Postal code"
-msgstr ""
+msgstr "郵便番号"
 
 msgid "Previous"
-msgstr ""
+msgstr "前"
 
 msgid "Price"
-msgstr ""
+msgstr "価格"
 
 msgid "Proceed"
 msgstr ""
@@ -541,19 +542,19 @@ msgid "Processing the payment failed"
 msgstr ""
 
 msgid "Product"
-msgstr ""
+msgstr "商品"
 
 msgid "Products you might be also interested in"
 msgstr ""
 
 msgid "Properties"
-msgstr ""
+msgstr "プロパティ"
 
 msgid "Qty"
 msgstr ""
 
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 msgid "Related"
 msgstr ""
@@ -567,10 +568,10 @@ msgid "Result for \"%1$s\""
 msgstr ""
 
 msgid "Salutation"
-msgstr ""
+msgstr "挨拶"
 
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
@@ -595,19 +596,19 @@ msgid "Select state"
 msgstr ""
 
 msgid "Service fees"
-msgstr ""
+msgstr "サービス料"
 
 msgid "Services"
-msgstr ""
+msgstr "サービス"
 
 msgid "Share"
 msgstr ""
 
 msgid "Shipping"
-msgstr ""
+msgstr "出荷"
 
 msgid "Show"
-msgstr ""
+msgstr "示し"
 
 msgid "Show all quotes"
 msgstr ""
@@ -616,7 +617,7 @@ msgid "Sort by:"
 msgstr ""
 
 msgid "State"
-msgstr ""
+msgstr "状態"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -635,10 +636,10 @@ msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr ""
 
 msgid "Street"
-msgstr ""
+msgstr "道"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "小計"
 
 msgid "Subscription ID"
 msgstr ""
@@ -660,20 +661,20 @@ msgid "Subscriptions"
 msgstr ""
 
 msgid "Suggested products"
-msgstr ""
+msgstr "推奨商品"
 
 msgid "Sum"
-msgstr ""
+msgstr "合計"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "サプライヤー"
 
 msgid "Telephone"
-msgstr ""
+msgstr "電話"
 
 #, php-format
 msgid "Template \"%1$s\" not available"
-msgstr ""
+msgstr "テンプレート \"%1$s\"は利用できません"
 
 msgid "Terms and conditions"
 msgstr ""
@@ -781,7 +782,7 @@ msgid "Top seller"
 msgstr ""
 
 msgid "Total"
-msgstr ""
+msgstr "合計"
 
 msgid "Total quantity"
 msgstr ""
@@ -794,7 +795,7 @@ msgstr ""
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr ""
+msgstr "メソッド \"1%1$s\"を呼び出すことができません"
 
 #, php-format
 msgid "Unable to create an account for \"%1$s\": %2$s"
@@ -821,7 +822,7 @@ msgid "Update"
 msgstr ""
 
 msgid "Vat ID"
-msgstr ""
+msgstr "VAT ID"
 
 msgid "Watch"
 msgstr ""
@@ -842,7 +843,7 @@ msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr ""
 
 msgid "Web site"
-msgstr ""
+msgstr "ウェブサイト"
 
 msgid "X"
 msgstr ""
