@@ -208,10 +208,3 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 		</li>
 	<?php endforeach; ?>
 </ul>
-
-<?php foreach( $this->get( 'attributeHiddenItems', [] ) as $id => $attribute ) : ?>
-	<input type="hidden"
-		name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrhideid', $id ) ) ); ?>"
-		value="<?= $enc->attr( $id ); ?>"
-	/>
-<?php endforeach; ?>
