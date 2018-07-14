@@ -162,20 +162,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$configAttr = $product->getRefItems( 'attribute', null, 'config' );
-		$hiddenAttr = $product->getRefItems( 'attribute', null, 'hidden' );
 
 		$this->assertGreaterThan( 0, count( $configAttr ) );
-		$this->assertGreaterThan( 0, count( $hiddenAttr ) );
 
 		$output = $this->object->getBody();
 		$this->assertContains( '<div class="catalog-detail-basket-attribute', $output );
 
 		foreach( $configAttr as $id => $item ) {
 			$this->assertRegexp( '#<option class="select-option".*value="' . $id . '">#smU', $output );
-		}
-
-		foreach( $hiddenAttr as $id => $item ) {
-			$this->assertRegexp( '#<input type="hidden".*value="' . $id . '".*/>#smU', $output );
 		}
 	}
 
