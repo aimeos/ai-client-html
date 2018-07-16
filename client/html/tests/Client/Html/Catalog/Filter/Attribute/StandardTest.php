@@ -37,8 +37,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getBody();
 
-		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-length">.*<fieldset class="attr-size">.*<fieldset class="attr-width">/smu';
-		$this->assertRegexp( $regex, $output );
+		$this->assertContains( '<fieldset class="attr-color">', $output );
+		$this->assertContains( '<fieldset class="attr-length">', $output );
+		$this->assertContains( '<fieldset class="attr-width">', $output );
+		$this->assertContains( '<fieldset class="attr-size">', $output );
 
 		$this->assertGreaterThan( 3, count( $tags ) );
 		$this->assertEquals( null, $expire );
