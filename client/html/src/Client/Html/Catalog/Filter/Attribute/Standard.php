@@ -281,10 +281,6 @@ class Standard
 
 			$attrMap = $sortedMap;
 		}
-		else
-		{
-			ksort( $attrMap );
-		}
 
 		// Delete cache when attributes are added or deleted even in "tag-all" mode
 		$this->addMetaItems( $attributes, $expire, $tags, ['attribute'] );
