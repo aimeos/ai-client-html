@@ -192,9 +192,13 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, 1 );
 			$search->setConditions( $search->compare( '=~', 'coupon.provider', 'Voucher' ) );
 
-			foreach( $manager->searchItems( $search ) as $item ) {
-				$this->couponId = $item->getId();
+			$items = $manager->searchItems( $search );
+
+			if( ( $item = reset( $items ) ) === false ) {
+				throw new \Aimeos\Controller\Jobs\Exception( 'No coupon provider "Voucher" available' );
 			}
+
+			$this->couponId = $item->getId();
 		}
 
 		return $this->couponId;
