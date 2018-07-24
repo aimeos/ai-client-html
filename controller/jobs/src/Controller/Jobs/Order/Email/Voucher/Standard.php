@@ -299,7 +299,7 @@ class Standard
 					$this->saveCouponCode( $this->getCouponId(), $code, $orderProductItem->getId() );
 					$orderProductItem = $this->storeCouponCode( $orderProductItem, $code );
 
-					$view->extOrderProduct = $orderProductItem;
+					$view->extOrderProductItem = $orderProductItem;
 					$view->extAddressItem = $addrItem;
 					$view->extVoucherCode = $code;
 
