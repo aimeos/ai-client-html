@@ -121,7 +121,7 @@ class Standard
 		{
 			$items = $orderManager->searchItems( $orderSearch );
 
-			$this->process( $client, $items, $status );
+			$this->process( $client, $items, 1 );
 
 			$count = count( $items );
 			$start += $count;
