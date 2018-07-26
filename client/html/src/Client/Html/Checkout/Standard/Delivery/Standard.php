@@ -232,6 +232,7 @@ class Standard
 		{
 			$context = $this->getContext();
 			$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+			$serviceCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
 
 			// only start if there's something to do
 			if( ( $serviceIds = $view->param( 'c_deliveryoption', null ) ) !== null )
@@ -240,8 +241,6 @@ class Standard
 
 				foreach( (array) $serviceIds as $serviceId )
 				{
-					$serviceCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
-
 					$attributes = $view->param( 'c_delivery/' . $serviceId, [] );
 					$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
 					$view->deliveryError = $errors;
@@ -264,8 +263,10 @@ class Standard
 
 			// Test if delivery service is available
 			$services = $basketCtrl->get()->getServices();
-			if( !isset( $view->standardStepActive ) && ( !isset( $services['delivery'] ) || empty( $services['delivery'] ) ) )
-			{
+
+			if( !isset( $view->standardStepActive ) && ( !isset( $services['delivery'] ) || empty( $services['delivery'] ) )
+				&& count( $serviceCtrl->getProviders( 'delivery' ) ) > 0
+			) {
 				$view->standardStepActive = 'delivery';
 				return false;
 			}
