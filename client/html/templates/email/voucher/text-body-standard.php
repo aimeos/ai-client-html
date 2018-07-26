@@ -18,7 +18,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 <?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ); ?>
 
 
-<?= wordwrap( strip_tags( sprintf( $this->translate( 'client', 'Your voucher: ' ), $voucher ) ) ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'Your voucher: ' ) . $voucher ) ); ?>
 
 <?php $price = $product->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
 <?php $value = sprintf( $priceFormat, $this->number( $price->getValue() + $price->getRebate() ), $priceCurrency ); ?>

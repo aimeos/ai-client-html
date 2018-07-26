@@ -55,7 +55,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 			</p>
 
 			<p class="email-common-intro content-block">
-				<?= nl2br( $enc->html( sprintf( $this->translate( 'client', 'Your voucher: ' ), $voucher ), $enc::TRUST ) ); ?>
+				<?= nl2br( $enc->html( $this->translate( 'client', 'Your voucher: ' ) . $voucher, $enc::TRUST ) ); ?>
 			</p>
 
 			<p class="email-common-body content-block">
