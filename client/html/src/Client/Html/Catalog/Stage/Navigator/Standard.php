@@ -225,8 +225,11 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( ( $pos = $view->param( 'd_pos' ) ) !== null && ( $pid = $view->param( 'd_prodid' ) ) !== null )
+		$pos = $pos = $view->param( 'd_pos' );
+
+		if( is_numeric( $pos ) && ( $pid = $view->param( 'd_prodid' ) ) !== null )
 		{
+
 			if( $pos < 1 ) {
 				$start = 0; $size = 2;
 			} else {
