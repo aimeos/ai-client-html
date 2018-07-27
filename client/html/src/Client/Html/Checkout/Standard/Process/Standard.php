@@ -280,9 +280,11 @@ class Standard
 				return;
 			}
 
-			if( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) === []
-				|| $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00'
-			) {
+			$total = $basket->getPrice()->getValue() + $basket->getPrice()->getCosts();
+			$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
+
+			if( $services === [] || $total <= 0 && $this->isSubscription( $basket->getProducts() ) === false )
+			{
 				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
 				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
 				$orderCntl->saveItem( $orderItem );
@@ -623,6 +625,25 @@ class Standard
 		$config = $view->config( 'client/html/checkout/update/url/config', $config );
 
 		return $view->url( $target, $cntl, $action, $params, [], $config );
+	}
+
+
+	/**
+	 * Tests if one of the products is a subscription
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Product\Iface[] $products Ordered products
+	 * @return boolean True if at least one product is a subscription, false if not
+	 */
+	protected function isSubscription( array $products )
+	{
+		foreach( $products as $orderProduct )
+		{
+			if( $orderProduct->getAttributeItem( 'interval', 'config' ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 
