@@ -355,6 +355,7 @@ class Standard
 		$expr = array(
 			$filter->compare( '>', $filter->createFunction( 'index.text.relevance', array( 'default', $langid, $input ) ), 0 ),
 			$filter->compare( '>', $filter->createFunction( 'index.text.value', array( 'default', $langid, $types, 'product' ) ), '' ),
+			$filter->getConditions(),
 		);
 		$filter->setConditions( $filter->combine( '&&', $expr ) );
 
