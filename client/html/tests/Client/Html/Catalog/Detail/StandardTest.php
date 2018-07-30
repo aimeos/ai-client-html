@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( '<td class="value">10.0</td>', $output );
 
 		$this->assertContains( '<h2 class="header downloads">', $output );
-		$this->assertContains( '<span class="media-name">example image 1</span>', $output );
+		$this->assertContains( '<span class="media-name">path/to/folder/example5.jpg</span>', $output );
 
 		$this->assertContains( '<section class="catalog-detail-suggest">', $output );
 		$this->assertRegExp( '/.*Cappuccino.*/', $output );

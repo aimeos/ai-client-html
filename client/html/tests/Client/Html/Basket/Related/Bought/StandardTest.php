@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
 
 		$basket = $controller->get();
-		$basket->addProduct( $this->getOrderProductItem( 'CNC' ) );
+		$basket->addProduct( $this->getOrderProductItem( 'CNE' ) );
 
 		$view = $this->object->getView();
 		$view->relatedBasket = $basket;
@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertContains( '<section class="basket-related-bought', $output );
-		$this->assertContains( 'Cafe Noire Expresso', $output );
+		$this->assertContains( 'Cafe Noire Cappuccino', $output );
 	}
 
 
