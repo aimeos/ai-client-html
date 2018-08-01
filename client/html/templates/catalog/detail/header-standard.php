@@ -57,7 +57,9 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 <?php endif; ?>
 
 <?php if( isset( $this->detailStockUrl ) ) : ?>
-	<script type="text/javascript" defer="defer" src="<?= $enc->attr( $this->detailStockUrl ); ?>"></script>
+	<?php foreach( (array) $this->detailStockUrl as $url ) : ?>
+		<script type="text/javascript" defer="defer" src="<?= $enc->attr( $url ); ?>"></script>
+	<?php endforeach ?>
 <?php endif; ?>
 
 <?= $this->get( 'detailHeader' ); ?>
