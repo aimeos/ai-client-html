@@ -306,10 +306,6 @@ class Standard
 		$view = $this->getView();
 		$context = $this->getContext();
 
-		if( ( $code = $view->param( 'code' ) ) === null ) {
-			return;
-		}
-
 		try
 		{
 			$session = $context->getSession();
@@ -321,7 +317,12 @@ class Standard
 			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
 			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
 
-			$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
+			if( ( $code = $view->param( 'code' ) ) !== null ) {
+				$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
+			} else {
+				$orderItem = $orderCntl->getItem( $orderid );
+			}
+
 			$orderCntl->update( $orderItem );  // update stock, coupons, etc.
 
 			parent::process();
