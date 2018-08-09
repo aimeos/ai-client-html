@@ -40,7 +40,13 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 <?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ); ?>
 
 
-<?= wordwrap( strip_tags( $this->translate( 'client', 'The subscription for the product has ended.' ) ) ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'The subscription for the product has ended' ) ) ); ?>:
+
+<?php switch( $this->extSubscriptionItem->getReason() ) : case -1: ?>
+	<?= wordwrap( strip_tags( $this->translate( 'client', 'The payment couldn\'t be renewed' ) ) ); ?>
+<?php break; case 1: ?>
+	<?= wordwrap( strip_tags( $this->translate( 'client', 'You\'ve cancelled the subscription' ) ) ); ?>
+<?php endswitch; ?>
 
 
 

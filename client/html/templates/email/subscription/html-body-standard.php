@@ -57,7 +57,13 @@ $product = $this->extOrderProductItem;
 			</p>
 
 			<p class="email-common-intro content-block">
-				<?= nl2br( $enc->html( $this->translate( 'client', 'The subscription for the product has ended.' ), $enc::TRUST ) ); ?>
+				<?= nl2br( $enc->html( $this->translate( 'client', 'The subscription for the product has ended' ), $enc::TRUST ) ); ?>:
+
+				<?php switch( $this->extSubscriptionItem->getReason() ) : case -1: ?>
+					<?= nl2br( $enc->html( $this->translate( 'client', 'The payment couldn\'t be renewed' ), $enc::TRUST ) ); ?>
+				<?php break; case 1: ?>
+					<?= nl2br( $enc->html( $this->translate( 'client', 'You\'ve cancelled the subscription' ), $enc::TRUST ) ); ?>
+				<?php endswitch; ?>
 			</p>
 
 			<div class="common-summary-detail common-summary container content-block">

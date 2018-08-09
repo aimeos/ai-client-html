@@ -50,7 +50,7 @@ class Standard
 		foreach( $baseItem->getProducts() as $orderProduct )
 		{
 			if( $orderProduct->getId() == $subscription->getOrderProductId() ) {
-				$this->sendMail( $context, $addrItem, $orderProduct );
+				$this->sendMail( $context, $subscription, $addrItem, $orderProduct );
 			}
 		}
 	}
@@ -76,15 +76,17 @@ class Standard
 	 * Sends the subscription e-mail for the given customer address and products
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Payment address of the customer
 	 * @param \Aimeos\MShop\Order\Item\Base\Product\Iface $product Subscription product the notification should be sent for
 	 */
-	protected function sendMail( \Aimeos\MShop\Context\Item\Iface $context,
+	protected function sendMail( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription,
 		\Aimeos\MShop\Common\Item\Address\Iface $address, \Aimeos\MShop\Order\Item\Base\Product\Iface $product )
 	{
 		$view = $context->getView();
 		$view->extAddressItem = $address;
 		$view->extOrderProductItem = $product;
+		$view->extSubscriptionItem = $subscription;
 
 		$params = [
 			'locale' => $context->getLocale()->getLanguageId(),

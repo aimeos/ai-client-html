@@ -11,6 +11,7 @@ namespace Aimeos\Client\Html\Email\Subscription\Text;
 
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
+	private static $subscriptionItem;
 	private static $productItem;
 	private static $addressItem;
 	private $object;
@@ -21,6 +22,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public static function setUpBeforeClass()
 	{
 		$context = \TestHelperHtml::getContext();
+
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'subscription' );
+
+		$search = $manager->createSearch();
+		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
+		$result = $manager->searchItems( $search );
+
+		if( ( self::$subscriptionItem = reset( $result ) ) === false ) {
+			throw new \RuntimeException( 'No subscription item found' );
+		}
+
 
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
 
@@ -49,6 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
 		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
+		$view->extSubscriptionItem = self::$subscriptionItem;
 		$view->extOrderProductItem = self::$productItem;
 		$view->extAddressItem = self::$addressItem;
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
