@@ -20,6 +20,7 @@ return array(
 	),
 	'config' => array(
 		'client/html/config',
+		'config',
 	),
 	'custom' => array(
 		'client/html/templates' => array(
