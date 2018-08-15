@@ -225,9 +225,6 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
 		$view->addHelper( 'config', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $context->getMail()->createMessage() );
-		$view->addHelper( 'mail', $helper );
-
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $langId ) );
 		$view->addHelper( 'translate', $helper );
 
@@ -298,6 +295,9 @@ class Standard
 
 					$this->saveCouponCode( $this->getCouponId(), $code, $orderProductItem->getId() );
 					$orderProductItem = $this->storeCouponCode( $orderProductItem, $code );
+
+					$message = $context->getMail()->createMessage();
+					$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message ) );
 
 					$view->extOrderProductItem = $orderProductItem;
 					$view->extAddressItem = $addrItem;

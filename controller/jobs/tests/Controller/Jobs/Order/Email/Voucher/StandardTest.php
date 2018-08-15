@@ -120,23 +120,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetView()
 	{
-		$mailStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\None' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )
-			->disableOriginalConstructor()
-			->disableOriginalClone()
-			->getMock();
-
-		$mailStub->expects( $this->once() )
-			->method( 'createMessage' )
-			->will( $this->returnValue( $mailMsgStub ) );
-
-		$this->context->setMail( $mailStub );
-
 		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, 'unittest', 'EUR', 'de' ) );
-
 		$this->assertInstanceof( '\Aimeos\MW\View\Iface', $result );
 	}
 
