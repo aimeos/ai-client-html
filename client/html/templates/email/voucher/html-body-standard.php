@@ -14,7 +14,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>
-<?php $this->block()->start( 'email/subscription/html' ); ?>
+<?php $this->block()->start( 'email/voucher/html' ); ?>
 <html>
 	<head>
 		<title><?= $enc->html( $this->translate( 'client', 'E-mail notification' ), $enc::TRUST ); ?></title>
@@ -73,4 +73,4 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 	</body>
 </html>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/subscription/html' ); ?>
+<?= $this->block()->get( 'email/voucher/html' ); ?>
