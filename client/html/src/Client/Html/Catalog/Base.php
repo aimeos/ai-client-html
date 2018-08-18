@@ -527,7 +527,7 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
 		*/
-		$max = $view->config( 'client/html/catalog/stock/url/config', 200 );
+		$max = $view->config( 'client/html/catalog/stock/url/max-items', 200 );
 
 
 		$codes = [];
