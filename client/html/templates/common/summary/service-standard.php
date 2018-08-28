@@ -31,25 +31,27 @@ $type = $this->get( 'type' );
 		<ul class="attr-list">
 
 			<?php foreach( $attributes as $attribute ) : ?>
+				<?php if( strpos( $attribute->getType(), 'hidden' ) === false ) : ?>
 
-				<li class="<?= $enc->attr( $type . '-' . $attribute->getCode() ); ?>">
+					<li class="<?= $enc->attr( $type . '-' . $attribute->getCode() ); ?>">
 
-					<span class="name">
-						<?php if( $attribute->getName() != '' ) : ?>
-							<?= $enc->html( $attribute->getName() ); ?>
-						<?php else : ?>
-							<?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?>
-						<?php endif; ?>
-					</span>
+						<span class="name">
+							<?php if( $attribute->getName() != '' ) : ?>
+								<?= $enc->html( $attribute->getName() ); ?>
+							<?php else : ?>
+								<?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?>
+							<?php endif; ?>
+						</span>
 
-					<?php switch( $attribute->getValue() ) : case 'array': case 'object': ?>
-						<span class="value"><?= $enc->html( join( ', ', (array) $attribute->getValue() ) ); ?></span>
-					<?php break; default: ?>
-						<span class="value"><?= $enc->html( $attribute->getValue() ); ?></span>
-					<?php endswitch; ?>
+						<?php switch( $attribute->getValue() ) : case 'array': case 'object': ?>
+							<span class="value"><?= $enc->html( join( ', ', (array) $attribute->getValue() ) ); ?></span>
+						<?php break; default: ?>
+							<span class="value"><?= $enc->html( $attribute->getValue() ); ?></span>
+						<?php endswitch; ?>
 
-				</li>
+					</li>
 
+				<?php endif; ?>
 			<?php endforeach; ?>
 
 		</ul>
