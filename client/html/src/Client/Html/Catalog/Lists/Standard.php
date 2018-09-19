@@ -93,13 +93,21 @@ class Standard
 	 */
 	public function getBody( $uid = '' )
 	{
+		$prefixes = array( 'f', 'l' );
 		$context = $this->getContext();
-		$confkey = 'client/html';
-		$prefixes = ['f', 'l'];
 
-		/** client/html
-		 * All parameters defined for the HTML client component and its subparts
+		/** client/html/catalog/lists
+		 * All parameters defined for the catalog list component and its subparts
+		 *
+		 * This returns all settings related to the filter component.
+		 * Please refer to the single settings for details.
+		 *
+		 * @param array Associative list of name/value settings
+		 * @category Developer
+		 * @see client/html/catalog#list
 		 */
+		$confkey = 'client/html/catalog/lists';
+
 		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->getView();
@@ -197,8 +205,8 @@ class Standard
 	 */
 	public function getHeader( $uid = '' )
 	{
-		$confkey = 'client/html';
-		$prefixes = ['f', 'l'];
+		$prefixes = array( 'f', 'l' );
+		$confkey = 'client/html/catalog/lists';
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
