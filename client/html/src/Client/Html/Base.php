@@ -598,7 +598,7 @@ abstract class Base
 			return null;
 		}
 
-		$cfg = $config->get( $confkey, [] );
+		$cfg = $config->get( 'client/html', [] );
 
 		$keys = array(
 			'body' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':body', $cfg ),
