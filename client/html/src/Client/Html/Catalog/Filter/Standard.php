@@ -116,20 +116,9 @@ class Standard
 	 */
 	public function getBody( $uid = '' )
 	{
-		$prefixes = array( 'f' );
 		$context = $this->getContext();
-
-		/** client/html/catalog/filter
-		 * All parameters defined for the catalog filter component and its subparts
-		 *
-		 * This returns all settings related to the filter component.
-		 * Please refer to the single settings for details.
-		 *
-		 * @param array Associative list of name/value settings
-		 * @category Developer
-		 * @see client/html/catalog#filter
-		 */
-		$confkey = 'client/html/catalog/filter';
+		$confkey = 'client/html';
+		$prefixes = ['f'];
 
 		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
@@ -219,8 +208,8 @@ class Standard
 
 		self::$headerSingleton = true;
 
-		$prefixes = array( 'f' );
-		$confkey = 'client/html/catalog/filter';
+		$confkey = 'client/html';
+		$prefixes = ['f'];
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
