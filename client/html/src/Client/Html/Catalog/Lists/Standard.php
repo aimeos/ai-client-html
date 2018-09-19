@@ -93,14 +93,13 @@ class Standard
 	 */
 	public function getBody( $uid = '' )
 	{
+		$prefixes = array( 'f', 'l' );
 		$context = $this->getContext();
-		$confkey = 'client/html';
-		$prefixes = ['f', 'l'];
 
 		/** client/html
 		 * All parameters defined for the HTML client component and its subparts
 		 */
-		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		if( ( $html = $this->getCached( 'body', $uid, $prefixes, 'client/html' ) ) === null )
 		{
 			$view = $this->getView();
 
@@ -197,8 +196,8 @@ class Standard
 	 */
 	public function getHeader( $uid = '' )
 	{
-		$confkey = 'client/html';
-		$prefixes = ['f', 'l'];
+		$prefixes = array( 'f', 'l' );
+		$confkey = 'client/html/catalog/lists';
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{

@@ -93,11 +93,10 @@ class Standard
 	 */
 	public function getBody( $uid = '' )
 	{
+		$prefixes = array( 'd' );
 		$context = $this->getContext();
-		$confkey = 'client/html';
-		$prefixes = ['d'];
 
-		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		if( ( $html = $this->getCached( 'body', $uid, $prefixes, 'client/html' ) ) === null )
 		{
 			$view = $this->getView();
 
@@ -179,8 +178,9 @@ class Standard
 	 */
 	public function getHeader( $uid = '' )
 	{
-		$confkey = 'client/html';
-		$prefixes = ['d'];
+		$prefixes = array( 'd' );
+		$confkey = 'client/html/catalog/detail';
+
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
