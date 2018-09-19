@@ -645,7 +645,7 @@ abstract class Base
 
 		try
 		{
-			$cfg = $config->get( $confkey, [] );
+			$cfg = $config->get( 'client/html', [] );
 			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
 			$context->getCache()->set( $key, $value, $expire, array_unique( $tags ) );
