@@ -96,7 +96,19 @@ class Standard
 		$prefixes = array( 'd' );
 		$context = $this->getContext();
 
-		if( ( $html = $this->getCached( 'body', $uid, $prefixes, 'client/html' ) ) === null )
+		/** client/html/catalog/detail
+		 * All parameters defined for the catalog detail component and its subparts
+		 *
+		 * This returns all settings related to the detail component.
+		 * Please refer to the single settings for details.
+		 *
+		 * @param array Associative list of name/value settings
+		 * @category Developer
+		 * @see client/html/catalog#detail
+		 */
+		$confkey = 'client/html/catalog/detail';
+
+		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->getView();
 

@@ -119,7 +119,19 @@ class Standard
 		$prefixes = array( 'f' );
 		$context = $this->getContext();
 
-		if( ( $html = $this->getCached( 'body', $uid, $prefixes, 'client/html' ) ) === null )
+		/** client/html/catalog/filter
+		 * All parameters defined for the catalog filter component and its subparts
+		 *
+		 * This returns all settings related to the filter component.
+		 * Please refer to the single settings for details.
+		 *
+		 * @param array Associative list of name/value settings
+		 * @category Developer
+		 * @see client/html/catalog#filter
+		 */
+		$confkey = 'client/html/catalog/filter';
+
+		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->getView();
 
