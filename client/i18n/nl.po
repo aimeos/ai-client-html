@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Aimeos, 2017
+# Aimeos, 2017
 # Bram Verhaegh <bram@beech.it>, 2015
 # CROB Support <support@crob.nl>, 2018
 # Klaas Runia <info@sennik.nl>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 21:45+0200\n"
-"PO-Revision-Date: 2018-07-03 20:43+0000\n"
+"POT-Creation-Date: 2018-09-27 08:31+0200\n"
+"PO-Revision-Date: 2018-09-27 06:36+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -762,6 +763,9 @@ msgid ""
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "De betaling voor uw bestelling staat nog in wacht. U ontvangt een e-mail zodra de betaling is ontvangen."
 
+msgid "The payment couldn't be renewed"
+msgstr ""
+
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
@@ -769,6 +773,9 @@ msgstr "De betaling voor uw bestelling staat nog in wacht. U ontvangt een e-mail
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "De betaling van uw bestelling %1$s van %2$s is terug gestort."
+
+msgid "The subscription for the product has ended"
+msgstr ""
 
 msgid "The subscription for the product has ended."
 msgstr "De inschrijving voor dit product is verlopen"
@@ -869,6 +876,9 @@ msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Je zal nu doorgestuurd worden naar de volgende stap"
+
+msgid "You've cancelled the subscription"
+msgstr ""
 
 msgid "Your account"
 msgstr "Uw account"

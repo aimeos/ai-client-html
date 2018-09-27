@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 21:45+0200\n"
-"PO-Revision-Date: 2018-07-26 05:02+0000\n"
-"Last-Translator: Darshan Sampat <darshan@usindia.com>\n"
+"POT-Creation-Date: 2018-09-27 08:31+0200\n"
+"PO-Revision-Date: 2018-09-27 06:36+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -754,6 +754,9 @@ msgid ""
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "注文の支払い確認は依然として保留中です。\n支払いが承認されるとすぐに電子メールが届きます。"
 
+msgid "The payment couldn't be renewed"
+msgstr ""
+
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
@@ -761,6 +764,9 @@ msgstr "注文の支払い確認は依然として保留中です。\n支払い�
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "%2$s sから注文%1$sの支払いが払い戻されました。"
+
+msgid "The subscription for the product has ended"
+msgstr ""
 
 msgid "The subscription for the product has ended."
 msgstr "商品のサブスクリプションが終了しました。"
@@ -861,6 +867,9 @@ msgstr "オンラインショップでいつでもバウチャーを使用でき
 
 msgid "You will now be forwarded to the next step"
 msgstr "次のステップに進む"
+
+msgid "You've cancelled the subscription"
+msgstr ""
 
 msgid "Your account"
 msgstr "あなたのアカウント"

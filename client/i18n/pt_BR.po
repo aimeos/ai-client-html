@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 21:45+0200\n"
-"PO-Revision-Date: 2018-07-03 20:43+0000\n"
+"POT-Creation-Date: 2018-09-27 08:31+0200\n"
+"PO-Revision-Date: 2018-09-27 06:36+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -757,6 +757,9 @@ msgid ""
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "A confirmação de pagamento do seu pedido ainda está pendente.\nVocê irá receber um e-mail assim que o pagamento for autorizado."
 
+msgid "The payment couldn't be renewed"
+msgstr ""
+
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
@@ -764,6 +767,9 @@ msgstr "A confirmação de pagamento do seu pedido ainda está pendente.\nVocê 
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "O pagamento do pedido %1$s de %2$s foi ressarcido"
+
+msgid "The subscription for the product has ended"
+msgstr ""
 
 msgid "The subscription for the product has ended."
 msgstr ""
@@ -864,6 +870,9 @@ msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Você será direcionado para o próximo passo"
+
+msgid "You've cancelled the subscription"
+msgstr ""
 
 msgid "Your account"
 msgstr "Sua conta"

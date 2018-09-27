@@ -71,14 +71,12 @@ msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
-#, fuzzy, php-format
 msgid "%1$s at %2$s"
-msgstr "%2$s %1$s"
+msgstr ""
 
 #. / Percent format with value (%1$s) and % sign
-#, fuzzy, php-format
 msgid "%1$s%%"
-msgstr "%2$s %1$s"
+msgstr ""
 
 #. / Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
 #, php-format
@@ -94,9 +92,8 @@ msgid "+ %1$s %2$s/item"
 msgstr "+ %2$s %1$s/item"
 
 #. / Tax rate format with tax rate in percent (%1$s)
-#, fuzzy, php-format
 msgid "+ %1$s%% VAT"
-msgstr "%2$s %1$s"
+msgstr ""
 
 msgid "+ Payment costs"
 msgstr ""
@@ -111,9 +108,8 @@ msgid "+1 123 456 7890"
 msgstr ""
 
 #. / Rebate percent format with rebate percent value (%1$s)
-#, fuzzy, php-format
 msgid "-%1$s%%"
-msgstr "%2$s %1$s"
+msgstr ""
 
 msgid "Account"
 msgstr ""
@@ -131,9 +127,8 @@ msgstr ""
 msgid "Address with ID \"%1$s\" not found"
 msgstr ""
 
-#, fuzzy
 msgid "Addresses"
-msgstr "Address"
+msgstr ""
 
 msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
@@ -168,9 +163,8 @@ msgstr ""
 msgid "Basket"
 msgstr ""
 
-#, fuzzy
 msgid "Billing address"
-msgstr "Address"
+msgstr ""
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
@@ -195,9 +189,8 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#, fuzzy
 msgid "Change payment"
-msgstr "Payment"
+msgstr ""
 
 msgid "Characteristics"
 msgstr ""
@@ -263,20 +256,17 @@ msgstr ""
 msgid "Customer with ID \"%1$s\" not found"
 msgstr ""
 
-#, fuzzy, php-format
 msgid "Dear %1$s %2$s %3$s"
-msgstr "%3$s%1$s + %3$s%2$s"
+msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr ""
 
-#, fuzzy
 msgid "Delivery"
-msgstr "Delivery"
+msgstr ""
 
-#, fuzzy
 msgid "Delivery address"
-msgstr "Address"
+msgstr ""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -404,9 +394,8 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#, fuzzy
 msgid "Next order"
-msgstr "Order"
+msgstr ""
 
 #, php-format
 msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
@@ -448,9 +437,8 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#, fuzzy
 msgid "Order ID"
-msgstr "Order"
+msgstr ""
 
 msgid "Order channel"
 msgstr ""
@@ -484,13 +472,11 @@ msgstr ""
 msgid "Pay now"
 msgstr ""
 
-#, fuzzy
 msgid "Payment"
-msgstr "Payment"
+msgstr ""
 
-#, fuzzy
 msgid "Payment costs"
-msgstr "Payment"
+msgstr ""
 
 msgid "Payment status"
 msgstr ""
@@ -918,9 +904,8 @@ msgstr ""
 msgid "like billing address"
 msgstr ""
 
-#, fuzzy
 msgid "new address"
-msgstr "Address"
+msgstr ""
 
 msgid "none"
 msgstr ""

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 21:45+0200\n"
-"PO-Revision-Date: 2018-07-03 20:43+0000\n"
+"POT-Creation-Date: 2018-09-27 08:31+0200\n"
+"PO-Revision-Date: 2018-09-27 06:36+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -756,6 +756,9 @@ msgid ""
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "对您的订单的付款确认尚未完成。\n一旦付款被授权，很快您将收到一封电子邮件。"
 
+msgid "The payment couldn't be renewed"
+msgstr ""
+
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
@@ -763,6 +766,9 @@ msgstr "对您的订单的付款确认尚未完成。\n一旦付款被授权，�
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "日期为%2$s的订单%1$s退款已经完成。"
+
+msgid "The subscription for the product has ended"
+msgstr ""
 
 msgid "The subscription for the product has ended."
 msgstr ""
@@ -863,6 +869,9 @@ msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "正在转到下一步"
+
+msgid "You've cancelled the subscription"
+msgstr ""
 
 msgid "Your account"
 msgstr "您的账户"
