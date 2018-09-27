@@ -66,14 +66,14 @@ $orderService = $this->get( 'orderService' );
 
 		<li class="form-item form-group <?= $enc->attr( $key ) . $css; ?>">
 
-			<label class="col-md-5" for="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-label">
+			<label class="col-md-5 form-item-label" for="<?= $enc->attr( $type . '-' . $key ); ?>">
 				<?= $enc->html( $this->translate( 'client/code', $key ) ); ?>
 			</label>
 
 			<?php switch( $attribute->getType() ) : case 'select': ?>
 
 					<div class="col-md-7">
-						<select class="form-control" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+						<select class="form-control form-item-value" id="<?= $enc->attr( $type . '-' . $key ); ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>">
 
 							<?php foreach( (array) $attribute->getDefault() as $option ) : $code = $key . ':' . $option; ?>
@@ -104,7 +104,7 @@ $orderService = $this->get( 'orderService' );
 				<?php break; case 'boolean': ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7" type="checkbox" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+						<input class="form-control col-md-7 form-item-value" type="checkbox" id="<?= $enc->attr( $type . '-' . $key ); ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>" value="1"
 							<?= $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ? 'checked="checked"' : '' ?>
 						/>
@@ -113,7 +113,7 @@ $orderService = $this->get( 'orderService' );
 				<?php break; case 'integer': case 'number': ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7" type="number" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+						<input class="form-control col-md-7 form-item-value" type="number" id="<?= $enc->attr( $type . '-' . $key ); ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
 						/>
@@ -141,7 +141,7 @@ $orderService = $this->get( 'orderService' );
 				<?php break; default: ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7" type="text" id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+						<input class="form-control col-md-7 form-item-value" type="text" id="<?= $enc->attr( $type . '-' . $key ); ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
 						/>
