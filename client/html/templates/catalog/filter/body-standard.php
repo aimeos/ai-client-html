@@ -121,8 +121,8 @@ $enc = $this->encoder();
 
 			<?= $this->block()->get( 'catalog/filter/search' ); ?>
 			<?= $this->block()->get( 'catalog/filter/tree' ); ?>
-			<?= $this->block()->get( 'catalog/filter/attribute' ); ?>
 			<?= $this->block()->get( 'catalog/filter/supplier' ); ?>
+			<?= $this->block()->get( 'catalog/filter/attribute' ); ?>
 
 		</form>
 	</nav>
