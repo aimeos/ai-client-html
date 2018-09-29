@@ -68,6 +68,17 @@ class Standard
 	 * @category Developer
 	 */
 
+	/** client/html/catalog/count/supplier/name
+	 * Name of the supplier part used by the catalog count client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Count\Attribute\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2018.07
+	 * @category Developer
+	 */
+
 	/** client/html/catalog/count/attribute/name
 	 * Name of the attribute part used by the catalog count client implementation
 	 *
@@ -78,7 +89,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'tree', 'attribute' );
+	private $subPartNames = ['tree', 'supplier', 'attribute'];
 	private $view;
 
 
