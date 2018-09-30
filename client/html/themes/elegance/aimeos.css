@@ -385,16 +385,19 @@
 .catalog-filter-tree .disabled > .cat-item,
 .catalog-filter-tree .disabled > .cat-item:link,
 .catalog-filter-tree .disabled > .cat-item:visited,
+.catalog-filter-supplier .disabled .attr-name,
 .catalog-filter-attribute .disabled .attr-name {
 	color: #B0B0B0;
 }
 
 .catalog-filter-tree .cat-count:before,
+.catalog-filter-supplier .attr-count:before,
 .catalog-filter-attribute .attr-count:before {
 	content: "(";
 }
 
 .catalog-filter-tree .cat-count:after,
+.catalog-filter-supplier .attr-count:after,
 .catalog-filter-attribute .attr-count:after {
 	content: ")";
 }
