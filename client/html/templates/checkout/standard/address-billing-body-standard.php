@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -222,7 +222,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 						<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
 					</label>
 					<div class="col-md-7">
-						<input class="form-control birthday" type="date" 
+						<input class="form-control birthday" type="date"
 						       id="customer-birthday"
 							name="<?= $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
 							value="<?= $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
