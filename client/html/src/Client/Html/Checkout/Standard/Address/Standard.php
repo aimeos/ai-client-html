@@ -307,7 +307,7 @@ class Standard
 		try
 		{
 			$deliveryAddressItems = [];
-			$item = $controller->getItem( $context->getUserId(), ['address'] );
+			$item = $controller->getItem( $context->getUserId(), ['customer/address'] );
 
 			foreach( $item->getAddressItems() as $id => $addrItem ) {
 				$deliveryAddressItems[$id] = $orderAddressManager->createItem()->copyFrom( $addrItem );
