@@ -14,6 +14,7 @@
  * - position : Position is product list to start from (optional)
  */
 
+$index = -1;
 $enc = $this->encoder();
 $position = $this->get( 'position' );
 $productItems = $this->get( 'productItems', [] );
@@ -105,7 +106,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 ?>
 <ul class="list-items"><!--
 
-	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true; ?>
+	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true; $index++ ?>
 		<?php
 			$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
 			$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id );
@@ -261,11 +262,11 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 								name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
 							/>
 							<input type="hidden" value="<?= $id; ?>"
-								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+								name="<?= $enc->attr( $this->formparam( array( 'b_prod', $index, 'prodid' ) ) ); ?>"
 							/>
 							<input type="number" class="form-control" value="1"
 								 min="1" max="2147483647" maxlength="10" step="1" required="required" <?= $disabled ?>
-								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+								name="<?= $enc->attr( $this->formparam( array( 'b_prod', $index, 'quantity' ) ) ); ?>"
 							/><!--
 							--><button class="btn btn-primary" type="submit" value="" <?= $disabled ?> >
 								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
