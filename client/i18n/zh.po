@@ -5,13 +5,14 @@
 # Translators:
 # Bruce Liu <zcon.bruce@gmail.com>, 2016
 # shihua16165 <shihua16165@163.com>, 2014
+# stevechen <steve.stevechen@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2018-09-27 06:36+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2018-10-02 14:24+0000\n"
+"Last-Translator: stevechen <steve.stevechen@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -197,7 +198,7 @@ msgid "Characteristics"
 msgstr "特色"
 
 msgid "Check"
-msgstr ""
+msgstr "檢查"
 
 msgid "Checkout"
 msgstr "結帳"
@@ -248,10 +249,10 @@ msgid "Coupons"
 msgstr "優惠券"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "為我創立一個用戶帳號"
 
 msgid "Customer account"
-msgstr ""
+msgstr "用戶帳號"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -308,7 +309,7 @@ msgstr "*為必填欄位"
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
-msgstr ""
+msgstr "檔案 \"%1$s\" 不存在"
 
 msgid "Filter"
 msgstr "篩選"
@@ -407,7 +408,7 @@ msgid "Next"
 msgstr "下一個"
 
 msgid "Next order"
-msgstr ""
+msgstr "下一個訂單"
 
 #, php-format
 msgid ""
@@ -474,7 +475,7 @@ msgid "Other customers also bought"
 msgstr "其他人也買了"
 
 msgid "Our products"
-msgstr ""
+msgstr "我們的產品"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -603,7 +604,7 @@ msgid "Services"
 msgstr "服務"
 
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 msgid "Shipping"
 msgstr "運送"
@@ -643,23 +644,23 @@ msgid "Sub-total"
 msgstr "小計"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "訂閱 ID"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "訂閱細節"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "訂閱間隔"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "訂閱產品"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
-msgstr ""
+msgstr "找不到 ID 為 \"%1$s\" 的訂閱"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "訂閱"
 
 msgid "Suggested products"
 msgstr "建議商品"
@@ -767,10 +768,10 @@ msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "您從%2$s下單的訂單%1$s已退款完成。"
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "此產品的訂閱已結束"
 
 msgid "The subscription for the product has ended."
-msgstr ""
+msgstr "此產品的訂閱已結束"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
@@ -783,7 +784,7 @@ msgid "Time frame"
 msgstr "時間範圍"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "切換全螢幕"
 
 msgid "Top seller"
 msgstr "熱門商品"
@@ -810,7 +811,7 @@ msgstr "無法為\"%1$s\"創建帳戶：%2$s"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "無法創立帳戶： %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
@@ -839,7 +840,7 @@ msgstr "關注中的商品"
 
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "我們已經收到款項，馬上將處理您的訂單。"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -870,7 +871,7 @@ msgid "You will now be forwarded to the next step"
 msgstr "正在转到下一步"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "您已取消此訂閱"
 
 msgid "Your account"
 msgstr "您的帳戶"
@@ -879,7 +880,7 @@ msgid "Your choice"
 msgstr "您的選擇"
 
 msgid "Your comment"
-msgstr ""
+msgstr "您的備註"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
@@ -902,7 +903,7 @@ msgid "Your search result"
 msgstr "您的搜尋結果"
 
 msgid "Your subscription product"
-msgstr ""
+msgstr "您的訂閱產品"
 
 msgid "Your voucher"
 msgstr ""
