@@ -96,6 +96,21 @@ class Standard
 		$prefixes = array( 'f', 'l' );
 		$context = $this->getContext();
 
+		/** client/html/catalog/lists/cache
+		 * Enables or disables caching only for the catalog lists component
+		 *
+		 * Disable caching for components can be useful if you would have too much
+		 * entries to cache or if the component contains non-cacheable parts that
+		 * can't be replaced using the modifyBody() and modifyHeader() methods.
+		 *
+		 * @param boolean True to enable caching, false to disable
+		 * @category Developer
+		 * @category User
+		 * @see client/html/catalog/detail/cache
+		 * @see client/html/catalog/filter/cache
+		 * @see client/html/catalog/stage/cache
+		 */
+
 		/** client/html/catalog/lists
 		 * All parameters defined for the catalog list component and its subparts
 		 *

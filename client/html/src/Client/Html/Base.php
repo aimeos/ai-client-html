@@ -593,8 +593,9 @@ abstract class Base
 		 * @see client/html/common/cache/tag-all
 		 */
 		$force = $config->get( 'client/html/common/cache/force', false );
+		$enable = $config->get( $confkey . '/cache', true );
 
-		if( $force == false && $context->getUserId() !== null ) {
+		if( $enable == false || $force == false && $context->getUserId() !== null ) {
 			return null;
 		}
 
