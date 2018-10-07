@@ -134,7 +134,7 @@ class Standard
 		 * @see client/html/catalog/stage/cache
 		 */
 
-		 /** client/html/catalog/filter
+		/** client/html/catalog/filter
 		 * All parameters defined for the catalog filter component and its subparts
 		 *
 		 * This returns all settings related to the filter component.

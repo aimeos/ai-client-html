@@ -111,7 +111,7 @@ class Standard
 		 * @see client/html/catalog/stage/cache
 		 */
 
-		 /** client/html/catalog/detail
+		/** client/html/catalog/detail
 		 * All parameters defined for the catalog detail component and its subparts
 		 *
 		 * This returns all settings related to the detail component.
