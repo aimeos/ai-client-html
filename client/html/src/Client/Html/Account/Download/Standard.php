@@ -346,7 +346,7 @@ class Standard
 	 *
 	 * @param string $customerId Unique customer ID
 	 * @param string $refId Unique order base product attribute ID referencing the download file
-	 * @return \Aimeos\MSho\Common\Item\Lists\Iface List item object
+	 * @return \Aimeos\MShop\Common\Item\Lists\Iface List item object
 	 */
 	protected function getListItem( $customerId, $refId )
 	{
