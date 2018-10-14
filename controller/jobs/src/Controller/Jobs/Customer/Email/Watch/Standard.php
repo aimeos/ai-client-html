@@ -295,7 +295,7 @@ class Standard
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 0x7fffffff );
+		$search->setSlice( 0, count( $prodIds ) );
 
 		return $productManager->searchItems( $search, array( 'text', 'price', 'media' ) );
 	}
@@ -323,7 +323,7 @@ class Standard
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 0x7fffffff );
+		$search->setSlice( 0, 100000 ); // performance speedup
 
 		return $stockManager->searchItems( $search );
 	}
