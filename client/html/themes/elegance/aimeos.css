@@ -1095,6 +1095,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 /* Product images */
 .catalog-detail-image {
 	background-color: #ffffff;
+	margin-bottom: 2em;
 }
 
 .catalog-detail-image .image-single {
@@ -1203,10 +1204,6 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 /* Product detail, basic section */
-.catalog-detail-basic {
-	margin: 1% 2%;
-}
-
 .catalog-detail-basic h1.name {
 	text-transform: uppercase;
 	font-size: 110%;
