@@ -182,10 +182,11 @@ class Standard
 			$view = $this->getView();
 			$id = $view->param( 'dl_id' );
 			$customerId = $context->getUserId();
+			$target = $context->getConfig()->get( 'client/html/account/download/error/url/target' );
 
 			if( $this->checkAccess( $customerId, $id ) === false )
 			{
-				$view->response()->withStatus( 401 );
+				$view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
 				return;
 			}
 
@@ -195,7 +196,7 @@ class Standard
 			if( $this->checkDownload( $context->getUserId(), $id ) === true ) {
 				$this->addDownload( $item );
 			} else {
-				$view->response()->withStatus( 403 );
+				$view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) );
 			}
 
 			parent::process();
