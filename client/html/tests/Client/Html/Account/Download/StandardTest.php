@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
-		$response->expects( $this->never() )->method( 'withHeader' )->will( $this->returnSelf() );
+		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
 		$helper = new \Aimeos\MW\View\Helper\Response\Standard( $this->view, $response );
