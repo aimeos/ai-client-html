@@ -233,7 +233,7 @@ $cancelUrl = $this->url( $cancelTarget, $cancelController, $cancelAction, [], []
 
 ?>
 <?php if( !isset( $this->customerId ) ) : ?>
-	<div class="checkout-standard-summary-option-account col-sm-6">
+	<div class="checkout-standard-summary-option-account col-sm-12">
 		<h3><?= $enc->html( $this->translate( 'client', 'Customer account' ), $enc::TRUST ); ?></h3>
 
 		<div class="single <?= ( isset( $errors['option']['account'] ) ? 'error' : '' ); ?>">
@@ -250,7 +250,7 @@ $cancelUrl = $this->url( $cancelTarget, $cancelController, $cancelAction, [], []
 	</div>
 <?php endif; ?>
 
-<div class="checkout-standard-summary-option-terms col-sm-6">
+<div class="checkout-standard-summary-option-terms col-sm-12">
 	<h3><?= $enc->html( $this->translate( 'client', 'Terms and conditions' ), $enc::TRUST ); ?></h3>
 
 	<div class="single <?= ( isset( $errors['option']['terms'] ) ? 'error' : '' ); ?>">
