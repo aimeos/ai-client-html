@@ -117,7 +117,7 @@ if( isset( $this->detailProductItem ) )
 			}
 		?>
 
-		<article class="product <?= ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' ); ?>" data-id="<?= $this->detailProductItem->getId(); ?>">
+		<article class="product row <?= ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' ); ?>" data-id="<?= $this->detailProductItem->getId(); ?>">
 
 			<div class="col-sm-7">
 				<?= $this->partial(
@@ -343,7 +343,7 @@ if( isset( $this->detailProductItem ) )
 			</div>
 
 
-			<div class="col-xs-12">
+			<div class="col-sm-12">
 
 				<?php if( $this->detailProductItem->getType() === 'bundle'
 					&& ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' ) ) !== []
