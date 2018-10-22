@@ -335,15 +335,16 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/catalog/session/pinned/domains', $domains );
 
-		$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
-
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-		$result = $controller->getItems( $pinned, $domains );
-
-		foreach( array_reverse( $pinned ) as $id )
+		if( ( $pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] ) ) !== [] )
 		{
-			if( isset( $result[$id] ) ) {
-				$items[$id] = $result[$id];
+			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$result = $controller->getItems( $pinned, $domains );
+
+			foreach( array_reverse( $pinned ) as $id )
+			{
+				if( isset( $result[$id] ) ) {
+					$items[$id] = $result[$id];
+				}
 			}
 		}
 
