@@ -308,8 +308,8 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$types = ['name'];
 		$context = $this->getContext();
+		$config = $context->getConfig();
 		$input = $view->param( 'f_search' );
 		$langid = $context->getLocale()->getLanguageId();
 
@@ -325,10 +325,7 @@ class Standard
 		 * @since 2016.09
 		 * @category Developer
 		 */
-
-		if( $context->getConfig()->get( 'client/html/catalog/suggest/usecode', false ) ) {
-			$types[] = 'code';
-		}
+		$useCodes = $config->get( 'client/html/catalog/suggest/usecode', false );
 
 		/** client/html/catalog/suggest/domains
 		 * List of domain items that should be fetched along with the products
@@ -346,17 +343,21 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/suggest/standard/template-body
 		 */
-		$domains = $context->getConfig()->get( 'client/html/catalog/suggest/domains', array( 'text' ) );
+		$domains = $config->get( 'client/html/catalog/suggest/domains', array( 'text' ) );
 
 
 		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 
 		$filter = $controller->createFilter( null, '+', 0, 24, 'default' );
-		$expr = array(
-			$filter->compare( '>', $filter->createFunction( 'index.text.relevance', array( 'default', $langid, $input ) ), 0 ),
-			$filter->compare( '>', $filter->createFunction( 'index.text.value', array( 'default', $langid, $types, 'product' ) ), '' ),
-			$filter->getConditions(),
-		);
+		$expr = [$filter->compare( '!=', $filter->createFunction( 'index.text:relevance', array( 'default', $langid, $input ) ), null )];
+
+		if( $useCodes )
+		{
+			$expr[] = $filter->compare( '=~', 'product.code', $input );
+			$expr = [$filter->combine( '||', $expr )];
+		}
+
+		$expr[] = $filter->getConditions();
 		$filter->setConditions( $filter->combine( '&&', $expr ) );
 
 		$view->suggestItems = $controller->searchItems( $filter, $domains );
