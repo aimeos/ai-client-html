@@ -496,7 +496,7 @@ class Standard
 		$productItem = $prodCntl->getItem( $prodid, $domains );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
-		$products = $prodCntl->getItems( array_keys( $productItem->getRefItems( 'product' ) ), $domains );
+		$products = $productItem->getRefItems( 'product' );
 		$this->addMetaItems( $products, $expire, $tags );
 
 
