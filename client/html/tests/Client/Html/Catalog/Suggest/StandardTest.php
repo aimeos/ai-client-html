@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 		$suggestItems = $this->object->getView()->suggestItems;
 
-		$this->assertRegExp( '#\[\{"label":"Unit.*","html":".*Unit.*"\}.*\]#smU', $output );
+		$this->assertRegExp( '#\[.*\{"label":"Unit.*","html":".*Unit.*"\}.*\]#smU', $output );
 		$this->assertNotEquals( [], $suggestItems );
 
 		foreach( $suggestItems as $item ) {
