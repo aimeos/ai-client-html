@@ -140,6 +140,7 @@ abstract class Base
 			 * @see client/html/catalog/lists/domains
 			 * @see client/html/catalog/lists/size
 			 * @see client/html/catalog/lists/sort
+			 * @see client/html/catalog/lists/maxtotal
 			 */
 			$default = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
 			$level = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/levels', $default );
@@ -250,6 +251,7 @@ abstract class Base
 			 * @see client/html/catalog/lists/size
 			 * @see client/html/catalog/lists/domains
 			 * @see client/html/catalog/lists/levels
+			 * @see client/html/catalog/lists/maxtotal
 			 * @see client/html/catalog/detail/prodid-default
 			 */
 			$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
@@ -343,6 +345,7 @@ abstract class Base
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/maxtotal
 		 */
 		$defaultSize = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/size', 48 );
 
@@ -388,6 +391,7 @@ abstract class Base
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/maxtotal
 		 */
 		$sort = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/sort', 'relevance' );
 		$sortation = ( isset( $params['f_sort'] ) && $params['f_sort'] != '' ? (string) $params['f_sort'] : $sort );
@@ -424,7 +428,27 @@ abstract class Base
 			$this->searchProducts( $view );
 		}
 
-		return $this->productTotal;
+		/** client/html/catalog/lists/maxtotal
+		 * Maximum number of total products shown in a paged list view
+		 *
+		 * Limits the number of products displayed in a paginated list view for
+		 * performance reasons. Jumping to the end of a very large list of
+		 * products is resource intensive because the database has to sort all
+		 * products up to the last product that should be displayed even if the
+		 * products before the first one won't be used.
+		 *
+		 * @param integer Number of products
+		 * @since 2018.10
+		 * @category Developer
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/sort
+		 */
+		$maxtotal = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/maxtotal', 10000 );
+
+		return $this->productTotal <= $maxtotal ? $this->productTotal : $maxtotal;
 	}
 
 
@@ -583,6 +607,7 @@ abstract class Base
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/maxtotal
 		 */
 		$domains = $config->get( 'client/html/catalog/domains', array( 'media', 'price', 'text' ) );
 
@@ -611,6 +636,7 @@ abstract class Base
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/maxtotal
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
