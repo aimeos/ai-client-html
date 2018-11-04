@@ -22,7 +22,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 $params = array( 'c_step' => 'payment' );
 $changeUrl = $this->url( $target, $controller, $action, $params, [], $config );
 
-$params = array( 'c_step' => 'order', 'cs_option_terms' => 1, 'cs_option_terms_value' => 1, 'cs_order' => 1 );
+$params = array( 'c_step' => 'process', 'cs_option_terms' => 1, 'cs_option_terms_value' => 1, 'cs_order' => 1 );
 $retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
 
 
