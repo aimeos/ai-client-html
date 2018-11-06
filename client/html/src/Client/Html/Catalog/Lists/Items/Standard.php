@@ -307,20 +307,14 @@ class Standard
 
 		if( $config->get( 'client/html/catalog/lists/basket-add', false ) )
 		{
-			$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
+			foreach( $products as $product )
+			{
+				if( $product->getType() === 'select' ) {
+					$productItems += $product->getRefItems( 'product', 'default', 'default' );
+				}
+			}
 
-			/** client/html/catalog/domains
-			 * A list of domain names whose items should be available in the catalog view templates
-			 *
-			 * @see client/html/catalog/detail/domains
-			 */
-			$domains = $config->get( 'client/html/catalog/domains', $domains );
-
-
-			$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$productItems = $prodCntl->getItems( $this->getProductIds( $products ), $domains );
 			$this->addMetaItems( $productItems, $expire, $tags );
-
 
 			$view->itemsProductItems = $productItems;
 		}
