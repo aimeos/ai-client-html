@@ -21,7 +21,7 @@ foreach( $catPath as $cat )
 $mediaItems = [];
 foreach( array_reverse( $catPath ) as $catItem )
 {
-	if( ( $mediaItems = $catItem->getRefItems( 'media', 'default', 'stage' ) ) !== [] ) {
+	if( ( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) ) !== [] ) {
 		break;
 	}
 }
