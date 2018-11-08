@@ -81,7 +81,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 					<?php endif; ?>
 
 					<div class="icons">
-						<?php foreach( $service->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+						<?php foreach( $service->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
 								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'icon' ) )

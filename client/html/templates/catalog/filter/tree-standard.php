@@ -47,13 +47,11 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 				<a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
 					--><div class="media-list"><!--
 
-						<?php foreach( $item->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-							<?php if( ( $mediaItem = $listItem->getRefItem() ) !== null ) : ?>
-								<?= '-->' . $this->partial(
-									$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
-									array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-								) . '<!--'; ?>
-							<?php endif; ?>
+						<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+							<?= '-->' . $this->partial(
+								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
+								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+							) . '<!--'; ?>
 						<?php endforeach; ?>
 
 					--></div><!--
