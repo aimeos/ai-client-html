@@ -214,7 +214,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 					<?php foreach( $attrTypes as $attrType ) : ?>
 						<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
-							<?php foreach( $product->getAttributes( $attrType ) as $attribute ) : ?>
+							<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
 								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
 									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
 									<span class="value">
@@ -229,7 +229,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<?php endforeach; ?>
 
 
-					<?php if( ( $attributes = $product->getAttributes( 'config' ) ) !== [] ) : ?>
+					<?php if( ( $attributes = $product->getAttributeItems( 'config' ) ) !== [] ) : ?>
 						<ul class="attr-list attr-list-config">
 
 							<?php foreach( $attributes as $attribute ) : ?>
@@ -255,7 +255,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<?php endif; ?>
 
 
-					<?php if( ( $attributes = $product->getAttributes( 'custom' ) ) !== [] ) : ?>
+					<?php if( ( $attributes = $product->getAttributeItems( 'custom' ) ) !== [] ) : ?>
 						<ul class="attr-list attr-list-custom">
 
 							<?php foreach( $attributes as $attribute ) : ?>
@@ -269,7 +269,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<?php endif; ?>
 
 
-					<?php if( $unhide && ( $attributes = $product->getAttributes( 'hidden' ) ) !== [] ) : ?>
+					<?php if( $unhide && ( $attributes = $product->getAttributeItems( 'hidden' ) ) !== [] ) : ?>
 						<ul class="attr-list attr-list-hidden">
 
 							<?php foreach( $attributes as $attribute ) : ?>

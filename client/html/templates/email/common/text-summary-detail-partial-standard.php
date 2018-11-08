@@ -77,11 +77,11 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	$price = $product->getPrice(); ?>
 
 <?= strip_tags( $product->getName() ); ?> (<?= $product->getProductCode(); ?>)
-<?php	foreach( array_merge( $product->getAttributes( 'config' ), $product->getAttributes( 'custom' ) ) as $attribute ) : ?>
+<?php	foreach( array_merge( $product->getAttributeItems( 'config' ), $product->getAttributeItems( 'custom' ) ) as $attribute ) : ?>
 - <?php 	echo strip_tags( $this->translate( 'client/code', $attribute->getCode() ) ); ?>: <?= $attribute->getQuantity() > 1 ? $attribute->getQuantity() . '× ' : '' ?><?= strip_tags( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?>
 
 <?php	endforeach; ?>
-<?php	foreach( $product->getAttributes( 'hidden' ) as $attribute ) : ?>
+<?php	foreach( $product->getAttributeItems( 'hidden' ) as $attribute ) : ?>
 <?php		if( $unhide && $attribute->getCode() === 'download' ) : ?>
 - <?php 		echo strip_tags( $attribute->getName()); ?>: <?= $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ); ?>
 

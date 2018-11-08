@@ -352,7 +352,7 @@ class Standard
 			);
 
 			$params = $view->param();
-			foreach( $service->getAttributes() as $item ) {
+			foreach( $service->getAttributeItems() as $item ) {
 				$params[$item->getCode()] = $item->getValue();
 			}
 

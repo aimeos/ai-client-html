@@ -15,7 +15,7 @@ foreach( $this->service as $service )
 {
 	echo strip_tags( $service->getName() ) . "\n";
 
-	foreach( $service->getAttributes() as $attribute )
+	foreach( $service->getAttributeItems() as $attribute )
 	{
 		$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) );
 
