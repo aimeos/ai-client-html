@@ -6,6 +6,7 @@
  */
 
 $enc = $this->encoder();
+$basket = $this->standardBasket;
 $errors = $this->get( 'errors', [] );
 
 
@@ -232,7 +233,7 @@ $cancelUrl = $this->url( $cancelTarget, $cancelController, $cancelAction, [], []
 
 
 ?>
-<?php if( !isset( $this->customerId ) ) : ?>
+<?php if( !isset( $basket->getCustomerId ) ) : ?>
 	<div class="checkout-standard-summary-option-account col-sm-12">
 		<h3><?= $enc->html( $this->translate( 'client', 'Customer account' ), $enc::TRUST ); ?></h3>
 
