@@ -610,7 +610,7 @@ abstract class Base
 			$this->cache = $context->getCache()->getMultiple( $keys );
 		}
 
-		return ( isset( $this->cache[ $keys[$type] ] ) ? $this->cache[ $keys[$type] ] : null );
+		return ( array_key_exists( $keys[$type], $this->cache ) ? (string) $this->cache[ $keys[$type] ] : null );
 	}
 
 
@@ -631,8 +631,9 @@ abstract class Base
 		$config = $context->getConfig();
 
 		$force = $config->get( 'client/html/common/cache/force', false );
+		$enable = $config->get( $confkey . '/cache', true );
 
-		if( $force == false && $context->getUserId() !== null ) {
+		if( $enable == false || $force == false && $context->getUserId() !== null ) {
 			return;
 		}
 
