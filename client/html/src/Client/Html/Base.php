@@ -610,7 +610,7 @@ abstract class Base
 			$this->cache = $context->getCache()->getMultiple( $keys );
 		}
 
-		return ( array_key_exists( $keys[$type], $this->cache ) ? (string) $this->cache[ $keys[$type] ] : null );
+		return ( isset( $this->cache[ $keys[$type] ] ) ? $this->cache[ $keys[$type] ] : null );
 	}
 
 
