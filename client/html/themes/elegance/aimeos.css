@@ -679,7 +679,6 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .catalog-filter-attribute .media-item img,
 .catalog-filter-supplier .media-item img {
-	vertical-align: top;
 	height: 1em;
 	width: 1em;
 }
