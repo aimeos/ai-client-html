@@ -161,19 +161,16 @@ $params = $this->param();
 									/>
 
 									<label class="attr-name" for="attr-<?= $enc->attr( $id ); ?>"><!--
-										<?php $mediaItems = $attribute->getRefItems( 'media', 'icon', 'default' ); ?>
-										<?php if( !empty( $mediaItems ) ) : ?>
-											--><div class="media-list"><!--
+										--><div class="media-list"><!--
 
-												<?php foreach( $attribute->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
-													<?= '-->' . $this->partial(
-														$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
-														array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-													) . '<!--'; ?>
-												<?php endforeach; ?>
+											<?php foreach( $attribute->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+												<?= '-->' . $this->partial(
+													$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
+													array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+												) . '<!--'; ?>
+											<?php endforeach; ?>
 
-											--></div>
-										<?php endif; ?>
+										--></div>
 										<span><?= $enc->html( $attribute->getName(), $enc::TRUST ); ?></span><!--
 									--></label>
 								</li><!--
