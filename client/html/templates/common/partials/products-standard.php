@@ -178,6 +178,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 					<div class="articleitem price price-actual"
 						data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
 						data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
+						<?php $priceItems = $productItem->getRefItems( 'price', null, 'default' ); ?>
 						<?= $this->partial(
 							/** client/html/common/partials/price
 							 * Relative path to the price partial template file
@@ -195,7 +196,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 							 * @category Developer
 							 */
 							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
-							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
+							array( 'prices' => reset( $priceItems ) ?: [] )
 						); ?>
 					</div>
 
