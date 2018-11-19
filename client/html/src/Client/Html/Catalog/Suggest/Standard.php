@@ -348,8 +348,8 @@ class Standard
 
 		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 
-		$filter = $controller->createFilter( null, '+', 0, 24, 'default' );
-		$expr = [$filter->compare( '!=', $filter->createFunction( 'index.text:relevance', array( 'default', $langid, $input ) ), null )];
+		$filter = $controller->createFilter( null, '+', 0, 24 );
+		$expr = [$filter->compare( '!=', $filter->createFunction( 'index.text:relevance', [$langid, $input] ), null )];
 
 		if( $useCodes )
 		{
