@@ -347,7 +347,7 @@ class Standard
 		$siteConfig = $context->getLocale()->getSite()->getConfig();
 		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'stock' );
 
-		$filter = $cntl->createFilter()->setSlice( 0, 10000 ); // performance speedup
+		$filter = $cntl->createFilter()->setSlice( 0, count( $productCodes ) );
 		$filter = $cntl->addFilterCodes( $filter, $productCodes );
 
 		if( isset( $siteConfig['stocktype'] ) ) {
