@@ -299,34 +299,25 @@ class Standard
 	/**
 	 * Returns the category IDs of the given catalog tree.
 	 *
-	 * Only the IDs of the children of the current category are returned.
-	 *
 	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Catalog node as entry point of the tree
 	 * @param array $path Associative list of category IDs as keys and the catalog
 	 * 	nodes from the currently selected category up to the root node
-	 * @param string $currentId Currently selected category
 	 * @return array List of category IDs
 	 */
-	protected function getCatalogIdList( \Aimeos\MShop\Catalog\Item\Iface $tree, array $path, $currentId )
+	protected function getCatalogIdList( \Aimeos\MShop\Catalog\Item\Iface $tree, array $path )
 	{
-		if( $tree->getId() == $currentId )
-		{
-			$ids = [];
-			foreach( $tree->getChildren() as $item ) {
-				$ids[] = $item->getId();
-			}
-
-			return $ids;
-		}
+		$ids = [$tree->getId()];
 
 		foreach( $tree->getChildren() as $child )
 		{
+			$ids[] = $child->getId();
+
 			if( isset( $path[$child->getId()] ) ) {
-				return $this->getCatalogIds( $child, $path, $currentId );
+				$ids = array_merge( $ids, $this->getCatalogIdList( $child, $path ) );
 			}
 		}
 
-		return [];
+		return $ids;
 	}
 
 
@@ -360,6 +351,6 @@ class Standard
 		$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE;
 		$tree = $controller->getTree( $startid, [], $level, $filter );
 
-		return $this->getCatalogIdList( $tree, $catItems, $currentid );
+		return $this->getCatalogIdList( $tree, $catItems );
 	}
 }
