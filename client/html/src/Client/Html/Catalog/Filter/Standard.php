@@ -150,40 +150,6 @@ class Standard
 		{
 			$view = $this->getView();
 
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
-				}
-
-				$html = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getBody( $uid );
-				}
-				$view->filterBody = $html;
-			}
-			catch( \Aimeos\Client\Html\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
-			}
-			catch( \Aimeos\Controller\Frontend\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
-			}
-			catch( \Aimeos\MShop\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
-			}
-			catch( \Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
-				$this->logException( $e );
-			}
-
 			/** client/html/catalog/filter/standard/template-body
 			 * Relative path to the HTML body template of the catalog filter client.
 			 *
@@ -207,9 +173,46 @@ class Standard
 			$tplconf = 'client/html/catalog/filter/standard/template-body';
 			$default = 'catalog/filter/body-standard.php';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			try
+			{
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$html = '';
+				foreach( $this->getSubClients() as $subclient ) {
+					$html .= $subclient->setView( $view )->getBody( $uid );
+				}
+				$view->filterBody = $html;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
+			}
+			catch( \Aimeos\Client\Html\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
+			}
+			catch( \Aimeos\Controller\Frontend\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
+			}
+			catch( \Aimeos\MShop\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
+			}
+			catch( \Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+				$view->filterErrorList = $view->get( 'filterErrorList', [] ) + $error;
+				$this->logException( $e );
+			}
+
+			$html = $view->render( $view->config( $tplconf, $default ) );
 		}
 		else
 		{
@@ -241,24 +244,6 @@ class Standard
 		{
 			$view = $this->getView();
 
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
-				}
-
-				$html = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getHeader( $uid );
-				}
-				$view->filterHeader = $html;
-			}
-			catch( \Exception $e )
-			{
-				$this->logException( $e );
-				return;
-			}
-
 			/** client/html/catalog/filter/standard/template-header
 			 * Relative path to the HTML header template of the catalog filter client.
 			 *
@@ -283,9 +268,27 @@ class Standard
 			$tplconf = 'client/html/catalog/filter/standard/template-header';
 			$default = 'catalog/filter/header-standard.php';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			try
+			{
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$html = '';
+				foreach( $this->getSubClients() as $subclient ) {
+					$html .= $subclient->setView( $view )->getHeader( $uid );
+				}
+				$view->filterHeader = $html;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
+			}
+			catch( \Exception $e )
+			{
+				$this->logException( $e );
+			}
 		}
 		else
 		{

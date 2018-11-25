@@ -116,40 +116,6 @@ class Standard
 		{
 			$view = $this->getView();
 
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
-				}
-
-				$output = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getBody( $uid );
-				}
-				$view->stageBody = $output;
-			}
-			catch( \Aimeos\Client\Html\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
-			}
-			catch( \Aimeos\Controller\Frontend\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
-			}
-			catch( \Aimeos\MShop\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
-			}
-			catch( \Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
-				$this->logException( $e );
-			}
-
 			/** client/html/catalog/stage/standard/template-body
 			 * Relative path to the HTML body template of the catalog stage client.
 			 *
@@ -173,9 +139,46 @@ class Standard
 			$tplconf = 'client/html/catalog/stage/standard/template-body';
 			$default = 'catalog/stage/body-standard.php';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			try
+			{
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$output = '';
+				foreach( $this->getSubClients() as $subclient ) {
+					$output .= $subclient->setView( $view )->getBody( $uid );
+				}
+				$view->stageBody = $output;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
+			}
+			catch( \Aimeos\Client\Html\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
+			}
+			catch( \Aimeos\Controller\Frontend\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
+			}
+			catch( \Aimeos\MShop\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
+			}
+			catch( \Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+				$view->stageErrorList = $view->get( 'stageErrorList', [] ) + $error;
+				$this->logException( $e );
+			}
+
+			$html = $view->render( $view->config( $tplconf, $default ) );
 		}
 		else
 		{
@@ -201,24 +204,6 @@ class Standard
 		{
 			$view = $this->getView();
 
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
-				}
-
-				$html = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getHeader( $uid );
-				}
-				$view->stageHeader = $html;
-			}
-			catch( \Exception $e )
-			{
-				$this->logException( $e );
-				return;
-			}
-
 			/** client/html/catalog/stage/standard/template-header
 			 * Relative path to the HTML header template of the catalog stage client.
 			 *
@@ -243,9 +228,27 @@ class Standard
 			$tplconf = 'client/html/catalog/stage/standard/template-header';
 			$default = 'catalog/stage/header-standard.php';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			try
+			{
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$html = '';
+				foreach( $this->getSubClients() as $subclient ) {
+					$html .= $subclient->setView( $view )->getHeader( $uid );
+				}
+				$view->stageHeader = $html;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
+			}
+			catch( \Exception $e )
+			{
+				$this->logException( $e );
+			}
 		}
 		else
 		{
