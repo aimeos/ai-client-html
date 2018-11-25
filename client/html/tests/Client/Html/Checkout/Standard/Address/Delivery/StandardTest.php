@@ -142,7 +142,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.postal' => '20000',
 				'order.base.address.city' => 'hamburg',
 				'order.base.address.languageid' => 'en',
-				'order.base.address.flag' => '1',
 			),
 		);
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -152,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
-		$this->assertEquals( 0, $basket->getAddress( 'delivery' )->getFlag() );
+		$this->assertEquals( 'test', $basket->getAddress( 'delivery' )->getFirstName() );
 	}
 
 
