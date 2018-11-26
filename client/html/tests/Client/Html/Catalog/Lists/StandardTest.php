@@ -97,9 +97,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
 
-		$this->assertContains( '<div class="catalog-list-quote">', $output );
-		$this->assertRegExp( '#Kaffee Bewertungen#', $output );
-
 		$this->assertContains( '<div class="catalog-list-head">', $output );
 		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
 
