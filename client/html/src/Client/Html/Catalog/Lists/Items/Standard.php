@@ -346,7 +346,9 @@ class Standard
 			$view->itemsStockUrl = $this->getStockUrl( $view, $products + $productItems );
 		}
 
-		$view->itemPosition = ( $this->getProductListPage( $view ) - 1 ) * $this->getProductListSize( $view );
+		if( in_array( 'navigator', $config->get( 'client/html/catalog/stage/standard/subparts', [] ) ) ) {
+			$view->itemPosition = ( $this->getProductListPage( $view ) - 1 ) * $this->getProductListSize( $view );
+		}
 
 		return parent::addData( $view, $tags, $expire );
 	}
