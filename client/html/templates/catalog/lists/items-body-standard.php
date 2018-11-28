@@ -40,7 +40,7 @@ $enc = $this->encoder();
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
 			'productItems' => $this->get( 'itemsProductItems', [] ),
 			'products' => $this->get( 'listProductItems', [] ),
-			'position' => $this->get( 'itemPosition', 0 ),
+			'position' => $this->get( 'itemPosition' ),
 		)
 	); ?>
 
