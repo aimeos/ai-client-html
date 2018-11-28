@@ -317,8 +317,8 @@ class Standard
 			$level = $config->get( 'client/html/catalog/lists/levels', $level );
 
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$filter = $controller->createFilter( 'relevance', '+', 0, $size, 'promotion' );
-			$filter = $controller->addFilterCategory( $filter, $catId, $level, 'relevance', '+', 'promotion' );
+			$filter = $controller->createFilter( 'relevance', '+', 0, $size );
+			$filter = $controller->addFilterCategory( $filter, $catId, $level, 'promotion' );
 			$products = $controller->searchItems( $filter, $domains );
 
 			$this->addMetaItems( $products, $expire, $tags );

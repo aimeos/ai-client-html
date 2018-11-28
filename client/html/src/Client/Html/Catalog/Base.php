@@ -144,7 +144,7 @@ abstract class Base
 			$default = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
 			$level = $this->getContext()->getConfig()->get( 'client/html/catalog/lists/levels', $default );
 
-			$filter = $controller->addFilterCategory( $filter, $catid, $level, $sort, $sortdir );
+			$filter = $controller->addFilterCategory( $filter, $catid, $level );
 		}
 
 		if( $text !== '' && $textfilter === true ) {
