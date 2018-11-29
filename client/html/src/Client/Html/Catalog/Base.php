@@ -395,7 +395,7 @@ abstract class Base
 		$sortdir = ( $sortation[0] === '-' ? '-' : '+' );
 		$sort = ltrim( $sortation, '-' );
 
-		return ( strlen( $sort ) > 0 ? $sort : $sort );
+		return $sort;
 	}
 
 
