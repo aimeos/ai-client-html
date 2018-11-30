@@ -346,7 +346,7 @@ class Standard
 			$view->itemsStockUrl = $this->getStockUrl( $view, $products + $productItems );
 		}
 
-		if( in_array( 'navigator', $config->get( 'client/html/catalog/stage/standard/subparts', [] ) ) ) {
+		if( in_array( 'navigator', $config->get( 'client/html/catalog/stage/standard/subparts', ['navigator'] ) ) ) {
 			$view->itemPosition = ( $this->getProductListPage( $view ) - 1 ) * $this->getProductListSize( $view );
 		}
 
