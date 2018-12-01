@@ -380,7 +380,7 @@ class Standard
 			$filter = $controller->createFilter( null, '+', 0, $size - $count );
 
 			$filter->setConditions( $filter->combine( '&&', [
-				$filter->compare( '!=', $filter->createFunction( 'index.text:relevance', [$langid, $input] ), null ),
+				$filter->compare( '!=', $filter->createFunction( 'index.text:relevance', ['default', $langid, $input] ), null ),
 				$filter->getConditions(),
 			] ) );
 
