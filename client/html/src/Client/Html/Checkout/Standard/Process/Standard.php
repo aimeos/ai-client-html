@@ -125,7 +125,7 @@ class Standard
 		 * @see client/html/checkout/standard/process/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/process/standard/template-body';
-		$default = 'checkout/standard/process-body-standard.php';
+		$default = 'checkout/standard/process-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

@@ -127,7 +127,7 @@ class Standard
 		$tplconf = 'client/html/email/payment/html/standard/template-body';
 
 		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/html-body-standard.php', 'email/payment/html-body-standard.php' );
+		$default = array( 'email/payment/' . $status . '/html-body-standard', 'email/payment/html-body-standard' );
 
 		$html = $view->render( $view->config( $tplconf, $default ) );
 		$view->mail()->setBodyHtml( $html );

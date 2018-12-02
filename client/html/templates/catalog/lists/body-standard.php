@@ -72,7 +72,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 	 * @category Developer
 	 */
 	$pagination = $this->partial(
-		$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-standard.php' ),
+		$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-standard' ),
 		array(
 			'params' => $params,
 			'size' => $this->get( 'listPageSize', 48 ),

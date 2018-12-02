@@ -148,7 +148,7 @@ class Standard
 		 * @see client/html/account/history/standard/template-header
 		 */
 		$tplconf = 'client/html/account/history/standard/template-body';
-		$default = 'account/history/body-standard.php';
+		$default = 'account/history/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -198,7 +198,7 @@ class Standard
 			 * @see client/html/account/history/standard/template-body
 			 */
 			$tplconf = 'client/html/account/history/standard/template-header';
-			$default = 'account/history/header-standard.php';
+			$default = 'account/history/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

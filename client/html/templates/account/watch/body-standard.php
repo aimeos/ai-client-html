@@ -134,7 +134,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 							<div class="price-list">
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 									array( 'prices' => $prices )
 								); ?>
 							</div>

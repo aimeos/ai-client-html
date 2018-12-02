@@ -195,7 +195,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 							 * @since 2015.04
 							 * @category Developer
 							 */
-							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 							array( 'prices' => reset( $priceItems ) ?: [] )
 						); ?>
 					</div>
@@ -209,7 +209,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 									data-prodid="<?= $enc->attr( $prodid ); ?>"
 									data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
 									<?= $this->partial(
-										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 										array( 'prices' => $prices )
 									); ?>
 								</div>
@@ -235,7 +235,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 					<?php if( $productItem->getType() === 'select' ) : ?>
 						<div class="items-selection">
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard.php' ),
+								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
 								array(
 									'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
 									'productItems' => $this->get( 'productItems', [] ),
@@ -247,7 +247,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 					<div class="items-attribute">
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
+							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
 							array(
 								'productItem' => $productItem,
 								'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),

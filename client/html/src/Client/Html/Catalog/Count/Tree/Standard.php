@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/count/tree/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/count/tree/standard/template-body';
-		$default = 'catalog/count/tree-body-standard.php';
+		$default = 'catalog/count/tree-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

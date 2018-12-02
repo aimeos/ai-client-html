@@ -114,7 +114,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/address/delivery/standard/template-body';
-		$default = 'checkout/standard/address-delivery-body-standard.php';
+		$default = 'checkout/standard/address-delivery-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

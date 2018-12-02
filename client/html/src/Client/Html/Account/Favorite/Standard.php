@@ -126,7 +126,7 @@ class Standard
 		 * @see client/html/account/favorite/standard/template-header
 		 */
 		$tplconf = 'client/html/account/favorite/standard/template-body';
-		$default = 'account/favorite/body-standard.php';
+		$default = 'account/favorite/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -176,7 +176,7 @@ class Standard
 			 * @see client/html/account/favorite/standard/template-body
 			 */
 			$tplconf = 'client/html/account/favorite/standard/template-header';
-			$default = 'account/favorite/header-standard.php';
+			$default = 'account/favorite/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

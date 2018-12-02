@@ -146,7 +146,7 @@ class Standard
 		$tplconf = 'client/html/email/payment/standard/template-body';
 
 		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/body-standard.php', 'email/payment/body-standard.php' );
+		$default = array( 'email/payment/' . $status . '/body-standard', 'email/payment/body-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -339,7 +339,7 @@ class Standard
 		$tplconf = 'client/html/email/payment/standard/template-header';
 
 		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/header-standard.php', 'email/payment/header-standard.php' );
+		$default = array( 'email/payment/' . $status . '/header-standard', 'email/payment/header-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) ); ;
 	}

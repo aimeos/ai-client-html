@@ -137,7 +137,7 @@ class Standard
 			 * @see client/html/catalog/stage/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/stage/standard/template-body';
-			$default = 'catalog/stage/body-standard.php';
+			$default = 'catalog/stage/body-standard';
 
 			try
 			{
@@ -226,7 +226,7 @@ class Standard
 			 * @see client/html/catalog/stage/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/stage/standard/template-header';
-			$default = 'catalog/stage/header-standard.php';
+			$default = 'catalog/stage/header-standard';
 
 			try
 			{

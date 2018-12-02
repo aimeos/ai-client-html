@@ -126,7 +126,7 @@ class Standard
 		 * @see client/html/checkout/update/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/update/standard/template-body';
-		$default = 'checkout/update/body-standard.php';
+		$default = 'checkout/update/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -176,7 +176,7 @@ class Standard
 			 * @see client/html/checkout/update/standard/template-body
 			 */
 			$tplconf = 'client/html/checkout/update/standard/template-header';
-			$default = 'checkout/update/header-standard.php';
+			$default = 'checkout/update/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

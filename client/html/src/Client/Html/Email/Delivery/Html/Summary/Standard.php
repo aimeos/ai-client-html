@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/email/delivery/html/summary/standard/template-header
 		 */
 		$tplconf = 'client/html/email/delivery/html/summary/standard/template-body';
-		$default = 'email/common/html-summary-body-standard.php';
+		$default = 'email/common/html-summary-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

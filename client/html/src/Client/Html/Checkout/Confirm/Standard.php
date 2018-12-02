@@ -148,7 +148,7 @@ class Standard
 		 * @see client/html/checkout/confirm/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/confirm/standard/template-body';
-		$default = 'checkout/confirm/body-standard.php';
+		$default = 'checkout/confirm/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -198,7 +198,7 @@ class Standard
 			 * @see client/html/checkout/confirm/standard/template-body
 			 */
 			$tplconf = 'client/html/checkout/confirm/standard/template-header';
-			$default = 'checkout/confirm/header-standard.php';
+			$default = 'checkout/confirm/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/locale/select/currency/standard/template-header
 		 */
 		$tplconf = 'client/html/locale/select/currency/standard/template-body';
-		$default = 'locale/select/currency-body-standard.php';
+		$default = 'locale/select/currency-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

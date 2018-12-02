@@ -132,7 +132,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
 							<div class="price-list">
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 									array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 								); ?>
 							</div>

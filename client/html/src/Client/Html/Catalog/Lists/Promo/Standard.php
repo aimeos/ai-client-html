@@ -111,7 +111,7 @@ class Standard
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/promo/standard/template-body';
-		$default = 'catalog/lists/promo-body-standard.php';
+		$default = 'catalog/lists/promo-body-standard';
 
 		return $view->render( $this->getTemplatePath( $tplconf, $default, 'aimeos/catalog/lists/type' ) );
 	}
@@ -170,7 +170,7 @@ class Standard
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/promo/standard/template-header';
-		$default = 'catalog/lists/promo-header-standard.php';
+		$default = 'catalog/lists/promo-header-standard';
 
 		return $view->render( $this->getTemplatePath( $tplconf, $default, 'aimeos/catalog/lists/type' ) );
 	}

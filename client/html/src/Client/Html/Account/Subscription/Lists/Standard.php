@@ -99,7 +99,7 @@ class Standard
 		 * @see client/html/account/subscription/lists/standard/template-header
 		 */
 		$tplconf = 'client/html/account/subscription/lists/standard/template-body';
-		$default = 'account/subscription/lists-body-standard.php';
+		$default = 'account/subscription/lists-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

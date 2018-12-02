@@ -151,7 +151,7 @@ class Standard
 		 * @see client/html/catalog/session/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/session/standard/template-body';
-		$default = 'catalog/session/body-standard.php';
+		$default = 'catalog/session/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -201,7 +201,7 @@ class Standard
 			 * @see client/html/catalog/session/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/session/standard/template-header';
-			$default = 'catalog/session/header-standard.php';
+			$default = 'catalog/session/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

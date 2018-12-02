@@ -148,7 +148,7 @@ class Standard
 			 * @see client/html/catalog/detail/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/detail/standard/template-body';
-			$default = 'catalog/detail/body-standard.php';
+			$default = 'catalog/detail/body-standard';
 
 			try
 			{
@@ -238,7 +238,7 @@ class Standard
 			 * @see client/html/catalog/detail/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/detail/standard/template-header';
-			$default = 'catalog/detail/header-standard.php';
+			$default = 'catalog/detail/header-standard';
 
 			try
 			{

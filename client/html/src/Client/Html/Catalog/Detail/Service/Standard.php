@@ -95,7 +95,7 @@ class Standard
 		 * @see client/html/catalog/detail/service/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/detail/service/standard/template-body';
-		$default = 'catalog/detail/service-body-standard.php';
+		$default = 'catalog/detail/service-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

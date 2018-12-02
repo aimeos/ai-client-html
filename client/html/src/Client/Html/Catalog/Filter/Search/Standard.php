@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/filter/search/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/filter/search/standard/template-body';
-		$default = 'catalog/filter/search-body-standard.php';
+		$default = 'catalog/filter/search-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

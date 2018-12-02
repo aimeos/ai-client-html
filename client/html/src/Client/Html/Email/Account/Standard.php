@@ -125,7 +125,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/account/standard/template-body';
 
-		return $view->render( $view->config( $tplconf, 'email/account/body-standard.php' ) );
+		return $view->render( $view->config( $tplconf, 'email/account/body-standard' ) );
 	}
 
 
@@ -315,7 +315,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/account/standard/template-header';
 
-		return $view->render( $view->config( $tplconf, 'email/account/header-standard.php' ) ); ;
+		return $view->render( $view->config( $tplconf, 'email/account/header-standard' ) ); ;
 	}
 
 

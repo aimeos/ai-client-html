@@ -171,7 +171,7 @@ class Standard
 			 * @see client/html/catalog/filter/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/filter/standard/template-body';
-			$default = 'catalog/filter/body-standard.php';
+			$default = 'catalog/filter/body-standard';
 
 			try
 			{
@@ -266,7 +266,7 @@ class Standard
 			 * @see client/html/catalog/filter/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/filter/standard/template-header';
-			$default = 'catalog/filter/header-standard.php';
+			$default = 'catalog/filter/header-standard';
 
 			try
 			{

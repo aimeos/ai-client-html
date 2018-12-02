@@ -147,7 +147,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 ?>
 			<ul class="form-list">
 				<?= $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
 						'address' => $addrValues,
 						'salutations' => $deliverySalutations,
@@ -191,7 +191,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 ?>
 			<ul class="form-list">
 				<?= $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
 						'address' => $addrValues,
 						'salutations' => $deliverySalutations,

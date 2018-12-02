@@ -22,7 +22,7 @@ $items = $this->get( 'serviceItems', [] );
 					<span class="service-name"><?= $enc->html( $item->getName() ); ?></span>
 
 					<?= $this->partial(
-						$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+						$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 						array( 'prices' => $item->getRefItems( 'price', null, 'default' ), 'costsItem' => false )
 					); ?>
 

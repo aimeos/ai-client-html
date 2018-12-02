@@ -103,7 +103,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/account/html/standard/template-body';
 
-		$html = $view->render( $view->config( $tplconf, 'email/account/html-body-standard.php' ) );
+		$html = $view->render( $view->config( $tplconf, 'email/account/html-body-standard' ) );
 		$view->mail()->setBodyHtml( $html );
 		return $html;
 	}

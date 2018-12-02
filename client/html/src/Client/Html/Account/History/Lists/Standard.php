@@ -100,7 +100,7 @@ class Standard
 		 * @see client/html/account/history/lists/standard/template-header
 		 */
 		$tplconf = 'client/html/account/history/lists/standard/template-body';
-		$default = 'account/history/list-body-standard.php';
+		$default = 'account/history/list-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

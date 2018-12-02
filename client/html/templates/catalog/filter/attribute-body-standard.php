@@ -165,7 +165,7 @@ $params = $this->param();
 
 											<?php foreach( $attribute->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 												<?= '-->' . $this->partial(
-													$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
+													$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
 													array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
 												) . '<!--'; ?>
 											<?php endforeach; ?>

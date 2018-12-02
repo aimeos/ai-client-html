@@ -49,7 +49,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 						<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 							<?= '-->' . $this->partial(
-								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
+								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
 								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
 							) . '<!--'; ?>
 						<?php endforeach; ?>
@@ -60,7 +60,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 				<?php if( count( $item->getChildren() ) > 0 ) : ?>
 					<?php $values = array( 'nodes' => $item->getChildren(), 'path' => $path, 'params' => $params, 'level' => $level + 1 ); ?>
-					<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard.php' ), $values ); ?>
+					<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), $values ); ?>
 				<?php endif; ?>
 
 			</li>

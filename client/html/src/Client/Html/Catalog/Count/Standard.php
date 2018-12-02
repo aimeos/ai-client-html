@@ -136,7 +136,7 @@ class Standard
 			 * @see client/html/catalog/count/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/count/standard/template-body';
-			$default = 'catalog/count/body-standard.php';
+			$default = 'catalog/count/body-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -191,7 +191,7 @@ class Standard
 			 * @see client/html/catalog/count/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/count/standard/template-header';
-			$default = 'catalog/count/header-standard.php';
+			$default = 'catalog/count/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

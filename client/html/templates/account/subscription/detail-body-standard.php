@@ -50,7 +50,7 @@ $addresses = $this->summaryBasket->getAddresses();
 						 * @see client/html/account/subscription/summary/detail
 						 * @see client/html/account/subscription/summary/service
 						 */
-						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard.php' ),
+						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
 						array( 'address' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -65,7 +65,7 @@ $addresses = $this->summaryBasket->getAddresses();
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard.php' ),
+						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
 						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
@@ -97,7 +97,7 @@ $addresses = $this->summaryBasket->getAddresses();
 				 * @see client/html/account/subscription/summary/address
 				 * @see client/html/account/subscription/summary/service
 				 */
-				$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail-standard.php' ),
+				$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),

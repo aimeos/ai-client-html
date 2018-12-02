@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/filter/attribute/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/filter/attribute/standard/template-body';
-		$default = 'catalog/filter/attribute-body-standard.php';
+		$default = 'catalog/filter/attribute-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

@@ -26,7 +26,7 @@ $products = $this->get( 'promoItems', [] );
 			 * @since 2017.01
 			 * @category Developer
 			 */
-			$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
+			$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
 			array( 'products' => $products )
 		); ?>
 	</section>

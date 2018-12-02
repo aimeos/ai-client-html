@@ -125,7 +125,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/voucher/standard/template-body';
 
-		return $view->render( $view->config( $tplconf, 'email/voucher/body-standard.php' ) );
+		return $view->render( $view->config( $tplconf, 'email/voucher/body-standard' ) );
 	}
 
 
@@ -315,7 +315,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/voucher/standard/template-header';
 
-		return $view->render( $view->config( $tplconf, 'email/voucher/header-standard.php' ) ); ;
+		return $view->render( $view->config( $tplconf, 'email/voucher/header-standard' ) ); ;
 	}
 
 
