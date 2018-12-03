@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
+		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessOK()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Download\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Download\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
 			->setMethods( array( 'checkAccess', 'checkDownload' ) )
 			->getMock();
@@ -96,11 +96,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Factory::injectManager( $this->context, 'order/base/product/attribute', $attrManagerStub );
 
 
-		$stream = $this->getMockBuilder( '\Psr\Http\Message\StreamInterface' )->getMock();
-		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
+		$stream = $this->getMockBuilder( \Psr\Http\Message\StreamInterface::class )->getMock();
+		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->will( $this->returnSelf() );
 
-		$helper = $this->getMockBuilder( '\Aimeos\MW\View\Helper\Response\Standard' )
+		$helper = $this->getMockBuilder( \Aimeos\MW\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
 			->setMethods( array( 'createStream' ) )
 			->getMock();
@@ -116,7 +116,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessCheckAccess()
 	{
-		$class = new \ReflectionClass( '\Aimeos\Client\Html\Account\Download\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Client\Html\Account\Download\Standard::class );
 		$method = $class->getMethod( 'checkAccess' );
 		$method->setAccessible( true );
 
@@ -137,7 +137,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Factory::injectManager( $this->context, 'customer/lists', $managerStub );
 
 
-		$class = new \ReflectionClass( '\Aimeos\Client\Html\Account\Download\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Client\Html\Account\Download\Standard::class );
 		$method = $class->getMethod( 'checkDownload' );
 		$method->setAccessible( true );
 
@@ -153,7 +153,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'client/html/account/download/maxcount', 0 );
 
-		$class = new \ReflectionClass( '\Aimeos\Client\Html\Account\Download\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Client\Html\Account\Download\Standard::class );
 		$method = $class->getMethod( 'checkDownload' );
 		$method->setAccessible( true );
 
@@ -165,13 +165,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessGetListItem()
 	{
-		$class = new \ReflectionClass( '\Aimeos\Client\Html\Account\Download\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Client\Html\Account\Download\Standard::class );
 		$method = $class->getMethod( 'getListItem' );
 		$method->setAccessible( true );
 
 		$result = $method->invokeArgs( $this->object, array( 123, 321 ) );
 
-		$this->assertInstanceOf( '\Aimeos\MShop\Common\Item\Lists\Iface', $result );
+		$this->assertInstanceOf( \Aimeos\MShop\Common\Item\Lists\Iface::class, $result );
 	}
 
 
@@ -185,11 +185,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setName( 'test download' );
 
 
-		$stream = $this->getMockBuilder( '\Psr\Http\Message\StreamInterface' )->getMock();
-		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
+		$stream = $this->getMockBuilder( \Psr\Http\Message\StreamInterface::class )->getMock();
+		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->will( $this->returnSelf() );
 
-		$helper = $this->getMockBuilder( '\Aimeos\MW\View\Helper\Response\Standard' )
+		$helper = $this->getMockBuilder( \Aimeos\MW\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
 			->setMethods( array( 'createStream' ) )
 			->getMock();
@@ -197,7 +197,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'response', $helper );
 
 
-		$class = new \ReflectionClass( '\Aimeos\Client\Html\Account\Download\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Client\Html\Account\Download\Standard::class );
 		$method = $class->getMethod( 'addDownload' );
 		$method->setAccessible( true );
 
@@ -212,7 +212,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setName( 'test download' );
 
 
-		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
+		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
@@ -220,7 +220,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'response', $helper );
 
 
-		$class = new \ReflectionClass( '\Aimeos\Client\Html\Account\Download\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Client\Html\Account\Download\Standard::class );
 		$method = $class->getMethod( 'addDownload' );
 		$method->setAccessible( true );
 
@@ -235,7 +235,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item->setName( 'test download' );
 
 
-		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
+		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 		$response->expects( $this->never() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
@@ -243,7 +243,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'response', $helper );
 
 
-		$class = new \ReflectionClass( '\Aimeos\Client\Html\Account\Download\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Client\Html\Account\Download\Standard::class );
 		$method = $class->getMethod( 'addDownload' );
 		$method->setAccessible( true );
 

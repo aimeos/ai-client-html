@@ -235,7 +235,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $view );
 
-		$this->setExpectedException( '\Aimeos\Controller\Frontend\Customer\Exception' );
+		$this->setExpectedException( \Aimeos\Controller\Frontend\Customer\Exception::class );
 		$this->object->process();
 	}
 

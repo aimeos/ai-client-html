@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Suggest\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Suggest\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertNotEquals( [], $suggestItems );
 
 		foreach( $suggestItems as $item ) {
-			$this->assertInstanceOf( '\Aimeos\MShop\Product\Item\Iface', $item );
+			$this->assertInstanceOf( \Aimeos\MShop\Product\Item\Iface::class, $item );
 		}
 	}
 
@@ -85,14 +85,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertNotEquals( [], $suggestItems );
 
 		foreach( $suggestItems as $item ) {
-			$this->assertInstanceOf( '\Aimeos\MShop\Product\Item\Iface', $item );
+			$this->assertInstanceOf( \Aimeos\MShop\Product\Item\Iface::class, $item );
 		}
 	}
 
 
 	public function testGetBodyException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Suggest\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Suggest\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();

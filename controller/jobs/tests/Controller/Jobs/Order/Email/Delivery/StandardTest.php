@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderManagerStub->expects( $this->exactly( 4 ) )->method( 'searchItems' )
 			->will( $this->onConsecutiveCalls( array( $orderItem ), [], [], [] ) );
 
-		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Delivery\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
 			->setMethods( array( 'process' ) )
 			->getMock();
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $item ) );
 
-		$this->assertInstanceof( '\Aimeos\MShop\Order\Item\Base\Address\Iface', $result );
+		$this->assertInstanceof( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $result );
 	}
 
 
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' );
 
-		$this->setExpectedException( '\Aimeos\MShop\Order\Exception' );
+		$this->setExpectedException( \Aimeos\MShop\Order\Exception::class );
 		$this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $manager->createItem() ) );
 	}
 
@@ -118,13 +118,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, $baseItem, 'de' ) );
 
-		$this->assertInstanceof( '\Aimeos\MW\View\Iface', $result );
+		$this->assertInstanceof( \Aimeos\MW\View\Iface::class, $result );
 	}
 
 
 	public function testProcess()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Delivery\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
 			->setMethods( array( 'addOrderStatus', 'getAddressItem', 'processItem' ) )
 			->getMock();
@@ -146,7 +146,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderBaseManagerStub->expects( $this->once() )->method( 'load' )->will( $this->returnValue( $baseItem ) );
 
 
-		$clientStub = $this->getMockBuilder( '\Aimeos\Client\Html\Email\Delivery\Standard' )
+		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Delivery\Standard::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -174,12 +174,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setMail( $mailStub );
 
 
-		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Delivery\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
 			->getMock();
 
 
-		$clientStub = $this->getMockBuilder( '\Aimeos\Client\Html\Email\Delivery\Standard' )
+		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Delivery\Standard::class )
 			->setMethods( array( 'getBody', 'getHeader' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -209,7 +209,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->throwException( new \Aimeos\MShop\Order\Exception() ) );
 
 
-		$clientStub = $this->getMockBuilder( '\Aimeos\Client\Html\Email\Delivery\Standard' )
+		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Delivery\Standard::class )
 			->setMethods( array( 'getBody', 'getHeader' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -222,7 +222,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function access( $name )
 	{
-		$class = new \ReflectionClass( '\Aimeos\Controller\Jobs\Order\Email\Delivery\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class );
 		$method = $class->getMethod( $name );
 		$method->setAccessible( true );
 

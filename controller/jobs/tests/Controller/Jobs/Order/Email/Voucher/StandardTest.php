@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderManagerStub->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( array( $orderItem ) ) );
 
-		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Voucher\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
 			->setMethods( array( 'process' ) )
 			->getMock();
@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $item ) );
 
-		$this->assertInstanceof( '\Aimeos\MShop\Order\Item\Base\Address\Iface', $result );
+		$this->assertInstanceof( \Aimeos\MShop\Order\Item\Base\Address\Iface::class, $result );
 	}
 
 
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' );
 
-		$this->setExpectedException( '\Aimeos\MShop\Order\Exception' );
+		$this->setExpectedException( \Aimeos\MShop\Order\Exception::class );
 		$this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $manager->createItem() ) );
 	}
 
@@ -121,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetView()
 	{
 		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, 'unittest', 'EUR', 'de' ) );
-		$this->assertInstanceof( '\Aimeos\MW\View\Iface', $result );
+		$this->assertInstanceof( \Aimeos\MW\View\Iface::class, $result );
 	}
 
 
@@ -129,7 +129,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$orderAddrItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' )->createItem();
 
-		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Voucher\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
 			->setMethods( array( 'addOrderStatus', 'getAddressItem', 'processItem' ) )
 			->getMock();
@@ -152,7 +152,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Factory::injectManager( $this->context, 'order/base', $orderBaseManagerStub );
 
 
-		$clientStub = $this->getMockBuilder( '\Aimeos\Client\Html\Email\Voucher\Standard' )
+		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Voucher\Standard::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -176,7 +176,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->throwException( new \Aimeos\MShop\Order\Exception() ) );
 
 
-		$clientStub = $this->getMockBuilder( '\Aimeos\Client\Html\Email\Voucher\Standard' )
+		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Voucher\Standard::class )
 			->setMethods( array( 'getBody', 'getHeader' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -204,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setMail( $mailStub );
 
 
-		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Voucher\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
 			->setMethods( ['saveCouponCode', 'storeCouponCode'] )
 			->getMock();
@@ -213,7 +213,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'storeCouponCode' )->will( $this->returnArgument( 0 ) );
 
 
-		$clientStub = $this->getMockBuilder( '\Aimeos\Client\Html\Email\Voucher\Standard' )
+		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Voucher\Standard::class )
 			->setMethods( ['getBody', 'getHeader'] )
 			->disableOriginalConstructor()
 			->getMock();
@@ -259,7 +259,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function access( $name )
 	{
-		$class = new \ReflectionClass( '\Aimeos\Controller\Jobs\Order\Email\Voucher\Standard' );
+		$class = new \ReflectionClass( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class );
 		$method = $class->getMethod( $name );
 		$method->setAccessible( true );
 

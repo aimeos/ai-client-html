@@ -106,7 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/email/delivery/attachments', array( 'invalid' ) );
 
-		$this->setExpectedException( '\Aimeos\Client\Html\Exception' );
+		$this->setExpectedException( \Aimeos\Client\Html\Exception::class );
 		$this->object->getBody();
 	}
 

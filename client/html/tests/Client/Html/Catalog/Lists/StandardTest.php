@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -242,7 +242,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyHtmlException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -258,7 +258,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyFrontendException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -274,7 +274,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyMShopException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -290,7 +290,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -337,7 +337,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessHtmlException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
@@ -355,7 +355,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessFrontendException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
@@ -373,7 +373,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessMShopException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
@@ -391,7 +391,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 		->setConstructorArgs( array( $this->context, [] ) )
 		->setMethods( array( 'getClientParams' ) )
 		->getMock();

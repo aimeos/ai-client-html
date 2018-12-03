@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( $customerItem->getId() );
 		$basketCntl->get()->setCustomerId( $customerItem->getId() );
 
-		$customerStub = $this->getMockBuilder( '\Aimeos\Controller\Frontend\Customer\Standard' )
+		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
 			->setMethods( array( 'saveAddressItem' ) )
 			->getMock();
