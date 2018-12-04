@@ -370,7 +370,7 @@ class Standard
 				$filter->getConditions(),
 			] ) );
 
-			$items = array_merge( $items, $controller->searchItems( $filter, $domains ) );
+			$items += $controller->searchItems( $filter, $domains );
 		}
 
 		$count = count( $items );
@@ -384,7 +384,7 @@ class Standard
 				$filter->getConditions(),
 			] ) );
 
-			$items = array_merge( $items, $controller->searchItems( $filter, $domains ) );
+			$items += $controller->searchItems( $filter, $domains );
 		}
 
 
