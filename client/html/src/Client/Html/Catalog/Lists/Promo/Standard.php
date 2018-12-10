@@ -318,7 +318,7 @@ class Standard
 
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
 			$filter = $controller->createFilter( 'relevance', '+', 0, $size );
-			$filter = $controller->addFilterCategory( $filter, $catId, $level, 'promotion' );
+			$filter = $controller->addFilterCategory( $filter, $catId, 'promotion', $level );
 			$products = $controller->searchItems( $filter, $domains );
 
 			$this->addMetaItems( $products, $expire, $tags );
