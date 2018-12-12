@@ -33,9 +33,6 @@ d.slice(e-c+1,e+c+2).addClass("slick-active").attr("aria-hidden","false")),0===a
  */
 AimeosCatalogDetail = {
 
-	OFFSET: ($(".catalog-detail-image").offset() || {top: 0}).top,
-
-
 	/**
 	 * Initializes the slider for the thumbnail gallery (small images)
 	 */
