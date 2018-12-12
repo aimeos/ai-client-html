@@ -61,11 +61,12 @@ AimeosCatalogDetail = {
 
 		$(".catalog-detail-image").on("click", ".thumbs .item", {}, function(ev) {
 
+			var scrollPosition = document.documentElement.scrollTop;
 			$(".thumbs .item", ev.delegateTarget).removeClass("selected");
 			$(this).addClass("selected");
-
+			
 			window.location = $(this).attr("href");
-			window.scroll(0, AimeosCatalogDetail.OFFSET);
+			window.scroll(0, scrollPosition);
 
 			return false;
 		});
