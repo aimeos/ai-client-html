@@ -79,7 +79,7 @@ class Standard
 			$expr = array(
 				$search->compare( '==', 'customer.languageid', $langId ),
 				$search->compare( '==', 'customer.lists.domain', 'product' ),
-				$search->compare( '==', 'customer.lists.type.code', 'watch' ),
+				$search->compare( '==', 'customer.lists.type', 'watch' ),
 				$search->getConditions(),
 			);
 			$search->setConditions( $search->combine( '&&', $expr ) );
@@ -196,7 +196,7 @@ class Standard
 		$expr = array(
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
 			$search->compare( '==', 'customer.lists.parentid', $custIds ),
-			$search->compare( '==', 'customer.lists.type.code', 'watch' ),
+			$search->compare( '==', 'customer.lists.type', 'watch' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSlice( 0, 0x7fffffff );
@@ -315,7 +315,7 @@ class Standard
 		$search = $stockManager->createSearch( true );
 		$expr = array(
 			$search->compare( '==', 'stock.productcode', $prodCodes ),
-			$search->compare( '==', 'stock.type.code', $stockType ),
+			$search->compare( '==', 'stock.type', $stockType ),
 			$search->combine( '||', array(
 				$search->compare( '==', 'stock.stocklevel', null ),
 				$search->compare( '>', 'stock.stocklevel', 0 ),

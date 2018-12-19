@@ -229,13 +229,13 @@ class Standard
 		$search = $manager->createSearch( true );
 
 		$expr = array(
-			$search->compare( '==', 'service.type.code', $types ),
+			$search->compare( '==', 'service.type', $types ),
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
 		$sortation = array(
-			$search->sort( '+', 'service.type.code' ),
+			$search->sort( '+', 'service.type' ),
 			$search->sort( '+', 'service.position' ),
 		);
 		$search->setSortations( $sortation );

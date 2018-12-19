@@ -359,8 +359,7 @@ class Standard
 			$search->compare( '==', 'customer.lists.parentid', $customerId ),
 			$search->compare( '==', 'customer.lists.refid', $refId ),
 			$search->compare( '==', 'customer.lists.domain', 'order' ),
-			$search->compare( '==', 'customer.lists.type.domain', 'order' ),
-			$search->compare( '==', 'customer.lists.type.code', 'download' ),
+			$search->compare( '==', 'customer.lists.type', 'download' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
@@ -368,11 +367,9 @@ class Standard
 
 		if( ( $listItem = reset( $listItems ) ) === false )
 		{
-			$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-
 			$listItem = $manager->createItem();
-			$listItem->setTypeId( $typeManager->findItem( 'download', [], 'order' )->getId() );
 			$listItem->setParentId( $customerId );
+			$listItem->setType( 'download' );
 			$listItem->setDomain( 'order' );
 			$listItem->setRefId( $refId );
 		}

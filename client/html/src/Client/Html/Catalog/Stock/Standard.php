@@ -332,7 +332,7 @@ class Standard
 		 *  array(
 		 *      'stock.productcode' => '+',
 		 *      'stock.stocklevel' => '-',
-		 *      'stock.type.code' => '+',
+		 *      'stock.type' => '+',
 		 *      'stock.dateback' => '+',
 		 *  )
 		 *
@@ -341,7 +341,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/stock/level/low
 		 */
-		$default = array( 'stock.productcode' => '+', 'stock.type.code' => '+' );
+		$default = array( 'stock.productcode' => '+', 'stock.type' => '+' );
 		$sortKeys = $context->getConfig()->get( 'client/html/catalog/stock/sort', $default );
 
 		$siteConfig = $context->getLocale()->getSite()->getConfig();

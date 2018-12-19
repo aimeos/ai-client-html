@@ -289,17 +289,12 @@ class Standard
 	 */
 	protected function getProductIdsBoughtTogether( array $prodIds )
 	{
-		$context = $this->getContext();
-
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists/type' );
-		$typeItem = $typeManager->findItem( 'bought-together', [], 'product' );
-
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists' );
+		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/lists' );
 
 		$search = $manager->createSearch( true );
 		$expr = array(
 				$search->compare( '==', 'product.lists.parentid', $prodIds ),
-				$search->compare( '==', 'product.lists.typeid', $typeItem->getId() ),
+				$search->compare( '==', 'product.lists.type', 'bought-together' ),
 				$search->compare( '==', 'product.lists.domain', 'product' ),
 				$search->getConditions(),
 		);

@@ -196,11 +196,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$search->combine( '||', array(
 				$search->combine( '&&', array(
 					$search->compare( '==', 'attribute.code', '30' ),
-					$search->compare( '==', 'attribute.type.code', 'length' ),
+					$search->compare( '==', 'attribute.type', 'length' ),
 				) ),
 				$search->combine( '&&', array(
 					$search->compare( '==', 'attribute.code', '30' ),
-					$search->compare( '==', 'attribute.type.code', 'width' ),
+					$search->compare( '==', 'attribute.type', 'width' ),
 				) ),
 			) ),
 		);
@@ -233,7 +233,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expr = array(
 			$search->compare( '==', 'attribute.code', 'white' ),
 			$search->compare( '==', 'attribute.domain', 'product' ),
-			$search->compare( '==', 'attribute.type.code', 'color' ),
+			$search->compare( '==', 'attribute.type', 'color' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$result = $attrManager->searchItems( $search, [] );
@@ -269,7 +269,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expr = array(
 			$search->compare( '==', 'attribute.code', 'm' ),
 			$search->compare( '==', 'attribute.domain', 'product' ),
-			$search->compare( '==', 'attribute.type.code', 'size' ),
+			$search->compare( '==', 'attribute.type', 'size' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$result = $attrManager->searchItems( $search, [] );
@@ -305,7 +305,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expr = array(
 				$search->compare( '==', 'attribute.code', 'custom' ),
 				$search->compare( '==', 'attribute.domain', 'product' ),
-				$search->compare( '==', 'attribute.type.code', 'date' ),
+				$search->compare( '==', 'attribute.type', 'date' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$result = $attrManager->searchItems( $search, [] );

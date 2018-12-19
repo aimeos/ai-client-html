@@ -329,10 +329,10 @@ class Standard
 	 *
 	 * @param array $ids List of product IDs
 	 * @param string $userId Unique customer ID
-	 * @param string $typeId ID of the list item type
+	 * @param string $type Type of the list item
 	 * @return array Associative list of product IDs as keys and list items as values
 	 */
-	protected function getListItems( array $ids, $userId, $typeId )
+	protected function getListItems( array $ids, $userId, $type )
 	{
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
@@ -342,7 +342,7 @@ class Standard
 			$search->compare( '==', 'customer.lists.parentid', $userId ),
 			$search->compare( '==', 'customer.lists.refid', $ids ),
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
-			$search->compare( '==', 'customer.lists.typeid', $typeId ),
+			$search->compare( '==', 'customer.lists.type', $type ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
@@ -365,16 +365,12 @@ class Standard
 	{
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
-
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-		$typeId = $typeManager->findItem( 'favorite', [], 'product' )->getId();
-
-		$listItems = $this->getListItems( $ids, $userId, $typeId );
+		$listItems = $this->getListItems( $ids, $userId, 'favorite' );
 
 		$item = $manager->createItem();
 		$item->setDomain( 'product' );
 		$item->setParentId( $userId );
-		$item->setTypeId( $typeId );
+		$item->setType( 'favorite' );
 		$item->setStatus( 1 );
 
 		foreach( $ids as $id )
@@ -403,10 +399,7 @@ class Standard
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
 
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-		$typeId = $typeManager->findItem( 'favorite', [], 'product' )->getId();
-
-		$listItems = $this->getListItems( $ids, $userId, $typeId );
+		$listItems = $this->getListItems( $ids, $userId, 'favorite' );
 
 		foreach( $ids as $id )
 		{
@@ -491,9 +484,6 @@ class Standard
 		$productIds = [];
 		$context = $this->getContext();
 
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-		$typeItem = $typeManager->findItem( 'favorite', [], 'product' );
-
 		$size = $this->getProductListSize( $view );
 		$current = $this->getProductListPage( $view );
 		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
@@ -504,8 +494,8 @@ class Standard
 		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
-			$search->compare( '==', 'customer.lists.typeid', $typeItem->getId() ),
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
+			$search->compare( '==', 'customer.lists.type', 'favorite' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSortations( array( $search->sort( '-', 'customer.lists.position' ) ) );
