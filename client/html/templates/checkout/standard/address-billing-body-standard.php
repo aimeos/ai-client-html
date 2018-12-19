@@ -134,7 +134,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 		}
 	}
 
-	$addrValues = $addr->toArray();
+	$addrValues = array_merge( $addr->toArray(), $this->param( 'ca_billing_' . $this->addressPaymentItem->getAddressId(), [] ) );
 
 	if( !isset( $addrValues['order.base.address.languageid'] ) || $addrValues['order.base.address.languageid'] == '' ) {
 		$addrValues['order.base.address.languageid'] = $this->get( 'billingLanguage', 'en' );
