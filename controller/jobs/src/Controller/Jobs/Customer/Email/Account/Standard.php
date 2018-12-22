@@ -68,8 +68,7 @@ class Standard
 				}
 
 				$password = ( isset( $list['customer.password'] ) ? $list['customer.password'] : null );
-				$item = $custManager->createItem();
-				$item->fromArray( $list );
+				$item = $custManager->createItem()->fromArray( $list );
 
 				$this->sendEmail( $context, $item, $password );
 
