@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$manager = \Aimeos\MShop\Order\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.base.service.code', 'paypalexpress' ) );

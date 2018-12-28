@@ -353,7 +353,7 @@ class Standard
 		$curname = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
 
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+		$manager = \Aimeos\MShop::create( $context, 'locale' );
 
 		$search = $manager->createSearch( true );
 		$search->setSortations( array( $search->sort( '+', 'locale.position' ) ) );

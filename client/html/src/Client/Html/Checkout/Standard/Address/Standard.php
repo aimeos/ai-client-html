@@ -302,7 +302,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-		$orderAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/address' );
+		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/base/address' );
 
 		try
 		{
@@ -322,7 +322,7 @@ class Standard
 		catch( \Exception $e ) {} // customer has no account yet
 
 
-		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$locales = $localeManager->searchItems( $localeManager->createSearch( true ) );
 
 		$languages = [];

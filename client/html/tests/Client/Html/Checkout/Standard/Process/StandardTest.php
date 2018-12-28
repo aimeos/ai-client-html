@@ -105,9 +105,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$form = new \Aimeos\MShop\Common\Item\Helper\Form\Standard( 'url', 'POST', [], true );
-		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
-		$prodId = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNE' )->getId();
-		$servId = \Aimeos\MShop\Factory::createManager( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$prodId = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' )->getId();
+		$servId = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
 
 		$basketMock->addProduct( $prodId );
 		$basketMock->addService( 'payment', $servId );
@@ -155,7 +155,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['addItem', 'block', 'saveItem'] )
 			->getMock();
 
-		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
 
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
 		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
@@ -198,9 +198,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['addItem', 'block'] )
 			->getMock();
 
-		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
-		$prodId = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNE' )->getId();
-		$servId = \Aimeos\MShop\Factory::createManager( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$prodId = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' )->getId();
+		$servId = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
 
 		$basketMock->addProduct( $prodId );
 		$basketMock->addService( 'payment', $servId );
@@ -322,7 +322,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrder( $date )
 	{
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( $this->context );
+		$orderManager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 
 		$search = $orderManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', $date ) );

@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Items\Standard( $context, $paths );
 
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $context );
+		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $context );
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
 		$catItems = $catalogManager->searchItems( $search );
@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 		$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::createManager( $context );
+		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $context );
 		$search = $productManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', array( 'CNE', 'U:TEST', 'U:BUNDLE' ) ) );
 		$total = 0;

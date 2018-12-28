@@ -289,7 +289,7 @@ class Standard
 	 */
 	protected function getProductIdsBoughtTogether( array $prodIds )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'product/lists' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
 
 		$search = $manager->createSearch( true );
 		$expr = array(

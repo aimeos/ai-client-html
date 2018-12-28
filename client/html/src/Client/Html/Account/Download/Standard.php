@@ -190,7 +190,7 @@ class Standard
 				return;
 			}
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/product/attribute' );
+			$manager = \Aimeos\MShop::create( $context, 'order/base/product/attribute' );
 			$item = $manager->getItem( $id );
 
 			if( $this->checkDownload( $context->getUserId(), $id ) === true ) {
@@ -273,7 +273,7 @@ class Standard
 	{
 		if( $customerId !== null && $id !== null )
 		{
-			$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/base' );
+			$manager = \Aimeos\MShop::create( $this->getContext(), 'order/base' );
 
 			$search = $manager->createSearch();
 			$expr = array(
@@ -332,7 +332,7 @@ class Standard
 			$config['count']++;
 			$listItem->setConfig( $config );
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+			$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 			$manager->saveItem( $listItem, false );
 
 			return true;
@@ -352,7 +352,7 @@ class Standard
 	protected function getListItem( $customerId, $refId )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(

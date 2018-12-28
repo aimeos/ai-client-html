@@ -20,7 +20,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$this->paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->context = \TestHelperHtml::getContext( 'unitperf' );
 
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
+		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'home' ) );
 		$items = $catalogManager->searchItems( $search );
@@ -29,7 +29,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'No catalog item with code "home" found' );
 		}
 
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $productManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', 'perf-00000' ) );
 		$items = $productManager->searchItems( $search );

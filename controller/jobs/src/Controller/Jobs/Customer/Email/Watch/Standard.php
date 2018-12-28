@@ -58,8 +58,8 @@ class Standard
 		$langIds = [];
 		$context = $this->getContext();
 
-		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
-		$custManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
+		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 
 		$localeItems = $localeManager->searchItems( $localeManager->createSearch() );
 
@@ -112,7 +112,7 @@ class Standard
 	{
 		$prodIds = $custIds = [];
 		$listItems = $this->getListItems( $context, array_keys( $customers ) );
-		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$listManager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		foreach( $listItems as $id => $listItem )
 		{
@@ -190,7 +190,7 @@ class Standard
 	 */
 	protected function getListItems( \Aimeos\MShop\Context\Item\Iface $context, array $custIds )
 	{
-		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$listManager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $listManager->createSearch();
 		$expr = array(
@@ -215,7 +215,7 @@ class Standard
 	protected function getProductList( array $products, array $listItems )
 	{
 		$result = [];
-		$priceManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'price' );
+		$priceManager = \Aimeos\MShop::create( $this->getContext(), 'price' );
 
 		foreach( $listItems as $id => $listItem )
 		{
@@ -287,7 +287,7 @@ class Standard
 	 */
 	protected function getProductItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds )
 	{
-		$productManager = \Aimeos\MShop\Factory::createManager( $context, 'product' );
+		$productManager = \Aimeos\MShop::create( $context, 'product' );
 
 		$search = $productManager->createSearch( true );
 		$expr = array(
@@ -310,7 +310,7 @@ class Standard
 	 */
 	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodCodes, $stockType )
 	{
-		$stockManager = \Aimeos\MShop\Factory::createManager( $context, 'stock' );
+		$stockManager = \Aimeos\MShop::create( $context, 'stock' );
 
 		$search = $stockManager->createSearch( true );
 		$expr = array(

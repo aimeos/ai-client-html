@@ -335,8 +335,8 @@ class Standard
 		$context = $this->getContext();
 		$userId = $context->getUserId();
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-		$addrManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
+		$manager = \Aimeos\MShop::create( $context, 'customer' );
+		$addrManager = \Aimeos\MShop::create( $context, 'customer/address' );
 
 
 		/** client/html/account/profile/domains

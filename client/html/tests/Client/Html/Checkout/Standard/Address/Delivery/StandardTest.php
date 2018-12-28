@@ -199,7 +199,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddressDelete()
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context )->getSubManager( 'address' );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->getSubManager( 'address' );
 		$search = $manager->createSearch();
 		$search->setSlice( 0, 1 );
 		$result = $manager->searchItems( $search );
@@ -243,7 +243,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddressDeleteNoLogin()
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context )->getSubManager( 'address' );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->getSubManager( 'address' );
 		$search = $manager->createSearch();
 		$search->setSlice( 0, 1 );
 		$result = $manager->searchItems( $search );
@@ -267,7 +267,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessExistingAddress()
 	{
-		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
+		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$search = $customerManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
 		$result = $customerManager->searchItems( $search );

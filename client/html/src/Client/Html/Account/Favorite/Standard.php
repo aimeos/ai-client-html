@@ -335,7 +335,7 @@ class Standard
 	protected function getListItems( array $ids, $userId, $type )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(
@@ -364,7 +364,7 @@ class Standard
 	protected function addFavorites( array $ids, $userId )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 		$listItems = $this->getListItems( $ids, $userId, 'favorite' );
 
 		$item = $manager->createItem();
@@ -397,7 +397,7 @@ class Standard
 	{
 		$listIds = [];
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$listItems = $this->getListItems( $ids, $userId, 'favorite' );
 
@@ -489,7 +489,7 @@ class Standard
 		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
 
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(

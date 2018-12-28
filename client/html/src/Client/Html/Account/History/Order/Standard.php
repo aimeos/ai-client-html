@@ -218,7 +218,7 @@ class Standard
 		{
 			$context = $this->getContext();
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+			$manager = \Aimeos\MShop::create( $context, 'order' );
 			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
 
 			$search = $manager->createSearch( true );

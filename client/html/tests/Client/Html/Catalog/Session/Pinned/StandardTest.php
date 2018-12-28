@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getProductItem( $code )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'product' );
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );

@@ -90,8 +90,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetAddressItem()
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' );
-		$addrManager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
+		$addrManager = \Aimeos\MShop::create( $this->context, 'order/base/address' );
 
 		$item = $manager->createItem();
 		$item->setAddress( $addrManager->createItem(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetAddressItemNone()
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
 
 		$this->setExpectedException( \Aimeos\MShop\Order\Exception::class );
 		$this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $manager->createItem() ) );
@@ -127,7 +127,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$orderAddrItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' )->createItem();
+		$orderAddrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
@@ -156,7 +156,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
 
 
 		$this->access( 'process' )->invokeArgs( $object, [$clientStub, array( $orderItem ), 1] );
@@ -181,7 +181,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
 
 		$this->access( 'process' )->invokeArgs( $this->object, [$clientStub, [$orderItem], 1] );
 	}
@@ -222,9 +222,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$clientStub->expects( $this->once() )->method( 'getHeader' );
 
 
-		$orderBaseItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
-		$addrItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/address' )->createItem();
-		$orderProductItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/product' )->createItem();
+		$orderBaseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$addrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
+		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
 
 		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'test' ) );
 
@@ -249,7 +249,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testStoreCouponCode()
 	{
-		$orderProductItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/product' )->createItem();
+		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
 
 		$orderProductItem = $this->access( 'storeCouponCode' )->invokeArgs( $this->object, [$orderProductItem, 'abc'] );
 

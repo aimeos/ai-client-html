@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$customerItem = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context )->findItem( 'UTC001' );
+		$customerItem = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->findItem( 'UTC001' );
 		$addrItem = $customerItem->getPaymentAddress();
 		$addrItem->setId( null );
 

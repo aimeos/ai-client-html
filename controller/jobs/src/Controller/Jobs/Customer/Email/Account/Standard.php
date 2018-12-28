@@ -55,7 +55,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$queue = $context->getMessageQueue( 'mq-email', 'customer/email/account' );
-		$custManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 
 		while( ( $msg = $queue->get() ) !== null )
 		{

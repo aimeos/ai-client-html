@@ -475,7 +475,7 @@ class Standard
 	protected function getCustomerItem( $id )
 	{
 		$context = $this->getContext();
-		$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+		$customerManager = \Aimeos\MShop::create( $context, 'customer' );
 
 		$search = $customerManager->createSearch( true );
 		$expr = array(

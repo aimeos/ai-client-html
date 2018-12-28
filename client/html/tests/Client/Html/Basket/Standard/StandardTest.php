@@ -188,7 +188,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddVariantAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $attrManager->createSearch();
 		$expr = array(
@@ -227,7 +227,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddConfigAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $attrManager->createSearch();
 		$expr = array(
@@ -263,7 +263,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddHiddenAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $attrManager->createSearch();
 		$expr = array(
@@ -299,7 +299,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddCustomAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $attrManager->createSearch();
 		$expr = array(
@@ -524,7 +524,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function addProduct( $code, $quantity, $stockType )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 		$items = $manager->searchItems( $search );
@@ -553,7 +553,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getProductItem( $code )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 		$items = $manager->searchItems( $search );

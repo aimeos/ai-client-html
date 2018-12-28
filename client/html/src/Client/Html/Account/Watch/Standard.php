@@ -292,7 +292,7 @@ class Standard
 
 			if( $userId != null && !empty( $ids ) )
 			{
-				$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+				$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 				$items = $this->getListItems( $manager, $ids, 'watch', $userId );
 
 				switch( $view->param( 'wat_action' ) )
@@ -592,7 +592,7 @@ class Standard
 		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
 
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(

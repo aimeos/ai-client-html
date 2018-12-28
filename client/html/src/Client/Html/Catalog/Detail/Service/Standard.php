@@ -225,7 +225,7 @@ class Standard
 		 */
 		$types = $config->get( 'client/html/catalog/detail/service/types', array( 'delivery' ) );
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
+		$manager = \Aimeos\MShop::create( $context, 'service' );
 		$search = $manager->createSearch( true );
 
 		$expr = array(
