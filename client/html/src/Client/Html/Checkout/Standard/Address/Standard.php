@@ -260,7 +260,7 @@ class Standard
 				$context->getSession()->set( 'client/html/checkout/standard/address/extra', (array) $param );
 			}
 
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+			$basketCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
 
 			// Test if addresses are available
 			$addresses = $basketCntl->get()->getAddresses();
@@ -301,7 +301,7 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'customer' );
 		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/base/address' );
 
 		try

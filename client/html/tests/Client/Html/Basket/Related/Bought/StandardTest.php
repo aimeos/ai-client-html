@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 		$basket = $controller->get();
 		$basket->addProduct( $this->getOrderProductItem( 'CNE' ) );

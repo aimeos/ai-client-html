@@ -473,7 +473,7 @@ class Standard
 		if( $text === '' && $catid !== '' )
 		{
 			$domains = $config->get( 'client/html/catalog/domains', array( 'media', 'text' ) );
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
+			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'catalog' );
 
 			$catids = ( !is_array( $catid ) ? explode( ',', $catid ) : $catid );
 			$listCatPath = $controller->getPath( reset( $catids ), $domains );

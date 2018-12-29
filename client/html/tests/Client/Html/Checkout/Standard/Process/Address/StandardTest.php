@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 
 		unset( $this->object, $this->context );
 	}
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$addrItem = $customerItem->getPaymentAddress();
 		$addrItem->setId( null );
 
-		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$basketCntl->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $addrItem );
 
 		$this->context->setUserId( $customerItem->getId() );

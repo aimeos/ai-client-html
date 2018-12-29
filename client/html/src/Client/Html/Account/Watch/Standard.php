@@ -630,7 +630,7 @@ class Standard
 			$productIds[] = $listItem->getRefId();
 		}
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 
 		$view->watchProductItems = $controller->getItems( $productIds, $domains );
 		$view->watchPageFirst = 1;

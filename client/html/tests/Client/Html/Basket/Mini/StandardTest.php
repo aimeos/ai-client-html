@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddedOneProduct()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 		$productItem = $this->getProductItem( 'CNE' );
 

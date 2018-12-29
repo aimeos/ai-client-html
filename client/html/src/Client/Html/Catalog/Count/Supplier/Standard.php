@@ -255,7 +255,7 @@ class Standard
 			$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
 			$filter->setSortations( [] ); // it's not necessary and slows down the query
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 			$view->supplierCountList = $controller->aggregate( $filter, 'index.supplier.id' );
 		}
 

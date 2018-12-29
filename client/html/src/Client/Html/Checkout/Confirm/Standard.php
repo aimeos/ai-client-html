@@ -314,8 +314,8 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 			}
 
-			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+			$orderCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'order' );
+			$serviceCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'service' );
 
 			if( ( $code = $view->param( 'code' ) ) !== null ) {
 				$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
@@ -329,7 +329,7 @@ class Standard
 
 			if( $orderItem->getPaymentStatus() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
 			{
-				\Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->clear();
+				\Aimeos\Controller\Frontend\Factory::create( $context, 'basket' )->clear();
 
 				foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
 					$session->set( $key, null );
@@ -385,7 +385,7 @@ class Standard
 
 		if( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) != null )
 		{
-			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+			$cntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'order' );
 			$view->confirmOrderItem = $cntl->getItem( $orderid, false );
 		}
 

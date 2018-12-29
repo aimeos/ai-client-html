@@ -345,7 +345,7 @@ class Standard
 		$sortKeys = $context->getConfig()->get( 'client/html/catalog/stock/sort', $default );
 
 		$siteConfig = $context->getLocale()->getSite()->getConfig();
-		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'stock' );
+		$cntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'stock' );
 
 		$filter = $cntl->createFilter()->setSlice( 0, count( $productCodes ) );
 		$filter = $cntl->addFilterCodes( $filter, $productCodes );

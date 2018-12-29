@@ -215,7 +215,7 @@ class Standard
 			$context = $this->getContext();
 			$config = $context->getConfig();
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 
 			/** client/html/basket/related/bought/standard/limit
 			 * Number of items in the list of bought together products

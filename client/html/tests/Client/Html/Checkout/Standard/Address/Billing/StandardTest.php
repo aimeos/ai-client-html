@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 		unset( $this->object );
 	}
 
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'hamburg', $basket->getAddress( 'payment' )->getCity() );
 	}
 
@@ -157,7 +157,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $view );
 		$this->object->process();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'test', $basket->getAddress( 'payment' )->getFirstName() );
 	}
 
@@ -220,7 +220,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$this->context->setEditor( null );
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'Example company', $basket->getAddress( 'payment' )->getCompany() );
 	}
 

@@ -237,7 +237,7 @@ class Standard
 			$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
 			$filter->setSortations( [] ); // it's not necessary and slows down the query
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 			$view->treeCountList = $controller->aggregate( $filter, 'index.catalog.id' );
 		}
 
@@ -331,7 +331,7 @@ class Standard
 	protected function getCatalogIds( $currentid, $startid )
 	{
 		$catItems = [];
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'catalog' );
+		$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'catalog' );
 
 		$currentid = ( $currentid != '' ? (string) $currentid : null );
 		$startid = ( $startid != '' ? (string) $startid : null );

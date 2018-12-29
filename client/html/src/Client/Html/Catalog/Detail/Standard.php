@@ -493,8 +493,8 @@ class Standard
 		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
 
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-		$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'catalog' );
+		$prodCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 
 		$productItem = $prodCntl->getItem( $prodid, $domains );
 		$this->addMetaItems( $productItem, $expire, $tags );

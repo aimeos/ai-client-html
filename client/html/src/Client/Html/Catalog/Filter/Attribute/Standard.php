@@ -237,7 +237,7 @@ class Standard
 		$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
 		$attrTypes = ( !is_array( $attrTypes ) ? explode( ',', $attrTypes ) : $attrTypes );
 
-		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'attribute' );
+		$cntl = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'attribute' );
 
 		$filter = $cntl->createFilter();
 		$filter = $cntl->addFilterTypes( $filter, $attrTypes );

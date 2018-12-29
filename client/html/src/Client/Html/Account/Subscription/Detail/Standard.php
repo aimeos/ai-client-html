@@ -218,7 +218,7 @@ class Standard
 			$context = $this->getContext();
 
 			$manager = \Aimeos\MShop::create( $context, 'subscription' );
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
 
 			$search = $manager->createSearch( true );
 			$expr = array(

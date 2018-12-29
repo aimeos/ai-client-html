@@ -316,7 +316,7 @@ class Standard
 			$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
 			$level = $config->get( 'client/html/catalog/lists/levels', $level );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 			$filter = $controller->createFilter( 'relevance', '+', 0, $size );
 			$filter = $controller->addFilterCategory( $filter, $catId, 'promotion', $level );
 			$products = $controller->searchItems( $filter, $domains );

@@ -313,7 +313,7 @@ class Standard
 		$config = $context->getConfig();
 		$input = $view->param( 'f_search' );
 		$langid = $context->getLocale()->getLanguageId();
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 
 
 		/** client/html/catalog/suggest/domains

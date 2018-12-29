@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 
 		unset( $this->object, $this->context );
 	}
@@ -124,7 +124,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment', 'unitpaymentcode' )->getCode() );
 	}
 

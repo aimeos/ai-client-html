@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeader()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
@@ -121,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessComment()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 		$view = \TestHelperHtml::getView();
 		$view->standardBasket = $controller->get();
@@ -183,7 +183,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getBasket()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 
 		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );

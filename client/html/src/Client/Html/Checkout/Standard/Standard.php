@@ -398,7 +398,7 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
 		$view->standardBasket = $basketCntl->get();
 
 

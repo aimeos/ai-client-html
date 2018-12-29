@@ -235,7 +235,7 @@ class Standard
 			}
 
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
 
 			if( ( $comment = $view->param( 'cs_comment' ) ) !== null )
 			{
@@ -298,7 +298,7 @@ class Standard
 			try
 			{
 				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+				$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'customer' );
 				$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
 			}
 			catch( \Exception $e ) {}

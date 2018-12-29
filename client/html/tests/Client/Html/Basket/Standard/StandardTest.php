@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 		unset( $this->object );
 	}
 
@@ -455,7 +455,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddCoupon()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1 );
 
 		$view = $this->object->getView();
@@ -466,7 +466,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process();
 
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
 		$output = $this->object->getBody();
 
@@ -476,7 +476,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyDeleteCoupon()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1 );
 
 		$view = $this->object->getView();
@@ -495,7 +495,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process();
 
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
 		$output = $this->object->getBody();
 

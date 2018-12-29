@@ -218,7 +218,7 @@ class Standard
 		try
 		{
 			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null ) {
-				\Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' )->deleteAddressItem( $id );
+				\Aimeos\Controller\Frontend\Factory::create( $context, 'customer' )->deleteAddressItem( $id );
 			}
 
 			// only start if there's something to do
@@ -439,7 +439,7 @@ class Standard
 	protected function setAddress( \Aimeos\MW\View\Iface $view )
 	{
 		$context = $this->getContext();
-		$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCtrl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
 
 		/** client/html/checkout/standard/address/delivery/disable-new
 		 * Disables the option to enter a different delivery address for an order
@@ -491,7 +491,7 @@ class Standard
 				$list[str_replace( 'order.base', 'customer', $key )] = $value;
 			}
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'customer' );
 			$address = $controller->editAddressItem( $option, $list );
 
 			$basketCtrl->setAddress( $type, $address );
@@ -514,7 +514,7 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
 
 		try {
 			$langid = $basketCntl->get()->getAddress( 'delivery' )->getLanguageId();

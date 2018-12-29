@@ -165,7 +165,7 @@ abstract class Base
 		if( !isset( $this->controller ) )
 		{
 			$context = $this->getContext();
-			$this->controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+			$this->controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 		}
 
 		return $this->controller;
