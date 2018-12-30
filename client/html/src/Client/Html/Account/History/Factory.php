@@ -30,7 +30,7 @@ class Factory
 	 * @return \Aimeos\Client\Html\Iface Filter part implementing \Aimeos\Client\Html\Iface
 	 * @throws \Aimeos\Client\Html\Exception If requested client implementation couldn't be found or initialisation fails
 	 */
-	public static function createClient( \Aimeos\MShop\Context\Item\Iface $context, $name = null )
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, $name = null )
 	{
 		/** client/html/account/history/name
 		 * Class name of the used account history client implementation
@@ -78,7 +78,7 @@ class Factory
 		$iface = '\\Aimeos\\Client\\Html\\Iface';
 		$classname = '\\Aimeos\\Client\\Html\\Account\\History\\' . $name;
 
-		$client = self::createClientBase( $context, $classname, $iface );
+		$client = self::createClient( $context, $classname, $iface );
 		$client = self::addClientDecorators( $context, $client, 'account/history' );
 
 		return $client->setObject( $client );

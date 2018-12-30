@@ -99,7 +99,7 @@ class Standard
 		$status = (array) $config->get( 'controller/jobs/order/email/voucher/standard/status', $default );
 
 
-		$client = \Aimeos\Client\Html\Email\Voucher\Factory::createClient( $context );
+		$client = \Aimeos\Client\Html\Email\Voucher\Factory::create( $context );
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$orderSearch = $orderManager->createSearch();

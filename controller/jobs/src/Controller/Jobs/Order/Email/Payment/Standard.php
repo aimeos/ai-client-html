@@ -54,7 +54,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$client = \Aimeos\Client\Html\Email\Payment\Factory::createClient( $context );
+		$client = \Aimeos\Client\Html\Email\Payment\Factory::create( $context );
 
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 

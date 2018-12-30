@@ -95,7 +95,7 @@ class Standard
 	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		if( !isset( $this->client ) ) {
-			$this->client = \Aimeos\Client\Html\Email\Account\Factory::createClient( $context );
+			$this->client = \Aimeos\Client\Html\Email\Account\Factory::create( $context );
 		}
 
 		return $this->client;

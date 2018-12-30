@@ -28,10 +28,10 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testInjectClient()
 	{
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, 'Standard' );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, 'Standard' );
 		\Aimeos\Client\Html\Catalog\Filter\Factory::injectClient( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard', $client );
 
-		$injectedClient = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, 'Standard' );
+		$injectedClient = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, 'Standard' );
 
 		$this->assertSame( $client, $injectedClient );
 	}
@@ -39,11 +39,11 @@ class BaseTest extends \PHPUnit\Framework\TestCase
 
 	public function testInjectClientReset()
 	{
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, 'Standard' );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, 'Standard' );
 		\Aimeos\Client\Html\Catalog\Filter\Factory::injectClient( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard', $client );
 		\Aimeos\Client\Html\Catalog\Filter\Factory::injectClient( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard', null );
 
-		$new = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, 'Standard' );
+		$new = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, 'Standard' );
 
 		$this->assertNotSame( $client, $new );
 	}

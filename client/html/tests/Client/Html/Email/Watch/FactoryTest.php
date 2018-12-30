@@ -29,14 +29,14 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateClient()
 	{
-		$client = \Aimeos\Client\Html\Email\Watch\Factory::createClient( $this->context );
+		$client = \Aimeos\Client\Html\Email\Watch\Factory::create( $this->context );
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Iface', $client );
 	}
 
 
 	public function testCreateClientName()
 	{
-		$client = \Aimeos\Client\Html\Email\Watch\Factory::createClient( $this->context, 'Standard' );
+		$client = \Aimeos\Client\Html\Email\Watch\Factory::create( $this->context, 'Standard' );
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Iface', $client );
 	}
 
@@ -44,14 +44,14 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 	public function testCreateClientNameInvalid()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Email\Watch\Factory::createClient( $this->context, '$$$' );
+		\Aimeos\Client\Html\Email\Watch\Factory::create( $this->context, '$$$' );
 	}
 
 
 	public function testCreateClientNameNotFound()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Email\Watch\Factory::createClient( $this->context, 'notfound' );
+		\Aimeos\Client\Html\Email\Watch\Factory::create( $this->context, 'notfound' );
 	}
 
 }

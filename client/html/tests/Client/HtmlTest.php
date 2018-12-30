@@ -64,7 +64,7 @@ class HtmlTest extends \PHPUnit\Framework\TestCase
 	public function testCreateNameNotFound()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Account\Favorite\Factory::createClient( $this->context, 'account/fav' );
+		\Aimeos\Client\Html\Account\Favorite\Factory::create( $this->context, 'account/fav' );
 	}
 
 }

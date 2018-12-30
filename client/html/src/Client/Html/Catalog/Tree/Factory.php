@@ -29,7 +29,7 @@ class Factory
 	 * @return \Aimeos\Client\Html\Iface Tree part implementing \Aimeos\Client\Html\Iface
 	 * @throws \Aimeos\Client\Html\Exception If requested client implementation couldn't be found or initialisation fails
 	 */
-	public static function createClient( \Aimeos\MShop\Context\Item\Iface $context, $name = null )
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, $name = null )
 	{
 		/** client/html/catalog/tree/name
 		 * Class name of the used catalog tree client implementation
@@ -77,7 +77,7 @@ class Factory
 		$iface = '\\Aimeos\\Client\\Html\\Iface';
 		$classname = '\\Aimeos\\Client\\Html\\Catalog\\Tree\\' . $name;
 
-		$client = self::createClientBase( $context, $classname, $iface );
+		$client = self::createClient( $context, $classname, $iface );
 		$client = self::addClientDecorators( $context, $client, 'catalog/tree' );
 
 		return $client->setObject( $client );
