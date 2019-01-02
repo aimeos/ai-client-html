@@ -470,7 +470,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardBasket = $controller->get();
 		$output = $this->object->getBody();
 
-		$this->assertRegExp( '#<li class="attr-item">.*90ab.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item">.*90AB.*</li>#smU', $output );
 	}
 
 
