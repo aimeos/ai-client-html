@@ -8,21 +8,7 @@
 
 $enc = $this->encoder();
 
-/** client/html/common/content/baseurl
- * Path to the content directory or content base URL to a server
- *
- * This option must point to the base path or URL of the used content (images,
- * downloadable files, etc.).
- *
- * If you use an absolute URL prefer the https protocol to avoid issues with mixed
- * content. Browsers avoid to load files via http if the page was retrieved via
- * https.
- *
- * @param string Relative path or absolute URL
- * @since 2014.03
- * @see client/html/common/content/baseurl
- */
-$contentUrl = $this->config( 'client/html/common/content/baseurl' );
+$contentUrl = $this->config( 'resource/fs/baseurl' );
 
 /** client/html/catalog/filter/attribute/types-option
  * List of attribute types whose IDs should be used in a global "OR" condition
