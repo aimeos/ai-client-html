@@ -111,7 +111,7 @@ class TestHelperCntl
 		$helper = new \Aimeos\MW\View\Helper\Date\Standard( $view, 'Y-m-d' );
 		$view->addHelper( 'date', $helper );
 
-		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, array( 'controller/jobs', 'client/html' ) );
+		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, ['controller/jobs', 'client/html', 'resource/fs/baseurl'] );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );
 
