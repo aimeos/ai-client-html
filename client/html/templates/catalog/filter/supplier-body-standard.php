@@ -7,7 +7,7 @@
 
 $enc = $this->encoder();
 
-$contentUrl = $this->config( 'client/html/common/content/baseurl' );
+$contentUrl = $this->config( 'resource/fs/baseurl' );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
