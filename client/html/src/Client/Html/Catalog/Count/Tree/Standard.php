@@ -223,134 +223,18 @@ class Standard
 		 */
 		if( $config->get( 'client/html/catalog/count/tree/aggregate', true ) == true )
 		{
-			$startid = $view->config( 'client/html/catalog/filter/tree/startid', '' );
-			$catIds = $this->getCatalogIds( $view->param( 'f_catid', '' ), $startid );
-
 			/** client/html/catalog/count/limit
 			 * @see client/html/catalog/count/tree/aggregate
 			 */
-			$filter = $this->getProductListFilter( $view, false );
-			$filter->setConditions( $filter->combine( '&&', [
-				$filter->getConditions(),
-				$filter->compare( '==', 'index.catalog.id', $catIds )
-			] ) );
-			$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
-			$filter->setSortations( [] ); // it's not necessary and slows down the query
+			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
-			$view->treeCountList = $controller->aggregate( $filter, 'index.catalog.id' );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->category( $view->param( 'f_catid', [] ), 'default', \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE )
+				->slice( 0, $limit )->sort();
+
+			$view->treeCountList = $cntl->aggregate( 'index.catalog.id' );
 		}
 
 		return parent::addData( $view, $tags, $expire );
-	}
-
-
-	/**
-	 * Adds the conditions for searching the catalog nodes
-	 *
-	 * @param \Aimeos\MW\Criteria\Iface $search Search object
-	 * @return \Aimeos\MW\Criteria\Iface Enhanced search object
-	 */
-	protected function addSearchConditions( \Aimeos\MW\Criteria\Iface $search, array $catIds, $catId )
-	{
-		$config = $this->getContext()->getConfig();
-
-		$expr = $search->compare( '==', 'catalog.parentid', $catIds );
-		$expr = $search->combine( '||', array( $expr, $search->compare( '==', 'catalog.id', $catId ) ) );
-
-		if( ( $levels = $config->get( 'client/html/catalog/filter/tree/levels-always' ) ) != null ) {
-			$expr = $search->combine( '||', array( $expr, $search->compare( '<=', 'catalog.level', $levels ) ) );
-		}
-
-		if( ( $levels = $config->get( 'client/html/catalog/filter/tree/levels-only' ) ) != null ) {
-			$expr = $search->combine( '&&', array( $expr, $search->compare( '<=', 'catalog.level', $levels ) ) );
-		}
-
-		$search->setConditions( $expr );
-
-		return $search;
-	}
-
-
-	/**
-	 * Filters the items in the path to the root of the catalog tree
-	 *
-	 * @param array $catItems Associative list of catalog IDs as keys and items implementing \Aimeos\Catalog\Item\Iface as values
-	 * @param string $startid Catalog ID the subtree starts from
-	 * @return array Filtered associative list of catalog items
-	 */
-	protected function filterCatalogPath( array $catItems, $startid )
-	{
-		if( $startid )
-		{
-			foreach( $catItems as $key => $item )
-			{
-				if( $key == $startid ) {
-					break;
-				}
-				unset( $catItems[$key] );
-			}
-		}
-
-		return $catItems;
-	}
-
-
-	/**
-	 * Returns the category IDs of the given catalog tree.
-	 *
-	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Catalog node as entry point of the tree
-	 * @param array $path Associative list of category IDs as keys and the catalog
-	 * 	nodes from the currently selected category up to the root node
-	 * @return array List of category IDs
-	 */
-	protected function getCatalogIdList( \Aimeos\MShop\Catalog\Item\Iface $tree, array $path )
-	{
-		$ids = [$tree->getId()];
-
-		foreach( $tree->getChildren() as $child )
-		{
-			$ids[] = $child->getId();
-
-			if( isset( $path[$child->getId()] ) ) {
-				$ids = array_merge( $ids, $this->getCatalogIdList( $child, $path ) );
-			}
-		}
-
-		return $ids;
-	}
-
-
-	/**
-	 * Returns the catalog IDs for the currently shown categories
-	 *
-	 * @param string $currentId ID of the current category or empty string
-	 * @param string $startId ID of the category to start from
-	 * @return array List of catalog IDs
-	 */
-	protected function getCatalogIds( $currentid, $startid )
-	{
-		$catItems = [];
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'catalog' );
-
-		$currentid = ( $currentid != '' ? (string) $currentid : null );
-		$startid = ( $startid != '' ? (string) $startid : null );
-
-		if( $currentid !== null ) {
-			$catItems = $this->filterCatalogPath( $controller->getPath( $currentid ), $startid );
-		}
-
-		if( ( $node = reset( $catItems ) ) === false )
-		{
-			$node = $controller->getTree( $startid, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
-			$catItems = array( $node->getId() => $node );
-		}
-
-		$filter = $this->addSearchConditions( $controller->createFilter(), array_keys( $catItems ), $node->getId() );
-
-		$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE;
-		$tree = $controller->getTree( $startid, [], $level, $filter );
-
-		return $this->getCatalogIdList( $tree, $catItems );
 	}
 }

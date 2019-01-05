@@ -527,9 +527,9 @@ class Standard
 			$productIds[] = $listItem->getRefId();
 		}
 
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
 
-		$view->favoriteProductItems = $controller->getItems( $productIds, $domains );
+		$view->favoriteProductItems = $cntl->product( $productIds )->search( $domains );
 		$view->favoritePageFirst = 1;
 		$view->favoritePagePrev = ( $current > 1 ? $current - 1 : 1 );
 		$view->favoritePageNext = ( $current < $last ? $current + 1 : $last );

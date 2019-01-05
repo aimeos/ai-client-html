@@ -337,8 +337,8 @@ class Standard
 
 		if( ( $pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] ) ) !== [] )
 		{
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
-			$result = $controller->getItems( $pinned, $domains );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
+			$result = $cntl->product( $pinned )->search( $domains );
 
 			foreach( array_reverse( $pinned ) as $id )
 			{

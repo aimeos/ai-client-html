@@ -1,13 +1,15 @@
 <?php
 
-namespace Aimeos\Client\Html\Catalog\Suggest;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
  * @copyright Aimeos (aimeos.org), 2015-2018
  */
+
+
+namespace Aimeos\Client\Html\Catalog\Suggest;
+
+
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
@@ -75,13 +77,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->getConfig()->set( 'client/html/catalog/suggest/usecode', true );
 
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'U:TEST' ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'CNC' ) );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
 		$suggestItems = $this->object->getView()->suggestItems;
 
-		$this->assertRegExp( '#\[.*\{"label":"Unit.*","html":".*Unit.*"\}.*\]#smU', $output );
+		$this->assertRegExp( '#\[.*\{"label":"Cafe.*","html":".*Cafe.*"\}.*\]#smU', $output );
 		$this->assertNotEquals( [], $suggestItems );
 
 		foreach( $suggestItems as $item ) {

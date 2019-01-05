@@ -226,9 +226,6 @@ class Standard
 		 */
 		if( $config->get( 'client/html/catalog/count/supplier/aggregate', true ) == true )
 		{
-			$filter = $this->getProductListFilter( $view, true, true, true, false );
-			$filter = $this->addSupplierFilter( $view, $filter );
-
 			/** client/html/catalog/count/limit
 			 * Limits the number of records that are used for product counts in the catalog filter
 			 *
@@ -252,11 +249,13 @@ class Standard
 			 * @category Developer
 			 * @category User
 			 */
-			$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
-			$filter->setSortations( [] ); // it's not necessary and slows down the query
+			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
-			$view->supplierCountList = $controller->aggregate( $filter, 'index.supplier.id' );
+			$map = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->supplier( $view->param( 'f_supid', [] ) )->slice( 0, $limit )->sort()
+				->aggregate( 'index.supplier.id' );
+
+			$view->supplierCountList = $map;
 		}
 
 		return parent::addData( $view, $tags, $expire );

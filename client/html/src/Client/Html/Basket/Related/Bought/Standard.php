@@ -211,11 +211,10 @@ class Standard
 	{
 		if( isset( $view->relatedBasket ) )
 		{
-			$items = [];
 			$context = $this->getContext();
 			$config = $context->getConfig();
 
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
 
 			/** client/html/basket/related/bought/standard/limit
 			 * Number of items in the list of bought together products
@@ -249,59 +248,39 @@ class Standard
 			 * @since 2014.09
 			 * @category Developer
 			 */
-			$domains = array( 'text', 'price', 'media' );
-			$domains = $config->get( 'client/html/basket/related/bought/standard/domains', $domains );
+			$domains = $config->get( 'client/html/basket/related/bought/standard/domains', ['text', 'price', 'media'] );
+			$domains['product'] = ['bought-together'];
 
+			$items = $refItems = [];
 			$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
 
-			foreach( $controller->getItems( $prodIds, ['product'] ) as $prodItem )
+			foreach( $cntl->product( $prodIds )->search( $domains ) as $prodItem )
 			{
-				foreach( $prodItem->getListItems( 'product', 'bought-together' ) as $listItem ) {
-					$items[$listItem->getRefId()] = $listItem->getPosition();
+				foreach( $prodItem->getListItems( 'product', 'bought-together' ) as $listItem )
+				{
+					if( ( $refItem = $listItem->getRefItem() ) !== null )
+					{
+						$items[$listItem->getRefId()] = $listItem->getPosition();
+						$refItems[$refItem->getId()] = $refItem;
+					}
 				}
 			}
 
 			asort( $items );
-			$products = $controller->getItems( array_keys( $items ), $domains );
 
 			foreach( $items as $id => $pos )
 			{
-				if( isset( $products[$id] ) ) {
-					$items[$id] = $products[$id];
+				if( isset( $refItems[$id] ) ) {
+					$items[$id] = $refItems[$id];
 				} else {
 					unset( $items[$id] );
 				}
 			}
 
-
 			$view->boughtItems = array_slice( $items, 0, $size, true );
 		}
 
 		return parent::addData( $view, $tags, $expire );
-	}
-
-
-	/**
-	 * Returns the product IDs for "bought-together" products
-	 *
-	 * @param string[] $prodIds List of product IDs
-	 * @return array List of product IDs bought together
-	 */
-	protected function getProductIdsBoughtTogether( array $prodIds )
-	{
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'product/lists' );
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-				$search->compare( '==', 'product.lists.parentid', $prodIds ),
-				$search->compare( '==', 'product.lists.type', 'bought-together' ),
-				$search->compare( '==', 'product.lists.domain', 'product' ),
-				$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( array( $search->sort( '+', 'product.lists.position' ) ) );
-
-		return $manager->searchItems( $search );
 	}
 
 

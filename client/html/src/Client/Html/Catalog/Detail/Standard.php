@@ -438,28 +438,6 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$prodid = $view->param( 'd_prodid' );
-
-		if( $prodid == '' )
-		{
-			/** client/html/catalog/detail/prodid-default
-			 * The default product ID used if none is given as parameter
-			 *
-			 * To display a product detail view or a part of it for a specific
-			 * product, you can configure its ID using this setting. This is
-			 * most useful in a CMS where the product ID can be configured
-			 * separately for each content node.
-			 *
-			 * @param string Product ID
-			 * @since 2016.01
-			 * @category User
-			 * @category Developer
-			 * @see client/html/catalog/lists/catid-default
-			 */
-			$prodid = $config->get( 'client/html/catalog/detail/prodid-default', '' );
-		}
-
-
 		$domains = array( 'media', 'price', 'text', 'attribute', 'product', 'product/property' );
 
 		/** client/html/catalog/domains
@@ -492,11 +470,23 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
 
+		/** client/html/catalog/detail/prodid-default
+		 * The default product ID used if none is given as parameter
+		 *
+		 * To display a product detail view or a part of it for a specific
+		 * product, you can configure its ID using this setting. This is
+		 * most useful in a CMS where the product ID can be configured
+		 * separately for each content node.
+		 *
+		 * @param string Product ID
+		 * @since 2016.01
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/catid-default
+		 */
+		$prodId = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
 
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'catalog' );
-		$prodCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
-
-		$productItem = $prodCntl->getItem( $prodid, $domains );
+		$productItem = \Aimeos\Controller\Frontend::create( $context, 'product' )->get( $prodId, $domains );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
 		$products = $productItem->getRefItems( 'product' );
@@ -526,7 +516,7 @@ class Standard
 		 */
 
 		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
-			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, array( $productItem ) ) );
+			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, [$productItem] ) );
 		}
 
 		$view->detailProductItems = $products;

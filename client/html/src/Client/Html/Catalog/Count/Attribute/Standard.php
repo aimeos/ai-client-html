@@ -227,9 +227,6 @@ class Standard
 		 */
 		if( $config->get( 'client/html/catalog/count/attribute/aggregate', true ) == true )
 		{
-			$filter = $this->getProductListFilter( $view, true, true, false, true );
-			$filter = $this->addAttributeFilter( $view, $filter, false );
-
 			/** client/html/catalog/count/limit
 			 * Limits the number of records that are used for product counts in the catalog filter
 			 *
@@ -253,11 +250,18 @@ class Standard
 			 * @category Developer
 			 * @category User
 			 */
-			$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
-			$filter->setSortations( [] ); // it's not necessary and slows down the query
+			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
-			$view->attributeCountList = $controller->aggregate( $filter, 'index.attribute.id' );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->allof( $view->param( 'f_attrid', [] ) )
+				->oneof( $view->param( 'f_optid', [] ) )
+				->slice( 0, $limit )->sort();
+
+			foreach( $view->param( 'f_oneid', [] ) as $type => $list ) {
+				$cntl->oneof( $list );
+			}
+
+			$view->attributeCountList = $cntl->aggregate( 'index.attribute.id' );
 		}
 
 		return parent::addData( $view, $tags, $expire );

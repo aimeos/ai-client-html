@@ -308,12 +308,8 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$items = [];
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$input = $view->param( 'f_search' );
-		$langid = $context->getLocale()->getLanguageId();
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
 
 
 		/** client/html/catalog/suggest/domains
@@ -348,47 +344,9 @@ class Standard
 		 */
 		$size = $config->get( 'client/html/catalog/suggest/size', 24 );
 
-		/** client/html/catalog/suggest/usecode
-		 * Enables product suggestions based on using the product code
-		 *
-		 * The suggested entries for the full text search in the catalog filter component
-		 * are based on the product names by default. By setting this option to true or 1,
-		 * you can add suggestions based on the product codes as well.
-		 *
-		 * @param boolean True to search for product codes too, false for product text only
-		 * @since 2016.09
-		 * @category Developer
-		 * @category User
-		 * @see client/html/catalog/suggest/size
-		 */
-		if( $config->get( 'client/html/catalog/suggest/usecode', false ) )
-		{
-			$filter = $controller->createFilter( null, '+', 0, $size );
-
-			$filter->setConditions( $filter->combine( '&&', [
-				$filter->compare( '=~', 'product.code', $input ),
-				$filter->getConditions(),
-			] ) );
-
-			$items += $controller->searchItems( $filter, $domains );
-		}
-
-		$count = count( $items );
-
-		if( $count < $size )
-		{
-			$filter = $controller->createFilter( null, '+', 0, $size - $count );
-
-			$filter->setConditions( $filter->combine( '&&', [
-				$filter->compare( '>', $filter->createFunction( 'index.text:relevance', [$langid, $input] ), 0 ),
-				$filter->getConditions(),
-			] ) );
-
-			$items += $controller->searchItems( $filter, $domains );
-		}
-
-
-		$view->suggestItems = $items;
+		$view->suggestItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
+			->text( $view->param( 'f_search' ) )->slice( 0, $size )
+			->search( $domains );
 
 		return parent::addData( $view, $tags, $expire );
 	}

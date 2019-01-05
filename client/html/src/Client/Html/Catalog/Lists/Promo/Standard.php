@@ -293,7 +293,7 @@ class Standard
 			$catId = $config->get( 'client/html/catalog/lists/catid-default', '' );
 		}
 
-		if( $catId != '' )
+		if( $catId )
 		{
 			/** client/html/catalog/lists/promo/size
 			 * The maximum number of products that should be shown in the promotion section
@@ -311,15 +311,13 @@ class Standard
 			 * @category Developer
 			 */
 			$size = $config->get( 'client/html/catalog/lists/promo/size', 6 );
-			$domains = $config->get( 'client/html/catalog/lists/domains', array( 'media', 'price', 'text' ) );
+			$domains = $config->get( 'client/html/catalog/lists/domains', ['media', 'price', 'text'] );
+			$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-			$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
-			$level = $config->get( 'client/html/catalog/lists/levels', $level );
-
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'product' );
-			$filter = $controller->createFilter( 'relevance', '+', 0, $size );
-			$filter = $controller->addFilterCategory( $filter, $catId, 'promotion', $level );
-			$products = $controller->searchItems( $filter, $domains );
+			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->category( $catId, 'promotion', $level )
+				->sort( 'relevance' )->slice( 0, $size )
+				->search( $domains );
 
 			$this->addMetaItems( $products, $expire, $tags );
 
