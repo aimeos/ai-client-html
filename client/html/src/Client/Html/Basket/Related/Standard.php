@@ -308,7 +308,7 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$view->relatedBasket = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' )->get();
+		$view->relatedBasket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 
 		return parent::addData( $view, $tags, $expire );
 	}

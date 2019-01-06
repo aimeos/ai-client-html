@@ -436,7 +436,7 @@ class Standard
 
 		if( $catid != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'catalog' );
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
 
 			$default = array( 'attribute', 'media', 'text' );
 

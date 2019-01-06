@@ -215,7 +215,7 @@ class Standard
 				$view->summaryShowDownloadAttributes = true;
 			}
 
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
 
 			$view->summaryBasket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );

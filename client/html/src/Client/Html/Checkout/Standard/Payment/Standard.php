@@ -231,8 +231,8 @@ class Standard
 		try
 		{
 			$context = $this->getContext();
-			$basketCtrl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
-			$serviceCtrl = \Aimeos\Controller\Frontend\Factory::create( $context, 'service' );
+			$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+			$serviceCtrl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 
 			// only start if there's something to do
 			if( ( $serviceIds = $view->param( 'c_paymentoption', null ) ) !== null )
@@ -302,8 +302,8 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
-		$serviceCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'service' );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+		$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 
 		$basket = $basketCntl->get();
 		$services = $attributes = $prices = [];

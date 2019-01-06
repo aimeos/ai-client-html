@@ -515,7 +515,7 @@ class Standard
 	protected function setAddress( \Aimeos\MW\View\Iface $view )
 	{
 		$context = $this->getContext();
-		$basketCtrl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
+		$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
 		/** client/html/checkout/standard/address/billing/disable-new
@@ -567,7 +567,7 @@ class Standard
 				$list[str_replace( 'order.base.address', 'customer', $key )] = $value;
 			}
 
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'customer' );
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 			$customer = $controller->editItem( $option, $list );
 
 			$basketCtrl->setAddress( $type, $customer->getPaymentAddress() );
@@ -586,7 +586,7 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		try {
 			$langid = $basketCntl->get()->getAddress( 'payment' )->getLanguageId();

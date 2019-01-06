@@ -212,7 +212,7 @@ class Standard
 	{
 		$catItems = [];
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'catalog' );
+		$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
 
 		$currentid = (string) $view->param( 'f_catid', '' );
 		$currentid = ( $currentid != '' ? $currentid : null );

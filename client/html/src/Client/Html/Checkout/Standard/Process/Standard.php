@@ -255,8 +255,8 @@ class Standard
 
 		try
 		{
-			$orderCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'order' );
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
+			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
+			$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
 			if ( $view->param( 'cs_order', null ) !== null )
@@ -286,7 +286,7 @@ class Standard
 			if( $services === [] || $total <= 0 && $this->isSubscription( $basket->getProducts() ) === false )
 			{
 				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
-				$orderCntl = \Aimeos\Controller\Frontend\Factory::create( $context, 'order' );
+				$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
 				$orderCntl->saveItem( $orderItem );
 
 			}
@@ -356,7 +356,7 @@ class Standard
 				$params[$item->getCode()] = $item->getValue();
 			}
 
-			$serviceCntl = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'service' );
+			$serviceCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'service' );
 			return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 		}
 	}

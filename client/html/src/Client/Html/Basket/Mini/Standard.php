@@ -334,7 +334,7 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$view->miniBasket = $controller->get();
 
 		return parent::addData( $view, $tags, $expire );

@@ -282,7 +282,7 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		try
 		{
@@ -423,7 +423,7 @@ class Standard
 			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
 		}
 
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 
 		$view->standardBasket = $controller->get();
 		$view->standardTaxRates = $this->getTaxRates( $view->standardBasket );
@@ -441,7 +441,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 			$controller->addCoupon( $coupon );
 			$this->clearCached();
 		}
@@ -455,7 +455,7 @@ class Standard
 	 */
 	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
 
 		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' )
@@ -519,7 +519,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 			$controller->deleteCoupon( $coupon );
 			$this->clearCached();
 		}
@@ -533,7 +533,7 @@ class Standard
 	 */
 	protected function deleteProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_position', [] );
 
 		foreach( $products as $position ) {
@@ -551,7 +551,7 @@ class Standard
 	 */
 	protected function editProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
 
 		if( ( $position = $view->param( 'b_position', '' ) ) !== '' )

@@ -209,7 +209,7 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$cntl = \Aimeos\Controller\Frontend\Factory::create( $this->getContext(), 'supplier' );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'supplier' );
 		$filter = $cntl->createFilter()->setSlice( 0, 0x7fffffff );
 
 		/** client/html/catalog/filter/supplier/domains

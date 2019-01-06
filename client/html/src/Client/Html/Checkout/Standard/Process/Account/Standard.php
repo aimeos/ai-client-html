@@ -175,7 +175,7 @@ class Standard
 
 		try
 		{
-			$basket = \Aimeos\Controller\Frontend\Factory::create( $context, 'basket' )->get();
+			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
 			$addresses = $basket->getAddresses();
 
@@ -217,7 +217,7 @@ class Standard
 	{
 		$id = null;
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::create( $context, 'customer' );
+		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
 		try
 		{
