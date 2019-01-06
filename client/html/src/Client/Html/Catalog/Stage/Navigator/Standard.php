@@ -241,8 +241,8 @@ class Standard
 			$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-			$catids = $view->value( $params, 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
-			$sort = $view->value( $params, 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
+			$catids = $view->value( $params, 'f_catid', $view->config( 'client/html/catalog/lists/catid-default' ) );
+			$sort = $view->value( $params, 'f_sort', $view->config( 'client/html/catalog/lists/sort', 'relevance' ) );
 
 			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
 				->allOf( $view->value( $params, 'f_attrid', [] ) )
