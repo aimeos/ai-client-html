@@ -485,6 +485,7 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/pages
 		 */
 		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );
 
@@ -513,8 +514,31 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/pages
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
+
+		/** client/html/catalog/lists/pages
+		 * Maximum number of product pages shown in pagination
+		 *
+		 * Limits the number of product pages that are shown in the navigation.
+		 * The user is able to move to the next page (or previous one if it's not
+		 * the first) to display the next (or previous) products.
+		 *
+		 * The value must be a positive integer number. Negative values are not
+		 * allowed. The value can't be overwritten per request.
+		 *
+		 * @param integer Number of pages
+		 * @since 2019.04
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/size
+		 */
+		$pages = $config->get( 'client/html/catalog/lists/pages', 100 );
 
 		/** client/html/catalog/lists/size
 		 * The number of products shown in a list page
@@ -537,6 +561,7 @@ class Standard
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/pages
 		 */
 		$size = $config->get( 'client/html/catalog/lists/size', 48 );
 
@@ -569,16 +594,21 @@ class Standard
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/pages
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 		$catids = (array) $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default', [] ) );
 		$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 		$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
-		$page = min( max( $view->param( 'l_page', 1 ), 1 ), 100 );
+		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
 
 		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
-			->category( $catids, 'default', $level )->text( $view->param( 'f_search' ) )
+			->allOf( $view->param( 'f_attrid', [] ) )
+			->oneOf( $view->param( 'f_optid', [] ) )
+			->oneOf( $view->param( 'f_oneid', [] ) )
+			->category( $catids, 'default', $level )
+			->text( $view->param( 'f_search' ) )
 			->slice( ($page - 1) * $size, $size )->sort( $sort )
 			->search( $domains, $total );
 
