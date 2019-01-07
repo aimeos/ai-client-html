@@ -18,8 +18,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		\Aimeos\MShop::cache( true );
-
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Standard( $this->context );
@@ -30,9 +28,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
-		\Aimeos\MShop::cache( false );
-		\Aimeos\MShop::clear();
-
 		unset( $this->object, $this->context );
 	}
 

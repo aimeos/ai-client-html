@@ -30,8 +30,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\MShop::cache( false );
-		\Aimeos\MShop::clear();
-
 		unset( $this->object );
 	}
 
@@ -56,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'searchItems' ) )
 			->getMock();
 
-		\Aimeos\MShop::inject( $this->context, 'order', $orderManagerStub );
+		\Aimeos\MShop::inject( 'order', $orderManagerStub );
 
 		$orderItem = $orderManagerStub->createItem();
 
@@ -140,7 +138,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'load' ) )
 			->getMock();
 
-		\Aimeos\MShop::inject( $this->context, 'order/base', $orderBaseManagerStub );
+		\Aimeos\MShop::inject( 'order/base', $orderBaseManagerStub );
 
 		$baseItem = $orderBaseManagerStub->createItem();
 		$orderBaseManagerStub->expects( $this->once() )->method( 'load' )->will( $this->returnValue( $baseItem ) );
@@ -203,7 +201,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'load' ) )
 			->getMock();
 
-		\Aimeos\MShop::inject( $this->context, 'order/base', $orderBaseManagerStub );
+		\Aimeos\MShop::inject( 'order/base', $orderBaseManagerStub );
 
 		$orderBaseManagerStub->expects( $this->once() )->method( 'load' )
 			->will( $this->throwException( new \Aimeos\MShop\Order\Exception() ) );

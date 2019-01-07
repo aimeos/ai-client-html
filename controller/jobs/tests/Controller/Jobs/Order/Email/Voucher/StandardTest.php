@@ -29,8 +29,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\MShop::cache( false );
-		\Aimeos\MShop::clear();
-
 		unset( $this->object );
 	}
 
@@ -55,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'searchItems' ) )
 			->getMock();
 
-		\Aimeos\MShop::inject( $this->context, 'order', $orderManagerStub );
+		\Aimeos\MShop::inject( 'order', $orderManagerStub );
 
 		$orderItem = $orderManagerStub->createItem();
 
@@ -82,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$statusManagerStub->expects( $this->once() )->method( 'saveItem' );
 
-		\Aimeos\MShop::inject( $this->context, 'order/status', $statusManagerStub );
+		\Aimeos\MShop::inject( 'order/status', $statusManagerStub );
 
 		$this->access( 'addOrderStatus' )->invokeArgs( $this->object, array( -1, +1 ) );
 	}
@@ -149,7 +147,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderBaseManagerStub->expects( $this->once() )->method( 'load' )
 			->will( $this->returnValue( $orderBaseManagerStub->createItem() ) );
 
-		\Aimeos\MShop::inject( $this->context, 'order/base', $orderBaseManagerStub );
+		\Aimeos\MShop::inject( 'order/base', $orderBaseManagerStub );
 
 
 		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Voucher\Standard::class )
@@ -170,7 +168,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'load' ) )
 			->getMock();
 
-		\Aimeos\MShop::inject( $this->context, 'order/base', $orderBaseManagerStub );
+		\Aimeos\MShop::inject( 'order/base', $orderBaseManagerStub );
 
 		$orderBaseManagerStub->expects( $this->once() )->method( 'load' )
 			->will( $this->throwException( new \Aimeos\MShop\Order\Exception() ) );
@@ -239,7 +237,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'saveItem' ) )
 			->getMock();
 
-		\Aimeos\MShop::inject( $this->context, 'coupon/code', $couponCodeStub );
+		\Aimeos\MShop::inject( 'coupon/code', $couponCodeStub );
 
 		$couponCodeStub->expects( $this->once() )->method( 'saveItem' );
 

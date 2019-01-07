@@ -18,6 +18,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelperHtml::getView();
 		$this->context = \TestHelperHtml::getContext();
 
@@ -28,6 +30,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
+		\Aimeos\MShop::cache( false );
 		unset( $this->object );
 	}
 
@@ -93,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$attrManagerStub->expects( $this->once() )->method( 'getItem' )
 			->will( $this->returnValue( $attrManagerStub->createItem() ) );
 
-		\Aimeos\MShop::inject( $this->context, 'order/base/product/attribute', $attrManagerStub );
+		\Aimeos\MShop::inject( 'order/base/product/attribute', $attrManagerStub );
 
 
 		$stream = $this->getMockBuilder( \Psr\Http\Message\StreamInterface::class )->getMock();
@@ -107,10 +110,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
 		$this->view->addHelper( 'response', $helper );
 
-
-		\Aimeos\MShop::cache( true );
 		$object->process();
-		\Aimeos\MShop::cache( false );
 	}
 
 
@@ -134,16 +134,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 		$managerStub->expects( $this->once() )->method( 'saveItem' );
 
-		\Aimeos\MShop::inject( $this->context, 'customer/lists', $managerStub );
+		\Aimeos\MShop::inject( 'customer/lists', $managerStub );
 
 
 		$class = new \ReflectionClass( \Aimeos\Client\Html\Account\Download\Standard::class );
 		$method = $class->getMethod( 'checkDownload' );
 		$method->setAccessible( true );
 
-		\Aimeos\MShop::cache( true );
 		$result = $method->invokeArgs( $this->object, array( 123, 321 ) );
-		\Aimeos\MShop::cache( false );
 
 		$this->assertTrue( $result );
 	}
