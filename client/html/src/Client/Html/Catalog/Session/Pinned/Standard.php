@@ -309,8 +309,7 @@ class Standard
 		$config = $context->getConfig();
 		$session = $context->getSession();
 
-		$default = array( 'media', 'price', 'text' );
-		$domains = $config->get( 'client/html/catalog/domains', $default );
+		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );
 
 		/** client/html/catalog/session/pinned/domains
 		 * A list of domain names whose items should be available in the pinned view template for the product
@@ -323,9 +322,6 @@ class Standard
 		 * Please keep in mind that the more domains you add to the configuration,
 		 * the more time is required for fetching the content!
 		 *
-		 * From 2014.09 to 2015.03, this setting was available as
-		 * client/html/catalog/detail/pinned/domains
-		 *
 		 * @param array List of domain names
 		 * @since 2015.04
 		 * @category Developer
@@ -337,8 +333,8 @@ class Standard
 
 		if( ( $pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] ) ) !== [] )
 		{
-			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
-			$result = $cntl->product( $pinned )->search( $domains );
+			$result = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->product( $pinned )->slice( 0, count( $pinned ) )->search( $domains );
 
 			foreach( array_reverse( $pinned ) as $id )
 			{
