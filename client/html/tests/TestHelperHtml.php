@@ -15,7 +15,7 @@ class TestHelperHtml
 	{
 		self::getAimeos();
 		\Aimeos\MShop::cache( false );
-		\Aimeos\Controller\Frontend\Factory::setCache( false );
+		\Aimeos\Controller\Frontend::cache( false );
 	}
 
 
