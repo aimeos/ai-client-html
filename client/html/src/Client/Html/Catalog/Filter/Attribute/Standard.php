@@ -237,13 +237,6 @@ class Standard
 		$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
 		$attrTypes = ( !is_array( $attrTypes ) ? explode( ',', $attrTypes ) : $attrTypes );
 
-		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'attribute' );
-
-		$filter = $cntl->createFilter();
-		$filter = $cntl->addFilterTypes( $filter, $attrTypes );
-		$filter->setSlice( 0, 0x7fffffff );
-
-
 		/** client/html/catalog/filter/attribute/domains
 		 * List of domain names whose items should be fetched with the filter attributes
 		 *
@@ -262,7 +255,8 @@ class Standard
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', array( 'text', 'media' ) );
 
-		$attributes = $cntl->searchItems( $filter, $domains );
+		$attributes = \Aimeos\Controller\Frontend::create( $this->getContext(), 'attribute' )
+			->type( $attrTypes )->sort( 'position' )->slice( 0, 10000 )->search( $domains );
 
 		foreach( $attributes as $id => $item ) {
 			$attrMap[$item->getType()][$id] = $item;

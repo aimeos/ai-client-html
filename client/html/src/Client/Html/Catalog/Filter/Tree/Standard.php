@@ -210,12 +210,25 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$catItems = [];
-		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
-
-		$currentid = (string) $view->param( 'f_catid', '' );
-		$currentid = ( $currentid != '' ? $currentid : null );
+		/** client/html/catalog/filter/tree/domains
+		 * List of domain names whose items should be fetched with the filter categories
+		 *
+		 * The templates rendering the categories in the catalog filter usually
+		 * add the images and texts associated to each item. If you want to
+		 * display additional content, you can configure your own list of
+		 * domains (attribute, media, price, product, text, etc. are domains)
+		 * whose items are fetched from the storage. Please keep in mind that
+		 * the more domains you add to the configuration, the more time is
+		 * required for fetching the content!
+		 *
+		 * @param array List of domain item names
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/filter/tree/startid
+		 * @see client/html/catalog/filter/tree/levels-always
+		 * @see client/html/catalog/filter/tree/levels-only
+		 */
+		$ref = $view->config( 'client/html/catalog/filter/tree/domains', ['text', 'media'] );
 
 		/** client/html/catalog/filter/tree/startid
 		 * The ID of the category node that should be the root of the displayed category tree
@@ -236,48 +249,19 @@ class Standard
 		 * @see client/html/catalog/filter/tree/levels-only
 		 * @see client/html/catalog/filter/tree/domains
 		 */
-		$startid = $view->config( 'client/html/catalog/filter/tree/startid', '' );
-		$startid = ( $startid != '' ? $startid : null );
+		$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 
-		/** client/html/catalog/filter/tree/domains
-		 * List of domain names whose items should be fetched with the filter categories
-		 *
-		 * The templates rendering the categories in the catalog filter usually
-		 * add the images and texts associated to each item. If you want to
-		 * display additional content, you can configure your own list of
-		 * domains (attribute, media, price, product, text, etc. are domains)
-		 * whose items are fetched from the storage. Please keep in mind that
-		 * the more domains you add to the configuration, the more time is
-		 * required for fetching the content!
-		 *
-		 * @param array List of domain item names
-		 * @since 2014.03
-		 * @category Developer
-		 * @see client/html/catalog/filter/tree/startid
-		 * @see client/html/catalog/filter/tree/levels-always
-		 * @see client/html/catalog/filter/tree/levels-only
-		 */
-		$ref = $view->config( 'client/html/catalog/filter/tree/domains', array( 'text', 'media' ) );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )->root( $startid );
 
-
-		if( $currentid !== null ) {
-			$catItems = $this->filterCatalogPath( $controller->getPath( $currentid ), $startid );
+		if( ( $currentid = $view->param( 'f_catid' ) ) == null ) {
+			$catItems = $cntl->getTree( $ref, \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE )->toList();
+		} else {
+			$catItems = $cntl->getPath( $currentid, $ref );
 		}
-
-		if( ( $node = reset( $catItems ) ) === false )
-		{
-			$node = $controller->getTree( $startid, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
-			$catItems = array( $node->getId() => $node );
-		}
-
-
-		$catIds = array_keys( $catItems );
-		$search = $this->addSearchConditions( $controller->createFilter(), $catIds, $node->getId() );
-		$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE;
 
 		$view->treeCatalogPath = $catItems;
-		$view->treeCatalogTree = $controller->getTree( $startid, $ref, $level, $search );
-		$view->treeCatalogIds = $this->getCatalogIds( $view->treeCatalogTree, $catItems, $currentid );
+		$view->treeCatalogTree = $cntl->visible( array_keys( $catItems ) )->getTree( $ref );
+		$view->treeCatalogIds = array_keys( $view->treeCatalogTree->toList() );
 		$view->treeFilterParams = $this->getClientParams( $view->param(), array( 'f' ) );
 
 		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );
@@ -300,135 +284,5 @@ class Standard
 		foreach( $tree->getChildren() as $child ) {
 			$this->addMetaItemCatalog( $child, $expire, $tags );
 		}
-	}
-
-
-	/**
-	 * Adds the conditions for searching the catalog nodes
-	 *
-	 * @param \Aimeos\MW\Criteria\Iface $search Search object
-	 * @return \Aimeos\MW\Criteria\Iface Enhanced search object
-	 */
-	protected function addSearchConditions( \Aimeos\MW\Criteria\Iface $search, array $catIds, $catId )
-	{
-		$config = $this->getContext()->getConfig();
-
-		$expr = $search->compare( '==', 'catalog.parentid', $catIds );
-		$expr = $search->combine( '||', array( $expr, $search->compare( '==', 'catalog.id', $catId ) ) );
-
-		/** client/html/catalog/filter/tree/levels-always
-		 * The number of levels in the category tree that should be always displayed
-		 *
-		 * Usually, only the root node and the first level of the category
-		 * tree is shown in the frontend. Only if the user clicks on a
-		 * node in the first level, the page reloads and the sub-nodes of
-		 * the chosen category are rendered as well.
-		 *
-		 * Using this configuration option you can enforce the given number
-		 * of levels to be always displayed. The root node uses level 0, the
-		 * categories below level 1 and so on.
-		 *
-		 * In most cases you can set this value via the administration interface
-		 * of the shop application. In that case you often can configure the
-		 * levels individually for each catalog filter.
-		 *
-		 * @param integer Number of tree levels
-		 * @since 2014.03
-		 * @category User
-		 * @category Developer
-		 * @see client/html/catalog/filter/tree/startid
-		 * @see client/html/catalog/filter/tree/levels-only
-		 * @see client/html/catalog/filter/tree/domains
-		*/
-		if( ( $levels = $config->get( 'client/html/catalog/filter/tree/levels-always' ) ) != null ) {
-			$expr = $search->combine( '||', array( $expr, $search->compare( '<=', 'catalog.level', $levels ) ) );
-		}
-
-		/** client/html/catalog/filter/tree/levels-only
-		 * No more than this number of levels in the category tree should be displayed
-		 *
-		 * If the user clicks on a category node, the page reloads and the
-		 * sub-nodes of the chosen category are rendered as well.
-		 * Using this configuration option you can enforce that no more than
-		 * the given number of levels will be displayed at all. The root
-		 * node uses level 0, the categories below level 1 and so on.
-		 *
-		 * In most cases you can set this value via the administration interface
-		 * of the shop application. In that case you often can configure the
-		 * levels individually for each catalog filter.
-		 *
-		 * @param integer Number of tree levels
-		 * @since 2014.03
-		 * @category User
-		 * @category Developer
-		 * @see client/html/catalog/filter/tree/startid
-		 * @see client/html/catalog/filter/tree/levels-always
-		 * @see client/html/catalog/filter/tree/domains
-		 */
-		if( ( $levels = $config->get( 'client/html/catalog/filter/tree/levels-only' ) ) != null ) {
-			$expr = $search->combine( '&&', array( $expr, $search->compare( '<=', 'catalog.level', $levels ) ) );
-		}
-
-		$search->setConditions( $expr );
-
-		return $search;
-	}
-
-
-	/**
-	 * Returns the category IDs of the given catalog tree.
-	 *
-	 * Only the IDs of the children of the current category are returned.
-	 *
-	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Catalog node as entry point of the tree
-	 * @param array $path Associative list of category IDs as keys and the catalog
-	 * 	nodes from the currently selected category up to the root node
-	 * @param string $currentId Currently selected category
-	 * @return array List of category IDs
-	 */
-	protected function getCatalogIds( \Aimeos\MShop\Catalog\Item\Iface $tree, array $path, $currentId )
-	{
-		if( $tree->getId() == $currentId )
-		{
-			$ids = [];
-			foreach( $tree->getChildren() as $item ) {
-				$ids[] = $item->getId();
-			}
-
-			return $ids;
-		}
-
-		foreach( $tree->getChildren() as $child )
-		{
-			if( isset( $path[$child->getId()] ) ) {
-				return $this->getCatalogIds( $child, $path, $currentId );
-			}
-		}
-
-		return [];
-	}
-
-
-	/**
-	 * Filters the items in the path to the root of the catalog tree
-	 *
-	 * @param array $catItems Associative list of catalog IDs as keys and items implementing \Aimeos\Catalog\Item\Iface as values
-	 * @param string $startid Catalog ID the subtree starts from
-	 * @return array Filtered associative list of catalog items
-	 */
-	protected function filterCatalogPath( array $catItems, $startid )
-	{
-		if( $startid )
-		{
-			foreach( $catItems as $key => $item )
-			{
-				if( $key == $startid ) {
-					break;
-				}
-				unset( $catItems[$key] );
-			}
-		}
-
-		return $catItems;
 	}
 }
