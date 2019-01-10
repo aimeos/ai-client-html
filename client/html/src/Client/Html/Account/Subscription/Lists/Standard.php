@@ -239,7 +239,7 @@ class Standard
 	{
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' );
 
-		$view->listsItems = $cntl->searchItems( $cntl->createFilter() );
+		$view->listsItems = $cntl->search();
 		$view->listsIntervalItems = $cntl->getIntervals();
 
 		return parent::addData( $view, $tags, $expire );

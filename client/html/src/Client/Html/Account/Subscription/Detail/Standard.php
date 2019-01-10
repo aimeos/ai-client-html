@@ -216,28 +216,10 @@ class Standard
 		if( ( $id = $view->param( 'sub_id' ) ) != null )
 		{
 			$context = $this->getContext();
-
-			$manager = \Aimeos\MShop::create( $context, 'subscription' );
-			$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
-
-			$search = $manager->createSearch( true );
-			$expr = array(
-				$search->getConditions(),
-				$search->compare( '==', 'subscription.id', $id ),
-				$search->compare( '==', 'order.base.customerid', $context->getUserId() ),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
-
-			$items = $manager->searchItems( $search );
-
-			if( ( $item = reset( $items ) ) === false )
-			{
-				$msg = $view->translate( 'client', 'Subscription with ID "%1$s" not found' );
-				throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $id ) );
-			}
+			$item = \Aimeos\Controller\Frontend::create( $context, 'subscription' )->get( $id );
 
 			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT | \Aimeos\MShop\Order\Item\Base\Base::PARTS_ADDRESS;
-			$basket = $controller->load( $item->getOrderBaseId(), $parts );
+			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $item->getOrderBaseId(), $parts );
 
 			foreach( $basket->getProducts() as $pos => $orderProduct )
 			{
