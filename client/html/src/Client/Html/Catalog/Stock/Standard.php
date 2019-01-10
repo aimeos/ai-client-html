@@ -320,47 +320,30 @@ class Standard
 		$context = $this->getContext();
 
 		/** client/html/catalog/stock/sort
-		 * Sortation keys if stock levels for different types exist
+		 * Sortation key if stock levels for different types exist
 		 *
 		 * Products can be shipped from several warehouses with a different
 		 * stock level for each one. The stock levels for each warehouse will
 		 * be shown in the product detail page. To get a consistent sortation
-		 * of this list, the configured keys will be used by the stock manager.
+		 * of this list, the configured key will be used by the stock manager.
 		 *
-		 * The list consists of the sort key and the direction
-		 * (+: ascending, -: descending):
-		 *  array(
-		 *      'stock.productcode' => '+',
-		 *      'stock.stocklevel' => '-',
-		 *      'stock.type' => '+',
-		 *      'stock.dateback' => '+',
-		 *  )
+		 * Possible keys for sorting are ("-stock.type" for descending order):
+		 * * stock.productcode
+		 * * stock.stocklevel
+		 * * stock.type
+		 * * stock.dateback
 		 *
 		 * @param array List of key/value pairs for sorting
 		 * @since 2017.01
 		 * @category Developer
 		 * @see client/html/catalog/stock/level/low
 		 */
-		$default = array( 'stock.productcode' => '+', 'stock.type' => '+' );
-		$sortKeys = $context->getConfig()->get( 'client/html/catalog/stock/sort', $default );
+		$sort = $context->getConfig()->get( 'client/html/catalog/stock/sort', 'stock.type' );
+		$type = $context->getLocale()->getSite()->getConfigValue( 'stocktype' );
 
-		$siteConfig = $context->getLocale()->getSite()->getConfig();
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'stock' );
-
-		$filter = $cntl->createFilter()->setSlice( 0, count( $productCodes ) );
-		$filter = $cntl->addFilterCodes( $filter, $productCodes );
-
-		if( isset( $siteConfig['stocktype'] ) ) {
-			$filter = $cntl->addFilterTypes( $filter, [$siteConfig['stocktype']] );
-		}
-
-		$sortations = [];
-		foreach( $sortKeys as $key => $dir ) {
-			$sortations[] = $filter->sort( $dir, $key );
-		}
-
-		$filter->setSortations( $sortations );
-
-		return $cntl->searchItems( $filter );
+		return \Aimeos\Controller\Frontend::create( $context, 'stock' )
+			->code( $productCodes )->type( $type )->sort( $sort )
+			->slice( 0, count( $productCodes ) )
+			->search();
 	}
 }
