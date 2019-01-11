@@ -353,16 +353,14 @@ class Standard
 		$curname = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
 
 
-		$manager = \Aimeos\MShop::create( $context, 'locale' );
+		$items = \Aimeos\Controller\Frontend::create( $context, 'locale' )
+			->sort( 'position' )->slice( 0, 10000 )->search();
 
-		$search = $manager->createSearch( true );
-		$search->setSortations( array( $search->sort( '+', 'locale.position' ) ) );
-
-		foreach( $manager->searchItems( $search ) as $item )
+		foreach( $items as $item )
 		{
 			$curId = $item->getCurrencyId();
 			$langId = $item->getLanguageId();
-			$map[$langId][$curId] = array( $langname => $langId, $curname => $curId );
+			$map[$langId][$curId] = [$langname => $langId, $curname => $curId];
 		}
 
 		$params = $view->param();
