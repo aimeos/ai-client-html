@@ -234,20 +234,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 							<?php foreach( $attributes as $attribute ) : ?>
 								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
-
-									<?php if( $modify ) : ?>
-										<?php $params = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity(), 'b_attrconfcode' => $attribute->getCode() ); ?>
-										<a class="change" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ); ?>">
-									<?php endif; ?>
-
-									<span class="sign">−</span>
 									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
 									<span class="value"><?= $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?></span>
-
-									<?php if( $modify ) : ?>
-										</a>
-									<?php endif; ?>
-
 								</li>
 							<?php endforeach; ?>
 
