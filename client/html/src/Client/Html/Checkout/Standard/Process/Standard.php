@@ -333,7 +333,7 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Saved basket object including payment service object
 	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Saved order item created for the basket object
-	 * @return \Aimeos\MShop\Common\Item\Helper\Form\Iface|null Form object with URL, parameters, etc.
+	 * @return \Aimeos\MShop\Common\Helper\Form\Iface|null Form object with URL, parameters, etc.
 	 * 	or null if no form data is required
 	 */
 	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )

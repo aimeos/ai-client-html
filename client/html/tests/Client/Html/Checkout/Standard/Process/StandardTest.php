@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['addItem', 'block'] )
 			->getMock();
 
-		$form = new \Aimeos\MShop\Common\Item\Helper\Form\Standard( 'url', 'POST', [], true );
+		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
 		$prodId = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' )->getId();
 		$servId = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
