@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			}
 		}
 
-		self::$addressItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+		self::$addressItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 	}
 
 

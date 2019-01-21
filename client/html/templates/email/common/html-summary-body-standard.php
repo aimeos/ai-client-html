@@ -39,7 +39,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/email/common/summary/service/html
 						 */
 						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-standard' ),
-						array( 'address' => $addresses['payment'], 'type' => 'payment' )
+						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -54,7 +54,7 @@ $services = $this->summaryBasket->getServices();
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-standard' ),
-						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
+						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>

@@ -45,7 +45,7 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 		$baseItem = $manager->getItem( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
 
-		$addrItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+		$addrItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 
 		foreach( $baseItem->getProducts() as $orderProduct )
 		{

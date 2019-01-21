@@ -292,12 +292,12 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
+		$addresses = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 
-		if( ( $view->summaryCustomerId = $context->getUserId() ) === null )
+		if( ( $view->summaryCustomerId = $context->getUserId() ) === null && ( $addr = current( $addresses ) ) !== false )
 		{
 			try
 			{
-				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 				$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 				$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
 			}

@@ -165,7 +165,7 @@ class Standard
 	 */
 	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
 	{
-		return $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+		return $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 	}
 
 

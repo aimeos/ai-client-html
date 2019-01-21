@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$products = self::$orderBaseItem->getProducts();
 		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
 
-		$view->extAddressItem = self::$orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+		$view->extAddressItem = self::$orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, 0 );
 		$view->extOrderProductItem = reset( $products );
 		$view->extVoucherCode = 'test';
 

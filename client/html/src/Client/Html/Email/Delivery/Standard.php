@@ -170,13 +170,14 @@ class Standard
 
 
 		$addr = $view->extAddressItem;
-		$billAddr = $view->extOrderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 
 		$msg = $view->mail();
 		$msg->addHeader( 'X-MailGenerator', 'Aimeos' );
 		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
-		if( $billAddr->getEMail() != $addr->getEmail() ) {
+		$addresses = $view->extOrderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+
+		if( ( $billAddr = current( $addresses ) ) !== false && $billAddr->getEMail() != $addr->getEmail() ) {
 			$msg->addCc( $billAddr->getEMail(), $billAddr->getFirstName() . ' ' . $billAddr->getLastName() );
 		}
 

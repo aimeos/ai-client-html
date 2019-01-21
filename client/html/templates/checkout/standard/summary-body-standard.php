@@ -67,7 +67,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 						 * @see client/html/checkout/standard/summary/service
 						 */
 						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard' ),
-						array( 'address' => $addresses['payment'], 'type' => 'payment' )
+						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -85,7 +85,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard' ),
-						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
+						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>

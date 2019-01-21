@@ -28,12 +28,8 @@ $enc = $this->encoder();
 $disablenew = (bool) $this->config( 'client/html/common/address/billing/disable-new', false );
 
 
-try {
-	$addrArray = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT )->toArray();
-} catch( Exception $e ) {
-	$addrArray = [];
-}
-
+$addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+$addrArray = ( $address = current( $addresses ) !== false ? $address->toArray() : [] );
 
 if( !isset( $addrArray['order.base.address.addressid'] ) || $addrArray['order.base.address.addressid'] == '' ) {
 	$billingDefault = ( isset( $this->addressCustomerItem ) ? $this->addressCustomerItem->getId() : 'null' );

@@ -33,11 +33,8 @@ $controller = $this->config( 'client/html/checkout/standard/url/controller', 'ch
 $action = $this->config( 'client/html/checkout/standard/url/action', 'index' );
 $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 
-try {
-	$addrArray = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY )->toArray();
-} catch( Exception $e ) {
-	$addrArray = [];
-}
+$addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+$addrArray = ( $address = current( $addresses ) !== false ? $address->toArray() : [] );
 
 
 $deliveryDefault = ( $addrArray === [] ? -1 : 'null' );

@@ -176,13 +176,12 @@ class Standard
 		try
 		{
 			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
-			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
-			$addresses = $basket->getAddresses();
+			$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 
-			if( $context->getUserId() == '' && isset( $addresses[$type] ) )
+			if( $context->getUserId() == '' && ( $address = current( $addresses ) ) !== false )
 			{
 				$create = (bool) $this->getView()->param( 'cs_option_account' );
-				$userId = $this->getCustomerId( $addresses[$type], $create );
+				$userId = $this->getCustomerId( $address, $create );
 				$context->setUserId( $userId );
 			}
 		}

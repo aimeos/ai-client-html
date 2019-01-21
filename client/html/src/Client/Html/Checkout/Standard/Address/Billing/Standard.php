@@ -588,11 +588,12 @@ class Standard
 		$context = $this->getContext();
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
-		try {
-			$langid = $basketCntl->get()->getAddress( 'payment' )->getLanguageId();
-		} catch( \Exception $e ) {
+		if( ( $address = current( $basketCntl->get()->getAddress( 'payment' ) ) ) === false ) {
 			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
+		} else {
+			$langid = $address->getLanguageId();
 		}
+
 		$view->billingLanguage = $langid;
 
 		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );

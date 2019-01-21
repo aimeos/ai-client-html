@@ -35,6 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$view = $this->object->getView();
+		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
@@ -89,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
-		$this->assertEquals( 'hamburg', $basket->getAddress( 'delivery' )->getCity() );
+		$this->assertEquals( 'hamburg', $basket->getAddress( 'delivery', 0 )->getCity() );
 	}
 
 
@@ -151,7 +152,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
-		$this->assertEquals( 'test', $basket->getAddress( 'delivery' )->getFirstName() );
+		$this->assertEquals( 'test', $basket->getAddress( 'delivery', 0 )->getFirstName() );
 	}
 
 
@@ -299,7 +300,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context->setEditor( null );
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
-		$this->assertEquals( 'Example company', $basket->getAddress( 'delivery' )->getCompany() );
+		$this->assertEquals( 'Example company', $basket->getAddress( 'delivery', 0 )->getCompany() );
 	}
 
 

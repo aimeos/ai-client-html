@@ -33,7 +33,7 @@ $services = $this->summaryBasket->getServices();
 			 * @see client/html/email/common/summary/service/text
 			 */
 			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
-			array( 'address' => $addresses['payment'], 'type' => 'payment', 'separator' => "\n" )
+			array( 'addresses' => $addresses['payment'], 'type' => 'payment', 'separator' => "\n" )
 		);
 	}
 ?>
@@ -46,7 +46,7 @@ $services = $this->summaryBasket->getServices();
 	{
 		echo $this->partial(
 			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
-			array( 'address' => $addresses['delivery'], 'type' => 'delivery', 'separator' => "\n" )
+			array( 'addresses' => $addresses['delivery'], 'type' => 'delivery', 'separator' => "\n" )
 		);
 	}
 	else

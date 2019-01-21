@@ -516,11 +516,12 @@ class Standard
 		$context = $this->getContext();
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
-		try {
-			$langid = $basketCntl->get()->getAddress( 'delivery' )->getLanguageId();
-		} catch( \Exception $e ) {
+		if( ( $address = current( $basketCntl->get()->getAddress( 'delivery' ) ) ) === false ) {
 			$langid = $view->param( 'ca_delivery/order.base.address.languageid', $context->getLocale()->getLanguageId() );
+		} else {
+			$langid = $address->getLanguageId();
 		}
+
 		$view->deliveryLanguage = $langid;
 
 		$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );

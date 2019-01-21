@@ -92,8 +92,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$addrManager = \Aimeos\MShop::create( $this->context, 'order/base/address' );
 
 		$item = $manager->createItem();
-		$item->setAddress( $addrManager->createItem(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-		$item->setAddress( $addrManager->createItem(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+		$item->addAddress( $addrManager->createItem(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+		$item->addAddress( $addrManager->createItem(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
 
 		$result = $this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $item ) );
 
