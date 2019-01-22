@@ -101,7 +101,7 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 					<li class="history-item row">
 
 						<?php $params = array( 'his_action' => 'order', 'his_id' => $id ); ?>
-						<a  class="col-sm-12" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+						<a  class="history-data col-sm-12" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
 
 							<div class="row">
 								<div class="attr-item order-basic col-sm-6 row">
