@@ -101,14 +101,14 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 					<li class="history-item row">
 
 						<?php $params = array( 'his_action' => 'order', 'his_id' => $id ); ?>
-						<a  class="col-xs-12" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+						<a  class="col-sm-12" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
 
 							<div class="row">
 								<div class="attr-item order-basic col-sm-6 row">
-									<span class="name col-xs-6">
+									<span class="name col-sm-6">
 										<?= $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ); ?>
 									</span>
-									<span class="value col-xs-6">
+									<span class="value col-sm-6">
 										<?= $enc->html( sprintf(
 											$this->translate( 'client', '%1$s at %2$s' ),
 												$id,
@@ -118,10 +118,10 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 								</div>
 
 								<div class="attr-item order-channel col-sm-6 row">
-									<span class="name col-xs-6">
+									<span class="name col-sm-6">
 										<?= $enc->html( $this->translate( 'client', 'Order channel' ), $enc::TRUST ); ?>
 									</span>
-									<span class="value col-xs-6">
+									<span class="value col-sm-6">
 										<?php $code = 'order:' . $orderItem->getType(); ?>
 										<?= $enc->html( $this->translate( 'mshop/code', $code ), $enc::TRUST ); ?>
 									</span>
@@ -130,10 +130,10 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 							<div class="row">
 								<div class="attr-item order-payment col-sm-6 row">
-									<span class="name col-xs-6 ">
+									<span class="name col-sm-6 ">
 										<?= $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?>
 									</span>
-									<span class="value col-xs-6 ">
+									<span class="value col-sm-6 ">
 										<?php if( ( $date = $orderItem->getDatePayment() ) !== null ) : ?>
 											<?php $code = 'pay:' . $orderItem->getPaymentStatus(); $paystatus = $this->translate( 'mshop/code', $code ); ?>
 											<?= $enc->html( sprintf( $attrformat, $paystatus, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
@@ -142,10 +142,10 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 								</div>
 
 								<div class="attr-item order-delivery col-sm-6 row">
-									<span class="name col-xs-6">
+									<span class="name col-sm-6">
 										<?= $enc->html( $this->translate( 'client', 'Delivery' ), $enc::TRUST ); ?>
 									</span>
-									<span class="value col-xs-6">
+									<span class="value col-sm-6">
 										<?php if( ( $date = $orderItem->getDateDelivery() ) !== null ) : ?>
 											<?php $code = 'stat:' . $orderItem->getDeliveryStatus(); $status = $this->translate( 'mshop/code', $code ); ?>
 											<?= $enc->html( sprintf( $attrformat, $status, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
