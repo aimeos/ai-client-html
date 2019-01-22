@@ -70,7 +70,7 @@ $title = $this->translate( 'client', 'E-mail notification' );
 							<span class="name"><?= $enc->html( $this->translate( 'client', 'Password' ), $enc::TRUST ); ?></span>
 							<?php if( ( $pass = $this->get( 'extAccountPassword' ) ) !== null ) : ?>
 								<span class="value"><?= $enc->html( $pass, $enc::TRUST ); ?></span>
-							<php else : ?>
+							<?php else : ?>
 								<span class="value"><?= $enc->html( $this->translate( 'client', 'Like entered by you' ) ); ?></span>
 							<?php endif; ?>
 						</li>
