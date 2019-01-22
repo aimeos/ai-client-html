@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<div class="account-subscription-detail common-summary col-xs-12">', $output );
+		$this->assertStringStartsWith( '<div class="account-subscription-detail common-summary', $output );
 
 		$this->assertContains( 'Our Unittest', $output );
 		$this->assertContains( 'Example company', $output );
