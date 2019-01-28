@@ -217,8 +217,10 @@ class Standard
 
 		try
 		{
-			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null ) {
+			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null )
+			{
 				\Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' )->deleteAddressItem( $id );
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'Delivery address deleted successfully' ) );
 			}
 
 			// only start if there's something to do
