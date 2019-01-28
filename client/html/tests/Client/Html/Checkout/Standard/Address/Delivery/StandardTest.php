@@ -220,9 +220,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $view );
-		$this->object->process();
 
-		$this->setExpectedException( '\\Aimeos\\MShop\\Exception' );
+		try {
+			$this->object->process();
+			$this->markTestFailed( 'Exception not thrown' );
+		}
+		catch( \Aimeos\Client\Html\Exception $e ) {}
+
+		$this->setExpectedException( \Aimeos\MShop\Exception::class );
 		$manager->getItem( $item->getId() );
 	}
 
