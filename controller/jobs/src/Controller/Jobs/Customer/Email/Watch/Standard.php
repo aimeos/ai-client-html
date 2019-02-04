@@ -76,10 +76,10 @@ class Standard
 			$context->getLocale()->setLanguageId( $langId );
 
 			$search = $custManager->createSearch( true );
+			$func = $search->createFunction( 'customer:has', ['product', 'watch'] );
 			$expr = array(
 				$search->compare( '==', 'customer.languageid', $langId ),
-				$search->compare( '==', 'customer.lists.domain', 'product' ),
-				$search->compare( '==', 'customer.lists.type', 'watch' ),
+				$search->compare( '!=', $func, null ),
 				$search->getConditions(),
 			);
 			$search->setConditions( $search->combine( '&&', $expr ) );
