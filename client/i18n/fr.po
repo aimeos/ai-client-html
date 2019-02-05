@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2019-01-26 10:47+0000\n"
+"PO-Revision-Date: 2019-02-03 10:18+0000\n"
 "Last-Translator: Doryan R <doryan16238@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgid "+ shipping costs"
 msgstr "+ frais d'envoi"
 
 msgid "+1 123 456 7890"
-msgstr "+33 6 12 34 56 789"
+msgstr "+1 123 456 7890"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
@@ -741,7 +741,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr "La commande est en attente jusqu'à ce que nous ayons reçu le paiement final. Si vous avez choisi de payer à l'avance, merci de transférer le montant sur notre compte bancaire avec l'ID de la commande (%1$s) en communication."
+msgstr "La commande est en attente jusqu'à ce que nous recevions le paiement final. Si vous avez choisi de payer à l'avance, veuillez transférer l'argent sur notre compte bancaire en utilisant l'ID de commande %1$s comme référence."
 
 msgid ""
 "The order was canceled.\n"
