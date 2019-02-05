@@ -227,7 +227,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e ) {}
 
-		$this->setExpectedException( \Aimeos\MShop\Exception::class );
+		$this->setExpectedException( '\Aimeos\MShop\Exception' );
 		$manager->getItem( $item->getId() );
 	}
 
