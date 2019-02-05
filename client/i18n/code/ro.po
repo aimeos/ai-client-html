@@ -7,133 +7,131 @@
 # Translators:
 # Translators:
 # Translators:
-# Doryan R <doryan16238@gmail.com>, 2019
-# Six byNine <wwinx@hotmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-02-03 10:18+0000\n"
-"Last-Translator: Doryan R <doryan16238@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/aimeos/aimeos-core/language/fr/)\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"Language-Team: Romanian (http://www.transifex.com/aimeos/aimeos-core/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 msgid "price:default"
-msgstr "%1$s %2$s"
+msgstr ""
 
 #. Stock type
 msgid "stocktype:default"
-msgstr " "
+msgstr ""
 
 #. Warehouse type (pre 2017.x)
 msgid "warehouse:default"
-msgstr " "
+msgstr ""
 
 #. Favorite action
 msgid "favorite"
-msgstr "favori"
+msgstr ""
 
 #. Pin action
 msgid "pin"
-msgstr "épingler"
+msgstr ""
 
 #. Watch action
 msgid "watch"
-msgstr "consulter"
+msgstr ""
 
 #. Product attribute
 msgid "size"
-msgstr "Taille"
+msgstr ""
 
 #. Product attribute
 msgid "length"
-msgstr "Longueur"
+msgstr ""
 
 #. Product attribute
 msgid "width"
-msgstr "Largeur"
+msgstr ""
 
 #. Product attribute
 msgid "color"
-msgstr "Couleur"
+msgstr ""
 
 #. Product attribute
 msgid "option"
-msgstr "Attribut produit"
+msgstr ""
 
 #. Product property package-length
 msgid "package-length"
-msgstr "longueur-du-colis"
+msgstr ""
 
 #. Product property package-width
 msgid "package-width"
-msgstr "largeur-du-colis"
+msgstr ""
 
 #. Product property package-height
 msgid "package-height"
-msgstr "hauteur-du-colis"
+msgstr ""
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "poids-du-colis"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "Titulaire du compte"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "Numéro du compte"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "Référence bancaire"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "Nom de l'établissement bancaire"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr "Prénom"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr "Nom"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "Numéro de carte bancaire"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Code de vérification"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "Mois d'expiration"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "Année d'expiration"
+msgstr ""
 
 #. Pick-up date
 msgid "date.value"
-msgstr "Date de récupération"
+msgstr ""
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "Heure de récupération"
+msgstr ""
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "Lieu de récupération"
+msgstr ""
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "Adresse de ramassage"
+msgstr ""
