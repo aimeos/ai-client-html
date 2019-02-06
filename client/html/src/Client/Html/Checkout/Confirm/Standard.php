@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -148,7 +148,7 @@ class Standard
 		 * @see client/html/checkout/confirm/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/confirm/standard/template-body';
-		$default = 'checkout/confirm/body-standard.php';
+		$default = 'checkout/confirm/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -198,7 +198,7 @@ class Standard
 			 * @see client/html/checkout/confirm/standard/template-body
 			 */
 			$tplconf = 'client/html/checkout/confirm/standard/template-header';
-			$default = 'checkout/confirm/header-standard.php';
+			$default = 'checkout/confirm/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -314,8 +314,8 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 			}
 
-			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
+			$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 
 			if( ( $code = $view->param( 'code' ) ) !== null ) {
 				$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
@@ -329,7 +329,7 @@ class Standard
 
 			if( $orderItem->getPaymentStatus() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
 			{
-				\Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->clear();
+				\Aimeos\Controller\Frontend::create( $context, 'basket' )->clear();
 
 				foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
 					$session->set( $key, null );
@@ -385,7 +385,7 @@ class Standard
 
 		if( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) != null )
 		{
-			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
 			$view->confirmOrderItem = $cntl->getItem( $orderid, false );
 		}
 

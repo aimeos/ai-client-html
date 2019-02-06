@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -96,6 +96,21 @@ class Standard
 		$prefixes = array( 'd' );
 		$context = $this->getContext();
 
+		/** client/html/catalog/detail/cache
+		 * Enables or disables caching only for the catalog detail component
+		 *
+		 * Disable caching for components can be useful if you would have too much
+		 * entries to cache or if the component contains non-cacheable parts that
+		 * can't be replaced using the modifyBody() and modifyHeader() methods.
+		 *
+		 * @param boolean True to enable caching, false to disable
+		 * @category Developer
+		 * @category User
+		 * @see client/html/catalog/filter/cache
+		 * @see client/html/catalog/lists/cache
+		 * @see client/html/catalog/stage/cache
+		 */
+
 		/** client/html/catalog/detail
 		 * All parameters defined for the catalog detail component and its subparts
 		 *
@@ -112,6 +127,29 @@ class Standard
 		{
 			$view = $this->getView();
 
+			/** client/html/catalog/detail/standard/template-body
+			 * Relative path to the HTML body template of the catalog detail client.
+			 *
+			 * The template file contains the HTML code and processing instructions
+			 * to generate the result shown in the body of the frontend. The
+			 * configuration string is the path to the template file relative
+			 * to the templates directory (usually in client/html/templates).
+			 *
+			 * You can overwrite the template file configuration in extensions and
+			 * provide alternative templates. These alternative templates should be
+			 * named like the default one but with the string "standard" replaced by
+			 * an unique name. You may use the name of your project for this. If
+			 * you've implemented an alternative client class as well, "standard"
+			 * should be replaced by the name of the new class.
+			 *
+			 * @param string Relative path to the template creating code for the HTML page body
+			 * @since 2014.03
+			 * @category Developer
+			 * @see client/html/catalog/detail/standard/template-header
+			 */
+			$tplconf = 'client/html/catalog/detail/standard/template-body';
+			$default = 'catalog/detail/body-standard';
+
 			try
 			{
 				if( !isset( $this->view ) ) {
@@ -123,6 +161,11 @@ class Standard
 					$output .= $subclient->setView( $view )->getBody( $uid );
 				}
 				$view->detailBody = $output;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
 			}
 			catch( \Aimeos\Client\Html\Exception $e )
 			{
@@ -146,32 +189,7 @@ class Standard
 				$this->logException( $e );
 			}
 
-			/** client/html/catalog/detail/standard/template-body
-			 * Relative path to the HTML body template of the catalog detail client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the result shown in the body of the frontend. The
-			 * configuration string is the path to the template file relative
-			 * to the templates directory (usually in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but with the string "standard" replaced by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, "standard"
-			 * should be replaced by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page body
-			 * @since 2014.03
-			 * @category Developer
-			 * @see client/html/catalog/detail/standard/template-header
-			 */
-			$tplconf = 'client/html/catalog/detail/standard/template-body';
-			$default = 'catalog/detail/body-standard.php';
-
 			$html = $view->render( $view->config( $tplconf, $default ) );
-
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -198,24 +216,6 @@ class Standard
 		{
 			$view = $this->getView();
 
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
-				}
-
-				$output = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getHeader( $uid );
-				}
-				$view->detailHeader = $output;
-			}
-			catch( \Exception $e )
-			{
-				$this->logException( $e );
-				return;
-			}
-
 			/** client/html/catalog/detail/standard/template-header
 			 * Relative path to the HTML header template of the catalog detail client.
 			 *
@@ -238,11 +238,29 @@ class Standard
 			 * @see client/html/catalog/detail/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/detail/standard/template-header';
-			$default = 'catalog/detail/header-standard.php';
+			$default = 'catalog/detail/header-standard';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			try
+			{
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$output = '';
+				foreach( $this->getSubClients() as $subclient ) {
+					$output .= $subclient->setView( $view )->getHeader( $uid );
+				}
+				$view->detailHeader = $output;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
+			}
+			catch( \Exception $e )
+			{
+				$this->logException( $e );
+			}
 		}
 		else
 		{
@@ -420,28 +438,6 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$prodid = $view->param( 'd_prodid' );
-
-		if( $prodid == '' )
-		{
-			/** client/html/catalog/detail/prodid-default
-			 * The default product ID used if none is given as parameter
-			 *
-			 * To display a product detail view or a part of it for a specific
-			 * product, you can configure its ID using this setting. This is
-			 * most useful in a CMS where the product ID can be configured
-			 * separately for each content node.
-			 *
-			 * @param string Product ID
-			 * @since 2016.01
-			 * @category User
-			 * @category Developer
-			 * @see client/html/catalog/lists/catid-default
-			 */
-			$prodid = $config->get( 'client/html/catalog/detail/prodid-default', '' );
-		}
-
-
 		$domains = array( 'media', 'price', 'text', 'attribute', 'product', 'product/property' );
 
 		/** client/html/catalog/domains
@@ -474,14 +470,26 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
 
+		/** client/html/catalog/detail/prodid-default
+		 * The default product ID used if none is given as parameter
+		 *
+		 * To display a product detail view or a part of it for a specific
+		 * product, you can configure its ID using this setting. This is
+		 * most useful in a CMS where the product ID can be configured
+		 * separately for each content node.
+		 *
+		 * @param string Product ID
+		 * @since 2016.01
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/catid-default
+		 */
+		$prodId = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-		$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-
-		$productItem = $prodCntl->getItem( $prodid, $domains );
+		$productItem = \Aimeos\Controller\Frontend::create( $context, 'product' )->get( $prodId, $domains );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
-		$products = $prodCntl->getItems( array_keys( $productItem->getRefItems( 'product' ) ), $domains );
+		$products = $productItem->getRefItems( 'product' );
 		$this->addMetaItems( $products, $expire, $tags );
 
 
@@ -508,7 +516,7 @@ class Standard
 		 */
 
 		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
-			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, array( $productItem ) ) );
+			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, [$productItem] ) );
 		}
 
 		$view->detailProductItems = $products;

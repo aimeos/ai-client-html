@@ -92,7 +92,7 @@ $product = $this->extOrderProductItem;
 									</a>
 
 									<div class="price-list">
-										<?= $this->partial( $this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ), [
+										<?= $this->partial( $this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ), [
 											'prices' => array( $product->getPrice() )
 										] ); ?>
 									</div>

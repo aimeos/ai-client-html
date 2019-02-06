@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeader()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
@@ -114,14 +114,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
 
-		$this->setExpectedException( '\Aimeos\MShop\Order\Exception' );
+		$this->setExpectedException( \Aimeos\MShop\Order\Exception::class );
 		$this->object->process();
 	}
 
 
 	public function testProcessComment()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 		$view = \TestHelperHtml::getView();
 		$view->standardBasket = $controller->get();
@@ -183,23 +183,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getBasket()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 
-		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
+		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$customer = $customerManager->findItem( 'UTC001' );
 
 		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $customer->getPaymentAddress() );
 		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $customer->getPaymentAddress() );
 
 
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$product = $productManager->findItem( 'CNE' );
 
 		$controller->addProduct( $product->getId(), 2 );
 
 
-		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $this->context );
+		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
 
 		$service = $serviceManager->findItem( 'unitpaymentcode', [], 'service', 'payment' );
 		$controller->addService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT, $service->getId() );

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -22,7 +22,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ); ?></h2>
 
 			<?= $this->partial(
-				$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
+				$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
 				array( 'products' => $productItems, 'itemprop' => 'isRelatedTo' )
 			); ?>
 

@@ -6,7 +6,7 @@ return array(
             'lists' => array(
                 'items' => array(
                     'standard' => array(
-                        'template-body-list' => 'catalog/lists/items-body-list.php',
+                        'template-body-list' => 'catalog/lists/items-body-list',
                     ),
                 ),
             ),

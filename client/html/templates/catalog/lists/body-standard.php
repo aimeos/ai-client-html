@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -72,7 +72,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 	 * @category Developer
 	 */
 	$pagination = $this->partial(
-		$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-standard.php' ),
+		$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-standard' ),
 		array(
 			'params' => $params,
 			'size' => $this->get( 'listPageSize', 48 ),
@@ -101,7 +101,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 		<div class="catalog-list-head">
 
 			<div class="imagelist-default">
-				<?php foreach( $catItem->getRefItems( 'media', 'head', 'default' ) as $mediaItem ) : ?>
+				<?php foreach( $catItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
 					<img class="<?= $enc->attr( $mediaItem->getType() ); ?>"
 						src="<?= $this->content( $mediaItem->getUrl() ); ?>"
 					/>
@@ -116,20 +116,6 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 					</div>
 				<?php endforeach; ?>
 			<?php endforeach; ?>
-
-		</div>
-	<?php endif; ?>
-
-
-	<?php if( count( $quoteItems ) > 0 ) : ?>
-		<div class="catalog-list-quote">
-
-			<div class="content">
-				<?php foreach( $quoteItems as $quoteItem ) : ?>
-					<article><?= $enc->html( $quoteItem->getContent() ); ?></article>
-				<?php endforeach; ?>
-				<a href="#"><?= $enc->html( $this->translate( 'client', 'Show all quotes' ), $enc::TRUST ); ?></a>
-			</div>
 
 		</div>
 	<?php endif; ?>

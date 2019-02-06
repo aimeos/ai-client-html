@@ -6,7 +6,7 @@ namespace Aimeos\Perf\Client\Html;
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 class CatalogTest extends \PHPUnit\Framework\TestCase
 {
@@ -20,7 +20,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$this->paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->context = \TestHelperHtml::getContext( 'unitperf' );
 
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
+		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'home' ) );
 		$items = $catalogManager->searchItems( $search );
@@ -29,7 +29,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'No catalog item with code "home" found' );
 		}
 
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $productManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', 'perf-00000' ) );
 		$items = $productManager->searchItems( $search );
@@ -52,7 +52,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	public function testFilter()
 	{
 		// parser warm up so files are already parsed (same as APC is used)
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getBody();
 		$client->getHeader();
@@ -60,7 +60,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getHeader();
 		$client->getBody();
@@ -74,7 +74,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getHeader();
 
@@ -87,7 +87,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getBody();
 
@@ -99,7 +99,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	public function testList()
 	{
 		// parser warm up so files are already parsed (same as APC is used)
-		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getBody();
 		$client->getHeader();
@@ -107,7 +107,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getHeader();
 		$client->getBody();
@@ -121,7 +121,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getHeader();
 
@@ -134,7 +134,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getBody();
 
@@ -146,7 +146,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	public function testDetail()
 	{
 		// parser warm up so files are already parsed (same as APC is used)
-		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getBody();
 		$client->getHeader();
@@ -154,7 +154,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getHeader();
 		$client->getBody();
@@ -168,7 +168,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getHeader();
 
@@ -181,7 +181,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::createClient( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context, $this->paths );
 		$client->setView( $this->view );
 		$client->getBody();
 

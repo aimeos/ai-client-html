@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -127,7 +127,7 @@ class Standard
 		$tplconf = 'client/html/email/payment/text/standard/template-body';
 
 		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/text-body-standard.php', 'email/payment/text-body-standard.php' );
+		$default = array( 'email/payment/' . $status . '/text-body-standard', 'email/payment/text-body-standard' );
 
 		$text = $view->render( $view->config( $tplconf, $default ) );
 		$view->mail()->setBody( $text );

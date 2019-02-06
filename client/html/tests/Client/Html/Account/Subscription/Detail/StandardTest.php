@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<div class="account-subscription-detail common-summary col-xs-12">', $output );
+		$this->assertStringStartsWith( '<div class="account-subscription-detail common-summary', $output );
 
 		$this->assertContains( 'Our Unittest', $output );
 		$this->assertContains( 'Example company', $output );
@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getCustomerItem( $code )
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
 		$items = $manager->searchItems( $search );
@@ -91,7 +91,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getSubscriptionItem( $customerid )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'subscription' );
+		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.base.customerid', $customerid ) );

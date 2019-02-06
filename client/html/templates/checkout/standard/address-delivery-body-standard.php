@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -33,11 +33,8 @@ $controller = $this->config( 'client/html/checkout/standard/url/controller', 'ch
 $action = $this->config( 'client/html/checkout/standard/url/action', 'index' );
 $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 
-try {
-	$addrArray = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY )->toArray();
-} catch( Exception $e ) {
-	$addrArray = [];
-}
+$addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+$addrArray = ( $address = current( $addresses ) !== false ? $address->toArray() : [] );
 
 
 $deliveryDefault = ( $addrArray === [] ? -1 : 'null' );
@@ -147,7 +144,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 ?>
 			<ul class="form-list">
 				<?= $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
 						'address' => $addrValues,
 						'salutations' => $deliverySalutations,
@@ -191,7 +188,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 ?>
 			<ul class="form-list">
 				<?= $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
 						'address' => $addrValues,
 						'salutations' => $deliverySalutations,

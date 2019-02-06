@@ -6,13 +6,14 @@
 # Aimeos, 2015-2018
 # cmann <c.mann@metaways.de>, 2013
 # Janosch Ott <janosch.ott@bluewin.ch>, 2015
+# Thomas Kaiser <t.kaiser@familie-redlich.de>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2018-09-27 06:50+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2018-12-03 09:26+0000\n"
+"Last-Translator: Thomas Kaiser <t.kaiser@familie-redlich.de>\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -415,7 +416,7 @@ msgstr "Nächste Bestellung"
 msgid ""
 "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
 "try again with a different keyword."
-msgstr "Ihre Suche nach <span class=\"searchstring\">\"%1$s\"</span> ergab leider keine Treffer. Bitte versuchen sie es erneut mit einem anderen Suchbegriff."
+msgstr "Ihre Suche nach <span class=\"searchstring\">\"%1$s\"</span> ergab leider keine Treffer. Bitte versuchen Sie es erneut mit einem anderen Suchbegriff."
 
 #, php-format
 msgid "No product with ID \"%1$s\" found"
@@ -510,7 +511,7 @@ msgid "Please choose your delivery method"
 msgstr "Bitte wählen sie die gewünschte Liefermethode"
 
 msgid "Please choose your payment method"
-msgstr "Bitte wählen sie die gewünschte Zahlungsart"
+msgstr "Bitte wählen Sie die gewünschte Zahlungsart"
 
 msgid "Please enter at least three characters"
 msgstr "Bitte geben Sie mindestens drei Zeichen ein"
@@ -721,7 +722,7 @@ msgstr "Vielen Dank für Ihre Bestellung und die Autorisierung der Zahlung.\nEin
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Vielen Dank für Ihre Bestellung.\nWir haben Ihre Zahlung erhalten und eine E-Mail mit den Bestelldaten wird in der nächsten Minuten an Sie versandt."
+msgstr "Vielen Dank für Ihre Bestellung.\nWir haben Ihre Zahlung erhalten und eine E-Mail mit den Bestelldaten wird in den nächsten Minuten an Sie versandt."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)

@@ -17,7 +17,7 @@ $addresses = $this->summaryBasket->getAddresses();
 
 ?>
 <?php $this->block()->start( 'account/subscription/detail' ); ?>
-<div class="account-subscription-detail common-summary col-xs-12">
+<div class="account-subscription-detail common-summary col-sm-12">
 
 	<a class="modify minibutton btn-close"
 		href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
@@ -50,8 +50,8 @@ $addresses = $this->summaryBasket->getAddresses();
 						 * @see client/html/account/subscription/summary/detail
 						 * @see client/html/account/subscription/summary/service
 						 */
-						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['payment'], 'type' => 'payment' )
+						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -65,8 +65,8 @@ $addresses = $this->summaryBasket->getAddresses();
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
+						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
@@ -97,7 +97,7 @@ $addresses = $this->summaryBasket->getAddresses();
 				 * @see client/html/account/subscription/summary/address
 				 * @see client/html/account/subscription/summary/service
 				 */
-				$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail-standard.php' ),
+				$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),

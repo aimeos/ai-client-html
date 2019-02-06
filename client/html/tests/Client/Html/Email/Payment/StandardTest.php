@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function setUpBeforeClass()
 	{
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( \TestHelperHtml::getContext() );
+		$orderManager = \Aimeos\MShop\Order\Manager\Factory::create( \TestHelperHtml::getContext() );
 		$orderBaseManager = $orderManager->getSubManager( 'base' );
 
 		$search = $orderManager->createSearch();
@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
 		$view->extOrderItem = self::$orderItem;
 		$view->extOrderBaseItem = self::$orderBaseItem;
-		$view->extAddressItem = self::$orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+		$view->extAddressItem = self::$orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
 
 		$this->object = new \Aimeos\Client\Html\Email\Payment\Standard( $this->context );
@@ -106,7 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/email/payment/attachments', array( 'invalid' ) );
 
-		$this->setExpectedException( '\Aimeos\Client\Html\Exception' );
+		$this->setExpectedException( \Aimeos\Client\Html\Exception::class );
 		$this->object->getBody();
 	}
 

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -114,7 +114,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/address/delivery/standard/template-body';
-		$default = 'checkout/standard/address-delivery-body-standard.php';
+		$default = 'checkout/standard/address-delivery-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -217,8 +217,10 @@ class Standard
 
 		try
 		{
-			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null ) {
-				\Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' )->deleteAddressItem( $id );
+			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null )
+			{
+				\Aimeos\Controller\Frontend::create( $context, 'customer' )->deleteAddressItem( $id );
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'Delivery address deleted successfully' ) );
 			}
 
 			// only start if there's something to do
@@ -439,7 +441,7 @@ class Standard
 	protected function setAddress( \Aimeos\MW\View\Iface $view )
 	{
 		$context = $this->getContext();
-		$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		/** client/html/checkout/standard/address/delivery/disable-new
 		 * Disables the option to enter a different delivery address for an order
@@ -491,7 +493,7 @@ class Standard
 				$list[str_replace( 'order.base', 'customer', $key )] = $value;
 			}
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 			$address = $controller->editAddressItem( $option, $list );
 
 			$basketCtrl->setAddress( $type, $address );
@@ -514,13 +516,14 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
-		try {
-			$langid = $basketCntl->get()->getAddress( 'delivery' )->getLanguageId();
-		} catch( \Exception $e ) {
+		if( ( $address = current( $basketCntl->get()->getAddress( 'delivery' ) ) ) === false ) {
 			$langid = $view->param( 'ca_delivery/order.base.address.languageid', $context->getLocale()->getLanguageId() );
+		} else {
+			$langid = $address->getLanguageId();
 		}
+
 		$view->deliveryLanguage = $langid;
 
 		$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );

@@ -7,7 +7,7 @@
 
 $enc = $this->encoder();
 
-$contentUrl = $this->config( 'client/html/common/content/baseurl' );
+$contentUrl = $this->config( 'resource/fs/baseurl' );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
@@ -44,13 +44,11 @@ $params = $this->param();
 						<label class="attr-name" for="attr-<?= $enc->attr( $id ); ?>"><!--
 							--><div class="media-list"><!--
 
-								<?php foreach( $supplier->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-									<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
-										<?= '-->' . $this->partial(
-											$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
-											array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
-										) . '<!--'; ?>
-									<?php endif; ?>
+								<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+									<?= '-->' . $this->partial(
+										$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+										array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+									) . '<!--'; ?>
 								<?php endforeach; ?>
 
 							--></div>

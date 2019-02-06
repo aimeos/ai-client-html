@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -17,8 +17,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		\Aimeos\MShop\Factory::setCache( true );
-
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Account\Standard( $this->context );
@@ -28,11 +26,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::clear();
-		\Aimeos\MShop\Factory::setCache( false );
-
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
-
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 		unset( $this->object, $this->object );
 	}
 
@@ -63,12 +57,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$customerItem = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context )->findItem( 'UTC001' );
+		$customerItem = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->findItem( 'UTC001' );
 
 		$addrItem = $customerItem->getPaymentAddress();
 		$addrItem->setEmail( 'unittest@aimeos.org' );
 
-		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$basketCntl->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $addrItem );
 
 		$view = \TestHelperHtml::getView();
@@ -76,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
 
-		$customerStub = $this->getMockBuilder( '\Aimeos\Controller\Frontend\Customer\Standard' )
+		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
 			->setMethods( array( 'addItem' ) )
 			->getMock();

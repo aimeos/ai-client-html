@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 /* Available data:
@@ -12,7 +12,6 @@
  */
 
 $enc = $this->encoder();
-$params = $this->get( 'params', [] );
 $prodid = $this->productItem->getId();
 
 
@@ -52,9 +51,9 @@ $favConfig = $this->config( 'client/html/account/favorite/url/config', [] );
 $list = $this->config( 'client/html/catalog/actions/list', array( 'pin', 'watch', 'favorite' ) );
 
 $urls = array(
-	'pin' => $this->url( $pinTarget, $pinController, $pinAction, array( 'pin_action' => 'add', 'pin_id' => $prodid ) + $params, $pinConfig ),
-	'watch' => $this->url( $watchTarget, $watchController, $watchAction, array( 'wat_action' => 'add', 'wat_id' => $prodid ) + $params, $watchConfig ),
-	'favorite' => $this->url( $favTarget, $favController, $favAction, array( 'fav_action' => 'add', 'fav_id' => $prodid ) + $params, $favConfig ),
+	'pin' => $this->url( $pinTarget, $pinController, $pinAction, array( 'pin_action' => 'add', 'pin_id' => $prodid, 'd_name' => $this->productItem->getName( 'url' ) ), $pinConfig ),
+	'watch' => $this->url( $watchTarget, $watchController, $watchAction, array( 'wat_action' => 'add', 'wat_id' => $prodid, 'd_name' => $this->productItem->getName( 'url' ) ), $watchConfig ),
+	'favorite' => $this->url( $favTarget, $favController, $favAction, array( 'fav_action' => 'add', 'fav_id' => $prodid, 'd_name' => $this->productItem->getName( 'url' ) ), $favConfig ),
 );
 
 

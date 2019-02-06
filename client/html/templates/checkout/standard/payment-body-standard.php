@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -81,9 +81,9 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 					<?php endif; ?>
 
 					<div class="icons">
-						<?php foreach( $service->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+						<?php foreach( $service->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
+								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
 								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'icon' ) )
 							); ?>
 						<?php endforeach; ?>
@@ -137,7 +137,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 						 * @since 2017.07
 						 * @category Developer
 						 */
-						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial-standard.php' ),
+						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial-standard' ),
 						array(
 							'attributes' => $serviceAttributes[$id],
 							'orderService' => $orderService,

@@ -99,7 +99,7 @@ class Standard
 		 * @see client/html/account/subscription/lists/standard/template-header
 		 */
 		$tplconf = 'client/html/account/subscription/lists/standard/template-body';
-		$default = 'account/subscription/lists-body-standard.php';
+		$default = 'account/subscription/lists-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -204,7 +204,7 @@ class Standard
 			$view = $this->getView();
 
 			if( ( $id = $view->param( 'sub_id' ) ) != null && $view->param( 'sub_action' ) === 'cancel' ) {
-				\Aimeos\Controller\Frontend\Subscription\Factory::createController( $this->getContext() )->cancel( $id );
+				\Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' )->cancel( $id );
 			}
 
 			parent::process();
@@ -237,9 +237,9 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'subscription' );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' );
 
-		$view->listsItems = $cntl->searchItems( $cntl->createFilter() );
+		$view->listsItems = $cntl->search();
 		$view->listsIntervalItems = $cntl->getIntervals();
 
 		return parent::addData( $view, $tags, $expire );

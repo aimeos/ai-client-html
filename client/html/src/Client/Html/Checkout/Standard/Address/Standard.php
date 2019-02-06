@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -128,7 +128,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/address/standard/template-body';
-		$default = 'checkout/standard/address-body-standard.php';
+		$default = 'checkout/standard/address-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -260,7 +260,7 @@ class Standard
 				$context->getSession()->set( 'client/html/checkout/standard/address/extra', (array) $param );
 			}
 
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+			$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 			// Test if addresses are available
 			$addresses = $basketCntl->get()->getAddresses();
@@ -301,13 +301,13 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-		$orderAddressManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/address' );
+		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/base/address' );
 
 		try
 		{
 			$deliveryAddressItems = [];
-			$item = $controller->getItem( $context->getUserId(), ['address'] );
+			$item = $controller->getItem( $context->getUserId(), ['customer/address'] );
 
 			foreach( $item->getAddressItems() as $id => $addrItem ) {
 				$deliveryAddressItems[$id] = $orderAddressManager->createItem()->copyFrom( $addrItem );
@@ -322,7 +322,7 @@ class Standard
 		catch( \Exception $e ) {} // customer has no account yet
 
 
-		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$locales = $localeManager->searchItems( $localeManager->createSearch( true ) );
 
 		$languages = [];

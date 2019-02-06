@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -95,7 +95,7 @@ class Standard
 		 * @see client/html/basket/related/bought/standard/template-header
 		 */
 		$tplconf = 'client/html/basket/related/bought/standard/template-body';
-		$default = 'basket/related/bought-body-standard.php';
+		$default = 'basket/related/bought-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -211,28 +211,10 @@ class Standard
 	{
 		if( isset( $view->relatedBasket ) )
 		{
-			$refIds = $items = [];
 			$context = $this->getContext();
+			$config = $context->getConfig();
 
-			$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
-
-			foreach( $this->getListItems( $prodIds ) as $listItem )
-			{
-				$refId = $listItem->getRefId();
-
-				if( !isset( $prodIds[$refId] ) ) {
-					$refIds[$refId] = $refId;
-				}
-			}
-
-			$products = $this->getProductItems( $refIds );
-
-			foreach( $refIds as $id )
-			{
-				if( isset( $products[$id] ) ) {
-					$items[$id] = $products[$id];
-				}
-			}
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
 
 			/** client/html/basket/related/bought/standard/limit
 			 * Number of items in the list of bought together products
@@ -249,42 +231,56 @@ class Standard
 			 * @param integer Number of products
 			 * @since 2014.09
 			 */
-			$size = $context->getConfig()->get( 'client/html/basket/related/bought/standard/limit', 6 );
+			$size = $config->get( 'client/html/basket/related/bought/standard/limit', 6 );
 
+			/** client/html/basket/related/bought/standard/domains
+			 * The list of domain names whose items should be available in the template for the products
+			 *
+			 * The templates rendering product details usually add the images,
+			 * prices and texts, etc. associated to the product
+			 * item. If you want to display additional or less content, you can
+			 * configure your own list of domains (attribute, media, price, product,
+			 * text, etc. are domains) whose items are fetched from the storage.
+			 * Please keep in mind that the more domains you add to the configuration,
+			 * the more time is required for fetching the content!
+			 *
+			 * @param array List of domain names
+			 * @since 2014.09
+			 * @category Developer
+			 */
+			$domains = $config->get( 'client/html/basket/related/bought/standard/domains', ['text', 'price', 'media'] );
+			$domains['product'] = ['bought-together'];
+
+			$items = $refItems = [];
+			$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
+
+			foreach( $cntl->product( $prodIds )->search( $domains ) as $prodItem )
+			{
+				foreach( $prodItem->getListItems( 'product', 'bought-together' ) as $listItem )
+				{
+					if( ( $refItem = $listItem->getRefItem() ) !== null )
+					{
+						$items[$listItem->getRefId()] = $listItem->getPosition();
+						$refItems[$refItem->getId()] = $refItem;
+					}
+				}
+			}
+
+			asort( $items );
+
+			foreach( $items as $id => $pos )
+			{
+				if( isset( $refItems[$id] ) ) {
+					$items[$id] = $refItems[$id];
+				} else {
+					unset( $items[$id] );
+				}
+			}
 
 			$view->boughtItems = array_slice( $items, 0, $size, true );
 		}
 
 		return parent::addData( $view, $tags, $expire );
-	}
-
-
-	/**
-	 * Returns the list items of type "bought-together" associated to the given product IDs.
-	 *
-	 * @param string[] $prodIds List of product IDs
-	 * @return \Aimeos\MShop\Product\Item\Lists\Iface[] List of product list items
-	 */
-	protected function getListItems( array $prodIds )
-	{
-		$context = $this->getContext();
-
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists/type' );
-		$typeItem = $typeManager->findItem( 'bought-together', [], 'product' );
-
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'product/lists' );
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-				$search->compare( '==', 'product.lists.parentid', $prodIds ),
-				$search->compare( '==', 'product.lists.typeid', $typeItem->getId() ),
-				$search->compare( '==', 'product.lists.domain', 'product' ),
-				$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( array( $search->sort( '+', 'product.lists.position' ) ) );
-
-		return $manager->searchItems( $search );
 	}
 
 
@@ -308,40 +304,5 @@ class Standard
 		}
 
 		return array_keys( $list );
-	}
-
-
-	/**
-	 * Returns the product items for the given IDs.
-	 *
-	 * @param string[] $ids List of product IDs
-	 * @return \Aimeos\MShop\Product\Item\Iface[] List of product items
-	 */
-	protected function getProductItems( array $ids )
-	{
-		$context = $this->getContext();
-		$config = $context->getConfig();
-
-		/** client/html/basket/related/bought/standard/domains
-		 * The list of domain names whose items should be available in the template for the products
-		 *
-		 * The templates rendering product details usually add the images,
-		 * prices and texts, etc. associated to the product
-		 * item. If you want to display additional or less content, you can
-		 * configure your own list of domains (attribute, media, price, product,
-		 * text, etc. are domains) whose items are fetched from the storage.
-		 * Please keep in mind that the more domains you add to the configuration,
-		 * the more time is required for fetching the content!
-		 *
-		 * @param array List of domain names
-		 * @since 2014.09
-		 * @category Developer
-		 */
-		$domains = array( 'text', 'price', 'media' );
-		$domains = $config->get( 'client/html/basket/related/bought/standard/domains', $domains );
-
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-
-		return $controller->getItems( $ids, $domains );
 	}
 }

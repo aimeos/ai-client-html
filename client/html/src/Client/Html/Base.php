@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -593,8 +593,9 @@ abstract class Base
 		 * @see client/html/common/cache/tag-all
 		 */
 		$force = $config->get( 'client/html/common/cache/force', false );
+		$enable = $config->get( $confkey . '/cache', true );
 
-		if( $force == false && $context->getUserId() !== null ) {
+		if( $enable == false || $force == false && $context->getUserId() !== null ) {
 			return null;
 		}
 
@@ -630,8 +631,9 @@ abstract class Base
 		$config = $context->getConfig();
 
 		$force = $config->get( 'client/html/common/cache/force', false );
+		$enable = $config->get( $confkey . '/cache', true );
 
-		if( $force == false && $context->getUserId() !== null ) {
+		if( $enable == false || $force == false && $context->getUserId() !== null ) {
 			return;
 		}
 

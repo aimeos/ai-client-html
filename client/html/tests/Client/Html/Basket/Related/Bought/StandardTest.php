@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
 		$basket = $controller->get();
 		$basket->addProduct( $this->getOrderProductItem( 'CNE' ) );
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrderProductItem( $code )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'product' );
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 		$items = $manager->searchItems( $search );
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base/product' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
 		$orderItem = $manager->createItem();
 		$orderItem->copyFrom( $item );
 

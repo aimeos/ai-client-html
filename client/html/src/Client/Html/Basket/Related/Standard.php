@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -136,7 +136,7 @@ class Standard
 		 * @see client/html/basket/related/standard/template-header
 		 */
 		$tplconf = 'client/html/basket/related/standard/template-body';
-		$default = 'basket/related/body-standard.php';
+		$default = 'basket/related/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -192,7 +192,7 @@ class Standard
 		 * @see client/html/basket/related/standard/template-body
 		 */
 		$tplconf = 'client/html/basket/related/standard/template-header';
-		$default = 'basket/related/header-standard.php';
+		$default = 'basket/related/header-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -308,7 +308,7 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$view->relatedBasket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
+		$view->relatedBasket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 
 		return parent::addData( $view, $tags, $expire );
 	}

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -106,7 +106,7 @@ class Standard
 		 * @see client/html/checkout/standard/summary/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/summary/standard/template-body';
-		$default = 'checkout/standard/summary-body-standard.php';
+		$default = 'checkout/standard/summary-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -235,7 +235,7 @@ class Standard
 			}
 
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 
 			if( ( $comment = $view->param( 'cs_comment' ) ) !== null )
 			{
@@ -292,13 +292,13 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
+		$addresses = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 
-		if( ( $view->summaryCustomerId = $context->getUserId() ) === null )
+		if( ( $view->summaryCustomerId = $context->getUserId() ) === null && ( $addr = current( $addresses ) ) !== false )
 		{
 			try
 			{
-				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+				$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 				$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
 			}
 			catch( \Exception $e ) {}

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $target = $this->config( 'client/html/catalog/detail/url/target' );
@@ -20,6 +20,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 {
 	$media = $price = '';
+	$name = $productItem->getName();
 	$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 	$priceItems = $productItem->getRefItems( 'price', 'default', 'default' );
 
@@ -32,11 +33,11 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	}
 
 	$items[] = array(
-		'label' => $productItem->getName(),
+		'label' => $name,
 		'html' => '
 			<li class="aimeos catalog-suggest">
-				<a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, array( 'd_prodid' => $id ), [], $config ) ).'">
-					<div class="item-name">' . $enc->html( $productItem->getName() ) . '</div>
+				<a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, ['d_prodid' => $id, 'd_name' => $name], [], $config ) ).'">
+					<div class="item-name">' . $enc->html( $name ) . '</div>
 					<div class="item-price">' . $enc->html( $price ) . '</div>
 					<div class="item-image" style="background-image: url(' . $enc->attr( $media ) . ')"></div>
 				</a>

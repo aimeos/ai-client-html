@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -19,7 +19,7 @@ $services = $this->summaryBasket->getServices();
 
 ?>
 <?php $this->block()->start( 'account/history/order' ); ?>
-<div class="account-history-order common-summary col-xs-12">
+<div class="account-history-order common-summary col-sm-12">
 
 	<a class="modify minibutton btn-close"
 		href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
@@ -52,8 +52,8 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/account/history/summary/detail
 						 * @see client/html/account/history/summary/service
 						 */
-						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['payment'], 'type' => 'payment' )
+						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -67,8 +67,8 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
+						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
@@ -101,7 +101,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/account/history/summary/address
 						 * @see client/html/account/history/summary/detail
 						 */
-						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-standard.php' ),
+						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-standard' ),
 						array( 'service' => $services['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php endif; ?>
@@ -116,7 +116,7 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-standard.php' ),
+						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-standard' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -176,7 +176,7 @@ $services = $this->summaryBasket->getServices();
 				 * @see client/html/account/history/summary/address
 				 * @see client/html/account/history/summary/service
 				 */
-				$this->config( 'client/html/account/history/summary/detail', 'common/summary/detail-standard.php' ),
+				$this->config( 'client/html/account/history/summary/detail', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),

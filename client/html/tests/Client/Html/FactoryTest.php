@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -28,14 +28,14 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateClient()
 	{
-		$client = \Aimeos\Client\Html\Factory::createClient( $this->context, 'account/favorite' );
+		$client = \Aimeos\Client\Html\Factory::create( $this->context, 'account/favorite' );
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Iface', $client );
 	}
 
 
 	public function testCreateClientName()
 	{
-		$client = \Aimeos\Client\Html\Factory::createClient( $this->context, 'account/favorite', 'Standard' );
+		$client = \Aimeos\Client\Html\Factory::create( $this->context, 'account/favorite', 'Standard' );
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Iface', $client );
 	}
 
@@ -43,28 +43,28 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 	public function testCreateClientNameEmpty()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Factory::createClient( $this->context, '' );
+		\Aimeos\Client\Html\Factory::create( $this->context, '' );
 	}
 
 
 	public function testCreateClientNameParts()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Factory::createClient( $this->context, 'account_favorite' );
+		\Aimeos\Client\Html\Factory::create( $this->context, 'account_favorite' );
 	}
 
 
 	public function testCreateClientNameInvalid()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Factory::createClient( $this->context, '%account/favorite' );
+		\Aimeos\Client\Html\Factory::create( $this->context, '%account/favorite' );
 	}
 
 
 	public function testCreateClientNameNotFound()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html\Account\Favorite\Factory::createClient( $this->context, 'account/fav' );
+		\Aimeos\Client\Html\Account\Favorite\Factory::create( $this->context, 'account/fav' );
 	}
 
 }

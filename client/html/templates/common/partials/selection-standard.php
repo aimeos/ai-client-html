@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2014-2017
+ * @copyright Aimeos (aimeos.org), 2014-2018
  */
 
 /* Available data:
@@ -143,7 +143,7 @@ ksort( $attrTypeDeps );
 									<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'icon' ) as $listItem ) : ?>
 										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
 											<?= '-->' . $this->partial( $this->config(
-												'client/html/common/partials/media', 'common/partials/media-standard.php' ),
+												'client/html/common/partials/media', 'common/partials/media-standard' ),
 												array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
 											) . '<!--'; ?>
 										<?php endif; ?>

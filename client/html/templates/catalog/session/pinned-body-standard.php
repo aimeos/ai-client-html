@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -136,7 +136,7 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 					<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
 					<div class="price-list">
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 						); ?>
 					</div>

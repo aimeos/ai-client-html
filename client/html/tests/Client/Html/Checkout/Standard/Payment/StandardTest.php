@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 
 		unset( $this->object, $this->context );
 	}
@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'payment';
 		$view->standardSteps = array( 'before', 'payment', 'after' );
-		$view->standardBasket = \Aimeos\MShop\Factory::createManager( $this->context, 'order/base' )->createItem();
+		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessExistingId()
 	{
-		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $this->context );
+		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
 		$search = $serviceManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitpaymentcode' ) );
 		$result = $serviceManager->searchItems( $search );
@@ -124,7 +124,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment', 'unitpaymentcode' )->getCode() );
 	}
 
@@ -146,7 +146,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessNotExistingAttributes()
 	{
-		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::createManager( $this->context );
+		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
 		$search = $serviceManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitpaymentcode' ) );
 		$result = $serviceManager->searchItems( $search );

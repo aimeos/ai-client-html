@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/count/attribute/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/count/attribute/standard/template-body';
-		$default = 'catalog/count/attribute-body-standard.php';
+		$default = 'catalog/count/attribute-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -227,9 +227,6 @@ class Standard
 		 */
 		if( $config->get( 'client/html/catalog/count/attribute/aggregate', true ) == true )
 		{
-			$filter = $this->getProductListFilter( $view, true, true, false, true );
-			$filter = $this->addAttributeFilter( $view, $filter, false );
-
 			/** client/html/catalog/count/limit
 			 * Limits the number of records that are used for product counts in the catalog filter
 			 *
@@ -253,11 +250,18 @@ class Standard
 			 * @category Developer
 			 * @category User
 			 */
-			$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
-			$filter->setSortations( [] ); // it's not necessary and slows down the query
+			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$view->attributeCountList = $controller->aggregate( $filter, 'index.attribute.id' );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->allof( $view->param( 'f_attrid', [] ) )
+				->oneof( $view->param( 'f_optid', [] ) )
+				->slice( 0, $limit )->sort();
+
+			foreach( $view->param( 'f_oneid', [] ) as $type => $list ) {
+				$cntl->oneof( $list );
+			}
+
+			$view->attributeCountList = $cntl->aggregate( 'index.attribute.id' );
 		}
 
 		return parent::addData( $view, $tags, $expire );

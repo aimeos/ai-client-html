@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 		unset( $this->object );
 	}
 
@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderException()
 	{
-		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
+		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyClientHtmlException()
 	{
-		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
+		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyControllerFrontendException()
 	{
-		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
+		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyMShopException()
 	{
-		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
+		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -115,7 +115,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyException()
 	{
-		$mock = $this->getMockBuilder( '\Aimeos\Client\Html\Basket\Standard\Standard' )
+		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -188,7 +188,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddVariantAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $attrManager->createSearch();
 		$expr = array(
@@ -196,11 +196,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$search->combine( '||', array(
 				$search->combine( '&&', array(
 					$search->compare( '==', 'attribute.code', '30' ),
-					$search->compare( '==', 'attribute.type.code', 'length' ),
+					$search->compare( '==', 'attribute.type', 'length' ),
 				) ),
 				$search->combine( '&&', array(
 					$search->compare( '==', 'attribute.code', '30' ),
-					$search->compare( '==', 'attribute.type.code', 'width' ),
+					$search->compare( '==', 'attribute.type', 'width' ),
 				) ),
 			) ),
 		);
@@ -227,13 +227,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddConfigAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $attrManager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'attribute.code', 'white' ),
 			$search->compare( '==', 'attribute.domain', 'product' ),
-			$search->compare( '==', 'attribute.type.code', 'color' ),
+			$search->compare( '==', 'attribute.type', 'color' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$result = $attrManager->searchItems( $search, [] );
@@ -257,19 +257,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		$output = $this->object->getBody();
 
-		$this->assertRegExp( '#<li class="attr-item.*<a class="change" href=[^>]*>.*<span class="value">weiß</span>.*</a>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="attr-item.*<span class="value">weiß</span>.*</li>#smU', $output );
 	}
 
 
 	public function testGetBodyAddHiddenAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $attrManager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'attribute.code', 'm' ),
 			$search->compare( '==', 'attribute.domain', 'product' ),
-			$search->compare( '==', 'attribute.type.code', 'size' ),
+			$search->compare( '==', 'attribute.type', 'size' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$result = $attrManager->searchItems( $search, [] );
@@ -299,13 +299,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddCustomAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::createManager( $this->context );
+		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
 		$search = $attrManager->createSearch();
 		$expr = array(
 				$search->compare( '==', 'attribute.code', 'custom' ),
 				$search->compare( '==', 'attribute.domain', 'product' ),
-				$search->compare( '==', 'attribute.type.code', 'date' ),
+				$search->compare( '==', 'attribute.type', 'date' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$result = $attrManager->searchItems( $search, [] );
@@ -455,7 +455,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddCoupon()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1 );
 
 		$view = $this->object->getView();
@@ -466,7 +466,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process();
 
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
 		$output = $this->object->getBody();
 
@@ -476,7 +476,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyDeleteCoupon()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1 );
 
 		$view = $this->object->getView();
@@ -495,7 +495,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process();
 
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
 		$output = $this->object->getBody();
 
@@ -524,7 +524,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function addProduct( $code, $quantity, $stockType )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 		$items = $manager->searchItems( $search );
@@ -553,7 +553,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getProductItem( $code )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 		$items = $manager->searchItems( $search );

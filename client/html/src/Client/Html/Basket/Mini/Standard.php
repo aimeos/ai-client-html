@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -142,7 +142,7 @@ class Standard
 			 * @see client/html/basket/mini/standard/template-header
 			 */
 			$tplconf = 'client/html/basket/mini/standard/template-body';
-			$default = 'basket/mini/body-standard.php';
+			$default = 'basket/mini/body-standard';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 			$this->setBasketCached( $key, $html );
@@ -207,7 +207,7 @@ class Standard
 				 * @see client/html/basket/mini/standard/template-body
 				 */
 				$tplconf = 'client/html/basket/mini/standard/template-header';
-				$default = 'basket/mini/header-standard.php';
+				$default = 'basket/mini/header-standard';
 
 				$html = $view->render( $view->config( $tplconf, $default ) );
 				$this->setBasketCached( $key, $html );
@@ -334,7 +334,7 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$view->miniBasket = $controller->get();
 
 		return parent::addData( $view, $tags, $expire );

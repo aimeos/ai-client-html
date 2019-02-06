@@ -42,10 +42,10 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 		$baseItem = $manager->getItem( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
 
-		$addrItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+		$addrItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 
 		foreach( $baseItem->getProducts() as $orderProduct )
 		{
@@ -65,7 +65,7 @@ class Standard
 	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		if( !isset( $this->client ) ) {
-			$this->client = \Aimeos\Client\Html\Email\Subscription\Factory::createClient( $context );
+			$this->client = \Aimeos\Client\Html\Email\Subscription\Factory::create( $context );
 		}
 
 		return $this->client;

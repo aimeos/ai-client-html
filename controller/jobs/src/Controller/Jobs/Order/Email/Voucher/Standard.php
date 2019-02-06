@@ -99,8 +99,8 @@ class Standard
 		$status = (array) $config->get( 'controller/jobs/order/email/voucher/standard/status', $default );
 
 
-		$client = \Aimeos\Client\Html\Email\Voucher\Factory::createClient( $context );
-		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+		$client = \Aimeos\Client\Html\Email\Voucher\Factory::create( $context );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$orderSearch = $orderManager->createSearch();
 
@@ -139,7 +139,7 @@ class Standard
 	 */
 	protected function addOrderStatus( $orderId, $value )
 	{
-		$orderStatusManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/status' );
+		$orderStatusManager = \Aimeos\MShop::create( $this->getContext(), 'order/status' );
 
 		$statusItem = $orderStatusManager->createItem();
 		$statusItem->setParentId( $orderId );
@@ -161,17 +161,17 @@ class Standard
 	{
 		try
 		{
-			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, 0 );
 
 			if( $addr->getEmail() == '' )
 			{
-				$payAddr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+				$payAddr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 				$addr->setEmail( $payAddr->getEmail() );
 			}
 		}
 		catch( \Exception $e )
 		{
-			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 		}
 
 		return $addr;
@@ -187,7 +187,7 @@ class Standard
 	{
 		if( !isset( $this->couponId ) )
 		{
-			$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'coupon' );
+			$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon' );
 
 			$search = $manager->createSearch()->setSlice( 0, 1 );
 			$search->setConditions( $search->compare( '=~', 'coupon.provider', 'Voucher' ) );
@@ -242,7 +242,7 @@ class Standard
 	protected function process( \Aimeos\Client\Html\Iface $client, array $items, $status )
 	{
 		$context = $this->getContext();
-		$orderBaseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );
 
 		foreach( $items as $id => $item )
 		{
@@ -323,7 +323,7 @@ class Standard
 	 */
 	protected function saveCouponCode( $couponId, $code, $ref )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'coupon/code' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon/code' );
 
 		$item = $manager->createItem();
 		$item->setParentId( $couponId );
@@ -344,7 +344,7 @@ class Standard
 	 */
 	protected function storeCouponCode( \Aimeos\MShop\Order\Item\Base\Product\Iface $orderProductItem, $code )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/base/product/attribute' );
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'order/base/product/attribute' );
 
 		$item = $manager->createItem();
 		$item->setCode( 'coupon-code' );

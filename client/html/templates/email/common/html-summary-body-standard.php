@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2014-2017
+ * @copyright Aimeos (aimeos.org), 2014-2018
  */
 
 $enc = $this->encoder();
@@ -38,8 +38,8 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/email/common/summary/detail/html
 						 * @see client/html/email/common/summary/service/html
 						 */
-						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['payment'], 'type' => 'payment' )
+						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -53,8 +53,8 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
+						$this->config( 'client/html/email/common/summary/address/html', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
@@ -87,7 +87,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/email/common/summary/address/html
 						 * @see client/html/email/common/summary/detail/html
 						 */
-						$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard.php' ),
+						$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard' ),
 						array( 'service' => $services['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php endif; ?>
@@ -102,7 +102,7 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard.php' ),
+						$this->config( 'client/html/email/common/summary/service/html', 'common/summary/service-standard' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -162,7 +162,7 @@ $services = $this->summaryBasket->getServices();
 				 * @see client/html/email/common/summary/address/html
 				 * @see client/html/email/commonsummary/service/html
 				 */
-				$this->config( 'client/html/email/common/summary/detail/html', 'common/summary/detail-standard.php' ),
+				$this->config( 'client/html/email/common/summary/detail/html', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),

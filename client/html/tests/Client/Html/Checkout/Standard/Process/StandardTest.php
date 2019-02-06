@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -18,8 +18,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		\Aimeos\MShop\Factory::setCache( true );
-
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Standard( $this->context );
@@ -29,10 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
-		\Aimeos\MShop\Factory::setCache( false );
-		\Aimeos\MShop\Factory::clear();
-
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 		unset( $this->object, $this->context );
 	}
 
@@ -88,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Process\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
 			->setMethods( ['processPayment'] )
 			->getMock();
@@ -104,10 +99,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['addItem', 'block'] )
 			->getMock();
 
-		$form = new \Aimeos\MShop\Common\Item\Helper\Form\Standard( 'url', 'POST', [], true );
-		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
-		$prodId = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNE' )->getId();
-		$servId = \Aimeos\MShop\Factory::createManager( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
+		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$prodId = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' )->getId();
+		$servId = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
 
 		$basketMock->addProduct( $prodId );
 		$basketMock->addService( 'payment', $servId );
@@ -139,7 +134,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Process\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
 			->setMethods( ['processPayment'] )
 			->getMock();
@@ -155,7 +150,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['addItem', 'block', 'saveItem'] )
 			->getMock();
 
-		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
 
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
 		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
@@ -182,7 +177,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Checkout\Standard\Process\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
 			->setMethods( ['processPayment'] )
 			->getMock();
@@ -198,9 +193,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['addItem', 'block'] )
 			->getMock();
 
-		$orderItem = \Aimeos\MShop\Factory::createManager( $this->context, 'order' )->createItem();
-		$prodId = \Aimeos\MShop\Factory::createManager( $this->context, 'product' )->findItem( 'CNE' )->getId();
-		$servId = \Aimeos\MShop\Factory::createManager( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$prodId = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' )->getId();
+		$servId = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
 
 		$basketMock->addProduct( $prodId );
 		$basketMock->addService( 'payment', $servId );
@@ -322,7 +317,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrder( $date )
 	{
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( $this->context );
+		$orderManager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 
 		$search = $orderManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', $date ) );

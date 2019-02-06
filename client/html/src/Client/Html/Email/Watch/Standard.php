@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -126,7 +126,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/watch/standard/template-body';
 
-		return $view->render( $view->config( $tplconf, 'email/watch/body-standard.php' ) );
+		return $view->render( $view->config( $tplconf, 'email/watch/body-standard' ) );
 	}
 
 
@@ -316,7 +316,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/watch/standard/template-header';
 
-		return $view->render( $view->config( $tplconf, 'email/watch/header-standard.php' ) ); ;
+		return $view->render( $view->config( $tplconf, 'email/watch/header-standard' ) ); ;
 	}
 
 

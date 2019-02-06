@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $addresses = $this->summaryBasket->getAddresses();
@@ -32,8 +32,8 @@ $services = $this->summaryBasket->getServices();
 			 * @see client/html/email/common/summary/detail/text
 			 * @see client/html/email/common/summary/service/text
 			 */
-			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard.php' ),
-			array( 'address' => $addresses['payment'], 'type' => 'payment' )
+			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
+			array( 'addresses' => $addresses['payment'], 'type' => 'payment', 'separator' => "\n" )
 		);
 	}
 ?>
@@ -45,8 +45,8 @@ $services = $this->summaryBasket->getServices();
 	if( isset( $addresses['delivery'] ) )
 	{
 		echo $this->partial(
-			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard.php' ),
-			array( 'address' => $addresses['delivery'], 'type' => 'delivery', 'separator' => "\n" )
+			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
+			array( 'addresses' => $addresses['delivery'], 'type' => 'delivery', 'separator' => "\n" )
 		);
 	}
 	else
@@ -77,7 +77,7 @@ $services = $this->summaryBasket->getServices();
 			 * @see client/html/email/common/summary/address/text
 			 * @see client/html/email/common/summary/detail/text
 			 */
-			$this->config( 'client/html/email/common/summary/service/text', 'email/common/text-summary-service-partial-standard.php' ),
+			$this->config( 'client/html/email/common/summary/service/text', 'email/common/text-summary-service-partial-standard' ),
 			array( 'service' => $services['delivery'], 'type' => 'delivery' )
 		);
 	}
@@ -89,7 +89,7 @@ $services = $this->summaryBasket->getServices();
 	if( isset( $services['payment'] ) )
 	{
 		echo $this->partial(
-			$this->config( 'client/html/email/common/summary/service/text', 'email/common/text-summary-service-partial-standard.php' ),
+			$this->config( 'client/html/email/common/summary/service/text', 'email/common/text-summary-service-partial-standard' ),
 			array( 'service' => $services['payment'], 'type' => 'payment' )
 		);
 	}
@@ -127,7 +127,7 @@ $services = $this->summaryBasket->getServices();
 		 * @see client/html/email/common/summary/address/text
 		 * @see client/html/email/common/summary/service/text
 		 */
-		$this->config( 'client/html/email/common/summary/detail/text', 'email/common/text-summary-detail-partial-standard.php' ),
+		$this->config( 'client/html/email/common/summary/detail/text', 'email/common/text-summary-detail-partial-standard' ),
 		array(
 			'summaryBasket' => $this->summaryBasket,
 			'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),

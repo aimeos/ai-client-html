@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -28,12 +28,8 @@ $enc = $this->encoder();
 $disablenew = (bool) $this->config( 'client/html/common/address/billing/disable-new', false );
 
 
-try {
-	$addrArray = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT )->toArray();
-} catch( Exception $e ) {
-	$addrArray = [];
-}
-
+$addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+$addrArray = ( $address = current( $addresses ) !== false ? $address->toArray() : [] );
 
 if( !isset( $addrArray['order.base.address.addressid'] ) || $addrArray['order.base.address.addressid'] == '' ) {
 	$billingDefault = ( isset( $this->addressCustomerItem ) ? $this->addressCustomerItem->getId() : 'null' );
@@ -134,7 +130,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 		}
 	}
 
-	$addrValues = $addr->toArray();
+	$addrValues = array_merge( $addr->toArray(), $this->param( 'ca_billing_' . $this->addressPaymentItem->getAddressId(), [] ) );
 
 	if( !isset( $addrValues['order.base.address.languageid'] ) || $addrValues['order.base.address.languageid'] == '' ) {
 		$addrValues['order.base.address.languageid'] = $this->get( 'billingLanguage', 'en' );
@@ -154,7 +150,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 					 * @category Developer
 					 * @category User
 					 */
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
 						'address' => $addrValues,
 						'salutations' => $billingSalutations,
@@ -213,7 +209,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 			<ul class="form-list">
 
 				<?= $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard.php' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					$values
 				); ?>
 
@@ -222,7 +218,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 						<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
 					</label>
 					<div class="col-md-7">
-						<input class="form-control birthday" type="date" 
+						<input class="form-control birthday" type="date"
 						       id="customer-birthday"
 							name="<?= $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
 							value="<?= $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"

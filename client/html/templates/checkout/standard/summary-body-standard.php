@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -66,8 +66,8 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 						 * @see client/html/checkout/standard/summary/options
 						 * @see client/html/checkout/standard/summary/service
 						 */
-						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['payment'], 'type' => 'payment' )
+						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -84,8 +84,8 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
+						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
@@ -123,7 +123,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 						 * @see client/html/checkout/standard/summary/detail
 						 * @see client/html/checkout/standard/summary/options
 						 */
-						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-standard.php' ),
+						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-standard' ),
 						array( 'service' => $services['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php endif; ?>
@@ -141,7 +141,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-standard.php' ),
+						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-standard' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -200,25 +200,24 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			 * @see client/html/checkout/standard/summary/detail
 			 * @see client/html/checkout/standard/summary/service
 			 */
-			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-standard.php' ),
+			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-standard' ),
 			array(
-				'summaryBasket' => $this->standardBasket,
+				'standardBasket' => $this->standardBasket,
 				'errors' => $this->get( 'summaryErrorCodes', [] ),
-				'customerId' => $this->get( 'summaryCustomerId' ) // deprecated
 			)
 		); ?>
 	</div>
 
 
 	<div class="common-summary-detail row">
-		<div class="header">
+		<div class="header col-sm-12">
 			<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
 			</a>
 			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 		</div>
 
-		<div class="basket">
+		<div class="basket col-sm-12">
 			<?= $this->partial(
 				/** client/html/checkout/standard/summary/detail
 				 * Location of the detail partial template for the checkout summary
@@ -235,7 +234,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 				 * @see client/html/checkout/standard/summary/options
 				 * @see client/html/checkout/standard/summary/service
 				 */
-				$this->config( 'client/html/checkout/standard/summary/detail', 'common/summary/detail-standard.php' ),
+				$this->config( 'client/html/checkout/standard/summary/detail', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->standardBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),

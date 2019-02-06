@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -113,7 +113,7 @@ class Standard
 			 * @see client/html/catalog/session/seen/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/session/seen/standard/template-body';
-			$default = 'catalog/session/seen-body-standard.php';
+			$default = 'catalog/session/seen-body-standard';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 

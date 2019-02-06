@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 /* Available data:
@@ -19,15 +19,15 @@ $type = $this->get( 'type' );
 ?>
 <?php foreach( $this->service as $service ) : ?>
 	<div class="item">
-		<?php if( ( $url = $service->getMediaUrl() ) != '' ) : ?>
+		<?php if( ( $url = $service->getMediaUrl() ) != '' ) : // fixed width for e-mail clients ?>
 			<div class="item-icons">
-				<img src="<?= $enc->attr( $this->content( $url ) ); ?>" />
+				<img src="<?= $enc->attr( $this->content( $url ) ); ?>" width="75" />
 			</div>
 		<?php endif; ?>
 		<h4><?= $enc->html( $service->getName() ); ?></h4>
 	</div>
 
-	<?php if( ( $attributes = $service->getAttributes() ) !== [] ) : ?>
+	<?php if( ( $attributes = $service->getAttributeItems() ) !== [] ) : ?>
 		<ul class="attr-list">
 
 			<?php foreach( $attributes as $attribute ) : ?>

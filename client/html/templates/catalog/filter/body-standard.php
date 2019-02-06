@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 /** client/html/catalog/lists/url/target
@@ -121,8 +121,8 @@ $enc = $this->encoder();
 
 			<?= $this->block()->get( 'catalog/filter/search' ); ?>
 			<?= $this->block()->get( 'catalog/filter/tree' ); ?>
-			<?= $this->block()->get( 'catalog/filter/attribute' ); ?>
 			<?= $this->block()->get( 'catalog/filter/supplier' ); ?>
+			<?= $this->block()->get( 'catalog/filter/attribute' ); ?>
 
 		</form>
 	</nav>

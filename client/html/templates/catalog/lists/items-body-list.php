@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  */
 
 $enc = $this->encoder();
@@ -90,7 +90,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 							data-prodid="<?= $enc->attr( $id ); ?>"
 							data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 								array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 							); ?>
 						</div>
@@ -104,7 +104,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 										data-prodid="<?= $enc->attr( $prodid ); ?>"
 										data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
 										<?= $this->partial(
-											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 											array( 'prices' => $prices )
 										); ?>
 									</div>
@@ -129,7 +129,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 						<?php if( $productItem->getType() === 'select' ) : ?>
 							<div class="items-selection">
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard.php' ),
+									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
 									array(
 										'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
 										'productItems' => $this->get( 'itemsProductItems', [] ),
@@ -140,7 +140,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 						<div class="items-attribute">
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard.php' ),
+								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
 								array(
 									'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
 									'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),

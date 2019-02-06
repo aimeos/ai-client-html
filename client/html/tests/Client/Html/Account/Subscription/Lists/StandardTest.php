@@ -21,16 +21,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object = new \Aimeos\Client\Html\Account\Subscription\Lists\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
-
-		\Aimeos\MShop\Factory::setCache( true );
 	}
 
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::setCache( false );
-		\Aimeos\MShop\Factory::clear();
-
 		unset( $this->object, $this->context );
 	}
 
@@ -98,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getCustomerItem( $code )
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
 		$items = $manager->searchItems( $search );
@@ -113,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getSubscription()
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'subscription' );
+		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );

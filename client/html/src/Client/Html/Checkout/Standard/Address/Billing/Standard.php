@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -115,7 +115,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/address/billing/standard/template-body';
-		$default = 'checkout/standard/address-billing-body-standard.php';
+		$default = 'checkout/standard/address-billing-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -475,7 +475,7 @@ class Standard
 	protected function getCustomerItem( $id )
 	{
 		$context = $this->getContext();
-		$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+		$customerManager = \Aimeos\MShop::create( $context, 'customer' );
 
 		$search = $customerManager->createSearch( true );
 		$expr = array(
@@ -515,7 +515,7 @@ class Standard
 	protected function setAddress( \Aimeos\MW\View\Iface $view )
 	{
 		$context = $this->getContext();
-		$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
 		/** client/html/checkout/standard/address/billing/disable-new
@@ -567,7 +567,7 @@ class Standard
 				$list[str_replace( 'order.base.address', 'customer', $key )] = $value;
 			}
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 			$customer = $controller->editItem( $option, $list );
 
 			$basketCtrl->setAddress( $type, $customer->getPaymentAddress() );
@@ -586,13 +586,14 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
-		try {
-			$langid = $basketCntl->get()->getAddress( 'payment' )->getLanguageId();
-		} catch( \Exception $e ) {
+		if( ( $address = current( $basketCntl->get()->getAddress( 'payment' ) ) ) === false ) {
 			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
+		} else {
+			$langid = $address->getLanguageId();
 		}
+
 		$view->billingLanguage = $langid;
 
 		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );

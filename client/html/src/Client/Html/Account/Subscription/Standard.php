@@ -147,7 +147,7 @@ class Standard
 		 * @see client/html/account/subscription/standard/template-header
 		 */
 		$tplconf = 'client/html/account/subscription/standard/template-body';
-		$default = 'account/subscription/body-standard.php';
+		$default = 'account/subscription/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -197,7 +197,7 @@ class Standard
 			 * @see client/html/account/subscription/standard/template-body
 			 */
 			$tplconf = 'client/html/account/subscription/standard/template-header';
-			$default = 'account/subscription/header-standard.php';
+			$default = 'account/subscription/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

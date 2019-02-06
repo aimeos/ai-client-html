@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -126,7 +126,7 @@ class Standard
 		 * @see client/html/checkout/update/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/update/standard/template-body';
-		$default = 'checkout/update/body-standard.php';
+		$default = 'checkout/update/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -176,7 +176,7 @@ class Standard
 			 * @see client/html/checkout/update/standard/template-body
 			 */
 			$tplconf = 'client/html/checkout/update/standard/template-header';
-			$default = 'checkout/update/header-standard.php';
+			$default = 'checkout/update/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -286,7 +286,7 @@ class Standard
 
 		try
 		{
-			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 			$cntl->updatePush( $view->request(), $view->response(), $view->param( 'code' ) );
 
 			parent::process();

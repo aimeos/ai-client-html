@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -126,7 +126,7 @@ class Standard
 		 * @see client/html/account/favorite/standard/template-header
 		 */
 		$tplconf = 'client/html/account/favorite/standard/template-body';
-		$default = 'account/favorite/body-standard.php';
+		$default = 'account/favorite/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -176,7 +176,7 @@ class Standard
 			 * @see client/html/account/favorite/standard/template-body
 			 */
 			$tplconf = 'client/html/account/favorite/standard/template-header';
-			$default = 'account/favorite/header-standard.php';
+			$default = 'account/favorite/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -329,20 +329,20 @@ class Standard
 	 *
 	 * @param array $ids List of product IDs
 	 * @param string $userId Unique customer ID
-	 * @param string $typeId ID of the list item type
+	 * @param string $type Type of the list item
 	 * @return array Associative list of product IDs as keys and list items as values
 	 */
-	protected function getListItems( array $ids, $userId, $typeId )
+	protected function getListItems( array $ids, $userId, $type )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.parentid', $userId ),
 			$search->compare( '==', 'customer.lists.refid', $ids ),
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
-			$search->compare( '==', 'customer.lists.typeid', $typeId ),
+			$search->compare( '==', 'customer.lists.type', $type ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
@@ -364,17 +364,13 @@ class Standard
 	protected function addFavorites( array $ids, $userId )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
-
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-		$typeId = $typeManager->findItem( 'favorite', [], 'product' )->getId();
-
-		$listItems = $this->getListItems( $ids, $userId, $typeId );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
+		$listItems = $this->getListItems( $ids, $userId, 'favorite' );
 
 		$item = $manager->createItem();
 		$item->setDomain( 'product' );
 		$item->setParentId( $userId );
-		$item->setTypeId( $typeId );
+		$item->setType( 'favorite' );
 		$item->setStatus( 1 );
 
 		foreach( $ids as $id )
@@ -401,12 +397,9 @@ class Standard
 	{
 		$listIds = [];
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-		$typeId = $typeManager->findItem( 'favorite', [], 'product' )->getId();
-
-		$listItems = $this->getListItems( $ids, $userId, $typeId );
+		$listItems = $this->getListItems( $ids, $userId, 'favorite' );
 
 		foreach( $ids as $id )
 		{
@@ -491,21 +484,18 @@ class Standard
 		$productIds = [];
 		$context = $this->getContext();
 
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-		$typeItem = $typeManager->findItem( 'favorite', [], 'product' );
-
 		$size = $this->getProductListSize( $view );
 		$current = $this->getProductListPage( $view );
 		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
 
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
-			$search->compare( '==', 'customer.lists.typeid', $typeItem->getId() ),
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
+			$search->compare( '==', 'customer.lists.type', 'favorite' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSortations( array( $search->sort( '-', 'customer.lists.position' ) ) );
@@ -537,9 +527,9 @@ class Standard
 			$productIds[] = $listItem->getRefId();
 		}
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
 
-		$view->favoriteProductItems = $controller->getItems( $productIds, $domains );
+		$view->favoriteProductItems = $cntl->product( $productIds )->search( $domains );
 		$view->favoritePageFirst = 1;
 		$view->favoritePagePrev = ( $current > 1 ? $current - 1 : 1 );
 		$view->favoritePageNext = ( $current < $last ? $current + 1 : $last );

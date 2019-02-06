@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getHeader();
 
 		$this->assertContains( '<title>Kaffee</title>', $output );
-		$this->assertEquals( '2019-01-01 00:00:00', $expire );
+		$this->assertEquals( '2022-01-01 00:00:00', $expire );
 		$this->assertEquals( 5, count( $tags ) );
 	}
 
@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -97,13 +97,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
 
-		$this->assertContains( '<div class="catalog-list-quote">', $output );
-		$this->assertRegExp( '#Kaffee Bewertungen#', $output );
-
 		$this->assertContains( '<div class="catalog-list-head">', $output );
 		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
 
-		$this->assertEquals( '2019-01-01 00:00:00', $expire );
+		$this->assertEquals( '2022-01-01 00:00:00', $expire );
 		$this->assertEquals( 5, count( $tags ) );
 	}
 
@@ -245,7 +242,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyHtmlException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -261,7 +258,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyFrontendException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -277,7 +274,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyMShopException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -293,7 +290,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -340,7 +337,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessHtmlException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
@@ -358,7 +355,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessFrontendException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
@@ -376,7 +373,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessMShopException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
@@ -394,7 +391,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Lists\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 		->setConstructorArgs( array( $this->context, [] ) )
 		->setMethods( array( 'getClientParams' ) )
 		->getMock();
@@ -412,7 +409,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getCatalogItem( $code = 'cafe' )
 	{
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $this->context );
+		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );
 		$items = $catalogManager->searchItems( $search );

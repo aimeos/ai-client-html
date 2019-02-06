@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  * @package Client
  * @subpackage Html
  */
@@ -95,7 +95,7 @@ class Standard
 		 * @see client/html/catalog/detail/service/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/detail/service/standard/template-body';
-		$default = 'catalog/detail/service-body-standard.php';
+		$default = 'catalog/detail/service-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -225,17 +225,17 @@ class Standard
 		 */
 		$types = $config->get( 'client/html/catalog/detail/service/types', array( 'delivery' ) );
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'service' );
+		$manager = \Aimeos\MShop::create( $context, 'service' );
 		$search = $manager->createSearch( true );
 
 		$expr = array(
-			$search->compare( '==', 'service.type.code', $types ),
+			$search->compare( '==', 'service.type', $types ),
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
 		$sortation = array(
-			$search->sort( '+', 'service.type.code' ),
+			$search->sort( '+', 'service.type' ),
 			$search->sort( '+', 'service.position' ),
 		);
 		$search->setSortations( $sortation );

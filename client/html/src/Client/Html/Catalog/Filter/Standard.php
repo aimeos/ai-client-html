@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -119,6 +119,21 @@ class Standard
 		$prefixes = array( 'f' );
 		$context = $this->getContext();
 
+		/** client/html/catalog/filter/cache
+		 * Enables or disables caching only for the catalog filter component
+		 *
+		 * Disable caching for components can be useful if you would have too much
+		 * entries to cache or if the component contains non-cacheable parts that
+		 * can't be replaced using the modifyBody() and modifyHeader() methods.
+		 *
+		 * @param boolean True to enable caching, false to disable
+		 * @category Developer
+		 * @category User
+		 * @see client/html/catalog/detail/cache
+		 * @see client/html/catalog/lists/cache
+		 * @see client/html/catalog/stage/cache
+		 */
+
 		/** client/html/catalog/filter
 		 * All parameters defined for the catalog filter component and its subparts
 		 *
@@ -135,6 +150,29 @@ class Standard
 		{
 			$view = $this->getView();
 
+			/** client/html/catalog/filter/standard/template-body
+			 * Relative path to the HTML body template of the catalog filter client.
+			 *
+			 * The template file contains the HTML code and processing instructions
+			 * to generate the result shown in the body of the frontend. The
+			 * configuration string is the path to the template file relative
+			 * to the templates directory (usually in client/html/templates).
+			 *
+			 * You can overwrite the template file configuration in extensions and
+			 * provide alternative templates. These alternative templates should be
+			 * named like the default one but with the string "standard" replaced by
+			 * an unique name. You may use the name of your project for this. If
+			 * you've implemented an alternative client class as well, "standard"
+			 * should be replaced by the name of the new class.
+			 *
+			 * @param string Relative path to the template creating code for the HTML page body
+			 * @since 2014.03
+			 * @category Developer
+			 * @see client/html/catalog/filter/standard/template-header
+			 */
+			$tplconf = 'client/html/catalog/filter/standard/template-body';
+			$default = 'catalog/filter/body-standard';
+
 			try
 			{
 				if( !isset( $this->view ) ) {
@@ -146,6 +184,11 @@ class Standard
 					$html .= $subclient->setView( $view )->getBody( $uid );
 				}
 				$view->filterBody = $html;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
 			}
 			catch( \Aimeos\Client\Html\Exception $e )
 			{
@@ -169,32 +212,7 @@ class Standard
 				$this->logException( $e );
 			}
 
-			/** client/html/catalog/filter/standard/template-body
-			 * Relative path to the HTML body template of the catalog filter client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the result shown in the body of the frontend. The
-			 * configuration string is the path to the template file relative
-			 * to the templates directory (usually in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but with the string "standard" replaced by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, "standard"
-			 * should be replaced by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page body
-			 * @since 2014.03
-			 * @category Developer
-			 * @see client/html/catalog/filter/standard/template-header
-			 */
-			$tplconf = 'client/html/catalog/filter/standard/template-body';
-			$default = 'catalog/filter/body-standard.php';
-
 			$html = $view->render( $view->config( $tplconf, $default ) );
-
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -226,24 +244,6 @@ class Standard
 		{
 			$view = $this->getView();
 
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
-				}
-
-				$html = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->getHeader( $uid );
-				}
-				$view->filterHeader = $html;
-			}
-			catch( \Exception $e )
-			{
-				$this->logException( $e );
-				return;
-			}
-
 			/** client/html/catalog/filter/standard/template-header
 			 * Relative path to the HTML header template of the catalog filter client.
 			 *
@@ -266,11 +266,29 @@ class Standard
 			 * @see client/html/catalog/filter/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/filter/standard/template-header';
-			$default = 'catalog/filter/header-standard.php';
+			$default = 'catalog/filter/header-standard';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			try
+			{
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$html = '';
+				foreach( $this->getSubClients() as $subclient ) {
+					$html .= $subclient->setView( $view )->getHeader( $uid );
+				}
+				$view->filterHeader = $html;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
+			}
+			catch( \Exception $e )
+			{
+				$this->logException( $e );
+			}
 		}
 		else
 		{

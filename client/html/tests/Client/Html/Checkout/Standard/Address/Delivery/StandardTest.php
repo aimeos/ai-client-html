@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 namespace Aimeos\Client\Html\Checkout\Standard\Address\Delivery;
@@ -26,7 +26,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 
 		unset( $this->object, $this->context );
 	}
@@ -35,6 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$view = $this->object->getView();
+		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
@@ -88,8 +89,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->process();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
-		$this->assertEquals( 'hamburg', $basket->getAddress( 'delivery' )->getCity() );
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$this->assertEquals( 'hamburg', $basket->getAddress( 'delivery', 0 )->getCity() );
 	}
 
 
@@ -142,7 +143,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.postal' => '20000',
 				'order.base.address.city' => 'hamburg',
 				'order.base.address.languageid' => 'en',
-				'order.base.address.flag' => '1',
 			),
 		);
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -151,8 +151,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $view );
 		$this->object->process();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
-		$this->assertEquals( 0, $basket->getAddress( 'delivery' )->getFlag() );
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$this->assertEquals( 'test', $basket->getAddress( 'delivery', 0 )->getFirstName() );
 	}
 
 
@@ -200,7 +200,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddressDelete()
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context )->getSubManager( 'address' );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->getSubManager( 'address' );
 		$search = $manager->createSearch();
 		$search->setSlice( 0, 1 );
 		$result = $manager->searchItems( $search );
@@ -220,9 +220,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $view );
-		$this->object->process();
 
-		$this->setExpectedException( '\\Aimeos\\MShop\\Exception' );
+		try {
+			$this->object->process();
+			$this->markTestFailed( 'Exception not thrown' );
+		}
+		catch( \Aimeos\Client\Html\Exception $e ) {}
+
+		$this->setExpectedException( \Aimeos\MShop\Exception::class );
 		$manager->getItem( $item->getId() );
 	}
 
@@ -244,7 +249,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddressDeleteNoLogin()
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context )->getSubManager( 'address' );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->getSubManager( 'address' );
 		$search = $manager->createSearch();
 		$search->setSlice( 0, 1 );
 		$result = $manager->searchItems( $search );
@@ -261,14 +266,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $view );
 
-		$this->setExpectedException( '\Aimeos\Controller\Frontend\Customer\Exception' );
+		$this->setExpectedException( \Aimeos\Controller\Frontend\Customer\Exception::class );
 		$this->object->process();
 	}
 
 
 	public function testProcessExistingAddress()
 	{
-		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
+		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$search = $customerManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
 		$result = $customerManager->searchItems( $search );
@@ -299,8 +304,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$this->context->setEditor( null );
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->get();
-		$this->assertEquals( 'Example company', $basket->getAddress( 'delivery' )->getCompany() );
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$this->assertEquals( 'Example company', $basket->getAddress( 'delivery', 0 )->getCompany() );
 	}
 
 

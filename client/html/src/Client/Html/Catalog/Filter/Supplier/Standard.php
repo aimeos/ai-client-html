@@ -95,7 +95,7 @@ class Standard
 		 * @see client/html/catalog/filter/supplier/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/filter/supplier/standard/template-body';
-		$default = 'catalog/filter/supplier-body-standard.php';
+		$default = 'catalog/filter/supplier-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -209,9 +209,6 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'supplier' );
-		$filter = $cntl->createFilter()->setSlice( 0, 0x7fffffff );
-
 		/** client/html/catalog/filter/supplier/domains
 		 * List of domain names whose items should be fetched with the filter suppliers
 		 *
@@ -230,12 +227,11 @@ class Standard
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/supplier/domains', ['text', 'media'] );
 
-		$suppliers = $cntl->searchItems( $filter, $domains );
+		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->getContext(), 'supplier' )
+			->slice( 0, 10000 )->search( $domains );
 
 		// Delete cache when suppliers are added or deleted even in "tag-all" mode
-		$this->addMetaItems( $suppliers, $expire, $tags, ['supplier'] );
-
-		$view->supplierList = $suppliers;
+		$this->addMetaItems( $view->supplierList, $expire, $tags, ['supplier'] );
 
 		return parent::addData( $view, $tags, $expire );
 	}

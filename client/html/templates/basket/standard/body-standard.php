@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -64,7 +64,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						 * @since 2017.01
 						 * @category Developer
 						 */
-						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail-standard.php' ),
+						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail-standard' ),
 						array(
 							'summaryEnableModify' => true,
 							'summaryBasket' => $this->standardBasket,

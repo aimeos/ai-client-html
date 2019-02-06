@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  * @package Client
  * @subpackage Html
  */
@@ -182,20 +182,21 @@ class Standard
 			$view = $this->getView();
 			$id = $view->param( 'dl_id' );
 			$customerId = $context->getUserId();
+			$target = $context->getConfig()->get( 'client/html/account/download/error/url/target' );
 
 			if( $this->checkAccess( $customerId, $id ) === false )
 			{
-				$view->response()->withStatus( 401 );
+				$view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
 				return;
 			}
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'order/base/product/attribute' );
+			$manager = \Aimeos\MShop::create( $context, 'order/base/product/attribute' );
 			$item = $manager->getItem( $id );
 
 			if( $this->checkDownload( $context->getUserId(), $id ) === true ) {
 				$this->addDownload( $item );
 			} else {
-				$view->response()->withStatus( 403 );
+				$view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) );
 			}
 
 			parent::process();
@@ -272,7 +273,7 @@ class Standard
 	{
 		if( $customerId !== null && $id !== null )
 		{
-			$manager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/base' );
+			$manager = \Aimeos\MShop::create( $this->getContext(), 'order/base' );
 
 			$search = $manager->createSearch();
 			$expr = array(
@@ -331,7 +332,7 @@ class Standard
 			$config['count']++;
 			$listItem->setConfig( $config );
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+			$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 			$manager->saveItem( $listItem, false );
 
 			return true;
@@ -346,20 +347,19 @@ class Standard
 	 *
 	 * @param string $customerId Unique customer ID
 	 * @param string $refId Unique order base product attribute ID referencing the download file
-	 * @return \Aimeos\MSho\Common\Item\Lists\Iface List item object
+	 * @return \Aimeos\MShop\Common\Item\Lists\Iface List item object
 	 */
 	protected function getListItem( $customerId, $refId )
 	{
 		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.parentid', $customerId ),
 			$search->compare( '==', 'customer.lists.refid', $refId ),
 			$search->compare( '==', 'customer.lists.domain', 'order' ),
-			$search->compare( '==', 'customer.lists.type.domain', 'order' ),
-			$search->compare( '==', 'customer.lists.type.code', 'download' ),
+			$search->compare( '==', 'customer.lists.type', 'download' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
@@ -367,11 +367,9 @@ class Standard
 
 		if( ( $listItem = reset( $listItems ) ) === false )
 		{
-			$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-
 			$listItem = $manager->createItem();
-			$listItem->setTypeId( $typeManager->findItem( 'download', [], 'order' )->getId() );
 			$listItem->setParentId( $customerId );
+			$listItem->setType( 'download' );
 			$listItem->setDomain( 'order' );
 			$listItem->setRefId( $refId );
 		}

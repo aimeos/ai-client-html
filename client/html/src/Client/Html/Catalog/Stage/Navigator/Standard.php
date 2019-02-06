@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/stage/navigator/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/stage/navigator/standard/template-body';
-		$default = 'catalog/stage/navigator-body-standard.php';
+		$default = 'catalog/stage/navigator-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -225,7 +225,7 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$pos = $pos = $view->param( 'd_pos' );
+		$pos = $view->param( 'd_pos' );
 
 		if( is_numeric( $pos ) && ( $pid = $view->param( 'd_prodid' ) ) !== null )
 		{
@@ -239,13 +239,19 @@ class Standard
 			$context = $this->getContext();
 			$site = $context->getLocale()->getSite()->getCode();
 			$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-			$filter = $this->getProductListFilterByParam( $params );
-			$filter->setSlice( $start, $size );
-			$total = null;
+			$catids = $view->value( $params, 'f_catid', $view->config( 'client/html/catalog/lists/catid-default' ) );
+			$sort = $view->value( $params, 'f_sort', $view->config( 'client/html/catalog/lists/sort', 'relevance' ) );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$products = $controller->searchItems( $filter, array( 'text' ), $total );
+			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->allOf( $view->value( $params, 'f_attrid', [] ) )
+				->oneOf( $view->value( $params, 'f_optid', [] ) )
+				->oneOf( $view->value( $params, 'f_oneid', [] ) )
+				->text( $view->value( $params, 'f_search' ) )
+				->category( $catids, 'default', $level )
+				->slice( $start, $size )->sort( $sort )
+				->search( ['text'] );
 
 			if( ( $count = count( $products ) ) > 1 )
 			{

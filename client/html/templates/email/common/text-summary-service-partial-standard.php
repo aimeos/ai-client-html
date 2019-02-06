@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2017
+ * @copyright Aimeos (aimeos.org), 2017-2018
  */
 
 /** Available data
@@ -15,7 +15,7 @@ foreach( $this->service as $service )
 {
 	echo strip_tags( $service->getName() ) . "\n";
 
-	foreach( $service->getAttributes() as $attribute )
+	foreach( $service->getAttributeItems() as $attribute )
 	{
 		$name = ( $attribute->getName() != '' ? $attribute->getName() : $this->translate( 'client/code', $attribute->getCode() ) );
 

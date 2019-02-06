@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -151,7 +151,7 @@ class Standard
 		 * @see client/html/locale/select/standard/template-header
 		 */
 		$tplconf = 'client/html/locale/select/standard/template-body';
-		$default = 'locale/select/body-standard.php';
+		$default = 'locale/select/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -201,7 +201,7 @@ class Standard
 			 * @see client/html/locale/select/standard/template-body
 			 */
 			$tplconf = 'client/html/locale/select/standard/template-header';
-			$default = 'locale/select/header-standard.php';
+			$default = 'locale/select/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -353,16 +353,14 @@ class Standard
 		$curname = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
 
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+		$items = \Aimeos\Controller\Frontend::create( $context, 'locale' )
+			->sort( 'position' )->slice( 0, 10000 )->search();
 
-		$search = $manager->createSearch( true );
-		$search->setSortations( array( $search->sort( '+', 'locale.position' ) ) );
-
-		foreach( $manager->searchItems( $search ) as $item )
+		foreach( $items as $item )
 		{
 			$curId = $item->getCurrencyId();
 			$langId = $item->getLanguageId();
-			$map[$langId][$curId] = array( $langname => $langId, $curname => $curId );
+			$map[$langId][$curId] = [$langname => $langId, $curname => $curId];
 		}
 
 		$params = $view->param();

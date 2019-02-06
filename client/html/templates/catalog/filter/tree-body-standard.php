@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -77,7 +77,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 	<?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 ) : ?>
 		<?= $this->partial(
-			$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-standard.php' ),
+			$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ),
 			array( 'nodes' => array( $this->treeCatalogTree ), 'path' => $path, 'params' => $this->get( 'treeFilterParams', [] ) )
 		); ?>
 	<?php endif; ?>

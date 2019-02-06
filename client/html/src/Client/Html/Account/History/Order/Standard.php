@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -100,7 +100,7 @@ class Standard
 		 * @see client/html/account/history/order/standard/template-header
 		 */
 		$tplconf = 'client/html/account/history/order/standard/template-body';
-		$default = 'account/history/order-body-standard.php';
+		$default = 'account/history/order-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -218,8 +218,8 @@ class Standard
 		{
 			$context = $this->getContext();
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+			$manager = \Aimeos\MShop::create( $context, 'order' );
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 			$search = $manager->createSearch( true );
 			$expr = array(

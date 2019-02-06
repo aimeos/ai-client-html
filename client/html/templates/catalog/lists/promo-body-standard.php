@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  */
 
 $enc = $this->encoder();
@@ -26,7 +26,7 @@ $products = $this->get( 'promoItems', [] );
 			 * @since 2017.01
 			 * @category Developer
 			 */
-			$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
+			$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
 			array( 'products' => $products )
 		); ?>
 	</section>

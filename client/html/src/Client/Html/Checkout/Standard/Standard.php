@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -181,7 +181,7 @@ class Standard
 		 * @see client/html/checkout/standard/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/standard/template-body';
-		$default = 'checkout/standard/body-standard.php';
+		$default = 'checkout/standard/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -231,7 +231,7 @@ class Standard
 			 * @see client/html/checkout/standard/standard/template-body
 			 */
 			$tplconf = 'client/html/checkout/standard/standard/template-header';
-			$default = 'checkout/standard/header-standard.php';
+			$default = 'checkout/standard/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -398,7 +398,7 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 		$view->standardBasket = $basketCntl->get();
 
 

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -34,13 +34,13 @@ $enc = $this->encoder();
 <div class="catalog-list-items">
 
 	<?= $this->partial(
-		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
+		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
 			'productItems' => $this->get( 'itemsProductItems', [] ),
 			'products' => $this->get( 'listProductItems', [] ),
-			'position' => $this->get( 'itemPosition', 0 ),
+			'position' => $this->get( 'itemPosition' ),
 		)
 	); ?>
 

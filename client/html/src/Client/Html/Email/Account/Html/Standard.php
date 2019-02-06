@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -103,7 +103,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/account/html/standard/template-body';
 
-		$html = $view->render( $view->config( $tplconf, 'email/account/html-body-standard.php' ) );
+		$html = $view->render( $view->config( $tplconf, 'email/account/html-body-standard' ) );
 		$view->mail()->setBodyHtml( $html );
 		return $html;
 	}

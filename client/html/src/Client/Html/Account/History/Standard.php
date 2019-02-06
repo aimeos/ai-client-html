@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -148,7 +148,7 @@ class Standard
 		 * @see client/html/account/history/standard/template-header
 		 */
 		$tplconf = 'client/html/account/history/standard/template-body';
-		$default = 'account/history/body-standard.php';
+		$default = 'account/history/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -198,7 +198,7 @@ class Standard
 			 * @see client/html/account/history/standard/template-body
 			 */
 			$tplconf = 'client/html/account/history/standard/template-header';
-			$default = 'account/history/header-standard.php';
+			$default = 'account/history/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -176,17 +176,23 @@ class Standard
 
 		try
 		{
-			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
-			$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
-			$addresses = $basket->getAddresses();
-
-			if( $context->getUserId() != null && isset( $addresses[$type] ) && $addresses[$type]->getAddressId() == '' )
+			if( $context->getUserId() != null )
 			{
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-				$item = $controller->createAddressItem()->copyFrom( $addresses[$type] );
-				$controller->saveAddressItem( $item );
+				$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
+				$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
 
-				$addresses[$type]->setAddressId( $item->getId() );
+				$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+
+				foreach( $addresses as $pos => $address )
+				{
+					if( $address->getAddressId() == '' )
+					{
+						$item = $controller->createAddressItem()->copyFrom( $address );
+						$controller->saveAddressItem( $item );
+
+						$basket->addAddress( $address->setAddressId( $item->getId() ), $pos );
+					}
+				}
 			}
 		}
 		catch( \Exception $e )

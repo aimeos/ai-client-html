@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -106,7 +106,7 @@ class Standard
 		 * @see client/html/checkout/standard/payment/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/payment/standard/template-body';
-		$default = 'checkout/standard/payment-body-standard.php';
+		$default = 'checkout/standard/payment-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -231,8 +231,8 @@ class Standard
 		try
 		{
 			$context = $this->getContext();
-			$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
-			$serviceCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+			$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+			$serviceCtrl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 
 			// only start if there's something to do
 			if( ( $serviceIds = $view->param( 'c_paymentoption', null ) ) !== null )
@@ -302,8 +302,8 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
-		$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+		$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 
 		$basket = $basketCntl->get();
 		$services = $attributes = $prices = [];

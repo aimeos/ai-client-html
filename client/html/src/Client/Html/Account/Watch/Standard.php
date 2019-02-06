@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -126,7 +126,7 @@ class Standard
 		 * @see client/html/account/watch/standard/template-header
 		 */
 		$tplconf = 'client/html/account/watch/standard/template-body';
-		$default = 'account/watch/body-standard.php';
+		$default = 'account/watch/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -176,7 +176,7 @@ class Standard
 			 * @see client/html/account/watch/standard/template-body
 			 */
 			$tplconf = 'client/html/account/watch/standard/template-header';
-			$default = 'account/watch/header-standard.php';
+			$default = 'account/watch/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -292,11 +292,8 @@ class Standard
 
 			if( $userId != null && !empty( $ids ) )
 			{
-				$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-				$typeId = $typeManager->findItem( 'watch', [], 'product' )->getId();
-
-				$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
-				$items = $this->getListItems( $manager, $ids, $typeId, $userId );
+				$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
+				$items = $this->getListItems( $manager, $ids, 'watch', $userId );
 
 				switch( $view->param( 'wat_action' ) )
 				{
@@ -323,14 +320,14 @@ class Standard
 						$max = $context->getConfig()->get( 'client/html/account/watch/standard/maxitems', 100 );
 						$cnt = count( $ids );
 
-						if( $this->checkLimit( $manager, $typeId, $userId, $max, $cnt ) === false )
+						if( $this->checkLimit( $manager, 'watch', $userId, $max, $cnt ) === false )
 						{
 							$error = sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max );
 							$view->watchErrorList = $view->get( 'watchErrorList', [] ) + array( $error );
 							break;
 						}
 
-						$this->addItems( $manager, $items, $ids, $typeId, $userId );
+						$this->addItems( $manager, $items, $ids, 'watch', $userId );
 						break;
 
 					case 'edit':
@@ -382,19 +379,19 @@ class Standard
 	 * Tests if the maximum number of entries per user is already reached
 	 *
 	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
-	 * @param string $typeId List type ID of the referenced items
+	 * @param string $type List type of the referenced items
 	 * @param string $userId Unique user ID
 	 * @param integer $max Maximum number of items that are allowed
 	 * @param integer $cnt Number of items that should be added
 	 * @return boolean True if items can be added, false if not
 	 */
-	protected function checkLimit( \Aimeos\MShop\Common\Manager\Iface $manager, $typeId, $userId, $max, $cnt )
+	protected function checkLimit( \Aimeos\MShop\Common\Manager\Iface $manager, $type, $userId, $max, $cnt )
 	{
 		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.parentid', $userId ),
-			$search->compare( '==', 'customer.lists.typeid', $typeId ),
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
+			$search->compare( '==', 'customer.lists.type', $type ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSlice( 0, 0 );
@@ -416,15 +413,15 @@ class Standard
 	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
 	 * @param array $listItems Associative list of the reference IDs as keys and the list items as values
 	 * @param array $ids List of referenced IDs
-	 * @param string $typeId List type ID of the referenced items
+	 * @param string $type List type of the referenced items
 	 * @param string $userId Unique user ID
 	 */
-	protected function addItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids, $typeId, $userId )
+	protected function addItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids, $type, $userId )
 	{
 		$item = $manager->createItem();
 		$item->setParentId( $userId );
-		$item->setTypeId( $typeId );
 		$item->setDomain( 'product' );
+		$item->setType( $type );
 		$item->setStatus( 1 );
 
 		foreach( $ids as $id )
@@ -494,18 +491,18 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
 	 * @param array $refIds IDs of the referenced items
-	 * @param string $typeId List type ID of the referenced items
+	 * @param string $type List type of the referenced items
 	 * @param string $userId Unique user ID
 	 * @return array Associative list of the reference IDs as keys and the list items as values
 	 */
-	protected function getListItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $refIds, $typeId, $userId )
+	protected function getListItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $refIds, $type, $userId )
 	{
 		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.parentid', $userId ),
 			$search->compare( '==', 'customer.lists.refid', $refIds ),
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
-			$search->compare( '==', 'customer.lists.typeid', $typeId ),
+			$search->compare( '==', 'customer.lists.type', $type ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
@@ -590,21 +587,18 @@ class Standard
 		$productIds = [];
 		$context = $this->getContext();
 
-		$typeManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists/type' );
-		$typeItem = $typeManager->findItem( 'watch', [], 'product' );
-
 		$size = $this->getProductListSize( $view );
 		$current = $this->getProductListPage( $view );
 		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
 
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
-			$search->compare( '==', 'customer.lists.typeid', $typeItem->getId() ),
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
+			$search->compare( '==', 'customer.lists.type', 'watch' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSortations( array( $search->sort( '-', 'customer.lists.position' ) ) );
@@ -636,9 +630,9 @@ class Standard
 			$productIds[] = $listItem->getRefId();
 		}
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
 
-		$view->watchProductItems = $controller->getItems( $productIds, $domains );
+		$view->watchProductItems = $cntl->product( $productIds )->search( $domains );
 		$view->watchPageFirst = 1;
 		$view->watchPagePrev = ( $current > 1 ? $current - 1 : 1 );
 		$view->watchPageNext = ( $current < $last ? $current + 1 : $last );

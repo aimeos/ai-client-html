@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Controller
  * @subpackage Customer
  */
@@ -58,8 +58,8 @@ class Standard
 		$langIds = [];
 		$context = $this->getContext();
 
-		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
-		$custManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
+		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 
 		$localeItems = $localeManager->searchItems( $localeManager->createSearch() );
 
@@ -76,10 +76,10 @@ class Standard
 			$context->getLocale()->setLanguageId( $langId );
 
 			$search = $custManager->createSearch( true );
+			$func = $search->createFunction( 'customer:has', ['product', 'watch'] );
 			$expr = array(
 				$search->compare( '==', 'customer.languageid', $langId ),
-				$search->compare( '==', 'customer.lists.domain', 'product' ),
-				$search->compare( '==', 'customer.lists.type.code', 'watch' ),
+				$search->compare( '!=', $func, null ),
 				$search->getConditions(),
 			);
 			$search->setConditions( $search->combine( '&&', $expr ) );
@@ -112,7 +112,7 @@ class Standard
 	{
 		$prodIds = $custIds = [];
 		$listItems = $this->getListItems( $context, array_keys( $customers ) );
-		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$listManager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		foreach( $listItems as $id => $listItem )
 		{
@@ -174,7 +174,7 @@ class Standard
 	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		if( !isset( $this->client ) ) {
-			$this->client = \Aimeos\Client\Html\Email\Watch\Factory::createClient( $context );
+			$this->client = \Aimeos\Client\Html\Email\Watch\Factory::create( $context );
 		}
 
 		return $this->client;
@@ -190,13 +190,13 @@ class Standard
 	 */
 	protected function getListItems( \Aimeos\MShop\Context\Item\Iface $context, array $custIds )
 	{
-		$listManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/lists' );
+		$listManager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $listManager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
 			$search->compare( '==', 'customer.lists.parentid', $custIds ),
-			$search->compare( '==', 'customer.lists.type.code', 'watch' ),
+			$search->compare( '==', 'customer.lists.type', 'watch' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSlice( 0, 0x7fffffff );
@@ -215,7 +215,7 @@ class Standard
 	protected function getProductList( array $products, array $listItems )
 	{
 		$result = [];
-		$priceManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'price' );
+		$priceManager = \Aimeos\MShop::create( $this->getContext(), 'price' );
 
 		foreach( $listItems as $id => $listItem )
 		{
@@ -287,7 +287,7 @@ class Standard
 	 */
 	protected function getProductItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds )
 	{
-		$productManager = \Aimeos\MShop\Factory::createManager( $context, 'product' );
+		$productManager = \Aimeos\MShop::create( $context, 'product' );
 
 		$search = $productManager->createSearch( true );
 		$expr = array(
@@ -295,7 +295,7 @@ class Standard
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 0x7fffffff );
+		$search->setSlice( 0, count( $prodIds ) );
 
 		return $productManager->searchItems( $search, array( 'text', 'price', 'media' ) );
 	}
@@ -310,12 +310,12 @@ class Standard
 	 */
 	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodCodes, $stockType )
 	{
-		$stockManager = \Aimeos\MShop\Factory::createManager( $context, 'stock' );
+		$stockManager = \Aimeos\MShop::create( $context, 'stock' );
 
 		$search = $stockManager->createSearch( true );
 		$expr = array(
 			$search->compare( '==', 'stock.productcode', $prodCodes ),
-			$search->compare( '==', 'stock.type.code', $stockType ),
+			$search->compare( '==', 'stock.type', $stockType ),
 			$search->combine( '||', array(
 				$search->compare( '==', 'stock.stocklevel', null ),
 				$search->compare( '>', 'stock.stocklevel', 0 ),
@@ -323,7 +323,7 @@ class Standard
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 0x7fffffff );
+		$search->setSlice( 0, 100000 ); // performance speedup
 
 		return $stockManager->searchItems( $search );
 	}

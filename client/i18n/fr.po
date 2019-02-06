@@ -5,6 +5,7 @@
 # Translators:
 # Aimeos, 2017
 # Aimeos, 2017
+# Doryan R <doryan16238@gmail.com>, 2019
 # kevin teguia <teguiakevin@gmail.com>, 2018
 # nsendetzky, 2014
 # Six byNine <wwinx@hotmail.com>, 2018
@@ -13,8 +14,8 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2018-09-27 06:36+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2019-02-03 10:18+0000\n"
+"Last-Translator: Doryan R <doryan16238@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +110,7 @@ msgid "+ shipping costs"
 msgstr "+ frais d'envoi"
 
 msgid "+1 123 456 7890"
-msgstr "+33 6 12 34 56 789"
+msgstr "+1 123 456 7890"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
@@ -227,7 +228,7 @@ msgstr "Classe \"%1$s\" indisponible"
 
 #, php-format
 msgid "Client HTML type is empty"
-msgstr ""
+msgstr "Le type de client HTML est vide"
 
 #, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
@@ -740,7 +741,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr "La commande est en attente jusqu'à ce que nous ayons reçu le paiement final. Si vous avez choisi de payer à l'avance, merci de transférer le montant sur notre compte bancaire avec l'ID de la commande (%1$s) en communication."
+msgstr "La commande est en attente jusqu'à ce que nous recevions le paiement final. Si vous avez choisi de payer à l'avance, veuillez transférer l'argent sur notre compte bancaire en utilisant l'ID de commande %1$s comme référence."
 
 msgid ""
 "The order was canceled.\n"
@@ -761,7 +762,7 @@ msgid ""
 msgstr "La confirmation du paiement de votre commande est toujours en attente. Vous recevrez un e-mail dès que le paiement aura été autorisé."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Le paiement n'a pas pu être renouvelé"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -772,7 +773,7 @@ msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Le paiement pour votre commande %1$s à %2$s a été remboursé."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "L'abonnement au produit est terminé"
 
 msgid "The subscription for the product has ended."
 msgstr "L'abonnement pour ce produit s'est terminé."
@@ -823,7 +824,7 @@ msgstr "Impossible de sauvegarder l'adresse pour le client \"%1$s\" : %2$s"
 
 #, php-format
 msgid "Unable to set cache entry: %1$s"
-msgstr ""
+msgstr "Impossible de définir l'entrée du cache: %1$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -869,13 +870,13 @@ msgid "You are here:"
 msgstr "Vous êtes ici :"
 
 msgid "You can use your voucher any time in our online shop"
-msgstr ""
+msgstr "Vous pouvez utiliser votre bon d'échange à tout moment dans notre boutique en ligne"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Vous allez maintenant être redirigé vers l'étape suivante"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Vous avez annulé l'abonnement"
 
 msgid "Your account"
 msgstr "Votre compte"
@@ -910,10 +911,10 @@ msgid "Your subscription product"
 msgstr "Votre produit par abonnement"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Votre bon"
 
 msgid "Your voucher: "
-msgstr ""
+msgstr "Votre bon:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

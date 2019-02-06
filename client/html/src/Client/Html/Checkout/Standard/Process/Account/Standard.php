@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -175,14 +175,13 @@ class Standard
 
 		try
 		{
-			$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
-			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
-			$addresses = $basket->getAddresses();
+			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
+			$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 
-			if( $context->getUserId() == '' && isset( $addresses[$type] ) )
+			if( $context->getUserId() == '' && ( $address = current( $addresses ) ) !== false )
 			{
 				$create = (bool) $this->getView()->param( 'cs_option_account' );
-				$userId = $this->getCustomerId( $addresses[$type], $create );
+				$userId = $this->getCustomerId( $address, $create );
 				$context->setUserId( $userId );
 			}
 		}
@@ -217,7 +216,7 @@ class Standard
 	{
 		$id = null;
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
 		try
 		{

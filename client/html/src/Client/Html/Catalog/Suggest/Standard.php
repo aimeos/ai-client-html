@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -116,7 +116,7 @@ class Standard
 		 * @see client/html/catalog/suggest/domains
 		 */
 		$tplconf = 'client/html/catalog/suggest/standard/template-body';
-		$default = 'catalog/suggest/body-standard.php';
+		$default = 'catalog/suggest/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -176,7 +176,7 @@ class Standard
 		 * @see client/html/catalog/suggest/domains
 		 */
 		$tplconf = 'client/html/catalog/suggest/standard/template-header';
-		$default = 'catalog/suggest/header-standard.php';
+		$default = 'catalog/suggest/header-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -308,27 +308,9 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$types = ['name'];
 		$context = $this->getContext();
-		$input = $view->param( 'f_search' );
-		$langid = $context->getLocale()->getLanguageId();
+		$config = $context->getConfig();
 
-
-		/** client/html/catalog/suggest/usecode
-		 * Enables product suggestions based on using the product code
-		 *
-		 * The suggested entries for the full text search in the catalog filter component
-		 * are based on the product names by default. By setting this option to true or 1,
-		 * you can add suggestions based on the product codes as well.
-		 *
-		 * @param boolean True to search for product codes too, false for product names only
-		 * @since 2016.09
-		 * @category Developer
-		 */
-
-		if( $context->getConfig()->get( 'client/html/catalog/suggest/usecode', false ) ) {
-			$types[] = 'code';
-		}
 
 		/** client/html/catalog/suggest/domains
 		 * List of domain items that should be fetched along with the products
@@ -346,20 +328,25 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/suggest/standard/template-body
 		 */
-		$domains = $context->getConfig()->get( 'client/html/catalog/suggest/domains', array( 'text' ) );
+		$domains = $config->get( 'client/html/catalog/suggest/domains', ['text'] );
 
+		/** client/html/catalog/suggest/size
+		 * The number of products shown in the list of suggestions
+		 *
+		 * Limits the number of products that are shown in the list of suggested
+		 * products.
+		 *
+		 * @param array Number of products
+		 * @since 2018.10
+		 * @category Developer
+		 * @category User
+		 * @see client/html/catalog/suggest/usecode
+		 */
+		$size = $config->get( 'client/html/catalog/suggest/size', 24 );
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-
-		$filter = $controller->createFilter( null, '+', 0, 24, 'default' );
-		$expr = array(
-			$filter->compare( '>', $filter->createFunction( 'index.text.relevance', array( 'default', $langid, $input ) ), 0 ),
-			$filter->compare( '>', $filter->createFunction( 'index.text.value', array( 'default', $langid, $types, 'product' ) ), '' ),
-			$filter->getConditions(),
-		);
-		$filter->setConditions( $filter->combine( '&&', $expr ) );
-
-		$view->suggestItems = $controller->searchItems( $filter, $domains );
+		$view->suggestItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
+			->text( $view->param( 'f_search' ) )->slice( 0, $size )
+			->search( $domains );
 
 		return parent::addData( $view, $tags, $expire );
 	}

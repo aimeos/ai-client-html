@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -125,7 +125,7 @@ class Standard
 		 * @see client/html/checkout/standard/process/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/process/standard/template-body';
-		$default = 'checkout/standard/process-body-standard.php';
+		$default = 'checkout/standard/process-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -255,8 +255,8 @@ class Standard
 
 		try
 		{
-			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
+			$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
 			if ( $view->param( 'cs_order', null ) !== null )
@@ -286,7 +286,7 @@ class Standard
 			if( $services === [] || $total <= 0 && $this->isSubscription( $basket->getProducts() ) === false )
 			{
 				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
-				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
+				$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
 				$orderCntl->saveItem( $orderItem );
 
 			}
@@ -333,7 +333,7 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Saved basket object including payment service object
 	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Saved order item created for the basket object
-	 * @return \Aimeos\MShop\Common\Item\Helper\Form\Iface|null Form object with URL, parameters, etc.
+	 * @return \Aimeos\MShop\Common\Helper\Form\Iface|null Form object with URL, parameters, etc.
 	 * 	or null if no form data is required
 	 */
 	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )
@@ -352,11 +352,11 @@ class Standard
 			);
 
 			$params = $view->param();
-			foreach( $service->getAttributes() as $item ) {
+			foreach( $service->getAttributeItems() as $item ) {
 				$params[$item->getCode()] = $item->getValue();
 			}
 
-			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'service' );
+			$serviceCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'service' );
 			return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 		}
 	}

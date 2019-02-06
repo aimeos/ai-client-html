@@ -103,7 +103,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/voucher/text/standard/template-body';
 
-		$text = $view->render( $view->config( $tplconf, 'email/voucher/text-body-standard.php' ) );
+		$text = $view->render( $view->config( $tplconf, 'email/voucher/text-body-standard' ) );
 		$view->mail()->setBody( $text );
 		return $text;
 	}

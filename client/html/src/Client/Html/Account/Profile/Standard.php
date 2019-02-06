@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  * @package Client
  * @subpackage Html
  */
@@ -125,7 +125,7 @@ class Standard
 		 * @see client/html/account/profile/standard/template-header
 		 */
 		$tplconf = 'client/html/account/profile/standard/template-body';
-		$default = 'account/profile/body-standard.php';
+		$default = 'account/profile/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -175,7 +175,7 @@ class Standard
 			 * @see client/html/account/profile/standard/template-body
 			 */
 			$tplconf = 'client/html/account/profile/standard/template-header';
-			$default = 'account/profile/header-standard.php';
+			$default = 'account/profile/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -335,8 +335,8 @@ class Standard
 		$context = $this->getContext();
 		$userId = $context->getUserId();
 
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-		$addrManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
+		$manager = \Aimeos\MShop::create( $context, 'customer' );
+		$addrManager = \Aimeos\MShop::create( $context, 'customer/address' );
 
 
 		/** client/html/account/profile/domains

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/count/tree/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/count/tree/standard/template-body';
-		$default = 'catalog/count/tree-body-standard.php';
+		$default = 'catalog/count/tree-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -226,12 +226,19 @@ class Standard
 			/** client/html/catalog/count/limit
 			 * @see client/html/catalog/count/tree/aggregate
 			 */
-			$filter = $this->getProductListFilter( $view, false );
-			$filter->setSlice( 0, $config->get( 'client/html/catalog/count/limit', 10000 ) );
-			$filter->setSortations( [] ); // it's not necessary and slows down the query
+			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
+			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$view->treeCountList = $controller->aggregate( $filter, 'index.catalog.id' );
+			$nodes = [];
+			$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )->root( $startid );
+
+			if( ( $catId = $view->param( 'f_catid', $startid ) ) != null ) {
+				$nodes = $cntl->visible( array_keys( $cntl->getPath( $catId ) ) )->getTree( [] )->toList();
+			}
+
+			$view->treeCountList = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->category( array_keys( $nodes ) )->slice( 0, $limit )->sort()
+				->aggregate( 'index.catalog.id' );
 		}
 
 		return parent::addData( $view, $tags, $expire );

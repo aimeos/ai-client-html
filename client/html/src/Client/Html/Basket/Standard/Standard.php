@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -126,7 +126,7 @@ class Standard
 		 * @see client/html/basket/standard/standard/template-header
 		 */
 		$tplconf = 'client/html/basket/standard/standard/template-body';
-		$default = 'basket/standard/body-standard.php';
+		$default = 'basket/standard/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -182,7 +182,7 @@ class Standard
 		 * @see client/html/basket/standard/standard/template-body
 		 */
 		$tplconf = 'client/html/basket/standard/standard/template-header';
-		$default = 'basket/standard/header-standard.php';
+		$default = 'basket/standard/header-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -282,7 +282,7 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		try
 		{
@@ -423,7 +423,7 @@ class Standard
 			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
 		}
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 
 		$view->standardBasket = $controller->get();
 		$view->standardTaxRates = $this->getTaxRates( $view->standardBasket );
@@ -439,16 +439,9 @@ class Standard
 	 */
 	protected function addCoupon( \Aimeos\MW\View\Iface $view )
 	{
-		/** client/html/basket/standard/coupon/allowed
-		 * Number of coupon codes a customer is allowed to enter
-		 *
-		 * @param integer Positive number of coupon codes including zero
-		 * @deprecated Use controller/frontend/basket/standard/coupon/allowed instead
-		 */
-
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 			$controller->addCoupon( $coupon );
 			$this->clearCached();
 		}
@@ -462,7 +455,7 @@ class Standard
 	 */
 	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
 
 		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' )
@@ -526,7 +519,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 			$controller->deleteCoupon( $coupon );
 			$this->clearCached();
 		}
@@ -540,7 +533,7 @@ class Standard
 	 */
 	protected function deleteProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_position', [] );
 
 		foreach( $products as $position ) {
@@ -558,7 +551,7 @@ class Standard
 	 */
 	protected function editProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
 
 		if( ( $position = $view->param( 'b_position', '' ) ) !== '' )

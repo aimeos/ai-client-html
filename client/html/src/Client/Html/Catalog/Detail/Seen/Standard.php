@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -261,8 +261,8 @@ class Standard
 			 */
 			$domains = $config->get( 'client/html/catalog/detail/seen/domains', $domains );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$view->seenProductItem = $controller->getItem( $id, $domains );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
+			$view->seenProductItem = $cntl->get( $id, $domains );
 			$this->addMetaItems( $view->seenProductItem, $expire, $tags );
 
 			$output = '';
@@ -292,7 +292,7 @@ class Standard
 			 * @see client/html/catalog/detail/seen/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/detail/seen/standard/template-body';
-			$default = 'catalog/detail/seen-partial-standard.php';
+			$default = 'catalog/detail/seen-partial-standard';
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
 

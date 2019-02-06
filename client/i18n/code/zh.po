@@ -9,12 +9,13 @@
 # Translators:
 # Bruce Liu <zcon.bruce@gmail.com>, 2016
 # shihua16165 <shihua16165@163.com>, 2014
+# stevechen <steve.stevechen@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2018-05-28 12:30+0000\n"
+"PO-Revision-Date: 2018-10-09 09:14+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -28,11 +29,11 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr " "
 
 #. Warehouse type (pre 2017.x)
 msgid "warehouse:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -124,12 +125,16 @@ msgstr "到期年份"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "取貨日"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "取貨時間"
 
 #. Pick-up location
 msgid "supplier.code"
+msgstr "取貨地點"
+
+#. Pick-up location
+msgid "supplier.address"
 msgstr ""
