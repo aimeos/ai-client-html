@@ -598,7 +598,11 @@ class Standard
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-		$catids = (array) $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default', [] ) );
+		$text = $view->param( 'f_search' );
+		$catids = (array) $view->param( 'f_catid', [] );
+		if( empty( $catids ) && $text == '' ) 
+			$catids = $config->get( 'client/html/catalog/lists/catid-default', [] );
+		
 		$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 		$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
@@ -608,7 +612,7 @@ class Standard
 			->oneOf( $view->param( 'f_optid', [] ) )
 			->oneOf( $view->param( 'f_oneid', [] ) )
 			->category( $catids, 'default', $level )
-			->text( $view->param( 'f_search' ) )
+			->text( $text )
 			->slice( ($page - 1) * $size, $size )->sort( $sort )
 			->search( $domains, $total );
 
