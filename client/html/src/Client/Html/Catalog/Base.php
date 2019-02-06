@@ -230,7 +230,7 @@ abstract class Base
 		$text = ( isset( $params['f_search'] ) ? (string) $params['f_search'] : '' );
 		$catid = ( isset( $params['f_catid'] ) ? (string) $params['f_catid'] : '' );
 
-		if( $catid == '' && $catfilter === true )
+		if( $catid == '' && $catfilter === true && $text == '' )
 		{
 			/** client/html/catalog/lists/catid-default
 			 * The default category ID used if none is given as parameter
