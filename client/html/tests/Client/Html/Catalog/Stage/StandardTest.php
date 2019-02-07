@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getHeader();
 
 		$this->assertNotNull( $output );
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
+		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 3, count( $tags ) );
 	}
 
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( '<div class="catalog-stage-breadcrumb">', $output );
 		$this->assertRegExp( '#Root.*.Categories.*.Kaffee.*#smU', $output );
 
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
+		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 3, count( $tags ) );
 	}
 

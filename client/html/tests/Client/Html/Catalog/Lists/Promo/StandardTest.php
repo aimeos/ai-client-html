@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getHeader();
 
 		$this->assertContains( '<script type="text/javascript"', $output );
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
+		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}
 
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertContains( '<section class="catalog-list-promo">', $output );
 		$this->assertRegExp( '/.*Expresso.*Cappuccino.*/smu', $output );
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
+		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}
 

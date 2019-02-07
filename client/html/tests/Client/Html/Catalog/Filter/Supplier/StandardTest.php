@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertRegexp( $regex, $output );
 
 		$this->assertGreaterThan( 2, count( $tags ) );
-		$this->assertEquals( '2022-01-01 00:00:00', $expire );
+		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 	}
 
 
