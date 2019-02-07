@@ -598,7 +598,9 @@ class Standard
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-		$catids = (array) $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default', [] ) );
+		$catids = $view->param( 'f_search' ) == '' ? $config->get( 'client/html/catalog/lists/catid-default' ) : null; 
+		$catids = (array) $view->param( 'f_catid', $catids );
+		
 		$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 		$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
