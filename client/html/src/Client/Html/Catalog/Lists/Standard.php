@@ -402,11 +402,8 @@ class Standard
 			$site = $context->getLocale()->getSite()->getCode();
 			$params = $this->getClientParams( $view->param() );
 
-			if( ( !isset( $params['f_catid'] ) || $params['f_catid'] == '' )
-				&& ( $value = $context->getConfig()->get( 'client/html/catalog/lists/catid-default', '' ) ) != ''
-			) {
-				$params['f_catid'] = $value;
-			}
+			$catId = $context->getConfig()->get( 'client/html/catalog/lists/catid-default' );
+			$params['f_catid'] = $view->param( 'f_catid', $catId );
 
 			$context->getSession()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
 
@@ -598,9 +595,9 @@ class Standard
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-		$catids = $view->param( 'f_search' ) == '' ? $config->get( 'client/html/catalog/lists/catid-default' ) : null; 
+		$catids = $view->param( 'f_search' ) == '' ? $config->get( 'client/html/catalog/lists/catid-default' ) : null;
 		$catids = (array) $view->param( 'f_catid', $catids );
-		
+
 		$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 		$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
