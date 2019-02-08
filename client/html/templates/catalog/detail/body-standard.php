@@ -479,7 +479,7 @@ if( isset( $this->detailProductItem ) )
 					<?php endif; ?>
 
 					<?php $mediaList = $this->get( 'detailMediaItems', [] ); ?>
-					<?php if( ( $mediaItems = $this->detailProductItem->getRefItems( 'media', null, 'download' ) ) !== [] ) : ?>
+					<?php if( ( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) ) !== [] ) : ?>
 						<div class="additional-box">
 							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ); ?></h2>
 							<ul class="content downloads">
