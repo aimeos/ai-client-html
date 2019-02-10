@@ -110,10 +110,8 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 			<div class="select-value">
 
 				<?php if( $layout === 'input' ) : ?>
-
 					<ul class="select-list">
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
-
 							<li class="input-group select-entry">
 								<input type="hidden" value="<?= $enc->attr( $attrId ); ?>"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'id', '' ) ) ); ?>"
@@ -143,7 +141,6 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 					</ul>
 
 				<?php else : ?>
-
 					<input type="hidden" value="1"
 						name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrconfid', 'qty', '' ) ) ); ?>"
 					/>

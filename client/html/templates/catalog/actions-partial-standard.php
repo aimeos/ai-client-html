@@ -61,7 +61,6 @@ $urls = array(
 <div class="catalog-actions">
 	<?php foreach( $list as $entry ) : ?>
 		<?php if( isset( $urls[$entry] ) ) : ?>
-
 			<a class="actions-button actions-button-<?= $enc->attr( $entry ); ?>" href="<?= $enc->attr( $urls[$entry] ); ?>" title="<?= $enc->attr( $this->translate( 'client/code', $entry ) ); ?>"></a>
 
 		<?php endif; ?>

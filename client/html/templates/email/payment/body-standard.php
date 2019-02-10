@@ -10,4 +10,4 @@
 <?php $this->block()->start( 'email/payment' ); ?>
 <?= $this->get( 'paymentBody' ); ?>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/payment' ); ?>
+<?= $this->block()->get( 'email/payment' );

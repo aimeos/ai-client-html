@@ -9,4 +9,4 @@
 <?php $this->block()->start( 'email/account' ); ?>
 <?= $this->get( 'accountBody' ); ?>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/account' ); ?>
+<?= $this->block()->get( 'email/account' );

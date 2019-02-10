@@ -6,4 +6,4 @@
  */
 
 ?>
-<?= $this->get( 'relatedHeader' ); ?>
+<?= $this->get( 'relatedHeader' );

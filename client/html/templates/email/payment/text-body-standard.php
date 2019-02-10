@@ -20,6 +20,6 @@
 <?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ); ?>
 
 
-<?= wordwrap( strip_tags( $this->translate( 'client',  'All orders are subject to our terms and conditions.' ) ) ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'All orders are subject to our terms and conditions.' ) ) ); ?>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/payment/text' ); ?>
+<?= $this->block()->get( 'email/payment/text' );

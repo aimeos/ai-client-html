@@ -7,4 +7,4 @@
  */
 
 ?>
-<?= $this->get( 'standardHeader' ); ?>
+<?= $this->get( 'standardHeader' );

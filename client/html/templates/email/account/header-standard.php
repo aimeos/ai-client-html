@@ -9,4 +9,4 @@
 $this->mail()->setSubject( $this->translate( 'client', 'Your new account' ) );
 
 ?>
-<?= $this->get( 'accountHeader' ); ?>
+<?= $this->get( 'accountHeader' );

@@ -32,7 +32,6 @@ $type = $this->get( 'type' );
 
 			<?php foreach( $attributes as $attribute ) : ?>
 				<?php if( strpos( $attribute->getType(), 'hidden' ) === false ) : ?>
-
 					<li class="<?= $enc->attr( $type . '-' . $attribute->getCode() ); ?>">
 
 						<span class="name">

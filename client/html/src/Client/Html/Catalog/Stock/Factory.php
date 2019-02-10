@@ -84,4 +84,3 @@ class Factory
 		return $client->setObject( $client );
 	}
 }
-

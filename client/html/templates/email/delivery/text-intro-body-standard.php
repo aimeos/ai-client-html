@@ -23,4 +23,4 @@ $string = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() 
 
 <?= wordwrap( strip_tags( $string ) ); ?>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/delivery/text/intro' ); ?>
+<?= $this->block()->get( 'email/delivery/text/intro' );

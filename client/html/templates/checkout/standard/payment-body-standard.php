@@ -45,7 +45,6 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please choose your payment method' ), $enc::TRUST ); ?></p>
 
 	<?php foreach( $services as $id => $service ) : ?>
-
 		<div id="c_payment-<?= $enc->attr( $id ); ?>" class="item item-service row">
 
 			<div class="col-sm-6">
@@ -103,7 +102,6 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 			<div class="col-sm-6">
 
 				<?php if( isset( $serviceAttributes[$id] ) && !empty( $serviceAttributes[$id] ) ) : ?>
-
 					<?= $this->partial(
 						/** client/html/checkout/standard/partials/serviceattr
 						 * Relative path to the checkout service attribute partial template file

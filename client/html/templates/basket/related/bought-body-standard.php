@@ -17,7 +17,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 ?>
 <?php $this->block()->start( 'basket/related/bought' ); ?>
 	<?php if( !empty( $productItems ) ) : ?>
-
 		<section class="basket-related-bought">
 			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ); ?></h2>
 

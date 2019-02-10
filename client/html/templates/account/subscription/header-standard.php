@@ -6,4 +6,4 @@
  */
 
 ?>
-<?= $this->get( 'subscriptionHeader' ); ?>
+<?= $this->get( 'subscriptionHeader' );

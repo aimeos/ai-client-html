@@ -229,7 +229,6 @@ class Standard
 
 		if( is_numeric( $pos ) && ( $pid = $view->param( 'd_prodid' ) ) !== null )
 		{
-
 			if( $pos < 1 ) {
 				$start = 0; $size = 2;
 			} else {

@@ -65,7 +65,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
 
 
-	<?php if( isset( $this->addressPaymentItem )  ) : ?>
+	<?php if( isset( $this->addressPaymentItem ) ) : ?>
 		<div class="item-address">
 			<div class="header">
 
@@ -169,7 +169,6 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 
 
 	<?php if( $disablenew === false ) : ?>
-
 		<div class="item-address item-new" data-option="<?= $enc->attr( $billingOption ); ?>">
 			<div class="header">
 				<input id="ca_billingoption-new" type="radio"
@@ -219,7 +218,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 					</label>
 					<div class="col-md-7">
 						<input class="form-control birthday" type="date"
-						       id="customer-birthday"
+							   id="customer-birthday"
 							name="<?= $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
 							value="<?= $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
 						/>

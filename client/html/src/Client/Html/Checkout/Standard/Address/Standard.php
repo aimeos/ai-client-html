@@ -275,7 +275,6 @@ class Standard
 			$this->getView()->standardStepActive = 'address';
 			throw $e;
 		}
-
 	}
 
 

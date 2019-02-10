@@ -136,4 +136,4 @@ $services = $this->summaryBasket->getServices();
 	);
 ?>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/common/text/summary' ); ?>
+<?= $this->block()->get( 'email/common/text/summary' );

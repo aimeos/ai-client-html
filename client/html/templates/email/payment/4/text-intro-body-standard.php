@@ -29,4 +29,4 @@ $details = sprintf( $msg2, $order->getId(), date_create( $order->getTimeCreated(
 
 <?= wordwrap( strip_tags( $details ) ); ?>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/payment/text/intro' ); ?>
+<?= $this->block()->get( 'email/payment/text/intro' );

@@ -115,7 +115,6 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 
 	<ul class="pinned-items">
 		<?php foreach( $pinList as $id => $productItem ) : ?>
-
 			<?php $pinParams = array( 'pin_action' => 'delete', 'pin_id' => $id ) + $params; ?>
 			<?php $detailParams = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id ); ?>
 

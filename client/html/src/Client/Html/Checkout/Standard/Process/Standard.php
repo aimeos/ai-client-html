@@ -288,7 +288,6 @@ class Standard
 				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
 				$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
 				$orderCntl->saveItem( $orderItem );
-
 			}
 			elseif( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
 			{

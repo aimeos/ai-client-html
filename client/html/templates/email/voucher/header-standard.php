@@ -9,4 +9,4 @@
 $this->mail()->setSubject( $this->translate( 'client', 'Your voucher' ) );
 
 ?>
-<?= $this->get( 'voucherHeader' ); ?>
+<?= $this->get( 'voucherHeader' );

@@ -34,9 +34,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/detail/metatags', true ) === true ) : ?>
-
 	<?php if( isset( $this->detailProductItem ) ) : ?>
-
 		<title><?= $enc->html( $this->detailProductItem->getName() ); ?></title>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>

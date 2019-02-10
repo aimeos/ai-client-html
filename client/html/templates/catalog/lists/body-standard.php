@@ -166,6 +166,6 @@ if( $this->get( 'listProductTotal', 0 ) > 1 )
 	<?= $this->block()->get( 'catalog/lists/items' ); ?>
 
 
- 	<?= $pagination; ?>
+	<?= $pagination; ?>
 
 </section>

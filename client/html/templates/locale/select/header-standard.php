@@ -7,4 +7,4 @@
  */
 
 ?>
-<?= $this->get( 'selectHeader' ); ?>
+<?= $this->get( 'selectHeader' );

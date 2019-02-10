@@ -15,5 +15,3 @@ foreach( $this->response()->getHeaders() as $key => $value )
 }
 
 echo $this->get( 'updateHeader' );
-
-?>

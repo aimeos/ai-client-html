@@ -8,5 +8,3 @@
 
 echo (string) $this->response()->getBody();
 echo $this->get( 'updateBody' );
-
-?>

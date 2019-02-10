@@ -283,7 +283,6 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 				<td class="quantity">
 					<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
-
 						<?php if( $product->getQuantity() > 1 ) : ?>
 							<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ); ?>
 							<a class="minibutton change" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">−</a>

@@ -11,4 +11,4 @@ $str = $this->translate( 'client', 'Your order %1$s' );
 $this->mail()->setSubject( sprintf( $str, $this->extOrderItem->getId() ) );
 
 ?>
-<?= $this->get( 'paymentHeader' ); ?>
+<?= $this->get( 'paymentHeader' );

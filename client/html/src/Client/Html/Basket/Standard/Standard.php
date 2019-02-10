@@ -416,7 +416,6 @@ class Standard
 			$controller = $view->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 			$action = $view->config( 'client/html/catalog/lists/url/action', 'list' );
 			$config = $view->config( 'client/html/catalog/lists/url/config', [] );
-
 		}
 
 		if( empty( $params ) === false ) {

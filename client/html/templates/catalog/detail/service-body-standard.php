@@ -17,7 +17,6 @@ $items = $this->get( 'serviceItems', [] );
 		<ul class="service-list">
 
 			<?php foreach( $items as $item ) : ?>
-
 				<li class="service-item">
 					<span class="service-name"><?= $enc->html( $item->getName() ); ?></span>
 

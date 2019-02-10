@@ -65,7 +65,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( 'Unittest: Monetary rebate', $output );
 		$this->assertContains( '<td class="price">55.00 EUR</td>', $output );
 		$this->assertContains( '<td class="value">14 articles</td>', $output );
-
 	}
 
 

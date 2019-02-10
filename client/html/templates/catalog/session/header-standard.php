@@ -7,5 +7,3 @@
  */
 
 echo $this->get( 'sessionHeader' );
-
-?>

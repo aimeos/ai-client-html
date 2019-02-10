@@ -76,7 +76,6 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 
 
 	<?php foreach( $this->get( 'addressDeliveryItems', [] ) as $id => $addr ) : ?>
-
 		<div class="item-address">
 
 			<div class="header">
@@ -163,7 +162,6 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 
 
 	<?php if( $disablenew === false ) : ?>
-
 		<div class="item-address item-new" data-option="<?= $enc->attr( $deliveryOption ); ?>">
 
 			<div class="header">

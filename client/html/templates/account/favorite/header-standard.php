@@ -7,4 +7,4 @@
  */
 
 ?>
-<?= $this->get( 'favoriteHeader' ); ?>
+<?= $this->get( 'favoriteHeader' );

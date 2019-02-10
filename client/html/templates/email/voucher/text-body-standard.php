@@ -27,4 +27,4 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'You can use your voucher any time in our online shop' ) ) ); ?>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/voucher/text' ); ?>
+<?= $this->block()->get( 'email/voucher/text' );

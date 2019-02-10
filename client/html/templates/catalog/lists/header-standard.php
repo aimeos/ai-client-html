@@ -44,9 +44,7 @@ unset( $params['f_sort'] );
 
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
-
 	<?php if( ( $catItem = end( $catItems ) ) !== false ) : ?>
-
 		<title><?= $enc->html( $catItem->getName() ); ?></title>
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>

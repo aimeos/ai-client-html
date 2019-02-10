@@ -10,4 +10,4 @@
 $this->mail()->setSubject( $this->translate( 'client', 'Your watched products' ) );
 
 ?>
-<?= $this->get( 'watchHeader' ); ?>
+<?= $this->get( 'watchHeader' );

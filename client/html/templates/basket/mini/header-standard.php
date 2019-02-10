@@ -7,4 +7,4 @@
  */
 
 ?>
-<?= $this->get( 'miniHeader' ); ?>
+<?= $this->get( 'miniHeader' );

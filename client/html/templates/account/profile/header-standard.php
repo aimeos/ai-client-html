@@ -6,4 +6,4 @@
  */
 
 ?>
-<?= $this->get( 'profileHeader' ); ?>
+<?= $this->get( 'profileHeader' );

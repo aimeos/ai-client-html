@@ -7,4 +7,4 @@
  */
 
 ?>
-<?= $this->get( 'watchHeader' ); ?>
+<?= $this->get( 'watchHeader' );

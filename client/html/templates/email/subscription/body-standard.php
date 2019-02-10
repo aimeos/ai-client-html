@@ -9,4 +9,4 @@
 <?php $this->block()->start( 'email/subscription' ); ?>
 <?= $this->get( 'subscriptionBody' ); ?>
 <?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/subscription' ); ?>
+<?= $this->block()->get( 'email/subscription' );

@@ -104,7 +104,6 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 <ul class="level-<?= $enc->attr( $level ); ?>">
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
-
 			<?php $id = $item->getId(); $config = $item->getConfig(); ?>
 			<?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; ?>
 			<?php $class = ( $item->hasChildren() ? ' withchild' : ' nochild' ) . ( isset( $path[$id] ) ? ' active' : '' ); ?>

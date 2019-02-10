@@ -24,14 +24,12 @@ $params = $this->param();
 <section class="catalog-filter-supplier">
 
 	<?php if( !empty( $suppliers ) ) : ?>
-
 		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ); ?></h2>
 
 		<fieldset class="supplier-lists">
 			<ul class="attr-list"><!--
 
 				<?php foreach( $suppliers as $id => $supplier ) : ?>
-
 					--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
 
 						<input class="attr-item" type="checkbox"

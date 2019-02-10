@@ -7,4 +7,4 @@
  */
 
 ?>
-<?= $this->get( 'historyHeader' ); ?>
+<?= $this->get( 'historyHeader' );

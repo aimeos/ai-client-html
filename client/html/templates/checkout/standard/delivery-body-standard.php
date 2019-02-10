@@ -46,7 +46,6 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 	<?php foreach( $services as $id => $service ) : ?>
-
 		<div id="c_delivery-<?= $enc->attr( $id ); ?>" class="item item-service row">
 
 			<div class="col-sm-6">

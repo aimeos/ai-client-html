@@ -104,7 +104,6 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 	<?php foreach( $hidden as $key => $item ) : ?>
 		<?php if( is_array( $item->getDefault() ) ) : ?>
-
 			<?php foreach( (array) $item->getDefault() as $key2 => $value ) : ?>
 				<input type="hidden"
 					name="<?= $enc->attr( $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) ); ?>"
@@ -113,7 +112,6 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			<?php endforeach; ?>
 
 		<?php else : ?>
-
 			<input type="hidden"
 				name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
 				value="<?= $enc->attr( $item->getDefault() ); ?>"
@@ -125,7 +123,6 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 	<ul class="form-list">
 		<?php foreach( $public as $key => $item ) : ?>
-
 			<li class="form-item <?= $key . ( $item->isRequired() ? ' mandatory' : ' optional' ); ?>"
 				data-regex="<?= $testfcn( $regex, $key ); ?>">
 
@@ -178,7 +175,6 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 	<div class="button-group">
 
 		<?php if( !empty( $errors ) ) : ?>
-
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
@@ -187,7 +183,6 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			</button>
 
 		<?php elseif( !empty( $public ) ) : ?>
-
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
@@ -223,7 +218,6 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			</a>
 
 		<?php else : ?>
-
 			<button class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
 			</button>

@@ -7,4 +7,4 @@
  */
 
 ?>
-<?= $this->get( 'deliveryBody' ); ?>
+<?= $this->get( 'deliveryBody' );

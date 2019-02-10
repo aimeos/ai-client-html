@@ -96,7 +96,6 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php endforeach; ?>
 
 <?php if( ( $serviceValue = $deliveryPriceValue + $paymentPriceValue ) > 0 ) : ?>
-
 <?php	echo strip_tags( $this->translate( 'client', 'Service fees' ) ); ?>: <?php printf( $priceFormat, $this->number( $serviceValue ), $priceCurrency ); ?>
 
 

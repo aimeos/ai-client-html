@@ -85,12 +85,10 @@ $params = $this->param();
 <section class="catalog-filter-attribute">
 
 	<?php if( !empty( $attrMap ) ) : ?>
-
 		<h2><?= $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
 
 
 		<?php if( !empty( $attrIds ) || !empty( $optIds ) ) : ?>
-
 			<div class="attribute-selected">
 				<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
 
@@ -115,7 +113,7 @@ $params = $this->param();
 				</ul>
 
 				<?php if( count( $attrIds ) > 1 || count( $optIds ) > 1 || count( $oneIds ) > 1 ) : ?>
-					<?php $current = $params; unset( $current['f_attrid'],  $current['f_optid'],  $current['f_oneid'] ); ?>
+					<?php $current = $params; unset( $current['f_attrid'], $current['f_optid'], $current['f_oneid'] ); ?>
 					<a class="selected-all" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, [], $listConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?>
 					</a>
@@ -129,14 +127,12 @@ $params = $this->param();
 
 			<?php foreach( $attrMap as $attrType => $attributes ) : ?>
 				<?php if( !empty( $attributes ) ) : ?>
-
 					--><fieldset class="attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ); ?>">
 						<legend><?= $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
 						<ul class="attr-list"><!--
 
 							<?php $fparam = ( in_array( $attrType, $oneof ) ? array( 'f_oneid', $attrType, '' ) : ( in_array( $attrType, $options ) ? array( 'f_optid', '' ) : array( 'f_attrid', '' ) ) ); ?>
 							<?php foreach( $attributes as $id => $attribute ) : ?>
-
 								--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
 
 									<input class="attr-item" type="checkbox"

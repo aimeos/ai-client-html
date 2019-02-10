@@ -47,5 +47,3 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 }
 
 echo json_encode( $items );
-
-?>
