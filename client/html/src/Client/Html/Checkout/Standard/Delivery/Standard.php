@@ -239,20 +239,18 @@ class Standard
 			{
 				$basketCtrl->deleteService( 'delivery' );
 
-				foreach( (array) $serviceIds as $serviceId )
+				foreach( (array) $serviceIds as $servId )
 				{
-					$attributes = $view->param( 'c_delivery/' . $serviceId, [] );
-					$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
-					$view->deliveryError = $errors;
-
-					if( count( $errors ) > 0 )
+					try
 					{
-						$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
-						throw new \Aimeos\Client\Html\Exception( sprintf( 'Please recheck your delivery choice' ) );
+						$basketCtrl->addService( 'delivery', $servId, $view->param( 'c_delivery/' . $servId, [] ) );
 					}
-					else
+					catch( \Aimeos\Controller\Frontend\Basket\Exception $e )
 					{
-						$basketCtrl->addService( 'delivery', $serviceId, $attributes );
+						$view->deliveryError = $e->getErrors();
+						$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $e->getErrors();
+
+						throw $e;
 					}
 				}
 			}

@@ -239,20 +239,18 @@ class Standard
 			{
 				$basketCtrl->deleteService( 'payment' );
 
-				foreach( (array) $serviceIds as $serviceId )
+				foreach( (array) $serviceIds as $servId )
 				{
-					$attributes = $view->param( 'c_payment/' . $serviceId, [] );
-					$errors = $serviceCtrl->checkAttributes( $serviceId, $attributes );
-					$view->paymentError = $errors;
-
-					if( count( $errors ) > 0 )
+					try
 					{
-						$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
-						throw new \Aimeos\Client\Html\Exception( sprintf( 'Please recheck your payment choice' ) );
+						$basketCtrl->addService( 'payment', $servId, $view->param( 'c_payment/' . $servId, [] ) );
 					}
-					else
+					catch( \Aimeos\Controller\Frontend\Basket\Exception $e )
 					{
-						$basketCtrl->addService( 'payment', $serviceId, $attributes );
+						$view->deliveryError = $e->getErrors();
+						$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $e->getErrors();
+
+						throw $e;
 					}
 				}
 			}
