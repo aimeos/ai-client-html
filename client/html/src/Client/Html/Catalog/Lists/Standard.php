@@ -611,10 +611,10 @@ class Standard
 			->slice( ($page - 1) * $size, $size )->sort( $sort )
 			->search( $domains, $total );
 
-		if( !empty( $catids ) )
+		if( $catids != null )
 		{
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
-			$listCatPath = $controller->getPath( reset( $catids ), $domains );
+			$listCatPath = $controller->getPath( is_array( $catids ) ? reset( $catids ) : $catids, $domains );
 
 			if( ( $categoryItem = end( $listCatPath ) ) !== false ) {
 				$view->listCurrentCatItem = $categoryItem;
