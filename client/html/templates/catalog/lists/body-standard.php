@@ -57,7 +57,7 @@ if( $catPath !== [] && ( $catItem = end( $catPath ) ) !== false ) {
 
 
 $pagination = '';
-if( $this->get( 'listProductTotal', 0 ) > 1 )
+if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catalog/lists/pagination/enable', true ) == true )
 {
 	/** client/html/catalog/lists/partials/pagination
 	 * Relative path to the pagination partial template file for catalog lists
