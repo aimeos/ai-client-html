@@ -274,12 +274,12 @@ class Standard
 				$this->sendEmails( $orderBaseItem, $client );
 				$this->addOrderStatus( $id, $status );
 
-				$str = sprintf( 'Sent voucher e-mail for order ID "%1$s" to "%1$s"', $addr->getEmail(), $item->getId() );
+				$str = sprintf( 'Sent voucher e-mails for order ID "%1$s"', $item->getId() );
 				$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::INFO );
 			}
 			catch( \Exception $e )
 			{
-				$str = 'Error while trying to send voucher e-mail for order ID "%1$s": %2$s';
+				$str = 'Error while trying to send voucher e-mails for order ID "%1$s": %2$s';
 				$msg = sprintf( $str, $item->getId(), $e->getMessage() );
 				$context->getLogger()->log( $msg );
 			}

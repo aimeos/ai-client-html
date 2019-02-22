@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
+		$orderManagerStub = $this->getMockBuilder( \Aimeos\MShop\Order\Manager\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
 			->setMethods( array( 'searchItems' ) )
 			->getMock();
@@ -140,8 +140,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$orderAddrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
-
 		$orderBaseManagerStub = $this->getMockBuilder( \Aimeos\MShop\Order\Manager\Base\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
 			->setMethods( ['load', 'store'] )
@@ -201,12 +199,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateCoupons()
 	{
+		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
+			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
+			->setMethods( ['addCouponCodes'] )
+			->getMock();
+
+			$object->expects( $this->once() )->method( 'addCouponCodes' );
+
 		$orderBaseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
 
 		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'test' ) );
 
-		$orderBaseItem = $this->access( 'createCoupons' )->invokeArgs( $this->object, [$orderBaseItem] );
+		$orderBaseItem = $this->access( 'createCoupons' )->invokeArgs( $object, [$orderBaseItem] );
 
 		$this->assertEquals( 1, count( $orderBaseItem->getProduct( 0 )->getAttribute( 'coupon-code', 'coupon' ) ) );
 	}
