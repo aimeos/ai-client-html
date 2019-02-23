@@ -141,7 +141,7 @@ class TestHelperHtml
 		$ctx->setLocale( $locale );
 
 
-		$ctx->setEditor( 'core:client/html' );
+		$ctx->setEditor( 'ai-client-html:client/html' );
 
 		return $ctx;
 	}

@@ -102,7 +102,7 @@ class TestHelperJobs
 		$ctx->setView( $view );
 
 
-		$ctx->setEditor( 'core:controller/jobs' );
+		$ctx->setEditor( 'ai-client-html:controller/jobs' );
 
 		return $ctx;
 	}
