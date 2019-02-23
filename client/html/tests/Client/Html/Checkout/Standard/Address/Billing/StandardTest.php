@@ -18,7 +18,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+
 		$this->context = \TestHelperHtml::getContext();
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Billing\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -28,15 +31,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
-		unset( $this->object );
+		\Aimeos\Controller\Frontend::cache( false );
+
+		unset( $this->object, $this->context );
 	}
 
 
 	public function testGetBody()
 	{
-		$customer = $this->getCustomerItem();
-		$this->context->setUserId( $customer->getId() );
-
 		$view = \TestHelperHtml::getView();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
 		$this->object->setView( $this->object->addData( $view ) );
@@ -207,58 +209,26 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessExistingAddress()
 	{
-		$customer = $this->getCustomerItem();
-		$this->context->setUserId( $customer->getId() );
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['customer/address'] );
+		$id = current( $customer->getAddressItems() )->getId();
 
 		$view = \TestHelperHtml::getView();
-
-		$param = array( 'ca_billingoption' => $customer->getId() );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['ca_billingoption' => $id] );
 		$view->addHelper( 'param', $helper );
-
 		$this->object->setView( $view );
+
+		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
+			->setConstructorArgs( array( $this->context ) )
+			->setMethods( ['store'] )
+			->getMock();
+
+		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnSelf() );
+
+		\Aimeos\Controller\Frontend::inject( 'customer', $customerStub );
 
 		$this->object->process();
 
-		$this->context->setEditor( null );
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'Example company', $basket->getAddress( 'payment', 0 )->getCompany() );
-	}
-
-
-	public function testProcessInvalidId()
-	{
-		$view = \TestHelperHtml::getView();
-
-		$param = array( 'ca_billingoption' => -1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-
-		$this->object->setView( $view );
-
-		$this->setExpectedException( \Aimeos\Controller\Frontend\Customer\Exception::class );
-		$this->object->process();
-	}
-
-
-	/**
-	 * Returns the customer item for the given code
-	 *
-	 * @param string $code Unique customer code
-	 * @throws \Exception If no customer item is found
-	 * @return \Aimeos\MShop\Customer\Item\Iface Customer item object
-	 */
-	protected function getCustomerItem( $code = 'UTC001' )
-	{
-		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
-		$search = $customerManager->createSearch();
-		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
-		$result = $customerManager->searchItems( $search );
-
-		if( ( $customer = reset( $result ) ) === false ) {
-			throw new \RuntimeException( 'Customer item not found' );
-		}
-
-		return $customer;
 	}
 }

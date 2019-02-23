@@ -299,7 +299,7 @@ class Standard
 			try
 			{
 				$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-				$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
+				$view->summaryCustomerId = $controller->find( $addr->getEmail() )->getId();
 			}
 			catch( \Exception $e ) {}
 		}

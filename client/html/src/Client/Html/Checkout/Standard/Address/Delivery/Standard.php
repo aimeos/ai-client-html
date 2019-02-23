@@ -219,8 +219,13 @@ class Standard
 		{
 			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null )
 			{
-				\Aimeos\Controller\Frontend::create( $context, 'customer' )->deleteAddressItem( $id );
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'Delivery address deleted successfully' ) );
+				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+
+				if( ( $item = $cntl->use( ['customer/address'] )->get()->getAddressItem( $id ) ) !== null )
+				{
+					$cntl->deleteAddressItem( $item )->store();
+					throw new \Aimeos\Client\Html\Exception( sprintf( 'Delivery address deleted successfully' ) );
+				}
 			}
 
 			// only start if there's something to do
@@ -440,6 +445,7 @@ class Standard
 	 */
 	protected function setAddress( \Aimeos\MW\View\Iface $view )
 	{
+		$address = null;
 		$context = $this->getContext();
 		$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
@@ -467,41 +473,28 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$params = $view->param( 'ca_delivery', [] );
-			$invalid = $this->checkFields( $params );
+			$address = $view->param( 'ca_delivery', [] );
 
-			if( count( $invalid ) > 0 )
-			{
-				$view->deliveryError = $invalid;
+			if( ( $view->deliveryError = $this->checkFields( $address ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
-
-			$basketCtrl->setAddress( $type, $params );
 		}
 		else if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) !== '-1' ) // existing address
 		{
-			$list = [];
 			$params = $view->param( 'ca_delivery_' . $option, [] );
 
-			if( !empty( $params ) && ( $invalid = $this->checkFields( $params ) ) !== [] )
-			{
-				$view->deliveryError = $invalid;
+			if( !empty( $params ) && ( $view->deliveryError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
 
-			foreach( $params as $key => $value ) {
-				$list[str_replace( 'order.base', 'customer', $key )] = $value;
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+
+			if( ( $address = $cntl->use( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null ) {
+				$cntl->addAddressItem( $address->fromArray( $params ), $option )->store();
 			}
-
-			$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-			$address = $controller->editAddressItem( $option, $list );
-
-			$basketCtrl->setAddress( $type, $address );
 		}
-		else
-		{
-			$basketCtrl->setAddress( $type, null );
-		}
+
+		$basketCtrl->setAddress( $type, $address );
 	}
 
 

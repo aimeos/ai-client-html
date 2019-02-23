@@ -7,9 +7,8 @@
  */
 
 $enc = $this->encoder();
+$listItems = $this->get( 'watchItems', [] );
 $watchParams = $this->get( 'watchParams', [] );
-$listItems = $this->get( 'watchListItems', [] );
-$productItems = $this->get( 'watchProductItems', [] );
 
 
 /** client/html/account/watch/url/target
@@ -110,12 +109,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 		<h2 class="header"><?= $this->translate( 'client', 'Watched products' ); ?></h2>
 
 		<ul class="watch-items">
-			<?php foreach( $listItems as $listItem ) : $id = $listItem->getRefId(); ?>
-				<?php if( isset( $productItems[$id] ) ) : $productItem = $productItems[$id]; ?>
+			<?php foreach( array_reverse( $listItems ) as $listItem ) : ?>
+				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) :  ?>
 					<?php $prices = $productItem->getRefItems( 'price', null, 'default' ); ?>
 
 					<li class="watch-item">
-						<?php $params = array( 'wat_action' => 'delete', 'wat_id' => $id ) + $watchParams; ?>
+						<?php $params = array( 'wat_action' => 'delete', 'wat_id' => $listItem->getRefId() ) + $watchParams; ?>
 						<a class="modify" href="<?= $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ); ?>">
 							<?= $this->translate( 'client', 'X' ); ?>
 						</a>
@@ -143,7 +142,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<?php $url = $this->url( $watchTarget, $watchController, $watchAction, $watchParams, [], $watchConfig ); ?>
 						<form class="watch-details" method="POST" action="<?= $enc->attr( $url ); ?>">
 							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_action' ) ) ); ?>" value="edit" />
-							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ); ?>" value="<?= $enc->attr( $id ); ?>" />
+							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ); ?>" value="<?= $enc->attr( $listItem->getRefId() ); ?>" />
 							<?= $this->csrf()->formfield(); ?>
 
 							<ul class="form-list">

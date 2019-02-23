@@ -19,6 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Account\Watch\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -131,130 +132,84 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddItem()
 	{
-		$this->context->setUserId( '123' );
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$id = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' )->getId();
+		$this->context->setUserId( $item->getId() );
 
 		$view = $this->object->getView();
-		$param = array(
-			'wat_action' => 'add',
-			'wat_id' => 321,
-		);
-
+		$param = ['wat_action' => 'add', 'wat_id' => $id];
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
 
 
-
-		$listManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Lists\\Standard' )
-			->setMethods( array( 'saveItem', 'moveItem' ) )
-			->setConstructorArgs( array( $this->context ) )
+		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
+			->setMethods( array( 'addListItem', 'store' ) )
+			->setConstructorArgs( [$this->context] )
 			->getMock();
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
-			->setMethods( array( 'getSubManager' ) )
-			->setConstructorArgs( array( $this->context ) )
-			->getMock();
-
-		$name = 'ClientHtmlAccountWatchDefaultProcess';
-		$this->context->getConfig()->set( 'mshop/customer/manager/name', $name );
-
-		\Aimeos\MShop\Customer\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Customer\\Manager\\' . $name, $managerStub );
+		$stub->expects( $this->once() )->method( 'addListItem' );
+		$stub->expects( $this->once() )->method( 'store' );
 
 
-		$managerStub->expects( $this->atLeastOnce() )->method( 'getSubManager' )
-			->will( $this->returnValue( $listManagerStub ) );
-
-		$listManagerStub->expects( $this->once() )->method( 'moveItem' );
-		$listManagerStub->expects( $this->once() )->method( 'saveItem' )
-			->will( $this->returnValue( $listManagerStub->createItem() ) );
-
-
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $stub );
 		$this->object->process();
-	}
-
-
-	public function testProcessEditItem()
-	{
-		$this->context->setUserId( '123' );
-
-		$view = $this->object->getView();
-		$param = array(
-			'wat_action' => 'edit',
-			'wat_id' => 321,
-		);
-
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-
-
-		$listManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Lists\\Standard' )
-			->setMethods( array( 'saveItem', 'searchItems' ) )
-			->setConstructorArgs( array( $this->context ) )
-			->getMock();
-
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
-			->setMethods( array( 'getSubManager' ) )
-			->setConstructorArgs( array( $this->context ) )
-			->getMock();
-
-		$name = 'ClientHtmlAccountWatchDefaultProcess';
-		$this->context->getConfig()->set( 'mshop/customer/manager/name', $name );
-
-		\Aimeos\MShop\Customer\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Customer\\Manager\\' . $name, $managerStub );
-
-
-		$item = $listManagerStub->createItem();
-		$item->setRefId( 321 );
-
-		$managerStub->expects( $this->atLeastOnce() )->method( 'getSubManager' )
-			->will( $this->returnValue( $listManagerStub ) );
-
-		$listManagerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( array( $item ) ) );
-
-		$listManagerStub->expects( $this->once() )->method( 'saveItem' );
-
-
-		$this->object->process();
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 
 
 	public function testProcessDeleteItem()
 	{
-		$this->context->setUserId( '123' );
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['product' => ['watch']] );
+		$id = current( $item->getListItems( 'product', 'watch' ) )->getRefId();
+		$this->context->setUserId( $item->getId() );
 
 		$view = $this->object->getView();
-		$param = array(
-			'wat_action' => 'delete',
-			'wat_id' => 321,
-		);
-
+		$param = ['wat_action' => 'delete', 'wat_id' => $id];
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
 
 
-
-		$listManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Lists\\Standard' )
-			->setMethods( array( 'deleteItems' ) )
-			->setConstructorArgs( array( $this->context ) )
+		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
+			->setMethods( array( 'deleteListItem', 'store' ) )
+			->setConstructorArgs( [$this->context] )
 			->getMock();
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
-			->setMethods( array( 'getSubManager' ) )
-			->setConstructorArgs( array( $this->context ) )
-			->getMock();
-
-		$name = 'ClientHtmlAccountWatchDefaultProcess';
-		$this->context->getConfig()->set( 'mshop/customer/manager/name', $name );
-
-		\Aimeos\MShop\Customer\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Customer\\Manager\\' . $name, $managerStub );
+		$stub->expects( $this->once() )->method( 'deleteListItem' );
+		$stub->expects( $this->once() )->method( 'store' );
 
 
-		$managerStub->expects( $this->atLeastOnce() )->method( 'getSubManager' )
-			->will( $this->returnValue( $listManagerStub ) );
-
-		$listManagerStub->expects( $this->once() )->method( 'deleteItems' );
-
-
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $stub );
 		$this->object->process();
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
+	}
+
+
+	public function testProcessEditItem()
+	{
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['product' => ['watch']] );
+		$id = current( $item->getListItems( 'product', 'watch' ) )->getRefId();
+		$this->context->setUserId( $item->getId() );
+
+		$view = $this->object->getView();
+		$param = ['wat_action' => 'edit', 'wat_id' => $id];
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
+
+
+		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
+			->setMethods( array( 'addListItem', 'store' ) )
+			->setConstructorArgs( [$this->context] )
+			->getMock();
+
+		$stub->expects( $this->once() )->method( 'addListItem' );
+		$stub->expects( $this->once() )->method( 'store' );
+
+
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $stub );
+		$this->object->process();
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 }

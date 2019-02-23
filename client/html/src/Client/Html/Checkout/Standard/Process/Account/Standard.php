@@ -178,7 +178,7 @@ class Standard
 			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 			$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 
-			if( $context->getUserId() == '' && ( $address = current( $addresses ) ) !== false )
+			if( $context->getUserId() == null && ( $address = current( $addresses ) ) !== false )
 			{
 				$create = (bool) $this->getView()->param( 'cs_option_account' );
 				$userId = $this->getCustomerId( $address, $create );
@@ -210,25 +210,22 @@ class Standard
 	 * Creates a new account (if necessary) and returns its customer ID
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
-	 * @return string|null Customer ID
+	 * @param boolean $new True to create the customer if it doesn't exist, false if not
+	 * @return string|null Unique customer ID or null if no customer is available
 	 */
-	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, $create )
+	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, $new )
 	{
-		$id = null;
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
 		try
 		{
-			$id = $controller->findItem( $addr->getEmail() )->getId();
+			$id = $cntl->find( $addr->getEmail() )->getId();
 		}
 		catch( \Exception $e )
 		{
-			if( $create === true )
-			{
-				$extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
-				$id = $controller->addItem( array_merge( $addr->toArray(), $extra ) )->getId();
-			}
+			$extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
+			$id = ( $new ? $cntl->add( $addr->toArray() )->add( $extra )->store()->get()->getId() : null );
 		}
 
 		return $id;

@@ -17,6 +17,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
+		\Aimeos\Controller\Frontend::cache( true );
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Account\Standard( $this->context );
@@ -27,6 +28,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown()
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::cache( false );
+
 		unset( $this->object, $this->object );
 	}
 
@@ -57,10 +60,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$customerItem = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->findItem( 'UTC001' );
-
-		$addrItem = $customerItem->getPaymentAddress();
-		$addrItem->setEmail( 'unittest@aimeos.org' );
+		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$addrItem = $customerItem->getPaymentAddress()->setEmail( 'unittest@aimeos.org' );
 
 		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$basketCntl->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $addrItem );
@@ -72,14 +73,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'addItem' ) )
+			->setMethods( array( 'add', 'get', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'addItem' )
-			->will( $this->returnValue( $customerStub->createItem() ) );
+		$customerStub->expects( $this->exactly( 2 ) )->method( 'add' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'get' )->will( $this->returnValue( $customerItem ) );
 
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
+		\Aimeos\Controller\Frontend::inject( 'customer', $customerStub );
+
 		$this->object->process();
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 }

@@ -17,7 +17,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+
 		$this->context = \TestHelperHtml::getContext();
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Delivery\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -26,7 +29,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::cache( false );
 
 		unset( $this->object, $this->context );
 	}
@@ -200,126 +205,42 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddressDelete()
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->getSubManager( 'address' );
-		$search = $manager->createSearch();
-		$search->setSlice( 0, 1 );
-		$result = $manager->searchItems( $search );
-
-		if( ( $item = reset( $result ) ) === false ) {
-			throw new \RuntimeException( 'No customer address found' );
-		}
-
-		$item->setId( null );
-		$item = $manager->saveItem( $item );
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['customer/address'] );
+		$id = current( $customer->getAddressItems() )->getId();
 
 		$view = \TestHelperHtml::getView();
-		$this->context->setUserId( $item->getParentId() );
-
-		$param = array( 'ca_delivery_delete' => $item->getId() );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['ca_delivery_delete' => $id] );
 		$view->addHelper( 'param', $helper );
-
 		$this->object->setView( $view );
 
-		try {
-			$this->object->process();
-			$this->markTestFailed( 'Exception not thrown' );
-		}
-		catch( \Aimeos\Client\Html\Exception $e ) {}
+		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
+			->setConstructorArgs( array( $this->context ) )
+			->setMethods( array( 'deleteAddressItem', 'store' ) )
+			->getMock();
 
-		$this->setExpectedException( \Aimeos\MShop\Exception::class );
-		$manager->getItem( $item->getId() );
-	}
+		$customerStub->expects( $this->once() )->method( 'deleteAddressItem' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
 
+		\Aimeos\Controller\Frontend::inject( 'customer', $customerStub );
 
-	public function testProcessAddressDeleteUnknown()
-	{
-		$view = \TestHelperHtml::getView();
-
-		$param = array( 'ca_delivery_delete' => '-1' );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-
-		$this->object->setView( $view );
-
-		$this->setExpectedException( '\\Aimeos\\MShop\\Exception' );
-		$this->object->process();
-	}
-
-
-	public function testProcessAddressDeleteNoLogin()
-	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->getSubManager( 'address' );
-		$search = $manager->createSearch();
-		$search->setSlice( 0, 1 );
-		$result = $manager->searchItems( $search );
-
-		if( ( $item = reset( $result ) ) === false ) {
-			throw new \RuntimeException( 'No customer address found' );
-		}
-
-		$view = \TestHelperHtml::getView();
-
-		$param = array( 'ca_delivery_delete' => $item->getId() );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-
-		$this->object->setView( $view );
-
-		$this->setExpectedException( \Aimeos\Controller\Frontend\Customer\Exception::class );
+		$this->setExpectedException( \Aimeos\Client\Html\Exception::class );
 		$this->object->process();
 	}
 
 
 	public function testProcessExistingAddress()
 	{
-		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
-		$search = $customerManager->createSearch();
-		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
-		$result = $customerManager->searchItems( $search );
-
-		if( ( $customer = reset( $result ) ) === false ) {
-			throw new \RuntimeException( 'Customer item not found' );
-		}
-
-		$customerAddressManager = $customerManager->getSubManager( 'address' );
-		$search = $customerAddressManager->createSearch();
-		$search->setConditions( $search->compare( '==', 'customer.address.parentid', $customer->getId() ) );
-		$result = $customerAddressManager->searchItems( $search );
-
-		if( ( $address = reset( $result ) ) === false ) {
-			throw new \RuntimeException( 'Customer address item not found' );
-		}
-
-		$this->context->setUserId( $customer->getId() );
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['customer/address'] );
 
 		$view = \TestHelperHtml::getView();
-
-		$param = array( 'ca_deliveryoption' => $address->getId() );
+		$param = array( 'ca_deliveryoption' => current( $customer->getAddressItems() )->getId() );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
-
 		$this->object->setView( $view );
 
 		$this->object->process();
 
-		$this->context->setEditor( null );
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'Example company', $basket->getAddress( 'delivery', 0 )->getCompany() );
-	}
-
-
-	public function testProcessInvalidId()
-	{
-		$view = \TestHelperHtml::getView();
-
-		$param = array( 'ca_deliveryoption' => 0 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-
-		$this->object->setView( $view );
-
-		$this->setExpectedException( '\\Aimeos\\MShop\\Exception' );
-		$this->object->process();
 	}
 }

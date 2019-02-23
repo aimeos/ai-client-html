@@ -181,22 +181,19 @@ class Standard
 		{
 			$view = $this->getView();
 			$id = $view->param( 'dl_id' );
-			$customerId = $context->getUserId();
 			$target = $context->getConfig()->get( 'client/html/account/download/error/url/target' );
 
-			if( $this->checkAccess( $customerId, $id ) === false )
-			{
-				$view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
-				return;
+			if( $this->checkAccess( $id ) === false ) {
+				return $view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
 			}
 
 			$manager = \Aimeos\MShop::create( $context, 'order/base/product/attribute' );
 			$item = $manager->getItem( $id );
 
-			if( $this->checkDownload( $context->getUserId(), $id ) === true ) {
-				$this->addDownload( $item );
+			if( $this->checkDownload( $id ) === false ) {
+				return $view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) );
 			} else {
-				$view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) );
+				$this->addDownload( $item );
 			}
 
 			parent::process();
@@ -265,15 +262,16 @@ class Standard
 	/**
 	 * Checks if the customer is allowed to download the file
 	 *
-	 * @param string $customerId Unique customer ID
 	 * @param string $id Unique order base product attribute ID referencing the download file
 	 * @return boolean True if download is allowed, false if not
 	 */
-	protected function checkAccess( $customerId, $id )
+	protected function checkAccess( $id )
 	{
-		if( $customerId !== null && $id !== null )
+		$context = $this->getContext();
+
+		if( ( $customerId = $context->getUserId() ) !== null && $id !== null )
 		{
-			$manager = \Aimeos\MShop::create( $this->getContext(), 'order/base' );
+			$manager = \Aimeos\MShop::create( $context, 'order/base' );
 
 			$search = $manager->createSearch();
 			$expr = array(
@@ -295,11 +293,10 @@ class Standard
 	/**
 	 * Updates the download counter for the downloaded file
 	 *
-	 * @param string $customerId Unique customer ID
 	 * @param string $id Unique order base product attribute ID referencing the download file
 	 * @return boolean True if download is allowed, false if not
 	 */
-	protected function checkDownload( $customerId, $id )
+	protected function checkDownload( $id )
 	{
 		$context = $this->getContext();
 
@@ -320,60 +317,24 @@ class Standard
 		 */
 		$maxcnt = $context->getConfig()->get( 'client/html/account/download/maxcount' );
 
-		$listItem = $this->getListItem( $customerId, $id );
-		$config = $listItem->getConfig();
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+		$item = $cntl->use( ['order' => ['download']] )->get();
 
-		if( !isset( $config['count'] ) ) {
-			$config['count'] = 0;
+		if( ( $listItem = $item->getListItem( 'order', 'download', $id ) ) === null ) {
+			$listItem = $cntl->createListItem()->setType( 'download' )->setRefId( $id );
 		}
 
-		if( $maxcnt === null || ((int) $config['count']) < $maxcnt )
-		{
-			$config['count']++;
-			$listItem->setConfig( $config );
+		$config = $listItem->getConfig();
+		$count = (int) $listItem->getConfigValue( 'count', 0 );
 
-			$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
-			$manager->saveItem( $listItem, false );
+		if( $maxcnt === null || $count < $maxcnt )
+		{
+			$config['count'] = $count++;
+			$cntl->addListItem( 'order', $listItem->setConfig( $config ) )->store();
 
 			return true;
 		}
 
 		return false;
-	}
-
-
-	/**
-	 * Returns the list item storing the download counter
-	 *
-	 * @param string $customerId Unique customer ID
-	 * @param string $refId Unique order base product attribute ID referencing the download file
-	 * @return \Aimeos\MShop\Common\Item\Lists\Iface List item object
-	 */
-	protected function getListItem( $customerId, $refId )
-	{
-		$context = $this->getContext();
-		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
-
-		$search = $manager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'customer.lists.parentid', $customerId ),
-			$search->compare( '==', 'customer.lists.refid', $refId ),
-			$search->compare( '==', 'customer.lists.domain', 'order' ),
-			$search->compare( '==', 'customer.lists.type', 'download' ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$listItems = $manager->searchItems( $search );
-
-		if( ( $listItem = reset( $listItems ) ) === false )
-		{
-			$listItem = $manager->createItem();
-			$listItem->setParentId( $customerId );
-			$listItem->setType( 'download' );
-			$listItem->setDomain( 'order' );
-			$listItem->setRefId( $refId );
-		}
-
-		return $listItem;
 	}
 }

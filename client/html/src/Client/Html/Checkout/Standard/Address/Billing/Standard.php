@@ -465,36 +465,6 @@ class Standard
 
 
 	/**
-	 * Returns the customer item for the given ID
-	 *
-	 * @param string $id Unique customer ID
-	 * @return \Aimeos\MShop\Customer\Item\Iface Customer item
-	 * @throws \Aimeos\Client\Html\Exception If no customer item is available
-	 * @since 2016.05
-	 */
-	protected function getCustomerItem( $id )
-	{
-		$context = $this->getContext();
-		$customerManager = \Aimeos\MShop::create( $context, 'customer' );
-
-		$search = $customerManager->createSearch( true );
-		$expr = array(
-				$search->compare( '==', 'customer.id', $id ),
-				$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$items = $customerManager->searchItems( $search );
-
-		if( ( $item = reset( $items ) ) === false || $id != $context->getUserId() ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Customer with ID "%1$s" not found', $id ) );
-		}
-
-		return $item;
-	}
-
-
-	/**
 	 * Returns the list of sub-client names configured for the client.
 	 *
 	 * @return array List of HTML client names
@@ -542,36 +512,25 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$params = $view->param( 'ca_billing', [] );
+			$address = $view->param( 'ca_billing', [] );
 
-			if( ( $invalid = $this->checkFields( $params ) ) !== [] )
-			{
-				$view->billingError = $invalid;
+			if( ( $view->billingError = $this->checkFields( $address ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
-
-			$basketCtrl->setAddress( $type, $params );
 		}
 		else // existing address
 		{
-			$list = [];
 			$params = $view->param( 'ca_billing_' . $option, [] );
 
-			if( !empty( $params ) && ( $invalid = $this->checkFields( $params ) ) !== [] )
-			{
-				$view->billingError = $invalid;
+			if( !empty( $params ) && ( $view->billingError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 
-			foreach( $params as $key => $value ) {
-				$list[str_replace( 'order.base.address', 'customer', $key )] = $value;
-			}
-
-			$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-			$customer = $controller->editItem( $option, $list );
-
-			$basketCtrl->setAddress( $type, $customer->getPaymentAddress() );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' )->use( [] );
+			$address = $cntl->add( $params )->store()->get()->getPaymentAddress();
 		}
+
+		$basketCtrl->setAddress( $type, $address );
 	}
 
 

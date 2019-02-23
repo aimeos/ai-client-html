@@ -19,6 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Address\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -59,22 +60,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$customerItem = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->findItem( 'UTC001' );
-		$addrItem = $customerItem->getPaymentAddress();
-		$addrItem->setId( null );
+		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$addrItem = $customerItem->getPaymentAddress()->setId( null );
 
 		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$basketCntl->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $addrItem );
 
 		$this->context->setUserId( $customerItem->getId() );
-		$basketCntl->get()->setCustomerId( $customerItem->getId() );
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'saveAddressItem' ) )
+			->setMethods( array( 'addAddressItem', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'saveAddressItem' );
+		$customerStub->expects( $this->once() )->method( 'addAddressItem' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'store' );
 
 		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
 		$this->object->process();

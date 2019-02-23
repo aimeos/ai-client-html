@@ -333,11 +333,6 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$userId = $context->getUserId();
-
-		$manager = \Aimeos\MShop::create( $context, 'customer' );
-		$addrManager = \Aimeos\MShop::create( $context, 'customer/address' );
-
 
 		/** client/html/account/profile/domains
 		 * A list of domain names whose items should be available in the account profile view template
@@ -353,13 +348,8 @@ class Standard
 		 */
 		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', [] );
 
-		$view->profileCustomerItem = $manager->getItem( $userId, $domains );
-
-
-		$search = $addrManager->createSearch();
-		$search->setConditions( $search->compare( '==', 'customer.address.parentid', $userId ) );
-
-		$view->profileAddressItems = $manager->searchItems( $search );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+		$view->profileCustomerItem = $cntl->use( $domains )->get();
 
 		return parent::addData( $view, $tags, $expire );
 	}

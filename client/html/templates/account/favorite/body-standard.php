@@ -7,9 +7,8 @@
  */
 
 $enc = $this->encoder();
+$listItems = $this->get( 'favoriteItems', [] );
 $favParams = $this->get( 'favoriteParams', [] );
-$listItems = $this->get( 'favoriteListItems', [] );
-$productItems = $this->get( 'favoriteProductItems', [] );
 
 /** client/html/account/favorite/url/target
  * Destination of the URL where the controller specified in the URL is known
@@ -110,11 +109,11 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 		<ul class="favorite-items">
 
-			<?php foreach( $listItems as $listItem ) : $id = $listItem->getRefId(); ?>
-				<?php if( isset( $productItems[$id] ) ) : $productItem = $productItems[$id]; ?>
+			<?php foreach( array_reverse( $listItems ) as $listItem ) : ?>
+				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
 					<li class="favorite-item">
-						<?php $params = array( 'fav_action' => 'delete', 'fav_id' => $id ) + $favParams; ?>
+						<?php $params = array( 'fav_action' => 'delete', 'fav_id' => $listItem->getRefId() ) + $favParams; ?>
 						<a class="modify" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>">
 							<?= $this->translate( 'client', 'X' ); ?>
 						</a>

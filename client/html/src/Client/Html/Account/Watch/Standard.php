@@ -283,69 +283,20 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-
+		$ids = (array) $view->param( 'wat_id', [] );
 
 		try
 		{
-			$userId = $context->getUserId();
-			$ids = (array) $view->param( 'wat_id', [] );
-
-			if( $userId != null && !empty( $ids ) )
+			if( $context->getUserId() != null && !empty( $ids ) )
 			{
-				$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
-				$items = $this->getListItems( $manager, $ids, 'watch', $userId );
-
 				switch( $view->param( 'wat_action' ) )
 				{
 					case 'add':
-
-						/** client/html/account/watch/standard/maxitems
-						 * Maximum number of products that can be watched in parallel
-						 *
-						 * This option limits the number of products that can be watched
-						 * after the users added the products to their watch list.
-						 * It must be a positive integer value greater than 0.
-						 *
-						 * Note: It's recommended to set this value not too high as this
-						 * leads to a high memory consumption when the e-mails are generated
-						 * to notify the customers. The memory used will up to 100*maxitems
-						 * of the footprint of one product item including the associated
-						 * texts, prices and media.
-						 *
-						 * @param integer Number of products
-						 * @since 2014.09
-						 * @category User
-						 * @category Developer
-						 */
-						$max = $context->getConfig()->get( 'client/html/account/watch/standard/maxitems', 100 );
-						$cnt = count( $ids );
-
-						if( $this->checkLimit( $manager, 'watch', $userId, $max, $cnt ) === false )
-						{
-							$error = sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max );
-							$view->watchErrorList = $view->get( 'watchErrorList', [] ) + array( $error );
-							break;
-						}
-
-						$this->addItems( $manager, $items, $ids, 'watch', $userId );
-						break;
-
+						$this->addItems( $view, $ids ); break;
 					case 'edit':
-
-						$config = array(
-							'timeframe' => $view->param( 'wat_timeframe', 7 ),
-							'pricevalue' => $view->param( 'wat_pricevalue', '0.00' ),
-							'price' => $view->param( 'wat_price', 0 ),
-							'stock' => $view->param( 'wat_stock', 0 ),
-							'currency' => $context->getLocale()->getCurrencyId(),
-						);
-						$this->editItems( $manager, $items, $ids, $config );
-						break;
-
+						$this->editItems( $view, $ids ); break;
 					case 'delete':
-
-						$this->deleteItems( $manager, $items, $ids );
-						break;
+						$this->deleteItems( $view, $ids ); break;
 				}
 			}
 
@@ -376,142 +327,110 @@ class Standard
 
 
 	/**
-	 * Tests if the maximum number of entries per user is already reached
+	 * Adds one or more list items to the given customer item
 	 *
-	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
-	 * @param string $type List type of the referenced items
-	 * @param string $userId Unique user ID
-	 * @param integer $max Maximum number of items that are allowed
-	 * @param integer $cnt Number of items that should be added
-	 * @return boolean True if items can be added, false if not
-	 */
-	protected function checkLimit( \Aimeos\MShop\Common\Manager\Iface $manager, $type, $userId, $max, $cnt )
-	{
-		$search = $manager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'customer.lists.parentid', $userId ),
-			$search->compare( '==', 'customer.lists.domain', 'product' ),
-			$search->compare( '==', 'customer.lists.type', $type ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 0 );
-
-		$total = 0;
-		$manager->searchItems( $search, [], $total );
-
-		if( $total + $cnt > $max ) {
-			return false;
-		}
-
-		return true;
-	}
-
-
-	/**
-	 * Adds one or more list items to the given user
-	 *
-	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
-	 * @param array $listItems Associative list of the reference IDs as keys and the list items as values
+	 * @param \Aimeos\MW\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
-	 * @param string $type List type of the referenced items
-	 * @param string $userId Unique user ID
 	 */
-	protected function addItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids, $type, $userId )
+	protected function addItems( \Aimeos\MW\View\Iface $view, array $ids )
 	{
-		$item = $manager->createItem();
-		$item->setParentId( $userId );
-		$item->setDomain( 'product' );
-		$item->setType( $type );
-		$item->setStatus( 1 );
+		$context = $this->getContext();
+
+		/** client/html/account/watch/standard/maxitems
+		 * Maximum number of products that can be watched in parallel
+		 *
+		 * This option limits the number of products that can be watched
+		 * after the users added the products to their watch list.
+		 * It must be a positive integer value greater than 0.
+		 *
+		 * Note: It's recommended to set this value not too high as this
+		 * leads to a high memory consumption when the e-mails are generated
+		 * to notify the customers. The memory used will up to 100*maxitems
+		 * of the footprint of one product item including the associated
+		 * texts, prices and media.
+		 *
+		 * @param integer Number of products
+		 * @since 2014.09
+		 * @category User
+		 * @category Developer
+		 */
+		$max = $context->getConfig()->get( 'client/html/account/watch/standard/maxitems', 100 );
+
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+		$item = $cntl->use( ['product' => ['watch']] )->get();
+
+		if( count( $item->getRefItems( 'product', null, 'watch' ) ) + count( $ids ) > $max )
+		{
+			$msg = sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max );
+			throw new \Aimeos\Client\Html\Exception( $msg );
+		}
 
 		foreach( $ids as $id )
 		{
-			if( !isset( $listItems[$id] ) )
-			{
-				$item->setId( null );
-				$item->setRefId( $id );
-
-				$item = $manager->saveItem( $item );
-				$manager->moveItem( $item->getId() );
+			if( ( $listItem = $item->getListItem( 'product', 'watch', $id ) ) === null ) {
+				$listItem = $cntl->createListItem();
 			}
+			$cntl->addListItem( 'product', $listItem->setType( 'watch' )->setRefId( $id ) );
 		}
+
+		$cntl->store();
 	}
 
 
 	/**
-	 * Removes the list items for the given reference IDs
+	 * Removes the referencing list items from the given item
 	 *
-	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
-	 * @param array $listItems Associative list of the reference IDs as keys and the list items as values
+	 * @param \Aimeos\MW\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
 	 */
-	protected function deleteItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids )
+	protected function deleteItems( \Aimeos\MW\View\Iface $view, array $ids )
 	{
-		$listIds = [];
+		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
+		$item = $cntl->use( ['product' => ['watch']] )->get();
 
 		foreach( $ids as $id )
 		{
-			if( isset( $listItems[$id] ) ) {
-				$listIds[] = $listItems[$id]->getId();
+			if( ( $listItem = $item->getListItem( 'product', 'watch', $id ) ) !== null ) {
+				$cntl->deleteListItem( 'product', $listItem );
 			}
 		}
 
-		$manager->deleteItems( $listIds );
+		$cntl->store();
 	}
 
 
 	/**
-	 * Updates the list items for the given reference IDs
+	 * Updates the item using the given reference IDs
 	 *
-	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
-	 * @param array $listItems Associative list of the reference IDs as keys and the list items as values
+	 * @param \Aimeos\MW\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
-	 * @param array $config Configuration settins with "timeframe", "pricevalue", "price", "stock" and "currency"
 	 */
-	protected function editItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $listItems, array $ids, array $config )
+	protected function editItems( \Aimeos\MW\View\Iface $view, array $ids )
 	{
+		$context = $this->getContext();
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+		$item = $cntl->use( ['product' => ['watch']] )->get();
+
+		$config = [
+			'timeframe' => $view->param( 'wat_timeframe', 7 ),
+			'pricevalue' => $view->param( 'wat_pricevalue', '0.00' ),
+			'price' => $view->param( 'wat_price', 0 ),
+			'stock' => $view->param( 'wat_stock', 0 ),
+			'currency' => $context->getLocale()->getCurrencyId(),
+		];
+
 		foreach( $ids as $id )
 		{
-			if( isset( $listItems[$id] ) )
+			if( ( $listItem = $item->getListItem( 'product', 'watch', $id ) ) !== null )
 			{
-				$item = $listItems[$id];
 				$time = time() + ( $config['timeframe'] + 1 ) * 86400;
+				$listItem = $listItem->setDateEnd( date( 'Y-m-d 00:00:00', $time ) )->setConfig( $config );
 
-				$item->setDateEnd( date( 'Y-m-d 00:00:00', $time ) );
-				$item->setConfig( $config );
-
-				$manager->saveItem( $item );
+				$cntl->addListItem( 'product', $listItem );
 			}
 		}
-	}
 
-
-	/**
-	 * Returns the list items associated to the given user ID
-	 *
-	 * @param \Aimeos\MShop\Common\Manager\Iface $manager Customer list manager
-	 * @param array $refIds IDs of the referenced items
-	 * @param string $type List type of the referenced items
-	 * @param string $userId Unique user ID
-	 * @return array Associative list of the reference IDs as keys and the list items as values
-	 */
-	protected function getListItems( \Aimeos\MShop\Common\Manager\Iface $manager, array $refIds, $type, $userId )
-	{
-		$search = $manager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'customer.lists.parentid', $userId ),
-			$search->compare( '==', 'customer.lists.refid', $refIds ),
-			$search->compare( '==', 'customer.lists.domain', 'product' ),
-			$search->compare( '==', 'customer.lists.type', $type ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$items = [];
-		foreach( $manager->searchItems( $search ) as $item ) {
-			$items[$item->getRefId()] = $item;
-		}
-
-		return $items;
+		$cntl->store();
 	}
 
 
@@ -583,29 +502,7 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$total = 0;
-		$productIds = [];
 		$context = $this->getContext();
-
-		$size = $this->getProductListSize( $view );
-		$current = $this->getProductListPage( $view );
-		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
-
-
-		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
-
-		$search = $manager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'customer.lists.parentid', $context->getUserId() ),
-			$search->compare( '==', 'customer.lists.domain', 'product' ),
-			$search->compare( '==', 'customer.lists.type', 'watch' ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( array( $search->sort( '-', 'customer.lists.position' ) ) );
-		$search->setSlice( ( $current - 1 ) * $size, $size );
-
-		$view->watchListItems = $manager->searchItems( $search, [], $total );
-
 
 		/** client/html/account/watch/domains
 		 * A list of domain names whose items should be available in the account watch view template
@@ -623,16 +520,18 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/domains
 		 */
-		$default = array( 'text', 'price', 'media' );
-		$domains = $context->getConfig()->get( 'client/html/account/watch/domains', $default );
+		$domains = $context->getConfig()->get( 'client/html/account/watch/domains', ['text', 'price', 'media'] );
+		$domains['product'] = ['watch'];
 
-		foreach( $view->watchListItems as $listItem ) {
-			$productIds[] = $listItem->getRefId();
-		}
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+		$listItems = $cntl->use( $domains )->get()->getListItems( 'product', 'watch' );
+		$total = count( $listItems );
 
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
+		$size = $this->getProductListSize( $view );
+		$current = $this->getProductListPage( $view );
+		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
 
-		$view->watchProductItems = $cntl->product( $productIds )->search( $domains );
+		$view->watchItems = $listItems;
 		$view->watchPageFirst = 1;
 		$view->watchPagePrev = ( $current > 1 ? $current - 1 : 1 );
 		$view->watchPageNext = ( $current < $last ? $current + 1 : $last );

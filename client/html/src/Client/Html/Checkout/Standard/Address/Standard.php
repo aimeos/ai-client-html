@@ -303,22 +303,18 @@ class Standard
 		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/base/address' );
 
-		try
-		{
-			$deliveryAddressItems = [];
-			$item = $controller->getItem( $context->getUserId(), ['customer/address'] );
+		$deliveryAddressItems = [];
+		$item = $controller->use( ['customer/address'] )->get();
 
-			foreach( $item->getAddressItems() as $id => $addrItem ) {
-				$deliveryAddressItems[$id] = $orderAddressManager->createItem()->copyFrom( $addrItem );
-			}
-
-			$paymentAddressItem = $orderAddressManager->createItem()->copyFrom( $item->getPaymentAddress() );
-
-			$view->addressCustomerItem = $item;
-			$view->addressPaymentItem = $paymentAddressItem;
-			$view->addressDeliveryItems = $deliveryAddressItems;
+		foreach( $item->getAddressItems() as $pos => $addrItem ) {
+			$deliveryAddressItems[$pos] = $orderAddressManager->createItem()->copyFrom( $addrItem );
 		}
-		catch( \Exception $e ) {} // customer has no account yet
+
+		$paymentAddressItem = $orderAddressManager->createItem()->copyFrom( $item->getPaymentAddress() );
+
+		$view->addressCustomerItem = $item;
+		$view->addressPaymentItem = $paymentAddressItem;
+		$view->addressDeliveryItems = $deliveryAddressItems;
 
 
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );

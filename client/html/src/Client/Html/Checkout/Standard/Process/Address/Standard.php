@@ -181,16 +181,16 @@ class Standard
 				$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 				$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
 
-				$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+				$item = $cntl->use( ['customer/address'] )->get();
 
 				foreach( $addresses as $pos => $address )
 				{
 					if( $address->getAddressId() == '' )
 					{
-						$item = $controller->createAddressItem()->copyFrom( $address );
-						$controller->saveAddressItem( $item );
-
-						$basket->addAddress( $address->setAddressId( $item->getId() ), $pos );
+						$addrItem = $cntl->createAddressItem( $address->toArray() );
+						$cntl->addAddressItem( $addrItem )->store();
+						$basket->addAddress( $address->setAddressId( $addrItem->getId() ), $pos );
 					}
 				}
 			}
