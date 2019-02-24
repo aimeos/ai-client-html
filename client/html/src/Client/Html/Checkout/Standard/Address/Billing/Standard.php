@@ -526,7 +526,7 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 
-			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' )->use( [] );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( [] );
 			$address = $cntl->add( $params )->store()->get()->getPaymentAddress();
 		}
 

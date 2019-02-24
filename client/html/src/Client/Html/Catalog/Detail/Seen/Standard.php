@@ -262,7 +262,7 @@ class Standard
 			$domains = $config->get( 'client/html/catalog/detail/seen/domains', $domains );
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
-			$view->seenProductItem = $cntl->get( $id, $domains );
+			$view->seenProductItem = $cntl->uses( $domains )->get( $id );
 			$this->addMetaItems( $view->seenProductItem, $expire, $tags );
 
 			$output = '';

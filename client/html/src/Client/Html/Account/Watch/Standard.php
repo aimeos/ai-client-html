@@ -357,7 +357,7 @@ class Standard
 		$max = $context->getConfig()->get( 'client/html/account/watch/standard/maxitems', 100 );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$item = $cntl->use( ['product' => ['watch']] )->get();
+		$item = $cntl->uses( ['product' => ['watch']] )->get();
 
 		if( count( $item->getRefItems( 'product', null, 'watch' ) ) + count( $ids ) > $max )
 		{
@@ -386,7 +386,7 @@ class Standard
 	protected function deleteItems( \Aimeos\MW\View\Iface $view, array $ids )
 	{
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
-		$item = $cntl->use( ['product' => ['watch']] )->get();
+		$item = $cntl->uses( ['product' => ['watch']] )->get();
 
 		foreach( $ids as $id )
 		{
@@ -409,7 +409,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$item = $cntl->use( ['product' => ['watch']] )->get();
+		$item = $cntl->uses( ['product' => ['watch']] )->get();
 
 		$config = [
 			'timeframe' => $view->param( 'wat_timeframe', 7 ),
@@ -524,7 +524,7 @@ class Standard
 		$domains['product'] = ['watch'];
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$listItems = $cntl->use( $domains )->get()->getListItems( 'product', 'watch' );
+		$listItems = $cntl->uses( $domains )->get()->getListItems( 'product', 'watch' );
 		$total = count( $listItems );
 
 		$size = $this->getProductListSize( $view );

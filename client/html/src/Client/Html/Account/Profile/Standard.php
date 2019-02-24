@@ -349,7 +349,7 @@ class Standard
 		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', [] );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$view->profileCustomerItem = $cntl->use( $domains )->get();
+		$view->profileCustomerItem = $cntl->uses( $domains )->get();
 
 		return parent::addData( $view, $tags, $expire );
 	}

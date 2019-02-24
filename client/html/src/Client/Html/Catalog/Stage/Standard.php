@@ -438,14 +438,12 @@ class Standard
 		{
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
 
-			$default = array( 'attribute', 'media', 'text' );
-
 			/** client/html/catalog/domains
 			 * A list of domain names whose items should be available in the catalog view templates
 			 *
 			 * @see client/html/catalog/stage/domains
 			 */
-			$domains = $config->get( 'client/html/catalog/domains', $default );
+			$domains = $config->get( 'client/html/catalog/domains', ['attribute', 'media', 'text'] );
 
 			/** client/html/catalog/stage/standard/domains
 			 * A list of domain names whose items should be available in the catalog stage view template
@@ -469,7 +467,8 @@ class Standard
 			 * @see client/html/catalog/lists/domains
 			 */
 			$domains = $config->get( 'client/html/catalog/stage/standard/domains', $domains );
-			$stageCatPath = $controller->getPath( $catid, $domains );
+
+			$stageCatPath = $controller->uses( $domains )->getPath( $catid );
 
 			if( ( $categoryItem = end( $stageCatPath ) ) !== false ) {
 				$view->stageCurrentCatItem = $categoryItem;

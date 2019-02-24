@@ -486,7 +486,7 @@ class Standard
 		 */
 		$prodId = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
 
-		$productItem = \Aimeos\Controller\Frontend::create( $context, 'product' )->get( $prodId, $domains );
+		$productItem = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains )->get( $prodId );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
 		$products = $productItem->getRefItems( 'product' );

@@ -317,7 +317,8 @@ class Standard
 			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
 				->category( $catId, 'promotion', $level )
 				->sort( 'relevance' )->slice( 0, $size )
-				->search( $domains );
+				->uses( $domains )
+				->search();
 
 			$this->addMetaItems( $products, $expire, $tags );
 

@@ -305,7 +305,7 @@ class Standard
 
 		$basket = $basketCntl->get();
 		$services = $attributes = $prices = [];
-		$providers = $serviceCntl->getProviders( 'delivery' );
+		$providers = $serviceCntl->uses( ['media', 'price', 'text'] )->getProviders( 'delivery' );
 
 		foreach( $providers as $id => $provider )
 		{

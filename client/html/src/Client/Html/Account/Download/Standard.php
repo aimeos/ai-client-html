@@ -318,7 +318,7 @@ class Standard
 		$maxcnt = $context->getConfig()->get( 'client/html/account/download/maxcount' );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$item = $cntl->use( ['order' => ['download']] )->get();
+		$item = $cntl->uses( ['order' => ['download']] )->get();
 
 		if( ( $listItem = $item->getListItem( 'order', 'download', $id ) ) === null ) {
 			$listItem = $cntl->createListItem()->setType( 'download' )->setRefId( $id );

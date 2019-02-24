@@ -221,7 +221,7 @@ class Standard
 			{
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
-				if( ( $item = $cntl->use( ['customer/address'] )->get()->getAddressItem( $id ) ) !== null )
+				if( ( $item = $cntl->uses( ['customer/address'] )->get()->getAddressItem( $id ) ) !== null )
 				{
 					$cntl->deleteAddressItem( $item )->store();
 					throw new \Aimeos\Client\Html\Exception( sprintf( 'Delivery address deleted successfully' ) );
@@ -489,7 +489,7 @@ class Standard
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
-			if( ( $address = $cntl->use( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null ) {
+			if( ( $address = $cntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null ) {
 				$cntl->addAddressItem( $address->fromArray( $params ), $option )->store();
 			}
 		}

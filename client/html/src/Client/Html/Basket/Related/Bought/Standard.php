@@ -254,7 +254,7 @@ class Standard
 			$items = $refItems = [];
 			$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
 
-			foreach( $cntl->product( $prodIds )->search( $domains ) as $prodItem )
+			foreach( $cntl->uses( $domains )->product( $prodIds )->search() as $prodItem )
 			{
 				foreach( $prodItem->getListItems( 'product', 'bought-together' ) as $listItem )
 				{

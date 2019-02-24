@@ -182,7 +182,7 @@ class Standard
 				$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
 
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-				$item = $cntl->use( ['customer/address'] )->get();
+				$item = $cntl->uses( ['customer/address'] )->get();
 
 				foreach( $addresses as $pos => $address )
 				{

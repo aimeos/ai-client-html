@@ -223,22 +223,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/detail/service/domains
 		 */
-		$types = $config->get( 'client/html/catalog/detail/service/types', array( 'delivery' ) );
-
-		$manager = \Aimeos\MShop::create( $context, 'service' );
-		$search = $manager->createSearch( true );
-
-		$expr = array(
-			$search->compare( '==', 'service.type', $types ),
-			$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$sortation = array(
-			$search->sort( '+', 'service.type' ),
-			$search->sort( '+', 'service.position' ),
-		);
-		$search->setSortations( $sortation );
+		$types = $config->get( 'client/html/catalog/detail/service/types', ['delivery'] );
 
 		/** client/html/catalog/detail/service/domains
 		 * A list of domain names whose items should be available for the services
@@ -255,12 +240,12 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/detail/service/types
 		 */
-		$domains = $config->get( 'client/html/catalog/detail/service/domains', array( 'text', 'price' ) );
+		$domains = $config->get( 'client/html/catalog/detail/service/domains', ['text', 'price'] );
 
-		$services = $manager->searchItems( $search, $domains );
-		$this->addMetaItems( $services, $expire, $tags );
+		$view->serviceItems = \Aimeos\Controller\Frontend::create( $context, 'service' )
+			->uses( $domains )->type( $types )->sort( 'type' )->search();
 
-		$view->serviceItems = $services;
+		$this->addMetaItems( $view->serviceItems, $expire, $tags );
 
 		return parent::addData( $view, $tags, $expire );
 	}

@@ -228,7 +228,7 @@ class Standard
 		 * @see client/html/catalog/filter/tree/levels-always
 		 * @see client/html/catalog/filter/tree/levels-only
 		 */
-		$ref = $view->config( 'client/html/catalog/filter/tree/domains', ['text', 'media'] );
+		$domains = $view->config( 'client/html/catalog/filter/tree/domains', ['text', 'media'] );
 
 		/** client/html/catalog/filter/tree/startid
 		 * The ID of the category node that should be the root of the displayed category tree
@@ -251,16 +251,17 @@ class Standard
 		 */
 		$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 
-		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )->root( $startid );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )
+			->uses( $domains)->root( $startid );
 
 		if( ( $currentid = $view->param( 'f_catid' ) ) == null ) {
-			$catItems = $cntl->getTree( $ref, \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE )->toList();
+			$catItems = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE )->toList();
 		} else {
-			$catItems = $cntl->getPath( $currentid, $ref );
+			$catItems = $cntl->getPath( $currentid );
 		}
 
 		$view->treeCatalogPath = $catItems;
-		$view->treeCatalogTree = $cntl->visible( array_keys( $catItems ) )->getTree( $ref );
+		$view->treeCatalogTree = $cntl->visible( array_keys( $catItems ) )->getTree();
 		$view->treeCatalogIds = array_keys( $view->treeCatalogTree->toList() );
 		$view->treeFilterParams = $this->getClientParams( $view->param(), array( 'f' ) );
 

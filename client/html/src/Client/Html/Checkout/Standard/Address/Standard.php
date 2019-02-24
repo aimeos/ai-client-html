@@ -304,7 +304,7 @@ class Standard
 		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/base/address' );
 
 		$deliveryAddressItems = [];
-		$item = $controller->use( ['customer/address'] )->get();
+		$item = $controller->uses( ['customer/address'] )->get();
 
 		foreach( $item->getAddressItems() as $pos => $addrItem ) {
 			$deliveryAddressItems[$pos] = $orderAddressManager->createItem()->copyFrom( $addrItem );

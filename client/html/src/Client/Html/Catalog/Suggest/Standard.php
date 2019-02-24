@@ -345,8 +345,7 @@ class Standard
 		$size = $config->get( 'client/html/catalog/suggest/size', 24 );
 
 		$view->suggestItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
-			->text( $view->param( 'f_search' ) )->slice( 0, $size )
-			->search( $domains );
+			->uses( $domains )->text( $view->param( 'f_search' ) )->slice( 0, $size )->search();
 
 		return parent::addData( $view, $tags, $expire );
 	}

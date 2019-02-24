@@ -346,7 +346,7 @@ class Standard
 		$max = $context->getConfig()->get( 'client/html/account/favorite/standard/maxitems', 100 );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$item = $cntl->use( ['product' => ['favorite']] )->get();
+		$item = $cntl->uses( ['product' => ['favorite']] )->get();
 
 		if( count( $item->getRefItems( 'product', null, 'favorite' ) ) + count( $ids ) > $max )
 		{
@@ -374,7 +374,7 @@ class Standard
 	protected function deleteFavorites( array $ids )
 	{
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
-		$item = $cntl->use( ['product' => ['favorite']] )->get();
+		$item = $cntl->uses( ['product' => ['favorite']] )->get();
 
 		foreach( $ids as $id )
 		{
@@ -477,7 +477,7 @@ class Standard
 		$domains['product'] = ['favorite'];
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$listItems = $cntl->use( $domains )->get()->getListItems( 'product', 'favorite' );
+		$listItems = $cntl->uses( $domains )->get()->getListItems( 'product', 'favorite' );
 		$total = count( $listItems );
 
 		$size = $this->getProductListSize( $view );
