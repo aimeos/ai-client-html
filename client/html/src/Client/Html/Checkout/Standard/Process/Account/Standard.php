@@ -188,7 +188,7 @@ class Standard
 			if( ( $extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] ) ) !== [] )
 			{
 				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-				$controller->editItem( $context->getUserId() , $extra );
+				$controller->editItem( $context->getUserId(), $extra );
 			}
 		}
 		catch( \Exception $e )
