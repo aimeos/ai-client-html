@@ -299,13 +299,30 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
+		$domains = ['media', 'price', 'text'];
+
+		/** client/html/checkout/standard/payment/domains
+		 * List of domain names whose items should be available in the checkout payment templates
+		 *
+		 * The templates rendering checkout payment related data usually add the
+		 * images, prices and texts associated to each item. If you want to display
+		 * additional content like the attributes, you can configure your own list
+		 * of domains (attribute, media, price, text, etc. are domains) whose items
+		 * are fetched from the storage.
+		 *
+		 * @param array List of domain names
+		 * @since 2019.04
+		 * @category Developer
+		 * @see client/html/checkout/standard/delivery/domains
+		 */
+		$domains = $context->getConfig()->get( 'client/html/checkout/standard/payment/domains', $domains );
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 		$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 
 		$basket = $basketCntl->get();
 		$services = $attributes = $prices = [];
-		$providers = $serviceCntl->uses( ['media', 'price', 'text'] )->getProviders( 'payment' );
+		$providers = $serviceCntl->uses( $domains )->type( 'payment' )->getProviders();
 
 		foreach( $providers as $id => $provider )
 		{
