@@ -250,7 +250,7 @@ class Standard
 				->text( $view->value( $params, 'f_search' ) )
 				->category( $catids, 'default', $level )
 				->slice( $start, $size )->sort( $sort )
-				->uses( $domains )
+				->uses( ['text'] )
 				->search();
 
 			if( ( $count = count( $products ) ) > 1 )
