@@ -235,6 +235,73 @@ class Standard
 
 
 	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	{
+		$context = $this->getContext();
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+
+		if( ( $address = current( $basketCntl->get()->getAddress( 'payment' ) ) ) === false ) {
+			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
+		} else {
+			$langid = $address->getLanguageId();
+		}
+
+		$view->billingLanguage = $langid;
+
+		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
+
+		if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
+			$hidden[] = 'order.base.address.languageid';
+		}
+
+		$salutations = array( 'company', 'mr', 'mrs' );
+
+		/** client/html/checkout/standard/address/billing/salutations
+		 * List of salutions the customer can select from for the billing address
+		 *
+		 * The following salutations are available:
+		 * * empty string for "unknown"
+		 * * company
+		 * * mr
+		 * * mrs
+		 * * miss
+		 *
+		 * You can modify the list of salutation codes and remove the ones
+		 * which shouldn't be used. Adding new salutations is a little bit
+		 * more difficult because you have to adapt a few areas in the source
+		 * code.
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/billing/salutations" starting from 2014-03.
+		 *
+		 * @param array List of available salutation codes
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/billing/disable-new
+		 * @see client/html/checkout/standard/address/billing/mandatory
+		 * @see client/html/checkout/standard/address/billing/optional
+		 * @see client/html/checkout/standard/address/billing/hidden
+		 * @see client/html/checkout/standard/address/countries
+		 */
+		$view->billingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
+
+		$view->billingMandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
+		$view->billingOptional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
+		$view->billingHidden = $hidden;
+
+		return parent::addData( $view, $tags, $expire );
+	}
+
+
+	/**
 	 * Checks the address fields for missing data and sanitizes the given parameter list.
 	 *
 	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
@@ -531,73 +598,6 @@ class Standard
 		}
 
 		$basketCtrl->setAddress( $type, $address );
-	}
-
-
-	/**
-	 * Sets the necessary parameter values in the view.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
-	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
-	{
-		$context = $this->getContext();
-		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
-
-		if( ( $address = current( $basketCntl->get()->getAddress( 'payment' ) ) ) === false ) {
-			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
-		} else {
-			$langid = $address->getLanguageId();
-		}
-
-		$view->billingLanguage = $langid;
-
-		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
-
-		if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
-			$hidden[] = 'order.base.address.languageid';
-		}
-
-		$salutations = array( 'company', 'mr', 'mrs' );
-
-		/** client/html/checkout/standard/address/billing/salutations
-		 * List of salutions the customer can select from for the billing address
-		 *
-		 * The following salutations are available:
-		 * * empty string for "unknown"
-		 * * company
-		 * * mr
-		 * * mrs
-		 * * miss
-		 *
-		 * You can modify the list of salutation codes and remove the ones
-		 * which shouldn't be used. Adding new salutations is a little bit
-		 * more difficult because you have to adapt a few areas in the source
-		 * code.
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/billing/salutations" starting from 2014-03.
-		 *
-		 * @param array List of available salutation codes
-		 * @since 2015.02
-		 * @category User
-		 * @category Developer
-		 * @see client/html/checkout/standard/address/billing/disable-new
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see client/html/checkout/standard/address/billing/hidden
-		 * @see client/html/checkout/standard/address/countries
-		 */
-		$view->billingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
-
-		$view->billingMandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
-		$view->billingOptional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
-		$view->billingHidden = $hidden;
-
-		return parent::addData( $view, $tags, $expire );
 	}
 
 
