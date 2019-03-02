@@ -520,7 +520,7 @@ class Standard
 		}
 		else // existing address
 		{
-			$params = $view->param( 'ca_billing_' . $option, [] );
+			$params = $view->param( 'ca_billing_' . $option, [] ) + $view->param( 'ca_extra', [] );
 
 			if( !empty( $params ) && ( $view->billingError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
