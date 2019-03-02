@@ -32,7 +32,7 @@ $addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Ad
 $addrArray = ( $address = current( $addresses ) !== false ? $address->toArray() : [] );
 
 if( !isset( $addrArray['order.base.address.addressid'] ) || $addrArray['order.base.address.addressid'] == '' ) {
-	$billingDefault = ( isset( $this->addressCustomerItem ) ? $this->addressCustomerItem->getId() : 'null' );
+	$billingDefault = ( isset( $this->addressCustomerItem ) && $this->addressCustomerItem->getId() !== null ? $this->addressCustomerItem->getId() : 'null' );
 } else {
 	$billingDefault = $addrArray['order.base.address.addressid'];
 }
@@ -65,7 +65,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
 
 
-	<?php if( isset( $this->addressPaymentItem ) ) : ?>
+	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getId() !== null ) : ?>
 		<div class="item-address">
 			<div class="header">
 
