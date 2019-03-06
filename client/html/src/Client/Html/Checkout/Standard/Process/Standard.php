@@ -264,15 +264,14 @@ class Standard
 				parent::process();
 
 				$basket = $basketCntl->store();
-				$orderItem = $orderCntl->addItem( $basket->getId(), 'web' );
-				$orderCntl->block( $orderItem );
+				$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
 
 				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
 			}
 			elseif ( $view->param( 'cp_payment', null ) !== null )
 			{
 				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
-				$orderItem = $orderCntl->getItem( $context->getSession()->get( 'aimeos/orderid' ) );
+				$orderItem = $orderCntl->get( $context->getSession()->get( 'aimeos/orderid' ), false );
 				$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
 			}
 			else
@@ -285,9 +284,7 @@ class Standard
 
 			if( $services === [] || $total <= 0 && $this->isSubscription( $basket->getProducts() ) === false )
 			{
-				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
-				$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
-				$orderCntl->saveItem( $orderItem );
+				$orderCntl->save( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
 			}
 			elseif( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
 			{

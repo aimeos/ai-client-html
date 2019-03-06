@@ -383,10 +383,8 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		if( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) != null )
-		{
-			$cntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
-			$view->confirmOrderItem = $cntl->getItem( $orderid, false );
+		if( ( $id = $context->getSession()->get( 'aimeos/orderid' ) ) != null ) {
+			$view->confirmOrderItem = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $id, false );
 		}
 
 		return parent::addData( $view, $tags, $expire );

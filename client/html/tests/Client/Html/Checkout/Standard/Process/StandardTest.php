@@ -96,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['addItem', 'block'] )
+			->setMethods( ['store'] )
 			->getMock();
 
 		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
@@ -108,8 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketMock->addService( 'payment', $servId );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( $form ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
-		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
-		$orderMock->expects( $this->once() )->method( 'block' );
+		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem ) );
 
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $basketMock );
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $orderMock );
@@ -147,15 +146,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['addItem', 'block', 'saveItem'] )
+			->setMethods( ['store', 'save'] )
 			->getMock();
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
 
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
-		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
-		$orderMock->expects( $this->once() )->method( 'saveItem' );
-		$orderMock->expects( $this->once() )->method( 'block' );
+		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem ) );
+		$orderMock->expects( $this->once() )->method( 'save' )->will( $this->returnValue( $orderItem ) );
 
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $basketMock );
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $orderMock );
@@ -190,7 +188,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['addItem', 'block'] )
+			->setMethods( ['store'] )
 			->getMock();
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
@@ -201,8 +199,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketMock->addService( 'payment', $servId );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( null ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
-		$orderMock->expects( $this->once() )->method( 'addItem' )->will( $this->returnValue( $orderItem ) );
-		$orderMock->expects( $this->once() )->method( 'block' );
+		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem ) );
 
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $basketMock );
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $orderMock );
@@ -231,11 +228,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
-			->disableOriginalConstructor()
-			->setMethods( ['getItem'] )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['get'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'getItem' )
+		$mock->expects( $this->once() )->method( 'get' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
 		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $mock );
@@ -253,11 +250,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
-			->disableOriginalConstructor()
-			->setMethods( ['getItem'] )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['get'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'getItem' )
+		$mock->expects( $this->once() )->method( 'get' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
 		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $mock );
@@ -275,11 +272,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
-			->disableOriginalConstructor()
-			->setMethods( ['getItem'] )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['get'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'getItem' )
+		$mock->expects( $this->once() )->method( 'get' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
 		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $mock );
@@ -297,11 +294,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
-			->disableOriginalConstructor()
-			->setMethods( ['getItem'] )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['get'] )
 			->getMock();
 
-		$mock->expects( $this->once() )->method( 'getItem' )
+		$mock->expects( $this->once() )->method( 'get' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		\Aimeos\Controller\Frontend\Order\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $mock );

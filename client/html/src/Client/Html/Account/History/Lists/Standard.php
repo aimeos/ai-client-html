@@ -214,20 +214,8 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$context = $this->getContext();
-		$manager = \Aimeos\MShop::create( $context, 'order' );
-
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-			$search->getConditions(),
-			$search->compare( '==', 'order.base.customerid', $context->getUserId() ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( array( $search->sort( '-', 'order.id' ) ) );
-
-
-		$view->listsOrderItems = $manager->searchItems( $search );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'order' );
+		$view->listsOrderItems = $cntl->sort( '-order.id' )->search();
 
 		return parent::addData( $view, $tags, $expire );
 	}

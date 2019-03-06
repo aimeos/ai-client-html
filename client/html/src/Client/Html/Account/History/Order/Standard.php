@@ -218,33 +218,16 @@ class Standard
 		{
 			$context = $this->getContext();
 
-			$manager = \Aimeos\MShop::create( $context, 'order' );
-			$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
-
-			$search = $manager->createSearch( true );
-			$expr = array(
-				$search->getConditions(),
-				$search->compare( '==', 'order.id', $orderId ),
-				$search->compare( '==', 'order.base.customerid', $context->getUserId() ),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
-
-			$orderItems = $manager->searchItems( $search );
-
-			if( ( $orderItem = reset( $orderItems ) ) === false )
-			{
-				$msg = $view->translate( 'client', 'Order with ID "%1$s" not found' );
-				throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $orderId ) );
-			}
-
+			$orderItem = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $orderId );
+			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $orderItem->getBaseId() );
 
 			if( $orderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
 				$view->summaryShowDownloadAttributes = true;
 			}
 
-			$view->summaryBasket = $controller->load( $orderItem->getBaseId() );
-			$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 			$view->orderItem = $orderItem;
+			$view->summaryBasket = $basket;
+			$view->summaryTaxRates = $this->getTaxRates( $basket );
 		}
 
 		return parent::addData( $view, $tags, $expire );
