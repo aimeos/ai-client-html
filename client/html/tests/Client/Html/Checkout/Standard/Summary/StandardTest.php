@@ -196,7 +196,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$product = $productManager->findItem( 'CNE' );
 
-		$controller->addProduct( $product->getId(), 2 );
+		$controller->addProduct( $product, 2 );
 
 
 		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );

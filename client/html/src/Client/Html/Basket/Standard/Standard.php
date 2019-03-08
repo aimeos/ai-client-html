@@ -298,7 +298,7 @@ class Standard
 					$this->deleteProducts( $view );
 					break;
 				default:
-					$this->editProducts( $view );
+					$this->updateProducts( $view );
 					$this->addCoupon( $view );
 			}
 
@@ -341,11 +341,6 @@ class Standard
 				default:
 					$view->standardCheckout = true;
 			}
-		}
-		catch( \Aimeos\Client\Html\Exception $e )
-		{
-			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
@@ -440,8 +435,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
-			$controller->addCoupon( $coupon );
+			\Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->addCoupon( $coupon );
 			$this->clearCached();
 		}
 	}
@@ -454,58 +448,55 @@ class Standard
 	 */
 	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
-		$products = (array) $view->param( 'b_prod', [] );
+		$context = $this->getContext();
+		$domains = ['attribute', 'media', 'price', 'product', 'text'];
+
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
 
 		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' )
 		{
-			$products[] = array(
-				'prodid' => $prodid,
-				'quantity' => $view->param( 'b_quantity', 1 ),
-				'attrvarid' => $view->param( 'b_attrvarid', [] ),
-				'attrconfid' => $view->param( 'b_attrconfid', [] ),
-				'attrhideid' => $view->param( 'b_attrhideid', [] ),
-				'attrcustid' => $view->param( 'b_attrcustid', [] ),
-				'stocktype' => $view->param( 'b_stocktype', 'default' ),
+			$basketCntl->addProduct(
+				$productCntl->get( $prodid ),
+				$view->param( 'b_quantity', 1 ),
+				$view->param( 'b_attrvarid', [] ),
+				$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
+				$view->param( 'b_attrcustid', [] ),
+				$view->param( 'b_stocktype', 'default' ),
+				$view->param( 'b_supplier' ),
 			);
 		}
-
-		foreach( $products as $values ) {
-			$this->addProduct( $controller, $values );
-		}
-
-		$this->clearCached();
-	}
-
-
-	/**
-	 * Adds a single product specified by its values to the basket.
-	 *
-	 * @param \Aimeos\Controller\Frontend\Basket\Iface $controller Basket frontend controller
-	 * @param array $values Associative list of key/value pairs from the view specifying the product
-	 */
-	protected function addProduct( \Aimeos\Controller\Frontend\Basket\Iface $controller, array $values )
-	{
-		$list = [];
-		$confIds = ( isset( $values['attrconfid']['id'] ) ? array_filter( (array) $values['attrconfid']['id'] ) : [] );
-		$confQty = ( isset( $values['attrconfid']['qty'] ) ? array_filter( (array) $values['attrconfid']['qty'] ) : [] );
-
-		foreach( $confIds as $idx => $id )
+		else
 		{
-			if( isset( $confQty[$idx] ) && $confQty[$idx] > 0 ) {
-				$list[$id] = $confQty[$idx];
+			$list = [];
+			$entries = (array) $view->param( 'b_prod', [] );
+
+			foreach( $entries as $values )
+			{
+				if( isset( $values['prodid'] ) ) {
+					$list[] = $values['prodid'];
+				}
+			}
+
+			$products = $productCntl->product( $list )->slice( 0, count( $list ) )->search();
+
+			foreach( $entries as $values )
+			{
+				if( isset( $values['prodid'] ) && isset( $products[$values['prodid']] ) )
+				{
+					$basketCntl->addProduct( $products[$values['prodid']],
+						( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
+						( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
+						$this->getAttributeMap( isset( $values['attrconfid'] ) ? $values['attrconfid'] : [] ),
+						( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] ),
+						( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' ),
+						( isset( $values['supplier'] ) ? (string) $values['supplier'] : null )
+					);
+				}
 			}
 		}
 
-		$controller->addProduct(
-			( isset( $values['prodid'] ) ? (string) $values['prodid'] : '' ),
-			( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
-			( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' ),
-			( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
-			$list,
-			( isset( $values['attrhideid'] ) ? array_filter( (array) $values['attrhideid'] ) : [] ),
-			( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] )
-		);
+		$this->clearCached();
 	}
 
 
@@ -518,8 +509,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
-			$controller->deleteCoupon( $coupon );
+			\Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->deleteCoupon( $coupon );
 			$this->clearCached();
 		}
 	}
@@ -543,12 +533,29 @@ class Standard
 	}
 
 
+	protected function getAttributeMap( array $values )
+	{
+		$list = [];
+		$confIds = ( isset( $values['id'] ) ? array_filter( (array) $values['id'] ) : [] );
+		$confQty = ( isset( $values['qty'] ) ? array_filter( (array) $values['qty'] ) : [] );
+
+		foreach( $confIds as $idx => $id )
+		{
+			if( isset( $confQty[$idx] ) && $confQty[$idx] > 0 ) {
+				$list[$id] = $confQty[$idx];
+			}
+		}
+
+		return $list;
+	}
+
+
 	/**
 	 * Edits the products specified by the view parameters to the basket.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
 	 */
-	protected function editProducts( \Aimeos\MW\View\Iface $view )
+	protected function updateProducts( \Aimeos\MW\View\Iface $view )
 	{
 		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
@@ -557,17 +564,15 @@ class Standard
 		{
 			$products[] = array(
 				'position' => $position,
-				'quantity' => $view->param( 'b_quantity', 1 ),
-				'attrconf-code' => array_filter( (array) $view->param( 'b_attrconfcode', [] ) )
+				'quantity' => $view->param( 'b_quantity', 1 )
 			);
 		}
 
 		foreach( $products as $values )
 		{
-			$controller->editProduct(
+			$controller->updateProduct(
 				( isset( $values['position'] ) ? (int) $values['position'] : 0 ),
-				( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
-				( isset( $values['attrconf-code'] ) ? array_filter( (array) $values['attrconf-code'] ) : [] )
+				( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 )
 			);
 		}
 

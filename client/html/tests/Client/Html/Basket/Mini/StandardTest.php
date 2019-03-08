@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$view = $this->object->getView();
 
-		$controller->addProduct( $productItem->getId(), 9 );
+		$controller->addProduct( $productItem, 9 );
 		$view->miniBasket = $controller->get();
 
 		$output = $this->object->getBody();

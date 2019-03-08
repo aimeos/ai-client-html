@@ -261,42 +261,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyAddHiddenAttribute()
-	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
-
-		$search = $attrManager->createSearch();
-		$expr = array(
-			$search->compare( '==', 'attribute.code', 'm' ),
-			$search->compare( '==', 'attribute.domain', 'product' ),
-			$search->compare( '==', 'attribute.type', 'size' ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$result = $attrManager->searchItems( $search, [] );
-
-		if( ( $attribute = reset( $result ) ) === false ) {
-			throw new \RuntimeException( 'No attribute' );
-		}
-
-		$view = $this->object->getView();
-		$param = array(
-			'b_action' => 'add',
-			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
-			'b_quantity' => 2,
-			'b_attrhideid' => $attribute->getId(),
-			'b_stocktype' => 'default',
-		);
-
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-
-		$this->object->process();
-		$output = $this->object->getBody();
-
-		$this->assertNotRegExp( '#<li class="attr-item.*<span class="value">m</span>.*</li>#smU', $output );
-	}
-
-
 	public function testGetBodyAddCustomAttribute()
 	{
 		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
@@ -456,7 +420,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyAddCoupon()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
-		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1 );
+		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
 		$view = $this->object->getView();
 
@@ -477,7 +441,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyDeleteCoupon()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
-		$controller->addProduct( $this->getProductItem( 'CNC' )->getId(), 1 );
+		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
 		$view = $this->object->getView();
 

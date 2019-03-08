@@ -101,10 +101,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
-		$prodId = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' )->getId();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' );
 		$servId = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
 
-		$basketMock->addProduct( $prodId );
+		$basketMock->addProduct( $product );
 		$basketMock->addService( 'payment', $servId );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( $form ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );
@@ -192,10 +192,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
-		$prodId = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' )->getId();
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE' );
 		$servId = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' )->getId();
 
-		$basketMock->addProduct( $prodId );
+		$basketMock->addProduct( $product );
 		$basketMock->addService( 'payment', $servId );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( null ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get() ) );

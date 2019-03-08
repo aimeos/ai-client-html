@@ -175,8 +175,8 @@ class Standard
 
 		try
 		{
-			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
-			$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
+			$addresses = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get()->getAddress( $type );
 
 			if( $context->getUserId() == null && ( $address = current( $addresses ) ) !== false )
 			{
