@@ -463,7 +463,7 @@ class Standard
 				$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
 				$view->param( 'b_attrcustid', [] ),
 				$view->param( 'b_stocktype', 'default' ),
-				$view->param( 'b_supplier' ),
+				$view->param( 'b_supplier' )
 			);
 		}
 		else
