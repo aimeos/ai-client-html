@@ -105,14 +105,14 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 	<?php foreach( $hidden as $key => $item ) : ?>
 		<?php if( is_array( $item->getDefault() ) ) : ?>
 			<?php foreach( (array) $item->getDefault() as $key2 => $value ) : ?>
-				<input type="hidden"
+				<input type="hidden" id="process-<?= $key; ?>"
 					name="<?= $enc->attr( $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) ); ?>"
 					value="<?= $enc->attr( $value ); ?>"
 				/>
 			<?php endforeach; ?>
 
 		<?php else : ?>
-			<input type="hidden"
+			<input type="hidden" id="process-<?= $key; ?>"
 				name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
 				value="<?= $enc->attr( $item->getDefault() ); ?>"
 			/>
