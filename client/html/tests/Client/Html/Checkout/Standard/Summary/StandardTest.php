@@ -183,30 +183,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getBasket()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 
+		$customerManager = \Aimeos\MShop::create( $this->context, 'customer' );
+		$address = $customerManager->findItem( 'UTC001' )->getPaymentAddress();
 
-		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
-		$customer = $customerManager->findItem( 'UTC001' );
-
-		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $customer->getPaymentAddress() );
-		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $customer->getPaymentAddress() );
-
+		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
+		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
 
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$product = $productManager->findItem( 'CNE' );
+		$controller->addProduct( $productManager->findItem( 'CNE' ), 2 );
 
-		$controller->addProduct( $product, 2 );
-
-
-		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
-
-		$service = $serviceManager->findItem( 'unitpaymentcode', [], 'service', 'payment' );
-		$controller->addService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT, $service->getId() );
-
-		$service = $serviceManager->findItem( 'unitcode', [], 'service', 'delivery' );
-		$controller->addService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY, $service->getId() );
-
+		$domains = ['media', 'price', 'text'];
+		$serviceManager = \Aimeos\MShop::create( $this->context, 'service' );
+		$controller->addService( $serviceManager->findItem( 'unitpaymentcode', $domains, 'service', 'payment' ) );
+		$controller->addService( $serviceManager->findItem( 'unitcode', $domains, 'service', 'delivery' ) );
 
 		return $controller->get();
 	}

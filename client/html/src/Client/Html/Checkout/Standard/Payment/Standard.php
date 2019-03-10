@@ -232,18 +232,18 @@ class Standard
 		{
 			$context = $this->getContext();
 			$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
-			$serviceCtrl = \Aimeos\Controller\Frontend::create( $context, 'service' );
+			$servCtrl = \Aimeos\Controller\Frontend::create( $context, 'service' )->uses( ['media', 'price', 'text'] );
 
 			// only start if there's something to do
 			if( ( $serviceIds = $view->param( 'c_paymentoption', null ) ) !== null )
 			{
 				$basketCtrl->deleteService( 'payment' );
 
-				foreach( (array) $serviceIds as $servId )
+				foreach( (array) $serviceIds as $id )
 				{
 					try
 					{
-						$basketCtrl->addService( 'payment', $servId, $view->param( 'c_payment/' . $servId, [] ) );
+						$basketCtrl->addService( $servCtrl->get( $id ), $view->param( 'c_payment/' . $id, [] ) );
 					}
 					catch( \Aimeos\Controller\Frontend\Basket\Exception $e )
 					{
@@ -260,10 +260,10 @@ class Standard
 
 
 			// Test if payment service is available
-			$services = $basketCtrl->get()->getServices();
+			$services = $basketCtrl->get()->getServices( 'payment' );
 
-			if( !isset( $view->standardStepActive ) && ( !isset( $services['payment'] ) || empty( $services['payment'] ) )
-				&& count( $serviceCtrl->getProviders( 'payment' ) ) > 0
+			if( !isset( $view->standardStepActive ) && empty( $services['payment'] )
+				&& count( $servCtrl->getProviders( 'payment' ) ) > 0
 			) {
 				$view->standardStepActive = 'payment';
 				return false;
