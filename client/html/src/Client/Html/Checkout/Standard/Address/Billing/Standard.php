@@ -579,9 +579,9 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$address = $view->param( 'ca_billing', [] );
+			$params = $view->param( 'ca_billing', [] );
 
-			if( ( $view->billingError = $this->checkFields( $address ) ) !== [] ) {
+			if( ( $view->billingError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 		}
@@ -594,10 +594,10 @@ class Standard
 			}
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( [] );
-			$address = $cntl->add( $params )->store()->get()->getPaymentAddress();
+			$params = $cntl->add( $params )->store()->get()->getPaymentAddress()->toArray();
 		}
 
-		$basketCtrl->setAddress( $type, $address );
+		$basketCtrl->addAddress( $type, $params );
 	}
 
 

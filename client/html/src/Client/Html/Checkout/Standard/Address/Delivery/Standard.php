@@ -473,9 +473,9 @@ class Standard
 
 		if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$address = $view->param( 'ca_delivery', [] );
+			$params = $view->param( 'ca_delivery', [] );
 
-			if( ( $view->deliveryError = $this->checkFields( $address ) ) !== [] ) {
+			if( ( $view->deliveryError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
 		}
@@ -489,12 +489,14 @@ class Standard
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
-			if( ( $address = $cntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null ) {
+			if( ( $address = $cntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null )
+			{
 				$cntl->addAddressItem( $address->fromArray( $params ), $option )->store();
+				$params = $address->toArray();
 			}
 		}
 
-		$basketCtrl->setAddress( $type, $address );
+		$basketCtrl->addAddress( $type, $params );
 	}
 
 

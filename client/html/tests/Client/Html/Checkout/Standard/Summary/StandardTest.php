@@ -186,10 +186,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 
 		$customerManager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$address = $customerManager->findItem( 'UTC001' )->getPaymentAddress();
+		$address = $customerManager->findItem( 'UTC001' )->getPaymentAddress()->toArray();
 
-		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
-		$controller->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
+		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
+		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
 
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$controller->addProduct( $productManager->findItem( 'CNE' ), 2 );
