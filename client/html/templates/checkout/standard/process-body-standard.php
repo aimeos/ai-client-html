@@ -137,9 +137,9 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 								<option value="<?= $enc->attr( $option ); ?>"><?= $enc->html( $option ); ?></option>
 							<?php endforeach; ?>
 						</select>
-				
-					<?php break; case 'div': ?>	
-						<div id="process-<?= $key; ?>" >  <!-- A Stripe Element will be inserted here. --> </div>
+
+					<?php break; case 'container': ?>
+						<div id="process-<?= $key; ?>"></div>
 
 					<?php break; case 'boolean': ?>
 						<input type="checkbox" id="process-<?= $key; ?>"
