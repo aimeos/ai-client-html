@@ -141,6 +141,9 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 							<?php endforeach; ?>
 						</select>
 
+					<?php break; case 'container': ?>
+						<div id="process-<?= $key; ?>"></div>
+
 					<?php break; case 'boolean': ?>
 						<input type="checkbox" id="process-<?= $key; ?>"
 							name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
