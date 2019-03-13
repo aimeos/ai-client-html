@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2018-10-02 00:10+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>\n"
+"POT-Creation-Date: 2019-03-13 10:02+0100\n"
+"PO-Revision-Date: 2019-03-13 09:09+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -269,6 +269,10 @@ msgstr "Teslimat"
 
 msgid "Delivery address"
 msgstr "Teslimat adresi"
+
+#, php-format
+msgid "Delivery address deleted successfully"
+msgstr ""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
