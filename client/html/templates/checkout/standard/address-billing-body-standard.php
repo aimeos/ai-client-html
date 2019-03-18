@@ -29,7 +29,7 @@ $disablenew = (bool) $this->config( 'client/html/common/address/billing/disable-
 
 
 $addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-$addrArray = ( $address = current( $addresses ) !== false ? $address->toArray() : [] );
+$addrArray = ( ( $address = current( $addresses ) ) !== false ? $address->toArray() : [] );
 
 if( !isset( $addrArray['order.base.address.addressid'] ) || $addrArray['order.base.address.addressid'] == '' ) {
 	$billingDefault = ( isset( $this->addressCustomerItem ) && $this->addressCustomerItem->getId() !== null ? $this->addressCustomerItem->getId() : 'null' );
@@ -65,7 +65,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
 
 
-	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getId() !== null ) : ?>
+	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() !== null ) : ?>
 		<div class="item-address">
 			<div class="header">
 
