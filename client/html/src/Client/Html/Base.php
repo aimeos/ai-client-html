@@ -599,7 +599,7 @@ abstract class Base
 			return null;
 		}
 
-		$cfg = $config->get( 'client/html', [] );
+		$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
 
 		$keys = array(
 			'body' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':body', $cfg ),
@@ -639,7 +639,7 @@ abstract class Base
 
 		try
 		{
-			$cfg = $config->get( 'client/html', [] );
+			$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
 			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
 			$context->getCache()->set( $key, $value, $expire, array_unique( $tags ) );
