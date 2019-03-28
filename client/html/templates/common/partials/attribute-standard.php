@@ -126,7 +126,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 										<?= $enc->html( sprintf( /// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 											$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
 											$attribute->getName(),
-											$this->number( abs( $value ) ),
+											$this->number( abs( $value ), $priceItem->getPrecision() ),
 											$this->translate( 'currency', $priceItem->getCurrencyId() ),
 											( $value < 0 ? '−' : '+' )
 										), $enc::TRUST ); ?>
@@ -158,7 +158,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 									<?= $enc->html( sprintf( /// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 										$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
 										$attribute->getName(),
-										$this->number( abs( $value ) ),
+										$this->number( abs( $value ), $priceItem->getPrecision() ),
 										$this->translate( 'currency', $priceItem->getCurrencyId() ),
 										( $value < 0 ? '−' : '+' )
 									), $enc::TRUST ); ?>

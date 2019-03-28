@@ -60,7 +60,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 			<p class="email-common-body content-block">
 				<?php $price = $product->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
-				<?php $value = sprintf( $priceFormat, $this->number( $price->getValue() + $price->getRebate() ), $priceCurrency ); ?>
+				<?php $value = sprintf( $priceFormat, $this->number( $price->getValue() + $price->getRebate(), $price->getPrecision() ), $priceCurrency ); ?>
 				<?= nl2br( $enc->html( sprintf( $this->translate( 'client', 'The value of your voucher is %1$s' ), $value ), $enc::TRUST ) ); ?>
 			</p>
 

@@ -145,7 +145,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 					<?= $enc->html( $quantity ); ?>
 				</span>
 				<span class="value">
-					<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts() ), $priceCurrency ) ); ?>
+					<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?>
 				</span>
 			</div>
 		</a>
@@ -184,7 +184,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 								<?= $enc->html( $product->getQuantity() ) ?>
 							</td>
 							<td class="price">
-								<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() ), $priceCurrency ) ); ?>
+								<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ); ?>
 							</td>
 							<td class="action">
 								<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
@@ -200,7 +200,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 							<?= $enc->html( $this->translate( 'client', 'Shipping' ), $enc::TRUST ); ?>
 						</td>
 						<td class="price">
-							<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts() ), $priceCurrency ) ); ?>
+							<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?>
 						</td>
 						<td class="action"></td>
 					</tr>
@@ -209,7 +209,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 							<?= $enc->html( $this->translate( 'client', 'Total' ), $enc::TRUST ); ?>
 						</td>
 						<td class="price">
-							<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts() ), $priceCurrency ) ); ?>
+							<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?>
 						</td>
 						<td class="action"></td>
 					</tr>

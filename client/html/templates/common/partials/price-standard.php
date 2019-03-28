@@ -75,7 +75,7 @@ $first = true;
 		</span>
 
 		<span class="value">
-			<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue() ), $currency ), $enc::TRUST ); ?>
+			<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
 		</span>
 
 		<?php if( $rebate > 0 ) : ?>
@@ -89,7 +89,7 @@ $first = true;
 
 		<?php if( $costs > 0 ) : ?>
 			<span class="costs">
-				<?= $enc->html( sprintf( $format['costs'], $this->number( $costs ), $currency ), $enc::TRUST ); ?>
+				<?= $enc->html( sprintf( $format['costs'], $this->number( $costs, $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
 			</span>
 		<?php endif; ?>
 

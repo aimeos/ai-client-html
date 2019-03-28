@@ -29,7 +29,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	}
 
 	if( ( $priceItem = reset( $priceItems ) ) !== false ) {
-		$price = sprintf( $priceFormat, $this->number( $priceItem->getValue() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) );
+		$price = sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) );
 	}
 
 	$items[] = array(

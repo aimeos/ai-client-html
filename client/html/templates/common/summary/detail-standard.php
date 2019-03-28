@@ -126,6 +126,7 @@ if( isset( $this->summaryBasket ) )
 	$priceValue = $price->getValue();
 	$priceService = $price->getCosts();
 	$priceRebate = $price->getRebate();
+	$precision = $price->getPrecision();
 	$priceTaxflag = $price->getTaxFlag();
 	$priceCurrency = $this->translate( 'currency', $price->getCurrencyId() );
 }
@@ -136,6 +137,7 @@ else
 	$priceService = '0.00';
 	$priceTaxflag = true;
 	$priceCurrency = '';
+	$precision = 2;
 }
 
 
@@ -308,8 +310,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				</td>
 
 
-				<td class="unitprice"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() ), $priceCurrency ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity() ), $priceCurrency ) ); ?></td>
+				<td class="unitprice"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $precision ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $precision ), $priceCurrency ) ); ?></td>
 
 
 				<?php if( $modify ) : ?>
@@ -329,8 +331,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			<tr class="delivery">
 				<td class="details" colspan="2"><?= $enc->html( $deliveryName ); ?></td>
 				<td class="quantity">1</td>
-				<td class="unitprice"><?= $enc->html( sprintf( $priceFormat, $this->number( $deliveryPriceValue ), $priceCurrency ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $deliveryPriceValue ), $priceCurrency ) ); ?></td>
+				<td class="unitprice"><?= $enc->html( sprintf( $priceFormat, $this->number( $deliveryPriceValue, $precision ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $deliveryPriceValue, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
 				<?php endif; ?>
@@ -342,8 +344,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			<tr class="payment">
 				<td class="details" colspan="2"><?= $enc->html( $paymentName ); ?></td>
 				<td class="quantity">1</td>
-				<td class="unitprice"><?= $enc->html( sprintf( $priceFormat, $this->number( $paymentPriceValue ), $priceCurrency ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $paymentPriceValue ), $priceCurrency ) ); ?></td>
+				<td class="unitprice"><?= $enc->html( sprintf( $priceFormat, $this->number( $paymentPriceValue, $precision ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $paymentPriceValue, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
 				<?php endif; ?>
@@ -358,7 +360,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php if( $priceService > 0 || $paymentPriceService > 0 ) : ?>
 			<tr class="subtotal">
 				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceValue ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceValue, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
 				<?php endif; ?>
@@ -368,7 +370,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php if( $priceService - $paymentPriceService > 0 ) : ?>
 			<tr class="delivery">
 				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Shipping' ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceService - $paymentPriceService ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceService - $paymentPriceService, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
 				<?php endif; ?>
@@ -378,7 +380,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php if( $paymentPriceService > 0 ) : ?>
 			<tr class="payment">
 				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Payment costs' ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $paymentPriceService ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $paymentPriceService, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
 				<?php endif; ?>
@@ -388,7 +390,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php if( $priceTaxflag === true ) : ?>
 			<tr class="total">
 				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceValue + $priceService ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceValue + $priceService, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
 				<?php endif; ?>
@@ -403,7 +405,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<?php else : ?>
 						<td colspan="4"><?= $enc->html( sprintf( $this->translate( 'client', '+ %1$s%% VAT' ), $this->number( $taxRate ) ) ); ?></td>
 					<?php endif; ?>
-						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue ), $priceCurrency ) ); ?></td>
+						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $precision ), $priceCurrency ) ); ?></td>
 					<?php if( $modify ) : ?>
 						<td class="action"></td>
 					<?php endif; ?>
@@ -414,7 +416,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php if( $priceTaxflag === false ) : ?>
 			<tr class="total">
 				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceValue + $priceService + $priceTaxvalue ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceValue + $priceService + $priceTaxvalue, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
 				<?php endif; ?>
@@ -424,7 +426,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php if( $priceRebate > '0.00' ) : ?>
 			<tr class="rebate">
 				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ); ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceRebate ), $priceCurrency ) ); ?></td>
+				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceRebate, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
 				<?php endif; ?>

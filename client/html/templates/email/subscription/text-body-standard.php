@@ -55,8 +55,8 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 
 
 <?php $price = $product->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
-<?php printf( $priceFormat, $this->number( $price->getValue() ), $priceCurrency ); ?> <?php ( $price->getRebate() > '0.00' ? printf( $rebatePercentFormat, $this->number( round( $price->getRebate() * 100 / ( $price->getValue() + $price->getRebate() ) ), 0 ) ) : '' ); ?>
-<?php if( $price->getCosts() > 0 ) { echo ' ' . strip_tags( sprintf( $costFormat, $this->number( $price->getCosts() ), $priceCurrency ) ); } ?>
+<?php printf( $priceFormat, $this->number( $price->getValue(), $price->getPrecision() ), $priceCurrency ); ?> <?php ( $price->getRebate() > '0.00' ? printf( $rebatePercentFormat, $this->number( round( $price->getRebate() * 100 / ( $price->getValue() + $price->getRebate() ) ), 0 ) ) : '' ); ?>
+<?php if( $price->getCosts() > 0 ) { echo ' ' . strip_tags( sprintf( $costFormat, $this->number( $price->getCosts(), $price->getPrecision() ), $priceCurrency ) ); } ?>
 <?php if( $price->getTaxrate() > 0 ) { echo ', ' . strip_tags( sprintf( $vatFormat, $this->number( $price->getTaxrate() ) ) ); } ?>
 
 <?php $params = array_merge( $this->param(), ['currency' => $product->getPrice()->getCurrencyId(), 'd_prodid' => $product->getProductId(), 'd_name' => $product->getName( 'url' )] ); ?>
