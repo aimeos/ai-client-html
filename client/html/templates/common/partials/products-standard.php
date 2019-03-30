@@ -109,7 +109,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true; $index++ ?>
 		<?php
 			$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
-			$params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id );
+			$params = array( 'd_name' => $productItem->getName( 'url' ) );
 			if( $position !== null ) { $params['d_pos'] = $position++; }
 
 			$disabled = '';

@@ -117,6 +117,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testGetBodyByName()
+	{
+		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $this->context, $paths );
+		$this->object->setView( \TestHelperHtml::getView() );
+
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_name' => 'Cafe_Noire_Expresso' ) );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->setView( $this->object->addData( $view ) );
+		$output = $this->object->getBody();
+
+		$this->assertContains( '<span class="value" itemprop="sku">CNE</span>', $output );
+	}
+
+
 	public function testGetBodyDefaultId()
 	{
 		$context = clone $this->context;

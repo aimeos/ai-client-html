@@ -485,8 +485,10 @@ class Standard
 		 * @see client/html/catalog/lists/catid-default
 		 */
 		$prodId = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
+		$name = $view->param( 'd_name' );
 
-		$productItem = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains )->get( $prodId );
+		$manager = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
+		$productItem = ( $name !== null ? $manager->resolve( $name ) : $manager->get( $prodId ) );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
 		$products = $productItem->getRefItems( 'product' );
