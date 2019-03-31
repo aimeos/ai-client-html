@@ -314,16 +314,20 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 			}
 
-			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
-			$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 
-			if( ( $code = $view->param( 'code' ) ) !== null ) {
+			if( ( $code = $view->param( 'code' ) ) !== null )
+			{
+				$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 				$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
-			} else {
-				$orderItem = $orderCntl->getItem( $orderid );
+			}
+			else
+			{
+				$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
+				$orderItem = $orderCntl->get( $orderid );
 			}
 
-			$orderCntl->update( $orderItem );  // update stock, coupons, etc.
+			// update stock, coupons, etc.
+			\Aimeos\Controller\Common\Order\Factory::create( $context )->update( $orderItem );
 
 			parent::process();
 
