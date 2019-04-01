@@ -8,10 +8,20 @@
 
 $enc = $this->encoder();
 
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
+if( $this->get( 'params/f_catid' ) !== null )
+{
+	$listTarget = $this->config( 'client/html/catalog/tree/url/target' );
+	$listController = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
+	$listAction = $this->config( 'client/html/catalog/tree/url/action', 'tree' );
+	$listConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
+}
+else
+{
+	$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
+	$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
+	$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
+	$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
+}
 
 $sort = $this->config( 'client/html/catalog/lists/sort', 'relevance' );
 

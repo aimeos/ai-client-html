@@ -10,10 +10,20 @@ $enc = $this->encoder();
 $params = $this->get( 'listParams', [] );
 $catPath = $this->get( 'listCatPath', [] );
 
-$target = $this->config( 'client/html/catalog/lists/url/target' );
-$cntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$config = $this->config( 'client/html/catalog/lists/url/config', [] );
+if( $this->param( 'f_catid' ) !== null )
+{
+	$target = $this->config( 'client/html/catalog/tree/url/target' );
+	$cntl = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
+	$action = $this->config( 'client/html/catalog/tree/url/action', 'tree' );
+	$config = $this->config( 'client/html/catalog/tree/url/config', [] );
+}
+else
+{
+	$target = $this->config( 'client/html/catalog/lists/url/target' );
+	$cntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
+	$action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
+	$config = $this->config( 'client/html/catalog/lists/url/config', [] );
+}
 
 $optTarget = $this->config( 'client/jsonapi/url/target' );
 $optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
