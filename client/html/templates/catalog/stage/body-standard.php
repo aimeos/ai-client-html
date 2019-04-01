@@ -26,6 +26,11 @@ foreach( array_reverse( $catPath ) as $catItem )
 	}
 }
 
+$treeTarget = $this->config( 'client/html/catalog/tree/url/target' );
+$treeController = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
+$treeAction = $this->config( 'client/html/catalog/tree/url/action', 'list' );
+$treeConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
+
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
