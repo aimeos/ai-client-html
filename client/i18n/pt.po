@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# António Almeida <promatik@gmail.com>, 2019
 # Tadeu Pagliarini <tadeu_up@hotmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2018-09-27 06:36+0000\n"
+"POT-Creation-Date: 2019-04-02 15:11+0200\n"
+"PO-Revision-Date: 2019-04-02 13:26+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -226,6 +227,10 @@ msgid "Client HTML type is empty"
 msgstr "O cliente HTML está vazio"
 
 #, php-format
+msgid "Client path is empty"
+msgstr ""
+
+#, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr "O tipo de cliente \"%1$s\" deve ser formado por duas partes separadas por \"/\""
 
@@ -248,10 +253,10 @@ msgid "Coupons"
 msgstr "Cupons"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Criar uma conta de cliente para mim"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Conta do cliente"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -269,6 +274,10 @@ msgstr "Entrega"
 
 msgid "Delivery address"
 msgstr "Endereço de entrega"
+
+#, php-format
+msgid "Delivery address deleted successfully"
+msgstr ""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -308,7 +317,7 @@ msgstr "Os campos com * são obrigatórios"
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
-msgstr ""
+msgstr "Ficheiro \"%1$s\" não existe"
 
 msgid "Filter"
 msgstr "Filtro"
@@ -338,7 +347,7 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "Eu aceito os <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">termos e condições</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">política de privacidade</a> e a <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">política de cancelamento</a>"
 
 msgid "If back in stock"
 msgstr "Se tiver em estoque"
@@ -395,7 +404,7 @@ msgid "Last seen"
 msgstr "Vistos recentemente"
 
 msgid "Latest"
-msgstr ""
+msgstr "Último"
 
 msgid "Like entered by you"
 msgstr ""
@@ -407,7 +416,7 @@ msgid "Next"
 msgstr "Próximo"
 
 msgid "Next order"
-msgstr ""
+msgstr "Próximo pedido"
 
 #, php-format
 msgid ""
@@ -474,7 +483,7 @@ msgid "Other customers also bought"
 msgstr "Outros clientes também compraram"
 
 msgid "Our products"
-msgstr ""
+msgstr "Os nossos produtos"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -518,11 +527,11 @@ msgstr "Por favor, insira os detalhes do pagamento"
 
 #, php-format
 msgid "Please recheck your delivery choice"
-msgstr ""
+msgstr "Por favor, verifique o método de entrega"
 
 #, php-format
 msgid "Please recheck your payment choice"
-msgstr ""
+msgstr "Por favor, verifique o método de pagamento"
 
 msgid "Please select"
 msgstr "Por favor selecione"
@@ -604,7 +613,7 @@ msgid "Services"
 msgstr "Serviços"
 
 msgid "Share"
-msgstr ""
+msgstr "Partilhar"
 
 msgid "Shipping"
 msgstr "Envio"
@@ -644,23 +653,23 @@ msgid "Sub-total"
 msgstr "Sub-total"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "ID da subscrição"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Detalhes da subscrição"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "Frequência da subscrição"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Produto da subscrição"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
-msgstr ""
+msgstr "A subscrição com ID \"%1$s\" não foi encontrado"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Subscrições"
 
 msgid "Suggested products"
 msgstr "Produtos sugeridos"
@@ -669,7 +678,7 @@ msgid "Sum"
 msgstr "Soma"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "Fornecedores"
 
 msgid "Telephone"
 msgstr "Fone"
@@ -736,7 +745,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "A encomenda está pendente até recebermos a confirmação de pagamento. Se escolheu pagar por transferência bancária transfira a quantia para a nossa conta bancária com a referência ao ID da encomenda %1$s."
 
 msgid ""
 "The order was canceled.\n"
@@ -757,7 +766,7 @@ msgid ""
 msgstr "A confirmação de pagamento do seu pedido ainda está pendente.\nVocê irá receber um e-mail assim que o pagamento for autorizado."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "O pagamento não pôde ser renovado"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -768,14 +777,14 @@ msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "O pagamento do pedido %1$s de %2$s foi ressarcido"
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "A subscrição do produto terminou"
 
 msgid "The subscription for the product has ended."
-msgstr ""
+msgstr "A subscrição do produto terminou."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgstr "O seu vale é %1$s"
 
 msgid "Three month"
 msgstr "Três meses"
@@ -784,7 +793,7 @@ msgid "Time frame"
 msgstr "Prazo"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Alternar modo de ecrã inteiro"
 
 msgid "Top seller"
 msgstr "Melhor vendedor"
@@ -811,7 +820,7 @@ msgstr "Incapaz de criar uma conta para \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Incapaz de criar uma conta: \"%1$s\""
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
@@ -840,7 +849,7 @@ msgstr "Produtos acompanhados"
 
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Recebemos o seu pagamento, vamos tratar da sua encomenda imediatamente."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -865,13 +874,13 @@ msgid "You are here:"
 msgstr "Você está aqui:"
 
 msgid "You can use your voucher any time in our online shop"
-msgstr ""
+msgstr "Pode usar o seu vale quando quiser na nossa loja online"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Você será direcionado para o próximo passo"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Cancelou a subscrição"
 
 msgid "Your account"
 msgstr "Sua conta"
@@ -880,7 +889,7 @@ msgid "Your choice"
 msgstr "Sua escolha"
 
 msgid "Your comment"
-msgstr ""
+msgstr "O seu comentário"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
@@ -906,17 +915,17 @@ msgid "Your subscription product"
 msgstr ""
 
 msgid "Your voucher"
-msgstr ""
+msgstr "O seu vale"
 
 msgid "Your voucher: "
-msgstr ""
+msgstr "O seu vale:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Seus produtos observados"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Aumentar/diminuir zoom"
 
 #, php-format
 msgid "address"

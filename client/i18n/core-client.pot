@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: aimeos\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-27 08:31+0200\n"
+"POT-Creation-Date: 2019-04-02 15:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -238,6 +238,10 @@ msgid "Client HTML type is empty"
 msgstr "Client HTML type is empty"
 
 #, php-format
+msgid "Client path is empty"
+msgstr ""
+
+#, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr "Client type \"%1$s\" must consist of two parts separated by \"/\""
 
@@ -281,6 +285,10 @@ msgstr "Delivery"
 
 msgid "Delivery address"
 msgstr "Delivery address"
+
+#, php-format
+msgid "Delivery address deleted successfully"
+msgstr ""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"

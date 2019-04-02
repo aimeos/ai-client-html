@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2018-10-02 14:24+0000\n"
-"Last-Translator: stevechen <steve.stevechen@gmail.com>\n"
+"POT-Creation-Date: 2019-04-02 15:11+0200\n"
+"PO-Revision-Date: 2019-04-02 13:26+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -227,6 +227,10 @@ msgid "Client HTML type is empty"
 msgstr "client HTML 類型是空的"
 
 #, php-format
+msgid "Client path is empty"
+msgstr ""
+
+#, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr "client 類型 \"%1$s\" 必須由兩個部份組成並以\"/\"隔開"
 
@@ -270,6 +274,10 @@ msgstr "運送"
 
 msgid "Delivery address"
 msgstr "收件地址"
+
+#, php-format
+msgid "Delivery address deleted successfully"
+msgstr ""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-27 08:31+0200\n"
-"PO-Revision-Date: 2018-09-27 06:36+0000\n"
+"POT-Creation-Date: 2019-04-02 15:11+0200\n"
+"PO-Revision-Date: 2019-04-02 13:26+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -230,6 +230,10 @@ msgid "Client HTML type is empty"
 msgstr "Отсутствует HTML тип клиента"
 
 #, php-format
+msgid "Client path is empty"
+msgstr ""
+
+#, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr "Тип клиента \"%1$s\" должен состоять из двух частей, разделяемых \"/\""
 
@@ -273,6 +277,10 @@ msgstr "Доставка"
 
 msgid "Delivery address"
 msgstr "Адрес доставки"
+
+#, php-format
+msgid "Delivery address deleted successfully"
+msgstr ""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
