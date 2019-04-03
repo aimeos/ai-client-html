@@ -403,7 +403,12 @@ class Standard
 			$params = $this->getClientParams( $view->param() );
 
 			$catId = $context->getConfig()->get( 'client/html/catalog/lists/catid-default' );
-			$params['f_catid'] = $view->param( 'f_catid', $catId );
+
+			if( ( $catId = $view->param( 'f_catid', $catId ) ) )
+			{
+				$params['f_name'] = $view->param( 'f_name' );
+				$params['f_catid'] = $catId;
+			}
 
 			$context->getSession()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
 
