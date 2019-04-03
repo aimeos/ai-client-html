@@ -114,7 +114,7 @@ $enc = $this->encoder();
 
 	<nav>
 		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ); ?></h1>
-		<form method="POST" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, [], $listConfig ) ); ?>">
+		<form method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, [], $listConfig ) ); ?>">
 			<!-- catalog.filter.csrf -->
 			<?= $this->csrf()->formfield(); ?>
 			<!-- catalog.filter.csrf -->
