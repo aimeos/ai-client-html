@@ -233,7 +233,7 @@ class Standard
 			$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )->root( $startid );
 
 			if( ( $catId = $view->param( 'f_catid', $startid ) ) != null ) {
-				$nodes = $cntl->visible( array_keys( $cntl->getPath( $catId ) ) )->getTree( [] )->toList();
+				$nodes = $cntl->visible( array_keys( $cntl->getPath( $catId ) ) )->getTree()->toList();
 			}
 
 			$view->treeCountList = \Aimeos\Controller\Frontend::create( $context, 'product' )
