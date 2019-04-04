@@ -66,6 +66,19 @@ if( $catPath !== [] && ( $catItem = end( $catPath ) ) !== false ) {
 }
 
 
+/** client/html/catalog/lists/pagination/enable
+ * Enables or disables pagination in list views
+ *
+ * Pagination is automatically hidden if there are not enough products in the
+ * category or search result. But sometimes you don't want to show the pagination
+ * at all, e.g. if you implement infinite scrolling by loading more results
+ * dynamically using AJAX.
+ *
+ * @param boolean True for enabling, false for disabling pagination
+ * @since 2019.04
+ * @category User
+ * @category Developer
+ */
 $pagination = '';
 if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catalog/lists/pagination/enable', true ) == true )
 {

@@ -241,6 +241,19 @@ class Standard
 		}
 
 
+		/** client/html/common/template/baseurl
+		 * Absolute path to the themes folder for styling the e-mails
+		 *
+		 * The Aimeos e-mails are styled depending on the "email.css" file located
+		 * in the configured themes folder. The path to the themes folder must be
+		 * absolute to the file system root to avoid problems finding the file
+		 * when the e-mails are sent by the cronjob.
+		 *
+		 * @param string Absolute path of the theme folder
+		 * @since 2017.10
+		 * @category Developer
+		 * @category User
+		 */
 		$path = $view->config( 'client/html/common/template/baseurl', 'client/html/themes/elegance' );
 		$filepath = $path . DIRECTORY_SEPARATOR . 'email.css';
 

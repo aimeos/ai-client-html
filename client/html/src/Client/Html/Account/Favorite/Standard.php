@@ -332,7 +332,7 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		/** client/html/account/watch/standard/maxitems
+		/** client/html/account/favorite/standard/maxitems
 		 * Maximum number of products that can be favorites
 		 *
 		 * This option limits the number of products users can add to their

@@ -600,9 +600,47 @@ class Standard
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
+
+		/** client/html/catalog/lists/catid-default
+		 * The default category ID used if none is given as parameter
+		 *
+		 * If users view a product list page without a category ID in the
+		 * parameter list, the first found products are displayed with a
+		 * random order. You can circumvent this by configuring a default
+		 * category ID that should be used in this case (the ID of the root
+		 * category is best for this). In most cases you can set this value
+		 * via the administration interface of the shop application.
+		 *
+		 * @param string Category ID
+		 * @since 2014.03
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/detail/prodid-default
+		 */
 		$catids = $view->param( 'f_search' ) == '' ? $config->get( 'client/html/catalog/lists/catid-default' ) : null;
 		$catids = $view->param( 'f_catid', $catids );
 
+		/** client/html/catalog/lists/sort
+		 * Default sorting of product list if no other sorting is given by parameter
+		 *
+		 * Configures the standard sorting of products in list views. This sorting is used
+		 * as long as it's not overwritten by an URL parameter. Except "relevance", all
+		 * other sort codes can be prefixed by a "-" (minus) sign to sort the products in
+		 * a descending order. By default, the sorting is ascending.
+		 *
+		 * @param string Sort code "relevance", "name", "-name", "price", "-price", "ctime" or "-ctime"
+		 * @since 2018.07
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/size
+		 */
 		$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 		$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
