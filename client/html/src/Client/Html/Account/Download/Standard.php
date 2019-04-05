@@ -182,6 +182,18 @@ class Standard
 			$view = $this->getView();
 			$id = $view->param( 'dl_id' );
 			$customerId = $context->getUserId();
+
+			/** client/html/account/download/error/url/target
+			 * Destination of the URL to redirect the customer if the file download isn't allowed
+			 *
+			 * The destination can be a page ID like in a content management system or the
+			 * module of a software development framework. This "target" must contain or know
+			 * the controller that should be called by the generated URL.
+			 *
+			 * @param string Destination of the URL
+			 * @since 2019.04
+			 * @category Developer
+			 */
 			$target = $context->getConfig()->get( 'client/html/account/download/error/url/target' );
 
 			if( $this->checkAccess( $customerId, $id ) === false )
