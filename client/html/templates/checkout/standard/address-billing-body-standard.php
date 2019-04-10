@@ -65,7 +65,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
 
 
-	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() !== null ) : ?>
+	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() != null ) : ?>
 		<div class="item-address">
 			<div class="header">
 
