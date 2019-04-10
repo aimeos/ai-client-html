@@ -597,7 +597,7 @@ class Standard
 			$params = $cntl->add( $params )->store()->get()->getPaymentAddress()->toArray();
 		}
 
-		$basketCtrl->addAddress( $type, $params );
+		$basketCtrl->addAddress( $type, $params, 0 );
 	}
 
 
