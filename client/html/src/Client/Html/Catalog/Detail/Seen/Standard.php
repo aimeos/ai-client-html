@@ -176,17 +176,17 @@ class Standard
 	 */
 	public function process()
 	{
-		if( ( $id = $this->getView()->param( 'd_prodid' ) ) !== null )
+		if( ( $name = $this->getView()->param( 'd_name' ) ) !== null )
 		{
 			$context = $this->getContext();
 			$session = $context->getSession();
 			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
-			if( isset( $lastSeen[$id] ) )
+			if( isset( $lastSeen[$name] ) )
 			{
-				$html = $lastSeen[$id];
-				unset( $lastSeen[$id] );
-				$lastSeen[$id] = $html;
+				$html = $lastSeen[$name];
+				unset( $lastSeen[$name] );
+				$lastSeen[$name] = $html;
 			}
 			else
 			{
@@ -204,7 +204,7 @@ class Standard
 				 */
 				$max = $this->getContext()->getConfig()->get( 'client/html/catalog/session/seen/standard/maxitems', 6 );
 
-				$lastSeen[$id] = $this->getHtml( $id );
+				$lastSeen[$name] = $this->getHtml( $name );
 				$lastSeen = array_slice( $lastSeen, -$max, $max, true );
 			}
 
@@ -222,14 +222,14 @@ class Standard
 	/**
 	 * Returns the generated HTML for the given product ID.
 	 *
-	 * @param string $id Product ID
+	 * @param string $name Product URL name
 	 * @return string HTML of the last seen item for the given product ID
 	 */
-	protected function getHtml( $id )
+	protected function getHtml( $name )
 	{
 		$context = $this->getContext();
 		$cache = $context->getCache();
-		$key = md5( $id . 'product:detail-seen' );
+		$key = md5( $name . 'product:detail-seen' );
 
 		if( ( $html = $cache->get( $key ) ) === null )
 		{
@@ -262,7 +262,7 @@ class Standard
 			$domains = $config->get( 'client/html/catalog/detail/seen/domains', $domains );
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
-			$view->seenProductItem = $cntl->uses( $domains )->get( $id );
+			$view->seenProductItem = $cntl->uses( $domains )->resolve( $name );
 			$this->addMetaItems( $view->seenProductItem, $expire, $tags );
 
 			$output = '';
