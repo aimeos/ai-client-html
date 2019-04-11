@@ -69,11 +69,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessNoCache()
 	{
-		$prodid = $this->getProductItem()->getId();
+		$name = $this->getProductItem()->getName( 'url' );
 		$session = $this->context->getSession();
 
 		$view = $this->object->getView();
-		$param = array( 'd_prodid' => $prodid );
+		$param = array( 'd_name' => $name );
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
@@ -90,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperHtml::getContext() );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', 'CNE' ) );
-		$items = $manager->searchItems( $search );
+		$items = $manager->searchItems( $search, ['text'] );
 
 		if( ( $item = reset( $items ) ) === false ) {
 			throw new \RuntimeException( 'No product item with code "CNE" found' );
