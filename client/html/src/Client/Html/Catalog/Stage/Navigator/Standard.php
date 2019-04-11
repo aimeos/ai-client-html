@@ -227,7 +227,7 @@ class Standard
 	{
 		$pos = $view->param( 'd_pos' );
 
-		if( is_numeric( $pos ) && ( $pid = $view->param( 'd_prodid' ) ) !== null )
+		if( is_numeric( $pos ) && ( $name = $view->param( 'd_name' ) ) !== null )
 		{
 			if( $pos < 1 ) {
 				$start = 0; $size = 2;
@@ -256,30 +256,35 @@ class Standard
 			if( ( $count = count( $products ) ) > 1 )
 			{
 				$enc = $view->encoder();
-				$listPos = array_search( $pid, array_keys( $products ) );
+				$prev = $current = false;
+
+				foreach( $products as $product )
+				{
+					$prev = $current;
+
+					if( ( $current = $product->getName( 'url' ) ) === $name ) {
+						break;
+					}
+				}
+
+				if( ( $next = next( $products ) ) !== false ) {
+					$next = $next->getName( 'url' );
+				}
 
 				$target = $view->config( 'client/html/catalog/detail/url/target' );
 				$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 				$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
 				$config = $view->config( 'client/html/catalog/detail/url/config', [] );
 
-				if( $listPos > 0 && ( $product = reset( $products ) ) !== false )
+				if( $prev !== false )
 				{
-					$param = array(
-						'd_prodid' => $product->getId(),
-						'd_name' => $enc->url( $product->getName( 'url ' ) ),
-						'd_pos' => $pos - 1
-					);
+					$param = ['d_name' => $enc->url( $prev ), 'd_pos' => $pos - 1];
 					$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 
-				if( $listPos < $count - 1 && ( $product = end( $products ) ) !== false )
+				if( $next !== false )
 				{
-					$param = array(
-						'd_prodid' => $product->getId(),
-						'd_name' => $enc->url( $product->getName( 'url' ) ),
-						'd_pos' => $pos + 1
-					);
+					$param = ['d_name' => $enc->url( $next ), 'd_pos' => $pos - 1];
 					$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 			}
