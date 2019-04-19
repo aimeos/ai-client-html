@@ -48,6 +48,24 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 		<?php $params = array( 'd_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId() ); ?>
 		<link rel="canonical" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>" />
 
+		<meta property="og:type" content="product" />
+		<meta property="og:title" content="<?= $enc->html( $this->detailProductItem->getName() ); ?>" />
+		<meta property="og:url" content="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>" />
+
+		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+			<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>" />
+		<?php endforeach ?>
+
+		<?php foreach( $this->detailProductItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getUrl() ) ) ?>" />
+		<?php endforeach ?>
+
+		<?php if( ( $priceItem = current( $this->detailProductItem->getRefItems( 'price', 'default', 'default' ) ) ) !== false ) : ?>
+			<meta property="product:price:amount" content="<?= $enc->attr( $priceItem->getValue() ) ?>" />
+			<meta property="product:price:currency" content="<?= $enc->attr( $priceItem->getCurrencyId() ) ?>" />
+		<?php endif ?>
+
+		<meta name="twitter:card" content="summary_large_image" />
 	<?php endif; ?>
 
 	<meta name="application-name" content="Aimeos" />
