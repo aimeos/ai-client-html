@@ -37,11 +37,10 @@ $enc = $this->encoder();
  * @category User
  * @category Developer
  * @see client/html/catalog/social/url/facebook
- * @see client/html/catalog/social/url/gplus
  * @see client/html/catalog/social/url/twitter
  * @see client/html/catalog/social/url/pinterest
  */
-$list = $this->config( 'client/html/catalog/social/list', array( 'facebook', 'gplus', 'twitter', 'pinterest' ) );
+$list = $this->config( 'client/html/catalog/social/list', array( 'facebook', 'twitter', 'pinterest' ) );
 
 $urls = array(
 	/** client/html/catalog/social/url/facebook
@@ -64,27 +63,6 @@ $urls = array(
 	 * @see client/html/catalog/social/list
 	 */
 	'facebook' => 'https://www.facebook.com/sharer.php?u=%1$s&t=%2$s',
-
-	/** client/html/catalog/social/url/gplus
-	 * URL for sharing product links on Google Plus
-	 *
-	 * Users can share product links on Google Plus. This requires a URL defined
-	 * by Google Plus that accepts the transmitted product page URL. This URL must
-	 * contain at least the "%1$s" placeholder for the URL to the product detail
-	 * page of the shop.
-	 *
-	 * Possible placeholders and replaced values are:
-	 * * %1$s : Shop URL of the product detail page
-	 * * %2$s : Name of the product
-	 * * %3$s : URL of the first product image
-	 *
-	 * @param string URL to share products on Google Plus
-	 * @since 2017.04
-	 * @category User
-	 * @category Developer
-	 * @see client/html/catalog/social/list
-	 */
-	'gplus' => 'https://plus.google.com/share?url=%1$s',
 
 	/** client/html/catalog/social/url/twitter
 	 * URL for sharing product links on Twitter
