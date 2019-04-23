@@ -140,6 +140,16 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?= $enc->html( $this->summaryBasket->getComment() ); ?>
 			</div>
+		</div><!--
+
+		--><div class="item customerref col-sm-6">
+			<div class="header">
+				<h3><?= $enc->html( $this->translate( 'client', 'Your reference number' ), $enc::TRUST ); ?></h3>
+			</div>
+
+			<div class="content">
+				<?= $enc->html( $this->summaryBasket->getCustomerReference() ); ?>
+			</div>
 		</div>
 	</div>
 

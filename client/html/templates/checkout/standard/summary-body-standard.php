@@ -179,6 +179,16 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			<div class="content">
 				<textarea class="comment-value" name="<?= $this->formparam( array( 'cs_comment' ) ); ?>"><?= $enc->html( $this->standardBasket->getComment() ); ?></textarea>
 			</div>
+		</div><!--
+
+		--><div class="item customerref col-sm-6">
+			<div class="header">
+				<h3><?= $enc->html( $this->translate( 'client', 'Your reference number' ), $enc::TRUST ); ?></h3>
+			</div>
+
+			<div class="content">
+				<input class="customerref-value" name="<?= $this->formparam( array( 'cs_customerref' ) ); ?>" value="<?= $enc->attr( $this->standardBasket->getCustomerReference() ); ?>" />
+			</div>
 		</div>
 	</div>
 

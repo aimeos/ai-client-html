@@ -236,10 +236,12 @@ class Standard
 
 
 			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+			$customerref = $view->param( 'cs_customerref' );
+			$comment = $view->param( 'cs_comment' );
 
-			if( ( $comment = $view->param( 'cs_comment' ) ) !== null )
+			if( $customerref || $comment )
 			{
-				$controller->get()->setComment( $comment );
+				$controller->get()->setCustomerReference( $customerref )->setComment( $comment );
 				$controller->save();
 			}
 

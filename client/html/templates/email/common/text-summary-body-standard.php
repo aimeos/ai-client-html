@@ -109,6 +109,11 @@ $services = $this->summaryBasket->getServices();
 	echo strip_tags( $this->summaryBasket->getComment() ) . "\n";
 ?>
 
+<?php
+	echo strip_tags( $this->translate( 'client', 'Your reference number' ) ) . ":\n";
+	echo strip_tags( $this->summaryBasket->getCustomerReference() ) . "\n";
+?>
+
 
 <?php
 	echo $this->partial(
