@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'Dear mr Our Unittest', $output );
+		$this->assertContains( 'Dear Mr Our Unittest', $output );
 	}
 
 
