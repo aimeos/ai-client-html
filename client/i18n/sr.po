@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 15:11+0200\n"
-"PO-Revision-Date: 2019-04-02 13:26+0000\n"
+"POT-Creation-Date: 2019-04-27 17:50+0200\n"
+"PO-Revision-Date: 2019-04-27 15:50+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Serbian (http://www.transifex.com/aimeos/aimeos-core/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -264,8 +264,24 @@ msgid "Customer with ID \"%1$s\" not found"
 msgstr "Kupac sa ID \"%1$s\" nije pornaden"
 
 #, php-format
+msgid "Dear %1$s %2$s"
+msgstr ""
+
+#, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Dragi %1$s %2$s %3$s"
+
+#, php-format
+msgid "Dear Miss %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Dear Mrs %1$s %2$s"
+msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "Postovani Gospodine ili Gospodjo"
@@ -909,6 +925,9 @@ msgstr "Vasa porudzbina%1$s"
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Vasa porudzbina %1$s od %2$s je poslana"
+
+msgid "Your reference number"
+msgstr ""
 
 msgid "Your search result"
 msgstr "Vasi rezultati pretrage"

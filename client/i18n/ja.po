@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 15:11+0200\n"
-"PO-Revision-Date: 2019-04-02 13:26+0000\n"
+"POT-Creation-Date: 2019-04-27 17:50+0200\n"
+"PO-Revision-Date: 2019-04-27 15:50+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -261,8 +261,24 @@ msgid "Customer with ID \"%1$s\" not found"
 msgstr "ID\"%1$s\"の顧客が見つかりません"
 
 #, php-format
+msgid "Dear %1$s %2$s"
+msgstr ""
+
+#, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "親愛なる%1$s%2$s%3$s"
+
+#, php-format
+msgid "Dear Miss %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Dear Mrs %1$s %2$s"
+msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "親愛なるサー/奥様"
@@ -904,6 +920,9 @@ msgstr "ご注文%1$s"
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$sの注文%1$sが発送されました。"
+
+msgid "Your reference number"
+msgstr ""
 
 msgid "Your search result"
 msgstr "あなたの検索結果"
