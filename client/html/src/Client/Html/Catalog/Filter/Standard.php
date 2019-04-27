@@ -478,8 +478,9 @@ class Standard
 		 * @see client/html/catalog/count/url/action
 		 * @see client/html/catalog/count/url/config
 		 */
-		if( $config->get( 'client/html/catalog/count/enable', true ) == true )
-		{
+		if( $config->get( 'client/html/catalog/count/enable', true ) == true
+			&& array_intersect( $this->getSubClientNames(), ['tree', 'supplier', 'attribute'] ) !== []
+		) {
 			/** client/html/catalog/count/url/target
 			 * Destination of the URL where the controller specified in the URL is known
 			 *
