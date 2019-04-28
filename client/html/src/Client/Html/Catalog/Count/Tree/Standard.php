@@ -228,17 +228,26 @@ class Standard
 			 */
 			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
 			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
+			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-			$nodes = [];
-			$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )->root( $startid );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->root( $startid );
+			$root = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-			if( ( $catId = $view->param( 'f_catid', $startid ) ) != null ) {
-				$nodes = $cntl->visible( array_keys( $cntl->getPath( $catId ) ) )->getTree()->toList();
+			if( ( $catId = $view->param( 'f_catid', $root->getId() ) ) != null && $catId != $root->getId() ) {
+				$cntl->visible( array_keys( $cntl->getPath( $catId ) ) );
+			} else {
+				$cntl->visible( [$root->getId()] );
 			}
 
-			$view->treeCountList = \Aimeos\Controller\Frontend::create( $context, 'product' )
-				->category( array_keys( $nodes ) )->slice( 0, $limit )->sort()
-				->aggregate( 'index.catalog.id' );
+			$pcntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->slice( 0, $limit )->sort();
+
+			if( $level === \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
+				$pcntl->category( $root->getId(), 'default', \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
+			} else {
+				$pcntl->category( array_keys( $cntl->getTree()->toList() ) );
+			}
+
+			$view->treeCountList = $pcntl->aggregate( 'index.catalog.id' );
 		}
 
 		return parent::addData( $view, $tags, $expire );

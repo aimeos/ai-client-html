@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'var categoryCounts', $output );
+		$this->assertContains( 'var catalogCounts', $output );
 	}
 
 
