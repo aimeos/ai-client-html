@@ -235,21 +235,58 @@ class Standard
 
 			if( ( $catId = $view->param( 'f_catid', $root->getId() ) ) != null && $catId != $root->getId() ) {
 				$cntl->visible( array_keys( $cntl->getPath( $catId ) ) );
-			} else {
+			} elseif( $level !== \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
 				$cntl->visible( [$root->getId()] );
 			}
 
-			$pcntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->slice( 0, $limit )->sort();
+			$tree = $cntl->getTree();
+			$view->treeCountList = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->category( array_keys( $tree->toList() ) )->slice( 0, $limit )->sort()
+				->aggregate( 'index.catalog.id' );
 
 			if( $level === \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
-				$pcntl->category( $root->getId(), 'default', \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
-			} else {
-				$pcntl->category( array_keys( $cntl->getTree()->toList() ) );
+				$view->treeCountList = $this->counts( $this->traverse( $tree, $view->treeCountList ) );
 			}
-
-			$view->treeCountList = $pcntl->aggregate( 'index.catalog.id' );
 		}
 
 		return parent::addData( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the product counts per node
+	 *
+	 * @param \Aimeos\MShop\Catalog\Item\Iface $node Tree node, maybe with children
+	 * @return array Associative list of catalog IDs as keys and product counts as values
+	 */
+	protected function counts( \Aimeos\MShop\Catalog\Item\Iface $node )
+	{
+		$list = [$node->getId() => $node->count];
+
+		foreach( $node->getChildren() as $child ) {
+			$list += $this->counts( $child );
+		}
+
+		return $list;
+	}
+
+
+	/**
+	 * Traverses the tree and adds the aggregated product counts to each node
+	 *
+	 * @param \Aimeos\MShop\Catalog\Item\Iface $node Tree node, maybe with children
+	 * @param array $counts Associative list of catalog IDs as keys and product counts as values
+	 * @return \Aimeos\MShop\Catalog\Item\Iface Updated tree node
+	 */
+	protected function traverse( \Aimeos\MShop\Catalog\Item\Iface $node, array $counts )
+	{
+		$count = ( isset( $counts[$node->getId()] ) ? $counts[$node->getId()] : 0 );
+
+		foreach( $node->getChildren() as $child ) {
+			$count += $this->traverse( $child, $counts )->count;
+		}
+
+		$node->count = $count;
+		return $node;
 	}
 }
