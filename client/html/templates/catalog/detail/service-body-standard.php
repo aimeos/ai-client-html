@@ -13,7 +13,7 @@ $items = $this->get( 'serviceItems', [] );
 <div class="catalog-detail-service">
 
 	<?php if( !empty( $items ) ) : ?>
-	<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
+		<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
 		<ul class="service-list">
 
 			<?php foreach( $items as $item ) : ?>
