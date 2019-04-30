@@ -11,9 +11,9 @@ $items = $this->get( 'serviceItems', [] );
 ?>
 <?php $this->block()->start( 'catalog/detail/service' ); ?>
 <div class="catalog-detail-service">
-	<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
 
 	<?php if( !empty( $items ) ) : ?>
+	<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
 		<ul class="service-list">
 
 			<?php foreach( $items as $item ) : ?>
