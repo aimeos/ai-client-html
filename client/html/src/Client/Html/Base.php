@@ -707,13 +707,8 @@ abstract class Base
 		{
 			foreach( $list as $object => $errcode )
 			{
-				if( $scope === 'product' || $scope === 'coupon' ) {
-					$key = $scope . '.' . $errcode;
-					$errors[] = sprintf( $i18n->dt( 'mshop/code', $key ), $object );
-				} else {
-					$key = $scope . '.' . $object . '.' . $errcode;
-					$errors[] = $i18n->dt( 'mshop/code', $key );
-				}
+				$key = $scope . ( !in_array( $scope, ['coupon', 'product'] ) ? '.' . $object : '' ) . '.' . $errcode;
+				$errors[] = sprintf( $i18n->dt( 'mshop/code', $key ), $object );
 			}
 		}
 
