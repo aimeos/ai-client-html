@@ -275,7 +275,7 @@ class Standard
 				$this->sendEmails( $orderBaseItem, $client );
 				$this->addOrderStatus( $id, $status );
 
-				$str = sprintf( 'Sent voucher e-mail for order ID "%1$s" to "%1$s"', $addr->getEmail(), $item->getId() );
+				$str = sprintf( 'Sent voucher e-mails for order ID "%1$s"', $item->getId() );
 				$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::INFO );
 			}
 			catch( \Exception $e )
