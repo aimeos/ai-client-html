@@ -158,7 +158,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\MShop\Factory::injectManager( $this->context, 'order/base', $orderBaseManagerStub );
 
 
-		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
+		$object = $this->getMockBuilder( '\Aimeos\Controller\Jobs\Order\Email\Voucher\Standard' )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
 			->setMethods( array( 'addOrderStatus', 'createCoupons', 'sendEmails' ) )
 			->getMock();
