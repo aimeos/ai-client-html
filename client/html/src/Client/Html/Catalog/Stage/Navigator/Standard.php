@@ -230,7 +230,7 @@ class Standard
 		if( is_numeric( $pos ) && ( $name = $view->param( 'd_name' ) ) !== null )
 		{
 			if( $pos < 1 ) {
-				$start = 0; $size = 2;
+				$pos = $start = 0; $size = 2;
 			} else {
 				$start = $pos - 1; $size = 3;
 			}
@@ -256,35 +256,27 @@ class Standard
 			if( ( $count = count( $products ) ) > 1 )
 			{
 				$enc = $view->encoder();
-				$prev = $current = false;
-
-				foreach( $products as $product )
-				{
-					$prev = $current;
-
-					if( ( $current = $product->getName( 'url' ) ) === $name ) {
-						break;
-					}
-				}
-
-				if( ( $next = next( $products ) ) !== false ) {
-					$next = $next->getName( 'url' );
-				}
 
 				$target = $view->config( 'client/html/catalog/detail/url/target' );
 				$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 				$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
 				$config = $view->config( 'client/html/catalog/detail/url/config', [] );
 
-				if( $prev !== false )
+				if( $pos > 0 && ( $product = reset( $products ) ) !== false )
 				{
-					$param = ['d_name' => $enc->url( $prev ), 'd_pos' => $pos - 1];
+					$param = [
+						'd_pos' => $pos - 1,
+						'd_name' => \Aimeos\MW\Common\Base::sanitize( $enc->url( $product->getName( 'url ' ) ) )
+					];
 					$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 
-				if( $next !== false )
+				if( ( $pos === 0 || $count === 3 ) && ( $product = end( $products ) ) !== false )
 				{
-					$param = ['d_name' => $enc->url( $next ), 'd_pos' => $pos - 1];
+					$param = [
+						'd_pos' => $pos + 1,
+						'd_name' => \Aimeos\MW\Common\Base::sanitize( $enc->url( $product->getName( 'url ' ) ) )
+					];
 					$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 			}
