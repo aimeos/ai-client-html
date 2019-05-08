@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 15:11+0200\n"
-"PO-Revision-Date: 2019-04-02 13:26+0000\n"
+"POT-Creation-Date: 2019-04-27 17:50+0200\n"
+"PO-Revision-Date: 2019-04-27 15:50+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -262,8 +262,24 @@ msgid "Customer with ID \"%1$s\" not found"
 msgstr "Klient ID-ga \\\"%1$s\\\" pole leitav"
 
 #, php-format
+msgid "Dear %1$s %2$s"
+msgstr ""
+
+#, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Lugupeetud %1$s %2$s %3$s"
+
+#, php-format
+msgid "Dear Miss %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Dear Mrs %1$s %2$s"
+msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "Lugupeetud härra/proua"
@@ -906,6 +922,9 @@ msgstr "Teie tellimus %1$s"
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Teie tellimus %1$s leheküljelt %2$s on teele saadetud."
+
+msgid "Your reference number"
+msgstr ""
 
 msgid "Your search result"
 msgstr "Teie otsingu tulemus"

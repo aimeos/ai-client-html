@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 15:11+0200\n"
-"PO-Revision-Date: 2019-04-02 13:30+0000\n"
+"POT-Creation-Date: 2019-04-27 17:50+0200\n"
+"PO-Revision-Date: 2019-04-27 15:55+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -265,8 +265,24 @@ msgid "Customer with ID \"%1$s\" not found"
 msgstr "Die Kundennummer \"%1$s\" ist unbekannt"
 
 #, php-format
+msgid "Dear %1$s %2$s"
+msgstr "Hallo %1$s %2$s"
+
+#, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Hallo %1$s %2$s %3$s"
+
+#, php-format
+msgid "Dear Miss %1$s %2$s"
+msgstr "Sehr geehrte Frau %1$s %2$s"
+
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr "Sehr geehrter Herr %1$s %2$s"
+
+#, php-format
+msgid "Dear Mrs %1$s %2$s"
+msgstr "Sehr geehrte Frau %1$s %2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "Sehr geehrte Damen und Herren"
@@ -909,6 +925,9 @@ msgstr "Ihre Bestellung %1$s"
 #, php-format
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Ihre Bestellung %1$s vom %2$s wurde versandt."
+
+msgid "Your reference number"
+msgstr "Ihre Referenz-Bestellnummer"
 
 msgid "Your search result"
 msgstr "Ihr Suchergebnis"

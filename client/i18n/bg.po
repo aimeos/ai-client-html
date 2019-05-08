@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Bistra Kumanova <b.kumanova@creato.bg>, 2015
-# Plamen Petkov <mcplamen@gmail.com>, 2016
+# Plamen Petkov <mcplamen@gmail.com>, 2016,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 15:11+0200\n"
-"PO-Revision-Date: 2019-04-02 13:26+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2019-04-27 17:50+0200\n"
+"PO-Revision-Date: 2019-04-30 12:32+0000\n"
+"Last-Translator: Plamen Petkov <mcplamen@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,7 +198,7 @@ msgid "Characteristics"
 msgstr "Характеристики"
 
 msgid "Check"
-msgstr ""
+msgstr "Проверка"
 
 msgid "Checkout"
 msgstr "Последна проверка"
@@ -228,7 +228,7 @@ msgstr "Клиентския  HTML тип е празен"
 
 #, php-format
 msgid "Client path is empty"
-msgstr ""
+msgstr "Клиентския път е празен"
 
 #, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
@@ -253,18 +253,34 @@ msgid "Coupons"
 msgstr "Купони"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Създайте потребителски профил за мен"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Потребителски профил"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
 msgstr "Клиент с номер \"%1$s\" не е намерен"
 
 #, php-format
+msgid "Dear %1$s %2$s"
+msgstr "Уважаеми %1$s %2$s "
+
+#, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Уважаеми %1$s %2$s %3$s"
+
+#, php-format
+msgid "Dear Miss %1$s %2$s"
+msgstr "Уважаема госпожице  %1$s%2$s"
+
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr "Уважаеми господин %1$s%2$s"
+
+#, php-format
+msgid "Dear Mrs %1$s %2$s"
+msgstr "Уважаема госпожо %1$s%2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "\"Уважаема Г-жо или Г-не"
@@ -277,7 +293,7 @@ msgstr "Адрес на доставка"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "Адресът на доставка е изтрит успешно "
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -317,7 +333,7 @@ msgstr "Полетата, означени със звездичка (*) са з
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
-msgstr ""
+msgstr "Файлът %1$s не съществува"
 
 msgid "Filter"
 msgstr "Филтър"
@@ -347,7 +363,7 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "Приемам <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\"> условията на доставка </a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\"> защитата на личните данни</a> и <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">начина на връщане</a>"
 
 msgid "If back in stock"
 msgstr "При наличност в склада"
@@ -404,10 +420,10 @@ msgid "Last seen"
 msgstr "Последно видяни"
 
 msgid "Latest"
-msgstr ""
+msgstr "Последни"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Както вие сте въвели"
 
 msgid "Name"
 msgstr "Име"
@@ -416,7 +432,7 @@ msgid "Next"
 msgstr "Следващ"
 
 msgid "Next order"
-msgstr ""
+msgstr "Следваща поръчка"
 
 #, php-format
 msgid ""
@@ -483,7 +499,7 @@ msgid "Other customers also bought"
 msgstr "Други клиенти са закупили също"
 
 msgid "Our products"
-msgstr ""
+msgstr "Наши продукти"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -527,11 +543,11 @@ msgstr "Моля, въведете Вашите дани за плащане"
 
 #, php-format
 msgid "Please recheck your delivery choice"
-msgstr ""
+msgstr "Моля проверете отново вашият избор на метод на доставка"
 
 #, php-format
 msgid "Please recheck your payment choice"
-msgstr ""
+msgstr "Моля проверете отново вашият избор на метод на плащане"
 
 msgid "Please select"
 msgstr "Моля, изберете"
@@ -613,7 +629,7 @@ msgid "Services"
 msgstr "Услуги"
 
 msgid "Share"
-msgstr ""
+msgstr "Споделете"
 
 msgid "Shipping"
 msgstr "Доставка"
@@ -653,23 +669,23 @@ msgid "Sub-total"
 msgstr "Междинна сума"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "Номер на абонамент"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Подробности за абонамент"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "Интервал на абонамент"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Абонамент за продукт"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
-msgstr ""
+msgstr "Абонамент за номер %1$s не е намерен"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Абонаменти"
 
 msgid "Suggested products"
 msgstr "Предложени продукти"
@@ -678,7 +694,7 @@ msgid "Sum"
 msgstr "Сума"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "Доставчици"
 
 msgid "Telephone"
 msgstr "Телефон"
@@ -745,7 +761,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "Поръчка е в състояние на изчакване докато получим заплащането. Ако сте избрали да платите предварително, моля преведете парите към нашата банкова сметка с номер на поръчката %1$s като основание за плащането"
 
 msgid ""
 "The order was canceled.\n"
@@ -766,7 +782,7 @@ msgid ""
 msgstr "Потвърждение за заплащане на поръчката все още не е получено.\nЩе получите имейл, веднага след като е разрешено плащането."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Плащането не може да бъде подновено"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -777,14 +793,14 @@ msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Плащането на поръчка %1$s от %2$s беше върнато."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Абонаментът за продукта е завършен"
 
 msgid "The subscription for the product has ended."
-msgstr ""
+msgstr "Абонаментът за продукта е завършен."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgstr "Стойността на вашия ваучер е %1$s"
 
 msgid "Three month"
 msgstr "Три месеца"
@@ -793,7 +809,7 @@ msgid "Time frame"
 msgstr "Времева рамка"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Разширение до цял екран"
 
 msgid "Top seller"
 msgstr "Най-добър продавач"
@@ -820,7 +836,7 @@ msgstr "Невозможно е да се направи регистрация 
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Не е възможно да се създаде потребителски профил: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
@@ -849,7 +865,7 @@ msgstr "Разгледани продукти"
 
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Ние сме получили вашето плащане и ще направим доставката."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -874,13 +890,13 @@ msgid "You are here:"
 msgstr "Вие сте тук:"
 
 msgid "You can use your voucher any time in our online shop"
-msgstr ""
+msgstr "Вие можете да използвате вашия ваучер по-всяко време в нашия електронен магазин"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Ще бъдете пренасочени към следващата стъпка"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Вие сте отменили абонамента"
 
 msgid "Your account"
 msgstr "Вашата регистрация"
@@ -889,7 +905,7 @@ msgid "Your choice"
 msgstr "Вашия избор"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Вашият коментар"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
@@ -908,24 +924,27 @@ msgstr "Вашата поръчка %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Вашата поръчка %1$s от %2$s беше изпратена."
 
+msgid "Your reference number"
+msgstr "Вашият референтен номер"
+
 msgid "Your search result"
 msgstr "Резултат от търсенето"
 
 msgid "Your subscription product"
-msgstr ""
+msgstr "Вашият абонамент за продукт"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Вашият ваучер"
 
 msgid "Your voucher: "
-msgstr ""
+msgstr "Вашият ваучер:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Прегледани от Вас продукти"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Мащабиране +/-"
 
 #, php-format
 msgid "address"
