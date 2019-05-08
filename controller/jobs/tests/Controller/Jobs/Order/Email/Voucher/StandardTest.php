@@ -22,6 +22,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$aimeos = \TestHelperJobs::getAimeos();
 		$this->context = \TestHelperJobs::getContext();
 
+		$codeManager = $this->getMockBuilder( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard' )
+			->setConstructorArgs( array( $this->context ) )
+			->setMethods( array( 'saveItem' ) )
+			->getMock();
+
+		$codeManager->expects( $this->any() )->method( 'saveItem' );
+		\Aimeos\MShop::inject( 'coupon/code', $codeManager );
+
 		$this->object = new \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard( $this->context, $aimeos );
 	}
 
