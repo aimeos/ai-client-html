@@ -314,7 +314,7 @@ class Standard
 				}
 
 				$item = $manager->createItem()->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( $codes );
-				$orderBaseItem->addProduct( $orderProductItem->setAttributeItem( $item ), $pos );
+				$orderProductItem->setAttributeItem( $item );
 			}
 		}
 
