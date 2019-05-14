@@ -622,7 +622,7 @@ class Standard
 		 * @see client/html/catalog/detail/prodid-default
 		 */
 		$catids = $view->param( 'f_search' ) == '' ? $config->get( 'client/html/catalog/lists/catid-default' ) : null;
-		$catids = $view->param( 'f_catid', $catids );
+		$catids = $view->param( 'f_catid' ) ?: $catids;
 
 		/** client/html/catalog/lists/sort
 		 * Default sorting of product list if no other sorting is given by parameter
