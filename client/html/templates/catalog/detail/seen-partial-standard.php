@@ -12,13 +12,17 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
+$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
 
 
 ?>
 <?php if( isset( $this->seenProductItem ) ) : $productItem = $this->seenProductItem; ?>
 
-	<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
-	<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId() ); ?>
+	<?php
+		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
+		$params = ['d_name' => $productItem->getName( 'url' )];
+		$detailProdid == false ?: $params['d_prodid'] = $productItem->getId();
+	?>
 
 	<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 

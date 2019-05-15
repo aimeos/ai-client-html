@@ -9,6 +9,7 @@ $target = $this->config( 'client/html/catalog/detail/url/target' );
 $cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $config = $this->config( 'client/html/catalog/detail/url/config', [] );
+$prodid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
 
 $items = [];
 $enc = $this->encoder();
@@ -32,11 +33,14 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 		$price = sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) );
 	}
 
+	$params = ['d_name' => $productItem->getName( 'url' )];
+	$prodid == false ?: $params['d_prodid'] = $productItem->getId();
+
 	$items[] = array(
 		'label' => $name,
 		'html' => '
 			<li class="aimeos catalog-suggest">
-				<a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, ['d_prodid' => $id, 'd_name' => $name], [], $config ) ).'">
+				<a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config ) ).'">
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 					<div class="item-price">' . $enc->html( $price ) . '</div>
 					<div class="item-image" style="background-image: url(' . $enc->attr( $media ) . ')"></div>
