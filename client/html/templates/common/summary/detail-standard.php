@@ -205,7 +205,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<?php
 						$name = $product->getName();
 						if( ( $pos = strpos( $name, "\n" ) ) !== false ) { $name = substr( $name, 0, $pos ); }
-						$params = array_merge( $this->param(), ['d_prodid' => $product->getProductId(), 'd_name' => $name] );
+						$params = ['d_prodid' => $product->getProductId(), 'd_name' => $name];
 					?>
 					<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 						<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
