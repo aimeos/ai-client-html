@@ -139,7 +139,7 @@ ksort( $attrTypeDeps );
 								/>
 								<label class="select-label" for="option-<?= $enc->attr( $attrId ); ?>"><!--
 
-									<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'icon' ) as $listItem ) : ?>
+									<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'default', 'icon' ) as $listItem ) : ?>
 										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
 											<?= '-->' . $this->partial( $this->config(
 												'client/html/common/partials/media', 'common/partials/media-standard' ),
