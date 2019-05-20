@@ -12,13 +12,13 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'email/account/html' ); ?>
 <mjml>
 	<mj-head>
-		<mj-title><?= $enc->html( $this->translate( 'client', 'New account created' ), $enc::TRUST ); ?></mj-title>
+		<mj-title><?= $enc->html( $this->translate( 'client', 'Your new account' ), $enc::TRUST ); ?></mj-title>
 		<mj-style>
 			<?= $this->get( 'htmlCss' ); ?>
 		</mj-style>
 	</mj-head>
 	<mj-body css-class="aimeos">
-		<mj-image css-class="logo" src="<?= $this->htmlLogo; ?>"/>
+		<mj-image css-class="logo" src="<?= $this->get( 'htmlLogo' ); ?>"/>
 		<mj-section>
 			<mj-column>
 				<mj-text css-class="email-common-salutation">
@@ -56,11 +56,9 @@ $enc = $this->encoder();
 					</mj-text>
 				</mj-column>
 				<mj-column>
-					<?php if( ( $pass = $this->get( 'extAccountPassword' ) ) !== null ) : ?>
-						<mj-text css-class="value"><?= $enc->html( $pass, $enc::TRUST ); ?></mj-text>
-					<?php else : ?>
-						<mj-text css-class="value"><?= $enc->html( $this->translate( 'client', 'Like entered by you' ) ); ?></mj-text>
-					<?php endif; ?>
+					<mj-text css-class="value">
+						<?= $enc->html( $this->get( 'extAccountPassword' ) ?: $this->translate( 'client', 'Like entered by you' ) ) ?>
+					</mj-text>
 				</mj-column>
 			</mj-section>
 		</mj-wrapper>

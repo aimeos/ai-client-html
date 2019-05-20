@@ -70,24 +70,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( 'cid:123-unique-id' ) );
 
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
-			->with( $this->matchesRegularExpression( '#<html>.*<title>E-mail notification</title>.*<meta.*Aimeos.*<body>#smu' ) );
+			->with( $this->matchesRegularExpression( '#<title>.*Your new account.*</title>#smu' ) );
 
 		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<html>', $output );
+		$this->assertContains( '<!doctype html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
 
-		$this->assertContains( '<p class="email-common-salutation', $output );
+		$this->assertContains( 'email-common-salutation', $output );
 
-		$this->assertContains( '<p class="email-common-intro', $output );
+		$this->assertContains( 'email-common-intro', $output );
 		$this->assertContains( 'An account', $output );
 
-		$this->assertRegexp( '#<style.*/style>.*<div class="account-detail content-block">#smU', $output );
 		$this->assertContains( 'Account', $output );
 		$this->assertContains( 'Password', $output );
 
-		$this->assertContains( '<p class="email-common-outro', $output );
+		$this->assertContains( 'email-common-outro', $output );
 		$this->assertContains( 'If you have any questions', $output );
 	}
 
