@@ -5,15 +5,19 @@
  * @copyright Aimeos (aimeos.org), 2014
  */
 
+.aimeos .logo img {
+	max-width: 300px;
+	margin: auto;
+}
+
+.aimeos .account-login .btn-primary tr {
+	background: #ba9a5a;
+	color: #ffffff;
+}
+
 .aimeos .content-block {
 	margin: 1.5em 2%;
 	width: 96%;
-}
-
-.aimeos .logo {
-	margin: 1.5em 2%;
-	margin-top: 0;
-	float: right;
 }
 
 .aimeos .common-summary {
