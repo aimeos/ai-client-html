@@ -22,6 +22,7 @@ $enc = $this->encoder();
  * @see client/html/account/index/url/action
  * @see client/html/account/index/url/config
  */
+$target = $this->config( 'client/html/account/index/url/target' );
 
 /** client/html/account/index/url/controller
  * Name of the controller whose action should be called
@@ -37,6 +38,7 @@ $enc = $this->encoder();
  * @see client/html/account/index/url/action
  * @see client/html/account/index/url/config
  */
+$controller = $this->config( 'client/html/account/index/url/controller', 'account' );
 
 /** client/html/account/index/url/action
  * Name of the action that should create the output
@@ -52,6 +54,7 @@ $enc = $this->encoder();
  * @see client/html/account/index/url/controller
  * @see client/html/account/index/url/config
  */
+$action = $this->config( 'client/html/account/index/url/action', 'index' );
 
 /** client/html/account/index/url/config
  * Associative list of configuration options used for generating the URL
@@ -73,6 +76,9 @@ $enc = $this->encoder();
  * @see client/html/account/index/url/controller
  * @see client/html/account/index/url/action
  */
+$config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' => 1] );
+
+$url = $this->url( $target, $controller, $action, [], [], $config );
 
 
 ?>
@@ -127,7 +133,7 @@ $enc = $this->encoder();
 			</mj-section>
 			<mj-section css-class="account-login">
 				<mj-column>
-					<mj-button css-class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/account/index/url' ) ) ?>" background-color="inherit" color="inherit">
+					<mj-button css-class="btn btn-primary" background-color="inherit" color="inherit" href="<?= $enc->attr( $url ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Login' ), $enc::TRUST ); ?>
 					</mj-button>
 				</mj-column>
