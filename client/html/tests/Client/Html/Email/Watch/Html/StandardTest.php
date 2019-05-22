@@ -80,24 +80,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( 'cid:123-unique-id' ) );
 
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
-			->with( $this->matchesRegularExpression( '#<html>.*<title>E-mail notification</title>.*<meta.*Aimeos.*<body>#smu' ) );
+			->with( $this->matchesRegularExpression( '#<title>.*Your watched products.*</title>#smu' ) );
 
 		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<html>', $output );
+		$this->assertStringStartsWith( '<!doctype html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
 
-		$this->assertContains( '<p class="email-common-salutation', $output );
+		$this->assertContains( 'email-common-salutation', $output );
 
-		$this->assertContains( '<p class="email-common-intro', $output );
+		$this->assertContains( 'email-common-intro', $output );
 		$this->assertContains( 'One or more products', $output );
 
-		$this->assertContains( '<div class="common-summary-detail common-summary container content-block">', $output );
+		$this->assertContains( 'common-summary-detail common-summary', $output );
 		$this->assertContains( 'Cafe Noire Cappuccino', $output );
 		$this->assertContains( 'Cafe Noire Expresso', $output );
 
-		$this->assertContains( '<p class="email-common-outro', $output );
+		$this->assertContains( 'email-common-outro', $output );
 		$this->assertContains( 'If you have any questions', $output );
 	}
 
