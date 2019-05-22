@@ -49,9 +49,6 @@ $product = $this->extOrderProductItem;
 		</mj-section>
 		<mj-section css-class="common-summary-detail common-summary">
 			<mj-column>
-				<mj-text css-class="header">
-					<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
-				</mj-text>
 				<mj-table css-class="basket">
 					<thead>
 						<th css-class="header" colspan="3"><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></th>
