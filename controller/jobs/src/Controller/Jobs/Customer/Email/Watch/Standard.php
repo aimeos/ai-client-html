@@ -236,7 +236,7 @@ class Standard
 						isset( $config['pricevalue'] ) && $config['pricevalue'] > $price->getValue()
 					) {
 						$result[$id]['item'] = $products[$refId];
-						$result[$id]['currencyId'] = $currencyId;
+						$result[$id]['currency'] = $currencyId;
 						$result[$id]['price'] = $price;
 					}
 				}
