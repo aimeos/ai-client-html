@@ -77,21 +77,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( 'cid:123-unique-id' ) );
 
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
-			->with( $this->matchesRegularExpression( '#<html>.*<title>E-mail notification</title>.*<meta.*Aimeos.*<body>#smu' ) );
+			->with( $this->matchesRegularExpression( '#<title>.*Your voucher.*</title>#smu' ) );
 
 		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<html>', $output );
+		$this->assertStringStartsWith( '<!doctype html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
 
-		$this->assertContains( '<p class="email-common-intro', $output );
+		$this->assertContains( 'email-common-intro', $output );
 		$this->assertContains( 'Your voucher:', $output );
 
-		$this->assertContains( '<p class="email-common-body', $output );
+		$this->assertContains( 'email-common-body', $output );
 		$this->assertContains( 'The value of your voucher', $output );
 
-		$this->assertContains( '<p class="email-common-outro', $output );
+		$this->assertContains( 'email-common-outro', $output );
 		$this->assertContains( 'your voucher', $output );
 	}
 
