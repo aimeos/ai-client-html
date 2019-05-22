@@ -365,8 +365,7 @@ class Standard
 		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )
 		{
 			$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
-			$catids = $view->param( 'f_search' ) == '' ? $config->get( 'client/html/catalog/lists/catid-default' ) : null;
-			$catids = $view->param( 'f_catid' ) ?: $catids;
+			$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
 
 			$cntl->category( $catids, 'default', $level )
 				->allOf( $view->param( 'f_attrid', [] ) )
