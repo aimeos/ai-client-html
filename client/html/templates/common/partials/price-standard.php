@@ -50,7 +50,7 @@ $first = true;
 
 		$costs = $priceItem->getCosts();
 		$rebate = $priceItem->getRebate();
-		$key = 'price:' . $priceItem->getType();
+		$key = 'price:' . ( $priceItem->getType() ?: 'default' );
 
 		/// Price format with price value (%1$s) and currency (%2$s)
 		$format['value'] = $this->translate( 'client/code', $key );
