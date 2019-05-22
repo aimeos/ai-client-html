@@ -32,7 +32,7 @@ $enc = $this->encoder();
 				<input type="hidden" value="add"
 					name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
 				<input type="hidden"
-					name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+					name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ); ?>"
 					value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>" />
 			</td>
 
