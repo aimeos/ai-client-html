@@ -44,9 +44,9 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absolu
 					<thead>
 						<th css-class="header" colspan="3"><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></th>
 					</thead>
-					<tbody>
+					<tbody class="details">
 						<?php foreach( $this->extProducts as $entry ) : $product = $entry['item']; ?>
-							<tr class="product details">
+							<tr class="product">
 								<td class="image">
 									<?php $media = $product->getRefItems( 'media', 'default', 'default' ); ?>
 									<?php if( ( $image = reset( $media ) ) !== false && ( $url = $image->getPreview() ) != '' ) : ?>
@@ -59,7 +59,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absolu
 										<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 									</a>
 								</td>
-								<td class="price-list">
+								<td class="price">
 									<?= $this->partial(
 										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 										array( 'prices' => array( $entry['price'] ) ) );
