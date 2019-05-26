@@ -210,10 +210,13 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$view->summaryBasket = $view->extOrderBaseItem;
+		$basket = $view->extOrderBaseItem;
+		$view->summaryBasket = $basket;
 
 		// we can't cache the calculation because the same client object is used for all e-mails
-		$view->summaryTaxRates = $this->getTaxRates( $view->extOrderBaseItem );
+		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
+		$view->summaryCostsPayment = $this->getCostsPayment( $basket );
+		$view->summaryTaxRates = $this->getTaxRates( $basket );
 
 		if( $view->extOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
 			$view->summaryShowDownloadAttributes = true;

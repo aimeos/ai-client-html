@@ -66,13 +66,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'embedAttachment' )
 			->will( $this->returnValue( 'cid:123-unique-id' ) );
 
-		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
-			->with( $this->matchesRegularExpression( '#<html>.*<title>E-mail notification</title>.*<meta.*Aimeos.*<body>#smu' ) );
+		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' );
 
 		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<html>', $output );
+		$this->assertStringStartsWith( '<!doctype html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
 		$this->assertContains( 'The delivery status of your order', $output );
 		$this->assertContains( 'Cafe Noire Expresso', $output );
