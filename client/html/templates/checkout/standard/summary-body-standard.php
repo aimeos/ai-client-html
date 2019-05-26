@@ -152,7 +152,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="common-summary-additional row">
-		<div class="item coupon <?= ( isset( $errors['coupon'] ) ? 'error' : '' ); ?> col-sm-6">
+		<div class="item coupon <?= ( isset( $errors['coupon'] ) ? 'error' : '' ); ?> col-sm-4">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -171,7 +171,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 		</div><!--
 
-		--><div class="item comment col-sm-6">
+		--><div class="item comment col-sm-4">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -181,9 +181,9 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 		</div><!--
 
-		--><div class="item customerref col-sm-6">
+		--><div class="item customerref col-sm-4">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Your reference number' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Your reference' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">

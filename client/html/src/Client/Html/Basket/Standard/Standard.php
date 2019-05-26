@@ -417,10 +417,12 @@ class Standard
 			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
 		}
 
-		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+		$basket = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->get();
 
-		$view->standardBasket = $controller->get();
-		$view->standardTaxRates = $this->getTaxRates( $view->standardBasket );
+		$view->standardBasket = $basket;
+		$view->standardTaxRates = $this->getTaxRates( $basket );
+		$view->standardCostsDelivery = $this->getCostsDelivery( $basket );
+		$view->standardCostsPayment = $this->getCostsPayment( $basket );
 
 		return parent::addData( $view, $tags, $expire );
 	}

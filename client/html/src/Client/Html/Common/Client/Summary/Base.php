@@ -21,6 +21,46 @@ abstract class Base
 	extends \Aimeos\Client\Html\Common\Client\Factory\Base
 {
 	/**
+	 * Returns a delivery costs for the given basket
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.
+	 * @return float Delivery costs value
+	 */
+	protected function getCostsDelivery( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	{
+		$costs = 0;
+
+		foreach( $basket->getProducts() as $product ) {
+			$costs += $product->getPrice()->getCosts() * $product->getQuantity();
+		}
+
+		foreach( $basket->getService( 'delivery' ) as $service ) {
+			$costs += $service->getPrice()->getCosts();
+		}
+
+		return $costs;
+	}
+
+
+	/**
+	 * Returns a payment costs for the given basket
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.
+	 * @return float Payment costs value
+	 */
+	protected function getCostsPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	{
+		$costs = 0;
+
+		foreach( $basket->getService( 'payment' ) as $service ) {
+			$costs += $service->getPrice()->getCosts();
+		}
+
+		return $costs;
+	}
+
+
+	/**
 	 * Returns a list of tax rates and values for the given basket.
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.

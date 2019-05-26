@@ -69,6 +69,8 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							'summaryBasket' => $this->standardBasket,
 							'summaryTaxRates' => $this->get( 'standardTaxRates', [] ),
 							'summaryErrorCodes' => $this->get( 'standardErrorCodes', [] ),
+							'summaryCostsDelivery' => $this->get( 'standardCostsDelivery', 0 ),
+							'summaryCostsPayment' => $this->get( 'standardCostsPayment', 0 ),
 						)
 					); ?>
 				</div>
