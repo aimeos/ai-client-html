@@ -19,7 +19,7 @@ namespace Aimeos\Client\Html\Email\Payment\Html;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Common\Client\Summary\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/email/payment/html/standard/subparts
@@ -56,29 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/payment/html/standard/subparts';
-
-	/** client/html/email/payment/html/intro/name
-	 * Name of the introduction part used by the email payment html client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Payment\Html\Intro\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/email/payment/html/summary/name
-	 * Name of the summary part used by the email payment html client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Payment\Html\Summary\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'intro', 'summary' );
+	private $subPartNames = [];
 
 
 	/**
@@ -126,11 +104,9 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/payment/html/standard/template-body';
 
-		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/html-body-standard', 'email/payment/html-body-standard' );
-
-		$html = $view->render( $view->config( $tplconf, $default ) );
+		$html = $view->render( $view->config( $tplconf, 'email/payment/html-body-standard' ) );
 		$view->mail()->setBodyHtml( $html );
+
 		return $html;
 	}
 
@@ -272,6 +248,19 @@ class Standard
 
 		if( file_exists( $filepath ) && ( $css = file_get_contents( $filepath ) ) !== false ) {
 			$view->htmlCss = $css;
+		}
+
+
+		$basket = $view->extOrderBaseItem;
+
+		// we can't cache the calculation because the same client object is used for all e-mails
+		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
+		$view->summaryCostsPayment = $this->getCostsPayment( $basket );
+		$view->summaryTaxRates = $this->getTaxRates( $basket );
+		$view->summaryBasket = $basket;
+
+		if( $view->extOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+			$view->summaryShowDownloadAttributes = true;
 		}
 
 		return parent::addData( $view, $tags, $expire );
