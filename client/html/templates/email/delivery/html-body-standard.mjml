@@ -67,7 +67,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 					<?= $enc->html( $this->get( 'emailIntro' ) ); ?>
 				</mj-text>
 				<mj-text css-class="email-common-intro">
-					<?= nl2br( $enc->html( $message, $enc::TRUST ) ); ?>:
+					<?= nl2br( $enc->html( $message, $enc::TRUST ) ); ?>
 				</mj-text>
 			</mj-column>
 		</mj-section>
