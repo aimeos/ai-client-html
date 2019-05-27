@@ -5,6 +5,14 @@
  * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
+/** Available data
+ * - summaryBasket : Order base item (basket) with addresses, services, products, etc.
+ * - summaryTaxRates : List of tax values grouped by tax rates
+ * - summaryShowDownloadAttributes : True if product download links should be shown, false if not
+ * - summaryCostsDelivery : Sum of all shipping costs
+ * - summaryCostsPayment : Sum of all payment costs
+ */
+
 
 $order = $this->extOrderItem;
 
@@ -42,7 +50,16 @@ $message = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated()
 <?= wordwrap( strip_tags( $message ) ); ?>
 
 
-<?= $this->block()->get( 'email/common/text/summary' ); ?>
+<?= $this->partial(
+	$this->config( 'client/html/email/common/summary/text', 'email/common/text-summary-partial' ),
+	array(
+		'summaryBasket' => $this->summaryBasket,
+		'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
+		'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes', false ),
+		'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
+		'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 )
+	)
+); ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ); ?>
