@@ -154,8 +154,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			<tr class="product <?= ( isset( $errors['product'][$position] ) ? 'error' : '' ); ?>">
 
 				<td class="image">
-					<?php if( ( $url = $product->getMediaUrl() ) != '' ) : // fixed width for e-mail clients ?>
-						<img class="detail" src="<?= $enc->attr( $this->content( $url ) ); ?>" width="100" />
+					<?php if( ( $url = $product->getMediaUrl() ) != '' ) : ?>
+						<img class="detail" src="<?= $enc->attr( $this->content( $url ) ); ?>" />
 					<?php endif; ?>
 				</td>
 
