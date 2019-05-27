@@ -2,7 +2,7 @@
 	<mj-column css-class="item payment">
 		<mj-text>
 			<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h3>
-			<?php foreach( $this->extOrderBaseItem->getAddress( 'payment' ) as $addr ) : ?>
+			<?php foreach( $this->summaryBasket->getAddress( 'payment' ) as $addr ) : ?>
 				<div class="content">
 					<?= preg_replace( "/\n+/m", '<br/>', trim( $enc->html( sprintf(
 						/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
@@ -50,8 +50,8 @@
 	<mj-column css-class="item delivery">
 		<mj-text>
 			<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
-			<?php if( $this->extOrderBaseItem->getAddresses( 'delivery' ) !== [] ) : ?>
-				<?php foreach( $this->extOrderBaseItem->getAddress( 'delivery' ) as $addr ) : ?>
+			<?php if( $this->summaryBasket->getAddresses( 'delivery' ) !== [] ) : ?>
+				<?php foreach( $this->summaryBasket->getAddress( 'delivery' ) as $addr ) : ?>
 					<div class="content">
 						<?= preg_replace( "/\n+/m", '<br/>', trim( $enc->html( sprintf(
 							/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
@@ -107,7 +107,7 @@
 	<mj-column css-class="item payment">
 		<mj-text>
 			<h3><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h3>
-			<?php foreach( $this->extOrderBaseItem->getService( 'payment' ) as $service ) : ?>
+			<?php foreach( $this->summaryBasket->getService( 'payment' ) as $service ) : ?>
 				<div class="content">
 					<h4><?= $enc->html( $service->getName() ); ?></h4>
 					<?php if( ( $attributes = $service->getAttributeItems() ) !== [] ) : ?>
@@ -144,7 +144,7 @@
 	<mj-column css-class="item delivery">
 		<mj-text>
 			<h3><?= $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ); ?></h3>
-			<?php foreach( $this->extOrderBaseItem->getService( 'delivery' ) as $service ) : ?>
+			<?php foreach( $this->summaryBasket->getService( 'delivery' ) as $service ) : ?>
 				<div class="content">
 					<h4><?= $enc->html( $service->getName() ); ?></h4>
 					<?php if( ( $attributes = $service->getAttributeItems() ) !== [] ) : ?>
@@ -185,7 +185,7 @@
 		<mj-text>
 			<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
 			<div class="content">
-				<?php if( ( $coupons = $this->extOrderBaseItem->getCoupons() ) !== [] ) : ?>
+				<?php if( ( $coupons = $this->summaryBasket->getCoupons() ) !== [] ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
 							<li class="attr-item"><?= $enc->html( $code ); ?></li>
@@ -195,19 +195,19 @@
 			</div>
 		</mj-text>
 	</mj-column>
-	<mj-column css-class="item comment">
-		<mj-text>
-			<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
-			<div class="content">
-				<?= $enc->html( $this->extOrderBaseItem->getComment() ); ?>
-			</div>
-		</mj-text>
-	</mj-column>
 	<mj-column css-class="item customerref">
 		<mj-text>
 			<h3><?= $enc->html( $this->translate( 'client', 'Your reference' ), $enc::TRUST ); ?></h3>
 			<div class="content">
-				<?= $enc->attr( $this->extOrderBaseItem->getCustomerReference() ); ?>
+				<?= $enc->attr( $this->summaryBasket->getCustomerReference() ); ?>
+			</div>
+		</mj-text>
+	</mj-column>
+	<mj-column css-class="item comment">
+		<mj-text>
+			<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
+			<div class="content">
+				<?= $enc->html( $this->summaryBasket->getComment() ); ?>
 			</div>
 		</mj-text>
 	</mj-column>
@@ -242,7 +242,7 @@
 								<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.:' ), $enc::TRUST ); ?></span>
 								<span class="value"><?= $product->getProductCode(); ?></span>
 							</p>
-							<?php foreach( $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant'] ) as $attrType ) : ?>
+							<?php foreach( $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant', 'config', 'custom'] ) as $attrType ) : ?>
 								<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
 									<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
 										<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
@@ -257,26 +257,6 @@
 									<?php endforeach; ?>
 								</ul>
 							<?php endforeach; ?>
-							<?php if( ( $attributes = $product->getAttributeItems( 'config' ) ) !== [] ) : ?>
-								<ul class="attr-list attr-list-config">
-									<?php foreach( $attributes as $attribute ) : ?>
-										<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
-											<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
-											<span class="value"><?= $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?></span>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-							<?php endif; ?>
-							<?php if( ( $attributes = $product->getAttributeItems( 'custom' ) ) !== [] ) : ?>
-								<ul class="attr-list attr-list-custom">
-									<?php foreach( $attributes as $attribute ) : ?>
-										<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
-											<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
-											<span class="value"><?= $enc->html( $attribute->getValue() ); ?></span>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-							<?php endif; ?>
 							<?php if( $this->extOrderItem->getPaymentStatus() >= $this->config( 'client/html/common/summary/detail/download/payment-status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
 									&& ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) !== null ) : ?>
 								<ul class="attr-list attr-list-hidden">
@@ -308,7 +288,7 @@
 					</tr>
 				<?php endforeach; ?>
 
-				<?php foreach( $this->extOrderBaseItem->getService( 'delivery' ) as $service ) : ?>
+				<?php foreach( $this->summaryBasket->getService( 'delivery' ) as $service ) : ?>
 					<?php if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
 						<tr class="delivery">
 							<td class="name"><?= $enc->html( $service->getName() ); ?></td>
@@ -318,7 +298,7 @@
 					<?php endif; ?>
 				<?php endforeach; ?>
 
-				<?php foreach( $this->extOrderBaseItem->getService( 'payment' ) as $service ) : ?>
+				<?php foreach( $this->summaryBasket->getService( 'payment' ) as $service ) : ?>
 					<?php if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
 						<tr class="payment">
 							<td class="name"><?= $enc->html( $service->getName() ); ?></td>
@@ -329,31 +309,31 @@
 				<?php endforeach; ?>
 			</tbody>
 			<tfoot>
-				<?php if( $this->extOrderBaseItem->getPrice()->getCosts() > 0 ) : ?>
+				<?php if( $this->summaryBasket->getPrice()->getCosts() > 0 ) : ?>
 					<tr class="subtotal">
 						<td colspan="3"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
-						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->extOrderBaseItem->getPrice()->getValue(), $this->extOrderBaseItem->getPrice()->getPrecision() ), $this->extOrderBaseItem->getPrice()->getCurrencyId() ) ); ?></td>
+						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ); ?></td>
 					</tr>
 				<?php endif; ?>
 
 				<?php if( ( $costs = $this->get( 'standardCostsDelivery', 0 ) ) > 0 ) : ?>
 					<tr class="delivery">
 						<td colspan="3"><?= $enc->html( $this->translate( 'client', 'Shipping' ) ); ?></td>
-						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $this->extOrderBaseItem->getPrice()->getPrecision() ), $this->extOrderBaseItem->getPrice()->getCurrencyId() ) ); ?></td>
+						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ); ?></td>
 					</tr>
 				<?php endif; ?>
 
 				<?php if( ( $costs = $this->get( 'standardCostsPayment', 0 ) ) > 0 ) : ?>
 					<tr class="delivery">
 						<td colspan="3"><?= $enc->html( $this->translate( 'client', 'Payment costs' ) ); ?></td>
-						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $this->extOrderBaseItem->getPrice()->getPrecision() ), $this->extOrderBaseItem->getPrice()->getCurrencyId() ) ); ?></td>
+						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ); ?></td>
 					</tr>
 				<?php endif; ?>
 
-				<?php if( $this->extOrderBaseItem->getPrice()->getTaxFlag() === true ) : ?>
+				<?php if( $this->summaryBasket->getPrice()->getTaxFlag() === true ) : ?>
 					<tr class="total">
 						<td colspan="3"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
-						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->extOrderBaseItem->getPrice()->getValue() + $this->extOrderBaseItem->getPrice()->getCosts(), $this->extOrderBaseItem->getPrice()->getPrecision() ), $this->extOrderBaseItem->getPrice()->getCurrencyId() ) ); ?></td>
+						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ); ?></td>
 					</tr>
 				<?php endif; ?>
 
@@ -366,17 +346,17 @@
 					<?php endif; ?>
 				<?php endforeach; ?>
 
-				<?php if( $this->extOrderBaseItem->getPrice()->getTaxFlag() === false ) : ?>
+				<?php if( $this->summaryBasket->getPrice()->getTaxFlag() === false ) : ?>
 					<tr class="total">
 						<td colspan="3"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
-						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->extOrderBaseItem->getPrice()->getValue() + $this->extOrderBaseItem->getPrice()->getCosts(), $this->extOrderBaseItem->getPrice()->getPrecision() ), $this->extOrderBaseItem->getPrice()->getCurrencyId() ) ); ?></td>
+						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ); ?></td>
 					</tr>
 				<?php endif; ?>
 
-				<?php if( $this->extOrderBaseItem->getPrice()->getRebate() > 0 ) : ?>
+				<?php if( $this->summaryBasket->getPrice()->getRebate() > 0 ) : ?>
 					<tr class="rebate">
 						<td colspan="3"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ); ?></td>
-						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->extOrderBaseItem->getPrice()->getValue(), $this->extOrderBaseItem->getPrice()->getPrecision() ), $this->extOrderBaseItem->getPrice()->getCurrencyId() ) ); ?></td>
+						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ); ?></td>
 					</tr>
 				<?php endif; ?>
 			</tfoot>

@@ -5,6 +5,15 @@
  * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
+/** Available data
+ * - summaryBasket : Order base item (basket) with addresses, services, products, etc.
+ * - summaryTaxRates : List of tax values grouped by tax rates
+ * - summaryShowDownloadAttributes : True if product download links should be shown, false if not
+ * - summaryCostsDelivery : Sum of all shipping costs
+ * - summaryCostsPayment : Sum of all payment costs
+ */
+
+
 $enc = $this->encoder();
 $order = $this->extOrderItem;
 
