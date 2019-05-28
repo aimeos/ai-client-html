@@ -122,18 +122,18 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	foreach( $this->summaryBasket->getCoupons() as $code => $products ) : ?>
 <?= 		'- ' . $code . "\n" ?>
 <?php	endforeach ?>
-<?php endif ?>
 
+<?php endif ?>
 <?php if( $this->summaryBasket->getCustomerReference() != '' ) : ?>
 <?= 	strip_tags( $this->translate( 'client', 'Your reference number' ) ) ?>:
 <?= 	strip_tags( $this->summaryBasket->getCustomerReference() ) . "\n" ?>
-<?php endif ?>
 
+<?php endif ?>
 <?php if( $this->summaryBasket->getComment() != '' ) : ?>
 <?= 	strip_tags( $this->translate( 'client', 'Your comment' ) ) ?>:
 <?= 	strip_tags( $this->summaryBasket->getComment() ) . "\n" ?>
-<?php endif ?>
 
+<?php endif ?>
 
 
 <?= strip_tags( $this->translate( 'client', 'Order details' ) ); ?>:

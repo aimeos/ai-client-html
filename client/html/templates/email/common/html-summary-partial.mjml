@@ -203,7 +203,7 @@
 
 <mj-section css-class="common-summary common-summary-detail">
 	<mj-column>
-		<mj-table css-class="basket">
+		<mj-table css-class="basket" padding="inherit">
 			<tr class="header">
 				<th class="status"></th>
 				<th class="label"><?= $enc->html( $this->translate( 'client', 'Name' ), $enc::TRUST ); ?></th>
@@ -273,7 +273,7 @@
 						<?= $enc->html( $product->getQuantity() ); ?>
 					</td>
 					<td class="price">
-						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $product->getPrice()->getPrecision() ), $this->translate( 'currency', $product->getPrice()->getCurrencyId() ) ) ); ?></td>
+						<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $product->getPrice()->getPrecision() ), $this->translate( 'currency', $product->getPrice()->getCurrencyId() ) ) ); ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>
