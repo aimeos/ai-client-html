@@ -26,6 +26,7 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 
 ?>
 <?= strip_tags( $this->translate( 'client', 'Billing address' ) ) ?>:
+
 <?= $this->partial(
 		/** client/html/email/common/summary/address/text
 		 * Location of the address partial template for the text e-mails
@@ -47,8 +48,10 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 ?>
 
 
+
 <?= strip_tags( $this->translate( 'client', 'Delivery address' ) ) ?>:
-<?php if( $this->summaryBasket->getAddress( 'delivery' ) !== [] ) : ?>
+
+<?php if( ( $addrItems = $this->summaryBasket->getAddress( 'delivery' ) ) !== [] ) : ?>
 <?=		$this->partial(
 			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
 			array( 'addresses' => $addrItems, 'separator' => "\n" )
@@ -123,13 +126,14 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 
 <?php if( $this->summaryBasket->getCustomerReference() != '' ) : ?>
 <?= 	strip_tags( $this->translate( 'client', 'Your reference number' ) ) ?>:
-<?= 	strip_tags( $this->summaryBasket->getCustomerReference() ) ?>
+<?= 	strip_tags( $this->summaryBasket->getCustomerReference() ) . "\n" ?>
 <?php endif ?>
 
 <?php if( $this->summaryBasket->getComment() != '' ) : ?>
 <?= 	strip_tags( $this->translate( 'client', 'Your comment' ) ) ?>:
-<?= 	strip_tags( $this->summaryBasket->getComment() ) ?>
+<?= 	strip_tags( $this->summaryBasket->getComment() ) . "\n" ?>
 <?php endif ?>
+
 
 
 <?= strip_tags( $this->translate( 'client', 'Order details' ) ); ?>:
@@ -150,18 +154,14 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	endforeach; ?>
 <?=		strip_tags( $this->translate( 'client', 'Quantity' ) ); ?>: <?= $product->getQuantity(); ?>
 
-<?=		strip_tags( $this->translate( 'client', 'Price' ) ); ?>: <?php printf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
-
-<?=		strip_tags( $this->translate( 'client', 'Sum' ) ); ?>: <?php printf( $priceFormat, $this->number( $priceItem->getValue() * $product->getQuantity(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
+<?=		strip_tags( $this->translate( 'client', 'Price' ) ); ?>: <?php printf( $priceFormat, $this->number( $priceItem->getValue() * $product->getQuantity(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
 
 <?php	if( ( $status = $product->getStatus() ) >= 0 ) : $key = 'stat:' . $status ?>
 <?=			strip_tags( $this->translate( 'client', 'Status' ) ); ?>: $this->translate( 'mshop/code', $key ); ?>
 <?php	endif; ?>
-
 <?php endforeach; ?>
 
 <?php foreach( $this->summaryBasket->getService( 'delivery' ) as $service ) : ?>
-
 <?php	if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
 <?=			strip_tags( $service->getName() ); ?>
 
@@ -170,7 +170,6 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	endif; ?>
 <?php endforeach; ?>
 <?php foreach( $this->summaryBasket->getService( 'payment' ) as $service ) : ?>
-
 <?php	if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
 <?=			strip_tags( $service->getName() ); ?>
 

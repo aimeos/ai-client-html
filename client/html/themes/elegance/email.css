@@ -5,7 +5,7 @@
  * @copyright Aimeos (aimeos.org), 2014
  */
 
-a {
+ a {
 	color: #B0A060;
 }
 
@@ -15,11 +15,10 @@ a {
 }
 
 
-li.attr-item,
-li.form-item {
+li.attr-item {
 	list-style: none;
-	margin: 0.5em 0;
 	padding: 0;
+	margin: 0;
 }
 
 .price-item .quantity,
@@ -51,13 +50,14 @@ li.form-item {
 }
 
 .common-summary .content {
-	margin: 0.5em 0;
+	padding: 0.5em;
+	margin: 10px;
 }
 
 .common-summary .item h3 {
 	border-bottom: solid 1px #B0A060;
 	padding: 0.5em;
-	margin: 0;
+	margin: 10px;
 }
 
 .common-summary .item h4 {
@@ -71,7 +71,7 @@ li.form-item {
 
 .common-summary .item li {
 	vertical-align: top;
-	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 .common-summary .item .name {
@@ -84,34 +84,14 @@ li.form-item {
 	display: block;
 }
 
-.common-summary .item .item-icons img {
-	max-height: 4em;
-	max-width: 4em;
-}
-
 .common-summary .item .attr-list {
 	list-style: none;
 	margin-top: 0;
 	padding: 0;
 }
 
-.basket table {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-.basket thead {
-	font-weight: bold;
-	background-color: #F0F0F0;
-}
-
-.basket thead tr {
-	border-bottom: 1px solid #D0D0D0;
-	color: #555;
-}
-
-.basket tbody tr.product {
-	border-bottom: 1px solid #D0D0D0;
+.basket {
+	margin: 10px !important;
 }
 
 .basket th,
@@ -120,51 +100,66 @@ li.form-item {
 	padding: 0.5em;
 }
 
-.basket .details img {
-	max-width: 6em;
-	max-height: 8em;
-}
-
-.basket .details .product-name {
-	margin: 0.5em 0;
-	display: block;
-}
-
-.basket .code {
-	margin: 0.5em;
-}
-
-.basket .attr-list {
+.basket .header {
+	font-weight: bold;
+	background-color: #F0F0F0;
+	border-bottom: 1px solid #D0D0D0;
 	color: #555;
-	margin: 0.5em;
-	vertical-align: top;
 }
 
-.basket .details li.attr-item {
-	list-style: disc inside none;
+.basket .body {
+	border-bottom: 1px solid #D0D0D0;
 }
 
-.basket tfoot tr,
-.basket tbody td.price {
-	text-align: right;
-	white-space: nowrap;
+.basket th.label {
+	text-align: left;
 }
 
-.basket tbody td.quantity {
+.basket td.quantity {
 	white-space: nowrap;
 	text-align: center;
 }
 
-.basket tfoot {
+.basket td.price {
+	text-align: right;
+	white-space: nowrap;
+}
+
+.basket .price-item .rebatepercent {
+	display: none;
+}
+
+.basket .product .product-label {
+	margin: 0.5em 0;
+	display: block;
+}
+
+.basket .product .code {
+	margin: 0.5em;
+}
+
+.basket .product .attr-list {
+	vertical-align: top;
+	color: #555;
+	padding: 0;
+	margin: 0;
+}
+
+.basket .product .attr-item {
+	list-style: disc inside none;
+	margin: 0 0.5em
+}
+
+.basket .footer {
 	vertical-align: bottom;
 }
 
-.basket tfoot tr.subtotal {
+.basket .footer.subtotal {
 	font-weight: bold;
 	color: #555;
 }
 
-.basket tfoot tr.total {
+.basket .footer.total {
 	border-top: 1px solid #D0D0D0;
 	background-color: #F0F0F0;
 	font-weight: bold;
