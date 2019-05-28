@@ -203,7 +203,7 @@
 
 <mj-section css-class="common-summary common-summary-detail">
 	<mj-column>
-		<mj-table css-class="basket" padding="inherit">
+		<mj-table css-class="basket">
 			<tr class="header">
 				<th class="status"></th>
 				<th class="label"><?= $enc->html( $this->translate( 'client', 'Name' ), $enc::TRUST ); ?></th>
@@ -242,7 +242,7 @@
 												<?php if( $attribute->getQuantity() > 1 ) : ?>
 													<?= $enc->html( $attribute->getQuantity() ); ?>×
 												<?php endif; ?>
-												<?= $enc->html( ( $attribute->getName() ?: $attribute->getValue() ) ); ?>
+												<?= $enc->html( $attrType !== 'custom' && $attribute->getName() ? $attribute->getName() : $attribute->getValue() ); ?>
 											</span>
 										</li>
 									<?php endforeach; ?>

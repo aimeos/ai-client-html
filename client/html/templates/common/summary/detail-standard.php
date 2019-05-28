@@ -180,7 +180,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 										<?php if( $attribute->getQuantity() > 1 ) : ?>
 											<?= $enc->html( $attribute->getQuantity() ); ?>×
 										<?php endif; ?>
-										<?= $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?>
+										<?= $enc->html( $attribute->getName() ?: $attribute->getValue() ); ?>
 									</span>
 								</li>
 							<?php endforeach; ?>
@@ -194,7 +194,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 							<?php foreach( $attributes as $attribute ) : ?>
 								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
 									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
-									<span class="value"><?= $enc->html( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?></span>
+									<span class="value"><?= $enc->html( $attribute->getName() ?: $attribute->getValue() ); ?></span>
 								</li>
 							<?php endforeach; ?>
 
