@@ -154,12 +154,12 @@ li.attr-item {
 	vertical-align: bottom;
 }
 
-.basket .footer.subtotal {
+.basket .subtotal {
 	font-weight: bold;
 	color: #555;
 }
 
-.basket .footer.total {
+.basket .total {
 	border-top: 1px solid #D0D0D0;
 	background-color: #F0F0F0;
 	font-weight: bold;
