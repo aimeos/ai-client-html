@@ -111,6 +111,10 @@ li.attr-item {
 	white-space: nowrap;
 }
 
+.basket .product .product-image {
+	max-height: 150px;
+}
+
 .basket .product .product-label {
 	margin: 0.5em 0;
 	display: block;
