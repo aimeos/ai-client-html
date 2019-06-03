@@ -21,20 +21,6 @@ li.attr-item {
 	margin: 0;
 }
 
-.price-item .quantity,
-.price-item .rebate,
-.price-item .costs,
-.price-item .taxrate {
-	display: none;
-}
-
-.price-item .rebatepercent {
-	background-color: #A03030;
-	padding: 0em 0.25em;
-	margin-left: 1em;
-	color: #FFF;
-}
-
 
 /* Account creation */
 
@@ -123,10 +109,6 @@ li.attr-item {
 .basket td.price {
 	text-align: right;
 	white-space: nowrap;
-}
-
-.basket .price-item .rebatepercent {
-	display: none;
 }
 
 .basket .product .product-label {
