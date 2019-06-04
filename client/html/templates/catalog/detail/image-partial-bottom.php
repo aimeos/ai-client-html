@@ -57,11 +57,12 @@ $mediaItems = $this->get( 'mediaItems', [] );
 
 	--><div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
-	<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
+		<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 			<?php
-				$srcset = [];
+				$srcset = $sources = [];
 				foreach( $mediaItem->getPreviews() as $type => $path ) {
 					$srcset[] = $this->content( $path ) . ' ' . $type . 'w';
+					$sources[$type] = $this->content( $path );
 				}
 			?>
 			<img id="image-<?= $enc->attr( $id ); ?>" class="item"
@@ -69,7 +70,7 @@ $mediaItems = $this->get( 'mediaItems', [] );
 				src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 				itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
 				data-image="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-				data-sources="<?= $enc->attr( json_encode( $mediaItem->getPreviews(), JSON_FORCE_OBJECT ) ) ?>"
+				data-sources="<?= $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) ?>"
 				alt="<?= $enc->html( $mediaItem->getName() ); ?>"
 				<?= $getVariantData( $mediaItem ); ?>
 			/>

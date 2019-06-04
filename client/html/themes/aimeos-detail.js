@@ -103,7 +103,7 @@ AimeosCatalogDetail = {
 					src: imgurl,
 					pid: idx,
 					h: 0,
-					w: 0,
+					w: 0
 				});
 			});
 
