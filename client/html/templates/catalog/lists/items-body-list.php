@@ -47,20 +47,27 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 
 				<a class="media-list" href="<?= $url; ?>">
-					<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-						<?php $mediaUrl = $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>
-						<?php if( $firstImage === true ) : $firstImage = false; ?>
-							<noscript>
-								<div class="media-item" style="background-image: url('<?= $mediaUrl; ?>')"
-									itemtype="http://schema.org/ImageObject" itemscope="">
-									<meta itemprop="contentUrl" content="<?= $mediaUrl; ?>" />
-								</div>
-							</noscript>
-							<div class="media-item lazy-image" data-src="<?= $mediaUrl; ?>"></div>
-						<?php else : ?>
-							<div class="media-item" data-src="<?= $mediaUrl; ?>"></div>
-						<?php endif; ?>
-					<?php endforeach; ?>
+					<?php if( ( $mediaItem = current( $productItem->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
+						<noscript>
+							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
+								<img loading="lazy" src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
+							</div>
+						</noscript>
+
+						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+							<?php
+								$srcset = [];
+								foreach( $mediaItem->getPreviews() as $type => $path ) {
+									$srcset[] = $this->content( $path ) . ' ' . $type . 'w';
+								}
+							?>
+							<div class="media-item">
+								<img loading="lazy" class="lazy-image" data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" data-srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
+							</div>
+						<?php endforeach; ?>
+					<?php endif; ?>
 				</a><!--
 
 

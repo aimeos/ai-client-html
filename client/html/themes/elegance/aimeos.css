@@ -5,7 +5,7 @@
  * @copyright Aimeos (aimeos.org), 2014-2018
  */
 
-@font-face {
+ @font-face {
 	font-family: 'FontAwesome';
 	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.eot');
 	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
@@ -849,7 +849,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 /* media list */
-.catalog-list a .media-list {
+.catalog-list .media-list {
 	background-color: #FFFFFF;
 	background-image: url(media/aimeos.png);
 	background-repeat: no-repeat;
@@ -862,7 +862,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	width: 240px;
 }
 
-.catalog-list a .media-item {
+.catalog-list .media-item {
 	background-color: #FFFFFF;
 	background-image: url(media/progress.gif);
 	background-repeat: no-repeat;
@@ -871,6 +871,15 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	position: relative;
 	height: 320px;
 	width: 240px;
+}
+
+.catalog-list .media-item img {
+	position: relative;
+	max-width: 100%;
+	height: auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 /* text list */
