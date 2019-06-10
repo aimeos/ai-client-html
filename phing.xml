@@ -10,8 +10,6 @@
 
 	<target name="testperf" description="Executes all performance tests">
 		<phing target="testperf" haltonfailure="true" dir="client/html" />
-		<phing target="testperf" haltonfailure="true" dir="controller/common" />
-		<phing target="testperf" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="coverage" description="Generates the code coverage report">
