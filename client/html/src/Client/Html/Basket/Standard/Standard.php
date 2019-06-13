@@ -454,11 +454,11 @@ class Standard
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
 
-		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' )
+		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' && $view->param( 'b_quantity', 0 ) > 0 )
 		{
 			$basketCntl->addProduct(
 				$productCntl->get( $prodid ),
-				$view->param( 'b_quantity', 1 ),
+				$view->param( 'b_quantity', 0 ),
 				$view->param( 'b_attrvarid', [] ),
 				$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
 				$view->param( 'b_attrcustid', [] ),
@@ -482,10 +482,11 @@ class Standard
 
 			foreach( $entries as $values )
 			{
-				if( isset( $values['prodid'] ) && isset( $products[$values['prodid']] ) )
-				{
+				if( isset( $values['prodid'] ) && isset( $products[$values['prodid']] )
+					&& isset( $values['quantity'] ) && $values['quantity'] > 0
+				) {
 					$basketCntl->addProduct( $products[$values['prodid']],
-						( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
+						( isset( $values['quantity'] ) ? (int) $values['quantity'] : 0 ),
 						( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
 						$this->getAttributeMap( isset( $values['attrconfid'] ) ? $values['attrconfid'] : [] ),
 						( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] ),
