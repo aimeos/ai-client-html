@@ -48,15 +48,17 @@ $mediaItems = $this->get( 'mediaItems', [] );
 					$sources[$type] = $this->content( $path );
 				}
 			?>
-			<img id="image-<?= $enc->attr( $id ); ?>" class="item"
-				srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>"
-				src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-				itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
-				data-image="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-				data-sources="<?= $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) ?>"
-				alt="<?= $enc->html( $mediaItem->getName() ); ?>"
-				<?= $getVariantData( $mediaItem ); ?>
-			/>
+			<div class="media-item">
+				<img id="image-<?= $enc->attr( $id ); ?>" class="item"
+					srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>"
+					src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+					itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
+					data-image="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+					data-sources="<?= $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) ?>"
+					alt="<?= $enc->html( $mediaItem->getName() ); ?>"
+					<?= $getVariantData( $mediaItem ); ?>
+				/>
+			</div>
 		<?php endforeach; ?>
 
 	</div><!--

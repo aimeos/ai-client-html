@@ -122,7 +122,7 @@ if( isset( $this->detailProductItem ) )
 
 		<article class="product row <?= ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' ); ?>" data-id="<?= $this->detailProductItem->getId(); ?>">
 
-			<div class="col-sm-7">
+			<div class="col-sm-6">
 				<?= $this->partial(
 					/** client/html/catalog/detail/partials/image
 					 * Relative path to the detail image partial template file
@@ -145,7 +145,7 @@ if( isset( $this->detailProductItem ) )
 			</div>
 
 
-			<div class="col-sm-5">
+			<div class="col-sm-6">
 
 				<div class="catalog-detail-basic">
 					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ); ?></h1>

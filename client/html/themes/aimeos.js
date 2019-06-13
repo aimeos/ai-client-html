@@ -1201,9 +1201,11 @@ AimeosCatalogList = {
 			if( list.length > 1 ) {
 				var second = list.eq(1);
 				var size = $(this).height();
+				var image = $("img", second);
 
 				$(this).css("background-image", "none"); // Don't let default image shine through
-				second.css("background-image", "url('" + second.data("src") + "')");
+				image.attr("srcset", image.data("srcset"));
+				image.attr("src", image.data("src"));
 				second.fadeTo(0, 0.33);
 
 				list.first().fadeTo(400, 0.33, function() {
