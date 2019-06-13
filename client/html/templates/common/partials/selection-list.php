@@ -47,8 +47,8 @@ $enc = $this->encoder();
 				<ul class="attr-list">
 					<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
 						<li class="attr-item">
-							<span class="attr-name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ) ) ?></span>
-							<span class="attr-value"><?= $enc->html( $attrItem->getName() ) ?></span>
+							<span class="name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ) ) ?></span>
+							<span class="value"><?= $enc->html( $attrItem->getName() ) ?></span>
 
 							<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ); ?>"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ); ?>" />

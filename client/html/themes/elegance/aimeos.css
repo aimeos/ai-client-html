@@ -51,6 +51,10 @@
 	width: calc(100% - 4em);
 }
 
+.aimeos .addbasket .input-group {
+	text-align: center;
+}
+
 .aimeos .addbasket input {
 	border: solid 1px #B0A060;
 	text-align: center;
@@ -149,6 +153,10 @@
 	list-style: none;
 	margin: 0.5em 0;
 	padding: 0;
+}
+
+.aimeos li.attr-item .name:after {
+	content: ": ";
 }
 
 .aimeos .prototype {
@@ -957,7 +965,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .aimeos .product .stock-low .stocklevel {
-	background-color: #B06000;
+	background-color: #E08000;
 }
 
 .aimeos .product .stock-out .stocklevel {
@@ -1406,10 +1414,16 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 /* product attributes */
+.catalog-detail-basket .selection,
+.catalog-detail-basket-attribute {
+	margin: 1.5em 0;
+}
+
 .catalog-list-items .selection,
 .catalog-detail-basket .selection,
 .catalog-detail-basket-attribute {
 	color: #555;
+	width: 100%;
 	padding: 0;
 }
 
@@ -1417,6 +1431,37 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .catalog-detail-basket .selection .selection,
 .catalog-detail-basket-attribute .selection {
 	padding: 0;
+}
+
+.catalog-list-items .selection .select-attr,
+.catalog-detail-basket .selection .select-attr,
+.catalog-detail-basket-attribute .selection .select-attr {
+	width: 25%;
+}
+
+.catalog-list-items .selection .select-stock,
+.catalog-detail-basket .selection .select-stock {
+	text-align: center;
+	width: 10%;
+}
+
+.catalog-list-items .selection .select-stock .stockitem,
+.catalog-detail-basket .selection .select-stock .stockitem,
+.catalog-list-items .selection .select-stock .stocklevel,
+.catalog-detail-basket .selection .select-stock .stocklevel {
+		display: block;
+}
+
+.catalog-list-items .selection .select-stock .stocktext,
+.catalog-detail-basket .selection .select-stock .stocktext {
+	display: none;
+}
+
+.catalog-list-items .selection .select-quantity,
+.catalog-detail-basket .selection .select-quantity,
+.catalog-detail-basket-attribute .selection .select-quantity {
+	text-align: center;
+	width: 15%;
 }
 
 .catalog-list-items .selection .select-item,
@@ -1647,7 +1692,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .aimeos .catalog-detail-basket .stock-low {
-	color: #B06000;
+	color: #E08000;
 }
 
 .aimeos .catalog-detail-basket .stock-out {
@@ -2607,10 +2652,6 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .checkout-confirm-basic .attr-list .value {
 	display: inline-block;
 	width: 218px;
-}
-
-.checkout-confirm-basic .attr-list .name:after {
-	content: ": ";
 }
 
 /* Account history */
