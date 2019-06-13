@@ -6,6 +6,7 @@
  */
 
 /* Available data:
+ * - productItem : Selection product for the variant products
  * - products : List of variant product items with referenced items
  */
 
@@ -15,6 +16,14 @@ $enc = $this->encoder();
 
 ?>
 <table class="selection">
+
+	<tr>
+		<th class="select-media"></th>
+		<th class="select-name"><?= $enc->html( $this->translate( 'client', 'Name' ) ) ?></th>
+		<th class="select-attr"><?= $enc->html( $this->translate( 'client', 'Variant' ) ) ?></th>
+		<th class="select-stock"><?= $enc->html( $this->translate( 'client', 'Stock' ) ) ?></th>
+		<th class="select-quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></th>
+	</tr>
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $product ) : ?>
 
@@ -29,24 +38,26 @@ $enc = $this->encoder();
 			<td class="select-name">
 				<h2><?= $enc->html( $product->getName() ); ?></h2>
 
-				<input type="hidden" value="add"
-					name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
 				<input type="hidden"
 					name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ); ?>"
-					value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>" />
+					value="<?= $enc->attr( $this->productItem->getId() ); ?>" />
 			</td>
 
 			<td class="select-attr">
-				<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
+				<ul class="attr-list">
+					<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
+						<li class="attr-item">
+							<span class="attr-name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ) ) ?></span>
+							<span class="attr-value"><?= $enc->html( $attrItem->getName() ) ?></span>
 
-					<span class="attr-name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ) ) ?></span>
-					<span class="attr-value"><?= $enc->html( $attrItem->getName() ) ?></span>
-
-					<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ); ?>"
-						name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ); ?>" />
-
-				<?php endforeach; ?>
+							<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ); ?>"
+								name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ); ?>" />
+						</li>
+					<?php endforeach; ?>
+				</ul>
 			</td>
+
+			<td class="select-stock" data-prodcode="<?= $enc->attr( $product->getCode() ) ?>"></td>
 
 			<td class="select-quantity">
 				<input type="number" class="form-control"
