@@ -471,8 +471,8 @@ class Standard
 		// Delete cache when products are added or deleted even when in "tag-all" mode
 		$this->addMetaItems( $products + $productItems, $expire, $tags, ['product'] );
 
-		$view->productItems = $products;
-		$view->productTotal = count( $products );
+		$view->productProductItems = $products;
+		$view->productProductTotal = count( $products );
 		$view->itemsProductItems = $productItems;
 
 		return parent::addData( $view, $tags, $expire );
