@@ -30,7 +30,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 				'basket-add' => $this->config( 'client/html/catalog/product/basket-add', false ),
 				'productItems' => $this->get( 'itemsProductItems', [] ),
-				'products' => $this->get( 'productProductItems', [] ),
+				'products' => $this->get( 'productItems', [] ),
 			)
 		); ?>
 	</div>
