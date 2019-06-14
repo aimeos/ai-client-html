@@ -40,7 +40,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 		'label' => $name,
 		'html' => '
 			<li class="aimeos catalog-suggest">
-				<a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config ) ).'">
+				<a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config ) ) . '">
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 					<div class="item-price">' . $enc->html( $price ) . '</div>
 					<div class="item-image" style="background-image: url(' . $enc->attr( $media ) . ')"></div>

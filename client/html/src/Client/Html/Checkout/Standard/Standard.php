@@ -533,7 +533,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
-		*/
+		 */
 		$cCntl = $view->config( 'client/html/checkout/standard/url/controller', 'checkout' );
 
 		/** client/html/checkout/standard/url/action
@@ -549,7 +549,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/config
-		*/
+		 */
 		$cAction = $view->config( 'client/html/checkout/standard/url/action', 'index' );
 
 		/** client/html/checkout/standard/url/config
@@ -572,7 +572,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/url/config
-		*/
+		 */
 		$cConfig = $view->config( 'client/html/checkout/standard/url/config', [] );
 
 

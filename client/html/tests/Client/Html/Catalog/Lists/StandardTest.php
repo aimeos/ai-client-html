@@ -343,7 +343,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'getClientParams' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'text exception') ) );
+			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'text exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -361,7 +361,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'getClientParams' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'text exception') ) );
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'text exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -379,7 +379,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'getClientParams' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'text exception') ) );
+			->will( $this->throwException( new \Aimeos\MShop\Exception( 'text exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 
@@ -397,7 +397,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		->getMock();
 
 		$object->expects( $this->once() )->method( 'getClientParams' )
-		->will( $this->throwException( new \RuntimeException( 'text exception') ) );
+		->will( $this->throwException( new \RuntimeException( 'text exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
 

@@ -340,7 +340,7 @@ abstract class Base
 			if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface )
 			{
 				$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
-				$idMap[ $item->getResourceType() ][] = $item->getId();
+				$idMap[$item->getResourceType()][] = $item->getId();
 			}
 
 			$this->addMetaItemSingle( $item, $expires, $tags, $tagAll );
@@ -541,15 +541,15 @@ abstract class Base
 
 
 	/**
-	* Returns the template for the given configuration key
-	*
-	* If the "l_type" parameter is present, a specific template for this given
-	* type is used if available.
-	*
-	* @param string $confkey Key to the configuration setting for the template
-	* @param string $default Default template if none is configured or not found
-	* @return string Relative template path
-	*/
+	 * Returns the template for the given configuration key
+	 *
+	 * If the "l_type" parameter is present, a specific template for this given
+	 * type is used if available.
+	 *
+	 * @param string $confkey Key to the configuration setting for the template
+	 * @param string $default Default template if none is configured or not found
+	 * @return string Relative template path
+	 */
 	protected function getTemplatePath( $confkey, $default )
 	{
 		if( ( $type = $this->view->param( 'l_type' ) ) !== null && ctype_alnum( $type ) !== false ) {
@@ -606,11 +606,11 @@ abstract class Base
 			'header' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':header', $cfg ),
 		);
 
-		if( !isset( $this->cache[ $keys[$type] ] ) ) {
+		if( !isset( $this->cache[$keys[$type]] ) ) {
 			$this->cache = $context->getCache()->getMultiple( $keys );
 		}
 
-		return ( isset( $this->cache[ $keys[$type] ] ) ? $this->cache[ $keys[$type] ] : null );
+		return ( isset( $this->cache[$keys[$type]] ) ? $this->cache[$keys[$type]] : null );
 	}
 
 
