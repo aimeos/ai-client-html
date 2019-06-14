@@ -473,7 +473,7 @@ class Standard
 
 		$view->productItems = $products;
 		$view->productTotal = count( $products );
-		$view->itemsProductItems = $productItems;
+		$view->productProductItems = $productItems;
 
 		return parent::addData( $view, $tags, $expire );
 	}
