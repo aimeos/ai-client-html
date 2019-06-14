@@ -98,7 +98,7 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/product';
 
-		if ( ($html = $this->getCached( 'body', $uid, [], $confkey )) === null ) {
+		if( ($html = $this->getCached( 'body', $uid, [], $confkey )) === null ) {
 			$view = $this->getView();
 			$config = $this->getContext()->getConfig();
 
@@ -126,12 +126,12 @@ class Standard
 			$default = 'catalog/product/body-standard';
 
 			try {
-				if ( !isset( $this->view ) ) {
+				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
 				}
 
 				$html = '';
-				foreach ( $this->getSubClients() as $subclient ) {
+				foreach( $this->getSubClients() as $subclient ) {
 					$html .= $subclient->setView( $view )->getBody( $uid );
 				}
 				$view->listBody = $html;
@@ -140,17 +140,17 @@ class Standard
 				$this->setCached( 'body', $uid, [], $confkey, $html, $this->tags, $this->expire );
 
 				return $html;
-			} catch ( \Aimeos\Client\Html\Exception $e ) {
-				$error = array($context->getI18n()->dt( 'client', $e->getMessage() ));
+			} catch( \Aimeos\Client\Html\Exception $e ) {
+				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
 				$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-			} catch ( \Aimeos\Controller\Frontend\Exception $e ) {
-				$error = array($context->getI18n()->dt( 'controller/frontend', $e->getMessage() ));
+			} catch( \Aimeos\Controller\Frontend\Exception $e ) {
+				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 				$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-			} catch ( \Aimeos\MShop\Exception $e ) {
-				$error = array($context->getI18n()->dt( 'mshop', $e->getMessage() ));
+			} catch( \Aimeos\MShop\Exception $e ) {
+				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 				$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-			} catch ( \Exception $e ) {
-				$error = array($context->getI18n()->dt( 'client', 'A non-recoverable error occured' ));
+			} catch( \Exception $e ) {
+				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 				$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
 				$this->logException( $e );
 			}
@@ -174,7 +174,7 @@ class Standard
 	{
 		$confkey = 'client/html/catalog/product';
 
-		if ( ($html = $this->getCached( 'header', $uid, [], $confkey )) === null ) {
+		if( ($html = $this->getCached( 'header', $uid, [], $confkey )) === null ) {
 			$view = $this->getView();
 			$config = $this->getContext()->getConfig();
 
@@ -203,12 +203,12 @@ class Standard
 			$default = 'catalog/product/header-standard';
 
 			try {
-				if ( !isset( $this->view ) ) {
+				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
 				}
 
 				$html = '';
-				foreach ( $this->getSubClients() as $subclient ) {
+				foreach( $this->getSubClients() as $subclient ) {
 					$html .= $subclient->setView( $view )->getHeader( $uid );
 				}
 				$view->listHeader = $html;
@@ -217,7 +217,7 @@ class Standard
 				$this->setCached( 'header', $uid, [], $confkey, $html, $this->tags, $this->expire );
 
 				return $html;
-			} catch ( \Exception $e ) {
+			} catch( \Exception $e ) {
 				$this->logException( $e );
 			}
 		} else {
@@ -327,17 +327,17 @@ class Standard
 
 		try {
 			parent::process();
-		} catch ( \Aimeos\Client\Html\Exception $e ) {
-			$error = array($context->getI18n()->dt( 'client', $e->getMessage() ));
+		} catch( \Aimeos\Client\Html\Exception $e ) {
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
 			$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-		} catch ( \Aimeos\Controller\Frontend\Exception $e ) {
-			$error = array($context->getI18n()->dt( 'controller/frontend', $e->getMessage() ));
+		} catch( \Aimeos\Controller\Frontend\Exception $e ) {
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 			$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-		} catch ( \Aimeos\MShop\Exception $e ) {
-			$error = array($context->getI18n()->dt( 'mshop', $e->getMessage() ));
+		} catch( \Aimeos\MShop\Exception $e ) {
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 			$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-		} catch ( \Exception $e ) {
-			$error = array($context->getI18n()->dt( 'client', 'A non-recoverable error occured' ));
+		} catch( \Exception $e ) {
+			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 			$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
 			$this->logException( $e );
 		}
@@ -429,14 +429,14 @@ class Standard
 
 		// Sort products by the order given in the configuration "client/html/catalog/product/product-codes".
 		$productCodesOrder = array_flip( $productCodes );
-		usort( $products, function ( $a, $b ) use ( $productCodesOrder ) {
+		usort( $products, function( $a, $b ) use ( $productCodesOrder ) {
 			return $productCodesOrder[$a->getCode()] - $productCodesOrder[$b->getCode()];
 		} );
 
 
-		if ( $config->get( 'client/html/catalog/product/basket-add', false ) ) {
-			foreach ( $products as $product ) {
-				if ( $product->getType() === 'select' ) {
+		if( $config->get( 'client/html/catalog/product/basket-add', false ) ) {
+			foreach( $products as $product ) {
+				if( $product->getType() === 'select' ) {
 					$productItems += $product->getRefItems( 'product', 'default', 'default' );
 				}
 			}
@@ -464,7 +464,7 @@ class Standard
 		 * @see client/html/catalog/stock/url/config
 		 */
 
-		if ( !empty( $products ) && (bool)$config->get( 'client/html/catalog/product/stock/enable', true ) === true ) {
+		if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/product/stock/enable', true ) === true ) {
 			$view->itemsStockUrl = $this->getStockUrl( $view, $products + $productItems );
 		}
 
