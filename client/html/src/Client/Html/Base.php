@@ -567,7 +567,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @param string[] $prefixes List of prefixes of all parameters that are relevant for generating the output
 	 * @param string $confkey Configuration key prefix that matches all relevant settings for the component
-	 * @return string Cached entry or empty string if not available
+	 * @return string|null Cached entry or null if not available
 	 */
 	protected function getCached( $type, $uid, array $prefixes, $confkey )
 	{
