@@ -148,7 +148,7 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	endforeach; ?>
 <?php	foreach( $product->getAttributeItems( 'hidden' ) as $attribute ) : ?>
 <?php		if( $unhide && $attribute->getCode() === 'download' ) : ?>
-- <?=			strip_tags( $attribute->getName()); ?>: <?= $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ); ?>
+- <?=			strip_tags( $attribute->getName() ); ?>: <?= $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ); ?>
 
 <?php		endif; ?>
 <?php	endforeach; ?>

@@ -37,7 +37,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 				$position === null ?: $params['d_pos'] = $position++;
 				$detailProdid == false ?: $params['d_prodid'] = $id;
 
-				$url = $this->url( ($productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
+				$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 			?>
 
 			--><li class="product <?= $enc->attr( $css ); ?>"

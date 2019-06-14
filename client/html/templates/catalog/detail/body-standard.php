@@ -78,8 +78,8 @@ if( isset( $this->detailProductItem ) )
 
 			foreach( $subItems as $attrId => $attrItem )
 			{
-				$attrMap[ $attrItem->getType() ][ $attrId ] = $attrItem;
-				$subAttrDeps[ $attrId ][] = $subProdId;
+				$attrMap[$attrItem->getType()][$attrId] = $attrItem;
+				$subAttrDeps[$attrId][] = $subProdId;
 			}
 
 			$propItems = array_merge( $propItems, $subProduct->getPropertyItems() );
@@ -88,8 +88,8 @@ if( isset( $this->detailProductItem ) )
 
 	foreach( $propItems as $propId => $propItem )
 	{
-		$propMap[ $propItem->getType() ][ $propId ] = $propItem;
-		$subPropDeps[ $propId ][] = $propItem->getParentId();
+		$propMap[$propItem->getType()][$propId] = $propItem;
+		$subPropDeps[$propId][] = $propItem->getParentId();
 	}
 }
 
@@ -381,7 +381,7 @@ if( isset( $this->detailProductItem ) )
 								<table class="attributes">
 									<tbody>
 										<?php foreach( $this->detailProductItem->getRefItems( 'attribute', null, 'default' ) as $attrId => $attrItem ) : ?>
-											<?php if( isset( $attrItems[ $attrId ] ) ) { $attrItem = $attrItems[ $attrId ]; } ?>
+											<?php if( isset( $attrItems[$attrId] ) ) { $attrItem = $attrItems[$attrId]; } ?>
 											<tr class="item">
 												<td class="name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ), $enc::TRUST ); ?></td>
 												<td class="value">
@@ -408,10 +408,10 @@ if( isset( $this->detailProductItem ) )
 										<?php foreach( $attrMap as $type => $attrItems ) : ?>
 											<?php foreach( $attrItems as $attrItem ) : $classes = ""; ?>
 												<?php
-													if( isset( $subAttrDeps[ $attrItem->getId() ] ) )
+													if( isset( $subAttrDeps[$attrItem->getId()] ) )
 													{
 														$classes .= ' subproduct';
-														foreach( $subAttrDeps[ $attrItem->getId() ] as $prodid ) {
+														foreach( $subAttrDeps[$attrItem->getId()] as $prodid ) {
 															$classes .= ' subproduct-' . $prodid;
 														}
 													}
@@ -456,10 +456,10 @@ if( isset( $this->detailProductItem ) )
 											<?php foreach( $propItems as $propertyItem ) : $classes = ''; ?>
 												<?php
 													if( $propertyItem->getParentId() != $this->detailProductItem->getId()
-														&& isset( $subPropDeps[ $propertyItem->getId() ] )
+														&& isset( $subPropDeps[$propertyItem->getId()] )
 													) {
 														$classes .= ' subproduct';
-														foreach( $subPropDeps[ $propertyItem->getId() ] as $prodid ) {
+														foreach( $subPropDeps[$propertyItem->getId()] as $prodid ) {
 															$classes .= ' subproduct-' . $prodid;
 														}
 													}

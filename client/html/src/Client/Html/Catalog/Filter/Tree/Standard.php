@@ -252,7 +252,7 @@ class Standard
 		$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )
-			->uses( $domains)->root( $startid );
+			->uses( $domains )->root( $startid );
 
 		if( ( $currentid = $view->param( 'f_catid' ) ) == null ) {
 			$catItems = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE )->toList();

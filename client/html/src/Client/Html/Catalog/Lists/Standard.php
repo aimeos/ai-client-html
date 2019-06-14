@@ -650,7 +650,7 @@ class Standard
 			->oneOf( $view->param( 'f_oneid', [] ) )
 			->category( $catids, 'default', $level )
 			->text( $view->param( 'f_search' ) )
-			->slice( ($page - 1) * $size, $size )->sort( $sort )
+			->slice( ( $page - 1 ) * $size, $size )->sort( $sort )
 			->uses( $domains )
 			->search( $total );
 

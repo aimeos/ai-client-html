@@ -98,7 +98,7 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/product';
 
-		if( ($html = $this->getCached( 'body', $uid, [], $confkey )) === null ) {
+		if( ( $html = $this->getCached( 'body', $uid, [], $confkey ) ) === null ) {
 			$view = $this->getView();
 			$config = $this->getContext()->getConfig();
 
@@ -125,7 +125,8 @@ class Standard
 			$tplconf = 'client/html/catalog/product/standard/template-body';
 			$default = 'catalog/product/body-standard';
 
-			try {
+			try
+			{
 				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
 				}
@@ -140,16 +141,24 @@ class Standard
 				$this->setCached( 'body', $uid, [], $confkey, $html, $this->tags, $this->expire );
 
 				return $html;
-			} catch( \Aimeos\Client\Html\Exception $e ) {
+			}
+			catch( \Aimeos\Client\Html\Exception $e )
+			{
 				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
 				$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-			} catch( \Aimeos\Controller\Frontend\Exception $e ) {
+			}
+			catch( \Aimeos\Controller\Frontend\Exception $e )
+			{
 				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 				$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-			} catch( \Aimeos\MShop\Exception $e ) {
+			}
+			catch( \Aimeos\MShop\Exception $e )
+			{
 				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 				$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-			} catch( \Exception $e ) {
+			}
+			catch( \Exception $e )
+			{
 				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 				$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
 				$this->logException( $e );
@@ -174,7 +183,7 @@ class Standard
 	{
 		$confkey = 'client/html/catalog/product';
 
-		if( ($html = $this->getCached( 'header', $uid, [], $confkey )) === null ) {
+		if( ( $html = $this->getCached( 'header', $uid, [], $confkey ) ) === null ) {
 			$view = $this->getView();
 			$config = $this->getContext()->getConfig();
 
@@ -202,7 +211,8 @@ class Standard
 			$tplconf = 'client/html/catalog/product/standard/template-header';
 			$default = 'catalog/product/header-standard';
 
-			try {
+			try
+			{
 				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
 				}
@@ -217,7 +227,9 @@ class Standard
 				$this->setCached( 'header', $uid, [], $confkey, $html, $this->tags, $this->expire );
 
 				return $html;
-			} catch( \Exception $e ) {
+			}
+			catch( \Exception $e )
+			{
 				$this->logException( $e );
 			}
 		} else {
@@ -325,18 +337,27 @@ class Standard
 		$context = $this->getContext();
 		$view = $this->getView();
 
-		try {
+		try
+		{
 			parent::process();
-		} catch( \Aimeos\Client\Html\Exception $e ) {
+		}
+		catch( \Aimeos\Client\Html\Exception $e )
+		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
 			$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-		} catch( \Aimeos\Controller\Frontend\Exception $e ) {
+		}
+		catch( \Aimeos\Controller\Frontend\Exception $e )
+		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 			$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-		} catch( \Aimeos\MShop\Exception $e ) {
+		}
+		catch( \Aimeos\MShop\Exception $e )
+		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 			$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
-		} catch( \Exception $e ) {
+		}
+		catch( \Exception $e )
+		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
 			$view->productErrorList = $view->get( 'productErrorList', [] ) + $error;
 			$this->logException( $e );

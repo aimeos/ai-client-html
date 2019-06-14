@@ -573,7 +573,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/mandatory
 		 * @see client/html/checkout/standard/address/billing/optional
 		 * @see client/html/checkout/standard/address/billing/hidden
-		*/
+		 */
 		$disable = $view->config( 'client/html/checkout/standard/address/billing/disable-new', false );
 		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
 

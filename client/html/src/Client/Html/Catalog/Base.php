@@ -61,7 +61,7 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
 		 * @see client/html/catalog/stock/url/max-items
-		*/
+		 */
 		$cntl = $view->config( 'client/html/catalog/stock/url/controller', 'catalog' );
 
 		/** client/html/catalog/stock/url/action
@@ -78,7 +78,7 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/config
 		 * @see client/html/catalog/stock/url/max-items
-		*/
+		 */
 		$action = $view->config( 'client/html/catalog/stock/url/action', 'stock' );
 
 		/** client/html/catalog/stock/url/config
@@ -101,7 +101,7 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/max-items
-		*/
+		 */
 		$config = $view->config( 'client/html/catalog/stock/url/config', [] );
 
 		/** client/html/catalog/stock/url/max-items
@@ -119,7 +119,7 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
-		*/
+		 */
 		$max = $view->config( 'client/html/catalog/stock/url/max-items', 100 );
 
 

@@ -296,10 +296,10 @@ class Standard
 
 		foreach( $basket->getProducts() as $orderProduct )
 		{
-			$list[ $orderProduct->getProductId() ] = true;
+			$list[$orderProduct->getProductId()] = true;
 
 			foreach( $orderProduct->getProducts() as $subProduct ) {
-				$list[ $subProduct->getProductId() ] = true;
+				$list[$subProduct->getProductId()] = true;
 			}
 		}
 

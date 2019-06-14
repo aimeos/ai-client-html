@@ -467,7 +467,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/mandatory
 		 * @see client/html/checkout/standard/address/delivery/optional
 		 * @see client/html/checkout/standard/address/delivery/hidden
-		*/
+		 */
 		$disable = $view->config( 'client/html/checkout/standard/address/delivery/disable-new', false );
 		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
 

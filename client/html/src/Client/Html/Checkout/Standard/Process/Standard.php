@@ -259,7 +259,7 @@ class Standard
 			$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
-			if ( $view->param( 'cs_order', null ) !== null )
+			if( $view->param( 'cs_order', null ) !== null )
 			{
 				parent::process();
 
@@ -268,7 +268,7 @@ class Standard
 
 				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
 			}
-			elseif ( $view->param( 'cp_payment', null ) !== null )
+			elseif( $view->param( 'cp_payment', null ) !== null )
 			{
 				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
 				$orderItem = $orderCntl->get( $context->getSession()->get( 'aimeos/orderid' ), false );
