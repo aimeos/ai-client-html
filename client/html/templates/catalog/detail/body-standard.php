@@ -86,10 +86,10 @@ if( isset( $this->detailProductItem ) )
 		}
 	}
 
-	foreach( $propItems as $propId => $propItem )
+	foreach( $propItems as $propItem )
 	{
-		$propMap[$propItem->getType()][$propId] = $propItem;
-		$subPropDeps[$propId][] = $propItem->getParentId();
+		$propMap[$propItem->getType()][$propItem->getId()] = $propItem;
+		$subPropDeps[$propItem->getId()] = $propItem->getParentId();
 	}
 }
 
@@ -455,13 +455,8 @@ if( isset( $this->detailProductItem ) )
 										<?php foreach( $propMap as $type => $propItems ) : ?>
 											<?php foreach( $propItems as $propertyItem ) : $classes = ''; ?>
 												<?php
-													if( $propertyItem->getParentId() != $this->detailProductItem->getId()
-														&& isset( $subPropDeps[$propertyItem->getId()] )
-													) {
-														$classes .= ' subproduct';
-														foreach( $subPropDeps[$propertyItem->getId()] as $prodid ) {
-															$classes .= ' subproduct-' . $prodid;
-														}
+													if( isset( $subPropDeps[$propertyItem->getId()] ) ) {
+														$classes .= ' subproduct subproduct-' . $subPropDeps[$propertyItem->getId()];
 													}
 												?>
 												<tr class="item<?= $classes; ?>">
