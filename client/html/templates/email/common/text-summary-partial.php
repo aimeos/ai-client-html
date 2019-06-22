@@ -8,6 +8,7 @@
 /** Available data
  * - summaryBasket : Order base item (basket) with addresses, services, products, etc.
  * - summaryTaxRates : List of tax values grouped by tax rates
+ * - summaryNamedTaxes : Calculated taxes grouped by the tax names
  * - summaryShowDownloadAttributes : True if product download links should be shown, false if not
  * - summaryCostsDelivery : Sum of all shipping costs
  * - summaryCostsPayment : Sum of all payment costs
@@ -192,10 +193,10 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	echo strip_tags( $this->translate( 'client', 'Total' ) ); ?>: <?php printf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
 
 <?php endif; ?>
-<?php foreach( $this->get( 'summaryTaxRates', [] ) as $taxRate => $priceItem ) : ?>
+<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $priceItem ) : ?>
 <?php	if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
-<?php		$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% VAT' ) : $this->translate( 'client', '+ %1$s%% VAT' ) ); ?>
-<?php		echo strip_tags( sprintf( $taxFormat, $this->number( $taxRate ) ) ); ?>: <?php printf( $priceFormat, $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
+<?php		$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ) ); ?>
+<?php		echo strip_tags( sprintf( $taxFormat, $this->number( $taxRate ), 'tax' . $taxName ) ); ?>: <?php printf( $priceFormat, $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
 
 <?php	endif; ?>
 <?php endforeach; ?>

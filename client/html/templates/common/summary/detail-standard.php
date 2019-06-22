@@ -8,6 +8,7 @@
 
 /* Available data:
  * - summaryTaxRates : Calculated taxes grouped by the tax rates
+ * - summaryNamedTaxes : Calculated taxes grouped by the tax names
  * - summaryBasket : Order base item (basket) including products, addresses, services, etc.
  * - summaryShowDownloadAttributes : True if links to downloads should be shown, false if not (optional)
  * - summaryEnableModify : True if users are allowed to change the basket content, false if not (optional)
@@ -358,10 +359,10 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			</tr>
 		<?php endif; ?>
 
-		<?php foreach( $this->get( 'summaryTaxRates', [] ) as $taxRate => $priceItem ) : ?>
+		<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $priceItem ) : ?>
 			<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 				<tr class="tax">
-					<td colspan="4"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% VAT' ) : $this->translate( 'client', '+ %1$s%% VAT' ), $this->number( $taxRate ) ) ); ?></td>
+					<td colspan="4"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ), $this->number( $priceItem->getTaxRate() ), 'tax' . $taxName ) ); ?></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $precision ), $priceCurrency ) ); ?></td>
 					<?php if( $modify ) : ?>
 						<td class="action"></td>

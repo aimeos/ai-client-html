@@ -228,6 +228,7 @@ class Standard
 			$view->orderItem = $orderItem;
 			$view->summaryBasket = $basket;
 			$view->summaryTaxRates = $this->getTaxRates( $basket );
+			$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
 			$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
 			$view->summaryCostsPayment = $this->getCostsPayment( $basket );
 		}

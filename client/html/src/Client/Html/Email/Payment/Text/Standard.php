@@ -224,6 +224,7 @@ class Standard
 		// we can't cache the calculation because the same client object is used for all e-mails
 		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
 		$view->summaryCostsPayment = $this->getCostsPayment( $basket );
+		$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
 		$view->summaryTaxRates = $this->getTaxRates( $basket );
 		$view->summaryBasket = $basket;
 

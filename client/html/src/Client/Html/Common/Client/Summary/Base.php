@@ -61,10 +61,75 @@ abstract class Base
 
 
 	/**
+	 * Returns a list of tax name and values for the given basket
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.
+	 * @return array Associative list of tax names as key and price items as value
+	 */
+	protected function getNamedTaxes( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	{
+		$taxes = [];
+
+		foreach( $basket->getProducts() as $product )
+		{
+			$price = clone $product->getPrice();
+
+			foreach( $price->getTaxrates() as $name => $taxrate )
+			{
+				$price = clone $price;
+				$price = $price->setTaxRate( $taxrate );
+
+				if( isset( $taxes[$name] ) ) {
+					$taxes[$name]->addItem( $price, $product->getQuantity() );
+				} else {
+					$taxes[$name] = $price->addItem( $price, $product->getQuantity() - 1 );
+				}
+			}
+		}
+
+		foreach( $basket->getService( 'delivery' ) as $service )
+		{
+			$price = clone $service->getPrice();
+
+			foreach( $price->getTaxrates() as $name => $taxrate )
+			{
+				$price = clone $price;
+				$price = $price->setTaxRate( $taxrate );
+
+				if( isset( $taxes[$name] ) ) {
+					$taxes[$name]->addItem( $price );
+				} else {
+					$taxes[$name] = $price;
+				}
+			}
+		}
+
+		foreach( $basket->getService( 'payment' ) as $service )
+		{
+			$price = $service->getPrice();
+
+			foreach( $price->getTaxrates() as $name => $taxrate )
+			{
+				$price = clone $price;
+				$price = $price->setTaxRate( $taxrate );
+
+				if( isset( $taxes[$name] ) ) {
+					$taxes[$name]->addItem( $price );
+				} else {
+					$taxes[$name] = $price;
+				}
+			}
+		}
+
+		return $taxes;
+	}
+
+
+	/**
 	 * Returns a list of tax rates and values for the given basket.
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.
-	 * @return array Associative list of tax rates as key and corresponding amounts as value
+	 * @return array Associative list of tax rates as key and price items as value
 	 */
 	protected function getTaxRates( \Aimeos\MShop\Order\Item\Base\Iface $basket )
 	{
@@ -73,36 +138,51 @@ abstract class Base
 		foreach( $basket->getProducts() as $product )
 		{
 			$price = clone $product->getPrice();
-			$taxrate = $price->getTaxrate();
 
-			if( isset( $taxrates[$taxrate] ) ) {
-				$taxrates[$taxrate]->addItem( $price, $product->getQuantity() );
-			} else {
-				$taxrates[$taxrate] = $price->addItem( $price, $product->getQuantity() - 1 );
+			foreach( $price->getTaxrates() as $taxrate )
+			{
+				$price = clone $price;
+				$price = $price->setTaxRate( $taxrate );
+
+				if( isset( $taxrates[$taxrate] ) ) {
+					$taxrates[$taxrate]->addItem( $price, $product->getQuantity() );
+				} else {
+					$taxrates[$taxrate] = $price->addItem( $price, $product->getQuantity() - 1 );
+				}
 			}
 		}
 
 		foreach( $basket->getService( 'delivery' ) as $service )
 		{
 			$price = clone $service->getPrice();
-			$taxrate = $price->getTaxrate();
 
-			if( isset( $taxrates[$taxrate] ) ) {
-				$taxrates[$taxrate]->addItem( $price );
-			} else {
-				$taxrates[$taxrate] = $price;
+			foreach( $price->getTaxrates() as $taxrate )
+			{
+				$price = clone $price;
+				$price = $price->setTaxRate( $taxrate );
+
+				if( isset( $taxrates[$taxrate] ) ) {
+					$taxrates[$taxrate]->addItem( $price );
+				} else {
+					$taxrates[$taxrate] = $price;
+				}
 			}
 		}
 
 		foreach( $basket->getService( 'payment' ) as $service )
 		{
-			$price = clone $service->getPrice();
-			$taxrate = $price->getTaxrate();
+			$price = $service->getPrice();
 
-			if( isset( $taxrates[$taxrate] ) ) {
-				$taxrates[$taxrate]->addItem( $price );
-			} else {
-				$taxrates[$taxrate] = $price;
+			foreach( $price->getTaxrates() as $taxrate )
+			{
+				$price = clone $price;
+				$price = $price->setTaxRate( $taxrate );
+
+				if( isset( $taxrates[$taxrate] ) ) {
+					$taxrates[$taxrate]->addItem( $price );
+				} else {
+					$taxrates[$taxrate] = $price;
+				}
 			}
 		}
 

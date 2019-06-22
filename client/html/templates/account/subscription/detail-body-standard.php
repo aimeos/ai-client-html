@@ -100,7 +100,8 @@ $addresses = $this->summaryBasket->getAddresses();
 				$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
-					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),
+					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
+					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
 					'summaryShowDownloadAttributes' => false,
 				)
 			); ?>

@@ -247,7 +247,8 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 				$this->config( 'client/html/checkout/standard/summary/detail', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->standardBasket,
-					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),
+					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
+					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
 					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' ),
 				)
 			); ?>

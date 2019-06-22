@@ -309,6 +309,7 @@ class Standard
 
 		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
 		$view->summaryCostsPayment = $this->getCostsPayment( $basket );
+		$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
 		$view->summaryTaxRates = $this->getTaxRates( $basket );
 
 		return parent::addData( $view, $tags, $expire );

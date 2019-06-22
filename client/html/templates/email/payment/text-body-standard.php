@@ -8,6 +8,7 @@
 /** Available data
  * - summaryBasket : Order base item (basket) with addresses, services, products, etc.
  * - summaryTaxRates : List of tax values grouped by tax rates
+ * - summaryNamedTaxes : Calculated taxes grouped by the tax names
  * - summaryShowDownloadAttributes : True if product download links should be shown, false if not
  * - summaryCostsDelivery : Sum of all shipping costs
  * - summaryCostsPayment : Sum of all payment costs
@@ -59,6 +60,7 @@ $message .= "\n" . sprintf( $msg2, $order->getId(), date_create( $order->getTime
 	array(
 		'summaryBasket' => $this->summaryBasket,
 		'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
+		'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
 		'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes', false ),
 		'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
 		'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 )
