@@ -16,6 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+#. Tax name
+msgid "tax"
+msgstr "tax"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "GST"
+
 #. Product attribute
 msgid "color"
 msgstr "Color"

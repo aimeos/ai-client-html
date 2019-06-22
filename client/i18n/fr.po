@@ -6,6 +6,7 @@
 # Aimeos, 2017
 # Aimeos, 2017
 # Doryan R, 2019
+# Doryan R, 2019
 # Jean-Baptiste Joulé <joule_jb@yahoo.fr>, 2019
 # kevin teguia <teguiakevin@gmail.com>, 2018
 # nsendetzky, 2014

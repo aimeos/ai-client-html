@@ -128,6 +128,10 @@ $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() );
 
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $this->translate( 'client', '%1$s %2$s' );
+/// Tax format with tax rate (%1$s) and tax name (%2$s)
+$taxFormatIncl = $this->translate( 'client', 'Incl. %1$s%% %2$s' );
+/// Tax format with tax rate (%1$s) and tax name (%2$s)
+$taxFormatExcl = $this->translate( 'client', '+ %1$s%% %2$s' );
 
 $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 $modify = $this->get( 'summaryEnableModify', false );
@@ -362,7 +366,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $priceItem ) : ?>
 			<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 				<tr class="tax">
-					<td colspan="4"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ), $this->number( $priceItem->getTaxRate() ), 'tax' . $taxName ) ); ?></td>
+					<td colspan="4"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $taxFormatIncl : $taxFormatExcl, $this->number( $priceItem->getTaxRate() ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $precision ), $priceCurrency ) ); ?></td>
 					<?php if( $modify ) : ?>
 						<td class="action"></td>
