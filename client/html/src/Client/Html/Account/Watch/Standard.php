@@ -86,22 +86,22 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$view->watchErrorList = array_merge($view->get( 'watchErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$view->watchErrorList = array_merge($view->get( 'watchErrorList', [] ), $error);
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$view->watchErrorList = array_merge($view->get( 'watchErrorList', [] ), $error);
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$view->watchErrorList = array_merge($view->get( 'watchErrorList', [] ), $error);
 			$this->logException( $e );
 		}
 
@@ -305,22 +305,22 @@ class Standard
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$view->watchErrorList = array_merge($view->get( 'watchErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$view->watchErrorList = array_merge($view->get( 'watchErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$view->watchErrorList = array_merge($view->get( 'watchErrorList', [] ), $error);
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->watchErrorList = $view->get( 'watchErrorList', [] ) + $error;
+			$view->watchErrorList = array_merge($view->get( 'watchErrorList', [] ), $error);
 			$this->logException( $e );
 		}
 	}

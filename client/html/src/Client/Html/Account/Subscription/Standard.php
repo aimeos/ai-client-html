@@ -107,22 +107,22 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->subscriptionErrorList = $view->get( 'subscriptionErrorList', [] ) + $error;
+			$view->subscriptionErrorList = array_merge($view->get( 'subscriptionErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->subscriptionErrorList = $view->get( 'subscriptionErrorList', [] ) + $error;
+			$view->subscriptionErrorList = array_merge($view->get( 'subscriptionErrorList', [] ), $error);
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->subscriptionErrorList = $view->get( 'subscriptionErrorList', [] ) + $error;
+			$view->subscriptionErrorList = array_merge($view->get( 'subscriptionErrorList', [] ), $error);
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->subscriptionErrorList = $view->get( 'subscriptionErrorList', [] ) + $error;
+			$view->subscriptionErrorList = array_merge($view->get( 'subscriptionErrorList', [] ), $error);
 			$this->logException( $e );
 		}
 
@@ -312,22 +312,22 @@ class Standard
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->subscriptionErrorList = $view->get( 'subscriptionErrorList', [] ) + $error;
+			$view->subscriptionErrorList = array_merge($view->get( 'subscriptionErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->subscriptionErrorList = $view->get( 'subscriptionErrorList', [] ) + $error;
+			$view->subscriptionErrorList = array_merge($view->get( 'subscriptionErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->subscriptionErrorList = $view->get( 'subscriptionErrorList', [] ) + $error;
+			$view->subscriptionErrorList = array_merge($view->get( 'subscriptionErrorList', [] ), $error);
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->subscriptionErrorList = $view->get( 'subscriptionErrorList', [] ) + $error;
+			$view->subscriptionErrorList = array_merge($view->get( 'subscriptionErrorList', [] ), $error);
 			$this->logException( $e );
 		}
 	}

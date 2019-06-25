@@ -85,22 +85,22 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge($view->get( 'profileErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge($view->get( 'profileErrorList', [] ), $error);
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge($view->get( 'profileErrorList', [] ), $error);
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge($view->get( 'profileErrorList', [] ), $error);
 			$this->logException( $e );
 		}
 
@@ -290,22 +290,22 @@ class Standard
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge($view->get( 'profileErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge($view->get( 'profileErrorList', [] ), $error);
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge($view->get( 'profileErrorList', [] ), $error);
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge($view->get( 'profileErrorList', [] ), $error);
 			$this->logException( $e );
 		}
 	}
