@@ -78,18 +78,18 @@ if( isset( $this->detailProductItem ) )
 
 			foreach( $subItems as $attrId => $attrItem )
 			{
-				$attrMap[ $attrItem->getType() ][ $attrId ] = $attrItem;
-				$subAttrDeps[ $attrId ][] = $subProdId;
+				$attrMap[$attrItem->getType()][$attrId] = $attrItem;
+				$subAttrDeps[$attrId][] = $subProdId;
 			}
 
 			$propItems = array_merge( $propItems, $subProduct->getPropertyItems() );
 		}
 	}
 
-	foreach( $propItems as $propId => $propItem )
+	foreach( $propItems as $propItem )
 	{
-		$propMap[ $propItem->getType() ][ $propId ] = $propItem;
-		$subPropDeps[ $propId ][] = $propItem->getParentId();
+		$propMap[$propItem->getType()][$propItem->getId()] = $propItem;
+		$subPropDeps[$propItem->getId()] = $propItem->getParentId();
 	}
 }
 
@@ -122,7 +122,7 @@ if( isset( $this->detailProductItem ) )
 
 		<article class="product row <?= ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' ); ?>" data-id="<?= $this->detailProductItem->getId(); ?>">
 
-			<div class="col-sm-7">
+			<div class="col-sm-6">
 				<?= $this->partial(
 					/** client/html/catalog/detail/partials/image
 					 * Relative path to the detail image partial template file
@@ -145,12 +145,12 @@ if( isset( $this->detailProductItem ) )
 			</div>
 
 
-			<div class="col-sm-5">
+			<div class="col-sm-6">
 
 				<div class="catalog-detail-basic">
 					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ); ?></h1>
 					<p class="code">
-						<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.:' ), $enc::TRUST ); ?></span>
+						<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ); ?>: </span>
 						<span class="value" itemprop="sku"><?= $enc->html( $this->detailProductItem->getCode() ); ?></span>
 					</p>
 					<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
@@ -381,7 +381,7 @@ if( isset( $this->detailProductItem ) )
 								<table class="attributes">
 									<tbody>
 										<?php foreach( $this->detailProductItem->getRefItems( 'attribute', null, 'default' ) as $attrId => $attrItem ) : ?>
-											<?php if( isset( $attrItems[ $attrId ] ) ) { $attrItem = $attrItems[ $attrId ]; } ?>
+											<?php if( isset( $attrItems[$attrId] ) ) { $attrItem = $attrItems[$attrId]; } ?>
 											<tr class="item">
 												<td class="name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ), $enc::TRUST ); ?></td>
 												<td class="value">
@@ -408,10 +408,10 @@ if( isset( $this->detailProductItem ) )
 										<?php foreach( $attrMap as $type => $attrItems ) : ?>
 											<?php foreach( $attrItems as $attrItem ) : $classes = ""; ?>
 												<?php
-													if( isset( $subAttrDeps[ $attrItem->getId() ] ) )
+													if( isset( $subAttrDeps[$attrItem->getId()] ) )
 													{
 														$classes .= ' subproduct';
-														foreach( $subAttrDeps[ $attrItem->getId() ] as $prodid ) {
+														foreach( $subAttrDeps[$attrItem->getId()] as $prodid ) {
 															$classes .= ' subproduct-' . $prodid;
 														}
 													}
@@ -455,13 +455,8 @@ if( isset( $this->detailProductItem ) )
 										<?php foreach( $propMap as $type => $propItems ) : ?>
 											<?php foreach( $propItems as $propertyItem ) : $classes = ''; ?>
 												<?php
-													if( $propertyItem->getParentId() != $this->detailProductItem->getId()
-														&& isset( $subPropDeps[ $propertyItem->getId() ] )
-													) {
-														$classes .= ' subproduct';
-														foreach( $subPropDeps[ $propertyItem->getId() ] as $prodid ) {
-															$classes .= ' subproduct-' . $prodid;
-														}
+													if( isset( $subPropDeps[$propertyItem->getId()] ) ) {
+														$classes .= ' subproduct subproduct-' . $subPropDeps[$propertyItem->getId()];
 													}
 												?>
 												<tr class="item<?= $classes; ?>">

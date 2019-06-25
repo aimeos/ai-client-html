@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Aimeos (aimeos.org), 2018
+ */
+
+$enc = $this->encoder();
+$voucher = $this->extVoucherCode;
+$price = $this->extOrderProductItem->getPrice();
+
+/// Price format with price value (%1$s) and currency (%2$s)
+$priceFormat = $this->translate( 'client', '%1$s %2$s' );
+
+
+?>
+<?php $this->block()->start( 'email/voucher/html' ); ?>
+<mjml>
+	<mj-head>
+		<mj-title><?= $enc->html( $this->translate( 'client', 'Your voucher' ), $enc::TRUST ); ?></mj-title>
+		<mj-style>
+			<?= $this->get( 'htmlCss' ); ?>
+		</mj-style>
+	</mj-head>
+	<mj-body css-class="aimeos">
+		<mj-section>
+			<mj-column>
+				<mj-image css-class="logo" src="<?= $this->get( 'htmlLogo' ); ?>" align="center"/>
+			</mj-column>
+		</mj-section>
+		<mj-section>
+			<mj-column>
+				<mj-text css-class="email-common-salutation">
+					<?= $enc->html( $this->get( 'emailIntro' ) ); ?>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+		<mj-section>
+			<mj-column>
+				<mj-text css-class="email-common-intro">
+					<?= nl2br( $enc->html( $this->translate( 'client', 'Your voucher' ) . ': ' . $voucher, $enc::TRUST ) ); ?>
+				</mj-text>
+				<mj-text css-class="email-common-body">
+					<?php $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
+					<?php $value = sprintf( $priceFormat, $this->number( $price->getValue() + $price->getRebate(), $price->getPrecision() ), $priceCurrency ); ?>
+					<?= nl2br( $enc->html( sprintf( $this->translate( 'client', 'The value of your voucher is %1$s' ), $value ), $enc::TRUST ) ); ?>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+		<mj-section>
+			<mj-column>
+				<mj-text css-class="email-common-outro">
+					<?= nl2br( $enc->html( $this->translate( 'client', 'You can use your voucher any time in our online shop' ), $enc::TRUST ) ); ?>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+	</mj-body>
+</mjml>
+<?php $this->block()->stop(); ?>
+<?= $this->block()->get( 'email/voucher/html' ); ?>

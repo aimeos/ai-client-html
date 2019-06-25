@@ -256,7 +256,7 @@ class Standard
 		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', array( 'text', 'media' ) );
 
 		$attributes = \Aimeos\Controller\Frontend::create( $this->getContext(), 'attribute' )
-			->uses( $domains)->type( $attrTypes )->sort( 'position' )->slice( 0, 10000 )->search();
+			->uses( $domains )->type( $attrTypes )->sort( 'position' )->slice( 0, 10000 )->search();
 
 		foreach( $attributes as $id => $item ) {
 			$attrMap[$item->getType()][$id] = $item;

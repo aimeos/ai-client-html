@@ -19,7 +19,7 @@ namespace Aimeos\Client\Html\Email\Payment\Text;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Common\Client\Summary\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/email/payment/text/standard/subparts
@@ -56,29 +56,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/payment/text/standard/subparts';
-
-	/** client/html/email/payment/text/intro/name
-	 * Name of the introduction part used by the email payment text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Payment\Text\Intro\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-
-	/** client/html/email/payment/text/summary/name
-	 * Name of the summary part used by the email payment text client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Payment\Text\Summary\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
-	private $subPartNames = array( 'intro', 'summary' );
+	private $subPartNames = [];
 
 
 	/**
@@ -126,11 +104,9 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/payment/text/standard/template-body';
 
-		$status = $view->extOrderItem->getPaymentStatus();
-		$default = array( 'email/payment/' . $status . '/text-body-standard', 'email/payment/text-body-standard' );
-
-		$text = $view->render( $view->config( $tplconf, $default ) );
+		$text = $view->render( $view->config( $tplconf, 'email/payment/text-body-standard' ) );
 		$view->mail()->setBody( $text );
+
 		return $text;
 	}
 
@@ -230,5 +206,32 @@ class Standard
 	protected function getSubClientNames()
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+	}
+
+
+	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	{
+		$basket = $view->extOrderBaseItem;
+
+		// we can't cache the calculation because the same client object is used for all e-mails
+		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
+		$view->summaryCostsPayment = $this->getCostsPayment( $basket );
+		$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
+		$view->summaryTaxRates = $this->getTaxRates( $basket );
+		$view->summaryBasket = $basket;
+
+		if( $view->extOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+			$view->summaryShowDownloadAttributes = true;
+		}
+
+		return parent::addData( $view, $tags, $expire );
 	}
 }

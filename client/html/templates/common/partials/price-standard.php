@@ -50,7 +50,7 @@ $first = true;
 
 		$costs = $priceItem->getCosts();
 		$rebate = $priceItem->getRebate();
-		$key = 'price:' . $priceItem->getType();
+		$key = 'price:' . ( $priceItem->getType() ?: 'default' );
 
 		/// Price format with price value (%1$s) and currency (%2$s)
 		$format['value'] = $this->translate( 'client/code', $key );
@@ -78,7 +78,7 @@ $first = true;
 			<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
 		</span>
 
-		<?php if( $rebate > 0 ) : ?>
+		<?php if( $priceItem->getValue() + $rebate > 0 ) : ?>
 			<span class="rebate">
 				<?= $enc->html( sprintf( $format['rebate'], $this->number( $rebate ), $currency ), $enc::TRUST ); ?>
 			</span>

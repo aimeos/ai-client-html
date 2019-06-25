@@ -15,15 +15,9 @@
 
 $enc = $this->encoder();
 
-$salutations = array(
-	\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR,
-	\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MRS,
-	\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MISS,
-);
-
 foreach( $this->addresses as $addr )
 {
-	echo preg_replace( "/\n+/m", $this->get( 'separator', "<br/>" ), trim( $enc->html( sprintf(
+	echo preg_replace( ["/\n+/m", '/ +/'], [$this->get( 'separator', "<br/>" ), ' '], trim( $enc->html( sprintf(
 		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
 		/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
 		/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
@@ -44,7 +38,7 @@ foreach( $this->addresses as $addr )
 '
 		),
 		$addr->getCompany(),
-		( in_array( $addr->getSalutation(), $salutations ) ? $this->translate( 'mshop/code', $addr->getSalutation() ) : '' ),
+		$this->translate( 'mshop/code', $addr->getSalutation() ),
 		$addr->getTitle(),
 		$addr->getFirstName(),
 		$addr->getLastName(),

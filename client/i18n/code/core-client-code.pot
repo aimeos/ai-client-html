@@ -21,6 +21,20 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 
+#. Tax name
+msgid "tax"
+msgstr "tax"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "GST"
+
+
+#. Price type default
 msgid "price:default"
 msgstr "%1$s %2$s"
 

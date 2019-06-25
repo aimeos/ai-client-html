@@ -131,6 +131,16 @@ $(".aimeos .product .stock-list .articleitem").each(function() {
 	}
 });
 
+$(".aimeos .product .selection .select-stock").each(function() {
+
+	var elem = $(this);
+	var prodcode = elem.data("prodcode");
+
+	if( aimeosStockHtml.hasOwnProperty( prodcode ) ) {
+		elem.html( aimeosStockHtml[prodcode] );
+	}
+});
+
 $(".aimeos .catalog-detail-basket").each(function() {
 
 	var elem = $(this);

@@ -125,7 +125,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
-		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment', 'unitpaymentcode' )->getCode() );
+		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment', 0 )->getCode() );
 	}
 
 

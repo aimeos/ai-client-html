@@ -19,7 +19,6 @@ return array(
 		'client/language' => 'client/i18n/language',
 	),
 	'config' => array(
-		'client/html/config',
 		'config',
 	),
 	'custom' => array(

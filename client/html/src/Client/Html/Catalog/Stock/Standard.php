@@ -298,8 +298,8 @@ class Standard
 		$stockItemsByProducts = [];
 		$productCodes = (array) $view->param( 's_prodcode', [] );
 
-		foreach( $this->getStockItems( $productCodes ) as $stockItem ){
-			$stockItemsByProducts[ $stockItem->getProductCode() ][] = $stockItem;
+		foreach( $this->getStockItems( $productCodes ) as $stockItem ) {
+			$stockItemsByProducts[$stockItem->getProductCode()][] = $stockItem;
 		}
 
 		$view->stockItemsByProducts = $stockItemsByProducts;

@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-04-27 15:55+0000\n"
+"PO-Revision-Date: 2019-05-22 14:48+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -470,7 +470,7 @@ msgid "One month"
 msgstr "Ein Monat"
 
 msgid "One or more products you are watching have been updated."
-msgstr "Ein oder mehrere Produkte die Sie beobachten wurde aktualisiert"
+msgstr "Ein oder mehrere Produkte die Sie beobachten wurden aktualisiert"
 
 msgid "One week"
 msgstr "Eine Woche"
@@ -795,10 +795,10 @@ msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Die Zahlung für Ihre Bestellung %1$s vom %2$s wurde erstattet."
 
 msgid "The subscription for the product has ended"
-msgstr "Das Abo für das Produkt ist ausgelaufen."
+msgstr "Ihr Abo für das Produkt ist ausgelaufen."
 
 msgid "The subscription for the product has ended."
-msgstr "Das Abo für das Produkt ist ausgelaufen."
+msgstr "Ihr Abo für das Produkt ist ausgelaufen."
 
 #, php-format
 msgid "The value of your voucher is %1$s"

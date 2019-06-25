@@ -215,11 +215,15 @@ class Standard
 				$view->summaryShowDownloadAttributes = true;
 			}
 
-			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+			$basket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
 
-			$view->summaryBasket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
-			$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
+			$view->summaryBasket = $basket;
+			$view->summaryTaxRates = $this->getTaxRates( $basket );
+			$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
+			$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
+			$view->summaryCostsPayment = $this->getCostsPayment( $basket );
 		}
 
 		return parent::addData( $view, $tags, $expire );

@@ -11,32 +11,18 @@ namespace Aimeos\Perf\Client\Html;
 class CatalogTest extends \PHPUnit\Framework\TestCase
 {
 	protected $context;
-	protected $paths;
 	protected $view;
 
 
 	protected function setUp()
 	{
-		$this->paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->context = \TestHelperHtml::getContext( 'unitperf' );
 
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
-		$search = $catalogManager->createSearch();
-		$search->setConditions( $search->compare( '==', 'catalog.code', 'home' ) );
-		$items = $catalogManager->searchItems( $search );
-
-		if( ( $catalogItem = reset( $items ) ) === false ) {
-			throw new \RuntimeException( 'No catalog item with code "home" found' );
-		}
+		$catalogItem = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$search = $productManager->createSearch();
-		$search->setConditions( $search->compare( '==', 'product.code', 'perf-00000' ) );
-		$items = $productManager->searchItems( $search );
-
-		if( ( $productItem = reset( $items ) ) === false ) {
-			throw new \RuntimeException( 'No product item with code "perf-00000" found' );
-		}
+		$productItem = $productManager->findItem( 'p-1:1' );
 
 		$this->view = \TestHelperHtml::getView( 'unitperf' );
 
@@ -52,7 +38,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	public function testFilter()
 	{
 		// parser warm up so files are already parsed (same as APC is used)
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getBody();
 		$client->getHeader();
@@ -60,7 +46,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
 		$client->getBody();
@@ -74,7 +60,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
 
@@ -87,7 +73,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getBody();
 
@@ -99,7 +85,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	public function testList()
 	{
 		// parser warm up so files are already parsed (same as APC is used)
-		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getBody();
 		$client->getHeader();
@@ -107,7 +93,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
 		$client->getBody();
@@ -121,7 +107,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
 
@@ -134,7 +120,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getBody();
 
@@ -146,7 +132,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	public function testDetail()
 	{
 		// parser warm up so files are already parsed (same as APC is used)
-		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getBody();
 		$client->getHeader();
@@ -154,7 +140,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
 		$client->getBody();
@@ -168,7 +154,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
 
@@ -181,7 +167,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	{
 		$start = microtime( true );
 
-		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context, $this->paths );
+		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getBody();
 

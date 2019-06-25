@@ -227,10 +227,10 @@ class Standard
 	{
 		$pos = $view->param( 'd_pos' );
 
-		if( is_numeric( $pos ) && ( $name = $view->param( 'd_name' ) ) !== null )
+		if( is_numeric( $pos ) && ( $view->param( 'd_name' ) || $view->param( 'd_prodid' ) ) )
 		{
 			if( $pos < 1 ) {
-				$start = 0; $size = 2;
+				$pos = $start = 0; $size = 2;
 			} else {
 				$start = $pos - 1; $size = 3;
 			}
@@ -256,35 +256,28 @@ class Standard
 			if( ( $count = count( $products ) ) > 1 )
 			{
 				$enc = $view->encoder();
-				$prev = $current = false;
-
-				foreach( $products as $product )
-				{
-					$prev = $current;
-
-					if( ( $current = $product->getName( 'url' ) ) === $name ) {
-						break;
-					}
-				}
-
-				if( ( $next = next( $products ) ) !== false ) {
-					$next = $next->getName( 'url' );
-				}
 
 				$target = $view->config( 'client/html/catalog/detail/url/target' );
 				$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 				$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
 				$config = $view->config( 'client/html/catalog/detail/url/config', [] );
+				$prodid = $view->config( 'client/html/catalog/detail/url/d_prodid', false );
 
-				if( $prev !== false )
+				if( $pos > 0 && ( $product = reset( $products ) ) !== false )
 				{
-					$param = ['d_name' => $enc->url( $prev ), 'd_pos' => $pos - 1];
+					$segment = \Aimeos\MW\Common\Base::sanitize( $enc->url( $product->getName( 'url ' ) ) );
+					$param = ['d_pos' => $pos - 1, 'd_name' => $segment];
+					$prodid == false ?: $params['d_prodid'] = $product->getId();
+
 					$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 
-				if( $next !== false )
+				if( ( $pos === 0 || $count === 3 ) && ( $product = end( $products ) ) !== false )
 				{
-					$param = ['d_name' => $enc->url( $next ), 'd_pos' => $pos - 1];
+					$segment = \Aimeos\MW\Common\Base::sanitize( $enc->url( $product->getName( 'url ' ) ) );
+					$param = ['d_pos' => $pos + 1, 'd_name' => $segment];
+					$prodid == false ?: $params['d_prodid'] = $product->getId();
+
 					$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 			}

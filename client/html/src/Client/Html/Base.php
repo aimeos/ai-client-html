@@ -340,7 +340,7 @@ abstract class Base
 			if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface )
 			{
 				$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
-				$idMap[ $item->getResourceType() ][] = $item->getId();
+				$idMap[$item->getResourceType()][] = $item->getId();
 			}
 
 			$this->addMetaItemSingle( $item, $expires, $tags, $tagAll );
@@ -541,15 +541,15 @@ abstract class Base
 
 
 	/**
-	* Returns the template for the given configuration key
-	*
-	* If the "l_type" parameter is present, a specific template for this given
-	* type is used if available.
-	*
-	* @param string $confkey Key to the configuration setting for the template
-	* @param string $default Default template if none is configured or not found
-	* @return string Relative template path
-	*/
+	 * Returns the template for the given configuration key
+	 *
+	 * If the "l_type" parameter is present, a specific template for this given
+	 * type is used if available.
+	 *
+	 * @param string $confkey Key to the configuration setting for the template
+	 * @param string $default Default template if none is configured or not found
+	 * @return string Relative template path
+	 */
 	protected function getTemplatePath( $confkey, $default )
 	{
 		if( ( $type = $this->view->param( 'l_type' ) ) !== null && ctype_alnum( $type ) !== false ) {
@@ -567,7 +567,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @param string[] $prefixes List of prefixes of all parameters that are relevant for generating the output
 	 * @param string $confkey Configuration key prefix that matches all relevant settings for the component
-	 * @return string Cached entry or empty string if not available
+	 * @return string|null Cached entry or null if not available
 	 */
 	protected function getCached( $type, $uid, array $prefixes, $confkey )
 	{
@@ -606,11 +606,11 @@ abstract class Base
 			'header' => $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':header', $cfg ),
 		);
 
-		if( !isset( $this->cache[ $keys[$type] ] ) ) {
+		if( !isset( $this->cache[$keys[$type]] ) ) {
 			$this->cache = $context->getCache()->getMultiple( $keys );
 		}
 
-		return ( isset( $this->cache[ $keys[$type] ] ) ? $this->cache[ $keys[$type] ] : null );
+		return ( isset( $this->cache[$keys[$type]] ) ? $this->cache[$keys[$type]] : null );
 	}
 
 
@@ -707,8 +707,8 @@ abstract class Base
 		{
 			foreach( $list as $object => $errcode )
 			{
-				$key = $scope . ( $scope !== 'product' ? '.' . $object : '' ) . '.' . $errcode;
-				$errors[] = $i18n->dt( 'mshop/code', $key );
+				$key = $scope . ( !in_array( $scope, ['coupon', 'product'] ) ? '.' . $object : '' ) . '.' . $errcode;
+				$errors[] = sprintf( $i18n->dt( 'mshop/code', $key ), $object );
 			}
 		}
 

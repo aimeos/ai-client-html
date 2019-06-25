@@ -35,7 +35,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, [] );
-		$this->object->setView( \TestHelperHtml::getView());
+		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 

@@ -621,8 +621,7 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/detail/prodid-default
 		 */
-		$catids = $view->param( 'f_search' ) == '' ? $config->get( 'client/html/catalog/lists/catid-default' ) : null;
-		$catids = $view->param( 'f_catid', $catids );
+		$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
 
 		/** client/html/catalog/lists/sort
 		 * Default sorting of product list if no other sorting is given by parameter
@@ -651,7 +650,7 @@ class Standard
 			->oneOf( $view->param( 'f_oneid', [] ) )
 			->category( $catids, 'default', $level )
 			->text( $view->param( 'f_search' ) )
-			->slice( ($page - 1) * $size, $size )->sort( $sort )
+			->slice( ( $page - 1 ) * $size, $size )->sort( $sort )
 			->uses( $domains )
 			->search( $total );
 

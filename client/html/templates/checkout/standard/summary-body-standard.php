@@ -152,7 +152,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="common-summary-additional row">
-		<div class="item coupon <?= ( isset( $errors['coupon'] ) ? 'error' : '' ); ?> col-sm-6">
+		<div class="item coupon <?= ( isset( $errors['coupon'] ) ? 'error' : '' ); ?> col-sm-4">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -171,23 +171,23 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 		</div><!--
 
-		--><div class="item comment col-sm-6">
+		--><div class="item customerref col-sm-4">
+		<div class="header">
+				<h3><?= $enc->html( $this->translate( 'client', 'Your reference' ), $enc::TRUST ); ?></h3>
+			</div>
+
+			<div class="content">
+				<input class="customerref-value" name="<?= $this->formparam( array( 'cs_customerref' ) ); ?>" value="<?= $enc->attr( $this->standardBasket->getCustomerReference() ); ?>" />
+			</div>
+		</div><!--
+
+		--><div class="item comment col-sm-4">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
 			</div>
 
 			<div class="content">
 				<textarea class="comment-value" name="<?= $this->formparam( array( 'cs_comment' ) ); ?>"><?= $enc->html( $this->standardBasket->getComment() ); ?></textarea>
-			</div>
-		</div><!--
-
-		--><div class="item customerref col-sm-6">
-			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Your reference number' ), $enc::TRUST ); ?></h3>
-			</div>
-
-			<div class="content">
-				<input class="customerref-value" name="<?= $this->formparam( array( 'cs_customerref' ) ); ?>" value="<?= $enc->attr( $this->standardBasket->getCustomerReference() ); ?>" />
 			</div>
 		</div>
 	</div>
@@ -247,7 +247,8 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 				$this->config( 'client/html/checkout/standard/summary/detail', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->standardBasket,
-					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),
+					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
+					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
 					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' ),
 				)
 			); ?>

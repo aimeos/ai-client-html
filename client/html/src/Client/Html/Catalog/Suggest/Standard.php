@@ -310,6 +310,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
 
 
 		/** client/html/catalog/suggest/domains
@@ -327,6 +328,8 @@ class Standard
 		 * @since 2016.08
 		 * @category Developer
 		 * @see client/html/catalog/suggest/standard/template-body
+		 * @see client/html/catalog/suggest/restrict
+		 * @see client/html/catalog/suggest/size
 		 */
 		$domains = $config->get( 'client/html/catalog/suggest/domains', ['text'] );
 
@@ -336,16 +339,42 @@ class Standard
 		 * Limits the number of products that are shown in the list of suggested
 		 * products.
 		 *
-		 * @param array Number of products
+		 * @param integer Number of products
 		 * @since 2018.10
 		 * @category Developer
 		 * @category User
-		 * @see client/html/catalog/suggest/usecode
+		 * @see client/html/catalog/suggest/domains
+		 * @see client/html/catalog/suggest/restrict
 		 */
 		$size = $config->get( 'client/html/catalog/suggest/size', 24 );
 
-		$view->suggestItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
-			->uses( $domains )->text( $view->param( 'f_search' ) )->slice( 0, $size )->search();
+		/** client/html/catalog/suggest/restrict
+		 * Restricts suggestions to category and attribute facets
+		 *
+		 * Limits the shown suggestions to the current category and selected
+		 * attribute facets. If disabled, suggestions are limited by the
+		 * entered text only.
+		 *
+		 * @param boolean True to use category and facets, false for all results
+		 * @since 2019.07
+		 * @category Developer
+		 * @category User
+		 * @see client/html/catalog/suggest/domains
+		 * @see client/html/catalog/suggest/size
+		 */
+		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )
+		{
+			$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+			$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
+
+			$cntl->category( $catids, 'default', $level )
+				->allOf( $view->param( 'f_attrid', [] ) )
+				->oneOf( $view->param( 'f_optid', [] ) )
+				->oneOf( $view->param( 'f_oneid', [] ) );
+		}
+
+		$view->suggestItems = $cntl->uses( $domains )->text( $view->param( 'f_search' ) )
+			->slice( 0, $size )->search();
 
 		return parent::addData( $view, $tags, $expire );
 	}

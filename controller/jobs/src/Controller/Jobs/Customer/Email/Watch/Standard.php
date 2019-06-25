@@ -117,7 +117,7 @@ class Standard
 		foreach( $listItems as $id => $listItem )
 		{
 			$refId = $listItem->getRefId();
-			$custIds[ $listItem->getParentId() ][$id] = $refId;
+			$custIds[$listItem->getParentId()][$id] = $refId;
 			$prodIds[$refId] = $refId;
 		}
 
@@ -236,12 +236,12 @@ class Standard
 						isset( $config['pricevalue'] ) && $config['pricevalue'] > $price->getValue()
 					) {
 						$result[$id]['item'] = $products[$refId];
-						$result[$id]['currencyId'] = $currencyId;
+						$result[$id]['currency'] = $currencyId;
 						$result[$id]['price'] = $price;
 					}
 				}
 			}
-			catch( \Exception $e ) { ; } // no price available
+			catch( \Exception $e ) {; } // no price available
 		}
 
 		return $result;
@@ -265,12 +265,12 @@ class Standard
 		}
 
 		foreach( $this->getStockItems( $context, $productCodes, $stockType ) as $stockItem ) {
-			$stockMap[ $stockItem->getProductCode() ] = true;
+			$stockMap[$stockItem->getProductCode()] = true;
 		}
 
 		foreach( $productItems as $productId => $productItem )
 		{
-			if( !isset( $stockMap[ $productItem->getCode() ] ) ) {
+			if( !isset( $stockMap[$productItem->getCode()] ) ) {
 				unset( $productItems[$productId] );
 			}
 		}
@@ -319,7 +319,7 @@ class Standard
 			$search->combine( '||', array(
 				$search->compare( '==', 'stock.stocklevel', null ),
 				$search->compare( '>', 'stock.stocklevel', 0 ),
-			)),
+			) ),
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );

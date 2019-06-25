@@ -19,9 +19,9 @@ $type = $this->get( 'type' );
 ?>
 <?php foreach( $this->service as $service ) : ?>
 	<div class="item">
-		<?php if( ( $url = $service->getMediaUrl() ) != '' ) : // fixed width for e-mail clients ?>
+		<?php if( ( $url = $service->getMediaUrl() ) != '' ) : ?>
 			<div class="item-icons">
-				<img src="<?= $enc->attr( $this->content( $url ) ); ?>" width="75" />
+				<img src="<?= $enc->attr( $this->content( $url ) ); ?>" />
 			</div>
 		<?php endif; ?>
 		<h4><?= $enc->html( $service->getName() ); ?></h4>

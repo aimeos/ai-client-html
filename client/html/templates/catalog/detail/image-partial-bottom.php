@@ -44,12 +44,9 @@ $mediaItems = $this->get( 'mediaItems', [] );
 			--><div class="thumbs"><!--
 
 				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
-					<?php $previewUrl = $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>
-
-					--><a class="<?= $class; ?>" style="background-image: url('<?= $previewUrl; ?>')"
+					--><a class="<?= $class; ?>" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>')"
 						href="<?= $url . '#image-' . $enc->attr( $id ); ?>"
 					></a><!--
-
 					<?php $class = 'item'; ?>
 				<?php endforeach; ?>
 
@@ -61,18 +58,24 @@ $mediaItems = $this->get( 'mediaItems', [] );
 	--><div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 		<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
-			<?php $mediaUrl = $enc->attr( $this->content( $mediaItem->getUrl() ) ); ?>
-			<?php $previewUrl = $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>
-
-			<figure id="image-<?= $enc->attr( $id ); ?>"
-				class="item" style="background-image: url('<?= $mediaUrl; ?>')"
-				itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
-				data-image="<?= $previewUrl; ?>"
-				<?= $getVariantData( $mediaItem ); ?> >
-				<a href="<?= $enc->attr( $mediaUrl ); ?>" itemprop="contentUrl"></a>
-				<figcaption itemprop="caption description"><?= $enc->html( $mediaItem->getName() ); ?></figcaption>
-			</figure>
-
+			<?php
+				$srcset = $sources = [];
+				foreach( $mediaItem->getPreviews() as $type => $path ) {
+					$srcset[] = $this->content( $path ) . ' ' . $type . 'w';
+					$sources[$type] = $this->content( $path );
+				}
+			?>
+			<div class="media-item">
+				<img id="image-<?= $enc->attr( $id ); ?>" class="item"
+					srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>"
+					src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+					itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
+					data-image="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+					data-sources="<?= $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) ?>"
+					alt="<?= $enc->html( $mediaItem->getName() ); ?>"
+					<?= $getVariantData( $mediaItem ); ?>
+				/>
+			</div>
 		<?php endforeach; ?>
 
 	</div>
