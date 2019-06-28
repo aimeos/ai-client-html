@@ -55,7 +55,7 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/account/profile/standard/subparts';
-	private $subPartNames = [];
+	private $subPartNames = ['address'];
 	private $view;
 
 

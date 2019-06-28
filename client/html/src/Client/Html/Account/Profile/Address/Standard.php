@@ -195,6 +195,7 @@ class Standard
 	 */
 	public function process()
 	{
+		$view = $this->getView();
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
 
 		$addrItems = $cntl->uses( ['customer/address'] )->get()->getAddressItems();

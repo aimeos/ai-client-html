@@ -17,6 +17,7 @@ $states = $this->get( 'states', [] );
 
 
 ?>
+<?php $this->block()->start( 'account/profile/address' ); ?>
 <?php if( isset( $this->addressCustomer ) ) : $addr = $this->addressCustomer->toArray() ?>
 
 <div class="account-profile-address">
@@ -709,7 +710,7 @@ $states = $this->get( 'states', [] );
 					</label>
 					<div class="col-md-7">
 						<select class="form-control" id="address-delivery-salutation--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.salutation', $pos ) ) ); ?>" >
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.salutation', -1 ) ) ); ?>" >
 
 							<?php foreach( $this->get( 'addressSalutations', [] ) as $salutation ) : ?>
 								<option value="<?= $enc->attr( $salutation ); ?>" <?= $selectfcn( $addr, 'customer.address.salutation', $salutation ); ?> >
@@ -730,7 +731,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-firstname--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.firstname', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.firstname', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.firstname' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'First name' ) ); ?>"
 						/>
@@ -747,7 +748,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-lastname--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.lastname', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.lastname', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.lastname' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'Last name' ) ); ?>"
 						/>
@@ -764,7 +765,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-company--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.company', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.company', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.company' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'Company' ) ); ?>"
 						/>
@@ -781,7 +782,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-address1--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address1', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address1', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.address1' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'Street' ) ); ?>"
 						/>
@@ -798,7 +799,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-address2--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address2', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address2', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.address2' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional' ) ); ?>"
 						/>
@@ -815,7 +816,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-address3--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address3', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address3', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.address3' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional 2' ) ); ?>"
 						/>
@@ -832,7 +833,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-city--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.city', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.city', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.city' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'City' ) ); ?>"
 						/>
@@ -849,7 +850,7 @@ $states = $this->get( 'states', [] );
 						</label>
 						<div class="col-md-7">
 							<select class="form-control" id="address-delivery-state--1"
-								name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.state', $pos ) ) ); ?>">
+								name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.state', -1 ) ) ); ?>">
 
 								<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ); ?></option>
 								<?php foreach( $states as $regioncode => $stateList ) : ?>
@@ -877,7 +878,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-postal--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.postal', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.postal', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.postal' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'Postal code' ) ); ?>"
 						/>
@@ -894,7 +895,7 @@ $states = $this->get( 'states', [] );
 						</label>
 						<div class="col-md-7">
 							<select class="form-control" id="address-delivery-countryid--1"
-								name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.countryid', $pos ) ) ); ?>">
+								name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.countryid', -1 ) ) ); ?>">
 
 								<?php if( count( $countries ) > 1 ) : ?>
 									<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ); ?></option>
@@ -918,7 +919,7 @@ $states = $this->get( 'states', [] );
 					</label>
 					<div class="col-md-7">
 						<select class="form-control" id="address-delivery-languageid--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.languageid', $pos ) ) ); ?>">
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.languageid', -1 ) ) ); ?>">
 
 							<?php foreach( $languages as $languageId ) : ?>
 								<option value="<?= $enc->attr( $languageId ); ?>" <?= $selectfcn( $addr, 'customer.address.languageid', $languageId ); ?> >
@@ -940,7 +941,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="text"
 							id="address-delivery-vatid--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.vatid', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.vatid', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.vatid' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'GB999999973' ) ); ?>"
 						/>
@@ -958,7 +959,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="email"
 							id="address-delivery-email--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.email', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.email', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.email' ) ); ?>"
 							placeholder="name@example.com"
 						/>
@@ -975,7 +976,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="tel"
 							id="address-delivery-telephone--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telephone', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telephone', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.telephone' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ); ?>"
 						/>
@@ -992,7 +993,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="tel"
 							id="address-delivery-telefax--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telefax', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telefax', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.telefax' ) ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ); ?>"
 						/>
@@ -1010,7 +1011,7 @@ $states = $this->get( 'states', [] );
 					<div class="col-md-7">
 						<input class="form-control" type="url"
 							id="address-delivery-website--1"
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.website', $pos ) ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.website', -1 ) ) ); ?>"
 							value="<?= $enc->attr( $this->value( $addr, 'customer.address.website' ) ); ?>"
 							placeholder="https://example.com"
 						/>
@@ -1023,3 +1024,5 @@ $states = $this->get( 'states', [] );
 </div>
 
 <?php endif ?>
+<?php $this->block()->stop(); ?>
+<?= $this->block()->get( 'account/profile/address' ); ?>

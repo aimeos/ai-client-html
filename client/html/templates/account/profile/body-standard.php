@@ -24,4 +24,6 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 		</ul>
 	<?php endif; ?>
 
+	<?= $this->get( 'profileBody' ); ?>
+
 </section>
