@@ -206,7 +206,7 @@ class Standard
 		{
 			foreach( $view->param( 'address/delivery', [] ) as $key => $list )
 			{
-				if( isset( $list[$pos] ) ) {
+				if( array_key_exists( $pos, $list ) ) {
 					$map[$pos][$key] = $list[$pos];
 				}
 			}
