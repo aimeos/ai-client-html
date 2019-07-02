@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-05-22 14:48+0000\n"
+"POT-Creation-Date: 2019-07-01 19:09+0200\n"
+"PO-Revision-Date: 2019-07-01 17:27+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -93,6 +93,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/Stück"
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr "+ %1$s%% %2$s"
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -146,6 +150,9 @@ msgstr "Alle Bestellungen erfolgen gemäß unseren AGB, die Sie auf unserer Webs
 
 msgid "An account has been created for you."
 msgstr "Es wurde ein Benutzerkonto für Sie angelegt."
+
+msgid "Article no."
+msgstr "Artikelnummer:"
 
 msgid "Article no.:"
 msgstr "Artikelnummer:"
@@ -376,6 +383,10 @@ msgstr "Bei Preissenkung"
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Falls Sie Fragen haben sollten, antworten Sie bitte auf diese E-Mail"
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr "Incl. %1$s%% %2$s"
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -427,8 +438,14 @@ msgstr "Neuste"
 msgid "Like entered by you"
 msgstr "Wie von Ihnen eingegeben"
 
+msgid "Login"
+msgstr "Benutzerkonto"
+
 msgid "Name"
 msgstr "Name"
+
+msgid "New delivery address"
+msgstr "Neue Lieferadresse"
 
 msgid "Next"
 msgstr "Weiter"
@@ -598,6 +615,9 @@ msgstr "Suchergebnis für \"%1$s\""
 msgid "Salutation"
 msgstr "Anrede"
 
+msgid "Save"
+msgstr "Speichern"
+
 msgid "Search"
 msgstr "Suche"
 
@@ -647,6 +667,12 @@ msgstr "Sortierung:"
 
 msgid "State"
 msgstr "Bundesland"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Stock"
+msgstr "Lagerbestand"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -856,6 +882,9 @@ msgstr "Leider wurde die Zahlung für Ihre Bestellung verweigert.\nMöchten Sie 
 msgid "Update"
 msgstr "Aktualisieren"
 
+msgid "Variant"
+msgstr "Variante"
+
 msgid "Vat ID"
 msgstr "USt-Id"
 
@@ -926,11 +955,17 @@ msgstr "Ihre Bestellung %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Ihre Bestellung %1$s vom %2$s wurde versandt."
 
+msgid "Your reference"
+msgstr "Ihre Referenz"
+
 msgid "Your reference number"
 msgstr "Ihre Referenz-Bestellnummer"
 
 msgid "Your search result"
 msgstr "Ihr Suchergebnis"
+
+msgid "Your subscription"
+msgstr "Ihr Abonnement"
 
 msgid "Your subscription product"
 msgstr "Ihr Aboprodukt"
@@ -981,6 +1016,9 @@ msgstr "Bestellung"
 msgid "payment"
 msgstr "Zahlung"
 
+msgid "price:default"
+msgstr " "
+
 #, php-format
 msgid "process"
 msgstr "Weiterleitung"
@@ -1004,6 +1042,9 @@ msgstr "Produkt ist verfügbar"
 #, php-format
 msgid "summary"
 msgstr "Übersicht"
+
+msgid "tax"
+msgstr "USt."
 
 msgid "▲ Name"
 msgstr "▲ Name"

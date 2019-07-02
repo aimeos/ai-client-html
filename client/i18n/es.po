@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-04-27 15:50+0000\n"
+"POT-Creation-Date: 2019-07-01 19:09+0200\n"
+"PO-Revision-Date: 2019-07-01 17:12+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -93,6 +93,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/unidad"
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -146,6 +150,9 @@ msgstr "Todos los pedidos enviados están sujetos a nuestros términos y condici
 
 msgid "An account has been created for you."
 msgstr "Se ha creado una cuenta para ud."
+
+msgid "Article no."
+msgstr ""
 
 msgid "Article no.:"
 msgstr "Nro. de artículo:"
@@ -376,6 +383,10 @@ msgstr "Si el precio disminuye"
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Si tiene alguna pregunta, responda a este email"
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -427,8 +438,14 @@ msgstr "Últimos"
 msgid "Like entered by you"
 msgstr ""
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr "Nombre"
+
+msgid "New delivery address"
+msgstr ""
 
 msgid "Next"
 msgstr "Siguiente"
@@ -598,6 +615,9 @@ msgstr "Resultado para \"%1$s\""
 msgid "Salutation"
 msgstr "Tratamiento"
 
+msgid "Save"
+msgstr "Guardar"
+
 msgid "Search"
 msgstr "Buscar"
 
@@ -647,6 +667,12 @@ msgstr "Ordenar por:"
 
 msgid "State"
 msgstr "Estado"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Stock"
+msgstr "Existencias"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -856,6 +882,9 @@ msgstr "Desafortunadamente el pago de su pedido fue rechazado.\n¿Desea reintent
 msgid "Update"
 msgstr "Actualizar"
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr "ID de IVA"
 
@@ -926,11 +955,17 @@ msgstr "Su pedido %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Su pedido %1$s desde %2$s ha sido enviado."
 
+msgid "Your reference"
+msgstr ""
+
 msgid "Your reference number"
 msgstr ""
 
 msgid "Your search result"
 msgstr "Resultado de su búsqueda"
+
+msgid "Your subscription"
+msgstr ""
 
 msgid "Your subscription product"
 msgstr ""
@@ -981,6 +1016,9 @@ msgstr "pedido"
 msgid "payment"
 msgstr "pago"
 
+msgid "price:default"
+msgstr ""
+
 #, php-format
 msgid "process"
 msgstr "procesar"
@@ -1004,6 +1042,9 @@ msgstr "existencia-ilimitada"
 #, php-format
 msgid "summary"
 msgstr "resumen"
+
+msgid "tax"
+msgstr ""
 
 msgid "▲ Name"
 msgstr "▲ Nombre"

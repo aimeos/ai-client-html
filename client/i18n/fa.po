@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-04-27 15:50+0000\n"
+"POT-Creation-Date: 2019-07-01 19:09+0200\n"
+"PO-Revision-Date: 2019-07-01 17:12+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Persian (http://www.transifex.com/aimeos/aimeos-core/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -91,6 +91,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr ""
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -144,6 +148,9 @@ msgstr ""
 
 msgid "An account has been created for you."
 msgstr "یک حساب کاربری برای شما ایجاد شد."
+
+msgid "Article no."
+msgstr ""
 
 msgid "Article no.:"
 msgstr "شماره کالا:"
@@ -374,6 +381,10 @@ msgstr "در صورت کاهش قیمت"
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "آگر هر سوالی دارید لطفا در قسمت پاسخ همین ایمیل ارسال نمایید."
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -425,8 +436,14 @@ msgstr "آخرین"
 msgid "Like entered by you"
 msgstr ""
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr "نام"
+
+msgid "New delivery address"
+msgstr ""
 
 msgid "Next"
 msgstr "بعدی"
@@ -596,6 +613,9 @@ msgstr "نتیجه برای \"%1$s\""
 msgid "Salutation"
 msgstr "پیشوند نام"
 
+msgid "Save"
+msgstr ""
+
 msgid "Search"
 msgstr "جستجو"
 
@@ -645,6 +665,12 @@ msgstr "مرتب سازی بر اساس:"
 
 msgid "State"
 msgstr "استان"
+
+msgid "Status"
+msgstr ""
+
+msgid "Stock"
+msgstr ""
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -854,6 +880,9 @@ msgstr "متاسفانه پرداخت برای سفارش شما ملغا گرد
 msgid "Update"
 msgstr "بروز رسانی"
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr "شناسه مالیات بر ارزش افزوده"
 
@@ -924,11 +953,17 @@ msgstr "شفارش شما %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "سفارش شما %1$s از %2$s ارسال گردید"
 
+msgid "Your reference"
+msgstr ""
+
 msgid "Your reference number"
 msgstr ""
 
 msgid "Your search result"
 msgstr "نتیجه‌ی جستجوی شما"
+
+msgid "Your subscription"
+msgstr ""
 
 msgid "Your subscription product"
 msgstr ""
@@ -979,6 +1014,9 @@ msgstr "سفارش"
 msgid "payment"
 msgstr "پرداخت"
 
+msgid "price:default"
+msgstr ""
+
 #, php-format
 msgid "process"
 msgstr "روند"
@@ -1002,6 +1040,9 @@ msgstr ""
 #, php-format
 msgid "summary"
 msgstr "خلاصه"
+
+msgid "tax"
+msgstr ""
 
 msgid "▲ Name"
 msgstr "▲ نام"

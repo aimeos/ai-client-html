@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-05-01 19:15+0000\n"
+"POT-Creation-Date: 2019-07-01 19:09+0200\n"
+"PO-Revision-Date: 2019-07-01 23:57+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -90,6 +90,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/öğe"
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr "+ %1$s%% %2$s"
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -143,6 +147,9 @@ msgstr "Tüm siparişler web sitemizde yer alan ve siparişinizi verdiğinizde k
 
 msgid "An account has been created for you."
 msgstr "Sizin için bir hesap oluşturuldu."
+
+msgid "Article no."
+msgstr "Madde no."
 
 msgid "Article no.:"
 msgstr "Ürün Kodu:"
@@ -373,6 +380,10 @@ msgstr "Fiyat düştüğünde"
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Herhangi bir sorunuz varsa lütfen bu maili cevaplayın"
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr "%1$s%%%2$s dahil"
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -424,8 +435,14 @@ msgstr "En yeni"
 msgid "Like entered by you"
 msgstr "Tarafınızdan girildiği gibi"
 
+msgid "Login"
+msgstr "Oturum aç"
+
 msgid "Name"
 msgstr "Ad"
+
+msgid "New delivery address"
+msgstr "Yeni teslimat adresi"
 
 msgid "Next"
 msgstr "Sonraki"
@@ -595,6 +612,9 @@ msgstr "\"%1$s\" için sonuç"
 msgid "Salutation"
 msgstr "Selamlama"
 
+msgid "Save"
+msgstr "Kaydet"
+
 msgid "Search"
 msgstr "Aranacak kelimeyi girin"
 
@@ -644,6 +664,12 @@ msgstr "Sıralama ölçütü"
 
 msgid "State"
 msgstr "Eyalet"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Stock"
+msgstr "Stok"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -853,6 +879,9 @@ msgstr "Maalesef siparişinizin ödemesi reddedildi.\nTekrar denemek ister misin
 msgid "Update"
 msgstr "Güncelle"
 
+msgid "Variant"
+msgstr "Değişken"
+
 msgid "Vat ID"
 msgstr "Vergi Dairesi/Numarası"
 
@@ -923,11 +952,17 @@ msgstr "%1$s No'lu siparişiniz"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$s tarihinde vermiş olduğunuz %1$s No'lu siparişiniz sevk edildi."
 
+msgid "Your reference"
+msgstr "Referansınız"
+
 msgid "Your reference number"
 msgstr "Referans numaranız"
 
 msgid "Your search result"
 msgstr "Arama sonucunuz"
+
+msgid "Your subscription"
+msgstr "Aboneliğiniz"
 
 msgid "Your subscription product"
 msgstr "Abonelik ürününüz"
@@ -978,6 +1013,9 @@ msgstr "Sipariş"
 msgid "payment"
 msgstr "Ödeme"
 
+msgid "price:default"
+msgstr "fiyat:varsayılan"
+
 #, php-format
 msgid "process"
 msgstr "İşlem"
@@ -1001,6 +1039,9 @@ msgstr "Ürün sınırsız sayıda mevcut"
 #, php-format
 msgid "summary"
 msgstr "Özet"
+
+msgid "tax"
+msgstr "vergi"
 
 msgid "▲ Name"
 msgstr "▲ Ad"

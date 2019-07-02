@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-04-27 15:50+0000\n"
+"POT-Creation-Date: 2019-07-01 19:09+0200\n"
+"PO-Revision-Date: 2019-07-01 17:12+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Czech (http://www.transifex.com/aimeos/aimeos-core/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -93,6 +93,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/položka"
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -146,6 +150,9 @@ msgstr "Všechny objednávky podléhají našim pravidlům a podmínkám, které
 
 msgid "An account has been created for you."
 msgstr "Byl pro vás vytvořen účet."
+
+msgid "Article no."
+msgstr ""
 
 msgid "Article no.:"
 msgstr "Produkt č.:"
@@ -376,6 +383,10 @@ msgstr "Pokud cena klesne"
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Pokud máte jakékoliv dotazy, kontaktujte nás prosím na tomto e-mailu"
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -427,8 +438,14 @@ msgstr ""
 msgid "Like entered by you"
 msgstr ""
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr "Jméno"
+
+msgid "New delivery address"
+msgstr ""
 
 msgid "Next"
 msgstr "Další"
@@ -598,6 +615,9 @@ msgstr "Výsledek pro \"%1$s\" "
 msgid "Salutation"
 msgstr "Oslovení"
 
+msgid "Save"
+msgstr ""
+
 msgid "Search"
 msgstr "Vyhledávání"
 
@@ -649,6 +669,12 @@ msgstr "Uspořádat dle:"
 
 msgid "State"
 msgstr "Země"
+
+msgid "Status"
+msgstr ""
+
+msgid "Stock"
+msgstr ""
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -858,6 +884,9 @@ msgstr "Platba za vaši objednávku byla bohužel zamítnuta.\nPřejete si ji op
 msgid "Update"
 msgstr "Aktualizovat"
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr "DIČ"
 
@@ -928,11 +957,17 @@ msgstr "Vaše objednávka %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Vaše objednávka %1$s z %2$s byla odeslána."
 
+msgid "Your reference"
+msgstr ""
+
 msgid "Your reference number"
 msgstr ""
 
 msgid "Your search result"
 msgstr "Váš výsledek hledání"
+
+msgid "Your subscription"
+msgstr ""
 
 msgid "Your subscription product"
 msgstr ""
@@ -983,6 +1018,9 @@ msgstr "objednat"
 msgid "payment"
 msgstr "platba"
 
+msgid "price:default"
+msgstr ""
+
 #, php-format
 msgid "process"
 msgstr "průběh"
@@ -1006,6 +1044,9 @@ msgstr "skladem-neomezeno"
 #, php-format
 msgid "summary"
 msgstr "shrnutí"
+
+msgid "tax"
+msgstr ""
 
 msgid "▲ Name"
 msgstr "▲ Název"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-04-27 15:50+0000\n"
+"POT-Creation-Date: 2019-07-01 19:09+0200\n"
+"PO-Revision-Date: 2019-07-01 17:12+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Serbian (http://www.transifex.com/aimeos/aimeos-core/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -92,6 +92,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/stavka"
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -144,6 +148,9 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 msgid "An account has been created for you."
+msgstr ""
+
+msgid "Article no."
 msgstr ""
 
 msgid "Article no.:"
@@ -375,6 +382,10 @@ msgstr "Ako pojeftini"
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Ako imate kakvih pitanja , molim vas postavite ga na ovaj E-mail"
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -426,8 +437,14 @@ msgstr ""
 msgid "Like entered by you"
 msgstr ""
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr "Ime"
+
+msgid "New delivery address"
+msgstr ""
 
 msgid "Next"
 msgstr "Sledece"
@@ -597,6 +614,9 @@ msgstr "Reazultati za \"%1$s\""
 msgid "Salutation"
 msgstr "Pozdrav"
 
+msgid "Save"
+msgstr "Sačuvaj"
+
 msgid "Search"
 msgstr "traži"
 
@@ -647,6 +667,12 @@ msgstr "Sortiraj po:"
 
 msgid "State"
 msgstr "Drzava"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Stock"
+msgstr "Zalihe"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -856,6 +882,9 @@ msgstr ""
 msgid "Update"
 msgstr "Azuriraj"
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr "PDV ID"
 
@@ -926,11 +955,17 @@ msgstr "Vasa porudzbina%1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Vasa porudzbina %1$s od %2$s je poslana"
 
+msgid "Your reference"
+msgstr ""
+
 msgid "Your reference number"
 msgstr ""
 
 msgid "Your search result"
 msgstr "Vasi rezultati pretrage"
+
+msgid "Your subscription"
+msgstr ""
 
 msgid "Your subscription product"
 msgstr ""
@@ -981,6 +1016,9 @@ msgstr "porudzbina"
 msgid "payment"
 msgstr "placanje"
 
+msgid "price:default"
+msgstr ""
+
 #, php-format
 msgid "process"
 msgstr ""
@@ -1004,6 +1042,9 @@ msgstr "zalihe-neograničene"
 #, php-format
 msgid "summary"
 msgstr "rezime"
+
+msgid "tax"
+msgstr ""
 
 msgid "▲ Name"
 msgstr "▲ Ime"
