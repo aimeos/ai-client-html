@@ -103,8 +103,7 @@ $params = $this->param();
 		<h2><?= $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
 
 
-		<?php if( !empty( $attrIds ) || !empty( $optIds ) ) : ?>
-
+		<?php if( !empty( $attrIds ) || !empty( $optIds ) || !empty( $oneIds ) ) : ?>
 			<div class="attribute-selected">
 				<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
 
