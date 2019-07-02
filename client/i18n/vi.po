@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-04-27 15:50+0000\n"
+"POT-Creation-Date: 2019-07-01 19:09+0200\n"
+"PO-Revision-Date: 2019-07-01 17:12+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Vietnamese (http://www.transifex.com/aimeos/aimeos-core/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -90,6 +90,10 @@ msgstr ""
 msgid "+ %1$s %2$s/item"
 msgstr ""
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -142,6 +146,9 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 msgid "An account has been created for you."
+msgstr ""
+
+msgid "Article no."
 msgstr ""
 
 msgid "Article no.:"
@@ -373,6 +380,10 @@ msgstr ""
 msgid "If you have any questions, please reply to this e-mail"
 msgstr ""
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -424,8 +435,14 @@ msgstr ""
 msgid "Like entered by you"
 msgstr ""
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr "Tên"
+
+msgid "New delivery address"
+msgstr ""
 
 msgid "Next"
 msgstr "Tiếp theo"
@@ -595,6 +612,9 @@ msgstr "Kết quả của \"%1$s\""
 msgid "Salutation"
 msgstr "Lời chào mừng"
 
+msgid "Save"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -643,6 +663,12 @@ msgstr "Sắp xếp theo:"
 
 msgid "State"
 msgstr "Bang"
+
+msgid "Status"
+msgstr ""
+
+msgid "Stock"
+msgstr ""
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -852,6 +878,9 @@ msgstr ""
 msgid "Update"
 msgstr "Cập nhật"
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr ""
 
@@ -922,10 +951,16 @@ msgstr ""
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr ""
 
+msgid "Your reference"
+msgstr ""
+
 msgid "Your reference number"
 msgstr ""
 
 msgid "Your search result"
+msgstr ""
+
+msgid "Your subscription"
 msgstr ""
 
 msgid "Your subscription product"
@@ -977,6 +1012,9 @@ msgstr "đặt hàng"
 msgid "payment"
 msgstr "thanh toán"
 
+msgid "price:default"
+msgstr ""
+
 #, php-format
 msgid "process"
 msgstr ""
@@ -1000,6 +1038,9 @@ msgstr ""
 #, php-format
 msgid "summary"
 msgstr "tóm tắt"
+
+msgid "tax"
+msgstr ""
 
 msgid "▲ Name"
 msgstr ""

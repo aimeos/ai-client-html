@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
-"PO-Revision-Date: 2019-05-03 09:29+0000\n"
-"Last-Translator: Jean-Baptiste Joulé <joule_jb@yahoo.fr>\n"
+"POT-Creation-Date: 2019-07-01 19:09+0200\n"
+"PO-Revision-Date: 2019-07-01 17:12+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: French (http://www.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,6 +97,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/article"
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -150,6 +154,9 @@ msgstr "Toutes les commandes sont sujettes à nos termes et conditions consultab
 
 msgid "An account has been created for you."
 msgstr "Un compte a été créé pour vous"
+
+msgid "Article no."
+msgstr ""
 
 msgid "Article no.:"
 msgstr "Article numéro :"
@@ -380,6 +387,10 @@ msgstr "Si le prix diminue"
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Si vous avez des questions, merci de répondre à cet e-mail"
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -431,8 +442,14 @@ msgstr "Le plus récent"
 msgid "Like entered by you"
 msgstr "Comme vous l'avez encodé"
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr "Nom"
+
+msgid "New delivery address"
+msgstr ""
 
 msgid "Next"
 msgstr "Suivant"
@@ -602,6 +619,9 @@ msgstr "Résultat pour \"%1$s\""
 msgid "Salutation"
 msgstr "Titre"
 
+msgid "Save"
+msgstr "Sauvegarder"
+
 msgid "Search"
 msgstr "Recherche"
 
@@ -651,6 +671,12 @@ msgstr "Trier par :"
 
 msgid "State"
 msgstr "État"
+
+msgid "Status"
+msgstr "État"
+
+msgid "Stock"
+msgstr "Stock"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -860,6 +886,9 @@ msgstr "Le paiement pour votre commande a malheureusement été refusé. Souhait
 msgid "Update"
 msgstr "Actualiser"
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr "Numéro de TVA"
 
@@ -930,11 +959,17 @@ msgstr "Votre commande %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Votre commande %1$s à %2$s a été expédiée."
 
+msgid "Your reference"
+msgstr ""
+
 msgid "Your reference number"
 msgstr "Votre numéro de commande"
 
 msgid "Your search result"
 msgstr "Résultat de votre recherche"
+
+msgid "Your subscription"
+msgstr ""
 
 msgid "Your subscription product"
 msgstr "Votre produit par abonnement"
@@ -985,6 +1020,9 @@ msgstr "commande"
 msgid "payment"
 msgstr "paiement"
 
+msgid "price:default"
+msgstr ""
+
 #, php-format
 msgid "process"
 msgstr "traitement"
@@ -1008,6 +1046,9 @@ msgstr "produit disponible"
 #, php-format
 msgid "summary"
 msgstr "Résumé"
+
+msgid "tax"
+msgstr ""
 
 msgid "▲ Name"
 msgstr "▲ Nom"
