@@ -280,29 +280,20 @@ class Standard
 				return;
 			}
 
-			$total = $basket->getPrice()->getValue() + $basket->getPrice()->getCosts();
-			$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
-
-			if( $services === [] || $total <= 0 && $this->isSubscription( $basket->getProducts() ) === false )
-			{
-				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
-				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-				$orderCntl->saveItem( $orderItem );
-
-			}
-			elseif( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
+			if( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
 			{
 				$view->standardUrlNext = $form->getUrl();
 				$view->standardMethod = $form->getMethod();
 				$view->standardProcessParams = $form->getValues();
 				$view->standardUrlExternal = $form->getExternal();
 				$view->standardHtml = $form->getHtml();
-
-				return;
 			}
-
-			$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
-			$view->standardMethod = 'POST';
+			else // no payment service available
+			{
+				$orderCntl->save( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
+				$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
+				$view->standardMethod = 'POST';
+			}
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
