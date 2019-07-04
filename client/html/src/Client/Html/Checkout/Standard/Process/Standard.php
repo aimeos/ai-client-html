@@ -290,7 +290,7 @@ class Standard
 			}
 			else // no payment service available
 			{
-				$orderCntl->save( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
+				$orderCntl->saveItem( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
 				$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
 				$view->standardMethod = 'POST';
 			}
