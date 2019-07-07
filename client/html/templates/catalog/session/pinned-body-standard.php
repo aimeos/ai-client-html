@@ -85,6 +85,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
+$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
 
 /** client/html/catalog/session/pinned/count/enable
  * Displays the number of pinned products in the header of the pinned list
@@ -115,8 +116,8 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 
 	<ul class="pinned-items">
 		<?php foreach( $pinList as $id => $productItem ) : ?>
-			<?php $pinParams = array( 'pin_action' => 'delete', 'pin_id' => $id ) + $params; ?>
-			<?php $detailParams = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id ); ?>
+			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id] + $params; ?>
+			<?php $detailParams = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $id : '', 'd_pos' => '']; ?>
 
 			<li class="pinned-item">
 				<a class="modify" href="<?= $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ); ?>">

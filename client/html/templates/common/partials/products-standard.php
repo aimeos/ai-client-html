@@ -136,9 +136,7 @@ $detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false 
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true; $index++ ?>
 		<?php
-			$params = ['d_name' => $productItem->getName( 'url' )];
-			$position === null ?: $params['d_pos'] = $position++;
-			$detailProdid == false ?: $params['d_prodid'] = $id;
+			$params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $productItem->getId() : '', 'd_pos' => $position ? $position++ : ''];
 
 			$disabled = '';
 			$curdate = date( 'Y-m-d H:i:00' );

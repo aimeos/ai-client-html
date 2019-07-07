@@ -46,10 +46,7 @@ $detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false 
 			<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
 		<?php endforeach; ?>
 
-		<?php
-			$params = ['d_name' => $this->detailProductItem->getName( 'url' )];
-			$detailProdid == false ?: $params['d_prodid'] = $this->detailProductItem->getId();
-		?>
+		<?php $params = ['d_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $this->detailProductItem->getId() : '', 'd_pos' => '']; ?>
 		<link rel="canonical" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>" />
 
 		<meta property="og:type" content="product" />

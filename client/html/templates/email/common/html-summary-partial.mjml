@@ -215,6 +215,7 @@
 				$detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 				$detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 				$detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+				$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
 			?>
 			<?php foreach( $this->summaryBasket->getProducts() as $product ) : ?>
 				<tr class="body product">
@@ -224,7 +225,7 @@
 						<?php endif; ?>
 					</td>
 					<td class="label">
-						<?php $params = array_merge( $this->param(), ['d_prodid' => $product->getProductId(), 'd_name' => $product->getName( 'url' ), 'd_pos' => ''] ); ?>
+						<?php $params = array_merge( $this->param(), ['d_name' => $product->getName( 'url' ), 'd_prodid' => $detailProdid ? $product->getProductId() : '', 'd_pos' => ''] ); ?>
 						<a class="product-label" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 							<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 						</a>
