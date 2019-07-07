@@ -224,7 +224,7 @@
 						<?php endif; ?>
 					</td>
 					<td class="label">
-						<?php $params = array_merge( $this->param(), ['d_prodid' => $product->getProductId(), 'd_name' => $product->getName( 'url' )] ); ?>
+						<?php $params = array_merge( $this->param(), ['d_prodid' => $product->getProductId(), 'd_name' => $product->getName( 'url' ), 'd_pos' => ''] ); ?>
 						<a class="product-label" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 							<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 						</a>
