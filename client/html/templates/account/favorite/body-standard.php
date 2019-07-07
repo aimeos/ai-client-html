@@ -85,6 +85,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
+$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
 
 $optTarget = $this->config( 'client/jsonapi/url/target' );
 $optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
@@ -113,12 +114,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
 					<li class="favorite-item">
-						<?php $params = array( 'fav_action' => 'delete', 'fav_id' => $listItem->getRefId() ) + $favParams; ?>
+						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $favParams; ?>
 						<a class="modify" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>">
 							<?= $this->translate( 'client', 'X' ); ?>
 						</a>
 
-						<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId() ); ?>
+						<?php $params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $productItem->getId() : '', 'd_pos' => '']; ?>
 						<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 

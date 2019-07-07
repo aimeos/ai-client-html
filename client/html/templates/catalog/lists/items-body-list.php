@@ -33,10 +33,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 		<?php foreach( $this->get( 'listProductItems', [] ) as $id => $productItem ) : $firstImage = true; ?>
 			<?php
 				$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
-				$params = ['d_name' => $productItem->getName( 'url' )];
-				$position === null ?: $params['d_pos'] = $position++;
-				$detailProdid == false ?: $params['d_prodid'] = $id;
-
+				$params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $productItem->getId() : '', 'd_pos' => $position ? $position++ : ''];
 				$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 			?>
 

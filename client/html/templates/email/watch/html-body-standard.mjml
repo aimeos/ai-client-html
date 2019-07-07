@@ -12,6 +12,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
 
 
 ?>
@@ -55,7 +56,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absolu
 									<?php endif; ?>
 								</td>
 								<td class="name">
-									<?php $params = array_merge( $this->param(), ['currency' => $entry['currency'], 'd_prodid' => $product->getId(), 'd_name' => $product->getName( 'url' ), 'd_pos' => ''] ); ?>
+									<?php $params = array_merge( $this->param(), ['currency' => $entry['currency'], 'd_name' => $product->getName( 'url' ), 'd_prodid' => $detailProdid ? $product->getId() : '', 'd_pos' => ''] ); ?>
 									<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 										<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 									</a>

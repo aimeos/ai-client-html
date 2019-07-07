@@ -33,9 +33,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 		$price = sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) );
 	}
 
-	$params = ['d_name' => $productItem->getName( 'url' )];
-	$prodid == false ?: $params['d_prodid'] = $productItem->getId();
-
+	$params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $prodid ? $productItem->getId() : '', 'd_pos' => ''];
 	$items[] = array(
 		'label' => $name,
 		'html' => '

@@ -20,8 +20,7 @@ $detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false 
 
 	<?php
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
-		$params = ['d_name' => $productItem->getName( 'url' )];
-		$detailProdid == false ?: $params['d_prodid'] = $productItem->getId();
+		$params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $productItem->getId() : '', 'd_pos' => ''];
 	?>
 
 	<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
