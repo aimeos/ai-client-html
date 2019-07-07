@@ -12,7 +12,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
-$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
+$detailFilter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
 
 
 ?>
@@ -20,7 +20,7 @@ $detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false 
 
 	<?php
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
-		$params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $productItem->getId() : '', 'd_pos' => ''];
+		$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter );
 	?>
 
 	<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">

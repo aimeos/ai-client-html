@@ -110,11 +110,11 @@ $urls = array(
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
+$detailFilter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailConfig['absoluteUri'] = true;
 
-$params = ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $this->productItem->getId() : '', 'd_pos' => ''];
+$params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''], $detailFilter );
 $prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig );
 $prodName = $this->productItem->getName();
 

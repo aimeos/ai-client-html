@@ -44,7 +44,7 @@ if( $this->get( 'basket-add', false ) )
  * @see client/html/catalog/detail/url/controller
  * @see client/html/catalog/detail/url/action
  * @see client/html/catalog/detail/url/config
- * @see client/html/catalog/detail/url/d_prodid
+ * @see client/html/catalog/detail/url/filter
  */
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 
@@ -61,7 +61,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
  * @see client/html/catalog/detail/url/target
  * @see client/html/catalog/detail/url/action
  * @see client/html/catalog/detail/url/config
- * @see client/html/catalog/detail/url/d_prodid
+ * @see client/html/catalog/detail/url/filter
  */
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 
@@ -78,7 +78,7 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
  * @see client/html/catalog/detail/url/target
  * @see client/html/catalog/detail/url/controller
  * @see client/html/catalog/detail/url/config
- * @see client/html/catalog/detail/url/d_prodid
+ * @see client/html/catalog/detail/url/filter
  */
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 
@@ -101,13 +101,13 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
  * @see client/html/catalog/detail/url/target
  * @see client/html/catalog/detail/url/controller
  * @see client/html/catalog/detail/url/action
- * @see client/html/catalog/detail/url/d_prodid
+ * @see client/html/catalog/detail/url/filter
  * @see client/html/url/config
  */
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
-/** client/html/catalog/detail/url/d_prodid
- * Enables or disables passing the product ID to the detail page
+/** client/html/catalog/detail/url/filter
+ * Removes parameters for the detail page before generating the URL
  *
  * For SEO, it's nice to have product URLs which contains the product names only.
  * Usually, product names are unique so exactly one product is found when resolving
@@ -115,11 +115,9 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
  * possible to refer to the correct product and in this case, the product ID is
  * required as unique identifier.
  *
- * This setting enables adding the product ID to the URLs for the detail pages.
- * If the product ID is present, it's used instead of the product name for resolving
- * the product item.
+ * This setting removes the listed parameters from the URLs of the detail pages.
  *
- * @param boolean True to include product ID, false to resolve by name only
+ * @param array List of parameter names to remove
  * @since 2019.04
  * @category User
  * @category Developer
@@ -128,7 +126,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
  * @see client/html/catalog/detail/url/action
  * @see client/html/catalog/detail/url/config
  */
-$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
+$detailFilter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
 
 
 ?>
@@ -136,7 +134,7 @@ $detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false 
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true; $index++ ?>
 		<?php
-			$params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $detailProdid ? $productItem->getId() : '', 'd_pos' => $position ? $position++ : ''];
+			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position ? $position++ : ''], $detailFilter );
 
 			$disabled = '';
 			$curdate = date( 'Y-m-d H:i:00' );

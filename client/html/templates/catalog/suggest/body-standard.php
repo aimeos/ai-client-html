@@ -9,7 +9,7 @@ $target = $this->config( 'client/html/catalog/detail/url/target' );
 $cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $config = $this->config( 'client/html/catalog/detail/url/config', [] );
-$prodid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
+$filter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
 
 $items = [];
 $enc = $this->encoder();
@@ -33,7 +33,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 		$price = sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) );
 	}
 
-	$params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $prodid ? $productItem->getId() : '', 'd_pos' => ''];
+	$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $filter );
 	$items[] = array(
 		'label' => $name,
 		'html' => '
