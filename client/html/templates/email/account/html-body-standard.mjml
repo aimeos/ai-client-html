@@ -78,7 +78,7 @@ $action = $this->config( 'client/html/account/index/url/action', 'index' );
  */
 $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' => 1] );
 
-$url = $this->url( $target, $controller, $action, [], [], $config );
+$url = $this->url( $target, $controller, $action, ['locale' => $this->extAddressItem->getLanguageId()], [], $config );
 
 
 ?>
