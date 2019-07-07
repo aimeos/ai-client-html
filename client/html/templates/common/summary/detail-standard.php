@@ -28,7 +28,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( 'absoluteUri' => 1 ) );
-$detailProdid = $this->config( 'client/html/catalog/detail/url/d_prodid', false );
+$detailFilter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
 
 
 /** client/html/account/download/url/target
@@ -167,7 +167,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 				<td class="details">
 
-					<?php $params = ['d_name' => $product->getName( 'url' ), 'd_prodid' => $detailProdid ? $product->getProductId() : '', 'd_pos' => '']; ?>
+					<?php $params = array_diff_key( ['d_name' => $product->getName( 'url' ), 'd_prodid' => $product->getProductId(), 'd_pos' => ''], $detailFilter ); ?>
 					<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 						<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 					</a>
