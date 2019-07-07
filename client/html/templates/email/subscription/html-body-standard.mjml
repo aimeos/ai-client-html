@@ -61,7 +61,7 @@ $priceFormat = $this->translate( 'client/code', 'price:default' );
 								<?php endif; ?>
 							</td>
 							<td class="name">
-								<?php $params = array_merge( $this->param(), ['currency' => $product->getPrice()->getCurrencyId(), 'd_prodid' => $product->getProductId(), 'd_name' => $product->getName( 'url' )] ); ?>
+								<?php $params = array_merge( $this->param(), ['currency' => $product->getPrice()->getCurrencyId(), 'd_prodid' => $product->getProductId(), 'd_name' => $product->getName( 'url' ), 'd_pos' => ''] ); ?>
 								<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 									<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 								</a>
