@@ -304,7 +304,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php endforeach; ?>
 
 
-		<?php foreach( $this->summaryBasket->getService( 'delivery' ) as $service ) : ?>
+		<?php foreach( $this->summaryBasket->getService( 'payment' ) as $service ) : ?>
 			<?php if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
 				<?php $price = $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ); ?>
 				<tr class="payment">
