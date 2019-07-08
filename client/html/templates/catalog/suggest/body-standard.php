@@ -9,7 +9,7 @@ $target = $this->config( 'client/html/catalog/detail/url/target' );
 $cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $config = $this->config( 'client/html/catalog/detail/url/config', [] );
-$filter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
+$filter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 $items = [];
 $enc = $this->encoder();
