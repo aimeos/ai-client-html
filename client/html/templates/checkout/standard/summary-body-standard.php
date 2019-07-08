@@ -249,6 +249,8 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 					'summaryBasket' => $this->standardBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
 					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
+					'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
+					'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
 					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' ),
 				)
 			); ?>
