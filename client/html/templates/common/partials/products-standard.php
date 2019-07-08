@@ -126,7 +126,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
  * @see client/html/catalog/detail/url/action
  * @see client/html/catalog/detail/url/config
  */
-$detailFilter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
+$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 
 ?>
