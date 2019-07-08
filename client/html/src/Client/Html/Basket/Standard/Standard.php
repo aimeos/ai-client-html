@@ -421,7 +421,7 @@ class Standard
 
 		$view->standardBasket = $basket;
 		$view->standardTaxRates = $this->getTaxRates( $basket );
-		$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
+		$view->standardNamedTaxes = $this->getNamedTaxes( $basket );
 		$view->standardCostsDelivery = $this->getCostsDelivery( $basket );
 		$view->standardCostsPayment = $this->getCostsPayment( $basket );
 
