@@ -29,7 +29,7 @@ $disablenew = (bool) $this->config( 'client/html/common/address/billing/disable-
 
 
 $addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-$addrArray = ( ( $address = current( $addresses ) ) !== false ? $address->toArray() : [] );
+$addrArray = ( ( $address = current( $addresses ) ) ? $address->toArray() : [] );
 
 if( !isset( $addrArray['order.base.address.addressid'] ) || $addrArray['order.base.address.addressid'] == '' ) {
 	$billingDefault = ( isset( $this->addressCustomerItem ) && $this->addressCustomerItem->getId() !== null ? $this->addressCustomerItem->getId() : 'null' );
