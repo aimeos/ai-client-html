@@ -656,8 +656,9 @@ class Standard
 
 		if( $catids != null )
 		{
-			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
-			$listCatPath = $controller->getPath( is_array( $catids ) ? reset( $catids ) : $catids, $domains );
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' )
+				->uses($domains);
+			$listCatPath = $controller->getPath( is_array( $catids ) ? reset( $catids ) : $catids );
 
 			if( ( $categoryItem = end( $listCatPath ) ) !== false ) {
 				$view->listCurrentCatItem = $categoryItem;
