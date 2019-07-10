@@ -134,7 +134,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true; $index++ ?>
 		<?php
-			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position ? $position++ : ''], $detailFilter );
+			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 
 			$disabled = '';
 			$curdate = date( 'Y-m-d H:i:00' );
