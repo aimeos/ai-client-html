@@ -61,7 +61,7 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 
 ?>
 <?php $this->block()->start( 'checkout/standard/address/billing' ); ?>
-<div class="checkout-standard-address-billing col-sm-6">
+<div class="checkout-standard-address-billing col">
 	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
 
 
@@ -213,15 +213,17 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 				); ?>
 
 				<li class="form-item birthday">
-					<label class="col-md-5" for="customer-birthday">
-						<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
-					</label>
-					<div class="col-md-7">
-						<input class="form-control birthday" type="date"
-							   id="customer-birthday"
-							name="<?= $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
-							value="<?= $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
-						/>
+					<div class="row">
+						<label class="col-md-5" for="customer-birthday">
+							<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
+						</label>
+						<div class="col-md-7">
+							<input class="form-control birthday" type="date"
+								id="customer-birthday"
+								name="<?= $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
+								value="<?= $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
+							/>
+						</div>
 					</div>
 				</li>
 			</ul>
