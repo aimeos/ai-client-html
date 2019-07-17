@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-01 23:57+0000\n"
+"PO-Revision-Date: 2019-07-15 01:08+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -378,7 +378,7 @@ msgid "If price decreases"
 msgstr "Fiyat düştüğünde"
 
 msgid "If you have any questions, please reply to this e-mail"
-msgstr "Herhangi bir sorunuz varsa lütfen bu maili cevaplayın"
+msgstr "Herhangi bir sorunuz varsa lütfen bu maili cevaplayın."
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
@@ -737,7 +737,7 @@ msgstr "Hükümler ve koşullar"
 #. status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "%2$s 'dan %1$s siparişiniz için teşekkür ederiz."
+msgstr "%2$s tarihindeki %1$s sıra numaralı siparişiniz için teşekkür ederiz."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -748,7 +748,7 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "%2$s 'dan %1$s siparişiniz için teşekkür ederiz.\n\nNihai ödeme tarafımızdan tahsil edilene kadar sipariş beklemede. Eğer peşin ödemeyi seçtiyseniz, lütfen ücreti %1$s sipariş ID'nizi referans olarak ekleyerek banka hesabımıza transfer edin."
+msgstr "%2$s tarihindeki %1$s sıra numaralı siparişiniz için teşekkür ederiz.\n\nNihai ödeme tarafımızdan tahsil edilene kadar sipariş beklemede. Eğer peşin ödemeyi seçtiyseniz, lütfen ücreti %1$s sipariş ID'nizi referans olarak ekleyerek banka hesabımıza transfer edin."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -759,7 +759,7 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr "%2$s 'dan %1$s siparişiniz için teşekkür ederiz.\n\nÖdemeyi aldık ve derhal siparişinizle alakalı işlemlerle ilgileneceğiz."
+msgstr "%2$s tarihindeki %1$s sıra numaralı siparişiniz için teşekkür ederiz.\n\nÖdemeyi aldık ve derhal siparişinizle alakalı işlemlerle ilgileneceğiz."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
