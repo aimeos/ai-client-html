@@ -180,6 +180,8 @@ $services = $this->summaryBasket->getServices();
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
 					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
+					'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
+					'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
 					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' ),
 				)
 			); ?>
