@@ -167,10 +167,17 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 				<td class="details">
 
-					<?php $params = array_diff_key( ['d_name' => $product->getName( 'url' ), 'd_prodid' => $product->getProductId(), 'd_pos' => ''], $detailFilter ); ?>
-					<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
-						<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
-					</a>
+					<?php
+						$url = '#';
+
+						if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 )
+						{
+							$params = array_diff_key( ['d_name' => $product->getName(), 'd_prodid' => $product->getProductId(), 'd_pos' => ''], $detailFilter );
+							$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
+						}
+					?>
+
+					<a class="product-name" href="<?= $enc->attr( $url ); ?>"><?= $enc->html( $product->getName(), $enc::TRUST ); ?></a>
 
 					<p class="code">
 						<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.:' ), $enc::TRUST ); ?></span>
