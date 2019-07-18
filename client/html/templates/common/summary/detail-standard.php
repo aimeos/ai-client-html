@@ -229,22 +229,16 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<?php endif; ?>
 
 
-					<?php if( $unhide && ( $attributes = $product->getAttributeItems( 'hidden' ) ) !== [] ) : ?>
+					<?php if( $unhide && ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) !== null ) : ?>
 						<ul class="attr-list attr-list-hidden">
-
-							<?php foreach( $attributes as $attribute ) : ?>
-								<?php if( $attribute->getCode() === 'download' ) : ?>
-									<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
-										<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
-										<span class="value">
-											<a href="<?= $enc->attr( $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ) ); ?>" >
-												<?= $enc->html( $attribute->getName() ); ?>
-											</a>
-										</span>
-									</li>
-								<?php endif; ?>
-							<?php endforeach; ?>
-
+							<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
+								<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
+								<span class="value">
+									<a href="<?= $enc->attr( $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ) ); ?>" >
+										<?= $enc->html( $attribute->getName() ); ?>
+									</a>
+								</span>
+							</li>
 						</ul>
 					<?php endif; ?>
 
