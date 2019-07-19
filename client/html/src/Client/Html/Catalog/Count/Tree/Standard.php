@@ -240,9 +240,18 @@ class Standard
 			}
 
 			$tree = $cntl->getTree();
-			$view->treeCountList = \Aimeos\Controller\Frontend::create( $context, 'product' )
-				->category( array_keys( $tree->toList() ) )->slice( 0, $limit )->sort()
-				->aggregate( 'index.catalog.id' );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->category( array_keys( $tree->toList() ) )
+				->supplier( $view->param( 'f_supid', [] ) )
+				->allof( $view->param( 'f_attrid', [] ) )
+				->oneof( $view->param( 'f_optid', [] ) )
+				->slice( 0, $limit )->sort();
+
+			foreach( $view->param( 'f_oneid', [] ) as $type => $list ) {
+				$cntl->oneof( $list );
+			}
+
+			$view->treeCountList = $cntl->aggregate( 'index.catalog.id' );
 
 			if( $level === \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
 				$view->treeCountList = $this->counts( $this->traverse( $tree, $view->treeCountList ) );
