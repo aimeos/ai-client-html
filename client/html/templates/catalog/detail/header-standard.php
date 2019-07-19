@@ -51,7 +51,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 		<meta property="og:type" content="product" />
 		<meta property="og:title" content="<?= $enc->html( $this->detailProductItem->getName() ); ?>" />
-		<meta property="og:url" content="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>" />
+		<meta property="og:url" content="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ); ?>" />
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 			<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>" />
