@@ -250,12 +250,21 @@ class Standard
 			 * @category User
 			 */
 			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
+			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
+			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-			$map = \Aimeos\Controller\Frontend::create( $context, 'product' )
-				->supplier( $view->param( 'f_supid', [] ) )->slice( 0, $limit )->sort()
-				->aggregate( 'index.supplier.id' );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->category( $view->param( 'f_catid', $startid ), 'default', $level )
+				->supplier( $view->param( 'f_supid', [] ) )
+				->allof( $view->param( 'f_attrid', [] ) )
+				->oneof( $view->param( 'f_optid', [] ) )
+				->slice( 0, $limit )->sort();
 
-			$view->supplierCountList = $map;
+			foreach( $view->param( 'f_oneid', [] ) as $type => $list ) {
+				$cntl->oneof( $list );
+			}
+
+			$view->supplierCountList = $cntl->aggregate( 'index.supplier.id' );
 		}
 
 		return parent::addData( $view, $tags, $expire );
