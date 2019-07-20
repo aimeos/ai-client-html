@@ -258,12 +258,10 @@ class Standard
 				->category( $view->param( 'f_catid', $startid ), 'default', $level )
 				->supplier( $view->param( 'f_supid', [] ) )
 				->allof( $view->param( 'f_attrid', [] ) )
-				->oneof( $view->param( 'f_optid', [] ) )
+				->oneOf( $view->param( 'f_optid', [] ) )
+				->oneOf( $view->param( 'f_oneid', [] ) )
+				->text( $view->param( 'f_search' ) )
 				->slice( 0, $limit )->sort();
-
-			foreach( $view->param( 'f_oneid', [] ) as $type => $list ) {
-				$cntl->oneof( $list );
-			}
 
 			$view->attributeCountList = $cntl->aggregate( 'index.attribute.id' );
 		}
