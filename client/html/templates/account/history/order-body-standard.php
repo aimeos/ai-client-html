@@ -156,11 +156,11 @@ $services = $this->summaryBasket->getServices();
 
 
 	<div class="common-summary-detail row">
-		<div class="header">
+		<div class="header col-sm-12">
 			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 		</div>
 
-		<div class="basket">
+		<div class="basket col-sm-12">
 			<?= $this->partial(
 				/** client/html/account/history/summary/detail
 				 * Location of the detail partial template for the account history component
