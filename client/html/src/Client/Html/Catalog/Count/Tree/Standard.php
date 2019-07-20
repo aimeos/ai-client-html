@@ -244,12 +244,10 @@ class Standard
 				->category( array_keys( $tree->toList() ) )
 				->supplier( $view->param( 'f_supid', [] ) )
 				->allof( $view->param( 'f_attrid', [] ) )
-				->oneof( $view->param( 'f_optid', [] ) )
+				->oneOf( $view->param( 'f_optid', [] ) )
+				->oneOf( $view->param( 'f_oneid', [] ) )
+				->text( $view->param( 'f_search' ) )
 				->slice( 0, $limit )->sort();
-
-			foreach( $view->param( 'f_oneid', [] ) as $type => $list ) {
-				$cntl->oneof( $list );
-			}
 
 			$view->treeCountList = $cntl->aggregate( 'index.catalog.id' );
 

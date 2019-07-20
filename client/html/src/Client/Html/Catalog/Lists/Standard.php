@@ -645,10 +645,11 @@ class Standard
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
 
 		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+			->category( $catids, 'default', $level )
+			->supplier( $view->param( 'f_supid', [] ) )
 			->allOf( $view->param( 'f_attrid', [] ) )
 			->oneOf( $view->param( 'f_optid', [] ) )
 			->oneOf( $view->param( 'f_oneid', [] ) )
-			->category( $catids, 'default', $level )
 			->text( $view->param( 'f_search' ) )
 			->slice( ( $page - 1 ) * $size, $size )->sort( $sort )
 			->uses( $domains )
@@ -656,8 +657,7 @@ class Standard
 
 		if( $catids != null )
 		{
-			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' )
-				->uses($domains);
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses($domains);
 			$listCatPath = $controller->getPath( is_array( $catids ) ? reset( $catids ) : $catids );
 
 			if( ( $categoryItem = end( $listCatPath ) ) !== false ) {
