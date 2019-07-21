@@ -6,6 +6,12 @@
  */
 
 
+$target = $this->config( 'client/html/account/index/url/target' );
+$controller = $this->config( 'client/html/account/index/url/controller', 'account' );
+$action = $this->config( 'client/html/account/index/url/action', 'index' );
+$config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' => 1] );
+
+
 ?>
 <?php $this->block()->start( 'email/account/text' ); ?>
 <?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ); ?>
@@ -23,6 +29,9 @@
 <?php else : ?>
 	<?= $this->translate( 'client', 'Password' ); ?>: <?= $this->translate( 'client', 'Like entered by you' ); ?>
 <?php endif; ?>
+
+
+<?= $this->translate( 'client', 'Login' ) ?>: <?= $this->url( $target, $controller, $action, [], [], $config ) ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ); ?>
