@@ -172,7 +172,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 						if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 )
 						{
-							$params = array_diff_key( ['d_name' => $product->getName(), 'd_prodid' => $product->getProductId(), 'd_pos' => ''], $detailFilter );
+							$params = array_diff_key( ['d_name' => $product->getName( 'url' ), 'd_prodid' => $product->getProductId(), 'd_pos' => ''], $detailFilter );
 							$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 						}
 					?>
