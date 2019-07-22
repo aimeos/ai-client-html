@@ -450,7 +450,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$view->emailIntro = $view->translate( 'client/html/email', 'Dear Sir or Madam' );
+			$view->emailIntro = $view->translate( 'client', 'Dear Sir or Madam' );
 		}
 
 		return parent::addData( $view, $tags, $expire );
