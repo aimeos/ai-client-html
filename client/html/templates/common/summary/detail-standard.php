@@ -183,6 +183,10 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						<span class="value"><?= $product->getProductCode(); ?></span>
 					</p>
 
+					<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>
+						<p class="product-description"><?= $enc->html( $desc ); ?></p>
+					<?php endif ?>
+
 					<?php foreach( $attrTypes as $attrType ) : ?>
 						<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
 							<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>

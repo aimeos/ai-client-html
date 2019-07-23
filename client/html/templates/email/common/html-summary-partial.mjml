@@ -232,6 +232,9 @@
 							<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ); ?>: </span>
 							<span class="value"><?= $product->getProductCode(); ?></span>
 						</p>
+						<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>
+							<p class="product-description"><?= $enc->html( $desc ); ?></p>
+						<?php endif ?>
 						<?php foreach( $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant', 'config', 'custom'] ) as $attrType ) : ?>
 							<?php if( ( $attributes = $product->getAttributeItems( $attrType ) ) !== [] ) : ?>
 								<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
