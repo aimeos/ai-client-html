@@ -11,7 +11,6 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
-$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 $product = $this->extOrderProductItem;
 $priceFormat = $this->translate( 'client/code', 'price:default' );
@@ -62,7 +61,7 @@ $priceFormat = $this->translate( 'client/code', 'price:default' );
 								<?php endif; ?>
 							</td>
 							<td class="name">
-								<?php $params = array_diff_key( array_merge( $this->param(), ['currency' => $product->getPrice()->getCurrencyId(), 'd_name' => $product->getName( 'url' ), 'd_prodid' => $product->getProductId(), 'd_pos' => ''] ), $detailFilter ); ?>
+								<?php $params = array_merge( $this->param(), ['currency' => $product->getPrice()->getCurrencyId(), 'd_name' => $product->getName(), 'd_prodid' => $product->getProductId(), 'd_pos' => ''] ); ?>
 								<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 									<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 								</a>
