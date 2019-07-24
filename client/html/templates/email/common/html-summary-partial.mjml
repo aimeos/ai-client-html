@@ -336,7 +336,7 @@
 				<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 					<tr class="footer tax">
 						<td class="status"></td>
-						<td class="label" colspan="2"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ), $this->number( $priceItem->getTaxRate() ), 'tax' . $taxName ) ); ?></td>
+						<td class="label" colspan="2"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ), $this->number( $priceItem->getTaxRate() ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?></td>
 						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) ) ); ?></td>
 					</tr>
 				<?php endif; ?>
