@@ -2511,8 +2511,12 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	vertical-align: top;
 }
 
-.aimeos .common-summary-detail .attr-list-variant li.attr-item {
-	list-style: disc inside none;
+.aimeos .common-summary-detail .attr-list li.attr-item {
+	display: inline;
+}
+
+.aimeos .common-summary-detail .attr-list li.attr-item:not(:last-of-type) .value:after {
+	content: ",";
 }
 
 .aimeos .common-summary-detail .attr-item .name:after {
