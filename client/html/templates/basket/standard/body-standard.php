@@ -123,10 +123,10 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ); ?>
 					</a>
 				<?php else : ?>
-					<a class="btn btn-primary btn-lg btn-action"
-						href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array( 'b_check' => 1 ), [], $basketConfig ) ); ?>">
+					<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1" />
+					<button class="btn btn-primary btn-lg btn-action" type="submit">
 						<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ); ?>
-					</a>
+					</button>
 				<?php endif; ?>
 
 			</div>
