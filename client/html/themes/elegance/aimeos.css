@@ -2058,12 +2058,14 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .basket-standard-coupon .header,
 .basket-standard-coupon .content {
+	vertical-align: middle;
 	display: inline-block;
 	width: 46%;
 }
 
 .basket-standard-coupon .header h2 {
 	font-size: 1em;
+	margin: 10px 0;
 }
 
 .basket-standard-coupon .attr-list {
@@ -2565,9 +2567,9 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	text-align: center;
 }
 
-.aimeos .common-summary-detail tr.delivery td:first-child:after,
-.aimeos .common-summary-detail tr.payment td:first-child:after {
-	content: " +";
+.aimeos .common-summary-detail tr.delivery td:first-child:before,
+.aimeos .common-summary-detail tr.payment td:first-child:before {
+	content: "+ ";
 }
 
 .aimeos .common-summary-detail tfoot {

@@ -360,7 +360,9 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php if( $priceTaxflag === true ) : ?>
 			<tr class="total">
-				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
+				<td colspan="2"></td>
+				<td class="quantity"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ); ?></td>
+				<td><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
@@ -382,7 +384,9 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php if( $priceTaxflag === false ) : ?>
 			<tr class="total">
-				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
+				<td colspan="2"></td>
+				<td class="quantity"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ); ?></td>
+				<td><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
@@ -399,14 +403,6 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				<?php endif; ?>
 			</tr>
 		<?php endif; ?>
-
-		<tr class="quantity">
-			<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Total quantity' ) ); ?></td>
-			<td class="value"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ); ?></td>
-			<?php if( $modify ) : ?>
-				<td class="action"></td>
-			<?php endif; ?>
-		</tr>
 
 	</tfoot>
 

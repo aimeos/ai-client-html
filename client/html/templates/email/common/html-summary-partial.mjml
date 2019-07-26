@@ -215,8 +215,9 @@
 				$detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 				$detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 				$detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+				$totalQty = 0;
 			?>
-			<?php foreach( $this->summaryBasket->getProducts() as $product ) : ?>
+			<?php foreach( $this->summaryBasket->getProducts() as $product ) : $totalQty += $product->getQuantity() ?>
 				<tr class="body product">
 					<td class="status">
 						<?php if( ( $status = $product->getStatus() ) >= 0 ) : $key = 'stat:' . $status ?>
@@ -306,7 +307,8 @@
 			<?php if( $this->summaryBasket->getPrice()->getCosts() > 0 ) : ?>
 				<tr class="footer subtotal">
 					<td class="status"></td>
-					<td class="label" colspan="2"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
+					<td class="label"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
+					<td class="quantity"></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ); ?></td>
 				</tr>
 			<?php endif; ?>
@@ -314,7 +316,8 @@
 			<?php if( ( $costs = $this->get( 'summaryCostsDelivery', 0 ) ) > 0 ) : ?>
 				<tr class="footer delivery">
 					<td class="status"></td>
-					<td class="label" colspan="2"><?= $enc->html( $this->translate( 'client', '+ Shipping' ) ); ?></td>
+					<td class="label"><?= $enc->html( $this->translate( 'client', '+ Shipping' ) ); ?></td>
+					<td class="quantity"></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ); ?></td>
 				</tr>
 			<?php endif; ?>
@@ -322,7 +325,8 @@
 			<?php if( ( $costs = $this->get( 'summaryCostsPayment', 0 ) ) > 0 ) : ?>
 				<tr class="footer payment">
 					<td class="status"></td>
-					<td class="label" colspan="2"><?= $enc->html( $this->translate( 'client', '+ Payment costs' ) ); ?></td>
+					<td class="label"><?= $enc->html( $this->translate( 'client', '+ Payment costs' ) ); ?></td>
+					<td class="quantity"></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ); ?></td>
 				</tr>
 			<?php endif; ?>
@@ -330,7 +334,8 @@
 			<?php if( $this->summaryBasket->getPrice()->getTaxFlag() === true ) : ?>
 				<tr class="footer total">
 					<td class="status"></td>
-					<td class="label" colspan="2"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
+					<td class="label"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
+					<td class="quantity"><?= $enc->html( $totalQty ); ?></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ); ?></td>
 				</tr>
 			<?php endif; ?>
@@ -339,7 +344,8 @@
 				<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 					<tr class="footer tax">
 						<td class="status"></td>
-						<td class="label" colspan="2"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ), $this->number( $priceItem->getTaxRate() ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?></td>
+						<td class="label"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ), $this->number( $priceItem->getTaxRate() ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?></td>
+						<td class="quantity"></td>
 						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) ) ); ?></td>
 					</tr>
 				<?php endif; ?>
@@ -348,7 +354,8 @@
 			<?php if( $this->summaryBasket->getPrice()->getTaxFlag() === false ) : ?>
 				<tr class="footer total">
 					<td class="status"></td>
-					<td class="label" colspan="2"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
+					<td class="label"><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
+					<td class="quantity"><?= $enc->html( $totalQty ); ?></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ); ?></td>
 				</tr>
 			<?php endif; ?>
@@ -356,7 +363,8 @@
 			<?php if( $this->summaryBasket->getPrice()->getRebate() > 0 ) : ?>
 				<tr class="footer rebate">
 					<td class="status"></td>
-					<td class="label" colspan="2"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ); ?></td>
+					<td class="label"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ); ?></td>
+					<td class="quantity"></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getRebate(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ); ?></td>
 				</tr>
 			<?php endif; ?>
