@@ -192,7 +192,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 										<?php if( $attribute->getQuantity() > 1 ) : ?>
 											<?= $enc->html( $attribute->getQuantity() ); ?>×
 										<?php endif; ?>
-										<?= $enc->html( $attribute->getName() ?: $attribute->getValue() ); ?>
+										<?= $enc->html( $attrType !== 'custom' && $attribute->getName() ? $attribute->getName() : $attribute->getValue() ); ?>
 									</span>
 								</li>
 							<?php endforeach; ?>
