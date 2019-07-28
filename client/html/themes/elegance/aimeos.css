@@ -2503,8 +2503,19 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	display: block;
 }
 
-.aimeos .common-summary-detail .code {
-    margin: 0.5em;
+.aimeos .common-summary-detail .code,
+.aimeos .common-summary-detail .timeframe {
+		margin: 0.5em;
+}
+
+.aimeos .common-summary-detail .code .name:after,
+.aimeos .common-summary-detail .timeframe .name:after {
+		content: ":";
+}
+
+.aimeos .common-summary-detail .code,
+.aimeos .common-summary-detail .timeframe {
+		margin: 0.5em;
 }
 
 .aimeos .common-summary-detail .attr-list {

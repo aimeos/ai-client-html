@@ -226,7 +226,7 @@
 					</td>
 					<td class="label">
 						<?php $params = array_merge( $this->param(), ['d_name' => $product->getName(), 'd_prodid' => $product->getProductId(), 'd_pos' => ''] ); ?>
-						<a class="product-label" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
+						<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 							<?= $enc->html( $product->getName(), $enc::TRUST ); ?>
 						</a>
 						<p class="code">
@@ -272,6 +272,12 @@
 								</li>
 							</ul>
 						<?php endif; ?>
+						<?php if( ( $timeframe = $product->getTimeframe() ) !== '' ) : ?>
+							<p class="timeframe">
+								<span class="name"><?= $enc->html( $this->translate( 'client', 'Delivery within' ) ); ?>: </span>
+								<span class="value"><?= $enc->html( $timeframe ); ?></span>
+							</p>
+						<?php endif ?>
 					</td>
 					<td class="quantity">
 						<?= $enc->html( $product->getQuantity() ); ?>

@@ -179,7 +179,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<a class="product-name" href="<?= $enc->attr( $url ); ?>"><?= $enc->html( $product->getName(), $enc::TRUST ); ?></a>
 
 					<p class="code">
-						<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.:' ), $enc::TRUST ); ?></span>
+						<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ); ?></span>
 						<span class="value"><?= $product->getProductCode(); ?></span>
 					</p>
 
@@ -217,6 +217,13 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 							</li>
 						</ul>
 					<?php endif; ?>
+
+					<?php if( ( $timeframe = $product->getTimeframe() ) !== '' ) : ?>
+						<p class="timeframe">
+							<span class="name"><?= $enc->html( $this->translate( 'client', 'Delivery within' ) ); ?></span>
+							<span class="value"><?= $enc->html( $timeframe ); ?></span>
+						</p>
+					<?php endif ?>
 
 				</td>
 

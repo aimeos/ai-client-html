@@ -116,12 +116,13 @@ li.attr-item {
 	max-height: 150px;
 }
 
-.basket .product .product-label {
+.basket .product .product-name {
 	margin: 0.5em 0;
 	display: block;
 }
 
-.basket .product .code {
+.basket .product .code,
+.basket .product .timeframe {
 	margin: 0.5em;
 }
 
