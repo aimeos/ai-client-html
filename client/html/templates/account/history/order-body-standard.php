@@ -13,6 +13,14 @@ $accountController = $this->config( 'client/html/account/history/url/controller'
 $accountAction = $this->config( 'client/html/account/history/url/action', 'history' );
 $accountConfig = $this->config( 'client/html/account/history/url/config', [] );
 
+$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
+$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
+$basketAction = $this->config( 'client/html/basket/standard/url/action', 'standard' );
+$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
+$basketSite = $this->config( 'client/html/basket/standard/url/site' );
+
+$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
+
 $addresses = $this->summaryBasket->getAddresses();
 $services = $this->summaryBasket->getServices();
 
@@ -188,12 +196,52 @@ $services = $this->summaryBasket->getServices();
 	</div>
 
 
-	<div class="button-group">
-		<a class="btn btn-primary btn-close"
-			href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
-			<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ); ?>
-		</a>
-	</div>
+	<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ) ?>">
+		<?= $this->csrf()->formfield(); ?>
+
+		<?php if( $basketSite ) : ?>
+			<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
+		<?php endif ?>
+
+		<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
+
+		<?php foreach( $this->summaryBasket->getProducts() as $pos => $orderProduct ) : ?>
+			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'prodid'] ) ); ?>" value="<?= $enc->attr( $orderProduct->getProductId() ) ?>" />
+			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'quantity'] ) ); ?>" value="<?= $enc->attr( $orderProduct->getQuantity() ) ?>" />
+
+			<?php foreach( $orderProduct->getAttributeItems( 'variant' ) as $attrItem ) : ?>
+				<input type="hidden" value="<?= $enc->attr( $attrItem->getAttributeId() ); ?>"
+					name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'attrvarid', $attrItem->getCode()] ) ); ?>"
+				/>
+			<?php endforeach ?>
+
+			<?php foreach( $orderProduct->getAttributeItems( 'custom' ) as $attrItem ) : ?>
+				<input type="hidden" value="<?= $enc->attr( $attrItem->getValue() ); ?>"
+					name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'attrcustid', $attrItem->getAttributeId()] ) ); ?>"
+				/>
+			<?php endforeach ?>
+
+			<?php foreach( $orderProduct->getAttributeItems( 'config' ) as $attrItem ) : ?>
+				<input type="hidden" value="<?= $enc->attr( $attrItem->getAttributeId() ); ?>"
+					name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'attrconfid', 'id', ''] ) ); ?>"
+				/>
+				<input type="hidden" value="<?= $enc->attr( $attrItem->getQuantity() ); ?>"
+					name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'attrconfid', 'qty', ''] ) ); ?>"
+				/>
+			<?php endforeach ?>
+		<?php endforeach ?>
+
+		<div class="button-group">
+			<a class="btn btn-default btn-close"
+				href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
+				<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ); ?>
+			</a>
+			<button class="btn btn-primary btn-action">
+				<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+			</button>
+		</div>
+	</form>
+
 </div>
 <?php $this->block()->stop(); ?>
 <?= $this->block()->get( 'account/history/order' ); ?>
