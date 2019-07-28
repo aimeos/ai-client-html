@@ -117,7 +117,7 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', array( 'ab
  * @category Developer
  * @since 2014.09
  */
-$attrTypes = $this->config( 'client/html/common/summary/detail/product/attribute/types', array( 'variant' ) );
+$attrTypes = $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant', 'config', 'custom'] );
 
 
 $price = $this->summaryBasket->getPrice();
@@ -188,49 +188,22 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<?php endif ?>
 
 					<?php foreach( $attrTypes as $attrType ) : ?>
-						<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
-							<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
-								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
-									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
-									<span class="value">
-										<?php if( $attribute->getQuantity() > 1 ) : ?>
-											<?= $enc->html( $attribute->getQuantity() ); ?>×
-										<?php endif; ?>
-										<?= $enc->html( $attrType !== 'custom' && $attribute->getName() ? $attribute->getName() : $attribute->getValue() ); ?>
-									</span>
-								</li>
-							<?php endforeach; ?>
-						</ul>
+						<?php if( ( $attributes = $product->getAttributeItems( $attrType ) ) !== [] ) : ?>
+							<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
+								<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
+									<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
+										<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
+										<span class="value">
+											<?php if( $attribute->getQuantity() > 1 ) : ?>
+												<?= $enc->html( $attribute->getQuantity() ); ?>×
+											<?php endif; ?>
+											<?= $enc->html( $attrType !== 'custom' && $attribute->getName() ? $attribute->getName() : $attribute->getValue() ); ?>
+										</span>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
 					<?php endforeach; ?>
-
-
-					<?php if( ( $attributes = $product->getAttributeItems( 'config' ) ) !== [] ) : ?>
-						<ul class="attr-list attr-list-config">
-
-							<?php foreach( $attributes as $attribute ) : ?>
-								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
-									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
-									<span class="value"><?= $enc->html( $attribute->getName() ?: $attribute->getValue() ); ?></span>
-								</li>
-							<?php endforeach; ?>
-
-						</ul>
-					<?php endif; ?>
-
-
-					<?php if( ( $attributes = $product->getAttributeItems( 'custom' ) ) !== [] ) : ?>
-						<ul class="attr-list attr-list-custom">
-
-							<?php foreach( $attributes as $attribute ) : ?>
-								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
-									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></span>
-									<span class="value"><?= $enc->html( $attribute->getValue() ); ?></span>
-								</li>
-							<?php endforeach; ?>
-
-						</ul>
-					<?php endif; ?>
-
 
 					<?php if( $unhide && ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) !== null ) : ?>
 						<ul class="attr-list attr-list-hidden">
