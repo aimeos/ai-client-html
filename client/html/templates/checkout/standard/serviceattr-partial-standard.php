@@ -88,14 +88,14 @@ $orderService = $this->get( 'orderService' );
 
 					<div class="form-item-value col-md-7">
 						<?php $checked = 'checked="checked"'; ?>
-						<?php foreach( $attribute->getDefault() as $code => $name ) : ?>
-							<input class="form-control" type="radio" id="<?= $enc->attr( $type . '-' . $key . '-' . $code ); ?>"
+						<?php foreach( $attribute->getDefault() as $val => $code ) : ?>
+							<input class="form-control" type="radio" id="<?= $enc->attr( $type . '-' . $key . '-' . $val ); ?>"
 								name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
-								selected="<?= ( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) === $code ? 'selected' : '' ); ?>"
-								value="<?= $code ?>" <?= $checked; ?>
+								selected="<?= ( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) === $val ? 'selected' : '' ); ?>"
+								value="<?= $val ?>" <?= $checked; ?>
 							/>
-							<label for="<?= $enc->attr( $type . '-' . $key . '-' . $code ); ?>" class="attr-list-item">
-								<?= nl2br( $enc->html( $name ) ); ?>
+							<label for="<?= $enc->attr( $type . '-' . $key . '-' . $val ); ?>" class="attr-list-item">
+								<?= nl2br( $enc->html( $this->translate( 'client/code', $code ) ) ); ?>
 							</label>
 							<?php $checked = ''; ?>
 						<?php endforeach; ?>
