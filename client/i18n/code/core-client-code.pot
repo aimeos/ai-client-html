@@ -151,3 +151,7 @@ msgstr "Pick-up location"
 #. Pick-up location
 msgid "supplier.address"
 msgstr "Pick-up address"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "Delivery type"
