@@ -1244,7 +1244,7 @@ AimeosCatalogList = {
 					
 					$.ajax({
 						url: infiniteUrl
-					}).then( function( response ) {             
+					}).done( function( response ) {             
 						var nextPage = $( response );
 						nextPage.find('.catalog-list-items ul li').each( function() {
 							$('.catalog-list-items ul').append(this);
@@ -1252,6 +1252,8 @@ AimeosCatalogList = {
 						var nextUrl = nextPage.find('.catalog-list-items').data( 'infinite-url' );
 						$('.catalog-list-items').data('infinite-url', nextUrl);
 						$(window).trigger('scroll');
+					}).fail( function() {
+						$('.catalog-list-items').data('infinite-url', infiniteUrl);
 					});
 				}
 			});

@@ -39,13 +39,13 @@ $listParams = $this->get( 'listParams', [] );
  * If set to true, products from the next page are loaded via XHR request
  * and added to the product list when the user reaches the list bottom.
  *
- * @param boolean True to use infinite scrolling, false to fisable it
- * @since 2018.10
+ * @param boolean True to use infinite scrolling, false to disable it
+ * @since 2019.10
  * @category Developer
  */
 $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
 
-$infiniteUrl = ( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ) ? $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext' ) ) + $listParams, [], $listConfig + array( 'absoluteUri' => true ) ) : '';
+$infiniteUrl = ( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ) ? $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext' ) ) + $listParams, [], $listConfig ) : '';
 ?>
 <?php $this->block()->start( 'catalog/lists/items' ); ?>
 <div class="catalog-list-items" data-infinite-url="<?= $infiniteUrl ?>">
