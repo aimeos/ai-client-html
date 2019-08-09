@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<div class="catalog-list-items">', $output );
+		$this->assertStringStartsWith( '<div class="catalog-list-items"', $output );
 
 		$this->assertContains( '<div class="price-item', $output );
 		$this->assertContains( '<span class="quantity"', $output );
