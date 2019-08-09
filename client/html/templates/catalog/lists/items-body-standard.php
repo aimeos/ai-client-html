@@ -27,11 +27,28 @@ $enc = $this->encoder();
  * @category User
  * @see client/html/catalog/domains
  */
+$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
+$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
+$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
+$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
+$listParams = $this->get( 'listParams', [] );
 
+/** client/html/catalog/lists/infinite-scroll
+ * Enables infinite scrolling in product catalog list
+ *
+ * If set to true, products from the next page are loaded via XHR request
+ * and added to the product list when the user reaches the list bottom.
+ *
+ * @param boolean True to use infinite scrolling, false to disable it
+ * @since 2019.10
+ * @category Developer
+ */
+$infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
 
+$infiniteUrl = ( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ) ? $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext' ) ) + $listParams, [], $listConfig ) : '';
 ?>
 <?php $this->block()->start( 'catalog/lists/items' ); ?>
-<div class="catalog-list-items">
+<div class="catalog-list-items" data-infinite-url="<?= $infiniteUrl ?>">
 
 	<?= $this->partial(
 		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard.php' ),
