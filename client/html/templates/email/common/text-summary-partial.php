@@ -201,7 +201,7 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	endif; ?>
 <?php endforeach; ?>
 <?php if( $this->summaryBasket->getPrice()->getTaxFlag() === false ) : ?>
-<?php	echo strip_tags( $this->translate( 'client', 'Total' ) ); ?>: <?php printf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue, $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
+<?php	echo strip_tags( $this->translate( 'client', 'Total' ) ); ?>: <?php printf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
 
 <?php endif; ?>
 <?php if( $this->summaryBasket->getPrice()->getRebate() > 0 ) : ?>
