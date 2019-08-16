@@ -42,10 +42,6 @@ msgstr "%1$s %2$s"
 msgid "stocktype:default"
 msgstr " "
 
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr " "
-
 #. Favorite action
 msgid "favorite"
 msgstr "favorite"

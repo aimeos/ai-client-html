@@ -19,7 +19,7 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "tax"
+msgstr "VAT"
 
 #. PST tax name
 msgid "taxpst"
@@ -131,10 +131,6 @@ msgstr "Pick-up location"
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "Pick-up time"
-
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr " "
 
 #. Watch action
 msgid "watch"
