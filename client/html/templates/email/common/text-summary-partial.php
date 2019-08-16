@@ -196,7 +196,7 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $priceItem ) : ?>
 <?php	if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 <?php		$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ) ); ?>
-<?php		echo strip_tags( sprintf( $taxFormat, $this->number( $priceItem->getTaxRate() ), 'tax' . $taxName ) ); ?>: <?php printf( $priceFormat, $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
+<?php		echo strip_tags( sprintf( $taxFormat, $this->number( $priceItem->getTaxRate() ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?>: <?php printf( $priceFormat, $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
 
 <?php	endif; ?>
 <?php endforeach; ?>
