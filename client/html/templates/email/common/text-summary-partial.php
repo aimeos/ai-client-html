@@ -158,7 +158,7 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?=		strip_tags( $this->translate( 'client', 'Price' ) ); ?>: <?php printf( $priceFormat, $this->number( $priceItem->getValue() * $product->getQuantity(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
 
 <?php	if( ( $status = $product->getStatus() ) >= 0 ) : $key = 'stat:' . $status ?>
-<?=			strip_tags( $this->translate( 'client', 'Status' ) ); ?>: $this->translate( 'mshop/code', $key ); ?>
+<?=			strip_tags( $this->translate( 'client', 'Status' ) ); ?>: <?= strip_tags( $this->translate( 'mshop/code', $key ) ); ?>
 <?php	endif; ?>
 <?php endforeach; ?>
 
