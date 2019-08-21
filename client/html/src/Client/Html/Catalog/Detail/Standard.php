@@ -482,13 +482,31 @@ class Standard
 		 * @since 2016.01
 		 * @category User
 		 * @category Developer
+		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/catid-default
 		 */
-		$prodId = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
-		$name = $view->param( 'd_name' );
+		$id = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
 
+		/** client/html/catalog/detail/prodcode-default
+		 * The default product code used if none is given as parameter
+		 *
+		 * To display a product detail view or a part of it for a specific
+		 * product, you can configure its code using this setting. This is
+		 * most useful in a CMS where the product code can be configured
+		 * separately for each content node.
+		 *
+		 * @param string Product code
+		 * @since 2019.10
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/lists/catid-default
+		 */
+		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
+
+		$name = $view->param( 'd_name' );
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
-		$productItem = ( $prodId != null ? $cntl->get( $prodId ) : $cntl->resolve( $name ) );
+		$productItem = ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $name ) ) );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
 		$products = $productItem->getRefItems( 'product' );
