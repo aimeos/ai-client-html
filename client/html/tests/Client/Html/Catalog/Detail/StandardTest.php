@@ -154,6 +154,26 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testGetBodyDefaultCode()
+	{
+		$context = clone $this->context;
+		$context->getConfig()->set( 'client/html/catalog/detail/prodcode-default', 'CNE' );
+
+		$paths = \TestHelperHtml::getHtmlTemplatePaths();
+		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $context, $paths );
+		$this->object->setView( \TestHelperHtml::getView() );
+
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->setView( $this->object->addData( $view ) );
+		$output = $this->object->getBody();
+
+		$this->assertContains( '<span class="value" itemprop="sku">CNE</span>', $output );
+	}
+
+
 	public function testGetBodyCsrf()
 	{
 		$view = $this->object->getView();
