@@ -158,7 +158,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<?php if( ( $mediaItem = current( $productItem->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
 						<noscript>
 							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
-								<img loading="lazy" src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+								<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
 							</div>
 						</noscript>
@@ -171,7 +171,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 								}
 							?>
 							<div class="media-item">
-								<img loading="lazy" class="lazy-image" data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" data-srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+								<img class="lazy-image" data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" data-srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
 							</div>
 						<?php endforeach; ?>
 					<?php endif; ?>
