@@ -265,8 +265,7 @@ class Standard
 
 				if( $pos > 0 && ( $product = reset( $products ) ) !== false )
 				{
-					$segment = \Aimeos\MW\Common\Base::sanitize( $enc->url( $product->getName( 'url ' ) ) );
-					$param = ['d_pos' => $pos - 1, 'd_name' => $segment];
+					$param = ['d_pos' => $pos - 1, 'd_name' => $product->getName( 'url ' )];
 					$prodid == false ?: $params['d_prodid'] = $product->getId();
 
 					$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
@@ -274,8 +273,7 @@ class Standard
 
 				if( ( $pos === 0 || $count === 3 ) && ( $product = end( $products ) ) !== false )
 				{
-					$segment = \Aimeos\MW\Common\Base::sanitize( $enc->url( $product->getName( 'url ' ) ) );
-					$param = ['d_pos' => $pos + 1, 'd_name' => $segment];
+					$param = ['d_pos' => $pos + 1, 'd_name' => $product->getName( 'url ' )];
 					$prodid == false ?: $params['d_prodid'] = $product->getId();
 
 					$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
