@@ -11,6 +11,7 @@ namespace Aimeos\Client\Html\Catalog\Detail\Supplier;
 
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
+	private $context;
 	private $object;
 
 
@@ -19,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 
-		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Supplier\Standard( $this->context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Supplier\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
