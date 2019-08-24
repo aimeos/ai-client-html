@@ -520,6 +520,9 @@ if( isset( $this->detailProductItem ) )
 
 				<?php endif; ?>
 
+
+				<?= $this->block()->get( 'catalog/detail/supplier' ); ?>
+
 			</div>
 
 		</article>

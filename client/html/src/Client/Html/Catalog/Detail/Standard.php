@@ -78,7 +78,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'service', 'seen' );
+	private $subPartNames = ['seen', 'service', 'supplier'];
 
 	private $tags = [];
 	private $expire;
