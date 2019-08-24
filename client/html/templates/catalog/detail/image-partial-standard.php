@@ -42,16 +42,15 @@ $mediaItems = $this->get( 'mediaItems', [] );
 
 		<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 			<?php
-				$srcset = $sources = [];
+				$sources = [];
 				foreach( $mediaItem->getPreviews() as $type => $path ) {
-					$srcset[] = $this->content( $path ) . ' ' . $type . 'w';
 					$sources[$type] = $this->content( $path );
 				}
 			?>
 			<div class="media-item">
 				<img id="image-<?= $enc->attr( $id ); ?>" class="item"
-					srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>"
 					src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+					srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 					itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
 					data-image="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 					data-sources="<?= $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) ?>"

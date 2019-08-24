@@ -164,14 +164,12 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						</noscript>
 
 						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-							<?php
-								$srcset = [];
-								foreach( $mediaItem->getPreviews() as $type => $path ) {
-									$srcset[] = $this->content( $path ) . ' ' . $type . 'w';
-								}
-							?>
 							<div class="media-item">
-								<img class="lazy-image" data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" data-srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+								<img class="lazy-image"
+									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
+									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+									alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
+								/>
 							</div>
 						<?php endforeach; ?>
 					<?php endif; ?>

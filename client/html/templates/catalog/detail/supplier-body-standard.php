@@ -18,14 +18,12 @@ $items = $this->get( 'supplierItems', [] );
 		<div class="supplier-item">
 
 			<?php if( ( $mediaItem = current( $item->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
-				<?php
-					$srcset = [];
-					foreach( $mediaItem->getPreviews() as $type => $path ) {
-						$srcset[] = $this->content( $path ) . ' ' . $type . 'w';
-					}
-				?>
 				<div class="media-item">
-					<img class="lazy-image" data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" data-srcset="<?= $enc->attr( join( ', ', $srcset ) ) ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+					<img class="lazy-image"
+						data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
+						data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+						alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
+					/>
 				</div>
 			<?php endif; ?>
 
