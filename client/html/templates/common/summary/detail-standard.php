@@ -143,7 +143,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<thead>
 		<tr>
-			<th class="details" colspan="2"></th>
+			<th class="details" colspan="3"></th>
 			<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ), $enc::TRUST ); ?></th>
 			<th class="unitprice"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></th>
 			<th class="price"><?= $enc->html( $this->translate( 'client', 'Sum' ), $enc::TRUST ); ?></th>
@@ -157,6 +157,12 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php foreach( $this->summaryBasket->getProducts() as $position => $product ) : $totalQuantity += $product->getQuantity(); ?>
 			<tr class="product <?= ( isset( $errors['product'][$position] ) ? 'error' : '' ); ?>">
+
+				<td class="status">
+					<?php if( ( $status = $product->getStatus() ) >= 0 ) : $key = 'stat:' . $status ?>
+						<?= $enc->html( $this->translate( 'mshop/code', $key ) ); ?>
+					<?php endif; ?>
+				</td>
 
 				<td class="image">
 					<?php if( ( $url = $product->getMediaUrl() ) != '' ) : ?>
@@ -229,7 +235,9 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 
 				<td class="quantity">
+
 					<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+
 						<?php if( $product->getQuantity() > 1 ) : ?>
 							<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ); ?>
 							<a class="minibutton change" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">−</a>
@@ -276,7 +284,13 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			<?php if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
 				<?php $price = $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ); ?>
 				<tr class="delivery">
-					<td class="details" colspan="2"><?= $enc->html( $service->getName() ); ?></td>
+					<td class="status"></td>
+					<td class="image">
+						<?php if( ( $url = $service->getMediaUrl() ) != '' ) : ?>
+							<img class="detail" src="<?= $enc->attr( $this->content( $url ) ); ?>" />
+						<?php endif; ?>
+					</td>
+					<td class="details"><?= $enc->html( $service->getName() ); ?></td>
 					<td class="quantity">1</td>
 					<td class="unitprice"><?= $price ?></td>
 					<td class="price"><?= $price ?></td>
@@ -292,7 +306,13 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			<?php if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
 				<?php $price = $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ); ?>
 				<tr class="payment">
-					<td class="details" colspan="2"><?= $enc->html( $service->getName() ); ?></td>
+					<td class="status"></td>
+					<td class="image">
+						<?php if( ( $url = $service->getMediaUrl() ) != '' ) : ?>
+							<img class="detail" src="<?= $enc->attr( $this->content( $url ) ); ?>" />
+						<?php endif; ?>
+					</td>
+					<td class="details"><?= $enc->html( $service->getName() ); ?></td>
 					<td class="quantity">1</td>
 					<td class="unitprice"><?= $price ?></td>
 					<td class="price"><?= $price ?></td>
@@ -310,7 +330,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php if( $this->summaryBasket->getPrice()->getCosts() > 0 ) : ?>
 			<tr class="subtotal">
-				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
+				<td colspan="5"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue(), $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
@@ -320,7 +340,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php if( ( $costs = $this->get( 'summaryCostsDelivery', 0 ) ) > 0 ) : ?>
 			<tr class="delivery">
-				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Shipping' ) ); ?></td>
+				<td colspan="5"><?= $enc->html( $this->translate( 'client', 'Shipping' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
@@ -330,7 +350,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php if( ( $costs = $this->get( 'summaryCostsPayment', 0 ) ) > 0 ) : ?>
 			<tr class="payment">
-				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Payment costs' ) ); ?></td>
+				<td colspan="5"><?= $enc->html( $this->translate( 'client', 'Payment costs' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
@@ -340,7 +360,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php if( $priceTaxflag === true ) : ?>
 			<tr class="total">
-				<td colspan="2"></td>
+				<td colspan="3"></td>
 				<td class="quantity"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ); ?></td>
 				<td><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ); ?></td>
@@ -353,7 +373,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $priceItem ) : ?>
 			<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 				<tr class="tax">
-					<td colspan="4"><?= $enc->html( sprintf( $priceTaxflag ? $taxFormatIncl : $taxFormatExcl, $this->number( $priceItem->getTaxRate() ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?></td>
+					<td colspan="5"><?= $enc->html( sprintf( $priceTaxflag ? $taxFormatIncl : $taxFormatExcl, $this->number( $priceItem->getTaxRate() ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?></td>
 					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $precision ), $priceCurrency ) ); ?></td>
 					<?php if( $modify ) : ?>
 						<td class="action"></td>
@@ -364,7 +384,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php if( $priceTaxflag === false ) : ?>
 			<tr class="total">
-				<td colspan="2"></td>
+				<td colspan="3"></td>
 				<td class="quantity"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ); ?></td>
 				<td><?= $enc->html( $this->translate( 'client', 'Total' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $precision ), $priceCurrency ) ); ?></td>
@@ -376,7 +396,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 		<?php if( $this->summaryBasket->getPrice()->getRebate() > 0 ) : ?>
 			<tr class="rebate">
-				<td colspan="4"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ); ?></td>
+				<td colspan="5"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getRebate(), $precision ), $priceCurrency ) ); ?></td>
 				<?php if( $modify ) : ?>
 					<td class="action"></td>
