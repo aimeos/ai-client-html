@@ -6,4 +6,4 @@
  */
 
 ?>
-<?= $this->get( 'massHeader' );
+<?= $this->get( 'bulkHeader' );

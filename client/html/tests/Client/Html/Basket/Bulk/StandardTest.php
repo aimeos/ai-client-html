@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\Client\Html\Basket\Mass;
+namespace Aimeos\Client\Html\Basket\Bulk;
 
 
 class StandardTest extends \PHPUnit\Framework\TestCase
@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$this->object = new \Aimeos\Client\Html\Basket\Mass\Standard( $this->context );
+		$this->object = new \Aimeos\Client\Html\Basket\Bulk\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderException()
 	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Mass\Standard::class )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Bulk\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -55,13 +55,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$this->assertContains( '<section class="aimeos basket-mass"', $this->object->getBody() );
+		$this->assertContains( '<section class="aimeos basket-bulk"', $this->object->getBody() );
 	}
 
 
 	public function testGetBodyHtmlException()
 	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Mass\Standard::class )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Bulk\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyFrontendException()
 	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Mass\Standard::class )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Bulk\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyMShopException()
 	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Mass\Standard::class )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Bulk\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();

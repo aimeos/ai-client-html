@@ -8,11 +8,11 @@
  */
 
 
-namespace Aimeos\Client\Html\Basket\Mass;
+namespace Aimeos\Client\Html\Basket\Bulk;
 
 
 /**
- * Factory for mass order HTML clients.
+ * Factory for bulk order HTML clients.
  *
  * @package Client
  * @subpackage Html
@@ -22,7 +22,7 @@ class Factory
 	implements \Aimeos\Client\Html\Common\Factory\Iface
 {
 	/**
-	 * Creates a mass order client object.
+	 * Creates a bulk order client object.
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Shop context instance with necessary objects
 	 * @param string|null $name Client name (default: "Standard")
@@ -31,8 +31,8 @@ class Factory
 	 */
 	public static function create( \Aimeos\MShop\Context\Item\Iface $context, $name = null )
 	{
-		/** client/html/basket/mass/name
-		 * Class name of the used mass order client implementation
+		/** client/html/basket/bulk/name
+		 * Class name of the used bulk order client implementation
 		 *
 		 * Each default HTML client can be replace by an alternative imlementation.
 		 * To use this implementation, you have to set the last part of the class
@@ -41,15 +41,15 @@ class Factory
 		 *
 		 * For example, if the name of the default class is
 		 *
-		 *  \Aimeos\Client\Html\Basket\Mass\Standard
+		 *  \Aimeos\Client\Html\Basket\Bulk\Standard
 		 *
 		 * and you want to replace it with your own version named
 		 *
-		 *  \Aimeos\Client\Html\Basket\Mass\Myorder
+		 *  \Aimeos\Client\Html\Basket\Bulk\Myorder
 		 *
 		 * then you have to set the this configuration option:
 		 *
-		 *  client/html/basket/mass/name = Myorder
+		 *  client/html/basket/bulk/name = Myorder
 		 *
 		 * The value is the last part of your own class name and it's case sensitive,
 		 * so take care that the configuration value is exactly named like the last
@@ -65,20 +65,20 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'client/html/basket/mass/name', 'Standard' );
+			$name = $context->getConfig()->get( 'client/html/basket/bulk/name', 'Standard' );
 		}
 
 		if( ctype_alnum( $name ) === false )
 		{
-			$classname = is_string( $name ) ? '\\Aimeos\\Client\\Html\\Basket\\Mass\\' . $name : '<not a string>';
+			$classname = is_string( $name ) ? '\\Aimeos\\Client\\Html\\Basket\\Bulk\\' . $name : '<not a string>';
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
 		}
 
 		$iface = '\\Aimeos\\Client\\Html\\Iface';
-		$classname = '\\Aimeos\\Client\\Html\\Basket\\Mass\\' . $name;
+		$classname = '\\Aimeos\\Client\\Html\\Basket\\Bulk\\' . $name;
 
 		$client = self::createClient( $context, $classname, $iface );
-		$client = self::addClientDecorators( $context, $client, 'basket/mass' );
+		$client = self::addClientDecorators( $context, $client, 'basket/bulk' );
 
 		return $client->setObject( $client );
 	}

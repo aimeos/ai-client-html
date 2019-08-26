@@ -22,20 +22,20 @@ $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos basket-mass" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $basketParams, [], $jsonConfig ) ); ?>">
+<section class="aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $basketParams, [], $jsonConfig ) ); ?>">
 
-	<?php if( isset( $this->massErrorList ) ) : ?>
+	<?php if( isset( $this->bulkErrorList ) ) : ?>
 		<ul class="error-list">
-			<?php foreach( (array) $this->massErrorList as $errmsg ) : ?>
+			<?php foreach( (array) $this->bulkErrorList as $errmsg ) : ?>
 				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
 
-	<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
-		<!-- basket.mass.csrf -->
+	<form class="container" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
+		<!-- basket.bulk.csrf -->
 		<?= $this->csrf()->formfield(); ?>
-		<!-- basket.mass.csrf -->
+		<!-- basket.bulk.csrf -->
 
 		<?php if( $basketSite ) : ?>
 			<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
@@ -46,8 +46,9 @@ $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 		<table class="table table-striped">
 			<thead>
 				<tr class="header">
-					<th><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></th>
-					<th><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></th>
+					<th class="product"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></th>
+					<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></th>
+					<th class="buttons"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,12 +65,12 @@ $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 							min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
 						/>
 					</td>
+					<td class="buttons">
+						<button class="btn act-add" type="button" value="" tabindex="1"></button>
+					</td>
 				</tr>
 			</tbody>
 			<tfoot>
-				<tr class="buttons">
-					<button class="btn btn-primary act-add" type="button" value="" tabindex="1"></button>
-				</tr>
 				<tr class="details prototype">
 					<td class="product">
 						<input type="hidden"
@@ -83,6 +84,9 @@ $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 							name="<?= $enc->attr( $this->formparam( array( 'b_prod', '_idx_', 'quantity' ) ) ); ?>"
 							min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
 						/>
+					</td>
+					<td class="buttons">
+						<button class="btn act-add" type="button" value="" tabindex="1"></button>
 					</td>
 				</tr>
 			</tfoot>
