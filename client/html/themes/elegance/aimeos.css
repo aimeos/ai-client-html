@@ -2109,6 +2109,74 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 
+/* Basket bulk order */
+
+.basket-bulk thead tr th {
+	vertical-align: middle;
+}
+
+.basket-bulk table th.quantity,
+.basket-bulk table th.price {
+	text-align: center;
+}
+
+.basket-bulk table th.product,
+.basket-bulk table td.product {
+	width: 50%;
+}
+
+.basket-bulk table th.quantity {
+	text-align: center;
+	width: 15%;
+}
+
+.basket-bulk table td.quantity {
+	width: 15%;
+}
+
+.basket-bulk table td.quantity input {
+	text-align: right;
+}
+
+.basket-bulk table th.price {
+	text-align: center;
+	width: 25%;
+}
+
+.basket-bulk table td.price {
+	text-align: right;
+	width: 25%;
+}
+
+.basket-bulk table th.buttons,
+.basket-bulk table td.buttons {
+	vertical-align: middle;
+	text-align: center;
+	width: 10%;
+}
+
+.basket-bulk .minibutton {
+	color: #ba9a5a;
+	padding: 0 0.5em;
+	line-height: 1;
+	width: 2em;
+}
+
+.basket-bulk .minibutton.add:after {
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: 100%;
+	content: "\f067";
+	display: inline-block;
+}
+
+.basket-bulk .minibutton.delete:after {
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: 125%;
+	content: "\f014";
+	display: inline-block;
+}
+
+
 /* Checkout */
 .checkout-standard .steps {
 	font-weight: bold;

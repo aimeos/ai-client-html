@@ -21,6 +21,9 @@ $jsonAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
+$rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
+
+
 ?>
 <section class="aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $basketParams, [], $jsonConfig ) ); ?>">
 
@@ -31,6 +34,8 @@ $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
+
+	<h1><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ); ?></h1>
 
 	<form class="container" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
 		<!-- basket.bulk.csrf -->
@@ -48,45 +53,49 @@ $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<tr class="header">
 					<th class="product"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></th>
 					<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></th>
-					<th class="buttons"></th>
+					<th class="price"><?= $enc->html( $this->translate( 'client', 'Price' ) ) ?></th>
+					<th class="buttons"><a href="#" class="btn minibutton add"></a></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="details">
-					<td class="product">
-						<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>" />
-						<input type="text" class="form-control" tabindex="1"
-							name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'code' ) ) ); ?>"
-						/>
-					</td>
-					<td class="quantity">
-						<input type="number" class="form-control" tabindex="1"
-							name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
-							min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
-						/>
-					</td>
-					<td class="buttons">
-						<button class="btn act-add" type="button" value="" tabindex="1"></button>
-					</td>
-				</tr>
+				<?php for( $idx = 0; $idx < $rows; $idx++ ) : ?>
+					<tr class="details">
+						<td class="product">
+							<input type="hidden" class="productid"
+								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'prodid'] ) ); ?>"
+							/>
+							<input type="text" class="form-control search" tabindex="1" />
+						</td>
+						<td class="quantity">
+							<input type="number" class="form-control" tabindex="1"
+								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'quantity'] ) ); ?>"
+								min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
+							/>
+						</td>
+						<td class="price"></td>
+						<td class="buttons">
+							<a href="#" class="btn minibutton delete"></a>
+						</td>
+					</tr>
+				<?php endfor ?>
 			</tbody>
 			<tfoot>
-				<tr class="details prototype">
+			<tr class="details prototype">
 					<td class="product">
-						<input type="hidden"
-							name="<?= $enc->attr( $this->formparam( array( 'b_prod', '_idx_', 'prodid' ) ) ); ?>" />
-						<input type="text" class="form-control" tabindex="1"
-							name="<?= $enc->attr( $this->formparam( array( 'b_prod', '_idx_', 'code' ) ) ); ?>"
+						<input type="hidden" class="productid" disabled="disabled"
+							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'prodid'] ) ); ?>"
 						/>
+						<input type="text" class="form-control search" tabindex="1" disabled="disabled" />
 					</td>
 					<td class="quantity">
-						<input type="number" class="form-control" tabindex="1"
-							name="<?= $enc->attr( $this->formparam( array( 'b_prod', '_idx_', 'quantity' ) ) ); ?>"
+						<input type="number" class="form-control" tabindex="1" disabled="disabled"
+							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'quantity'] ) ); ?>"
 							min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
 						/>
 					</td>
+					<td class="price"></td>
 					<td class="buttons">
-						<button class="btn act-add" type="button" value="" tabindex="1"></button>
+						<a href="#" class="btn minibutton delete"></a>
 					</td>
 				</tr>
 			</tfoot>
