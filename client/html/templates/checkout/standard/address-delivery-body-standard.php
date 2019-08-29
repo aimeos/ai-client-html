@@ -34,7 +34,7 @@ $action = $this->config( 'client/html/checkout/standard/url/action', 'index' );
 $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 
 $addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
-$addrArray = ( $address = current( $addresses ) ? $address->toArray() : [] );
+$addrArray = ( $address = current( $addresses ) ) ? $address->toArray() : [];
 
 
 $deliveryDefault = ( $addrArray === [] ? -1 : 'null' );
