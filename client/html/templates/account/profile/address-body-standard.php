@@ -1047,7 +1047,7 @@ $states = $this->get( 'addressStates', [] );
 
 
 		<div class="button-group">
-			<button class="btn btn-primary btn-save">
+			<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ); ?>" >
 				<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ); ?>
 			</button>
 		</div>
