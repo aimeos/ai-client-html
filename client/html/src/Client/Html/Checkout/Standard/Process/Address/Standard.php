@@ -179,7 +179,8 @@ class Standard
 			if( $context->getUserId() != null )
 			{
 				$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
-				$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+				$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
+				$addresses = $basket->getAddress( $type );
 
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 				$item = $cntl->uses( ['customer/address'] )->get();
@@ -190,7 +191,7 @@ class Standard
 					{
 						$addrItem = $cntl->createAddressItem( $address->toArray() );
 						$cntl->addAddressItem( $addrItem )->store();
-						$basket->addAddress( $address->setAddressId( $addrItem->getId() ), $pos );
+						$basket->addAddress( $address->setAddressId( $addrItem->getId() ), $type, $pos );
 					}
 				}
 			}
