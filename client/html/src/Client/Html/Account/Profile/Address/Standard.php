@@ -196,8 +196,12 @@ class Standard
 	public function process()
 	{
 		$view = $this->getView();
-		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
 
+		if( $view->param( 'address/save' ) != 1 ) {
+			return parent::process();
+		}
+
+		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
 		$addrItems = $cntl->uses( ['customer/address'] )->get()->getAddressItems();
 		$cntl->add( $view->param( 'address/payment', [] ) );
 		$map = [];
