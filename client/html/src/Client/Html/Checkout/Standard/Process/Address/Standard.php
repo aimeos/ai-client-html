@@ -189,7 +189,7 @@ class Standard
 				{
 					if( $address->getAddressId() == '' )
 					{
-						$addrItem = $cntl->createAddressItem( $address->toArray() );
+						$addrItem = $cntl->createAddressItem()->copyFrom( $address );
 						$cntl->addAddressItem( $addrItem )->store();
 						$basket->addAddress( $address->setAddressId( $addrItem->getId() ), $type, $pos );
 					}
