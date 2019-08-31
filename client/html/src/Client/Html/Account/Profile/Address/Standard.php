@@ -218,13 +218,8 @@ class Standard
 
 		foreach( $map as $pos => $data )
 		{
-			if( !isset( $addrItems[$pos] ) ) {
-				$addrItem = $cntl->createAddressItem()->fromArray( $data );
-			} else {
-				$addrItem = $addrItems[$pos]->fromArray( $data );
-			}
-
-			$cntl->addAddressItem( $addrItem, $pos );
+			$addrItem = ( !isset( $addrItems[$pos] ) ? $cntl->createAddressItem() :  $addrItems[$pos] );
+			$cntl->addAddressItem( $addrItem->fromArray( $data ), $pos );
 			unset( $addrItems[$pos] );
 		}
 
@@ -270,7 +265,6 @@ class Standard
 			$languages[$locale->getLanguageId()] = $locale->getLanguageId();
 		}
 
-		$view->addressCustomer = $cntl->uses( ['customer/address'] )->get();
 		$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
 		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
 		$view->addressSalutations = array( 'company', 'mr', 'mrs' );

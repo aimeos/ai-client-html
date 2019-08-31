@@ -346,7 +346,7 @@ class Standard
 		 * @since 2016.10
 		 * @category Developer
 		 */
-		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', [] );
+		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', ['customer/address'] );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$view->profileCustomerItem = $cntl->uses( $domains )->get();

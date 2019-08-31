@@ -23,7 +23,7 @@ $states = $this->get( 'addressStates', [] );
 
 ?>
 <?php $this->block()->start( 'account/profile/address' ); ?>
-<?php if( isset( $this->addressCustomer ) ) : $addr = $this->addressCustomer->toArray() ?>
+<?php if( isset( $this->profileCustomerItem ) ) : $addr = $this->profileCustomerItem->toArray() ?>
 
 <div class="account-profile-address">
 	<h1 class="header"><?= $enc->html( $this->translate( 'client', 'address' ) ) ?></h1>
@@ -382,7 +382,7 @@ $states = $this->get( 'addressStates', [] );
 				<a class="act-new" href="#">&nbsp;</a>
 				<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Delivery address' ) ) ?></h1>
 
-				<?php foreach( $this->addressCustomer->getAddressItems() as $pos => $addrItem ) : $addr = $addrItem->toArray( true ); ?>
+				<?php foreach( $this->profileCustomerItem->getAddressItems() as $pos => $addrItem ) : $addr = $addrItem->toArray( true ); ?>
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>" aria-expanded="false" aria-controls="address-delivery-<?= $enc->attr( $pos ) ?>">
 							<i class="act-show fa">&nbsp;</i>
