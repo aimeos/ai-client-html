@@ -35,8 +35,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$customer = $manager->findItem( 'UTC001', ['customer/address'] );
 
+		$view = \TestHelperHtml::getView();
+		$view->profileCustomerItem = $customer;
+		$this->object->setView( $this->object->addData( $view ) );
 		$this->context->setUserId( $customer->getId() );
-		$this->object->setView( $this->object->addData( \TestHelperHtml::getView() ) );
 
 		$output = $this->object->getBody();
 
