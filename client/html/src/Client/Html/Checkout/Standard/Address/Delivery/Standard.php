@@ -479,7 +479,7 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
 
-			$basketCtrl->addAddress( $type, $params );
+			$basketCtrl->addAddress( $type, $params, 0 );
 		}
 		else if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) !== '-1' ) // existing address
 		{
@@ -497,7 +497,7 @@ class Standard
 				$params = $address->toArray();
 			}
 
-			$basketCtrl->addAddress( $type, $params );
+			$basketCtrl->addAddress( $type, $params, 0 );
 		}
 		else
 		{
