@@ -1673,6 +1673,27 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 
+/* Supplier information */
+.catalog-detail-supplier .content .supplier-name {
+	text-transform: uppercase;
+	margin: 1em 0;
+}
+
+.catalog-detail-supplier .content {
+    padding: 1%;
+}
+
+.catalog-detail-supplier .media-item {
+	float: right;
+	margin: 1em;
+}
+
+.catalog-detail-supplier .media-item img {
+    max-width: 400px;
+	width: 100%;
+}
+
+
 /* Stock level */
 .aimeos .catalog-detail-basket .stock-list {
 	text-align: center;
@@ -2507,12 +2528,8 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	display: none;
 }
 
-.aimeos .common-summary-service .item .item {
-	margin: 0 0.5em;
-}
-
 .aimeos .common-summary-service .item h4 {
-	margin: 1em;
+	margin: 1em 0;
 	padding: 0;
 	color: #555;
 	font-size: 1em;

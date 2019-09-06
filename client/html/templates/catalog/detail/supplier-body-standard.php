@@ -13,9 +13,11 @@ $items = $this->get( 'supplierItems', [] );
 <?php if( !empty( $items ) ) : ?>
 <div class="catalog-detail-supplier">
 
+	<h2 class="header"><?= $this->translate( 'client', 'Supplier information' ); ?></h2>
+
 	<?php foreach( $items as $item ) : ?>
 
-		<div class="supplier-item">
+		<div class="content supplier">
 
 			<?php if( ( $mediaItem = current( $item->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
 				<div class="media-item">
@@ -27,13 +29,20 @@ $items = $this->get( 'supplierItems', [] );
 				</div>
 			<?php endif; ?>
 
-			<span class="supplier-name"><?= $enc->html( $item->getName() ); ?></span>
-			<?php if( ( $addrItem = current( $item->getAddressItems() ) ) !== false ) : ?>
-				<span class="supplier-address"><?= $enc->html( $addrItem->getCity() ); ?>, <?= $enc->html( $addrItem->getCountryId() ); ?></span>
-			<?php endif ?>
+			<h3 class="supplier-name">
+				<?= $enc->html( $item->getName() ); ?>
 
-			<?php foreach( $item->getRefItems( 'text', 'description', 'default' ) as $textItem ) : ?>
-				<p class="supplier-description"><?= $enc->html( $textItem->getContent() ); ?></p>
+				<?php if( ( $addrItem = current( $item->getAddressItems() ) ) !== false ) : ?>
+					<span class="supplier-address">(<?= $enc->html( $addrItem->getCity() ); ?>, <?= $enc->html( $addrItem->getCountryId() ); ?>)</span>
+				<?php endif ?>
+			</h3>
+
+			<?php foreach( $item->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+				<p class="supplier-short"><?= $enc->html( $textItem->getContent() ); ?></p>
+			<?php endforeach; ?>
+
+			<?php foreach( $item->getRefItems( 'text', 'long', 'default' ) as $textItem ) : ?>
+				<p class="supplier-long"><?= $enc->html( $textItem->getContent() ); ?></p>
 			<?php endforeach; ?>
 
 		</div>
