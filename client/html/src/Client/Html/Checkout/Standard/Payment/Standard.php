@@ -239,11 +239,11 @@ class Standard
 			{
 				$basketCtrl->deleteService( 'payment' );
 
-				foreach( (array) $serviceIds as $id )
+				foreach( (array) $serviceIds as $idx => $id )
 				{
 					try
 					{
-						$basketCtrl->addService( $servCtrl->get( $id ), $view->param( 'c_payment/' . $id, [] ) );
+						$basketCtrl->addService( $servCtrl->get( $id ), $view->param( 'c_payment/' . $id, [] ), $idx );
 					}
 					catch( \Aimeos\Controller\Frontend\Basket\Exception $e )
 					{
