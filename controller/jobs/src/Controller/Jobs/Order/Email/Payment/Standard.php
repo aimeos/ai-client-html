@@ -110,7 +110,7 @@ class Standard
 		{
 			$orderSearch = $orderManager->createSearch();
 
-			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT, $status );
+			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT, (string) $status );
 			$orderFunc = $orderSearch->createFunction( 'order.containsStatus', $param );
 
 			$expr = array(
