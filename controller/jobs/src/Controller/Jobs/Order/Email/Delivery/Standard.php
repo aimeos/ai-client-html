@@ -113,7 +113,7 @@ class Standard
 			$start = 0;
 			$orderSearch = $orderManager->createSearch();
 
-			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, $status );
+			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, (string) $status );
 			$orderFunc = $orderSearch->createFunction( 'order.containsStatus', $param );
 
 			$expr = array(
