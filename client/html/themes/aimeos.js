@@ -388,7 +388,7 @@ AimeosBasketMini = {
 
 		var jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
 
-		if( typeof jsonurl === 'undefined' ) {
+		if(jsonurl === 'undefined' || jsonurl == '') {
 			return;
 		}
 
