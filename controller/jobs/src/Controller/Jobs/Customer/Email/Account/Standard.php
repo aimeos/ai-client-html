@@ -118,7 +118,7 @@ class Standard
 		$view->extAccountCode = $item->getCode();
 		$view->extAccountPassword = $password;
 
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ) );
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ?: 'en' ) );
 		$view->addHelper( 'translate', $helper );
 
 		$mailer = $context->getMail();
