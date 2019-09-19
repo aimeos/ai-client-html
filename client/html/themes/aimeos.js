@@ -386,7 +386,13 @@ AimeosBasketMini = {
 	 */
 	update: function() {
 
-		$.ajax($(".aimeos.basket-mini[data-jsonurl]").data("jsonurl"), {
+		var jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
+
+		if( typeof jsonurl === 'undefined' ) {
+			return;
+		}
+
+		$.ajax(jsonurl, {
 			"method": "OPTIONS",
 			"dataType": "json"
 		}).then(function(options) {
