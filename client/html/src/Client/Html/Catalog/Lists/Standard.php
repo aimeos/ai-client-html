@@ -622,7 +622,7 @@ class Standard
 		 * @see client/html/catalog/detail/prodid-default
 		 */
 		$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
-		$catids = is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
+		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
 
 		/** client/html/catalog/lists/sort
 		 * Default sorting of product list if no other sorting is given by parameter
