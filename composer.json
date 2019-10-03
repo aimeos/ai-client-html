@@ -16,9 +16,9 @@
 	"require": {
 		"php": ">=5.5.0",
 		"composer/installers": "^1.0",
-		"aimeos/aimeos-core": "dev-master",
-		"aimeos/ai-controller-jobs": "dev-master",
-		"aimeos/ai-controller-frontend": "dev-master"
+		"aimeos/aimeos-core": "2019.10.*",
+		"aimeos/ai-controller-jobs": "2019.10.*",
+		"aimeos/ai-controller-frontend": "2019.10.*"
 	},
 	"autoload": {
 		"psr-4": {
