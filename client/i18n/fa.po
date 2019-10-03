@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-01 17:12+0000\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Persian (http://www.transifex.com/aimeos/aimeos-core/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -149,6 +149,9 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr "یک حساب کاربری برای شما ایجاد شد."
 
+msgid "Article"
+msgstr ""
+
 msgid "Article no."
 msgstr ""
 
@@ -185,6 +188,9 @@ msgstr "قسمت \"%1$s\" از آدرس صورتحساب مقود می‌باش�
 
 msgid "Birthday"
 msgstr "تاریخ تولد"
+
+msgid "Bulk order"
+msgstr ""
 
 msgid "Bundled products"
 msgstr "محصولات همراه"
@@ -309,6 +315,9 @@ msgstr "بخش \"%1$s\" از آدرس تحویل معتبر نمی‌باشد"
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "بخش \"%1$s\" از آدرس تحویل مفقود می‌باشد"
+
+msgid "Delivery within"
+msgstr ""
 
 msgid "Description"
 msgstr "توضیحات"
@@ -718,6 +727,9 @@ msgstr "محصولات پیشنهادی"
 
 msgid "Sum"
 msgstr "مجموع"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr ""

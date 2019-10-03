@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-01 17:12+0000\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Vietnamese (http://www.transifex.com/aimeos/aimeos-core/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -148,6 +148,9 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr ""
 
+msgid "Article"
+msgstr ""
+
 msgid "Article no."
 msgstr ""
 
@@ -183,6 +186,9 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr "Phần địa chỉ hóa đơn \"%1$s\" bị thiếu"
 
 msgid "Birthday"
+msgstr ""
+
+msgid "Bulk order"
 msgstr ""
 
 msgid "Bundled products"
@@ -308,6 +314,9 @@ msgstr ""
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Phần địa chỉ gửi \"%1$s\" bị thiếu"
+
+msgid "Delivery within"
+msgstr ""
 
 msgid "Description"
 msgstr "Mô tả"
@@ -716,6 +725,9 @@ msgstr ""
 
 msgid "Sum"
 msgstr "Tổng"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr ""

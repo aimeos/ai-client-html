@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-01 17:12+0000\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Serbian (http://www.transifex.com/aimeos/aimeos-core/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -150,6 +150,9 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr ""
 
+msgid "Article"
+msgstr ""
+
 msgid "Article no."
 msgstr ""
 
@@ -185,6 +188,9 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr "Deo \"%1$s\" adrese racuna nedostaje"
 
 msgid "Birthday"
+msgstr ""
+
+msgid "Bulk order"
 msgstr ""
 
 msgid "Bundled products"
@@ -310,6 +316,9 @@ msgstr "Deo \"%1$s\" adrese za isporuku je pogresan"
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Deo \"%1$s\" adrese za isporuku nedostaje"
+
+msgid "Delivery within"
+msgstr ""
 
 msgid "Description"
 msgstr "Opis"
@@ -720,6 +729,9 @@ msgstr "Predlozeni proizvodi"
 
 msgid "Sum"
 msgstr "Zbir"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr ""

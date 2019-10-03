@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-01 17:12+0000\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Czech (http://www.transifex.com/aimeos/aimeos-core/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -151,6 +151,9 @@ msgstr "Všechny objednávky podléhají našim pravidlům a podmínkám, které
 msgid "An account has been created for you."
 msgstr "Byl pro vás vytvořen účet."
 
+msgid "Article"
+msgstr ""
+
 msgid "Article no."
 msgstr ""
 
@@ -187,6 +190,9 @@ msgstr "Část fakturační adresy \"%1$s\" chybí"
 
 msgid "Birthday"
 msgstr "Datum narození"
+
+msgid "Bulk order"
+msgstr ""
 
 msgid "Bundled products"
 msgstr "Sady produktů"
@@ -311,6 +317,9 @@ msgstr "Část doručovací adresy \"%1$s\" je neplatná"
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Část doručovací adresy \"%1$s\" chybí"
+
+msgid "Delivery within"
+msgstr ""
 
 msgid "Description"
 msgstr "Popis"
@@ -722,6 +731,9 @@ msgstr "Doporučené produkty"
 
 msgid "Sum"
 msgstr "Součet"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr ""

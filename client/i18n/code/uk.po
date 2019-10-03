@@ -7,12 +7,13 @@
 # Translators:
 # Translators:
 # Translators:
+# Федір Вільгота <fredy31415@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-06-22 15:25+0000\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Ukrainian (http://www.transifex.com/aimeos/aimeos-core/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -41,10 +42,6 @@ msgstr "%1$s %2$s"
 msgid "stocktype:default"
 msgstr ""
 
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr ""
-
 #. Favorite action
 msgid "favorite"
 msgstr ""
@@ -59,23 +56,23 @@ msgstr ""
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "Розмір"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "Довжина"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "Ширина"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "Колір"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "Параметр"
 
 #. Product property package-length
 msgid "package-length"
@@ -95,31 +92,31 @@ msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Власник аккаунта"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Номер аккаунта"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "Код банку"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "Назва банку"
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr ""
+msgstr "Ім'я"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr ""
+msgstr "Прізвище"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Номер кредитної карти"
 
 #. Omnipay service provider
 msgid "payment.cvv"
@@ -147,4 +144,8 @@ msgstr ""
 
 #. Pick-up location
 msgid "supplier.address"
+msgstr ""
+
+#. Delivery type
+msgid "delivery.type"
 msgstr ""

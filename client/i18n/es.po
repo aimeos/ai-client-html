@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-01 17:12+0000\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -151,6 +151,9 @@ msgstr "Todos los pedidos enviados están sujetos a nuestros términos y condici
 msgid "An account has been created for you."
 msgstr "Se ha creado una cuenta para ud."
 
+msgid "Article"
+msgstr ""
+
 msgid "Article no."
 msgstr ""
 
@@ -187,6 +190,9 @@ msgstr "Falta la parte \"%1$s\" de la dirección de cobro"
 
 msgid "Birthday"
 msgstr "Cumpleaños"
+
+msgid "Bulk order"
+msgstr ""
 
 msgid "Bundled products"
 msgstr "Productos empaquetados"
@@ -311,6 +317,9 @@ msgstr "La parte \"%1$s\" de la dirección de entrega no es válida"
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Falta la parte \"%1$s\" de la dirección de entrega"
+
+msgid "Delivery within"
+msgstr ""
 
 msgid "Description"
 msgstr "Descripción"
@@ -720,6 +729,9 @@ msgstr "Productos recomendados"
 
 msgid "Sum"
 msgstr "Suma"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Proveedores"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 17:50+0200\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,6 +96,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/item"
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -156,6 +160,12 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr "An account has been created for you."
 
+msgid "Article"
+msgstr ""
+
+msgid "Article no."
+msgstr ""
+
 msgid "Article no.:"
 msgstr "Article no.:"
 
@@ -188,6 +198,9 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr "Billing address part \"%1$s\" is missing"
 
 msgid "Birthday"
+msgstr ""
+
+msgid "Bulk order"
 msgstr ""
 
 msgid "Bundled products"
@@ -314,6 +327,9 @@ msgstr "Delivery address part \"%1$s\" is invalid"
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Delivery address part \"%1$s\" is missing"
 
+msgid "Delivery within"
+msgstr ""
+
 msgid "Description"
 msgstr "Description"
 
@@ -375,6 +391,10 @@ msgstr "If price decreases"
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "If you have any questions, please reply to this e-mail"
 
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -426,8 +446,14 @@ msgstr ""
 msgid "Like entered by you"
 msgstr ""
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr "Name"
+
+msgid "New delivery address"
+msgstr ""
 
 msgid "Next"
 msgstr "Next"
@@ -595,6 +621,9 @@ msgstr "Result for \"%1$s\""
 msgid "Salutation"
 msgstr "Salutation"
 
+msgid "Save"
+msgstr ""
+
 msgid "Search"
 msgstr "Search"
 
@@ -643,6 +672,12 @@ msgstr "Sort by:"
 msgid "State"
 msgstr "State"
 
+msgid "Status"
+msgstr ""
+
+msgid "Stock"
+msgstr ""
+
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
 #. / Stock string composition with stock type (%1$s, normally left out) and stock level string (%2$s)
@@ -687,6 +722,9 @@ msgstr "Suggested products"
 
 msgid "Sum"
 msgstr "Sum"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr ""
@@ -854,6 +892,9 @@ msgstr ""
 msgid "Update"
 msgstr "Update"
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr "Vat ID"
 
@@ -920,11 +961,17 @@ msgstr "Your order %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Your order %1$s from %2$s has been dispatched."
 
+msgid "Your reference"
+msgstr ""
+
 msgid "Your reference number"
 msgstr ""
 
 msgid "Your search result"
 msgstr "Your search result"
+
+msgid "Your subscription"
+msgstr ""
 
 msgid "Your subscription product"
 msgstr ""
@@ -975,6 +1022,9 @@ msgstr "order"
 msgid "payment"
 msgstr "payment"
 
+msgid "price:default"
+msgstr ""
+
 #, php-format
 msgid "process"
 msgstr "process"
@@ -998,6 +1048,9 @@ msgstr "stock-unlimited"
 #, php-format
 msgid "summary"
 msgstr "summary"
+
+msgid "tax"
+msgstr ""
 
 msgid "▲ Name"
 msgstr "▲ Name"

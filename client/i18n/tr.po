@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-27 02:41+0000\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -148,6 +148,9 @@ msgstr "Tüm siparişler web sitemizde yer alan ve siparişinizi verdiğinizde k
 msgid "An account has been created for you."
 msgstr "Sizin için bir hesap oluşturuldu."
 
+msgid "Article"
+msgstr ""
+
 msgid "Article no."
 msgstr "Ürün Kodu"
 
@@ -184,6 +187,9 @@ msgstr "Fatura adresinin \"%1$s\" bölümü eksik"
 
 msgid "Birthday"
 msgstr "Doğum günü"
+
+msgid "Bulk order"
+msgstr ""
 
 msgid "Bundled products"
 msgstr "Birlikte verilen ürünler"
@@ -308,6 +314,9 @@ msgstr "Teslimat adresi bölüm \"%1$s\" geçersiz"
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Teslimat adresi bölüm \"%1$s\" eksik"
+
+msgid "Delivery within"
+msgstr "Teslimat"
 
 msgid "Description"
 msgstr "Açıklama"
@@ -717,6 +726,9 @@ msgstr "Önerilen ürünler"
 
 msgid "Sum"
 msgstr "Toplam"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Tedarikçiler"

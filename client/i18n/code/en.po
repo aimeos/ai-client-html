@@ -16,19 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-
-#. Tax name
-msgid "tax"
-msgstr "VAT"
-
-#. PST tax name
-msgid "taxpst"
-msgstr "PST"
-
-#. GST tax name
-msgid "taxgst"
-msgstr "GST"
-
 #. Product attribute
 msgid "color"
 msgstr "Color"
@@ -36,6 +23,10 @@ msgstr "Color"
 #. Pick-up date
 msgid "date.value"
 msgstr "Pick-up date"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "Delivery type"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
@@ -109,6 +100,7 @@ msgstr "Last name"
 msgid "pin"
 msgstr "Pin"
 
+#. Price type default
 msgid "price:default"
 msgstr "%2$s %1$s"
 
@@ -127,6 +119,18 @@ msgstr "Pick-up location"
 #. Pick-up location
 msgid "supplier.code"
 msgstr "Pick-up location"
+
+#. Tax name
+msgid "tax"
+msgstr "VAT"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "GST"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
 
 #. Pick-up time
 msgid "time.hourminute"

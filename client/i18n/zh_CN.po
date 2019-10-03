@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-01 17:12+0000\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -149,6 +149,9 @@ msgstr "提交订单意味着接受我们的条款，这些条款可以从我们
 msgid "An account has been created for you."
 msgstr "已经为您生成一个账户。"
 
+msgid "Article"
+msgstr ""
+
 msgid "Article no."
 msgstr ""
 
@@ -185,6 +188,9 @@ msgstr "账单地址 \"%1$s\" 有误"
 
 msgid "Birthday"
 msgstr "生日"
+
+msgid "Bulk order"
+msgstr ""
 
 msgid "Bundled products"
 msgstr "打包产品"
@@ -309,6 +315,9 @@ msgstr "配送地址部件\"%1$s\"无效"
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "送货地址 \"%1$s\" 有误"
+
+msgid "Delivery within"
+msgstr ""
 
 msgid "Description"
 msgstr "描述"
@@ -717,6 +726,9 @@ msgstr "建议产品"
 
 msgid "Sum"
 msgstr "合计"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr ""

@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 19:09+0200\n"
-"PO-Revision-Date: 2019-07-01 17:12+0000\n"
-"Last-Translator: Bistra Kumanova <b.kumanova@creato.bg>\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,6 +149,9 @@ msgstr "Всички поръчки са обект на нашите услов
 msgid "An account has been created for you."
 msgstr "Регистрацията Ви е създадена."
 
+msgid "Article"
+msgstr ""
+
 msgid "Article no."
 msgstr ""
 
@@ -185,6 +188,9 @@ msgstr "Част от разплащателния адрес \"%1$s\" липс�
 
 msgid "Birthday"
 msgstr "Рожден ден"
+
+msgid "Bulk order"
+msgstr ""
 
 msgid "Bundled products"
 msgstr "Пакетни продукти"
@@ -309,6 +315,9 @@ msgstr "Част от адреса за доставка \"%1$s\" е невал�
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Част от адреса за доставка \"%1$s\" iлипсва"
+
+msgid "Delivery within"
+msgstr ""
 
 msgid "Description"
 msgstr "Описание"
@@ -718,6 +727,9 @@ msgstr "Предложени продукти"
 
 msgid "Sum"
 msgstr "Сума"
+
+msgid "Supplier information"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Доставчици"
