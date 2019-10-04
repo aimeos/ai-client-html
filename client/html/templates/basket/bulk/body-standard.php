@@ -21,6 +21,21 @@ $jsonAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
+/** client/html/basket/bulk/rows
+ * Number or rows displayed by default for bulk ordering products
+ *
+ * The number of lines where customers can enter product codes that should be
+ * shown by default in the bulk order form. More lines are automatically added
+ * if customers click on the "+" button or after selecting a product in the
+ * last line.
+ *
+ * The value must be a positive integer value.
+ *
+ * @param integer Number of rows
+ * @category Developer
+ * @category User
+ * @since 2019.10
+ */
 $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 

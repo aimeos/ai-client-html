@@ -454,9 +454,10 @@ class Standard
 			return $productCodesOrder[$a->getCode()] - $productCodesOrder[$b->getCode()];
 		} );
 
-
-		if( $config->get( 'client/html/catalog/product/basket-add', false ) ) {
-			foreach( $products as $product ) {
+		if( $config->get( 'client/html/catalog/product/basket-add', false ) )
+		{
+			foreach( $products as $product )
+			{
 				if( $product->getType() === 'select' ) {
 					$productItems += $product->getRefItems( 'product', 'default', 'default' );
 				}
@@ -484,7 +485,6 @@ class Standard
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
 		 */
-
 		if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/product/stock/enable', true ) === true ) {
 			$view->itemsStockUrl = $this->getStockUrl( $view, $products + $productItems );
 		}
