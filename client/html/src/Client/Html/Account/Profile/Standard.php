@@ -55,6 +55,17 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/account/profile/standard/subparts';
+
+	/** client/html/account/profile/address/name
+	 * Name of the address part used by the account profile client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Account\Profile\Address\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2019.10
+	 * @category Developer
+	 */
 	private $subPartNames = ['address'];
 	private $view;
 

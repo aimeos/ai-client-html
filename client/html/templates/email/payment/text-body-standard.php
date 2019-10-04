@@ -46,6 +46,16 @@ switch( $order->getPaymentStatus() )
 $message = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
 $message .= "\n" . sprintf( $msg2, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
 
+/** client/html/email/common/summary/text
+ * Template partial used for redering the order summary details for text e-mails
+ *
+ * The setting must be the path to the partial relative to the template directory
+ * in your own extension and must include the file name without the file extension.
+ *
+ * @param string Relative path to the partial file without file extension
+ * @category Developer
+ * @since 2019.10
+ */
 
 ?>
 <?php $this->block()->start( 'email/payment/text' ); ?>
