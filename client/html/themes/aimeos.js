@@ -514,10 +514,7 @@ AimeosBasketBulk = {
 
 						var data = [];
 						for(var key in (response.data || {})) {
-							data.push({
-								'id': response.data[key].id || null,
-								'label': response.data[key].attributes['product.label']
-							});
+							data.push(AimeosBasketBulk.get(response.data[key], response.included));
 						}
 
 						resp(data);
@@ -533,6 +530,10 @@ AimeosBasketBulk = {
 				var product = $(ev.target).parent();
 				product.find(".productid").val(ui.item.id);
 				product.find(".search").val(ui.item.label);
+
+				product.parent().data('prices', ui.item['prices'] || []);
+				AimeosBasketBulk.update(product.parent());
+
 				return false;
 			}
 		});
@@ -569,6 +570,52 @@ AimeosBasketBulk = {
 
 
 	/**
+	 * Returns the data for the current item
+	 *
+	 * @param {object} attr JSON:API attribute data of one entry
+	 * @param {array} included JSON:API included data array
+	 * @param {object} Item with "id", "label" and "prices" property
+	 */
+	get: function(attr, included) {
+
+		var map = {}, ref = {};
+		var name = attr['product.label'];
+
+		for(var idx in (included || [])) {
+			map[included[idx]['type']] = map[included[idx]['type']] || {};
+			map[included[idx]['type']][included[idx]['id']] = included[idx];
+		}
+
+		for(var type in (attr.relationships || {})) {
+			for(var idx in (attr.relationships[type]['data'] || [])) {
+
+				var entry = attr.relationships[type]['data'][idx];
+				ref[type] = ref[type] || [];
+
+				if(map[type][entry['id']] && map[type][entry['id']]['attributes']
+					&& entry['attributes']['product.lists.type'] === 'default') {
+					ref[type].push(map[type][entry['id']]['attributes']);
+				}
+			}
+		}
+
+		for(var idx in (ref['text'] || {})) {
+			if(ref['text'][idx]['text.type'] && ref['text'][idx]['text.type'] === 'name') {
+				name = ref['text'][idx]['text.content'];
+			}
+		}
+
+		return {
+			'id': attr.id,
+			'label': name,
+			'prices': ref['price'].sort(function(a, b) {
+				return a['price.quantity'] - b['price.quantity'];
+			})
+		};
+	},
+
+
+	/**
 	 * Sets up autocompletion for bulk order form
 	 */
 	setup: function() {
@@ -582,6 +629,30 @@ AimeosBasketBulk = {
 
 		$(".aimeos.basket-bulk").on("click", "thead .btn.add", this.add);
 		this.autocomplete($(".aimeos.basket-bulk .details .search"));
+
+		$(".aimeos.basket-bulk .details").on("change", ".quantity input", function(ev) {
+			AimeosBasketBulk.update(ev.delegateTarget);
+		});
+	},
+
+
+	/**
+	 * Updates the price of the given row element
+	 *
+	 * @param {DomElement} row HTML DOM node of the table row to update the price for
+	 */
+	update: function(row) {
+		var prices = $(row).data('prices') || [];
+		var qty = $(".quantity input", row).val();
+		var style = { style: 'currency', currency: 'EUR' };
+
+		for(var idx in prices) {
+			if(prices[idx]['price.quantity'] <= qty) {
+				var value = Number(prices[idx]['price.value']) * qty;
+				$(row).find(".price").html(value.toLocaleString(undefined, style));
+			}
+		}
+
 	},
 
 
