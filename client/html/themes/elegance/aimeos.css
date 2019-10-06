@@ -2132,7 +2132,8 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 /* Basket bulk order */
 
-.basket-bulk thead tr th {
+.basket-bulk thead>tr>th,
+.basket-bulk tbody>tr>td {
 	vertical-align: middle;
 }
 
