@@ -21,21 +21,6 @@ $jsonAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
-/** client/html/basket/bulk/rows
- * Number or rows displayed by default for bulk ordering products
- *
- * The number of lines where customers can enter product codes that should be
- * shown by default in the bulk order form. More lines are automatically added
- * if customers click on the "+" button or after selecting a product in the
- * last line.
- *
- * The value must be a positive integer value.
- *
- * @param integer Number of rows
- * @category Developer
- * @category User
- * @since 2019.10
- */
 $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 
@@ -76,10 +61,14 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 				<?php for( $idx = 0; $idx < $rows; $idx++ ) : ?>
 					<tr class="details">
 						<td class="product">
+							<input type="hidden" class="attrvarid"
+								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'attrvarid', '_type_'] ) ); ?>"
+							/>
 							<input type="hidden" class="productid"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'prodid'] ) ); ?>"
 							/>
 							<input type="text" class="form-control search" tabindex="1" />
+							<div class="vattributes"></div>
 						</td>
 						<td class="quantity">
 							<input type="number" class="form-control" tabindex="1"
@@ -97,10 +86,14 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 			<tfoot>
 			<tr class="details prototype">
 					<td class="product">
+						<input type="hidden" class="attrvarid" disabled="disabled"
+							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'attrvarid', '_type_'] ) ); ?>"
+						/>
 						<input type="hidden" class="productid" disabled="disabled"
 							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'prodid'] ) ); ?>"
 						/>
 						<input type="text" class="form-control search" tabindex="1" disabled="disabled" />
+						<div class="vattributes"></div>
 					</td>
 					<td class="quantity">
 						<input type="number" class="form-control" tabindex="1" disabled="disabled"
