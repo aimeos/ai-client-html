@@ -12,7 +12,6 @@
  */
 Aimeos = {
 
-
 	/**
 	 * Creates a floating container over the page displaying the given content node
 	 */
@@ -480,6 +479,32 @@ AimeosBasketBulk = {
 	meta: {},
 
 
+	bulkcomplete: function() {
+
+		$.widget( "custom.bulkcomplete", $.ui.autocomplete, {
+			_create: function() {
+				this._super();
+				this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
+			},
+			_renderMenu: function(ul, items) {
+				var that = this,
+				currentCategory = "";
+				$.each(items, function(index, item) {
+					var li;
+					if(item.category != currentCategory) {
+						ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
+						currentCategory = item.category;
+					}
+					li = that._renderItemData(ul, item);
+					if(item.category) {
+						li.attr("aria-label", item.category + " : " + item.label);
+					}
+				});
+			}
+		});
+	},
+
+
 	/**
 	 * Sets up autocompletion for the given node
 	 *
@@ -487,7 +512,7 @@ AimeosBasketBulk = {
 	 */
 	autocomplete: function(node) {
 
-		node.autocomplete({
+		node.bulkcomplete({
 			minLength : AimeosBasketBulk.MIN_INPUT_LEN,
 			delay : 200,
 			source : function(req, resp) {
@@ -499,7 +524,7 @@ AimeosBasketBulk = {
 
 				var filter = {
 					filter: {'||': [{'=~': {'product.code': req.term}}, {'=~': langFilter}]},
-					include: 'text,price'
+					include: 'attribute,text,price,product'
 				};
 
 				if(AimeosBasketBulk.meta.prefix) {
@@ -514,7 +539,7 @@ AimeosBasketBulk = {
 
 						var data = [];
 						for(var key in (response.data || {})) {
-							data.push(AimeosBasketBulk.get(response.data[key], response.included));
+							data = data.concat(AimeosBasketBulk.get(response.data[key], response.included));
 						}
 
 						resp(data);
@@ -531,7 +556,9 @@ AimeosBasketBulk = {
 				product.find(".productid").val(ui.item.id);
 				product.find(".search").val(ui.item.label);
 
-				product.parent().data('prices', ui.item['prices'] || []);
+				var row = product.parent();
+				row.data('prices', ui.item['prices'] || []);
+				row.data('vattributes', ui.item['vattributes'] || []);
 				AimeosBasketBulk.update(product.parent());
 
 				return false;
@@ -578,40 +605,85 @@ AimeosBasketBulk = {
 	 */
 	get: function(attr, included) {
 
-		var map = {}, ref = {};
-		var name = attr['product.label'];
+		var map = {};
+		var rel = attr.relationships || {};
 
 		for(var idx in (included || [])) {
 			map[included[idx]['type']] = map[included[idx]['type']] || {};
 			map[included[idx]['type']][included[idx]['id']] = included[idx];
 		}
 
-		for(var type in (attr.relationships || {})) {
-			for(var idx in (attr.relationships[type]['data'] || [])) {
+		var name = attr['attributes']['product.label'];
+		var texts = this.getRef(map, rel, 'text', 'default', 'name');
+		var prices = this.getRef(map, rel, 'price', 'default', 'default').sort(function(a, b) {
+			return a['attributes']['price.quantity'] - b['attributes']['price.quantity'];
+		});
 
-				var entry = attr.relationships[type]['data'][idx];
-				ref[type] = ref[type] || [];
-
-				if(map[type][entry['id']] && map[type][entry['id']]['attributes']
-					&& entry['attributes']['product.lists.type'] === 'default') {
-					ref[type].push(map[type][entry['id']]['attributes']);
-				}
-			}
+		for(var idx in texts) {
+			name = texts[idx]['attributes']['text.content'];
 		}
 
-		for(var idx in (ref['text'] || {})) {
-			if(ref['text'][idx]['text.type'] && ref['text'][idx]['text.type'] === 'name') {
-				name = ref['text'][idx]['text.content'];
-			}
+		if(attr['attributes']['product.type'] !== 'select') {
+			return [{
+				'category': '',
+				'id': attr.id,
+				'label': attr['attributes']['product.code'] + ': ' + name,
+				'prices': prices
+			}];
 		}
 
-		return {
-			'id': attr.id,
-			'label': name,
-			'prices': ref['price'].sort(function(a, b) {
-				return a['price.quantity'] - b['price.quantity'];
+
+		var result = [];
+		var variants = this.getRef(map, rel, 'product', 'default');
+
+		for(var idx in variants) {
+
+			var vrel = variants[idx]['relationships'] || {};
+			var vattr = this.getRef(map, vrel, 'attribute', 'variant');
+			var vprices = this.getRef(map, vrel, 'price', 'default', 'default');
+			var vtexts = this.getRef(map, vrel, 'text', 'default', 'name');
+			var vname = variants[idx]['attributes']['product.label'];
+
+			for(var idx in vtexts) {
+				vname = vtexts[idx]['attributes']['text.content'];
+			}
+
+			result.push({
+				'category': name,
+				'id': attr.id,
+				'label': variants[idx]['attributes']['product.code'] + ': ' + vname,
+				'prices': !vprices.length ? prices : vprices.sort(function(a, b) {
+					return a['attributes']['price.quantity'] - b['attributes']['price.quantity'];
+				}),
+				'vattributes': vattr
 			})
-		};
+		}
+
+		return result;
+	},
+
+
+	getRef: function(map, rel, domain, listtype, type) {
+
+		if(!rel[domain]) {
+			return [];
+		}
+
+		var list = [];
+
+		for(var idx in (rel[domain]['data'] || [])) {
+
+			var entry = rel[domain]['data'][idx];
+
+			if(map[domain][entry['id']] && map[domain][entry['id']]['attributes']
+				&& entry['attributes']['product.lists.type'] === listtype
+				&& (!type || map[domain][entry['id']]['attributes'][domain + '.type'] === type)) {
+
+				list.push(map[domain][entry['id']]);
+			}
+		}
+
+		return list;
 	},
 
 
@@ -630,8 +702,8 @@ AimeosBasketBulk = {
 		$(".aimeos.basket-bulk").on("click", "thead .btn.add", this.add);
 		this.autocomplete($(".aimeos.basket-bulk .details .search"));
 
-		$(".aimeos.basket-bulk .details").on("change", ".quantity input", function(ev) {
-			AimeosBasketBulk.update(ev.delegateTarget);
+		$(".aimeos.basket-bulk").on("change", ".details .quantity input", function(ev) {
+			AimeosBasketBulk.update($(ev.currentTarget).parents(".details").first());
 		});
 	},
 
@@ -642,17 +714,27 @@ AimeosBasketBulk = {
 	 * @param {DomElement} row HTML DOM node of the table row to update the price for
 	 */
 	update: function(row) {
-		var prices = $(row).data('prices') || [];
 		var qty = $(".quantity input", row).val();
-		var style = { style: 'currency', currency: 'EUR' };
+		var prices = $(row).data('prices') || [];
+		var vattr = $(row).data('vattributes') || [];
+		var style = {style: 'currency', currency: 'EUR'};
 
 		for(var idx in prices) {
-			if(prices[idx]['price.quantity'] <= qty) {
-				var value = Number(prices[idx]['price.value']) * qty;
+			if(prices[idx]['attributes']['price.quantity'] <= qty) {
+				var value = Number(prices[idx]['attributes']['price.value']) * qty;
 				$(row).find(".price").html(value.toLocaleString(undefined, style));
 			}
 		}
 
+		var input = $(".product > .attrvarid", row);
+		$(".product .vattributes", row).empty();
+
+		for(var idx in vattr) {
+			var elem = input.clone();
+			elem.attr("name", input.attr("name").replace('_type_', vattr[idx]['attributes']['attribute.type']));
+			elem.val(vattr[idx]['attributes']['attribute.id']);
+			$(".product .vattributes", row).append(elem);
+		}
 	},
 
 
@@ -661,6 +743,7 @@ AimeosBasketBulk = {
 	 */
 	init: function() {
 
+		this.bulkcomplete();
 		this.setup();
 		this.delete();
 	}
