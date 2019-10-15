@@ -135,7 +135,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailConfig['absoluteUri'] = true;
 
-$params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''], $detailFilter );
+$params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => '0'], $detailFilter );
 $prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig );
 $prodName = $this->productItem->getName();
 
