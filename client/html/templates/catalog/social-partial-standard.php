@@ -43,6 +43,27 @@ $enc = $this->encoder();
 $list = $this->config( 'client/html/catalog/social/list', array( 'facebook', 'twitter', 'pinterest' ) );
 
 $urls = array(
+	/** client/html/catalog/social/url/whatsapp
+	 * URL for sharing product links over WhatsApp
+	 *
+	 * Users can share product links over WhatsApp. This requires a URL defined
+	 * by WhatsApp that accepts the transmitted product page URL. This URL must
+	 * contain at least the "%1$s" placeholder for the URL to the product detail
+	 * page of the shop.
+	 *
+	 * Possible placeholders and replaced values are:
+	 * * %1$s : Shop URL of the product detail page
+	 * * %2$s : Name of the product
+	 * * %3$s : URL of the first product image
+	 *
+	 * @param string URL to share products on Facebook
+	 * @since 2020.01
+	 * @category User
+	 * @category Developer
+	 * @see client/html/catalog/social/list
+	 */
+	'whatsapp' => 'https://wa.me/?text=%2$s+%1$s',
+
 	/** client/html/catalog/social/url/facebook
 	 * URL for sharing product links on Facebook
 	 *
