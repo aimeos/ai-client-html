@@ -463,7 +463,8 @@ class Standard
 				$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
 				$view->param( 'b_attrcustid', [] ),
 				$view->param( 'b_stocktype', 'default' ),
-				$view->param( 'b_supplier' )
+				$view->param( 'b_supplier' ),
+				$view->param( 'b_siteid' )
 			);
 		}
 		else
@@ -491,7 +492,8 @@ class Standard
 						$this->getAttributeMap( isset( $values['attrconfid'] ) ? $values['attrconfid'] : [] ),
 						( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] ),
 						( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' ),
-						( isset( $values['supplier'] ) ? (string) $values['supplier'] : null )
+						( isset( $values['supplier'] ) ? (string) $values['supplier'] : null ),
+						( isset( $values['siteid'] ) ? (string) $values['siteid'] : null )
 					);
 				}
 			}
