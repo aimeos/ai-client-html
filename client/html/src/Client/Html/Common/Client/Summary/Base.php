@@ -79,10 +79,10 @@ abstract class Base
 				$price = clone $price;
 				$price = $price->setTaxRate( $taxrate );
 
-				if( isset( $taxes[$name] ) ) {
-					$taxes[$name]->addItem( $price, $product->getQuantity() );
+				if( isset( $taxes[$name][$taxrate] ) ) {
+					$taxes[$name][$taxrate]->addItem( $price, $product->getQuantity() );
 				} else {
-					$taxes[$name] = $price->addItem( $price, $product->getQuantity() - 1 );
+					$taxes[$name][$taxrate] = $price->addItem( $price, $product->getQuantity() - 1 );
 				}
 			}
 		}
@@ -96,10 +96,10 @@ abstract class Base
 				$price = clone $price;
 				$price = $price->setTaxRate( $taxrate );
 
-				if( isset( $taxes[$name] ) ) {
-					$taxes[$name]->addItem( $price );
+				if( isset( $taxes[$name][$taxrate] ) ) {
+					$taxes[$name][$taxrate]->addItem( $price );
 				} else {
-					$taxes[$name] = $price;
+					$taxes[$name][$taxrate] = $price;
 				}
 			}
 		}
@@ -113,10 +113,10 @@ abstract class Base
 				$price = clone $price;
 				$price = $price->setTaxRate( $taxrate );
 
-				if( isset( $taxes[$name] ) ) {
-					$taxes[$name]->addItem( $price );
+				if( isset( $taxes[$name][$taxrate] ) ) {
+					$taxes[$name][$taxrate]->addItem( $price );
 				} else {
-					$taxes[$name] = $price;
+					$taxes[$name][$taxrate] = $price;
 				}
 			}
 		}

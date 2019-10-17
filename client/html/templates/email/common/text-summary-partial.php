@@ -193,12 +193,14 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php	echo strip_tags( $this->translate( 'client', 'Total' ) ); ?>: <?php printf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
 
 <?php endif; ?>
-<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $priceItem ) : ?>
-<?php	if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
-<?php		$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ) ); ?>
-<?php		echo strip_tags( sprintf( $taxFormat, $this->number( $priceItem->getTaxRate() ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?>: <?php printf( $priceFormat, $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
+<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $map ) : ?>
+<?php 	foreach( $map as $taxRate => $priceItem ) : ?>
+<?php		if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
+<?php			$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ) ); ?>
+<?php			echo strip_tags( sprintf( $taxFormat, $this->number( $taxRate ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?>: <?php printf( $priceFormat, $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
 
-<?php	endif; ?>
+<?php		endif; ?>
+<?php	endforeach; ?>
 <?php endforeach; ?>
 <?php if( $this->summaryBasket->getPrice()->getTaxFlag() === false ) : ?>
 <?php	echo strip_tags( $this->translate( 'client', 'Total' ) ); ?>: <?php printf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
