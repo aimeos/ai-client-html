@@ -17,6 +17,10 @@
 
 
 
+.aimeos {
+	clear: both;
+}
+
 .aimeos .btn {
 	vertical-align: top;
 	font-weight: bold;
@@ -150,8 +154,9 @@
 .aimeos li.attr-item,
 .aimeos li.form-item {
 	list-style: none;
-	margin: 0.5em 0;
 	padding: 0;
+	margin: 0;
+	margin-bottom: 0.5em;
 }
 
 .aimeos li.attr-item .name:after {
