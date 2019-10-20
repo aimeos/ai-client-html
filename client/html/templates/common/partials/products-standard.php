@@ -166,6 +166,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
 							<div class="media-item">
 								<img class="lazy-image"
+									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
 									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
