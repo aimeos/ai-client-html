@@ -13,7 +13,11 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
 
 $product = $this->extOrderProductItem;
-$priceFormat = $this->translate( 'client/code', 'price:default' );
+
+$pricefmt = $this->translate( 'client/code', 'price:default' );
+/// Price format with price value (%1$s) and currency (%2$s)
+$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
+
 
 ?>
 <?php $this->block()->start( 'email/subscription/html' ); ?>

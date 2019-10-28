@@ -9,8 +9,9 @@ $enc = $this->encoder();
 $voucher = $this->extVoucherCode;
 $price = $this->extOrderProductItem->getPrice();
 
+$pricefmt = $this->translate( 'client/code', 'price:default' );
 /// Price format with price value (%1$s) and currency (%2$s)
-$priceFormat = $this->translate( 'client', '%1$s %2$s' );
+$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>

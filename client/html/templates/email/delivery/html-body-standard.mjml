@@ -43,8 +43,9 @@ switch( $order->getDeliveryStatus() )
 
 $message = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
 
+$pricefmt = $this->translate( 'client/code', 'price:default' );
 /// Price format with price value (%1$s) and currency (%2$s)
-$priceFormat = $this->translate( 'client', '%1$s %2$s' );
+$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>

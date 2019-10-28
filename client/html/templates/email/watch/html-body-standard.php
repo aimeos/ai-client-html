@@ -6,12 +6,15 @@
  */
 
 $enc = $this->encoder();
-$priceFormat = $this->translate( 'client/code', 'price:default' );
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+
+$pricefmt = $this->translate( 'client/code', 'price:default' );
+/// Price format with price value (%1$s) and currency (%2$s)
+$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>

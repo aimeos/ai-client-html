@@ -20,8 +20,10 @@ $dlController = $this->config( 'client/html/account/download/url/controller', 'a
 $dlAction = $this->config( 'client/html/account/download/url/action', 'download' );
 $dlConfig = $this->config( 'client/html/account/download/url/config', ['absoluteUri' => 1] );
 
+$pricefmt = $this->translate( 'client/code', 'price:default' );
 /// Price format with price value (%1$s) and currency (%2$s)
-$priceFormat = $this->translate( 'client', '%1$s %2$s' );
+$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
+
 $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 
 

@@ -52,8 +52,9 @@ $first = true;
 		$rebate = $priceItem->getRebate();
 		$key = 'price:' . ( $priceItem->getType() ?: 'default' );
 
+		$pricefmt = $this->translate( 'client/code', $key );
 		/// Price format with price value (%1$s) and currency (%2$s)
-		$format['value'] = $this->translate( 'client/code', $key );
+		$format['value'] = $pricefmt !== $key ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 		$currency = $this->translate( 'currency', $priceItem->getCurrencyId() );
 		$taxformat = ( $priceItem->getTaxFlag() ? $withtax : $notax );
 	?>
