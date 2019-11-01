@@ -47,8 +47,8 @@ $mediaItems = $this->get( 'mediaItems', [] );
 					$sources[$type] = $this->content( $path );
 				}
 			?>
-			<div class="media-item">
-				<img id="image-<?= $enc->attr( $id ); ?>" class="item"
+			<div id="image-<?= $enc->attr( $id ); ?>" class="media-item">
+				<img class="item"
 					src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 					srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 					itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
