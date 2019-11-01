@@ -62,9 +62,11 @@ $mediaItems = $this->get( 'mediaItems', [] );
 
 	</div><!--
 
-	--><?php if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
+	--><?php if( ( $num = count( $mediaItems ) ) > 1 ) : $class = 'item selected'; ?>
 		<div class="image-thumbs thumbs-horizontal" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'><!--
-			--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button><!--
+			<?php if( $num > 4 ) : ?>
+				--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button><!--
+			<?php endif ?>
 			--><div class="thumbs"><!--
 
 				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
@@ -78,7 +80,9 @@ $mediaItems = $this->get( 'mediaItems', [] );
 				<?php endforeach; ?>
 
 			--></div><!--
-			--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button><!--
+			<?php if( $num > 4 ) : ?>
+				--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button><!--
+			<?php endif ?>
 		--></div>
 	<?php endif; ?>
 
