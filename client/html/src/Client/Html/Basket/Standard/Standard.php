@@ -483,10 +483,9 @@ class Standard
 
 			foreach( $entries as $values )
 			{
-				if( isset( $values['prodid'] ) && isset( $products[$values['prodid']] )
-					&& isset( $values['quantity'] ) && $values['quantity'] > 0
-				) {
-					$basketCntl->addProduct( $products[$values['prodid']],
+				if( isset( $values['prodid'] ) && isset( $values['quantity'] ) && $values['quantity'] > 0 )
+				{
+					$basketCntl->addProduct( $productCntl->get( $prodid ),
 						( isset( $values['quantity'] ) ? (int) $values['quantity'] : 0 ),
 						( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
 						$this->getAttributeMap( isset( $values['attrconfid'] ) ? $values['attrconfid'] : [] ),
