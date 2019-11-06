@@ -202,7 +202,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 				{
 					if( is_array( $item->getDefault() ) )
 					{
-						foreach( (array) $item->getDefault() as $key2 => $value ){
+						foreach( (array) $item->getDefault() as $key2 => $value ) {
 							$urlParams[] = $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) . '=' . urlencode( $value );
 						}
 					}

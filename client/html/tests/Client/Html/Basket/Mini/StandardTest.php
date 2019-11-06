@@ -156,8 +156,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 	/**
-	* @param string $code
-	*/
+	 * @param string $code
+	 */
 	protected function getProductItem( $code )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );

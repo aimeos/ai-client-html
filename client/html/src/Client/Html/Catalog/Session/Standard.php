@@ -111,22 +111,22 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge($view->get( 'sessionErrorList', [] ), $error);
+			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge($view->get( 'sessionErrorList', [] ), $error);
+			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge($view->get( 'sessionErrorList', [] ), $error);
+			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->sessionErrorList = array_merge($view->get( 'sessionErrorList', [] ), $error);
+			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
 			$this->logException( $e );
 		}
 
@@ -316,22 +316,22 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge($view->get( 'sessionErrorList', [] ), $error);
+			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge($view->get( 'sessionErrorList', [] ), $error);
+			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge($view->get( 'sessionErrorList', [] ), $error);
+			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->sessionErrorList = array_merge($view->get( 'sessionErrorList', [] ), $error);
+			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
 			$this->logException( $e );
 		}
 	}

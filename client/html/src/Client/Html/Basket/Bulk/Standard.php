@@ -101,22 +101,22 @@ class Standard
 			catch( \Aimeos\Client\Html\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-				$view->bulkErrorList = array_merge($view->get( 'bulkErrorList', [] ), $error);
+				$view->bulkErrorList = array_merge( $view->get( 'bulkErrorList', [] ), $error );
 			}
 			catch( \Aimeos\Controller\Frontend\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-				$view->bulkErrorList = array_merge($view->get( 'bulkErrorList', [] ), $error);
+				$view->bulkErrorList = array_merge( $view->get( 'bulkErrorList', [] ), $error );
 			}
 			catch( \Aimeos\MShop\Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-				$view->bulkErrorList = array_merge($view->get( 'bulkErrorList', [] ), $error);
+				$view->bulkErrorList = array_merge( $view->get( 'bulkErrorList', [] ), $error );
 			}
 			catch( \Exception $e )
 			{
 				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-				$view->bulkErrorList = array_merge($view->get( 'bulkErrorList', [] ), $error);
+				$view->bulkErrorList = array_merge( $view->get( 'bulkErrorList', [] ), $error );
 				$this->logException( $e );
 			}
 
