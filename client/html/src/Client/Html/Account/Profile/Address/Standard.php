@@ -218,7 +218,7 @@ class Standard
 
 		foreach( $map as $pos => $data )
 		{
-			$addrItem = ( !isset( $addrItems[$pos] ) ? $cntl->createAddressItem() :  $addrItems[$pos] );
+			$addrItem = ( !isset( $addrItems[$pos] ) ? $cntl->createAddressItem() : $addrItems[$pos] );
 			$cntl->addAddressItem( $addrItem->fromArray( $data ), $pos );
 			unset( $addrItems[$pos] );
 		}

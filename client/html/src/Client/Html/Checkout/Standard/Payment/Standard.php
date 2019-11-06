@@ -248,7 +248,7 @@ class Standard
 					catch( \Aimeos\Controller\Frontend\Basket\Exception $e )
 					{
 						$view->deliveryError = $e->getErrors();
-						$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $e->getErrors());
+						$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $e->getErrors() );
 
 						throw $e;
 					}

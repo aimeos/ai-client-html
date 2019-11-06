@@ -86,22 +86,22 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $error);
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $error);
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $error);
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $error);
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 			$this->logException( $e );
 		}
 
@@ -342,7 +342,7 @@ class Standard
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $error);
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Plugin\Provider\Exception $e )
 		{
@@ -350,17 +350,17 @@ class Standard
 			$errors = array_merge( $errors, $this->translatePluginErrorCodes( $e->getErrorCodes() ) );
 
 			$view->standardErrorCodes = $e->getErrorCodes();
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $errors);
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $errors );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $error);
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $error);
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 			$this->logException( $e );
 		}
 
