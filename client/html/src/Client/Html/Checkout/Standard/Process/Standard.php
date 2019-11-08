@@ -328,6 +328,12 @@ class Standard
 	 */
 	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )
 	{
+		if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= 0
+			&& $this->isSubscription( $basket->getProducts() ) === false
+		) {
+			return;
+		}
+
 		$view = $this->getView();
 		$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 
