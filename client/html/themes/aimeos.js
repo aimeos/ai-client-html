@@ -517,7 +517,7 @@ AimeosBasketBulk = {
 			delay : 200,
 			source : function(req, resp) {
 
-				var params;
+				var params = {};
 				var langFilter = {};
 				var langid = AimeosBasketBulk.meta.locale && AimeosBasketBulk.meta.locale['locale.languageid'];
 				langFilter['index.text:name("' + langid + '")'] = req.term;
