@@ -498,6 +498,7 @@ class Standard
 			}
 
 			$basketCtrl->addAddress( $type, $params, 0 );
+			$basketCtrl->get()->getAddress( $type, 0 )->setAddressId( $option );
 		}
 		else
 		{
