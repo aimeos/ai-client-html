@@ -1632,7 +1632,7 @@ AimeosCatalogList = {
 				var list = $('.catalog-list-items').first();
 				var infiniteUrl = list.data('infinite-url');
 
-				if(infiniteUrl && list.getBoundingClientRect().bottom - $(window).height() < 50) {
+				if(infiniteUrl && list[0].getBoundingClientRect().bottom - $(window).height() < 50) {
 
 					list.data('infinite-url', '');
 
