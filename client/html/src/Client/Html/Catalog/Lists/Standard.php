@@ -646,8 +646,7 @@ class Standard
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
 
 		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
-			// apply sort() before category() to prioritize user sorting over the sorting through category
-			->sort( $sort )
+			->sort( $sort ) // prioritize user sorting over the sorting through category
 			->category( $catids, 'default', $level )
 			->supplier( $view->param( 'f_supid', [] ) )
 			->allOf( $view->param( 'f_attrid', [] ) )
