@@ -447,7 +447,7 @@ class Standard
 	{
 		$address = null;
 		$context = $this->getContext();
-		$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+		$ctrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		/** client/html/checkout/standard/address/delivery/disable-new
 		 * Disables the option to enter a different delivery address for an order
@@ -479,7 +479,7 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
 
-			$basketCtrl->addAddress( $type, $params, 0 );
+			$ctrl->addAddress( $type, $params, 0 );
 		}
 		else if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) !== '-1' ) // existing address
 		{
@@ -489,16 +489,18 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
 
-			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+			$custCntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
-			if( ( $address = $cntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null )
+			if( ( $address = $custCntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null )
 			{
-				$cntl->addAddressItem( $address->fromArray( $params ), $option )->store();
-				$params = $address->toArray();
+				$params = array_replace( $address->toArray(), $params );
+				$addr = $ctrl->addAddress( $type, $params, 0 )->get()->getAddress( $type, 0 )->setAddressId( $option );
+				$custCntl->addAddressItem( $address->copyFrom( $addr ), $option )->store();
 			}
-
-			$basketCtrl->addAddress( $type, $params, 0 );
-			$basketCtrl->get()->getAddress( $type, 0 )->setAddressId( $option );
+			else
+			{
+				$ctrl->addAddress( $type, $params, 0 );
+			}
 		}
 		else
 		{
