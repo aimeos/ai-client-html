@@ -493,8 +493,8 @@ class Standard
 
 			if( ( $address = $cntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null )
 			{
-				$cntl->addAddressItem( $address->fromArray( $params ), $option )->store();
-				$params = $address->toArray();
+				$data = $params;
+				$cntl->addAddressItem( $address->fromArray( $data ), $option )->store();
 			}
 
 			$basketCtrl->addAddress( $type, $params, 0 );
