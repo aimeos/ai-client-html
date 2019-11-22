@@ -504,7 +504,7 @@ class Standard
 		}
 		else
 		{
-			$basketCtrl->deleteAddress( $type );
+			$ctrl->deleteAddress( $type );
 		}
 	}
 
