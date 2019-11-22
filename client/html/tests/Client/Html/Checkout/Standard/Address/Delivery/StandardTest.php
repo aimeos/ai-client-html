@@ -243,4 +243,45 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'Example company', $basket->getAddress( 'delivery', 0 )->getCompany() );
 	}
+
+
+	public function testProcessExistingAddressInvalid()
+	{
+		$view = \TestHelperHtml::getView();
+		$param = [
+			'ca_deliveryoption' => -2,
+			'ca_delivery_-2' => [
+				'order.base.address.languageid' => 'de',
+				'order.base.address.salutation' => 'mr',
+				'order.base.address.firstname' => 'test',
+				'order.base.address.lastname' => 'user',
+				'order.base.address.address1' => 'street',
+				'order.base.address.postal' => '1234',
+				'order.base.address.city' => 'test city',
+			]
+		];
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
+
+		$this->object->process();
+
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$this->assertEquals( 'mr', $basket->getAddress( 'delivery', 0 )->getSalutation() );
+	}
+
+
+	public function testProcessRemoveAddress()
+	{
+		$view = \TestHelperHtml::getView();
+		$param = array( 'ca_deliveryoption' => -1 );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
+
+		$this->object->process();
+
+		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$this->assertCount( 0, $basket->getAddress( 'delivery' ) );
+	}
 }
