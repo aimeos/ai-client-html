@@ -493,9 +493,9 @@ class Standard
 
 			if( ( $address = $custCntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null )
 			{
-				$params = array_replace( $address->toArray(), $params );
-				$addr = $ctrl->addAddress( $type, $params, 0 )->get()->getAddress( $type, 0 )->setAddressId( $option );
-				$custCntl->addAddressItem( $address->copyFrom( $addr ), $option )->store();
+				$params = array_replace( $address->toArray(), $params + ['order.base.address.addressid' => $option] );
+				$addr = $ctrl->addAddress( $type, $params, 0 )->get()->getAddress( $type, 0 ); // sanitize address first
+				$custCntl->addAddressItem( $address->copyFrom( $addr ), $option )->store(); // update existing address
 			}
 			else
 			{
