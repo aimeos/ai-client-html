@@ -287,7 +287,7 @@ class Standard
 		try
 		{
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
-			$cntl->updatePush( $view->request(), $view->response(), $view->param( 'code' ) );
+			$cntl->updatePush( $view->request(), $view->response(), $view->param( 'code', '' ) );
 
 			parent::process();
 		}

@@ -515,7 +515,7 @@ class Standard
 		 */
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 
-		$name = $view->param( 'd_name' );
+		$name = $view->param( 'd_name', '' );
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
 		$productItem = ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $name ) ) );
 		$this->addMetaItems( $productItem, $expire, $tags );
