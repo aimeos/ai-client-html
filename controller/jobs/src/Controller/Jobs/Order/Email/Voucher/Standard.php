@@ -297,7 +297,7 @@ class Standard
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'order/base/product/attribute' );
 
-		foreach( $orderBaseItem->getProducts() as $pos => $orderProductItem )
+		foreach( $orderBaseItem->getProducts() as $orderProductItem )
 		{
 			if( $orderProductItem->getType() === 'voucher'
 				&& $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) === null
@@ -313,7 +313,7 @@ class Standard
 				}
 
 				$item = $manager->createItem()->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( $codes );
-				$orderBaseItem->addProduct( $orderProductItem->setAttributeItem( $item ), $pos );
+				$orderProductItem->setAttributeItem( $item );
 			}
 		}
 
