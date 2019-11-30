@@ -185,13 +185,13 @@ class Standard
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 				$item = $cntl->uses( ['customer/address'] )->get();
 
-				foreach( $addresses as $pos => $address )
+				foreach( $addresses as $address )
 				{
 					if( $address->getAddressId() == '' )
 					{
 						$addrItem = $cntl->createAddressItem()->copyFrom( $address );
 						$cntl->addAddressItem( $addrItem )->store();
-						$basket->addAddress( $address->setAddressId( $addrItem->getId() ), $type, $pos );
+						$address->setAddressId( $addrItem->getId() );
 					}
 				}
 			}
