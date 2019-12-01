@@ -235,8 +235,6 @@ class Standard
 			return '';
 		}
 
-		self::$headerSingleton = true;
-
 		$prefixes = array( 'f' );
 		$confkey = 'client/html/catalog/filter';
 
@@ -555,6 +553,7 @@ class Standard
 			$params = $this->getClientParams( $view->param(), array( 'f' ) );
 
 			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $config );
+			self::$headerSingleton = true;
 		}
 
 		return parent::addData( $view, $tags, $expire );
