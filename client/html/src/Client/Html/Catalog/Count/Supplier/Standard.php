@@ -250,17 +250,20 @@ class Standard
 			 * @category User
 			 */
 			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
+
 			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+			$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->sort( $sort ) // prioritize user sorting over the sorting through category
 				->category( $view->param( 'f_catid', $startid ), 'default', $level )
 				->supplier( $view->param( 'f_supid', [] ) )
 				->allof( $view->param( 'f_attrid', [] ) )
 				->oneOf( $view->param( 'f_optid', [] ) )
 				->oneOf( $view->param( 'f_oneid', [] ) )
 				->text( $view->param( 'f_search' ) )
-				->slice( 0, $limit )->sort();
+				->slice( 0, $limit );
 
 			$view->supplierCountList = $cntl->aggregate( 'index.supplier.id' );
 		}
