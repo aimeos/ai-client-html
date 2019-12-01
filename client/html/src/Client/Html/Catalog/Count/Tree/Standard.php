@@ -229,6 +229,7 @@ class Standard
 			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
 			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
+			$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->root( $startid );
 			$root = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
@@ -241,13 +242,14 @@ class Standard
 
 			$tree = $cntl->getTree();
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->sort( $sort ) // prioritize user sorting over the sorting through category
 				->category( array_keys( $tree->toList() ) )
 				->supplier( $view->param( 'f_supid', [] ) )
 				->allof( $view->param( 'f_attrid', [] ) )
 				->oneOf( $view->param( 'f_optid', [] ) )
 				->oneOf( $view->param( 'f_oneid', [] ) )
 				->text( $view->param( 'f_search' ) )
-				->slice( 0, $limit )->sort();
+				->slice( 0, $limit );
 
 			$view->treeCountList = $cntl->aggregate( 'index.catalog.id' );
 
