@@ -260,10 +260,14 @@ class Standard
 	protected function process( \Aimeos\Client\Html\Iface $client, array $items, $status )
 	{
 		$context = $this->getContext();
+		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );
 		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );
 
 		foreach( $items as $id => $item )
 		{
+			$couponManager->begin();
+			$orderBaseManager->begin();
+
 			try
 			{
 				$orderBaseItem = $orderBaseManager->load( $item->getBaseId() )->off();
@@ -271,14 +275,20 @@ class Standard
 				$orderBaseItem = $this->createCoupons( $orderBaseItem );
 				$orderBaseManager->store( $orderBaseItem );
 
-				$this->sendEmails( $orderBaseItem, $client );
 				$this->addOrderStatus( $id, $status );
+				$this->sendEmails( $orderBaseItem, $client );
+
+				$orderBaseManager->commit();
+				$couponManager->commit();
 
 				$str = sprintf( 'Sent voucher e-mails for order ID "%1$s"', $item->getId() );
 				$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::INFO );
 			}
 			catch( \Exception $e )
 			{
+				$orderBaseManager->rollback();
+				$couponManager->rollback();
+
 				$str = 'Error while trying to send voucher e-mails for order ID "%1$s": %2$s';
 				$msg = sprintf( $str, $item->getId(), $e->getMessage() );
 				$context->getLogger()->log( $msg );
