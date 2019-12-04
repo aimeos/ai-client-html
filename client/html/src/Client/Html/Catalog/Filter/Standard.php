@@ -552,6 +552,10 @@ class Standard
 
 			$params = $this->getClientParams( $view->param(), array( 'f' ) );
 
+			if( ( $startid = $view->config( 'client/html/catalog/filter/tree/startid' ) ) ) {
+				$params['f_catid'] = $startid;
+			}
+
 			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $config );
 			self::$headerSingleton = true;
 		}
