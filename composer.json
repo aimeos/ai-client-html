@@ -20,6 +20,9 @@
 		"aimeos/ai-controller-jobs": "dev-master",
 		"aimeos/ai-controller-frontend": "dev-master"
 	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.7"
+	},
 	"autoload": {
 		"psr-4": {
 			"Aimeos\\Client\\Html\\": "client/html/src/Client/Html/",
