@@ -113,7 +113,8 @@ if( isset( $this->detailProductItem ) )
 			$disabled = '';
 			$curdate = date( 'Y-m-d H:i:00' );
 
-			if( ( $startDate = $this->detailProductItem->getDateStart() ) !== null && $startDate > $curdate
+			if( $this->detailProductItem->getType() !== 'event'
+				&& ( $startDate = $this->detailProductItem->getDateStart() ) !== null && $startDate > $curdate
 				|| ( $endDate = $this->detailProductItem->getDateEnd() ) !== null && $endDate < $curdate
 			) {
 				$disabled = 'disabled';
