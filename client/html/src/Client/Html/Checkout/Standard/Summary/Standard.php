@@ -295,17 +295,6 @@ class Standard
 	{
 		$context = $this->getContext();
 		$basket = $view->standardBasket;
-		$addresses = $basket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-
-		if( ( $view->summaryCustomerId = $context->getUserId() ) === null && ( $addr = current( $addresses ) ) !== false )
-		{
-			try
-			{
-				$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-				$view->summaryCustomerId = $controller->find( $addr->getEmail() )->getId();
-			}
-			catch( \Exception $e ) {}
-		}
 
 		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
 		$view->summaryCostsPayment = $this->getCostsPayment( $basket );
