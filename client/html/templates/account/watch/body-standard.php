@@ -3,13 +3,12 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
+$listItems = $this->get( 'watchItems', [] );
 $watchParams = $this->get( 'watchParams', [] );
-$listItems = $this->get( 'watchListItems', [] );
-$productItems = $this->get( 'watchProductItems', [] );
 
 
 /** client/html/account/watch/url/target
@@ -87,6 +86,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
+$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 $optTarget = $this->config( 'client/jsonapi/url/target' );
 $optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
@@ -110,17 +110,17 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 		<h2 class="header"><?= $this->translate( 'client', 'Watched products' ); ?></h2>
 
 		<ul class="watch-items">
-			<?php foreach( $listItems as $listItem ) : $id = $listItem->getRefId(); ?>
-				<?php if( isset( $productItems[$id] ) ) : $productItem = $productItems[$id]; ?>
+			<?php foreach( array_reverse( $listItems ) as $listItem ) : ?>
+				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) :  ?>
 					<?php $prices = $productItem->getRefItems( 'price', null, 'default' ); ?>
 
 					<li class="watch-item">
-						<?php $params = array( 'wat_action' => 'delete', 'wat_id' => $id ) + $watchParams; ?>
+						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $watchParams; ?>
 						<a class="modify" href="<?= $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ); ?>">
 							<?= $this->translate( 'client', 'X' ); ?>
 						</a>
 
-						<?php $params = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId() ); ?>
+						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ); ?>
 						<a class="watch-item" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 
@@ -134,7 +134,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 							<div class="price-list">
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 									array( 'prices' => $prices )
 								); ?>
 							</div>
@@ -143,7 +143,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<?php $url = $this->url( $watchTarget, $watchController, $watchAction, $watchParams, [], $watchConfig ); ?>
 						<form class="watch-details" method="POST" action="<?= $enc->attr( $url ); ?>">
 							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_action' ) ) ); ?>" value="edit" />
-							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ); ?>" value="<?= $enc->attr( $id ); ?>" />
+							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ); ?>" value="<?= $enc->attr( $listItem->getRefId() ); ?>" />
 							<?= $this->csrf()->formfield(); ?>
 
 							<ul class="form-list">

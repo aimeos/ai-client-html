@@ -7,12 +7,13 @@
 # Translators:
 # Translators:
 # Translators:
+# Ranu Yulianto <vanarif@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Indonesian (http://www.transifex.com/aimeos/aimeos-core/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +22,19 @@ msgstr ""
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. Tax name
+msgid "tax"
+msgstr ""
+
+#. PST tax name
+msgid "taxpst"
+msgstr ""
+
+#. GST tax name
+msgid "taxgst"
+msgstr ""
+
+#. Price type default
 msgid "price:default"
 msgstr ""
 
@@ -28,102 +42,110 @@ msgstr ""
 msgid "stocktype:default"
 msgstr ""
 
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr ""
-
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "favorit"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "pin"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "amati"
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "Ukuran"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "Panjang"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "Lebar"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "Warna"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "Pilihan"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "ukuran paket"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "panjang paket"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "tinggi paket"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "berat paket"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Pemilik akun"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Nomor akun"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "Kode bank"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "Nama bank"
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr ""
+msgstr "Nama depan"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr ""
+msgstr "Nama akhir (keluarga)"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Nomor kartu kredit"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Nomor verifikasi"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "Bulan kadaluarsa"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
+msgstr "Tahun kadaluarsa"
+
+#. Pick-up date
+msgid "date.value"
 msgstr ""
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Waktu penjemputan"
 
 #. Pick-up location
 msgid "supplier.code"
+msgstr "Tempat penjemputan"
+
+#. Pick-up location
+msgid "supplier.address"
+msgstr ""
+
+#. Delivery type
+msgid "delivery.type"
 msgstr ""

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -85,6 +85,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
+$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 /** client/html/catalog/session/pinned/count/enable
  * Displays the number of pinned products in the header of the pinned list
@@ -115,9 +116,8 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 
 	<ul class="pinned-items">
 		<?php foreach( $pinList as $id => $productItem ) : ?>
-
-			<?php $pinParams = array( 'pin_action' => 'delete', 'pin_id' => $id ) + $params; ?>
-			<?php $detailParams = array( 'd_name' => $productItem->getName( 'url' ), 'd_prodid' => $id ); ?>
+			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id] + $params; ?>
+			<?php $detailParams = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter ); ?>
 
 			<li class="pinned-item">
 				<a class="modify" href="<?= $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ); ?>">
@@ -136,7 +136,7 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 					<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
 					<div class="price-list">
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 						); ?>
 					</div>

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -41,11 +41,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertContains( '<div class="account-history-list">', $output );
-		$this->assertRegExp( '#<li class="history-item">#', $output );
-		$this->assertRegExp( '#<li class="attr-item order-basic">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
-		$this->assertRegExp( '#<li class="attr-item order-channel">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
-		$this->assertRegExp( '#<li class="attr-item order-payment">.*<span class="value">[^<]+</span>.*</li>#smU', $output );
-		$this->assertRegExp( '#<li class="attr-item order-delivery">.*<span class="value">.*</span>.*</li>#smU', $output );
+		$this->assertRegExp( '#<li class="history-item#', $output );
+		$this->assertRegExp( '#<div class="attr-item order-basic.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="attr-item order-channel.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="attr-item order-payment.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="attr-item order-delivery.*<span class="value.*</span>.*</div>#smU', $output );
 	}
 
 
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getCustomerItem( $code )
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
 		$items = $manager->searchItems( $search );

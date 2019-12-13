@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -126,7 +126,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/watch/standard/template-body';
 
-		return $view->render( $view->config( $tplconf, 'email/watch/body-standard.php' ) );
+		return $view->render( $view->config( $tplconf, 'email/watch/body-standard' ) );
 	}
 
 
@@ -316,7 +316,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/watch/standard/template-header';
 
-		return $view->render( $view->config( $tplconf, 'email/watch/header-standard.php' ) ); ;
+		return $view->render( $view->config( $tplconf, 'email/watch/header-standard' ) ); ;
 	}
 
 
@@ -428,29 +428,21 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$salutations = array(
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR,
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MRS,
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MISS,
+		$list = array(
+			/// E-mail intro with first name (%1$s) and last name (%2$s)
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_UNKNOWN => $view->translate( 'client', 'Dear %1$s %2$s' ),
+			/// E-mail intro with first name (%1$s) and last name (%2$s)
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR => $view->translate( 'client', 'Dear Mr %1$s %2$s' ),
+			/// E-mail intro with first name (%1$s) and last name (%2$s)
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MRS => $view->translate( 'client', 'Dear Mrs %1$s %2$s' ),
+			/// E-mail intro with first name (%1$s) and last name (%2$s)
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MISS => $view->translate( 'client', 'Dear Miss %1$s %2$s' ),
 		);
 
-		try
-		{
-			$salutation = '';
-			$addr = $view->extAddressItem;
-
-			if( in_array( $addr->getSalutation(), $salutations ) ) {
-				$salutation = $view->translate( 'mshop/code', $addr->getSalutation() );
-			}
-
-			/// E-mail intro with salutation (%1$s), first name (%2$s) and last name (%3$s)
-			$view->emailIntro = sprintf( $view->translate( 'client', 'Dear %1$s %2$s %3$s' ),
-				$salutation, $addr->getFirstName(), $addr->getLastName()
-			);
-		}
-		catch( \Exception $e )
-		{
-			$view->emailIntro = $view->translate( 'client/html/email', 'Dear Sir or Madam' );
+		if( isset( $view->extAddressItem ) && ( $addr = $view->extAddressItem ) && isset( $list[$addr->getSalutation()] ) ) {
+			$view->emailIntro = sprintf( $list[$addr->getSalutation()], $addr->getFirstName(), $addr->getLastName() );
+		} else {
+			$view->emailIntro = $view->translate( 'client', 'Dear Sir or Madam' );
 		}
 
 		return parent::addData( $view, $tags, $expire );

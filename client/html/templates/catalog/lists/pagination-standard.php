@@ -3,19 +3,30 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
 
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
+if( $this->get( 'params/f_catid' ) !== null )
+{
+	$listTarget = $this->config( 'client/html/catalog/tree/url/target' );
+	$listController = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
+	$listAction = $this->config( 'client/html/catalog/tree/url/action', 'tree' );
+	$listConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
+}
+else
+{
+	$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
+	$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
+	$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
+	$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
+}
 
+$sort = $this->config( 'client/html/catalog/lists/sort', 'relevance' );
 
 $params = $this->get( 'params', [] );
-$sort = $this->get( 'params/f_sort', 'relevance' );
+$sort = $this->get( 'params/f_sort', $sort );
 $sortname = ltrim( $sort, '-' );
 $nameDir = $priceDir = '';
 

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function setUpBeforeClass()
 	{
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::createManager( \TestHelperHtml::getContext() );
+		$orderManager = \Aimeos\MShop\Order\Manager\Factory::create( \TestHelperHtml::getContext() );
 		$orderBaseManager = $orderManager->getSubManager( 'base' );
 
 		$search = $orderManager->createSearch();
@@ -66,13 +66,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'embedAttachment' )
 			->will( $this->returnValue( 'cid:123-unique-id' ) );
 
-		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
-			->with( $this->matchesRegularExpression( '#<html>.*<title>E-mail notification</title>.*<meta.*Aimeos.*<body>#smu' ) );
+		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' );
 
 		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<html>', $output );
+		$this->assertStringStartsWith( '<!doctype html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
 		$this->assertContains( 'The delivery status of your order', $output );
 		$this->assertContains( 'Cafe Noire Expresso', $output );

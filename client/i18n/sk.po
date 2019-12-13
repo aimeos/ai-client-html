@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
-"PO-Revision-Date: 2017-10-02 15:52+0000\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Slovak (http://www.transifex.com/aimeos/aimeos-core/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #, php-format
 msgid "%1$d article"
@@ -25,6 +25,7 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d artikel"
 msgstr[1] "%1$d articles"
 msgstr[2] "%1$d artikle"
+msgstr[3] "%1$d artikle"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -92,6 +93,10 @@ msgstr "+"
 msgid "+ %1$s %2$s/item"
 msgstr "+ %1$s %2$s/položka"
 
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr ""
+
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -146,6 +151,12 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr "Účet bol pre Vás vytvorený."
 
+msgid "Article"
+msgstr ""
+
+msgid "Article no."
+msgstr ""
+
 msgid "Article no.:"
 msgstr "Č. artiklu:"
 
@@ -179,6 +190,9 @@ msgstr "Časť fakturačnej adresy \"%1$s\" chýba"
 
 msgid "Birthday"
 msgstr "Dátum narodenia"
+
+msgid "Bulk order"
+msgstr ""
 
 msgid "Bundled products"
 msgstr "Združené produkty"
@@ -228,6 +242,10 @@ msgid "Client HTML type is empty"
 msgstr "Client HTML type is empty"
 
 #, php-format
+msgid "Client path is empty"
+msgstr ""
+
+#, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr "Client type \"%1$s\" must consist of two parts separated by \"/\""
 
@@ -260,8 +278,24 @@ msgid "Customer with ID \"%1$s\" not found"
 msgstr "Zákazník s ID \"%1$s\" nebol nájdený"
 
 #, php-format
+msgid "Dear %1$s %2$s"
+msgstr ""
+
+#, php-format
 msgid "Dear %1$s %2$s %3$s"
 msgstr "Milý/á %1$s %2$s %3$s"
+
+#, php-format
+msgid "Dear Miss %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Dear Mrs %1$s %2$s"
+msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr ""
@@ -273,12 +307,19 @@ msgid "Delivery address"
 msgstr "Adresa doručenia"
 
 #, php-format
+msgid "Delivery address deleted successfully"
+msgstr ""
+
+#, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
 msgstr "Časť adresy doručenia je neplatná - \"%1$s\""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Chýba časť adresy doručenia - \"%1$s\""
+
+msgid "Delivery within"
+msgstr ""
 
 msgid "Description"
 msgstr "Popis"
@@ -295,6 +336,9 @@ msgstr "E-mail"
 #. / E-mail HTML title
 msgid "E-mail notification"
 msgstr "E-mailová notifikácia"
+
+msgid "End date"
+msgstr "Konečný dátum"
 
 msgid "Favorite products"
 msgstr "Obľúbený tovar"
@@ -329,6 +373,16 @@ msgid ""
 "policy\">privacy policy</a>"
 msgstr ""
 
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
+msgstr ""
+
 msgid "If back in stock"
 msgstr ""
 
@@ -336,6 +390,10 @@ msgid "If price decreases"
 msgstr ""
 
 msgid "If you have any questions, please reply to this e-mail"
+msgstr ""
+
+#, php-format
+msgid "Incl. %1$s%% %2$s"
 msgstr ""
 
 #. / Tax rate format with tax rate in percent (%1$s)
@@ -389,11 +447,20 @@ msgstr ""
 msgid "Like entered by you"
 msgstr ""
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr "Meno"
 
+msgid "New delivery address"
+msgstr ""
+
 msgid "Next"
 msgstr "Ďalší"
+
+msgid "Next order"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -557,6 +624,9 @@ msgstr ""
 msgid "Salutation"
 msgstr "Oslovenie"
 
+msgid "Save"
+msgstr "Uložiť"
+
 msgid "Search"
 msgstr "Hľadať"
 
@@ -568,6 +638,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+msgstr[3] ""
 
 msgid "Select country"
 msgstr ""
@@ -608,6 +679,12 @@ msgstr "Zoradiť podľa"
 msgid "State"
 msgstr "Štát"
 
+msgid "Status"
+msgstr "Status"
+
+msgid "Stock"
+msgstr "Zásoba"
+
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
 #. / Stock string composition with stock type (%1$s, normally left out) and
@@ -630,10 +707,35 @@ msgstr "Ulica"
 msgid "Sub-total"
 msgstr ""
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr ""
 
 msgid "Sum"
+msgstr ""
+
+msgid "Supplier information"
+msgstr ""
+
+msgid "Suppliers"
 msgstr ""
 
 msgid "Telephone"
@@ -721,12 +823,25 @@ msgid ""
 "You will get an e-mail as soon as the payment is authorized."
 msgstr ""
 
+msgid "The payment couldn't be renewed"
+msgstr ""
+
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
+msgstr ""
+
+msgid "The subscription for the product has ended"
+msgstr ""
+
+msgid "The subscription for the product has ended."
+msgstr ""
+
+#, php-format
+msgid "The value of your voucher is %1$s"
 msgstr ""
 
 msgid "Three month"
@@ -781,6 +896,9 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr "IČ DPH"
 
@@ -816,7 +934,13 @@ msgstr ""
 msgid "You are here:"
 msgstr ""
 
+msgid "You can use your voucher any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
+msgstr ""
+
+msgid "You've cancelled the subscription"
 msgstr ""
 
 msgid "Your account"
@@ -845,7 +969,25 @@ msgstr ""
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr ""
 
+msgid "Your reference"
+msgstr ""
+
+msgid "Your reference number"
+msgstr ""
+
 msgid "Your search result"
+msgstr ""
+
+msgid "Your subscription"
+msgstr ""
+
+msgid "Your subscription product"
+msgstr ""
+
+msgid "Your voucher"
+msgstr ""
+
+msgid "Your voucher: "
 msgstr ""
 
 #. / Product notification e-mail subject
@@ -888,6 +1030,9 @@ msgstr ""
 msgid "payment"
 msgstr ""
 
+msgid "price:default"
+msgstr ""
+
 #, php-format
 msgid "process"
 msgstr ""
@@ -910,6 +1055,9 @@ msgstr ""
 
 #, php-format
 msgid "summary"
+msgstr ""
+
+msgid "tax"
 msgstr ""
 
 msgid "▲ Name"

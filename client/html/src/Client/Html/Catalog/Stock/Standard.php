@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -103,7 +103,7 @@ class Standard
 			 * @see client/html/catalog/stock/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/stock/standard/template-body';
-			$default = 'catalog/stock/body-standard.php';
+			$default = 'catalog/stock/body-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -158,7 +158,7 @@ class Standard
 			 * @see client/html/catalog/stock/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/stock/standard/template-header';
-			$default = 'catalog/stock/header-standard.php';
+			$default = 'catalog/stock/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
@@ -298,8 +298,8 @@ class Standard
 		$stockItemsByProducts = [];
 		$productCodes = (array) $view->param( 's_prodcode', [] );
 
-		foreach( $this->getStockItems( $productCodes ) as $stockItem ){
-			$stockItemsByProducts[ $stockItem->getProductCode() ][] = $stockItem;
+		foreach( $this->getStockItems( $productCodes ) as $stockItem ) {
+			$stockItemsByProducts[$stockItem->getProductCode()][] = $stockItem;
 		}
 
 		$view->stockItemsByProducts = $stockItemsByProducts;
@@ -320,48 +320,30 @@ class Standard
 		$context = $this->getContext();
 
 		/** client/html/catalog/stock/sort
-		 * Sortation keys if stock levels for different types exist
+		 * Sortation key if stock levels for different types exist
 		 *
 		 * Products can be shipped from several warehouses with a different
 		 * stock level for each one. The stock levels for each warehouse will
 		 * be shown in the product detail page. To get a consistent sortation
-		 * of this list, the configured keys will be used by the stock manager.
+		 * of this list, the configured key will be used by the stock manager.
 		 *
-		 * The list consists of the sort key and the direction
-		 * (+: ascending, -: descending):
-		 *  array(
-		 *      'stock.productcode' => '+',
-		 *      'stock.stocklevel' => '-',
-		 *      'stock.type.code' => '+',
-		 *      'stock.dateback' => '+',
-		 *  )
+		 * Possible keys for sorting are ("-stock.type" for descending order):
+		 * * stock.productcode
+		 * * stock.stocklevel
+		 * * stock.type
+		 * * stock.dateback
 		 *
 		 * @param array List of key/value pairs for sorting
 		 * @since 2017.01
 		 * @category Developer
 		 * @see client/html/catalog/stock/level/low
 		 */
-		$default = array( 'stock.productcode' => '+', 'stock.type.code' => '+' );
-		$sortKeys = $context->getConfig()->get( 'client/html/catalog/stock/sort', $default );
+		$sort = $context->getConfig()->get( 'client/html/catalog/stock/sort', 'stock.type' );
+		$type = $context->getLocale()->getSite()->getConfigValue( 'stocktype' );
 
-		$siteConfig = $context->getLocale()->getSite()->getConfig();
-		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'stock' );
-
-		$filter = $cntl->createFilter();
-		$filter = $cntl->addFilterCodes( $filter, $productCodes );
-
-		if( isset( $siteConfig['stocktype'] ) ) {
-			$filter = $cntl->addFilterTypes( $filter, [$siteConfig['stocktype']] );
-		}
-
-		$sortations = [];
-		foreach( $sortKeys as $key => $dir ) {
-			$sortations[] = $filter->sort( $dir, $key );
-		}
-
-		$filter->setSortations( $sortations );
-		$filter->setSlice( 0, 0x7fffffff );
-
-		return $cntl->searchItems( $filter );
+		return \Aimeos\Controller\Frontend::create( $context, 'stock' )
+			->code( $productCodes )->type( $type )->sort( $sort )
+			->slice( 0, count( $productCodes ) )
+			->search();
 	}
 }

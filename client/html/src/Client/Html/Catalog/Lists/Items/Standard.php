@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -111,7 +111,7 @@ class Standard
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/items/standard/template-body';
-		$default = 'catalog/lists/items-body-standard.php';
+		$default = 'catalog/lists/items-body-standard';
 
 		return $view->render( $this->getTemplatePath( $tplconf, $default ) );
 	}
@@ -170,7 +170,7 @@ class Standard
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/items/standard/template-header';
-		$default = 'catalog/lists/items-header-standard.php';
+		$default = 'catalog/lists/items-header-standard';
 
 		return $view->render( $this->getTemplatePath( $tplconf, $default ) );
 	}
@@ -307,20 +307,14 @@ class Standard
 
 		if( $config->get( 'client/html/catalog/lists/basket-add', false ) )
 		{
-			$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
+			foreach( $products as $product )
+			{
+				if( $product->getType() === 'select' ) {
+					$productItems += $product->getRefItems( 'product', 'default', 'default' );
+				}
+			}
 
-			/** client/html/catalog/domains
-			 * A list of domain names whose items should be available in the catalog view templates
-			 *
-			 * @see client/html/catalog/detail/domains
-			 */
-			$domains = $config->get( 'client/html/catalog/domains', $domains );
-
-
-			$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$productItems = $prodCntl->getItems( $this->getProductIds( $products ), $domains );
 			$this->addMetaItems( $productItems, $expire, $tags );
-
 
 			$view->itemsProductItems = $productItems;
 		}
@@ -352,7 +346,14 @@ class Standard
 			$view->itemsStockUrl = $this->getStockUrl( $view, $products + $productItems );
 		}
 
-		$view->itemPosition = ( $this->getProductListPage( $view ) - 1 ) * $this->getProductListSize( $view );
+		if( in_array( 'navigator', $config->get( 'client/html/catalog/stage/standard/subparts', ['navigator'] ) ) )
+		{
+			$size = $config->get( 'client/html/catalog/lists/size', 48 );
+			$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
+			$page = min( max( $view->param( 'l_page', 1 ), 1 ), 100 );
+
+			$view->itemPosition = ( $page - 1 ) * $size;
+		}
 
 		return parent::addData( $view, $tags, $expire );
 	}

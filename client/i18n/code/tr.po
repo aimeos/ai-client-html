@@ -7,13 +7,15 @@
 # Translators:
 # Translators:
 # Translators:
-# Metal <meteoramic@yahoo.com>, 2015-2017
+# Aimeos, 2018
+# Aimeos, 2018
+# Metal <meteoramic@yahoo.com>, 2015-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -22,16 +24,25 @@ msgstr ""
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. Tax name
+msgid "tax"
+msgstr "vergi"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "Bölgesel Satış Vergisi (PST)"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "Mal ve Hizmet Vergisi (GST)"
+
+#. Price type default
 msgid "price:default"
 msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
-
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -67,19 +78,19 @@ msgstr "Seçenek"
 
 #. Product property package-length
 msgid "package-length"
-msgstr "ambalaj-uzunluğu"
+msgstr "Ambalaj Uzunluğu"
 
 #. Product property package-width
 msgid "package-width"
-msgstr "ambalaj-genişliği"
+msgstr "Ambalaj Genişliği"
 
 #. Product property package-height
 msgid "package-height"
-msgstr "ambalaj-yüksekliği"
+msgstr "Ambalaj Yüksekliği"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "ambalaj-ağırlığı"
+msgstr "Ambalaj Ağırlığı"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
@@ -121,6 +132,10 @@ msgstr "Geçerli olduğu son ay"
 msgid "payment.expiryyear"
 msgstr "Geçerli olduğu son yıl"
 
+#. Pick-up date
+msgid "date.value"
+msgstr "Toplama tarihi"
+
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "Yerinden alma zamanı"
@@ -128,3 +143,11 @@ msgstr "Yerinden alma zamanı"
 #. Pick-up location
 msgid "supplier.code"
 msgstr "Yerinden alma konumu"
+
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Yerinden alma adresi"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr ""

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -19,6 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Address\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -27,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 
 		unset( $this->object, $this->context );
 	}
@@ -59,22 +60,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$customerItem = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context )->findItem( 'UTC001' );
-		$addrItem = $customerItem->getPaymentAddress();
-		$addrItem->setId( null );
+		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$address = $customerItem->getPaymentAddress()->setId( null )->toArray();
 
-		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-		$basketCntl->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $addrItem );
+		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
 
 		$this->context->setUserId( $customerItem->getId() );
-		$basketCntl->get()->setCustomerId( $customerItem->getId() );
 
-		$customerStub = $this->getMockBuilder( '\Aimeos\Controller\Frontend\Customer\Standard' )
+		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'saveAddressItem' ) )
+			->setMethods( array( 'addAddressItem', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'saveAddressItem' );
+		$customerStub->expects( $this->once() )->method( 'addAddressItem' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'store' );
 
 		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
 		$this->object->process();

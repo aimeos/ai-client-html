@@ -14,20 +14,25 @@
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"require": {
-		"php": ">=5.3.3",
+		"php": ">=5.5.0",
 		"composer/installers": "^1.0",
 		"aimeos/aimeos-core": "dev-master",
 		"aimeos/ai-controller-jobs": "dev-master",
 		"aimeos/ai-controller-frontend": "dev-master"
 	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.7"
+	},
 	"autoload": {
 		"psr-4": {
 			"Aimeos\\Client\\Html\\": "client/html/src/Client/Html/",
-			"Aimeos\\Controller\\Jobs\\": "client/html/src/Controller/Jobs/"
+			"Aimeos\\Controller\\Jobs\\": "controller/jobs/src/Controller/Jobs/",
+			"Aimeos\\Controller\\Common\\": "controller/common/src/Controller/Common/"
 		},
 		"classmap": [
 			"client/html/src",
-			"controller/jobs/src"
+			"controller/jobs/src",
+			"controller/common/src"
 		]
 	}
 }

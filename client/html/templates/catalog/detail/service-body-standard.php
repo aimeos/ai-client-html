@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  */
 
 $enc = $this->encoder();
@@ -11,18 +11,17 @@ $items = $this->get( 'serviceItems', [] );
 ?>
 <?php $this->block()->start( 'catalog/detail/service' ); ?>
 <div class="catalog-detail-service">
-	<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
 
 	<?php if( !empty( $items ) ) : ?>
+		<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
 		<ul class="service-list">
 
 			<?php foreach( $items as $item ) : ?>
-
 				<li class="service-item">
 					<span class="service-name"><?= $enc->html( $item->getName() ); ?></span>
 
 					<?= $this->partial(
-						$this->config( 'client/html/common/partials/price', 'common/partials/price-standard.php' ),
+						$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 						array( 'prices' => $item->getRefItems( 'price', null, 'default' ), 'costsItem' => false )
 					); ?>
 

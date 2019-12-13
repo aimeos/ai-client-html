@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -17,8 +17,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp()
 	{
-		\Aimeos\MShop\Factory::setCache( true );
-
+		\Aimeos\Controller\Frontend::cache( true );
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Account\Standard( $this->context );
@@ -28,10 +27,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown()
 	{
-		\Aimeos\MShop\Factory::clear();
-		\Aimeos\MShop\Factory::setCache( false );
-
-		\Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context )->clear();
+		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::cache( false );
 
 		unset( $this->object, $this->object );
 	}
@@ -63,29 +60,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$customerItem = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context )->findItem( 'UTC001' );
+		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$address = $customerItem->getPaymentAddress()->setEmail( 'unittest@aimeos.org' )->toArray();
 
-		$addrItem = $customerItem->getPaymentAddress();
-		$addrItem->setEmail( 'unittest@aimeos.org' );
-
-		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::createController( $this->context );
-		$basketCntl->setAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $addrItem );
+		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
 
 		$view = \TestHelperHtml::getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'cs_option_account' => 1 ) );
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
 
-		$customerStub = $this->getMockBuilder( '\Aimeos\Controller\Frontend\Customer\Standard' )
+		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'addItem' ) )
+			->setMethods( array( 'add', 'get', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'addItem' )
-			->will( $this->returnValue( $customerStub->createItem() ) );
+		$customerStub->expects( $this->exactly( 2 ) )->method( 'add' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'get' )->will( $this->returnValue( $customerItem ) );
 
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
+		\Aimeos\Controller\Frontend::inject( 'customer', $customerStub );
+
 		$this->object->process();
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 }

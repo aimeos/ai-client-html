@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -122,6 +122,16 @@ foreach( $this->get( 'stockProductCodes', [] ) as $prodCode )
 var aimeosStockHtml = <?= json_encode( $result, JSON_FORCE_OBJECT ); ?>;
 
 $(".aimeos .product .stock-list .articleitem").each(function() {
+
+	var elem = $(this);
+	var prodcode = elem.data("prodcode");
+
+	if( aimeosStockHtml.hasOwnProperty( prodcode ) ) {
+		elem.html( aimeosStockHtml[prodcode] );
+	}
+});
+
+$(".aimeos .product .selection .select-stock").each(function() {
 
 	var elem = $(this);
 	var prodcode = elem.data("prodcode");

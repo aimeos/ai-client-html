@@ -8,13 +8,13 @@
 # Translators:
 # Translators:
 # Bistra Kumanova <b.kumanova@creato.bg>, 2015
-# Plamen Petkov <mcplamen@gmail.com>, 2016
+# Plamen Petkov <mcplamen@gmail.com>, 2016,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -23,15 +23,24 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. Tax name
+msgid "tax"
+msgstr ""
+
+#. PST tax name
+msgid "taxpst"
+msgstr ""
+
+#. GST tax name
+msgid "taxgst"
+msgstr ""
+
+#. Price type default
 msgid "price:default"
 msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
-
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
 msgstr ""
 
 #. Favorite action
@@ -122,10 +131,22 @@ msgstr "Изтичане на месец"
 msgid "payment.expiryyear"
 msgstr "Изтичане на година"
 
+#. Pick-up date
+msgid "date.value"
+msgstr "Изберете дата"
+
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Изберете време"
 
 #. Pick-up location
 msgid "supplier.code"
+msgstr "Изберете място"
+
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Изберете адрес"
+
+#. Delivery type
+msgid "delivery.type"
 msgstr ""

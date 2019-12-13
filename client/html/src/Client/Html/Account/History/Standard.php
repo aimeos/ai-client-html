@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -107,25 +107,24 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->historyErrorList = array_merge( $view->get( 'historyErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->historyErrorList = array_merge( $view->get( 'historyErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->historyErrorList = array_merge( $view->get( 'historyErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
+			$view->historyErrorList = array_merge( $view->get( 'historyErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 
 		/** client/html/account/history/standard/template-body
@@ -149,7 +148,7 @@ class Standard
 		 * @see client/html/account/history/standard/template-header
 		 */
 		$tplconf = 'client/html/account/history/standard/template-body';
-		$default = 'account/history/body-standard.php';
+		$default = 'account/history/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -199,13 +198,13 @@ class Standard
 			 * @see client/html/account/history/standard/template-body
 			 */
 			$tplconf = 'client/html/account/history/standard/template-header';
-			$default = 'account/history/header-standard.php';
+			$default = 'account/history/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$this->logException( $e );
 		}
 	}
 
@@ -314,24 +313,23 @@ class Standard
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
+			$view->historyErrorList = array_merge( $view->get( 'historyErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
+			$view->historyErrorList = array_merge( $view->get( 'historyErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
+			$view->historyErrorList = array_merge( $view->get( 'historyErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->historyErrorList = $view->get( 'historyErrorList', [] ) + $error;
+			$view->historyErrorList = array_merge( $view->get( 'historyErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 	}
 

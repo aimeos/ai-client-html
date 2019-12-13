@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Controller
  * @subpackage Order
  */
@@ -54,9 +54,9 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$client = \Aimeos\Client\Html\Email\Delivery\Factory::createClient( $context );
+		$client = \Aimeos\Client\Html\Email\Delivery\Factory::create( $context );
 
-		$orderManager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		/** controller/jobs/order/email/delivery/standard/limit-days
 		 * Only send delivery e-mails of orders that were created in the past within the configured number of days
@@ -113,7 +113,7 @@ class Standard
 			$start = 0;
 			$orderSearch = $orderManager->createSearch();
 
-			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, $status );
+			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, (string) $status );
 			$orderFunc = $orderSearch->createFunction( 'order.containsStatus', $param );
 
 			$expr = array(
@@ -146,7 +146,7 @@ class Standard
 	 */
 	protected function addOrderStatus( $orderId, $value )
 	{
-		$orderStatusManager = \Aimeos\MShop\Factory::createManager( $this->getContext(), 'order/status' );
+		$orderStatusManager = \Aimeos\MShop::create( $this->getContext(), 'order/status' );
 
 		$statusItem = $orderStatusManager->createItem();
 		$statusItem->setParentId( $orderId );
@@ -168,17 +168,17 @@ class Standard
 	{
 		try
 		{
-			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, 0 );
 
 			if( $addr->getEmail() == '' )
 			{
-				$payAddr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+				$payAddr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 				$addr->setEmail( $payAddr->getEmail() );
 			}
 		}
 		catch( \Exception $e )
 		{
-			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+			$addr = $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 		}
 
 		return $addr;
@@ -229,7 +229,7 @@ class Standard
 	protected function process( \Aimeos\Client\Html\Iface $client, array $items, $status )
 	{
 		$context = $this->getContext();
-		$orderBaseManager = \Aimeos\MShop\Factory::createManager( $context, 'order/base' );
+		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );
 
 		foreach( $items as $id => $item )
 		{

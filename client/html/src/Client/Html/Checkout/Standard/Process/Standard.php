@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -125,7 +125,7 @@ class Standard
 		 * @see client/html/checkout/standard/process/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/process/standard/template-body';
-		$default = 'checkout/standard/process-body-standard.php';
+		$default = 'checkout/standard/process-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -255,24 +255,23 @@ class Standard
 
 		try
 		{
-			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-			$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
+			$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
-			if ( $view->param( 'cs_order', null ) !== null )
+			if( $view->param( 'cs_order', null ) !== null )
 			{
 				parent::process();
 
 				$basket = $basketCntl->store();
-				$orderItem = $orderCntl->addItem( $basket->getId(), 'web' );
-				$orderCntl->block( $orderItem );
+				$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
 
 				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
 			}
-			elseif ( $view->param( 'cp_payment', null ) !== null )
+			elseif( $view->param( 'cp_payment', null ) !== null )
 			{
 				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
-				$orderItem = $orderCntl->getItem( $context->getSession()->get( 'aimeos/orderid' ) );
+				$orderItem = $orderCntl->get( $context->getSession()->get( 'aimeos/orderid' ), false );
 				$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
 			}
 			else
@@ -280,48 +279,41 @@ class Standard
 				return;
 			}
 
-			if( $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT ) === []
-				|| $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= '0.00'
-			) {
-				$orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED );
-				$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-				$orderCntl->saveItem( $orderItem );
-
-			}
-			elseif( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
+			if( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
 			{
 				$view->standardUrlNext = $form->getUrl();
 				$view->standardMethod = $form->getMethod();
 				$view->standardProcessParams = $form->getValues();
 				$view->standardUrlExternal = $form->getExternal();
-
-				return;
+				$view->standardHtml = $form->getHtml();
 			}
-
-			$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
-			$view->standardMethod = 'POST';
+			else // no payment service available
+			{
+				$orderCntl->save( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
+				$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
+				$view->standardMethod = 'POST';
+			}
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 	}
 
@@ -331,11 +323,17 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Saved basket object including payment service object
 	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Saved order item created for the basket object
-	 * @return \Aimeos\MShop\Common\Item\Helper\Form\Iface|null Form object with URL, parameters, etc.
+	 * @return \Aimeos\MShop\Common\Helper\Form\Iface|null Form object with URL, parameters, etc.
 	 * 	or null if no form data is required
 	 */
 	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )
 	{
+		if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= 0
+			&& $this->isSubscription( $basket->getProducts() ) === false
+		) {
+			return;
+		}
+
 		$view = $this->getView();
 		$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 
@@ -350,11 +348,11 @@ class Standard
 			);
 
 			$params = $view->param();
-			foreach( $service->getAttributes() as $item ) {
+			foreach( $service->getAttributeItems() as $item ) {
 				$params[$item->getCode()] = $item->getValue();
 			}
 
-			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'service' );
+			$serviceCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'service' );
 			return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 		}
 	}
@@ -623,6 +621,25 @@ class Standard
 		$config = $view->config( 'client/html/checkout/update/url/config', $config );
 
 		return $view->url( $target, $cntl, $action, $params, [], $config );
+	}
+
+
+	/**
+	 * Tests if one of the products is a subscription
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Product\Iface[] $products Ordered products
+	 * @return boolean True if at least one product is a subscription, false if not
+	 */
+	protected function isSubscription( array $products )
+	{
+		foreach( $products as $orderProduct )
+		{
+			if( $orderProduct->getAttributeItem( 'interval', 'config' ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 

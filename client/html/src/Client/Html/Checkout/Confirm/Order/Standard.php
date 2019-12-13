@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -95,7 +95,7 @@ class Standard
 		 * @see client/html/checkout/confirm/order/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/confirm/order/standard/template-body';
-		$default = 'checkout/confirm/order-body-standard.php';
+		$default = 'checkout/confirm/order-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -215,11 +215,15 @@ class Standard
 				$view->summaryShowDownloadAttributes = true;
 			}
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
 			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+			$basket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
 
-			$view->summaryBasket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
-			$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
+			$view->summaryBasket = $basket;
+			$view->summaryTaxRates = $this->getTaxRates( $basket );
+			$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
+			$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
+			$view->summaryCostsPayment = $this->getCostsPayment( $basket );
 		}
 
 		return parent::addData( $view, $tags, $expire );

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2014-2017
+ * @copyright Aimeos (aimeos.org), 2014-2018
  */
 
 /* Available data:
@@ -38,41 +38,47 @@ $mediaItems = $this->get( 'mediaItems', [] );
 ?>
 <div class="catalog-detail-image">
 
-	<?php if( count( $mediaItems ) > 1 ) : $class = 'item selected'; ?>
-		<div class="image-thumbs thumbs-vertical" data-slick='{"slidesToShow": 4, "slidesToScroll": 4, "vertical": true, "verticalSwiping": true}'>
-			<button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button><!--
+	<?php if( ( $num = count( $mediaItems ) ) > 1 ) : $class = 'item selected'; ?>
+		<div class="image-thumbs thumbs-vertical" data-slick='{"slidesToShow": 4, "slidesToScroll": 4, "vertical": true, "verticalSwiping": true}'><!--
+			<?php if( $num > 4 ) : ?>
+				--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button><!--
+			<?php endif ?>
 			--><div class="thumbs"><!--
 
 				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
-					<?php $previewUrl = $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>
-
-					--><a class="<?= $class; ?>" style="background-image: url('<?= $previewUrl; ?>')"
+					--><a class="<?= $class; ?>" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>')"
 						href="<?= $url . '#image-' . $enc->attr( $id ); ?>"
 					></a><!--
-
 					<?php $class = 'item'; ?>
 				<?php endforeach; ?>
 
 			--></div><!--
-			--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button><!--
+			<?php if( $num > 4 ) : ?>
+				--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button><!--
+			<?php endif ?>
 		--></div>
 	<?php endif; ?><!--
 
 	--><div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 		<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
-			<?php $mediaUrl = $enc->attr( $this->content( $mediaItem->getUrl() ) ); ?>
-			<?php $previewUrl = $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>
-
-			<figure id="image-<?= $enc->attr( $id ); ?>"
-				class="item" style="background-image: url('<?= $mediaUrl; ?>')"
-				itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
-				data-image="<?= $previewUrl; ?>"
-				<?= $getVariantData( $mediaItem ); ?> >
-				<a href="<?= $enc->attr( $mediaUrl ); ?>" itemprop="contentUrl"></a>
-				<figcaption itemprop="caption description"><?= $enc->html( $mediaItem->getName() ); ?></figcaption>
-			</figure>
-
+			<?php
+				$sources = [];
+				foreach( $mediaItem->getPreviews() as $type => $path ) {
+					$sources[$type] = $this->content( $path );
+				}
+			?>
+			<div id="image-<?= $enc->attr( $id ); ?>" class="media-item">
+				<img class="item"
+					src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+					srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+					itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
+					data-image="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+					data-sources="<?= $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) ?>"
+					alt="<?= $enc->html( $mediaItem->getName() ); ?>"
+					<?= $getVariantData( $mediaItem ); ?>
+				/>
+			</div>
 		<?php endforeach; ?>
 
 	</div>

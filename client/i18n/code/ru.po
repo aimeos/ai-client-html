@@ -9,12 +9,13 @@
 # Translators:
 # Dimitri <doleiynyk@metaways.de>, 2013
 # Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
+# Вячеслав Васильев <uverst@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -23,15 +24,24 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#. Tax name
+msgid "tax"
+msgstr ""
+
+#. PST tax name
+msgid "taxpst"
+msgstr ""
+
+#. GST tax name
+msgid "taxgst"
+msgstr ""
+
+#. Price type default
 msgid "price:default"
 msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
-
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
 msgstr ""
 
 #. Favorite action
@@ -122,10 +132,22 @@ msgstr "Месяц окончания действия"
 msgid "payment.expiryyear"
 msgstr "Год окончания действия"
 
+#. Pick-up date
+msgid "date.value"
+msgstr "Дата самовывоза"
+
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Время самовывоза"
 
 #. Pick-up location
 msgid "supplier.code"
+msgstr "Местоположение самовывоза"
+
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Адрес самовывоза"
+
+#. Delivery type
+msgid "delivery.type"
 msgstr ""

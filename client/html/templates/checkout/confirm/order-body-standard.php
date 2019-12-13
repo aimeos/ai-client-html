@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://www.gnu.org/licenses/lgpl.php
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -40,8 +40,8 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/checkout/confirm/summary/detail
 						 * @see client/html/checkout/confirm/summary/service
 						 */
-						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['payment'], 'type' => 'payment' )
+						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -55,8 +55,8 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $addresses['delivery'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard.php' ),
-						array( 'address' => $addresses['delivery'], 'type' => 'delivery' )
+						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard' ),
+						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
@@ -90,7 +90,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/checkout/confirm/summary/address
 						 * @see client/html/checkout/confirm/summary/detail
 						 */
-						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard.php' ),
+						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard' ),
 						array( 'service' => $services['delivery'], 'type' => 'delivery' )
 					); ?>
 				<?php endif; ?>
@@ -105,7 +105,7 @@ $services = $this->summaryBasket->getServices();
 			<div class="content">
 				<?php if( isset( $services['payment'] ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard.php' ),
+						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard' ),
 						array( 'service' => $services['payment'], 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
@@ -116,7 +116,7 @@ $services = $this->summaryBasket->getServices();
 
 
 	<div class="common-summary-additional row">
-		<div class="item coupon col-sm-6">
+		<div class="item coupon col-sm-4">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -132,7 +132,17 @@ $services = $this->summaryBasket->getServices();
 			</div>
 		</div><!--
 
-		--><div class="item comment col-sm-6">
+		--><div class="item customerref col-sm-4">
+			<div class="header">
+				<h3><?= $enc->html( $this->translate( 'client', 'Your reference number' ), $enc::TRUST ); ?></h3>
+			</div>
+
+			<div class="content">
+				<?= $enc->html( $this->summaryBasket->getCustomerReference() ); ?>
+			</div>
+		</div><!--
+
+		--><div class="item comment col-sm-4">
 			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
 			</div>
@@ -145,11 +155,11 @@ $services = $this->summaryBasket->getServices();
 
 
 	<div class="common-summary-detail row">
-		<div class="header">
+		<div class="header col-sm-12">
 			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 		</div>
 
-		<div class="basket">
+		<div class="basket col-sm-12">
 			<?= $this->partial(
 				/** client/html/checkout/confirm/summary/detail
 				 * Location of the detail partial template for the confirmation component
@@ -165,10 +175,13 @@ $services = $this->summaryBasket->getServices();
 				 * @see client/html/checkout/confirm/summary/address
 				 * @see client/html/checkout/confirm/summary/service
 				 */
-				$this->config( 'client/html/checkout/confirm/summary/detail', 'common/summary/detail-standard.php' ),
+				$this->config( 'client/html/checkout/confirm/summary/detail', 'common/summary/detail-standard' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
-					'summaryTaxRates' => $this->get( 'summaryTaxRates' ),
+					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
+					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
+					'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
+					'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
 					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' ),
 				)
 			); ?>

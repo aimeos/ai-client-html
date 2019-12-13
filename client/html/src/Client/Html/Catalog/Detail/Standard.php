@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -78,7 +78,18 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'service', 'seen' );
+
+	/** client/html/catalog/detail/supplier/name
+	 * Name of the supplier part used by the catalog detail client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Supplier\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2014.03
+	 * @category Developer
+	 */
+	private $subPartNames = ['seen', 'service', 'supplier'];
 
 	private $tags = [];
 	private $expire;
@@ -96,6 +107,21 @@ class Standard
 		$prefixes = array( 'd' );
 		$context = $this->getContext();
 
+		/** client/html/catalog/detail/cache
+		 * Enables or disables caching only for the catalog detail component
+		 *
+		 * Disable caching for components can be useful if you would have too much
+		 * entries to cache or if the component contains non-cacheable parts that
+		 * can't be replaced using the modifyBody() and modifyHeader() methods.
+		 *
+		 * @param boolean True to enable caching, false to disable
+		 * @category Developer
+		 * @category User
+		 * @see client/html/catalog/filter/cache
+		 * @see client/html/catalog/lists/cache
+		 * @see client/html/catalog/stage/cache
+		 */
+
 		/** client/html/catalog/detail
 		 * All parameters defined for the catalog detail component and its subparts
 		 *
@@ -111,41 +137,6 @@ class Standard
 		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->getView();
-
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
-				}
-
-				$output = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getBody( $uid );
-				}
-				$view->detailBody = $output;
-			}
-			catch( \Aimeos\Client\Html\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-				$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
-			}
-			catch( \Aimeos\Controller\Frontend\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-				$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
-			}
-			catch( \Aimeos\MShop\Exception $e )
-			{
-				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-				$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
-			}
-			catch( \Exception $e )
-			{
-				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
-				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-				$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
-			}
 
 			/** client/html/catalog/detail/standard/template-body
 			 * Relative path to the HTML body template of the catalog detail client.
@@ -168,11 +159,48 @@ class Standard
 			 * @see client/html/catalog/detail/standard/template-header
 			 */
 			$tplconf = 'client/html/catalog/detail/standard/template-body';
-			$default = 'catalog/detail/body-standard.php';
+			$default = 'catalog/detail/body-standard';
+
+			try
+			{
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
+
+				$output = '';
+				foreach( $this->getSubClients() as $subclient ) {
+					$output .= $subclient->setView( $view )->getBody( $uid );
+				}
+				$view->detailBody = $output;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
+			}
+			catch( \Aimeos\Client\Html\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+				$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
+			}
+			catch( \Aimeos\Controller\Frontend\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+				$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
+			}
+			catch( \Aimeos\MShop\Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+				$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
+			}
+			catch( \Exception $e )
+			{
+				$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+				$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
+				$this->logException( $e );
+			}
 
 			$html = $view->render( $view->config( $tplconf, $default ) );
-
-			$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 		else
 		{
@@ -192,31 +220,12 @@ class Standard
 	public function getHeader( $uid = '' )
 	{
 		$prefixes = array( 'd' );
-		$context = $this->getContext();
 		$confkey = 'client/html/catalog/detail';
 
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->getView();
-
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
-				}
-
-				$output = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getHeader( $uid );
-				}
-				$view->detailHeader = $output;
-			}
-			catch( \Exception $e )
-			{
-				$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-				return;
-			}
 
 			/** client/html/catalog/detail/standard/template-header
 			 * Relative path to the HTML header template of the catalog detail client.
@@ -240,11 +249,29 @@ class Standard
 			 * @see client/html/catalog/detail/standard/template-body
 			 */
 			$tplconf = 'client/html/catalog/detail/standard/template-header';
-			$default = 'catalog/detail/header-standard.php';
+			$default = 'catalog/detail/header-standard';
 
-			$html = $view->render( $view->config( $tplconf, $default ) );
+			try
+			{
+				if( !isset( $this->view ) ) {
+					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				}
 
-			$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$output = '';
+				foreach( $this->getSubClients() as $subclient ) {
+					$output .= $subclient->setView( $view )->getHeader( $uid );
+				}
+				$view->detailHeader = $output;
+
+				$html = $view->render( $view->config( $tplconf, $default ) );
+				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				return $html;
+			}
+			catch( \Exception $e )
+			{
+				$this->logException( $e );
+			}
 		}
 		else
 		{
@@ -378,24 +405,23 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
+			$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
+			$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
+			$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->detailErrorList = $view->get( 'detailErrorList', [] ) + $error;
+			$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 	}
 
@@ -423,28 +449,6 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$prodid = $view->param( 'd_prodid' );
-
-		if( $prodid == '' )
-		{
-			/** client/html/catalog/detail/prodid-default
-			 * The default product ID used if none is given as parameter
-			 *
-			 * To display a product detail view or a part of it for a specific
-			 * product, you can configure its ID using this setting. This is
-			 * most useful in a CMS where the product ID can be configured
-			 * separately for each content node.
-			 *
-			 * @param string Product ID
-			 * @since 2016.01
-			 * @category User
-			 * @category Developer
-			 * @see client/html/catalog/lists/catid-default
-			 */
-			$prodid = $config->get( 'client/html/catalog/detail/prodid-default', '' );
-		}
-
-
 		$domains = array( 'media', 'price', 'text', 'attribute', 'product', 'product/property' );
 
 		/** client/html/catalog/domains
@@ -477,14 +481,46 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
 
+		/** client/html/catalog/detail/prodid-default
+		 * The default product ID used if none is given as parameter
+		 *
+		 * To display a product detail view or a part of it for a specific
+		 * product, you can configure its ID using this setting. This is
+		 * most useful in a CMS where the product ID can be configured
+		 * separately for each content node.
+		 *
+		 * @param string Product ID
+		 * @since 2016.01
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/lists/catid-default
+		 */
+		$id = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'catalog' );
-		$prodCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
+		/** client/html/catalog/detail/prodcode-default
+		 * The default product code used if none is given as parameter
+		 *
+		 * To display a product detail view or a part of it for a specific
+		 * product, you can configure its code using this setting. This is
+		 * most useful in a CMS where the product code can be configured
+		 * separately for each content node.
+		 *
+		 * @param string Product code
+		 * @since 2019.10
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/lists/catid-default
+		 */
+		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 
-		$productItem = $prodCntl->getItem( $prodid, $domains );
+		$name = $view->param( 'd_name', '' );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
+		$productItem = ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $name ) ) );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
-		$products = $prodCntl->getItems( array_keys( $productItem->getRefItems( 'product' ) ), $domains );
+		$products = $productItem->getRefItems( 'product' );
 		$this->addMetaItems( $products, $expire, $tags );
 
 
@@ -511,7 +547,7 @@ class Standard
 		 */
 
 		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
-			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, array( $productItem ) ) );
+			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, [$productItem] ) );
 		}
 
 		$view->detailProductItems = $products;

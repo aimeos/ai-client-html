@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -146,7 +146,7 @@ class Standard
 		$tplconf = 'client/html/email/delivery/standard/template-body';
 
 		$status = $view->extOrderItem->getDeliveryStatus();
-		$default = array( 'email/delivery/' . $status . '/body-standard.php', 'email/delivery/body-standard.php' );
+		$default = array( 'email/delivery/' . $status . '/body-standard', 'email/delivery/body-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -170,13 +170,14 @@ class Standard
 
 
 		$addr = $view->extAddressItem;
-		$billAddr = $view->extOrderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 
 		$msg = $view->mail();
 		$msg->addHeader( 'X-MailGenerator', 'Aimeos' );
 		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
-		if( $billAddr->getEMail() != $addr->getEmail() ) {
+		$addresses = $view->extOrderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+
+		if( ( $billAddr = current( $addresses ) ) !== false && $billAddr->getEMail() != $addr->getEmail() ) {
 			$msg->addCc( $billAddr->getEMail(), $billAddr->getFirstName() . ' ' . $billAddr->getLastName() );
 		}
 
@@ -404,7 +405,7 @@ class Standard
 		$tplconf = 'client/html/email/delivery/standard/template-header';
 
 		$status = $view->extOrderItem->getDeliveryStatus();
-		$default = array( 'email/delivery/' . $status . '/header-standard.php', 'email/delivery/header-standard.php' );
+		$default = array( 'email/delivery/' . $status . '/header-standard', 'email/delivery/header-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) ); ;
 	}
@@ -558,29 +559,21 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$salutations = array(
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR,
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MRS,
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MISS,
+		$list = array(
+			/// E-mail intro with first name (%1$s) and last name (%2$s)
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_UNKNOWN => $view->translate( 'client', 'Dear %1$s %2$s' ),
+			/// E-mail intro with first name (%1$s) and last name (%2$s)
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR => $view->translate( 'client', 'Dear Mr %1$s %2$s' ),
+			/// E-mail intro with first name (%1$s) and last name (%2$s)
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MRS => $view->translate( 'client', 'Dear Mrs %1$s %2$s' ),
+			/// E-mail intro with first name (%1$s) and last name (%2$s)
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MISS => $view->translate( 'client', 'Dear Miss %1$s %2$s' ),
 		);
 
-		try
-		{
-			$salutation = '';
-			$addr = $view->extAddressItem;
-
-			if( in_array( $addr->getSalutation(), $salutations ) ) {
-				$salutation = $view->translate( 'mshop/code', $addr->getSalutation() );
-			}
-
-			/// E-mail intro with salutation (%1$s), first name (%2$s) and last name (%3$s)
-			$view->emailIntro = sprintf( $view->translate( 'client', 'Dear %1$s %2$s %3$s' ),
-				$salutation, $addr->getFirstName(), $addr->getLastName()
-			);
-		}
-		catch( \Exception $e )
-		{
-			$view->emailIntro = $view->translate( 'client/html/email', 'Dear Sir or Madam' );
+		if( isset( $view->extAddressItem ) && ( $addr = $view->extAddressItem ) && isset( $list[$addr->getSalutation()] ) ) {
+			$view->emailIntro = sprintf( $list[$addr->getSalutation()], $addr->getFirstName(), $addr->getLastName() );
+		} else {
+			$view->emailIntro = $view->translate( 'client', 'Dear Sir or Madam' );
 		}
 
 		return parent::addData( $view, $tags, $expire );

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/filter/attribute/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/filter/attribute/standard/template-body';
-		$default = 'catalog/filter/attribute-body-standard.php';
+		$default = 'catalog/filter/attribute-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -237,13 +237,6 @@ class Standard
 		$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
 		$attrTypes = ( !is_array( $attrTypes ) ? explode( ',', $attrTypes ) : $attrTypes );
 
-		$cntl = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'attribute' );
-
-		$filter = $cntl->createFilter();
-		$filter = $cntl->addFilterTypes( $filter, $attrTypes );
-		$filter->setSlice( 0, 0x7fffffff );
-
-
 		/** client/html/catalog/filter/attribute/domains
 		 * List of domain names whose items should be fetched with the filter attributes
 		 *
@@ -262,7 +255,8 @@ class Standard
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', array( 'text', 'media' ) );
 
-		$attributes = $cntl->searchItems( $filter, $domains );
+		$attributes = \Aimeos\Controller\Frontend::create( $this->getContext(), 'attribute' )
+			->uses( $domains )->type( $attrTypes )->sort( 'position' )->slice( 0, 10000 )->search();
 
 		foreach( $attributes as $id => $item ) {
 			$attrMap[$item->getType()][$id] = $item;
@@ -280,10 +274,6 @@ class Standard
 			}
 
 			$attrMap = $sortedMap;
-		}
-		else
-		{
-			ksort( $attrMap );
 		}
 
 		// Delete cache when attributes are added or deleted even in "tag-all" mode

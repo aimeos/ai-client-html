@@ -4,26 +4,29 @@
 
 	<target name="test" description="Executes all tests">
 		<phing target="test" haltonfailure="true" dir="client/html" />
+		<phing target="test" haltonfailure="true" dir="controller/common" />
 		<phing target="test" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="testperf" description="Executes all performance tests">
 		<phing target="testperf" haltonfailure="true" dir="client/html" />
-		<phing target="testperf" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="coverage" description="Generates the code coverage report">
 		<phing target="coverage" haltonfailure="true" dir="client/html" />
+		<phing target="coverage" haltonfailure="true" dir="controller/common" />
 		<phing target="coverage" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="check" description="Checks for code quality">
 		<phing target="check" haltonfailure="true" dir="client/html" />
+		<phing target="check" haltonfailure="true" dir="controller/common" />
 		<phing target="check" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
 	<target name="clean" description="Cleans up temporary files">
 		<phing target="clean" haltonfailure="true" dir="client/html" />
+		<phing target="clean" haltonfailure="true" dir="controller/common" />
 		<phing target="clean" haltonfailure="true" dir="controller/jobs" />
 	</target>
 
@@ -33,7 +36,7 @@
 	</target>
 
 	<target name="build" description="Builds package for deployment">
-		<exec command="tx pull -a -f" checkreturn="true" logoutput="true" />
+		<exec command="tx pull -a -f --minimum-perc=1" checkreturn="true" logoutput="true" />
 		<phing target="build" haltonfailure="true" dir="controller/jobs" />
 		<phing target="build" haltonfailure="true" dir="client" />
     </target>

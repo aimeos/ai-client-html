@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  */
 
 
@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeader()
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'customer' );
+		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$this->context->setUserId( $manager->findItem( 'UTC001' )->getId() );
 
 		$output = $this->object->getHeader();
@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Profile\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Profile\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $this->context, 'customer' );
+		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$this->context->setUserId( $manager->findItem( 'UTC001' )->getId() );
 
 		$output = $this->object->getBody();
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyHtmlException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Profile\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Profile\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyFrontendException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Profile\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Profile\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -100,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyMShopException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Profile\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Profile\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -116,7 +116,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Profile\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Profile\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();

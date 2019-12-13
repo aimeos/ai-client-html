@@ -3,7 +3,7 @@
  *
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2014-2017
+ * @copyright Aimeos (aimeos.org), 2014-2018
  */
 
 
@@ -11,7 +11,6 @@
  * Aimeos common actions
  */
 Aimeos = {
-
 
 	/**
 	 * Creates a floating container over the page displaying the given content node
@@ -109,7 +108,8 @@ Aimeos = {
 			var element = $(elements[i]);
 
 			if($(window).scrollTop() + $(window).height() + 2 * element.height() >= element.offset().top) {
-				element.css("background-image", "url('" + element.data("src") + "')");
+				element.attr("srcset", element.data("srcset"));
+				element.attr("src", element.data("src"));
 				element.removeClass("lazy-image");
 			}
 		}
@@ -249,6 +249,164 @@ AimeosAccountHistory = {
 
 
 /**
+ * Account profile actions
+ */
+AimeosAccountProfile = {
+
+	/**
+	 * Adds a new delivery address form
+	 */
+	setupAddressNew: function() {
+
+		$(".account-profile").on("click", "a.act-new", function(ev) {
+
+			var item = $(".prototype", ev.delegateTarget).removeClass("prototype");
+			$("input,select", item).removeAttr("disabled");
+			$(this).hide();
+
+			return false;
+		});
+	},
+
+
+	/**
+	 * Deletes a watched item without page reload
+	 */
+	setupAddressRemoval: function() {
+
+		$(".account-profile").on("click", "a.act-delete", function(ev) {
+
+			$(this).parents(".panel").remove();
+			return false;
+		});
+
+		$(".account-profile").on("click", "a.act-hide", function(ev) {
+
+			var item = $(this).parents(".panel").addClass("prototype");
+			$("input,select", item).attr("disabled", "disabled");
+			$("a.act-new", ev.delegateTarget).show();
+
+			return false;
+		});
+	},
+
+
+	/**
+	 * Checks address form for missing or wrong values
+	 */
+	setupMandatoryCheck: function() {
+
+		$(".account-profile .form-item").on("blur", "input,select", function(ev) {
+			var value = $(this).val();
+			var node = $(ev.delegateTarget);
+			var regex = new RegExp(node.data('regex') || '/.*/');
+
+			if((value !== '' && value.match(regex)) || (value === '' && !node.hasClass("mandatory"))) {
+				node.removeClass("error").addClass("success");
+			} else {
+				node.removeClass("success").addClass("error");
+			}
+		});
+
+		$(".account-profile form").on("submit", function(ev) {
+			var retval = true;
+			var nodes = [];
+
+			var testfn = function(idx, element) {
+
+				var elem = $(element);
+				var value = $("input,select", elem).val();
+
+				if(value === null || value.trim() === "") {
+					elem.addClass("error");
+					nodes.push(element);
+					retval = false;
+				} else {
+					elem.removeClass("error");
+				}
+			};
+
+			$(".form-list .mandatory", this).each(testfn);
+
+			return retval;
+		});
+	},
+
+
+	/**
+	 * Initializes the account watch actions
+	 */
+	init: function() {
+
+		this.setupAddressNew();
+		this.setupAddressRemoval();
+		this.setupMandatoryCheck();
+	}
+};
+
+
+
+/**
+ * Account subscription actions
+ */
+AimeosAccountSubscription = {
+
+	/**
+	 * Shows subscription details without page reload
+	 */
+	setupDetailShow: function() {
+
+		$(".account-subscription .subscription-item").on("click", "> a", function(ev) {
+
+			var details = $(".account-subscription-detail", ev.delegateTarget);
+
+			if(details.length === 0) {
+
+				$.get($(this).attr("href"), function(data) {
+
+					var doc = document.createElement("html");
+					doc.innerHTML = data;
+
+					var node = $(".account-subscription-detail", doc);
+					node.css("display", "none");
+					$(ev.delegateTarget).append(node);
+					node.slideDown();
+				});
+
+			} else {
+				details.slideToggle();
+			}
+
+			return false;
+		});
+	},
+
+
+	/**
+	 * Closes the order details without page reload
+	 */
+	setupDetailClose: function() {
+
+		$(".account-subscription .subscription-item").on("click", ".btn-close", function(ev) {
+			$(".account-subscription-detail", ev.delegateTarget).slideUp();
+			return false;
+		});
+	},
+
+
+	/**
+	 * Initializes the account subscription actions
+	 */
+	init: function() {
+
+		this.setupDetailShow();
+		this.setupDetailClose();
+	}
+};
+
+
+
+/**
  * Account watch actions
  */
 AimeosAccountWatch = {
@@ -312,6 +470,286 @@ AimeosAccountWatch = {
 
 
 
+/**
+ * Basket bulk order client actions
+ */
+AimeosBasketBulk = {
+
+	MIN_INPUT_LEN: 3,
+	meta: {},
+
+
+	bulkcomplete: function() {
+
+		$.widget( "custom.bulkcomplete", $.ui.autocomplete, {
+			_create: function() {
+				this._super();
+				this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
+			},
+			_renderMenu: function(ul, items) {
+				var that = this,
+				currentCategory = "";
+				$.each(items, function(index, item) {
+					var li;
+					if(item.category != currentCategory) {
+						ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
+						currentCategory = item.category;
+					}
+					li = that._renderItemData(ul, item);
+					if(item.category) {
+						li.attr("aria-label", item.category + " : " + item.label);
+					}
+				});
+			}
+		});
+	},
+
+
+	/**
+	 * Sets up autocompletion for the given node
+	 *
+	 * @param {object} node
+	 */
+	autocomplete: function(node) {
+
+		node.bulkcomplete({
+			minLength : AimeosBasketBulk.MIN_INPUT_LEN,
+			delay : 200,
+			source : function(req, resp) {
+
+				var params;
+				var relFilter = {};
+				var langid = AimeosBasketBulk.meta.locale && AimeosBasketBulk.meta.locale['locale.languageid'];
+				relFilter['index.text:relevance("' + langid + '","' + req.term + '")'] = 0;
+
+				var filter = {
+					filter: {'||': [{'=~': {'product.code': req.term}}, {'>': relFilter}]},
+					include: 'attribute,text,price,product'
+				};
+
+				if(AimeosBasketBulk.meta.prefix) {
+					params[AimeosBasketBulk.meta.prefix] = filter;
+				} else {
+					params = filter;
+				}
+
+				if(AimeosBasketBulk.meta.resources && AimeosBasketBulk.meta.resources['product']) {
+
+					$.getJSON(AimeosBasketBulk.meta.resources['product'], params, function(response) {
+
+						var data = [];
+						for(var key in (response.data || {})) {
+							data = data.concat(AimeosBasketBulk.get(response.data[key], response.included));
+						}
+
+						resp(data);
+					});
+				}
+			},
+			select : function(ev, ui) {
+
+				if($(".aimeos.basket-bulk tbody .details .search").last().val() != '') {
+					AimeosBasketBulk.add();
+				}
+
+				var product = $(ev.target).parent();
+				product.find(".productid").val(ui.item.id);
+				product.find(".search").val(ui.item.label);
+
+				var row = product.parent();
+				row.data('prices', ui.item['prices'] || []);
+				row.data('vattributes', ui.item['vattributes'] || []);
+				AimeosBasketBulk.update(product.parent());
+
+				return false;
+			}
+		});
+	},
+
+
+	/**
+	 * Adds a new line to the bulk order form
+	 */
+	add: function() {
+
+		var line = $("tfoot .prototype").clone();
+		var len = $(".aimeos.basket-bulk tbody .details").length;
+
+		AimeosBasketBulk.autocomplete($(".search", line));
+		$('[disabled="disabled"]', line).removeAttr("disabled");
+		$(".aimeos.basket-bulk tbody").append(line.removeClass("prototype"));
+
+		$('[name]', line).each(function() {
+			$(this).attr("name", $(this).attr("name").replace('_idx_', len));
+		});
+	},
+
+
+	/**
+	 * Deletes lines if clicked on the delete icon
+	 */
+	delete: function() {
+
+		$(".aimeos.basket-bulk").on("click", ".btn.delete", function(ev){
+			$(ev.currentTarget).parents(".details").remove();
+		});
+	},
+
+
+	/**
+	 * Returns the data for the current item
+	 *
+	 * @param {object} attr JSON:API attribute data of one entry
+	 * @param {array} included JSON:API included data array
+	 * @param {object} Item with "id", "label" and "prices" property
+	 */
+	get: function(attr, included) {
+
+		var map = {};
+		var rel = attr.relationships || {};
+
+		for(var idx in (included || [])) {
+			map[included[idx]['type']] = map[included[idx]['type']] || {};
+			map[included[idx]['type']][included[idx]['id']] = included[idx];
+		}
+
+		var name = attr['attributes']['product.label'];
+		var texts = this.getRef(map, rel, 'text', 'default', 'name');
+		var prices = this.getRef(map, rel, 'price', 'default', 'default').sort(function(a, b) {
+			return a['attributes']['price.quantity'] - b['attributes']['price.quantity'];
+		});
+
+		for(var idx in texts) {
+			name = texts[idx]['attributes']['text.content'];
+		}
+
+		if(attr['attributes']['product.type'] !== 'select') {
+			return [{
+				'category': '',
+				'id': attr.id,
+				'label': attr['attributes']['product.code'] + ': ' + name,
+				'prices': prices
+			}];
+		}
+
+
+		var result = [];
+		var variants = this.getRef(map, rel, 'product', 'default');
+
+		for(var idx in variants) {
+
+			var vrel = variants[idx]['relationships'] || {};
+			var vattr = this.getRef(map, vrel, 'attribute', 'variant');
+			var vprices = this.getRef(map, vrel, 'price', 'default', 'default');
+			var vtexts = this.getRef(map, vrel, 'text', 'default', 'name');
+			var vname = variants[idx]['attributes']['product.label'];
+
+			for(var idx in vtexts) {
+				vname = vtexts[idx]['attributes']['text.content'];
+			}
+
+			result.push({
+				'category': name,
+				'id': attr.id,
+				'label': variants[idx]['attributes']['product.code'] + ': ' + vname,
+				'prices': !vprices.length ? prices : vprices.sort(function(a, b) {
+					return a['attributes']['price.quantity'] - b['attributes']['price.quantity'];
+				}),
+				'vattributes': vattr
+			})
+		}
+
+		return result;
+	},
+
+
+	getRef: function(map, rel, domain, listtype, type) {
+
+		if(!rel[domain]) {
+			return [];
+		}
+
+		var list = [];
+
+		for(var idx in (rel[domain]['data'] || [])) {
+
+			var entry = rel[domain]['data'][idx];
+
+			if(map[domain][entry['id']] && map[domain][entry['id']]['attributes']
+				&& entry['attributes']['product.lists.type'] === listtype
+				&& (!type || map[domain][entry['id']]['attributes'][domain + '.type'] === type)) {
+
+				list.push(map[domain][entry['id']]);
+			}
+		}
+
+		return list;
+	},
+
+
+	/**
+	 * Sets up autocompletion for bulk order form
+	 */
+	setup: function() {
+
+		$.ajax($(".aimeos.basket-bulk[data-jsonurl]").data("jsonurl"), {
+			"method": "OPTIONS",
+			"dataType": "json"
+		}).then(function(options) {
+			AimeosBasketBulk.meta = options.meta || {};
+		});
+
+		$(".aimeos.basket-bulk").on("click", "thead .btn.add", this.add);
+		this.autocomplete($(".aimeos.basket-bulk .details .search"));
+
+		$(".aimeos.basket-bulk").on("change", ".details .quantity input", function(ev) {
+			AimeosBasketBulk.update($(ev.currentTarget).parents(".details").first());
+		});
+	},
+
+
+	/**
+	 * Updates the price of the given row element
+	 *
+	 * @param {DomElement} row HTML DOM node of the table row to update the price for
+	 */
+	update: function(row) {
+		var qty = $(".quantity input", row).val();
+		var prices = $(row).data('prices') || [];
+		var vattr = $(row).data('vattributes') || [];
+		var style = {style: 'currency', currency: 'EUR'};
+
+		for(var idx in prices) {
+			if(prices[idx]['attributes']['price.quantity'] <= qty) {
+				var value = Number(prices[idx]['attributes']['price.value']) * qty;
+				$(row).find(".price").html(value.toLocaleString(undefined, style));
+			}
+		}
+
+		var input = $(".product > .attrvarid", row);
+		$(".product .vattributes", row).empty();
+
+		for(var idx in vattr) {
+			var elem = input.clone();
+			elem.attr("name", input.attr("name").replace('_type_', vattr[idx]['attributes']['attribute.type']));
+			elem.val(vattr[idx]['attributes']['attribute.id']);
+			$(".product .vattributes", row).append(elem);
+		}
+	},
+
+
+	/**
+	 * Initializes the basket bulk actions
+	 */
+	init: function() {
+
+		this.bulkcomplete();
+		this.setup();
+		this.delete();
+	}
+}
+
+
 
 /**
  * Basket mini client actions
@@ -326,7 +764,13 @@ AimeosBasketMini = {
 	 */
 	update: function() {
 
-		$.ajax($(".aimeos.basket-mini[data-jsonurl]").data("jsonurl"), {
+		var jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
+
+		if(typeof jsonurl === 'undefined' || jsonurl == '') {
+			return;
+		}
+
+		$.ajax(jsonurl, {
 			"method": "OPTIONS",
 			"dataType": "json"
 		}).then(function(options) {
@@ -523,6 +967,7 @@ AimeosBasketStandard = {
 
 		$("body").on("focusin", ".basket-standard .basket .product .quantity .value", {}, function(ev) {
 			$(".btn-update", ev.delegateTarget).show();
+			$(".btn-action", ev.delegateTarget).hide();
 		});
 	},
 
@@ -748,11 +1193,11 @@ AimeosCatalog = {
 					} else {
 						$(".addbasket .btn-action", parent).removeClass("btn-disabled").removeAttr("disabled");
 					}
+
+					$(".catalog-detail-additional .subproduct-actual").removeClass("subproduct-actual");
+					$(".catalog-detail-additional .subproduct-" + prodId).addClass("subproduct-actual");
 				}
 			}
-
-			$(".catalog-detail-additional .subproduct-actual").removeClass("subproduct-actual");
-			$(".catalog-detail-additional .subproduct-" + prodId).addClass("subproduct-actual");
 		});
 	},
 
@@ -831,6 +1276,7 @@ AimeosCatalog = {
 
 			$.ajax({
 				url: $(this).attr("href"),
+				dataType: 'html',
 				headers: {
 					"X-Requested-With": "jQuery"
 				}
@@ -863,6 +1309,7 @@ AimeosCatalog = {
 
 			$.ajax({
 				url: $(this).attr("href"),
+				dataType: 'html',
 				headers: {
 					"X-Requested-With": "jQuery"
 				}
@@ -1050,6 +1497,32 @@ AimeosCatalogFilter = {
 
 
 	/**
+	 * Toggles the supplier filters if hover isn't available
+	 */
+	setupSupplierToggle: function() {
+
+		$(".catalog-filter-supplier").on("click", "h2", function(ev) {
+			$(".supplier-lists", ev.delegateTarget).slideToggle();
+		});
+	},
+
+
+	/**
+	 * Submits the form when clicking on filter supplier names or counts
+	 */
+	setupSupplierItemSubmit: function() {
+
+		$(".catalog-filter-supplier li.attr-item").on("click", ".attr-name, .attr-count", function(ev) {
+			var input = $("input", ev.delegateTarget);
+			input.prop("checked") ? input.prop("checked", false) : input.prop("checked", true);
+
+			$(this).parents(".catalog-filter form").submit();
+			$(".catalog-list").fadeTo(1000, 0.5);
+		});
+	},
+
+
+	/**
 	 * Registers events for the catalog filter search input reset
 	 */
 	setupSearchTextReset: function() {
@@ -1077,12 +1550,14 @@ AimeosCatalogFilter = {
 	init: function() {
 
 		this.setupCategoryToggle();
+		this.setupSupplierToggle();
 		this.setupAttributeToggle();
 		this.setupAttributeListsEmtpy();
 		this.setupAttributeListsToggle();
 		this.setupListFadeout();
 
 		this.setupAttributeItemSubmit();
+		this.setupSupplierItemSubmit();
 
 		this.setupFormChecks();
 		this.setupSearchTextReset();
@@ -1109,10 +1584,12 @@ AimeosCatalogList = {
 
 			if( list.length > 1 ) {
 				var second = list.eq(1);
-				var size = $(this).height();
+				var size = $(this).outerHeight();
+				var image = $("img", second);
 
 				$(this).css("background-image", "none"); // Don't let default image shine through
-				second.css("background-image", "url('" + second.data("src") + "')");
+				image.attr("srcset", image.data("srcset"));
+				image.attr("src", image.data("src"));
 				second.fadeTo(0, 0.33);
 
 				list.first().fadeTo(400, 0.33, function() {
@@ -1142,10 +1619,50 @@ AimeosCatalogList = {
 
 
 	/**
+	 * Enables infinite scroll if available
+	 */
+	setupInfiniteScroll: function() {
+
+		var url = $('.catalog-list-items').data('infinite-url');
+
+		if( typeof url === "string" && url != '' ) {
+
+			$(window).on('scroll', function() {
+
+				var list = $('.catalog-list-items').first();
+				var infiniteUrl = list.data('infinite-url');
+
+				if(infiniteUrl && list[0].getBoundingClientRect().bottom - $(window).height() < 50) {
+
+					list.data('infinite-url', '');
+
+					$.ajax({
+						url: infiniteUrl
+					}).fail( function() {
+						list.data('infinite-url', infiniteUrl);
+					}).done( function( response ) {
+
+						var nextPage = $(response);
+						nextPage.find('.catalog-list-items ul li').each( function() {
+							$('ul', list).append(this);
+						});
+
+						var nextUrl = nextPage.find('.catalog-list-items').data( 'infinite-url' );
+						list.data('infinite-url', nextUrl);
+						$(window).trigger('scroll');
+					});
+				}
+			});
+		}
+	},
+
+
+	/**
 	 * Initializes the catalog list actions
 	 */
 	init: function() {
 		this.setupImageSwitch();
+		this.setupInfiniteScroll();
 	}
 };
 
@@ -1268,7 +1785,7 @@ AimeosCheckoutStandard = {
 		/* Hide form fields if delivery/payment option is not selected */
 		$(".checkout-standard-delivery,.checkout-standard-payment").each(function(idx, elem) {
 			$(elem).find(".form-list").hide();
-			$(elem).find(".item-service").has("input:checked").find(".form-list").show();
+			$(elem).find(".item-service").has("input.option:checked").find(".form-list").show();
 		});
 
 		/* Delivery/payment form slide up/down when selected */
@@ -1341,8 +1858,11 @@ AimeosCheckoutStandard = {
 
 		var form = $(".checkout-standard form").first();
 		var node = $(".checkout-standard-process", form);
+		var anchor = $("a.btn-action", node);
 
-		if(node.length > 0 && node.has(".mandatory").length === 0 && node.has(".optional").length === 0 && form.attr("action") !== '' ) {
+		if(anchor.length > 0) {
+			window.location = anchor.attr("href");
+		} else if(node.length > 0 && node.has(".mandatory").length === 0 && node.has(".optional").length === 0 && form.attr("action") !== '' ) {
 			form.submit();
 		}
 	},
@@ -1433,11 +1953,6 @@ Aimeos.loadImages();
 
 jQuery(document).ready(function($) {
 
-	/* CSS3 "background-size: contain" support for IE8 */
-	$(".catalog-list-items .media-item").css("background-size", "contain");
-	$(".catalog-detail-image .item").css("background-size", "contain");
-
-
 	/* Lazy product image loading in list view */
 	Aimeos.loadImages();
 	$(window).on("resize", Aimeos.loadImages);
@@ -1454,6 +1969,7 @@ jQuery(document).ready(function($) {
 	AimeosCatalogSession.init();
 	AimeosCatalogStage.init();
 
+	AimeosBasketBulk.init();
 	AimeosBasketMini.init();
 	AimeosBasketRelated.init();
 	AimeosBasketStandard.init();
@@ -1461,6 +1977,8 @@ jQuery(document).ready(function($) {
 	AimeosCheckoutStandard.init();
 	AimeosCheckoutConfirm.init();
 
+	AimeosAccountProfile.init();
+	AimeosAccountSubscription.init();
 	AimeosAccountHistory.init();
 	AimeosAccountFavorite.init();
 	AimeosAccountWatch.init();

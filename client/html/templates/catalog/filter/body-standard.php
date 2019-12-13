@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 /** client/html/catalog/lists/url/target
@@ -114,13 +114,14 @@ $enc = $this->encoder();
 
 	<nav>
 		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ); ?></h1>
-		<form method="POST" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, [], $listConfig ) ); ?>">
+		<form method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, [], $listConfig ) ); ?>">
 			<!-- catalog.filter.csrf -->
 			<?= $this->csrf()->formfield(); ?>
 			<!-- catalog.filter.csrf -->
 
 			<?= $this->block()->get( 'catalog/filter/search' ); ?>
 			<?= $this->block()->get( 'catalog/filter/tree' ); ?>
+			<?= $this->block()->get( 'catalog/filter/supplier' ); ?>
 			<?= $this->block()->get( 'catalog/filter/attribute' ); ?>
 
 		</form>

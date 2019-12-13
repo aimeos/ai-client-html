@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -106,7 +106,7 @@ class Standard
 		 * @see client/html/checkout/standard/summary/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/summary/standard/template-body';
-		$default = 'checkout/standard/summary-body-standard.php';
+		$default = 'checkout/standard/summary-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -235,11 +235,13 @@ class Standard
 			}
 
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+			$customerref = $view->param( 'cs_customerref' );
+			$comment = $view->param( 'cs_comment' );
 
-			if( ( $comment = $view->param( 'cs_comment' ) ) !== null )
+			if( $customerref || $comment )
 			{
-				$controller->get()->setComment( $comment );
+				$controller->get()->setCustomerReference( $customerref )->setComment( $comment );
 				$controller->save();
 			}
 
@@ -254,7 +256,7 @@ class Standard
 
 				$view->summaryErrorCodes = $errors;
 				$view->standardStepActive = 'summary';
-				$view->standardErrorList = array( $error ) + $view->get( 'standardErrorList', [] );
+				$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), array( $error ) );
 			}
 
 
@@ -292,19 +294,12 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
+		$basket = $view->standardBasket;
 
-		if( ( $view->summaryCustomerId = $context->getUserId() ) === null )
-		{
-			try
-			{
-				$addr = $view->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-				$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-				$view->summaryCustomerId = $controller->findItem( $addr->getEmail() )->getId();
-			}
-			catch( \Exception $e ) {}
-		}
-
-		$view->summaryTaxRates = $this->getTaxRates( $view->standardBasket );
+		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
+		$view->summaryCostsPayment = $this->getCostsPayment( $basket );
+		$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
+		$view->summaryTaxRates = $this->getTaxRates( $basket );
 
 		return parent::addData( $view, $tags, $expire );
 	}

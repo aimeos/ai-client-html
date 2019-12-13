@@ -21,15 +21,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 
+#. Tax name
+msgid "tax"
+msgstr "tax"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "GST"
+
+
+#. Price type default
 msgid "price:default"
 msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr " "
-
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
 msgstr " "
 
 #. Favorite action
@@ -122,6 +132,10 @@ msgstr "Expiry month"
 msgid "payment.expiryyear"
 msgstr "Expiry year"
 
+#. Pick-up date
+msgid "date.value"
+msgstr "Pick-up date"
+
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "Pick-up time"
@@ -129,3 +143,11 @@ msgstr "Pick-up time"
 #. Pick-up location
 msgid "supplier.code"
 msgstr "Pick-up location"
+
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Pick-up address"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "Delivery type"

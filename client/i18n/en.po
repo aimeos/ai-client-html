@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 22:56+0100\n"
+"POT-Creation-Date: 2019-10-03 10:00+0200\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -71,14 +71,14 @@ msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s at %2$s"
-msgstr "%2$s %1$s"
+msgstr ""
 
 #. / Percent format with value (%1$s) and % sign
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s%%"
-msgstr "%2$s %1$s"
+msgstr ""
 
 #. / Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
 #, php-format
@@ -93,10 +93,14 @@ msgstr ""
 msgid "+ %1$s %2$s/item"
 msgstr "+ %2$s %1$s/item"
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, fuzzy, php-format
-msgid "+ %1$s%% VAT"
+msgid "+ %1$s%% %2$s"
 msgstr "%2$s %1$s"
+
+#. / Tax rate format with tax rate in percent (%1$s)
+#, php-format
+msgid "+ %1$s%% VAT"
+msgstr ""
 
 msgid "+ Payment costs"
 msgstr ""
@@ -111,9 +115,9 @@ msgid "+1 123 456 7890"
 msgstr ""
 
 #. / Rebate percent format with rebate percent value (%1$s)
-#, fuzzy, php-format
+#, php-format
 msgid "-%1$s%%"
-msgstr "%2$s %1$s"
+msgstr ""
 
 msgid "Account"
 msgstr ""
@@ -131,9 +135,8 @@ msgstr ""
 msgid "Address with ID \"%1$s\" not found"
 msgstr ""
 
-#, fuzzy
 msgid "Addresses"
-msgstr "Address"
+msgstr ""
 
 msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
@@ -146,6 +149,12 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 msgid "An account has been created for you."
+msgstr ""
+
+msgid "Article"
+msgstr ""
+
+msgid "Article no."
 msgstr ""
 
 msgid "Article no.:"
@@ -168,9 +177,8 @@ msgstr ""
 msgid "Basket"
 msgstr ""
 
-#, fuzzy
 msgid "Billing address"
-msgstr "Address"
+msgstr ""
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
@@ -182,6 +190,10 @@ msgstr ""
 
 msgid "Birthday"
 msgstr ""
+
+#, fuzzy
+msgid "Bulk order"
+msgstr "Order"
 
 msgid "Bundled products"
 msgstr ""
@@ -195,9 +207,8 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#, fuzzy
 msgid "Change payment"
-msgstr "Payment"
+msgstr ""
 
 msgid "Characteristics"
 msgstr ""
@@ -229,6 +240,10 @@ msgstr ""
 
 #, php-format
 msgid "Client HTML type is empty"
+msgstr ""
+
+#, php-format
+msgid "Client path is empty"
 msgstr ""
 
 #, php-format
@@ -264,19 +279,37 @@ msgid "Customer with ID \"%1$s\" not found"
 msgstr ""
 
 #, fuzzy, php-format
+msgid "Dear %1$s %2$s"
+msgstr "%2$s %1$s"
+
+#, php-format
 msgid "Dear %1$s %2$s %3$s"
-msgstr "%3$s%1$s + %3$s%2$s"
+msgstr ""
+
+#, fuzzy, php-format
+msgid "Dear Miss %1$s %2$s"
+msgstr "%2$s %1$s"
+
+#, fuzzy, php-format
+msgid "Dear Mr %1$s %2$s"
+msgstr "%2$s %1$s"
+
+#, fuzzy, php-format
+msgid "Dear Mrs %1$s %2$s"
+msgstr "%2$s %1$s"
 
 msgid "Dear Sir or Madam"
 msgstr ""
 
-#, fuzzy
 msgid "Delivery"
-msgstr "Delivery"
+msgstr ""
 
-#, fuzzy
 msgid "Delivery address"
-msgstr "Address"
+msgstr ""
+
+#, php-format
+msgid "Delivery address deleted successfully"
+msgstr ""
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -285,6 +318,10 @@ msgstr ""
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr ""
+
+#, fuzzy
+msgid "Delivery within"
+msgstr "Delivery"
 
 msgid "Description"
 msgstr ""
@@ -300,6 +337,9 @@ msgstr ""
 
 #. / E-mail HTML title
 msgid "E-mail notification"
+msgstr ""
+
+msgid "End date"
 msgstr ""
 
 msgid "Favorite products"
@@ -331,6 +371,10 @@ msgstr ""
 msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr ""
 
+#, php-format
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgstr ""
+
 msgid "If back in stock"
 msgstr ""
 
@@ -339,6 +383,10 @@ msgstr ""
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr ""
+
+#, fuzzy, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr "%2$s %1$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -391,10 +439,19 @@ msgstr ""
 msgid "Like entered by you"
 msgstr ""
 
+msgid "Login"
+msgstr ""
+
 msgid "Name"
 msgstr ""
 
+msgid "New delivery address"
+msgstr ""
+
 msgid "Next"
+msgstr ""
+
+msgid "Next order"
 msgstr ""
 
 #, php-format
@@ -437,9 +494,8 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#, fuzzy
 msgid "Order ID"
-msgstr "Order"
+msgstr ""
 
 msgid "Order channel"
 msgstr ""
@@ -473,13 +529,11 @@ msgstr ""
 msgid "Pay now"
 msgstr ""
 
-#, fuzzy
 msgid "Payment"
-msgstr "Payment"
+msgstr ""
 
-#, fuzzy
 msgid "Payment costs"
-msgstr "Payment"
+msgstr ""
 
 msgid "Payment status"
 msgstr ""
@@ -560,6 +614,9 @@ msgstr ""
 msgid "Salutation"
 msgstr ""
 
+msgid "Save"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -608,6 +665,12 @@ msgstr ""
 msgid "State"
 msgstr ""
 
+msgid "Status"
+msgstr ""
+
+msgid "Stock"
+msgstr ""
+
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
 #. / Stock string composition with stock type (%1$s, normally left out) and stock level string (%2$s)
@@ -628,10 +691,35 @@ msgstr ""
 msgid "Sub-total"
 msgstr ""
 
+msgid "Subscription ID"
+msgstr ""
+
+msgid "Subscription details"
+msgstr ""
+
+msgid "Subscription interval"
+msgstr ""
+
+msgid "Subscription product"
+msgstr ""
+
+#, php-format
+msgid "Subscription with ID \"%1$s\" not found"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
 msgid "Suggested products"
 msgstr ""
 
 msgid "Sum"
+msgstr ""
+
+msgid "Supplier information"
+msgstr ""
+
+msgid "Suppliers"
 msgstr ""
 
 msgid "Telephone"
@@ -709,11 +797,24 @@ msgid ""
 "You will get an e-mail as soon as the payment is authorized."
 msgstr ""
 
+msgid "The payment couldn't be renewed"
+msgstr ""
+
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
+msgstr ""
+
+msgid "The subscription for the product has ended"
+msgstr ""
+
+msgid "The subscription for the product has ended."
+msgstr ""
+
+#, php-format
+msgid "The value of your voucher is %1$s"
 msgstr ""
 
 msgid "Three month"
@@ -768,6 +869,9 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
+msgid "Variant"
+msgstr ""
+
 msgid "Vat ID"
 msgstr ""
 
@@ -800,7 +904,13 @@ msgstr "m/d/Y"
 msgid "You are here:"
 msgstr ""
 
+msgid "You can use your voucher any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
+msgstr ""
+
+msgid "You've cancelled the subscription"
 msgstr ""
 
 msgid "Your account"
@@ -828,7 +938,25 @@ msgstr ""
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr ""
 
+msgid "Your reference"
+msgstr ""
+
+msgid "Your reference number"
+msgstr ""
+
 msgid "Your search result"
+msgstr ""
+
+msgid "Your subscription"
+msgstr ""
+
+msgid "Your subscription product"
+msgstr ""
+
+msgid "Your voucher"
+msgstr ""
+
+msgid "Your voucher: "
 msgstr ""
 
 #. / Product notification e-mail subject
@@ -857,9 +985,8 @@ msgstr ""
 msgid "like billing address"
 msgstr ""
 
-#, fuzzy
 msgid "new address"
-msgstr "Address"
+msgstr ""
 
 msgid "none"
 msgstr ""
@@ -871,6 +998,9 @@ msgstr "Order"
 #, php-format
 msgid "payment"
 msgstr "Payment"
+
+msgid "price:default"
+msgstr ""
 
 #, php-format
 msgid "process"
@@ -896,6 +1026,9 @@ msgstr "Product is available"
 #, php-format
 msgid "summary"
 msgstr "Summary"
+
+msgid "tax"
+msgstr ""
 
 msgid "▲ Name"
 msgstr ""

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -19,6 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Account\Favorite\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -40,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Favorite\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Favorite\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -63,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyHtmlException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Favorite\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Favorite\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -79,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyFrontendException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Favorite\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Favorite\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -95,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyMShopException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Favorite\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Favorite\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -111,7 +112,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Account\Favorite\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Favorite\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -147,84 +148,56 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddItem()
 	{
-		$this->context->setUserId( '123' );
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$id = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' )->getId();
+		$this->context->setUserId( $item->getId() );
 
 		$view = $this->object->getView();
-		$param = array(
-			'fav_action' => 'add',
-			'fav_id' => 321,
-		);
-
+		$param = ['fav_action' => 'add', 'fav_id' => $id];
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
 
 
-
-		$listManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Lists\\Standard' )
-			->setMethods( array( 'saveItem', 'moveItem' ) )
-			->setConstructorArgs( array( $this->context ) )
+		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
+			->setMethods( array( 'addListItem', 'store' ) )
+			->setConstructorArgs( [$this->context] )
 			->getMock();
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
-			->setMethods( array( 'getSubManager' ) )
-			->setConstructorArgs( array( $this->context ) )
-			->getMock();
-
-		$name = 'ClientHtmlAccountFavoriteDefaultProcess';
-		$this->context->getConfig()->set( 'mshop/customer/manager/name', $name );
-
-		\Aimeos\MShop\Customer\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Customer\\Manager\\' . $name, $managerStub );
+		$stub->expects( $this->once() )->method( 'addListItem' );
+		$stub->expects( $this->once() )->method( 'store' );
 
 
-		$managerStub->expects( $this->atLeastOnce() )->method( 'getSubManager' )
-			->will( $this->returnValue( $listManagerStub ) );
-
-		$listManagerStub->expects( $this->once() )->method( 'moveItem' );
-		$listManagerStub->expects( $this->once() )->method( 'saveItem' )
-			->will( $this->returnValue( $listManagerStub->createItem() ) );
-
-
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $stub );
 		$this->object->process();
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 
 
 	public function testProcessDeleteItem()
 	{
-		$this->context->setUserId( '123' );
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['product' => ['favorite']] );
+		$id = current( $item->getListItems( 'product', 'favorite' ) )->getRefId();
+		$this->context->setUserId( $item->getId() );
 
 		$view = $this->object->getView();
-		$param = array(
-			'fav_action' => 'delete',
-			'fav_id' => 321,
-		);
-
+		$param = ['fav_action' => 'delete', 'fav_id' => $id];
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
 
 
-
-		$listManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Lists\\Standard' )
-			->setMethods( array( 'deleteItems' ) )
-			->setConstructorArgs( array( $this->context ) )
+		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
+			->setMethods( array( 'deleteListItem', 'store' ) )
+			->setConstructorArgs( [$this->context] )
 			->getMock();
 
-		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Customer\\Manager\\Standard' )
-			->setMethods( array( 'getSubManager' ) )
-			->setConstructorArgs( array( $this->context ) )
-			->getMock();
-
-		$name = 'ClientHtmlAccountFavoriteDefaultProcess';
-		$this->context->getConfig()->set( 'mshop/customer/manager/name', $name );
-
-		\Aimeos\MShop\Customer\Manager\Factory::injectManager( '\\Aimeos\\MShop\\Customer\\Manager\\' . $name, $managerStub );
+		$stub->expects( $this->once() )->method( 'deleteListItem' );
+		$stub->expects( $this->once() )->method( 'store' );
 
 
-		$managerStub->expects( $this->atLeastOnce() )->method( 'getSubManager' )
-			->will( $this->returnValue( $listManagerStub ) );
-
-		$listManagerStub->expects( $this->once() )->method( 'deleteItems' );
-
-
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $stub );
 		$this->object->process();
+		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 }

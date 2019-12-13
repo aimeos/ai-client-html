@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 if( $this->get( 'standardUrlExternal', true ) )
@@ -104,17 +104,15 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 	<?php foreach( $hidden as $key => $item ) : ?>
 		<?php if( is_array( $item->getDefault() ) ) : ?>
-
 			<?php foreach( (array) $item->getDefault() as $key2 => $value ) : ?>
-				<input type="hidden"
+				<input type="hidden" id="process-<?= $key; ?>"
 					name="<?= $enc->attr( $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) ); ?>"
 					value="<?= $enc->attr( $value ); ?>"
 				/>
 			<?php endforeach; ?>
 
 		<?php else : ?>
-
-			<input type="hidden"
+			<input type="hidden" id="process-<?= $key; ?>"
 				name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
 				value="<?= $enc->attr( $item->getDefault() ); ?>"
 			/>
@@ -125,7 +123,6 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 	<ul class="form-list">
 		<?php foreach( $public as $key => $item ) : ?>
-
 			<li class="form-item <?= $key . ( $item->isRequired() ? ' mandatory' : ' optional' ); ?>"
 				data-regex="<?= $testfcn( $regex, $key ); ?>">
 
@@ -140,6 +137,9 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 								<option value="<?= $enc->attr( $option ); ?>"><?= $enc->html( $option ); ?></option>
 							<?php endforeach; ?>
 						</select>
+
+					<?php break; case 'container': ?>
+						<div id="process-<?= $key; ?>"></div>
 
 					<?php break; case 'boolean': ?>
 						<input type="checkbox" id="process-<?= $key; ?>"
@@ -172,11 +172,12 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 		<?php endforeach; ?>
 	</ul>
 
+	<?= $this->get( 'standardHtml', '' ); //Custom html from Provider ?>
+
 
 	<div class="button-group">
 
 		<?php if( !empty( $errors ) ) : ?>
-
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
@@ -185,16 +186,41 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			</button>
 
 		<?php elseif( !empty( $public ) ) : ?>
-
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
-			<button class="btn btn-primary btn-lg btn-action">
+			<button class="btn btn-primary btn-lg btn-action" id="payment-button">
 				<?= $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ); ?>
 			</button>
 
-		<?php else : ?>
+		<?php elseif( $this->get( 'standardMethod', 'POST' ) === 'GET' ) : ?>
+			<?php
+				$urlParams = [];
+				$url = $this->get( 'standardUrlNext' );
 
+				foreach( $params as $key => $item )
+				{
+					if( is_array( $item->getDefault() ) )
+					{
+						foreach( (array) $item->getDefault() as $key2 => $value ) {
+							$urlParams[] = $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) . '=' . urlencode( $value );
+						}
+					}
+					else
+					{
+						$urlParams[] = $namefcn( $this, $item->getInternalCode() ) . '=' . urlencode( $item->getDefault() );
+					}
+				}
+
+				$char = ( strpos( $url, '?' ) === false ? '?' : '&' );
+				$url .= $char . implode( '&', $urlParams );
+			?>
+
+			<a class="btn btn-primary btn-lg btn-action" href="<?= $enc->attr( $url ); ?>">
+				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
+			</a>
+
+		<?php else : ?>
 			<button class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
 			</button>

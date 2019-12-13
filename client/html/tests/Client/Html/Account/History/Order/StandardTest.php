@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -20,8 +20,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
+		$view = \TestHelperHtml::getView();
+		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+
 		$this->object = new \Aimeos\Client\Html\Account\History\Order\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( $view );
 	}
 
 
@@ -49,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<div class="account-history-order common-summary">', $output );
+		$this->assertStringStartsWith( '<div class="account-history-order common-summary', $output );
 
 		$this->assertContains( 'Our Unittest', $output );
 		$this->assertContains( 'Example company', $output );
@@ -64,8 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( 'Cafe Noire Cappuccino', $output );
 		$this->assertContains( 'Unittest: Monetary rebate', $output );
 		$this->assertContains( '<td class="price">55.00 EUR</td>', $output );
-		$this->assertContains( '<td class="value">14 articles</td>', $output );
-
+		$this->assertContains( '<td class="quantity">14 articles</td>', $output );
 	}
 
 
@@ -88,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getCustomerItem( $code )
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
 		$items = $manager->searchItems( $search );
@@ -103,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getOrderItem( $customerid )
 	{
-		$manager = \Aimeos\MShop\Order\Manager\Factory::createManager( $this->context );
+		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch( true );
 		$expr = array(
 			$search->getConditions(),

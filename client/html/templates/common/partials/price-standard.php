@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -50,10 +50,11 @@ $first = true;
 
 		$costs = $priceItem->getCosts();
 		$rebate = $priceItem->getRebate();
-		$key = 'price:' . $priceItem->getType();
+		$key = 'price:' . ( $priceItem->getType() ?: 'default' );
 
+		$pricefmt = $this->translate( 'client/code', $key );
 		/// Price format with price value (%1$s) and currency (%2$s)
-		$format['value'] = $this->translate( 'client/code', $key );
+		$format['value'] = $pricefmt !== $key ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 		$currency = $this->translate( 'currency', $priceItem->getCurrencyId() );
 		$taxformat = ( $priceItem->getTaxFlag() ? $withtax : $notax );
 	?>
@@ -75,10 +76,10 @@ $first = true;
 		</span>
 
 		<span class="value">
-			<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue() ), $currency ), $enc::TRUST ); ?>
+			<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
 		</span>
 
-		<?php if( $rebate > 0 ) : ?>
+		<?php if( $priceItem->getValue() > 0 && $rebate > 0 ) : ?>
 			<span class="rebate">
 				<?= $enc->html( sprintf( $format['rebate'], $this->number( $rebate ), $currency ), $enc::TRUST ); ?>
 			</span>
@@ -89,7 +90,7 @@ $first = true;
 
 		<?php if( $costs > 0 ) : ?>
 			<span class="costs">
-				<?= $enc->html( sprintf( $format['costs'], $this->number( $costs ), $currency ), $enc::TRUST ); ?>
+				<?= $enc->html( sprintf( $format['costs'], $this->number( $costs, $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
 			</span>
 		<?php endif; ?>
 

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -35,7 +35,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, [] );
-		$this->object->setView( \TestHelperHtml::getView());
+		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 

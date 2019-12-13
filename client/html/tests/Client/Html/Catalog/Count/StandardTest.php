@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Count\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Count\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();
@@ -63,13 +63,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'var categoryCounts', $output );
+		$this->assertContains( 'var catalogCounts', $output );
 	}
 
 
 	public function testGetBodyException()
 	{
-		$object = $this->getMockBuilder( '\Aimeos\Client\Html\Catalog\Count\Standard' )
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Count\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->setMethods( array( 'addData' ) )
 			->getMock();

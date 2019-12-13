@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  * @package Controller
  * @subpackage Jobs
  */
@@ -55,7 +55,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$queue = $context->getMessageQueue( 'mq-email', 'customer/email/account' );
-		$custManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
+		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 
 		while( ( $msg = $queue->get() ) !== null )
 		{
@@ -68,8 +68,7 @@ class Standard
 				}
 
 				$password = ( isset( $list['customer.password'] ) ? $list['customer.password'] : null );
-				$item = $custManager->createItem();
-				$item->fromArray( $list );
+				$item = $custManager->createItem()->fromArray( $list, true );
 
 				$this->sendEmail( $context, $item, $password );
 
@@ -96,7 +95,7 @@ class Standard
 	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		if( !isset( $this->client ) ) {
-			$this->client = \Aimeos\Client\Html\Email\Account\Factory::createClient( $context );
+			$this->client = \Aimeos\Client\Html\Email\Account\Factory::create( $context );
 		}
 
 		return $this->client;
@@ -119,7 +118,7 @@ class Standard
 		$view->extAccountCode = $item->getCode();
 		$view->extAccountPassword = $password;
 
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ) );
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ?: 'en' ) );
 		$view->addHelper( 'translate', $helper );
 
 		$mailer = $context->getMail();

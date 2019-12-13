@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 /* Available data:
@@ -27,12 +27,11 @@ $type = $this->get( 'type' );
 		<h4><?= $enc->html( $service->getName() ); ?></h4>
 	</div>
 
-	<?php if( ( $attributes = $service->getAttributes() ) !== [] ) : ?>
+	<?php if( ( $attributes = $service->getAttributeItems() ) !== [] ) : ?>
 		<ul class="attr-list">
 
 			<?php foreach( $attributes as $attribute ) : ?>
-				<?php if( $attribute->getType() === $type ) : ?>
-
+				<?php if( strpos( $attribute->getType(), 'hidden' ) === false ) : ?>
 					<li class="<?= $enc->attr( $type . '-' . $attribute->getCode() ); ?>">
 
 						<span class="name">

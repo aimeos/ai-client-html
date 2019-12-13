@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -19,8 +19,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
+		$view = \TestHelperHtml::getView();
+		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+
 		$this->object = new \Aimeos\Client\Html\Checkout\Confirm\Order\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( $view );
 	}
 
 
@@ -32,8 +35,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+
 		$view = \TestHelperHtml::getView();
-		$customer = $this->getCustomerItem( 'UTC001' );
 		$view->confirmOrderItem = $this->getOrderItem( $customer->getId() );
 		$this->object->setView( $this->object->addData( $view ) );
 
@@ -57,35 +61,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	/**
-	 * @param string $code
-	 */
-	protected function getCustomerItem( $code )
-	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $this->context );
-		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
-		$items = $manager->searchItems( $search );
-
-		if( ( $item = reset( $items ) ) === false ) {
-			throw new \RuntimeException( sprintf( 'No customer item with code "%1$s" found', $code ) );
-		}
-
-		return $item;
-	}
-
-
 	protected function getOrderItem( $customerid )
 	{
-		$manager = \Aimeos\MShop\Order\Manager\Factory::createManager( $this->context );
-		$search = $manager->createSearch( true );
-		$expr = array(
-			$search->getConditions(),
-			$search->compare( '==', 'order.base.customerid', $customerid )
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 1 );
+		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 
+		$search = $manager->createSearch()->setSlice( 0, 1 );
+		$search->setConditions( $search->compare( '==', 'order.base.customerid', $customerid ) );
 		$items = $manager->searchItems( $search );
 
 		if( ( $item = reset( $items ) ) === false ) {

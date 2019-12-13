@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -106,7 +106,7 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 <section class="catalog-filter-search">
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
-	<div class="form-inline">
+	<div class="input-group">
 		<input class="form-control value" type="text"
 			name="<?= $name; ?>" value="<?= $phrase; ?>"
 			data-url="<?= $suggestUrl; ?>" data-hint="<?= $hint; ?>"

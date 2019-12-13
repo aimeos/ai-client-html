@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -38,7 +38,6 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 	<?php if( isset( $this->standardBasket ) ) : ?>
-
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
 
 		<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
@@ -64,12 +63,15 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						 * @since 2017.01
 						 * @category Developer
 						 */
-						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail-standard.php' ),
+						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail-standard' ),
 						array(
 							'summaryEnableModify' => true,
 							'summaryBasket' => $this->standardBasket,
 							'summaryTaxRates' => $this->get( 'standardTaxRates', [] ),
+							'summaryNamedTaxes' => $this->get( 'standardNamedTaxes', [] ),
 							'summaryErrorCodes' => $this->get( 'standardErrorCodes', [] ),
+							'summaryCostsPayment' => $this->get( 'standardCostsPayment', 0 ),
+							'summaryCostsDelivery' => $this->get( 'standardCostsDelivery', 0 ),
 						)
 					); ?>
 				</div>
@@ -84,7 +86,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<div class="content">
 					<?php $coupons = $this->standardBasket->getCoupons(); ?>
 
-					<div class="form-inline coupon-new">
+					<div class="input-group coupon-new">
 						<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ); ?>" type="text" maxlength="255" /><!--
 						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ); ?></button>
 					</div>
@@ -94,7 +96,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ); ?>
 							<li class="attr-item">
 								<span class="coupon-code"><?= $enc->html( $code ); ?></span>
-								<a class="minibutton change" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ); ?>"></a>
+								<a class="minibutton delete" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ); ?>"></a>
 							</li>
 							<?php endforeach; ?>
 						</ul>
@@ -121,10 +123,10 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ); ?>
 					</a>
 				<?php else : ?>
-					<a class="btn btn-primary btn-lg btn-action"
-						href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, array( 'b_check' => 1 ), [], $basketConfig ) ); ?>">
+					<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1" />
+					<button class="btn btn-primary btn-lg btn-action" type="submit">
 						<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ); ?>
-					</a>
+					</button>
 				<?php endif; ?>
 
 			</div>

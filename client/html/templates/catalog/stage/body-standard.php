@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -21,10 +21,15 @@ foreach( $catPath as $cat )
 $mediaItems = [];
 foreach( array_reverse( $catPath ) as $catItem )
 {
-	if( ( $mediaItems = $catItem->getRefItems( 'media', 'default', 'stage' ) ) !== [] ) {
+	if( ( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) ) !== [] ) {
 		break;
 	}
 }
+
+$treeTarget = $this->config( 'client/html/catalog/tree/url/target' );
+$treeController = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
+$treeAction = $this->config( 'client/html/catalog/tree/url/action', 'tree' );
+$treeConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
@@ -66,7 +71,7 @@ $params = $this->get( 'stageParams', [] );
 				<?php if( isset( $this->stageCatPath ) ) : ?>
 					<?php foreach( (array) $this->stageCatPath as $cat ) : $params['f_name'] = $cat->getName( 'url' ); $params['f_catid'] = $cat->getId(); ?>
 						<li>
-							<a href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
+							<a href="<?= $enc->attr( $this->url( $treeTarget, $treeController, $treeAction, $params, [], $treeConfig ) ); ?>">
 								<?= $enc->html( $cat->getName() ); ?>
 							</a>
 						</li>

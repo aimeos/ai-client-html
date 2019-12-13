@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -13,13 +13,15 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( 'absoluteUri' => 1 ) );
+$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
+
+$pricefmt = $this->translate( 'client/code', 'price:default' );
+/// Price format with price value (%1$s) and currency (%2$s)
+$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 
 /// Price quantity format with quantity (%1$s)
 $quantityFormat = $this->translate( 'client', 'from %1$s' );
-
-/// Price format with price value (%1$s) and currency (%2$s)
-$priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 /// Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 $costFormat = $this->translate( 'client', '+ %1$s %2$s/item' );
@@ -50,11 +52,11 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 
 
 <?php $price = $entry['price']; $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
-<?php printf( $priceFormat, $this->number( $price->getValue() ), $priceCurrency ); ?> <?php ( $price->getRebate() > '0.00' ? printf( $rebatePercentFormat, $this->number( round( $price->getRebate() * 100 / ( $price->getValue() + $price->getRebate() ) ), 0 ) ) : '' ); ?>
-<?php if( $price->getCosts() > 0 ) { echo ' ' . strip_tags( sprintf( $costFormat, $this->number( $price->getCosts() ), $priceCurrency ) ); } ?>
+<?php printf( $priceFormat, $this->number( $price->getValue(), $price->getPrecision() ), $priceCurrency ); ?> <?php ( $price->getRebate() > '0.00' ? printf( $rebatePercentFormat, $this->number( round( $price->getRebate() * 100 / ( $price->getValue() + $price->getRebate() ) ), 0 ) ) : '' ); ?>
+<?php if( $price->getCosts() > 0 ) { echo ' ' . strip_tags( sprintf( $costFormat, $this->number( $price->getCosts(), $price->getPrecision() ), $priceCurrency ) ); } ?>
 <?php if( $price->getTaxrate() > 0 ) { echo ', ' . strip_tags( sprintf( $vatFormat, $this->number( $price->getTaxrate() ) ) ); } ?>
 
-<?php $params = array_merge( $this->param(), ['currency' => $entry['currency'], 'd_prodid' => $product->getId(), 'd_name' => $product->getName( 'url' )] ); ?>
+<?php $params = array_diff_key( array_merge( $this->param(), ['currency' => $entry['currency'], 'd_name' => $product->getName( 'url' ), 'd_prodid' => $product->getId(), 'd_pos' => ''] ), $detailFilter ); ?>
 <?= $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ); ?>
 
 <?php endforeach; ?>

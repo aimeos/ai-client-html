@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -107,25 +107,24 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
+			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 
 		/** client/html/checkout/confirm/standard/template-body
@@ -149,7 +148,7 @@ class Standard
 		 * @see client/html/checkout/confirm/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/confirm/standard/template-body';
-		$default = 'checkout/confirm/body-standard.php';
+		$default = 'checkout/confirm/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -199,13 +198,13 @@ class Standard
 			 * @see client/html/checkout/confirm/standard/template-body
 			 */
 			$tplconf = 'client/html/checkout/confirm/standard/template-header';
-			$default = 'checkout/confirm/header-standard.php';
+			$default = 'checkout/confirm/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$this->logException( $e );
 		}
 	}
 
@@ -307,10 +306,6 @@ class Standard
 		$view = $this->getView();
 		$context = $this->getContext();
 
-		if( ( $code = $view->param( 'code' ) ) === null ) {
-			return;
-		}
-
 		try
 		{
 			$session = $context->getSession();
@@ -319,17 +314,26 @@ class Standard
 				throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 			}
 
-			$orderCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-			$serviceCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'service' );
 
-			$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
-			$orderCntl->update( $orderItem );  // update stock, coupons, etc.
+			if( ( $code = $view->param( 'code' ) ) !== null )
+			{
+				$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
+				$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
+			}
+			else
+			{
+				$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
+				$orderItem = $orderCntl->get( $orderid );
+			}
+
+			// update stock, coupons, etc.
+			\Aimeos\Controller\Common\Order\Factory::create( $context )->update( $orderItem );
 
 			parent::process();
 
 			if( $orderItem->getPaymentStatus() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
 			{
-				\Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->clear();
+				\Aimeos\Controller\Frontend::create( $context, 'basket' )->clear();
 
 				foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
 					$session->set( $key, null );
@@ -339,24 +343,23 @@ class Standard
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
+			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
+			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
+			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->confirmErrorList = $view->get( 'confirmErrorList', [] ) + $error;
+			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 	}
 
@@ -384,10 +387,8 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		if( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) != null )
-		{
-			$cntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'order' );
-			$view->confirmOrderItem = $cntl->getItem( $orderid, false );
+		if( ( $id = $context->getSession()->get( 'aimeos/orderid' ) ) != null ) {
+			$view->confirmOrderItem = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $id, false );
 		}
 
 		return parent::addData( $view, $tags, $expire );

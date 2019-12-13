@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -106,7 +106,7 @@ class Standard
 		$tplconf = 'client/html/checkout/confirm/intro/standard/template-body';
 
 		$status = $view->confirmOrderItem->getPaymentStatus();
-		$default = array( 'checkout/confirm/' . $status . '/intro-body-standard.php', 'checkout/confirm/intro-body-standard.php' );
+		$default = array( 'checkout/confirm/' . $status . '/intro-body-standard', 'checkout/confirm/intro-body-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

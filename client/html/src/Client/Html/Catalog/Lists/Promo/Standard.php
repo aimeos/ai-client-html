@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -111,7 +111,7 @@ class Standard
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/promo/standard/template-body';
-		$default = 'catalog/lists/promo-body-standard.php';
+		$default = 'catalog/lists/promo-body-standard';
 
 		return $view->render( $this->getTemplatePath( $tplconf, $default, 'aimeos/catalog/lists/type' ) );
 	}
@@ -170,7 +170,7 @@ class Standard
 		 * @see client/html/catalog/lists/type/standard/template-body
 		 */
 		$tplconf = 'client/html/catalog/lists/promo/standard/template-header';
-		$default = 'catalog/lists/promo-header-standard.php';
+		$default = 'catalog/lists/promo-header-standard';
 
 		return $view->render( $this->getTemplatePath( $tplconf, $default, 'aimeos/catalog/lists/type' ) );
 	}
@@ -293,7 +293,7 @@ class Standard
 			$catId = $config->get( 'client/html/catalog/lists/catid-default', '' );
 		}
 
-		if( $catId != '' )
+		if( $catId )
 		{
 			/** client/html/catalog/lists/promo/size
 			 * The maximum number of products that should be shown in the promotion section
@@ -311,15 +311,14 @@ class Standard
 			 * @category Developer
 			 */
 			$size = $config->get( 'client/html/catalog/lists/promo/size', 6 );
-			$domains = $config->get( 'client/html/catalog/lists/domains', array( 'media', 'price', 'text' ) );
+			$domains = $config->get( 'client/html/catalog/lists/domains', ['media', 'price', 'text'] );
+			$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-			$level = \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE;
-			$level = $config->get( 'client/html/catalog/lists/levels', $level );
-
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$filter = $controller->createFilter( 'relevance', '+', 0, $size, 'promotion' );
-			$filter = $controller->addFilterCategory( $filter, $catId, $level, 'relevance', '+', 'promotion' );
-			$products = $controller->searchItems( $filter, $domains );
+			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->category( $catId, 'promotion', $level )
+				->sort( 'relevance' )->slice( 0, $size )
+				->uses( $domains )
+				->search();
 
 			$this->addMetaItems( $products, $expire, $tags );
 

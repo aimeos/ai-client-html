@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -96,7 +96,7 @@ class Standard
 		 * @see client/html/catalog/stage/navigator/standard/template-header
 		 */
 		$tplconf = 'client/html/catalog/stage/navigator/standard/template-body';
-		$default = 'catalog/stage/navigator-body-standard.php';
+		$default = 'catalog/stage/navigator-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -225,10 +225,12 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		if( ( $pos = $view->param( 'd_pos' ) ) !== null && ( $pid = $view->param( 'd_prodid' ) ) !== null )
+		$pos = $view->param( 'd_pos' );
+
+		if( is_numeric( $pos ) && ( $view->param( 'd_name' ) || $view->param( 'd_prodid' ) ) )
 		{
 			if( $pos < 1 ) {
-				$start = 0; $size = 2;
+				$pos = $start = 0; $size = 2;
 			} else {
 				$start = $pos - 1; $size = 3;
 			}
@@ -236,41 +238,44 @@ class Standard
 			$context = $this->getContext();
 			$site = $context->getLocale()->getSite()->getCode();
 			$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
-			$filter = $this->getProductListFilterByParam( $params );
-			$filter->setSlice( $start, $size );
-			$total = null;
+			$catids = $view->value( $params, 'f_catid', $view->config( 'client/html/catalog/lists/catid-default' ) );
+			$sort = $view->value( $params, 'f_sort', $view->config( 'client/html/catalog/lists/sort', 'relevance' ) );
 
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'product' );
-			$products = $controller->searchItems( $filter, array( 'text' ), $total );
+			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->allOf( $view->value( $params, 'f_attrid', [] ) )
+				->oneOf( $view->value( $params, 'f_optid', [] ) )
+				->oneOf( $view->value( $params, 'f_oneid', [] ) )
+				->text( $view->value( $params, 'f_search' ) )
+				->category( $catids, 'default', $level )
+				->slice( $start, $size )->sort( $sort )
+				->uses( ['text'] )
+				->search();
 
 			if( ( $count = count( $products ) ) > 1 )
 			{
 				$enc = $view->encoder();
-				$listPos = array_search( $pid, array_keys( $products ) );
 
 				$target = $view->config( 'client/html/catalog/detail/url/target' );
 				$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 				$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
 				$config = $view->config( 'client/html/catalog/detail/url/config', [] );
+				$prodid = $view->config( 'client/html/catalog/detail/url/d_prodid', false );
 
-				if( $listPos > 0 && ( $product = reset( $products ) ) !== false )
+				if( $pos > 0 && ( $product = reset( $products ) ) !== false )
 				{
-					$param = array(
-						'd_prodid' => $product->getId(),
-						'd_name' => $enc->url( $product->getName( 'url ' ) ),
-						'd_pos' => $pos - 1
-					);
+					$param = ['d_pos' => $pos - 1, 'd_name' => $product->getName( 'url ' )];
+					$prodid == false ?: $params['d_prodid'] = $product->getId();
+
 					$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 
-				if( $listPos < $count - 1 && ( $product = end( $products ) ) !== false )
+				if( ( $pos === 0 || $count === 3 ) && ( $product = end( $products ) ) !== false )
 				{
-					$param = array(
-						'd_prodid' => $product->getId(),
-						'd_name' => $enc->url( $product->getName( 'url' ) ),
-						'd_pos' => $pos + 1
-					);
+					$param = ['d_pos' => $pos + 1, 'd_name' => $product->getName( 'url ' )];
+					$prodid == false ?: $params['d_prodid'] = $product->getId();
+
 					$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 			}

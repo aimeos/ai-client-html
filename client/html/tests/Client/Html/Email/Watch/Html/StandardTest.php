@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelperHtml::getContext();
 
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $context );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $context );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'No customer found' );
 		}
 
-		$manager = \Aimeos\MShop\Product\Manager\Factory::createManager( $context );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $context );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', array( 'CNC', 'CNE' ) ) );
@@ -80,24 +80,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->returnValue( 'cid:123-unique-id' ) );
 
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
-			->with( $this->matchesRegularExpression( '#<html>.*<title>E-mail notification</title>.*<meta.*Aimeos.*<body>#smu' ) );
+			->with( $this->matchesRegularExpression( '#<title>.*Your watched products.*</title>#smu' ) );
 
 		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<html>', $output );
+		$this->assertStringStartsWith( '<!doctype html>', $output );
 		$this->assertContains( 'cid:123-unique-id', $output );
 
-		$this->assertContains( '<p class="email-common-salutation', $output );
+		$this->assertContains( 'email-common-salutation', $output );
 
-		$this->assertContains( '<p class="email-common-intro', $output );
+		$this->assertContains( 'email-common-intro', $output );
 		$this->assertContains( 'One or more products', $output );
 
-		$this->assertContains( '<div class="common-summary-detail common-summary container content-block">', $output );
+		$this->assertContains( 'common-summary-detail common-summary', $output );
 		$this->assertContains( 'Cafe Noire Cappuccino', $output );
 		$this->assertContains( 'Cafe Noire Expresso', $output );
 
-		$this->assertContains( '<p class="email-common-outro', $output );
+		$this->assertContains( 'email-common-outro', $output );
 		$this->assertContains( 'If you have any questions', $output );
 	}
 

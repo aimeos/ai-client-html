@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -103,7 +103,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/account/html/standard/template-body';
 
-		$html = $view->render( $view->config( $tplconf, 'email/account/html-body-standard.php' ) );
+		$html = $view->render( $view->config( $tplconf, 'email/account/html-body-standard' ) );
 		$view->mail()->setBodyHtml( $html );
 		return $html;
 	}
@@ -241,6 +241,19 @@ class Standard
 		}
 
 
+		/** client/html/common/template/baseurl
+		 * Absolute path to the themes folder for styling the e-mails
+		 *
+		 * The Aimeos e-mails are styled depending on the "email.css" file located
+		 * in the configured themes folder. The path to the themes folder must be
+		 * absolute to the file system root to avoid problems finding the file
+		 * when the e-mails are sent by the cronjob.
+		 *
+		 * @param string Absolute path of the theme folder
+		 * @since 2017.10
+		 * @category Developer
+		 * @category User
+		 */
 		$path = $view->config( 'client/html/common/template/baseurl', 'client/html/themes/elegance' );
 		$filepath = $path . DIRECTORY_SEPARATOR . 'email.css';
 

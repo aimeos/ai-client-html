@@ -1,0 +1,151 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# 
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Shoon Lae Won <wonshoonlae@gmail.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: aimeos-core\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
+"Last-Translator: Aimeos\n"
+"Language-Team: Burmese (http://www.transifex.com/aimeos/aimeos-core/language/my/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: my\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Tax name
+msgid "tax"
+msgstr ""
+
+#. PST tax name
+msgid "taxpst"
+msgstr ""
+
+#. GST tax name
+msgid "taxgst"
+msgstr ""
+
+#. Price type default
+msgid "price:default"
+msgstr ""
+
+#. Stock type
+msgid "stocktype:default"
+msgstr ""
+
+#. Favorite action
+msgid "favorite"
+msgstr "နှစ်သက်သည်"
+
+#. Pin action
+msgid "pin"
+msgstr ""
+
+#. Watch action
+msgid "watch"
+msgstr "ကြည့်မည်"
+
+#. Product attribute
+msgid "size"
+msgstr "အရွယ်အစား"
+
+#. Product attribute
+msgid "length"
+msgstr "အနံ"
+
+#. Product attribute
+msgid "width"
+msgstr "အလျား"
+
+#. Product attribute
+msgid "color"
+msgstr "အရောင်"
+
+#. Product attribute
+msgid "option"
+msgstr ""
+
+#. Product property package-length
+msgid "package-length"
+msgstr "ပါကင်အနံ"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "ပါကင်အလျား"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "ပါကင်အမြင့်"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "ပါကင်အလေးချိန်"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "အကောင့်ပိုင်ရှင်"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "အကောင့်နံပါတ်"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "ဘဏ်ကုဒ်"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "ဘဏ်အမည်"
+
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr "ခရက်ဒစ်ကဒ်နံပါတ်"
+
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr "သက်တမ်းကုန်မည့်လ"
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr "သက်တမ်းကုန်မည့်နှစ်"
+
+#. Pick-up date
+msgid "date.value"
+msgstr ""
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "ထုတ်ယူမည့်အချိန်"
+
+#. Pick-up location
+msgid "supplier.code"
+msgstr "ထုတ်ယူမည့်နေရာ"
+
+#. Pick-up location
+msgid "supplier.address"
+msgstr ""
+
+#. Delivery type
+msgid "delivery.type"
+msgstr ""

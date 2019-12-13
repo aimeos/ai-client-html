@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 /** client/html/catalog/lists/metatags
@@ -44,9 +44,7 @@ unset( $params['f_sort'] );
 
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
-
 	<?php if( ( $catItem = end( $catItems ) ) !== false ) : ?>
-
 		<title><?= $enc->html( $catItem->getName() ); ?></title>
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>

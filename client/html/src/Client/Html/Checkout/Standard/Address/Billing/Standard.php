@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -115,7 +115,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/address/billing/standard/template-body';
-		$default = 'checkout/standard/address-billing-body-standard.php';
+		$default = 'checkout/standard/address-billing-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -231,6 +231,73 @@ class Standard
 			$view->billingError = $e->getErrorList();
 			throw $e;
 		}
+	}
+
+
+	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	{
+		$context = $this->getContext();
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+
+		if( ( $address = current( $basketCntl->get()->getAddress( 'payment' ) ) ) === false ) {
+			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
+		} else {
+			$langid = $address->getLanguageId();
+		}
+
+		$view->billingLanguage = $langid;
+
+		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
+
+		if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
+			$hidden[] = 'order.base.address.languageid';
+		}
+
+		$salutations = array( 'company', 'mr', 'mrs' );
+
+		/** client/html/checkout/standard/address/billing/salutations
+		 * List of salutions the customer can select from for the billing address
+		 *
+		 * The following salutations are available:
+		 * * empty string for "unknown"
+		 * * company
+		 * * mr
+		 * * mrs
+		 * * miss
+		 *
+		 * You can modify the list of salutation codes and remove the ones
+		 * which shouldn't be used. Adding new salutations is a little bit
+		 * more difficult because you have to adapt a few areas in the source
+		 * code.
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/billing/salutations" starting from 2014-03.
+		 *
+		 * @param array List of available salutation codes
+		 * @since 2015.02
+		 * @category User
+		 * @category Developer
+		 * @see client/html/checkout/standard/address/billing/disable-new
+		 * @see client/html/checkout/standard/address/billing/mandatory
+		 * @see client/html/checkout/standard/address/billing/optional
+		 * @see client/html/checkout/standard/address/billing/hidden
+		 * @see client/html/checkout/standard/address/countries
+		 */
+		$view->billingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
+
+		$view->billingMandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
+		$view->billingOptional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
+		$view->billingHidden = $hidden;
+
+		return parent::addData( $view, $tags, $expire );
 	}
 
 
@@ -465,36 +532,6 @@ class Standard
 
 
 	/**
-	 * Returns the customer item for the given ID
-	 *
-	 * @param string $id Unique customer ID
-	 * @return \Aimeos\MShop\Customer\Item\Iface Customer item
-	 * @throws \Aimeos\Client\Html\Exception If no customer item is available
-	 * @since 2016.05
-	 */
-	protected function getCustomerItem( $id )
-	{
-		$context = $this->getContext();
-		$customerManager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-
-		$search = $customerManager->createSearch( true );
-		$expr = array(
-				$search->compare( '==', 'customer.id', $id ),
-				$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-
-		$items = $customerManager->searchItems( $search );
-
-		if( ( $item = reset( $items ) ) === false || $id != $context->getUserId() ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Customer with ID "%1$s" not found', $id ) );
-		}
-
-		return $item;
-	}
-
-
-	/**
 	 * Returns the list of sub-client names configured for the client.
 	 *
 	 * @return array List of HTML client names
@@ -515,7 +552,7 @@ class Standard
 	protected function setAddress( \Aimeos\MW\View\Iface $view )
 	{
 		$context = $this->getContext();
-		$basketCtrl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
 		/** client/html/checkout/standard/address/billing/disable-new
@@ -536,7 +573,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/mandatory
 		 * @see client/html/checkout/standard/address/billing/optional
 		 * @see client/html/checkout/standard/address/billing/hidden
-		*/
+		 */
 		$disable = $view->config( 'client/html/checkout/standard/address/billing/disable-new', false );
 		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
 
@@ -544,100 +581,23 @@ class Standard
 		{
 			$params = $view->param( 'ca_billing', [] );
 
-			if( ( $invalid = $this->checkFields( $params ) ) !== [] )
-			{
-				$view->billingError = $invalid;
+			if( ( $view->billingError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
-
-			$basketCtrl->setAddress( $type, $params );
 		}
 		else // existing address
 		{
-			$list = [];
-			$params = $view->param( 'ca_billing_' . $option, [] );
+			$params = $view->param( 'ca_billing_' . $option, [] ) + $view->param( 'ca_extra', [] );
 
-			if( !empty( $params ) && ( $invalid = $this->checkFields( $params ) ) !== [] )
-			{
-				$view->billingError = $invalid;
+			if( !empty( $params ) && ( $view->billingError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 
-			foreach( $params as $key => $value ) {
-				$list[str_replace( 'order.base.address', 'customer', $key )] = $value;
-			}
-
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
-			$customer = $controller->editItem( $option, $list );
-
-			$basketCtrl->setAddress( $type, $customer->getPaymentAddress() );
-		}
-	}
-
-
-	/**
-	 * Sets the necessary parameter values in the view.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
-	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
-	{
-		$context = $this->getContext();
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
-
-		try {
-			$langid = $basketCntl->get()->getAddress( 'payment' )->getLanguageId();
-		} catch( \Exception $e ) {
-			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
-		}
-		$view->billingLanguage = $langid;
-
-		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
-
-		if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
-			$hidden[] = 'order.base.address.languageid';
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( [] );
+			$params = $cntl->add( $params )->store()->get()->getPaymentAddress()->toArray();
 		}
 
-		$salutations = array( 'company', 'mr', 'mrs' );
-
-		/** client/html/checkout/standard/address/billing/salutations
-		 * List of salutions the customer can select from for the billing address
-		 *
-		 * The following salutations are available:
-		 * * empty string for "unknown"
-		 * * company
-		 * * mr
-		 * * mrs
-		 * * miss
-		 *
-		 * You can modify the list of salutation codes and remove the ones
-		 * which shouldn't be used. Adding new salutations is a little bit
-		 * more difficult because you have to adapt a few areas in the source
-		 * code.
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/billing/salutations" starting from 2014-03.
-		 *
-		 * @param array List of available salutation codes
-		 * @since 2015.02
-		 * @category User
-		 * @category Developer
-		 * @see client/html/checkout/standard/address/billing/disable-new
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see client/html/checkout/standard/address/billing/hidden
-		 * @see client/html/checkout/standard/address/countries
-		 */
-		$view->billingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
-
-		$view->billingMandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
-		$view->billingOptional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
-		$view->billingHidden = $hidden;
-
-		return parent::addData( $view, $tags, $expire );
+		$basketCtrl->addAddress( $type, $params, 0 );
 	}
 
 

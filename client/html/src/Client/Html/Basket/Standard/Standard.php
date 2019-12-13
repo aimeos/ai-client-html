@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -85,25 +85,24 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 
 		/** client/html/basket/standard/standard/template-body
@@ -127,7 +126,7 @@ class Standard
 		 * @see client/html/basket/standard/standard/template-header
 		 */
 		$tplconf = 'client/html/basket/standard/standard/template-body';
-		$default = 'basket/standard/body-standard.php';
+		$default = 'basket/standard/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -157,7 +156,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$this->logException( $e );
 			return '';
 		}
 
@@ -183,7 +182,7 @@ class Standard
 		 * @see client/html/basket/standard/standard/template-body
 		 */
 		$tplconf = 'client/html/basket/standard/standard/template-header';
-		$default = 'basket/standard/header-standard.php';
+		$default = 'basket/standard/header-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -283,7 +282,7 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		try
 		{
@@ -299,7 +298,7 @@ class Standard
 					$this->deleteProducts( $view );
 					break;
 				default:
-					$this->editProducts( $view );
+					$this->updateProducts( $view );
 					$this->addCoupon( $view );
 			}
 
@@ -335,23 +334,15 @@ class Standard
 
 			switch( $check )
 			{
-				case 2:
-					if( $view->param( 'b_check', 0 ) == 0 ) { break; }
-				case 1:
-					$controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT );
-				default:
-					$view->standardCheckout = true;
+				case 2: if( $view->param( 'b_check', 0 ) == 0 ) { break; }
+				case 1: $controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT );
+				default: $view->standardCheckout = true;
 			}
-		}
-		catch( \Aimeos\Client\Html\Exception $e )
-		{
-			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Plugin\Provider\Exception $e )
 		{
@@ -359,19 +350,18 @@ class Standard
 			$errors = array_merge( $errors, $this->translatePluginErrorCodes( $e->getErrorCodes() ) );
 
 			$view->standardErrorCodes = $e->getErrorCodes();
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $errors );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 
 		// store updated basket after plugins updated content and have thrown an exception
@@ -418,17 +408,19 @@ class Standard
 			$controller = $view->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 			$action = $view->config( 'client/html/catalog/lists/url/action', 'list' );
 			$config = $view->config( 'client/html/catalog/lists/url/config', [] );
-
 		}
 
 		if( empty( $params ) === false ) {
 			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
 		}
 
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		$basket = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->get();
 
-		$view->standardBasket = $controller->get();
-		$view->standardTaxRates = $this->getTaxRates( $view->standardBasket );
+		$view->standardBasket = $basket;
+		$view->standardTaxRates = $this->getTaxRates( $basket );
+		$view->standardNamedTaxes = $this->getNamedTaxes( $basket );
+		$view->standardCostsDelivery = $this->getCostsDelivery( $basket );
+		$view->standardCostsPayment = $this->getCostsPayment( $basket );
 
 		return parent::addData( $view, $tags, $expire );
 	}
@@ -441,17 +433,9 @@ class Standard
 	 */
 	protected function addCoupon( \Aimeos\MW\View\Iface $view )
 	{
-		/** client/html/basket/standard/coupon/allowed
-		 * Number of coupon codes a customer is allowed to enter
-		 *
-		 * @param integer Positive number of coupon codes including zero
-		 * @deprecated Use controller/frontend/basket/standard/coupon/allowed instead
-		 */
-
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
-			$controller->addCoupon( $coupon );
+			\Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->addCoupon( $coupon );
 			$this->clearCached();
 		}
 	}
@@ -464,58 +448,55 @@ class Standard
 	 */
 	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
-		$products = (array) $view->param( 'b_prod', [] );
+		$context = $this->getContext();
+		$domains = ['attribute', 'media', 'price', 'product', 'text'];
 
-		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' )
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
+
+		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' && $view->param( 'b_quantity', 0 ) > 0 )
 		{
-			$products[] = array(
-				'prodid' => $prodid,
-				'quantity' => $view->param( 'b_quantity', 1 ),
-				'attrvarid' => $view->param( 'b_attrvarid', [] ),
-				'attrconfid' => $view->param( 'b_attrconfid', [] ),
-				'attrhideid' => $view->param( 'b_attrhideid', [] ),
-				'attrcustid' => $view->param( 'b_attrcustid', [] ),
-				'stocktype' => $view->param( 'b_stocktype', 'default' ),
+			$basketCntl->addProduct(
+				$productCntl->get( $prodid ),
+				$view->param( 'b_quantity', 0 ),
+				$view->param( 'b_attrvarid', [] ),
+				$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
+				$view->param( 'b_attrcustid', [] ),
+				$view->param( 'b_stocktype', 'default' ),
+				$view->param( 'b_supplier' ),
+				$view->param( 'b_siteid' )
 			);
 		}
-
-		foreach( $products as $values ) {
-			$this->addProduct( $controller, $values );
-		}
-
-		$this->clearCached();
-	}
-
-
-	/**
-	 * Adds a single product specified by its values to the basket.
-	 *
-	 * @param \Aimeos\Controller\Frontend\Basket\Iface $controller Basket frontend controller
-	 * @param array $values Associative list of key/value pairs from the view specifying the product
-	 */
-	protected function addProduct( \Aimeos\Controller\Frontend\Basket\Iface $controller, array $values )
-	{
-		$list = [];
-		$confIds = ( isset( $values['attrconfid']['id'] ) ? array_filter( (array) $values['attrconfid']['id'] ) : [] );
-		$confQty = ( isset( $values['attrconfid']['qty'] ) ? array_filter( (array) $values['attrconfid']['qty'] ) : [] );
-
-		foreach( $confIds as $idx => $id )
+		else
 		{
-			if( isset( $confQty[$idx] ) && $confQty[$idx] > 0 ) {
-				$list[$id] = $confQty[$idx];
+			$list = [];
+			$entries = (array) $view->param( 'b_prod', [] );
+
+			foreach( $entries as $values )
+			{
+				if( isset( $values['prodid'] ) ) {
+					$list[] = $values['prodid'];
+				}
+			}
+
+			foreach( $entries as $values )
+			{
+				if( isset( $values['prodid'] ) && isset( $values['quantity'] ) && $values['quantity'] > 0 )
+				{
+					$basketCntl->addProduct( $productCntl->get( $values['prodid'] ),
+						( isset( $values['quantity'] ) ? (int) $values['quantity'] : 0 ),
+						( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
+						$this->getAttributeMap( isset( $values['attrconfid'] ) ? $values['attrconfid'] : [] ),
+						( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] ),
+						( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' ),
+						( isset( $values['supplier'] ) ? (string) $values['supplier'] : null ),
+						( isset( $values['siteid'] ) ? (string) $values['siteid'] : null )
+					);
+				}
 			}
 		}
 
-		$controller->addProduct(
-			( isset( $values['prodid'] ) ? (string) $values['prodid'] : '' ),
-			( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
-			( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' ),
-			( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
-			$list,
-			( isset( $values['attrhideid'] ) ? array_filter( (array) $values['attrhideid'] ) : [] ),
-			( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] )
-		);
+		$this->clearCached();
 	}
 
 
@@ -528,8 +509,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
-			$controller->deleteCoupon( $coupon );
+			\Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->deleteCoupon( $coupon );
 			$this->clearCached();
 		}
 	}
@@ -542,7 +522,7 @@ class Standard
 	 */
 	protected function deleteProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_position', [] );
 
 		foreach( $products as $position ) {
@@ -553,31 +533,46 @@ class Standard
 	}
 
 
+	protected function getAttributeMap( array $values )
+	{
+		$list = [];
+		$confIds = ( isset( $values['id'] ) ? array_filter( (array) $values['id'] ) : [] );
+		$confQty = ( isset( $values['qty'] ) ? array_filter( (array) $values['qty'] ) : [] );
+
+		foreach( $confIds as $idx => $id )
+		{
+			if( isset( $confQty[$idx] ) && $confQty[$idx] > 0 ) {
+				$list[$id] = $confQty[$idx];
+			}
+		}
+
+		return $list;
+	}
+
+
 	/**
 	 * Edits the products specified by the view parameters to the basket.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
 	 */
-	protected function editProducts( \Aimeos\MW\View\Iface $view )
+	protected function updateProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
 
 		if( ( $position = $view->param( 'b_position', '' ) ) !== '' )
 		{
 			$products[] = array(
 				'position' => $position,
-				'quantity' => $view->param( 'b_quantity', 1 ),
-				'attrconf-code' => array_filter( (array) $view->param( 'b_attrconfcode', [] ) )
+				'quantity' => $view->param( 'b_quantity', 1 )
 			);
 		}
 
 		foreach( $products as $values )
 		{
-			$controller->editProduct(
+			$controller->updateProduct(
 				( isset( $values['position'] ) ? (int) $values['position'] : 0 ),
-				( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 ),
-				( isset( $values['attrconf-code'] ) ? array_filter( (array) $values['attrconf-code'] ) : [] )
+				( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 )
 			);
 		}
 

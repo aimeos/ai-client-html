@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 /* Available data:
@@ -37,13 +37,33 @@ $enc = $this->encoder();
  * @category User
  * @category Developer
  * @see client/html/catalog/social/url/facebook
- * @see client/html/catalog/social/url/gplus
  * @see client/html/catalog/social/url/twitter
  * @see client/html/catalog/social/url/pinterest
  */
-$list = $this->config( 'client/html/catalog/social/list', array( 'facebook', 'gplus', 'twitter', 'pinterest' ) );
+$list = $this->config( 'client/html/catalog/social/list', array( 'facebook', 'twitter', 'pinterest' ) );
 
 $urls = array(
+	/** client/html/catalog/social/url/whatsapp
+	 * URL for sharing product links over WhatsApp
+	 *
+	 * Users can share product links over WhatsApp. This requires a URL defined
+	 * by WhatsApp that accepts the transmitted product page URL. This URL must
+	 * contain at least the "%1$s" placeholder for the URL to the product detail
+	 * page of the shop.
+	 *
+	 * Possible placeholders and replaced values are:
+	 * * %1$s : Shop URL of the product detail page
+	 * * %2$s : Name of the product
+	 * * %3$s : URL of the first product image
+	 *
+	 * @param string URL to share products on Facebook
+	 * @since 2020.01
+	 * @category User
+	 * @category Developer
+	 * @see client/html/catalog/social/list
+	 */
+	'whatsapp' => 'https://wa.me/?text=%2$s+%1$s',
+
 	/** client/html/catalog/social/url/facebook
 	 * URL for sharing product links on Facebook
 	 *
@@ -64,27 +84,6 @@ $urls = array(
 	 * @see client/html/catalog/social/list
 	 */
 	'facebook' => 'https://www.facebook.com/sharer.php?u=%1$s&t=%2$s',
-
-	/** client/html/catalog/social/url/gplus
-	 * URL for sharing product links on Google Plus
-	 *
-	 * Users can share product links on Google Plus. This requires a URL defined
-	 * by Google Plus that accepts the transmitted product page URL. This URL must
-	 * contain at least the "%1$s" placeholder for the URL to the product detail
-	 * page of the shop.
-	 *
-	 * Possible placeholders and replaced values are:
-	 * * %1$s : Shop URL of the product detail page
-	 * * %2$s : Name of the product
-	 * * %3$s : URL of the first product image
-	 *
-	 * @param string URL to share products on Google Plus
-	 * @since 2017.04
-	 * @category User
-	 * @category Developer
-	 * @see client/html/catalog/social/list
-	 */
-	'gplus' => 'https://plus.google.com/share?url=%1$s',
 
 	/** client/html/catalog/social/url/twitter
 	 * URL for sharing product links on Twitter
@@ -132,12 +131,13 @@ $urls = array(
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
+$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailConfig['absoluteUri'] = true;
 
+$params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => '0'], $detailFilter );
+$prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig );
 $prodName = $this->productItem->getName();
-$param = array( 'd_prodid' => $this->productItem->getId(), 'd_name' => $prodName );
-$prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $param, [], $detailConfig );
 
 $images = $this->productItem->getRefItems( 'media', 'default', 'default' );
 $prodImage = ( ( $image = reset( $images ) ) !== false ? $this->content( $image->getUrl() ) : '' );
@@ -146,7 +146,6 @@ $prodImage = ( ( $image = reset( $images ) ) !== false ? $this->content( $image-
 <div class="catalog-social">
 <?php foreach( $list as $entry ) : $default = ( isset( $urls[$entry] ) ? $urls[$entry] : null ); ?>
 	<?php if( ( $link = $this->config( 'client/html/catalog/social/url/' . $entry, $default ) ) !== null ) : ?>
-
 		<a class="social-button social-button-<?= $enc->attr( $entry ); ?>"
 			href="<?= $enc->attr( sprintf( $link, $enc->url( $prodUrl ), $enc->url( $prodName ), $enc->url( $prodImage ) ) ); ?>"
 			title="<?= $enc->attr( $entry ); ?>"

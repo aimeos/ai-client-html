@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Items\Standard( $context, $paths );
 
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::createManager( $context );
+		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $context );
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
 		$catItems = $catalogManager->searchItems( $search );
@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 		$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::createManager( $context );
+		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $context );
 		$search = $productManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', array( 'CNE', 'U:TEST', 'U:BUNDLE' ) ) );
 		$total = 0;
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<div class="catalog-list-items">', $output );
+		$this->assertStringStartsWith( '<div class="catalog-list-items"', $output );
 
 		$this->assertContains( '<div class="price-item', $output );
 		$this->assertContains( '<span class="quantity"', $output );

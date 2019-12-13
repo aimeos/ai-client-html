@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -175,14 +175,13 @@ class Standard
 
 		try
 		{
-			$basket = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' )->get();
 			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
-			$addresses = $basket->getAddresses();
+			$addresses = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get()->getAddress( $type );
 
-			if( $context->getUserId() == '' && isset( $addresses[$type] ) )
+			if( $context->getUserId() == null && ( $address = current( $addresses ) ) !== false )
 			{
 				$create = (bool) $this->getView()->param( 'cs_option_account' );
-				$userId = $this->getCustomerId( $addresses[$type], $create );
+				$userId = $this->getCustomerId( $address, $create );
 				$context->setUserId( $userId );
 			}
 		}
@@ -211,25 +210,22 @@ class Standard
 	 * Creates a new account (if necessary) and returns its customer ID
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
-	 * @return string|null Customer ID
+	 * @param boolean $new True to create the customer if it doesn't exist, false if not
+	 * @return string|null Unique customer ID or null if no customer is available
 	 */
-	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, $create )
+	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, $new )
 	{
-		$id = null;
 		$context = $this->getContext();
-		$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'customer' );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
 		try
 		{
-			$id = $controller->findItem( $addr->getEmail() )->getId();
+			$id = $cntl->find( $addr->getEmail() )->getId();
 		}
 		catch( \Exception $e )
 		{
-			if( $create === true )
-			{
-				$extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
-				$id = $controller->addItem( array_merge( $addr->toArray(), $extra ) )->getId();
-			}
+			$extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
+			$id = ( $new ? $cntl->add( $addr->toArray() )->add( $extra )->store()->get()->getId() : null );
 		}
 
 		return $id;

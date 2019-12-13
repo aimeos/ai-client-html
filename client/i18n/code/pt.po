@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
-# Tadeu Pagliarini <tadeu_up@hotmail.com>, 2016
+# António Almeida <promatik@gmail.com>, 2019
+# b5fdd37cec45d8078af7e530465bb050, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2017-11-21 22:32+0000\n"
+"PO-Revision-Date: 2019-10-03 08:06+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Portuguese (http://www.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -22,15 +23,24 @@ msgstr ""
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. Tax name
+msgid "tax"
+msgstr ""
+
+#. PST tax name
+msgid "taxpst"
+msgstr ""
+
+#. GST tax name
+msgid "taxgst"
+msgstr ""
+
+#. Price type default
 msgid "price:default"
 msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
-
-#. Warehouse type (pre 2017.x)
-msgid "warehouse:default"
 msgstr ""
 
 #. Favorite action
@@ -121,10 +131,22 @@ msgstr "Mês de validade"
 msgid "payment.expiryyear"
 msgstr "Ano de validade"
 
+#. Pick-up date
+msgid "date.value"
+msgstr "Data de recolha"
+
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Horário de recolha"
 
 #. Pick-up location
 msgid "supplier.code"
+msgstr "Local de recolha"
+
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Morada de recolha"
+
+#. Delivery type
+msgid "delivery.type"
 msgstr ""

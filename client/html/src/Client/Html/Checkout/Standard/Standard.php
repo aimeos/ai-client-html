@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -140,25 +140,24 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 
 		/** client/html/checkout/standard/standard/template-body
@@ -182,7 +181,7 @@ class Standard
 		 * @see client/html/checkout/standard/standard/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/standard/template-body';
-		$default = 'checkout/standard/body-standard.php';
+		$default = 'checkout/standard/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -232,13 +231,13 @@ class Standard
 			 * @see client/html/checkout/standard/standard/template-body
 			 */
 			$tplconf = 'client/html/checkout/standard/standard/template-header';
-			$default = 'checkout/standard/header-standard.php';
+			$default = 'checkout/standard/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$this->logException( $e );
 		}
 	}
 
@@ -346,33 +345,32 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Plugin\Provider\Exception $e )
 		{
-			$errors = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$errors = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
 			$errors = array_merge( $errors, $this->translatePluginErrorCodes( $e->getErrorCodes() ) );
 
 			$view->summaryErrorCodes = $e->getErrorCodes();
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $errors;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $errors );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = $view->get( 'standardErrorList', [] ) + $error;
+			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 	}
 
@@ -400,7 +398,7 @@ class Standard
 	{
 		$context = $this->getContext();
 
-		$basketCntl = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 		$view->standardBasket = $basketCntl->get();
 
 
@@ -535,7 +533,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
-		*/
+		 */
 		$cCntl = $view->config( 'client/html/checkout/standard/url/controller', 'checkout' );
 
 		/** client/html/checkout/standard/url/action
@@ -551,7 +549,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/config
-		*/
+		 */
 		$cAction = $view->config( 'client/html/checkout/standard/url/action', 'index' );
 
 		/** client/html/checkout/standard/url/config
@@ -574,7 +572,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/url/config
-		*/
+		 */
 		$cConfig = $view->config( 'client/html/checkout/standard/url/config', [] );
 
 

@@ -3,26 +3,12 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
 
-/** client/html/common/content/baseurl
- * Path to the content directory or content base URL to a server
- *
- * This option must point to the base path or URL of the used content (images,
- * downloadable files, etc.).
- *
- * If you use an absolute URL prefer the https protocol to avoid issues with mixed
- * content. Browsers avoid to load files via http if the page was retrieved via
- * https.
- *
- * @param string Relative path or absolute URL
- * @since 2014.03
- * @see client/html/common/content/baseurl
- */
-$contentUrl = $this->config( 'client/html/common/content/baseurl' );
+$contentUrl = $this->config( 'resource/fs/baseurl' );
 
 /** client/html/catalog/filter/attribute/types-option
  * List of attribute types whose IDs should be used in a global "OR" condition
@@ -88,9 +74,9 @@ $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 $attrMap = $this->get( 'attributeMap', [] );
-$attrIds = $this->param( 'f_attrid', [] );
-$oneIds = $this->param( 'f_oneid', [] );
-$optIds = $this->param( 'f_optid', [] );
+$attrIds = array_filter( $this->param( 'f_attrid', [] ) );
+$oneIds = array_filter( $this->param( 'f_oneid', [] ) );
+$optIds = array_filter( $this->param( 'f_optid', [] ) );
 $params = $this->param();
 
 
@@ -99,12 +85,10 @@ $params = $this->param();
 <section class="catalog-filter-attribute">
 
 	<?php if( !empty( $attrMap ) ) : ?>
-
 		<h2><?= $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
 
 
-		<?php if( !empty( $attrIds ) || !empty( $optIds ) ) : ?>
-
+		<?php if( !empty( $attrIds ) || !empty( $optIds ) || !empty( $oneIds ) ) : ?>
 			<div class="attribute-selected">
 				<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
 
@@ -129,7 +113,7 @@ $params = $this->param();
 				</ul>
 
 				<?php if( count( $attrIds ) > 1 || count( $optIds ) > 1 || count( $oneIds ) > 1 ) : ?>
-					<?php $current = $params; unset( $current['f_attrid'],  $current['f_optid'],  $current['f_oneid'] ); ?>
+					<?php $current = $params; unset( $current['f_attrid'], $current['f_optid'], $current['f_oneid'] ); ?>
 					<a class="selected-all" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, [], $listConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?>
 					</a>
@@ -143,14 +127,12 @@ $params = $this->param();
 
 			<?php foreach( $attrMap as $attrType => $attributes ) : ?>
 				<?php if( !empty( $attributes ) ) : ?>
-
 					--><fieldset class="attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ); ?>">
 						<legend><?= $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
 						<ul class="attr-list"><!--
 
 							<?php $fparam = ( in_array( $attrType, $oneof ) ? array( 'f_oneid', $attrType, '' ) : ( in_array( $attrType, $options ) ? array( 'f_optid', '' ) : array( 'f_attrid', '' ) ) ); ?>
 							<?php foreach( $attributes as $id => $attribute ) : ?>
-
 								--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
 
 									<input class="attr-item" type="checkbox"
@@ -163,13 +145,11 @@ $params = $this->param();
 									<label class="attr-name" for="attr-<?= $enc->attr( $id ); ?>"><!--
 										--><div class="media-list"><!--
 
-											<?php foreach( $attribute->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-												<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
-													<?= '-->' . $this->partial(
-														$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
-														array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
-													) . '<!--'; ?>
-												<?php endif; ?>
+											<?php foreach( $attribute->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+												<?= '-->' . $this->partial(
+													$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+													array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+												) . '<!--'; ?>
 											<?php endforeach; ?>
 
 										--></div>

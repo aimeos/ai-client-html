@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -100,7 +100,7 @@ class Standard
 		 * @see client/html/account/history/order/standard/template-header
 		 */
 		$tplconf = 'client/html/account/history/order/standard/template-body';
-		$default = 'account/history/order-body-standard.php';
+		$default = 'account/history/order-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -218,33 +218,19 @@ class Standard
 		{
 			$context = $this->getContext();
 
-			$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-			$controller = \Aimeos\Controller\Frontend\Factory::createController( $context, 'basket' );
-
-			$search = $manager->createSearch( true );
-			$expr = array(
-				$search->getConditions(),
-				$search->compare( '==', 'order.id', $orderId ),
-				$search->compare( '==', 'order.base.customerid', $context->getUserId() ),
-			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
-
-			$orderItems = $manager->searchItems( $search );
-
-			if( ( $orderItem = reset( $orderItems ) ) === false )
-			{
-				$msg = $view->translate( 'client', 'Order with ID "%1$s" not found' );
-				throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $orderId ) );
-			}
-
+			$orderItem = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $orderId );
+			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $orderItem->getBaseId() );
 
 			if( $orderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
 				$view->summaryShowDownloadAttributes = true;
 			}
 
-			$view->summaryBasket = $controller->load( $orderItem->getBaseId() );
-			$view->summaryTaxRates = $this->getTaxRates( $view->summaryBasket );
 			$view->orderItem = $orderItem;
+			$view->summaryBasket = $basket;
+			$view->summaryTaxRates = $this->getTaxRates( $basket );
+			$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
+			$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
+			$view->summaryCostsPayment = $this->getCostsPayment( $basket );
 		}
 
 		return parent::addData( $view, $tags, $expire );

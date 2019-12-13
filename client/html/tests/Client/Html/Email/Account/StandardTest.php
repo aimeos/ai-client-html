@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 
@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = \TestHelperHtml::getContext();
 
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::createManager( $context );
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $context );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'Dear mr Our Unittest', $output );
+		$this->assertContains( 'Dear Mr Our Unittest', $output );
 	}
 
 

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
 $enc = $this->encoder();
@@ -33,8 +33,9 @@ foreach( $this->get( 'deliveryError', [] ) as $name => $msg ) {
 	$deliveryCss[$name][] = 'error';
 }
 
+$pricefmt = $this->translate( 'client/code', 'price:default' );
 /// Price format with price value (%1$s) and currency (%2$s)
-$priceFormat = $this->translate( 'client', '%1$s %2$s' );
+$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>
@@ -46,7 +47,6 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 	<?php foreach( $services as $id => $service ) : ?>
-
 		<div id="c_delivery-<?= $enc->attr( $id ); ?>" class="item item-service row">
 
 			<div class="col-sm-6">
@@ -67,8 +67,8 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 							<span class="price-value">
 								<?= $enc->html( sprintf( /// Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
 									$this->translate( 'client', '%1$s%3$s + %2$s%3$s' ),
-									$this->number( $servicePrices[$id]->getValue() ),
-									$this->number( $servicePrices[$id]->getCosts() ),
+									$this->number( $servicePrices[$id]->getValue(), $servicePrices[$id]->getPrecision() ),
+									$this->number( $servicePrices[$id]->getCosts() > 0 ? $servicePrices[$id]->getCosts() : 0, $servicePrices[$id]->getPrecision() ),
 									$currency )
 								); ?>
 							</span>
@@ -76,7 +76,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 							<span class="price-value">
 								<?= $enc->html( sprintf(
 									$priceFormat,
-									$this->number( $servicePrices[$id]->getCosts() ),
+									$this->number( $servicePrices[$id]->getCosts() > 0 ? $servicePrices[$id]->getCosts() : 0, $servicePrices[$id]->getPrecision() ),
 									$currency )
 								); ?>
 							</span>
@@ -86,9 +86,9 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 
 					<div class="icons">
-						<?php foreach( $service->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+						<?php foreach( $service->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard.php' ),
+								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
 								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'icon' ) )
 							); ?>
 						<?php endforeach; ?>
@@ -141,7 +141,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 						 * @since 2017.07
 						 * @category Developer
 						 */
-						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial-standard.php' ),
+						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial-standard' ),
 						array(
 							'attributes' => $serviceAttributes[$id],
 							'orderService' => $orderService,

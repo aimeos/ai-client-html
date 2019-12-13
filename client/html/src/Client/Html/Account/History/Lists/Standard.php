@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2017
+ * @copyright Aimeos (aimeos.org), 2015-2018
  * @package Client
  * @subpackage Html
  */
@@ -100,7 +100,7 @@ class Standard
 		 * @see client/html/account/history/lists/standard/template-header
 		 */
 		$tplconf = 'client/html/account/history/lists/standard/template-body';
-		$default = 'account/history/list-body-standard.php';
+		$default = 'account/history/list-body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -214,20 +214,8 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
-		$context = $this->getContext();
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'order' );
-
-
-		$search = $manager->createSearch( true );
-		$expr = array(
-			$search->getConditions(),
-			$search->compare( '==', 'order.base.customerid', $context->getUserId() ),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSortations( array( $search->sort( '-', 'order.id' ) ) );
-
-
-		$view->listsOrderItems = $manager->searchItems( $search );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'order' );
+		$view->listsOrderItems = $cntl->sort( '-order.id' )->search();
 
 		return parent::addData( $view, $tags, $expire );
 	}

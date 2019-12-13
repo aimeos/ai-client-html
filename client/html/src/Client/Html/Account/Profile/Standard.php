@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2017
+ * @copyright Aimeos (aimeos.org), 2016-2018
  * @package Client
  * @subpackage Html
  */
@@ -55,7 +55,18 @@ class Standard
 	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/account/profile/standard/subparts';
-	private $subPartNames = [];
+
+	/** client/html/account/profile/address/name
+	 * Name of the address part used by the account profile client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Account\Profile\Address\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2019.10
+	 * @category Developer
+	 */
+	private $subPartNames = ['address'];
 	private $view;
 
 
@@ -84,25 +95,24 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$view->profileErrorList = array_merge( $view->get( 'profileErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$view->profileErrorList = array_merge( $view->get( 'profileErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $this->getContext()->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$view->profileErrorList = array_merge( $view->get( 'profileErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge( $view->get( 'profileErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 
 		/** client/html/account/profile/standard/template-body
@@ -126,7 +136,7 @@ class Standard
 		 * @see client/html/account/profile/standard/template-header
 		 */
 		$tplconf = 'client/html/account/profile/standard/template-body';
-		$default = 'account/profile/body-standard.php';
+		$default = 'account/profile/body-standard';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -176,13 +186,13 @@ class Standard
 			 * @see client/html/account/profile/standard/template-body
 			 */
 			$tplconf = 'client/html/account/profile/standard/template-header';
-			$default = 'account/profile/header-standard.php';
+			$default = 'account/profile/header-standard';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$this->logException( $e );
 		}
 	}
 
@@ -291,24 +301,23 @@ class Standard
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge( $view->get( 'profileErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge( $view->get( 'profileErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge( $view->get( 'profileErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$context->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-
 			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
-			$view->profileErrorList = $view->get( 'profileErrorList', [] ) + $error;
+			$view->profileErrorList = array_merge( $view->get( 'profileErrorList', [] ), $error );
+			$this->logException( $e );
 		}
 	}
 
@@ -335,11 +344,6 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$userId = $context->getUserId();
-
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'customer' );
-		$addrManager = \Aimeos\MShop\Factory::createManager( $context, 'customer/address' );
-
 
 		/** client/html/account/profile/domains
 		 * A list of domain names whose items should be available in the account profile view template
@@ -353,15 +357,10 @@ class Standard
 		 * @since 2016.10
 		 * @category Developer
 		 */
-		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', [] );
+		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', ['customer/address'] );
 
-		$view->profileCustomerItem = $manager->getItem( $userId, $domains );
-
-
-		$search = $addrManager->createSearch();
-		$search->setConditions( $search->compare( '==', 'customer.address.parentid', $userId ) );
-
-		$view->profileAddressItems = $manager->searchItems( $search );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
+		$view->profileCustomerItem = $cntl->uses( $domains )->get();
 
 		return parent::addData( $view, $tags, $expire );
 	}
