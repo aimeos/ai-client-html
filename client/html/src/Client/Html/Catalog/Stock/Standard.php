@@ -339,7 +339,7 @@ class Standard
 		 * @see client/html/catalog/stock/level/low
 		 */
 		$sort = $context->getConfig()->get( 'client/html/catalog/stock/sort', 'stock.type' );
-		$type = $context->getLocale()->getSite()->getConfigValue( 'stocktype' );
+		$type = $context->getLocale()->getSiteItem()->getConfigValue( 'stocktype' );
 
 		return \Aimeos\Controller\Frontend::create( $context, 'stock' )
 			->code( $productCodes )->type( $type )->sort( $sort )

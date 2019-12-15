@@ -345,7 +345,7 @@ class Standard
 
 		$params = [
 			'locale' => $context->getLocale()->getLanguageId(),
-			'site' => $context->getLocale()->getSite()->getCode(),
+			'site' => $context->getLocale()->getSiteItem()->getCode(),
 		];
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );

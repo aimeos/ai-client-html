@@ -236,7 +236,7 @@ class Standard
 			}
 
 			$context = $this->getContext();
-			$site = $context->getLocale()->getSite()->getCode();
+			$site = $context->getLocale()->getSiteItem()->getCode();
 			$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 

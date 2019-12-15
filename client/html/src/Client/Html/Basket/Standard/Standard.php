@@ -391,7 +391,7 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
-		$site = $context->getLocale()->getSite()->getCode();
+		$site = $context->getLocale()->getSiteItem()->getCode();
 
 		if( ( $params = $context->getSession()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) !== null )
 		{

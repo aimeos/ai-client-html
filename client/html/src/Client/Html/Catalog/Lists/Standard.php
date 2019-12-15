@@ -399,7 +399,7 @@ class Standard
 
 		try
 		{
-			$site = $context->getLocale()->getSite()->getCode();
+			$site = $context->getLocale()->getSiteItem()->getCode();
 			$params = $this->getClientParams( $view->param() );
 
 			$catId = $context->getConfig()->get( 'client/html/catalog/lists/catid-default' );
