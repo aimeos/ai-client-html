@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessCheckAccess()
 	{
-		$this->assertFalse( $this->access( 'checkAccess' )->invokeArgs( $this->object, [123, 321] ) );
+		$this->assertFalse( $this->access( 'checkAccess' )->invokeArgs( $this->object, [-1, -2] ) );
 	}
 
 
@@ -132,7 +132,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
 
 		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
-		$this->assertTrue( $this->access( 'checkDownload' )->invokeArgs( $this->object, [123, 321] ) );
+		$this->assertTrue( $this->access( 'checkDownload' )->invokeArgs( $this->object, [-1, -2] ) );
 		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 
@@ -141,7 +141,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'client/html/account/download/maxcount', 0 );
 
-		$this->assertFalse( $this->access( 'checkDownload' )->invokeArgs( $this->object, [123, 321] ) );
+		$this->assertFalse( $this->access( 'checkDownload' )->invokeArgs( $this->object, [-1, -2] ) );
 	}
 
 
