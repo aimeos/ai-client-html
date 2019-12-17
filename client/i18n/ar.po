@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Abdulkarim Itani <abdulkarim.itani@gmail.com>, 2019
 # elragoubi <elragoubi@yahoo.com>, 2018
 # elragoubi <elragoubi@yahoo.com>, 2018
 msgid ""
@@ -10,8 +11,8 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-03 10:00+0200\n"
-"PO-Revision-Date: 2019-10-03 08:06+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2019-11-21 18:52+0000\n"
+"Last-Translator: Abdulkarim Itani <abdulkarim.itani@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/aimeos/aimeos-core/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +88,7 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr ""
 
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -102,19 +103,19 @@ msgstr ""
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr ""
+msgstr "+ %1$s%% ضريبة مضافة"
 
 msgid "+ Payment costs"
-msgstr ""
+msgstr "+ تكاليف الدفع"
 
 msgid "+ Shipping"
-msgstr ""
+msgstr "+ الشحن"
 
 msgid "+ shipping costs"
-msgstr ""
+msgstr "+ تكاليف الشحن"
 
 msgid "+1 123 456 7890"
-msgstr ""
+msgstr "+912 345 67890"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
@@ -122,16 +123,16 @@ msgid "-%1$s%%"
 msgstr ""
 
 msgid "Account"
-msgstr ""
+msgstr "الحساب"
 
 msgid "Add to basket"
 msgstr "إضافة إلى السلة"
 
 msgid "Additional"
-msgstr ""
+msgstr "إضافي"
 
 msgid "Additional 2"
-msgstr ""
+msgstr "إضافي 2"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -151,7 +152,7 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 msgid "An account has been created for you."
-msgstr ""
+msgstr "تم إنشاء حسابك الجديد بنجاح "
 
 msgid "Article"
 msgstr ""
@@ -174,10 +175,10 @@ msgid "Attributes"
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "الرجوع"
 
 msgid "Basket"
-msgstr ""
+msgstr "السلة"
 
 msgid "Billing address"
 msgstr "عنوان الدفع"
@@ -194,22 +195,22 @@ msgid "Birthday"
 msgstr "تاريخ الميلاد"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "الطلب بالجملة"
 
 msgid "Bundled products"
 msgstr ""
 
 msgid "Buy now"
-msgstr ""
+msgstr "اشتر الأن"
 
 msgid "Categories"
 msgstr "التصنيفات"
 
 msgid "Change"
-msgstr ""
+msgstr "تعديل"
 
 msgid "Change payment"
-msgstr ""
+msgstr "تغيير طريقة الدفع"
 
 msgid "Characteristics"
 msgstr "المميزات"
@@ -258,7 +259,7 @@ msgid "Company"
 msgstr "الشركة"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "تأكيد"
 
 msgid "Country"
 msgstr "الدولة"
@@ -270,7 +271,7 @@ msgid "Coupons"
 msgstr ""
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "انشئ حساب زبون حاص بي"
 
 msgid "Customer account"
 msgstr ""
@@ -327,7 +328,7 @@ msgid "Description"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "التفاصيل"
 
 msgid "Downloads"
 msgstr ""
@@ -337,13 +338,13 @@ msgstr "البريد الإلكتروني"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
-msgstr ""
+msgstr "تنبيهات البريد الإلكتروني"
 
 msgid "End date"
-msgstr ""
+msgstr "تاريخ الإنتهاء"
 
 msgid "Favorite products"
-msgstr ""
+msgstr "المنتجات المفضلة"
 
 msgid "Fax"
 msgstr "الفاكس"
@@ -365,7 +366,7 @@ msgid "GB999999973"
 msgstr ""
 
 msgid "Go"
-msgstr ""
+msgstr "اذهب"
 
 #, php-format
 msgid ""
@@ -386,10 +387,10 @@ msgid ""
 msgstr ""
 
 msgid "If back in stock"
-msgstr ""
+msgstr "اذا اصبحت بالمخزون"
 
 msgid "If price decreases"
-msgstr ""
+msgstr "اذا انخفض السعر"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr ""
@@ -441,7 +442,7 @@ msgid "Last name"
 msgstr "اللقب"
 
 msgid "Last seen"
-msgstr ""
+msgstr "اخر زيارة"
 
 msgid "Latest"
 msgstr ""
@@ -450,19 +451,19 @@ msgid "Like entered by you"
 msgstr ""
 
 msgid "Login"
-msgstr ""
+msgstr "تسجيل الدخول"
 
 msgid "Name"
 msgstr "الإسم"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "عنوان التوصيل الجديد"
 
 msgid "Next"
-msgstr ""
+msgstr "التالي"
 
 msgid "Next order"
-msgstr ""
+msgstr "الطلبية القادمة"
 
 #, php-format
 msgid ""
@@ -501,7 +502,7 @@ msgid "One or more products you are watching have been updated."
 msgstr ""
 
 msgid "One week"
-msgstr ""
+msgstr "اسبوع واحد"
 
 msgid "Options"
 msgstr ""
@@ -539,16 +540,16 @@ msgid "Password"
 msgstr "كلمة المرور"
 
 msgid "Pay now"
-msgstr ""
+msgstr "إدفع الأن"
 
 msgid "Payment"
 msgstr "الدفع"
 
 msgid "Payment costs"
-msgstr ""
+msgstr "تكاليف الدفع"
 
 msgid "Payment status"
-msgstr ""
+msgstr "حالة الدفع"
 
 msgid "Pinned products"
 msgstr ""
@@ -580,25 +581,25 @@ msgid "Please recheck your payment choice"
 msgstr ""
 
 msgid "Please select"
-msgstr ""
+msgstr "الرجاء الإحتيار"
 
 msgid "Postal code"
-msgstr ""
+msgstr "الرمز البريدي"
 
 msgid "Previous"
-msgstr ""
+msgstr "السابق"
 
 msgid "Price"
 msgstr "السعر"
 
 msgid "Proceed"
-msgstr ""
+msgstr "المتابعة"
 
 msgid "Processing the payment failed"
 msgstr ""
 
 msgid "Product"
-msgstr ""
+msgstr "المنتج"
 
 msgid "Products you might be also interested in"
 msgstr ""
@@ -607,7 +608,7 @@ msgid "Properties"
 msgstr ""
 
 msgid "Qty"
-msgstr ""
+msgstr "الكمية"
 
 msgid "Quantity"
 msgstr ""
@@ -627,7 +628,7 @@ msgid "Salutation"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "الحفظ"
 
 msgid "Search"
 msgstr "البحث"
@@ -663,13 +664,13 @@ msgid "Service fees"
 msgstr ""
 
 msgid "Services"
-msgstr ""
+msgstr "الخدمات"
 
 msgid "Share"
 msgstr ""
 
 msgid "Shipping"
-msgstr ""
+msgstr "الشحن"
 
 msgid "Show"
 msgstr ""
@@ -678,16 +679,16 @@ msgid "Show all quotes"
 msgstr ""
 
 msgid "Sort by:"
-msgstr ""
+msgstr "الترتيب على حسب:"
 
 msgid "State"
-msgstr ""
+msgstr "الولاية"
 
 msgid "Status"
-msgstr ""
+msgstr "الحالة"
 
 msgid "Stock"
-msgstr ""
+msgstr "المخزون"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -712,29 +713,29 @@ msgid "Sub-total"
 msgstr ""
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "رقم تعرفة الإشتراك"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "تفاصيل الإشتراك"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "مدة الإشتراك"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "المنتج المسجل للإشتراك"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "الإشتراكات"
 
 msgid "Suggested products"
-msgstr ""
+msgstr "المنتجات المقترحة"
 
 msgid "Sum"
-msgstr ""
+msgstr "المجموع"
 
 msgid "Supplier information"
 msgstr ""
@@ -849,7 +850,7 @@ msgid "The value of your voucher is %1$s"
 msgstr ""
 
 msgid "Three month"
-msgstr ""
+msgstr "ثلاثة أشهر"
 
 msgid "Time frame"
 msgstr ""
@@ -858,19 +859,19 @@ msgid "Toggle fullscreen"
 msgstr ""
 
 msgid "Top seller"
-msgstr ""
+msgstr "الأكثر بيعاً"
 
 msgid "Total"
 msgstr "المجموع"
 
 msgid "Total quantity"
-msgstr ""
+msgstr "إجمالي الكمية"
 
 msgid "Try again"
-msgstr ""
+msgstr "حاول مرة أخرى"
 
 msgid "Two weeks"
-msgstr ""
+msgstr "أسبوعان"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
@@ -901,13 +902,13 @@ msgid "Update"
 msgstr "تحديث"
 
 msgid "Variant"
-msgstr ""
+msgstr "متغير"
 
 msgid "Vat ID"
-msgstr ""
+msgstr "رقم تعرفة ضريبة القيمة المضافة"
 
 msgid "Watch"
-msgstr ""
+msgstr "المتابعة"
 
 msgid "Watched products"
 msgstr ""
@@ -925,7 +926,7 @@ msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr ""
 
 msgid "Web site"
-msgstr ""
+msgstr "الموقع الإلكتروني"
 
 msgid "X"
 msgstr ""
@@ -936,7 +937,7 @@ msgid "Y-m-d"
 msgstr ""
 
 msgid "You are here:"
-msgstr ""
+msgstr "أنت هنا"
 
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
@@ -945,20 +946,20 @@ msgid "You will now be forwarded to the next step"
 msgstr ""
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "تم إلغاء الإشتراك الخاص بك"
 
 msgid "Your account"
 msgstr "حسابك"
 
 msgid "Your choice"
-msgstr ""
+msgstr "إختيارك"
 
 msgid "Your comment"
 msgstr "تعليقك"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
-msgstr ""
+msgstr "حسابك الجديد"
 
 #. / Payment e-mail subject with order ID
 #, php-format
@@ -1006,11 +1007,11 @@ msgid "address"
 msgstr "العنوان"
 
 msgid "clear all"
-msgstr ""
+msgstr "إخلاء الكل"
 
 #, php-format
 msgid "delivery"
-msgstr ""
+msgstr "التوصيل"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
@@ -1028,11 +1029,11 @@ msgstr ""
 
 #, php-format
 msgid "order"
-msgstr ""
+msgstr "طلبية"
 
 #, php-format
 msgid "payment"
-msgstr ""
+msgstr "الدفع"
 
 msgid "price:default"
 msgstr ""
