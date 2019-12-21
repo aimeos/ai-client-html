@@ -228,11 +228,11 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
 	 * @param string $site Site code
-	 * @param string $currencyId Three letter ISO currency code
-	 * @param string $langId ISO language code, maybe country specific
+	 * @param string|null $currencyId Three letter ISO currency code
+	 * @param string|null $langId ISO language code, maybe country specific
 	 * @return \Aimeos\MW\View\Iface Initialized view object
 	 */
-	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, string $site, string $currencyId, string $langId ) : \Aimeos\MW\View\Iface
+	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, string $site, string $currencyId = null, string $langId = null ) : \Aimeos\MW\View\Iface
 	{
 		$view = $context->getView();
 		$params = ['locale' => $langId, 'site' => $site, 'currency' => $currencyId];

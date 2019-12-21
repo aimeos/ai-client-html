@@ -190,10 +190,10 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
-	 * @param string $langId ISO language code, maybe country specific
+	 * @param string|null $langId ISO language code, maybe country specific
 	 * @return \Aimeos\MW\View\Iface Initialized view object
 	 */
-	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, string $langId ) : \Aimeos\MW\View\Iface
+	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, string $langId = null ) : \Aimeos\MW\View\Iface
 	{
 		$view = $context->getView();
 
