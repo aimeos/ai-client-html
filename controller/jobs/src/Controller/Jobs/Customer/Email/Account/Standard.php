@@ -29,7 +29,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Customer account e-mails' );
 	}
@@ -40,7 +40,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Sends e-mails for new customer accounts' );
 	}
@@ -92,7 +92,7 @@ class Standard
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @return \Aimeos\Client\Html\Iface Product notification e-mail client
 	 */
-	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
+	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context ) : \Aimeos\Client\Html\Iface
 	{
 		if( !isset( $this->client ) ) {
 			$this->client = \Aimeos\Client\Html\Email\Account\Factory::create( $context );
@@ -107,9 +107,9 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param \Aimeos\MShop\Customer\Item\Iface $item Customer item object
-	 * @param string $password Customer clear text password
+	 * @param string|null $password Customer clear text password
 	 */
-	protected function sendEmail( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Customer\Item\Iface $item, $password )
+	protected function sendEmail( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Customer\Item\Iface $item, string $password = null )
 	{
 		$address = $item->getPaymentAddress();
 

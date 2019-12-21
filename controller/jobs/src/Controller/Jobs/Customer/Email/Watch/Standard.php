@@ -31,7 +31,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Product notification e-mails' );
 	}
@@ -42,7 +42,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Sends e-mails for watched products' );
 	}
@@ -171,7 +171,7 @@ class Standard
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @return \Aimeos\Client\Html\Iface Product notification e-mail client
 	 */
-	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
+	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context ) : \Aimeos\Client\Html\Iface
 	{
 		if( !isset( $this->client ) ) {
 			$this->client = \Aimeos\Client\Html\Email\Watch\Factory::create( $context );
@@ -188,7 +188,7 @@ class Standard
 	 * @param array $custIds List of customer IDs
 	 * @return array List of customer list items implementing \Aimeos\MShop\Common\Item\Lists\Iface
 	 */
-	protected function getListItems( \Aimeos\MShop\Context\Item\Iface $context, array $custIds )
+	protected function getListItems( \Aimeos\MShop\Context\Item\Iface $context, array $custIds ) : array
 	{
 		$listManager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
@@ -212,7 +212,7 @@ class Standard
 	 * @param \Aimeos\MShop\Common\Item\Lists\Iface[] $listItems List of customer list items
 	 * @return array Multi-dimensional associative list of list IDs as key and product / price item maps as values
 	 */
-	protected function getProductList( array $products, array $listItems )
+	protected function getProductList( array $products, array $listItems ) : array
 	{
 		$result = [];
 		$priceManager = \Aimeos\MShop::create( $this->getContext(), 'price' );
@@ -255,7 +255,7 @@ class Standard
 	 * @param array $prodIds List of product IDs
 	 * @param string $stockType Stock type code
 	 */
-	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, $stockType )
+	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, string $stockType )
 	{
 		$productCodes = $stockMap = [];
 		$productItems = $this->getProductItems( $context, $prodIds );
@@ -285,7 +285,7 @@ class Standard
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $prodIds List of product IDs
 	 */
-	protected function getProductItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds )
+	protected function getProductItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds ) : array
 	{
 		$productManager = \Aimeos\MShop::create( $context, 'product' );
 
@@ -307,8 +307,9 @@ class Standard
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $prodCodes List of product codes
 	 * @param string $stockType Stock type code
+	 * @return array Associative list of stock IDs as keys and stock items as values
 	 */
-	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodCodes, $stockType )
+	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodCodes, string $stockType ) : array
 	{
 		$stockManager = \Aimeos\MShop::create( $context, 'stock' );
 

@@ -27,7 +27,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Order payment related e-mails' );
 	}
@@ -38,7 +38,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Sends order confirmation or payment status update e-mails' );
 	}
@@ -141,9 +141,9 @@ class Standard
 	 * Adds the status of the delivered e-mail for the given order ID
 	 *
 	 * @param string $orderId Unique order ID
-	 * @param integer $value Status value
+	 * @param int $value Status value
 	 */
-	protected function addOrderStatus( $orderId, $value )
+	protected function addOrderStatus( string $orderId, int $value )
 	{
 		$orderStatusManager = \Aimeos\MShop::create( $this->getContext(), 'order/status' );
 
@@ -163,7 +163,7 @@ class Standard
 	 * @return \Aimeos\MShop\Order\Item\Base\Address\Iface Delivery or payment address item
 	 * @throws \Aimeos\MShop\Order\Exception If no address item is available
 	 */
-	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
+	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\MShop\Order\Item\Base\Address\Iface
 	{
 		return $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 	}
@@ -177,7 +177,7 @@ class Standard
 	 * @param string $langId ISO language code, maybe country specific
 	 * @return \Aimeos\MW\View\Iface Initialized view object
 	 */
-	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, $langId )
+	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, string $langId ) : \Aimeos\MW\View\Iface
 	{
 		$view = $context->getView();
 
@@ -208,9 +208,9 @@ class Standard
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the payment e-mails
 	 * @param \Aimeos\MShop\Order\Item\Iface[] $items Associative list of order items with their IDs as keys
-	 * @param integer $status Delivery status value
+	 * @param int $status Delivery status value
 	 */
-	protected function process( \Aimeos\Client\Html\Iface $client, array $items, $status )
+	protected function process( \Aimeos\Client\Html\Iface $client, array $items, int $status )
 	{
 		$context = $this->getContext();
 		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );

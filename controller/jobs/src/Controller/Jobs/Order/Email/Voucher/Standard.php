@@ -29,7 +29,7 @@ class Standard
 	 *
 	 * @return string Name of the job
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Voucher related e-mails' );
 	}
@@ -40,7 +40,7 @@ class Standard
 	 *
 	 * @return string Description of the job
 	 */
-	public function getDescription()
+	public function getDescription() : string
 	{
 		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Sends the e-mail with the voucher to the customer' );
 	}
@@ -155,9 +155,9 @@ class Standard
 	 * Adds the status of the delivered e-mail for the given order ID
 	 *
 	 * @param string $orderId Unique order ID
-	 * @param integer $value Status value
+	 * @param int $value Status value
 	 */
-	protected function addOrderStatus( $orderId, $value )
+	protected function addOrderStatus( string $orderId, int $value )
 	{
 		$orderStatusManager = \Aimeos\MShop::create( $this->getContext(), 'order/status' );
 
@@ -201,7 +201,7 @@ class Standard
 	 *
 	 * @return string Unique ID of the coupon item
 	 */
-	protected function getCouponId()
+	protected function getCouponId() : string
 	{
 		if( !isset( $this->couponId ) )
 		{
@@ -232,7 +232,7 @@ class Standard
 	 * @param string $langId ISO language code, maybe country specific
 	 * @return \Aimeos\MW\View\Iface Initialized view object
 	 */
-	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, $site, $currencyId, $langId )
+	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, string $site, string $currencyId, string $langId ) : \Aimeos\MW\View\Iface
 	{
 		$view = $context->getView();
 		$params = ['locale' => $langId, 'site' => $site, 'currency' => $currencyId];
@@ -255,9 +255,9 @@ class Standard
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the voucher e-mails
 	 * @param \Aimeos\MShop\Order\Item\Iface[] $items Associative list of order items with their IDs as keys
-	 * @param integer $status Delivery status value
+	 * @param int $status Delivery status value
 	 */
-	protected function process( \Aimeos\Client\Html\Iface $client, array $items, $status )
+	protected function process( \Aimeos\Client\Html\Iface $client, array $items, int $status )
 	{
 		$context = $this->getContext();
 		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );
