@@ -90,7 +90,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		$view = $this->getView();
 
@@ -137,7 +137,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '' )
+	public function getHeader( string $uid = '' ) : ?string
 	{
 		$view = $this->getView();
 
@@ -156,7 +156,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/checkout/standard/process/decorators/excludes
 		 * Excludes decorators added by the "common" option from the checkout standard process html client
@@ -238,6 +238,7 @@ class Standard
 
 	/**
 	 * Processes the input, e.g. store given order.
+	 *
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
@@ -250,7 +251,7 @@ class Standard
 			|| $view->get( 'standardErrorList', [] ) !== []
 			|| $view->get( 'standardStepActive' ) !== null
 		) {
-			return;
+			return true;
 		}
 
 		try
@@ -326,12 +327,12 @@ class Standard
 	 * @return \Aimeos\MShop\Common\Helper\Form\Iface|null Form object with URL, parameters, etc.
 	 * 	or null if no form data is required
 	 */
-	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem )
+	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem ) : ?\Aimeos\MShop\Common\Helper\Form\Iface
 	{
 		if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= 0
 			&& $this->isSubscription( $basket->getProducts() ) === false
 		) {
-			return;
+			return null;
 		}
 
 		$view = $this->getView();
@@ -363,7 +364,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
@@ -377,7 +378,7 @@ class Standard
 	 * @param array $config Default URL configuration
 	 * @return string URL string
 	 */
-	protected function getUrlConfirm( \Aimeos\MW\View\Iface $view, array $params, array $config )
+	protected function getUrlConfirm( \Aimeos\MW\View\Iface $view, array $params, array $config ) : string
 	{
 		/** client/html/checkout/confirm/url/target
 		 * Destination of the URL where the controller specified in the URL is known
@@ -462,7 +463,7 @@ class Standard
 	 * @param array $config Default URL configuration
 	 * @return string URL string
 	 */
-	protected function getUrlSelf( \Aimeos\MW\View\Iface $view, array $params, array $config )
+	protected function getUrlSelf( \Aimeos\MW\View\Iface $view, array $params, array $config ) : string
 	{
 		/** client/html/checkout/standard/url/target
 		 * Destination of the URL where the controller specified in the URL is known
@@ -547,7 +548,7 @@ class Standard
 	 * @param array $config Default URL configuration
 	 * @return string URL string
 	 */
-	protected function getUrlUpdate( \Aimeos\MW\View\Iface $view, array $params, array $config )
+	protected function getUrlUpdate( \Aimeos\MW\View\Iface $view, array $params, array $config ) : string
 	{
 		/** client/html/checkout/update/url/target
 		 * Destination of the URL where the controller specified in the URL is known
@@ -628,9 +629,9 @@ class Standard
 	 * Tests if one of the products is a subscription
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Product\Iface[] $products Ordered products
-	 * @return boolean True if at least one product is a subscription, false if not
+	 * @return bool True if at least one product is a subscription, false if not
 	 */
-	protected function isSubscription( array $products )
+	protected function isSubscription( array $products ) : bool
 	{
 		foreach( $products as $orderProduct )
 		{
@@ -651,7 +652,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$view->standardUrlPayment = $this->getUrlSelf( $view, array( 'c_step' => 'payment' ), [] );
 

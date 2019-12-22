@@ -46,7 +46,7 @@ abstract class Base
 	 * @param array $param List of method parameter
 	 * @throws \Aimeos\Client\Html\Exception If method call failed
 	 */
-	public function __call( $name, array $param )
+	public function __call( string $name, array $param )
 	{
 		throw new \Aimeos\Client\Html\Exception( sprintf( 'Unable to call method "%1$s"', $name ) );
 	}
@@ -61,7 +61,7 @@ abstract class Base
 	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
 	 * @since 2018.01
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		foreach( $this->getSubClients() as $name => $subclient ) {
 			$view = $subclient->addData( $view, $tags, $expire );
@@ -77,7 +77,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '' )
+	public function getHeader( string $uid = '' ) : ?string
 	{
 		$html = '';
 
@@ -94,7 +94,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\Client\Html\Iface Outmost decorator object
 	 */
-	protected function getObject()
+	protected function getObject() : \Aimeos\Client\Html\Iface
 	{
 		if( $this->object !== null ) {
 			return $this->object;
@@ -109,7 +109,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output
 	 */
-	public function getView()
+	public function getView() : \Aimeos\MW\View\Iface
 	{
 		if( !isset( $this->view ) ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'No view available' ) );
@@ -126,7 +126,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string Modified body content
 	 */
-	public function modifyBody( $content, $uid )
+	public function modifyBody( string $content, string $uid ) : string
 	{
 		$view = $this->getView();
 
@@ -147,7 +147,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string Modified header content
 	 */
-	public function modifyHeader( $content, $uid )
+	public function modifyHeader( string $content, string $uid ) : string
 	{
 		$view = $this->getView();
 
@@ -163,25 +163,17 @@ abstract class Base
 
 	/**
 	 * Processes the input, e.g. store given values.
+	 *
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
-	 *
-	 * @return boolean False if processing is stopped, otherwise all processing was completed successfully
 	 */
 	public function process()
 	{
 		$view = $this->getView();
 
-		foreach( $this->getSubClients() as $subclient )
-		{
-			$subclient->setView( $view );
-
-			if( $subclient->process() === false ) {
-				return false;
-			}
+		foreach( $this->getSubClients() as $subclient ) {
+			$subclient->setView( $view )->process();
 		}
-
-		return true;
 	}
 
 
@@ -191,7 +183,7 @@ abstract class Base
 	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
 	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
 	 */
-	public function setObject( \Aimeos\Client\Html\Iface $object )
+	public function setObject( \Aimeos\Client\Html\Iface $object ) : \Aimeos\Client\Html\Iface
 	{
 		$this->object = $object;
 		return $this;
@@ -204,7 +196,7 @@ abstract class Base
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
 	 * @return \Aimeos\Client\Html\Iface Reference to this object for fluent calls
 	 */
-	public function setView( \Aimeos\MW\View\Iface $view )
+	public function setView( \Aimeos\MW\View\Iface $view ) : \Aimeos\Client\Html\Iface
 	{
 		$this->view = $view;
 		return $this;
@@ -219,7 +211,7 @@ abstract class Base
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected function addDecorators( \Aimeos\Client\Html\Iface $client, array $decorators, $classprefix )
+	protected function addDecorators( \Aimeos\Client\Html\Iface $client, array $decorators, string $classprefix ) : \Aimeos\Client\Html\Iface
 	{
 		foreach( $decorators as $name )
 		{
@@ -251,7 +243,7 @@ abstract class Base
 	 * @param string $path Client string in lower case, e.g. "catalog/detail/basic"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected function addClientDecorators( \Aimeos\Client\Html\Iface $client, $path )
+	protected function addClientDecorators( \Aimeos\Client\Html\Iface $client, string $path ) : \Aimeos\Client\Html\Iface
 	{
 		if( !is_string( $path ) || $path === '' ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
@@ -293,7 +285,7 @@ abstract class Base
 	 * @param array &$tags List of tags the new tags will be added to
 	 * @param array $custom List of custom tags which are added too
 	 */
-	protected function addMetaItems( $items, &$expire, array &$tags, array $custom = [] )
+	protected function addMetaItems( $items, string &$expire = null, array &$tags, array $custom = [] )
 	{
 		/** client/html/common/cache/tag-all
 		 * Adds tags for all items used in a cache entry
@@ -364,9 +356,9 @@ abstract class Base
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item, maybe with associated list items
 	 * @param array &$expires Will contain the list of expiration dates
 	 * @param array &$tags List of tags the new tags will be added to
-	 * @param boolean $tagAll True of tags for all items should be added, false if only for the main item
+	 * @param bool $tagAll True of tags for all items should be added, false if only for the main item
 	 */
-	private function addMetaItemSingle( \Aimeos\MShop\Common\Item\Iface $item, array &$expires, array &$tags, $tagAll )
+	private function addMetaItemSingle( \Aimeos\MShop\Common\Item\Iface $item, array &$expires, array &$tags, bool $tagAll )
 	{
 		$domain = str_replace( '/', '_', $item->getResourceType() ); // maximum compatiblity
 
@@ -388,9 +380,9 @@ abstract class Base
 	 * @param \Aimeos\MShop\Common\Item\ListRef\Iface $item Item with associated list items
 	 * @param array &$expires Will contain the list of expiration dates
 	 * @param array &$tags List of tags the new tags will be added to
-	 * @param boolean $tagAll True of tags for all items should be added, false if only for the main item
+	 * @param bool $tagAll True of tags for all items should be added, false if only for the main item
 	 */
-	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListRef\Iface $item, array &$expires, array &$tags, $tagAll )
+	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListRef\Iface $item, array &$expires, array &$tags, bool $tagAll )
 	{
 		foreach( $item->getListItems() as $listitem )
 		{
@@ -418,7 +410,7 @@ abstract class Base
 	 * @param string|null $name Name of the implementation, will be from configuration (or Default) if null
 	 * @return \Aimeos\Client\Html\Iface Sub-part object
 	 */
-	protected function createSubClient( $path, $name )
+	protected function createSubClient( string $path, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		$path = strtolower( $path );
 
@@ -452,7 +444,7 @@ abstract class Base
 	 * @param string|null $second Second expiration date or null
 	 * @return string|null Expiration date
 	 */
-	protected function expires( $first, $second )
+	protected function expires( string $first = null, string $second = null ) : ?string
 	{
 		return ( $first !== null ? ( $second !== null ? min( $first, $second ) : $first ) : $second );
 	}
@@ -464,7 +456,7 @@ abstract class Base
 	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) )
+	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) ) : array
 	{
 		$list = [];
 
@@ -484,7 +476,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\MShop\Context\Item\Iface Context object
 	 */
-	protected function getContext()
+	protected function getContext() : \Aimeos\MShop\Context\Item\Iface
 	{
 		return $this->context;
 	}
@@ -498,7 +490,7 @@ abstract class Base
 	 * @param array $config Multi-dimensional array of configuration options used by the client and sub-clients
 	 * @return string Unique hash
 	 */
-	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), $key = '', array $config = [] )
+	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), string $key = '', array $config = [] ) : string
 	{
 		$locale = $this->getContext()->getLocale();
 		$params = $this->getClientParams( $this->getView()->param(), $prefixes );
@@ -517,7 +509,7 @@ abstract class Base
 	 *
 	 * @return array List of HTML client names
 	 */
-	abstract protected function getSubClientNames();
+	abstract protected function getSubClientNames() : array;
 
 
 	/**
@@ -525,7 +517,7 @@ abstract class Base
 	 *
 	 * @return array List of sub-clients implementing \Aimeos\Client\Html\Iface	ordered in the same way as the names
 	 */
-	protected function getSubClients()
+	protected function getSubClients() : array
 	{
 		if( !isset( $this->subclients ) )
 		{
@@ -550,7 +542,7 @@ abstract class Base
 	 * @param string $default Default template if none is configured or not found
 	 * @return string Relative template path
 	 */
-	protected function getTemplatePath( $confkey, $default )
+	protected function getTemplatePath( string $confkey, string $default ) : string
 	{
 		if( ( $type = $this->view->param( 'l_type' ) ) !== null && ctype_alnum( $type ) !== false ) {
 			return $this->view->config( $confkey . '-' . $type, $this->view->config( $confkey, $default ) );
@@ -569,7 +561,7 @@ abstract class Base
 	 * @param string $confkey Configuration key prefix that matches all relevant settings for the component
 	 * @return string|null Cached entry or null if not available
 	 */
-	protected function getCached( $type, $uid, array $prefixes, $confkey )
+	protected function getCached( string $type, string $uid, array $prefixes, string $confkey ) : ?string
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -625,7 +617,7 @@ abstract class Base
 	 * @param array $tags List of tag strings that should be assoicated to the given value in the cache
 	 * @param string|null $expire Date/time string in "YYYY-MM-DD HH:mm:ss"	format when the cache entry expires
 	 */
-	protected function setCached( $type, $uid, array $prefixes, $confkey, $value, array $tags, $expire )
+	protected function setCached( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, string $expire = null )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -673,7 +665,7 @@ abstract class Base
 	 * @param string $section New section content
 	 * @param string $marker Name of the section marker without "<!-- " and " -->" parts
 	 */
-	protected function replaceSection( $content, $section, $marker )
+	protected function replaceSection( string $content, string $section, string $marker ) : string
 	{
 		$start = 0;
 		$len = strlen( $section );
@@ -698,7 +690,7 @@ abstract class Base
 	 * @param array $codes Associative list of scope and object as key and error code as value
 	 * @return array List of translated error messages
 	 */
-	protected function translatePluginErrorCodes( array $codes )
+	protected function translatePluginErrorCodes( array $codes ) : array
 	{
 		$errors = [];
 		$i18n = $this->getContext()->getI18n();

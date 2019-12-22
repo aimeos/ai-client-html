@@ -31,7 +31,7 @@ class Base
 	 * @param string $classname Full name of the class for which the object should be returned
 	 * @param \Aimeos\Client\Html\Iface|null $client ExtJS client object
 	 */
-	public static function injectClient( $classname, \Aimeos\Client\Html\Iface $client = null )
+	public static function injectClient( string $classname, \Aimeos\Client\Html\Iface $client = null )
 	{
 		self::$objects[$classname] = $client;
 	}
@@ -47,7 +47,7 @@ class Base
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
 	protected static function addDecorators( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\Client\Html\Iface $client, array $decorators, $classprefix )
+		\Aimeos\Client\Html\Iface $client, array $decorators, string $classprefix ) : \Aimeos\Client\Html\Iface
 	{
 		foreach( $decorators as $name )
 		{
@@ -81,7 +81,7 @@ class Base
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
 	protected static function addClientDecorators( \Aimeos\MShop\Context\Item\Iface $context,
-		\Aimeos\Client\Html\Iface $client, $path )
+		\Aimeos\Client\Html\Iface $client, string $path ) : \Aimeos\Client\Html\Iface
 	{
 		if( !is_string( $path ) || $path === '' ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
@@ -143,10 +143,10 @@ class Base
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context instance with necessary objects
 	 * @param string $classname Name of the client class
 	 * @param string $interface Name of the client interface
-	 * @return \Aimeos\Client\Html\\Iface Client object
+	 * @return \Aimeos\Client\Html\Iface Client object
 	 * @throws \Aimeos\Client\Html\Exception If client couldn't be found or doesn't implement the interface
 	 */
-	protected static function createClient( \Aimeos\MShop\Context\Item\Iface $context, $classname, $interface )
+	protected static function createClient( \Aimeos\MShop\Context\Item\Iface $context, string $classname, string $interface ) : \Aimeos\Client\Html\Iface
 	{
 		if( isset( self::$objects[$classname] ) ) {
 			return self::$objects[$classname];

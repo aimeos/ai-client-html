@@ -83,7 +83,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		$view = $this->getView();
 
@@ -127,7 +127,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/checkout/standard/address/delivery/decorators/excludes
 		 * Excludes decorators added by the "common" option from the checkout standard address delivery html client
@@ -209,6 +209,9 @@ class Standard
 
 	/**
 	 * Stores the given or fetched billing address in the basket.
+	 *
+	 * A view must be available and this method doesn't generate any output
+	 * besides setting view variables if necessary.
 	 */
 	public function process()
 	{
@@ -251,7 +254,7 @@ class Standard
 	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
 	 * @return array List of missing field names
 	 */
-	protected function checkFields( array &$params )
+	protected function checkFields( array &$params ) : array
 	{
 		$view = $this->getView();
 
@@ -411,7 +414,6 @@ class Standard
 	 *
 	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
 	 * @param array &$mandatory List of mandatory field names
-	 * @return array Additional mandatory address keys
 	 * @since 2016.05
 	 */
 	protected function checkSalutation( array &$params, array &$mandatory )
@@ -430,7 +432,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
@@ -517,7 +519,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->getContext();
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
@@ -584,7 +586,7 @@ class Standard
 	 * @return array List of invalid address keys
 	 * @since 2016.05
 	 */
-	protected function validateFields( array &$params, array $fields )
+	protected function validateFields( array &$params, array $fields ) : array
 	{
 		$config = $this->getContext()->getConfig();
 

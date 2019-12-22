@@ -65,7 +65,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/catalog/supplier/decorators/excludes
 		 * Excludes decorators added by the "common" option from the catalog filter supplier html client
@@ -150,7 +150,7 @@ class Standard
 	 *
 	 * @return array List of client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}

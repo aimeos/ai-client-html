@@ -64,7 +64,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		$view = $this->getView();
 
@@ -105,6 +105,7 @@ class Standard
 
 		$text = $view->render( $view->config( $tplconf, 'email/subscription/text-body-standard' ) );
 		$view->mail()->setBody( $text );
+
 		return $text;
 	}
 
@@ -116,7 +117,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/email/subscription/text/decorators/excludes
 		 * Excludes decorators added by the "common" option from the "email subscription text" html client
@@ -201,7 +202,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}

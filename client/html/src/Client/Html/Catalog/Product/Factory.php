@@ -29,7 +29,7 @@ class Factory
 	 * @return \Aimeos\Client\Html\Iface Filter part implementing \Aimeos\Client\Html\Iface
 	 * @throws \Aimeos\Client\Html\Exception If requested client implementation couldn't be found or initialisation fails
 	 */
-	public static function create( \Aimeos\MShop\Context\Item\Iface $context, $name = null )
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/catalog/product/name
 		 * Class name of the used catalog product client implementation
@@ -68,13 +68,12 @@ class Factory
 			$name = $context->getConfig()->get( 'client/html/catalog/product/name', 'Standard' );
 		}
 
-		if( ctype_alnum( $name ) === false ) {
-			$classname = is_string( $name ) ? '\\Aimeos\\Client\\Html\\Catalog\\Product\\' . $name : '<not a string>';
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
-		}
-
 		$iface = '\\Aimeos\\Client\\Html\\Iface';
 		$classname = '\\Aimeos\\Client\\Html\\Catalog\\Product\\' . $name;
+
+		if( ctype_alnum( $name ) === false ) {
+			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+		}
 
 		$client = self::createClient( $context, $classname, $iface );
 		$client = self::addClientDecorators( $context, $client, 'catalog/product' );

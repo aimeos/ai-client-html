@@ -27,5 +27,5 @@ interface Iface
 	 * @param string $name Client name (from configuration or "Standard" if null)
 	 * @return \Aimeos\Client\Html\Iface New client object
 	 */
-	public static function create( \Aimeos\MShop\Context\Item\Iface $context, $name = null );
+	public static function create( \Aimeos\MShop\Context\Item\Iface $context, string $name = null ) : \Aimeos\Client\Html\Iface;
 }

@@ -218,7 +218,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessNoStep()
 	{
-		$this->assertNull( $this->object->process() );
+		$this->assertTrue( $this->object->process() );
 	}
 
 

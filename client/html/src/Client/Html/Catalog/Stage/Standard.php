@@ -80,7 +80,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		$prefixes = array( 'f' );
 		$context = $this->getContext();
@@ -193,9 +193,9 @@ class Standard
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string String including HTML tags for the header on error
+	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '' )
+	public function getHeader( string $uid = '' ) : ?string
 	{
 		$prefixes = array( 'f' );
 		$confkey = 'client/html/catalog/stage';
@@ -266,7 +266,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/catalog/stage/decorators/excludes
 		 * Excludes decorators added by the "common" option from the catalog stage html client
@@ -347,8 +347,9 @@ class Standard
 
 	/**
 	 * Processes the input, e.g. store given values.
+	 *
 	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables.
+	 * besides setting view variables if necessary.
 	 */
 	public function process()
 	{
@@ -390,7 +391,7 @@ class Standard
 	 * @param string[] $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) )
+	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) ) : array
 	{
 		if( isset( $params['d_prodid'] ) || isset( $params['d_name'] ) )
 		{
@@ -408,7 +409,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
@@ -422,7 +423,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();

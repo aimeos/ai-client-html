@@ -65,7 +65,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		$view = $this->getView();
 
@@ -109,7 +109,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/catalog/count/tree/decorators/excludes
 		 * Excludes decorators added by the "common" option from the catalog count tree html client
@@ -194,7 +194,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
@@ -204,9 +204,11 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
@@ -266,7 +268,7 @@ class Standard
 	 * @param \Aimeos\MShop\Catalog\Item\Iface $node Tree node, maybe with children
 	 * @return array Associative list of catalog IDs as keys and product counts as values
 	 */
-	protected function counts( \Aimeos\MShop\Catalog\Item\Iface $node )
+	protected function counts( \Aimeos\MShop\Catalog\Item\Iface $node ) : array
 	{
 		$list = [$node->getId() => $node->count];
 
@@ -285,7 +287,7 @@ class Standard
 	 * @param array $counts Associative list of catalog IDs as keys and product counts as values
 	 * @return \Aimeos\MShop\Catalog\Item\Iface Updated tree node
 	 */
-	protected function traverse( \Aimeos\MShop\Catalog\Item\Iface $node, array $counts )
+	protected function traverse( \Aimeos\MShop\Catalog\Item\Iface $node, array $counts ) : \Aimeos\MShop\Catalog\Item\Iface
 	{
 		$count = ( isset( $counts[$node->getId()] ) ? $counts[$node->getId()] : 0 );
 

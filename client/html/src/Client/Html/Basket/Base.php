@@ -42,7 +42,7 @@ abstract class Base
 	 * @return mixed Value associated to the requested key. If no value for the
 	 *	key is found in the cache, the given default value is returned
 	 */
-	protected function getBasketCached( $key, $default = null )
+	protected function getBasketCached( string $key, $default = null )
 	{
 		return $this->getContext()->getSession()->get( $key, $default );
 	}
@@ -54,7 +54,7 @@ abstract class Base
 	 * @param string $key Path the cache entry should be stored in
 	 * @param mixed $value Value stored in the cache for the path
 	 */
-	protected function setBasketCached( $key, $value )
+	protected function setBasketCached( string $key, $value )
 	{
 		$context = $this->getContext();
 

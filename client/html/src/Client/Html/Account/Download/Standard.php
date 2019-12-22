@@ -64,7 +64,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		return '';
 	}
@@ -76,9 +76,9 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '' )
+	public function getHeader( string $uid = '' ) : ?string
 	{
-		return '';
+		return null;
 	}
 
 
@@ -89,7 +89,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/account/download/decorators/excludes
 		 * Excludes decorators added by the "common" option from the account download html client
@@ -170,8 +170,9 @@ class Standard
 
 	/**
 	 * Processes the input, e.g. store given values.
+	 *
 	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables.
+	 * besides setting view variables if necessary.
 	 */
 	public function process()
 	{
@@ -222,7 +223,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
@@ -274,10 +275,10 @@ class Standard
 	/**
 	 * Checks if the customer is allowed to download the file
 	 *
-	 * @param string $id Unique order base product attribute ID referencing the download file
-	 * @return boolean True if download is allowed, false if not
+	 * @param string|null $id Unique order base product attribute ID referencing the download file
+	 * @return bool True if download is allowed, false if not
 	 */
-	protected function checkAccess( $id )
+	protected function checkAccess( string $id = null ) : bool
 	{
 		$context = $this->getContext();
 
@@ -305,10 +306,10 @@ class Standard
 	/**
 	 * Updates the download counter for the downloaded file
 	 *
-	 * @param string $id Unique order base product attribute ID referencing the download file
-	 * @return boolean True if download is allowed, false if not
+	 * @param string|null $id Unique order base product attribute ID referencing the download file
+	 * @return bool True if download is allowed, false if not
 	 */
-	protected function checkDownload( $id )
+	protected function checkDownload( string $id = null ) : bool
 	{
 		$context = $this->getContext();
 

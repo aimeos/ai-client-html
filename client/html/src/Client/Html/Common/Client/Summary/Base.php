@@ -26,7 +26,7 @@ abstract class Base
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.
 	 * @return float Delivery costs value
 	 */
-	protected function getCostsDelivery( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	protected function getCostsDelivery( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : float
 	{
 		$costs = 0;
 
@@ -48,7 +48,7 @@ abstract class Base
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.
 	 * @return float Payment costs value
 	 */
-	protected function getCostsPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	protected function getCostsPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : float
 	{
 		$costs = 0;
 
@@ -66,7 +66,7 @@ abstract class Base
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.
 	 * @return array Associative list of tax names as key and price items as value
 	 */
-	protected function getNamedTaxes( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	protected function getNamedTaxes( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : array
 	{
 		$taxes = [];
 
@@ -131,7 +131,7 @@ abstract class Base
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket containing the products, services, etc.
 	 * @return array Associative list of tax rates as key and price items as value
 	 */
-	protected function getTaxRates( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	protected function getTaxRates( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : array
 	{
 		$taxrates = [];
 
@@ -193,9 +193,9 @@ abstract class Base
 	/**
 	 * Returns the payment status at which download files are shown
 	 *
-	 * @return integer Payment status from \Aimeos\MShop\Order\Item\Base
+	 * @return int Payment status from \Aimeos\MShop\Order\Item\Base
 	 */
-	protected function getDownloadPaymentStatus()
+	protected function getDownloadPaymentStatus() : int
 	{
 		$config = $this->getContext()->getConfig();
 		$default = \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED;

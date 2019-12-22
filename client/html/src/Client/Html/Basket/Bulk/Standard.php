@@ -65,7 +65,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		$context = $this->getContext();
 		$site = $context->getLocale()->getSiteId();
@@ -161,7 +161,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '' )
+	public function getHeader( string $uid = '' ) : ?string
 	{
 		$context = $this->getContext();
 		$site = $context->getLocale()->getSiteId();
@@ -232,7 +232,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/basket/bulk/decorators/excludes
 		 * Excludes decorators added by the "common" option from the bulk order html client
@@ -317,7 +317,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}

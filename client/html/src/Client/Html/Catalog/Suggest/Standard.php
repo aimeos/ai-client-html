@@ -69,7 +69,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		$view = $this->getView();
 
@@ -88,7 +88,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-			return;
+			return '';
 		}
 
 		/** client/html/catalog/suggest/standard/template-body
@@ -128,7 +128,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '' )
+	public function getHeader( string $uid = '' ) : ?string
 	{
 		$view = $this->getView();
 
@@ -147,7 +147,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-			return;
+			return null;
 		}
 
 		/** client/html/catalog/suggest/standard/template-header
@@ -189,7 +189,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/catalog/suggest/decorators/excludes
 		 * Excludes decorators added by the "common" option from the catalog suggest html client
@@ -271,8 +271,9 @@ class Standard
 
 	/**
 	 * Processes the input, e.g. store given values.
+	 *
 	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables.
+	 * besides setting view variables if necessary.
 	 */
 	public function process()
 	{
@@ -292,7 +293,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
@@ -306,7 +307,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();

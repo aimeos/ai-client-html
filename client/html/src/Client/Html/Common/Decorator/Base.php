@@ -47,7 +47,7 @@ abstract class Base
 	 * @return mixed Returns the value of the called method
 	 * @throws \Aimeos\Client\Html\Exception If method call failed
 	 */
-	public function __call( $name, array $param )
+	public function __call( string $name, array $param )
 	{
 		return @call_user_func_array( array( $this->client, $name ), $param );
 	}
@@ -62,7 +62,7 @@ abstract class Base
 	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
 	 * @since 2018.01
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		return $this->client->addData( $view, $tags, $expire );
 	}
@@ -75,7 +75,7 @@ abstract class Base
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		return $this->client->getSubClient( $type, $name );
 	}
@@ -87,7 +87,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( $uid = '' )
+	public function getHeader( string $uid = '' ) : ?string
 	{
 		return $this->client->getHeader( $uid );
 	}
@@ -99,7 +99,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		return $this->client->getBody( $uid );
 	}
@@ -110,7 +110,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output
 	 */
-	public function getView()
+	public function getView() : \Aimeos\MW\View\Iface
 	{
 		return $this->client->getView();
 	}
@@ -122,7 +122,7 @@ abstract class Base
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
 	 * @return \Aimeos\Client\Html\Iface Reference to this object for fluent calls
 	 */
-	public function setView( \Aimeos\MW\View\Iface $view )
+	public function setView( \Aimeos\MW\View\Iface $view ) : \Aimeos\Client\Html\Iface
 	{
 		$this->client->setView( $view );
 		return $this;
@@ -136,7 +136,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string Modified body content
 	 */
-	public function modifyBody( $content, $uid )
+	public function modifyBody( string $content, string $uid ) : string
 	{
 		return $this->client->modifyBody( $content, $uid );
 	}
@@ -149,7 +149,7 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string Modified header content
 	 */
-	public function modifyHeader( $content, $uid )
+	public function modifyHeader( string $content, string $uid ) : string
 	{
 		return $this->client->modifyHeader( $content, $uid );
 	}
@@ -157,12 +157,13 @@ abstract class Base
 
 	/**
 	 * Processes the input, e.g. store given values.
+	 *
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
 	public function process()
 	{
-		$this->client->process();
+		return $this->client->process();
 	}
 
 
@@ -172,7 +173,7 @@ abstract class Base
 	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
 	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
 	 */
-	public function setObject( \Aimeos\Client\Html\Iface $object )
+	public function setObject( \Aimeos\Client\Html\Iface $object ) : \Aimeos\Client\Html\Iface
 	{
 		parent::setObject( $object );
 
@@ -198,7 +199,7 @@ abstract class Base
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return [];
 	}

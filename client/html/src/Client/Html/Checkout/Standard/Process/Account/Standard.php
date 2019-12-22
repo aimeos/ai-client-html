@@ -64,7 +64,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( $uid = '' )
+	public function getBody( string $uid = '' ) : string
 	{
 		$view = $this->getView();
 
@@ -84,7 +84,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( $type, $name = null )
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/checkout/standard/process/account/decorators/excludes
 		 * Excludes decorators added by the "common" option from the checkout standard process account html client
@@ -166,6 +166,7 @@ class Standard
 
 	/**
 	 * Processes the input, e.g. provides the account form.
+	 *
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
@@ -200,7 +201,7 @@ class Standard
 	 *
 	 * @return array List of HTML client names
 	 */
-	protected function getSubClientNames()
+	protected function getSubClientNames() : array
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
@@ -210,10 +211,10 @@ class Standard
 	 * Creates a new account (if necessary) and returns its customer ID
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
-	 * @param boolean $new True to create the customer if it doesn't exist, false if not
+	 * @param bool $new True to create the customer if it doesn't exist, false if not
 	 * @return string|null Unique customer ID or null if no customer is available
 	 */
-	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, $new )
+	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, bool $new ) : ?string
 	{
 		$context = $this->getContext();
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
