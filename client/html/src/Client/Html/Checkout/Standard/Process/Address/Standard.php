@@ -192,7 +192,7 @@ class Standard
 					{
 						$addrItem = $cntl->createAddressItem()->copyFrom( $address );
 						$cntl->addAddressItem( $addrItem )->store();
-						$address->setAddressId( $addrItem->getId() );
+						$address->setAddressId( (string) $addrItem->getId() );
 					}
 				}
 			}
