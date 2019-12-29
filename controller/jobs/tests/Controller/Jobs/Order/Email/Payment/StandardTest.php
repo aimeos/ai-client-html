@@ -149,7 +149,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem()->setBaseId( '-1' );
 
 		$this->access( 'process' )->invokeArgs( $object, array( $clientStub, array( $orderItem ), 1 ) );
 	}
@@ -212,7 +212,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem()->setBaseId( '-1' );
 
 		$this->access( 'process' )->invokeArgs( $this->object, array( $clientStub, array( $orderItem ), 1 ) );
 	}

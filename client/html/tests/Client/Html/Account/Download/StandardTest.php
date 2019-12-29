@@ -79,6 +79,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessOK()
 	{
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['dl_id' => '-1'] );
+		$this->view->addHelper( 'param', $helper );
+
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Download\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
 			->setMethods( array( 'checkAccess', 'checkDownload' ) )
