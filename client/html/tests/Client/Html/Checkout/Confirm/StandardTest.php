@@ -14,7 +14,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->view = \TestHelperHtml::getView();
 		$this->context = \TestHelperHtml::getContext();
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->context, $this->object, $this->view );
 	}
@@ -64,19 +64,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<section class="aimeos checkout-confirm"', $output );
-		$this->assertContains( '<div class="checkout-confirm-retry">', $output );
-		$this->assertContains( '<div class="checkout-confirm-basic">', $output );
-		$this->assertContains( '<div class="checkout-confirm-detail', $output );
+		$this->assertStringContainsString( '<section class="aimeos checkout-confirm"', $output );
+		$this->assertStringContainsString( '<div class="checkout-confirm-retry">', $output );
+		$this->assertStringContainsString( '<div class="checkout-confirm-basic">', $output );
+		$this->assertStringContainsString( '<div class="checkout-confirm-detail', $output );
 		$this->assertRegExp( '#<span class="value">.*' . $orderid . '.*</span>#smU', $output );
 
-		$this->assertContains( 'mr Our Unittest', $output );
-		$this->assertContains( 'Example company', $output );
+		$this->assertStringContainsString( 'mr Our Unittest', $output );
+		$this->assertStringContainsString( 'Example company', $output );
 
-		$this->assertContains( 'solucia', $output );
-		$this->assertContains( 'paypal', $output );
+		$this->assertStringContainsString( 'solucia', $output );
+		$this->assertStringContainsString( 'paypal', $output );
 
-		$this->assertContains( 'This is a comment', $output );
+		$this->assertStringContainsString( 'This is a comment', $output );
 	}
 
 
@@ -92,7 +92,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -108,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -124,7 +124,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -140,20 +140,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$this->assertContains( 'A non-recoverable error occured', $object->getBody() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $object->getBody() );
 	}
 
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -171,12 +171,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'request', $helper );
 
 		$this->object->process();
+
+		$this->assertNotEmpty( $this->object->getView()->get( 'confirmErrorList' ) );
 	}
 
 
 	public function testProcessNoCode()
 	{
 		$this->object->process();
+
+		$this->assertNotEmpty( $this->object->getView()->get( 'confirmErrorList' ) );
 	}
 
 

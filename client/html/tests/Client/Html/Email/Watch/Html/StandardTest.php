@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $emailMock;
 
 
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		$context = \TestHelperHtml::getContext();
 
@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -86,38 +86,32 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<!doctype html>', $output );
-		$this->assertContains( 'cid:123-unique-id', $output );
+		$this->assertStringContainsString( 'cid:123-unique-id', $output );
 
-		$this->assertContains( 'email-common-salutation', $output );
+		$this->assertStringContainsString( 'email-common-salutation', $output );
 
-		$this->assertContains( 'email-common-intro', $output );
-		$this->assertContains( 'One or more products', $output );
+		$this->assertStringContainsString( 'email-common-intro', $output );
+		$this->assertStringContainsString( 'One or more products', $output );
 
-		$this->assertContains( 'common-summary-detail common-summary', $output );
-		$this->assertContains( 'Cafe Noire Cappuccino', $output );
-		$this->assertContains( 'Cafe Noire Expresso', $output );
+		$this->assertStringContainsString( 'common-summary-detail common-summary', $output );
+		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );
+		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
 
-		$this->assertContains( 'email-common-outro', $output );
-		$this->assertContains( 'If you have any questions', $output );
+		$this->assertStringContainsString( 'email-common-outro', $output );
+		$this->assertStringContainsString( 'If you have any questions', $output );
 	}
 
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
-	}
-
-
-	public function testProcess()
-	{
-		$this->object->process();
 	}
 }

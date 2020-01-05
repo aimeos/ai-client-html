@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -60,9 +60,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$miniBasket = $this->object->getView()->miniBasket;
 
 		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Base\Iface );
-		$this->assertContains( '<section class="aimeos basket-mini"', $output );
-		$this->assertContains( '<div class="basket-mini-main">', $output );
-		$this->assertContains( '<div class="basket-mini-product">', $output );
+		$this->assertStringContainsString( '<section class="aimeos basket-mini"', $output );
+		$this->assertStringContainsString( '<div class="basket-mini-main">', $output );
+		$this->assertStringContainsString( '<div class="basket-mini-product">', $output );
 	}
 
 
@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$controller->clear();
 
-		$this->assertContains( '<div class="basket-mini-product">', $output );
+		$this->assertStringContainsString( '<div class="basket-mini-product">', $output );
 		$this->assertRegExp( '#9#smU', $output );
 		$this->assertRegExp( '#171.00#smU', $output );
 	}
@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -115,7 +115,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -131,20 +131,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -152,6 +152,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$this->object->process();
+
+		$this->assertEmpty( $this->object->getView()->get( 'miniErrorList' ) );
 	}
 
 

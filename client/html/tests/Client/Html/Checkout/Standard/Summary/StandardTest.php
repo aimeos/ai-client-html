@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object, $this->context );
 	}
@@ -66,13 +66,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="checkout-standard-summary common-summary">', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option-account', $output );
-		$this->assertContains( '<div class="checkout-standard-summary-option-terms', $output );
+		$this->assertStringContainsString( '<div class="checkout-standard-summary-option', $output );
+		$this->assertStringContainsString( '<div class="checkout-standard-summary-option-account', $output );
+		$this->assertStringContainsString( '<div class="checkout-standard-summary-option-terms', $output );
 
-		$this->assertContains( 'Example company', $output );
-		$this->assertContains( 'unitpaymentlabel', $output );
-		$this->assertContains( 'Unittest service name', $output );
+		$this->assertStringContainsString( 'Example company', $output );
+		$this->assertStringContainsString( 'unitpaymentlabel', $output );
+		$this->assertStringContainsString( 'Unittest service name', $output );
 	}
 
 
@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
-		$this->assertContains( '<div class="common-summary-detail', $output );
+		$this->assertStringContainsString( '<div class="common-summary-detail', $output );
 		$this->assertRegExp( '#<tfoot>.*<tr class="tax">.*<td class="price">10.52 EUR</td>.*.*</tfoot>#smU', $output );
 	}
 
@@ -98,14 +98,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
 
-		$this->setExpectedException( \Aimeos\MShop\Order\Exception::class );
+		$this->expectException( \Aimeos\MShop\Order\Exception::class );
 		$this->object->process();
 	}
 
@@ -135,6 +135,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $view );
 
 		$this->object->process();
+
+		$this->assertEmpty( $this->object->getView()->get( 'standardStepActive' ) );
 	}
 
 
@@ -181,6 +183,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessSkip()
 	{
 		$this->object->process();
+
+		$this->assertEmpty( $this->object->getView()->get( 'standardStepActive' ) );
 	}
 
 

@@ -15,7 +15,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->object = new \Aimeos\Client\Html\Catalog\Count\Attribute\Standard( \TestHelperHtml::getContext(), $paths );
@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -33,13 +33,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'var attributeCount', $output );
+		$this->assertStringContainsString( 'var attributeCount', $output );
 	}
 
 
 	public function testGetSubClient()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 

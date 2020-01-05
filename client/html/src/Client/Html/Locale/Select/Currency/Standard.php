@@ -205,7 +205,7 @@ class Standard
 		$name = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
 
 		if( ( $currencyId = $view->param( $name ) ) !== null ) {
-			$session->set( 'aimeos/locale/currencyId', $currencyId );
+			$session->set( 'aimeos/locale/currencyid', $currencyId );
 		}
 
 		parent::process();

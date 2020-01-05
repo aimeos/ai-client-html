@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -43,8 +43,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
 
-		$this->assertContains( '<title>Cafe Noire Expresso</title>', $output );
-		$this->assertContains( '<script type="text/javascript" defer="defer" src="http://baseurl/catalog/stock/?s_prodcode', $output );
+		$this->assertStringContainsString( '<title>Cafe Noire Expresso</title>', $output );
+		$this->assertStringContainsString( '<script type="text/javascript" defer="defer" src="http://baseurl/catalog/stock/?s_prodcode', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 7, count( $tags ) );
 	}
@@ -79,39 +79,39 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-detail"', $output );
-		$this->assertContains( '<div class="catalog-detail-basic">', $output );
-		$this->assertContains( '<div class="catalog-detail-image', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-basic">', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-image', $output );
 
-		$this->assertContains( '<div class="catalog-social">', $output );
+		$this->assertStringContainsString( '<div class="catalog-social">', $output );
 		$this->assertRegExp( '/.*facebook.*/', $output );
 
-		$this->assertContains( '<div class="catalog-actions">', $output );
-		$this->assertContains( 'actions-button-pin', $output );
-		$this->assertContains( 'actions-button-watch', $output );
-		$this->assertContains( 'actions-button-favorite', $output );
+		$this->assertStringContainsString( '<div class="catalog-actions">', $output );
+		$this->assertStringContainsString( 'actions-button-pin', $output );
+		$this->assertStringContainsString( 'actions-button-watch', $output );
+		$this->assertStringContainsString( 'actions-button-favorite', $output );
 
-		$this->assertContains( '<div class="catalog-detail-additional">', $output );
-		$this->assertContains( '<h2 class="header description">', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-additional">', $output );
+		$this->assertStringContainsString( '<h2 class="header description">', $output );
 
-		$this->assertContains( '<h2 class="header attributes">', $output );
-		$this->assertContains( '<td class="name">size</td>', $output );
-		$this->assertContains( '<span class="attr-name">XS</span>', $output );
+		$this->assertStringContainsString( '<h2 class="header attributes">', $output );
+		$this->assertStringContainsString( '<td class="name">size</td>', $output );
+		$this->assertStringContainsString( '<span class="attr-name">XS</span>', $output );
 
-		$this->assertContains( '<h2 class="header properties">', $output );
-		$this->assertContains( '<td class="name">package-height</td>', $output );
-		$this->assertContains( '<td class="value">10.0</td>', $output );
+		$this->assertStringContainsString( '<h2 class="header properties">', $output );
+		$this->assertStringContainsString( '<td class="name">package-height</td>', $output );
+		$this->assertStringContainsString( '<td class="value">10.0</td>', $output );
 
-		$this->assertContains( '<h2 class="header downloads">', $output );
-		$this->assertContains( '<span class="media-name">path/to/folder/example5.jpg</span>', $output );
+		$this->assertStringContainsString( '<h2 class="header downloads">', $output );
+		$this->assertStringContainsString( '<span class="media-name">path/to/folder/example5.jpg</span>', $output );
 
-		$this->assertContains( '<section class="catalog-detail-suggest">', $output );
+		$this->assertStringContainsString( '<section class="catalog-detail-suggest">', $output );
 		$this->assertRegExp( '/.*Cappuccino.*/', $output );
 
-		$this->assertContains( '<section class="catalog-detail-bought">', $output );
+		$this->assertStringContainsString( '<section class="catalog-detail-bought">', $output );
 		$this->assertRegExp( '/.*Cappuccino.*/', $output );
 
-		$this->assertContains( '<div class="catalog-detail-service', $output );
-		$this->assertContains( '<div class="catalog-detail-supplier', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-service', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-supplier', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 7, count( $tags ) );
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<span class="value" itemprop="sku">CNE</span>', $output );
+		$this->assertStringContainsString( '<span class="value" itemprop="sku">CNE</span>', $output );
 	}
 
 
@@ -151,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<span class="value" itemprop="sku">CNE</span>', $output );
+		$this->assertStringContainsString( '<span class="value" itemprop="sku">CNE</span>', $output );
 	}
 
 
@@ -171,7 +171,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<span class="value" itemprop="sku">CNE</span>', $output );
+		$this->assertStringContainsString( '<span class="value" itemprop="sku">CNE</span>', $output );
 	}
 
 
@@ -183,11 +183,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody( 1 );
 		$output = str_replace( '_csrf_value', '_csrf_new', $output );
 
-		$this->assertContains( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_new" />', $output );
+		$this->assertStringContainsString( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_new" />', $output );
 
 		$output = $this->object->modifyBody( $output, 1 );
 
-		$this->assertContains( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_value" />', $output );
+		$this->assertStringContainsString( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_value" />', $output );
 	}
 
 
@@ -204,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertGreaterThan( 0, count( $configAttr ) );
 
 		$output = $this->object->getBody();
-		$this->assertContains( '<div class="catalog-detail-basket-attribute', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-basket-attribute', $output );
 
 		foreach( $configAttr as $id => $item ) {
 			$this->assertRegexp( '#<option class="select-option".*value="' . $id . '">#smU', $output );
@@ -230,7 +230,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getBody( 1, $tags, $expire );
 
-		$this->assertContains( '<div class="catalog-detail-basket-selection', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-basket-selection', $output );
 
 		foreach( $variantAttr1 as $id => $item ) {
 			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
@@ -318,14 +318,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -333,6 +333,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$this->object->process();
+
+		$this->assertEmpty( $this->object->getView()->get( 'detailErrorList' ) );
 	}
 
 

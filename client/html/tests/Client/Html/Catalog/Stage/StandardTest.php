@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-stage"', $output );
-		$this->assertContains( '<div class="catalog-stage-breadcrumb">', $output );
+		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb">', $output );
 		$this->assertRegExp( '#Your search result#smU', $output );
 
 		$this->assertEquals( null, $expire );
@@ -95,10 +95,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-stage home categories coffee"', $output );
-		$this->assertContains( '<div class="catalog-stage-image">', $output );
-		$this->assertContains( '/path/to/folder/cafe/stage.jpg', $output );
+		$this->assertStringContainsString( '<div class="catalog-stage-image">', $output );
+		$this->assertStringContainsString( '/path/to/folder/cafe/stage.jpg', $output );
 
-		$this->assertContains( '<div class="catalog-stage-breadcrumb">', $output );
+		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb">', $output );
 		$this->assertRegExp( '#Root.*.Categories.*.Kaffee.*#smU', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
@@ -118,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -134,7 +134,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -150,7 +150,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -166,7 +166,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'A non-recoverable error occured', $object->getBody() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $object->getBody() );
 	}
 
 
@@ -191,14 +191,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -206,6 +206,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$this->object->process();
+
+		$this->assertEmpty( $this->object->getView()->get( 'stageErrorList' ) );
 	}
 
 

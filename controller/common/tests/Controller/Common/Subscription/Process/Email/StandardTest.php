@@ -10,13 +10,13 @@ namespace Aimeos\Controller\Common\Subscription\Process\Processor\Email;
 
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
-	protected function setUp()
+	protected function setUp() : void
 	{
 		\Aimeos\MShop::cache( true );
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\MShop::cache( false );
 	}

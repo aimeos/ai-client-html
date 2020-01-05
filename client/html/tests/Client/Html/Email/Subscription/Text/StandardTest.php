@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $emailMock;
 
 
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		$context = \TestHelperHtml::getContext();
 
@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -85,28 +85,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'The subscription', $output );
-		$this->assertContains( 'Cafe Noire Cappuccino', $output );
-		$this->assertContains( 'If you have any questions', $output );
+		$this->assertStringContainsString( 'The subscription', $output );
+		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );
+		$this->assertStringContainsString( 'If you have any questions', $output );
 	}
 
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
-	}
-
-
-	public function testProcess()
-	{
-		$this->object->process();
 	}
 }

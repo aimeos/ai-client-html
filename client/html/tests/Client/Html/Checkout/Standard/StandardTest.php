@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
@@ -26,7 +26,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -67,11 +67,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<section class="aimeos checkout-standard"', $output );
 		$this->assertRegExp( '#<ol class="steps">.*<li class="step.*>.*</li>.*</ol>#smU', $output );
-		$this->assertContains( '<section class="checkout-standard-address', $output );
-		$this->assertNotContains( '<section class="checkout-standard-delivery', $output );
-		$this->assertNotContains( '<section class="checkout-standard-payment', $output );
-		$this->assertNotContains( '<section class="checkout-standard-summary', $output );
-		$this->assertNotContains( '<section class="checkout-standard-order', $output );
+		$this->assertStringContainsString( '<section class="checkout-standard-address', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-delivery', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-payment', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-summary', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-order', $output );
 	}
 
 
@@ -87,11 +87,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<section class="checkout-standard-address', $output );
-		$this->assertContains( '<section class="checkout-standard-delivery', $output );
-		$this->assertContains( '<section class="checkout-standard-payment', $output );
-		$this->assertContains( '<section class="checkout-standard-summary', $output );
-		$this->assertNotContains( '<section class="checkout-standard-order', $output );
+		$this->assertStringContainsString( '<section class="checkout-standard-address', $output );
+		$this->assertStringContainsString( '<section class="checkout-standard-delivery', $output );
+		$this->assertStringContainsString( '<section class="checkout-standard-payment', $output );
+		$this->assertStringContainsString( '<section class="checkout-standard-summary', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-order', $output );
 	}
 
 
@@ -108,11 +108,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<section class="checkout-standard-delivery', $output );
-		$this->assertContains( '<section class="checkout-standard-payment', $output );
-		$this->assertNotContains( '<section class="checkout-standard-address', $output );
-		$this->assertNotContains( '<section class="checkout-standard-summary', $output );
-		$this->assertNotContains( '<section class="checkout-standard-order', $output );
+		$this->assertStringContainsString( '<section class="checkout-standard-delivery', $output );
+		$this->assertStringContainsString( '<section class="checkout-standard-payment', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-address', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-summary', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-order', $output );
 	}
 
 
@@ -129,11 +129,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<section class="checkout-standard-address', $output );
-		$this->assertNotContains( '<section class="checkout-standard-delivery', $output );
-		$this->assertNotContains( '<section class="checkout-standard-payment', $output );
-		$this->assertNotContains( '<section class="checkout-standard-summary', $output );
-		$this->assertNotContains( '<section class="checkout-standard-order', $output );
+		$this->assertStringContainsString( '<section class="checkout-standard-address', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-delivery', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-payment', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-summary', $output );
+		$this->assertStringNotContainsString( '<section class="checkout-standard-order', $output );
 	}
 
 
@@ -149,7 +149,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -165,7 +165,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -181,7 +181,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -197,7 +197,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'A non-recoverable error occured', $object->getBody() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $object->getBody() );
 	}
 
 
@@ -210,14 +210,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -225,5 +225,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$this->object->process();
+
+		$this->assertEmpty( $this->object->getView()->get( 'standardErrorList' ) );
 	}
 }

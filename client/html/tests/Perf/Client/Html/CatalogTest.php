@@ -14,7 +14,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 	protected $view;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext( 'unitperf' );
 

@@ -25,7 +25,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 	 *
 	 * @access protected
 	 */
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$context = \TestHelperHtml::getContext();
 
@@ -101,7 +101,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testSetObject()
 	{
-		$this->object->setObject( $this->object );
+		$this->assertInstanceOf( \Aimeos\Client\Html\Iface::class, $this->object->setObject( $this->object ) );
 	}
 
 }

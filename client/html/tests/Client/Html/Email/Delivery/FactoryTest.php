@@ -15,13 +15,13 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->context );
 	}
@@ -43,14 +43,14 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateClientNameInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Email\Delivery\Factory::create( $this->context, '$$$' );
 	}
 
 
 	public function testCreateClientNameNotFound()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Email\Delivery\Factory::create( $this->context, 'notfound' );
 	}
 

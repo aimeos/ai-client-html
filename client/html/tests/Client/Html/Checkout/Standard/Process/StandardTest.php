@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 		unset( $this->object, $this->context );
@@ -64,14 +64,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -240,7 +240,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertInternalType( 'array', $view->standardErrorList );
+		$this->assertIsArray( $view->standardErrorList );
 	}
 
 
@@ -262,7 +262,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertInternalType( 'array', $view->standardErrorList );
+		$this->assertIsArray( $view->standardErrorList );
 	}
 
 
@@ -284,7 +284,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertInternalType( 'array', $view->standardErrorList );
+		$this->assertIsArray( $view->standardErrorList );
 	}
 
 
@@ -306,7 +306,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertInternalType( 'array', $view->standardErrorList );
+		$this->assertIsArray( $view->standardErrorList );
 	}
 
 

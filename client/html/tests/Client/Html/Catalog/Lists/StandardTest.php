@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getHeader();
 
-		$this->assertContains( '<title>Kaffee</title>', $output );
+		$this->assertStringContainsString( '<title>Kaffee</title>', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 5, count( $tags ) );
 	}
@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
 
-		$this->assertContains( '<div class="catalog-list-head">', $output );
+		$this->assertStringContainsString( '<div class="catalog-list-head">', $output );
 		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
@@ -114,7 +114,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
-		$this->assertContains( '<nav class="pagination">', $output );
+		$this->assertStringContainsString( '<nav class="pagination">', $output );
 		$this->assertNotRegExp( '#.*U:TESTPSUB01.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB03.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB04.*#smu', $output );
@@ -212,7 +212,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
-		$this->assertContains( '&lt;b&gt;Search result&lt;/b&gt;', $output );
+		$this->assertStringContainsString( '&lt;b&gt;Search result&lt;/b&gt;', $output );
 	}
 
 
@@ -252,7 +252,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -268,7 +268,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -284,7 +284,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->getBody() );
 	}
 
 
@@ -300,7 +300,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertContains( 'A non-recoverable error occured', $object->getBody() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $object->getBody() );
 	}
 
 
@@ -313,14 +313,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -332,6 +332,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->process();
+
+		$this->assertEmpty( $this->object->getView()->get( 'listErrorList' ) );
 	}
 
 
@@ -349,7 +351,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->process();
 
-		$this->assertInternalType( 'array', $object->getView()->listErrorList );
+		$this->assertIsArray( $object->getView()->listErrorList );
 	}
 
 
@@ -367,7 +369,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->process();
 
-		$this->assertInternalType( 'array', $object->getView()->listErrorList );
+		$this->assertIsArray( $object->getView()->listErrorList );
 	}
 
 
@@ -385,7 +387,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->process();
 
-		$this->assertInternalType( 'array', $object->getView()->listErrorList );
+		$this->assertIsArray( $object->getView()->listErrorList );
 	}
 
 
@@ -403,7 +405,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->process();
 
-		$this->assertInternalType( 'array', $object->getView()->listErrorList );
+		$this->assertIsArray( $object->getView()->listErrorList );
 	}
 
 

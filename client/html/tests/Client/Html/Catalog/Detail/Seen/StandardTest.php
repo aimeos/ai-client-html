@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClient()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$str = $session->get( 'aimeos/catalog/session/seen/list' );
-		$this->assertInternalType( 'array', $str );
+		$this->assertIsArray( $str );
 	}
 
 
@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->process();
 
 		$str = $session->get( 'aimeos/catalog/session/seen/list' );
-		$this->assertInternalType( 'array', $str );
+		$this->assertIsArray( $str );
 	}
 
 

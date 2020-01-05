@@ -14,13 +14,13 @@ class HtmlTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->context );
 	}
@@ -42,28 +42,28 @@ class HtmlTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateNameEmpty()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html::create( $this->context, '' );
 	}
 
 
 	public function testCreateNameParts()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html::create( $this->context, 'account_favorite' );
 	}
 
 
 	public function testCreateNameInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html::create( $this->context, '%account/favorite' );
 	}
 
 
 	public function testCreateNameNotFound()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		\Aimeos\Client\Html\Account\Favorite\Factory::create( $this->context, 'account/fav' );
 	}
 

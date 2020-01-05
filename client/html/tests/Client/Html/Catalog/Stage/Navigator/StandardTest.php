@@ -15,7 +15,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$context = \TestHelperHtml::getContext();
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -43,8 +43,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<!-- catalog.stage.navigator -->', $output );
-		$this->assertContains( '<a class="prev"', $output );
-		$this->assertContains( '<a class="next"', $output );
+		$this->assertStringContainsString( '<a class="prev"', $output );
+		$this->assertStringContainsString( '<a class="next"', $output );
 	}
 
 
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$content = '<!-- catalog.stage.navigator -->test<!-- catalog.stage.navigator -->';
 		$output = $this->object->modifyHeader( $content, 1 );
 
-		$this->assertContains( '<!-- catalog.stage.navigator -->', $output );
+		$this->assertStringContainsString( '<!-- catalog.stage.navigator -->', $output );
 	}
 
 
@@ -70,19 +70,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$content = '<!-- catalog.stage.navigator -->test<!-- catalog.stage.navigator -->';
 		$output = $this->object->modifyBody( $content, 1 );
 
-		$this->assertContains( '<div class="catalog-stage-navigator">', $output );
+		$this->assertStringContainsString( '<div class="catalog-stage-navigator">', $output );
 	}
 
 
 	public function testGetSubClient()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testProcess()
-	{
-		$this->object->process();
 	}
 }

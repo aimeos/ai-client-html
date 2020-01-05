@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->context, $this->object );
 	}
@@ -46,9 +46,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'Groups', $output );
-		$this->assertContains( 'Neu', $output );
-		$this->assertContains( 'level-2', $output );
+		$this->assertStringContainsString( 'Groups', $output );
+		$this->assertStringContainsString( 'Neu', $output );
+		$this->assertStringContainsString( 'level-2', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 3, count( $tags ) );
@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( 'level-2', $output );
+		$this->assertStringContainsString( 'level-2', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 3, count( $tags ) );
 	}
@@ -95,7 +95,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
-		$this->assertNotContains( 'level-2', $output );
+		$this->assertStringNotContainsString( 'level-2', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 2, count( $tags ) );
 	}
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClient()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 

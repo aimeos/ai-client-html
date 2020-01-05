@@ -15,7 +15,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
 		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Attribute\Standard( \TestHelperHtml::getContext(), $paths );
@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -37,10 +37,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<fieldset class="attr-color">', $output );
-		$this->assertContains( '<fieldset class="attr-length">', $output );
-		$this->assertContains( '<fieldset class="attr-width">', $output );
-		$this->assertContains( '<fieldset class="attr-size">', $output );
+		$this->assertStringContainsString( '<fieldset class="attr-color">', $output );
+		$this->assertStringContainsString( '<fieldset class="attr-length">', $output );
+		$this->assertStringContainsString( '<fieldset class="attr-width">', $output );
+		$this->assertStringContainsString( '<fieldset class="attr-size">', $output );
 
 		$this->assertGreaterThanOrEqual( 3, count( $tags ) );
 		$this->assertEquals( null, $expire );
@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-width">.*<fieldset class="attr-length">/smu';
-		$this->assertNotContains( '<fieldset class="attr-size">', $output );
+		$this->assertStringNotContainsString( '<fieldset class="attr-size">', $output );
 		$this->assertRegexp( $regex, $output );
 	}
 
@@ -106,7 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClient()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 

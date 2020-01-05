@@ -15,7 +15,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$context = \TestHelperHtml::getContext();
 
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -75,11 +75,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<div class="catalog-list-items"', $output );
 
-		$this->assertContains( '<div class="price-item', $output );
-		$this->assertContains( '<span class="quantity"', $output );
-		$this->assertContains( '<span class="value">', $output );
-		$this->assertContains( '<span class="costs">', $output );
-		$this->assertContains( '<span class="taxrate">', $output );
+		$this->assertStringContainsString( '<div class="price-item', $output );
+		$this->assertStringContainsString( '<span class="quantity"', $output );
+		$this->assertStringContainsString( '<span class="value">', $output );
+		$this->assertStringContainsString( '<span class="costs">', $output );
+		$this->assertStringContainsString( '<span class="taxrate">', $output );
 	}
 
 
@@ -88,11 +88,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody( 1 );
 		$output = str_replace( '_csrf_value', '_csrf_new', $output );
 
-		$this->assertContains( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_new" />', $output );
+		$this->assertStringContainsString( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_new" />', $output );
 
 		$output = $this->object->modifyBody( $output, 1 );
 
-		$this->assertContains( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_value" />', $output );
+		$this->assertStringContainsString( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_value" />', $output );
 	}
 
 
@@ -112,7 +112,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClient()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 }

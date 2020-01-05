@@ -12,20 +12,23 @@ namespace Aimeos\Client\Html\Locale\Select\Currency;
 
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
+	private $context;
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
+		$this->context = \TestHelperHtml::getContext();
 		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Locale\Select\Currency\Standard( \TestHelperHtml::getContext(), $paths );
+
+		$this->object = new \Aimeos\Client\Html\Locale\Select\Currency\Standard( $this->context, $paths );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
@@ -51,8 +54,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertStringStartsWith( '<div class="locale-select-currency">', $output );
-		$this->assertContains( '<li class="select-dropdown select-current"><a href="#">EUR', $output );
-		$this->assertContains( '<li class="select-item active">', $output );
+		$this->assertStringContainsString( '<li class="select-dropdown select-current"><a href="#">EUR', $output );
+		$this->assertStringContainsString( '<li class="select-item active">', $output );
 
 		$this->assertEquals( 0, count( $tags ) );
 		$this->assertEquals( null, $expire );
@@ -61,13 +64,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClient()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testProcess()
 	{
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['currency' => 'EUR'] );
+		$view->addHelper( 'param', $helper );
+
 		$this->object->process();
+
+		$this->assertEquals( 'EUR', $this->context->getSession()->get( 'aimeos/locale/currencyid' ) );
 	}
 }

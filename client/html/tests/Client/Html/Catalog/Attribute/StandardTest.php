@@ -14,14 +14,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->object = new \Aimeos\Client\Html\Catalog\Attribute\Standard( \TestHelperHtml::getContext() );
 		$this->object->setView( \TestHelperHtml::getView() );
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -32,8 +32,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
-		$this->assertContains( '<section class="aimeos catalog-filter"', $output );
-		$this->assertContains( '<section class="catalog-filter-attribute">', $output );
+		$this->assertStringContainsString( '<section class="aimeos catalog-filter"', $output );
+		$this->assertStringContainsString( '<section class="catalog-filter-attribute">', $output );
 	}
 
 

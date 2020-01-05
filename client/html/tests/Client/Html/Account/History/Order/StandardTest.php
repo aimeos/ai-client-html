@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $context;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object, $this->context );
 	}
@@ -54,33 +54,33 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<div class="account-history-order common-summary', $output );
 
-		$this->assertContains( 'Our Unittest', $output );
-		$this->assertContains( 'Example company', $output );
+		$this->assertStringContainsString( 'Our Unittest', $output );
+		$this->assertStringContainsString( 'Example company', $output );
 
-		$this->assertContains( '<h4>solucia</h4>', $output );
-		$this->assertContains( '<h4>ogone</h4>', $output );
+		$this->assertStringContainsString( '<h4>solucia</h4>', $output );
+		$this->assertStringContainsString( '<h4>ogone</h4>', $output );
 
-		$this->assertContains( '>5678<', $output );
-		$this->assertContains( 'This is a comment', $output );
+		$this->assertStringContainsString( '>5678<', $output );
+		$this->assertStringContainsString( 'This is a comment', $output );
 
-		$this->assertContains( 'Cafe Noire Expresso', $output );
-		$this->assertContains( 'Cafe Noire Cappuccino', $output );
-		$this->assertContains( 'Unittest: Monetary rebate', $output );
-		$this->assertContains( '<td class="price">55.00 EUR</td>', $output );
-		$this->assertContains( '<td class="quantity">14 articles</td>', $output );
+		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
+		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );
+		$this->assertStringContainsString( 'Unittest: Monetary rebate', $output );
+		$this->assertStringContainsString( '<td class="price">55.00 EUR</td>', $output );
+		$this->assertStringContainsString( '<td class="quantity">14 articles</td>', $output );
 	}
 
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 

@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $emailMock;
 
 
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		$orderManager = \Aimeos\MShop\Order\Manager\Factory::create( \TestHelperHtml::getContext() );
 		$orderBaseManager = $orderManager->getSubManager( 'base' );
@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -83,35 +83,29 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<!doctype html>', $output );
-		$this->assertContains( 'cid:123-unique-id', $output );
+		$this->assertStringContainsString( 'cid:123-unique-id', $output );
 
-		$this->assertContains( 'email-common-intro', $output );
-		$this->assertContains( 'Your voucher:', $output );
+		$this->assertStringContainsString( 'email-common-intro', $output );
+		$this->assertStringContainsString( 'Your voucher:', $output );
 
-		$this->assertContains( 'email-common-body', $output );
-		$this->assertContains( 'The value of your voucher', $output );
+		$this->assertStringContainsString( 'email-common-body', $output );
+		$this->assertStringContainsString( 'The value of your voucher', $output );
 
-		$this->assertContains( 'email-common-outro', $output );
-		$this->assertContains( 'your voucher', $output );
+		$this->assertStringContainsString( 'email-common-outro', $output );
+		$this->assertStringContainsString( 'your voucher', $output );
 	}
 
 
 	public function testGetSubClientInvalid()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
-	}
-
-
-	public function testProcess()
-	{
-		$this->object->process();
 	}
 }
