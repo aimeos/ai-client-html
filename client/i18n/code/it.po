@@ -8,13 +8,14 @@
 # Translators:
 # Translators:
 # alessandro massarelli <alessandro@botteega.com>, 2017
+# R M <roberto@proprionoi.it>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-10-03 08:06+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2019-12-12 13:48+0000\n"
+"Last-Translator: R M <roberto@proprionoi.it>\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,15 +25,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "tassa"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "GST"
 
 #. Price type default
 msgid "price:default"
@@ -132,7 +133,7 @@ msgstr "Anno di scadenza"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "Data di ritiro"
 
 #. Pick-up time
 msgid "time.hourminute"
@@ -144,8 +145,8 @@ msgstr "Luogo di ritiro"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "Indirizzo di ritiro"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "Metodo di consegna"
