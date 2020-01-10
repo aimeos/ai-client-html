@@ -161,11 +161,17 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including address items
 	 * @return \Aimeos\MShop\Order\Item\Base\Address\Iface Delivery or payment address item
-	 * @throws \Aimeos\MShop\Order\Exception If no address item is available
+	 * @throws \Aimeos\Controller\Jobs\Exception If no address item is available
 	 */
 	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\MShop\Order\Item\Base\Address\Iface
 	{
-		return $orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
+		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
+		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false ) {
+			return $addr;
+		};
+
+		$msg = sprintf( 'No address found in order base with ID "%1$s"', $orderBaseItem->getId() );
+		throw new \Aimeos\Controller\Jobs\Exception( $msg );
 	}
 
 
