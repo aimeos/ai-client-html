@@ -175,7 +175,7 @@ class Standard
 	 * @return \Aimeos\MShop\Order\Item\Base\Address\Iface Delivery or voucher address item
 	 * @throws \Aimeos\Controller\Jobs\Exception If no address item is available
 	 */
-	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
+	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\MShop\Order\Item\Base\Address\Iface
 	{
 		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
 		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false && $addr->getEmail() !== '' ) {
