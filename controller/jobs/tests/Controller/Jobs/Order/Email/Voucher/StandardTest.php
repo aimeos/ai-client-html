@@ -128,7 +128,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
 
-		$this->setExpectedException( \Aimeos\MShop\Order\Exception::class );
+		$this->setExpectedException( \Aimeos\Controller\Jobs\Exception::class );
 		$this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $manager->createItem() ) );
 	}
 
