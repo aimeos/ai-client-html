@@ -20,14 +20,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function setUpBeforeClass() : void
 	{
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::create( \TestHelperHtml::getContext() );
-		$orderBaseManager = $orderManager->getSubManager( 'base' );
+		$manager = \Aimeos\MShop\Order\Manager\Factory::create( \TestHelperHtml::getContext() );
+		$orderBaseManager = $manager->getSubManager( 'base' );
 
-		$search = $orderManager->createSearch();
+		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', '2008-02-15 12:34:56' ) );
-		$result = $orderManager->searchItems( $search );
 
-		if( ( self::$orderItem = reset( $result ) ) === false ) {
+		if( ( self::$orderItem = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No order found' );
 		}
 

@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem = $orderManagerStub->createItem();
 
 		$orderManagerStub->expects( $this->exactly( 4 ) )->method( 'searchItems' )
-			->will( $this->onConsecutiveCalls( array( $orderItem ), [], [], [] ) );
+			->will( $this->onConsecutiveCalls( map( [$orderItem] ), map(), map(), map() ) );
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
@@ -151,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem()->setBaseId( '-1' );
 
-		$this->access( 'process' )->invokeArgs( $object, array( $clientStub, array( $orderItem ), 1 ) );
+		$this->access( 'process' )->invokeArgs( $object, [$clientStub, map( [$orderItem] ), 1] );
 	}
 
 
@@ -214,7 +214,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem()->setBaseId( '-1' );
 
-		$this->access( 'process' )->invokeArgs( $this->object, array( $clientStub, array( $orderItem ), 1 ) );
+		$this->access( 'process' )->invokeArgs( $this->object, [$clientStub, map( [$orderItem] ), 1] );
 	}
 
 

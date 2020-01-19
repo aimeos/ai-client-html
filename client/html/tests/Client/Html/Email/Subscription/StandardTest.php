@@ -22,14 +22,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public static function setUpBeforeClass() : void
 	{
 		$context = \TestHelperHtml::getContext();
-
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
-		$result = $manager->searchItems( $search );
 
-		if( ( self::$subscriptionItem = reset( $result ) ) === false ) {
+		if( ( self::$subscriptionItem = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No subscription item found' );
 		}
 
@@ -38,9 +36,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.base.price', '53.50' ) );
-		$result = $manager->searchItems( $search, ['order/base/address', 'order/base/product'] );
 
-		if( ( $baseItem = reset( $result ) ) === false ) {
+		if( ( $baseItem = $manager->searchItems( $search, ['order/base/address', 'order/base/product'] )->first() ) === null ) {
 			throw new \RuntimeException( 'No order base item found' );
 		}
 

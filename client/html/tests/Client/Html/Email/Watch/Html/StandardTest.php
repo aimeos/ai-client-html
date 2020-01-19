@@ -27,9 +27,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
-		$result = $manager->searchItems( $search );
 
-		if( ( self::$customerItem = reset( $result ) ) === false ) {
+		if( ( self::$customerItem = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No customer found' );
 		}
 

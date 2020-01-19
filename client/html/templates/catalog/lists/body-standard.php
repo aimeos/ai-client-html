@@ -8,7 +8,7 @@
 
 $enc = $this->encoder();
 $params = $this->get( 'listParams', [] );
-$catPath = $this->get( 'listCatPath', [] );
+$catPath = $this->get( 'listCatPath', new \Aimeos\Map() );
 
 if( $this->param( 'f_catid' ) !== null )
 {
@@ -32,12 +32,8 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 $classes = '';
-foreach( (array) $this->get( 'listCatPath', [] ) as $cat )
-{
-	$catConfig = $cat->getConfig();
-	if( isset( $catConfig['css-class'] ) ) {
-		$classes .= ' ' . $catConfig['css-class'];
-	}
+foreach( $this->get( 'listCatPath', new \Aimeos\Map() ) as $cat ) {
+	$classes .= ' ' . $cat->getConfigValue( 'css-class', '' );
 }
 
 
@@ -61,7 +57,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 
 
 $quoteItems = [];
-if( $catPath !== [] && ( $catItem = end( $catPath ) ) !== false ) {
+if( ( $catItem = $catPath->last() ) !== null ) {
 	$quoteItems = $catItem->getRefItems( 'text', 'quote', 'default' );
 }
 
@@ -120,7 +116,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
 	<?php endif; ?>
 
 
-	<?php if( ( $catItem = end( $catPath ) ) !== false ) : ?>
+	<?php if( ( $catItem = $catPath->last() ) !== null ) : ?>
 		<div class="catalog-list-head">
 
 			<div class="imagelist-default">

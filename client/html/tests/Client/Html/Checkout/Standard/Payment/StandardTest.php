@@ -105,12 +105,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessExistingId()
 	{
-		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
-		$search = $serviceManager->createSearch();
+		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
+		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitpaymentcode' ) );
-		$result = $serviceManager->searchItems( $search );
 
-		if( ( $service = reset( $result ) ) === false ) {
+		if( ( $service = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'Service item not found' );
 		}
 
@@ -148,12 +147,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessNotExistingAttributes()
 	{
-		$serviceManager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
-		$search = $serviceManager->createSearch();
+		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
+		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitpaymentcode' ) );
-		$result = $serviceManager->searchItems( $search );
 
-		if( ( $service = reset( $result ) ) === false ) {
+		if( ( $service = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'Service item not found' );
 		}
 

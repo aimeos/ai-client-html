@@ -20,14 +20,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public static function setUpBeforeClass() : void
 	{
 		$context = \TestHelperHtml::getContext();
-
 		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $context );
 
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
-		$result = $manager->searchItems( $search );
 
-		if( ( self::$customerItem = reset( $result ) ) === false ) {
+		if( ( self::$customerItem = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No customer found' );
 		}
 	}

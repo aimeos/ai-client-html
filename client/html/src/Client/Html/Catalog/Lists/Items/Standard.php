@@ -343,7 +343,7 @@ class Standard
 		 */
 
 		if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
-			$view->itemsStockUrl = $this->getStockUrl( $view, $products + $productItems );
+			$view->itemsStockUrl = $this->getStockUrl( $view, $products->union( $productItems ) );
 		}
 
 		if( in_array( 'navigator', $config->get( 'client/html/catalog/stage/standard/subparts', ['navigator'] ) ) )

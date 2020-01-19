@@ -208,14 +208,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			) ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$attributes = $attrManager->searchItems( $search, [] );
+		$attributes = $attrManager->searchItems( $search );
 
 		$view = $this->object->getView();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'U:TEST' )->getId(),
 			'b_quantity' => 2,
-			'b_attrvarid' => array_keys( $attributes ),
+			'b_attrvarid' => $attributes->keys()->toArray(),
 		);
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -230,18 +230,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddConfigAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
-		$search = $attrManager->createSearch();
+		$search = $manager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'attribute.code', 'white' ),
 			$search->compare( '==', 'attribute.domain', 'product' ),
 			$search->compare( '==', 'attribute.type', 'color' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$result = $attrManager->searchItems( $search, [] );
 
-		if( ( $attribute = reset( $result ) ) === false ) {
+		if( ( $attribute = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No attribute' );
 		}
 
@@ -266,18 +265,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyAddCustomAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
-		$search = $attrManager->createSearch();
+		$search = $manager->createSearch();
 		$expr = array(
 				$search->compare( '==', 'attribute.code', 'custom' ),
 				$search->compare( '==', 'attribute.domain', 'product' ),
 				$search->compare( '==', 'attribute.type', 'date' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$result = $attrManager->searchItems( $search, [] );
 
-		if( ( $attribute = reset( $result ) ) === false ) {
+		if( ( $attribute = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No attribute' );
 		}
 
@@ -494,9 +492,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
-		$items = $manager->searchItems( $search );
 
-		if( ( $item = reset( $items ) ) === false ) {
+		if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
@@ -523,9 +520,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
-		$items = $manager->searchItems( $search );
 
-		if( ( $item = reset( $items ) ) === false ) {
+		if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 

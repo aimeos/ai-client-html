@@ -106,12 +106,12 @@ class Standard
 	 * Sends product notifications for the given customers in their language
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
-	 * @param array $customers List of customer items implementing \Aimeos\MShop\Customer\Item\Iface
+	 * @param \Aimeos\Map $customers List of customer items implementing \Aimeos\MShop\Customer\Item\Iface
 	 */
-	protected function execute( \Aimeos\MShop\Context\Item\Iface $context, array $customers )
+	protected function execute( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Map $customers )
 	{
 		$prodIds = $custIds = [];
-		$listItems = $this->getListItems( $context, array_keys( $customers ) );
+		$listItems = $this->getListItems( $context, $customers->keys() );
 		$listManager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		foreach( $listItems as $id => $listItem )
@@ -186,16 +186,16 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $custIds List of customer IDs
-	 * @return array List of customer list items implementing \Aimeos\MShop\Common\Item\Lists\Iface
+	 * @return \Aimeos\Map List of customer list items implementing \Aimeos\MShop\Common\Item\Lists\Iface
 	 */
-	protected function getListItems( \Aimeos\MShop\Context\Item\Iface $context, array $custIds ) : array
+	protected function getListItems( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\Map $custIds ) : \Aimeos\Map
 	{
 		$listManager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
 		$search = $listManager->createSearch();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
-			$search->compare( '==', 'customer.lists.parentid', $custIds ),
+			$search->compare( '==', 'customer.lists.parentid', $custIds->toArray() ),
 			$search->compare( '==', 'customer.lists.type', 'watch' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
@@ -212,7 +212,7 @@ class Standard
 	 * @param \Aimeos\MShop\Common\Item\Lists\Iface[] $listItems List of customer list items
 	 * @return array Multi-dimensional associative list of list IDs as key and product / price item maps as values
 	 */
-	protected function getProductList( array $products, array $listItems ) : array
+	protected function getProductList( \Aimeos\Map $products, array $listItems ) : array
 	{
 		$result = [];
 		$priceManager = \Aimeos\MShop::create( $this->getContext(), 'price' );
@@ -257,12 +257,9 @@ class Standard
 	 */
 	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, string $stockType )
 	{
-		$productCodes = $stockMap = [];
+		$stockMap = [];
 		$productItems = $this->getProductItems( $context, $prodIds );
-
-		foreach( $productItems as $productItem ) {
-			$productCodes[] = $productItem->getCode();
-		}
+		$productCodes = $productItems->getCode()->toArray();
 
 		foreach( $this->getStockItems( $context, $productCodes, $stockType ) as $stockItem ) {
 			$stockMap[$stockItem->getProductCode()] = true;
@@ -284,8 +281,9 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $prodIds List of product IDs
+	 * @return \Aimeos\Map List of product items implementing \Aimeos\MShop\Product\Item\Iface
 	 */
-	protected function getProductItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds ) : array
+	protected function getProductItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds ) : \Aimeos\Map
 	{
 		$productManager = \Aimeos\MShop::create( $context, 'product' );
 
@@ -307,9 +305,9 @@ class Standard
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $prodCodes List of product codes
 	 * @param string $stockType Stock type code
-	 * @return array Associative list of stock IDs as keys and stock items as values
+	 * @return \Aimeos\Map Associative list of stock IDs as keys and stock items implementing \Aimeos\MShop\Stock\Item\Iface
 	 */
-	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodCodes, string $stockType ) : array
+	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodCodes, string $stockType ) : \Aimeos\Map
 	{
 		$stockManager = \Aimeos\MShop::create( $context, 'stock' );
 

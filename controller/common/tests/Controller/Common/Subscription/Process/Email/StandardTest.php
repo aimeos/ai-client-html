@@ -53,12 +53,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
 
-		$items = $manager->searchItems( $search );
-
-		if( ( $item = reset( $items ) ) !== false ) {
-			return $item;
+		if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
+			throw new \Exception( 'No subscription item found' );
 		}
 
-		throw new \Exception( 'No subscription item found' );
+		return $item;
 	}
 }

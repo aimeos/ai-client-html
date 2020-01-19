@@ -663,7 +663,7 @@ class Standard
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains );
 			$listCatPath = $controller->getPath( is_array( $catids ) ? reset( $catids ) : $catids );
 
-			if( ( $categoryItem = end( $listCatPath ) ) !== false ) {
+			if( ( $categoryItem = $listCatPath->last() ) !== null ) {
 				$view->listCurrentCatItem = $categoryItem;
 			}
 

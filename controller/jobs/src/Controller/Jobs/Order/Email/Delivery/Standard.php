@@ -219,10 +219,10 @@ class Standard
 	 * Sends the delivery e-mail for the given orders
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the delivery e-mails
-	 * @param \Aimeos\MShop\Order\Item\Iface[] $items Associative list of order items with their IDs as keys
+	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
 	 * @param int $status Delivery status value
 	 */
-	protected function process( \Aimeos\Client\Html\Iface $client, array $items, int $status )
+	protected function process( \Aimeos\Client\Html\Iface $client, \Aimeos\Map $items, int $status )
 	{
 		$context = $this->getContext();
 		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );

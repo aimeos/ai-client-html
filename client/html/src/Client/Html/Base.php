@@ -321,8 +321,8 @@ abstract class Base
 		 */
 		$tagAll = $this->context->getConfig()->get( 'client/html/common/cache/tag-all', false );
 
-		if( !is_array( $items ) ) {
-			$items = array( $items );
+		if( !is_array( $items ) && !( $items instanceof \Aimeos\Map ) ) {
+			$items = new \Aimeos\Map( [$items] );
 		}
 
 		$expires = $idMap = [];

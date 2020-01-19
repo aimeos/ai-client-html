@@ -28,9 +28,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $context );
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
-		$catItems = $catalogManager->searchItems( $search );
 
-		if( ( $catItem = reset( $catItems ) ) === false ) {
+		if( ( $catItem = $catalogManager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No catalog item found' );
 		}
 

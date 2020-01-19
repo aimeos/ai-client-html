@@ -206,9 +206,7 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, 1 );
 			$search->setConditions( $search->compare( '=~', 'coupon.provider', 'Voucher' ) );
 
-			$items = $manager->searchItems( $search );
-
-			if( ( $item = reset( $items ) ) === false ) {
+			if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
 				throw new \Aimeos\Controller\Jobs\Exception( 'No coupon provider "Voucher" available' );
 			}
 
@@ -250,10 +248,10 @@ class Standard
 	 * Sends the voucher e-mail for the given orders
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the voucher e-mails
-	 * @param \Aimeos\MShop\Order\Item\Iface[] $items Associative list of order items with their IDs as keys
+	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
 	 * @param int $status Delivery status value
 	 */
-	protected function process( \Aimeos\Client\Html\Iface $client, array $items, int $status )
+	protected function process( \Aimeos\Client\Html\Iface $client, \Aimeos\Map $items, int $status )
 	{
 		$context = $this->getContext();
 		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );

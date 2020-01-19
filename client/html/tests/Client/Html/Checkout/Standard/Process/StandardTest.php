@@ -315,14 +315,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrder( $date )
 	{
-		$orderManager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 
-		$search = $orderManager->createSearch();
+		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', $date ) );
 
-		$result = $orderManager->searchItems( $search );
-
-		if( ( $item = reset( $result ) ) === false ) {
+		if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No order found' );
 		}
 

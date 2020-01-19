@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem = $orderManagerStub->createItem();
 
 		$orderManagerStub->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( array( $orderItem ) ) );
+			->will( $this->returnValue( map( [$orderItem] ) ) );
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
@@ -179,7 +179,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem()->setBaseId( '-1' );
 
 
-		$this->access( 'process' )->invokeArgs( $object, [$clientStub, [$orderItem], 1] );
+		$this->access( 'process' )->invokeArgs( $object, [$clientStub, map( [$orderItem] ), 1] );
 	}
 
 
@@ -201,7 +201,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem()->setBaseId( '-1' );
 
-		$this->access( 'process' )->invokeArgs( $this->object, [$clientStub, [$orderItem], 1] );
+		$this->access( 'process' )->invokeArgs( $this->object, [$clientStub, map( [$orderItem] ), 1] );
 	}
 
 

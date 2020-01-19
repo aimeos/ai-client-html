@@ -27,7 +27,7 @@
 $enc = $this->encoder();
 
 $params = $this->get( 'listParams', [] );
-$catItems = $this->get( 'listCatPath', [] );
+$catItems = $this->get( 'listCatPath', map() );
 $current = $this->get( 'listPageCurr', 0 );
 $prev = $this->get( 'listPagePrev', 0 );
 $next = $this->get( 'listPageNext', 0 );
@@ -44,7 +44,7 @@ unset( $params['f_sort'] );
 
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
-	<?php if( ( $catItem = end( $catItems ) ) !== false ) : ?>
+	<?php if( ( $catItem = $catItems->last() ) !== null ) : ?>
 		<title><?= $enc->html( $catItem->getName() ); ?></title>
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>

@@ -548,7 +548,7 @@ class Standard
 		 */
 
 		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
-			$view->detailStockUrl = $this->getStockUrl( $view, array_merge( $products, [$productItem] ) );
+			$view->detailStockUrl = $this->getStockUrl( $view, map( $products )->push( $productItem ) );
 		}
 
 		$view->detailProductItems = $products;

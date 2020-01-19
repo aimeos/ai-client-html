@@ -124,15 +124,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getCustomerItem( $code = 'UTC001' )
 	{
-		$customerManager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
-		$search = $customerManager->createSearch();
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
+		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
-		$result = $customerManager->searchItems( $search );
 
-		if( ( $customer = reset( $result ) ) === false ) {
+		if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'Customer item not found' );
 		}
 
-		return $customer;
+		return $item;
 	}
 }

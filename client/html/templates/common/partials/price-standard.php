@@ -7,11 +7,11 @@
 
 $enc = $this->encoder();
 $iface = '\Aimeos\MShop\Price\Item\Iface';
-$priceItems = $this->get( 'prices', [] );
+$priceItems = $this->get( 'prices', new \Aimeos\Map() );
 $prices = [];
 
-if( !is_array( $priceItems ) ) {
-	$priceItems = array( $priceItems );
+if( $priceItems instanceof $iface ) {
+	$priceItems = new \Aimeos\Map( [$priceItems] );
 }
 
 foreach( $priceItems as $priceItem )

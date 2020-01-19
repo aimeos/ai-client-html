@@ -414,9 +414,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', $code ) );
-		$items = $catalogManager->searchItems( $search );
 
-		if( ( $item = reset( $items ) ) === false ) {
+		if( ( $item = $catalogManager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No catalog item with code "%1$s" found', $code ) );
 		}
 

@@ -457,7 +457,7 @@ class Standard
 
 		// Sort products by the order given in the configuration "client/html/catalog/product/product-codes".
 		$productCodesOrder = array_flip( $productCodes );
-		usort( $products, function( $a, $b ) use ( $productCodesOrder ) {
+		$products->usort( function( $a, $b ) use ( $productCodesOrder ) {
 			return $productCodesOrder[$a->getCode()] - $productCodesOrder[$b->getCode()];
 		} );
 
@@ -493,11 +493,11 @@ class Standard
 		 * @see client/html/catalog/stock/url/config
 		 */
 		if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/product/stock/enable', true ) === true ) {
-			$view->itemsStockUrl = $this->getStockUrl( $view, $products + $productItems );
+			$view->itemsStockUrl = $this->getStockUrl( $view, $products->union( $productItems ) );
 		}
 
 		// Delete cache when products are added or deleted even when in "tag-all" mode
-		$this->addMetaItems( $products + $productItems, $expire, $tags, ['product'] );
+		$this->addMetaItems( $products->union( $productItems ), $expire, $tags, ['product'] );
 
 		$view->productItems = $products;
 		$view->productTotal = count( $products );

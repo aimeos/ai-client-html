@@ -471,12 +471,9 @@ class Standard
 
 			$stageCatPath = $controller->uses( $domains )->getPath( $catid );
 
-			if( ( $categoryItem = end( $stageCatPath ) ) !== false ) {
-				$view->stageCurrentCatItem = $categoryItem;
-			}
-
 			$this->addMetaItems( $stageCatPath, $expire, $tags );
 
+			$view->stageCurrentCatItem = $stageCatPath->last();
 			$view->stageCatPath = $stageCatPath;
 			$view->stageCatId = $catid;
 		}

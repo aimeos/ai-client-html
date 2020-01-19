@@ -318,9 +318,9 @@ class Standard
 	 * Returns the list of stock items for the given product codes and the stock type
 	 *
 	 * @param array $productCodes List of product codes
-	 * @return \Aimeos\MShop\Stock\Item\Iface[] Associative list stock IDs as keys and stock items as values
+	 * @return \Aimeos\Map List stock IDs as keys and items implementing \Aimeos\MShop\Stock\Item\Iface
 	 */
-	protected function getStockItems( array $productCodes ) : array
+	protected function getStockItems( array $productCodes ) : \Aimeos\Map
 	{
 		$context = $this->getContext();
 

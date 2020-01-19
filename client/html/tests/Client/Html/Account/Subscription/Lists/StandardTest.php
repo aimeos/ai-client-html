@@ -96,9 +96,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
-		$items = $manager->searchItems( $search );
 
-		if( ( $item = reset( $items ) ) === false ) {
+		if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No customer item with code "%1$s" found', $code ) );
 		}
 
@@ -113,12 +112,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
 
-		$items = $manager->searchItems( $search );
-
-		if( ( $item = reset( $items ) ) !== false ) {
-			return $item;
+		if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
+			throw new \Exception( 'No subscription item found' );
 		}
 
-		throw new \Exception( 'No subscription item found' );
+		return $item;
 	}
 }

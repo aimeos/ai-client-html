@@ -10,11 +10,7 @@ $enc = $this->encoder();
 $params = $this->param();
 $path = $this->get( 'treeCatalogPath', [] );
 $counts = $this->config( 'client/html/catalog/count/enable', true );
-
-$name = '';
-if( ( $node = end( $path ) ) !== false ) {
-	$name = $node->getName();
-}
+$name = $path->getName()->last( '' );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );

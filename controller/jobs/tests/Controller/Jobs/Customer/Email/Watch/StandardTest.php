@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'getProductList' )
-			->will( $this->returnValue( array( -1 => array( 'item' => $product, 'price' => reset( $prices ), 'currency' => 'EUR' ) ) ) );
+			->will( $this->returnValue( [-1 => ['item' => $product, 'price' => reset( $prices ), 'currency' => 'EUR']] ) );
 
 
 		$object->run();
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$object->expects( $this->once() )->method( 'getProductList' )
-			->will( $this->returnValue( array( -1 => array( 'item' => $product, 'price' => reset( $prices ), 'currency' => 'EUR' ) ) ) );
+			->will( $this->returnValue( [-1 => ['item' => $product, 'price' => reset( $prices ), 'currency' => 'EUR']] ) );
 
 
 		$object->run();
@@ -115,9 +115,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', 'CNC' ) );
-		$items = $manager->searchItems( $search, array( 'media', 'price', 'text' ) );
 
-		if( ( $item = reset( $items ) ) === false ) {
+		if( ( $item = $manager->searchItems( $search, ['media', 'price', 'text'] )->first() ) === null ) {
 			throw new \RuntimeException( 'No product item with code "CNC" found' );
 		}
 

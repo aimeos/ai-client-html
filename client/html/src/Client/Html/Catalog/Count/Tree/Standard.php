@@ -236,14 +236,14 @@ class Standard
 			$root = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 			if( ( $catId = $view->param( 'f_catid', $root->getId() ) ) != null && $catId != $root->getId() ) {
-				$cntl->visible( array_keys( $cntl->getPath( $catId ) ) );
+				$cntl->visible( $cntl->getPath( $catId )->keys()->toArray() );
 			} elseif( $level !== \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
 				$cntl->visible( [$root->getId()] );
 			}
 
 			$tree = $cntl->getTree();
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
-				->category( array_keys( $tree->toList() ) )
+				->category( $tree->toList()->keys()->toArray() )
 				->supplier( $view->param( 'f_supid', [] ) )
 				->allof( $view->param( 'f_attrid', [] ) )
 				->oneOf( $view->param( 'f_optid', [] ) )

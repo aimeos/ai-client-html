@@ -7,19 +7,15 @@
  */
 
 $enc = $this->encoder();
-$catPath = (array) $this->get( 'stageCatPath', [] );
+$catPath = $this->get( 'stageCatPath', new \Aimeos\Map() );
 
 $classes = '';
-foreach( $catPath as $cat )
-{
-	$config = $cat->getConfig();
-	if( isset( $config['css-class'] ) ) {
-		$classes .= ' ' . $config['css-class'];
-	}
+foreach( $catPath as $cat ) {
+	$classes .= ' ' . $cat->getConfigValue( 'css-class', '' );
 }
 
 $mediaItems = [];
-foreach( array_reverse( $catPath ) as $catItem )
+foreach( $catPath->copy()->reverse() as $catItem )
 {
 	if( ( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) ) !== [] ) {
 		break;
@@ -69,7 +65,7 @@ $params = $this->get( 'stageParams', [] );
 			<ol>
 
 				<?php if( isset( $this->stageCatPath ) ) : ?>
-					<?php foreach( (array) $this->stageCatPath as $cat ) : $params['f_name'] = $cat->getName( 'url' ); $params['f_catid'] = $cat->getId(); ?>
+					<?php foreach( $catPath as $cat ) : $params['f_name'] = $cat->getName( 'url' ); $params['f_catid'] = $cat->getId(); ?>
 						<li>
 							<a href="<?= $enc->attr( $this->url( $treeTarget, $treeController, $treeAction, $params, [], $treeConfig ) ); ?>">
 								<?= $enc->html( $cat->getName() ); ?>
