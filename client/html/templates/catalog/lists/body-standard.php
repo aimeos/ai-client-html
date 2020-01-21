@@ -8,7 +8,7 @@
 
 $enc = $this->encoder();
 $params = $this->get( 'listParams', [] );
-$catPath = $this->get( 'listCatPath', new \Aimeos\Map() );
+$catPath = $this->get( 'listCatPath', map() );
 
 if( $this->param( 'f_catid' ) !== null )
 {
@@ -32,7 +32,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 $classes = '';
-foreach( $this->get( 'listCatPath', new \Aimeos\Map() ) as $cat ) {
+foreach( $this->get( 'listCatPath', map() ) as $cat ) {
 	$classes .= ' ' . $cat->getConfigValue( 'css-class', '' );
 }
 

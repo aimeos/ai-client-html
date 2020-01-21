@@ -7,7 +7,7 @@
  */
 
 $enc = $this->encoder();
-$catPath = $this->get( 'stageCatPath', new \Aimeos\Map() );
+$catPath = $this->get( 'stageCatPath', map() );
 
 $classes = '';
 foreach( $catPath as $cat ) {
