@@ -263,7 +263,7 @@ class Standard
 				$config = $view->config( 'client/html/catalog/detail/url/config', [] );
 				$prodid = $view->config( 'client/html/catalog/detail/url/d_prodid', false );
 
-				if( $pos > 0 && ( $product = reset( $products ) ) !== false )
+				if( $pos > 0 && ( $product = $products->first() ) !== null )
 				{
 					$param = ['d_pos' => $pos - 1, 'd_name' => $product->getName( 'url ' )];
 					$prodid == false ?: $params['d_prodid'] = $product->getId();
@@ -271,7 +271,7 @@ class Standard
 					$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 
-				if( ( $pos === 0 || $count === 3 ) && ( $product = end( $products ) ) !== false )
+				if( ( $pos === 0 || $count === 3 ) && ( $product = $products->last() ) !== null )
 				{
 					$param = ['d_pos' => $pos + 1, 'd_name' => $product->getName( 'url ' )];
 					$prodid == false ?: $params['d_prodid'] = $product->getId();
