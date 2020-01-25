@@ -26,11 +26,11 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 	$priceItems = $productItem->getRefItems( 'price', 'default', 'default' );
 
-	if( ( $mediaItem = reset( $mediaItems ) ) !== false ) {
+	if( ( $mediaItem = $mediaItems->first() ) !== null ) {
 		$media = $this->content( $mediaItem->getPreview() );
 	}
 
-	if( ( $priceItem = reset( $priceItems ) ) !== false ) {
+	if( ( $priceItem = $priceItems->first() ) !== null ) {
 		$price = sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) );
 	}
 

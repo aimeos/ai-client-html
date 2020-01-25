@@ -410,7 +410,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$productItems = [];
+		$productItems = map();
 		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );
 
 		/** client/html/catalog/product/domains
@@ -466,7 +466,7 @@ class Standard
 			foreach( $products as $product )
 			{
 				if( $product->getType() === 'select' ) {
-					$productItems += $product->getRefItems( 'product', 'default', 'default' );
+					$productItems->union( $product->getRefItems( 'product', 'default', 'default' ) );
 				}
 			}
 		}
@@ -492,7 +492,7 @@ class Standard
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
 		 */
-		if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/product/stock/enable', true ) === true ) {
+		if( !$products->isEmpty() && (bool) $config->get( 'client/html/catalog/product/stock/enable', true ) === true ) {
 			$view->itemsStockUrl = $this->getStockUrl( $view, $products->union( $productItems ) );
 		}
 

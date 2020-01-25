@@ -155,7 +155,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 
 				<div class="media-list">
-					<?php if( ( $mediaItem = current( $productItem->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
+					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 						<noscript>
 							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
 								<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
@@ -225,7 +225,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							 * @category Developer
 							 */
 							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-							array( 'prices' => reset( $priceItems ) ?: [] )
+							array( 'prices' => $priceItems->first() ?: [] )
 						); ?>
 					</div>
 
@@ -233,7 +233,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
 							<?php if( isset( $productItems[$prodid] ) ) { $product = $productItems[$prodid]; } ?>
 
-							<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
+							<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 								<div class="articleitem price"
 									data-prodid="<?= $enc->attr( $prodid ); ?>"
 									data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">

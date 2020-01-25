@@ -25,7 +25,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 	<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 
-		<?php if( ( $mediaItem = reset( $mediaItems ) ) !== false ) : ?>
+		<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
 			<div class="media-item" style="background-image: url('<?= $this->content( $mediaItem->getPreview() ); ?>')"></div>
 		<?php else : ?>
 			<div class="media-item"></div>

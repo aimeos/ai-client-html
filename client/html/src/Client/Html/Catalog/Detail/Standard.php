@@ -522,7 +522,7 @@ class Standard
 		$this->addMetaItems( $productItem, $expire, $tags );
 
 		$products = $productItem->getRefItems( 'product' );
-		$this->addMetaItems( $products, $expire, $tags );
+		$this->addMetaItems( $products->toArray(), $expire, $tags );
 
 
 		/** client/html/catalog/detail/stock/enable
@@ -548,7 +548,7 @@ class Standard
 		 */
 
 		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
-			$view->detailStockUrl = $this->getStockUrl( $view, map( $products )->push( $productItem ) );
+			$view->detailStockUrl = $this->getStockUrl( $view, $products->push( $productItem ) );
 		}
 
 		$view->detailProductItems = $products;

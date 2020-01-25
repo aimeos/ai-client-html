@@ -13,14 +13,14 @@
  */
 
 
-$getProductList = function( array $posItems, array $items )
+$getProductList = function( \Aimeos\Map $posItems, \Aimeos\Map $items ) : \Aimeos\Map
 {
-	$list = [];
+	$list = map();
 
 	foreach( $posItems as $id => $posItem )
 	{
-		if( isset( $items[$id] ) ) {
-			$list[$id] = $items[$id];
+		if( ( $item = $items->get( $id ) ) !== null ) {
+			$list[$id] = $item;
 		}
 	}
 
@@ -60,8 +60,10 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 $prodItems = $this->get( 'detailProductItems', [] );
 
-$propMap = $subPropDeps = $propItems = [];
-$attrMap = $subAttrDeps = $mediaItems = [];
+$propMap = $subPropDeps = [];
+$attrMap = $subAttrDeps = [];
+$mediaItems = map();
+$propItems = map();
 
 if( isset( $this->detailProductItem ) )
 {
@@ -73,8 +75,8 @@ if( isset( $this->detailProductItem ) )
 		foreach( $getProductList( $posItems, $prodItems ) as $subProdId => $subProduct )
 		{
 			$subItems = $subProduct->getRefItems( 'attribute', null, 'default' );
-			$subItems += $subProduct->getRefItems( 'attribute', null, 'variant' ); // show product variant attributes as well
-			$mediaItems = array_merge( $mediaItems, $subProduct->getRefItems( 'media', 'default', 'default' ) );
+			$subItems->union( $subProduct->getRefItems( 'attribute', null, 'variant' ) ); // show product variant attributes as well
+			$mediaItems->merge( $subProduct->getRefItems( 'media', 'default', 'default' ) );
 
 			foreach( $subItems as $attrId => $attrItem )
 			{
@@ -82,7 +84,7 @@ if( isset( $this->detailProductItem ) )
 				$subAttrDeps[$attrId][] = $subProdId;
 			}
 
-			$propItems = array_merge( $propItems, $subProduct->getPropertyItems() );
+			$propItems->union( $subProduct->getPropertyItems() );
 		}
 	}
 
@@ -140,7 +142,7 @@ if( isset( $this->detailProductItem ) )
 					array(
 						'productItem' => $this->detailProductItem,
 						'params' => $this->get( 'detailParams', [] ),
-						'mediaItems' => array_merge( $this->detailProductItem->getRefItems( 'media', 'default', 'default' ), $mediaItems )
+						'mediaItems' => $this->detailProductItem->getRefItems( 'media', 'default', 'default' )->merge( $mediaItems )
 					)
 				); ?>
 			</div>
@@ -175,7 +177,7 @@ if( isset( $this->detailProductItem ) )
 
 							<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
 								<?php foreach( $getProductList( $this->detailProductItem->getRefItems( 'product', 'default', 'default' ), $prodItems ) as $prodid => $product ) : ?>
-									<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
+									<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 										<div class="articleitem price"
 											data-prodid="<?= $enc->attr( $prodid ); ?>"
 											data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
@@ -349,8 +351,8 @@ if( isset( $this->detailProductItem ) )
 			<div class="col-sm-12">
 
 				<?php if( $this->detailProductItem->getType() === 'bundle'
-					&& ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' ) ) !== []
-					&& ( $products = $getProductList( $posItems, $prodItems ) ) !== [] ) : ?>
+					&& !( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' ) )->isEmpty()
+					&& !( $products = $getProductList( $posItems, $prodItems ) )->isEmpty() ) : ?>
 					<section class="catalog-detail-bundle">
 						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ); ?></h2>
 						<?= $this->partial(
@@ -364,7 +366,7 @@ if( isset( $this->detailProductItem ) )
 
 				<div class="catalog-detail-additional">
 
-					<?php if( ( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) ) !== [] ) : ?>
+					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
 						<div class="additional-box">
 							<h2 class="header description"><?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ); ?></h2>
 							<div class="content description">
@@ -473,7 +475,7 @@ if( isset( $this->detailProductItem ) )
 					<?php endif; ?>
 
 					<?php $mediaList = $this->get( 'detailMediaItems', [] ); ?>
-					<?php if( ( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) ) !== [] ) : ?>
+					<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 						<div class="additional-box">
 							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ); ?></h2>
 							<ul class="content downloads">
@@ -496,8 +498,8 @@ if( isset( $this->detailProductItem ) )
 				</div>
 
 
-				<?php if( ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) ) !== []
-					&& ( $products = $getProductList( $posItems, $prodItems ) ) !== [] ) : ?>
+				<?php if( !( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) )->isEmpty()
+					&& !( $products = $getProductList( $posItems, $prodItems ) )->isEmpty() ) : ?>
 					<section class="catalog-detail-suggest">
 						<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ); ?></h2>
 						<?= $this->partial(
@@ -509,8 +511,8 @@ if( isset( $this->detailProductItem ) )
 				<?php endif; ?>
 
 
-				<?php if( ( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) ) !== []
-					&& ( $products = $getProductList( $posItems, $prodItems ) ) !== [] ) : ?>
+				<?php if( !( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) )->isEmpty()
+					&& !( $products = $getProductList( $posItems, $prodItems ) )->isEmpty() ) : ?>
 					<section class="catalog-detail-bought">
 						<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ); ?></h2>
 						<?= $this->partial(

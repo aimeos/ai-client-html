@@ -110,7 +110,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 		<ul class="favorite-items">
 
-			<?php foreach( array_reverse( $listItems ) as $listItem ) : ?>
+			<?php foreach( $listItems->reverse() as $listItem ) : ?>
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
 					<li class="favorite-item">
@@ -123,7 +123,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 
-							<?php if( ( $mediaItem = reset( $mediaItems ) ) !== false ) : ?>
+							<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
 								<div class="media-item" style="background-image: url('<?= $this->content( $mediaItem->getPreview() ); ?>')"></div>
 							<?php else : ?>
 								<div class="media-item"></div>

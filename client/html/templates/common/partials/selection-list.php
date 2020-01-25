@@ -30,7 +30,7 @@ $enc = $this->encoder();
 		<tr class="select-item">
 
 			<td class="select-media">
-				<?php if( ( $mediaItem = current( $product->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
+				<?php if( ( $mediaItem = $product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 					<img class="media-image" src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
 				<?php endif; ?>
 			</td>

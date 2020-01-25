@@ -21,9 +21,9 @@ $productItems = $this->get( 'productItems', [] );
 
 foreach( $articleItems as $articleId => $articleItem )
 {
-	if( isset( $productItems[$articleId] ) )
+	if( ( $product = $productItems->get( $articleId ) ) !== null )
 	{
-		foreach( $productItems[$articleId]->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
+		foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
 		{
 			$attrTypeDeps[$attrItem->getType()][$attrId] = $attrItem->getPosition();
 			$attributeItems[$attrId] = $attrItem;

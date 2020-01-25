@@ -208,7 +208,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessAddressDelete()
 	{
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['customer/address'] );
-		$id = current( $customer->getAddressItems() )->getId();
+		$id = $customer->getAddressItems()->first()->getId();
 
 		$view = \TestHelperHtml::getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['ca_delivery_delete' => $id] );
@@ -235,7 +235,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['customer/address'] );
 
 		$view = \TestHelperHtml::getView();
-		$param = array( 'ca_deliveryoption' => current( $customer->getAddressItems() )->getId() );
+		$param = array( 'ca_deliveryoption' => $customer->getAddressItems()->first()->getId() );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );

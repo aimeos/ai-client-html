@@ -143,9 +143,9 @@ class Standard
 			{
 				$custProducts = $this->getProductList( $products, $custListItems );
 
-				if( !empty( $custProducts ) )
+				if( !empty( $custProducts ) && ( $custItem = $customers->get( $custId ) ) !== null )
 				{
-					$addr = $customers[$custId]->getPaymentAddress();
+					$addr = $custItem->getPaymentAddress();
 					$this->sendMail( $context, $addr, $custProducts );
 
 					$str = sprintf( 'Sent product notification e-mail to "%1$s"', $addr->getEmail() );
@@ -224,9 +224,9 @@ class Standard
 				$refId = $listItem->getRefId();
 				$config = $listItem->getConfig();
 
-				if( isset( $products[$refId] ) )
+				if( ( $product = $products->get( $refId ) ) !== null )
 				{
-					$prices = $products[$refId]->getRefItems( 'price', 'default', 'default' );
+					$prices = $product->getRefItems( 'price', 'default', 'default' );
 					$currencyId = ( isset( $config['currency'] ) ? $config['currency'] : null );
 
 					$price = $priceManager->getLowestPrice( $prices, 1, $currencyId );
@@ -235,7 +235,7 @@ class Standard
 						isset( $config['price'] ) && $config['price'] == 1 &&
 						isset( $config['pricevalue'] ) && $config['pricevalue'] > $price->getValue()
 					) {
-						$result[$id]['item'] = $products[$refId];
+						$result[$id]['item'] = $product;
 						$result[$id]['currency'] = $currencyId;
 						$result[$id]['price'] = $price;
 					}

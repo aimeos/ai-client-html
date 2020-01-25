@@ -61,7 +61,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getUrl() ) ) ?>" />
 		<?php endforeach ?>
 
-		<?php if( ( $priceItem = current( $this->detailProductItem->getRefItems( 'price', 'default', 'default' ) ) ) !== false ) : ?>
+		<?php if( ( $priceItem = $this->detailProductItem->getRefItems( 'price', 'default', 'default' )->first() ) !== null ) : ?>
 			<meta property="product:price:amount" content="<?= $enc->attr( $priceItem->getValue() ) ?>" />
 			<meta property="product:price:currency" content="<?= $enc->attr( $priceItem->getCurrencyId() ) ?>" />
 		<?php endif ?>

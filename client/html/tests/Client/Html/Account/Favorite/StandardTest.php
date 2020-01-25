@@ -179,7 +179,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessDeleteItem()
 	{
 		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['product' => ['favorite']] );
-		$id = current( $item->getListItems( 'product', 'favorite' ) )->getRefId();
+		$id = $item->getListItems( 'product', 'favorite' )->first()->getRefId();
 		$this->context->setUserId( $item->getId() );
 
 		$view = $this->object->getView();

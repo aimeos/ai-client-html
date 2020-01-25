@@ -19,7 +19,7 @@ $items = $this->get( 'supplierItems', [] );
 
 		<div class="content supplier">
 
-			<?php if( ( $mediaItem = current( $item->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
+			<?php if( ( $mediaItem = $item->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 				<div class="media-item">
 					<img class="lazy-image"
 						data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
@@ -32,7 +32,7 @@ $items = $this->get( 'supplierItems', [] );
 			<h3 class="supplier-name">
 				<?= $enc->html( $item->getName() ); ?>
 
-				<?php if( ( $addrItem = current( $item->getAddressItems() ) ) !== false ) : ?>
+				<?php if( ( $addrItem = $item->getAddressItems()->first() ) !== null ) : ?>
 					<span class="supplier-address">(<?= $enc->html( $addrItem->getCity() ); ?>, <?= $enc->html( $addrItem->getCountryId() ); ?>)</span>
 				<?php endif ?>
 			</h3>

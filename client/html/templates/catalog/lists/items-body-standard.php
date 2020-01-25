@@ -55,8 +55,8 @@ $infiniteUrl = ( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
-			'productItems' => $this->get( 'itemsProductItems', [] ),
-			'products' => $this->get( 'listProductItems', [] ),
+			'productItems' => $this->get( 'itemsProductItems', map() ),
+			'products' => $this->get( 'listProductItems', map() ),
 			'position' => $this->get( 'itemPosition' ),
 		)
 	); ?>

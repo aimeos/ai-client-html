@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		{
 			$prices = $product->getRefItems( 'price', 'default', 'default' );
 
-			self::$productItems[$id]['price'] = reset( $prices );
+			self::$productItems[$id]['price'] = $prices->first();
 			self::$productItems[$id]['currency'] = 'EUR';
 			self::$productItems[$id]['item'] = $product;
 		}

@@ -121,7 +121,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 								/><label class="form-control select-label" for="option-<?= $enc->attr( $attrId ); ?>">
 
 									<?php $priceItems = $attribute->getRefItems( 'price', 'default', 'default' ); ?>
-									<?php if( ( $priceItem = reset( $priceItems ) ) !== false ) : ?>
+									<?php if( ( $priceItem = $priceItems->first() ) !== null ) : ?>
 										<?php $value = $priceItem->getValue() + $priceItem->getCosts(); ?>
 										<?= $enc->html( sprintf( /// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 											$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
@@ -153,7 +153,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 							<option class="select-option" value="<?= $enc->attr( $id ); ?>">
 
 								<?php $priceItems = $attribute->getRefItems( 'price', 'default', 'default' ); ?>
-								<?php if( ( $priceItem = reset( $priceItems ) ) !== false ) : ?>
+								<?php if( ( $priceItem = $priceItems->first() ) !== null ) : ?>
 									<?php $value = $priceItem->getValue() + $priceItem->getCosts(); ?>
 									<?= $enc->html( sprintf( /// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 										$this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' ),
@@ -192,7 +192,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 				<?php switch( $attribute->getType() ) : case 'price': ?>
 					<input class="form-control" type="number" min="0.01" step="0.01"
 						name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrcustid', $id ) ) ); ?>"
-						<?php if( isset( $this->productItem ) && ( $prices = $this->productItem->getRefItems( 'price', 'default', 'default' ) ) !== [] && ( $price = reset( $prices ) ) !== false ) : ?>
+						<?php if( isset( $this->productItem ) && ( $price = $this->productItem->getRefItems( 'price', 'default', 'default' )->first() ) !== null ) : ?>
 							value="<?= $enc->attr( $price->getValue() ); ?>"
 						<?php endif; ?>
 					/>

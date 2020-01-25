@@ -17,7 +17,7 @@ foreach( $catPath as $cat ) {
 $mediaItems = [];
 foreach( $catPath->copy()->reverse() as $catItem )
 {
-	if( ( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) ) !== [] ) {
+	if( !( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) {
 		break;
 	}
 }

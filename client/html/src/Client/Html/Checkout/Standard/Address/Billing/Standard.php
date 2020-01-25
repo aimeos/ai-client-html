@@ -249,8 +249,9 @@ class Standard
 	{
 		$context = $this->getContext();
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+		$addresses = $basketCntl->get()->getAddress( 'payment' );
 
-		if( ( $address = current( $basketCntl->get()->getAddress( 'payment' ) ) ) === false ) {
+		if( ( $address = reset( $addresses ) ) === false ) {
 			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
 		} else {
 			$langid = $address->getLanguageId();

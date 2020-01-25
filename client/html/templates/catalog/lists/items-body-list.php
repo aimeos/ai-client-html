@@ -44,7 +44,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 
 				<a class="media-list" href="<?= $url; ?>">
-					<?php if( ( $mediaItem = current( $productItem->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
+					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 						<noscript>
 							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
 								<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
@@ -102,9 +102,9 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 						<?php if( $productItem->getType() === 'select' ) : ?>
 							<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-								<?php if( $productItems[$prodid] ) { $product = $productItems[$prodid]; } ?>
+								<?php $product = $productItems->get( $prodid, $product ); ?>
 
-								<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
+								<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 									<div class="articleitem price"
 										data-prodid="<?= $enc->attr( $prodid ); ?>"
 										data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">

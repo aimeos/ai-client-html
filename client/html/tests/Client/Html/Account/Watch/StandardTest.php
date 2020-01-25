@@ -163,7 +163,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessDeleteItem()
 	{
 		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['product' => ['watch']] );
-		$id = current( $item->getListItems( 'product', 'watch' ) )->getRefId();
+		$id = $item->getListItems( 'product', 'watch' )->first()->getRefId();
 		$this->context->setUserId( $item->getId() );
 
 		$view = $this->object->getView();
@@ -191,7 +191,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessEditItem()
 	{
 		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['product' => ['watch']] );
-		$id = current( $item->getListItems( 'product', 'watch' ) )->getRefId();
+		$id = $item->getListItems( 'product', 'watch' )->first()->getRefId();
 		$this->context->setUserId( $item->getId() );
 
 		$view = $this->object->getView();

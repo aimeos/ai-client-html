@@ -56,12 +56,6 @@ foreach( $this->get( 'listCatPath', map() ) as $cat ) {
 $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 'short', 'long' ) );
 
 
-$quoteItems = [];
-if( ( $catItem = $catPath->last() ) !== null ) {
-	$quoteItems = $catItem->getRefItems( 'text', 'quote', 'default' );
-}
-
-
 /** client/html/catalog/lists/pagination/enable
  * Enables or disables pagination in list views
  *

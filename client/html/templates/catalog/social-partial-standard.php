@@ -140,7 +140,7 @@ $prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $params,
 $prodName = $this->productItem->getName();
 
 $images = $this->productItem->getRefItems( 'media', 'default', 'default' );
-$prodImage = ( ( $image = reset( $images ) ) !== false ? $this->content( $image->getUrl() ) : '' );
+$prodImage = ( ( $image = $images->first() ) !== null ? $this->content( $image->getUrl() ) : '' );
 
 ?>
 <div class="catalog-social">

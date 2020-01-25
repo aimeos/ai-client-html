@@ -110,7 +110,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 		<h2 class="header"><?= $this->translate( 'client', 'Watched products' ); ?></h2>
 
 		<ul class="watch-items">
-			<?php foreach( array_reverse( $listItems ) as $listItem ) : ?>
+			<?php foreach( $listItems->reverse() as $listItem ) : ?>
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) :  ?>
 					<?php $prices = $productItem->getRefItems( 'price', null, 'default' ); ?>
 
@@ -124,7 +124,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<a class="watch-item" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 
-							<?php if( ( $mediaItem = reset( $mediaItems ) ) !== false ) : ?>
+							<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
 								<div class="media-item" style="background-image: url('<?= $this->content( $mediaItem->getPreview() ); ?>')"></div>
 							<?php else : ?>
 								<div class="media-item"></div>
@@ -179,7 +179,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 									/>
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( array( 'wat_pricevalue' ) ) ); ?>"
-										value="<?= $enc->attr( ( $priceItem = reset( $prices ) ) !== false ? $priceItem->getValue() : '0.00' ); ?>"
+										value="<?= $enc->attr( ( $priceItem = $prices->first() ) !== null ? $priceItem->getValue() : '0.00' ); ?>"
 									/>
 								</li>
 

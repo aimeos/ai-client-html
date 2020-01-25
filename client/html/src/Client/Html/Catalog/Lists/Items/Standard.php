@@ -299,7 +299,7 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$productItems = [];
+		$productItems = map();
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$products = $view->get( 'listProductItems', [] );
@@ -310,11 +310,11 @@ class Standard
 			foreach( $products as $product )
 			{
 				if( $product->getType() === 'select' ) {
-					$productItems += $product->getRefItems( 'product', 'default', 'default' );
+					$productItems->union( $product->getRefItems( 'product', 'default', 'default' ) );
 				}
 			}
 
-			$this->addMetaItems( $productItems, $expire, $tags );
+			$this->addMetaItems( $productItems->toArray(), $expire, $tags );
 
 			$view->itemsProductItems = $productItems;
 		}
@@ -342,7 +342,7 @@ class Standard
 		 * @see client/html/catalog/stock/url/config
 		 */
 
-		if( !empty( $products ) && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
+		if( !$products->isEmpty() && (bool) $config->get( 'client/html/catalog/lists/stock/enable', true ) === true ) {
 			$view->itemsStockUrl = $this->getStockUrl( $view, $products->union( $productItems ) );
 		}
 
@@ -356,26 +356,5 @@ class Standard
 		}
 
 		return parent::addData( $view, $tags, $expire );
-	}
-
-
-	/**
-	 * Returns the product IDs of the selection products
-	 *
-	 * @param \Aimeos\MShop\Product\Item\Iface[] $productItems List of product items
-	 * @return string[] List of product IDs
-	 */
-	protected function getProductIds( array $productItems ) : array
-	{
-		$prodIds = [];
-
-		foreach( $productItems as $product )
-		{
-			if( $product->getType() === 'select' ) {
-				$prodIds = array_merge( $prodIds, array_keys( $product->getRefItems( 'product', 'default', 'default' ) ) );
-			}
-		}
-
-		return $prodIds;
 	}
 }
