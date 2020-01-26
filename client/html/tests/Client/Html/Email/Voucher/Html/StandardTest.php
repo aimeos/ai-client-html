@@ -39,11 +39,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$products = self::$orderBaseItem->getProducts();
 		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
 
 		$view->extAddressItem = self::$orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, 0 );
-		$view->extOrderProductItem = reset( $products );
+		$view->extOrderProductItem = self::$orderBaseItem->getProducts()->first();
 		$view->extVoucherCode = 'test';
 
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );

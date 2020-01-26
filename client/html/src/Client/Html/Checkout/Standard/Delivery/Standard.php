@@ -263,7 +263,7 @@ class Standard
 			// Test if delivery service is available
 			$services = $basketCtrl->get()->getServices( 'delivery' );
 
-			if( !isset( $view->standardStepActive ) && empty( $services )
+			if( !isset( $view->standardStepActive ) && $services->isEmpty()
 				&& count( $servCtrl->getProviders( 'delivery' ) ) > 0
 			) {
 				$view->standardStepActive = 'delivery';

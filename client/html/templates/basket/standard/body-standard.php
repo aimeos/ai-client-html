@@ -91,7 +91,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ); ?></button>
 					</div>
 
-					<?php if( !empty( $coupons ) ) : ?>
+					<?php if( !$coupons->isEmpty() ) : ?>
 						<ul class="attr-list">
 							<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ); ?>
 							<li class="attr-item">
