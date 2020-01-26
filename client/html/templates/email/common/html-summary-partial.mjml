@@ -110,7 +110,7 @@
 			<?php foreach( $this->summaryBasket->getService( 'payment' ) as $service ) : ?>
 				<div class="content">
 					<h4><?= $enc->html( $service->getName() ); ?></h4>
-					<?php if( ( $attributes = $service->getAttributeItems() ) !== [] ) : ?>
+					<?php if( !( $attributes = $service->getAttributeItems() )->isEmpty() ) : ?>
 						<ul class="attr-list">
 
 							<?php foreach( $attributes as $attribute ) : ?>
@@ -141,7 +141,7 @@
 			<?php foreach( $this->summaryBasket->getService( 'delivery' ) as $service ) : ?>
 				<div class="content">
 					<h4><?= $enc->html( $service->getName() ); ?></h4>
-					<?php if( ( $attributes = $service->getAttributeItems() ) !== [] ) : ?>
+					<?php if( !( $attributes = $service->getAttributeItems() )->isEmpty() ) : ?>
 						<ul class="attr-list">
 
 							<?php foreach( $attributes as $attribute ) : ?>
@@ -237,7 +237,7 @@
 							<p class="product-description"><?= $enc->html( $desc ); ?></p>
 						<?php endif ?>
 						<?php foreach( $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant', 'config', 'custom'] ) as $attrType ) : ?>
-							<?php if( ( $attributes = $product->getAttributeItems( $attrType ) ) !== [] ) : ?>
+							<?php if( !( $attributes = $product->getAttributeItems( $attrType ) )->isEmpty() ) : ?>
 								<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
 									<?php foreach( $attributes as $attribute ) : ?>
 										<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">

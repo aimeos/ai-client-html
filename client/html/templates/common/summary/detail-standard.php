@@ -195,7 +195,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<?php endif ?>
 
 					<?php foreach( $attrTypes as $attrType ) : ?>
-						<?php if( ( $attributes = $product->getAttributeItems( $attrType ) ) !== [] ) : ?>
+						<?php if( !( $attributes = $product->getAttributeItems( $attrType ) )->isEmpty() ) : ?>
 							<ul class="attr-list attr-type-<?= $enc->attr( $attrType ); ?>">
 								<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
 									<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ); ?>">
