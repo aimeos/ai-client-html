@@ -321,7 +321,7 @@ abstract class Base
 		 */
 		$tagAll = $this->context->getConfig()->get( 'client/html/common/cache/tag-all', false );
 
-		if( !is_array( $items ) && !( $items instanceof \Aimeos\Map ) ) {
+		if( !is_array( $items ) && !is_map( $items ) ) {
 			$items = map( [$items] );
 		}
 

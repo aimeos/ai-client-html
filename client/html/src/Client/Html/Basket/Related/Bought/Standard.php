@@ -251,7 +251,8 @@ class Standard
 			$domains = $config->get( 'client/html/basket/related/bought/standard/domains', ['text', 'price', 'media'] );
 			$domains['product'] = ['bought-together'];
 
-			$items = $refItems = [];
+			$items = map();
+			$refItems = [];
 			$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
 
 			foreach( $cntl->uses( $domains )->product( $prodIds )->search() as $prodItem )
@@ -266,9 +267,7 @@ class Standard
 				}
 			}
 
-			asort( $items );
-
-			foreach( $items as $id => $pos )
+			foreach( $items->asort() as $id => $pos )
 			{
 				if( isset( $refItems[$id] ) ) {
 					$items[$id] = $refItems[$id];
@@ -277,7 +276,7 @@ class Standard
 				}
 			}
 
-			$view->boughtItems = array_slice( $items, 0, $size, true );
+			$view->boughtItems = $items->slice( 0, $size, true );
 		}
 
 		return parent::addData( $view, $tags, $expire );

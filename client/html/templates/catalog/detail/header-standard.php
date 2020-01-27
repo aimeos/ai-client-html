@@ -74,7 +74,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 <?php endif; ?>
 
 <?php if( isset( $this->detailStockUrl ) ) : ?>
-	<?php foreach( (array) $this->detailStockUrl as $url ) : ?>
+	<?php foreach( $this->detailStockUrl as $url ) : ?>
 		<script type="text/javascript" defer="defer" src="<?= $enc->attr( $url ); ?>"></script>
 	<?php endforeach ?>
 <?php endif; ?>

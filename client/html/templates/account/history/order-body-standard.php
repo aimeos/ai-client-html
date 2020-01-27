@@ -141,7 +141,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( ( $coupons = $this->summaryBasket->getCoupons() ) !== [] ) : ?>
+				<?php if( !( $coupons = $this->summaryBasket->getCoupons() )->isEmpty() ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
 							<li class="attr-item"><?= $enc->html( $code ); ?></li>

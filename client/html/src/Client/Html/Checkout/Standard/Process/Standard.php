@@ -628,10 +628,10 @@ class Standard
 	/**
 	 * Tests if one of the products is a subscription
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Product\Iface[] $products Ordered products
+	 * @param \Aimeos\Map $products Ordered products implementing \Aimeos\MShop\Order\Item\Base\Product\Iface
 	 * @return bool True if at least one product is a subscription, false if not
 	 */
-	protected function isSubscription( array $products ) : bool
+	protected function isSubscription( \Aimeos\Map $products ) : bool
 	{
 		foreach( $products as $orderProduct )
 		{

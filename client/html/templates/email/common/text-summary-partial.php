@@ -120,9 +120,9 @@ $unhide = $this->get( 'summaryShowDownloadAttributes', false );
 <?php endif ?>
 
 
-<?php if( $this->summaryBasket->getCoupons() !== [] ) : ?>
+<?php if( !( $coupons = $this->summaryBasket->getCoupons() )->isEmpty() ) : ?>
 <?= 	strip_tags( $this->translate( 'client', 'Coupons' ) ) ?>:
-<?php	foreach( $this->summaryBasket->getCoupons() as $code => $products ) : ?>
+<?php	foreach( $coupons as $code => $products ) : ?>
 <?= 		'- ' . $code . "\n" ?>
 <?php	endforeach ?>
 

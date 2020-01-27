@@ -26,9 +26,9 @@ abstract class Base
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View instance with helper
 	 * @param \Aimeos\MShop\Product\Item\Iface[] List of products with their IDs as keys
-	 * @return string[] URLs to retrieve the stock levels for the given products
+	 * @return \Aimeos\Map URLs to retrieve the stock levels for the given products
 	 */
-	protected function getStockUrl( \Aimeos\MW\View\Iface $view, \Aimeos\Map $products ) : array
+	protected function getStockUrl( \Aimeos\MW\View\Iface $view, \Aimeos\Map $products ) : \Aimeos\Map
 	{
 		/** client/html/catalog/stock/url/target
 		 * Destination of the URL where the controller specified in the URL is known
@@ -123,19 +123,13 @@ abstract class Base
 		$max = $view->config( 'client/html/catalog/stock/url/max-items', 100 );
 
 
-		$codes = [];
-
-		foreach( $products as $product ) {
-			$codes[] = $product->getCode();
-		}
-
-		sort( $codes );
 		$urls = [];
+		$codes = $products->getCode()->sort();
 
-		while( ( $list = array_splice( $codes, -$max ) ) !== [] ) {
-			$urls[] = $view->url( $target, $cntl, $action, array( "s_prodcode" => $list ), [], $config );
+		while( !( $list = $codes->splice( -$max ) )->isEmpty() ) {
+			$urls[] = $view->url( $target, $cntl, $action, array( "s_prodcode" => $list->toArray() ), [], $config );
 		}
 
-		return array_reverse( $urls );
+		return map( $urls )->reverse();
 	}
 }

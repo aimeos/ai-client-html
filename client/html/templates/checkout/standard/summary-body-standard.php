@@ -161,7 +161,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 
 			<div class="content">
-				<?php if( ( $coupons = $this->standardBasket->getCoupons() ) !== [] ) : ?>
+				<?php if( !( $coupons = $this->standardBasket->getCoupons() )->isEmpty() ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
 							<li class="attr-item"><?= $enc->html( $code ); ?></li>
