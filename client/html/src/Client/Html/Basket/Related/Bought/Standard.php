@@ -276,7 +276,7 @@ class Standard
 				}
 			}
 
-			$view->boughtItems = $items->slice( 0, $size, true );
+			$view->boughtItems = $items->slice( 0, $size );
 		}
 
 		return parent::addData( $view, $tags, $expire );
