@@ -435,7 +435,27 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			\Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->addCoupon( $coupon );
+			$context = $this->getContext();
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+			$code = current( array_keys( $cntl->get()->getCoupons() ) );
+
+			/** client/html/basket/standard/coupon/overwrite
+			 * Replace previous coupon codes each time the user enters a new one
+			 *
+			 * If you want to allow only one coupon code per order and replace a
+			 * previously entered one automatically, this configuration option
+			 * should be set to true.
+			 *
+			 * @param boolean True to overwrite a previous coupon, false to keep them
+			 * @since 2020.04
+			 * @category Developer
+			 * @category User
+			 */
+			if( $code && $context->getConfig()->get( 'client/html/basket/standard/coupon/overwrite', false ) ) {
+				$cntl->deleteCoupon( $code );
+			}
+
+			$cntl->addCoupon( $coupon );
 			$this->clearCached();
 		}
 	}

@@ -470,6 +470,34 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testGetBodyOverwriteCoupon()
+	{
+		$this->context->getConfig()->set( 'client/html/basket/standard/coupon/overwrite', true );
+
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
+
+		$view = $this->object->getView();
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['b_coupon' => '90AB'] );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['b_coupon' => 'OPQR'] );
+		$view->addHelper( 'param', $helper );
+
+		$this->object->process();
+
+		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$view->standardBasket = $controller->get();
+		$output = $this->object->getBody();
+
+		$this->assertContains( 'OPQR', $output );
+		$this->assertNotContains( '90AB', $output );
+	}
+
+
 	public function testGetSubClientInvalid()
 	{
 		$this->setExpectedException( '\\Aimeos\\Client\\Html\\Exception' );
