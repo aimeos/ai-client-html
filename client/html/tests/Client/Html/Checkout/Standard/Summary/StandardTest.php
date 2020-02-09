@@ -199,7 +199,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
 
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$controller->addProduct( $productManager->findItem( 'CNE' ), 2 );
+		$controller->addProduct( $productManager->findItem( 'CNE', ['price'] ), 2 );
 
 		$domains = ['media', 'price', 'text'];
 		$serviceManager = \Aimeos\MShop::create( $this->context, 'service' );
