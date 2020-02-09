@@ -480,12 +480,12 @@ class Standard
 		{
 			$basketCntl->addProduct(
 				$productCntl->get( $prodid ),
-				$view->param( 'b_quantity', 0 ),
-				$view->param( 'b_attrvarid', [] ),
+				(float) $view->param( 'b_quantity', 0 ),
+				(array) $view->param( 'b_attrvarid', [] ),
 				$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
-				$view->param( 'b_attrcustid', [] ),
-				$view->param( 'b_stocktype', 'default' ),
-				$view->param( 'b_supplier', '' ),
+				array_filter( (array) $view->param( 'b_attrcustid', [] ) ),
+				(string) $view->param( 'b_stocktype', 'default' ),
+				(string) $view->param( 'b_supplier', '' ),
 				$view->param( 'b_siteid' )
 			);
 		}
@@ -506,7 +506,7 @@ class Standard
 				if( isset( $values['prodid'] ) && isset( $values['quantity'] ) && $values['quantity'] > 0 )
 				{
 					$basketCntl->addProduct( $productCntl->get( $values['prodid'] ),
-						( isset( $values['quantity'] ) ? (int) $values['quantity'] : 0 ),
+						( isset( $values['quantity'] ) ? (float) $values['quantity'] : 0 ),
 						( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
 						$this->getAttributeMap( isset( $values['attrconfid'] ) ? $values['attrconfid'] : [] ),
 						( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] ),

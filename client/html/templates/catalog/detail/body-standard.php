@@ -109,21 +109,8 @@ if( isset( $this->detailProductItem ) )
 
 
 	<?php if( isset( $this->detailProductItem ) ) : ?>
-		<?php
-			$conf = $this->detailProductItem->getConfig();
 
-			$disabled = '';
-			$curdate = date( 'Y-m-d H:i:00' );
-
-			if( $this->detailProductItem->getType() !== 'event'
-				&& ( $startDate = $this->detailProductItem->getDateStart() ) !== null && $startDate > $curdate
-				|| ( $endDate = $this->detailProductItem->getDateEnd() ) !== null && $endDate < $curdate
-			) {
-				$disabled = 'disabled';
-			}
-		?>
-
-		<article class="product row <?= ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' ); ?>" data-id="<?= $this->detailProductItem->getId(); ?>">
+		<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>" data-id="<?= $this->detailProductItem->getId(); ?>">
 
 			<div class="col-sm-6">
 				<?= $this->partial(
@@ -292,11 +279,13 @@ if( isset( $this->detailProductItem ) )
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 									value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
 								/>
-								<input type="number" class="form-control input-lg" <?= $disabled ?>
+								<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
-									min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
+									min="<?= $this->detailProductItem->getConfigValue( 'quantity-step', 1 ) ?>" max="2147483647"
+									step="<?= $this->detailProductItem->getConfigValue( 'quantity-step', 1 ) ?>" maxlength="10"
+									required="required" value="1"
 								/>
-								<button class="btn btn-primary btn-lg" type="submit" value="" <?= $disabled ?> >
+								<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?> >
 									<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
 								</button>
 							</div>
