@@ -594,7 +594,7 @@ class Standard
 		{
 			$controller->updateProduct(
 				( isset( $values['position'] ) ? (int) $values['position'] : 0 ),
-				( isset( $values['quantity'] ) ? (int) $values['quantity'] : 1 )
+				( isset( $values['quantity'] ) ? (float) $values['quantity'] : 1 )
 			);
 		}
 
