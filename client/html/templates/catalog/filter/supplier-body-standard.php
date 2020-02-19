@@ -33,13 +33,13 @@ $params = $this->param();
 					--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
 
 						<input class="attr-item" type="checkbox"
-							id="attr-<?= $enc->attr( $id ); ?>"
+							id="sup-<?= $enc->attr( $id ); ?>"
 							name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ); ?>"
 							value="<?= $enc->attr( $id ); ?>"
 							<?= ( in_array( $id, $supIds ) ? 'checked="checked"' : '' ); ?>
 						/>
 
-						<label class="attr-name" for="attr-<?= $enc->attr( $id ); ?>"><!--
+						<label class="attr-name" for="sup-<?= $enc->attr( $id ); ?>"><!--
 							--><div class="media-list"><!--
 
 								<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
