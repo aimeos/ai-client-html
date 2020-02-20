@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertContains( '<fieldset class="attr-width">', $output );
 		$this->assertContains( '<fieldset class="attr-size">', $output );
 
-		$this->assertGreaterThan( 3, count( $tags ) );
+		$this->assertGreaterThanOrEqual( 3, count( $tags ) );
 		$this->assertEquals( null, $expire );
 	}
 
