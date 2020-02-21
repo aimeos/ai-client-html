@@ -33,7 +33,7 @@ $states = $this->get( 'addressStates', [] );
 
 		<div class="row">
 			<div class="col-md-6 billing">
-				<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Billing address' ) ) ?></h1>
+				<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Billing address' ) ) ?></h2>
 
 				<div class="panel panel-default">
 					<div class="panel-heading" role="button" data-toggle="collapse" href="#address-payment" aria-expanded="false" aria-controls="address-payment">
@@ -184,7 +184,7 @@ $states = $this->get( 'addressStates', [] );
 
 
 							<?php if( count( $states ) > 0 ) : ?>
-								<li class="form-item form-group row state>
+								<li class="form-item form-group row state">
 
 									<label class="col-md-5" for="address-payment-state">
 										<?= $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
@@ -380,7 +380,7 @@ $states = $this->get( 'addressStates', [] );
 
 			<div class="col-md-6 delivery">
 				<a class="act-new" href="#">&nbsp;</a>
-				<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Delivery address' ) ) ?></h1>
+				<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Delivery address' ) ) ?></h2>
 
 				<?php foreach( $this->profileCustomerItem->getAddressItems() as $pos => $addrItem ) : $addr = $addrItem->toArray( true ); ?>
 					<div class="panel panel-default">
@@ -542,7 +542,7 @@ $states = $this->get( 'addressStates', [] );
 
 
 								<?php if( count( $states ) > 0 ) : ?>
-									<li class="form-item form-group row state>
+									<li class="form-item form-group row state">
 
 										<label class="col-md-5" for="address-delivery-state-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
@@ -869,7 +869,7 @@ $states = $this->get( 'addressStates', [] );
 
 
 							<?php if( count( $states ) > 0 ) : ?>
-								<li class="form-item form-group row state>
+								<li class="form-item form-group row state">
 
 									<label class="col-md-5" for="address-delivery-state--1">
 										<?= $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
