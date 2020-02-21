@@ -337,10 +337,7 @@ class Standard
 			if( $orderItem->getPaymentStatus() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
 			{
 				\Aimeos\Controller\Frontend::create( $context, 'basket' )->clear();
-
-				foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
-					$session->set( $key, null );
-				}
+				$session->remove( $session->get( 'aimeos/basket/cache', [] ) );
 			}
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
