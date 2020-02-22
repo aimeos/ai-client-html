@@ -252,19 +252,6 @@ abstract class Base
 		$localClass = str_replace( ' ', '\\', ucwords( str_replace( '/', ' ', $path ) ) );
 		$config = $this->context->getConfig();
 
-		$decorators = $config->get( 'client/html/common/decorators/default', [] );
-		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );
-
-		foreach( $decorators as $key => $name )
-		{
-			if( in_array( $name, $excludes ) ) {
-				unset( $decorators[$key] );
-			}
-		}
-
-		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$client = $this->addDecorators( $client, $decorators, $classprefix );
-
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
 		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
 		$client = $this->addDecorators( $client, $decorators, $classprefix );
@@ -430,10 +417,10 @@ abstract class Base
 		}
 
 		$object = new $classname( $this->context );
+		$object = \Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Client\\Html\\Iface', $object );
+		$object = $this->addClientDecorators( $object, $path );
 
-		\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Client\\Html\\Iface', $object );
-
-		return $this->addClientDecorators( $object, $path );
+		return $object->setObject( $object );
 	}
 
 

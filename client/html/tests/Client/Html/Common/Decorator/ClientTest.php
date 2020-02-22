@@ -42,17 +42,6 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testDecorateSubClientCommon()
-	{
-		$config = $this->context->getConfig();
-		$config->set( 'client/html/common/decorators/default', array( 'Example' ) );
-
-		$object = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context )->getSubClient( 'tree' );
-
-		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface', $object );
-	}
-
-
 	public function testDecorateSubClientGlobal()
 	{
 		$config = $this->context->getConfig();
