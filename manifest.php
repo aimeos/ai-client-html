@@ -7,6 +7,7 @@ return array(
 		'ai-controller-frontend',
 	),
 	'include' => array(
+		'lib/custom/src',
 		'client/html/src',
 		'controller/jobs/src',
 		'controller/common/src',

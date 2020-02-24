@@ -7,23 +7,10 @@
  */
 
 /* Available data:
- * - productItem : Product item incl. referenced items
- * - params : Request parameters for this detail view
  * - mediaItems : Media items incl. referenced items
  */
 
 $enc = $this->encoder();
-
-$getVariantData = function( \Aimeos\MShop\Media\Item\Iface $mediaItem ) use ( $enc )
-{
-	$string = '';
-
-	foreach( $mediaItem->getRefItems( 'attribute', null, 'variant' ) as $id => $item ) {
-		$string .= ' data-variant-' . $item->getType() . '="' . $enc->attr( $id ) . '"';
-	}
-
-	return $string;
-};
 
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
@@ -31,23 +18,20 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
-$url = $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', [] ), [], $detailConfig ) );
-$mediaItems = $this->get( 'mediaItems', [] );
-
 
 ?>
 <div class="catalog-detail-image">
 
-	<?php if( ( $num = count( $mediaItems ) ) > 1 ) : $class = 'item selected'; ?>
+	<?php if( ( $num = count( $this->get( 'mediaItems', [] ) ) ) > 1 ) : $class = 'item selected'; ?>
 		<div class="image-thumbs thumbs-vertical" data-slick='{"slidesToShow": 4, "slidesToScroll": 4, "vertical": true, "verticalSwiping": true}'><!--
 			<?php if( $num > 4 ) : ?>
 				--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button><!--
 			<?php endif ?>
 			--><div class="thumbs"><!--
 
-				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
+				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 					--><a class="<?= $class; ?>" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>')"
-						href="<?= $url . '#image-' . $enc->attr( $id ); ?>"
+						href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', [] ), [], $detailConfig ) ) . '#image-' . $enc->attr( $id ); ?>"
 					></a><!--
 					<?php $class = 'item'; ?>
 				<?php endforeach; ?>
@@ -62,22 +46,8 @@ $mediaItems = $this->get( 'mediaItems', [] );
 	--><div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 		<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
-			<?php
-				$sources = [];
-				foreach( $mediaItem->getPreviews() as $type => $path ) {
-					$sources[$type] = $this->content( $path );
-				}
-			?>
 			<div id="image-<?= $enc->attr( $id ); ?>" class="media-item">
-				<img class="item"
-					src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-					srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-					itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
-					data-image="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-					data-sources="<?= $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) ?>"
-					alt="<?= $enc->html( $mediaItem->getName() ); ?>"
-					<?= $getVariantData( $mediaItem ); ?>
-				/>
+				<?= $this->image( $mediaItem ) ?>
 			</div>
 		<?php endforeach; ?>
 
