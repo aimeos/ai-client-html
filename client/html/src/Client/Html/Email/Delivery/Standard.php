@@ -576,6 +576,37 @@ class Standard
 			$view->emailIntro = $view->translate( 'client', 'Dear Sir or Madam' );
 		}
 
+
+		$key = 'stat:' . $view->extOrderItem->getDeliveryStatus();
+		$status = $view->translate( 'mshop/code', $key );
+
+		switch( $view->extOrderItem->getDeliveryStatus() )
+		{
+			case 3:
+				/// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+				$msg = $view->translate( 'client', 'Your order %1$s from %2$s has been dispatched.' );
+				break;
+			case 6:
+				/// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+				$msg = $view->translate( 'client', 'The parcel for your order %1$s from %2$s could not be delivered.' );
+				break;
+			case 7:
+				/// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+				$msg = $view->translate( 'client', 'We received the returned parcel for your order %1$s from %2$s.' );
+				break;
+			default:
+				/// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
+				$msg = $view->translate( 'client', 'The delivery status of your order %1$s from %2$s has been changed to "%3$s".' );
+		}
+
+		$date = date_create( $view->extOrderItem->getTimeCreated() )->format( $view->translate( 'client', 'Y-m-d' ) );
+		$view->message = sprintf( $msg, $view->extOrderItem->getId(), $date, $status );
+
+		$pricefmt = $view->translate( 'client/code', 'price:default' );
+		/// Price format with price value (%1$s) and currency (%2$s)
+		$view->priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $view->translate( 'client', '%1$s %2$s' );
+
+
 		return parent::addData( $view, $tags, $expire );
 	}
 }

@@ -15,37 +15,6 @@
  */
 
 
-$order = $this->extOrderItem;
-
-$msg = $msg2 = '';
-$key = 'pay:' . $order->getPaymentStatus();
-$status = $this->translate( 'mshop/code', $key );
-$format = $this->translate( 'client', 'Y-m-d' );
-
-switch( $order->getPaymentStatus() )
-{
-	case 3:
-		/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
-		$msg = $this->translate( 'client', 'The payment for your order %1$s from %2$s has been refunded.' );
-		break;
-	case 4:
-		/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
-		$msg = $this->translate( 'client', 'Thank you for your order %1$s from %2$s.' );
-		$msg2 = $this->translate( 'client', 'The order is pending until we receive the final payment. If you\'ve chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference.' );
-		break;
-	case 6:
-		/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
-		$msg = $this->translate( 'client', 'Thank you for your order %1$s from %2$s.' );
-		$msg2 = $this->translate( 'client', 'We have received your payment, and will take care of your order immediately.' );
-		break;
-	default:
-		/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
-		$msg = $this->translate( 'client', 'Thank you for your order %1$s from %2$s.' );
-}
-
-$message = sprintf( $msg, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
-$message .= "\n" . sprintf( $msg2, $order->getId(), date_create( $order->getTimeCreated() )->format( $format ), $status );
-
 /** client/html/email/common/summary/text
  * Template partial used for redering the order summary details for text e-mails
  *
@@ -62,7 +31,7 @@ $message .= "\n" . sprintf( $msg2, $order->getId(), date_create( $order->getTime
 <?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ); ?>
 
 
-<?= wordwrap( strip_tags( $message ) ); ?>
+<?= wordwrap( strip_tags( $this->get( 'message' ) ) ); ?>
 
 
 <?= $this->partial(

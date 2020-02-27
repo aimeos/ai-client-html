@@ -6,8 +6,7 @@
  */
 
 $enc = $this->encoder();
-$voucher = $this->extVoucherCode;
-$product = $this->extOrderProductItem;
+
 
 $pricefmt = $this->translate( 'client/code', 'price:default' );
 /// Price format with price value (%1$s) and currency (%2$s)
@@ -19,9 +18,9 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 <?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ); ?>
 
 
-<?= wordwrap( strip_tags( $this->translate( 'client', 'Your voucher: ' ) . $voucher ) ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'Your voucher: ' ) . $this->extVoucherCode ) ); ?>
 
-<?php $price = $product->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
+<?php $price = $this->extOrderProductItem->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
 <?php $value = sprintf( $priceFormat, $this->number( $price->getValue() + $price->getRebate(), $price->getPrecision() ), $priceCurrency ); ?>
 <?= wordwrap( strip_tags( sprintf( $this->translate( 'client', 'The value of your voucher is %1$s' ), $value ) ) ); ?>
 

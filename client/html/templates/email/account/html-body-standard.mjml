@@ -78,8 +78,6 @@ $action = $this->config( 'client/html/account/index/url/action', 'index' );
  */
 $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' => 1] );
 
-$url = $this->url( $target, $controller, $action, ['locale' => $this->extAddressItem->getLanguageId()], [], $config );
-
 
 ?>
 <?php $this->block()->start( 'email/account/html' ); ?>
@@ -133,7 +131,8 @@ $url = $this->url( $target, $controller, $action, ['locale' => $this->extAddress
 			</mj-section>
 			<mj-section css-class="account-login">
 				<mj-column>
-					<mj-button css-class="btn btn-primary" background-color="inherit" color="inherit" href="<?= $enc->attr( $url ) ?>">
+					<mj-button css-class="btn btn-primary" background-color="inherit" color="inherit"
+						href="<?= $enc->attr( $this->url( $target, $controller, $action, ['locale' => $this->extAddressItem->getLanguageId()], [], $config ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Login' ), $enc::TRUST ); ?>
 					</mj-button>
 				</mj-column>

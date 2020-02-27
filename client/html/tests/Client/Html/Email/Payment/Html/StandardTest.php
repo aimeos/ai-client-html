@@ -41,6 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
 		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
+		$view->message = 'Thank you';
 		$view->extOrderItem = self::$orderItem;
 		$view->extOrderBaseItem = self::$orderBaseItem;
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
@@ -72,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<!doctype html>', $output );
 		$this->assertStringContainsString( 'cid:123-unique-id', $output );
-		$this->assertStringContainsString( 'Thank you for your order', $output );
+		$this->assertStringContainsString( 'Thank you', $output );
 		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
 		$this->assertStringContainsString( 'If you have any questions', $output );
 		$this->assertStringContainsString( 'All orders are subject', $output );

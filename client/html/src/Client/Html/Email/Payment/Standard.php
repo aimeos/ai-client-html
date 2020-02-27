@@ -510,6 +510,37 @@ class Standard
 			$view->emailIntro = $view->translate( 'client', 'Dear Sir or Madam' );
 		}
 
+
+		$key = 'pay:' . $view->extOrderItem->getPaymentStatus();
+		$status = $view->translate( 'mshop/code', $key );
+
+		/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+		$msg = $view->translate( 'client', 'Thank you for your order %1$s from %2$s.' );
+
+		switch( $view->extOrderItem->getPaymentStatus() )
+		{
+			case 3:
+				/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+				$msg = $view->translate( 'client', 'The payment for your order %1$s from %2$s has been refunded.' );
+				break;
+			case 4:
+				/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+				$msg .= "\n" . $view->translate( 'client', 'The order is pending until we receive the final payment. If you\'ve chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference.' );
+				break;
+			case 6:
+				/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
+				$msg .= "\n" . $view->translate( 'client', 'We have received your payment, and will take care of your order immediately.' );
+				break;
+		}
+
+		$date = date_create( $view->extOrderItem->getTimeCreated() )->format( $view->translate( 'client', 'Y-m-d' ) );
+		$view->message = sprintf( $msg, $view->extOrderItem->getId(), $date, $status );
+
+		$pricefmt = $view->translate( 'client/code', 'price:default' );
+		/// Price format with price value (%1$s) and currency (%2$s)
+		$view->priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $view->translate( 'client', '%1$s %2$s' );
+
+
 		return parent::addData( $view, $tags, $expire );
 	}
 }
