@@ -7,7 +7,6 @@
  */
 
 $enc = $this->encoder();
-$orderItems = $this->get( 'listsOrderItems', [] );
 
 
 /** client/html/account/history/url/target
@@ -90,76 +89,74 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 ?>
 <?php $this->block()->start( 'account/history/list' ); ?>
-<?php if( !empty( $orderItems ) ) : ?>
+<?php if( !$this->get( 'listsOrderItems', map() )->isEmpty() ) : ?>
 	<div class="account-history-list">
 		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Order history' ), $enc::TRUST ); ?></h1>
 
-		<?php if( empty( $orderItems ) === false ) : ?>
-			<ul class="history-list">
+		<ul class="history-list">
 
-				<?php foreach( $orderItems as $id => $orderItem ) : ?>
-					<li class="history-item row">
+			<?php foreach( $this->get( 'listsOrderItems', [] ) as $id => $orderItem ) : ?>
+				<li class="history-item row">
 
-						<?php $params = array( 'his_action' => 'order', 'his_id' => $id ); ?>
-						<a  class="history-data col-sm-12" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+					<?php $params = array( 'his_action' => 'order', 'his_id' => $id ); ?>
+					<a  class="history-data col-sm-12" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
 
-							<div class="row">
-								<div class="attr-item order-basic col-sm-6 row">
-									<span class="name col-sm-6">
-										<?= $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ); ?>
-									</span>
-									<span class="value col-sm-6">
-										<?= $enc->html( sprintf(
-											$this->translate( 'client', '%1$s at %2$s' ),
-												$id,
-												date_create( $orderItem->getTimeCreated() )->format( $dateformat )
-											), $enc::TRUST ); ?>
-									</span>
-								</div>
-
-								<div class="attr-item order-channel col-sm-6 row">
-									<span class="name col-sm-6">
-										<?= $enc->html( $this->translate( 'client', 'Order channel' ), $enc::TRUST ); ?>
-									</span>
-									<span class="value col-sm-6">
-										<?php $code = 'order:' . $orderItem->getType(); ?>
-										<?= $enc->html( $this->translate( 'mshop/code', $code ), $enc::TRUST ); ?>
-									</span>
-								</div>
+						<div class="row">
+							<div class="attr-item order-basic col-sm-6 row">
+								<span class="name col-sm-6">
+									<?= $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ); ?>
+								</span>
+								<span class="value col-sm-6">
+									<?= $enc->html( sprintf(
+										$this->translate( 'client', '%1$s at %2$s' ),
+											$id,
+											date_create( $orderItem->getTimeCreated() )->format( $dateformat )
+										), $enc::TRUST ); ?>
+								</span>
 							</div>
 
-							<div class="row">
-								<div class="attr-item order-payment col-sm-6 row">
-									<span class="name col-sm-6 ">
-										<?= $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?>
-									</span>
-									<span class="value col-sm-6 ">
-										<?php if( ( $date = $orderItem->getDatePayment() ) !== null ) : ?>
-											<?php $code = 'pay:' . $orderItem->getPaymentStatus(); $paystatus = $this->translate( 'mshop/code', $code ); ?>
-											<?= $enc->html( sprintf( $attrformat, $paystatus, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
-										<?php endif; ?>
-									</span>
-								</div>
-
-								<div class="attr-item order-delivery col-sm-6 row">
-									<span class="name col-sm-6">
-										<?= $enc->html( $this->translate( 'client', 'Delivery' ), $enc::TRUST ); ?>
-									</span>
-									<span class="value col-sm-6">
-										<?php if( ( $date = $orderItem->getDateDelivery() ) !== null ) : ?>
-											<?php $code = 'stat:' . $orderItem->getDeliveryStatus(); $status = $this->translate( 'mshop/code', $code ); ?>
-											<?= $enc->html( sprintf( $attrformat, $status, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
-										<?php endif; ?>
-									</span>
-								</div>
+							<div class="attr-item order-channel col-sm-6 row">
+								<span class="name col-sm-6">
+									<?= $enc->html( $this->translate( 'client', 'Order channel' ), $enc::TRUST ); ?>
+								</span>
+								<span class="value col-sm-6">
+									<?php $code = 'order:' . $orderItem->getType(); ?>
+									<?= $enc->html( $this->translate( 'mshop/code', $code ), $enc::TRUST ); ?>
+								</span>
 							</div>
-						</a>
+						</div>
 
-					</li>
-				<?php endforeach; ?>
+						<div class="row">
+							<div class="attr-item order-payment col-sm-6 row">
+								<span class="name col-sm-6 ">
+									<?= $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?>
+								</span>
+								<span class="value col-sm-6 ">
+									<?php if( ( $date = $orderItem->getDatePayment() ) !== null ) : ?>
+										<?php $code = 'pay:' . $orderItem->getPaymentStatus(); $paystatus = $this->translate( 'mshop/code', $code ); ?>
+										<?= $enc->html( sprintf( $attrformat, $paystatus, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
+									<?php endif; ?>
+								</span>
+							</div>
 
-			</ul>
-		<?php endif; ?>
+							<div class="attr-item order-delivery col-sm-6 row">
+								<span class="name col-sm-6">
+									<?= $enc->html( $this->translate( 'client', 'Delivery' ), $enc::TRUST ); ?>
+								</span>
+								<span class="value col-sm-6">
+									<?php if( ( $date = $orderItem->getDateDelivery() ) !== null ) : ?>
+										<?php $code = 'stat:' . $orderItem->getDeliveryStatus(); $status = $this->translate( 'mshop/code', $code ); ?>
+										<?= $enc->html( sprintf( $attrformat, $status, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
+									<?php endif; ?>
+								</span>
+							</div>
+						</div>
+					</a>
+
+				</li>
+			<?php endforeach; ?>
+
+		</ul>
 
 	</div>
 <?php endif; ?>

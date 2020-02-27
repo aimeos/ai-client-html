@@ -6,8 +6,6 @@
  */
 
 $enc = $this->encoder();
-$items = $this->get( 'listsItems', [] );
-$intervals = $this->get( 'listsIntervalItems', [] );
 
 
 /** client/html/account/subscription/url/target
@@ -88,85 +86,83 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 ?>
 <?php $this->block()->start( 'account/subscription/list' ); ?>
-<?php if( !empty( $items ) ) : ?>
+<?php if( !$this->get( 'listsItems', map() )->isEmpty() ) : ?>
 	<div class="account-subscription-list">
 		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ); ?></h1>
 
-		<?php if( empty( $items ) === false ) : ?>
-			<ul class="subscription-list">
+		<ul class="subscription-list">
 
-				<?php foreach( $items as $id => $item ) : ?>
-					<li class="subscription-item row">
+			<?php foreach( $this->get( 'listsItems', [] ) as $id => $item ) : ?>
+				<li class="subscription-item row">
 
-						<?php $params = array( 'sub_action' => 'detail', 'sub_id' => $id ); ?>
-						<a class="subscription-data col-sm-10" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+					<?php $params = array( 'sub_action' => 'detail', 'sub_id' => $id ); ?>
+					<a class="subscription-data col-sm-10" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
 
-							<div class="row">
-								<div class="attr-item subscription-basic col-sm-6 row">
-									<span class="name col-sm-6">
-										<?= $enc->html( $this->translate( 'client', 'Subscription ID' ), $enc::TRUST ); ?>
-									</span>
-									<span class="value col-sm-6">
-										<?= $enc->html( sprintf(
-												$this->translate( 'client', '%1$s at %2$s' ),
-												$id,
-												date_create( $item->getTimeCreated() )->format( $dateformat )
-											), $enc::TRUST ); ?>
-									</span>
-								</div>
-
-								<div class="attr-item subscription-interval col-sm-6 row">
-									<span class="name col-sm-6">
-										<?= $enc->html( $this->translate( 'client', 'Subscription interval' ), $enc::TRUST ); ?>
-									</span>
-									<span class="value col-sm-6">
-										<?php if( isset( $intervals[$item->getInterval()] ) ) : ?>
-											<?= $enc->html( $intervals[$item->getInterval()]->getName(), $enc::TRUST ); ?>
-										<?php else : ?>
-											<?= $enc->html( $item->getInterval(), $enc::TRUST ); ?>
-										<?php endif; ?>
-									</span>
-								</div>
+						<div class="row">
+							<div class="attr-item subscription-basic col-sm-6 row">
+								<span class="name col-sm-6">
+									<?= $enc->html( $this->translate( 'client', 'Subscription ID' ), $enc::TRUST ); ?>
+								</span>
+								<span class="value col-sm-6">
+									<?= $enc->html( sprintf(
+											$this->translate( 'client', '%1$s at %2$s' ),
+											$id,
+											date_create( $item->getTimeCreated() )->format( $dateformat )
+										), $enc::TRUST ); ?>
+								</span>
 							</div>
 
-							<div class="row">
-								<div class="attr-item subscription-datenext col-sm-6 row">
-									<span class="name col-sm-6">
-										<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ); ?>
-									</span>
-									<span class="value col-sm-6">
-										<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
-											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
-										<?php endif; ?>
-									</span>
-								</div>
-
-								<div class="attr-item subscription-dateend col-sm-6 row">
-									<span class="name col-sm-6">
-										<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ); ?>
-									</span>
-									<span class="value col-sm-6">
-										<?php if( ( $date = $item->getDateEnd() ) != null ) : ?>
-											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
-										<?php endif; ?>
-									</span>
-								</div>
+							<div class="attr-item subscription-interval col-sm-6 row">
+								<span class="name col-sm-6">
+									<?= $enc->html( $this->translate( 'client', 'Subscription interval' ), $enc::TRUST ); ?>
+								</span>
+								<span class="value col-sm-6">
+									<?php if( $interval = $this->get( 'listsIntervalItems', map() )->get( $item->getInterval() ) ) : ?>
+										<?= $enc->html( $interval->getName(), $enc::TRUST ); ?>
+									<?php else : ?>
+										<?= $enc->html( $item->getInterval(), $enc::TRUST ); ?>
+									<?php endif; ?>
+								</span>
 							</div>
-						</a>
-
-						<div class="subscription-cancel col-sm-2">
-							<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $id ); ?>
-							<?php if( $item->getDateEnd() == null ) : ?>
-							<a class="minibutton delete"
-								href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>"></a>
-							<?php endif; ?>
 						</div>
 
-					</li>
-				<?php endforeach; ?>
+						<div class="row">
+							<div class="attr-item subscription-datenext col-sm-6 row">
+								<span class="name col-sm-6">
+									<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ); ?>
+								</span>
+								<span class="value col-sm-6">
+									<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
+										<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
+									<?php endif; ?>
+								</span>
+							</div>
 
-			</ul>
-		<?php endif; ?>
+							<div class="attr-item subscription-dateend col-sm-6 row">
+								<span class="name col-sm-6">
+									<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ); ?>
+								</span>
+								<span class="value col-sm-6">
+									<?php if( ( $date = $item->getDateEnd() ) != null ) : ?>
+										<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
+									<?php endif; ?>
+								</span>
+							</div>
+						</div>
+					</a>
+
+					<div class="subscription-cancel col-sm-2">
+						<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $id ); ?>
+						<?php if( $item->getDateEnd() == null ) : ?>
+						<a class="minibutton delete"
+							href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>"></a>
+						<?php endif; ?>
+					</div>
+
+				</li>
+			<?php endforeach; ?>
+
+		</ul>
 
 	</div>
 <?php endif; ?>

@@ -16,10 +16,6 @@ $accountController = $this->config( 'client/html/account/subscription/url/contro
 $accountAction = $this->config( 'client/html/account/subscription/url/action', 'profile' );
 $accountConfig = $this->config( 'client/html/account/subscription/url/config', [] );
 
-$languages = $this->get( 'addressLanguages', [] );
-$countries = $this->get( 'addressCountries', [] );
-$states = $this->get( 'addressStates', [] );
-
 
 ?>
 <?php $this->block()->start( 'account/profile/address' ); ?>
@@ -183,7 +179,7 @@ $states = $this->get( 'addressStates', [] );
 							</li>
 
 
-							<?php if( count( $states ) > 0 ) : ?>
+							<?php if( !empty( $this->get( 'addressStates', [] ) ) ) : ?>
 								<li class="form-item form-group row state">
 
 									<label class="col-md-5" for="address-payment-state">
@@ -194,7 +190,7 @@ $states = $this->get( 'addressStates', [] );
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.state' ) ) ); ?>">
 
 											<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ); ?></option>
-											<?php foreach( $states as $regioncode => $stateList ) : ?>
+											<?php foreach( $this->get( 'addressStates', [] ) as $regioncode => $stateList ) : ?>
 												<optgroup class="<?= $regioncode; ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ); ?>">
 													<?php foreach( $stateList as $stateCode => $stateName ) : ?>
 														<option value="<?= $enc->attr( $stateCode ); ?>" <?= $selectfcn( $addr, 'customer.state', $stateCode ); ?> >
@@ -228,7 +224,7 @@ $states = $this->get( 'addressStates', [] );
 							</li>
 
 
-							<?php if( count( $countries ) > 0 ) : ?>
+							<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
 								<li class="form-item form-group row countryid">
 
 									<label class="col-md-5" for="address-payment-countryid">
@@ -238,10 +234,10 @@ $states = $this->get( 'addressStates', [] );
 										<select class="form-control" id="address-payment-countryid"
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.countryid' ) ) ); ?>">
 
-											<?php if( count( $countries ) > 1 ) : ?>
+											<?php if( count( $this->get( 'addressCountries', [] ) ) > 1 ) : ?>
 												<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ); ?></option>
 											<?php endif; ?>
-											<?php foreach( $countries as $countryId ) : ?>
+											<?php foreach( $this->get( 'addressCountries', [] ) as $countryId ) : ?>
 												<option value="<?= $enc->attr( $countryId ); ?>" <?= $selectfcn( $addr, 'customer.countryid', $countryId ); ?> >
 													<?= $enc->html( $this->translate( 'country', $countryId ) ); ?>
 												</option>
@@ -262,7 +258,7 @@ $states = $this->get( 'addressStates', [] );
 									<select class="form-control" id="address-payment-languageid"
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.languageid' ) ) ); ?>">
 
-										<?php foreach( $languages as $languageId ) : ?>
+										<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
 											<option value="<?= $enc->attr( $languageId ); ?>" <?= $selectfcn( $addr, 'customer.languageid', $languageId ); ?> >
 												<?= $enc->html( $this->translate( 'language', $languageId ) ); ?>
 											</option>
@@ -541,7 +537,7 @@ $states = $this->get( 'addressStates', [] );
 								</li>
 
 
-								<?php if( count( $states ) > 0 ) : ?>
+								<?php if( !empty( $this->get( 'addressStates', [] ) ) ) : ?>
 									<li class="form-item form-group row state">
 
 										<label class="col-md-5" for="address-delivery-state-<?= $pos ?>">
@@ -552,7 +548,7 @@ $states = $this->get( 'addressStates', [] );
 												name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.state', $pos ) ) ); ?>">
 
 												<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ); ?></option>
-												<?php foreach( $states as $regioncode => $stateList ) : ?>
+												<?php foreach( $this->get( 'addressStates', [] ) as $regioncode => $stateList ) : ?>
 													<optgroup class="<?= $regioncode; ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ); ?>">
 														<?php foreach( $stateList as $stateCode => $stateName ) : ?>
 															<option value="<?= $enc->attr( $stateCode ); ?>" <?= $selectfcn( $addr, 'customer.address.state', $stateCode ); ?> >
@@ -586,7 +582,7 @@ $states = $this->get( 'addressStates', [] );
 								</li>
 
 
-								<?php if( count( $countries ) > 0 ) : ?>
+								<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
 									<li class="form-item form-group row countryid">
 
 										<label class="col-md-5" for="address-delivery-countryid-<?= $pos ?>">
@@ -596,10 +592,10 @@ $states = $this->get( 'addressStates', [] );
 											<select class="form-control" id="address-delivery-countryid-<?= $pos ?>"
 												name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.countryid', $pos ) ) ); ?>">
 
-												<?php if( count( $countries ) > 1 ) : ?>
+												<?php if( count( $this->get( 'addressCountries', [] ) ) > 1 ) : ?>
 													<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ); ?></option>
 												<?php endif; ?>
-												<?php foreach( $countries as $countryId ) : ?>
+												<?php foreach( $this->get( 'addressCountries', [] ) as $countryId ) : ?>
 													<option value="<?= $enc->attr( $countryId ); ?>" <?= $selectfcn( $addr, 'customer.address.countryid', $countryId ); ?> >
 														<?= $enc->html( $this->translate( 'country', $countryId ) ); ?>
 													</option>
@@ -620,7 +616,7 @@ $states = $this->get( 'addressStates', [] );
 										<select class="form-control" id="address-delivery-languageid-<?= $pos ?>"
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.languageid', $pos ) ) ); ?>">
 
-											<?php foreach( $languages as $languageId ) : ?>
+											<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
 												<option value="<?= $enc->attr( $languageId ); ?>" <?= $selectfcn( $addr, 'customer.address.languageid', $languageId ); ?> >
 													<?= $enc->html( $this->translate( 'language', $languageId ) ); ?>
 												</option>
@@ -868,7 +864,7 @@ $states = $this->get( 'addressStates', [] );
 							</li>
 
 
-							<?php if( count( $states ) > 0 ) : ?>
+							<?php if( !empty( $this->get( 'addressStates', [] ) ) ) : ?>
 								<li class="form-item form-group row state">
 
 									<label class="col-md-5" for="address-delivery-state--1">
@@ -879,7 +875,7 @@ $states = $this->get( 'addressStates', [] );
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.state', -1 ) ) ); ?>">
 
 											<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ); ?></option>
-											<?php foreach( $states as $regioncode => $stateList ) : ?>
+											<?php foreach( $this->get( 'addressStates', [] ) as $regioncode => $stateList ) : ?>
 												<optgroup class="<?= $regioncode; ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ); ?>">
 													<?php foreach( $stateList as $stateCode => $stateName ) : ?>
 														<option value="<?= $enc->attr( $stateCode ); ?>" <?= $selectfcn( $addr, 'customer.address.state', $stateCode ); ?> >
@@ -912,7 +908,7 @@ $states = $this->get( 'addressStates', [] );
 							</li>
 
 
-							<?php if( count( $countries ) > 0 ) : ?>
+							<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
 								<li class="form-item form-group row countryid">
 
 									<label class="col-md-5" for="address-delivery-countryid--1">
@@ -922,10 +918,10 @@ $states = $this->get( 'addressStates', [] );
 										<select class="form-control" id="address-delivery-countryid--1" disabled="disabled"
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.countryid', -1 ) ) ); ?>">
 
-											<?php if( count( $countries ) > 1 ) : ?>
+											<?php if( count( $this->get( 'addressCountries', [] ) ) > 1 ) : ?>
 												<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ); ?></option>
 											<?php endif; ?>
-											<?php foreach( $countries as $countryId ) : ?>
+											<?php foreach( $this->get( 'addressCountries', [] ) as $countryId ) : ?>
 												<option value="<?= $enc->attr( $countryId ); ?>" <?= $selectfcn( $addr, 'customer.address.countryid', $countryId ); ?> >
 													<?= $enc->html( $this->translate( 'country', $countryId ) ); ?>
 												</option>
@@ -946,7 +942,7 @@ $states = $this->get( 'addressStates', [] );
 									<select class="form-control" id="address-delivery-languageid--1" disabled="disabled"
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.languageid', -1 ) ) ); ?>">
 
-										<?php foreach( $languages as $languageId ) : ?>
+										<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
 											<option value="<?= $enc->attr( $languageId ); ?>" <?= $selectfcn( $addr, 'customer.address.languageid', $languageId ); ?> >
 												<?= $enc->html( $this->translate( 'language', $languageId ) ); ?>
 											</option>

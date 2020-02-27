@@ -12,8 +12,6 @@ $accountController = $this->config( 'client/html/account/subscription/url/contro
 $accountAction = $this->config( 'client/html/account/subscription/url/action', 'subscription' );
 $accountConfig = $this->config( 'client/html/account/subscription/url/config', [] );
 
-$addresses = $this->summaryBasket->getAddresses();
-
 
 ?>
 <?php $this->block()->start( 'account/subscription/detail' ); ?>
@@ -34,7 +32,7 @@ $addresses = $this->summaryBasket->getAddresses();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['payment'] ) ) : ?>
+				<?php if( !empty( $this->summaryBasket->getAddress( 'payment' ) ) ) : ?>
 					<?= $this->partial(
 						/** client/html/account/subscription/summary/address
 						 * Location of the address partial template for the account subscription component
@@ -51,7 +49,7 @@ $addresses = $this->summaryBasket->getAddresses();
 						 * @see client/html/account/subscription/summary/service
 						 */
 						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
-						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
+						array( 'addresses' => $this->summaryBasket->getAddress( 'payment' ), 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -63,10 +61,10 @@ $addresses = $this->summaryBasket->getAddresses();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['delivery'] ) ) : ?>
+				<?php if( !empty( $this->summaryBasket->getAddress( 'delivery' ) ) ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
-						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
+						array( 'addresses' => $this->summaryBasket->getAddress( 'delivery' ), 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>

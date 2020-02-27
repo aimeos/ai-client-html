@@ -7,8 +7,6 @@
  */
 
 $enc = $this->encoder();
-$listItems = $this->get( 'watchItems', [] );
-$watchParams = $this->get( 'watchParams', [] );
 
 
 /** client/html/account/watch/url/target
@@ -106,16 +104,15 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php endif; ?>
 
 
-	<?php if( !empty( $listItems ) ) : ?>
+	<?php if( !$this->get( 'watchItems', map() )->isEmpty() ) : ?>
 		<h2 class="header"><?= $this->translate( 'client', 'Watched products' ); ?></h2>
 
 		<ul class="watch-items">
-			<?php foreach( $listItems->reverse() as $listItem ) : ?>
+			<?php foreach( $this->get( 'watchItems', map() )->reverse() as $listItem ) : ?>
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) :  ?>
-					<?php $prices = $productItem->getRefItems( 'price', null, 'default' ); ?>
 
 					<li class="watch-item">
-						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $watchParams; ?>
+						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $this->get( 'watchParams', [] ); ?>
 						<a class="modify" href="<?= $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ); ?>">
 							<?= $this->translate( 'client', 'X' ); ?>
 						</a>
@@ -135,12 +132,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							<div class="price-list">
 								<?= $this->partial(
 									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-									array( 'prices' => $prices )
+									array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 								); ?>
 							</div>
 						</a>
 
-						<?php $url = $this->url( $watchTarget, $watchController, $watchAction, $watchParams, [], $watchConfig ); ?>
+						<?php $url = $this->url( $watchTarget, $watchController, $watchAction, $this->get( 'watchParams', [] ), [], $watchConfig ); ?>
 						<form class="watch-details" method="POST" action="<?= $enc->attr( $url ); ?>">
 							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_action' ) ) ); ?>" value="edit" />
 							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ); ?>" value="<?= $enc->attr( $listItem->getRefId() ); ?>" />
@@ -179,7 +176,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 									/>
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( array( 'wat_pricevalue' ) ) ); ?>"
-										value="<?= $enc->attr( ( $priceItem = $prices->first() ) !== null ? $priceItem->getValue() : '0.00' ); ?>"
+										value="<?= $enc->attr( ( $priceItem = $productItem->getRefItems( 'price', null, 'default' )->first() ) !== null ? $priceItem->getValue() : '0.00' ); ?>"
 									/>
 								</li>
 
@@ -214,12 +211,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				</div>
 				<div class="browser">
 
-					<?php $params = array( 'wat_page' => $this->watchPageFirst ) + $watchParams; ?>
+					<?php $params = array( 'wat_page' => $this->watchPageFirst ) + $this->get( 'watchParams', [] ); ?>
 					<a class="first" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ); ?>
 					</a>
 
-					<?php $params = array( 'wat_page' => $this->watchPagePrev ) + $watchParams; ?>
+					<?php $params = array( 'wat_page' => $this->watchPagePrev ) + $this->get( 'watchParams', [] ); ?>
 					<a class="prev" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ); ?>" rel="prev">
 						<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ); ?>
 					</a>
@@ -232,12 +229,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						) ); ?>
 					</span>
 
-					<?php $params = array( 'wat_page' => $this->watchPageNext ) + $watchParams; ?>
+					<?php $params = array( 'wat_page' => $this->watchPageNext ) + $this->get( 'watchParams', [] ); ?>
 					<a class="next" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ); ?>" rel="next">
 						<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ); ?>
 					</a>
 
-					<?php $params = array( 'wat_page' => $this->watchPageLast ) + $watchParams; ?>
+					<?php $params = array( 'wat_page' => $this->watchPageLast ) + $this->get( 'watchParams', [] ); ?>
 					<a class="last" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ); ?>
 					</a>

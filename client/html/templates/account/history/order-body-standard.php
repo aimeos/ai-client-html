@@ -19,11 +19,6 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'standa
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
-$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
-
-$addresses = $this->summaryBasket->getAddresses();
-$services = $this->summaryBasket->getServices();
-
 
 ?>
 <?php $this->block()->start( 'account/history/order' ); ?>
@@ -44,7 +39,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['payment'] ) ) : ?>
+				<?php if( !empty( $this->summaryBasket->getAddress( 'payment' ) ) ) : ?>
 					<?= $this->partial(
 						/** client/html/account/history/summary/address
 						 * Location of the address partial template for the account history component
@@ -61,7 +56,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/account/history/summary/service
 						 */
 						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-standard' ),
-						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
+						array( 'addresses' => $this->summaryBasket->getAddress( 'payment' ), 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -73,10 +68,10 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['delivery'] ) ) : ?>
+				<?php if( !empty( $this->summaryBasket->getAddress( 'delivery' ) ) ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-standard' ),
-						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
+						array( 'addresses' => $this->summaryBasket->getAddress( 'delivery' ), 'type' => 'delivery' )
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
@@ -93,7 +88,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $services['delivery'] ) ) : ?>
+				<?php if( !empty( $this->summaryBasket->getService( 'delivery' ) ) ) : ?>
 					<?= $this->partial(
 						/** client/html/account/history/summary/service
 						 * Location of the service partial template for the account history component
@@ -110,7 +105,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/account/history/summary/detail
 						 */
 						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-standard' ),
-						array( 'service' => $services['delivery'], 'type' => 'delivery' )
+						array( 'service' => $this->summaryBasket->getService( 'delivery' ), 'type' => 'delivery' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -122,10 +117,10 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $services['payment'] ) ) : ?>
+				<?php if( !empty( $this->summaryBasket->getService( 'payment' ) ) ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-standard' ),
-						array( 'service' => $services['payment'], 'type' => 'payment' )
+						array( 'service' => $this->summaryBasket->getService( 'payment' ), 'type' => 'payment' )
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -196,7 +191,7 @@ $services = $this->summaryBasket->getServices();
 	</div>
 
 
-	<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ) ?>">
+	<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
 		<?= $this->csrf()->formfield(); ?>
 
 		<?php if( $basketSite ) : ?>
