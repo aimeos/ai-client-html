@@ -36,13 +36,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = $this->object->getView();
 		$view->selectCurrencyId = 'EUR';
 		$view->selectLanguageId = 'de';
-		$view->selectMap = array(
+		$view->selectMap = map( [
 			'de' => array(
 				'EUR' => array( 'locale' => 'de', 'currency' => 'EUR' ),
 				'CHF' => array( 'locale' => 'de', 'currency' => 'CHF' ),
 			),
 			'en' => array( 'USD' => array( 'locale' => 'en', 'currency' => 'USD' ) ),
-		);
+		] );
 
 		$request = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
 		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $request, '127.0.0.1', 'test' );

@@ -365,10 +365,8 @@ class Standard
 			$map[$langId][$curId] = [$langname => $langId, $curname => $curId];
 		}
 
-		$params = $view->param();
-
-		$view->selectMap = $map;
-		$view->selectParams = $params;
+		$view->selectMap = map( $map );
+		$view->selectParams = $view->param();
 		$view->selectLanguageId = $locale->getLanguageId();
 		$view->selectCurrencyId = $locale->getCurrencyId();
 
