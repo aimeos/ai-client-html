@@ -101,8 +101,6 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
  */
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
-$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
-
 
 $jsonTarget = $this->config( 'client/jsonapi/url/target' );
 $jsonController = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
@@ -116,7 +114,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 
 ?>
-<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $basketParams, [], $jsonConfig ) ); ?>">
+<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $jsonConfig ) ); ?>">
 
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
@@ -140,7 +138,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
 
-		<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
+		<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
 			<div class="basket-mini-main">
 				<span class="quantity">
 					<?= $enc->html( $quantity ); ?>

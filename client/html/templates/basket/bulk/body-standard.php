@@ -13,19 +13,16 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index'
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
-$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
-
 $jsonTarget = $this->config( 'client/jsonapi/url/target' );
 $jsonController = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
 $jsonAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
-
 $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 
 ?>
-<section class="aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $basketParams, [], $jsonConfig ) ); ?>">
+<section class="aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $jsonConfig ) ); ?>">
 
 	<?php if( isset( $this->bulkErrorList ) ) : ?>
 		<ul class="error-list">
@@ -37,7 +34,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 	<h1><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ); ?></h1>
 
-	<form class="container" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
+	<form class="container" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
 		<!-- basket.bulk.csrf -->
 		<?= $this->csrf()->formfield(); ?>
 		<!-- basket.bulk.csrf -->
