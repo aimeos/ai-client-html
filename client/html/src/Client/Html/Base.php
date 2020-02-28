@@ -436,6 +436,7 @@ abstract class Base
 		return ( $first !== null ? ( $second !== null ? min( $first, $second ) : $first ) : $second );
 	}
 
+
 	/**
 	 * Returns the parameters used by the html client.
 	 *
@@ -443,7 +444,7 @@ abstract class Base
 	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) ) : array
+	protected function getClientParams( array $params, array $prefixes = ['f', 'l', 'd', 'a'] ) : array
 	{
 		$list = [];
 

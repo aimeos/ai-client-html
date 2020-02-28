@@ -5,6 +5,8 @@
  * @copyright Aimeos (aimeos.org), 2015-2020
  */
 
+$enc = $this->encoder();
+
 $target = $this->config( 'client/html/catalog/detail/url/target' );
 $cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
@@ -12,7 +14,6 @@ $config = $this->config( 'client/html/catalog/detail/url/config', [] );
 $filter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 $items = [];
-$enc = $this->encoder();
 
 $pricefmt = $this->translate( 'client/code', 'price:default' );
 /// Price format with price value (%1$s) and currency (%2$s)
