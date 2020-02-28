@@ -12,6 +12,7 @@
 
 $enc = $this->encoder();
 
+
 /** client/html/catalog/social/list
  * List of social network names that should be displayed in the catalog views
  *
@@ -136,18 +137,18 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailConfig['absoluteUri'] = true;
 
 $params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => '0'], $detailFilter );
-$prodUrl = $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig );
-$prodName = $this->productItem->getName();
 
-$images = $this->productItem->getRefItems( 'media', 'default', 'default' );
-$prodImage = ( ( $image = $images->first() ) !== null ? $this->content( $image->getUrl() ) : '' );
 
 ?>
 <div class="catalog-social">
 <?php foreach( $list as $entry ) : $default = ( isset( $urls[$entry] ) ? $urls[$entry] : null ); ?>
 	<?php if( ( $link = $this->config( 'client/html/catalog/social/url/' . $entry, $default ) ) !== null ) : ?>
 		<a class="social-button social-button-<?= $enc->attr( $entry ); ?>"
-			href="<?= $enc->attr( sprintf( $link, $enc->url( $prodUrl ), $enc->url( $prodName ), $enc->url( $prodImage ) ) ); ?>"
+			href="<?= $enc->attr( sprintf( $link,
+				$enc->url( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ),
+				$enc->url( $this->productItem->getName() ),
+				$enc->url( $this->content( $this->productItem->getRefItems( 'media', 'default', 'default' )->getUrl()->first() ) )
+			) ); ?>"
 			title="<?= $enc->attr( $entry ); ?>"
 			target="_blank"
 		></a>

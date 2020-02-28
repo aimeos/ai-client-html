@@ -8,11 +8,9 @@
 
 /* Available data:
  * - productItem : Product item incl. referenced items
- * - params : Request parameters for this detail view
  */
 
 $enc = $this->encoder();
-$prodid = $this->productItem->getId();
 
 
 $pinTarget = $this->config( 'client/html/catalog/session/pinned/url/target' );
@@ -48,18 +46,17 @@ $favConfig = $this->config( 'client/html/account/favorite/url/config', [] );
  * @category User
  * @category Developer
  */
-$list = $this->config( 'client/html/catalog/actions/list', array( 'pin', 'watch', 'favorite' ) );
 
 $urls = array(
-	'pin' => $this->url( $pinTarget, $pinController, $pinAction, array( 'pin_action' => 'add', 'pin_id' => $prodid, 'd_name' => $this->productItem->getName( 'url' ) ), $pinConfig ),
-	'watch' => $this->url( $watchTarget, $watchController, $watchAction, array( 'wat_action' => 'add', 'wat_id' => $prodid, 'd_name' => $this->productItem->getName( 'url' ) ), $watchConfig ),
-	'favorite' => $this->url( $favTarget, $favController, $favAction, array( 'fav_action' => 'add', 'fav_id' => $prodid, 'd_name' => $this->productItem->getName( 'url' ) ), $favConfig ),
+	'pin' => $this->url( $pinTarget, $pinController, $pinAction, ['pin_action' => 'add', 'pin_id' => $this->productItem->getId(), 'd_name' => $this->productItem->getName( 'url' )], $pinConfig ),
+	'watch' => $this->url( $watchTarget, $watchController, $watchAction, ['wat_action' => 'add', 'wat_id' => $this->productItem->getId(), 'd_name' => $this->productItem->getName( 'url' )], $watchConfig ),
+	'favorite' => $this->url( $favTarget, $favController, $favAction, ['fav_action' => 'add', 'fav_id' => $this->productItem->getId(), 'd_name' => $this->productItem->getName( 'url' )], $favConfig ),
 );
 
 
 ?>
 <div class="catalog-actions">
-	<?php foreach( $list as $entry ) : ?>
+	<?php foreach( $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'favorite'] ) as $entry ) : ?>
 		<?php if( isset( $urls[$entry] ) ) : ?>
 			<a class="actions-button actions-button-<?= $enc->attr( $entry ); ?>" href="<?= $enc->attr( $urls[$entry] ); ?>" title="<?= $enc->attr( $this->translate( 'client/code', $entry ) ); ?>"></a>
 
