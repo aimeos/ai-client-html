@@ -5,13 +5,11 @@
  * @copyright Aimeos (aimeos.org), 2016-2020
  */
 
-$enc = $this->encoder();
-$products = $this->get( 'promoItems', [] );
 
 ?>
 <?php $this->block()->start( 'catalog/lists/promo' ); ?>
 
-<?php if( !empty( $products ) ) : ?>
+<?php if( !$this->get( 'promoItems', map() )->isEmpty() ) : ?>
 	<section class="catalog-list-promo">
 		<h2 class="header"><?= $this->translate( 'client', 'Top seller' ); ?></h2>
 		<?= $this->partial(
@@ -27,7 +25,7 @@ $products = $this->get( 'promoItems', [] );
 			 * @category Developer
 			 */
 			$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-			array( 'products' => $products )
+			['products' => $this->get( 'promoItems', map() )]
 		); ?>
 	</section>
 <?php endif; ?>

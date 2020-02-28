@@ -7,7 +7,7 @@
 
 $enc = $this->encoder();
 $position = $this->get( 'itemPosition' );
-$productItems = $this->get( 'itemsProductItems', [] );
+
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
@@ -21,8 +21,6 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index'
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
-$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
-
 
 ?>
 <?php $this->block()->start( 'catalog/lists/items' ); ?>
@@ -32,12 +30,11 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 		<?php foreach( $this->get( 'listProductItems', [] ) as $id => $productItem ) : $firstImage = true; ?>
 			<?php
-				$conf = $productItem->getConfig(); $css = ( isset( $conf['css-class'] ) ? $conf['css-class'] : '' );
 				$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 				$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 			?>
 
-			--><li class="product <?= $enc->attr( $css ); ?>"
+			--><li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ); ?>"
 				data-reqstock="<?= (int) $this->config( 'client/html/basket/require-stock', true ); ?>"
 				itemtype="http://schema.org/Product"
 				itemscope="">
@@ -102,8 +99,6 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 						<?php if( $productItem->getType() === 'select' ) : ?>
 							<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-								<?php $product = $productItems->get( $prodid, $product ); ?>
-
 								<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 									<div class="articleitem price"
 										data-prodid="<?= $enc->attr( $prodid ); ?>"
@@ -114,7 +109,6 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 										); ?>
 									</div>
 								<?php endif; ?>
-
 							<?php endforeach; ?>
 						<?php endif; ?>
 					</div>
@@ -122,7 +116,7 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 
 
 				<?php if( $this->config( 'client/html/catalog/lists/basket-add', false ) ) : ?>
-					<form class="basket" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
+					<form class="basket" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
 						<!-- catalog.lists.items.csrf -->
 						<?= $this->csrf()->formfield(); ?>
 						<!-- catalog.lists.items.csrf -->

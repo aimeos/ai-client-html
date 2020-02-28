@@ -675,7 +675,6 @@ class Standard
 		// Delete cache when products are added or deleted even when in "tag-all" mode
 		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
-		$view->listParams = $this->getClientParams( $view->param() );
 
 		$view->listProductItems = $products;
 		$view->listProductSort = $sort;
@@ -686,6 +685,8 @@ class Standard
 		$view->listPagePrev = ( $page > 1 ? $page - 1 : 1 );
 		$view->listPageLast = ( $total != 0 ? ceil( $total / $size ) : 1 );
 		$view->listPageNext = ( $page < $view->listPageLast ? $page + 1 : $view->listPageLast );
+
+		$view->listParams = $this->getClientParams( map( $view->param() )->remove( 'f_sort' )->toArray() );
 
 		return parent::addData( $view, $tags, $expire );
 	}

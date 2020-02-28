@@ -8,6 +8,7 @@
 
 $enc = $this->encoder();
 
+
 /** client/html/catalog/lists/basket-add
  * Display the "add to basket" button for each product item
  *
@@ -31,7 +32,6 @@ $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-$listParams = $this->get( 'listParams', [] );
 
 /** client/html/catalog/lists/infinite-scroll
  * Enables infinite scrolling in product catalog list
@@ -45,10 +45,10 @@ $listParams = $this->get( 'listParams', [] );
  */
 $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
 
-$infiniteUrl = ( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ) ? $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext' ) ) + $listParams, [], $listConfig ) : '';
+
 ?>
 <?php $this->block()->start( 'catalog/lists/items' ); ?>
-<div class="catalog-list-items" data-infinite-url="<?= $infiniteUrl ?>">
+<div class="catalog-list-items" data-infinite-url="<?= $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ? $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext' ) ) + $this->get( 'listParams', [] ), [], $listConfig ) : '' ?>">
 
 	<?= $this->partial(
 		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),

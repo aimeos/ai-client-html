@@ -26,25 +26,16 @@
 
 $enc = $this->encoder();
 
-$params = $this->get( 'listParams', [] );
-$catItems = $this->get( 'listCatPath', map() );
-$current = $this->get( 'listPageCurr', 0 );
-$prev = $this->get( 'listPagePrev', 0 );
-$next = $this->get( 'listPageNext', 0 );
-$last = $this->get( 'listPageLast', 0 );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
-$params = $this->param();
-unset( $params['f_sort'] );
-
 
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
-	<?php if( ( $catItem = $catItems->last() ) !== null ) : ?>
+	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
 		<title><?= $enc->html( $catItem->getName() ); ?></title>
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
@@ -62,17 +53,17 @@ unset( $params['f_sort'] );
 	<?php endif; ?>
 
 
-	<?php if( $current > 1 ) : ?>
-		<link rel="prev" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $prev ) + $params, [], $listConfig ) ); ?>" />
+	<?php if( $this->get( 'listPageCurr', 0 ) > 1 ) : ?>
+		<link rel="prev" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPagePrev', 0 ) ) + $this->get( 'listParams', [] ), [], $listConfig ) ); ?>" />
 	<?php endif; ?>
 
 
-	<?php if( $current > 1 && $current < $last ) : // Optimization to avoid loading next page while the user is still filtering ?>
-		<link rel="next prefetch" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $next ) + $params, [], $listConfig ) ); ?>" />
+	<?php if( $this->get( 'listPageCurr', 0 ) > 1 && $this->get( 'listPageCurr', 0 ) < $this->get( 'listPageLast', 0 ) ) : // Optimization to avoid loading next page while the user is still filtering ?>
+		<link rel="next prefetch" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext', 0 ) ) + $this->get( 'listParams', [] ), [], $listConfig ) ); ?>" />
 	<?php endif; ?>
 
 
-	<link rel="canonical" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>" />
+	<link rel="canonical" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'listParams', [] ), [], $listConfig ) ); ?>" />
 	<meta name="application-name" content="Aimeos" />
 
 <?php endif; ?>

@@ -23,10 +23,8 @@ else
 	$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 }
 
-$sort = $this->config( 'client/html/catalog/lists/sort', 'relevance' );
-
 $params = $this->get( 'params', [] );
-$sort = $this->get( 'params/f_sort', $sort );
+$sort = $this->get( 'params/f_sort', $this->config( 'client/html/catalog/lists/sort', 'relevance' ) );
 $sortname = ltrim( $sort, '-' );
 $nameDir = $priceDir = '';
 

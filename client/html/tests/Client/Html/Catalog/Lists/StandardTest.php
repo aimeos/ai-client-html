@@ -105,6 +105,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testGetBodyPagination()
+	{
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['l_size' => 2] );
+		$view->addHelper( 'param', $helper );
+
+		$output = $this->object->getBody();
+
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringContainsString( '<nav class="pagination">', $output );
+	}
+
+
 	public function testGetBodyNoDefaultCat()
 	{
 		$view = $this->object->getView();
@@ -113,8 +126,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
-		$this->assertStringContainsString( '<nav class="pagination">', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
 		$this->assertNotRegExp( '#.*U:TESTPSUB01.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB03.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB04.*#smu', $output );
@@ -211,7 +223,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
 		$this->assertStringContainsString( '&lt;b&gt;Search result&lt;/b&gt;', $output );
 	}
 
@@ -224,7 +236,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
 	}
 
 
@@ -236,7 +248,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list"', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
 	}
 
 
