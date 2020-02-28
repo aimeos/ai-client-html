@@ -8,49 +8,7 @@
 
 $enc = $this->encoder();
 
-$contentUrl = $this->config( 'resource/fs/baseurl' );
 
-/** client/html/catalog/filter/attribute/types-option
- * List of attribute types whose IDs should be used in a global "OR" condition
- *
- * The attribute section in the catalog filter component can display all
- * attributes a visitor can use to filter the listed products to those that
- * contains one or more attributes.
- *
- * This configuration setting lists the attribute types where at least one of
- * all attributes must be referenced by the found products. Only one attribute
- * of all listed attributes types (whatever matches) in enough. This setting is
- * different from "client/html/catalog/filter/attribute/types-oneof" because
- * it's not limited within the same attribute type
- *
- * @param array List of attribute type codes
- * @since 2016.10
- * @category User
- * @category Developer
- * @see client/html/catalog/filter/attribute/types
- * @see client/html/catalog/filter/attribute/types-oneof
- */
-$options = $this->config( 'client/html/catalog/filter/attribute/types-option', [] );
-
-/** client/html/catalog/filter/attribute/types-oneof
- * List of attribute types whose values should be used in a type specific "OR" condition
- *
- * The attribute section in the catalog filter component can display all
- * attributes a visitor can use to filter the listed products to those that
- * contains one or more attributes.
- *
- * This configuration setting lists the attribute types where at least one of
- * the attributes within the same attribute type must be referenced by the found
- * products.
- *
- * @param array List of attribute type codes
- * @since 2016.10
- * @category User
- * @category Developer
- * @see client/html/catalog/filter/attribute/types
- * @see client/html/catalog/filter/attribute/types-option
- */
-$oneof = $this->config( 'client/html/catalog/filter/attribute/types-oneof', [] );
 
 /** client/html/catalog/filter/standard/button
  * Displays the "Search" button in the catalog filter if Javascript is disabled
@@ -66,25 +24,18 @@ $oneof = $this->config( 'client/html/catalog/filter/attribute/types-oneof', [] )
  * @category User
  * @category Developer
  */
-$button = $this->config( 'client/html/catalog/filter/standard/button', true );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
-$attrMap = $this->get( 'attributeMap', [] );
-$attrIds = array_filter( $this->param( 'f_attrid', [] ) );
-$oneIds = array_filter( $this->param( 'f_oneid', [] ) );
-$optIds = array_filter( $this->param( 'f_optid', [] ) );
-$params = $this->param();
-
 
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ); ?>
 <section class="catalog-filter-attribute">
 
-	<?php if( !empty( $attrMap ) ) : ?>
+	<?php if( !empty( $this->get( 'attributeMap', [] ) ) ) : ?>
 		<h2><?= $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
 
 
@@ -93,18 +44,10 @@ $params = $this->param();
 				<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
 
 				<ul class="attr-list">
-					<?php foreach( $attrMap as $attrType => $attributes ) : ?>
-						<?php foreach( $attributes as $id => $attribute ) : ?>
-							<?php if( ( $key = array_search( $id, $attrIds ) ) !== false ) : ?>
-								<?php $current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$key] ); } ?>
-							<?php elseif( ( $key = array_search( $id, $optIds ) ) !== false ) : ?>
-								<?php $current = $params; if( is_array( $current['f_optid'] ) ) { unset( $current['f_optid'][$key] ); } ?>
-							<?php elseif( isset( $oneIds[$attrType] ) && ( $key = array_search( $id, (array) $oneIds[$attrType] ) ) !== false ) : ?>
-								<?php $current = $params; if( is_array( $current['f_oneid'][$attrType] ) ) { unset( $current['f_oneid'][$attrType][$key] ); } ?>
-							<?php else : continue; ?>
-							<?php endif; ?>
+					<?php foreach( $this->get( 'attributeMap', [] ) as $attrType => $list ) : ?>
+						<?php foreach( $list as $attribute ) : ?>
 							<li class="attr-item">
-								<a class="attr-name" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, [], $listConfig ) ); ?>">
+								<a class="attr-name" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $attribute->get( 'params', [] ), [], $listConfig ) ); ?>">
 									<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
 								</a>
 							</li>
@@ -112,12 +55,9 @@ $params = $this->param();
 					<?php endforeach; ?>
 				</ul>
 
-				<?php if( count( $attrIds ) > 1 || count( $optIds ) > 1 || count( $oneIds ) > 1 ) : ?>
-					<?php $current = $params; unset( $current['f_attrid'], $current['f_optid'], $current['f_oneid'] ); ?>
-					<a class="selected-all" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $current, [], $listConfig ) ); ?>">
-						<?= $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?>
-					</a>
-				<?php endif; ?>
+				<a class="selected-all" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?>
+				</a>
 			</div>
 
 		<?php endif; ?>
@@ -125,21 +65,20 @@ $params = $this->param();
 
 		<div class="attribute-lists"><!--
 
-			<?php foreach( $attrMap as $attrType => $attributes ) : ?>
+			<?php foreach( $this->get( 'attributeMap', [] ) as $attrType => $attributes ) : ?>
 				<?php if( !empty( $attributes ) ) : ?>
 					--><fieldset class="attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ); ?>">
 						<legend><?= $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
 						<ul class="attr-list"><!--
 
-							<?php $fparam = ( in_array( $attrType, $oneof ) ? array( 'f_oneid', $attrType, '' ) : ( in_array( $attrType, $options ) ? array( 'f_optid', '' ) : array( 'f_attrid', '' ) ) ); ?>
 							<?php foreach( $attributes as $id => $attribute ) : ?>
 								--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
 
 									<input class="attr-item" type="checkbox"
 										id="attr-<?= $enc->attr( $id ); ?>"
-										name="<?= $enc->attr( $this->formparam( $fparam ) ); ?>"
 										value="<?= $enc->attr( $id ); ?>"
-										<?= ( in_array( $id, $attrIds ) || in_array( $id, $optIds ) || isset( $oneIds[$attrType] ) && in_array( $id, (array) $oneIds[$attrType] ) ? 'checked="checked"' : '' ); ?>
+										name="<?= $enc->attr( $this->formparam( $attribute->get( 'formparam', [] ) ) ); ?>"
+										<?= $attribute->get( 'checked', false ) ? 'checked="checked"' : '' ?>
 									/>
 
 									<label class="attr-name" for="attr-<?= $enc->attr( $id ); ?>"><!--
@@ -169,7 +108,7 @@ $params = $this->param();
 	<?php endif; ?>
 
 
-	<?php if( $button ) : ?>
+	<?php if( $this->config( 'client/html/catalog/filter/standard/button', true ) ) : ?>
 		<noscript>
 			<button class="filter btn btn-primary" type="submit">
 				<?= $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?>

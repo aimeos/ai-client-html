@@ -7,9 +7,7 @@
  */
 
 $enc = $this->encoder();
-$phrase = $enc->attr( $this->param( 'f_search' ) );
-$name = $enc->attr( $this->formparam( 'f_search' ) );
-$hint = $this->translate( 'client', 'Please enter at least three characters' );
+
 
 /** client/html/catalog/suggest/url/target
  * Destination of the URL where the controller specified in the URL is known
@@ -98,8 +96,6 @@ $suggestAction = $this->config( 'client/html/catalog/suggest/url/action', 'sugge
  */
 $suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', [] );
 
-$suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, [], [], $suggestConfig ) );
-
 
 ?>
 <?php $this->block()->start( 'catalog/filter/search' ); ?>
@@ -108,8 +104,10 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
 	<div class="input-group">
 		<input class="form-control value" type="text"
-			name="<?= $name; ?>" value="<?= $phrase; ?>"
-			data-url="<?= $suggestUrl; ?>" data-hint="<?= $hint; ?>"
+			name="<?= $enc->attr( $this->formparam( 'f_search' ) ); ?>"
+			value="<?= $enc->attr( $this->param( 'f_search' ) ); ?>"
+			data-url="<?= $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, [], [], $suggestConfig ) ); ?>"
+			data-hint="<?= $enc->attr( $this->translate( 'client', 'Please enter at least three characters' ) ); ?>"
 		/><!--
 		--><button class="btn btn-default reset" type="reset">
 			<span class="symbol"/>

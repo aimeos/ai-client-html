@@ -554,15 +554,35 @@ class Standard
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/url/config
 			 */
-			$config = $config->get( 'client/html/catalog/count/url/config', [] );
+			$conf = $config->get( 'client/html/catalog/count/url/config', [] );
 
-			$params = $this->getClientParams( $view->param(), array( 'f' ) );
+			$params = $this->getClientParams( $view->param(), ['f'] );
 
-			if( ( $startid = $view->config( 'client/html/catalog/filter/tree/startid' ) ) ) {
+			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
 				$params['f_catid'] = $startid;
 			}
 
-			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $config );
+			/** client/html/catalog/filter/remove-params
+			 * Removes the configured parameters before generating filter URLs for the list view
+			 *
+			 * Use this array instead if you want to keep the selected category and the
+			 * entered search string as well:
+			 *
+			 * ['f_catid', 'f_search', 'f_sort']
+			 *
+			 * Downside: It will be impossible for customers to deselect the category!
+			 *
+			 * @param array List of parameter names
+			 * @category Developer
+			 * @category User
+			 * @since 2020.04
+			 */
+			foreach( $config->get( 'client/html/catalog/filter/remove-params', ['f_sort'] ) as $name ) {
+				unset( $params[$name] );
+			}
+
+			$view->filterParams = $params;
+			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $conf );
 			self::$headerSingleton = true;
 		}
 

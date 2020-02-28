@@ -6,6 +6,10 @@
  * @copyright Aimeos (aimeos.org), 2015-2020
  */
 
+
+$enc = $this->encoder();
+
+
 /** client/html/catalog/lists/url/target
  * Destination of the URL where the controller specified in the URL is known
  *
@@ -83,24 +87,6 @@ $optAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
-$listParams = [];
-$params = $this->param();
-
-/*
- * Use this array instead if you want to keep the selected category and the
- * entered search string as well:
- *
- * ['f_catid', 'f_search', 'f_sort']
- *
- * Downside: It will be impossible for customers to deselect the category!
- */
-foreach( ['f_sort'] as $name ) {
-	if( isset( $params[$name] ) ) { $listParams[$name] = $params[$name]; }
-}
-
-$enc = $this->encoder();
-
-
 ?>
 <section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
@@ -114,7 +100,7 @@ $enc = $this->encoder();
 
 	<nav>
 		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ); ?></h1>
-		<form method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, [], $listConfig ) ); ?>">
+		<form method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'filterParams', [] ), $listConfig ) ); ?>">
 
 			<?= $this->block()->get( 'catalog/filter/search' ); ?>
 			<?= $this->block()->get( 'catalog/filter/tree' ); ?>

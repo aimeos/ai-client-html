@@ -7,36 +7,31 @@
 
 $enc = $this->encoder();
 
-$contentUrl = $this->config( 'resource/fs/baseurl' );
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
-$suppliers = $this->get( 'supplierList', [] );
-$supIds = $this->param( 'f_supid', [] );
-$params = $this->param();
-
 
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ); ?>
 <section class="catalog-filter-supplier">
 
-	<?php if( !empty( $suppliers ) ) : ?>
+	<?php if( !empty( $this->get( 'supplierList', [] ) ) ) : ?>
 		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ); ?></h2>
 
 		<fieldset class="supplier-lists">
 			<ul class="attr-list"><!--
 
-				<?php foreach( $suppliers as $id => $supplier ) : ?>
+				<?php foreach( $this->get( 'supplierList', [] ) as $id => $supplier ) : ?>
 					--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
 
 						<input class="attr-item" type="checkbox"
 							id="sup-<?= $enc->attr( $id ); ?>"
 							name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ); ?>"
 							value="<?= $enc->attr( $id ); ?>"
-							<?= ( in_array( $id, $supIds ) ? 'checked="checked"' : '' ); ?>
+							<?= ( in_array( $id, $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ); ?>
 						/>
 
 						<label class="attr-name" for="sup-<?= $enc->attr( $id ); ?>"><!--

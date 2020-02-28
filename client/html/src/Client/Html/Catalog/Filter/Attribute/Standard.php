@@ -212,6 +212,48 @@ class Standard
 	{
 		$attrMap = [];
 
+		/** client/html/catalog/filter/attribute/types-option
+		 * List of attribute types whose IDs should be used in a global "OR" condition
+		 *
+		 * The attribute section in the catalog filter component can display all
+		 * attributes a visitor can use to filter the listed products to those that
+		 * contains one or more attributes.
+		 *
+		 * This configuration setting lists the attribute types where at least one of
+		 * all attributes must be referenced by the found products. Only one attribute
+		 * of all listed attributes types (whatever matches) in enough. This setting is
+		 * different from "client/html/catalog/filter/attribute/types-oneof" because
+		 * it's not limited within the same attribute type
+		 *
+		 * @param array List of attribute type codes
+		 * @since 2016.10
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/filter/attribute/types
+		 * @see client/html/catalog/filter/attribute/types-oneof
+		 */
+		$options = $view->config( 'client/html/catalog/filter/attribute/types-option', [] );
+
+		/** client/html/catalog/filter/attribute/types-oneof
+		 * List of attribute types whose values should be used in a type specific "OR" condition
+		 *
+		 * The attribute section in the catalog filter component can display all
+		 * attributes a visitor can use to filter the listed products to those that
+		 * contains one or more attributes.
+		 *
+		 * This configuration setting lists the attribute types where at least one of
+		 * the attributes within the same attribute type must be referenced by the found
+		 * products.
+		 *
+		 * @param array List of attribute type codes
+		 * @since 2016.10
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/filter/attribute/types
+		 * @see client/html/catalog/filter/attribute/types-option
+		 */
+		$oneof = $view->config( 'client/html/catalog/filter/attribute/types-oneof', [] );
+
 		/** client/html/catalog/filter/attribute/types
 		 * List of attribute types that should be displayed in this order in the catalog filter
 		 *
@@ -258,8 +300,35 @@ class Standard
 		$attributes = \Aimeos\Controller\Frontend::create( $this->getContext(), 'attribute' )
 			->uses( $domains )->type( $attrTypes )->sort( 'position' )->slice( 0, 10000 )->search();
 
-		foreach( $attributes as $id => $item ) {
-			$attrMap[$item->getType()][$id] = $item;
+		// Delete cache when attributes are added or deleted even in "tag-all" mode
+		$this->addMetaItems( $attributes, $expire, $tags, ['attribute'] );
+
+
+		$params = $this->getClientParams( $view->param() );
+
+		$attrIds = array_filter( $view->param( 'f_attrid', [] ) );
+		$oneIds = array_filter( $view->param( 'f_oneid', [] ) );
+		$optIds = array_filter( $view->param( 'f_optid', [] ) );
+
+		foreach( $attributes as $id => $item )
+		{
+			if( ( $key = array_search( $id, $attrIds ) ) !== null )
+			{
+				$item = $item->set( 'checked', true )->set( 'formparam', ['f_attrid', ''] );
+				unset( $params[$key] );
+			}
+			elseif( ( $key = array_search( $id, $oneIds ) ) !== null )
+			{
+				$item = $item->set( 'checked', true )->set( 'formparam', ['f_oneid', ''] );
+				unset( $params[$key] );
+			}
+			elseif( ( $key = array_search( $id, $optIds ) ) !== null )
+			{
+				$item = $item->set( 'checked', true )->set( 'formparam', [$item->getType(), 'f_optid', ''] );
+				unset( $params[$key] );
+			}
+
+			$attrMap[$item->getType()][$id] = $item->set( 'params', $params );
 		}
 
 		if( !empty( $attrTypes ) )
@@ -276,9 +345,9 @@ class Standard
 			$attrMap = $sortedMap;
 		}
 
-		// Delete cache when attributes are added or deleted even in "tag-all" mode
-		$this->addMetaItems( $attributes, $expire, $tags, ['attribute'] );
+		unset( $params['f_attrid'], $params['f_oneid'], $params['f_optid'] );
 
+		$view->attributeResetParams = $params;
 		$view->attributeMap = $attrMap;
 
 		return parent::addData( $view, $tags, $expire );

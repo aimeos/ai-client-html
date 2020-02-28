@@ -6,9 +6,6 @@
  */
 
 $enc = $this->encoder();
-$level = $this->get( 'level', 0 );
-$path = $this->get( 'path', [] );
-$params = $this->get( 'params', [] );
 
 
 /** client/html/catalog/tree/url/target
@@ -101,13 +98,13 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 
 ?>
-<ul class="level-<?= $enc->attr( $level ); ?>">
+<ul class="level-<?= $enc->attr( $this->get( 'level', 0 ) ); ?>">
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
-			<?php $id = $item->getId(); $config = $item->getConfig(); ?>
-			<?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; ?>
-			<?php $class = ( $item->hasChildren() ? ' withchild' : ' nochild' ) . ( isset( $path[$id] ) ? ' active' : '' ); ?>
-			<?php $class .= ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
+			<?php $id = $item->getId(); ?>
+			<?php $params = array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $id] ); ?>
+			<?php $class = ( $item->hasChildren() ? ' withchild' : ' nochild' ) . ( $this->get( 'path', map() )->has( $id ) ? ' active' : '' ); ?>
+			<?php $class .= ' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ); ?>
 
 			<li class="cat-item catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
 
@@ -126,7 +123,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 				--></a>
 
 				<?php if( count( $item->getChildren() ) > 0 ) : ?>
-					<?php $values = array( 'nodes' => $item->getChildren(), 'path' => $path, 'params' => $params, 'level' => $level + 1 ); ?>
+					<?php $values = array( 'nodes' => $item->getChildren(), 'path' => $this->get( 'path', map() ), 'params' => $params, 'level' => $this->get( 'level', 0 ) + 1 ); ?>
 					<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), $values ); ?>
 				<?php endif; ?>
 

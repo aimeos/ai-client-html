@@ -7,10 +7,7 @@
  */
 
 $enc = $this->encoder();
-$params = $this->param();
-$path = $this->get( 'treeCatalogPath', [] );
-$counts = $this->config( 'client/html/catalog/count/enable', true );
-$name = $path->getName()->last( '' );
+
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
@@ -51,11 +48,11 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 ?>
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
-<section class="catalog-filter-tree <?= ( $counts == true ? 'catalog-filter-count' : '' ); ?>">
+<section class="catalog-filter-tree <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
 
 	<?php if( $enforce ) : ?>
 		<input type="hidden"
-			name="<?= $enc->attr( $this->formparam( array( 'f_catid' ) ) ); ?>"
+			name="<?= $enc->attr( $this->formparam( ['f_catid'] ) ); ?>"
 			value="<?= $enc->attr( $this->param( 'f_catid' ) ); ?>"
 		/>
 	<?php endif; ?>
@@ -66,7 +63,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 		<div class="category-selected">
 			<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
 			<a class="selected-category" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
-				<?= $enc->html( $name, $enc::TRUST ); ?>
+				<?= $enc->html( $this->get( 'treeCatalogPath', map() )->getName()->last(), $enc::TRUST ); ?>
 			</a>
 		</div>
 	<?php endif; ?>
@@ -74,7 +71,11 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 	<?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 ) : ?>
 		<?= $this->partial(
 			$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ),
-			array( 'nodes' => array( $this->treeCatalogTree ), 'path' => $path, 'params' => $this->get( 'treeFilterParams', [] ) )
+			[
+				'nodes' => [$this->treeCatalogTree],
+				'path' => $this->get( 'treeCatalogPath', map() ),
+				'params' => $this->get( 'treeFilterParams', [] )
+			]
 		); ?>
 	<?php endif; ?>
 
