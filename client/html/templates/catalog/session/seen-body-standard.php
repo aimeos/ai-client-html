@@ -7,7 +7,7 @@
  */
 
 $enc = $this->encoder();
-$seenList = $this->get( 'seenItems', [] );
+
 
 /** client/html/catalog/session/seen/count/enable
  * Displays the number of last seen products in the header of the last seen list
@@ -22,7 +22,6 @@ $seenList = $this->get( 'seenItems', [] );
  * @category Developer
  * @see client/html/catalog/session/pinned/count/enable
  */
-$count = $this->config( 'client/html/catalog/session/seen/count/enable', 1 );
 
 
 ?>
@@ -31,13 +30,13 @@ $count = $this->config( 'client/html/catalog/session/seen/count/enable', 1 );
 
 	<h2 class="header">
 		<?= $this->translate( 'client', 'Last seen' ); ?>
-		<?php if( $count ) : ?>
-			<span class="count"><?= count( $seenList ); ?></span>
+		<?php if( $this->config( 'client/html/catalog/session/seen/count/enable', true ) ) : ?>
+			<span class="count"><?= count( $this->get( 'seenItems', [] ) ) ?></span>
 		<?php endif; ?>
 	</h2>
 
 	<ul class="seen-items">
-		<?php foreach( $seenList as $seen ) : ?>
+		<?php foreach( $this->get( 'seenItems', [] ) as $seen ) : ?>
 			<li class="seen-item">
 				<?= $seen; ?>
 			</li>

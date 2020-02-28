@@ -7,8 +7,7 @@
  */
 
 $enc = $this->encoder();
-$params = $this->get( 'pinnedParams', [] );
-$pinList = $this->get( 'pinnedProductItems', [] );
+
 
 /** client/html/catalog/session/pinned/url/target
  * Destination of the URL where the controller specified in the URL is known
@@ -100,7 +99,6 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
  * @category Developer
  * @see client/html/catalog/session/seen/count/enable
  */
-$count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 
 
 ?>
@@ -109,14 +107,14 @@ $count = $this->config( 'client/html/catalog/session/pinned/count/enable', 1 );
 
 	<h2 class="header">
 		<?= $this->translate( 'client', 'Pinned products' ); ?>
-		<?php if( $count ) : ?>
-			<span class="count"><?= count( $pinList ); ?></span>
+		<?php if( $this->config( 'client/html/catalog/session/pinned/count/enable', true ) ) : ?>
+			<span class="count"><?= count( $this->get( 'pinnedProductItems', [] ) ); ?></span>
 		<?php endif; ?>
 	</h2>
 
 	<ul class="pinned-items">
-		<?php foreach( $pinList as $id => $productItem ) : ?>
-			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id] + $params; ?>
+		<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
+			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id] + $this->get( 'pinnedParams', [] ); ?>
 			<?php $detailParams = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter ); ?>
 
 			<li class="pinned-item">
