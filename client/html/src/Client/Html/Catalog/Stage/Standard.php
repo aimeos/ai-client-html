@@ -387,11 +387,11 @@ class Standard
 	/**
 	 * Returns the parameters used by the html client.
 	 *
-	 * @param array $params Associative list of all parameters
-	 * @param string[] $prefixes List of prefixes the parameters must start with
+	 * @param string[] $params Associative list of all parameters
+	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = array( 'f', 'l', 'd', 'a' ) ) : array
+	protected function getClientParams( array $params, array $prefixes = ['f', 'l', 'd', 'a'] ) : array
 	{
 		if( isset( $params['d_prodid'] ) || isset( $params['d_name'] ) )
 		{
@@ -428,8 +428,8 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$params = $this->getClientParams( $view->param(), array( 'f', 'l' ) );
-		$catid = ( isset( $params['f_catid'] ) ? (string) $params['f_catid'] : '' );
+		$params = $this->getClientParams( $view->param(), ['f', 'l'] );
+		$catid = $params['f_catid'] ?? '';
 
 		if( $catid == '' ) {
 			$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
@@ -471,9 +471,14 @@ class Standard
 
 			$stageCatPath = $controller->uses( $domains )->getPath( $catid );
 
+			$mediaItems = $stageCatPath->getRefItems( 'media', 'stage', 'default' )->find( function( \Aimeos\Map $entry ) {
+				return !$entry->isEmpty();
+			}, true );
+
 			$this->addMetaItems( $stageCatPath, $expire, $tags );
 
 			$view->stageCurrentCatItem = $stageCatPath->last();
+			$view->stageMediaItems = $mediaItems;
 			$view->stageCatPath = $stageCatPath;
 			$view->stageCatId = $catid;
 		}

@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-stage"', $output );
+		$this->assertStringStartsWith( '<section class="aimeos catalog-stage', $output );
 		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb">', $output );
 		$this->assertRegExp( '#Your search result#smU', $output );
 

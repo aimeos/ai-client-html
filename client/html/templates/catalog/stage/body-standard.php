@@ -7,20 +7,7 @@
  */
 
 $enc = $this->encoder();
-$catPath = $this->get( 'stageCatPath', map() );
 
-$classes = '';
-foreach( $catPath as $cat ) {
-	$classes .= ' ' . $cat->getConfigValue( 'css-class', '' );
-}
-
-$mediaItems = [];
-foreach( $catPath->copy()->reverse() as $catItem )
-{
-	if( !( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) {
-		break;
-	}
-}
 
 $treeTarget = $this->config( 'client/html/catalog/tree/url/target' );
 $treeController = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
@@ -37,11 +24,9 @@ $optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
 $optAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
-$params = $this->get( 'stageParams', [] );
-
 
 ?>
-<section class="aimeos catalog-stage<?= $enc->attr( $classes ); ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos catalog-stage <?= $enc->attr( $this->get( 'stageCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ); ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( isset( $this->stageErrorList ) ) : ?>
 		<ul class="error-list">
@@ -52,11 +37,13 @@ $params = $this->get( 'stageParams', [] );
 	<?php endif; ?>
 
 
-	<div class="catalog-stage-image">
-		<?php foreach( $mediaItems as $media ) : ?>
-			<img src="<?= $this->content( $media->getUrl() ); ?>" alt="<?= $enc->attr( $media->getName() ); ?>" />
-		<?php endforeach; ?>
-	</div>
+	<?php if( !( $mediaItems = $this->get( 'stageMediaItems', map() ) )->isEmpty() ) : ?>
+		<div class="catalog-stage-image">
+			<?php foreach( $mediaItems as $media ) : ?>
+				<img src="<?= $this->content( $media->getUrl() ); ?>" alt="<?= $enc->attr( $media->getName() ); ?>" />
+			<?php endforeach; ?>
+		</div>
+	<?php endif; ?>
 
 
 	<div class="catalog-stage-breadcrumb">
@@ -65,16 +52,16 @@ $params = $this->get( 'stageParams', [] );
 			<ol>
 
 				<?php if( isset( $this->stageCatPath ) ) : ?>
-					<?php foreach( $catPath as $cat ) : $params['f_name'] = $cat->getName( 'url' ); $params['f_catid'] = $cat->getId(); ?>
+					<?php foreach( $this->get( 'stageCatPath', map() ) as $cat ) : ?>
 						<li>
-							<a href="<?= $enc->attr( $this->url( $treeTarget, $treeController, $treeAction, $params, [], $treeConfig ) ); ?>">
+							<a href="<?= $enc->attr( $this->url( $treeTarget, $treeController, $treeAction, array_merge( $this->get( 'stageParams', [] ), ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] ), [], $treeConfig ) ); ?>">
 								<?= $enc->html( $cat->getName() ); ?>
 							</a>
 						</li>
 					<?php endforeach; ?>
 				<?php else : ?>
 					<li>
-						<a href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
+						<a href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'stageParams', [] ), [], $listConfig ) ); ?>">
 							<?= $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ); ?>
 						</a>
 					</li>
