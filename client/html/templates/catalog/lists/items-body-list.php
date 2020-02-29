@@ -93,7 +93,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 							data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-								array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
+								['prices' => $productItem->getRefItems( 'price', null, 'default' )]
 							); ?>
 						</div>
 
@@ -105,7 +105,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 										data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
 										<?= $this->partial(
 											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-											array( 'prices' => $prices )
+											['prices' => $prices]
 										); ?>
 									</div>
 								<?php endif; ?>
@@ -129,10 +129,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 							<div class="items-selection">
 								<?= $this->partial(
 									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
-									array(
-										'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
-										'productItems' => $this->get( 'itemsProductItems', [] ),
-									)
+									['productItems' => $productItem->getRefItems( 'product', 'default', 'default' )]
 								); ?>
 							</div>
 						<?php endif; ?>
@@ -140,11 +137,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 						<div class="items-attribute">
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
-								array(
-									'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
-									'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
-									'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),
-								)
+								['productItem' => $productItem]
 							); ?>
 						</div>
 

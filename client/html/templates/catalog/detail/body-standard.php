@@ -8,24 +8,7 @@
 
 /* Available data:
  * - detailProductItem : Product item incl. referenced items
- * - detailProductItems : Referenced products (bundle, variant, suggested, bought, etc) incl. referenced items
- * - detailParams : Request parameters for this detail view
  */
-
-
-$getProductList = function( \Aimeos\Map $posItems, \Aimeos\Map $items ) : \Aimeos\Map
-{
-	$list = map();
-
-	foreach( $posItems as $id => $posItem )
-	{
-		if( ( $item = $items->get( $id ) ) !== null ) {
-			$list[$id] = $item;
-		}
-	}
-
-	return $list;
-};
 
 
 $enc = $this->encoder();
@@ -41,8 +24,6 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index'
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
-$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
-
 
 /** client/html/basket/require-stock
  * Customers can order products only if there are enough products in stock
@@ -57,43 +38,6 @@ $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
  * @category User
  */
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
-
-$prodItems = $this->get( 'detailProductItems', [] );
-
-$propMap = $subPropDeps = [];
-$attrMap = $subAttrDeps = [];
-$mediaItems = map();
-$propItems = map();
-
-if( isset( $this->detailProductItem ) )
-{
-	$propItems = $this->detailProductItem->getPropertyItems();
-	$posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' );
-
-	if( in_array( $this->detailProductItem->getType(), ['bundle', 'select'] ) )
-	{
-		foreach( $getProductList( $posItems, $prodItems ) as $subProdId => $subProduct )
-		{
-			$subItems = $subProduct->getRefItems( 'attribute', null, 'default' );
-			$subItems->union( $subProduct->getRefItems( 'attribute', null, 'variant' ) ); // show product variant attributes as well
-			$mediaItems->merge( $subProduct->getRefItems( 'media', 'default', 'default' ) );
-
-			foreach( $subItems as $attrId => $attrItem )
-			{
-				$attrMap[$attrItem->getType()][$attrId] = $attrItem;
-				$subAttrDeps[$attrId][] = $subProdId;
-			}
-
-			$propItems->union( $subProduct->getPropertyItems() );
-		}
-	}
-
-	foreach( $propItems as $propItem )
-	{
-		$propMap[$propItem->getType()][$propItem->getId()] = $propItem;
-		$subPropDeps[$propItem->getId()] = $propItem->getParentId();
-	}
-}
 
 
 ?>
@@ -126,12 +70,9 @@ if( isset( $this->detailProductItem ) )
 					 * @category Developer
 					 */
 					$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-standard' ),
-					array(
-						'productItem' => $this->detailProductItem,
-						'params' => $this->get( 'detailParams', [] ),
-						'mediaItems' => $this->detailProductItem->getRefItems( 'media', 'default', 'default' )->merge( $mediaItems )
-					)
+					['mediaItems' => $this->get( 'detailMediaItems', map() )]
 				); ?>
+
 			</div>
 
 
@@ -143,48 +84,54 @@ if( isset( $this->detailProductItem ) )
 						<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ); ?>: </span>
 						<span class="value" itemprop="sku"><?= $enc->html( $this->detailProductItem->getCode() ); ?></span>
 					</p>
+
 					<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 						<p class="short" itemprop="description"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
 					<?php endforeach; ?>
+
 				</div>
 
 
 				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock; ?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
-					<?php if( isset( $this->detailProductItem ) ) : ?>
-						<div class="price-list">
-							<div class="articleitem price price-actual"
-								data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
-								data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ); ?>">
-								<?= $this->partial(
-									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-									array( 'prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' ) )
-								); ?>
-							</div>
+					<div class="price-list">
+						<div class="articleitem price price-actual"
+							data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
+							data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ); ?>">
 
-							<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
-								<?php foreach( $getProductList( $this->detailProductItem->getRefItems( 'product', 'default', 'default' ), $prodItems ) as $prodid => $product ) : ?>
-									<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
-										<div class="articleitem price"
-											data-prodid="<?= $enc->attr( $prodid ); ?>"
-											data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
-											<?= $this->partial(
-												$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-												array( 'prices' => $prices )
-											); ?>
-										</div>
-									<?php endif; ?>
+							<?= $this->partial(
+								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+								['prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' )]
+							); ?>
 
-								<?php endforeach; ?>
-							<?php endif; ?>
 						</div>
-					<?php endif; ?>
+
+						<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
+							<?php foreach( $this->detailProductItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
+								<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
+
+									<div class="articleitem price"
+										data-prodid="<?= $enc->attr( $prodid ); ?>"
+										data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
+
+										<?= $this->partial(
+											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+											['prices' => $prices]
+										); ?>
+
+									</div>
+
+								<?php endif; ?>
+							<?php endforeach; ?>
+						<?php endif; ?>
+
+					</div>
 
 
 					<?= $this->block()->get( 'catalog/detail/service' ); ?>
 
 
-					<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
+					<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
 						<!-- catalog.detail.csrf -->
 						<?= $this->csrf()->formfield(); ?>
 						<!-- catalog.detail.csrf -->
@@ -194,7 +141,9 @@ if( isset( $this->detailProductItem ) )
 						<?php endif ?>
 
 						<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
+
 							<div class="catalog-detail-basket-selection">
+
 								<?= $this->partial(
 									/** client/html/common/partials/selection
 									 * Relative path to the variant attribute partial template file
@@ -214,18 +163,15 @@ if( isset( $this->detailProductItem ) )
 									 * @see client/html/common/partials/attribute
 									 */
 									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
-									array(
-										'products' => $this->detailProductItem->getRefItems( 'product', 'default', 'default' ),
-										'attributeItems' => $this->get( 'detailAttributeItems', [] ),
-										'productItems' => $this->get( 'detailProductItems', [] ),
-										'mediaItems' => $this->get( 'detailMediaItems', [] ),
-										'productItem' => $this->detailProductItem,
-									)
+									['productItems' => $this->detailProductItem->getRefItems( 'product', 'default', 'default' )]
 								); ?>
+
 							</div>
+
 						<?php endif; ?>
 
 						<div class="catalog-detail-basket-attribute">
+
 							<?= $this->partial(
 								/** client/html/common/partials/attribute
 								 * Relative path to the product attribute partial template file
@@ -245,14 +191,9 @@ if( isset( $this->detailProductItem ) )
 								 * @see client/html/common/partials/selection
 								 */
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
-								array(
-									'productItem' => $this->detailProductItem,
-									'attributeItems' => $this->get( 'detailAttributeItems', [] ),
-									'attributeConfigItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'config' ),
-									'attributeCustomItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'custom' ),
-									'attributeHiddenItems' => $this->detailProductItem->getRefItems( 'attribute', null, 'hidden' ),
-								)
+								['productItem' => $this->detailProductItem]
 							); ?>
+
 						</div>
 
 
@@ -261,26 +202,28 @@ if( isset( $this->detailProductItem ) )
 								data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
 								data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ); ?>">
 							</div>
+
 							<?php foreach( $this->detailProductItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+
 								<div class="articleitem"
 									data-prodid="<?= $enc->attr( $articleId ); ?>"
 									data-prodcode="<?= $enc->attr( $articleItem->getCode() ); ?>">
 								</div>
+
 							<?php endforeach; ?>
+
 						</div>
 
 
 						<div class="addbasket">
 							<div class="input-group">
-								<input type="hidden" value="add"
-									name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
-								/>
+								<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
 								<input type="hidden"
-									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ); ?>"
 									value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
 								/>
 								<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
-									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ); ?>"
 									min="<?= $this->detailProductItem->getConfigValue( 'quantity-step', 1 ) ?>" max="2147483647"
 									step="<?= $this->detailProductItem->getConfigValue( 'quantity-step', 1 ) ?>" maxlength="10"
 									required="required" value="1"
@@ -310,10 +253,7 @@ if( isset( $this->detailProductItem ) )
 					 * @category Developer
 					 */
 					$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial-standard' ),
-					array(
-						'productItem' => $this->detailProductItem,
-						'params' => $this->get( 'detailParams', [] )
-					)
+					['productItem' => $this->detailProductItem]
 				); ?>
 
 
@@ -331,7 +271,7 @@ if( isset( $this->detailProductItem ) )
 					 * @category Developer
 					 */
 					$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial-standard' ),
-					array( 'productItem' => $this->detailProductItem )
+					['productItem' => $this->detailProductItem]
 				); ?>
 
 			</div>
@@ -339,15 +279,16 @@ if( isset( $this->detailProductItem ) )
 
 			<div class="col-sm-12">
 
-				<?php if( $this->detailProductItem->getType() === 'bundle'
-					&& !( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'default' ) )->isEmpty()
-					&& !( $products = $getProductList( $posItems, $prodItems ) )->isEmpty() ) : ?>
+				<?php if( $this->detailProductItem->getType() === 'bundle' && !( $products = $this->detailProductItem->getRefItems( 'product', null, 'default' ) )->isEmpty() ) : ?>
+
 					<section class="catalog-detail-bundle">
 						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ); ?></h2>
+
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-							array( 'products' => $products, 'itemprop' => 'isRelatedTo' )
+							['products' => $products, 'itemprop' => 'isRelatedTo']
 						); ?>
+
 					</section>
 
 				<?php endif; ?>
@@ -356,120 +297,106 @@ if( isset( $this->detailProductItem ) )
 				<div class="catalog-detail-additional">
 
 					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
+
 						<div class="additional-box">
 							<h2 class="header description"><?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ); ?></h2>
 							<div class="content description">
+
 								<?php foreach( $textItems as $textItem ) : ?>
 									<div class="long item"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></div>
 								<?php endforeach; ?>
+
 							</div>
 						</div>
+
 					<?php endif; ?>
 
-					<?php if( count( $attrMap ) > 0 || count( $this->detailProductItem->getRefItems( 'attribute', null, 'default' ) ) > 0 ) : ?>
+
+					<?php if( !( $attrMap = $this->get( 'detailAttributeMap', map() ) )->isEmpty() ) : ?>
+
 						<div class="additional-box">
 							<h2 class="header attributes"><?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ); ?></h2>
 							<div class="content attributes">
 								<table class="attributes">
 									<tbody>
-										<?php foreach( $this->detailProductItem->getRefItems( 'attribute', null, 'default' ) as $attrId => $attrItem ) : ?>
-											<?php if( isset( $attrItems[$attrId] ) ) { $attrItem = $attrItems[$attrId]; } ?>
-											<tr class="item">
-												<td class="name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ), $enc::TRUST ); ?></td>
-												<td class="value">
-													<div class="media-list">
-														<?php foreach( $attrItem->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-															<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
-																<?= $this->partial(
-																	$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
-																	array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
-																); ?>
-															<?php endif; ?>
-														<?php endforeach; ?>
-													</div>
-													<span class="attr-name"><?= $enc->html( $attrItem->getName() ); ?></span>
-													<?php foreach( $attrItem->getRefItems( 'text', 'short' ) as $textItem ) : ?>
-														<div class="attr-short"><?= $enc->html( $textItem->getContent() ); ?></div>
-													<?php endforeach ?>
-													<?php foreach( $attrItem->getRefItems( 'text', 'long' ) as $textItem ) : ?>
-														<div class="attr-long"><?= $enc->html( $textItem->getContent() ); ?></div>
-													<?php endforeach ?>
-												</td>
-											</tr>
-										<?php endforeach; ?>
+
 										<?php foreach( $attrMap as $type => $attrItems ) : ?>
-											<?php foreach( $attrItems as $attrItem ) : $classes = ""; ?>
-												<?php
-													if( isset( $subAttrDeps[$attrItem->getId()] ) )
-													{
-														$classes .= ' subproduct';
-														foreach( $subAttrDeps[$attrItem->getId()] as $prodid ) {
-															$classes .= ' subproduct-' . $prodid;
-														}
-													}
-												?>
-												<tr class="item<?= $classes; ?>">
+											<?php foreach( $attrItems as $attrItem ) : ?>
+
+												<tr class="item <?= ( $id = $attrItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
 													<td class="name"><?= $enc->html( $this->translate( 'client/code', $type ), $enc::TRUST ); ?></td>
 													<td class="value">
 														<div class="media-list">
+
 															<?php foreach( $attrItem->getListItems( 'media', 'icon' ) as $listItem ) : ?>
-																<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
+																<?php if( ( $refitem = $listItem->getRefItem() ) !== null ) : ?>
 																	<?= $this->partial(
 																		$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
-																		array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
+																		['item' => $refitem, 'boxAttributes' => ['class' => 'media-item']]
 																	); ?>
 																<?php endif; ?>
 															<?php endforeach; ?>
+
 														</div>
 														<span class="attr-name"><?= $enc->html( $attrItem->getName() ); ?></span>
+
 														<?php foreach( $attrItem->getRefItems( 'text', 'short' ) as $textItem ) : ?>
 															<div class="attr-short"><?= $enc->html( $textItem->getContent() ); ?></div>
 														<?php endforeach ?>
+
 														<?php foreach( $attrItem->getRefItems( 'text', 'long' ) as $textItem ) : ?>
 															<div class="attr-long"><?= $enc->html( $textItem->getContent() ); ?></div>
 														<?php endforeach ?>
+
 													</td>
 												</tr>
+
 											<?php endforeach; ?>
 										<?php endforeach; ?>
+
 									</tbody>
 								</table>
 							</div>
 						</div>
+
 					<?php endif; ?>
 
-					<?php if( count( $propMap ) > 0 ) : ?>
+
+					<?php if( !( $propMap = $this->get( 'detailPropertyMap', map() ) )->isEmpty() ) : ?>
+
 						<div class="additional-box">
 							<h2 class="header properties"><?= $enc->html( $this->translate( 'client', 'Properties' ), $enc::TRUST ); ?></h2>
 							<div class="content properties">
 								<table class="properties">
 									<tbody>
+
 										<?php foreach( $propMap as $type => $propItems ) : ?>
-											<?php foreach( $propItems as $propertyItem ) : $classes = ''; ?>
-												<?php
-													if( isset( $subPropDeps[$propertyItem->getId()] ) ) {
-														$classes .= ' subproduct subproduct-' . $subPropDeps[$propertyItem->getId()];
-													}
-												?>
-												<tr class="item<?= $classes; ?>">
-													<td class="name"><?= $enc->html( $this->translate( 'client/code', $propertyItem->getType() ), $enc::TRUST ); ?></td>
-													<td class="value"><?= $enc->html( $propertyItem->getValue() ); ?></td>
+											<?php foreach( $propItems as $propItem ) : ?>
+
+												<tr class="item <?= ( $id = $propItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
+													<td class="name"><?= $enc->html( $this->translate( 'client/code', $propItem->getType() ), $enc::TRUST ); ?></td>
+													<td class="value"><?= $enc->html( $propItem->getValue() ); ?></td>
 												</tr>
+
 											<?php endforeach; ?>
 										<?php endforeach; ?>
+
 									</tbody>
 								</table>
 							</div>
 						</div>
+
 					<?php endif; ?>
 
-					<?php $mediaList = $this->get( 'detailMediaItems', [] ); ?>
+
 					<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
+
 						<div class="additional-box">
 							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ); ?></h2>
 							<ul class="content downloads">
+
 								<?php foreach( $mediaItems as $id => $item ) : ?>
-									<?php if( isset( $mediaList[$id] ) ) { $item = $mediaList[$id]; } ?>
+
 									<li class="item">
 										<a href="<?= $this->content( $item->getUrl() ); ?>" title="<?= $enc->attr( $item->getName() ); ?>">
 											<img class="media-image"
@@ -479,35 +406,42 @@ if( isset( $this->detailProductItem ) )
 											<span class="media-name"><?= $enc->html( $item->getName() ); ?></span>
 										</a>
 									</li>
+
 								<?php endforeach; ?>
+
 							</ul>
 						</div>
+
 					<?php endif; ?>
 
 				</div>
 
 
-				<?php if( !( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) )->isEmpty()
-					&& !( $products = $getProductList( $posItems, $prodItems ) )->isEmpty() ) : ?>
+				<?php if( !( $products = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) )->isEmpty() ) : ?>
+
 					<section class="catalog-detail-suggest">
 						<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ); ?></h2>
+
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-							array( 'products' => $products, 'itemprop' => 'isRelatedTo' )
+							['products' => $products, 'itemprop' => 'isRelatedTo']
 						); ?>
+
 					</section>
 
 				<?php endif; ?>
 
 
-				<?php if( !( $posItems = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) )->isEmpty()
-					&& !( $products = $getProductList( $posItems, $prodItems ) )->isEmpty() ) : ?>
+				<?php if( !( $products = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) )->isEmpty() ) : ?>
+
 					<section class="catalog-detail-bought">
 						<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ); ?></h2>
+
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-							array( 'products' => $products, 'itemprop' => 'isRelatedTo' )
+							['products' => $products, 'itemprop' => 'isRelatedTo']
 						); ?>
+
 					</section>
 
 				<?php endif; ?>
@@ -518,6 +452,7 @@ if( isset( $this->detailProductItem ) )
 			</div>
 
 		</article>
+
 	<?php endif; ?>
 
 </section>

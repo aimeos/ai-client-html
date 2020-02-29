@@ -6,16 +6,16 @@
  */
 
 $enc = $this->encoder();
-$items = $this->get( 'supplierItems', [] );
+
 
 ?>
 <?php $this->block()->start( 'catalog/detail/supplier' ); ?>
-<?php if( !empty( $items ) ) : ?>
+<?php if( !$this->get( 'supplierItems', map() )->isEmpty() ) : ?>
 <div class="catalog-detail-supplier">
 
 	<h2 class="header"><?= $this->translate( 'client', 'Supplier information' ); ?></h2>
 
-	<?php foreach( $items as $item ) : ?>
+	<?php foreach( $this->get( 'supplierItems', [] ) as $item ) : ?>
 
 		<div class="content supplier">
 

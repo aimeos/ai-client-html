@@ -7,19 +7,8 @@
  */
 
 /* Available data:
- * - productItem : Product item the attributes are associated with (optional)
- * - attributeConfigItems : List of configuration attributes
- * - attributeCustomItems : List of custom attributes
- * - attributeHiddenItems : List of hidden attributes
+ * - productItem : Product item the attributes are associated to
  */
-
-
-$enc = $this->encoder();
-
-$attributeConfigItems = [];
-foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
-	$attributeConfigItems[$attribute->getType()][$id] = $attribute;
-}
 
 
 /** client/html/catalog/attribute/preselect
@@ -92,6 +81,15 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
  *
  * @see client/html/catalog/attribute/type
  */
+
+
+$enc = $this->encoder();
+
+$attributeConfigItems = [];
+foreach( $this->productItem->getRefItems( 'attribute', null, 'config' ) as $id => $attribute ) {
+	$attributeConfigItems[$attribute->getType()][$id] = $attribute;
+}
+
 
 ?>
 <ul class="selection">
@@ -179,7 +177,7 @@ foreach( $this->get( 'attributeConfigItems', [] ) as $id => $attribute ) {
 </ul>
 
 <ul class="selection">
-	<?php foreach( $this->get( 'attributeCustomItems', [] ) as $id => $attribute ) : ?>
+	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'config' ) as $id => $attribute ) : ?>
 		<li class="select-item <?= $enc->attr( $attribute->getCode() ); ?>">
 			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></div>
 

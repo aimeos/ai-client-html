@@ -450,7 +450,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$domains = array( 'media', 'price', 'text', 'attribute', 'product', 'product/property' );
+		$domains = ['attribute', 'media', 'price', 'product', 'product/property', 'text'];
 
 		/** client/html/catalog/domains
 		 * A list of domain names whose items should be available in the catalog view templates
@@ -518,11 +518,34 @@ class Standard
 
 		$name = $view->param( 'd_name', '' );
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
+
 		$productItem = ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $name ) ) );
 		$this->addMetaItems( $productItem, $expire, $tags );
 
-		$products = $productItem->getRefItems( 'product' );
-		$this->addMetaItems( $products->toArray(), $expire, $tags );
+		$propMap = $attrMap = [];
+		$propItems = $productItem->getPropertyItems();
+		$attrItems = $productItem->getRefItems( 'attribute', null, 'default' );
+		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
+
+		if( in_array( $productItem->getType(), ['bundle', 'select'] ) )
+		{
+			foreach( $productItem->getRefItems( 'product', null, 'default' ) as $subProdId => $subProduct )
+			{
+				$propItems->merge( $subProduct->getPropertyItems()->assign( ['parent', $subProdId] ) );
+				$mediaItems->merge( $subProduct->getRefItems( 'media', 'default', 'default' ) );
+				$attrItems->merge( $subProduct->getRefItems( 'attribute', null, 'default' )
+					->merge( $subProduct->getRefItems( 'attribute', null, 'variant' ) )
+					->assign( ['parent', $subProdId] ) );
+			}
+		}
+
+		foreach( $attrItems as $attrId => $attrItem ) {
+			$attrMap[$attrItem->getType()][$attrId] = $attrItem;
+		}
+
+		foreach( $propItems as $propItem ) {
+			$propMap[$propItem->getType()][$propItem->getId()] = $propItem;
+		}
 
 
 		/** client/html/catalog/detail/stock/enable
@@ -547,13 +570,16 @@ class Standard
 		 * @see client/html/catalog/stock/url/config
 		 */
 
-		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true ) {
-			$view->detailStockUrl = $this->getStockUrl( $view, $products->push( $productItem ) );
+		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true )
+		{
+			$products = $productItem->getRefItems( 'product', null, 'default' )->push( $productItem );
+			$view->detailStockUrl = $this->getStockUrl( $view, $products );
 		}
 
-		$view->detailProductItems = $products;
+		$view->detailMediaItems = $mediaItems;
 		$view->detailProductItem = $productItem;
-		$view->detailParams = $this->getClientParams( $view->param() );
+		$view->detailPropertyMap = map( $propMap )->ksort();
+		$view->detailAttributeMap = map( $attrMap )->ksort();
 
 		return parent::addData( $view, $tags, $expire );
 	}

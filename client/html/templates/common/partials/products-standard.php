@@ -6,28 +6,16 @@
  */
 
 /* Expected data:
- * - products : List of product items
- * - productItems : List of product variants incl. referenced items (optional)
+ * - productItems : List of product variants incl. referenced items
  * - basket-add : True to display "add to basket" button, false if not (optional)
  * - require-stock : True if the stock level should be displayed (optional)
  * - itemprop : Schema.org property for the product items (optional)
  * - position : Position is product list to start from (optional)
  */
 
+
 $enc = $this->encoder();
 $position = $this->get( 'position' );
-$productItems = $this->get( 'productItems', [] );
-
-if( $this->get( 'basket-add', false ) )
-{
-	$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-	$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-	$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-	$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
-	$basketSite = $this->config( 'client/html/basket/standard/url/site' );
-
-	$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
-}
 
 
 /** client/html/catalog/detail/url/target
@@ -132,18 +120,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 <ul class="list-items"><!--
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
-		<?php
-			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
-
-			$disabled = '';
-			$curdate = date( 'Y-m-d H:i:00' );
-
-			if( ( $startDate = $productItem->getDateStart() ) !== null && $startDate > $curdate
-				|| ( $endDate = $productItem->getDateEnd() ) !== null && $endDate < $curdate
-			) {
-				$disabled = 'disabled';
-			}
-		?>
+		<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter ); ?>
 
 		--><li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ); ?>"
 			data-reqstock="<?= (int) $this->get( 'require-stock', true ); ?>"
@@ -252,12 +229,18 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 
 			<?php if( $this->get( 'basket-add', false ) ) : ?>
-				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
+				<?php
+					$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
+					$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
+					$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
+					$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
+				?>
+				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 					<!-- catalog.lists.items.csrf -->
 					<?= $this->csrf()->formfield(); ?>
 					<!-- catalog.lists.items.csrf -->
 
-					<?php if( $basketSite ) : ?>
+					<?php if( $basketSite = $this->config( 'client/html/basket/standard/url/site' ) ) : ?>
 						<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
 					<?php endif ?>
 
@@ -265,11 +248,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<div class="items-selection">
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
-								array(
-									'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
-									'productItems' => $this->get( 'productItems', [] ),
-									'productItem' => $productItem,
-								)
+								['productItems' => $productItem->getRefItems( 'product', 'default', 'default' )]
 							); ?>
 						</div>
 					<?php endif; ?>
@@ -277,12 +256,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<div class="items-attribute">
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
-							array(
-								'productItem' => $productItem,
-								'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
-								'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
-								'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),
-							)
+							['productItem' => $productItem]
 						); ?>
 					</div>
 
@@ -295,10 +269,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 							/>
 							<input type="number" class="form-control" value="1"
-								 min="1" max="2147483647" maxlength="10" step="1" required="required" <?= $disabled ?>
+								 min="1" max="2147483647" maxlength="10" step="1" required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 							/><!--
-							--><button class="btn btn-primary" type="submit" value="" <?= $disabled ?> >
+							--><button class="btn btn-primary" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
 								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
 							</button>
 						</div>

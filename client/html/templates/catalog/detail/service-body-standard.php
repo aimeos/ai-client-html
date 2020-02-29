@@ -6,17 +6,17 @@
  */
 
 $enc = $this->encoder();
-$items = $this->get( 'serviceItems', [] );
+
 
 ?>
 <?php $this->block()->start( 'catalog/detail/service' ); ?>
 <div class="catalog-detail-service">
 
-	<?php if( !empty( $items ) ) : ?>
+	<?php if( !$this->get( 'serviceItems', map() )->isEmpty() ) : ?>
 		<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
 		<ul class="service-list">
 
-			<?php foreach( $items as $item ) : ?>
+			<?php foreach( $this->get( 'serviceItems', [] ) as $item ) : ?>
 				<li class="service-item">
 					<span class="service-name"><?= $enc->html( $item->getName() ); ?></span>
 

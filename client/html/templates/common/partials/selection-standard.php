@@ -7,7 +7,6 @@
  */
 
 /* Available data:
- * - products : List of variant product items without references
  * - productItems : List of product items including the referenced items like texts, attributes, etc.
  */
 
@@ -16,20 +15,14 @@ $index = 0;
 $enc = $this->encoder();
 $attrTypeDeps = $attrDeps = $prodDeps = $attributeItems = [];
 
-$articleItems = $this->get( 'products', [] );
-$productItems = $this->get( 'productItems', [] );
-
-foreach( $articleItems as $articleId => $articleItem )
+foreach( $this->get( 'productItems', [] ) as $prodId => $product )
 {
-	if( ( $product = $productItems->get( $articleId ) ) !== null )
+	foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
 	{
-		foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
-		{
-			$attrTypeDeps[$attrItem->getType()][$attrId] = $attrItem->getPosition();
-			$attributeItems[$attrId] = $attrItem;
-			$attrDeps[$attrId][] = $articleId;
-			$prodDeps[$articleId][] = $attrId;
-		}
+		$attrTypeDeps[$attrItem->getType()][$attrId] = $attrItem->getPosition();
+		$attributeItems[$attrId] = $attrItem;
+		$attrDeps[$attrId][] = $prodId;
+		$prodDeps[$prodId][] = $attrId;
 	}
 }
 

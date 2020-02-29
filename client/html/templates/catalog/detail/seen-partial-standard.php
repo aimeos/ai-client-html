@@ -18,14 +18,11 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 ?>
 <?php if( isset( $this->seenProductItem ) ) : $productItem = $this->seenProductItem; ?>
 
-	<?php
-		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
-		$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter );
-	?>
+	<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ); ?>
 
 	<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 
-		<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
+		<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 			<div class="media-item" style="background-image: url('<?= $this->content( $mediaItem->getPreview() ); ?>')"></div>
 		<?php else : ?>
 			<div class="media-item"></div>

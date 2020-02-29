@@ -347,8 +347,8 @@ class Standard
 	 * Returns the form parameter names for the given attribute type
 	 *
 	 * @param string $type Attribute type code
-	 * @param array List of attribute type codes for one of several filter
-	 * @param array List of attribute type codes for optional filter
+	 * @param array $oneof List of attribute type codes for one of several filter
+	 * @param array $options List of attribute type codes for optional filter
 	 * @return array Ordered list of form parameter names
 	 */
 	protected function getFormParams( string $type, array $oneof, array $options ) : array
