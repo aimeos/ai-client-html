@@ -34,7 +34,7 @@ class Standard
 
 		$sources = [];
 		foreach( $media->getPreviews() as $type => $path ) {
-			$sources[$type] = $this->content( $path );
+			$sources[$type] = $view->content( $path );
 		}
 
 		$variant = '';

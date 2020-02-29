@@ -314,42 +314,75 @@ class Standard
 		{
 			if( ( $key = array_search( $id, $attrIds ) ) !== null )
 			{
-				$item = $item->set( 'checked', true )->set( 'formparam', ['f_attrid', ''] );
+				$item = $item->set( 'checked', true );
 				unset( $params[$key] );
 			}
 			elseif( ( $key = array_search( $id, $oneIds ) ) !== null )
 			{
-				$item = $item->set( 'checked', true )->set( 'formparam', ['f_oneid', ''] );
+				$item = $item->set( 'checked', true );
 				unset( $params[$key] );
 			}
 			elseif( ( $key = array_search( $id, $optIds ) ) !== null )
 			{
-				$item = $item->set( 'checked', true )->set( 'formparam', [$item->getType(), 'f_optid', ''] );
+				$item = $item->set( 'checked', true );
 				unset( $params[$key] );
 			}
 
-			$attrMap[$item->getType()][$id] = $item->set( 'params', $params );
+			$type = $item->getType();
+			$fparams = $this->getFormParams( $type, $oneof, $options );
+			$attrMap[$item->getType()][$id] = $item->set( 'params', $params )->set( 'formparam', $fparams );
 		}
 
-		if( !empty( $attrTypes ) )
-		{
-			$sortedMap = [];
-
-			foreach( $attrTypes as $type )
-			{
-				if( isset( $attrMap[$type] ) ) {
-					$sortedMap[$type] = $attrMap[$type];
-				}
-			}
-
-			$attrMap = $sortedMap;
-		}
 
 		unset( $params['f_attrid'], $params['f_oneid'], $params['f_optid'] );
 
 		$view->attributeResetParams = $params;
-		$view->attributeMap = $attrMap;
+		$view->attributeMap = $this->sort( $attrMap, $attrTypes );
 
 		return parent::addData( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the form parameter names for the given attribute type
+	 *
+	 * @param string $type Attribute type code
+	 * @param array List of attribute type codes for one of several filter
+	 * @param array List of attribute type codes for optional filter
+	 * @return array Ordered list of form parameter names
+	 */
+	protected function getFormParams( string $type, array $oneof, array $options ) : array
+	{
+		if( in_array( $type, $oneof ) ) {
+			return ['f_oneid', $type, ''];
+		}
+
+		if( in_array( $type, $options ) ) {
+			return ['f_optid', ''];
+		}
+
+		return ['f_attrid', ''];
+	}
+
+
+	/**
+	 * Sorts the attribute types according to the configured order
+	 *
+	 * @param array $attrMap Associative list of attribute types as keys and attribute items as values
+	 * @param array $attrTypes List of attribute type names
+	 * @return array Sorted associative list of attribute types and attribute items
+	 */
+	protected function sort( array $attrMap, array $attrTypes ) : array
+	{
+		$map = [];
+
+		foreach( $attrTypes as $type )
+		{
+			if( isset( $attrMap[$type] ) ) {
+				$map[$type] = $attrMap[$type];
+			}
+		}
+
+		return !empty( $map ) ? $map : $attrMap;
 	}
 }

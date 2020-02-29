@@ -39,7 +39,7 @@ $config = $this->config( 'client/html/locale/select/language/url/config', [] );
 			<ul class="select-dropdown">
 
 				<?php foreach( $this->get( 'selectMap', [] ) as $lang => $list ) : ?>
-					<li class="select-item <?= ( $lang !== $this->get( 'selectLanguageId', 'en' ) ?: 'active' ); ?>">
+					<li class="select-item <?= ( $lang === $this->get( 'selectLanguageId', 'en' ) ? 'active' : '' ); ?>">
 						<a href="<?= $enc->attr( $this->url( $this->request()->getTarget(), $this->param( 'controller' ), $this->param( 'action' ), array_merge( $this->get( 'selectParams', [] ), $list[$this->get( 'selectCurrencyId', 'EUR' )] ?? current( $list ) ), [], $config ) ); ?>">
 							<?= $enc->html( $this->translate( 'language', $lang ), $enc::TRUST ); ?>
 						</a>

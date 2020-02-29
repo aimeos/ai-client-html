@@ -39,7 +39,7 @@ $enc = $this->encoder();
 					<?= $enc->html( $this->get( 'emailIntro' ) ); ?>
 				</mj-text>
 				<mj-text css-class="email-common-intro">
-					<?= nl2br( $enc->html( $this->get( 'message' ) , $enc::TRUST ) ); ?>
+					<?= nl2br( $enc->html( $this->get( 'message' ), $enc::TRUST ) ); ?>
 				</mj-text>
 			</mj-column>
 		</mj-section>
