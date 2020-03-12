@@ -103,15 +103,13 @@ class Standard
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$orderSearch = $orderManager->createSearch();
-
-		$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER, '1' );
-		$orderFunc = $orderSearch->createFunction( 'order.containsStatus', $param );
+		$orderFunc = $orderSearch->createFunction( 'order:status', [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER] );
 
 		$expr = array(
 			$orderSearch->compare( '>=', 'order.mtime', $limitDate ),
 			$orderSearch->compare( '==', 'order.statuspayment', $status ),
 			$orderSearch->compare( '==', 'order.base.product.type', 'voucher' ),
-			$orderSearch->compare( '==', $orderFunc, 0 ),
+			$orderSearch->compare( '==', $orderFunc, '1' ),
 		);
 		$orderSearch->setConditions( $orderSearch->combine( '&&', $expr ) );
 
