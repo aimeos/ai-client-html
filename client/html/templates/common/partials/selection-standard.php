@@ -110,9 +110,8 @@ ksort( $attrTypeDeps );
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ); ?>">
 			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
 
-			<?php $hintcode = $code . '-hint'; $hint = $enc->html( $this->translate( 'client/code', $hintcode ) ); ?>
-			<?php if( !empty( $hint ) && $hint !== $hintcode ) : ?>
-				<div class="select-hint"><?= $hint; ?></div>
+			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
+				<div class="select-hint"><?= $enc->html( $hint ); ?></div>
 			<?php endif; ?>
 
 			<div class="select-value">
