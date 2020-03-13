@@ -70,11 +70,10 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 * @category Developer
 					 */
 					$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-standard' ),
-					['mediaItems' => $this->get( 'detailMediaItems', map() )]
+					['mediaItems' => $this->get( 'detailMediaItems', map() ), 'params' => $this->param()]
 				); ?>
 
 			</div>
-
 
 			<div class="col-sm-6">
 
