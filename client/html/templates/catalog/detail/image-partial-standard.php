@@ -39,7 +39,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 			<?php endif ?>
 			--><div class="thumbs"><!--
 
-				<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
+				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 					<?php $previewUrl = $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>
 
 					--><a class="<?= $class; ?>" style="background-image: url('<?= $previewUrl; ?>')"
