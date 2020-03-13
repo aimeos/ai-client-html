@@ -153,7 +153,7 @@ $enc = $this->encoder();
 
 <ul class="selection">
 
-	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'config' ) as $id => $attribute ) : ?>
+	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'custom' ) as $id => $attribute ) : ?>
 
 		<li class="select-item <?= $enc->attr( $attribute->getCode() ); ?>">
 			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></div>
