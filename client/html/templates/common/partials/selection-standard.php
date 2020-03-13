@@ -106,10 +106,8 @@ ksort( $attrTypeDeps );
 	data-attrdeps="<?= $enc->attr( json_encode( $attrDeps ) ); ?>">
 
 	<?php foreach( $attrTypeDeps as $code => $positions ) : asort( $positions ); ?>
-		<?php $layout = $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ); ?>
-		<?php $preselect = (bool) $this->config( 'client/html/catalog/selection/preselect/' . $code, false ); ?>
 
-		<li class="select-item <?= $enc->attr( $layout ) . ' ' . $enc->attr( $code ); ?>">
+		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ); ?>">
 			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
 
 			<?php $hintcode = $code . '-hint'; $hint = $enc->html( $this->translate( 'client/code', $hintcode ) ); ?>
@@ -119,25 +117,29 @@ ksort( $attrTypeDeps );
 
 			<div class="select-value">
 
-				<?php if( $layout === 'radio' ) : $first = true; ?>
+				<?php if( $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) === 'radio' ) : $first = true; ?>
 
 					<ul class="select-list" data-index="<?= $index++; ?>" data-type="<?= $enc->attr( $code ); ?>">
+
 						<?php foreach( $positions as $attrId => $position ) : ?>
+
 							<li class="select-entry">
 								<input class="select-option" type="radio"
 									id="option-<?= $enc->attr( $attrId ); ?>"
-									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>"
+									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ); ?>"
 									value="<?= $enc->attr( $attrId ); ?>"
-									<?= ( $preselect && $first ? 'checked="checked"' : '' ); $first = false ?>
+									<?= ( $first && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ); $first = false ?>
 								/>
 								<label class="select-label" for="option-<?= $enc->attr( $attrId ); ?>"><!--
 
 									<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'default', 'icon' ) as $listItem ) : ?>
 										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
+
 											<?= '-->' . $this->partial( $this->config(
 												'client/html/common/partials/media', 'common/partials/media-standard' ),
-												array( 'item' => $item, 'boxAttributes' => array( 'class' => 'media-item' ) )
+												['item' => $item, 'boxAttributes' => ['class' => 'media-item']]
 											) . '<!--'; ?>
+
 										<?php endif; ?>
 									<?php endforeach; ?>
 
@@ -146,29 +148,38 @@ ksort( $attrTypeDeps );
 							</li>
 
 						<?php endforeach; ?>
+
 					</ul>
 
 				<?php else : ?>
+
 					<select class="form-control select-list"
-						name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'attrvarid', $code ) ) ); ?>"
+						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ); ?>"
 						data-index="<?= $index++; ?>" data-type="<?= $enc->attr( $code ); ?>" >
 
-						<?php if( $preselect === false ) : ?>
+						<?php if( !$this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ) : ?>
+
 							<option class="select-option" value="">
 								<?= $enc->attr( $this->translate( 'client', 'Please select' ) ); ?>
 							</option>
+
 						<?php endif; ?>
 
 						<?php foreach( $positions as $attrId => $position ) : ?>
+
 							<option class="select-option" value="<?= $enc->attr( $attrId ); ?>">
 								<?= $enc->html( $attributeItems[$attrId]->getName() ); ?>
 							</option>
+
 						<?php endforeach; ?>
 
 					</select>
 
 				<?php endif; ?>
+
 			</div>
 		</li>
+
 	<?php endforeach; ?>
+
 </ul>

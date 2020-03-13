@@ -117,12 +117,12 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 
 ?>
-<ul class="list-items"><!--
+<ul class="list-items">
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
 		<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter ); ?>
 
-		--><li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ); ?>"
+		<li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ); ?>"
 			data-reqstock="<?= (int) $this->get( 'require-stock', true ); ?>"
 			itemprop="<?= $this->get( 'itemprop' ); ?>"
 			itemtype="http://schema.org/Product"
@@ -132,7 +132,9 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 
 				<div class="media-list">
+
 					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
+
 						<noscript>
 							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
 								<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
@@ -141,6 +143,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						</noscript>
 
 						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+
 							<div class="media-item">
 								<img class="lazy-image"
 									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -149,17 +152,23 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 									alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
 								/>
 							</div>
+
 						<?php endforeach; ?>
 					<?php endif; ?>
+
 				</div>
 
 				<div class="text-list">
 					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
+
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+
 						<div class="text-item" itemprop="description">
-							<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?><br/>
-					</div>
+							<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
+						</div>
+
 					<?php endforeach; ?>
+
 				</div>
 
 			</a>
@@ -172,19 +181,23 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
 						data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
 					</div>
+
 					<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+
 						<div class="articleitem"
 							data-prodid="<?= $enc->attr( $articleId ); ?>"
 							data-prodcode="<?= $enc->attr( $articleItem->getCode() ); ?>">
 						</div>
+
 					<?php endforeach; ?>
+
 				</div>
 
 				<div class="price-list">
 					<div class="articleitem price price-actual"
 						data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
 						data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
-						<?php $priceItems = $productItem->getRefItems( 'price', null, 'default' ); ?>
+
 						<?= $this->partial(
 							/** client/html/common/partials/price
 							 * Relative path to the price partial template file
@@ -202,15 +215,15 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							 * @category Developer
 							 */
 							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-							array( 'prices' => $priceItems->first() ?: [] )
+							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' )->first() ?: map() )
 						); ?>
+
 					</div>
 
 					<?php if( $productItem->getType() === 'select' ) : ?>
 						<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-							<?php if( isset( $productItems[$prodid] ) ) { $product = $productItems[$prodid]; } ?>
-
 							<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
+
 								<div class="articleitem price"
 									data-prodid="<?= $enc->attr( $prodid ); ?>"
 									data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
@@ -219,8 +232,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 										array( 'prices' => $prices )
 									); ?>
 								</div>
-							<?php endif; ?>
 
+							<?php endif; ?>
 						<?php endforeach; ?>
 					<?php endif; ?>
 				</div>
@@ -235,6 +248,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
 					$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 				?>
+
 				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 					<!-- catalog.lists.items.csrf -->
 					<?= $this->csrf()->formfield(); ?>
@@ -245,19 +259,23 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<?php endif ?>
 
 					<?php if( $productItem->getType() === 'select' ) : ?>
+
 						<div class="items-selection">
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
 								['productItems' => $productItem->getRefItems( 'product', 'default', 'default' )]
 							); ?>
 						</div>
+
 					<?php endif; ?>
 
 					<div class="items-attribute">
+
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
 							['productItem' => $productItem]
 						); ?>
+
 					</div>
 
 					<div class="addbasket">
@@ -279,11 +297,11 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					</div>
 
 				</form>
+
 			<?php endif; ?>
 
-
-		</li><!--
+		</li>
 
 	<?php endforeach; ?>
 
---></ul>
+</ul>
