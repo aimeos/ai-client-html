@@ -9,7 +9,7 @@
 ?>
 <?php $this->block()->start( 'catalog/count/tree' ); ?>
 // <!--
-var catalogCounts = <?= json_encode( $this->get( 'treeCountList', [] ), JSON_FORCE_OBJECT ); ?>;
+var catalogCounts = <?= $this->get( 'treeCountList', map() )->toJson( JSON_FORCE_OBJECT ); ?>;
 
 $(".catalog-filter-count li.cat-item").each(function(index, item) {
 	var id = $(item).data("id");

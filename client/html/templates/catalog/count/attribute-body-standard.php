@@ -9,7 +9,7 @@
 ?>
 <?php $this->block()->start( 'catalog/count/attribute' ); ?>
 // <!--
-var attributeCounts = <?= json_encode( $this->get( 'attributeCountList', [] ), JSON_FORCE_OBJECT ); ?>;
+var attributeCounts = <?= $this->get( 'attributeCountList', map() )->toJson( JSON_FORCE_OBJECT ); ?>;
 
 $( ".catalog-filter-attribute .attribute-lists li.attr-item" ).each( function( index, item ) {
 	$(item).append( function() {

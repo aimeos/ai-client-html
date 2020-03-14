@@ -8,7 +8,7 @@
 ?>
 <?php $this->block()->start( 'catalog/count/supplier' ); ?>
 // <!--
-var supplierCounts = <?= json_encode( $this->get( 'supplierCountList', [] ), JSON_FORCE_OBJECT ); ?>;
+var supplierCounts = <?= $this->get( 'supplierCountList', map() )->toJson( JSON_FORCE_OBJECT ); ?>;
 
 $( ".catalog-filter-supplier .supplier-lists li.attr-item" ).each( function( index, item ) {
 	$(item).append( function() {
