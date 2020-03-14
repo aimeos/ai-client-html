@@ -298,7 +298,8 @@ class Standard
 		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', array( 'text', 'media' ) );
 
 		$attributes = \Aimeos\Controller\Frontend::create( $this->getContext(), 'attribute' )
-			->uses( $domains )->type( $attrTypes )->sort( 'position' )->slice( 0, 10000 )->search();
+			->uses( $domains )->type( $attrTypes )->compare( '!=', 'attribute.type', ['date', 'price', 'text'] )
+			->sort( 'position' )->slice( 0, 10000 )->search();
 
 		// Delete cache when attributes are added or deleted even in "tag-all" mode
 		$this->addMetaItems( $attributes, $expire, $tags, ['attribute'] );
