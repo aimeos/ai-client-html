@@ -158,7 +158,7 @@ $enc = $this->encoder();
 		<li class="select-item <?= $enc->attr( $attribute->getCode() ); ?>">
 			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></div>
 
-			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
+			<?php if( $hint = $this->translate( 'client/code', $attribute->getCode() . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ); ?></div>
 			<?php endif; ?>
 
