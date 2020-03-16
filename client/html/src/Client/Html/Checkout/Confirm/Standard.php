@@ -323,7 +323,7 @@ class Standard
 			else
 			{
 				$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
-				$orderItem = $orderCntl->get( $orderid );
+				$orderItem = $orderCntl->get( $orderid, false );
 			}
 
 			// update stock, coupons, etc.
