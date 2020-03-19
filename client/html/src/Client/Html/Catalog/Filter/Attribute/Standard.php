@@ -313,17 +313,17 @@ class Standard
 
 		foreach( $attributes as $id => $item )
 		{
-			if( ( $key = array_search( $id, $attrIds ) ) !== null )
+			if( ( $key = array_search( $id, $attrIds ) ) !== false )
 			{
 				$item = $item->set( 'checked', true );
 				unset( $params[$key] );
 			}
-			elseif( ( $key = array_search( $id, $oneIds ) ) !== null )
+			elseif( ( $key = array_search( $id, $oneIds ) ) !== false )
 			{
 				$item = $item->set( 'checked', true );
 				unset( $params[$key] );
 			}
-			elseif( ( $key = array_search( $id, $optIds ) ) !== null )
+			elseif( ( $key = array_search( $id, $optIds ) ) !== false )
 			{
 				$item = $item->set( 'checked', true );
 				unset( $params[$key] );
