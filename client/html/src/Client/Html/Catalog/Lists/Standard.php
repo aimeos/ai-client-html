@@ -686,7 +686,7 @@ class Standard
 		$view->listPageLast = ( $total != 0 ? ceil( $total / $size ) : 1 );
 		$view->listPageNext = ( $page < $view->listPageLast ? $page + 1 : $view->listPageLast );
 
-		$view->listParams = $this->getClientParams( map( $view->param() )->remove( 'f_sort' )->toArray() );
+		$view->listParams = $this->getClientParams( map( $view->param() )->toArray() );
 
 		return parent::addData( $view, $tags, $expire );
 	}
