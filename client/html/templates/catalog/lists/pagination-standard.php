@@ -59,7 +59,7 @@ if( $sort === 'price' ) {
 			</li>
 			<li>
 				<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'f_sort' => '-ctime' ) + $params, [], $listConfig ); ?>
-				<a class="option-relevance <?= ( $sort === '-ctime' ? 'active' : '' ); ?>" href="<?= $enc->attr( $url ); ?>" >
+				<a class="option-ctime <?= ( $sort === '-ctime' ? 'active' : '' ); ?>" href="<?= $enc->attr( $url ); ?>" >
 					<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ); ?>
 				</a>
 			</li>
