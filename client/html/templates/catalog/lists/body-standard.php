@@ -121,7 +121,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 		</div>
 	<?php endif; ?>
 
-	<?php if( $this->get( 'listProductTotal', 0 ) > $this->get( 'listPageSize', 48 ) && $this->config( 'client/html/catalog/lists/pagination/enable', true ) ) : ?>
+	<?php if( $this->get( 'listProductTotal', 0 ) > 0 && $this->config( 'client/html/catalog/lists/pagination/enable', true ) ) : ?>
 		<?= $this->partial(
 				$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-standard' ),
 				array(
@@ -166,7 +166,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 
 	<?= $this->block()->get( 'catalog/lists/items' ); ?>
 
-	<?php if( $this->get( 'listProductTotal', 0 ) > $this->get( 'listPageSize', 48 ) && $this->config( 'client/html/catalog/lists/pagination/enable', true ) ) : ?>
+	<?php if( $this->get( 'listProductTotal', 0 ) > 0 && $this->config( 'client/html/catalog/lists/pagination/enable', true ) ) : ?>
 		<?= $this->partial(
 				$this->config( 'client/html/catalog/lists/partials/pagination', 'catalog/lists/pagination-standard' ),
 				array(
