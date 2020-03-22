@@ -19,13 +19,6 @@ $optAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
-$params = array( 'c_step' => 'payment' );
-$changeUrl = $this->url( $target, $controller, $action, $params, [], $config );
-
-$params = array( 'c_step' => 'process', 'cs_option_terms' => 1, 'cs_option_terms_value' => 1, 'cs_order' => 1 );
-$retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
-
-
 ?>
 <section class="aimeos checkout-confirm" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
@@ -73,10 +66,10 @@ $retryUrl = $this->url( $target, $controller, $action, $params, [], $config );
 	<div class="checkout-confirm-retry">
 		<?php if( isset( $this->confirmOrderItem ) && $this->confirmOrderItem->getPaymentStatus() < \Aimeos\MShop\Order\Item\Base::PAY_REFUND ) : ?>
 			<div class="button-group">
-				<a class="btn btn-default btn-lg" href="<?= $enc->attr( $changeUrl ); ?>">
+				<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->url( $target, $controller, $action, ['c_step' => 'payment'], [], $config ) ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 				</a>
-				<a class="btn btn-primary btn-lg" href="<?= $enc->attr( $retryUrl ); ?>">
+				<a class="btn btn-primary btn-lg" href="<?= $enc->attr( $this->url( $target, $controller, $action, ['c_step' => 'process', 'cs_option_terms' => 1, 'cs_option_terms_value' => 1, 'cs_order' => 1], [], $config ) ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ); ?>
 				</a>
 			</div>

@@ -7,9 +7,6 @@
 
 $enc = $this->encoder();
 
-$addresses = $this->summaryBasket->getAddresses();
-$services = $this->summaryBasket->getServices();
-
 
 ?>
 <?php $this->block()->start( 'checkout/confirm/order' ); ?>
@@ -23,7 +20,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['payment'] ) ) : ?>
+				<?php if( ( $addresses = $this->summaryBasket->getAddress( 'payment' ) ) !== [] ) : ?>
 					<?= $this->partial(
 						/** client/html/checkout/confirm/summary/address
 						 * Location of the address partial template for the confirmation component
@@ -41,7 +38,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/checkout/confirm/summary/service
 						 */
 						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard' ),
-						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
+						['addresses' => $addresses, 'type' => 'payment']
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -53,10 +50,10 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['delivery'] ) ) : ?>
+				<?php if( ( $addresses = $this->summaryBasket->getAddress( 'delivery' ) ) !== [] ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard' ),
-						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
+						['addresses' => $addresses, 'type' => 'delivery']
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
@@ -73,7 +70,7 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $services['delivery'] ) ) : ?>
+				<?php if( ( $services = $this->summaryBasket->getService( 'delivery' ) ) !== [] ) : ?>
 					<?= $this->partial(
 						/** client/html/checkout/confirm/summary/service
 						 * Location of the service partial template for the confirmation component
@@ -91,7 +88,7 @@ $services = $this->summaryBasket->getServices();
 						 * @see client/html/checkout/confirm/summary/detail
 						 */
 						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard' ),
-						array( 'service' => $services['delivery'], 'type' => 'delivery' )
+						['service' => $services, 'type' => 'delivery']
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -103,10 +100,10 @@ $services = $this->summaryBasket->getServices();
 			</div>
 
 			<div class="content">
-				<?php if( isset( $services['payment'] ) ) : ?>
+				<?php if( ( $services = $this->summaryBasket->getService( 'payment' ) ) !== [] ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard' ),
-						array( 'service' => $services['payment'], 'type' => 'payment' )
+						['service' => $services, 'type' => 'payment']
 					); ?>
 				<?php endif; ?>
 			</div>
