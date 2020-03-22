@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
 		$attrItem = \Aimeos\MShop::create( $context, 'attribute' )->createItem()->setType( 'color' )->setId( 123 );
-		$listItem = $manager->createListsItem()->setType( 'variant' );
+		$listItem = $manager->createListItem()->setType( 'variant' );
 
 		$mediaItem = $manager->createItem()->setLabel( 'testimage' )
 			->setPreviews( ['100' => 'image-1.jpg', '200' => 'image-2.jpg'] )
