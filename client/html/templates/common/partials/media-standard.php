@@ -5,36 +5,34 @@
  * @copyright Aimeos (aimeos.org), 2015-2020
  */
 
-if( !isset( $this->item ) ) {
+/* Available data:
+ * - item : Media item object implemnting \MShop\Media\Item\Iface
+ */
+
+
+if( ( $item = $this->get( 'item' ) ) === null ) {
 	return;
 }
 
 $enc = $this->encoder();
-$boxAttributes = $this->get( 'boxAttributes', [] );
-$itemAttributes = $this->get( 'itemAttributes', [] );
-
-$item = $this->item;
-$url = $item->getUrl();
-$previewUrl = $item->getPreview();
-$parts = explode( '/', $item->getMimetype() );
 
 $boxattr = '';
-foreach( $boxAttributes as $name => $value ) {
+foreach( $this->get( 'boxAttributes', [] ) as $name => $value ) {
 	$boxattr .= $name . ( $value != null ? '="' . $enc->attr( $value ) . '"' : '' ) . ' ';
 }
 
 $itemattr = '';
-foreach( $itemAttributes as $name => $value ) {
+foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 	$itemattr .= $name . ( $value != null ? '="' . $enc->attr( $value ) . '"' : '' ) . ' ';
 }
 
 ?>
-<?php switch( $parts[0] ) : case 'audio': ?>
+<?php switch( current( explode( '/', $item->getMimetype() ) ) ) : case 'audio': ?>
 
 	<audio <?= $boxattr; ?> >
-		<source src="<?= $enc->attr( $this->content( $url ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
+		<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
 		<?php foreach( $item->getRefItems( 'media' ) as $item ) : ?>
-			<source src="<?= $enc->attr( $this->content( $url ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
+			<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
 		<?php endforeach; ?>
 		<?= $enc->html( $item->getName() ); ?>
 	</audio>
@@ -42,9 +40,9 @@ foreach( $itemAttributes as $name => $value ) {
 	<?php break; case 'video': ?>
 
 		<video <?= $boxattr; ?> >
-			<source src="<?= $enc->attr( $this->content( $url ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
+			<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
 		<?php foreach( $item->getRefItems( 'media' ) as $item ) : ?>
-			<source src="<?= $enc->attr( $this->content( $url ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
+			<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
 		<?php endforeach; ?>
 		<?= $enc->html( $item->getName() ); ?>
 	</video>
@@ -52,16 +50,16 @@ foreach( $itemAttributes as $name => $value ) {
 	<?php break; case 'image': ?>
 
 		<div <?= $boxattr; ?> ><!--
-			--><img src="<?= $enc->attr( $this->content( $previewUrl ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr; ?> /><!--
+			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr; ?> /><!--
 		<?php foreach( $item->getRefItems( 'media' ) as $item ) : ?>
-			--><img src="<?= $enc->attr( $this->content( $previewUrl ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr; ?> /><!--
+			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr; ?> /><!--
 		<?php endforeach; ?>
 		--></div>
 
 	<?php break; default: ?>
 
-		<a href="<?= $enc->attr( $this->content( $url ) ); ?>" <?= $boxattr ?> ><!--
-			--><img src="<?= $enc->attr( $this->content( $previewUrl ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr ?> /><!--
+		<a href="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" <?= $boxattr ?> ><!--
+			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr ?> /><!--
 			<?= $enc->html( $item->getName() ); ?>
 		--></a>
 

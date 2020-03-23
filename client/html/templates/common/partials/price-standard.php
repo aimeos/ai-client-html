@@ -5,14 +5,14 @@
  * @copyright Aimeos (aimeos.org), 2015-2020
  */
 
-$enc = $this->encoder();
-$iface = '\Aimeos\MShop\Price\Item\Iface';
-$priceItems = $this->get( 'prices', map() );
-$prices = [];
+/* Available data:
+ * - prices : List of price items
+ */
 
-if( $priceItems instanceof $iface ) {
-	$priceItems = map( [$priceItems] );
-}
+
+$prices = [];
+$enc = $this->encoder();
+$priceItems = map( $this->get( 'prices', [] ) );
 
 foreach( $priceItems as $priceItem )
 {
@@ -38,29 +38,16 @@ $withtax = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 /// Tax rate format with tax rate in percent (%1$s)
 $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 
-$first = true;
-
 
 ?>
+<meta itemprop="price" content="<?= map( $prices )->getValue()->first(); ?>" />
+
 <?php foreach( $prices as $priceItem ) : ?>
 	<?php
-		if( !( $priceItem instanceof $iface ) ) {
-			throw new \Aimeos\MW\View\Exception( sprintf( 'Object doesn\'t implement "%1$s"', $iface ) );
-		}
-
-		$costs = $priceItem->getCosts();
-		$rebate = $priceItem->getRebate();
-
 		/// Price format with price value (%1$s) and currency (%2$s)
 		$format['value'] = $this->translate( 'client/code', 'price:' . ( $priceItem->getType() ?: 'default' ), null, 0, false ) ?: $this->translate( 'client', '%1$s %2$s' );
 		$currency = $this->translate( 'currency', $priceItem->getCurrencyId() );
-		$taxformat = ( $priceItem->getTaxFlag() ? $withtax : $notax );
 	?>
-
-	<?php if( $first === true ) : $first = false; ?>
-		<meta itemprop="price" content="<?= $priceItem->getValue(); ?>" />
-	<?php endif; ?>
-
 
 	<div class="price-item <?= $enc->attr( $priceItem->getType() ); ?>" itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification">
 
@@ -77,23 +64,23 @@ $first = true;
 			<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
 		</span>
 
-		<?php if( $priceItem->getValue() > 0 && $rebate > 0 ) : ?>
+		<?php if( $priceItem->getValue() > 0 && $priceItem->getRebate() > 0 ) : ?>
 			<span class="rebate">
-				<?= $enc->html( sprintf( $format['rebate'], $this->number( $rebate ), $currency ), $enc::TRUST ); ?>
+				<?= $enc->html( sprintf( $format['rebate'], $this->number( $priceItem->getRebate() ), $currency ), $enc::TRUST ); ?>
 			</span>
 			<span class="rebatepercent">
-				<?= $enc->html( sprintf( $format['rebate%'], $this->number( round( $rebate * 100 / ( $priceItem->getValue() + $rebate ) ), 0 ) ), $enc::TRUST ); ?>
+				<?= $enc->html( sprintf( $format['rebate%'], $this->number( round( $priceItem->getRebate() * 100 / ( $priceItem->getValue() + $priceItem->getRebate() ) ), 0 ) ), $enc::TRUST ); ?>
 			</span>
 		<?php endif; ?>
 
-		<?php if( $costs > 0 ) : ?>
+		<?php if( $priceItem->getCosts() > 0 ) : ?>
 			<span class="costs">
-				<?= $enc->html( sprintf( $format['costs'], $this->number( $costs, $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
+				<?= $enc->html( sprintf( $format['costs'], $this->number( $priceItem->getCosts(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
 			</span>
 		<?php endif; ?>
 
 		<span class="taxrate">
-			<?= $enc->html( sprintf( $taxformat, $this->number( $priceItem->getTaxrate() ) ), $enc::TRUST ); ?>
+			<?= $enc->html( sprintf( ( $priceItem->getTaxFlag() ? $withtax : $notax ), $this->number( $priceItem->getTaxrate() ) ), $enc::TRUST ); ?>
 		</span>
 	</div>
 
