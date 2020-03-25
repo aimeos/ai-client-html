@@ -5,45 +5,9 @@
  * @copyright Aimeos (aimeos.org), 2015-2020
  */
 
-if( $this->get( 'standardUrlExternal', true ) )
-{
-	$namefcn = function( $view, $key ) {
-
-		$key = (array) $key;
-		$name = array_shift( $key );
-
-		foreach( $key as $part ) {
-			$name .= '[' . $part . ']';
-		}
-
-		return $name;
-	};
-}
-else
-{
-	$namefcn = function( $view, $key ) {
-		return $view->formparam( (array) $key );
-	};
-}
-
-$testfcn = function( $list, $key, $default = '' ) {
-	return ( isset( $list[$key] ) ? $list[$key] : $default );
-};
-
 
 $enc = $this->encoder();
-$public = $hidden = [];
-$errors = $this->get( 'standardErrorList', [] );
-$params = $this->get( 'standardProcessParams', [] );
-
-foreach( $params as $key => $item )
-{
-	if( $item->isPublic() ) {
-		$public[$key] = $item;
-	} else {
-		$hidden[$key] = $item;
-	}
-}
+$prefix =$this->get( 'standardUrlExternal', true );
 
 
 /** client/html/checkout/standard/process/validate
@@ -85,11 +49,11 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 <div class="checkout-standard-process">
 	<h2><?= $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?></h2>
 
-	<?php if( !empty( $errors ) ) : ?>
+	<?php if( !empty( $this->get( 'standardErrorList', [] ) ) ) : ?>
 		<p class="order-notice">
 			<?= $enc->html( $this->translate( 'client', 'Processing the payment failed' ), $enc::TRUST ); ?>
 		</p>
-	<?php elseif( !empty( $public ) ) : ?>
+	<?php elseif( !empty( $this->get( 'standardProcessPublic', [] ) ) ) : ?>
 		<p class="order-notice">
 			<?= $enc->html( $this->translate( 'client', 'Please enter your payment details' ), $enc::TRUST ); ?>
 		</p>
@@ -100,38 +64,30 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 	<?php endif; ?>
 
 
-	<input type="hidden" name="<?php echo $enc->attr( $this->formparam( array( 'cp_payment' ) ) ); ?>" value="1" />
+	<input type="hidden" name="<?php echo $enc->attr( $this->formparam( ['cp_payment'], $prefix ) ); ?>" value="1" />
 
-	<?php foreach( $hidden as $key => $item ) : ?>
-		<?php if( is_array( $item->getDefault() ) ) : ?>
-			<?php foreach( (array) $item->getDefault() as $key2 => $value ) : ?>
-				<input type="hidden" id="process-<?= $key; ?>"
-					name="<?= $enc->attr( $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) ); ?>"
-					value="<?= $enc->attr( $value ); ?>"
-				/>
-			<?php endforeach; ?>
+	<?php foreach( $this->get( 'standardProcessHidden', [] ) as $id => $item ) : ?>
+		<?php foreach( (array) $item->getDefault() as $key => $value ) : ?>
 
-		<?php else : ?>
-			<input type="hidden" id="process-<?= $key; ?>"
-				name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
-				value="<?= $enc->attr( $item->getDefault() ); ?>"
+			<input type="hidden" id="process-<?= $id; ?>"
+				name="<?= $enc->attr( $this->formparam( [$item->getInternalCode(), $key], $prefix ) ); ?>"
+				value="<?= $enc->attr( $value ); ?>"
 			/>
 
-		<?php endif; ?>
+		<?php endforeach; ?>
 	<?php endforeach; ?>
 
 
 	<ul class="form-list">
-		<?php foreach( $public as $key => $item ) : ?>
-			<li class="form-item <?= $key . ( $item->isRequired() ? ' mandatory' : ' optional' ); ?>"
-				data-regex="<?= $testfcn( $regex, $key ); ?>">
+		<?php foreach( $this->get( 'standardProcessPublic', [] ) as $key => $item ) : ?>
+			<li class="form-item <?= $key . ( $item->isRequired() ? ' mandatory' : ' optional' ); ?>" data-regex="<?= $regex[$key] ?? '' ?>">
 
 				<label for="process-<?= $key; ?>">
 					<?= $enc->html( $this->translate( 'client/code', $item->getCode() ), $enc::TRUST ); ?>
 				</label>
 
 				<?php switch( $item->getType() ) : case 'select': ?>
-						<select id="process-<?= $key; ?>" name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>">
+						<select id="process-<?= $key; ?>" name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ); ?>">
 							<option value=""><?= $enc->html( $this->translate( 'client', 'Please select' ) ); ?></option>
 							<?php foreach( (array) $item->getDefault() as $option ) : ?>
 								<option value="<?= $enc->attr( $option ); ?>"><?= $enc->html( $option ); ?></option>
@@ -143,25 +99,25 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 					<?php break; case 'boolean': ?>
 						<input type="checkbox" id="process-<?= $key; ?>"
-							name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ); ?>"
 							value="<?= $enc->attr( $item->getDefault() ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
 
 					<?php break; case 'integer': case 'number': ?>
 						<input type="number" id="process-<?= $key; ?>"
-							name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ); ?>"
 							value="<?= $enc->attr( $item->getDefault() ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
 
 					<?php break; case 'date': case 'datetime': case 'time': ?>
 						<input type="<?= $attribute->getType(); ?>" id="process-<?= $key; ?>"
-							name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ); ?>"
 							value="<?= $enc->attr( $item->getDefault() ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
 
 					<?php break; default: ?>
 						<input type="text" id="process-<?= $key; ?>"
-							name="<?= $enc->attr( $namefcn( $this, $item->getInternalCode() ) ); ?>"
+							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ); ?>"
 							value="<?= $enc->attr( $item->getDefault() ); ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ); ?>" />
 
@@ -172,12 +128,14 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 		<?php endforeach; ?>
 	</ul>
 
+
 	<?= $this->get( 'standardHtml', '' ); //Custom html from Provider ?>
 
 
 	<div class="button-group">
 
-		<?php if( !empty( $errors ) ) : ?>
+		<?php if( !empty( $this->get( 'standardErrorList', [] ) ) ) : ?>
+
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
@@ -185,7 +143,8 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 				<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ); ?>
 			</button>
 
-		<?php elseif( !empty( $public ) ) : ?>
+		<?php elseif( !empty( $this->get( 'standardProcessPublic', [] ) ) ) : ?>
+
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
 			</a>
@@ -194,33 +153,13 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			</button>
 
 		<?php elseif( $this->get( 'standardMethod', 'POST' ) === 'GET' ) : ?>
-			<?php
-				$urlParams = [];
-				$url = $this->get( 'standardUrlNext' );
 
-				foreach( $params as $key => $item )
-				{
-					if( is_array( $item->getDefault() ) )
-					{
-						foreach( (array) $item->getDefault() as $key2 => $value ) {
-							$urlParams[] = $namefcn( $this, array( $item->getInternalCode(), $key2 ) ) . '=' . urlencode( $value );
-						}
-					}
-					else
-					{
-						$urlParams[] = $namefcn( $this, $item->getInternalCode() ) . '=' . urlencode( $item->getDefault() );
-					}
-				}
-
-				$char = ( strpos( $url, '?' ) === false ? '?' : '&' );
-				$url .= $char . implode( '&', $urlParams );
-			?>
-
-			<a class="btn btn-primary btn-lg btn-action" href="<?= $enc->attr( $url ); ?>">
+			<a class="btn btn-primary btn-lg btn-action" href="<?= $enc->attr( $this->standardUrlNext ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
 			</a>
 
 		<?php else : ?>
+
 			<button class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
 			</button>

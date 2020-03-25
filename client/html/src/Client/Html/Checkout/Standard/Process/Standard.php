@@ -280,19 +280,15 @@ class Standard
 				return;
 			}
 
-			if( ( $form = $this->processPayment( $basket, $orderItem ) ) !== null )
-			{
-				$view->standardUrlNext = $form->getUrl();
-				$view->standardMethod = $form->getMethod();
-				$view->standardProcessParams = $form->getValues();
-				$view->standardUrlExternal = $form->getExternal();
-				$view->standardHtml = $form->getHtml();
-			}
-			else // no payment service available
+			if( ( $form = $this->processPayment( $basket, $orderItem ) ) === null )
 			{
 				$orderCntl->save( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
 				$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
 				$view->standardMethod = 'POST';
+			}
+			else // no payment service available
+			{
+				$view = $this->addFormData( $view, $form );
 			}
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
@@ -316,6 +312,55 @@ class Standard
 			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
 			$this->logException( $e );
 		}
+	}
+
+
+	/**
+	 * Adds the required data for the payment form to the view
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object to assign the data to
+	 * @param \Aimeos\MShop\Common\Helper\Form\Iface $form Form helper object including the form data
+	 * @return \Aimeos\MW\View\Iface View object with assigned data
+	 */
+	protected function addFormData( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Common\Helper\Form\Iface $form )
+	{
+		$url = $form->getUrl();
+
+		if( $form->getMethod() === 'GET' )
+		{
+			$urlParams = [];
+
+			foreach( $form->getValues() as $item )
+			{
+				foreach( (array) $item->getDefault() as $key => $value ) {
+					$urlParams[$item->getInternalCode()][$key] = $value;
+				}
+			}
+
+			$url .= strpos( $url, '?' ) ? '&' : '?' . http_build_query( $urlParams );
+
+		}
+
+		$public = $hidden = [];
+
+		foreach( $form->getValues() as $key => $item )
+		{
+			if( $item->isPublic() ) {
+				$public[$key] = $item;
+			} else {
+				$hidden[$key] = $item;
+			}
+		}
+
+		$view->standardUrlNext = $url;
+		$view->standardProcessPublic = $public;
+		$view->standardProcessHidden = $hidden;
+		$view->standardProcessParams = $form->getValues();
+		$view->standardUrlExternal = $form->getExternal();
+		$view->standardMethod = $form->getMethod();
+		$view->standardHtml = $form->getHtml();
+
+		return $view;
 	}
 
 
