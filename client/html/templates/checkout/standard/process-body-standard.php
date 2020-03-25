@@ -7,7 +7,7 @@
 
 
 $enc = $this->encoder();
-$prefix =$this->get( 'standardUrlExternal', true );
+$prefix = $this->get( 'standardUrlExternal', true );
 
 
 /** client/html/checkout/standard/process/validate
