@@ -207,7 +207,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			 * @see client/html/checkout/standard/summary/service
 			 */
 			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-standard' ),
-			['standardBasket' => $this->standardBasket, 'errors' => $this->get( 'summaryErrorCodes', [] )],
+			['standardBasket' => $this->standardBasket, 'errors' => $this->get( 'summaryErrorCodes', [] )]
 		); ?>
 	</div>
 
@@ -244,7 +244,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
 					'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
 					'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
-					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' ),
+					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' )
 				)
 			); ?>
 		</div>
