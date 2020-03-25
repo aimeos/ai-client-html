@@ -155,10 +155,10 @@ $enc = $this->encoder();
 
 	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'custom' ) as $id => $attribute ) : ?>
 
-		<li class="select-item <?= $enc->attr( $attribute->getCode() ); ?>">
-			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ); ?></div>
+		<li class="select-item <?= $enc->attr( $attribute->getType() . '-' . $attribute->getCode() ); ?>">
+			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ); ?></div>
 
-			<?php if( $hint = $this->translate( 'client/code', $attribute->getCode() . '-hint', null, 0, false ) ) : ?>
+			<?php if( $hint = $this->translate( 'client/code', $attribute->getType() . '-' . $attribute->getCode() . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ); ?></div>
 			<?php endif; ?>
 
