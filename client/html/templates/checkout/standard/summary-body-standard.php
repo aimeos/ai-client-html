@@ -7,10 +7,6 @@
  */
 
 $enc = $this->encoder();
-$errors = $this->get( 'summaryErrorCodes', [] );
-
-$addresses = $this->standardBasket->getAddresses();
-$services = $this->standardBasket->getServices();
 
 
 $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
@@ -39,7 +35,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="common-summary-address row">
-		<div class="item payment <?= ( isset( $errors['address']['payment'] ) ? 'error' : '' ); ?> col-sm-6">
+		<div class="item payment <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'address/payment' ) ?: 'error' ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $checkoutAddressUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -48,7 +44,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['payment'] ) ) : ?>
+				<?php if( $addresses = $this->standardBasket->getAddress( 'payment' ) ) : ?>
 					<?= $this->partial(
 						/** client/html/checkout/standard/summary/address
 						 * Location of the address partial template for the checkout summary
@@ -67,13 +63,13 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 						 * @see client/html/checkout/standard/summary/service
 						 */
 						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard' ),
-						array( 'addresses' => $addresses['payment'], 'type' => 'payment' )
+						['addresses' => $addresses, 'type' => 'payment']
 					); ?>
 				<?php endif; ?>
 			</div>
 		</div><!--
 
-		--><div class="item delivery <?= ( isset( $errors['address']['delivery'] ) ? 'error' : '' ); ?> col-sm-6">
+		--><div class="item delivery <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'address/delivery' ) ?: 'error' ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $checkoutAddressUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -82,10 +78,10 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 
 			<div class="content">
-				<?php if( isset( $addresses['delivery'] ) ) : ?>
+				<?php if( $addresses = $this->standardBasket->getAddress( 'delivery' ) ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard' ),
-						array( 'addresses' => $addresses['delivery'], 'type' => 'delivery' )
+						['addresses' => $addresses, 'type' => 'delivery']
 					); ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
@@ -96,7 +92,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="common-summary-service row">
-		<div class="item delivery <?= ( isset( $errors['service']['delivery'] ) ? 'error' : '' ); ?> col-sm-6">
+		<div class="item delivery <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'service/delivery' ) ?: 'error' ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $checkoutDeliveryUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -105,7 +101,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 
 			<div class="content">
-				<?php if( isset( $services['delivery'] ) ) : ?>
+				<?php if( $services = $this->standardBasket->getService( 'delivery' ) ) : ?>
 					<?= $this->partial(
 						/** client/html/checkout/standard/summary/service
 						 * Location of the service partial template for the checkout summary
@@ -124,13 +120,13 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 						 * @see client/html/checkout/standard/summary/options
 						 */
 						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-standard' ),
-						array( 'service' => $services['delivery'], 'type' => 'delivery' )
+						['service' => $services, 'type' => 'delivery']
 					); ?>
 				<?php endif; ?>
 			</div>
 		</div><!--
 
-		--><div class="item payment <?= ( isset( $errors['service']['payment'] ) ? 'error' : '' ); ?> col-sm-6">
+		--><div class="item payment <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'service/payment' ) ?: 'error' ?> col-sm-6">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $checkoutPaymentUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -139,10 +135,10 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 
 			<div class="content">
-				<?php if( isset( $services['payment'] ) ) : ?>
+				<?php if( $services = $this->standardBasket->getService( 'payment' ) ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-standard' ),
-						array( 'service' => $services['payment'], 'type' => 'payment' )
+						['service' => $services, 'type' => 'payment']
 					); ?>
 				<?php endif; ?>
 			</div>
@@ -152,7 +148,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="common-summary-additional row">
-		<div class="item coupon <?= ( isset( $errors['coupon'] ) ? 'error' : '' ); ?> col-sm-4">
+		<div class="item coupon <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'coupon' ) ?: 'error' ?> col-sm-4">
 			<div class="header">
 				<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
@@ -211,10 +207,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			 * @see client/html/checkout/standard/summary/service
 			 */
 			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-standard' ),
-			array(
-				'standardBasket' => $this->standardBasket,
-				'errors' => $this->get( 'summaryErrorCodes', [] ),
-			)
+			['standardBasket' => $this->standardBasket, 'errors' => $this->get( 'summaryErrorCodes', [] )],
 		); ?>
 	</div>
 
