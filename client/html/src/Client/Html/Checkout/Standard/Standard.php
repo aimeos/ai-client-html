@@ -489,6 +489,11 @@ class Standard
 			$view->standardStepActive = $current;
 		}
 
+		$cpos = (int) array_search( $view->standardStepActive, $steps );
+
+		$view->standardStepBefore = array_slice( $steps, 0, $cpos );
+		$view->standardStepAfter = array_slice( $steps, $cpos + 1 );
+
 		$view = $this->addNavigationUrls( $view, $steps, $view->standardStepActive );
 		$view->standardSteps = $steps;
 

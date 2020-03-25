@@ -24,10 +24,6 @@ $optAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
-$link = true;
-$stepActive = $this->get( 'standardStepActive', false );
-
-
 ?>
 <section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
@@ -40,35 +36,24 @@ $stepActive = $this->get( 'standardStepActive', false );
 				</a>
 			</li>
 
-			<?php foreach( $this->get( 'standardSteps', [] ) as $name ) : ?>
-				<?php
-					$class = '';
-
-					if( $stepActive )
-					{
-						if( $name === $stepActive )
-						{
-							$class .= ' current';
-							$link = false;
-						}
-
-						if( $link === true ) {
-							$class .= ' active';
-						}
-					}
-				?>
-
-				<li class="step <?= $name . $class; ?>">
-
-					<?php if( $stepActive && $link ) : ?>
-						<a href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, array( 'c_step' => $name ), [], $checkoutConfig ) ); ?>">
-							<?= $enc->html( $this->translate( 'client', $name ) ); ?>
-						</a>
-					<?php else : ?>
+			<?php foreach( $this->get( 'standardStepsBefore', [] ) as $name ) : ?>
+				<li class="step active <?= $name ?>">
+					<a href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, ['c_step' => $name], [], $checkoutConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', $name ) ); ?>
-					<?php endif; ?>
+					</a>
 				</li>
+			<?php endforeach; ?>
 
+			<?php if( $this->get( 'standardStepActive', false ) ) : ?>
+				<li class="step current <?= $this->get( 'standardStepActive', false ) ?>">
+					<?= $enc->html( $this->translate( 'client', $this->get( 'standardStepActive', false ) ) ); ?>
+				</li>
+			<?php endif ?>
+
+			<?php foreach( $this->get( 'standardStepAfter', [] ) as $name ) : ?>
+				<li class="step <?= $name ?>">
+					<?= $enc->html( $this->translate( 'client', $name ) ); ?>
+				</li>
 			<?php endforeach; ?>
 
 		</ol>
