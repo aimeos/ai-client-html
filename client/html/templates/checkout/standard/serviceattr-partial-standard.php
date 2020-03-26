@@ -68,15 +68,13 @@ $enc = $this->encoder();
 				<?php break; case 'list': ?>
 
 					<div class="form-item-value col-md-7">
-						<?php foreach( $item->getDefault() as $val => $code ) : ?>
-							<input class="form-control" type="radio" id="<?= $enc->attr( $this->type . '-' . $key . '-' . $val ); ?>"
-								name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ); ?>"
-								selected="<?= $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) != $val ?: 'selected' ?>"
-								checked="<?= $first = $first ?? 'checked' ?>"
-								value="<?= $val ?>"
+						<?php foreach( (array) $item->getDefault() as $code => $val ) : ?>
+							<input class="form-control" type="radio" id="<?= $enc->attr( $this->type . '-' . $key . '-' . $code ); ?>"
+								name="<?= $enc->attr( $this->formparam( ['c_' . $this->type, $this->id, $key] ) ); ?>" value="<?= $enc->attr( $code ) ?>"
+								<?= $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) == $val ? 'checked="checked"' : '' ?>
 							/>
-							<label for="<?= $enc->attr( $this->type . '-' . $key . '-' . $val ); ?>" class="attr-list-item">
-								<?= nl2br( $enc->html( $this->translate( 'client/code', $code ) ) ); ?>
+							<label for="<?= $enc->attr( $this->type . '-' . $key . '-' . $code ); ?>" class="attr-list-item">
+								<?= nl2br( $enc->html( $this->translate( 'client/code', $val ) ) ); ?>
 							</label>
 						<?php endforeach; ?>
 					</div>
@@ -85,7 +83,7 @@ $enc = $this->encoder();
 
 					<div class="col-md-7">
 						<input class="form-control col-md-7 form-item-value" type="checkbox" id="<?= $enc->attr( $this->type . '-' . $key ); ?>"
-							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ); ?>" value="1"
+							name="<?= $enc->attr( $this->formparam( ['c_' . $this->type, $this->id, $key] ) ); ?>" value="1"
 							<?= $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ? 'checked="checked"' : '' ?>
 						/>
 					</div>

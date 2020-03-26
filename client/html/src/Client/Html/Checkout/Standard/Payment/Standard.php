@@ -334,8 +334,11 @@ class Standard
 
 				if( $oservice = $orderServices->get( $id ) )
 				{
-					foreach( $attr as $key => $item ) {
-						$item->value = $oservice->getAttribute( $key . '/hidden' ) || $oservice->getAttribute( $key );
+					foreach( $attr as $key => $item )
+					{
+						$value = is_array( $item->getDefault() ) ? key( $item->getDefault() ) : $item->getDefault();
+						$value = $oservice->getAttribute( $key, 'payment' ) ?: $value;
+						$item->value = $oservice->getAttribute( $key . '/hidden', 'payment' ) ?: $value;
 					}
 				}
 
@@ -345,7 +348,7 @@ class Standard
 		}
 
 		$view->paymentServices = $services;
-		$view->paymentOption = $view->param( 'c_paymentoption', $orderServices->firstKey() || $providers->firstKey() );
+		$view->paymentOption = $view->param( 'c_paymentoption', $orderServices->firstKey() ?: $providers->firstKey() );
 
 		return parent::addData( $view, $tags, $expire );
 	}

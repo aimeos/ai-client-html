@@ -50,7 +50,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				</li>
 			<?php endif ?>
 
-			<?php foreach( $this->get( 'standardStepAfter', [] ) as $name ) : ?>
+			<?php foreach( $this->get( 'standardStepsAfter', [] ) as $name ) : ?>
 				<li class="step <?= $name ?>">
 					<?= $enc->html( $this->translate( 'client', $name ) ); ?>
 				</li>

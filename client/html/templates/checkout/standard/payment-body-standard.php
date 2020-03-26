@@ -43,7 +43,7 @@ $enc = $this->encoder();
 							<span class="price-value">
 								<?= $enc->html( sprintf(
 									/// Price format with price value (%1$s) and currency (%2$s)
-									$this->translate( 'client/code', 'price:default', null, null, false ) ?: $this->translate( 'client', '%1$s %2$s' ),
+									$this->translate( 'client/code', 'price:default', null, 0, false ) ?: $this->translate( 'client', '%1$s %2$s' ),
 									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
 									$this->translate( 'currency', $price->getCurrencyId() )
 								) ); ?>
