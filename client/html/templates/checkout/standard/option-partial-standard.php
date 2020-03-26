@@ -5,8 +5,8 @@
  * @copyright Aimeos (aimeos.org), 2015-2020
  */
 
-$enc = $this->encoder();
-$errors = $this->get( 'errors', [] );
+
+ $enc = $this->encoder();
 
 
 /** client/html/checkout/standard/summary/option/terms/url/target
@@ -80,8 +80,6 @@ $termsAction = $this->config( 'client/html/checkout/standard/summary/option/term
  */
 $termsConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/url/config', [] );
 
-$termsUrl = $this->url( $termsTarget, $termsController, $termsAction, [], [], $termsConfig );
-
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/target
  * Destination of the URL where the controller specified in the URL is known
@@ -153,8 +151,6 @@ $privacyAction = $this->config( 'client/html/checkout/standard/summary/option/te
  * @see client/html/url/config
  */
 $privacyConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/privacy/url/config', [] );
-
-$privacyUrl = $this->url( $privacyTarget, $privacyController, $privacyAction, [], [], $privacyConfig );
 
 
 /** client/html/checkout/standard/summary/option/terms/cancel/url/target
@@ -228,15 +224,13 @@ $cancelAction = $this->config( 'client/html/checkout/standard/summary/option/ter
  */
 $cancelConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/cancel/url/config', [] );
 
-$cancelUrl = $this->url( $cancelTarget, $cancelController, $cancelAction, [], [], $cancelConfig );
-
 
 ?>
 <?php if( !$this->standardBasket->getCustomerId() ) : ?>
 	<div class="checkout-standard-summary-option-account col-sm-12">
 		<h3><?= $enc->html( $this->translate( 'client', 'Customer account' ), $enc::TRUST ); ?></h3>
 
-		<div class="single <?= ( isset( $errors['option']['account'] ) ? 'error' : '' ); ?>">
+		<div class="single <?= !$this->value( $this->get( 'error', [] ), 'option/account' ) ?: 'error' ?>">
 			<input id="option-account" type="checkbox" value="1"
 				name="<?= $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ); ?>"
 				<?= ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ); ?>
@@ -253,7 +247,7 @@ $cancelUrl = $this->url( $cancelTarget, $cancelController, $cancelAction, [], []
 <div class="checkout-standard-summary-option-terms col-sm-12">
 	<h3><?= $enc->html( $this->translate( 'client', 'Terms and conditions' ), $enc::TRUST ); ?></h3>
 
-	<div class="single <?= ( isset( $errors['option']['terms'] ) ? 'error' : '' ); ?>">
+	<div class="single <?= !$this->value( $this->get( 'error', [] ), 'option/terms' ) ?: 'error' ?>">
 		<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms' ) ) ); ?>" value="1" />
 		<input id="option-terms-accept" type="checkbox" value="1"
 			name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms_value' ) ) ); ?>"
@@ -264,9 +258,9 @@ $cancelUrl = $this->url( $cancelTarget, $cancelController, $cancelAction, [], []
 			<label for="option-terms-accept">
 				<?= $enc->html( sprintf( $this->translate( 'client',
 					'I accept the <a href="%1$s" target="_blank" title="terms and conditions" alt="terms and conditions">terms and conditions</a>, <a href="%2$s" target="_blank" title="privacy policy" alt="privacy policy">privacy policy</a> and <a href="%3$s" target="_blank" title="cancellation policy" alt="cancellation policy">cancellation policy</a>' ),
-					$enc->attr( $termsUrl ),
-					$enc->attr( $privacyUrl ),
-					$enc->attr( $cancelUrl )
+					$enc->attr( $this->url( $termsTarget, $termsController, $termsAction, [], [], $termsConfig ) ),
+					$enc->attr( $this->url( $privacyTarget, $privacyController, $privacyAction, [], [], $privacyConfig ) ),
+					$enc->attr( $this->url( $cancelTarget, $cancelController, $cancelAction, [], [], $cancelConfig ) )
 				), $enc::TRUST ); ?>
 			</label>
 		</p>
