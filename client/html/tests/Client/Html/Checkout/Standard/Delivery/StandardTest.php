@@ -62,7 +62,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringStartsWith( '<section class="checkout-standard-delivery">', $output );
 
 		$this->assertGreaterThan( 0, count( $view->deliveryServices ) );
-		$this->assertGreaterThanOrEqual( 0, count( $view->deliveryServiceAttributes ) );
 	}
 
 

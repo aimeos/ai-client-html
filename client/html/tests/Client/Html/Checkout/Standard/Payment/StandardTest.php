@@ -67,7 +67,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertRegExp( '#<li class="form-item form-group directdebit.bankname mandatory">#smU', $output );
 
 		$this->assertGreaterThan( 0, count( $view->paymentServices ) );
-		$this->assertGreaterThanOrEqual( 0, count( $view->paymentServiceAttributes ) );
 	}
 
 

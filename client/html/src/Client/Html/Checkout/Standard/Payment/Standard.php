@@ -321,23 +321,31 @@ class Standard
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 		$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 
+		$services = [];
 		$basket = $basketCntl->get();
-		$services = $attributes = $prices = [];
 		$providers = $serviceCntl->uses( $domains )->type( 'payment' )->getProviders();
+		$orderServices = map( $basket->getService( 'payment' ) )->col( null, 'order.base.service.serviceid' );
 
 		foreach( $providers as $id => $provider )
 		{
 			if( $provider->isAvailable( $basket ) === true )
 			{
-				$services[$id] = $provider->getServiceItem();
-				$prices[$id] = $provider->calcPrice( $basket );
-				$attributes[$id] = $provider->getConfigFE( $basket );
+				$attr = $provider->getConfigFE( $basket );
+
+				if( $oservice = $orderServices->get( $id ) )
+				{
+					foreach( $attr as $key => $item ) {
+						$item->value = $oservice->getAttribute( $key . '/hidden' ) || $oservice->getAttribute( $key );
+					}
+				}
+
+				$services[$id] = $provider->getServiceItem()->set( 'attributes', $attr )
+					->set( 'price', $provider->calcPrice( $basket ) );
 			}
 		}
 
 		$view->paymentServices = $services;
-		$view->paymentServicePrices = $prices;
-		$view->paymentServiceAttributes = $attributes;
+		$view->paymentOption = $view->param( 'c_paymentoption', $orderServices->firstKey() || $providers->firstKey() );
 
 		return parent::addData( $view, $tags, $expire );
 	}

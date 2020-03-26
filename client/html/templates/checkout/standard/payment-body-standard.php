@@ -8,35 +8,6 @@
 
 $enc = $this->encoder();
 
-$services = $this->get( 'paymentServices', [] );
-$servicePrices = $this->get( 'paymentServicePrices', [] );
-$serviceAttributes = $this->get( 'paymentServiceAttributes', [] );
-
-
-$orderService = $orderServiceId = null;
-
-if( ( $service = reset( $services ) ) !== false ) {
-	$orderServiceId = $service->getId();
-}
-
-foreach( $this->standardBasket->getService( 'payment' ) as $service )
-{
-	$orderService = $service;
-	$orderServiceId = $service->getServiceId();
-}
-
-$serviceOption = $this->param( 'c_paymentoption', $orderServiceId );
-
-
-$paymentCss = [];
-foreach( $this->get( 'paymentError', [] ) as $name => $msg ) {
-	$paymentCss[$name][] = 'error';
-}
-
-$pricefmt = $this->translate( 'client/code', 'price:default' );
-/// Price format with price value (%1$s) and currency (%2$s)
-$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
-
 
 ?>
 <?php $this->block()->start( 'checkout/standard/payment' ); ?>
@@ -45,7 +16,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 	<h1><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h1>
 	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please choose your payment method' ), $enc::TRUST ); ?></p>
 
-	<?php foreach( $services as $id => $service ) : ?>
+	<?php foreach( $this->get( 'paymentServices', [] ) as $id => $service ) : ?>
 		<div id="c_payment-<?= $enc->attr( $id ); ?>" class="item item-service row">
 
 			<div class="col-sm-6">
@@ -53,29 +24,29 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 					<input class="option" type="radio"
 						id="c_paymentoption-<?= $enc->attr( $id ); ?>"
-						name="<?= $enc->attr( $this->formparam( array( 'c_paymentoption' ) ) ); ?>"
+						name="<?= $enc->attr( $this->formparam( ['c_paymentoption'] ) ); ?>"
 						value="<?= $enc->attr( $id ); ?>"
-						<?= ( $id == $serviceOption ? 'checked="checked"' : '' ); ?>
+						<?= $id != $this->get( 'paymentOption' ) ?: 'checked="checked"' ?>
 					/>
 
-					<?php if( isset( $servicePrices[$id] ) ) : ?>
-						<?php $currency = $this->translate( 'currency', $servicePrices[$id]->getCurrencyId() ); ?>
-						<?php if( $servicePrices[$id]->getValue() > 0 ) : ?>
+					<?php if( $price = $service->price ) : ?>
+						<?php if( $price->getValue() > 0 ) : ?>
 							<span class="price-value">
 								<?= $enc->html( sprintf( /// Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
 									$this->translate( 'client', '%1$s%3$s + %2$s%3$s' ),
-									$this->number( $servicePrices[$id]->getValue(), $servicePrices[$id]->getPrecision() ),
-									$this->number( $servicePrices[$id]->getCosts() > 0 ? $servicePrices[$id]->getCosts() : 0, $servicePrices[$id]->getPrecision() ),
-									$currency )
-								); ?>
+									$this->number( $price->getValue(), $price->getPrecision() ),
+									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
+									$this->translate( 'currency', $price->getCurrencyId() )
+								) ); ?>
 							</span>
-						<?php elseif( $servicePrices[$id]->getCosts() > 0 ) : ?>
+						<?php elseif( $price->getCosts() > 0 ) : ?>
 							<span class="price-value">
 								<?= $enc->html( sprintf(
-									$priceFormat,
-									$this->number( $servicePrices[$id]->getCosts() > 0 ? $servicePrices[$id]->getCosts() : 0, $servicePrices[$id]->getPrecision() ),
-									$currency )
-								); ?>
+									/// Price format with price value (%1$s) and currency (%2$s)
+									$this->translate( 'client/code', 'price:default', null, null, false ) ?: $this->translate( 'client', '%1$s %2$s' ),
+									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
+									$this->translate( 'currency', $price->getCurrencyId() )
+								) ); ?>
 							</span>
 						<?php endif; ?>
 					<?php endif; ?>
@@ -102,7 +73,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 			<div class="col-sm-6">
 
-				<?php if( isset( $serviceAttributes[$id] ) && !empty( $serviceAttributes[$id] ) ) : ?>
+				<?php if( $attributes = $service->attributes ) : ?>
 					<?= $this->partial(
 						/** client/html/checkout/standard/partials/serviceattr
 						 * Relative path to the checkout service attribute partial template file
@@ -137,13 +108,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 						 * @category Developer
 						 */
 						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial-standard' ),
-						array(
-							'attributes' => $serviceAttributes[$id],
-							'orderService' => $orderService,
-							'css' => $paymentCss,
-							'type' => 'payment',
-							'id' => $id,
-						)
+						['attributes' => $attributes, 'type' => 'payment', 'id' => $id]
 					); ?>
 
 				<?php endif; ?>
