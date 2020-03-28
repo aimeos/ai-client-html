@@ -42,7 +42,7 @@ class Standard
 			$variant .= ' data-variant-' . $item->getType() . '="' . $enc->attr( $id ) . '"';
 		}
 
-		return '<img class="item"
+		return '<img class="item" id="image-' . $media->getId() . '"
 			itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
 			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
 			srcset="' .  $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
