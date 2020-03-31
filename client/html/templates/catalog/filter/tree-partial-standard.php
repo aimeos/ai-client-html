@@ -101,14 +101,14 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 <ul class="level-<?= $enc->attr( $this->get( 'level', 0 ) ); ?>">
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
-			<?php $id = $item->getId(); ?>
-			<?php $params = array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $id] ); ?>
-			<?php $class = ( $item->hasChildren() ? ' withchild' : ' nochild' ) . ( $this->get( 'path', map() )->has( $id ) ? ' active' : '' ); ?>
-			<?php $class .= ' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ); ?>
 
-			<li class="cat-item catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
+			<li class="cat-item catid-<?= $enc->attr( $item->getId()
+				. ( $item->hasChildren() ? ' withchild' : ' nochild' )
+				. ( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' )
+				. ' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ); ?>"
+				data-id="<?= $item->getId(); ?>" >
 
-				<a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
+				<a class="cat-item" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ); ?>"><!--
 					--><div class="media-list"><!--
 
 						<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
@@ -123,8 +123,15 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 				--></a>
 
 				<?php if( count( $item->getChildren() ) > 0 ) : ?>
-					<?php $values = array( 'nodes' => $item->getChildren(), 'path' => $this->get( 'path', map() ), 'params' => $params, 'level' => $this->get( 'level', 0 ) + 1 ); ?>
-					<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), $values ); ?>
+					<?= $this->partial(
+						$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ),
+						[
+							'nodes' => $item->getChildren(),
+							'path' => $this->get( 'path', map() ),
+							'level' => $this->get( 'level', 0 ) + 1,
+							'params' => $this->get( 'params', [] )
+						]
+					); ?>
 				<?php endif; ?>
 
 			</li>

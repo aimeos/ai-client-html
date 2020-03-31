@@ -59,10 +59,10 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>
 
-	<?php if( isset( $params['f_catid'] ) ) : unset( $params['f_catid'], $params['f_name'] ); ?>
+	<?php if( isset( $params['f_catid'] ) ) : ?>
 		<div class="category-selected">
 			<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
-			<a class="selected-category" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
+			<a class="selected-category" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, map( $params )->remove( ['f_catid', 'f_name'] )->toArray(), [], $listConfig ) ); ?>">
 				<?= $enc->html( $this->get( 'treeCatalogPath', map() )->getName()->last(), $enc::TRUST ); ?>
 			</a>
 		</div>
