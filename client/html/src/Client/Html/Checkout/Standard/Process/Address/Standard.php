@@ -180,13 +180,10 @@ class Standard
 			if( $context->getUserId() != null )
 			{
 				$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
-				$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
-				$addresses = $basket->getAddress( $type );
-
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 				$item = $cntl->uses( ['customer/address'] )->get();
 
-				foreach( $addresses as $address )
+				foreach( $basket->getAddress( 'delivery' ) as $address )
 				{
 					if( $address->getAddressId() == '' )
 					{

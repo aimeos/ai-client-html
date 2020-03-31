@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'add', 'get', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->exactly( 2 ) )->method( 'add' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'add' )->will( $this->returnValue( $customerStub ) );
 		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
 		$customerStub->expects( $this->once() )->method( 'get' )->will( $this->returnValue( $customerItem ) );
 

@@ -25,38 +25,6 @@ $enc = $this->encoder();
  * @category User
  * @see client/html/common/address/delivery/disable-new
  */
-$disablenew = (bool) $this->config( 'client/html/common/address/billing/disable-new', false );
-
-
-$addresses = $this->standardBasket->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-$addrArray = ( ( $address = current( $addresses ) ) ? $address->toArray() : [] );
-
-if( !isset( $addrArray['order.base.address.addressid'] ) || $addrArray['order.base.address.addressid'] == '' ) {
-	$billingDefault = ( isset( $this->addressCustomerItem ) && $this->addressCustomerItem->getId() !== null ? $this->addressCustomerItem->getId() : 'null' );
-} else {
-	$billingDefault = $addrArray['order.base.address.addressid'];
-}
-
-$billingOption = $this->param( 'ca_billingoption', $billingDefault );
-$billingSalutations = $this->get( 'billingSalutations', [] );
-$billingCountries = $this->get( 'addressCountries', [] );
-$billingStates = $this->get( 'addressStates', [] );
-$billingLanguages = $this->get( 'addressLanguages', [] );
-
-
-$paymentCssAll = [];
-
-foreach( $this->get( 'billingMandatory', [] ) as $name ) {
-	$paymentCssAll[$name][] = 'mandatory';
-}
-
-foreach( $this->get( 'billingOptional', [] ) as $name ) {
-	$paymentCssAll[$name][] = 'optional';
-}
-
-foreach( $this->get( 'billingHidden', [] ) as $name ) {
-	$paymentCssAll[$name][] = 'hidden';
-}
 
 
 ?>
@@ -65,77 +33,18 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
 
 
-	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() != null ) : ?>
+	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ) : ?>
 		<div class="item-address">
 			<div class="header">
-
-				<input id="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" type="radio"
-					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
-					value="<?= $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>"
-					<?= ( $billingOption == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ); ?>
+				<input id="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" type="radio"
+					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ) ?>"
+					value="<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>"
+					<?= $this->get( 'billingOption' ) == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ?>
 				/>
-				<label for="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ); ?>" class="values">
-<?php
-	$addr = $this->addressPaymentItem;
-
-	echo preg_replace( "/\n+/m", "<br/>", trim( $enc->html( sprintf(
-		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
-		/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
-		/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-		/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
-		$this->translate( 'client', '%1$s
-%2$s %3$s %4$s %5$s
-%6$s %7$s
-%8$s
-%9$s %10$s
-%11$s
-%12$s
-%13$s
-%14$s
-%15$s
-%16$s
-%17$s
-%18$s
-'
-		),
-		$addr->getCompany(),
-		( !in_array( $addr->getSalutation(), array( 'company' ) ) ? $this->translate( 'mshop/code', $addr->getSalutation() ) : '' ),
-		$addr->getTitle(),
-		$addr->getFirstName(),
-		$addr->getLastName(),
-		$addr->getAddress1(),
-		$addr->getAddress2(),
-		$addr->getAddress3(),
-		$addr->getPostal(),
-		$addr->getCity(),
-		$addr->getState(),
-		$this->translate( 'country', $addr->getCountryId() ),
-		$this->translate( 'language', $addr->getLanguageId() ),
-		$addr->getEmail(),
-		$addr->getTelephone(),
-		$addr->getTelefax(),
-		$addr->getWebsite(),
-		$addr->getVatID()
-	) ) ) );
-?>
+				<label for="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" class="values">
+					<?= nl2br( $this->get( 'billingAddressString', '' ) ) ?>
 				</label>
 			</div>
-
-<?php
-	$paymentCss = $paymentCssAll;
-	if( $billingOption == $addr->getAddressId() )
-	{
-		foreach( $this->get( 'billingError', [] ) as $name => $msg ) {
-			$paymentCss[$name][] = 'error';
-		}
-	}
-
-	$addrValues = array_merge( $addr->toArray(), $this->param( 'ca_billing_' . $this->addressPaymentItem->getAddressId(), [] ) );
-
-	if( !isset( $addrValues['order.base.address.languageid'] ) || $addrValues['order.base.address.languageid'] == '' ) {
-		$addrValues['order.base.address.languageid'] = $this->get( 'billingLanguage', 'en' );
-	}
-?>
 			<ul class="form-list">
 				<?= $this->partial(
 					/** client/html/checkout/standard/partials/address
@@ -152,14 +61,15 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 					 */
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
-						'address' => $addrValues,
-						'salutations' => $billingSalutations,
-						'languages' => $billingLanguages,
-						'countries' => $billingCountries,
-						'states' => $billingStates,
+						'id' => $this->addressPaymentItem->getAddressId(),
+						'error' => $this->get( 'billingOption' ) == $this->addressPaymentItem->getAddressId() ? $this->get( 'billingError', [] ) : [],
+						'salutations' => $this->get( 'billingSalutations', [] ),
+						'languages' => $this->get( 'addressLanguages', [] ),
+						'countries' => $this->get( 'addressCountries', [] ),
+						'states' => $this->get( 'addressStates', [] ),
+						'address' => $this->get( 'billingValues', [] ),
+						'css' => $this->get( 'billingCss', [] ),
 						'type' => 'billing',
-						'css' => $paymentCss,
-						'id' => $addr->getAddressId(),
 					)
 				); ?>
 			</ul>
@@ -168,64 +78,31 @@ foreach( $this->get( 'billingHidden', [] ) as $name ) {
 	<?php endif; ?>
 
 
-	<?php if( $disablenew === false ) : ?>
-		<div class="item-address item-new" data-option="<?= $enc->attr( $billingOption ); ?>">
+	<?php if( !$this->config( 'client/html/common/address/billing/disable-new', false ) ) : ?>
+		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'billingOption' ) ); ?>">
 			<div class="header">
-				<input id="ca_billingoption-new" type="radio"
+				<input id="ca_billingoption-new" type="radio" value="null"
 					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
-					value="null"
-					<?= ( $billingOption == 'null' ? 'checked="checked"' : '' ); ?>
+					<?= $this->get( 'billingOption' ) == 'null' ? 'checked="checked"' : '' ?>
 				/>
 				<label for="ca_billingoption-new" class="values value-new">
 					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
 				</label>
 			</div>
-<?php
-	$paymentCss = $paymentCssAll;
-	if( $billingOption == 'null' )
-	{
-		foreach( $this->get( 'billingError', [] ) as $name => $msg ) {
-			$paymentCss[$name][] = 'error';
-		}
-	}
-
-	$addrValues = array_merge( $addrArray, $this->param( 'ca_billing', [] ) );
-
-	if( !isset( $addrValues['order.base.address.languageid'] ) || $addrValues['order.base.address.languageid'] == '' ) {
-		$addrValues['order.base.address.languageid'] = $this->get( 'billingLanguage', 'en' );
-	}
-
-	$values = array(
-		'address' => $addrValues,
-		'salutations' => $billingSalutations,
-		'languages' => $billingLanguages,
-		'countries' => $billingCountries,
-		'states' => $billingStates,
-		'type' => 'billing',
-		'css' => $paymentCss,
-	);
-?>
 			<ul class="form-list">
-
 				<?= $this->partial(
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
-					$values
+					array(
+						'address' => $this->get( 'billingValuesNew', [] ),
+						'error' => $this->get( 'billingOption' ) == 'null' ? $this->get( 'billingError', [] ) : [],
+						'salutations' => $this->get( 'billingSalutations', [] ),
+						'languages' => $this->get( 'addressLanguages', [] ),
+						'countries' => $this->get( 'addressCountries', [] ),
+						'states' => $this->get( 'addressStates', [] ),
+						'css' => $this->get( 'billingCss', [] ),
+						'type' => 'billing',
+					)
 				); ?>
-
-				<li class="form-item birthday">
-					<div class="row">
-						<label class="col-md-5" for="customer-birthday">
-							<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
-						</label>
-						<div class="col-md-7">
-							<input class="form-control birthday" type="date"
-								id="customer-birthday"
-								name="<?= $enc->attr( $this->formparam( array( 'ca_extra', 'customer.birthday' ) ) ); ?>"
-								value="<?= $enc->attr( $this->get( 'addressExtra/customer.birthday' ) ); ?>"
-							/>
-						</div>
-					</div>
-				</li>
 			</ul>
 
 		</div>

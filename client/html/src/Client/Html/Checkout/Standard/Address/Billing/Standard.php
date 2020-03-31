@@ -249,23 +249,18 @@ class Standard
 	{
 		$context = $this->getContext();
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
-		$addresses = $basketCntl->get()->getAddress( 'payment' );
 
-		if( ( $address = reset( $addresses ) ) === false ) {
-			$langid = $view->param( 'ca_billing/order.base.address.languageid', $context->getLocale()->getLanguageId() );
-		} else {
-			$langid = $address->getLanguageId();
-		}
+		$addr = current( $basketCntl->get()->getAddress( 'payment' ) );
 
-		$view->billingLanguage = $langid;
+		$values = $addr ? $addr->toArray() : [];
+		$id = $view->get( 'addressCustomerItem' ) ? $view->addressCustomerItem->getId() : 'null';
+		$id = $values['order.base.address.addressid'] ?? $id;
 
-		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
+		$view->billingAddressString = $addr ? $this->getAddressString( $view, $addr ) : '';
+		$view->billingValuesNew = array_merge( $values, $view->param( 'ca_billing', [] ) );
+		$view->billingValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
+		$view->billingOption = $view->param( 'ca_billingoption', $id );
 
-		if( count( $view->get( 'addressLanguages', [] ) ) === 1 ) {
-			$hidden[] = 'order.base.address.languageid';
-		}
-
-		$salutations = array( 'company', 'mr', 'mrs' );
 
 		/** client/html/checkout/standard/address/billing/salutations
 		 * List of salutions the customer can select from for the billing address
@@ -295,11 +290,29 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/hidden
 		 * @see client/html/checkout/standard/address/countries
 		 */
+		$salutations = array( 'company', 'mr', 'mrs' );
 		$view->billingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
 
-		$view->billingMandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
-		$view->billingOptional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
+		$mandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
+		$optional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
+		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
+
+		foreach( $mandatory as $name ) {
+			$css[$name][] = 'mandatory';
+		}
+
+		foreach( $optional as $name ) {
+			$css[$name][] = 'optional';
+		}
+
+		foreach( $hidden as $name ) {
+			$css[$name][] = 'hidden';
+		}
+
+		$view->billingMandatory = $mandatory;
+		$view->billingOptional = $optional;
 		$view->billingHidden = $hidden;
+		$view->billingCss = $css;
 
 		return parent::addData( $view, $tags, $expire );
 	}
@@ -532,6 +545,57 @@ class Standard
 		) {
 			$mandatory[] = 'order.base.address.company';
 		}
+	}
+
+
+	/**
+	 * Returns the address as string
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $addr Order address item
+	 * @return string Address as string
+	 */
+	protected function getAddressString( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Order\Item\Base\Address\Iface $addr )
+	{
+		return preg_replace( "/\n+/m", "\n", trim( sprintf(
+			/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+			/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+			/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+			/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+			$view->translate( 'client', '%1$s
+%2$s %3$s %4$s %5$s
+%6$s %7$s
+%8$s
+%9$s %10$s
+%11$s
+%12$s
+%13$s
+%14$s
+%15$s
+%16$s
+%17$s
+%18$s
+'
+			),
+			$addr->getCompany(),
+			$view->translate( 'mshop/code', (string) $addr->getSalutation() ),
+			$addr->getTitle(),
+			$addr->getFirstName(),
+			$addr->getLastName(),
+			$addr->getAddress1(),
+			$addr->getAddress2(),
+			$addr->getAddress3(),
+			$addr->getPostal(),
+			$addr->getCity(),
+			$addr->getState(),
+			$view->translate( 'country', (string) $addr->getCountryId() ),
+			$view->translate( 'language', (string) $addr->getLanguageId() ),
+			$addr->getEmail(),
+			$addr->getTelephone(),
+			$addr->getTelefax(),
+			$addr->getWebsite(),
+			$addr->getVatID()
+		) ) );
 	}
 
 

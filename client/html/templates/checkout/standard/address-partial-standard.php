@@ -6,56 +6,27 @@
  */
 
 $enc = $this->encoder();
-
-if( !isset( $this->address ) ) {
-	throw new \Aimeos\Client\Html\Exception( 'No "address" item to address partial given' );
-}
-
-$testfcn = function( $list, $key, $default = '' ) {
-	return ( isset( $list[$key] ) ? $list[$key] : $default );
-};
-
-$selectfcn = function( $list, $key, $value ) {
-	return ( isset( $list[$key] ) && $list[$key] == $value ? 'selected="selected"' : '' );
-};
-
-$disablefcn = function( $list, $key ) {
-	return ( !isset( $list[$key] ) ? 'disabled="disabled"' : '' );
-};
-
-$regex = $this->config( 'client/html/checkout/standard/address/validate', [] );
-
-$addr = $this->get( 'address', [] );
-$salutations = $this->get( 'salutations', [] );
-$languages = $this->get( 'languages', [] );
-$countries = $this->get( 'countries', [] );
-$states = $this->get( 'states', [] );
-$type = $this->get( 'type', 'billing' );
-$css = $this->get( 'css', [] );
-$id = $this->get( 'id' );
-
-$idstr = ( $id != null ? '-' . $id : '' );
-$fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
+$fname = 'ca_' . $this->get( 'type', 'billing' ) . ( !$this->get( 'id' ) ?: '_' ) . $this->get( 'id' );
 
 
 ?>
-<li class="form-item form-group salutation <?= ( isset( $css['order.base.address.salutation'] ) ? join( ' ', $css['order.base.address.salutation'] ) : '' ); ?>">
+<li class="form-item form-group salutation <?= $enc->attr( !$this->value( 'error', 'order.base.address.salutation' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.salutation', [] ) ) ) ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-salutation<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-salutation-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Salutation' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
-			<select class="form-control" id="address-<?= $type ?>-salutation<?= $idstr ?>"
+			<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-salutation-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.salutation' ) ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.salutation' ); ?> >
+				<?= $this->value( 'css', 'order.base.address.salutation' ) ? '' : 'disabled' ?> >
 
-				<?php if( count( $salutations ) > 1 ) : ?>
+				<?php if( count( $this->get( 'salutations', [] ) ) > 1 ) : ?>
 					<option value=""><?= $enc->html( $this->translate( 'client', 'Select salutation' ), $enc::TRUST ); ?></option>
 				<?php endif; ?>
 
-				<?php foreach( $salutations as $salutation ) : ?>
-					<option value="<?= $enc->attr( $salutation ); ?>" <?= $selectfcn( $addr, 'order.base.address.salutation', $salutation ); ?> >
+				<?php foreach( $this->get( 'salutations', [] ) as $salutation ) : ?>
+					<option value="<?= $enc->attr( $salutation ); ?>" <?= $this->value( 'address', 'order.base.address.salutation' ) == $salutation ? 'selected' : '' ?> >
 						<?= $enc->html( $this->translate( 'mshop/code', $salutation ) ); ?>
 					</option>
 				<?php endforeach; ?>
@@ -66,216 +37,194 @@ $fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
 </li>
 
 
-<li class="form-item form-group firstname <?= ( isset( $css['order.base.address.firstname'] ) ? join( ' ', $css['order.base.address.firstname'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.firstname' ); ?>" >
+<li class="form-item form-group firstname <?= $enc->attr( !$this->value( 'error', 'order.base.address.firstname' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.firstname', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.firstname' ) ) ?>" >
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-firstname<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-firstname-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'First name' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-firstname<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-firstname-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.firstname' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.firstname' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.firstname' ) ) ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'First name' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.firstname' ); ?>
+				<?= $this->value( 'css', 'order.base.address.firstname' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group lastname <?= ( isset( $css['order.base.address.lastname'] ) ? join( ' ', $css['order.base.address.lastname'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.lastname' ); ?>">
+<li class="form-item form-group lastname <?= $enc->attr( !$this->value( 'error', 'order.base.address.lastname' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.lastname', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.lastname' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-lastname<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-lastname-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Last name' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-lastname<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-lastname-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.lastname' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.lastname' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.lastname' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'Last name' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.lastname' ); ?>
+				<?= $this->value( 'css', 'order.base.address.lastname' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group company <?= ( isset( $css['order.base.address.company'] ) ? join( ' ', $css['order.base.address.company'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.company' ); ?>">
+<li class="form-item form-group company <?= $enc->attr( !$this->value( 'error', 'order.base.address.company' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.company', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.company' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-company<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-company-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Company' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-company<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-company-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.company' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.company' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.company' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'Company' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.company' ); ?>
+				<?= $this->value( 'css', 'order.base.address.company' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group address1 <?= ( isset( $css['order.base.address.address1'] ) ? join( ' ', $css['order.base.address.address1'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.address1' ); ?>">
+<li class="form-item form-group address1 <?= $enc->attr( !$this->value( 'error', 'order.base.address.address1' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.address1', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.address1' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-address1<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-address1-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Street' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-address1<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-address1-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.address1' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.address1' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.address1' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'Street' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.address1' ); ?>
+				<?= $this->value( 'css', 'order.base.address.address1' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group address2 <?= ( isset( $css['order.base.address.address2'] ) ? join( ' ', $css['order.base.address.address2'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.address2' ); ?>">
+<li class="form-item form-group address2 <?= $enc->attr( !$this->value( 'error', 'order.base.address.address2' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.address2', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.address2' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-address2<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-address2-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Additional' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-address2<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-address2-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.address2' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.address2' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.address2' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.address2' ); ?>
+				<?= $this->value( 'css', 'order.base.address.address2' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group address3 <?= ( isset( $css['order.base.address.address3'] ) ? join( ' ', $css['order.base.address.address3'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.address3' ); ?>">
+<li class="form-item form-group address3 <?= $enc->attr( !$this->value( 'error', 'order.base.address.address3' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.address3', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.address3' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-address3<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-address3-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Additional 2' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-address3<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-address3-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.address3' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.address3' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.address3' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional 2' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.address3' ); ?>
+				<?= $this->value( 'css', 'order.base.address.address3' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group city <?= ( isset( $css['order.base.address.city'] ) ? join( ' ', $css['order.base.address.city'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.city' ); ?>">
+<li class="form-item form-group city <?= $enc->attr( !$this->value( 'error', 'order.base.address.city' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.city', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.city' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-city<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-city-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-city<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-city-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.city' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.city' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.city' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'City' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.city' ); ?>
+				<?= $this->value( 'css', 'order.base.address.city' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<?php if( count( $states ) > 0 ) : ?>
-	<li class="form-item form-group state <?= ( isset( $css['order.base.address.state'] ) ? join( ' ', $css['order.base.address.state'] ) : '' ); ?>">
+<li class="form-item form-group postal <?= $enc->attr( !$this->value( 'error', 'order.base.address.postal' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.postal', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.postal' ) ); ?>">
 
 	<div class="row">
-			<label class="col-md-5" for="address-<?= $type ?>-state<?= $idstr ?>">
-				<?= $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
-			</label>
-			<div class="col-md-7">
-				<select class="form-control" id="address-<?= $type ?>-state<?= $idstr ?>"
-					name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.state' ) ) ); ?>"
-					<?= $disablefcn( $css, 'order.base.address.state' ); ?> >
-
-					<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ); ?></option>
-					<?php foreach( $states as $regioncode => $stateList ) : ?>
-						<optgroup class="<?= $regioncode; ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ); ?>">
-							<?php foreach( $stateList as $stateCode => $stateName ) : ?>
-								<option value="<?= $enc->attr( $stateCode ); ?>" <?= $selectfcn( $addr, 'order.base.address.state', $stateCode ); ?> >
-									<?= $enc->html( $stateName ); ?>
-								</option>
-							<?php endforeach; ?>
-						</optgroup>
-					<?php endforeach; ?>
-
-				</select>
-			</div>
-		</div>
-	</li>
-<?php endif; ?>
-
-
-<li class="form-item form-group postal <?= ( isset( $css['order.base.address.postal'] ) ? join( ' ', $css['order.base.address.postal'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.postal' ); ?>">
-
-	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-postal<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-postal-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Postal code' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-postal<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-postal-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.postal' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.postal' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.postal' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'Postal code' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.postal' ); ?>
+				<?= $this->value( 'css', 'order.base.address.postal' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<?php if( count( $countries ) > 0 ) : ?>
-	<li class="form-item form-group countryid <?= ( isset( $css['order.base.address.countryid'] ) ? join( ' ', $css['order.base.address.countryid'] ) : '' ); ?>">
+<?php if( count( $this->get( 'states', [] ) ) > 0 ) : ?>
+	<li class="form-item form-group state <?= $enc->attr( !$this->value( 'error', 'order.base.address.state' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.state', [] ) ) ) ?>">
 
-		<div class="row">
-			<label class="col-md-5" for="address-<?= $type ?>-countryid<?= $idstr ?>">
-				<?= $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ); ?>
+	<div class="row">
+			<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-state-<?= $this->get( 'id' ) ?>">
+				<?= $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
 			</label>
 			<div class="col-md-7">
-				<select class="form-control" id="address-<?= $type ?>-countryid<?= $idstr ?>"
-					name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.countryid' ) ) ); ?>"
-					<?= $disablefcn( $css, 'order.base.address.countryid' ); ?> >
+				<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-state-<?= $this->get( 'id' ) ?>"
+					name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.state' ) ) ); ?>"
+					<?= $this->value( 'css', 'order.base.address.state' ) ? '' : 'disabled' ?> >
 
-					<?php if( count( $countries ) > 1 ) : ?>
-						<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ); ?></option>
-					<?php endif; ?>
-					<?php foreach( $countries as $countryId ) : ?>
-						<option value="<?= $enc->attr( $countryId ); ?>" <?= $selectfcn( $addr, 'order.base.address.countryid', $countryId ); ?> >
-							<?= $enc->html( $this->translate( 'country', $countryId ) ); ?>
-						</option>
+					<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ); ?></option>
+
+					<?php foreach( $this->get( 'states', [] ) as $regioncode => $stateList ) : ?>
+
+						<optgroup class="<?= $regioncode; ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ); ?>">
+
+							<?php foreach( $stateList as $stateCode => $stateName ) : ?>
+								<option value="<?= $enc->attr( $stateCode ); ?>" <?= $this->value( 'address', 'order.base.address.state' ) == $stateCode ? 'selected' : '' ?> >
+									<?= $enc->html( $stateName ); ?>
+								</option>
+							<?php endforeach; ?>
+
+						</optgroup>
+
 					<?php endforeach; ?>
+
 				</select>
 			</div>
 		</div>
@@ -283,122 +232,174 @@ $fname = ( $id != null ? 'ca_' . $type . '_' . $id : 'ca_' . $type );
 <?php endif; ?>
 
 
-<li class="form-item form-group languageid <?= ( isset( $css['order.base.address.languageid'] ) ? join( ' ', $css['order.base.address.languageid'] ) : '' ); ?>"
-	<?= $disablefcn( $css, 'order.base.address.languageid' ); ?> >
+<?php if( count( $this->get( 'countries', [] ) ) > 0 ) : ?>
+	<li class="form-item form-group countryid <?= $enc->attr( !$this->value( 'error', 'order.base.address.countryid' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.countryid', [] ) ) ) ?>">
 
-	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-languageid<?= $idstr ?>">
-			<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ); ?>
-		</label>
-		<div class="col-md-7">
-			<select class="form-control" id="address-<?= $type ?>-languageid<?= $idstr ?>"
-				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.languageid' ) ) ); ?>">
+		<div class="row">
+			<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-countryid-<?= $this->get( 'id' ) ?>">
+				<?= $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ); ?>
+			</label>
+			<div class="col-md-7">
+				<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-countryid-<?= $this->get( 'id' ) ?>"
+					name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.countryid' ) ) ); ?>"
+					<?= $this->value( 'css', 'order.base.address.countryid' ) ? '' : 'disabled' ?> >
 
-				<?php foreach( $languages as $languageId ) : ?>
-					<option value="<?= $enc->attr( $languageId ); ?>" <?= $selectfcn( $addr, 'order.base.address.languageid', $languageId ); ?> >
-						<?= $enc->html( $this->translate( 'language', $languageId ) ); ?>
-					</option>
-				<?php endforeach; ?>
+					<?php if( count( $this->get( 'countries', [] ) ) > 1 ) : ?>
+						<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ); ?></option>
+					<?php endif; ?>
 
-			</select>
+					<?php foreach( $this->get( 'countries', [] ) as $countryId ) : ?>
+						<option value="<?= $enc->attr( $countryId ); ?>" <?= $this->value( 'address', 'order.base.address.countryid' ) == $countryId ? 'selected' : '' ?> >
+							<?= $enc->html( $this->translate( 'country', $countryId ) ); ?>
+						</option>
+					<?php endforeach; ?>
+
+				</select>
+			</div>
 		</div>
-	</div>
-</li>
+	</li>
+<?php endif; ?>
 
 
-<li class="form-item form-group vatid <?= ( isset( $css['order.base.address.vatid'] ) ? join( ' ', $css['order.base.address.vatid'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.vatid' ); ?>">
+<?php if( count( $this->get( 'languages', [] ) ) > 0 ) : ?>
+	<li class="form-item form-group languageid <?= $enc->attr( !$this->value( 'error', 'order.base.address.languageid' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.languageid', [] ) ) ) ?>"
+		<?= $this->value( 'css', 'order.base.address.languageid' ) ? '' : 'disabled' ?> >
+
+		<div class="row">
+			<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-languageid-<?= $this->get( 'id' ) ?>">
+				<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ); ?>
+			</label>
+			<div class="col-md-7">
+				<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-languageid-<?= $this->get( 'id' ) ?>"
+					name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.languageid' ) ) ); ?>">
+
+					<?php if( count( $this->get( 'languages', [] ) ) > 1 ) : ?>
+						<option value=""><?= $enc->html( $this->translate( 'client', 'Select language' ), $enc::TRUST ); ?></option>
+					<?php endif; ?>
+
+					<?php foreach( $this->get( 'languages', [] ) as $languageId ) : ?>
+						<option value="<?= $enc->attr( $languageId ); ?>" <?= $this->value( 'address', 'order.base.address.languageid' ) == $languageId ? 'selected' : '' ?> >
+							<?= $enc->html( $this->translate( 'language', $languageId ) ); ?>
+						</option>
+					<?php endforeach; ?>
+
+				</select>
+			</div>
+		</div>
+	</li>
+<?php endif; ?>
+
+
+<li class="form-item form-group vatid <?= $enc->attr( !$this->value( 'error', 'order.base.address.vatid' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.vatid', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.vatid' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-vatid<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-vatid-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Vat ID' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="text"
-				id="address-<?= $type ?>-vatid<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-vatid-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.vatid' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.vatid' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.vatid' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'GB999999973' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.vatid' ); ?>
+				<?= $this->value( 'css', 'order.base.address.vatid' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group email <?= ( isset( $css['order.base.address.email'] ) ? join( ' ', $css['order.base.address.email'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.email', '^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$' ); ?>">
+<li class="form-item form-group email <?= $enc->attr( !$this->value( 'error', 'order.base.address.email' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.email', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.email', '^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-email<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-email-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'E-Mail' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="email"
-				id="address-<?= $type ?>-email<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-email-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.email' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.email' ) ); ?>"
-				placeholder="name@example.com" <?= $disablefcn( $css, 'order.base.address.email' ); ?>
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.email' ) ); ?>"
+				placeholder="name@example.com"
+				<?= $this->value( 'css', 'order.base.address.email' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group telephone <?= ( isset( $css['order.base.address.telephone'] ) ? join( ' ', $css['order.base.address.telephone'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.telephone' ); ?>">
+<li class="form-item form-group telephone <?= $enc->attr( !$this->value( 'error', 'order.base.address.telephone' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.telephone', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.telephone' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-telephone<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-telephone-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Telephone' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="tel"
-				id="address-<?= $type ?>-telephone<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-telephone-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.telephone' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.telephone' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.telephone' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.telephone' ); ?>
+				<?= $this->value( 'css', 'order.base.address.telephone' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group telefax <?= ( isset( $css['order.base.address.telefax'] ) ? join( ' ', $css['order.base.address.telefax'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.telefax' ); ?>">
+<li class="form-item form-group telefax <?= $enc->attr( !$this->value( 'error', 'order.base.address.telefax' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.telefax', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.telefax' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-telefax<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-telefax-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Fax' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="tel"
-				id="address-<?= $type ?>-telefax<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-telefax-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.telefax' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.telefax' ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.telefax' ) ); ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ); ?>"
-				<?= $disablefcn( $css, 'order.base.address.telefax' ); ?>
+				<?= $this->value( 'css', 'order.base.address.telefax' ) ? '' : 'disabled' ?>
 			/>
 		</div>
 	</div>
 </li>
 
 
-<li class="form-item form-group website <?= ( isset( $css['order.base.address.website'] ) ? join( ' ', $css['order.base.address.website'] ) : '' ); ?>"
-	data-regex="<?= $testfcn( $regex, 'order.base.address.website', '^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$' ); ?>">
+<li class="form-item form-group website <?= $enc->attr( !$this->value( 'error', 'order.base.address.website' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.website', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.website', '^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$' ) ); ?>">
 
 	<div class="row">
-		<label class="col-md-5" for="address-<?= $type ?>-website<?= $idstr ?>">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-website-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Web site' ), $enc::TRUST ); ?>
 		</label>
 		<div class="col-md-7">
 			<input class="form-control" type="url"
-				id="address-<?= $type ?>-website<?= $idstr ?>"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-website-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.website' ) ) ); ?>"
-				value="<?= $enc->attr( $testfcn( $addr, 'order.base.address.website' ) ); ?>"
-				placeholder="http://example.com"
-				<?= $disablefcn( $css, 'order.base.address.website' ); ?>
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.website' ) ); ?>"
+				placeholder="https://example.com"
+				<?= $this->value( 'css', 'order.base.address.website' ) ? '' : 'disabled' ?>
+			/>
+		</div>
+	</div>
+</li>
+
+
+<li class="form-item form-group birthday <?= $enc->attr( !$this->value( 'error', 'order.base.address.birthday' ) ?: 'error ' . join( ' ', $this->value( 'css', 'order.base.address.birthday', [] ) ) ) ?>">
+	<div class="row">
+		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-birthday-<?= $this->get( 'id' ) ?>">
+			<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
+		</label>
+		<div class="col-md-7">
+			<input class="form-control" type="date"
+				id="address-<?= $this->get( 'type', 'billing' ) ?>-birthday-<?= $this->get( 'id' ) ?>"
+				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.birthday' ) ) ); ?>"
+				value="<?= $enc->attr( $this->value( 'address', 'order.base.address.birthday' ) ); ?>"
 			/>
 		</div>
 	</div>

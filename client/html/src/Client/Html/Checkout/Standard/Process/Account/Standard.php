@@ -219,14 +219,10 @@ class Standard
 		$context = $this->getContext();
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
-		try
-		{
+		try {
 			$id = $cntl->find( $addr->getEmail() )->getId();
-		}
-		catch( \Exception $e )
-		{
-			$extra = (array) $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
-			$id = ( $new ? $cntl->add( $addr->toArray() )->add( $extra )->store()->get()->getId() : null );
+		} catch( \Exception $e ) {
+			$id = $new ? $cntl->add( $addr->toArray() )->store()->get()->getId() : null;
 		}
 
 		return $id;

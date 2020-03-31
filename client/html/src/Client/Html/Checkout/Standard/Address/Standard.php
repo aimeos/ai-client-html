@@ -300,6 +300,7 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->getContext();
+		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/base/address' );
 
@@ -315,17 +316,8 @@ class Standard
 		$view->addressCustomerItem = $item;
 		$view->addressPaymentItem = $paymentAddressItem;
 		$view->addressDeliveryItems = $deliveryAddressItems;
-
-
-		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
-		$locales = $localeManager->searchItems( $localeManager->createSearch( true ) );
-
-		$languages = [];
-		foreach( $locales as $locale ) {
-			$languages[$locale->getLanguageId()] = $locale->getLanguageId();
-		}
-
-		$view->addressLanguages = $languages;
+		$view->addressLanguages = $localeManager->searchItems( $localeManager->createSearch( true ) )
+			->col( 'locale.languageid', 'locale.languageid' );
 
 		/** client/html/checkout/standard/address/countries
 		 * List of available countries that that users can select from in the front-end
