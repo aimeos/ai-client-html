@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-03 10:00+0200\n"
+"POT-Creation-Date: 2020-04-02 15:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,6 +30,10 @@ msgstr ""
 
 #, php-format
 msgid "List type for domain \"%1$s\" and code \"%2$s\" not found"
+msgstr ""
+
+#, php-format
+msgid "No address found in order base with ID \"%1$s\""
 msgstr ""
 
 #, php-format
