@@ -71,7 +71,7 @@ $enc = $this->encoder();
 						<?php foreach( (array) $item->getDefault() as $code => $val ) : ?>
 							<input class="form-control" type="radio" id="<?= $enc->attr( $this->type . '-' . $key . '-' . $code ); ?>"
 								name="<?= $enc->attr( $this->formparam( ['c_' . $this->type, $this->id, $key] ) ); ?>" value="<?= $enc->attr( $code ) ?>"
-								<?= $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) == $val ? 'checked="checked"' : '' ?>
+								<?= $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) == $code ? 'checked="checked"' : '' ?>
 							/>
 							<label for="<?= $enc->attr( $this->type . '-' . $key . '-' . $code ); ?>" class="attr-list-item">
 								<?= nl2br( $enc->html( $this->translate( 'client/code', $val ) ) ); ?>
