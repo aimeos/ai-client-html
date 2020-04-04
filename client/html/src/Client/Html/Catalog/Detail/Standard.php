@@ -531,11 +531,11 @@ class Standard
 		{
 			foreach( $productItem->getRefItems( 'product', null, 'default' ) as $subProdId => $subProduct )
 			{
-				$propItems->merge( $subProduct->getPropertyItems()->assign( ['parent', $subProdId] ) );
+				$propItems->merge( $subProduct->getPropertyItems()->assign( ['parent' => $subProdId] ) );
 				$mediaItems->merge( $subProduct->getRefItems( 'media', 'default', 'default' ) );
 				$attrItems->merge( $subProduct->getRefItems( 'attribute', null, 'default' )
 					->merge( $subProduct->getRefItems( 'attribute', null, 'variant' ) )
-					->assign( ['parent', $subProdId] ) );
+					->assign( ['parent' => $subProdId] ) );
 			}
 		}
 
