@@ -638,6 +638,8 @@ class Standard
 		$optional = $view->config( 'client/html/checkout/standard/address/delivery/optional', $this->optional );
 		$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );
 
+		$css = [];
+
 		foreach( $mandatory as $name ) {
 			$css[$name][] = 'mandatory';
 		}

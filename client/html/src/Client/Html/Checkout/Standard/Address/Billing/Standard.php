@@ -297,6 +297,8 @@ class Standard
 		$optional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
 		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
 
+		$css = [];
+
 		foreach( $mandatory as $name ) {
 			$css[$name][] = 'mandatory';
 		}
