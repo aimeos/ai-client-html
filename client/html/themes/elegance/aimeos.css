@@ -149,7 +149,7 @@
 .aimeos .attr-list,
 .aimeos .form-list {
 	padding: 0;
-	margin: 0;
+	margin: 1em;
 }
 
 .aimeos li.attr-item,
@@ -2339,6 +2339,15 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .checkout-standard-address .item-address .header {
 	background-color: #F0F0F0;
 	padding: 1em 1%;
+	position: relative;
+}
+
+.checkout-standard-address .minibutton.delete:after {
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: 100%;
+	content: "\f014";
+	display: inline-block;
+	transform: translate(0, -12.5%);
 }
 
 .checkout-standard-address .item-address .modify {
@@ -2348,9 +2357,9 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .checkout-standard-address .item-address .header input {
 	display: inline-block;
 	vertical-align: middle;
-	margin-right: 1em;
 	border: none;
 	margin: 0;
+	margin-right: 1em;
 }
 
 .checkout-standard-address .item-address .values {
@@ -2375,7 +2384,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .checkout-standard-address .form-list .mandatory,
 .checkout-standard-address .form-list .optional {
-	display: list-item;
+	display: block;
 }
 
 .checkout-standard-address .form-list .hidden {

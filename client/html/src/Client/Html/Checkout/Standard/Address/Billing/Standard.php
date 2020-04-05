@@ -231,7 +231,7 @@ class Standard
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$view->billingError = $e->getErrorList();
+			$view->addressBillingError = $e->getErrorList();
 			throw $e;
 		}
 	}
@@ -253,13 +253,13 @@ class Standard
 		$addr = current( $basketCntl->get()->getAddress( 'payment' ) );
 
 		$values = $addr ? $addr->toArray() : [];
-		$id = $view->get( 'addressCustomerItem' ) ? $view->addressCustomerItem->getId() : 'null';
-		$id = $values['order.base.address.addressid'] ?? $id;
+		$id = $view->get( 'addressCustomerItem' ) && $view->addressCustomerItem->getId() ? $view->addressCustomerItem->getId() : 'null';
+		$id = ( $values['order.base.address.addressid'] ?? null ) ?: $id;
 
-		$view->billingAddressString = $addr ? $this->getAddressString( $view, $addr ) : '';
-		$view->billingValuesNew = array_merge( $values, $view->param( 'ca_billing', [] ) );
-		$view->billingValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
-		$view->billingOption = $view->param( 'ca_billingoption', $id );
+		$view->addressBillingString = $addr ? $this->getAddressString( $view, $addr ) : '';
+		$view->addressBillingValuesNew = array_merge( $values, $view->param( 'ca_billing', [] ) );
+		$view->addressBillingValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
+		$view->addressBillingOption = $view->param( 'ca_billingoption', $id );
 
 
 		/** client/html/checkout/standard/address/billing/salutations
@@ -291,7 +291,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/countries
 		 */
 		$salutations = array( 'company', 'mr', 'mrs' );
-		$view->billingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
+		$view->addressBillingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
 
 		$mandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
 		$optional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
@@ -309,10 +309,10 @@ class Standard
 			$css[$name][] = 'hidden';
 		}
 
-		$view->billingMandatory = $mandatory;
-		$view->billingOptional = $optional;
-		$view->billingHidden = $hidden;
-		$view->billingCss = $css;
+		$view->addressBillingMandatory = $mandatory;
+		$view->addressBillingOptional = $optional;
+		$view->addressBillingHidden = $hidden;
+		$view->addressBillingCss = $css;
 
 		return parent::addData( $view, $tags, $expire );
 	}
@@ -649,7 +649,7 @@ class Standard
 		{
 			$params = $view->param( 'ca_billing', [] );
 
-			if( ( $view->billingError = $this->checkFields( $params ) ) !== [] ) {
+			if( ( $view->addressBillingError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 		}
@@ -657,7 +657,7 @@ class Standard
 		{
 			$params = $view->param( 'ca_billing_' . $option, [] ) + $view->param( 'ca_extra', [] );
 
-			if( !empty( $params ) && ( $view->billingError = $this->checkFields( $params ) ) !== [] ) {
+			if( !empty( $params ) && ( $view->addressBillingError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 

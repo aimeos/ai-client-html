@@ -46,8 +46,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-delivery', $output );
 
-		$this->assertGreaterThan( 0, count( $view->deliveryMandatory ) );
-		$this->assertGreaterThan( 0, count( $view->deliveryOptional ) );
+		$this->assertGreaterThan( 0, count( $view->addressDeliveryMandatory ) );
+		$this->assertGreaterThan( 0, count( $view->addressDeliveryOptional ) );
 	}
 
 
@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->process();
 
-		$this->assertEmpty( $this->object->getView()->get( 'deliveryError' ) );
+		$this->assertEmpty( $this->object->getView()->get( 'addressDeliveryError' ) );
 	}
 
 
@@ -126,9 +126,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 2, count( $view->deliveryError ) );
-			$this->assertArrayHasKey( 'order.base.address.salutation', $view->deliveryError );
-			$this->assertArrayHasKey( 'order.base.address.languageid', $view->deliveryError );
+			$this->assertEquals( 2, count( $view->addressDeliveryError ) );
+			$this->assertArrayHasKey( 'order.base.address.salutation', $view->addressDeliveryError );
+			$this->assertArrayHasKey( 'order.base.address.languageid', $view->addressDeliveryError );
 			return;
 		}
 
@@ -196,8 +196,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 1, count( $view->deliveryError ) );
-			$this->assertArrayHasKey( 'order.base.address.postal', $view->deliveryError );
+			$this->assertEquals( 1, count( $view->addressDeliveryError ) );
+			$this->assertArrayHasKey( 'order.base.address.postal', $view->addressDeliveryError );
 			return;
 		}
 
@@ -276,7 +276,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessRemoveAddress()
 	{
 		$view = \TestHelperHtml::getView();
-		$param = array( 'ca_deliveryoption' => -1 );
+		$param = array( 'ca_delivery_delete' => -1 );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );

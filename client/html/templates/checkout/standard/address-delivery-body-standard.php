@@ -43,7 +43,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 		<div class="header">
 			<input id="ca_deliveryoption-like" type="radio" value="like"
 				name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
-				<?= $this->get( 'deliveryOption', 'like' ) == 'like' ? 'checked="checked"' : '' ?> />
+				<?= $this->get( 'addressDeliveryOption', 'like' ) == 'like' ? 'checked="checked"' : '' ?> />
 			<label for="ca_deliveryoption-like" class="values value-like">
 				<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
 			</label>
@@ -51,69 +51,69 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 	</div>
 
 
-	<?php foreach( $this->get( 'deliveryAddressValues', [] ) as $id => $addr ) : ?>
+	<?php foreach( $this->get( 'addressDeliveryValues', [] ) as $id => $addr ) : ?>
 
 		<div class="item-address">
 			<div class="header">
-				<a class="modify minibutton"
+				<a class="modify minibutton delete"
 					href="<?= $enc->attr( $this->url( $target, $controller, $action, ['step' => 'address', 'ca_delivery_delete' => $id], [], $config ) ) ?>">
-					X
 				</a>
 				<input id="ca_deliveryoption-<?= $id; ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
-					<?= $this->get( 'deliveryOption' ) == $id ? 'checked="checked"' : '' ?> />
+					<?= $this->get( 'addressDeliveryOption' ) == $id ? 'checked="checked"' : '' ?> />
 				<label for="ca_deliveryoption-<?= $id; ?>" class="values">
-					<?= nl2br( $this->value( 'deliveryAddressStrings', $id, '' ) ) ?>
+					<?= nl2br( $this->value( 'addressDeliveryStrings', $id, '' ) ) ?>
 				</label>
 			</div>
 
-			<ul class="form-list">
+			<div class="form-list">
 				<?= $this->partial(
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
-						'error' => $this->get( 'billingOption' ) == $id ? $this->get( 'billingError', [] ) : [],
-						'salutations' => $this->get( 'billingSalutations', [] ),
+						'address' => $addr,
+						'error' => $this->get( 'addressDeliveryOption' ) == $id ? $this->get( 'addressDeliveryError', [] ) : [],
+						'salutations' => $this->get( 'addressDeliverySalutations', [] ),
 						'languages' => $this->get( 'addressLanguages', [] ),
 						'countries' => $this->get( 'addressCountries', [] ),
 						'states' => $this->get( 'addressStates', [] ),
-						'css' => $this->get( 'billingCss', [] ),
+						'css' => $this->get( 'addressDeliveryCss', [] ),
 						'type' => 'delivery',
 						'id' => $id,
 					)
 				); ?>
-			</ul>
+			</div>
 		</div>
 
 	<?php endforeach; ?>
 
 
-	<?php if( $this->config( 'client/html/common/address/delivery/disable-new', false ) ) : ?>
+	<?php if( !$this->config( 'client/html/common/address/delivery/disable-new', false ) ) : ?>
 
-		<div class="item-address item-new" data-option="<?= $enc->attr( $deliveryOption ); ?>">
+		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressDeliveryOption' ) ); ?>">
 			<div class="header">
 				<input id="ca_deliveryoption-null" type="radio" value="null"
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ); ?>"
-					<?= $this->get( 'deliveryOption' ) == 'null' ? 'checked="checked"' : '' ?> />
+					<?= $this->get( 'addressDeliveryOption' ) == 'null' ? 'checked="checked"' : '' ?> />
 				<label for="ca_deliveryoption-null" class="values value-new">
 					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
 				</label>
 			</div>
 
-			<ul class="form-list">
+			<div class="form-list">
 				<?= $this->partial(
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
-						'error' => $this->get( 'deliveryOption' ) == 'null' ? $this->get( 'deliveryError', [] ) : [],
-						'salutations' => $this->get( 'deliverySalutations', [] ),
+						'address' => $this->get( 'addressDeliveryValuesNew', [] ),
+						'error' => $this->get( 'addressDeliveryOption' ) == 'null' ? $this->get( 'addressDeliveryError', [] ) : [],
+						'salutations' => $this->get( 'addressDeliverySalutations', [] ),
 						'languages' => $this->get( 'addressLanguages', [] ),
 						'countries' => $this->get( 'addressCountries', [] ),
 						'states' => $this->get( 'addressStates', [] ),
-						'css' => $this->get( 'deliveryCss', [] ),
-						'type' => 'delivery',
-						'id' => 'null'
+						'css' => $this->get( 'addressDeliveryCss', [] ),
+						'type' => 'delivery'
 					)
 				); ?>
-			</ul>
+			</div>
 		</div>
 
 	<?php endif; ?>

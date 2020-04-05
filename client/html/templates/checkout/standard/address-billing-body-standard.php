@@ -39,13 +39,13 @@ $enc = $this->encoder();
 				<input id="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" type="radio"
 					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ) ?>"
 					value="<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>"
-					<?= $this->get( 'billingOption' ) == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ?>
+					<?= $this->get( 'addressBillingOption' ) == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ?>
 				/>
 				<label for="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" class="values">
-					<?= nl2br( $this->get( 'billingAddressString', '' ) ) ?>
+					<?= nl2br( $this->get( 'addressBillingString', '' ) ) ?>
 				</label>
 			</div>
-			<ul class="form-list">
+			<div class="form-list">
 				<?= $this->partial(
 					/** client/html/checkout/standard/partials/address
 					 * Relative path to the address partial template file
@@ -62,48 +62,48 @@ $enc = $this->encoder();
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
 						'id' => $this->addressPaymentItem->getAddressId(),
-						'error' => $this->get( 'billingOption' ) == $this->addressPaymentItem->getAddressId() ? $this->get( 'billingError', [] ) : [],
-						'salutations' => $this->get( 'billingSalutations', [] ),
+						'address' => $this->get( 'addressBillingValues', [] ),
+						'error' => $this->get( 'addressBillingOption' ) == $this->addressPaymentItem->getAddressId() ? $this->get( 'addressBillingError', [] ) : [],
+						'salutations' => $this->get( 'addressBillingSalutations', [] ),
 						'languages' => $this->get( 'addressLanguages', [] ),
 						'countries' => $this->get( 'addressCountries', [] ),
 						'states' => $this->get( 'addressStates', [] ),
-						'address' => $this->get( 'billingValues', [] ),
-						'css' => $this->get( 'billingCss', [] ),
+						'css' => $this->get( 'addressBillingCss', [] ),
 						'type' => 'billing',
 					)
 				); ?>
-			</ul>
+			</div>
 
 		</div>
 	<?php endif; ?>
 
 
 	<?php if( !$this->config( 'client/html/common/address/billing/disable-new', false ) ) : ?>
-		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'billingOption' ) ); ?>">
+		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressBillingOption' ) ); ?>">
 			<div class="header">
 				<input id="ca_billingoption-new" type="radio" value="null"
 					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
-					<?= $this->get( 'billingOption' ) == 'null' ? 'checked="checked"' : '' ?>
+					<?= $this->get( 'addressBillingOption' ) == 'null' ? 'checked="checked"' : '' ?>
 				/>
 				<label for="ca_billingoption-new" class="values value-new">
 					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
 				</label>
 			</div>
-			<ul class="form-list">
+			<div class="form-list">
 				<?= $this->partial(
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
-						'address' => $this->get( 'billingValuesNew', [] ),
-						'error' => $this->get( 'billingOption' ) == 'null' ? $this->get( 'billingError', [] ) : [],
-						'salutations' => $this->get( 'billingSalutations', [] ),
+						'address' => $this->get( 'addressBillingValuesNew', [] ),
+						'error' => $this->get( 'addressBillingOption' ) == 'null' ? $this->get( 'addressBillingError', [] ) : [],
+						'salutations' => $this->get( 'addressBillingSalutations', [] ),
 						'languages' => $this->get( 'addressLanguages', [] ),
 						'countries' => $this->get( 'addressCountries', [] ),
 						'states' => $this->get( 'addressStates', [] ),
-						'css' => $this->get( 'billingCss', [] ),
+						'css' => $this->get( 'addressBillingCss', [] ),
 						'type' => 'billing',
 					)
 				); ?>
-			</ul>
+			</div>
 
 		</div>
 	<?php endif; ?>

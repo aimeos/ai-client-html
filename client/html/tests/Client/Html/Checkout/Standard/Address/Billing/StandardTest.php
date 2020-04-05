@@ -47,8 +47,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing', $output );
 		$this->assertRegexp( '/form-item form-group city.*form-item form-group postal/smU', $output );
 
-		$this->assertGreaterThan( 0, count( $view->billingMandatory ) );
-		$this->assertGreaterThan( 0, count( $view->billingOptional ) );
+		$this->assertGreaterThan( 0, count( $view->addressBillingMandatory ) );
+		$this->assertGreaterThan( 0, count( $view->addressBillingOptional ) );
 	}
 
 
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->process();
 
-		$this->assertEmpty( $this->object->getView()->get( 'billingError' ) );
+		$this->assertEmpty( $this->object->getView()->get( 'addressBillingError' ) );
 	}
 
 
@@ -128,10 +128,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 3, count( $view->billingError ) );
-			$this->assertArrayHasKey( 'order.base.address.salutation', $view->billingError );
-			$this->assertArrayHasKey( 'order.base.address.email', $view->billingError );
-			$this->assertArrayHasKey( 'order.base.address.languageid', $view->billingError );
+			$this->assertEquals( 3, count( $view->addressBillingError ) );
+			$this->assertArrayHasKey( 'order.base.address.salutation', $view->addressBillingError );
+			$this->assertArrayHasKey( 'order.base.address.email', $view->addressBillingError );
+			$this->assertArrayHasKey( 'order.base.address.languageid', $view->addressBillingError );
 			return;
 		}
 
@@ -200,8 +200,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 1, count( $view->billingError ) );
-			$this->assertArrayHasKey( 'order.base.address.postal', $view->billingError );
+			$this->assertEquals( 1, count( $view->addressBillingError ) );
+			$this->assertArrayHasKey( 'order.base.address.postal', $view->addressBillingError );
 			return;
 		}
 

@@ -242,7 +242,7 @@ class Standard
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$view->deliveryError = $e->getErrorList();
+			$view->addressDeliveryError = $e->getErrorList();
 			throw $e;
 		}
 	}
@@ -528,17 +528,17 @@ class Standard
 		{
 			$params = $view->param( 'ca_delivery', [] );
 
-			if( ( $view->deliveryError = $this->checkFields( $params ) ) !== [] ) {
+			if( ( $view->addressDeliveryError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
 
 			$ctrl->addAddress( $type, $params, 0 );
 		}
-		else if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) !== '-1' ) // existing address
+		else if( ( $option = $view->param( 'ca_deliveryoption' ) ) !== 'like' ) // existing address
 		{
 			$params = $view->param( 'ca_delivery_' . $option, [] );
 
-			if( !empty( $params ) && ( $view->deliveryError = $this->checkFields( $params ) ) !== [] ) {
+			if( !empty( $params ) && ( $view->addressDeliveryError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
 
@@ -576,27 +576,31 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'order/base/address' );
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
-		$addrMap = map( $basketCntl->get()->getAddress( 'delivery' ) )->col( null, 'order.base.address.addressid' );
 		$addrStrings = $addrValues = [];
+		$addrMap = map( $basketCntl->get()->getAddress( 'delivery' ) );
 
 		foreach( $view->get( 'addressDeliveryItems', [] ) as $id => $address )
 		{
-			$basketValues = $addrMap->get( $id, [] );
 			$params = $view->param( 'ca_delivery_' . $id, [] );
+			$basketValues = $addrMap->get( $id, map() )->toArray();
 			$addr = $manager->createItem()->copyFrom( $address )->fromArray( $basketValues )->fromArray( $params );
 
 			$addrStrings[$id] = $this->getAddressString( $view, $addr );
 			$addrValues[$id] = $addr->toArray();
 		}
 
-		$params = $view->param( 'ca_delivery', [] );
-		$addrValues['null'] = array_merge( $addrMap->first( [] ), $params );
-		$addrStrings['null'] = $this->getAddressString( $view, $manager->createItem()->fromArray( $addrValues['null'] ) );
-		$option = $addrValues['null']['order.base.address.addressid'] ?? ( empty( $params ) ? 'like' : 'null' );
+		$values = !$addrMap->isEmpty() ? $addrMap->first()->toArray() : [];
+		$values = array_merge( $values, $view->param( 'ca_delivery', [] ) );
+		$addrNew = $manager->createItem()->fromArray( $values );
 
-		$view->deliveryOption = $view->param( 'ca_deliveryoption', $option );
-		$view->deliveryAddressStrings = $addrStrings;
-		$view->deliveryAddressValues = $addrValues;
+		$addrStringNew = $this->getAddressString( $view, $addrNew );
+		$option = $addrNew->getAddressId() ?: ( $addrMap->isEmpty() ? 'like' : 'null' );
+
+		$view->addressDeliveryOption = $view->param( 'ca_deliveryoption', $option );
+		$view->addressDeliveryValuesNew = $addrNew->toArray();
+		$view->addressDeliveryStringNew = $addrStringNew;
+		$view->addressDeliveryStrings = $addrStrings;
+		$view->addressDeliveryValues = $addrValues;
 
 
 		/** client/html/checkout/standard/address/delivery/salutations
@@ -628,7 +632,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/countries
 		 */
 		$salutations = array( 'company', 'mr', 'mrs' );
-		$view->deliverySalutations = $view->config( 'client/html/checkout/standard/address/delivery/salutations', $salutations );
+		$view->addressDeliverySalutations = $view->config( 'client/html/checkout/standard/address/delivery/salutations', $salutations );
 
 		$mandatory = $view->config( 'client/html/checkout/standard/address/delivery/mandatory', $this->mandatory );
 		$optional = $view->config( 'client/html/checkout/standard/address/delivery/optional', $this->optional );
@@ -646,10 +650,10 @@ class Standard
 			$css[$name][] = 'hidden';
 		}
 
-		$view->deliveryMandatory = $mandatory;
-		$view->deliveryOptional = $optional;
-		$view->deliveryHidden = $hidden;
-		$view->deliveryCss = $css;
+		$view->addressDeliveryMandatory = $mandatory;
+		$view->addressDeliveryOptional = $optional;
+		$view->addressDeliveryHidden = $hidden;
+		$view->addressDeliveryCss = $css;
 
 		return parent::addData( $view, $tags, $expire );
 	}
