@@ -140,12 +140,8 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 		<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
 			<div class="basket-mini-main">
-				<span class="quantity">
-					<?= $enc->html( $quantity ); ?>
-				</span>
-				<span class="value">
-					<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?>
-				</span>
+				<span class="quantity"><?= $enc->html( $quantity ); ?></span>
+				<span class="value"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?></span>
 			</div>
 		</a>
 
