@@ -254,10 +254,10 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )
 			->uses( $domains )->root( $startid );
 
-		if( ( $currentid = $view->param( 'f_catid' ) ) == null ) {
-			$catItems = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE )->toList();
-		} else {
+		if( ( $currentid = $view->param( 'f_catid' ) ) !== null ) {
 			$catItems = $cntl->getPath( $currentid );
+		} else {
+			$catItems = map();
 		}
 
 		$view->treeCatalogPath = $catItems;
