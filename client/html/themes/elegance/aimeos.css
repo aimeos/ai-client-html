@@ -30,13 +30,13 @@
 
 .aimeos .btn-primary,
 .aimeos .btn-primary:active {
-	background-color: #B0A060;
-	border: solid 1px #B0A060;
+	background-color: #ffa846;
+	border: solid 1px #ffa846;
 }
 
 .aimeos .btn-primary:hover {
-    background-color: #C0B070;
-	border: solid 1px #C0B070;
+    background-color: #ffb856;
+	border: solid 1px #ffb856;
 }
 
 .aimeos .btn:focus,
@@ -46,6 +46,8 @@
 }
 
 .aimeos .form-control {
+    border: none;
+    border-bottom: 1px solid #555;
 	border-radius: 0;
 	box-shadow: none;
 	vertical-align: top;
@@ -60,7 +62,8 @@
 }
 
 .aimeos .addbasket input {
-	border: solid 1px #B0A060;
+	border: solid 1px #555;
+	border-right: none;
 	text-align: center;
 	width: 4em;
 }
@@ -73,6 +76,16 @@
 	height: auto;
 }
 
+.aimeos .table>tbody>tr>td,
+.aimeos .table>tfoot>tr>td,
+.aimeos .table>thead>tr>td {
+	border-bottom: 1px solid #555;
+	padding: 8px 0 0;
+}
+
+.aimeos table .form-control {
+	border: none;
+}
 
 .aimeos,
 .aimeos h1, .aimeos h2,
@@ -96,7 +109,7 @@
 
 .aimeos a:link:not(.btn),
 .aimeos a:visited:not(.btn) {
-	color: #B0A060;
+	color: #ffa846;
 }
 
 .aimeos input {
@@ -111,8 +124,7 @@
 
 .aimeos .minibutton {
 	color: #D0D0D0;
-	font-size: 150%;
-	font-weight: bold;
+	font-size: 125%;
 	vertical-align: middle;
 	min-width: 1em;
 	padding: 0;
@@ -203,7 +215,9 @@
 	display: inline;
 }
 
-.aimeos .sort a {
+.aimeos .sort a,
+.aimeos .sort a:link,
+.aimeos .sort a:visited {
 	text-decoration: none;
 	white-space: nowrap;
 	padding: 0 0.25em;
@@ -383,6 +397,14 @@
 	display: none;
 }
 
+.catalog-filter-tree li a.cat-item {
+	color: #555 !important;
+}
+
+.catalog-filter-tree li.active a.cat-item {
+	color: #ffa846 !important;
+}
+
 .catalog-filter-tree .catcode-home > a {
 	white-space: nowrap;
 }
@@ -391,7 +413,7 @@
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: 133%;
 	content: "\f015";
-	color: #B0A060;
+	color: #808080;
 	vertical-align: bottom;
 }
 
@@ -427,6 +449,10 @@
 }
 
 /* Catalog filter search section */
+.catalog-filter-search {
+	display: inline-block;
+}
+
 .catalog-filter-search > h2 {
 	display: none;
 }
@@ -444,30 +470,28 @@
 	display: block;
 }
 
-.catalog-filter-search .value {
-	background-color: #FFFFFF;
-	border-right: none;
-	min-width: 5em;
-	width: 70%;
+.catalog-filter-search .input-group {
+	border-bottom: 1px solid #555;
 }
 
 .catalog-filter-search .value {
-	border-color: #B0A060;
-	border-right: none;
+	background-color: #FFFFFF;
+	min-width: 5em;
+	border: none;
+	width: 70%;
 	margin: 0;
 }
 
 .catalog-filter-search .reset {
 	background-color: #FFFFFF;
-	border-color: #B0A060;
-	border-right: none;
-	border-left: none;
 	width: 10% !important;
+	border: none;
 	margin: 0;
 }
 
 .catalog-filter-search .reset .symbol {
-	vertical-align: top;
+	border: 1px solid transparent;
+	vertical-align: bottom;
 	font-weight: bold;
 	color: #AAAAAA;
 }
@@ -482,7 +506,15 @@
 
 .catalog-filter-search .btn-primary {
 	width: 20% !important;
+	background: none;
+	border: none;
+	color: #555;
 	margin: 0;
+}
+
+.catalog-filter-search .btn-primary:hover {
+	background: none;
+	border: none;
 }
 
 .catalog-filter-search .ui-helper-hidden-accessible {
@@ -495,7 +527,7 @@
 }
 
 .catalog-filter-tree > h2 {
-	border-bottom: solid 1px #B0A060;
+	border-bottom: solid 1px #555;
 	font-size: 100%;
 	cursor: pointer;
 	display: block;
@@ -530,7 +562,7 @@ html.no-js .catalog-filter-tree:hover > ul {
 }
 
 .catalog-filter-tree a.cat-item {
-	border-bottom: solid 1px #B0A060;
+	border-bottom: solid 1px #555;
 	white-space: nowrap;
 	padding: 0.5em 0;
 	display: block;
@@ -570,7 +602,7 @@ html.no-js .catalog-filter-tree:hover > ul {
 
 .catalog-filter-attribute > h2,
 .catalog-filter-supplier > h2 {
-	border-bottom: solid 1px #B0A060;
+	border-bottom: solid 1px #555;
 	text-align: center;
 	font-size: 100%;
 	cursor: pointer;
@@ -727,7 +759,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 /* Product list, stage section */
 .catalog-stage {
-	color: #B0A060;
+	color: #ffa846;
 	clear: both;
 }
 
@@ -856,7 +888,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .catalog-list .product {
-	border-bottom: 1px solid #B0A060;
+	border-bottom: 1px solid #555;
 	display: inline-block;
 	vertical-align: top;
 	white-space: normal;
@@ -1058,7 +1090,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .catalog-list-items .list .product {
-	border-left: solid 1px #B0A060;
+	border-left: solid 1px #555;
 	border-bottom: none;
 	text-align: left;
 	width: 481px;
@@ -1103,6 +1135,11 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .catalog-list-type .type-item {
 	padding: 0.5em;
+}
+
+.catalog-list-type a.type-item:link,
+.catalog-list-type a.type-item:visited {
+	color: #555;
 }
 
 .catalog-list-type .type-grid:after {
@@ -1242,7 +1279,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .catalog-detail-basic h1.name {
 	text-transform: uppercase;
 	font-size: 110%;
-	color: #B0A060;
+	color: #555;
 	margin: 0;
 	padding: 0;
 	padding-bottom: 0.5em;
@@ -1272,6 +1309,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: 150%;
 	padding: 0 0.33em;
+	text-decoration: none;
 }
 
 .catalog-detail .catalog-social .social-button-facebook:before {
@@ -1300,6 +1338,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: 150%;
 	padding: 0 0.5em;
+	text-decoration: none;
 }
 
 .catalog-detail .catalog-actions .actions-button-favorite:before {
@@ -1396,7 +1435,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 /* services */
 .catalog-detail-basket .service-intro {
 	cursor: pointer;
-	color: #B0A060;
+	color: #555;
 }
 
 .catalog-detail-service .service-list {
@@ -1557,8 +1596,8 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .catalog-list-items .selection .select-option:checked + .select-label,
 .catalog-detail-basket .selection .select-option:checked + .select-label {
-	border: solid 1px #B0A060;
-	background-color: #B0A060;
+	border: solid 1px #555;
+	background-color: #555;
 	color: #fff;
 }
 
@@ -1574,7 +1613,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .catalog-list-items .selection input.select-option[type=number],
 .catalog-detail-basket .selection input.select-option[type=number] {
-	border: solid 1px #B0A060;
+	border: solid 1px #555;
 	text-align: center;
 	padding: 0;
 	width: 4em;
@@ -1779,7 +1818,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .basket-related-bought .header,
 .catalog-session .header,
 .catalog-detail .header {
-	border-bottom: solid 1px #B0A060;
+	border-bottom: solid 1px #555;
 	text-transform: uppercase;
 	text-align: left;
 	font-weight: normal;
@@ -1937,7 +1976,6 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 /* Mini basket */
 .basket-mini {
-	background-color: #B0A060;
 	color: #555;
 }
 
@@ -1949,19 +1987,21 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	display: inline-block;
 	white-space: nowrap;
 	padding: 0.75em 1em;
+	text-decoration: none;
 }
 
 .basket-mini > a:before {
 	font: normal normal normal 14px/1 FontAwesome;
 	vertical-align: middle;
+	text-decoration: none;
 	content: "\f07a";
 	font-size: 150%;
-	color: #FFF;
+	color: #555;
 }
 
 .basket-mini-main {
 	display: inline-block;
-	color: #FFF;
+	color: #555;
 }
 
 .basket-mini-main .quantity {
@@ -1990,8 +2030,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	text-decoration: none;
 	display: inline-block;
 	cursor: pointer;
-	color: #B0A060;
-	color: #FFF;
+	color: #555;
 	padding: 1em;
 }
 
@@ -2092,7 +2131,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .basket-standard-coupon .content {
 	vertical-align: middle;
 	display: inline-block;
-	width: 46%;
+	width: 49%;
 }
 
 .basket-standard-coupon .header h2 {
@@ -2114,13 +2153,26 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	padding: 0.5em;
 }
 
+.basket-standard-coupon .btn-primary,
+.basket-standard-coupon .btn-primary:hover {
+	background: none;
+	border: none;
+	color: #ffa846;
+	font-weight: bold;
+	font-size: 125%;
+}
+
+.basket-standard-coupon .input-group {
+	border-bottom: 1px solid #555;
+}
+
 .basket-standard-coupon .coupon-new .btn {
-	width: 3em;
+	width: 5rem;
 }
 
 .basket-standard-coupon .coupon-new .coupon-code {
-	border: 1px solid #B0A060;
-	width: calc(100% - 3em);
+	width: calc(100% - 5rem);
+	border: none;
 }
 
 .basket-standard-coupon .minibutton.delete:after {
@@ -2170,7 +2222,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .basket-bulk table td.quantity input {
-	text-align: right;
+	text-align: center;
 }
 
 .basket-bulk table th.price {
@@ -2191,24 +2243,17 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .basket-bulk .minibutton {
-	color: #ba9a5a;
+	color: #ffa846;
 	padding: 0 0.5em;
 	line-height: 1;
 	width: 2em;
 }
 
-.basket-bulk .minibutton.add:after {
-	font: normal normal normal 14px/1 FontAwesome;
-	font-size: 100%;
-	content: "\f067";
-	display: inline-block;
-}
-
 .basket-bulk .minibutton.delete:after {
 	font: normal normal normal 14px/1 FontAwesome;
-	font-size: 125%;
-	content: "\f014";
 	display: inline-block;
+	content: "\f014";
+	font-size: 100%;
 }
 
 
@@ -2337,7 +2382,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .checkout-standard-address .item-address .header {
-	background-color: #F0F0F0;
+	background-color: #F8F8F8;
 	padding: 1em 1%;
 	position: relative;
 }
@@ -2405,13 +2450,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .checkout-standard .form-list .error input,
 .checkout-standard .form-list .error select {
-	background-color: #ffeeee;
-	border: solid 1px #FF3300;
-}
-
-.checkout-standard .form-list .success input,
-.checkout-standard .form-list .success select {
-	background-color: #bbffbb;
+	border-bottom: solid 1px #FF3300;
 }
 
 .checkout-standard .form-item label {
@@ -2439,7 +2478,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .checkout-standard .item-service .form-item-value input:checked + label {
 	border-left: 2px solid #D0D0D0;
-	background-color: #F0F0F0;
+	background-color: #F8F8F8;
 }
 
 /* Checkout delivery/payment */
@@ -2539,7 +2578,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .aimeos .common-summary .header,
 .aimeos .common-summary-detail .header {
-	border-bottom: solid 1px #B0A060;
+	border-bottom: solid 1px #555;
 	padding: 0.5em 1em;
 	margin: 0.5em;
 	margin-top: 0;
@@ -2578,7 +2617,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .aimeos .common-summary-detail thead {
 	font-weight: bold;
-	background-color: #F0F0F0;
+	background-color: #F8F8F8;
 }
 
 .aimeos .common-summary-detail thead tr {
@@ -2593,7 +2632,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .aimeos .common-summary-detail tr.total {
 	border-top: 1px solid #D0D0D0;
 	color: #555;
-	background-color: #F0F0F0
+	background-color: #F8F8F8
 }
 
 .aimeos .common-summary-detail th,
@@ -2796,16 +2835,26 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 /* Checkout confirm basic part */
 .checkout-confirm-basic {
-	padding: 0 1em 1em 1em;
-	border: solid 1px #D0D0D0;
-	margin: 0 0 8px 0;
+	padding: 2em 0;
 	margin-top: 1.5em;
+}
+
+.checkout-confirm-basic  .attr-list {
+	padding: 0.5em 1em;
+    margin: 0.5em;
 }
 
 .checkout-confirm-basic .attr-list .name,
 .checkout-confirm-basic .attr-list .value {
 	display: inline-block;
-	width: 218px;
+	width: 25%;
+}
+
+.checkout-confirm-basic h2 {
+    border-bottom: solid 1px #555;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+    margin-top: 0;
 }
 
 /* Account profile */
@@ -3044,12 +3093,12 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
   }
 
 .ui-menu-item:hover {
-	background-color: #B0A060;
+	background-color: #555;
 	color: #FFFFFF;
 }
 
 .ui-menu-item:focus, .ui-state-active {
-    background: #B0A060;
+    background: #555;
     color: #ffffff;
 }
 
