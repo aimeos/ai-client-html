@@ -45,13 +45,13 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 		<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
 
-		<table class="table table-striped">
+		<table class="table">
 			<thead>
 				<tr class="header">
 					<th class="product"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></th>
 					<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></th>
 					<th class="price"><?= $enc->html( $this->translate( 'client', 'Price' ) ) ?></th>
-					<th class="buttons"><a href="#" class="btn minibutton add"></a></th>
+					<th class="buttons"><a href="#" class="minibutton add">+</a></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,7 +64,9 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 							<input type="hidden" class="productid"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'prodid'] ) ); ?>"
 							/>
-							<input type="text" class="form-control search" tabindex="1" />
+							<input type="text" class="form-control search" tabindex="1"
+								placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
+							/>
 							<div class="vattributes"></div>
 						</td>
 						<td class="quantity">
@@ -75,7 +77,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						</td>
 						<td class="price"></td>
 						<td class="buttons">
-							<a href="#" class="btn minibutton delete"></a>
+							<a href="#" class="minibutton delete"></a>
 						</td>
 					</tr>
 				<?php endfor ?>
