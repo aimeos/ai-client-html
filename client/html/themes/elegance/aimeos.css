@@ -16,7 +16,6 @@
 }
 
 
-
 .aimeos {
 	clear: both;
 }
@@ -31,12 +30,16 @@
 .aimeos .btn-primary,
 .aimeos .btn-primary:active {
 	background-color: #ffa846;
+	background-color: var(--aimeos-primary-color, #ffa846);
 	border: solid 1px #ffa846;
+	border: var(--aimeos-primary-color);
 }
 
 .aimeos .btn-primary:hover {
     background-color: #ffb856;
+	background-color: var(--aimeos-highlight-color, #ffb856);
 	border: solid 1px #ffb856;
+	border: var(--aimeos-highlight-color);
 }
 
 .aimeos .btn:focus,
@@ -108,8 +111,11 @@
 }
 
 .aimeos a:link:not(.btn),
-.aimeos a:visited:not(.btn) {
+.aimeos a:link:not(.btn):hover,
+.aimeos a:visited:not(.btn),
+.aimeos a:visited:not(.btn):hover {
 	color: #ffa846;
+	color: var(--aimeos-primary-color, #ffa846);
 }
 
 .aimeos input {
@@ -397,12 +403,14 @@
 	display: none;
 }
 
-.catalog-filter-tree li a.cat-item {
-	color: #555 !important;
+.catalog-filter-tree li a.cat-item:link,
+.catalog-filter-tree li a.cat-item:visited {
+	color: #555;
 }
 
 .catalog-filter-tree li.active a.cat-item {
-	color: #ffa846 !important;
+	color: #ffa846;
+	color: var(--aimeos-primary-color, #ffa846);
 }
 
 .catalog-filter-tree .catcode-home > a {
@@ -760,6 +768,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 /* Product list, stage section */
 .catalog-stage {
 	color: #ffa846;
+	color: var(--aimeos-primary-color, #ffa846);
 	clear: both;
 }
 
@@ -2158,6 +2167,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	background: none;
 	border: none;
 	color: #ffa846;
+	color: var(--aimeos-primary-color, #ffa846);
 	font-weight: bold;
 	font-size: 125%;
 }
@@ -2244,6 +2254,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .basket-bulk .minibutton {
 	color: #ffa846;
+	color: var(--aimeos-primary-color, #ffa846);
 	padding: 0 0.5em;
 	line-height: 1;
 	width: 2em;
