@@ -32,14 +32,14 @@
 	background-color: #ffa846;
 	background-color: var(--aimeos-primary-color, #ffa846);
 	border: solid 1px #ffa846;
-	border: var(--aimeos-primary-color);
+	border-color: var(--aimeos-primary-color, #ffa846);
 }
 
 .aimeos .btn-primary:hover {
     background-color: #ffb856;
 	background-color: var(--aimeos-highlight-color, #ffb856);
 	border: solid 1px #ffb856;
-	border: var(--aimeos-highlight-color);
+	border-color: var(--aimeos-highlight-color, #ffb856);
 }
 
 .aimeos .btn:focus,
