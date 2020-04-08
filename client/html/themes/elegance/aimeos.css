@@ -2286,28 +2286,20 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .checkout-standard .steps .active {
-	color: #D0D0D0;
-	border-bottom: solid 8px #D0D0D0;
+	color: #ffa846;
+	color: var(--aimeos-primary-color, #ffa846);
+	border-bottom: solid 1px #555;
 }
 
 .checkout-standard .steps .current {
-	color: #555;
-	border-bottom: solid 8px #555;
+	color: #fff;
+	background-color: #555;
+	border-bottom: solid 1px #555;
 }
 
 .checkout-standard .steps .order,
 .checkout-standard .steps .process {
 	display: none;
-}
-
-.checkout-standard .steps .active:after {
-	font: normal normal normal 14px/1 FontAwesome;
-	font-size: 125%;
-	content: "\f00c";
-	width: 1em;
-	height: 1em;
-	margin: 0 0.5em;
-	display: inline-block;
 }
 
 .checkout-standard .step {
@@ -2316,7 +2308,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	overflow: hidden;
 	width: 19%;
 	color: #d3dbde;
-	border-bottom: solid 8px #d3dbde;
+	border-bottom: solid 1px #555;
 	vertical-align: baseline;
 }
 
