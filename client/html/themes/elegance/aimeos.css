@@ -525,6 +525,11 @@
 	border: none;
 }
 
+.catalog-filter-search .btn-search:after {
+	font: normal normal normal 20px/1 FontAwesome;
+	content: "\f002";
+}
+
 .catalog-filter-search .ui-helper-hidden-accessible {
 	display: none;
 }
