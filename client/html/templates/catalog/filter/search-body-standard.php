@@ -113,7 +113,7 @@ $suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', [] );
 			<span class="symbol"/>
 		</button><!--
 		--><button class="btn btn-primary" type="submit">
-			<?= $enc->html( $this->translate( 'client', 'Go' ), $enc::TRUST ); ?>
+			<span class="btn-search"></span>
 		</button>
 	</div>
 
