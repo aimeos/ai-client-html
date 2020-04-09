@@ -28,7 +28,9 @@
 }
 
 .aimeos .btn-primary,
-.aimeos .btn-primary:active {
+.aimeos .btn-primary:active,
+.aimeos .btn-primary:visited,
+.aimeos .btn-primary:not(:disabled):not(.disabled):active {
 	background-color: #ffa846;
 	background-color: var(--aimeos-primary-color, #ffa846);
 	border: solid 1px #ffa846;
@@ -2437,7 +2439,7 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 
 .checkout-standard-address .form-list .mandatory,
 .checkout-standard-address .form-list .optional {
-	display: block;
+	display: flex;
 }
 
 .checkout-standard-address .form-list .hidden {
