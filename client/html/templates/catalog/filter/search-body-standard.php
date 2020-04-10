@@ -104,10 +104,11 @@ $suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', [] );
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
 	<div class="input-group">
 		<input class="form-control value" type="text"
-			name="<?= $enc->attr( $this->formparam( 'f_search' ) ); ?>"
-			value="<?= $enc->attr( $this->param( 'f_search' ) ); ?>"
-			data-url="<?= $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, [], [], $suggestConfig ) ); ?>"
-			data-hint="<?= $enc->attr( $this->translate( 'client', 'Please enter at least three characters' ) ); ?>"
+			name="<?= $enc->attr( $this->formparam( 'f_search' ) ) ?>"
+			value="<?= $enc->attr( $this->param( 'f_search' ) ) ?>"
+			placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
+			data-url="<?= $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, [], [], $suggestConfig ) ) ?>"
+			data-hint="<?= $enc->attr( $this->translate( 'client', 'Please enter at least three characters' ) ) ?>"
 		/><!--
 		--><button class="btn btn-default reset" type="reset">
 			<span class="symbol"/>

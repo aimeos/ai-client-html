@@ -909,15 +909,12 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 }
 
 .aimeos .suggest-item .item-name {
-	vertical-align: middle;
 	display: inline-block;
-	width: 40%;
+	width: calc(80% - 0.5em);
 }
 
 .aimeos .suggest-item .item-price {
-	vertical-align: middle;
 	display: inline-block;
-	width: 25%;
 }
 
 .aimeos .suggest-item .item-image {
@@ -925,10 +922,11 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
-	vertical-align: middle;
-	display: inline-block;
-	height: 5em;
-	width: 30%;
+	display: block;
+	float: left;
+	width: 20%;
+	height: 2.5em;
+	margin-right: 0.5em;
 }
 
 
