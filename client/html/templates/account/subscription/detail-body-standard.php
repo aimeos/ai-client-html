@@ -17,13 +17,7 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 <?php $this->block()->start( 'account/subscription/detail' ); ?>
 <div class="account-subscription-detail common-summary col-sm-12">
 
-	<a class="modify minibutton btn-close"
-		href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
-		<?= $enc->html( $this->translate( 'client', 'X' ), $enc::TRUST ); ?>
-	</a>
-
 	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscription details' ), $enc::TRUST ); ?></h2>
-
 
 	<div class="common-summary-address row">
 		<div class="item payment col-sm-6">
@@ -108,10 +102,15 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 
 
 	<div class="button-group">
-		<a class="btn btn-primary btn-close"
-			href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
+		<a class="btn btn-close" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
 			<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ); ?>
 		</a>
+		<?php if( $this->detailItem->getDateEnd() == null ) : ?>
+			<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $this->detailItem->getId() ); ?>
+			<a class="btn btn-primary" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+				<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ); ?>
+			</a>
+		<?php endif; ?>
 	</div>
 </div>
 <?php $this->block()->stop(); ?>

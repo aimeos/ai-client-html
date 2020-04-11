@@ -86,85 +86,99 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 ?>
 <?php $this->block()->start( 'account/subscription/list' ); ?>
+
 <?php if( !$this->get( 'listsItems', map() )->isEmpty() ) : ?>
+
 	<div class="account-subscription-list">
 		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ); ?></h1>
 
-		<ul class="subscription-list">
+		<div class="subscription-list">
 
 			<?php foreach( $this->get( 'listsItems', [] ) as $id => $item ) : ?>
-				<li class="subscription-item row">
 
-					<?php $params = array( 'sub_action' => 'detail', 'sub_id' => $id ); ?>
-					<a class="subscription-data col-sm-10" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+				<div class="subscription-item row">
 
-						<div class="row">
-							<div class="attr-item subscription-basic col-sm-6 row">
-								<span class="name col-sm-6">
-									<?= $enc->html( $this->translate( 'client', 'Subscription ID' ), $enc::TRUST ); ?>
-								</span>
-								<span class="value col-sm-6">
-									<?= $enc->html( sprintf(
-											$this->translate( 'client', '%1$s at %2$s' ),
-											$id,
-											date_create( $item->getTimeCreated() )->format( $dateformat )
-										), $enc::TRUST ); ?>
-								</span>
-							</div>
-
-							<div class="attr-item subscription-interval col-sm-6 row">
-								<span class="name col-sm-6">
-									<?= $enc->html( $this->translate( 'client', 'Subscription interval' ), $enc::TRUST ); ?>
-								</span>
-								<span class="value col-sm-6">
-									<?php if( $interval = $this->get( 'listsIntervalItems', map() )->get( $item->getInterval() ) ) : ?>
-										<?= $enc->html( $interval->getName(), $enc::TRUST ); ?>
-									<?php else : ?>
-										<?= $enc->html( $item->getInterval(), $enc::TRUST ); ?>
-									<?php endif; ?>
-								</span>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="attr-item subscription-datenext col-sm-6 row">
-								<span class="name col-sm-6">
-									<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ); ?>
-								</span>
-								<span class="value col-sm-6">
-									<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
-										<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
-									<?php endif; ?>
-								</span>
-							</div>
-
-							<div class="attr-item subscription-dateend col-sm-6 row">
-								<span class="name col-sm-6">
-									<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ); ?>
-								</span>
-								<span class="value col-sm-6">
-									<?php if( ( $date = $item->getDateEnd() ) != null ) : ?>
-										<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
-									<?php endif; ?>
-								</span>
-							</div>
-						</div>
-					</a>
-
-					<div class="subscription-cancel col-sm-2">
-						<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $id ); ?>
-						<?php if( $item->getDateEnd() == null ) : ?>
-						<a class="minibutton delete"
-							href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>"></a>
-						<?php endif; ?>
+					<div class="col-12">
+						<h2 class="subscription-basic">
+							<span class="name">
+								<?= $enc->html( $this->translate( 'client', 'Subscription ID' ), $enc::TRUST ) ?>
+							</span>
+							<span class="value">
+								<?= $enc->html( $id ) ?>
+							</span>
+						</h2>
 					</div>
 
-				</li>
+					<div class="col-10">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="subscription-created row">
+									<span class="name col-5">
+										<?= $enc->html( $this->translate( 'client', 'Created' ), $enc::TRUST ); ?>
+									</span>
+									<span class="value col-7">
+										<?= $enc->html( date_create( $item->getTimeCreated() )->format( $dateformat ) ); ?>
+									</span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="subscription-interval row">
+									<span class="name col-5">
+										<?= $enc->html( $this->translate( 'client', 'Interval' ), $enc::TRUST ); ?>
+									</span>
+									<span class="value col-7">
+										<?php if( $interval = $this->get( 'listsIntervalItems', map() )->get( $item->getInterval() ) ) : ?>
+											<?= $enc->html( $interval->getName(), $enc::TRUST ); ?>
+										<?php else : ?>
+											<?= $enc->html( $item->getInterval(), $enc::TRUST ); ?>
+										<?php endif; ?>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="subscription-datenext row">
+									<span class="name col-5">
+										<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ); ?>
+									</span>
+									<span class="value col-7">
+										<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
+											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
+										<?php endif; ?>
+									</span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="subscription-dateend row">
+									<span class="name col-5">
+										<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ); ?>
+									</span>
+									<span class="value col-7">
+										<?php if( ( $date = $item->getDateEnd() ) != null ) : ?>
+											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
+										<?php endif; ?>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="action col-md-2">
+						<?php $params = ['sub_action' => 'detail', 'sub_id' => $id] ?>
+						<a class="btn btn-outline" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+							<?= $enc->html( $this->translate( 'client', 'Show' ) ) ?>
+						</a>
+					</div>
+				</div>
+
 			<?php endforeach; ?>
 
-		</ul>
+		</div>
 
 	</div>
+
 <?php endif; ?>
+
 <?php $this->block()->stop(); ?>
 <?= $this->block()->get( 'account/subscription/list' ); ?>
