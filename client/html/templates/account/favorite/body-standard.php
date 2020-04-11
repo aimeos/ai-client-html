@@ -105,8 +105,9 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php endif; ?>
 
 
-	<?php if( !empty( $listItems ) ) : ?>
-		<h2 class="header"><?= $this->translate( 'client', 'Favorite products' ); ?></h2>
+	<?php if( !$listItems->isEmpty() ) : ?>
+
+		<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ); ?></h1>
 
 		<ul class="favorite-items">
 
@@ -145,6 +146,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 		</ul>
 
 		<?php if( $this->get( 'favoritePageLast', 1 ) > 1 ) : ?>
+
 			<nav class="pagination">
 				<div class="sort">
 					<span>&nbsp;</span>
@@ -181,7 +183,9 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 				</div>
 			</nav>
+
 		<?php endif; ?>
 
 	<?php endif; ?>
+
 </section>
