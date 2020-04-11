@@ -105,7 +105,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 	<?php if( !$this->get( 'watchItems', map() )->isEmpty() ) : ?>
-		<h2 class="header"><?= $this->translate( 'client', 'Watched products' ); ?></h2>
+		<h1 class="header"><?= $this->translate( 'client', 'Watched products' ); ?></h1>
 
 		<ul class="watch-items">
 			<?php foreach( $this->get( 'watchItems', map() )->reverse() as $listItem ) : ?>
@@ -113,9 +113,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 					<li class="watch-item">
 						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $this->get( 'watchParams', [] ); ?>
-						<a class="modify" href="<?= $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ); ?>">
-							<?= $this->translate( 'client', 'X' ); ?>
-						</a>
+						<a class="modify" href="<?= $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ); ?>"></a>
 
 						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ); ?>
 						<a class="watch-item" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">

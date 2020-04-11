@@ -105,12 +105,12 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 <?php $this->block()->start( 'catalog/session/pinned' ); ?>
 <section class="catalog-session-pinned">
 
-	<h2 class="header">
+	<h1 class="header">
 		<?= $this->translate( 'client', 'Pinned products' ); ?>
 		<?php if( $this->config( 'client/html/catalog/session/pinned/count/enable', true ) ) : ?>
 			<span class="count"><?= count( $this->get( 'pinnedProductItems', [] ) ); ?></span>
 		<?php endif; ?>
-	</h2>
+	</h1>
 
 	<ul class="pinned-items">
 		<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
@@ -118,9 +118,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<?php $detailParams = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter ); ?>
 
 			<li class="pinned-item">
-				<a class="modify" href="<?= $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ); ?>">
-					<?= $this->translate( 'client', 'X' ); ?>
-				</a>
+				<a class="modify" href="<?= $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ); ?>"></a>
 
 				<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $detailParams, [], $detailConfig ) ); ?>">
 
