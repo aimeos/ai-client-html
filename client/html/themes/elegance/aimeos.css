@@ -3127,33 +3127,29 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .account-subscription-list .subscription-item {
 	border: solid 1px #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
+	padding: 1em;
 	margin: 1em;
 }
 
-.account-subscription-list .attr-list {
-	padding: 0.25em 0;
-}
-
-.account-subscription-list .attr-item {
-	padding: 0.25em 1em;
-}
-
-.account-subscription-list .attr-item .name:after {
+.account-subscription-list .name:after {
 	content: ": ";
 }
 
-.account-subscription-list .subscription-cancel {
-	text-align: center;
+.account-subscription-list .subscription-basic {
+	font-weight: bold;
 }
 
-.account-subscription-list .subscription-cancel .delete {
+.account-subscription-list .action {
+	margin-top: 0.5em;
+}
+
+.account-subscription-list .action .btn {
+	border: solid 1px #555;
+	border-color: var(--ai-secondary, #555);
 	display: block;
-	margin: 0.5em 0;
-}
-
-.account-subscription-list .subscription-cancel .delete:after {
-	font: normal normal normal 14px/1 FontAwesome;
-	content: "\f014";
+	width: 100%;
+	max-width: 6em;
+	margin: auto;
 }
 
 .account-subscription-detail {

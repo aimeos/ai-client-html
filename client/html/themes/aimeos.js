@@ -356,7 +356,7 @@ AimeosAccountSubscription = {
 	 */
 	setupDetailShow: function() {
 
-		$(".account-subscription .subscription-item").on("click", "> a", function(ev) {
+		$(".account-subscription .subscription-item").on("click", ".action a", function(ev) {
 
 			var details = $(".account-subscription-detail", ev.delegateTarget);
 
