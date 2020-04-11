@@ -1878,7 +1878,6 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .catalog-session-pinned,
 .catalog-session-seen {
 	margin-bottom: 0.5em;
-	font-size: 90%;
 }
 
 .account-watch .watch-items,
@@ -2010,11 +2009,18 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .account-favorite .modify,
 .catalog-session-pinned .modify {
 	position: absolute;
-	font-weight: bold;
-	font-size: 150%;
-	color: #D0D0D0;
-	color: var(--ai-light, #D0D0D0);
+	display: block;
 	right: 0;
+	width: 2em;
+	height: 2em;
+}
+
+.account-watch .modify:before,
+.account-favorite .modify:before,
+.catalog-session-pinned .modify:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f014";
+	font-size: 150%;
 }
 
 .account-watch .watch-details {
@@ -3055,15 +3061,29 @@ html.no-js .catalog-filter-supplier:hover .supplier-lists {
 .account-history-list .history-item {
 	border: solid 1px #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
+	padding: 1em;
 	margin: 1em;
 }
 
-.account-history-list .attr-item {
-	padding: 0.25em 1em;
+.account-history-list .order-basic {
+	font-weight: bold;
 }
 
-.account-history-list li.attr-item .name:after {
+.account-history-list .name:after {
 	content: ": ";
+}
+
+.account-history-list .action {
+	margin-top: 0.5em;
+}
+
+.account-history-list .action .btn {
+	border: solid 1px #555;
+	border-color: var(--ai-secondary, #555);
+	display: block;
+	width: 100%;
+	max-width: 6em;
+	margin: auto;
 }
 
 .account-history-order {

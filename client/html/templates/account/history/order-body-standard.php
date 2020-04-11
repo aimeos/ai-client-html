@@ -24,13 +24,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 <?php $this->block()->start( 'account/history/order' ); ?>
 <div class="account-history-order common-summary col-sm-12">
 
-	<a class="modify minibutton btn-close"
-		href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
-		<?= $enc->html( $this->translate( 'client', 'X' ), $enc::TRUST ); ?>
-	</a>
-
 	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Order details' ), $enc::TRUST ); ?></h2>
-
 
 	<div class="common-summary-address row">
 		<div class="item payment col-sm-6">
