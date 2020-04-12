@@ -7,8 +7,6 @@
  */
 
 $enc = $this->encoder();
-$listItems = $this->get( 'favoriteItems', [] );
-$favParams = $this->get( 'favoriteParams', [] );
 
 /** client/html/account/favorite/url/target
  * Destination of the URL where the controller specified in the URL is known
@@ -105,17 +103,17 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php endif; ?>
 
 
-	<?php if( !$listItems->isEmpty() ) : ?>
+	<?php if( !$this->get( 'favoriteItems', map() )->isEmpty() ) : ?>
 
 		<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ); ?></h1>
 
 		<ul class="favorite-items">
 
-			<?php foreach( $listItems->reverse() as $listItem ) : ?>
+			<?php foreach( $this->get( 'favoriteItems', map() )->reverse() as $listItem ) : ?>
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
 					<li class="favorite-item">
-						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $favParams; ?>
+						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $this->get( 'favoriteParams', [] ); ?>
 						<a class="modify" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>">
 							<?= $this->translate( 'client', 'X' ); ?>
 						</a>
@@ -153,12 +151,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				</div>
 				<div class="browser">
 
-					<?php $params = array( 'fav_page' => $this->favoritePageFirst ) + $favParams; ?>
+					<?php $params = array( 'fav_page' => $this->favoritePageFirst ) + $this->get( 'favoriteParams', [] ); ?>
 					<a class="first" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ); ?>
 					</a>
 
-					<?php $params = array( 'fav_page' => $this->favoritePagePrev ) + $favParams; ?>
+					<?php $params = array( 'fav_page' => $this->favoritePagePrev ) + $this->get( 'favoriteParams', [] ); ?>
 					<a class="prev" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>" rel="prev">
 						<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ); ?>
 					</a>
@@ -171,12 +169,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						) ); ?>
 					</span>
 
-					<?php $params = array( 'fav_page' => $this->favoritePageNext ) + $favParams; ?>
+					<?php $params = array( 'fav_page' => $this->favoritePageNext ) + $this->get( 'favoriteParams', [] ); ?>
 					<a class="next" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>" rel="next">
 						<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ); ?>
 					</a>
 
-					<?php $params = array( 'fav_page' => $this->favoritePageLast ) + $favParams; ?>
+					<?php $params = array( 'fav_page' => $this->favoritePageLast ) + $this->get( 'favoriteParams', [] ); ?>
 					<a class="last" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>">
 						<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ); ?>
 					</a>
