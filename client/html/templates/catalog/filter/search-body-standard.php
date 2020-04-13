@@ -96,6 +96,23 @@ $suggestAction = $this->config( 'client/html/catalog/suggest/url/action', 'sugge
  */
 $suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', [] );
 
+/** client/html/catalog/filter/search/force-search
+ * Always reuse the current input for full text searches
+ *
+ * Normally, the full text search string is added to the input field after each
+ * search. This is also the standard behavior of other shops.
+ *
+ * If it's desired, setting this configuration option to "0" will drop the full
+ * text search input so it's not used if the user selects a category or attribute
+ * filter.
+ *
+ * @param boolean True to reuse the search string, false to clear after each search
+ * @since 2020.04
+ * @category Developer
+ * @category User
+ */
+$enforce = $this->config( 'client/html/catalog/filter/search/force-search', true );
+
 
 ?>
 <?php $this->block()->start( 'catalog/filter/search' ); ?>
@@ -105,7 +122,7 @@ $suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', [] );
 	<div class="input-group">
 		<input class="form-control value" type="text"
 			name="<?= $enc->attr( $this->formparam( 'f_search' ) ) ?>"
-			value="<?= $enc->attr( $this->param( 'f_search' ) ) ?>"
+			value="<?= $enc->attr( $enforce ? $this->param( 'f_search' ) : '' ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
 			data-url="<?= $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, [], [], $suggestConfig ) ) ?>"
 			data-hint="<?= $enc->attr( $this->translate( 'client', 'Please enter at least three characters' ) ) ?>"
