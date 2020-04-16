@@ -111,7 +111,7 @@ class Standard
 			$orderSearch = $orderManager->createSearch();
 
 			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT, (string) $status );
-			$orderFunc = $orderSearch->createFunction( 'order.containsStatus', $param );
+			$orderFunc = $orderSearch->createFunction( 'order:status', $param );
 
 			$expr = array(
 				$orderSearch->compare( '>=', 'order.mtime', $limitDate ),

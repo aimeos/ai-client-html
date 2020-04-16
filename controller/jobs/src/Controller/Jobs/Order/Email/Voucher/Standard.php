@@ -105,7 +105,7 @@ class Standard
 		$orderSearch = $orderManager->createSearch();
 
 		$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER, '1' );
-		$orderFunc = $orderSearch->createFunction( 'order.containsStatus', $param );
+		$orderFunc = $orderSearch->createFunction( 'order:status', $param );
 
 		$expr = array(
 			$orderSearch->compare( '>=', 'order.mtime', $limitDate ),
