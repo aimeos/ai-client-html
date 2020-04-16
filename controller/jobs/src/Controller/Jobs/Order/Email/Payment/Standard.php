@@ -109,12 +109,14 @@ class Standard
 		foreach( (array) $config->get( 'controller/jobs/order/email/payment/standard/status', $default ) as $status )
 		{
 			$orderSearch = $orderManager->createSearch();
-			$orderFunc = $orderSearch->createFunction( 'order.status', [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT] );
+
+			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT, (string) $status );
+			$orderFunc = $orderSearch->createFunction( 'order.containsStatus', $param );
 
 			$expr = array(
 				$orderSearch->compare( '>=', 'order.mtime', $limitDate ),
 				$orderSearch->compare( '==', 'order.statuspayment', $status ),
-				$orderSearch->compare( '==', $orderFunc, $status ),
+				$orderSearch->compare( '==', $orderFunc, 0 ),
 			);
 			$orderSearch->setConditions( $orderSearch->combine( '&&', $expr ) );
 

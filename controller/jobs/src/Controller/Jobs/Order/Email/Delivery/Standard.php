@@ -112,12 +112,14 @@ class Standard
 		{
 			$start = 0;
 			$orderSearch = $orderManager->createSearch();
-			$orderFunc = $orderSearch->createFunction( 'order:status', [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY] );
+
+			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, (string) $status );
+			$orderFunc = $orderSearch->createFunction( 'order.containsStatus', $param );
 
 			$expr = array(
 				$orderSearch->compare( '>=', 'order.mtime', $limitDate ),
 				$orderSearch->compare( '==', 'order.statusdelivery', $status ),
-				$orderSearch->compare( '==', $orderFunc, $status ),
+				$orderSearch->compare( '==', $orderFunc, 0 ),
 			);
 			$orderSearch->setConditions( $orderSearch->combine( '&&', $expr ) );
 
