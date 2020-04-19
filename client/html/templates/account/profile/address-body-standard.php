@@ -28,7 +28,7 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 		<?= $this->csrf()->formfield(); ?>
 
 		<div class="row">
-			<div class="col-md-6 billing">
+			<div class="billing col-xl">
 				<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Billing address' ) ) ?></h2>
 
 				<div class="panel panel-default">
@@ -38,9 +38,9 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 					</div>
 					<div class="panel-body collapse" id="address-payment">
 
-						<ul class="form-list">
+						<div class="form-list">
 
-							<li class="form-item form-group row salutation">
+							<div class="form-item form-group row salutation">
 
 								<label class="col-md-5" for="address-payment-salutation">
 									<?= $enc->html( $this->translate( 'client', 'Salutation' ), $enc::TRUST ); ?>
@@ -57,10 +57,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 
 									</select>
 								</div>
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row firstname">
+							<div class="form-item form-group row firstname">
 
 								<label class="col-md-5" for="address-payment-firstname">
 									<?= $enc->html( $this->translate( 'client', 'First name' ), $enc::TRUST ); ?>
@@ -74,10 +74,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row lastname">
+							<div class="form-item form-group row lastname">
 
 								<label class="col-md-5" for="address-payment-lastname">
 									<?= $enc->html( $this->translate( 'client', 'Last name' ), $enc::TRUST ); ?>
@@ -91,10 +91,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row company">
+							<div class="form-item form-group row company">
 
 								<label class="col-md-5" for="address-payment-company">
 									<?= $enc->html( $this->translate( 'client', 'Company' ), $enc::TRUST ); ?>
@@ -108,10 +108,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row address1">
+							<div class="form-item form-group row address1">
 
 								<label class="col-md-5" for="address-payment-address1">
 									<?= $enc->html( $this->translate( 'client', 'Street' ), $enc::TRUST ); ?>
@@ -125,10 +125,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row address2">
+							<div class="form-item form-group row address2">
 
 								<label class="col-md-5" for="address-payment-address2">
 									<?= $enc->html( $this->translate( 'client', 'Additional' ), $enc::TRUST ); ?>
@@ -142,10 +142,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row address3">
+							<div class="form-item form-group row address3">
 
 								<label class="col-md-5" for="address-payment-address3">
 									<?= $enc->html( $this->translate( 'client', 'Additional 2' ), $enc::TRUST ); ?>
@@ -159,10 +159,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row city">
+							<div class="form-item form-group row city">
 
 								<label class="col-md-5" for="address-payment-city">
 									<?= $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ); ?>
@@ -176,11 +176,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
 							<?php if( !empty( $this->get( 'addressStates', [] ) ) ) : ?>
-								<li class="form-item form-group row state">
+								<div class="form-item form-group row state">
 
 									<label class="col-md-5" for="address-payment-state">
 										<?= $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
@@ -203,11 +203,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										</select>
 									</div>
 
-								</li>
+								</div>
 							<?php endif; ?>
 
 
-							<li class="form-item form-group row postal">
+							<div class="form-item form-group row postal">
 
 								<label class="col-md-5" for="address-payment-postal">
 									<?= $enc->html( $this->translate( 'client', 'Postal code' ), $enc::TRUST ); ?>
@@ -221,11 +221,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
 							<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
-								<li class="form-item form-group row countryid">
+								<div class="form-item form-group row countryid">
 
 									<label class="col-md-5" for="address-payment-countryid">
 										<?= $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ); ?>
@@ -245,11 +245,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										</select>
 									</div>
 
-								</li>
+								</div>
 							<?php endif; ?>
 
 
-							<li class="form-item form-group row languageid">
+							<div class="form-item form-group row languageid">
 
 								<label class="col-md-5" for="address-payment-languageid">
 									<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ); ?>
@@ -267,10 +267,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									</select>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row vatid">
+							<div class="form-item form-group row vatid">
 
 								<label class="col-md-5" for="address-payment-vatid">
 									<?= $enc->html( $this->translate( 'client', 'Vat ID' ), $enc::TRUST ); ?>
@@ -284,10 +284,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row email"
+							<div class="form-item form-group row email"
 								data-regex="^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$">
 
 								<label class="col-md-5" for="address-payment-email">
@@ -302,10 +302,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row telephone">
+							<div class="form-item form-group row telephone">
 
 								<label class="col-md-5" for="address-payment-telephone">
 									<?= $enc->html( $this->translate( 'client', 'Telephone' ), $enc::TRUST ); ?>
@@ -319,10 +319,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row telefax">
+							<div class="form-item form-group row telefax">
 
 								<label class="col-md-5" for="address-payment-telefax">
 									<?= $enc->html( $this->translate( 'client', 'Fax' ), $enc::TRUST ); ?>
@@ -336,10 +336,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row website"
+							<div class="form-item form-group row website"
 								data-regex="^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$">
 
 								<label class="col-md-5" for="address-payment-website">
@@ -353,28 +353,28 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										placeholder="https://example.com"
 									/>
 								</div>
-							</li>
+							</div>
 
-							<li class="form-item form-group row birthday">
-								<label class="col-md-5" for="customer-payment-birthday">
+							<div class="form-item form-group row birthday">
+								<label class="col-md-5" for="address-payment-birthday">
 									<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
 								</label>
 								<div class="col-md-7">
 									<input class="form-control birthday" type="date"
-										id="customer-payment-birthday"
+										id="address-payment-birthday"
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.birthday' ) ) ); ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.birthday' ) ); ?>"
 									/>
 								</div>
-							</li>
+							</div>
 
-						</ul>
+						</div>
 					</div>
 				</div>
 			</div>
 
 
-			<div class="col-md-6 delivery">
+			<div class="delivery col-xl">
 				<a class="act-new" href="#">&nbsp;</a>
 				<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Delivery address' ) ) ?></h2>
 
@@ -396,9 +396,9 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 								name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.id', $pos ) ) ); ?>"
 								value="<?= $enc->attr( $addrItem->getId() ); ?>" />
 
-							<ul class="form-list">
+							<div class="form-list">
 
-								<li class="form-item form-group row salutation">
+								<div class="form-item form-group row salutation">
 
 									<label class="col-md-5" for="address-delivery-salutation-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Salutation' ), $enc::TRUST ); ?>
@@ -415,10 +415,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 
 										</select>
 									</div>
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row firstname">
+								<div class="form-item form-group row firstname">
 
 									<label class="col-md-5" for="address-delivery-firstname-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'First name' ), $enc::TRUST ); ?>
@@ -432,10 +432,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row lastname">
+								<div class="form-item form-group row lastname">
 
 									<label class="col-md-5" for="address-delivery-lastname-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Last name' ), $enc::TRUST ); ?>
@@ -449,10 +449,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row company">
+								<div class="form-item form-group row company">
 
 									<label class="col-md-5" for="address-delivery-company-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Company' ), $enc::TRUST ); ?>
@@ -466,10 +466,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row address1">
+								<div class="form-item form-group row address1">
 
 									<label class="col-md-5" for="address-delivery-address1-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Street' ), $enc::TRUST ); ?>
@@ -483,10 +483,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row address2">
+								<div class="form-item form-group row address2">
 
 									<label class="col-md-5" for="address-delivery-address2-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Additional' ), $enc::TRUST ); ?>
@@ -500,10 +500,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row address3">
+								<div class="form-item form-group row address3">
 
 									<label class="col-md-5" for="address-delivery-address3-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Additional 2' ), $enc::TRUST ); ?>
@@ -517,10 +517,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row city">
+								<div class="form-item form-group row city">
 
 									<label class="col-md-5" for="address-delivery-city-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ); ?>
@@ -534,11 +534,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
 								<?php if( !empty( $this->get( 'addressStates', [] ) ) ) : ?>
-									<li class="form-item form-group row state">
+									<div class="form-item form-group row state">
 
 										<label class="col-md-5" for="address-delivery-state-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
@@ -561,11 +561,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 											</select>
 										</div>
 
-									</li>
+									</div>
 								<?php endif; ?>
 
 
-								<li class="form-item form-group row postal">
+								<div class="form-item form-group row postal">
 
 									<label class="col-md-5" for="address-delivery-postal-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Postal code' ), $enc::TRUST ); ?>
@@ -579,11 +579,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
 								<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
-									<li class="form-item form-group row countryid">
+									<div class="form-item form-group row countryid">
 
 										<label class="col-md-5" for="address-delivery-countryid-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ); ?>
@@ -603,11 +603,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 											</select>
 										</div>
 
-									</li>
+									</div>
 								<?php endif; ?>
 
 
-								<li class="form-item form-group row languageid">
+								<div class="form-item form-group row languageid">
 
 									<label class="col-md-5" for="address-delivery-languageid-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ); ?>
@@ -625,10 +625,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										</select>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row vatid">
+								<div class="form-item form-group row vatid">
 
 									<label class="col-md-5" for="address-delivery-vatid-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Vat ID' ), $enc::TRUST ); ?>
@@ -642,10 +642,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row email"
+								<div class="form-item form-group row email"
 									data-regex="^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$">
 
 									<label class="col-md-5" for="address-delivery-email-<?= $pos ?>">
@@ -660,10 +660,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row telephone">
+								<div class="form-item form-group row telephone">
 
 									<label class="col-md-5" for="address-delivery-telephone-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Telephone' ), $enc::TRUST ); ?>
@@ -677,10 +677,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row telefax">
+								<div class="form-item form-group row telefax">
 
 									<label class="col-md-5" for="address-delivery-telefax-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'Fax' ), $enc::TRUST ); ?>
@@ -694,10 +694,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										/>
 									</div>
 
-								</li>
+								</div>
 
 
-								<li class="form-item form-group row website"
+								<div class="form-item form-group row website"
 									data-regex="^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$">
 
 									<label class="col-md-5" for="address-delivery-website-<?= $pos ?>">
@@ -711,7 +711,7 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 											placeholder="https://example.com"
 										/>
 									</div>
-								</li>
+								</div>
 
 							</ul>
 						</div>
@@ -732,7 +732,7 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 
 						<ul class="form-list">
 
-							<li class="form-item form-group row salutation">
+							<div class="form-item form-group row salutation">
 
 								<label class="col-md-5" for="address-delivery-salutation--1">
 									<?= $enc->html( $this->translate( 'client', 'Salutation' ), $enc::TRUST ); ?>
@@ -749,10 +749,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 
 									</select>
 								</div>
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row firstname">
+							<div class="form-item form-group row firstname">
 
 								<label class="col-md-5" for="address-delivery-firstname--1">
 									<?= $enc->html( $this->translate( 'client', 'First name' ), $enc::TRUST ); ?>
@@ -765,10 +765,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row lastname">
+							<div class="form-item form-group row lastname">
 
 								<label class="col-md-5" for="address-delivery-lastname--1">
 									<?= $enc->html( $this->translate( 'client', 'Last name' ), $enc::TRUST ); ?>
@@ -781,10 +781,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row company">
+							<div class="form-item form-group row company">
 
 								<label class="col-md-5" for="address-delivery-company--1">
 									<?= $enc->html( $this->translate( 'client', 'Company' ), $enc::TRUST ); ?>
@@ -797,10 +797,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row address1">
+							<div class="form-item form-group row address1">
 
 								<label class="col-md-5" for="address-delivery-address1--1">
 									<?= $enc->html( $this->translate( 'client', 'Street' ), $enc::TRUST ); ?>
@@ -813,10 +813,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row address2">
+							<div class="form-item form-group row address2">
 
 								<label class="col-md-5" for="address-delivery-address2--1">
 									<?= $enc->html( $this->translate( 'client', 'Additional' ), $enc::TRUST ); ?>
@@ -829,10 +829,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row address3">
+							<div class="form-item form-group row address3">
 
 								<label class="col-md-5" for="address-delivery-address3--1">
 									<?= $enc->html( $this->translate( 'client', 'Additional 2' ), $enc::TRUST ); ?>
@@ -845,10 +845,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row city">
+							<div class="form-item form-group row city">
 
 								<label class="col-md-5" for="address-delivery-city--1">
 									<?= $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ); ?>
@@ -861,11 +861,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
 							<?php if( !empty( $this->get( 'addressStates', [] ) ) ) : ?>
-								<li class="form-item form-group row state">
+								<div class="form-item form-group row state">
 
 									<label class="col-md-5" for="address-delivery-state--1">
 										<?= $enc->html( $this->translate( 'client', 'State' ), $enc::TRUST ); ?>
@@ -888,11 +888,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										</select>
 									</div>
 
-								</li>
+								</div>
 							<?php endif; ?>
 
 
-							<li class="form-item form-group row postal">
+							<div class="form-item form-group row postal">
 
 								<label class="col-md-5" for="address-delivery-postal--1">
 									<?= $enc->html( $this->translate( 'client', 'Postal code' ), $enc::TRUST ); ?>
@@ -905,11 +905,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
 							<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
-								<li class="form-item form-group row countryid">
+								<div class="form-item form-group row countryid">
 
 									<label class="col-md-5" for="address-delivery-countryid--1">
 										<?= $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ); ?>
@@ -929,11 +929,11 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										</select>
 									</div>
 
-								</li>
+								</div>
 							<?php endif; ?>
 
 
-							<li class="form-item form-group row languageid">
+							<div class="form-item form-group row languageid">
 
 								<label class="col-md-5" for="address-delivery-languageid--1">
 									<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ); ?>
@@ -951,10 +951,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									</select>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row vatid">
+							<div class="form-item form-group row vatid">
 
 								<label class="col-md-5" for="address-delivery-vatid--1">
 									<?= $enc->html( $this->translate( 'client', 'Vat ID' ), $enc::TRUST ); ?>
@@ -967,10 +967,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row email"
+							<div class="form-item form-group row email"
 								data-regex="^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$">
 
 								<label class="col-md-5" for="address-delivery-email--1">
@@ -984,10 +984,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row telephone">
+							<div class="form-item form-group row telephone">
 
 								<label class="col-md-5" for="address-delivery-telephone--1">
 									<?= $enc->html( $this->translate( 'client', 'Telephone' ), $enc::TRUST ); ?>
@@ -1000,10 +1000,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row telefax">
+							<div class="form-item form-group row telefax">
 
 								<label class="col-md-5" for="address-delivery-telefax--1">
 									<?= $enc->html( $this->translate( 'client', 'Fax' ), $enc::TRUST ); ?>
@@ -1016,10 +1016,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 									/>
 								</div>
 
-							</li>
+							</div>
 
 
-							<li class="form-item form-group row website"
+							<div class="form-item form-group row website"
 								data-regex="^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$">
 
 								<label class="col-md-5" for="address-delivery-website--1">
@@ -1032,9 +1032,22 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 										placeholder="https://example.com"
 									/>
 								</div>
-							</li>
+							</div>
 
-						</ul>
+							<div class="form-item form-group row birthday">
+								<label class="col-md-5" for="address-delivery-birthday--1">
+									<?= $enc->html( $this->translate( 'client', 'Birthday' ), $enc::TRUST ); ?>
+								</label>
+								<div class="col-md-7">
+									<input class="form-control birthday" type="date"
+										id="address-delivery-birthday--1"
+										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.birthday' ) ) ); ?>"
+										value="<?= $enc->attr( $this->value( $addr, 'customer.address.birthday' ) ); ?>"
+									/>
+								</div>
+							</div>
+
+						</div>
 					</div>
 				</div>
 
