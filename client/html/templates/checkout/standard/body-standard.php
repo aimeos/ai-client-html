@@ -30,7 +30,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<nav>
 		<ol class="steps">
 
-			<li class="step basket active">
+			<li class="step active basket">
 				<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?>
 				</a>
