@@ -44,7 +44,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<div class="account-profile-address">', $output );
 		$this->assertRegExp( '#id="address-payment-salutation"#', $output );
-		$this->assertRegExp( '#id="address-delivery-salutation--1"#', $output );
 
 		foreach( $customer->getAddressItems() as $idx => $item ) {
 			$this->assertRegExp( '#id="address-delivery-salutation-' . $idx . '"#', $output );
