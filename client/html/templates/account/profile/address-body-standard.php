@@ -17,6 +17,7 @@ $accountAction = $this->config( 'client/html/account/profile/url/action', 'profi
 $accountConfig = $this->config( 'client/html/account/profile/url/config', [] );
 
 $addr = $this->get( 'addressBilling', [] );
+$pos = 0;
 
 
 ?>
