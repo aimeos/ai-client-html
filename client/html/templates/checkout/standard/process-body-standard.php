@@ -68,12 +68,15 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 	<?php foreach( $this->get( 'standardProcessHidden', [] ) as $id => $item ) : ?>
 		<?php foreach( (array) $item->getDefault() as $key => $value ) : ?>
-
-			<input type="hidden" id="process-<?= $id; ?>"
-				name="<?= $enc->attr( $this->formparam( [$item->getInternalCode(), $key], $prefix ) ); ?>"
-				value="<?= $enc->attr( $value ); ?>"
-			/>
-
+			<?php if( is_array( $item->getDefault() ) ) : ?>
+				<input type="hidden" id="process-<?= $id; ?>" value="<?= $enc->attr( $value ); ?>"
+					name="<?= $enc->attr( $this->formparam( [$item->getInternalCode(), $key], $prefix ) ); ?>"
+				/>
+			<?php else : ?>
+				<input type="hidden" id="process-<?= $id; ?>" value="<?= $enc->attr( $value ); ?>"
+					name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ); ?>"
+				/>
+			<?php endif; ?>
 		<?php endforeach; ?>
 	<?php endforeach; ?>
 
