@@ -21,8 +21,13 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 			<?= $this->partial(
 				$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-				array( 'products' => $this->get( 'boughtItems', map() ), 'itemprop' => 'isRelatedTo' )
-			); ?>
+				[
+					'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
+					'basket-add' => $this->config( 'client/html/basket/related/basket-add', false ),
+					'products' => $this->get( 'boughtItems', map() ),
+					'itemprop' => 'isRelatedTo'
+				]
+			) ?>
 
 		</section>
 

@@ -251,32 +251,26 @@ class Standard
 			$domains = $config->get( 'client/html/basket/related/bought/standard/domains', ['text', 'price', 'media'] );
 			$domains['product'] = ['bought-together'];
 
+			if( $view->config( 'client/html/basket/related/basket-add', false ) ) {
+				$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
+			}
+
 			$items = map();
-			$refItems = [];
 			$prodIds = $this->getProductIdsFromBasket( $view->relatedBasket );
 
 			foreach( $cntl->uses( $domains )->product( $prodIds )->search() as $prodItem )
 			{
 				foreach( $prodItem->getListItems( 'product', 'bought-together' ) as $listItem )
 				{
-					if( ( $refItem = $listItem->getRefItem() ) !== null )
-					{
-						$items[$listItem->getRefId()] = $listItem->getPosition();
-						$refItems[$refItem->getId()] = $refItem;
+					if( ( $refItem = $listItem->getRefItem() ) !== null ) {
+						$items[$refItem->getId()] = $refItem->set( 'position', $listItem->getPosition() );
 					}
 				}
 			}
 
-			foreach( $items->asort() as $id => $pos )
-			{
-				if( isset( $refItems[$id] ) ) {
-					$items[$id] = $refItems[$id];
-				} else {
-					unset( $items[$id] );
-				}
-			}
-
-			$view->boughtItems = $items->slice( 0, $size );
+			$view->boughtItems = $items->uasort( function( $a, $b ) {
+				return $a->get( 'position', 0 ) <=> $b->get( 'position', 0 );
+			} )->slice( 0, $size );
 		}
 
 		return parent::addData( $view, $tags, $expire );
