@@ -438,6 +438,10 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/catalog/product/domains', $domains );
 
+		if( $config->get( 'client/html/catalog/product/basket-add', false ) ) {
+			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
+		}
+
 		/** client/html/catalog/product/product-codes
 		 * List of codes of products to load for the current list.
 		 * Should be set dynamically through some integration plugin,
