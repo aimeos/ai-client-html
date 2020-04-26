@@ -492,10 +492,6 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );
 
-		if( $view->config( 'client/html/catalog/lists/basket-add', false ) ) {
-			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
-		}
-
 		/** client/html/catalog/lists/domains
 		 * A list of domain names whose items should be available in the product list view template
 		 *
@@ -524,6 +520,10 @@ class Standard
 		 * @see client/html/catalog/lists/pages
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
+
+		if( $view->config( 'client/html/catalog/lists/basket-add', false ) ) {
+			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
+		}
 
 		/** client/html/catalog/lists/pages
 		 * Maximum number of product pages shown in pagination
