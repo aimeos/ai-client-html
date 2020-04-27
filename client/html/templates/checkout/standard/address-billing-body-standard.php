@@ -62,7 +62,7 @@ $enc = $this->encoder();
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
 						'id' => $this->addressPaymentItem->getAddressId(),
-						'address' => $this->get( 'addressBillingValues', [] ),
+						'address' => $this->addressPaymentItem->toArray(),
 						'error' => $this->get( 'addressBillingOption' ) == $this->addressPaymentItem->getAddressId() ? $this->get( 'addressBillingError', [] ) : [],
 						'salutations' => $this->get( 'addressBillingSalutations', [] ),
 						'languages' => $this->get( 'addressLanguages', [] ),
