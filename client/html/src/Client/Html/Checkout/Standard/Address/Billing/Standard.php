@@ -256,7 +256,7 @@ class Standard
 		$id = $view->get( 'addressCustomerItem' ) && $view->addressCustomerItem->getId() ? $view->addressCustomerItem->getId() : 'null';
 		$id = ( $values['order.base.address.addressid'] ?? null ) ?: $id;
 
-		$view->addressBillingString = $addr ? $this->getAddressString( $view, $addr ) : '';
+		$view->addressBillingString = $this->getAddressString( $view, $view->addressPaymentItem );
 		$view->addressBillingValuesNew = array_merge( $values, $view->param( 'ca_billing', [] ) );
 		$view->addressBillingValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
 		$view->addressBillingOption = $view->param( 'ca_billingoption', $id );
