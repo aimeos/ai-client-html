@@ -41,6 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$view->addressPaymentItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
 		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();
