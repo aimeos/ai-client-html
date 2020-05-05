@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-03 10:00+0200\n"
-"PO-Revision-Date: 2019-10-03 08:06+0000\n"
+"POT-Creation-Date: 2020-04-07 00:14+0200\n"
+"PO-Revision-Date: 2020-04-06 22:15+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Croatian (http://www.transifex.com/aimeos/aimeos-core/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -617,6 +617,9 @@ msgstr ""
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
+msgstr ""
+
+msgid "SKU or article name"
 msgstr ""
 
 msgid "Salutation"

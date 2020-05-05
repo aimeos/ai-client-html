@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aimeos, 2015-2019
+# Aimeos, 2015-2020
 # cmann <c.mann@metaways.de>, 2013
 # Janosch Ott <janosch.ott@bluewin.ch>, 2015
 # Thomas Kaiser <t.kaiser@familie-redlich.de>, 2018
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-03 10:00+0200\n"
-"PO-Revision-Date: 2019-10-03 08:14+0000\n"
+"POT-Creation-Date: 2020-04-07 00:14+0200\n"
+"PO-Revision-Date: 2020-04-06 22:15+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -620,6 +620,9 @@ msgstr "Relevanz"
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Suchergebnis für \"%1$s\""
+
+msgid "SKU or article name"
+msgstr "Artikelname oder -nummer"
 
 msgid "Salutation"
 msgstr "Anrede"
