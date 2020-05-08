@@ -337,7 +337,7 @@ class Standard
 				}
 			}
 
-			$url .= strpos( $url, '?' ) ? '&' : '?' . http_build_query( $urlParams );
+			$url .= strpos( $url, '?' ) ? '&' : '?' . map( $urlParams )->toUrl();
 		}
 
 		$public = $hidden = [];
