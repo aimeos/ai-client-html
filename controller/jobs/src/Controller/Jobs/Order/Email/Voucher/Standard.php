@@ -220,6 +220,34 @@ class Standard
 
 
 	/**
+	 * Returns the ordered voucher products from the basket.
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Basket object
+	 * @return array List of order product items for the voucher products
+	 */
+	protected function getOrderProducts( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
+	{
+		$list = [];
+
+		foreach( $orderBaseItem->getProducts() as $orderProductItem )
+		{
+			if( $orderProductItem->getType() === 'voucher' ) {
+				$list[] = $orderProductItem;
+			}
+
+			foreach( $orderProductItem->getProducts() as $subProductItem )
+			{
+				if( $subProductItem->getType() === 'voucher' ) {
+					$list[] = $subProductItem;
+				}
+			}
+		}
+
+		return $list;
+	}
+
+
+	/**
 	 * Returns an initialized view object
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
@@ -303,11 +331,10 @@ class Standard
 		$map = [];
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'order/base/product/attribute' );
 
-		foreach( $orderBaseItem->getProducts() as $orderProductItem )
+		foreach( $this->getOrderProducts( $orderBaseItem ) as $orderProductItem )
 		{
-			if( $orderProductItem->getType() === 'voucher'
-				&& $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) === null
-			) {
+			if( $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) === null )
+			{
 				$codes = [];
 
 				for( $i = 0; $i < $orderProductItem->getQuantity(); $i++ )
@@ -343,11 +370,10 @@ class Standard
 
 		$view = $this->getView( $context, $orderBaseItem->getSiteCode(), $currencyId, $langId );
 
-		foreach( $orderBaseItem->getProducts() as $orderProductItem )
+		foreach( $this->getOrderProducts( $orderBaseItem ) as $orderProductItem )
 		{
-			if( $orderProductItem->getType() === 'voucher'
-				&& ( $codes = $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) ) !== null
-			) {
+			if( ( $codes = $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) ) !== null )
+			{
 				foreach( (array) $codes as $code )
 				{
 					$message = $context->getMail()->createMessage();
