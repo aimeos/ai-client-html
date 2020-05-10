@@ -249,7 +249,7 @@ abstract class Base
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
 		}
 
-		$localClass = str_replace( ' ', '\\', ucwords( str_replace( '/', ' ', $path ) ) );
+		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
 		$config = $this->context->getConfig();
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
@@ -411,7 +411,7 @@ abstract class Base
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid characters in client name "%1$s"', $name ) );
 		}
 
-		$subnames = str_replace( ' ', '\\', ucwords( str_replace( '/', ' ', $path ) ) );
+		$subnames = str_replace( '/', '\\', ucwords( $path, '/' ) );
 		$classname = '\\Aimeos\\Client\\Html\\' . $subnames . '\\' . $name;
 
 		if( class_exists( $classname ) === false ) {
