@@ -250,7 +250,8 @@ class Standard
 			 * @category User
 			 */
 			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
-			$startid = explode( ',', $view->config( 'client/html/catalog/filter/tree/startid' ) );
+
+			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 			$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 
