@@ -231,7 +231,7 @@ class Standard
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
 			$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 
-			$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->root( $startid );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->root( current( (array) $startid ) );
 			$root = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 			if( ( $catId = $view->param( 'f_catid', $root->getId() ) ) != null && $catId != $root->getId() ) {
