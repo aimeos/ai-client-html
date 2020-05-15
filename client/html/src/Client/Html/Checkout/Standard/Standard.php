@@ -353,14 +353,6 @@ class Standard
 			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $error);
 		}
-		catch( \Aimeos\MShop\Plugin\Provider\Exception $e )
-		{
-			$errors = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
-			$errors = array_merge( $errors, $this->translatePluginErrorCodes( $e->getErrorCodes() ) );
-
-			$view->summaryErrorCodes = $e->getErrorCodes();
-			$view->standardErrorList = array_merge($view->get( 'standardErrorList', [] ), $errors);
-		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
 			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );

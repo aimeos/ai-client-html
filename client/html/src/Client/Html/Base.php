@@ -697,6 +697,7 @@ abstract class Base
 	 *
 	 * @param array $codes Associative list of scope and object as key and error code as value
 	 * @return array List of translated error messages
+	 * @deprecated
 	 */
 	protected function translatePluginErrorCodes( array $codes )
 	{
