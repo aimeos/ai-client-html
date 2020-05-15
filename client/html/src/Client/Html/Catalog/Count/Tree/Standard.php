@@ -227,11 +227,11 @@ class Standard
 			 * @see client/html/catalog/count/tree/aggregate
 			 */
 			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
-			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
+			$startid = explode( ',', $view->config( 'client/html/catalog/filter/tree/startid' ) );
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
 			$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 
-			$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->root( $startid );
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->root( current( $startid ) );
 			$root = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 			if( ( $catId = $view->param( 'f_catid', $root->getId() ) ) != null && $catId != $root->getId() ) {
