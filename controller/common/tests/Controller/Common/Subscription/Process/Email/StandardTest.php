@@ -22,6 +22,32 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testRenewAfter()
+	{
+		$context = \TestHelperCntl::getContext();
+
+		$mailStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\None' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )
+			->disableOriginalConstructor()
+			->disableOriginalClone()
+			->getMock();
+
+		$mailStub->expects( $this->once() )
+			->method( 'createMessage' )
+			->will( $this->returnValue( $mailMsgStub ) );
+
+		$context->setMail( $mailStub );
+		$subscription = $this->getSubscription( $context )->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
+		$order = \Aimeos\MShop::create( $context, 'order' )->createItem();
+
+		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Email\Standard( $context );
+		$object->renewAfter( $subscription, $order );
+	}
+
+
 	public function testEnd()
 	{
 		$context = \TestHelperCntl::getContext();
