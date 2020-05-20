@@ -34,25 +34,27 @@ class Standard
 
 
 	/**
+	 * Executed after the subscription renewal
+	 *
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
+	 * @param \Aimeos\MShop\Order\Item\Iface $order Order invoice item
+	 */
+	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
+	{
+		if( $subscription->getReason() === \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT ) {
+			$this->process( $subscription );
+		}
+	}
+
+
+	/**
 	 * Processes the end of the subscription
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
 	 */
 	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		$context = $this->getContext();
-
-		$manager = \Aimeos\MShop::create( $context, 'order/base' );
-		$baseItem = $manager->getItem( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
-
-		$addrItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
-
-		foreach( $baseItem->getProducts() as $orderProduct )
-		{
-			if( $orderProduct->getId() == $subscription->getOrderProductId() ) {
-				$this->sendMail( $context, $subscription, $addrItem, $orderProduct );
-			}
-		}
+		$this->process( $subscription );
 	}
 
 
@@ -69,6 +71,29 @@ class Standard
 		}
 
 		return $this->client;
+	}
+
+
+	/**
+	 * Sends e-mails for the given subscription
+	 *
+	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item object
+	 */
+	protected function process( \Aimeos\MShop\Subscription\Item\Iface $subscription )
+	{
+		$context = $this->getContext();
+
+		$manager = \Aimeos\MShop::create( $context, 'order/base' );
+		$baseItem = $manager->getItem( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
+
+		$addrItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
+
+		foreach( $baseItem->getProducts() as $orderProduct )
+		{
+			if( $orderProduct->getId() == $subscription->getOrderProductId() ) {
+				$this->sendMail( $context, $subscription, $addrItem, $orderProduct );
+			}
+		}
 	}
 
 
