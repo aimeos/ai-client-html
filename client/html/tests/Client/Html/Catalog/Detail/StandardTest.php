@@ -57,7 +57,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$view = $this->object->getView();
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
+		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
@@ -178,6 +180,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyCsrf()
 	{
 		$view = $this->object->getView();
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
 		$view->detailProductItem = $this->getProductItem();
 
 		$output = $this->object->getBody( 1 );
@@ -252,7 +255,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$view = $this->object->getView();
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
+		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
@@ -268,7 +273,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$view = $this->object->getView();
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
+		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
@@ -284,7 +291,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$view = $this->object->getView();
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
+		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
@@ -300,7 +309,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$view = $this->object->getView();
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
+		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
 			->will( $this->throwException( new \RuntimeException() ) );
