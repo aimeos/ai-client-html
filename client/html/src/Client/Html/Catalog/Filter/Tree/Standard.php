@@ -256,12 +256,14 @@ class Standard
 
 		if( ( $currentid = $view->param( 'f_catid' ) ) !== null ) {
 			$catItems = $cntl->getPath( $currentid );
+			$catIds = $catItems->keys()->toArray();
 		} else {
 			$catItems = map();
+			$catIds = [$startid];
 		}
 
 		$view->treeCatalogPath = $catItems;
-		$view->treeCatalogTree = $cntl->visible( $catItems->keys()->toArray() ?: [$startid] )->getTree();
+		$view->treeCatalogTree = $cntl->visible( $catIds )->getTree();
 		$view->treeFilterParams = $this->getClientParams( $view->param(), ['f'] );
 
 		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );
