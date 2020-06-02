@@ -104,8 +104,16 @@ class Standard
 	 */
 	public function getBody( string $uid = '' ) : string
 	{
-		$prefixes = array( 'd' );
+		$prefixes = ['d'];
+		$view = $this->getView();
 		$context = $this->getContext();
+
+		$code = $context->getConfig()->get( 'client/html/catalog/detail/prodcode-default' );
+		$id = $context->getConfig()->get( 'client/html/catalog/detail/prodid-default', $code );
+
+		if( !$view->param( 'd_prodid', $id ) && !$view->param( 'd_name' ) ) {
+			return '';
+		}
 
 		/** client/html/catalog/detail/cache
 		 * Enables or disables caching only for the catalog detail component
@@ -136,8 +144,6 @@ class Standard
 
 		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
-			$view = $this->getView();
-
 			/** client/html/catalog/detail/standard/template-body
 			 * Relative path to the HTML body template of the catalog detail client.
 			 *
@@ -219,14 +225,20 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ?string
 	{
-		$prefixes = array( 'd' );
+		$prefixes = ['d'];
+		$view = $this->getView();
+		$context = $this->getContext();
 		$confkey = 'client/html/catalog/detail';
 
+		$code = $context->getConfig()->get( 'client/html/catalog/detail/prodcode-default' );
+		$id = $context->getConfig()->get( 'client/html/catalog/detail/prodid-default', $code );
+
+		if( !$view->param( 'd_prodid', $id ) && !$view->param( 'd_name' ) ) {
+			return '';
+		}
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
-			$view = $this->getView();
-
 			/** client/html/catalog/detail/standard/template-header
 			 * Relative path to the HTML header template of the catalog detail client.
 			 *
