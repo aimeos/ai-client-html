@@ -651,13 +651,13 @@ class Standard
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
 
 		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
-			->sort( $sort ) // prioritize user sorting over the sorting through category
+			->sort( $sort ) // prioritize user sorting over the sorting through relevance and category
+			->text( $view->param( 'f_search' ) )
 			->category( $catids, 'default', $level )
 			->supplier( $view->param( 'f_supid', [] ) )
 			->allOf( $view->param( 'f_attrid', [] ) )
 			->oneOf( $view->param( 'f_optid', [] ) )
 			->oneOf( $view->param( 'f_oneid', [] ) )
-			->text( $view->param( 'f_search' ) )
 			->slice( ( $page - 1 ) * $size, $size )
 			->uses( $domains )
 			->search( $total );
