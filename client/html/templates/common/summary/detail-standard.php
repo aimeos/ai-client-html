@@ -328,7 +328,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<tfoot>
 
-		<?php if( $this->summaryBasket->getPrice()->getCosts() > 0 ) : ?>
+		<?php if( $priceTaxflag === false || $this->summaryBasket->getPrice()->getCosts() > 0 ) : ?>
 			<tr class="subtotal">
 				<td colspan="5"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ); ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue(), $precision ), $priceCurrency ) ); ?></td>
