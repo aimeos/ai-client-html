@@ -214,24 +214,26 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						</div>
 
 
-						<div class="addbasket">
-							<div class="input-group">
-								<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
-								<input type="hidden"
-									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ); ?>"
-									value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
-								/>
-								<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
-									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ); ?>"
-									min="<?= $this->detailProductItem->getConfigValue( 'quantity-step', 1 ) ?>" max="2147483647"
-									step="<?= $this->detailProductItem->getConfigValue( 'quantity-step', 1 ) ?>" maxlength="10"
-									required="required" value="1"
-								/>
-								<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?> >
-									<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
-								</button>
+						<?php if( !$this->detailProductItem->getRefItems( 'price', 'default', 'default' )->empty() ) : ?>
+							<div class="addbasket">
+								<div class="input-group">
+									<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
+									<input type="hidden"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ); ?>"
+										value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
+									/>
+									<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ); ?>"
+										min="<?= $this->detailProductItem->getConfigValue( 'quantity-step', 1 ) ?>" max="2147483647"
+										step="<?= $this->detailProductItem->getConfigValue( 'quantity-step', 1 ) ?>" maxlength="10"
+										required="required" value="1"
+									/>
+									<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?> >
+										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+									</button>
+								</div>
 							</div>
-						</div>
+						<?php endif ?>
 
 					</form>
 

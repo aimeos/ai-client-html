@@ -141,26 +141,28 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 							); ?>
 						</div>
 
-						<div class="addbasket">
-							<div class="input-group">
-								<input type="hidden"
-									name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
-									 value="add"
-								/>
-								<input type="hidden"
-									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
-									value="<?= $id; ?>"
-								/>
-								<input type="number" class="form-control"
-									min="1" max="2147483647" maxlength="10"
-									step="1" required="required" value="1"
-									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
-								/><!--
-								--><button class="btn btn-primary" type="submit" value="">
-									<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
-								</button>
+						<?php if( !$productItem->getRefItems( 'price', 'default', 'default' )->empty() ) : ?>
+							<div class="addbasket">
+								<div class="input-group">
+									<input type="hidden"
+										name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
+										value="add"
+									/>
+									<input type="hidden"
+										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+										value="<?= $id; ?>"
+									/>
+									<input type="number" class="form-control"
+										min="1" max="2147483647" maxlength="10"
+										step="1" required="required" value="1"
+										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+									/><!--
+									--><button class="btn btn-primary" type="submit" value="">
+										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+									</button>
+								</div>
 							</div>
-						</div>
+						<?php endif; ?>
 
 					</form>
 				<?php endif; ?>

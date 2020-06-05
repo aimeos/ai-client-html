@@ -278,23 +278,25 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 					</div>
 
-					<div class="addbasket">
-						<div class="input-group">
-							<input type="hidden" value="add"
-								name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
-							/>
-							<input type="hidden" value="<?= $id; ?>"
-								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
-							/>
-							<input type="number" class="form-control" value="1"
-								 min="1" max="2147483647" maxlength="10" step="1" required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
-								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
-							/><!--
-							--><button class="btn btn-primary" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
-								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
-							</button>
+					<?php if( !$productItem->getRefItems( 'price', 'default', 'default' )->empty() ) : ?>
+						<div class="addbasket">
+							<div class="input-group">
+								<input type="hidden" value="add"
+									name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
+								/>
+								<input type="hidden" value="<?= $id; ?>"
+									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+								/>
+								<input type="number" class="form-control" value="1"
+									min="1" max="2147483647" maxlength="10" step="1" required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
+									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+								/><!--
+								--><button class="btn btn-primary" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
+									<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+								</button>
+							</div>
 						</div>
-					</div>
+					<?php endif; ?>
 
 				</form>
 
