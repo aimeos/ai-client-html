@@ -202,6 +202,9 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
 		$view->addHelper( 'param', $helper );
 
+		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, $langId );
+		$view->addHelper( 'number', $helper );
+
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
 		$view->addHelper( 'config', $helper );
 
