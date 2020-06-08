@@ -152,7 +152,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 										value="<?= $id; ?>"
 									/>
-									<input type="number" class="form-control"
+									<input type="number"
 										min="1" max="2147483647" maxlength="10"
 										step="1" required="required" value="1"
 										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"

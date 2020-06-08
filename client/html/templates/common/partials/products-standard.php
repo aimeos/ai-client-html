@@ -287,8 +287,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 								<input type="hidden" value="<?= $id; ?>"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 								/>
-								<input type="number" class="form-control" value="1"
-									min="1" max="2147483647" maxlength="10" step="1" required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
+								<input type="number" value="1" min="1" max="2147483647" maxlength="10" step="1"
+									required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 								/><!--
 								--><button class="btn btn-primary" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
