@@ -350,7 +350,7 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
 		$view->addHelper( 'param', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, $context->getLocale()->getLanguageId() );
+		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $context->getLocale()->getLanguageId() );
 		$view->addHelper( 'number', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ) );
