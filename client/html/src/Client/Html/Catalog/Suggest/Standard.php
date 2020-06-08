@@ -310,7 +310,9 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
+
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+			->text( $view->param( 'f_search' ) ); // sort by relevance first
 
 
 		/** client/html/catalog/suggest/domains
@@ -373,8 +375,7 @@ class Standard
 				->oneOf( $view->param( 'f_oneid', [] ) );
 		}
 
-		$view->suggestItems = $cntl->uses( $domains )->text( $view->param( 'f_search' ) )
-			->slice( 0, $size )->search();
+		$view->suggestItems = $cntl->uses( $domains )->slice( 0, $size )->search();
 
 		return parent::addData( $view, $tags, $expire );
 	}
