@@ -236,8 +236,8 @@ class Standard
 
 
 			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+			$comment = strip_tags( $view->param( 'cs_comment', '', false ) );
 			$customerref = $view->param( 'cs_customerref' );
-			$comment = $view->param( 'cs_comment' );
 
 			if( $customerref || $comment )
 			{
