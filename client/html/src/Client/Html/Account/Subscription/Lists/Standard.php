@@ -240,7 +240,23 @@ class Standard
 	{
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' );
 
-		$view->listsItems = $cntl->search();
+		$list = [];
+		$items = $cntl->search();
+		$map = $items->col( null, 'subscription.ordbaseid' );
+
+		$orderCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'order' );
+		$orderCntl->compare( '==', 'order.baseid', $map->keys()->toArray() );
+
+		foreach( $orderCntl->search() as $item )
+		{
+			$subscription = $map[$item->getBaseId()];
+
+			if( $subscription && $item->getPaymentStatus() >= \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) {
+				$list[$subscription->getId()] = $subscription;
+			}
+		}
+
+		$view->listsItems = map( $list );
 		$view->listsIntervalItems = $cntl->getIntervals();
 
 		return parent::addData( $view, $tags, $expire );
