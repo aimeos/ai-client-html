@@ -250,8 +250,10 @@ class Standard
 
 		foreach( $orderCntl->search() as $item )
 		{
-			if( $item->getPaymentStatus() >= \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) {
-				$list[$map[$item->getBaseId()]->getId()] = $map[$item->getBaseId()];
+			$subscription = $map[$item->getBaseId()];
+
+			if( $subscription && $item->getPaymentStatus() >= \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) {
+				$list[$subscription->getId()] = $subscription;
 			}
 		}
 
