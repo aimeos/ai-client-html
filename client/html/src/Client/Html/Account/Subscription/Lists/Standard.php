@@ -237,9 +237,25 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
+		$list = $map = [];
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' );
+		$items = $cntl->search();
 
-		$view->listsItems = $cntl->search();
+		foreach( $items as $item ) {
+			$map[$item->getOrderBaseId()] = $item;
+		}
+
+		$orderCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'order' );
+		$orderCntl->compare( '==', 'order.baseid', array_keys( $map ) );
+
+		foreach( $orderCntl->search() as $item )
+		{
+			if( $item->getPaymentStatus() >= \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) {
+				$list[$map[$item->getBaseId()]->getId()] = $map[$item->getBaseId()];
+			}
+		}
+
+		$view->listsItems = $list;
 		$view->listsIntervalItems = $cntl->getIntervals();
 
 		return parent::addData( $view, $tags, $expire );
