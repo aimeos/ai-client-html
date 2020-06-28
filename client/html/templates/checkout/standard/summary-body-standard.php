@@ -213,14 +213,14 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 
 
 	<div class="common-summary-detail row">
-		<div class="header col-sm-12">
+		<div class="header">
 			<a class="modify" href="<?= $enc->attr( $basketUrl ); ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ); ?>
 			</a>
 			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 		</div>
 
-		<div class="basket col-sm-12">
+		<div class="basket table-responsive">
 			<?= $this->partial(
 				/** client/html/checkout/standard/summary/detail
 				 * Location of the detail partial template for the checkout summary

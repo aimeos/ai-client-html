@@ -49,7 +49,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 					<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
 				</div>
 
-				<div class="basket">
+				<div class="basket table-responsive">
 					<?= $this->partial(
 						/** client/html/basket/standard/summary/detail
 						 * Location of the detail partial template for the basket standard component
