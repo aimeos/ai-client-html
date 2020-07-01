@@ -508,7 +508,7 @@ abstract class Base
 			throw new \Aimeos\Client\Html\Exception( 'Unable to encode parameters or configuration options' );
 		}
 
-		return md5( $key . $pstr . $cstr . $locale->getLanguageId() . $locale->getCurrencyId() );
+		return md5( $key . $pstr . $cstr . $locale->getLanguageId() . $locale->getCurrencyId() . $locale->getSiteId() );
 	}
 
 
