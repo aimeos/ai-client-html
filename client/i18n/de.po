@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
+"POT-Creation-Date: 2020-07-01 17:23+0200\n"
+"PO-Revision-Date: 2020-07-02 08:50+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -200,6 +200,9 @@ msgstr "Gebündelte Produkte"
 msgid "Buy now"
 msgstr "Jetzt kaufen"
 
+msgid "Cancel"
+msgstr "Abbrechen"
+
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -208,6 +211,9 @@ msgstr "Ändern"
 
 msgid "Change payment"
 msgstr "Zahlung ändern"
+
+msgid "Channel"
+msgstr "Kanal"
 
 msgid "Characteristics"
 msgstr "Charakteristische Merkmale"
@@ -270,6 +276,9 @@ msgstr "Gutscheine"
 msgid "Create a customer account for me"
 msgstr "Benutzerkonto für mich anlegen"
 
+msgid "Created"
+msgstr "Erstellt am"
+
 msgid "Customer account"
 msgstr "Benutzerkonto"
 
@@ -299,6 +308,9 @@ msgstr "Sehr geehrte Frau %1$s %2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "Sehr geehrte Damen und Herren"
+
+msgid "Delete"
+msgstr "Löschen"
 
 msgid "Delivery"
 msgstr "Versand"
@@ -403,6 +415,9 @@ msgstr "Inkl. %1$s%% MwSt."
 
 msgid "Included rebates"
 msgstr "Enthaltene Rabatte"
+
+msgid "Interval"
+msgstr "Interval"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""

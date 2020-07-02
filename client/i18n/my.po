@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
+"POT-Creation-Date: 2020-07-01 17:23+0200\n"
+"PO-Revision-Date: 2020-07-01 19:44+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Burmese (http://www.transifex.com/aimeos/aimeos-core/language/my/)\n"
 "MIME-Version: 1.0\n"
@@ -196,6 +196,9 @@ msgstr ""
 msgid "Buy now"
 msgstr "ဝယ်ယူမည်"
 
+msgid "Cancel"
+msgstr ""
+
 msgid "Categories"
 msgstr "အမျိုးအစားများ"
 
@@ -204,6 +207,9 @@ msgstr "ပြောင်းလဲမည်"
 
 msgid "Change payment"
 msgstr "ငွေချေစနစ်ပြောင်းလဲမည်"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr ""
@@ -266,6 +272,9 @@ msgstr "ကူပွန်"
 msgid "Create a customer account for me"
 msgstr "ဝယ်ယူသူအကောင့်ပြုလုပ်မည်"
 
+msgid "Created"
+msgstr ""
+
 msgid "Customer account"
 msgstr "ဝယ်ယူသူအကောင့်"
 
@@ -294,6 +303,9 @@ msgid "Dear Mrs %1$s %2$s"
 msgstr ""
 
 msgid "Dear Sir or Madam"
+msgstr ""
+
+msgid "Delete"
 msgstr ""
 
 msgid "Delivery"
@@ -398,6 +410,9 @@ msgid "Incl. %1$s%% VAT"
 msgstr ""
 
 msgid "Included rebates"
+msgstr ""
+
+msgid "Interval"
 msgstr ""
 
 #, php-format

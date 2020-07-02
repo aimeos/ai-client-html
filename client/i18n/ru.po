@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
+"POT-Creation-Date: 2020-07-01 17:23+0200\n"
+"PO-Revision-Date: 2020-07-01 19:44+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -201,6 +201,9 @@ msgstr "Комплект товаров"
 msgid "Buy now"
 msgstr "Купить"
 
+msgid "Cancel"
+msgstr "Отмена"
+
 msgid "Categories"
 msgstr "Категории"
 
@@ -209,6 +212,9 @@ msgstr "Изменить"
 
 msgid "Change payment"
 msgstr "Изменить оплату"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Характеристики"
@@ -271,6 +277,9 @@ msgstr "Купоны"
 msgid "Create a customer account for me"
 msgstr ""
 
+msgid "Created"
+msgstr "Создано"
+
 msgid "Customer account"
 msgstr ""
 
@@ -300,6 +309,9 @@ msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "Уважаемая дама или господин"
+
+msgid "Delete"
+msgstr "Удалить"
 
 msgid "Delivery"
 msgstr "Доставка"
@@ -404,6 +416,9 @@ msgstr "Вкл. %1$s%% НДС"
 
 msgid "Included rebates"
 msgstr "Включены скидки"
+
+msgid "Interval"
+msgstr "Интервал"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""

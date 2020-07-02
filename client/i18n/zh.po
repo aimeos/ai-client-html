@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
+"POT-Creation-Date: 2020-07-01 17:23+0200\n"
+"PO-Revision-Date: 2020-07-01 19:44+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -199,6 +199,9 @@ msgstr "組合包商品"
 msgid "Buy now"
 msgstr "馬上購買"
 
+msgid "Cancel"
+msgstr "取消"
+
 msgid "Categories"
 msgstr "商品型錄"
 
@@ -207,6 +210,9 @@ msgstr "變更"
 
 msgid "Change payment"
 msgstr "變更支付"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "特色"
@@ -269,6 +275,9 @@ msgstr "優惠券"
 msgid "Create a customer account for me"
 msgstr "為我創立一個用戶帳號"
 
+msgid "Created"
+msgstr "創建"
+
 msgid "Customer account"
 msgstr "用戶帳號"
 
@@ -298,6 +307,9 @@ msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "親愛的先生或女士"
+
+msgid "Delete"
+msgstr "删除"
 
 msgid "Delivery"
 msgstr "運送"
@@ -402,6 +414,9 @@ msgstr "包含 %1$s%% 增值稅"
 
 msgid "Included rebates"
 msgstr "折扣過後"
+
+msgid "Interval"
+msgstr "間隔"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""

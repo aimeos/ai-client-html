@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2020-07-01 17:23+0200\n"
+"PO-Revision-Date: 2020-07-01 19:44+0000\n"
+"Last-Translator: Bistra Kumanova <b.kumanova@creato.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,6 +198,9 @@ msgstr "Пакетни продукти"
 msgid "Buy now"
 msgstr "Закупете"
 
+msgid "Cancel"
+msgstr "Отмяна"
+
 msgid "Categories"
 msgstr "Категории"
 
@@ -206,6 +209,9 @@ msgstr "Промени"
 
 msgid "Change payment"
 msgstr "Променете плащането"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Характеристики"
@@ -268,6 +274,9 @@ msgstr "Купони"
 msgid "Create a customer account for me"
 msgstr "Създайте потребителски профил за мен"
 
+msgid "Created"
+msgstr "Създадено"
+
 msgid "Customer account"
 msgstr "Потребителски профил"
 
@@ -297,6 +306,9 @@ msgstr "Уважаема госпожо %1$s%2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "\"Уважаема Г-жо или Г-не"
+
+msgid "Delete"
+msgstr "Изтрий"
 
 msgid "Delivery"
 msgstr "Доставка"
@@ -401,6 +413,9 @@ msgstr "Вкл. %1$s%% ДДС"
 
 msgid "Included rebates"
 msgstr "Влючени отстъпки"
+
+msgid "Interval"
+msgstr ""
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
