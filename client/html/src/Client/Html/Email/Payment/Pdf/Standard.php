@@ -68,6 +68,10 @@ class Standard
 	{
 		$view = $this->getView();
 
+		if( $view->extOrderItem->getPaymentStatus() < \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) {
+			return '';
+		}
+
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
 			$content .= $subclient->setView( $view )->getBody( $uid );
