@@ -18,7 +18,8 @@
 		"composer/installers": "^1.0",
 		"aimeos/aimeos-core": "2019.10.*",
 		"aimeos/ai-controller-jobs": "2019.10.*",
-		"aimeos/ai-controller-frontend": "2019.10.*"
+		"aimeos/ai-controller-frontend": "2019.10.*",
+		"tecnickcom/tcpdf": "~6.3"
 	},
 	"autoload": {
 		"psr-4": {
