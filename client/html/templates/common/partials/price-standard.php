@@ -5,6 +5,11 @@
  * @copyright Aimeos (aimeos.org), 2015-2018
  */
 
+/* Available data:
+ * - prices : List of price items
+ */
+
+
 $enc = $this->encoder();
 $iface = '\Aimeos\MShop\Price\Item\Iface';
 $priceItems = $this->get( 'prices', [] );
@@ -21,6 +26,7 @@ foreach( $priceItems as $priceItem )
 		$prices[$qty] = $priceItem;
 	}
 }
+ksort( $prices );
 
 $format = array(
 	/// Price quantity format with quantity (%1$s)

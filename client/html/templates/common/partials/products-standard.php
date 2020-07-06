@@ -207,7 +207,6 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<div class="articleitem price price-actual"
 						data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
 						data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
-						<?php $priceItems = $productItem->getRefItems( 'price', null, 'default' ); ?>
 						<?= $this->partial(
 							/** client/html/common/partials/price
 							 * Relative path to the price partial template file
@@ -225,7 +224,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							 * @category Developer
 							 */
 							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-							array( 'prices' => reset( $priceItems ) ?: [] )
+							['prices' => $productItem->getRefItems( 'price', null, 'default' )]
 						); ?>
 					</div>
 
