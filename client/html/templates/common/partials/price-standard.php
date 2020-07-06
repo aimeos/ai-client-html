@@ -10,7 +10,7 @@
  */
 
 
-$prices = [];
+$prices = map();
 $enc = $this->encoder();
 $priceItems = map( $this->get( 'prices', [] ) );
 
@@ -21,6 +21,7 @@ foreach( $priceItems as $priceItem )
 		$prices[$qty] = $priceItem;
 	}
 }
+$prices->ksort();
 
 $format = array(
 	/// Price quantity format with quantity (%1$s)
@@ -40,7 +41,7 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 
 
 ?>
-<meta itemprop="price" content="<?= map( $prices )->getValue()->first(); ?>" />
+<meta itemprop="price" content="<?= $prices->getValue()->first(); ?>" />
 
 <?php foreach( $prices as $priceItem ) : ?>
 	<?php

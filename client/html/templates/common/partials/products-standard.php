@@ -215,7 +215,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							 * @category Developer
 							 */
 							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' )->first() ?: map() )
+							['prices' => $productItem->getRefItems( 'price', null, 'default' )]
 						); ?>
 
 					</div>
