@@ -16,12 +16,14 @@ $priceItems = map( $this->get( 'prices', [] ) );
 
 foreach( $priceItems as $priceItem )
 {
-	$qty = $priceItem->getQuantity();
-	if( !isset( $prices[$qty] ) || $prices[$qty]->getValue() > $priceItem->getValue() ) {
+	$qty = (string) $priceItem->getQuantity();
+	if( !( $p = $prices->get( $qty ) ) || $p->getValue() > $priceItem->getValue() ) {
 		$prices[$qty] = $priceItem;
 	}
 }
+
 $prices->ksort();
+$price = $prices->getValue()->first();
 
 $format = array(
 	/// Price quantity format with quantity (%1$s)
@@ -41,10 +43,14 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 
 
 ?>
-<meta itemprop="price" content="<?= $prices->getValue()->first(); ?>" />
+<meta itemprop="price" content="<?= $price ?>" />
 
 <?php foreach( $prices as $priceItem ) : ?>
 	<?php
+		if( $priceItem->getValue() > $price ) {
+			continue; // Only show prices for higher quantities if they are lower then the first price
+		}
+
 		/// Price format with price value (%1$s) and currency (%2$s)
 		$format['value'] = $this->translate( 'client/code', 'price:' . ( $priceItem->getType() ?: 'default' ), null, 0, false ) ?: $this->translate( 'client', '%1$s %2$s' );
 		$currency = $this->translate( 'currency', $priceItem->getCurrencyId() );
