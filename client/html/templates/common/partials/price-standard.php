@@ -44,14 +44,19 @@ $withtax = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 /// Tax rate format with tax rate in percent (%1$s)
 $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 
-$first = true;
+$price = ( $p = current( $prices ) ) ? $p->getValue() : 0;
 
 
 ?>
+<meta itemprop="price" content="<?= $price ?>" />
 <?php foreach( $prices as $priceItem ) : ?>
 	<?php
 		if( !( $priceItem instanceof $iface ) ) {
 			throw new \Aimeos\MW\View\Exception( sprintf( 'Object doesn\'t implement "%1$s"', $iface ) );
+		}
+
+		if( $priceItem->getValue() > $price ) {
+			continue; // Only show prices for higher quantities if they are lower then the first price
 		}
 
 		$costs = $priceItem->getCosts();
@@ -63,11 +68,6 @@ $first = true;
 		$currency = $this->translate( 'currency', $priceItem->getCurrencyId() );
 		$taxformat = ( $priceItem->getTaxFlag() ? $withtax : $notax );
 	?>
-
-	<?php if( $first === true ) : $first = false; ?>
-		<meta itemprop="price" content="<?= $priceItem->getValue(); ?>" />
-	<?php endif; ?>
-
 
 	<div class="price-item <?= $enc->attr( $priceItem->getType() ); ?>" itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification">
 
