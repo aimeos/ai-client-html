@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 17:23+0200\n"
-"PO-Revision-Date: 2020-07-01 19:44+0000\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Spanish (http://www.transifex.com/aimeos/aimeos-core/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -519,11 +519,17 @@ msgstr "Una semana"
 msgid "Options"
 msgstr "Opciones"
 
+msgid "Order"
+msgstr "Pedido"
+
 msgid "Order ID"
 msgstr "ID del pedido"
 
 msgid "Order channel"
 msgstr "Canal del pedido"
+
+msgid "Order date"
+msgstr ""
 
 msgid "Order details"
 msgstr "Detalles del pedido"
@@ -624,6 +630,9 @@ msgstr "Cant"
 
 msgid "Quantity"
 msgstr "Cantidad"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "Relacionada"

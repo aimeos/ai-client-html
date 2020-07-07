@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 17:23+0200\n"
-"PO-Revision-Date: 2020-07-01 19:44+0000\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
 "Last-Translator: Bistra Kumanova <b.kumanova@creato.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -517,11 +517,17 @@ msgstr "Една седмица"
 msgid "Options"
 msgstr "Опции"
 
+msgid "Order"
+msgstr "Поръчка"
+
 msgid "Order ID"
 msgstr "Номер на поръчка"
 
 msgid "Order channel"
 msgstr "Последователност на поръчките"
+
+msgid "Order date"
+msgstr ""
 
 msgid "Order details"
 msgstr "Детайли на поръчката"
@@ -622,6 +628,9 @@ msgstr "Кол-во"
 
 msgid "Quantity"
 msgstr "Количество"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "Свързани"

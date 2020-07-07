@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 17:23+0200\n"
-"PO-Revision-Date: 2020-07-01 19:44+0000\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -517,11 +517,17 @@ msgstr "一个星期"
 msgid "Options"
 msgstr "选项"
 
+msgid "Order"
+msgstr ""
+
 msgid "Order ID"
 msgstr "订单编号"
 
 msgid "Order channel"
 msgstr "订单渠道"
+
+msgid "Order date"
+msgstr ""
 
 msgid "Order details"
 msgstr "订单明细"
@@ -622,6 +628,9 @@ msgstr "数量"
 
 msgid "Quantity"
 msgstr "数量"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "相关的"

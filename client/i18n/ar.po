@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 17:23+0200\n"
-"PO-Revision-Date: 2020-07-01 19:44+0000\n"
-"Last-Translator: Mahmoud Elnomrosy <elnomrosy66@gmail.com>\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Arabic (http://www.transifex.com/aimeos/aimeos-core/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -522,10 +522,16 @@ msgstr "اسبوع واحد"
 msgid "Options"
 msgstr ""
 
+msgid "Order"
+msgstr ""
+
 msgid "Order ID"
 msgstr ""
 
 msgid "Order channel"
+msgstr ""
+
+msgid "Order date"
 msgstr ""
 
 msgid "Order details"
@@ -626,6 +632,9 @@ msgid "Qty"
 msgstr "الكمية"
 
 msgid "Quantity"
+msgstr ""
+
+msgid "Reference"
 msgstr ""
 
 msgid "Related"

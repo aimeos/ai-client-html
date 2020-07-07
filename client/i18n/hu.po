@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 17:23+0200\n"
-"PO-Revision-Date: 2020-07-01 19:44+0000\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
 "Last-Translator: Péter Kozma <kopegrafika@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -519,10 +519,16 @@ msgstr "Egy hét"
 msgid "Options"
 msgstr "Opciók"
 
+msgid "Order"
+msgstr "Rendelés"
+
 msgid "Order ID"
 msgstr "Rendelés azonosító"
 
 msgid "Order channel"
+msgstr ""
+
+msgid "Order date"
 msgstr ""
 
 msgid "Order details"
@@ -624,6 +630,9 @@ msgstr "Mennyiség"
 
 msgid "Quantity"
 msgstr "Mennyiség"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "Kapcsolódó"
