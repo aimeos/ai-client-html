@@ -119,13 +119,36 @@ $orderService = $this->get( 'orderService' );
 						/>
 					</div>
 
-				<?php break; case 'date': case 'datetime': case 'time': ?>
+				<?php break; case 'date': ?>
 
 					<div class="col-md-7">
 						<input class="form-control col-md-7" type="<?= $attribute->getType(); ?>"
 							id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
+							placeholder="<?= $enc->attr( $this->translate( 'client', 'YYYY-MM-DD' ) ) ?>"
+						/>
+					</div>
+
+				<?php break; case 'datetime': ?>
+
+					<div class="col-md-7">
+						<input class="form-control col-md-7" type="<?= $attribute->getType(); ?>"
+							id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
+							placeholder="<?= $enc->attr( $this->translate( 'client', 'YYYY-MM-DD HH:mm' ) ) ?>"
+						/>
+					</div>
+
+				<?php break; case 'time': ?>
+
+					<div class="col-md-7">
+						<input class="form-control col-md-7" type="<?= $attribute->getType(); ?>"
+							id="<?= $enc->attr( $type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $type, $id, $key ) ) ); ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $type . '/' . $id . '/' . $key, $value ) ); ?>"
+							placeholder="<?= $enc->attr( $this->translate( 'client', 'HH:mm' ) ) ?>"
 						/>
 					</div>
 
