@@ -97,13 +97,36 @@ $enc = $this->encoder();
 						/>
 					</div>
 
-				<?php break; case 'date': case 'datetime': case 'time': ?>
+				<?php break; case 'date': ?>
 
 					<div class="col-md-7">
 						<input class="form-control col-md-7" type="<?= $item->getType(); ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ); ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ); ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ); ?>"
+							placeholder="<?= $enc->attr( $this->translate( 'client', 'YYYY-MM-DD' ) ) ?>"
+						/>
+					</div>
+
+				<?php break; case 'datetime': ?>
+
+					<div class="col-md-7">
+						<input class="form-control col-md-7" type="<?= $item->getType(); ?>"
+							id="<?= $enc->attr( $this->type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ); ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ); ?>"
+							placeholder="<?= $enc->attr( $this->translate( 'client', 'YYYY-MM-DD HH:mm' ) ) ?>"
+						/>
+					</div>
+
+				<?php break; case 'time': ?>
+
+					<div class="col-md-7">
+						<input class="form-control col-md-7" type="<?= $item->getType(); ?>"
+							id="<?= $enc->attr( $this->type . '-' . $key ); ?>" class="form-item-value"
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ); ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ); ?>"
+							placeholder="<?= $enc->attr( $this->translate( 'client', 'HH:mm' ) ) ?>"
 						/>
 					</div>
 
