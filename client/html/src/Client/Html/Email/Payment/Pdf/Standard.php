@@ -111,8 +111,11 @@ class Standard
 		$view->pdf->setCreator( PDF_CREATOR );
 		$view->pdf->setAuthor( 'Aimeos' );
 
+		// Generate HTML before creating first PDF page to include header added in template
+		$content = $view->render( $view->config( $tplconf, 'email/payment/pdf-body-standard' ) );
+
 		$view->pdf->addPage();
-		$view->pdf->writeHtml( $view->render( $view->config( $tplconf, 'email/payment/pdf-body-standard' ) ) );
+		$view->pdf->writeHtml( $content );
 		$view->pdf->lastPage();
 
 		$view->mail()->addAttachment( $view->pdf->output( '', 'S' ), 'application/pdf', 'order_' . $view->extOrderItem->getId() . '.pdf' );
