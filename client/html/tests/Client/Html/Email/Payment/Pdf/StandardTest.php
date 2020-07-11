@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $emailMock;
 
 
-	public static function setUpBeforeClass() : void
+	public static function setUpBeforeClass()
 	{
 		$manager = \Aimeos\MShop\Order\Manager\Factory::create( \TestHelperHtml::getContext() );
 		$orderBaseManager = $manager->getSubManager( 'base' );
@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function setUp() : void
+	protected function setUp()
 	{
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown() : void
+	protected function tearDown()
 	{
 		unset( $this->object );
 	}
