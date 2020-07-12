@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Aimeos (aimeos.org), 2020
+ * @package Client
+ * @subpackage Html
+ */
+
+
+namespace Aimeos\Client\Html\Common\Decorator;
+
+
+/**
+ * Provides context data for html client decorators.
+ *
+ * @package Client
+ * @subpackage Html
+ */
+class Context extends Base implements Iface
+{
+	/**
+	 * Adds the data to the view object required by the templates
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
+	 * @since 2020.07
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	{
+		$context = $this->getContext();
+		$locale = $context->getLocale();
+
+		$view->assign( [
+			'contextLanguage' => $locale->getLanguageId(),
+			'contextCurrency' => $locale->getCurrencyId(),
+			'contextSite' => $locale->getSite()->getCode(),
+			'contextSiteId' => $locale->getSiteId(),
+			'contextUserId' => $context->getUserId(),
+			'contextGroupIds' => $context->getGroupIds(),
+		] );
+
+		return $this->getClient()->addData( $view, $tags, $expire );
+	}
+}
