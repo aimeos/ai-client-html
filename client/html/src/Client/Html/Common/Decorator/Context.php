@@ -33,14 +33,12 @@ class Context extends Base implements Iface
 		$context = $this->getContext();
 		$locale = $context->getLocale();
 
-		$view->assign( [
-			'contextLanguage' => $locale->getLanguageId(),
-			'contextCurrency' => $locale->getCurrencyId(),
-			'contextSite' => $locale->getSiteItem()->getCode(),
-			'contextSiteId' => $locale->getSiteId(),
-			'contextUserId' => $context->getUserId(),
-			'contextGroupIds' => $context->getGroupIds(),
-		] );
+		$view->contextLanguage = $locale->getLanguageId();
+		$view->contextCurrency = $locale->getCurrencyId();
+		$view->contextSite = $locale->getSiteItem()->getCode();
+		$view->contextSiteId = $locale->getSiteId();
+		$view->contextUserId = $context->getUserId();
+		$view->contextGroupIds = $context->getGroupIds();
 
 		return $this->getClient()->addData( $view, $tags, $expire );
 	}
