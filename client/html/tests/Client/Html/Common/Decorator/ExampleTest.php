@@ -10,21 +10,12 @@
 namespace Aimeos\Client\Html\Common\Decorator;
 
 
-/**
- * Test class for \Aimeos\Client\Html\Common\Decorator\Example.
- */
 class ExampleTest extends \PHPUnit\Framework\TestCase
 {
 	private $client;
 	private $object;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp() : void
 	{
 		$context = \TestHelperHtml::getContext();
