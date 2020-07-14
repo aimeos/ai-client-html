@@ -43,7 +43,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertInstanceOf( '\Aimeos\MW\View\Iface', $result );
 		$this->assertEquals( 'unittest', $result->get( 'contextSite' ) );
-		$this->assertInternalType( 'string', $result->get( 'contextSiteId' ) );
+		$this->assertNotNull( $result->get( 'contextSiteId' ) );
 		$this->assertEquals( 'de', $result->get( 'contextLanguage' ) );
 		$this->assertEquals( 'EUR', $result->get( 'contextCurrency' ) );
 		$this->assertEquals( null, $result->get( 'contextUserId' ) );
