@@ -21,7 +21,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 {
 	$media = $price = '';
-	$name = $productItem->getName();
+	$name = strip_tags( $productItem->getName() );
 	$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 	$priceItems = $productItem->getRefItems( 'price', 'default', 'default' );
 
