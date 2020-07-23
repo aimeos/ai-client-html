@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 * @throws \Exception If no customer item is found
 	 * @return \Aimeos\MShop\Customer\Item\Iface Customer item object
 	 */
-	protected function getCustomerItem( $code = 'UTC001' )
+	protected function getCustomerItem( $code = 'test@example.com' )
 	{
 		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$search = $manager->createSearch();

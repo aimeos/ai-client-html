@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com' );
 
 		$view = \TestHelperHtml::getView();
 		$view->confirmOrderItem = $this->getOrderItem( $customer->getId() );

@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->view = \TestHelperHtml::getView();
 		$this->context = \TestHelperHtml::getContext();
-		$this->context->setEditor( 'UTC001' );
+		$this->context->setEditor( 'test@example.com' );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Confirm\Standard( $this->context );
 		$this->object->setView( $this->view );

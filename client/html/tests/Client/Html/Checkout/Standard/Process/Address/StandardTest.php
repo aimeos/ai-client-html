@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Address\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com' );
 		$address = $customerItem->getPaymentAddress()->setId( '-1' )->toArray();
 
 		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );

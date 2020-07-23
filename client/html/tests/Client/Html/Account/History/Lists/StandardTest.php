@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$customer = $this->getCustomerItem( 'UTC001' );
+		$customer = $this->getCustomerItem( 'test@example.com' );
 		$this->context->setUserId( $customer->getId() );
 
 		$this->object->setView( $this->object->addData( \TestHelperHtml::getView() ) );

@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' )->getId() );
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Account\Watch\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -134,7 +134,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddItem()
 	{
-		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001' );
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com' );
 		$id = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' )->getId();
 		$this->context->setUserId( $item->getId() );
 
@@ -162,7 +162,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessDeleteItem()
 	{
-		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['product' => ['watch']] );
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com', ['product' => ['watch']] );
 		$id = $item->getListItems( 'product', 'watch' )->first()->getRefId();
 		$this->context->setUserId( $item->getId() );
 
@@ -190,7 +190,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessEditItem()
 	{
-		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'UTC001', ['product' => ['watch']] );
+		$item = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com', ['product' => ['watch']] );
 		$id = $item->getListItems( 'product', 'watch' )->first()->getRefId();
 		$this->context->setUserId( $item->getId() );
 

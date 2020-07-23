@@ -26,7 +26,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $context );
 
 		$search = $manager->createSearch();
-		$search->setConditions( $search->compare( '==', 'customer.code', 'UTC001' ) );
+		$search->setConditions( $search->compare( '==', 'customer.code', 'test@example.com' ) );
 
 		if( ( self::$customerItem = $manager->searchItems( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No customer found' );
