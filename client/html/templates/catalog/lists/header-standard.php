@@ -39,7 +39,6 @@ $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 $params = $this->param();
-unset( $params['f_sort'] );
 
 
 ?>
