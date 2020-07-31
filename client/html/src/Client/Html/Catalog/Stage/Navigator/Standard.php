@@ -244,12 +244,13 @@ class Standard
 			$sort = $view->value( $params, 'f_sort', $view->config( 'client/html/catalog/lists/sort', 'relevance' ) );
 
 			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->sort( $sort ) // prioritize user sorting over the sorting through relevance and category
 				->allOf( $view->value( $params, 'f_attrid', [] ) )
 				->oneOf( $view->value( $params, 'f_optid', [] ) )
 				->oneOf( $view->value( $params, 'f_oneid', [] ) )
 				->text( $view->value( $params, 'f_search' ) )
 				->category( $catids, 'default', $level )
-				->slice( $start, $size )->sort( $sort )
+				->slice( $start, $size )
 				->uses( ['text'] )
 				->search();
 
