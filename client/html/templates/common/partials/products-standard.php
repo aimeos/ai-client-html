@@ -6,7 +6,7 @@
  */
 
 /* Expected data:
- * - productItems : List of product variants incl. referenced items
+ * - products : List of products incl. referenced items
  * - basket-add : True to display "add to basket" button, false if not (optional)
  * - require-stock : True if the stock level should be displayed (optional)
  * - itemprop : Schema.org property for the product items (optional)
