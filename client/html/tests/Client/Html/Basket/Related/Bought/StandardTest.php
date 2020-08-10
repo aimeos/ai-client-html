@@ -77,8 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
-		$orderItem = $manager->createItem();
-		$orderItem->copyFrom( $item );
+		$orderItem = $manager->createItem()->copyFrom( $item )->setStockType( 'default' );
 
 		return $orderItem;
 	}
