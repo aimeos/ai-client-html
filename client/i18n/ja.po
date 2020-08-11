@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
+"Last-Translator: Darshan Sampat <darshan@usindia.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -196,6 +196,9 @@ msgstr "バンドルされた商品"
 msgid "Buy now"
 msgstr "今買う"
 
+msgid "Cancel"
+msgstr "キャンセル"
+
 msgid "Categories"
 msgstr "カテゴリ"
 
@@ -204,6 +207,9 @@ msgstr "変更"
 
 msgid "Change payment"
 msgstr "支払の変更"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "特性"
@@ -266,6 +272,9 @@ msgstr "クーポン"
 msgid "Create a customer account for me"
 msgstr "私の顧客アカウントを作成してください"
 
+msgid "Created"
+msgstr "作成した"
+
 msgid "Customer account"
 msgstr "顧客アカウント"
 
@@ -295,6 +304,9 @@ msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "親愛なるサー/奥様"
+
+msgid "Delete"
+msgstr "削除"
 
 msgid "Delivery"
 msgstr "配達"
@@ -400,6 +412,9 @@ msgstr "%1$s%%VATを含む"
 msgid "Included rebates"
 msgstr "含まれたリベート"
 
+msgid "Interval"
+msgstr "間隔"
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "クラス名\"%1$s\"に無効な文字があります"
@@ -500,11 +515,17 @@ msgstr "一週間"
 msgid "Options"
 msgstr "オプション"
 
+msgid "Order"
+msgstr "注文"
+
 msgid "Order ID"
 msgstr "注文ID"
 
 msgid "Order channel"
 msgstr "注文チャンネル"
+
+msgid "Order date"
+msgstr ""
 
 msgid "Order details"
 msgstr "注文詳細"
@@ -605,6 +626,9 @@ msgstr "数量"
 
 msgid "Quantity"
 msgstr "数量"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "関連の"

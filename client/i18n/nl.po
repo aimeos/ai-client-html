@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-30 10:41+0000\n"
+"Last-Translator: Erik Nohlmans <erik2504@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,6 +205,9 @@ msgstr "Gebundelde producten"
 msgid "Buy now"
 msgstr "Koop nu"
 
+msgid "Cancel"
+msgstr "Annuleer"
+
 msgid "Categories"
 msgstr "Categorieën"
 
@@ -213,6 +216,9 @@ msgstr "Aanpassen"
 
 msgid "Change payment"
 msgstr "Pas betaling aan"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Karakteristieken"
@@ -275,6 +281,9 @@ msgstr "Coupon"
 msgid "Create a customer account for me"
 msgstr "Maak een klanten account voor me aan"
 
+msgid "Created"
+msgstr "Aangemaakt"
+
 msgid "Customer account"
 msgstr "Klanten account"
 
@@ -305,6 +314,9 @@ msgstr ""
 msgid "Dear Sir or Madam"
 msgstr "Geachte heer of mevrouw"
 
+msgid "Delete"
+msgstr "Verwijderen"
+
 msgid "Delivery"
 msgstr "Bezorging"
 
@@ -324,7 +336,7 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Leveringsadres deel \"%1$s\" ontbreekt"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Levering binnen"
 
 msgid "Description"
 msgstr "Beschrijving"
@@ -408,6 +420,9 @@ msgstr "Incl. %1$s%% BTW"
 
 msgid "Included rebates"
 msgstr "Kortingen zijn verrekend"
+
+msgid "Interval"
+msgstr "Interval"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -509,11 +524,17 @@ msgstr "Een week"
 msgid "Options"
 msgstr "Opties"
 
+msgid "Order"
+msgstr "Aankoop"
+
 msgid "Order ID"
 msgstr "Aankoop ID"
 
 msgid "Order channel"
 msgstr "Order kanaal"
+
+msgid "Order date"
+msgstr ""
 
 msgid "Order details"
 msgstr "Aankoop details"
@@ -614,6 +635,9 @@ msgstr "Aantal"
 
 msgid "Quantity"
 msgstr "Aantal"
+
+msgid "Reference"
+msgstr "Referentie"
 
 msgid "Related"
 msgstr "Gerelateerde"

@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
+"Last-Translator: Enrico Porceddu <porceddu_enrico@yahoo.com>\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -199,6 +199,9 @@ msgstr "Prodotti venduti assieme"
 msgid "Buy now"
 msgstr "Acquista"
 
+msgid "Cancel"
+msgstr "Cancella"
+
 msgid "Categories"
 msgstr "Categorie"
 
@@ -207,6 +210,9 @@ msgstr "Modifica"
 
 msgid "Change payment"
 msgstr "Modifica metodo di pagamento"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Caratteristiche"
@@ -269,6 +275,9 @@ msgstr "Buoni sconto"
 msgid "Create a customer account for me"
 msgstr "Crea un account cliente"
 
+msgid "Created"
+msgstr "Creato"
+
 msgid "Customer account"
 msgstr "Account cliente"
 
@@ -298,6 +307,9 @@ msgstr "Gentile signora %1$s %2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "Gentile Sig.ra/Sig."
+
+msgid "Delete"
+msgstr "Cancella"
 
 msgid "Delivery"
 msgstr "Consegna"
@@ -403,6 +415,9 @@ msgstr "Incl. IVA %1$s%%"
 msgid "Included rebates"
 msgstr "Incluso sconto"
 
+msgid "Interval"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "Carattere non valido nel nome della classe \" 1 %1$s \""
@@ -503,11 +518,17 @@ msgstr "Una settimana"
 msgid "Options"
 msgstr "Opzioni"
 
+msgid "Order"
+msgstr "Ordine"
+
 msgid "Order ID"
 msgstr "Ordine n."
 
 msgid "Order channel"
 msgstr "Canale ordine"
+
+msgid "Order date"
+msgstr ""
 
 msgid "Order details"
 msgstr "Dettagli Ordine"
@@ -608,6 +629,9 @@ msgstr "Q.tà"
 
 msgid "Quantity"
 msgstr "Quantità"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "Collegato"

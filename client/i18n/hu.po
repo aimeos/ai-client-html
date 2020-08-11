@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
+"Last-Translator: Péter Kozma <kopegrafika@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -200,6 +200,9 @@ msgstr "Csomagtermékek"
 msgid "Buy now"
 msgstr "Vásárlás"
 
+msgid "Cancel"
+msgstr "Mégse"
+
 msgid "Categories"
 msgstr "Kategóriák"
 
@@ -208,6 +211,9 @@ msgstr "Módosítás"
 
 msgid "Change payment"
 msgstr "Fizetés módosítás"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Jellemzők"
@@ -270,6 +276,9 @@ msgstr "Kuponok"
 msgid "Create a customer account for me"
 msgstr ""
 
+msgid "Created"
+msgstr "Létrehozva"
+
 msgid "Customer account"
 msgstr ""
 
@@ -299,6 +308,9 @@ msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "Kedves Hölgyem/Uram"
+
+msgid "Delete"
+msgstr "Törlés"
 
 msgid "Delivery"
 msgstr "Szállítás"
@@ -404,6 +416,9 @@ msgstr "Tartalmazza a %1$s%% ÁFÁ-t"
 msgid "Included rebates"
 msgstr "Tartalmazza a kedvezményeket"
 
+msgid "Interval"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "Érvénytelen karakter a következő osztály nevében: \"%1$s\""
@@ -504,10 +519,16 @@ msgstr "Egy hét"
 msgid "Options"
 msgstr "Opciók"
 
+msgid "Order"
+msgstr "Rendelés"
+
 msgid "Order ID"
 msgstr "Rendelés azonosító"
 
 msgid "Order channel"
+msgstr ""
+
+msgid "Order date"
 msgstr ""
 
 msgid "Order details"
@@ -609,6 +630,9 @@ msgstr "Mennyiség"
 
 msgid "Quantity"
 msgstr "Mennyiség"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "Kapcsolódó"

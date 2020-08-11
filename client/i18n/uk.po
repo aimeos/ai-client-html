@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Ukrainian (http://www.transifex.com/aimeos/aimeos-core/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -199,6 +199,9 @@ msgstr ""
 msgid "Buy now"
 msgstr "Купити зараз"
 
+msgid "Cancel"
+msgstr ""
+
 msgid "Categories"
 msgstr ""
 
@@ -207,6 +210,9 @@ msgstr "Змінити"
 
 msgid "Change payment"
 msgstr "Смінити оплату"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Характеристики"
@@ -269,6 +275,9 @@ msgstr "Купони"
 msgid "Create a customer account for me"
 msgstr ""
 
+msgid "Created"
+msgstr ""
+
 msgid "Customer account"
 msgstr ""
 
@@ -298,6 +307,9 @@ msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "Вельмишановний Пан чи Пані"
+
+msgid "Delete"
+msgstr ""
 
 msgid "Delivery"
 msgstr "Доставка"
@@ -403,6 +415,9 @@ msgstr "вкл. %1$s%% ПДВ"
 msgid "Included rebates"
 msgstr "Включені знижки"
 
+msgid "Interval"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "Недопустимі символы в назві класу \"%1$s\""
@@ -503,11 +518,17 @@ msgstr "Один тиджень"
 msgid "Options"
 msgstr "Параметри"
 
+msgid "Order"
+msgstr ""
+
 msgid "Order ID"
 msgstr "ID замовлення"
 
 msgid "Order channel"
 msgstr "Порядок замовлень"
+
+msgid "Order date"
+msgstr ""
 
 msgid "Order details"
 msgstr "Деталі закомлення"
@@ -608,6 +629,9 @@ msgstr ""
 
 msgid "Quantity"
 msgstr "Кількість"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "Пов'язаний"

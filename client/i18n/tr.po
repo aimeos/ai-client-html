@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-29 11:17+0000\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-20 21:17+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -197,6 +197,9 @@ msgstr "Birlikte verilen ürünler"
 msgid "Buy now"
 msgstr "Şimdi satın al"
 
+msgid "Cancel"
+msgstr "İptal"
+
 msgid "Categories"
 msgstr "Kategoriler"
 
@@ -205,6 +208,9 @@ msgstr "Değiştir"
 
 msgid "Change payment"
 msgstr "Ödemeyi değiştir"
+
+msgid "Channel"
+msgstr "Kanal"
 
 msgid "Characteristics"
 msgstr "Teknik özellikler"
@@ -267,6 +273,9 @@ msgstr "Kuponlar"
 msgid "Create a customer account for me"
 msgstr "Benim için bir müşteri hesabı oluştur"
 
+msgid "Created"
+msgstr "Oluşturuldu"
+
 msgid "Customer account"
 msgstr "Müşteri hesabı"
 
@@ -296,6 +305,9 @@ msgstr "Sayın %1$s %2$s Hanım"
 
 msgid "Dear Sir or Madam"
 msgstr "Sayın Müşterimiz"
+
+msgid "Delete"
+msgstr "Sil"
 
 msgid "Delivery"
 msgstr "Teslimat"
@@ -401,6 +413,9 @@ msgstr "%%%1$s KDV dahil"
 msgid "Included rebates"
 msgstr "Dahil indirimler"
 
+msgid "Interval"
+msgstr "Aralık"
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr "%1$s\" class adında geçersiz karakterler"
@@ -501,11 +516,17 @@ msgstr "Bir hafta"
 msgid "Options"
 msgstr "Seçenekler"
 
+msgid "Order"
+msgstr "Sipariş"
+
 msgid "Order ID"
 msgstr "Sipariş kimlik numarası"
 
 msgid "Order channel"
 msgstr "Sipariş kanalı"
+
+msgid "Order date"
+msgstr "Sipariş tarihi"
 
 msgid "Order details"
 msgstr "Sipariş detayları"
@@ -606,6 +627,9 @@ msgstr "Miktar"
 
 msgid "Quantity"
 msgstr "Miktar"
+
+msgid "Reference"
+msgstr "Referans"
 
 msgid "Related"
 msgstr "İlgili"

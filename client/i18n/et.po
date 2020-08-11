@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 00:14+0200\n"
-"PO-Revision-Date: 2020-04-06 22:15+0000\n"
+"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"PO-Revision-Date: 2020-07-07 09:17+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -197,6 +197,9 @@ msgstr "Komplekteeritud tooted"
 msgid "Buy now"
 msgstr "Osta kohe"
 
+msgid "Cancel"
+msgstr ""
+
 msgid "Categories"
 msgstr "Kategooriad"
 
@@ -205,6 +208,9 @@ msgstr "Muuda"
 
 msgid "Change payment"
 msgstr "Muuda makseviisi"
+
+msgid "Channel"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Iseloomulikud omadused"
@@ -267,6 +273,9 @@ msgstr "Allahindluskoodid"
 msgid "Create a customer account for me"
 msgstr ""
 
+msgid "Created"
+msgstr ""
+
 msgid "Customer account"
 msgstr ""
 
@@ -296,6 +305,9 @@ msgstr ""
 
 msgid "Dear Sir or Madam"
 msgstr "Lugupeetud härra/proua"
+
+msgid "Delete"
+msgstr ""
 
 msgid "Delivery"
 msgstr "Saadetis"
@@ -401,6 +413,9 @@ msgstr "Sisaldab %1$s%% käibemaksu"
 msgid "Included rebates"
 msgstr "Sisaldavad soodustust"
 
+msgid "Interval"
+msgstr ""
+
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
 msgstr ""
@@ -501,11 +516,17 @@ msgstr "Üks nädal"
 msgid "Options"
 msgstr "Valikud"
 
+msgid "Order"
+msgstr ""
+
 msgid "Order ID"
 msgstr "Tellimuse ID"
 
 msgid "Order channel"
 msgstr "Tellimise viis"
+
+msgid "Order date"
+msgstr ""
 
 msgid "Order details"
 msgstr "Tellimuse detailid"
@@ -606,6 +627,9 @@ msgstr "Tk"
 
 msgid "Quantity"
 msgstr "Kogus"
+
+msgid "Reference"
+msgstr ""
 
 msgid "Related"
 msgstr "Seotud"
