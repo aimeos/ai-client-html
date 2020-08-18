@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
+# iulian iulian <iulian.abc@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-10-03 08:06+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2020-07-31 18:44+0000\n"
+"Last-Translator: iulian iulian <iulian.abc@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/aimeos/aimeos-core/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,67 +44,67 @@ msgstr ""
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "favorite"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "PIN"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "ceas"
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "Marime"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "Lungime"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "Latime"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "Culoare"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "Optiune"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "lungime pachet"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "latime pachet"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "inaltime pachet"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "greutate pachet"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Proprietarul contului"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Numar de cont"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "Cod bancar"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "Numele bancii"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,19 +116,19 @@ msgstr "Nume"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Numarul cardului"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Codul de verificare CVV"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "Luna de expirare"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "Anul de expirare"
 
 #. Pick-up date
 msgid "date.value"

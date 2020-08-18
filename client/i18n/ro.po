@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# iulian iulian <iulian.abc@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-07 11:14+0200\n"
-"PO-Revision-Date: 2020-07-07 09:17+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2020-08-03 08:01+0000\n"
+"Last-Translator: iulian iulian <iulian.abc@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/aimeos/aimeos-core/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,10 +150,10 @@ msgid "An account has been created for you."
 msgstr "Contul tau a fost creat."
 
 msgid "Article"
-msgstr ""
+msgstr "Produs"
 
 msgid "Article no."
-msgstr ""
+msgstr "Produs nr."
 
 msgid "Article no.:"
 msgstr "Produsul nr.:"
@@ -179,11 +180,11 @@ msgstr "Adresa de facturare"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "Partea \"%1$s\" a adresei de facturare nu este valabilă"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr ""
+msgstr "Partea \"%1$s\" a adresei de facturare lipseste"
 
 msgid "Birthday"
 msgstr "Zi de nastere"
@@ -198,7 +199,7 @@ msgid "Buy now"
 msgstr "Cumpara acum"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anulare"
 
 msgid "Categories"
 msgstr "Categorii"
@@ -210,7 +211,7 @@ msgid "Change payment"
 msgstr "Modifica plata"
 
 msgid "Channel"
-msgstr ""
+msgstr "Canal"
 
 msgid "Characteristics"
 msgstr "Specificatii"
@@ -226,7 +227,7 @@ msgstr "Oras"
 
 #, php-format
 msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr ""
+msgstr "Clasa \"%1$s\" nu implementeaza \"%2$s\""
 
 #, php-format
 msgid "Class \"%1$s\" does not implement interface \"%2$s\""
@@ -234,11 +235,11 @@ msgstr ""
 
 #, php-format
 msgid "Class \"%1$s\" not available"
-msgstr ""
+msgstr "Clasa \"%1$s\" nu este disponibila"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr ""
+msgstr "Clasa \"%1$s\" nu a fost gasita"
 
 #, php-format
 msgid "Client HTML type is empty"
@@ -274,7 +275,7 @@ msgid "Create a customer account for me"
 msgstr "Creaza cont"
 
 msgid "Created"
-msgstr ""
+msgstr "Creat"
 
 msgid "Customer account"
 msgstr "Cont client"
@@ -285,7 +286,7 @@ msgstr "Clientul cu ID-ul “%1$s” nu a fost gasit"
 
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Dragă %1$s %2$s"
 
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
@@ -293,21 +294,21 @@ msgstr "Draga %1$s %2$s %3$s"
 
 #, php-format
 msgid "Dear Miss %1$s %2$s"
-msgstr ""
+msgstr "Dragă domnisoara %1$s %2$s"
 
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Stimate domn %1$s %2$s"
 
 #, php-format
 msgid "Dear Mrs %1$s %2$s"
-msgstr ""
+msgstr "Stimată doamnă %1$s %2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "Draga Dl sau Dna"
 
 msgid "Delete"
-msgstr ""
+msgstr "Sterge"
 
 msgid "Delivery"
 msgstr "LIvrare"
@@ -317,18 +318,18 @@ msgstr "Adresa de livrare"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "Adresa de livrare a fost ștersă cu succes"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "Partea \"%1$s\" a adresei de livrare nu este valabilă"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
-msgstr ""
+msgstr "Partea \"%1$s\" a adresei de livrare lipseste"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Livrare în termen"
 
 msgid "Description"
 msgstr "Descriere"
@@ -340,7 +341,7 @@ msgid "Downloads"
 msgstr "Descarcari"
 
 msgid "E-Mail"
-msgstr ""
+msgstr "E-mail"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
@@ -353,14 +354,14 @@ msgid "Favorite products"
 msgstr "Produse favorite"
 
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 msgid "Fields with an * are mandatory"
 msgstr "Campurile cu * sunt obligatorii"
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
-msgstr ""
+msgstr "Fișierul \"%1$s\" nu există"
 
 msgid "Filter"
 msgstr "Filtru"
@@ -393,10 +394,10 @@ msgid ""
 msgstr ""
 
 msgid "If back in stock"
-msgstr ""
+msgstr "Dacă revine înapoi în stoc"
 
 msgid "If price decreases"
-msgstr ""
+msgstr "Daca pretul scade"
 
 msgid "If you have any questions, please reply to this e-mail"
 msgstr "Daca aveti intrebari, respundeti la acest e-mail"
@@ -411,14 +412,14 @@ msgid "Incl. %1$s%% VAT"
 msgstr "TVA %1$s%% inclus"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "Inclusiv reducere"
 
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
-msgstr ""
+msgstr "Caracter invalid in numele clasei \"%1$s\""
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
@@ -430,11 +431,11 @@ msgstr ""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "Nume clasa nevalid \"%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr ""
+msgstr "Domeniu nevalid \"%1$s\""
 
 #, php-format
 msgid "Invalid factory \"%1$s\""
@@ -460,13 +461,13 @@ msgid "Like entered by you"
 msgstr ""
 
 msgid "Login"
-msgstr ""
+msgstr "Autentificare"
 
 msgid "Name"
 msgstr "Nume"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "Adresa de livrare nouă"
 
 msgid "Next"
 msgstr "Urmatorul"
@@ -494,7 +495,7 @@ msgstr ""
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "Nicio vizualizare disponibilă"
 
 #, php-format
 msgid "Number of coupon codes exceeds the limit"
@@ -517,7 +518,7 @@ msgid "Options"
 msgstr "Optiuni"
 
 msgid "Order"
-msgstr ""
+msgstr "Comanda"
 
 msgid "Order ID"
 msgstr "ID comanda"
@@ -526,7 +527,7 @@ msgid "Order channel"
 msgstr "Canal comanda"
 
 msgid "Order date"
-msgstr ""
+msgstr "Dată comandă"
 
 msgid "Order details"
 msgstr "Detalii comanda"
@@ -614,7 +615,7 @@ msgid "Processing the payment failed"
 msgstr "Procesarea platii a esuat"
 
 msgid "Product"
-msgstr "Produst"
+msgstr "Produs"
 
 msgid "Products you might be also interested in"
 msgstr "Produse de care ati putea fi interesat"
@@ -629,13 +630,13 @@ msgid "Quantity"
 msgstr "Cantitate"
 
 msgid "Reference"
-msgstr ""
+msgstr "Referinta"
 
 msgid "Related"
 msgstr "Similare"
 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevanţă"
 
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
@@ -643,13 +644,13 @@ msgid "Result for \"%1$s\""
 msgstr "Rezultatul pentru “%1$s”"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU sau numele articolului"
 
 msgid "Salutation"
 msgstr "Salutare"
 
 msgid "Save"
-msgstr ""
+msgstr "Salvare"
 
 msgid "Search"
 msgstr "Cauta"
@@ -703,10 +704,10 @@ msgid "State"
 msgstr "Judet"
 
 msgid "Status"
-msgstr ""
+msgstr "Stare"
 
 msgid "Stock"
-msgstr ""
+msgstr "Stoc"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -731,13 +732,13 @@ msgid "Sub-total"
 msgstr "Subtotal"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "ID-ul subscriptiei"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Detaliile subcriptiei"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "Intervalul subscriptiei"
 
 msgid "Subscription product"
 msgstr ""
@@ -747,7 +748,7 @@ msgid "Subscription with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Subscriptii"
 
 msgid "Suggested products"
 msgstr "Produse recomandate"
@@ -756,7 +757,7 @@ msgid "Sum"
 msgstr "Suma"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "Informatii despre furnizor"
 
 msgid "Suppliers"
 msgstr "Furnizori"
@@ -871,13 +872,13 @@ msgid "Three month"
 msgstr "Trei luni"
 
 msgid "Time frame"
-msgstr ""
+msgstr "Interval de timp"
 
 msgid "Toggle fullscreen"
 msgstr ""
 
 msgid "Top seller"
-msgstr ""
+msgstr "Vanzator de top"
 
 msgid "Total"
 msgstr "Total"
@@ -893,7 +894,7 @@ msgstr "Doua saptamani"
 
 #, php-format
 msgid "Unable to call method \"%1$s\""
-msgstr ""
+msgstr "Imposibil de apelat metoda \"%1$s\""
 
 #, php-format
 msgid "Unable to create an account for \"%1$s\": %2$s"
@@ -955,7 +956,7 @@ msgid "Y-m-d"
 msgstr "d.m.Y"
 
 msgid "You are here:"
-msgstr "Sunteti aiciȘ"
+msgstr "Sunteti aici:"
 
 msgid "You can use your voucher any time in our online shop"
 msgstr "Iti poti folosi voucherul oricand in magazinul nostru online"
