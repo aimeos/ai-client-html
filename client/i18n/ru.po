@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Dimitri <doleiynyk@metaways.de>, 2013
+# Irina Fedulova <istartlin@gmail.com>, 2020
 # nsendetzky, 2014
 # Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
 msgid ""
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-07 11:14+0200\n"
-"PO-Revision-Date: 2020-07-07 09:17+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2020-08-17 14:20+0000\n"
+"Last-Translator: Irina Fedulova <istartlin@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +97,7 @@ msgstr "+ %1$s %2$s/штуку"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -321,7 +322,7 @@ msgstr "Адрес доставки"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "Адрес доставки успешно удален"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -464,19 +465,19 @@ msgid "Like entered by you"
 msgstr ""
 
 msgid "Login"
-msgstr ""
+msgstr "Вход"
 
 msgid "Name"
 msgstr "названию"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "Новый адрес доставки"
 
 msgid "Next"
 msgstr "Далее"
 
 msgid "Next order"
-msgstr ""
+msgstr "Следующий заказ"
 
 #, php-format
 msgid ""
@@ -530,7 +531,7 @@ msgid "Order channel"
 msgstr "Порядок заказов"
 
 msgid "Order date"
-msgstr ""
+msgstr "Дата заказа"
 
 msgid "Order details"
 msgstr "Сведения о заказе"
@@ -549,7 +550,7 @@ msgid "Other customers also bought"
 msgstr "Другие клиенты также покупают"
 
 msgid "Our products"
-msgstr ""
+msgstr "Наши товары"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -690,7 +691,7 @@ msgid "Services"
 msgstr "Оплата и доставка"
 
 msgid "Share"
-msgstr ""
+msgstr "Поделиться"
 
 msgid "Shipping"
 msgstr "Перевозка"
@@ -863,10 +864,10 @@ msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "Оплата за заказ %1$s от %2$s была возвращена."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "Подписка на товар закончилась"
 
 msgid "The subscription for the product has ended."
-msgstr ""
+msgstr "Подписка на товар закончилась."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
@@ -978,7 +979,7 @@ msgid "Your choice"
 msgstr "Выбрано"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Ваш комментарий"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
@@ -1007,7 +1008,7 @@ msgid "Your search result"
 msgstr "Результат поиска"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Ваша подписка"
 
 msgid "Your subscription product"
 msgstr ""
@@ -1086,7 +1087,7 @@ msgid "summary"
 msgstr "резюме"
 
 msgid "tax"
-msgstr ""
+msgstr "налог"
 
 msgid "▲ Name"
 msgstr "▲ Название"
