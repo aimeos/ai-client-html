@@ -359,7 +359,9 @@ abstract class Base
 			$expires[] = $date;
 		}
 
-		$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
+		if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface ) {
+			$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
+		}
 	}
 
 
