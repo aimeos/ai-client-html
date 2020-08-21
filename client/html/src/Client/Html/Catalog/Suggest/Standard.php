@@ -324,7 +324,7 @@ class Standard
 		 * product item including the localized name is available. You can add more domains
 		 * like e.g. "media" to get the images of the product as well.
 		 *
-		 * '''Note:''' The more domains you will add, the slower the autocomplete requests
+		 * **Note:** The more domains you will add, the slower the autocomplete requests
 		 * will be! Keep it to an absolute minium for user friendly response times.
 		 *
 		 * @param array List of domain names

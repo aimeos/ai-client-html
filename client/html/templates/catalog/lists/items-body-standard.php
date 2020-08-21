@@ -17,7 +17,7 @@ $enc = $this->encoder();
  * variants and product bundles. By default, also optional attributes are
  * displayed if they have been associated to a product.
  *
- * '''Note:''' To fetch the necessary product variants, you have to extend the
+ * **Note:** To fetch the necessary product variants, you have to extend the
  * list of domains for "client/html/catalog/lists/domains", e.g.
  *
  *  client/html/catalog/lists/domains = array( 'attribute', 'media', 'price', 'product', 'text' )

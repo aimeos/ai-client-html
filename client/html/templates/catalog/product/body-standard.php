@@ -20,7 +20,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
  * variants and product bundles. By default, also optional attributes are
  * displayed if they have been associated to a product.
  *
- * '''Note:''' To fetch the necessary product variants, you have to extend the
+ * **Note:** To fetch the necessary product variants, you have to extend the
  * list of domains for "client/html/catalog/product/domains", e.g.
  *
  *  client/html/catalog/product/domains = ['attribute', 'media', 'price', 'product', 'text']
