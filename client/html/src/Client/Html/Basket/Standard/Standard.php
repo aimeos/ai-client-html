@@ -495,16 +495,16 @@ class Standard
 
 			foreach( $entries as $values )
 			{
-				if( isset( $values['prodid'] ) && isset( $values['quantity'] ) && $values['quantity'] > 0 )
+				if( $values['prodid'] ?? null && ( $values['quantity'] ?? 0 ) > 0 )
 				{
 					$basketCntl->addProduct( $productCntl->get( $values['prodid'] ),
-						( isset( $values['quantity'] ) ? (float) $values['quantity'] : 0 ),
-						( isset( $values['attrvarid'] ) ? array_filter( (array) $values['attrvarid'] ) : [] ),
-						$this->getAttributeMap( isset( $values['attrconfid'] ) ? $values['attrconfid'] : [] ),
-						( isset( $values['attrcustid'] ) ? array_filter( (array) $values['attrcustid'] ) : [] ),
-						( isset( $values['stocktype'] ) ? (string) $values['stocktype'] : 'default' ),
-						( isset( $values['supplier'] ) ? (string) $values['supplier'] : '' ),
-						( isset( $values['siteid'] ) ? (string) $values['siteid'] : null )
+						(float) ( $values['quantity'] ?? 0 ),
+						array_filter( (array) ( $values['attrvarid'] ?? [] ) ),
+						$this->getAttributeMap( (array) ( $values['attrconfid'] ?? [] ) ),
+						array_filter( (array) ( $values['attrcustid'] ?? [] ) ),
+						(string) ( $values['stocktype'] ?? 'default' ),
+						(string) ( $values['supplier'] ?? '' ),
+						$values['siteid'] ?? null
 					);
 				}
 			}
