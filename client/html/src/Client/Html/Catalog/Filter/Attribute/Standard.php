@@ -375,15 +375,27 @@ class Standard
 	 */
 	protected function sort( array $attrMap, array $attrTypes ) : array
 	{
-		$map = [];
-
-		foreach( $attrTypes as $type )
+		if( !empty( $attrTypes ) )
 		{
-			if( isset( $attrMap[$type] ) ) {
-				$map[$type] = $attrMap[$type];
+			$map = [];
+
+			foreach( $attrTypes as $type )
+			{
+				if( isset( $attrMap[$type] ) ) {
+					$map[$type] = $attrMap[$type];
+				}
 			}
+
+			return $map;
 		}
 
-		return !empty( $map ) ? $map : $attrMap;
+		foreach( $attrMap as $type => &$map )
+		{
+			uasort( $map, function( $a, $b ) {
+				return $a->getPosition() <=> $b->getPosition();
+			} );
+		}
+
+		return $attrMap;
 	}
 }
