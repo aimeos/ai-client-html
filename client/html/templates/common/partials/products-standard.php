@@ -158,6 +158,12 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 				</div>
 
+				<div class="rating"><!--
+					<?php if( $productItem->getRating() > 0 ) : ?>
+						--><span class="stars"><?= str_repeat( '★', (int) round( $productItem->getRating() ) ) ?></span><!--
+					<?php endif ?>
+				--></div>
+
 				<div class="text-list">
 					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
 

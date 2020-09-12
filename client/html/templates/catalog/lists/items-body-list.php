@@ -64,6 +64,13 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 				</a><!--
 
 
+				--><div class="rating"><!--
+					<?php if( $productItem->getRating() > 0 ) : ?>
+						--><span class="stars"><?= str_repeat( '★', (int) round( $productItem->getRating() ) ) ?></span><!--
+					<?php endif ?>
+				--></div><!--
+
+
 				--><a class="text-list" href="<?= $url; ?>">
 					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
