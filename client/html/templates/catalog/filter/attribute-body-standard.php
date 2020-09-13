@@ -30,6 +30,10 @@ $listController = $this->config( 'client/html/catalog/lists/url/controller', 'ca
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
+$attrIds = array_filter( $this->param( 'f_attrid', [] ) );
+$optIds = array_filter( $this->param( 'f_optid', [] ) );
+$oneIds = array_filter( $this->param( 'f_oneid', [] ) );
+
 
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ); ?>
