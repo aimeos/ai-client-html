@@ -30,6 +30,10 @@ $listController = $this->config( 'client/html/catalog/lists/url/controller', 'ca
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
+$attrIds = array_filter( $this->param( 'f_attrid', [] ) );
+$optIds = array_filter( $this->param( 'f_optid', [] ) );
+$oneIds = array_filter( $this->param( 'f_oneid', [] ) );
+
 
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ); ?>
@@ -39,18 +43,20 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 		<h2><?= $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
 
 
-		<?php if( !empty( $attrIds ) || !empty( $optIds ) || !empty( $oneIds ) ) : ?>
+		<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
 			<div class="attribute-selected">
 				<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
 
 				<ul class="attr-list">
 					<?php foreach( $this->get( 'attributeMap', [] ) as $attrType => $list ) : ?>
 						<?php foreach( $list as $attribute ) : ?>
-							<li class="attr-item">
-								<a class="attr-name" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $attribute->get( 'params', [] ), [], $listConfig ) ); ?>">
-									<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
-								</a>
-							</li>
+							<?php if( $attribute->get( 'checked' ) ) : ?>
+								<li class="attr-item">
+									<a class="attr-name" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $attribute->get( 'params', [] ), [], $listConfig ) ); ?>">
+										<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+									</a>
+								</li>
+							<?php endif ?>
 						<?php endforeach; ?>
 					<?php endforeach; ?>
 				</ul>
