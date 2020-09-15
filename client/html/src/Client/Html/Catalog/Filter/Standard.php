@@ -81,6 +81,17 @@ class Standard
 	 * @category Developer
 	 */
 
+	/** client/html/catalog/filter/price/name
+	 * Name of the price part used by the catalog filter client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Filter\Price\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2020.10
+	 * @category Developer
+	 */
+
 	/** client/html/catalog/filter/attribute/name
 	 * Name of the attribute part used by the catalog filter client implementation
 	 *
@@ -102,7 +113,7 @@ class Standard
 	 * @since 2018.07
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'search', 'tree', 'supplier', 'attribute' );
+	private $subPartNames = array( 'search', 'tree', 'price', 'supplier', 'attribute' );
 	private $tags = [];
 	private $expire;
 	private $view;
