@@ -653,6 +653,7 @@ class Standard
 		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
 			->sort( $sort ) // prioritize user sorting over the sorting through relevance and category
 			->text( $view->param( 'f_search' ) )
+			->price( $view->param( 'f_price' ) )
 			->category( $catids, 'default', $level )
 			->supplier( $view->param( 'f_supid', [] ) )
 			->allOf( $view->param( 'f_attrid', [] ) )
