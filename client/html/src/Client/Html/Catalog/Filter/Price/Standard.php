@@ -197,4 +197,24 @@ class Standard
 	{
 		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
+
+
+	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	{
+		$params = $this->getClientParams( $view->param() );
+		unset( $params['f_price'] );
+
+		$view->priceHigh = 100;
+		$view->priceResetParams = $params;
+
+		return parent::addData( $view, $tags, $expire );
+	}
 }
