@@ -209,10 +209,11 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'index' );
 		$params = $this->getClientParams( $view->param() );
 		unset( $params['f_price'] );
 
-		$view->priceHigh = 100;
+		$view->priceHigh = $manager->aggregate( $manager->filter( true ), 'index.price.currencyid', null, 'max' );
 		$view->priceResetParams = $params;
 
 		return parent::addData( $view, $tags, $expire );
