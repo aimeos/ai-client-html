@@ -7,12 +7,12 @@
 
  @font-face {
 	font-family: 'FontAwesome';
-	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.eot');
-	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-	url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.woff2') format('woff2'),
-	url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.woff') format('woff'),
-	url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.ttf') format('truetype'),
-	url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot');
+	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+	url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'),
+	url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'),
+	url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf') format('truetype'),
+	url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
 }
 
 
@@ -169,8 +169,8 @@
 }
 
 .aimeos input:focus {
-	border: 1px solid #555;
-	border-color: var(--ai-secondary, #555);
+	border: 1px solid #FFA840;
+	border-color: var(--ai-primary, #FFA840);
 	outline: none;
 }
 
@@ -713,7 +713,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 /* Catalog filter, tree section */
-.catalog-filter-tree {
+.catalog-filter section {
 	margin: 1em 0;
 }
 
@@ -742,8 +742,8 @@ html.no-js .catalog-filter-tree:hover > ul {
 }
 
 .catalog-filter-tree a.cat-item {
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	border-bottom: solid 1px #D0D0D0;
+	border-bottom-color: var(--ai-light, #D0D0D0);
 	white-space: nowrap;
 	padding: 0.5em 0;
 	display: block;
@@ -845,8 +845,6 @@ html.no-js .catalog-filter-price:hover fieldset {
 
 .catalog-filter-attribute fieldset,
 .catalog-filter-supplier fieldset {
-	border-left: 1px solid #D0D0D0;
-	border-left-color: var(--ai-light, #D0D0D0);
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
 	display: inline-block;
@@ -861,10 +859,18 @@ html.no-js .catalog-filter-price:hover fieldset {
 	clear: both;
 }
 
+.catalog-filter-attribute fieldset {
+	border-left: 1px solid #D0D0D0;
+	border-left-color: var(--ai-light, #D0D0D0);
+}
+
 .catalog-filter-attribute .attribute-lists .attr-list,
 .catalog-filter-supplier .supplier-lists .attr-list {
-	overflow: auto;
 	padding: 0 0.5em;
+}
+
+.catalog-filter-supplier .attribute-lists .attr-list {
+	overflow: auto;
 	height: 12em;
 }
 
