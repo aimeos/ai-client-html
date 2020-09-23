@@ -84,6 +84,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<span class="value" itemprop="sku"><?= $enc->html( $this->detailProductItem->getCode() ); ?></span>
 					</p>
 
+					<?php if( $this->detailProductItem->getRating() > 0 ) : ?>
+						<div class="rating" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+							<span class="stars"><?= str_repeat( '★', (int) round( $this->detailProductItem->getRating() ) ) ?></span>
+							<span class="rating-value" itemprop="ratingValue"><?= $enc->html( $this->detailProductItem->getRating() ) ?></span>
+							<span class="ratings" itemprop="reviewCount"><?= (int) $this->detailProductItem->getRatings() ?></span>
+						</div>
+					<?php endif ?>
+
 					<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 						<p class="short" itemprop="description"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
 					<?php endforeach; ?>
@@ -414,6 +422,71 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						</div>
 
 					<?php endif; ?>
+
+
+					<div class="additional-box">
+						<h2 class="header reviews">
+							<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
+							<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
+						</h2>
+						<div class="content reviews row" data-productid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
+							<div class="col-md-4 rating-list">
+								<div class="rating-numbers">
+									<div class="rating-num"><?= number_format( $this->detailProductItem->getRating(), 1 ) ?>/5</div>
+									<div class="rating-total"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d review', '%1$d reviews', $this->detailProductItem->getRatings() ), $this->detailProductItem->getRatings() ) ) ?></div>
+									<div class="rating-stars"><?= str_repeat( '★', (int) round( $this->detailProductItem->getRating() ) ) ?></div>
+								</div>
+								<table class="rating-dist" data-ratings="<?= $enc->attr( $this->detailProductItem->getRatings() ) ?>">
+									<tr>
+										<td class="rating-label"><label for="rating-5">★★★★★</label></td>
+										<td class="rating-percent"><progress id="rating-5" value="0" max="100">0</progress></td>
+									</tr>
+									<tr>
+										<td class="rating-label"><label for="rating-4">★★★★</label></td>
+										<td class="rating-percent"><progress id="rating-4" value="0" max="100">0</progress></td>
+									</tr>
+									<tr>
+										<td class="rating-label"><label for="rating-3">★★★</label></td>
+										<td class="rating-percent"><progress id="rating-3" value="0" max="100">0</progress></td>
+									</tr>
+									<tr>
+										<td class="rating-label"><label for="rating-2">★★</label></td>
+										<td class="rating-percent"><progress id="rating-2" value="0" max="100">0</progress></td>
+									</tr>
+									<tr>
+										<td class="rating-label"><label for="rating-1">★</label></td>
+										<td class="rating-percent"><progress id="rating-1" value="0" max="100">0</progress></td>
+									</tr>
+								</table>
+							</div>
+							<div class="col-md-8 review-list">
+								<div class="sort">
+									<span><?= $enc->html( $this->translate( 'client', 'Sort by:' ), $enc::TRUST ); ?></span>
+									<ul>
+										<li>
+											<a class="sort-option option-ctime active" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-ctime'], [], $optConfig ) ); ?>" >
+												<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ); ?>
+											</a>
+										</li>
+										<li>
+											<a class="sort-option option-rating" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-rating,-ctime'], [], $optConfig ) ); ?>" >
+												<?= $enc->html( $this->translate( 'client', 'Rating' ), $enc::TRUST ); ?>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="review-items">
+									<div class="review-item prototype">
+										<div class="review-name"></div>
+										<div class="review-ctime"></div>
+										<div class="review-rating">★</div>
+										<div class="review-comment"></div>
+									</div>
+								</div>
+								<a class="btn btn-primary more" href="#"><?= $enc->html( $this->translate( 'client', 'More reviews' ), $enc::TRUST ) ?></a>
+							</div>
+						</div>
+					</div>
 
 				</div>
 
