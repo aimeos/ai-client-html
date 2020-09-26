@@ -410,9 +410,6 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$productItems = map();
-		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text', 'product' => ['promotion']] );
-
 		/** client/html/catalog/home/domains
 		 * A list of domain names whose items should be available in the catalog home view template
 		 *
@@ -436,6 +433,7 @@ class Standard
 		 * @see client/html/catalog/stage/domains
 		 * @see client/html/catalog/lists/domains
 		 */
+		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text', 'product' => ['promotion']] );
 		$domains = $config->get( 'client/html/catalog/home/domains', $domains );
 
 		if( $config->get( 'client/html/catalog/home/basket-add', false ) ) {
