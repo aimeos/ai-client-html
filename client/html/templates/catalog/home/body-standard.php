@@ -23,7 +23,7 @@ $enc = $this->encoder();
 
 		<div class="home-item <?= $enc->attr( $this->homeTree->getCode() ) ?>">
 
-			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default') )->isEmpty() ) : ?>
+			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 				<div class="home-stage">
 					<?php foreach( $mediaItems as $mediaItem ) : ?>
 						<a class="stage-item" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
@@ -54,7 +54,7 @@ $enc = $this->encoder();
 
 			<div class="home-item <?= $enc->attr( $child->getCode() ) ?>">
 
-				<?php if( !( $mediaItems = $child->getRefItems( 'media', 'stage', 'default') )->isEmpty() ) : ?>
+				<?php if( !( $mediaItems = $child->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 					<div class="home-stage">
 						<?php foreach( $mediaItems as $mediaItem ) : ?>
 							<a class="stage-item" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
