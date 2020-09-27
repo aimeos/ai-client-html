@@ -428,14 +428,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		$params = $this->getClientParams( $view->param(), ['f', 'l'] );
-		$catid = $params['f_catid'] ?? '';
-
-		if( $catid == '' ) {
-			$catid = $config->get( 'client/html/catalog/lists/catid-default', '' );
-		}
-
-		if( $catid != '' )
+		if( $catid = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default', '' ) ) )
 		{
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
 
@@ -483,7 +476,7 @@ class Standard
 			$view->stageCatId = $catid;
 		}
 
-		$view->stageParams = $params;
+		$view->stageParams = $this->getClientParams( $view->param(), ['f', 'l'] );
 
 		return parent::addData( $view, $tags, $expire );
 	}
