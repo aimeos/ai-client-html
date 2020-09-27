@@ -10,7 +10,7 @@ $enc = $this->encoder();
 
 ?>
 <?php if( isset( $this->homeStockUrl ) ) : ?>
-	<?php foreach( (array) $this->homeStockUrl as $url ) : ?>
+	<?php foreach( $this->homeStockUrl as $url ) : ?>
 		<script type="text/javascript" defer="defer" src="<?= $enc->attr( $url ); ?>"></script>
 	<?php endforeach ?>
 <?php endif; ?>
