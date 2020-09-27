@@ -46,7 +46,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
  * @category User
  * @category Developer
  */
-$textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 'short', 'long' ) );
+$textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 'long' ) );
 
 
 /** client/html/catalog/lists/pagination/enable
@@ -101,14 +101,6 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 			</div>
 
 			<h1><?= $enc->html( $catItem->getName() ); ?></h1>
-			<?php foreach( (array) $textTypes as $textType ) : ?>
-				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
-					<div class="<?= $enc->attr( $textItem->getType() ); ?>">
-						<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
-					</div>
-				<?php endforeach; ?>
-			<?php endforeach; ?>
-
 		</div>
 	<?php endif; ?>
 
@@ -181,5 +173,18 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 			);
 		?>
 	<?php endif ?>
+
+
+	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+		<div class="catalog-list-footer">
+			<?php foreach( (array) $textTypes as $textType ) : ?>
+				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
+					<div class="<?= $enc->attr( $textItem->getType() ); ?>">
+						<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
+					</div>
+				<?php endforeach; ?>
+			<?php endforeach; ?>
+		</div>
+	<?php endif; ?>
 
 </section>

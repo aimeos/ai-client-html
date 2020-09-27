@@ -78,7 +78,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'promo', 'items' );
+	private $subPartNames = array( 'items' );
 
 	private $tags = [];
 	private $expire;

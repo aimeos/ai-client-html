@@ -1457,7 +1457,8 @@ html.no-js .catalog-filter-price:hover fieldset {
 
 
 /* List head section */
-.catalog-list-head {
+.catalog-list-head,
+.catalog-list-footer {
 	padding: 1em 0.5em;
 }
 
@@ -1468,14 +1469,8 @@ html.no-js .catalog-filter-price:hover fieldset {
 	margin: 0;
 }
 
-.catalog-list-head .short {
-	font-weight: bold;
-	padding: 0.5em 0;
-	color: #555;
-	color: var(--ai-secondary, #555);
-}
-
-.catalog-list-head .long {
+.catalog-list-head .long,
+.catalog-list-footer .long {
 	padding: 0.5em 0;
 	color: #555;
 	color: var(--ai-secondary, #555);
