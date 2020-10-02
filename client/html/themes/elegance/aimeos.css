@@ -237,13 +237,22 @@
 	color: #FF3300;
 	color: var(--ai-danger, #FF3300);
 	padding: 0.5em;
-	padding-left: 2em;
 	margin-bottom: 2em;
-	list-style: disc;
+	list-style: none;
 }
 
-.aimeos .error-item {
+.aimeos .error-item,
+.aimeos .info-item {
+	text-align: center;
 	padding: 0.25em;
+}
+
+.aimeos .info-list {
+	color: #008000;
+	color: var(--ai-info, #008000);
+	padding: 0.5em;
+	margin-bottom: 2em;
+	list-style: none;
 }
 
 .aimeos .attr-list,
