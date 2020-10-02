@@ -198,6 +198,19 @@ class Standard
 	{
 		$view = $this->getView();
 
+		if( ( $reviews = $view->param( 'review-todo', [] ) ) !== [] )
+		{
+			$context = $this->getContext();
+			$cntl = \Aimeos\Controller\Frontend::create( $context, 'review' );
+			$custItem = \Aimeos\Controller\Frontend::create( $context, 'customer' )->get( $context->getUserId() );
+			$name = $custItem->getPaymentAddress()->getFirstName();
+
+			foreach( $reviews as $values ) {
+				$cntl->save( $cntl->create( $values )->setDomain( 'product' )->setName( $name ) );
+			}
+
+			$view->reviewInfoList = [$view->translate( 'client', 'Thank you for your review!' )];
+		}
 
 		parent::process();
 	}
@@ -222,21 +235,27 @@ class Standard
 			->slice( 0, 25 )
 			->search();
 
-		$prodIds = $orders->getBaseItem()->getProducts()->flat()->getProductId()->unique();
+		$prodMap = $orders->getBaseItem()->getProducts()->flat()
+			->col( 'order.base.product.id', 'order.base.product.productid' );
 
 		$exclude = \Aimeos\Controller\Frontend::create( $context, 'review' )
-			->for( 'product', $prodIds )
-			->slice( 0, $prodIds->count() )
+			->for( 'product', $prodMap->keys()->toArray()  )
+			->slice( 0, $prodMap->count() )
 			->list()->getRefId();
 
-		$productItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
-			->product( $prodIds->diff( $exclude )->toArray() )
-			->uses( ['text' => ['name'], 'media' => ['default']] )
-			->search();
-$productItems->keys()->dump();
+		if( ( $prodIds = $prodMap->keys()->diff( $exclude )->toArray() ) !== [] )
+		{
+			$productItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->uses( ['text' => ['name'], 'media' => ['default']] )
+				->product( $prodMap->keys()->diff( $exclude )->toArray() )
+				->search();
 
-		foreach( $prodIds as $prodId ) {
-			$products[$prodId] = $productItems->get( $prodId );
+			foreach( $prodMap as $prodId => $ordProdId )
+			{
+				if( $item = $productItems->get( $prodId ) ) {
+					$products[$prodId] = $item->set( 'orderProductId', $ordProdId );
+				}
+			}
 		}
 
 		$view->todoProductItems = map( $products )->filter();
