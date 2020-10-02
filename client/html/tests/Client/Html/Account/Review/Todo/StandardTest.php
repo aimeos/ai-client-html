@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->getBody();
 
-		$this->assertStringContainsString( '<section class="account-review-todo">', $output );
+		$this->assertStringContainsString( '<div class="account-review-todo">', $output );
 	}
 
 
