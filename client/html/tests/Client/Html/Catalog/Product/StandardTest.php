@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$this->context->getConfig()->set( 'client/html/catalog/product/product-codes', ['CNE', 'IJKL', 'CNC'] );
+		$this->context->getConfig()->set( 'client/html/catalog/product/product-codes', ['CNE', 'ABCD', 'CNC'] );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Product\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<script type="text/javascript"', $output );
 		$prodCodeParam = '/s_prodcode%5B[0-9]%5D=';
 		$this->assertRegExp( $prodCodeParam . 'CNE/', $output );
-		$this->assertRegExp( $prodCodeParam . 'IJKL/', $output );
+		$this->assertRegExp( $prodCodeParam . 'ABCD/', $output );
 		$this->assertRegExp( $prodCodeParam . 'CNC/', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 	}
@@ -77,17 +77,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$productNameCNE = '<h2 itemprop="name">Cafe Noire Expresso</h2>';
-		$productNameIJKL = '<h2 itemprop="name">Unterproduct 3</h2>';
+		$productNameABCD = '<h2 itemprop="name">Unterproduct 1</h2>';
 		$productNameCNC = '<h2 itemprop="name">Cafe Noire Cappuccino</h2>';
 		$this->assertStringContainsString( $productNameCNE, $output );
-		$this->assertStringContainsString( $productNameIJKL, $output );
+		$this->assertStringContainsString( $productNameABCD, $output );
 		$this->assertStringContainsString( $productNameCNC, $output );
 
 		$outputPosCNE = strpos( $output, $productNameCNE );
-		$outputPosIJKL = strpos( $output, $productNameIJKL );
+		$outputPosIJKL = strpos( $output, $productNameABCD );
 		$outputPosCNC = strpos( $output, $productNameCNC );
 		$this->assertGreaterThan( $outputPosCNE, $outputPosIJKL );
-		$this->assertGreaterThan( $productNameIJKL, $outputPosCNC );
+		$this->assertGreaterThan( $productNameABCD, $outputPosCNC );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 	}
