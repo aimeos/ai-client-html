@@ -239,7 +239,7 @@ class Standard
 			->col( 'order.base.product.id', 'order.base.product.productid' );
 
 		$exclude = \Aimeos\Controller\Frontend::create( $context, 'review' )
-			->for( 'product', $prodMap->keys()->toArray()  )
+			->for( 'product', $prodMap->keys()->toArray() )
 			->slice( 0, $prodMap->count() )
 			->list()->getRefId();
 
