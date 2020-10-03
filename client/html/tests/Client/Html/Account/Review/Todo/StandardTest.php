@@ -56,4 +56,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
+
+
+	public function getProcess()
+	{
+		$view = $this->object->getView();
+		$param = ['review-todo' => [['review.rating' => 5]]];
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
+		$view->addHelper( 'param', $helper );
+		$this->object->setView( $view );
+
+		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Review\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['save'] )
+			->getMock();
+
+		$stub->expects( $this->once() )->method( 'save' );
+
+		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', $stub );
+		$this->object->process();
+		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', null );
+
+		$this->assertEmpty( $view->get( 'reviewErrorList' ) );
+		$this->assertCount( 1, $view->get( 'reviewInfoList' ) );
+	}
 }
