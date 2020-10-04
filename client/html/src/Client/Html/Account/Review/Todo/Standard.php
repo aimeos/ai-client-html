@@ -202,11 +202,10 @@ class Standard
 		{
 			$context = $this->getContext();
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'review' );
-			$custItem = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( [] )->get();
-			$name = $custItem->getPaymentAddress()->getFirstName();
+			$addr = \Aimeos\Controller\Frontend::create( $context, 'customer' )->get()->getPaymentAddress();
 
 			foreach( $reviews as $values ) {
-				$cntl->save( $cntl->create( $values )->setDomain( 'product' )->setName( $name ) );
+				$cntl->save( $cntl->create( $values )->setDomain( 'product' )->setName( $addr->getFirstName() ) );
 			}
 
 			$view->reviewInfoList = [$view->translate( 'client', 'Thank you for your review!' )];
