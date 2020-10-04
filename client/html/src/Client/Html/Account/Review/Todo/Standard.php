@@ -202,7 +202,7 @@ class Standard
 		{
 			$context = $this->getContext();
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'review' );
-			$custItem = \Aimeos\Controller\Frontend::create( $context, 'customer' )->get( $context->getUserId() );
+			$custItem = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( [] )->get();
 			$name = $custItem->getPaymentAddress()->getFirstName();
 
 			foreach( $reviews as $values ) {
