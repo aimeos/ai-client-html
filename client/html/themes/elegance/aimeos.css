@@ -1354,10 +1354,33 @@ html.no-js .catalog-filter-price:hover fieldset {
 	padding: 1rem 0;
 }
 
+.catalog-detail-additional .review-response {
+	background: #f8f8f8;
+	padding: 1rem;
+}
+
+.catalog-detail-additional .review-vendor {
+	font-size: 80%;
+	margin: -0.5rem;
+	margin-bottom: 0.5rem;
+}
+
 .catalog-detail-additional .review-item {
 	border-bottom: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 	margin: 1rem;
+	max-height: 15rem;
+	overflow: hidden;
+	position: relative;
+}
+
+.catalog-detail-additional .review-show {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding-top: 2rem;
+	text-align: center;
+	background: linear-gradient(0deg, white 0% 50%, transparent);
 }
 
 .catalog-detail-additional .review-list .more {

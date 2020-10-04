@@ -481,7 +481,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 										<div class="review-ctime"></div>
 										<div class="review-rating">★</div>
 										<div class="review-comment"></div>
-									</div>
+										<div class="review-response">
+											<div class="review-vendor"><?= $enc->html( $this->translate( 'client', 'Vendor response' ) ) ?></div>
+										</div>
+										<div class="review-show"><a href="#"><?= $enc->html( $this->translate( 'client', 'Show' ) ) ?></a></div><!--
+									--></div>
 								</div>
 								<a class="btn btn-primary more" href="#"><?= $enc->html( $this->translate( 'client', 'More reviews' ), $enc::TRUST ) ?></a>
 							</div>
