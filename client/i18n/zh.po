@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 11:14+0200\n"
-"PO-Revision-Date: 2020-07-07 09:17+0000\n"
-"Last-Translator: Bruce Liu <zcon.bruce@gmail.com>\n"
+"POT-Creation-Date: 2020-10-05 09:22+0200\n"
+"PO-Revision-Date: 2020-10-05 07:29+0000\n"
+"Last-Translator: stevechen <steve.stevechen@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +25,11 @@ msgstr ""
 msgid "%1$d article"
 msgid_plural "%1$d articles"
 msgstr[0] "%1$d 產品"
+
+#, php-format
+msgid "%1$d review"
+msgid_plural "%1$d reviews"
+msgstr[0] ""
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -376,6 +381,9 @@ msgstr "GB999999973"
 msgid "Go"
 msgstr "前往"
 
+msgid "HH:mm"
+msgstr ""
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -464,6 +472,9 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "More reviews"
+msgstr ""
+
 msgid "Name"
 msgstr "姓名"
 
@@ -520,6 +531,10 @@ msgstr "選項"
 
 msgid "Order"
 msgstr "訂單"
+
+#, php-format
+msgid "Order %1$s"
+msgstr ""
 
 msgid "Order ID"
 msgstr "訂單編號"
@@ -630,6 +645,9 @@ msgstr "數量"
 msgid "Quantity"
 msgstr "數量"
 
+msgid "Rating"
+msgstr ""
+
 msgid "Reference"
 msgstr ""
 
@@ -639,10 +657,16 @@ msgstr "關聯的"
 msgid "Relevance"
 msgstr "關聯"
 
+msgid "Reset"
+msgstr "重置"
+
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "\"%1$s\"的結果"
+
+msgid "Reviews"
+msgstr ""
 
 msgid "SKU or article name"
 msgstr ""
@@ -811,6 +835,9 @@ msgid ""
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
 msgstr "非常感謝您的下訂。\n我們將在幾分鐘之內傳送一封完整訂單明細的e-mail給您。"
 
+msgid "Thank you for your review!"
+msgstr ""
+
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
@@ -925,6 +952,9 @@ msgstr ""
 msgid "Vat ID"
 msgstr "增值稅ID"
 
+msgid "Vendor response"
+msgstr ""
+
 msgid "Watch"
 msgstr "關注"
 
@@ -946,6 +976,9 @@ msgstr "我們收到了您來自於%2$s的訂單%1$s的退回貨物。"
 msgid "Web site"
 msgstr "網站"
 
+msgid "What do you think about the product"
+msgstr ""
+
 msgid "X"
 msgstr "X"
 
@@ -953,6 +986,12 @@ msgstr "X"
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
+
+msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "YYYY-MM-DD HH:mm"
+msgstr ""
 
 msgid "You are here:"
 msgstr "您現在的位置："
@@ -992,10 +1031,16 @@ msgstr "您的訂單 %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "您從%2$s下訂的訂單%1$s已出貨。"
 
+msgid "Your rating"
+msgstr ""
+
 msgid "Your reference"
 msgstr ""
 
 msgid "Your reference number"
+msgstr ""
+
+msgid "Your review"
 msgstr ""
 
 msgid "Your search result"

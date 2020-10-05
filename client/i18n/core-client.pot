@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 11:14+0200\n"
+"POT-Creation-Date: 2020-10-05 09:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,12 @@ msgid "%1$d article"
 msgid_plural "%1$d articles"
 msgstr[0] "%1$d article"
 msgstr[1] "%1$d articles"
+
+#, php-format
+msgid "%1$d review"
+msgid_plural "%1$d reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
 #. / address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
@@ -386,6 +392,9 @@ msgstr "GB999999973"
 msgid "Go"
 msgstr "Go"
 
+msgid "HH:mm"
+msgstr ""
+
 #, php-format
 msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
@@ -464,6 +473,9 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "More reviews"
+msgstr ""
+
 msgid "Name"
 msgstr "Name"
 
@@ -517,6 +529,10 @@ msgid "Options"
 msgstr "Options"
 
 msgid "Order"
+msgstr ""
+
+#, php-format
+msgid "Order %1$s"
 msgstr ""
 
 msgid "Order ID"
@@ -628,6 +644,9 @@ msgstr "Qty"
 msgid "Quantity"
 msgstr "Quantity"
 
+msgid "Rating"
+msgstr ""
+
 msgid "Reference"
 msgstr ""
 
@@ -637,10 +656,16 @@ msgstr "Related"
 msgid "Relevance"
 msgstr "Relevance"
 
+msgid "Reset"
+msgstr ""
+
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Result for \"%1$s\""
+
+msgid "Reviews"
+msgstr ""
 
 msgid "SKU or article name"
 msgstr ""
@@ -813,6 +838,9 @@ msgstr ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
 
+msgid "Thank you for your review!"
+msgstr ""
+
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)
@@ -925,6 +953,9 @@ msgstr ""
 msgid "Vat ID"
 msgstr "Vat ID"
 
+msgid "Vendor response"
+msgstr ""
+
 msgid "Watch"
 msgstr "Watch"
 
@@ -944,12 +975,21 @@ msgstr "We received the returned parcel for your order %1$s from %2$s."
 msgid "Web site"
 msgstr "Web site"
 
+msgid "What do you think about the product"
+msgstr ""
+
 msgid "X"
 msgstr "X"
 
 #. / Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
+
+msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "YYYY-MM-DD HH:mm"
+msgstr ""
 
 msgid "You are here:"
 msgstr "You are here:"
@@ -988,10 +1028,16 @@ msgstr "Your order %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Your order %1$s from %2$s has been dispatched."
 
+msgid "Your rating"
+msgstr ""
+
 msgid "Your reference"
 msgstr ""
 
 msgid "Your reference number"
+msgstr ""
+
+msgid "Your review"
 msgstr ""
 
 msgid "Your search result"

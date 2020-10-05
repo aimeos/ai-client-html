@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 11:14+0200\n"
-"PO-Revision-Date: 2020-07-20 21:17+0000\n"
+"POT-Creation-Date: 2020-10-05 09:22+0200\n"
+"PO-Revision-Date: 2020-10-05 07:29+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,12 @@ msgid "%1$d article"
 msgid_plural "%1$d articles"
 msgstr[0] "%1$d ürün"
 msgstr[1] "%1$d ürün"
+
+#, php-format
+msgid "%1$d review"
+msgid_plural "%1$d reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -374,6 +380,9 @@ msgstr "Ör: Bornova / 123 456 789 11"
 msgid "Go"
 msgstr "Ara"
 
+msgid "HH:mm"
+msgstr ""
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -462,6 +471,9 @@ msgstr "Tarafınızdan girildiği gibi"
 msgid "Login"
 msgstr "Oturum aç"
 
+msgid "More reviews"
+msgstr ""
+
 msgid "Name"
 msgstr "Ad"
 
@@ -518,6 +530,10 @@ msgstr "Seçenekler"
 
 msgid "Order"
 msgstr "Sipariş"
+
+#, php-format
+msgid "Order %1$s"
+msgstr ""
 
 msgid "Order ID"
 msgstr "Sipariş kimlik numarası"
@@ -628,6 +644,9 @@ msgstr "Miktar"
 msgid "Quantity"
 msgstr "Miktar"
 
+msgid "Rating"
+msgstr ""
+
 msgid "Reference"
 msgstr "Referans"
 
@@ -637,10 +656,16 @@ msgstr "İlgili"
 msgid "Relevance"
 msgstr "İlgi"
 
+msgid "Reset"
+msgstr "Sıfırla"
+
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "\"%1$s\" için sonuç"
+
+msgid "Reviews"
+msgstr ""
 
 msgid "SKU or article name"
 msgstr "Ürün kodu veya adı"
@@ -810,6 +835,9 @@ msgid ""
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
 msgstr "Siparişiniz için teşekkür ederiz.\nÖdemenizi aldık ve önümüzdeki birkaç dakika içinde tarafınıza sipariş detaylarını içeren bir e-mail gönderilecek."
 
+msgid "Thank you for your review!"
+msgstr ""
+
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
@@ -924,6 +952,9 @@ msgstr "Değişken"
 msgid "Vat ID"
 msgstr "Vergi Dairesi/Numarası"
 
+msgid "Vendor response"
+msgstr ""
+
 msgid "Watch"
 msgstr "İzle"
 
@@ -945,6 +976,9 @@ msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz içi
 msgid "Web site"
 msgstr "Web sitesi"
 
+msgid "What do you think about the product"
+msgstr ""
+
 msgid "X"
 msgstr "X"
 
@@ -952,6 +986,12 @@ msgstr "X"
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
+
+msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "YYYY-MM-DD HH:mm"
+msgstr ""
 
 msgid "You are here:"
 msgstr "Buradasınız:"
@@ -991,11 +1031,17 @@ msgstr "%1$s sıra numaralı siparişiniz"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz sevk edildi."
 
+msgid "Your rating"
+msgstr ""
+
 msgid "Your reference"
 msgstr "Referansınız"
 
 msgid "Your reference number"
 msgstr "Referans numaranız"
+
+msgid "Your review"
+msgstr ""
 
 msgid "Your search result"
 msgstr "Arama sonucunuz"

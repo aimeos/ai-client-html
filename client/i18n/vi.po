@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 11:14+0200\n"
-"PO-Revision-Date: 2020-07-07 09:17+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2020-10-05 09:22+0200\n"
+"PO-Revision-Date: 2020-10-05 07:29+0000\n"
+"Last-Translator: hh hh <minhtrung.4791@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/aimeos/aimeos-core/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,6 +23,11 @@ msgstr ""
 msgid "%1$d article"
 msgid_plural "%1$d articles"
 msgstr[0] "%1$d bài đăng"
+
+#, php-format
+msgid "%1$d review"
+msgid_plural "%1$d reviews"
+msgstr[0] ""
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -374,6 +379,9 @@ msgstr ""
 msgid "Go"
 msgstr "Truy cập"
 
+msgid "HH:mm"
+msgstr ""
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -462,6 +470,9 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "More reviews"
+msgstr ""
+
 msgid "Name"
 msgstr "Tên"
 
@@ -517,6 +528,10 @@ msgid "Options"
 msgstr "Tùy chọ"
 
 msgid "Order"
+msgstr ""
+
+#, php-format
+msgid "Order %1$s"
 msgstr ""
 
 msgid "Order ID"
@@ -628,6 +643,9 @@ msgstr ""
 msgid "Quantity"
 msgstr "Số lượng"
 
+msgid "Rating"
+msgstr ""
+
 msgid "Reference"
 msgstr ""
 
@@ -637,10 +655,16 @@ msgstr ""
 msgid "Relevance"
 msgstr "Xác thực"
 
+msgid "Reset"
+msgstr "Đặt lại"
+
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Kết quả của \"%1$s\""
+
+msgid "Reviews"
+msgstr ""
 
 msgid "SKU or article name"
 msgstr ""
@@ -809,6 +833,9 @@ msgid ""
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
 msgstr ""
 
+msgid "Thank you for your review!"
+msgstr ""
+
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
@@ -923,6 +950,9 @@ msgstr ""
 msgid "Vat ID"
 msgstr ""
 
+msgid "Vendor response"
+msgstr ""
+
 msgid "Watch"
 msgstr ""
 
@@ -944,6 +974,9 @@ msgstr ""
 msgid "Web site"
 msgstr "Trang web"
 
+msgid "What do you think about the product"
+msgstr ""
+
 msgid "X"
 msgstr ""
 
@@ -951,6 +984,12 @@ msgstr ""
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
+
+msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "YYYY-MM-DD HH:mm"
+msgstr ""
 
 msgid "You are here:"
 msgstr "Bạn đang ở đây"
@@ -990,10 +1029,16 @@ msgstr ""
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr ""
 
+msgid "Your rating"
+msgstr ""
+
 msgid "Your reference"
 msgstr ""
 
 msgid "Your reference number"
+msgstr ""
+
+msgid "Your review"
 msgstr ""
 
 msgid "Your search result"

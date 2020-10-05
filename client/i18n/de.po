@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 11:14+0200\n"
-"PO-Revision-Date: 2020-07-07 09:17+0000\n"
+"POT-Creation-Date: 2020-10-05 09:22+0200\n"
+"PO-Revision-Date: 2020-10-05 08:10+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,12 @@ msgid "%1$d article"
 msgid_plural "%1$d articles"
 msgstr[0] "%1$d Artikel"
 msgstr[1] "%1$d Artikel"
+
+#, php-format
+msgid "%1$d review"
+msgid_plural "%1$d reviews"
+msgstr[0] "%1$d Rezensionen"
+msgstr[1] "%1$d Rezensionen"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -377,6 +383,9 @@ msgstr "DE999999999"
 msgid "Go"
 msgstr "Los"
 
+msgid "HH:mm"
+msgstr "HH:mm"
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -465,6 +474,9 @@ msgstr "Wie von Ihnen eingegeben"
 msgid "Login"
 msgstr "Benutzerkonto"
 
+msgid "More reviews"
+msgstr "Weitere Rezensionen"
+
 msgid "Name"
 msgstr "Name"
 
@@ -521,6 +533,10 @@ msgstr "Optionen"
 
 msgid "Order"
 msgstr "Bestellung"
+
+#, php-format
+msgid "Order %1$s"
+msgstr "Bestellung %1$s"
 
 msgid "Order ID"
 msgstr "Bestellnummer"
@@ -631,6 +647,9 @@ msgstr "Anz"
 msgid "Quantity"
 msgstr "Anzahl"
 
+msgid "Rating"
+msgstr "Bewertung"
+
 msgid "Reference"
 msgstr "Referenz"
 
@@ -640,10 +659,16 @@ msgstr "Verwandte Produkte"
 msgid "Relevance"
 msgstr "Relevanz"
 
+msgid "Reset"
+msgstr "Zurücksetzen"
+
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Suchergebnis für \"%1$s\""
+
+msgid "Reviews"
+msgstr "Rezensionen"
 
 msgid "SKU or article name"
 msgstr "Artikelname oder -nummer"
@@ -813,6 +838,9 @@ msgid ""
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
 msgstr "Vielen Dank für Ihre Bestellung.\nWir haben Ihre Zahlung erhalten und eine E-Mail mit den Bestelldaten wird in den nächsten Minuten an Sie versandt."
 
+msgid "Thank you for your review!"
+msgstr "Vielen Dank für Ihre Bewertung"
+
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
@@ -927,6 +955,9 @@ msgstr "Variante"
 msgid "Vat ID"
 msgstr "USt-Id"
 
+msgid "Vendor response"
+msgstr "Antwort des Verkäufers"
+
 msgid "Watch"
 msgstr "Beobachten"
 
@@ -948,6 +979,9 @@ msgstr "Wir haben Ihre Rücksendung für Ihre Bestellung %1$s vom %2$s erhalten.
 msgid "Web site"
 msgstr "Webseite"
 
+msgid "What do you think about the product"
+msgstr "Was denken Sie über das Produkt"
+
 msgid "X"
 msgstr "X"
 
@@ -955,6 +989,12 @@ msgstr "X"
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "d.m.Y"
+
+msgid "YYYY-MM-DD"
+msgstr "YYYY-MM-DD"
+
+msgid "YYYY-MM-DD HH:mm"
+msgstr "YYYY-MM-DD HH:mm"
 
 msgid "You are here:"
 msgstr "Sie befinden sich hier:"
@@ -994,11 +1034,17 @@ msgstr "Ihre Bestellung %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Ihre Bestellung %1$s vom %2$s wurde versandt."
 
+msgid "Your rating"
+msgstr "Ihre Bewertung"
+
 msgid "Your reference"
 msgstr "Ihre Referenz"
 
 msgid "Your reference number"
 msgstr "Ihre Referenz-Bestellnummer"
+
+msgid "Your review"
+msgstr "Ihre Rezension"
 
 msgid "Your search result"
 msgstr "Ihr Suchergebnis"

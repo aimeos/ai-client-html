@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 11:14+0200\n"
-"PO-Revision-Date: 2020-07-07 09:17+0000\n"
+"POT-Creation-Date: 2020-10-05 09:22+0200\n"
+"PO-Revision-Date: 2020-10-05 07:29+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Czech (http://www.transifex.com/aimeos/aimeos-core/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,14 @@ msgstr[0] "%1$d článek"
 msgstr[1] "%1$d články"
 msgstr[2] "%1$d články"
 msgstr[3] "%1$d články"
+
+#, php-format
+msgid "%1$d review"
+msgid_plural "%1$d reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -377,6 +385,9 @@ msgstr "GB999999973"
 msgid "Go"
 msgstr "Najít"
 
+msgid "HH:mm"
+msgstr ""
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -465,6 +476,9 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "More reviews"
+msgstr ""
+
 msgid "Name"
 msgstr "Jméno"
 
@@ -520,6 +534,10 @@ msgid "Options"
 msgstr "Možnosti"
 
 msgid "Order"
+msgstr ""
+
+#, php-format
+msgid "Order %1$s"
 msgstr ""
 
 msgid "Order ID"
@@ -631,6 +649,9 @@ msgstr "Množství"
 msgid "Quantity"
 msgstr "Množství"
 
+msgid "Rating"
+msgstr ""
+
 msgid "Reference"
 msgstr ""
 
@@ -640,10 +661,16 @@ msgstr "Příbuzné"
 msgid "Relevance"
 msgstr "Relevantnost"
 
+msgid "Reset"
+msgstr ""
+
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Výsledek pro \"%1$s\" "
+
+msgid "Reviews"
+msgstr ""
 
 msgid "SKU or article name"
 msgstr ""
@@ -815,6 +842,9 @@ msgid ""
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
 msgstr "Děkujeme za vaši objednávku.\nObdrželi jsme vaši platbu a e-mail s podrobnostmi objednávky vám bude zaslán během několika minut."
 
+msgid "Thank you for your review!"
+msgstr ""
+
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
@@ -929,6 +959,9 @@ msgstr ""
 msgid "Vat ID"
 msgstr "DIČ"
 
+msgid "Vendor response"
+msgstr ""
+
 msgid "Watch"
 msgstr "Sledovat"
 
@@ -950,6 +983,9 @@ msgstr "Obdrželi jsme vrácenou zásilku vaší objednávky %1$s z %2$s."
 msgid "Web site"
 msgstr "Webová stránka"
 
+msgid "What do you think about the product"
+msgstr ""
+
 msgid "X"
 msgstr "X"
 
@@ -957,6 +993,12 @@ msgstr "X"
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
+
+msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "YYYY-MM-DD HH:mm"
+msgstr ""
 
 msgid "You are here:"
 msgstr "Vy jste tady:"
@@ -996,10 +1038,16 @@ msgstr "Vaše objednávka %1$s"
 msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Vaše objednávka %1$s z %2$s byla odeslána."
 
+msgid "Your rating"
+msgstr ""
+
 msgid "Your reference"
 msgstr ""
 
 msgid "Your reference number"
+msgstr ""
+
+msgid "Your review"
 msgstr ""
 
 msgid "Your search result"
