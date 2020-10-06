@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-05 09:22+0200\n"
-"PO-Revision-Date: 2020-10-05 07:29+0000\n"
+"PO-Revision-Date: 2020-10-05 19:51+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,8 @@ msgstr[1] "%1$d ürün"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d yorum"
+msgstr[1] "%1$d değerlendirme"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -381,7 +381,7 @@ msgid "Go"
 msgstr "Ara"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "SS:dd"
 
 #, php-format
 msgid ""
@@ -472,7 +472,7 @@ msgid "Login"
 msgstr "Oturum aç"
 
 msgid "More reviews"
-msgstr ""
+msgstr "Daha fazla yorum"
 
 msgid "Name"
 msgstr "Ad"
@@ -533,7 +533,7 @@ msgstr "Sipariş"
 
 #, php-format
 msgid "Order %1$s"
-msgstr ""
+msgstr "Sipariş %1$s"
 
 msgid "Order ID"
 msgstr "Sipariş kimlik numarası"
@@ -645,7 +645,7 @@ msgid "Quantity"
 msgstr "Miktar"
 
 msgid "Rating"
-msgstr ""
+msgstr "Puanlama"
 
 msgid "Reference"
 msgstr "Referans"
@@ -665,7 +665,7 @@ msgid "Result for \"%1$s\""
 msgstr "\"%1$s\" için sonuç"
 
 msgid "Reviews"
-msgstr ""
+msgstr "Değerlendirmeler"
 
 msgid "SKU or article name"
 msgstr "Ürün kodu veya adı"
@@ -836,7 +836,7 @@ msgid ""
 msgstr "Siparişiniz için teşekkür ederiz.\nÖdemenizi aldık ve önümüzdeki birkaç dakika içinde tarafınıza sipariş detaylarını içeren bir e-mail gönderilecek."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "Değerlendirmeniz için teşekkürler!"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -953,7 +953,7 @@ msgid "Vat ID"
 msgstr "Vergi Dairesi/Numarası"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Satıcı yanıtı"
 
 msgid "Watch"
 msgstr "İzle"
@@ -977,7 +977,7 @@ msgid "Web site"
 msgstr "Web sitesi"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "Ürün hakkında ne düşünüyorsun?"
 
 msgid "X"
 msgstr "X"
@@ -988,10 +988,10 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-AA-GG"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "YYYY-AA-GG SS:dd"
 
 msgid "You are here:"
 msgstr "Buradasınız:"
@@ -1032,7 +1032,7 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz sevk edildi."
 
 msgid "Your rating"
-msgstr ""
+msgstr "Sizin puanınız"
 
 msgid "Your reference"
 msgstr "Referansınız"
@@ -1041,7 +1041,7 @@ msgid "Your reference number"
 msgstr "Referans numaranız"
 
 msgid "Your review"
-msgstr ""
+msgstr "Sizin değerlendirmeniz"
 
 msgid "Your search result"
 msgstr "Arama sonucunuz"
