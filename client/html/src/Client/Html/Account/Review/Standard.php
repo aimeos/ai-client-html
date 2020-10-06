@@ -56,10 +56,10 @@ class Standard
 	 */
 	private $subPartPath = 'client/html/account/review/standard/subparts';
 
-	/** client/html/account/review/address/name
-	 * Name of the address part used by the account review client implementation
+	/** client/html/account/review/todo/name
+	 * Name of the todo part used by the account review client implementation
 	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Account\Review\Address\Myname".
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Account\Review\Todo\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the client class name

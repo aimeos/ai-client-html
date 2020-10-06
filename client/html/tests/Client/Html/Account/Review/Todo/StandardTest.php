@@ -35,6 +35,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
+		$this->context->getConfig()->set( 'client/html/account/review/todo/days-after', 0 );
+
 		$view = \TestHelperHtml::getView();
 		$this->object->setView( $this->object->addData( $view ) );
 

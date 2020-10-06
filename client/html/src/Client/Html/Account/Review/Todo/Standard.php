@@ -227,11 +227,40 @@ class Standard
 	{
 		$products = [];
 		$context = $this->getContext();
+		$config = $context->getConfig();
+
+		/** client/html/account/review/todo/size
+		 * Maximum number of products shown for review
+		 *
+		 * After customers bought products, they can write a review for those items.
+		 * The products bought last will be displayed first for review and this
+		 * setting limits the number of products shown in the account page.
+		 *
+		 * @param int Number of products
+		 * @since 2020.10
+		 * @see client/html/account/review/todo/days-after
+		 */
+		$size = $config->get( 'client/html/account/review/todo/size', 10 );
+
+		/** client/html/account/review/todo/days-after
+		 * Number of days after the product can be reviewed
+		 *
+		 * After customers bought products, they can write a review for those items.
+		 * To avoid fake or revenge reviews, the option for reviewing the products is
+		 * shown after the configured number of days to customers.
+		 *
+		 * @param int Number of days
+		 * @since 2020.10
+		 * @see client/html/account/review/todo/size
+		 */
+		$days = $config->get( 'client/html/account/review/todo/days-after', 5 );
 
 		$orders = \Aimeos\Controller\Frontend::create( $context, 'order' )
+			->compare( '>', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING )
+			->compare( '<', 'order.base.ctime', date( 'Y-m-d H:i:s', time() - $days * 86400 ) )
 			->uses( ['order/base', 'order/base/product'] )
 			->sort( '-order.base.ctime' )
-			->slice( 0, 25 )
+			->slice( 0, $size )
 			->search();
 
 		$prodMap = $orders->getBaseItem()->getProducts()->flat()
@@ -257,7 +286,7 @@ class Standard
 			}
 		}
 
-		$view->todoProductItems = map( $products )->filter();
+		$view->todoProductItems = map( $products )->filter()->take( $size );
 
 		return parent::addData( $view, $tags, $expire );
 	}
