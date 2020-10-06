@@ -11,10 +11,89 @@ $selectfcn = function( $list, $key, $value ) {
 	return ( isset( $list[$key] ) && $list[$key] == $value ? 'selected="selected"' : '' );
 };
 
-$accountTarget = $this->config( 'client/html/account/profile/url/target' );
-$accountController = $this->config( 'client/html/account/profile/url/controller', 'account' );
-$accountAction = $this->config( 'client/html/account/profile/url/action', 'profile' );
-$accountConfig = $this->config( 'client/html/account/profile/url/config', [] );
+/** client/html/account/profile/url/target
+ * Destination of the URL where the controller specified in the URL is known
+ *
+ * The destination can be a page ID like in a content management system or the
+ * module of a software development framework. This "target" must contain or know
+ * the controller that should be called by the generated URL.
+ *
+ * @param string Destination of the URL
+ * @since 2019.10
+ * @category Developer
+ * @see client/html/account/profile/url/controller
+ * @see client/html/account/profile/url/action
+ * @see client/html/account/profile/url/config
+ */
+
+/** client/html/account/profile/url/controller
+ * Name of the controller whose action should be called
+ *
+ * In Model-View-Controller (MVC) applications, the controller contains the methods
+ * that create parts of the output displayed in the generated HTML page. Controller
+ * names are usually alpha-numeric.
+ *
+ * @param string Name of the controller
+ * @since 2019.10
+ * @category Developer
+ * @see client/html/account/profile/url/target
+ * @see client/html/account/profile/url/action
+ * @see client/html/account/profile/url/config
+ */
+
+/** client/html/account/profile/url/action
+ * Name of the action that should create the output
+ *
+ * In Model-View-Controller (MVC) applications, actions are the methods of a
+ * controller that create parts of the output displayed in the generated HTML page.
+ * Action names are usually alpha-numeric.
+ *
+ * @param string Name of the action
+ * @since 2019.10
+ * @category Developer
+ * @see client/html/account/profile/url/target
+ * @see client/html/account/profile/url/controller
+ * @see client/html/account/profile/url/config
+ */
+
+/** client/html/account/profile/url/config
+ * Associative list of configuration options used for generating the URL
+ *
+ * You can specify additional options as key/value pairs used when generating
+ * the URLs, like
+ *
+ *  client/html/<clientname>/url/config = array( 'absoluteUri' => true )
+ *
+ * The available key/value pairs depend on the application that embeds the e-commerce
+ * framework. This is because the infrastructure of the application is used for
+ * generating the URLs. The full list of available config options is referenced
+ * in the "see also" section of this page.
+ *
+ * @param string Associative list of configuration options
+ * @since 2019.10
+ * @category Developer
+ * @see client/html/account/profile/url/target
+ * @see client/html/account/profile/url/controller
+ * @see client/html/account/profile/url/action
+ * @see client/html/url/config
+ */
+
+/** client/html/account/profile/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * For SEO, it's nice to have URLs which contains only required parameters.
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2019.10
+ * @category User
+ * @category Developer
+ * @see client/html/account/profile/url/target
+ * @see client/html/account/profile/url/controller
+ * @see client/html/account/profile/url/action
+ * @see client/html/account/profile/url/config
+ */
 
 $addr = $this->get( 'addressBilling', [] );
 $pos = 0;
@@ -27,7 +106,7 @@ $pos = 0;
 <div class="account-profile-address">
 	<h1 class="header"><?= $enc->html( $this->translate( 'client', 'address' ) ) ?></h1>
 
-	<form method="POST" action="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
+	<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/profile/url' ) ); ?>">
 		<?= $this->csrf()->formfield(); ?>
 
 		<div class="row">

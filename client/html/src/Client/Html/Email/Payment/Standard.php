@@ -78,6 +78,17 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
+
+	/** client/html/email/payment/pdf/name
+	 * Name of the PDF part used by the email payment client implementation
+	 *
+	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Email\Payment\Pdf\Myname".
+	 * The name is case-sensitive and you should avoid camel case names like "MyName".
+	 *
+	 * @param string Last part of the client class name
+	 * @since 2020.07
+	 * @category Developer
+	 */
 	private $subPartNames = array( 'text', 'html', 'pdf' );
 
 

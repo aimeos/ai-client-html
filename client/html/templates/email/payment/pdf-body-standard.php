@@ -158,6 +158,17 @@ $this->pdf->setFooterFunction( function( $pdf ) {
 	</table>
 	<h2><?= $enc->html( $this->translate( 'client', 'Order' ) ) ?>: <?= $enc->html( $this->extOrderItem->getId() ) ?></h2>
 	<?= $this->partial(
+		/** client/html/email/common/summary/pdf
+		 * Location of the address partial template for the text e-mails
+		 *
+		 * To configure an alternative template for the address partial, you
+		 * have to configure its path relative to the template directory
+		 * (usually client/html/templates/). It's then used to display the
+		 * payment or delivery address block in the text e-mails.
+		 *
+		 * @param string Relative path to the address partial
+		 * @since 2020.07
+		 */
 		$this->config( 'client/html/email/common/summary/pdf', 'email/common/pdf-summary-partial' ),
 		array(
 			'summaryBasket' => $this->summaryBasket,

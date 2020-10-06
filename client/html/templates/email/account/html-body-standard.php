@@ -78,6 +78,23 @@ $action = $this->config( 'client/html/account/index/url/action', 'index' );
  */
 $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' => 1] );
 
+/** client/html/account/index/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * For SEO, it's nice to have URLs which contains only required parameters.
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2019.07
+ * @category User
+ * @category Developer
+ * @see client/html/account/index/url/target
+ * @see client/html/account/index/url/controller
+ * @see client/html/account/index/url/action
+ * @see client/html/account/index/url/config
+ */
+
 
 ?>
 <?php $this->block()->start( 'email/account/html' ); ?>

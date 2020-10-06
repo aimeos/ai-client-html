@@ -18,6 +18,16 @@ $jsonController = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
 $jsonAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
+/** client/html/basket/bulk/rows
+ * Number or rows shown in the product bulk order form by default
+ *
+ * The product bulk order form shows a new line for adding a product to the basket
+ * by default. You can change the number of empty input lines shown by default
+ * using this configuration setting.
+ *
+ * @param int Number of lines shown
+ * @since 2020.07
+ */
 $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 

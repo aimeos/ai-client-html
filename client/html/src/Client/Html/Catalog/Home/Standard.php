@@ -436,6 +436,22 @@ class Standard
 		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text', 'product' => ['promotion']] );
 		$domains = $config->get( 'client/html/catalog/home/domains', $domains );
 
+		/** client/html/catalog/home/basket-add
+		 * Display the "add to basket" button for each product item in the catalog home component
+		 *
+		 * Enables the button for adding products to the basket for the listed products.
+		 * This works for all type of products, even for selection products with product
+		 * variants and product bundles. By default, also optional attributes are
+		 * displayed if they have been associated to a product.
+		 *
+		 * @param boolean True to display the button, false to hide it
+		 * @since 2020.10
+		 * @category Developer
+		 * @category User
+		 * @see client/html/catalog/lists/basket-add
+		 * @see client/html/basket/related/basket-add
+		 * @see client/html/catalog/product/basket-add
+		 */
 		if( $config->get( 'client/html/catalog/home/basket-add', false ) ) {
 			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
 		}

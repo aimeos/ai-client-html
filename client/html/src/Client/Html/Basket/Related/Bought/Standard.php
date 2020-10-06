@@ -251,6 +251,20 @@ class Standard
 			$domains = $config->get( 'client/html/basket/related/bought/standard/domains', ['text', 'price', 'media'] );
 			$domains['product'] = ['bought-together'];
 
+			/** client/html/basket/related/basket-add
+			 * Display the "add to basket" button for each product item
+			 *
+			 * Enables the button for adding products to the basket for the related products
+			 * in the basket. This works for all type of products, even for selection products
+			 * with product variants and product bundles. By default, also optional attributes
+			 * are displayed if they have been associated to a product.
+			 *
+			 * @param boolean True to display the button, false to hide it
+			 * @since 2020.10
+			 * @see client/html/catalog/home/basket-add
+			 * @see client/html/catalog/lists/basket-add
+			 * @see client/html/catalog/product/basket-add
+			 */
 			if( $view->config( 'client/html/basket/related/basket-add', false ) ) {
 				$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
 			}

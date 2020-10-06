@@ -29,7 +29,9 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
  * @since 2019.10
  * @category Developer
  * @category User
+ * @see client/html/catalog/home/basket-add
  * @see client/html/catalog/lists/basket-add
+ * @see client/html/basket/related/basket-add
  */
 
 ?>
