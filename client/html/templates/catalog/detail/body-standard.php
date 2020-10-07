@@ -321,7 +321,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					<?php endif; ?>
 
 
-					<?php if( !( $attrMap = $this->get( 'detailAttributeMap', map() ) )->isEmpty() ) : ?>
+					<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
 						<div class="additional-box">
 							<h2 class="header attributes"><?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ); ?></h2>
@@ -329,7 +329,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<table class="attributes">
 									<tbody>
 
-										<?php foreach( $attrMap as $type => $attrItems ) : ?>
+										<?php foreach( $this->get( 'detailAttributeMap', map() ) as $type => $attrItems ) : ?>
 											<?php foreach( $attrItems as $attrItem ) : ?>
 
 												<tr class="item <?= ( $id = $attrItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
@@ -346,8 +346,8 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 																<?php endif; ?>
 															<?php endforeach; ?>
 
-														</div>
-														<span class="attr-name"><?= $enc->html( $attrItem->getName() ); ?></span>
+														</div><!--
+														--><span class="attr-name"><?= $enc->html( $attrItem->getName() ); ?></span>
 
 														<?php foreach( $attrItem->getRefItems( 'text', 'short' ) as $textItem ) : ?>
 															<div class="attr-short"><?= $enc->html( $textItem->getContent() ); ?></div>
@@ -363,23 +363,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 											<?php endforeach; ?>
 										<?php endforeach; ?>
 
-									</tbody>
-								</table>
-							</div>
-						</div>
-
-					<?php endif; ?>
-
-
-					<?php if( !( $propMap = $this->get( 'detailPropertyMap', map() ) )->isEmpty() ) : ?>
-
-						<div class="additional-box">
-							<h2 class="header properties"><?= $enc->html( $this->translate( 'client', 'Properties' ), $enc::TRUST ); ?></h2>
-							<div class="content properties">
-								<table class="properties">
-									<tbody>
-
-										<?php foreach( $propMap as $type => $propItems ) : ?>
+										<?php foreach( $this->get( 'detailPropertyMap', map() ) as $type => $propItems ) : ?>
 											<?php foreach( $propItems as $propItem ) : ?>
 
 												<tr class="item <?= ( $id = $propItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">

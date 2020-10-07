@@ -98,8 +98,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<h2 class="header attributes">', $output );
 		$this->assertStringContainsString( '<td class="name">size</td>', $output );
 		$this->assertStringContainsString( '<span class="attr-name">XS</span>', $output );
-
-		$this->assertStringContainsString( '<h2 class="header properties">', $output );
 		$this->assertStringContainsString( '<td class="name">package-height</td>', $output );
 		$this->assertStringContainsString( '<td class="value">10.0</td>', $output );
 
