@@ -108,8 +108,10 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 
 	<?php if( $this->get( 'listProductTotal', 0 ) > 0 ) : ?>
 		<div class="catalog-list-type">
-			<a class="type-item type-grid" href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $this->get( 'listParams', [] ), [], $config ) ); ?>"></a>
-			<a class="type-item type-list" href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $this->get( 'listParams', [] ), [], $config ) ); ?>"></a>
+			<a class="type-item type-grid" title="<?= $enc->attr( $this->translate( 'client', 'Grid view' ) ) ?>"
+				href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $this->get( 'listParams', [] ), [], $config ) ); ?>"></a>
+			<a class="type-item type-list" title="<?= $enc->attr( $this->translate( 'client', 'List view' ) ) ?>"
+				href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $this->get( 'listParams', [] ), [], $config ) ); ?>"></a>
 		</div>
 	<?php endif; ?>
 

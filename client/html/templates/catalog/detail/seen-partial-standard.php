@@ -28,7 +28,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<div class="media-item"></div>
 		<?php endif; ?>
 
-		<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
+		<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
 
 		<div class="price-list">
 			<?= $this->partial(

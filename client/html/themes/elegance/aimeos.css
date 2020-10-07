@@ -7,12 +7,12 @@
 
  @font-face {
 	font-family: 'FontAwesome';
-	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot');
-	src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-	url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'),
-	url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'),
-	url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf') format('truetype'),
-	url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+	src: url('https://cdn.jsdelivr.net/npm/font-awesome@4/fonts/fontawesome-webfont.eot');
+	src: url('https://cdn.jsdelivr.net/npm/font-awesome@4/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+	url('https://cdn.jsdelivr.net/npm/font-awesome@4/fonts/fontawesome-webfont.woff2') format('woff2'),
+	url('https://cdn.jsdelivr.net/npm/font-awesome@4/fonts/fontawesome-webfont.woff') format('woff'),
+	url('https://cdn.jsdelivr.net/npm/font-awesome@4/fonts/fontawesome-webfont.ttf') format('truetype'),
+	url('https://cdn.jsdelivr.net/npm/font-awesome@4/fonts/fontawesome-webfont.eot#fontawesomeregular') format('svg');
 }
 
 
@@ -317,9 +317,10 @@
 .aimeos .sort a,
 .aimeos .sort a:link,
 .aimeos .sort a:visited {
+	display: inline-block;
 	text-decoration: none;
 	white-space: nowrap;
-	padding: 0 0.25em;
+	padding: 0.5em;
 	color: #555;
 	color: var(--ai-secondary, #555);
 }
@@ -706,7 +707,7 @@ input[type="range"]::-moz-range-progress {
 .catalog-filter-search .reset {
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
-	width: 10% !important;
+	width: 15% !important;
 	border: none;
 	margin: 0;
 }
@@ -727,7 +728,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 .catalog-filter-search .btn-primary {
-	width: 20% !important;
+	width: 15% !important;
 	background: none;
 	border: none;
 	color: #555;
@@ -1044,6 +1045,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 .catalog-stage {
 	color: #FFA840;
 	color: var(--ai-primary, #FFA840);
+	margin: 1em 0;
 	clear: both;
 }
 
@@ -1054,12 +1056,13 @@ html.no-js .catalog-filter-price:hover fieldset {
 .catalog-stage-breadcrumb {
 	color: #555;
 	color: var(--ai-secondary, #555);
+	margin: 0.5em;
 }
 
 .catalog-stage-breadcrumb .breadcrumb {
 	background-color: inherit;
 	font-weight: normal;
-	padding: 0.5em;
+	padding: 0;
 	margin: 0;
 }
 
@@ -1067,11 +1070,19 @@ html.no-js .catalog-filter-price:hover fieldset {
 	display: inline;
 	list-style: none;
 	padding-left: 1em;
+	margin: 0;
 }
 
 .catalog-stage-breadcrumb li {
 	display: inline;
 	white-space: nowrap;
+}
+
+.catalog-stage-breadcrumb .title,
+.catalog-stage-breadcrumb a {
+	text-decoration: none;
+	display: inline-block;
+	padding: 0.5em;
 }
 
 .catalog-stage-breadcrumb li:after {
@@ -1087,12 +1098,15 @@ html.no-js .catalog-filter-price:hover fieldset {
 	display: block;
 	font-size: 90%;
 	margin: 0.5em;
+	padding: 0;
 }
 
 .catalog-stage-navigator a,
 .catalog-stage-navigator a:focus,
 .catalog-stage-navigator a:hover {
 	text-decoration: none;
+	display: inline-block;
+	padding: 0.5em;
 }
 
 .catalog-stage-navigator a:before {
@@ -1124,6 +1138,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 .catalog-home .stage-item {
 	background-color: #FFF;
 	background-color: var(--ai-bg-alt, #FFF);
+	display: block;
 	margin: 0;
 }
 
@@ -1608,6 +1623,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 }
 
 .catalog-list-type .type-item {
+	display: inline-block;
 	padding: 0.5em;
 }
 
@@ -1786,7 +1802,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 .catalog-detail .catalog-social .social-button {
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: 150%;
-	padding: 0 0.33em;
+	padding: 0.33em;
 	text-decoration: none;
 }
 
@@ -1815,7 +1831,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 .catalog-detail .catalog-actions .actions-button {
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: 150%;
-	padding: 0 0.5em;
+	padding: 0.33em;
 	text-decoration: none;
 }
 
@@ -1833,8 +1849,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 
 /* Product detail, basket section */
 .catalog-detail-basket {
-	margin: 1% 0;
-	clear: right;
+	margin: 1em 0;
 }
 
 .catalog-detail-basket .price-list {

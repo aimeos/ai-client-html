@@ -108,7 +108,7 @@ ksort( $attrTypeDeps );
 	<?php foreach( $attrTypeDeps as $code => $positions ) : asort( $positions ); ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ); ?>">
-			<div class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ); ?></div>
+			<label for="select-<?= $enc->attr( $code ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ); ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ); ?></div>
@@ -118,7 +118,7 @@ ksort( $attrTypeDeps );
 
 				<?php if( $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) === 'radio' ) : $first = true; ?>
 
-					<ul class="select-list" data-index="<?= $index++; ?>" data-type="<?= $enc->attr( $code ); ?>">
+					<ul id="select-<?= $enc->attr( $code ) ?>" class="select-list" data-index="<?= $index++; ?>" data-type="<?= $enc->attr( $code ); ?>">
 
 						<?php foreach( $positions as $attrId => $position ) : ?>
 
@@ -152,7 +152,7 @@ ksort( $attrTypeDeps );
 
 				<?php else : ?>
 
-					<select class="form-control select-list"
+					<select id="select-<?= $enc->attr( $code ) ?>" class="form-control select-list"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ); ?>"
 						data-index="<?= $index++; ?>" data-type="<?= $enc->attr( $code ); ?>" >
 
