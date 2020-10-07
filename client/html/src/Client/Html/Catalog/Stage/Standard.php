@@ -385,26 +385,6 @@ class Standard
 
 
 	/**
-	 * Returns the parameters used by the html client.
-	 *
-	 * @param string[] $params Associative list of all parameters
-	 * @param array $prefixes List of prefixes the parameters must start with
-	 * @return array Associative list of parameters used by the html client
-	 */
-	protected function getClientParams( array $params, array $prefixes = ['f', 'l', 'd', 'a'] ) : array
-	{
-		if( isset( $params['d_prodid'] ) || isset( $params['d_name'] ) )
-		{
-			$context = $this->getContext();
-			$site = $context->getLocale()->getSiteItem()->getCode();
-			$params += (array) $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
-		}
-
-		return parent::getClientParams( $params, $prefixes );
-	}
-
-
-	/**
 	 * Returns the list of sub-client names configured for the client.
 	 *
 	 * @return array List of HTML client names
