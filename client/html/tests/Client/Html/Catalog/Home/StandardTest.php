@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 
-		$this->assertEquals( '', $this->object->getHeader() );
+		$this->assertEquals( '', trim( $this->object->getHeader() ) );
 	}
 
 
