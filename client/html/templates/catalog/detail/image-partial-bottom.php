@@ -30,9 +30,12 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 			--><div class="thumbs"><!--
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
-					--><a class="<?= $class; ?>" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>')"
+
+					--><a class="<?= $class; ?>" title="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ); ?>"
+						style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>')"
 						href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', [] ), [], $detailConfig ) ) . '#image-' . $enc->attr( $id ); ?>"
 					></a><!--
+
 					<?php $class = 'item'; ?>
 				<?php endforeach; ?>
 
