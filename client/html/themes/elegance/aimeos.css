@@ -1281,7 +1281,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 	background-color: var(--ai-secondary, #555);
 	text-align: center;
 	margin: 1.5em 0;
-	height: 0.9px;
+	height: 0.8px;
 }
 
 .aimeos .product .stars {
@@ -3119,8 +3119,9 @@ html.no-js .catalog-filter-price:hover fieldset {
 }
 
 .aimeos .common-summary-detail .basket {
-	margin: 0.5em;
-	margin-top: 0;
+	padding: 0 1em;
+	margin: 0 0.5em;
+	width: 100%;
 }
 
 .aimeos .common-summary-detail table {
