@@ -15,7 +15,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 ?>
 <?php $this->block()->start( 'catalog/filter/price' ); ?>
-<section class="catalog-filter-price">
+<section class="catalog-filter-price col">
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></h2>
 	<fieldset>
