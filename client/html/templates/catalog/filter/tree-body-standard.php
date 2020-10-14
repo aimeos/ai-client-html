@@ -48,7 +48,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 ?>
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
-<section class="catalog-filter-tree <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
+<section class="catalog-filter-tree col <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
 
 	<?php if( $enforce ) : ?>
 		<input type="hidden"

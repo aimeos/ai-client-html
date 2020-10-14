@@ -16,7 +16,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ); ?>
-<section class="catalog-filter-supplier">
+<section class="catalog-filter-supplier col">
 
 	<?php if( !$this->get( 'supplierList', map() )->isEmpty() ) : ?>
 		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ); ?></h2>

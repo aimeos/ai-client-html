@@ -613,6 +613,15 @@ input[type="range"]::-moz-range-progress {
 	display: none;
 }
 
+.catalog-filter-attribute.col,
+.catalog-filter-price.col,
+.catalog-filter-supplier.col,
+.catalog-filter-search.col,
+.catalog-filter-tree.col {
+	padding-right: 0;
+	padding-left: 0;
+}
+
 .catalog-filter-tree li a.cat-item:link,
 .catalog-filter-tree li a.cat-item:visited {
 	color: #555;
@@ -670,6 +679,7 @@ input[type="range"]::-moz-range-progress {
 /* Catalog filter search section */
 .catalog-filter-search {
 	display: inline-block;
+	margin-bottom: 1em;
 }
 
 .catalog-filter-search > h2 {
@@ -752,7 +762,7 @@ input[type="range"]::-moz-range-progress {
 
 /* Catalog filter, tree section */
 .catalog-filter section {
-	margin: 1em 0;
+	min-width: 12.5rem;
 }
 
 .catalog-filter-tree ul {
@@ -889,6 +899,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 	vertical-align: top;
 	font-weight: normal;
 	text-align: left;
+	min-width: 12.5em;
 	width: 100%;
 	color: #555;
 	color: var(--ai-secondary, #555);
@@ -915,6 +926,7 @@ html.no-js .catalog-filter-price:hover fieldset {
 .catalog-filter-attribute .attribute-lists li.attr-item,
 .catalog-filter-supplier .supplier-lists li.attr-item {
 	display: block;
+	min-width: 12.5em;
 	padding: 0.4em 0;
 	margin: 0;
 }
@@ -1003,7 +1015,6 @@ html.no-js .catalog-filter-price:hover fieldset {
 	font-size: 100%;
 	cursor: pointer;
 	width: 100%;
-	float: left;
 	display: block;
 	padding: 0.5em;
 	margin: 0;
@@ -1011,12 +1022,6 @@ html.no-js .catalog-filter-price:hover fieldset {
 }
 
 @media screen and (min-width: 480px) {
-	.catalog-filter-attribute > h2,
-	.catalog-filter-tree > h2,
-	.catalog-filter-price > h2,
-	.catalog-filter-supplier > h2 {
-		width: 50%;
-	}
 	.catalog-filter-attribute fieldset {
 		width: 50%;
 	}
@@ -1026,12 +1031,6 @@ html.no-js .catalog-filter-price:hover fieldset {
 }
 
 @media screen and (min-width: 990px) {
-	.catalog-filter-attribute > h2,
-	.catalog-filter-tree > h2,
-	.catalog-filter-price > h2,
-	.catalog-filter-supplier > h2 {
-		width: 25%;
-	}
 	.catalog-filter-attribute fieldset {
 		width: 33.33%;
 	}
