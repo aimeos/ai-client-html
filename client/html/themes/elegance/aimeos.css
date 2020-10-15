@@ -890,7 +890,7 @@ html.no-js .catalog-filter-price .price-lists {
 
 .catalog-filter-supplier .attribute-lists .attr-list {
 	overflow: auto;
-	height: 12em;
+	height: 15em;
 }
 
 .catalog-filter-attribute .attribute-lists li.attr-item,
