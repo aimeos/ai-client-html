@@ -21,38 +21,45 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 	<?php if( !$this->get( 'supplierList', map() )->isEmpty() ) : ?>
 		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ); ?></h2>
 
-		<fieldset class="supplier-lists">
-			<ul class="attr-list"><!--
+		<div class="supplier-lists">
+			<?php if( $this->param( 'f_supid' ) ) : ?>
+				<a class="btn btn-secondary supplier-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'supplierResetParams', [] ), [], $listConfig ) ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ); ?>
+				</a>
+			<?php endif; ?>
 
-				<?php foreach( $this->get( 'supplierList', [] ) as $id => $supplier ) : ?>
-					--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
+			<fieldset>
+				<ul class="attr-list"><!--
 
-						<input class="attr-item" type="checkbox"
-							id="sup-<?= $enc->attr( $id ); ?>"
-							name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ); ?>"
-							value="<?= $enc->attr( $id ); ?>"
-							<?= ( in_array( $id, $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ); ?>
-						/>
+					<?php foreach( $this->get( 'supplierList', [] ) as $id => $supplier ) : ?>
+						--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
 
-						<label class="attr-name" for="sup-<?= $enc->attr( $id ); ?>"><!--
-							--><div class="media-list"><!--
+							<input class="attr-item" type="checkbox"
+								id="sup-<?= $enc->attr( $id ); ?>"
+								name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ); ?>"
+								value="<?= $enc->attr( $id ); ?>"
+								<?= ( in_array( $id, $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ); ?>
+							/>
 
-								<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
-									<?= '-->' . $this->partial(
-										$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
-										array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-									) . '<!--'; ?>
-								<?php endforeach; ?>
+							<label class="attr-name" for="sup-<?= $enc->attr( $id ); ?>"><!--
+								--><div class="media-list"><!--
 
-							--></div>
-							<span><?= $enc->html( $supplier->getName(), $enc::TRUST ); ?></span><!--
-						--></label>
-					</li><!--
+									<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+										<?= '-->' . $this->partial(
+											$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+											array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+										) . '<!--'; ?>
+									<?php endforeach; ?>
 
-				<?php endforeach; ?>
-			--></ul>
-		</fieldset>
+								--></div>
+								<span><?= $enc->html( $supplier->getName(), $enc::TRUST ); ?></span><!--
+							--></label>
+						</li><!--
+					<?php endforeach; ?>
 
+				--></ul>
+			</fieldset>
+		</div>
 	<?php endif; ?>
 
 

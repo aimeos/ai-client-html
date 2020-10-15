@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getBody();
 
-		$regex = '#<fieldset class="supplier-lists">.*<ul class="attr-list">.*<li.*<li.*</ul>.*</fieldset>#smu';
+		$regex = '#<div class="supplier-lists">.*<ul class="attr-list">.*<li.*<li.*</ul>.*</fieldset>#smu';
 		$this->assertRegexp( $regex, $output );
 
 		$this->assertGreaterThan( 2, count( $tags ) );
@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="catalog-filter-supplier">', $output );
+		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
 	}
 
 
@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="catalog-filter-supplier">', $output );
+		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
 	}
 
 
@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view ) );
 		$output = $this->object->getBody();
 
-		$this->assertStringStartsWith( '<section class="catalog-filter-supplier">', $output );
+		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
 	}
 
 
