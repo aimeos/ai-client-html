@@ -42,74 +42,57 @@ $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
 	<?php if( !empty( $this->get( 'attributeMap', [] ) ) ) : ?>
 		<h2><?= $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ); ?></h2>
 
+		<div class="attribute-lists">
 
-		<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
-			<div class="attribute-selected">
-				<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
-
-				<ul class="attr-list">
-					<?php foreach( $this->get( 'attributeMap', [] ) as $attrType => $list ) : ?>
-						<?php foreach( $list as $attribute ) : ?>
-							<?php if( $attribute->get( 'checked' ) ) : ?>
-								<li class="attr-item">
-									<a class="attr-name" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $attribute->get( 'params', [] ), [], $listConfig ) ); ?>">
-										<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
-									</a>
-								</li>
-							<?php endif ?>
-						<?php endforeach; ?>
-					<?php endforeach; ?>
-				</ul>
-
-				<a class="selected-all" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ); ?>">
-					<?= $enc->html( $this->translate( 'client', 'clear all' ), $enc::TRUST ); ?>
+			<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
+				<a class="btn btn-secondary attribute-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ); ?>
 				</a>
+			<?php endif; ?>
+
+			<div class="fieldsets">
+
+				<?php foreach( $this->get( 'attributeMap', [] ) as $attrType => $attributes ) : ?>
+					<?php if( !empty( $attributes ) ) : ?>
+
+						<fieldset class="attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ); ?>">
+							<legend><?= $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
+							<ul class="attr-list"><!--
+
+								<?php foreach( $attributes as $id => $attribute ) : ?>
+									--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
+
+										<input class="attr-item" type="checkbox"
+											id="attr-<?= $enc->attr( $id ); ?>"
+											value="<?= $enc->attr( $id ); ?>"
+											name="<?= $enc->attr( $this->formparam( $attribute->get( 'formparam', [] ) ) ); ?>"
+											<?= $attribute->get( 'checked', false ) ? 'checked="checked"' : '' ?>
+										/>
+
+										<label class="attr-name" for="attr-<?= $enc->attr( $id ); ?>"><!--
+											--><div class="media-list"><!--
+
+												<?php foreach( $attribute->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+													<?= '-->' . $this->partial(
+														$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+														array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+													) . '<!--'; ?>
+												<?php endforeach; ?>
+
+											--></div>
+											<span><?= $enc->html( $attribute->getName(), $enc::TRUST ); ?></span><!--
+										--></label>
+									</li><!--
+
+								<?php endforeach; ?>
+							--></ul>
+						</fieldset>
+
+					<?php endif; ?>
+				<?php endforeach; ?>
+
 			</div>
-
-		<?php endif; ?>
-
-
-		<div class="attribute-lists"><!--
-
-			<?php foreach( $this->get( 'attributeMap', [] ) as $attrType => $attributes ) : ?>
-				<?php if( !empty( $attributes ) ) : ?>
-					--><fieldset class="attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ); ?>">
-						<legend><?= $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ); ?></legend>
-						<ul class="attr-list"><!--
-
-							<?php foreach( $attributes as $id => $attribute ) : ?>
-								--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
-
-									<input class="attr-item" type="checkbox"
-										id="attr-<?= $enc->attr( $id ); ?>"
-										value="<?= $enc->attr( $id ); ?>"
-										name="<?= $enc->attr( $this->formparam( $attribute->get( 'formparam', [] ) ) ); ?>"
-										<?= $attribute->get( 'checked', false ) ? 'checked="checked"' : '' ?>
-									/>
-
-									<label class="attr-name" for="attr-<?= $enc->attr( $id ); ?>"><!--
-										--><div class="media-list"><!--
-
-											<?php foreach( $attribute->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
-												<?= '-->' . $this->partial(
-													$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
-													array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-												) . '<!--'; ?>
-											<?php endforeach; ?>
-
-										--></div>
-										<span><?= $enc->html( $attribute->getName(), $enc::TRUST ); ?></span><!--
-									--></label>
-								</li><!--
-
-							<?php endforeach; ?>
-						--></ul>
-					</fieldset><!--
-
-				<?php endif; ?>
-			<?php endforeach; ?>
-
-		--></div>
+		</div>
 
 	<?php endif; ?>
 
