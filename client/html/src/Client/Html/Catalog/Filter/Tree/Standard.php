@@ -257,13 +257,15 @@ class Standard
 		if( ( $currentid = $view->param( 'f_catid' ) ) !== null ) {
 			$catItems = $cntl->getPath( $currentid );
 			$catIds = $catItems->keys()->toArray();
+			$level = $cntl::TREE;
 		} else {
+			$level = $cntl::LIST;
 			$catItems = map();
-			$catIds = [$startid];
+			$catIds = [];
 		}
 
 		$view->treeCatalogPath = $catItems;
-		$view->treeCatalogTree = $cntl->visible( $catIds )->getTree();
+		$view->treeCatalogTree = $cntl->visible( $catIds )->getTree( $level );
 		$view->treeFilterParams = $this->getClientParams( $view->param(), ['f'] );
 
 		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );

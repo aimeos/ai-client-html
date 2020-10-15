@@ -1464,7 +1464,7 @@ AimeosCatalogFilter = {
 	setupCategoryToggle: function() {
 
 		$(".catalog-filter-tree").on("click", "h2", function(ev) {
-			$("> ul", ev.delegateTarget).slideToggle();
+			$(".category-lists", ev.delegateTarget).slideToggle();
 		});
 	},
 
