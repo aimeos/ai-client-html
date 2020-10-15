@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( '<section class="aimeos catalog-filter"', $output );
-		$this->assertStringContainsString( '<section class="catalog-filter-price">', $output );
+		$this->assertStringContainsString( '<section class="catalog-filter-price', $output );
 	}
 
 

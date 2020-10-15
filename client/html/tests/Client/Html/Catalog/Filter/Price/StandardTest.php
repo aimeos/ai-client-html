@@ -30,7 +30,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$output = $this->object->getBody();
-		$this->assertStringStartsWith( '<section class="catalog-filter-price">', $output );
+		$this->assertStringStartsWith( '<section class="catalog-filter-price', $output );
 	}
 
 
