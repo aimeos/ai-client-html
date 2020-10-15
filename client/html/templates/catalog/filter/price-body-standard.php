@@ -16,23 +16,34 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 ?>
 <?php $this->block()->start( 'catalog/filter/price' ); ?>
 <section class="catalog-filter-price col">
+	<?php if( $this->get( 'priceHigh', 0 ) ) : ?>
 
-	<h2><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></h2>
-	<fieldset>
-		<input type="number" class="price-low" name="<?= $this->formparam( ['f_price', 0] )?>"
-			min="0" max="<?= $enc->html( $this->get( 'priceHigh', 0 ) ) ?>" step="1" value="0">
-		<input type="number" class="price-high" name="<?= $this->formparam( ['f_price', 1] )?>"
-			min="0" max="<?= $enc->html( $this->get( 'priceHigh', 0 ) ) ?>" step="1"
-			value="<?= $enc->html( $this->param( 'f_price/1', $this->get( 'priceHigh', 0 ) ) ) ?>">
-		<input type="range" class="price-slider" name="<?= $this->formparam( ['f_price', 1] )?>"
-			min="0" max="<?= $enc->html( $this->get( 'priceHigh', $this->param( 'f_price/1', 0 ) ) ) ?>" step="1"
-			value="<?= $enc->html( $this->param( 'f_price/1', $this->get( 'priceHigh', 0 ) ) ) ?>">
-		<a class="btn btn-secondary" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $this->get( 'priceResetParams', [] ), [], $config ) ); ?>">
-			<?= $enc->html( $this->translate( 'client', 'Reset' ) ) ?>
-		</a>
-		<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Save' ) ) ?></button>
-	</fieldset>
+		<h2><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></h2>
 
+		<div class="price-lists">
+			<?php if( $this->param( 'f_price' ) ) : ?>
+				<a class="btn btn-secondary" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $this->get( 'priceResetParams', [] ), [], $config ) ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Reset' ) ) ?>
+				</a>
+			<?php endif ?>
+
+			<fieldset>
+				<div class="price-input">
+					<input type="number" class="price-low" name="<?= $this->formparam( ['f_price', 0] )?>"
+						min="0" max="<?= $enc->html( $this->get( 'priceHigh', 0 ) ) ?>" step="1"
+						value="<?= $enc->html( $this->param( 'f_price/0', 0 ) ) ?>">
+					<input type="number" class="price-high" name="<?= $this->formparam( ['f_price', 1] )?>"
+						min="0" max="<?= $enc->html( $this->get( 'priceHigh', 0 ) ) ?>" step="1"
+						value="<?= $enc->html( $this->param( 'f_price/1', $this->get( 'priceHigh', 0 ) ) ) ?>">
+					<input type="range" class="price-slider" name="<?= $this->formparam( ['f_price', 1] )?>"
+						min="0" max="<?= $enc->html( $this->get( 'priceHigh', $this->param( 'f_price/1', 0 ) ) ) ?>" step="1"
+						value="<?= $enc->html( $this->param( 'f_price/1', $this->get( 'priceHigh', 0 ) ) ) ?>">
+				</div>
+				<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Save' ) ) ?></button>
+			</fieldset>
+		</div>
+
+	<?php endif ?>
 </section>
 <?php $this->block()->stop(); ?>
 <?= $this->block()->get( 'catalog/filter/price' ); ?>

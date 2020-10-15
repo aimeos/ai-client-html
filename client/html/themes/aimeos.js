@@ -1542,7 +1542,7 @@ AimeosCatalogFilter = {
 	setupPriceToggle: function() {
 
 		$(".catalog-filter-price").on("click", "h2", function(ev) {
-			$("fieldset", ev.delegateTarget).slideToggle();
+			$(".price-lists", ev.delegateTarget).slideToggle();
 		});
 	},
 
