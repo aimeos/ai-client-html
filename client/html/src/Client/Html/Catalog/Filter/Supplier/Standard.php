@@ -227,6 +227,7 @@ class Standard
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/supplier/domains', ['text', 'media'] );
 
+		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();
 		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->getContext(), 'supplier' )
 			->uses( $domains )->slice( 0, 10000 )->search();
 
