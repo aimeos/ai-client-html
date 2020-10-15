@@ -932,6 +932,7 @@ html.no-js .catalog-filter-price .price-lists {
 	width: 1em;
 	height: 1em;
 	margin-right: 0.25em;
+	vertical-align: middle;
 }
 
 .catalog-filter-attribute .media-list,
@@ -951,6 +952,20 @@ html.no-js .catalog-filter-price .price-lists {
 .catalog-filter-supplier .attr-count {
 	font-weight: normal;
 	cursor: pointer;
+}
+
+
+.catalog-filter-attribute .attr-name,
+.catalog-filter-supplier .attr-name,
+.catalog-filter-attribute .attr-name span,
+.catalog-filter-supplier .attr-name span {
+	vertical-align: middle;
+}
+
+.catalog-filter-attribute .attr-count,
+.catalog-filter-supplier .attr-count {
+	margin-bottom: 0.5rem;
+	display: inline-block;
 }
 
 .catalog-filter-price .btn {
