@@ -48,37 +48,39 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 ?>
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
-<section class="catalog-filter-tree col <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
+<?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 && !$this->treeCatalogTree->getChildren()->isEmpty() ) : ?>
+	<section class="catalog-filter-tree col <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
 
-	<?php if( $enforce ) : ?>
-		<input type="hidden"
-			name="<?= $enc->attr( $this->formparam( ['f_catid'] ) ); ?>"
-			value="<?= $enc->attr( $this->param( 'f_catid' ) ); ?>"
-		/>
-	<?php endif; ?>
+		<?php if( $enforce ) : ?>
+			<input type="hidden"
+				name="<?= $enc->attr( $this->formparam( ['f_catid'] ) ); ?>"
+				value="<?= $enc->attr( $this->param( 'f_catid' ) ); ?>"
+			/>
+		<?php endif; ?>
 
-	<h2><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>
+		<h2><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>
 
-	<?php if( $this->param( 'f_catid' ) ) : ?>
-		<div class="category-selected">
-			<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
-			<a class="selected-category" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, map( $this->treeFilterParams )->remove( ['f_catid', 'f_name'] )->toArray(), [], $listConfig ) ); ?>">
-				<?= $enc->html( $this->get( 'treeCatalogPath', map() )->getName()->last(), $enc::TRUST ); ?>
-			</a>
+		<div class="category-lists">
+			<?php if( $this->param( 'f_catid' ) ) : ?>
+				<a class="btn btn-secondary category-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, map( $this->treeFilterParams )->remove( ['f_catid', 'f_name'] )->toArray(), [], $listConfig ) ); ?>">
+					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ); ?>
+				</a>
+			<?php endif; ?>
+
+			<fieldset>
+				<?= $this->partial(
+					$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ),
+					[
+						'nodes' => $this->treeCatalogTree->getChildren(),
+						'path' => $this->get( 'treeCatalogPath', map() ),
+						'params' => $this->get( 'treeFilterParams', [] ),
+						'level' => 1
+					]
+				); ?>
+			</fieldset>
 		</div>
-	<?php endif; ?>
 
-	<?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 ) : ?>
-		<?= $this->partial(
-			$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ),
-			[
-				'nodes' => [$this->treeCatalogTree],
-				'path' => $this->get( 'treeCatalogPath', map() ),
-				'params' => $this->get( 'treeFilterParams', [] )
-			]
-		); ?>
-	<?php endif; ?>
-
-</section>
+	</section>
+<?php endif ?>
 <?php $this->block()->stop(); ?>
 <?= $this->block()->get( 'catalog/filter/tree' ); ?>

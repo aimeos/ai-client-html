@@ -104,7 +104,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 			<li class="cat-item catid-<?= $enc->attr( $item->getId()
 				. ( $item->hasChildren() ? ' withchild' : ' nochild' )
-				. ( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' )
+				. ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' )
 				. ' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ); ?>"
 				data-id="<?= $item->getId(); ?>" >
 
