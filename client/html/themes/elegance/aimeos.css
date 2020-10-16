@@ -620,6 +620,7 @@ input[type="range"]::-moz-range-progress {
 .catalog-filter-tree.col {
 	padding-right: 0;
 	padding-left: 0;
+	margin: 1em 0;
 }
 
 .catalog-filter-tree fieldset > ul {
