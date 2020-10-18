@@ -50,14 +50,6 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
 <?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 && !$this->treeCatalogTree->getChildren()->isEmpty() ) : ?>
 	<section class="catalog-filter-tree col <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
-
-		<?php if( $enforce ) : ?>
-			<input type="hidden"
-				name="<?= $enc->attr( $this->formparam( ['f_catid'] ) ); ?>"
-				value="<?= $enc->attr( $this->param( 'f_catid' ) ); ?>"
-			/>
-		<?php endif; ?>
-
 		<h2><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>
 
 		<div class="category-lists">
@@ -65,6 +57,13 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 				<a class="btn btn-secondary category-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, map( $this->treeFilterParams )->remove( ['f_catid', 'f_name'] )->toArray(), [], $listConfig ) ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ); ?>
 				</a>
+			<?php endif; ?>
+
+			<?php if( $enforce ) : ?>
+				<input type="hidden"
+					name="<?= $enc->attr( $this->formparam( ['f_catid'] ) ); ?>"
+					value="<?= $enc->attr( $this->param( 'f_catid' ) ); ?>"
+				/>
 			<?php endif; ?>
 
 			<fieldset>
@@ -79,7 +78,6 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 				); ?>
 			</fieldset>
 		</div>
-
 	</section>
 <?php endif ?>
 <?php $this->block()->stop(); ?>

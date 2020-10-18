@@ -16,9 +16,8 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ); ?>
-<section class="catalog-filter-supplier col">
-
-	<?php if( !$this->get( 'supplierList', map() )->isEmpty() ) : ?>
+<?php if( !$this->get( 'supplierList', map() )->isEmpty() ) : ?>
+	<section class="catalog-filter-supplier col">
 		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ); ?></h2>
 
 		<div class="supplier-lists">
@@ -60,17 +59,16 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 				--></ul>
 			</fieldset>
 		</div>
-	<?php endif; ?>
 
+		<?php if( $this->config( 'client/html/catalog/filter/standard/button', true ) ) : ?>
+			<noscript>
+				<button class="filter btn btn-primary" type="submit">
+					<?= $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?>
+				</button>
+			</noscript>
+		<?php endif; ?>
 
-	<?php if( $this->config( 'client/html/catalog/filter/standard/button', true ) ) : ?>
-		<noscript>
-			<button class="filter btn btn-primary" type="submit">
-				<?= $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?>
-			</button>
-		</noscript>
-	<?php endif; ?>
-
-</section>
+	</section>
+<?php endif; ?>
 <?php $this->block()->stop(); ?>
 <?= $this->block()->get( 'catalog/filter/supplier' ); ?>
