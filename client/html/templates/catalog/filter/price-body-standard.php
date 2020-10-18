@@ -15,9 +15,8 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 ?>
 <?php $this->block()->start( 'catalog/filter/price' ); ?>
-<section class="catalog-filter-price col">
-	<?php if( $this->get( 'priceHigh', 0 ) ) : ?>
-
+<?php if( $this->get( 'priceHigh', 0 ) ) : ?>
+	<section class="catalog-filter-price col">
 		<h2><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></h2>
 
 		<div class="price-lists">
@@ -42,8 +41,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 				<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Save' ) ) ?></button>
 			</fieldset>
 		</div>
-
-	<?php endif ?>
-</section>
+	</section>
+<?php endif ?>
 <?php $this->block()->stop(); ?>
 <?= $this->block()->get( 'catalog/filter/price' ); ?>
