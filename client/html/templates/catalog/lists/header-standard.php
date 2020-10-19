@@ -67,7 +67,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 	<?php endif; ?>
 
 
-	<link rel="canonical" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'listParams', [] ), [], $listConfig ) ); ?>" />
+	<link rel="canonical" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'listParams', [] ), [], $listConfig + ['absoluteUri' => true] ) ); ?>" />
 	<meta name="application-name" content="Aimeos" />
 
 <?php endif; ?>
