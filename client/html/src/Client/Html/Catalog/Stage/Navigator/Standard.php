@@ -256,27 +256,21 @@ class Standard
 
 			if( ( $count = count( $products ) ) > 1 )
 			{
-				$enc = $view->encoder();
-
 				$target = $view->config( 'client/html/catalog/detail/url/target' );
 				$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 				$action = $view->config( 'client/html/catalog/detail/url/action', 'detail' );
 				$config = $view->config( 'client/html/catalog/detail/url/config', [] );
-				$prodid = $view->config( 'client/html/catalog/detail/url/d_prodid', false );
+				$filter = $view->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
 
 				if( $pos > 0 && ( $product = reset( $products ) ) !== false )
 				{
-					$param = ['d_pos' => $pos - 1, 'd_name' => $product->getName( 'url ' )];
-					$prodid == false ?: $params['d_prodid'] = $product->getId();
-
+					$param = array_diff_key( ['d_pos' => $pos - 1, 'd_name' => $product->getName( 'url ' )], array_flip( $filter ) );
 					$view->navigationPrev = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 
 				if( ( $pos === 0 || $count === 3 ) && ( $product = end( $products ) ) !== false )
 				{
-					$param = ['d_pos' => $pos + 1, 'd_name' => $product->getName( 'url ' )];
-					$prodid == false ?: $params['d_prodid'] = $product->getId();
-
+					$param = array_diff_key( ['d_pos' => $pos + 1, 'd_name' => $product->getName( 'url ' )], array_flip( $filter ) );
 					$view->navigationNext = $view->url( $target, $controller, $action, $param, [], $config );
 				}
 			}
