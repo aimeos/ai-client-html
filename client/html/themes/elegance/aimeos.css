@@ -704,6 +704,7 @@ input[type="range"]::-moz-range-progress {
 .catalog-filter-search .input-group {
 	border-bottom: 1px solid #555;
 	border-bottom-color: var(--ai-secondary, #555);
+	margin-bottom: 1em;
 }
 
 .catalog-filter-search .value {
@@ -833,8 +834,8 @@ html.no-js .catalog-filter-tree:hover > ul {
 
 html.no-js .catalog-filter-attribute:hover .attribute-lists,
 html.no-js .catalog-filter-supplier:hover .supplier-lists,
-html.no-js .catalog-filter-tree .category-lists,
-html.no-js .catalog-filter-price .price-lists {
+html.no-js .catalog-filter-tree:hover .category-lists,
+html.no-js .catalog-filter-price:hover .price-lists {
 	display: block;
 }
 
@@ -967,6 +968,7 @@ html.no-js .catalog-filter-price .price-lists {
 .catalog-filter-supplier .attr-count {
 	margin-bottom: 0.5rem;
 	display: inline-block;
+	vertical-align: middle;
 }
 
 .catalog-filter-price .btn {
