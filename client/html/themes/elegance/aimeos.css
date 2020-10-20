@@ -551,7 +551,8 @@ input[type="range"]::-moz-range-progress {
 	text-transform: uppercase;
 	position: relative;
 	list-style: none;
-	padding: 0em;
+	padding: 0;
+	margin: 0;
 }
 
 .locale-select li.select-dropdown {
@@ -1035,7 +1036,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-stage {
 	color: #FFA840;
 	color: var(--ai-primary, #FFA840);
-	margin: 1em 0;
+	margin-bottom: 1em;
 	clear: both;
 }
 
@@ -2492,7 +2493,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .basket-mini > a {
 	display: inline-block;
 	white-space: nowrap;
-	padding: 0.75em 1em;
+	padding: 0.5em 1em;
 	text-decoration: none;
 }
 
@@ -2529,7 +2530,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .basket-mini-product {
-	display: inline;
+	display: none;
 }
 
 .basket-mini-product .basket-toggle {
