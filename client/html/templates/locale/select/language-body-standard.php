@@ -35,7 +35,7 @@ $config = $this->config( 'client/html/locale/select/language/url/config', [] );
 	<h2 class="header"><?= $this->translate( 'client', 'Select language' ); ?></h2>
 
 	<ul class="select-menu">
-		<li class="select-dropdown select-current"><a href="#"><?= $this->translate( 'language', $this->get( 'selectLanguageId', 'en' ) ); ?></a>
+		<li class="select-dropdown select-current"><a href="#"><?= $this->get( 'selectLanguageId', 'en' ) ?></a>
 			<ul class="select-dropdown">
 
 				<?php foreach( $this->get( 'selectMap', [] ) as $lang => $list ) : ?>
