@@ -2090,7 +2090,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	background-color: #555;
 	background-color: var(--ai-secondary, #555);
 	color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	color: var(--ai-bg, #FFF);
 }
 
 .catalog-list-items .selection .select-option:disabled + .select-label,
