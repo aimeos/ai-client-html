@@ -82,7 +82,7 @@ class Standard
 	 */
 	public function getBody( string $uid = '' ) : string
 	{
-		$prefixes = array( 'f' );
+		$prefixes = ['f_catid'];
 		$context = $this->getContext();
 
 		/** client/html/catalog/stage/cache
@@ -197,7 +197,7 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ?string
 	{
-		$prefixes = array( 'f' );
+		$prefixes = ['f_catid'];
 		$confkey = 'client/html/catalog/stage';
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
@@ -456,7 +456,7 @@ class Standard
 			$view->stageCatId = $catid;
 		}
 
-		$view->stageParams = $this->getClientParams( $view->param(), ['f', 'l'] );
+		$view->stageParams = $this->getClientParams( $view->param(), ['f_'] );
 
 		return parent::addData( $view, $tags, $expire );
 	}

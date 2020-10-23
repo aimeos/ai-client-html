@@ -127,8 +127,9 @@ class Standard
 	 */
 	public function getBody( string $uid = '' ) : string
 	{
-		$prefixes = array( 'f' );
+		$view = $this->getView();
 		$context = $this->getContext();
+		$prefixes = ['f_catid', 'f_supid'];
 
 		/** client/html/catalog/filter/cache
 		 * Enables or disables caching only for the catalog filter component
@@ -157,10 +158,12 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/filter';
 
-		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
-		{
-			$view = $this->getView();
+		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
+			return !strncmp( $key, 'f_', 2 );
+		} );
 
+		if( !$args->isEmpty() || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		{
 			/** client/html/catalog/filter/standard/template-body
 			 * Relative path to the HTML body template of the catalog filter client.
 			 *
@@ -246,13 +249,16 @@ class Standard
 			return '';
 		}
 
-		$prefixes = array( 'f' );
+		$view = $this->getView();
+		$prefixes = ['f_catid', 'f_supid'];
 		$confkey = 'client/html/catalog/filter';
 
-		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
-		{
-			$view = $this->getView();
+		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
+			return !strncmp( $key, 'f_', 2 );
+		} );
 
+		if( !$args->isEmpty() || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
+		{
 			/** client/html/catalog/filter/standard/template-header
 			 * Relative path to the HTML header template of the catalog filter client.
 			 *
@@ -567,7 +573,7 @@ class Standard
 			 */
 			$conf = $config->get( 'client/html/catalog/count/url/config', [] );
 
-			$params = $this->getClientParams( $view->param(), ['f'] );
+			$params = $this->getClientParams( $view->param(), ['f_'] );
 
 			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
 				$params['f_catid'] = $startid;
