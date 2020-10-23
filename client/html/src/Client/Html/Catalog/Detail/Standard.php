@@ -104,9 +104,9 @@ class Standard
 	 */
 	public function getBody( string $uid = '' ) : string
 	{
-		$prefixes = ['d'];
 		$view = $this->getView();
 		$context = $this->getContext();
+		$prefixes = ['d_prodid', 'd_name'];
 
 		$code = $context->getConfig()->get( 'client/html/catalog/detail/prodcode-default' );
 		$id = $context->getConfig()->get( 'client/html/catalog/detail/prodid-default', $code );
@@ -225,9 +225,9 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ?string
 	{
-		$prefixes = ['d'];
 		$view = $this->getView();
 		$context = $this->getContext();
+		$prefixes = ['d_prodid', 'd_name'];
 		$confkey = 'client/html/catalog/detail';
 
 		$code = $context->getConfig()->get( 'client/html/catalog/detail/prodcode-default' );

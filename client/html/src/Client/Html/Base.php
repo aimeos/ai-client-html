@@ -448,18 +448,11 @@ abstract class Base
 	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = ['f', 'l', 'd', 'a'] ) : array
+	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_'] ) : array
 	{
-		$list = [];
-
-		foreach( $params as $key => $value )
-		{
-			if( in_array( $key[0], $prefixes ) && $key[1] === '_' ) {
-				$list[$key] = $value;
-			}
-		}
-
-		return $list;
+		return map( $params )->filter( function( $val, $key ) use ( $prefixes ) {
+			return \Aimeos\MW\Str::starts( $key, $prefixes );
+		} )->toArray();
 	}
 
 
@@ -482,13 +475,12 @@ abstract class Base
 	 * @param array $config Multi-dimensional array of configuration options used by the client and sub-clients
 	 * @return string Unique hash
 	 */
-	protected function getParamHash( array $prefixes = array( 'f', 'l', 'd' ), string $key = '', array $config = [] ) : string
+	protected function getParamHash( array $prefixes = ['f_', 'l_', 'd_'], string $key = '', array $config = [] ) : string
 	{
 		$locale = $this->getContext()->getLocale();
-		$params = $this->getClientParams( $this->getView()->param(), $prefixes );
-		ksort( $params );
+		$pstr = map( $this->getClientParams( $this->getView()->param(), $prefixes ) )->ksort()->toJson();
 
-		if( ( $pstr = json_encode( $params ) ) === false || ( $cstr = json_encode( $config ) ) === false ) {
+		if( ( $cstr = json_encode( $config ) ) === false ) {
 			throw new \Aimeos\Client\Html\Exception( 'Unable to encode parameters or configuration options' );
 		}
 

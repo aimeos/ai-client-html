@@ -266,7 +266,7 @@ class Standard
 
 		$view->treeCatalogPath = $catItems;
 		$view->treeCatalogTree = $cntl->visible( $catIds )->getTree( $level );
-		$view->treeFilterParams = $this->getClientParams( $view->param(), ['f'] );
+		$view->treeFilterParams = $this->getClientParams( $view->param(), ['f_'] );
 
 		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );
 

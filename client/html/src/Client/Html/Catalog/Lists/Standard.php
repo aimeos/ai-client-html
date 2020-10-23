@@ -93,8 +93,9 @@ class Standard
 	 */
 	public function getBody( string $uid = '' ) : string
 	{
-		$prefixes = array( 'f', 'l' );
+		$view = $this->getView();
 		$context = $this->getContext();
+		$prefixes = ['f_catid', 'f_supid', 'f_sort', 'l_page', 'l_type'];
 
 		/** client/html/catalog/lists/cache
 		 * Enables or disables caching only for the catalog lists component
@@ -123,10 +124,12 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/lists';
 
-		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
-		{
-			$view = $this->getView();
+		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
+			return !strncmp( $key, 'f_', 2 ) || !strncmp( $key, 'l_', 2 );
+		} );
 
+		if( !$args->isEmpty() || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		{
 			/** client/html/catalog/lists/standard/template-body
 			 * Relative path to the HTML body template of the catalog list client.
 			 *
@@ -223,13 +226,16 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ?string
 	{
-		$prefixes = array( 'f', 'l' );
+		$view = $this->getView();
 		$confkey = 'client/html/catalog/lists';
+		$prefixes = ['f_catid', 'f_supid', 'f_sort', 'l_page', 'l_type'];
 
-		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
+		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
+			return !strncmp( $key, 'f_', 2 ) || !strncmp( $key, 'l_', 2 );
+		} );
+
+		if( !$args->isEmpty() || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
-			$view = $this->getView();
-
 			/** client/html/catalog/lists/standard/template-header
 			 * Relative path to the HTML header template of the catalog list client.
 			 *
