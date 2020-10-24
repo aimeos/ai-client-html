@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
 
-		if( ( self::$subscriptionItem = $manager->searchItems( $search )->first() ) === null ) {
+		if( ( self::$subscriptionItem = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No subscription item found' );
 		}
 
@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.base.price', '53.50' ) );
 
-		if( ( $baseItem = $manager->searchItems( $search, ['order/base/address', 'order/base/product'] )->first() ) === null ) {
+		if( ( $baseItem = $manager->search( $search, ['order/base/address', 'order/base/product'] )->first() ) === null ) {
 			throw new \RuntimeException( 'No order base item found' );
 		}
 

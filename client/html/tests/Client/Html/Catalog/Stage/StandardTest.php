@@ -217,7 +217,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
 
-		if( ( $item = $catalogManager->searchItems( $search )->first() ) === null ) {
+		if( ( $item = $catalogManager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No catalog item with code "cafe" found' );
 		}
 

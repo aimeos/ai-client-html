@@ -208,7 +208,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			) ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$attributes = $attrManager->searchItems( $search );
+		$attributes = $attrManager->search( $search );
 
 		$view = $this->object->getView();
 		$param = array(
@@ -240,7 +240,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
-		if( ( $attribute = $manager->searchItems( $search )->first() ) === null ) {
+		if( ( $attribute = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No attribute' );
 		}
 
@@ -275,7 +275,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
 
-		if( ( $attribute = $manager->searchItems( $search )->first() ) === null ) {
+		if( ( $attribute = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No attribute' );
 		}
 
@@ -521,7 +521,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
-		if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
+		if( ( $item = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
@@ -549,7 +549,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
-		if( ( $item = $manager->searchItems( $search, ['price'] )->first() ) === null ) {
+		if( ( $item = $manager->search( $search, ['price'] )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 

@@ -124,7 +124,7 @@ class Standard
 
 			do
 			{
-				$items = $orderManager->searchItems( $orderSearch );
+				$items = $orderManager->search( $orderSearch );
 
 				$this->process( $client, $items, $status );
 

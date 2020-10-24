@@ -252,7 +252,7 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
-		$languages = $localeManager->searchItems( $localeManager->createSearch( true ) )
+		$languages = $localeManager->search( $localeManager->createSearch( true ) )
 			->col( 'locale.languageid', 'locale.languageid' );
 
 

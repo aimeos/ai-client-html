@@ -294,7 +294,7 @@ class Standard
 			$search->setConditions( $search->combine( '&&', $expr ) );
 			$search->setSlice( 0, 1 );
 
-			if( !$manager->searchItems( $search )->isEmpty() ) {
+			if( !$manager->search( $search )->isEmpty() ) {
 				return true;
 			}
 		}

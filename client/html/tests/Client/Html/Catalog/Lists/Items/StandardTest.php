@@ -29,7 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $catalogManager->createSearch();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
 
-		if( ( $catItem = $catalogManager->searchItems( $search )->first() ) === null ) {
+		if( ( $catItem = $catalogManager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No catalog item found' );
 		}
 
@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$view = \TestHelperHtml::getView( 'unittest', $config );
 
-		$view->listProductItems = $productManager->searchItems( $search, $domains, $total );
+		$view->listProductItems = $productManager->search( $search, $domains, $total );
 		$view->listProductTotal = $total;
 		$view->listPageSize = 100;
 		$view->listPageCurr = 1;

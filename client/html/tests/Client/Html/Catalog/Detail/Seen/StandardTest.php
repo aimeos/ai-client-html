@@ -91,7 +91,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', 'CNE' ) );
 
-		if( ( $item = $manager->searchItems( $search, ['text'] )->first() ) === null ) {
+		if( ( $item = $manager->search( $search, ['text'] )->first() ) === null ) {
 			throw new \RuntimeException( 'No product item with code "CNE" found' );
 		}
 

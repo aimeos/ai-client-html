@@ -119,7 +119,7 @@ class Standard
 
 		do
 		{
-			$items = $orderManager->searchItems( $orderSearch );
+			$items = $orderManager->search( $orderSearch );
 
 			$this->process( $client, $items, 1 );
 
@@ -206,7 +206,7 @@ class Standard
 			$search = $manager->createSearch()->setSlice( 0, 1 );
 			$search->setConditions( $search->compare( '=~', 'coupon.provider', 'Voucher' ) );
 
-			if( ( $item = $manager->searchItems( $search )->first() ) === null ) {
+			if( ( $item = $manager->search( $search )->first() ) === null ) {
 				throw new \Aimeos\Controller\Jobs\Exception( 'No coupon provider "Voucher" available' );
 			}
 

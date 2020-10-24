@@ -166,7 +166,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
-		if( ( $item = $manager->searchItems( $search, ['price'] )->first() ) === null ) {
+		if( ( $item = $manager->search( $search, ['price'] )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 

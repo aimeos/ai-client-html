@@ -61,7 +61,7 @@ class Standard
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 
-		$localeItems = $localeManager->searchItems( $localeManager->createSearch() );
+		$localeItems = $localeManager->search( $localeManager->createSearch() );
 
 		foreach( $localeItems as $localeItem )
 		{
@@ -90,7 +90,7 @@ class Standard
 			do
 			{
 				$search->setSlice( $start );
-				$customers = $custManager->searchItems( $search );
+				$customers = $custManager->search( $search );
 
 				$this->execute( $context, $customers );
 
@@ -201,7 +201,7 @@ class Standard
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSlice( 0, 0x7fffffff );
 
-		return $listManager->searchItems( $search );
+		return $listManager->search( $search );
 	}
 
 
@@ -295,7 +295,7 @@ class Standard
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSlice( 0, count( $prodIds ) );
 
-		return $productManager->searchItems( $search, array( 'text', 'price', 'media' ) );
+		return $productManager->search( $search, array( 'text', 'price', 'media' ) );
 	}
 
 
@@ -324,7 +324,7 @@ class Standard
 		$search->setConditions( $search->combine( '&&', $expr ) );
 		$search->setSlice( 0, 100000 ); // performance speedup
 
-		return $stockManager->searchItems( $search );
+		return $stockManager->search( $search );
 	}
 
 

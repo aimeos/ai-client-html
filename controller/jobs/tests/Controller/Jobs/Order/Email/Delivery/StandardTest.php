@@ -51,14 +51,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$orderManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'searchItems' ) )
+			->setMethods( ['search'] )
 			->getMock();
 
 		\Aimeos\MShop::inject( 'order', $orderManagerStub );
 
 		$orderItem = $orderManagerStub->createItem();
 
-		$orderManagerStub->expects( $this->exactly( 4 ) )->method( 'searchItems' )
+		$orderManagerStub->expects( $this->exactly( 4 ) )->method( 'search' )
 			->will( $this->onConsecutiveCalls( map( [$orderItem] ), map(), map(), map() ) );
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Delivery\Standard::class )

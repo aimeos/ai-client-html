@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitcode' ) );
 
-		if( ( $service = $manager->searchItems( $search )->first() ) === null ) {
+		if( ( $service = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'Service item not found' );
 		}
 
@@ -145,7 +145,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitcode' ) );
 
-		if( ( $service = $manager->searchItems( $search )->first() ) === null ) {
+		if( ( $service = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'Service item not found' );
 		}
 

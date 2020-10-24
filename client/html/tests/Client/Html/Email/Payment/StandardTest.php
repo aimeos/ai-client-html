@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $manager->createSearch();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', '2008-02-15 12:34:56' ) );
 
-		if( ( self::$orderItem = $manager->searchItems( $search )->first() ) === null ) {
+		if( ( self::$orderItem = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No order found' );
 		}
 
