@@ -200,7 +200,10 @@ class Standard
 				$view->filterBody = $html;
 
 				$html = $view->render( $view->config( $tplconf, $default ) );
-				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				if( $args->isEmpty() ) {
+					$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				}
 
 				return $html;
 			}
@@ -296,7 +299,10 @@ class Standard
 				$view->filterHeader = $html;
 
 				$html = $view->render( $view->config( $tplconf, $default ) );
-				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				if( $args->isEmpty() ) {
+					$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				}
 
 				return $html;
 			}
