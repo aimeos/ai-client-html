@@ -47,7 +47,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<?php endforeach; ?>
 
 		<?php $params = array_diff_key( ['d_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId(), 'd_pos' => ''], $detailFilter ); ?>
-		<link rel="canonical" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absouteUri' => true] ) ); ?>" />
+		<link rel="canonical" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ); ?>" />
 
 		<meta property="og:type" content="product" />
 		<meta property="og:title" content="<?= $enc->html( $this->detailProductItem->getName() ); ?>" />
