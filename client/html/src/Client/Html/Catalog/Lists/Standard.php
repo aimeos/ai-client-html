@@ -181,7 +181,10 @@ class Standard
 				$view->listBody = $html;
 
 				$html = $view->render( $this->getTemplatePath( $tplconf, $default ) );
-				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				if( $args->isEmpty() ) {
+					$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				}
 
 				return $html;
 			}
@@ -288,7 +291,10 @@ class Standard
 				$view->listHeader = $html;
 
 				$html = $view->render( $this->getTemplatePath( $tplconf, $default ) );
-				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+
+				if( $args->isEmpty() ) {
+					$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				}
 
 				return $html;
 			}
