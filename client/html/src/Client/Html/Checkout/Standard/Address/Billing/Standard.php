@@ -266,6 +266,7 @@ class Standard
 		 * List of salutions the customer can select from for the billing address
 		 *
 		 * The following salutations are available:
+		 *
 		 * * empty string for "unknown"
 		 * * company
 		 * * mr
@@ -336,6 +337,7 @@ class Standard
 		 * You can configure the list of billing address fields that are
 		 * necessary and must be filled by the customer before he can
 		 * continue the checkout process. Available field keys are:
+		 *
 		 * * order.base.address.company
 		 * * order.base.address.vatid
 		 * * order.base.address.salutation
@@ -376,6 +378,7 @@ class Standard
 		 * You can configure the list of billing address fields that
 		 * customers can fill but don't have to before they can
 		 * continue the checkout process. Available field keys are:
+		 *
 		 * * order.base.address.company
 		 * * order.base.address.vatid
 		 * * order.base.address.salutation
@@ -416,6 +419,7 @@ class Standard
 		 * You can configure the list of billing address fields that
 		 * are hidden when a customer enters his new billing address.
 		 * Available field keys are:
+		 *
 		 * * order.base.address.company
 		 * * order.base.address.vatid
 		 * * order.base.address.salutation
@@ -457,40 +461,42 @@ class Standard
 		 * To validate the address input data of the customer, an individual
 		 * {@link http://php.net/manual/en/pcre.pattern.php Perl compatible regular expression}
 		 * can be applied to each field. Available fields are:
-		 * * company
-		 * * vatid
-		 * * salutation
-		 * * firstname
-		 * * lastname
-		 * * address1
-		 * * address2
-		 * * address3
-		 * * postal
-		 * * city
-		 * * state
-		 * * languageid
-		 * * countryid
-		 * * telephone
-		 * * telefax
-		 * * email
-		 * * website
+		 *
+		 * * order.base.address.company
+		 * * order.base.address.vatid
+		 * * order.base.address.salutation
+		 * * order.base.address.firstname
+		 * * order.base.address.lastname
+		 * * order.base.address.address1
+		 * * order.base.address.address2
+		 * * order.base.address.address3
+		 * * order.base.address.postal
+		 * * order.base.address.city
+		 * * order.base.address.state
+		 * * order.base.address.languageid
+		 * * order.base.address.countryid
+		 * * order.base.address.telephone
+		 * * order.base.address.telefax
+		 * * order.base.address.email
+		 * * order.base.address.website
 		 *
 		 * Some fields are validated automatically because they are not
 		 * dependent on a country specific rule. These fields are:
-		 * * salutation
-		 * * email
-		 * * website
+		 *
+		 * * order.base.address.salutation
+		 * * order.base.address.email
+		 * * order.base.address.website
 		 *
 		 * To validate e.g the postal/zip code, you can define a regular
 		 * expression like this if you want to allow only digits:
 		 *
-		 *  client/html/checkout/standard/address/validate/postal = '^[0-9]+$'
+		 *  client/html/checkout/standard/address/validate/order.base.address.postal = '^[0-9]+$'
 		 *
 		 * Several regular expressions can be defined line this:
 		 *
 		 *  client/html/checkout/standard/address/validate = array(
-		 *      'postal' = '^[0-9]+$',
-		 *      'vatid' = '^[A-Z]{2}[0-9]{8}$',
+		 *      'order.base.address.postal' = '^[0-9]+$',
+		 *      'order.base.address.vatid' = '^[A-Z]{2}[0-9]{8}$',
 		 *  )
 		 *
 		 * Don't add any delimiting characters like slashes (/) to the beginning

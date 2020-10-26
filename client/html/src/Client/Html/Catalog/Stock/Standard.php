@@ -333,6 +333,7 @@ class Standard
 		 * of this list, the configured key will be used by the stock manager.
 		 *
 		 * Possible keys for sorting are ("-stock.type" for descending order):
+		 *
 		 * * stock.productcode
 		 * * stock.stocklevel
 		 * * stock.type

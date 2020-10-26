@@ -592,6 +592,7 @@ class Standard
 		 * no products at all or if there are only a few products in all categories.
 		 *
 		 * Possible constant values for this setting are:
+		 *
 		 * * 1 : Only products from the current category
 		 * * 2 : Products from the current category and the direct child categories
 		 * * 3 : Products from the current category and the whole category sub-tree

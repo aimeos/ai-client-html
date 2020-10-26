@@ -443,6 +443,7 @@ class Standard
 		 * checkout subparts are combined to a one page view. Simply add the names
 		 * of all checkout subparts to the list. Available checkout subparts for
 		 * a one page checkout are:
+		 *
 		 * * address
 		 * * delivery
 		 * * payment

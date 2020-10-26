@@ -16,15 +16,18 @@ $prefix = !$this->get( 'standardUrlExternal', true );
  * To validate the payment input data of the customer, an individual Perl
  * compatible regular expression (http://php.net/manual/en/pcre.pattern.php)
  * can be applied to each field. Available fields are:
+ *
  * * payment.cardno
  * * payment.cvv
  * * payment.expirymonthyear
  *
  * To validate e.g the CVV security code, you can define a regular expression
  * like this to allow only three digits:
+ *
  *  client/html/checkout/standard/process/validate/payment.cvv = '^[0-9]{3}$'
  *
  * Several regular expressions can be defined line this:
+ *
  *  client/html/checkout/standard/process/validate = array(
  *   'payment.cardno' = '^[0-9]{16,19}$',
  *   'payment.cvv' = '^[0-9]{3}$',

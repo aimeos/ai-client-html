@@ -13,6 +13,7 @@ $enc = $this->encoder();
  * The number of products in stock below it's considered a low stock level
  *
  * There are four stock levels available:
+ *
  * * unlimited
  * * high
  * * low

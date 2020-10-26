@@ -29,6 +29,7 @@ $enc = $this->encoder();
  *  client/html/catalog/social/url/tumblr = http://www.tumblr.com/share/link?url=%1$s&name=%2$s
  *
  * Possible placeholders and replaced values are:
+ *
  * * %1$s : Shop URL of the product detail page
  * * %2$s : Name of the product
  * * %3$s : URL of the first product image
@@ -53,6 +54,7 @@ $urls = array(
 	 * page of the shop.
 	 *
 	 * Possible placeholders and replaced values are:
+	 *
 	 * * %1$s : Shop URL of the product detail page
 	 * * %2$s : Name of the product
 	 * * %3$s : URL of the first product image
@@ -74,6 +76,7 @@ $urls = array(
 	 * page of the shop.
 	 *
 	 * Possible placeholders and replaced values are:
+	 *
 	 * * %1$s : Shop URL of the product detail page
 	 * * %2$s : Name of the product
 	 * * %3$s : URL of the first product image
@@ -95,6 +98,7 @@ $urls = array(
 	 * page of the shop.
 	 *
 	 * Possible placeholders and replaced values are:
+	 *
 	 * * %1$s : Shop URL of the product detail page
 	 * * %2$s : Name of the product
 	 * * %3$s : URL of the first product image
@@ -116,6 +120,7 @@ $urls = array(
 	 * product detail page, the product name and the product image to be useful.
 	 *
 	 * Possible placeholders and replaced values are:
+	 *
 	 * * %1$s : Shop URL of the product detail page
 	 * * %2$s : Name of the product
 	 * * %3$s : URL of the first product image

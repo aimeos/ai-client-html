@@ -264,6 +264,7 @@ class Standard
 		 * You can configure the list of delivery address fields that are
 		 * necessary and must be filled by the customer before he can
 		 * continue the checkout process. Available field keys are:
+		 *
 		 * * order.base.address.company
 		 * * order.base.address.vatid
 		 * * order.base.address.salutation
@@ -304,6 +305,7 @@ class Standard
 		 * You can configure the list of delivery address fields that
 		 * customers can fill but don't have to before they can
 		 * continue the checkout process. Available field keys are:
+		 *
 		 * * order.base.address.company
 		 * * order.base.address.vatid
 		 * * order.base.address.salutation
@@ -344,6 +346,7 @@ class Standard
 		 * You can configure the list of delivery address fields that
 		 * are hidden when a customer enters his delivery address.
 		 * Available field keys are:
+		 *
 		 * * order.base.address.company
 		 * * order.base.address.vatid
 		 * * order.base.address.salutation
@@ -607,6 +610,7 @@ class Standard
 		 * List of salutions the customer can select from for the delivery address
 		 *
 		 * The following salutations are available:
+		 *
 		 * * empty string for "unknown"
 		 * * company
 		 * * mr
