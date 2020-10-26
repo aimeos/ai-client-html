@@ -254,7 +254,7 @@ class Standard
 			$view->treeCountList = $cntl->aggregate( 'index.catalog.id' );
 
 			if( $level === \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
-				$view->treeCountList = $this->counts( $this->traverse( $tree, $view->treeCountList->toArray() ) );
+				$view->treeCountList = map( $this->counts( $this->traverse( $tree, $view->treeCountList->toArray() ) ) );
 			}
 		}
 
