@@ -677,103 +677,103 @@ class Standard
 	{
 		$config = $this->getContext()->getConfig();
 
-		/** client/html/checkout/standard/address/validate/company
+		/** client/html/checkout/standard/address/validate/order.base.address.company
 		 * Regular expression to check the "company" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/vatid
+		/** client/html/checkout/standard/address/validate/order.base.address.vatid
 		 * Regular expression to check the "vatid" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/salutation
+		/** client/html/checkout/standard/address/validate/order.base.address.salutation
 		 * Regular expression to check the "salutation" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/firstname
+		/** client/html/checkout/standard/address/validate/order.base.address.firstname
 		 * Regular expression to check the "firstname" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/lastname
+		/** client/html/checkout/standard/address/validate/order.base.address.lastname
 		 * Regular expression to check the "lastname" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address1
+		/** client/html/checkout/standard/address/validate/order.base.address.address1
 		 * Regular expression to check the "address1" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address2
+		/** client/html/checkout/standard/address/validate/order.base.address.address2
 		 * Regular expression to check the "address2" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address3
+		/** client/html/checkout/standard/address/validate/order.base.address.address3
 		 * Regular expression to check the "address3" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/postal
+		/** client/html/checkout/standard/address/validate/order.base.address.postal
 		 * Regular expression to check the "postal" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/city
+		/** client/html/checkout/standard/address/validate/order.base.address.city
 		 * Regular expression to check the "city" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/state
+		/** client/html/checkout/standard/address/validate/order.base.address.state
 		 * Regular expression to check the "state" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/languageid
+		/** client/html/checkout/standard/address/validate/order.base.address.languageid
 		 * Regular expression to check the "languageid" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/countryid
+		/** client/html/checkout/standard/address/validate/order.base.address.countryid
 		 * Regular expression to check the "countryid" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/telephone
+		/** client/html/checkout/standard/address/validate/order.base.address.telephone
 		 * Regular expression to check the "telephone" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/telefax
+		/** client/html/checkout/standard/address/validate/order.base.address.telefax
 		 * Regular expression to check the "telefax" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/email
+		/** client/html/checkout/standard/address/validate/order.base.address.email
 		 * Regular expression to check the "email" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/website
+		/** client/html/checkout/standard/address/validate/order.base.address.website
 		 * Regular expression to check the "website" address value
 		 *
 		 * @see client/html/checkout/standard/address/validate
