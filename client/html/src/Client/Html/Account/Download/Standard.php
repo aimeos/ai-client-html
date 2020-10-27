@@ -201,7 +201,7 @@ class Standard
 			}
 
 			$manager = \Aimeos\MShop::create( $context, 'order/base/product/attribute' );
-			$item = $manager->getItem( $id );
+			$item = $manager->get( $id );
 
 			if( $this->checkDownload( $id ) === false ) {
 				return $view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) );

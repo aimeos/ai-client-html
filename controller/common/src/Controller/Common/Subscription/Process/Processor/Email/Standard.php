@@ -84,7 +84,7 @@ class Standard
 		$context = $this->getContext();
 
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
-		$baseItem = $manager->getItem( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
+		$baseItem = $manager->get( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
 
 		$addrItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
 

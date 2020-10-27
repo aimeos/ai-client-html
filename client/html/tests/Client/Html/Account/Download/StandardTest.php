@@ -94,10 +94,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$attrManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Attribute\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'getItem' ) )
+			->setMethods( ['get'] )
 			->getMock();
 
-		$attrManagerStub->expects( $this->once() )->method( 'getItem' )
+		$attrManagerStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $attrManagerStub->createItem() ) );
 
 		\Aimeos\MShop::inject( 'order/base/product/attribute', $attrManagerStub );
