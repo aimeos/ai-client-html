@@ -189,11 +189,12 @@ class Standard
 
 			try
 			{
+				$html = '';
+
 				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
 				}
 
-				$html = '';
 				foreach( $this->getSubClients() as $subclient ) {
 					$html .= $subclient->setView( $view )->getBody( $uid );
 				}
@@ -288,11 +289,12 @@ class Standard
 
 			try
 			{
+				$html = '';
+
 				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
 				}
 
-				$html = '';
 				foreach( $this->getSubClients() as $subclient ) {
 					$html .= $subclient->setView( $view )->getHeader( $uid );
 				}

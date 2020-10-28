@@ -169,15 +169,16 @@ class Standard
 
 			try
 			{
+				$html = '';
+
 				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
 				}
 
-				$output = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getBody( $uid );
+					$html .= $subclient->setView( $view )->getBody( $uid );
 				}
-				$view->detailBody = $output;
+				$view->detailBody = $html;
 
 				$html = $view->render( $view->config( $tplconf, $default ) );
 				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
@@ -265,15 +266,16 @@ class Standard
 
 			try
 			{
+				$html = '';
+
 				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
 				}
 
-				$output = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getHeader( $uid );
+					$html .= $subclient->setView( $view )->getHeader( $uid );
 				}
-				$view->detailHeader = $output;
+				$view->detailHeader = $html;
 
 				$html = $view->render( $view->config( $tplconf, $default ) );
 				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
