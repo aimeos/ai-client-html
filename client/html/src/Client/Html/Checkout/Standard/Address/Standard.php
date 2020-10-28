@@ -311,7 +311,9 @@ class Standard
 			$deliveryAddressItems[$pos] = $orderAddressManager->createItem()->copyFrom( $addrItem );
 		}
 
-		$paymentAddressItem = $orderAddressManager->createItem()->copyFrom( $item->getPaymentAddress() );
+		$paymentAddressItem = $orderAddressManager->createItem()
+			->setLanguageId( $context->getLocale()->getLanguageId() )
+			->copyFrom( $item->getPaymentAddress() );
 
 		$view->addressCustomerItem = $item;
 		$view->addressPaymentItem = $paymentAddressItem;
