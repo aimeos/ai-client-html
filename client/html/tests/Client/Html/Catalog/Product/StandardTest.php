@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertNull( $object->getHeader() );
+		$this->assertEmpty( $object->getHeader() );
 	}
 
 
