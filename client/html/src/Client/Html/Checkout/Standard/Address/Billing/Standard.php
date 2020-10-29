@@ -791,7 +791,7 @@ class Standard
 		{
 			if( isset( $fields[$key] ) )
 			{
-				$name = substr( $key, 19 );
+				$name = substr( $key, strpos( $key, '.', 16 ) + 1 );
 				$regex = $config->get( 'client/html/checkout/standard/address/validate/' . $name );
 
 				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 )
