@@ -393,7 +393,7 @@ class Standard
 	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = ['f', 'l', 'd', 'a'] ) : array
+	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_'] ) : array
 	{
 		if( isset( $params['d_prodid'] ) || isset( $params['d_name'] ) )
 		{
@@ -429,8 +429,9 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
+		$params = map( $this->getClientParams( $view->param(), ['f_catid'] ) );
 
-		if( $catid = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default', '' ) ) )
+		if( $catid = $params->get( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) ) )
 		{
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
 
