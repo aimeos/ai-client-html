@@ -35,7 +35,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group firstname <?= $enc->attr( ( $this->value( 'error', 'order.base.address.firstname' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.firstname', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.firstname' ) ) ?>" >
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/firstname' ) ) ?>" >
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-firstname-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'First name' ), $enc::TRUST ); ?>
@@ -53,7 +53,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group lastname <?= $enc->attr( ( $this->value( 'error', 'order.base.address.lastname' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.lastname', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.lastname' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/lastname' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-lastname-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Last name' ), $enc::TRUST ); ?>
@@ -71,7 +71,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group company <?= $enc->attr( ( $this->value( 'error', 'order.base.address.company' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.company', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.company' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/company' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-company-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Company' ), $enc::TRUST ); ?>
@@ -89,7 +89,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group address1 <?= $enc->attr( ( $this->value( 'error', 'order.base.address.address1' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.address1', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.address1' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/address1' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-address1-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Street' ), $enc::TRUST ); ?>
@@ -107,7 +107,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group address2 <?= $enc->attr( ( $this->value( 'error', 'order.base.address.address2' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.address2', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.address2' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/address2' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-address2-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Additional' ), $enc::TRUST ); ?>
@@ -125,7 +125,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group address3 <?= $enc->attr( ( $this->value( 'error', 'order.base.address.address3' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.address3', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.address3' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/address3' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-address3-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Additional 2' ), $enc::TRUST ); ?>
@@ -143,7 +143,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group city <?= $enc->attr( ( $this->value( 'error', 'order.base.address.city' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.city', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.city' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/city' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-city-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ); ?>
@@ -161,7 +161,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group postal <?= $enc->attr( ( $this->value( 'error', 'order.base.address.postal' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.postal', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.postal' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/postal' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-postal-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Postal code' ), $enc::TRUST ); ?>
@@ -266,7 +266,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group vatid <?= $enc->attr( ( $this->value( 'error', 'order.base.address.vatid' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.vatid', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.vatid' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/vatid' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-vatid-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Vat ID' ), $enc::TRUST ); ?>
@@ -284,7 +284,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group email <?= $enc->attr( ( $this->value( 'error', 'order.base.address.email' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.email', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.email', '^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/email', '^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-email-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'E-Mail' ), $enc::TRUST ); ?>
@@ -302,7 +302,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group telephone <?= $enc->attr( ( $this->value( 'error', 'order.base.address.telephone' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.telephone', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.telephone' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/telephone' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-telephone-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Telephone' ), $enc::TRUST ); ?>
@@ -320,7 +320,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group telefax <?= $enc->attr( ( $this->value( 'error', 'order.base.address.telefax' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.telefax', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.telefax' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/telefax' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-telefax-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Fax' ), $enc::TRUST ); ?>
@@ -338,7 +338,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group website <?= $enc->attr( ( $this->value( 'error', 'order.base.address.website' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.website', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/order.base.address.website', '^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$' ) ); ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/website', '^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$' ) ); ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-website-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'Web site' ), $enc::TRUST ); ?>
