@@ -414,7 +414,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getProductItem( $code = 'CNE', $domains = [] )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
 		if( ( $item = $manager->search( $search, $domains )->first() ) === null ) {

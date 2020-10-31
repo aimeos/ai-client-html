@@ -113,7 +113,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getProductItem()
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', 'CNC' ) );
 
 		if( ( $item = $manager->search( $search, ['media', 'price', 'text'] )->first() ) === null ) {

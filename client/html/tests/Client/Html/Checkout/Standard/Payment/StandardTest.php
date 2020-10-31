@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessExistingId()
 	{
 		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitpaymentcode' ) );
 
 		if( ( $service = $manager->search( $search )->first() ) === null ) {
@@ -147,7 +147,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcessNotExistingAttributes()
 	{
 		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitpaymentcode' ) );
 
 		if( ( $service = $manager->search( $search )->first() ) === null ) {

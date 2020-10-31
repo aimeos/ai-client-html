@@ -26,7 +26,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Items\Standard( $context, $paths );
 
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $context );
-		$search = $catalogManager->createSearch();
+		$search = $catalogManager->filter();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
 
 		if( ( $catItem = $catalogManager->search( $search )->first() ) === null ) {
@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $context );
-		$search = $productManager->createSearch();
+		$search = $productManager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', array( 'CNE', 'U:TEST', 'U:BUNDLE' ) ) );
 		$total = 0;
 

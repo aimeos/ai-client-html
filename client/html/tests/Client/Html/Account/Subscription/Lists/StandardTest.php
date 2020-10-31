@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getCustomerItem( $code )
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
 
 		if( ( $item = $manager->search( $search )->first() ) === null ) {
@@ -109,7 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
 
 		if( ( $item = $manager->search( $search )->first() ) === null ) {

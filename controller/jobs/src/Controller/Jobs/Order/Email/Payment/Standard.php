@@ -108,7 +108,7 @@ class Standard
 		 */
 		foreach( (array) $config->get( 'controller/jobs/order/email/payment/standard/status', $default ) as $status )
 		{
-			$orderSearch = $orderManager->createSearch();
+			$orderSearch = $orderManager->filter();
 
 			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_PAYMENT, (string) $status );
 			$orderFunc = $orderSearch->createFunction( 'order:status', $param );

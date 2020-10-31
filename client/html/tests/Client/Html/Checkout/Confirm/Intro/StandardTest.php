@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'order.base.service.code', 'paypalexpress' ) );
 
 		if( ( $item = $manager->search( $search )->first() ) === null ) {

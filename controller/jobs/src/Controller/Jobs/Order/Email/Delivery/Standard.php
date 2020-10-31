@@ -111,7 +111,7 @@ class Standard
 		foreach( (array) $config->get( 'controller/jobs/order/email/delivery/standard/status', $default ) as $status )
 		{
 			$start = 0;
-			$orderSearch = $orderManager->createSearch();
+			$orderSearch = $orderManager->filter();
 
 			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, (string) $status );
 			$orderFunc = $orderSearch->createFunction( 'order:status', $param );

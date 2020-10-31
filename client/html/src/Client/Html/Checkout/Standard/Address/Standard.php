@@ -318,7 +318,7 @@ class Standard
 		$view->addressCustomerItem = $item;
 		$view->addressPaymentItem = $paymentAddressItem;
 		$view->addressDeliveryItems = $deliveryAddressItems;
-		$view->addressLanguages = $localeManager->search( $localeManager->createSearch( true ) )
+		$view->addressLanguages = $localeManager->search( $localeManager->filter( true ) )
 			->col( 'locale.languageid', 'locale.languageid' );
 
 		/** client/html/checkout/standard/address/countries

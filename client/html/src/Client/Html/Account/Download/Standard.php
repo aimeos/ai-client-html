@@ -286,7 +286,7 @@ class Standard
 		{
 			$manager = \Aimeos\MShop::create( $context, 'order/base' );
 
-			$search = $manager->createSearch();
+			$search = $manager->filter();
 			$expr = array(
 				$search->compare( '==', 'order.base.customerid', $customerId ),
 				$search->compare( '==', 'order.base.product.attribute.id', $id ),

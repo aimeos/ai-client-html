@@ -125,7 +125,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getCustomerItem( $code = 'test@example.com' )
 	{
 		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'customer.code', $code ) );
 
 		if( ( $item = $manager->search( $search )->first() ) === null ) {

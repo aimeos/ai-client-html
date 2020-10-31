@@ -22,7 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelperHtml::getContext();
 		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'customer.code', 'test@example.com' ) );
 
 		if( ( self::$customerItem = $manager->search( $search )->first() ) === null ) {

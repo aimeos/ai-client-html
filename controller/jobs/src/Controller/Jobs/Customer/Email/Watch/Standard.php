@@ -61,7 +61,7 @@ class Standard
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 
-		$localeItems = $localeManager->search( $localeManager->createSearch() );
+		$localeItems = $localeManager->search( $localeManager->filter() );
 
 		foreach( $localeItems as $localeItem )
 		{
@@ -75,7 +75,7 @@ class Standard
 			// fetch language specific text and media items for products
 			$context->getLocale()->setLanguageId( $langId );
 
-			$search = $custManager->createSearch( true );
+			$search = $custManager->filter( true );
 			$func = $search->createFunction( 'customer:has', ['product', 'watch'] );
 			$expr = array(
 				$search->compare( '==', 'customer.languageid', $langId ),
@@ -192,7 +192,7 @@ class Standard
 	{
 		$listManager = \Aimeos\MShop::create( $context, 'customer/lists' );
 
-		$search = $listManager->createSearch();
+		$search = $listManager->filter();
 		$expr = array(
 			$search->compare( '==', 'customer.lists.domain', 'product' ),
 			$search->compare( '==', 'customer.lists.parentid', $custIds->toArray() ),
@@ -287,7 +287,7 @@ class Standard
 	{
 		$productManager = \Aimeos\MShop::create( $context, 'product' );
 
-		$search = $productManager->createSearch( true );
+		$search = $productManager->filter( true );
 		$expr = array(
 			$search->compare( '==', 'product.id', $prodIds ),
 			$search->getConditions(),
@@ -311,7 +311,7 @@ class Standard
 	{
 		$stockManager = \Aimeos\MShop::create( $context, 'stock' );
 
-		$search = $stockManager->createSearch( true );
+		$search = $stockManager->filter( true );
 		$expr = array(
 			$search->compare( '==', 'stock.productcode', $prodCodes ),
 			$search->compare( '==', 'stock.type', $stockType ),

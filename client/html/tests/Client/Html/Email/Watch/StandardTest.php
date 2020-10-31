@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'customer.code', 'test@example.com' ) );
 
 		if( ( self::$customerItem = $manager->search( $search )->first() ) === null ) {
@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', array( 'CNC', 'CNE' ) ) );
 
 		foreach( $manager->search( $search, array( 'text', 'price', 'media' ) ) as $id => $product )

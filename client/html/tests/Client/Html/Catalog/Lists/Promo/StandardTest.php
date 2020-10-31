@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
-		$search = $catalogManager->createSearch();
+		$search = $catalogManager->filter();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
 
 		if( ( $this->catItem = $catalogManager->search( $search, ['product'] )->first() ) === null ) {

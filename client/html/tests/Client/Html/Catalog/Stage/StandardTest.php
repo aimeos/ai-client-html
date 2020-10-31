@@ -214,7 +214,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getCatalogItem()
 	{
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
-		$search = $catalogManager->createSearch();
+		$search = $catalogManager->filter();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
 
 		if( ( $item = $catalogManager->search( $search )->first() ) === null ) {

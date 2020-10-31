@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelperHtml::getContext();
 		$manager = \Aimeos\MShop::create( $context, 'subscription' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
 
 		if( ( self::$subscriptionItem = $manager->search( $search )->first() ) === null ) {
@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'order.base.price', '53.50' ) );
 
 		if( ( $baseItem = $manager->search( $search, ['order/base/address', 'order/base/product'] )->first() ) === null ) {

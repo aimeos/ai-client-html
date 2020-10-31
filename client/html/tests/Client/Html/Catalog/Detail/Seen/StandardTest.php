@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getProductItem()
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperHtml::getContext() );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', 'CNE' ) );
 
 		if( ( $item = $manager->search( $search, ['text'] )->first() ) === null ) {

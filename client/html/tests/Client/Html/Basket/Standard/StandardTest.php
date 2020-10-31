@@ -193,7 +193,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
-		$search = $attrManager->createSearch();
+		$search = $attrManager->filter();
 		$expr = array(
 			$search->compare( '==', 'attribute.domain', 'product' ),
 			$search->combine( '||', array(
@@ -232,7 +232,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 			$search->compare( '==', 'attribute.code', 'white' ),
 			$search->compare( '==', 'attribute.domain', 'product' ),
@@ -267,7 +267,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$expr = array(
 				$search->compare( '==', 'attribute.code', 'custom' ),
 				$search->compare( '==', 'attribute.domain', 'product' ),
@@ -518,7 +518,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function addProduct( $code, $quantity, $stockType )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
 		if( ( $item = $manager->search( $search )->first() ) === null ) {
@@ -546,7 +546,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getProductItem( $code )
 	{
 		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$search = $manager->createSearch();
+		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
 		if( ( $item = $manager->search( $search, ['price'] )->first() ) === null ) {

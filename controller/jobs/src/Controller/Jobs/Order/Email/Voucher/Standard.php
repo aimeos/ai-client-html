@@ -102,7 +102,7 @@ class Standard
 		$client = \Aimeos\Client\Html\Email\Voucher\Factory::create( $context );
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
-		$orderSearch = $orderManager->createSearch();
+		$orderSearch = $orderManager->filter();
 
 		$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER, '1' );
 		$orderFunc = $orderSearch->createFunction( 'order:status', $param );
@@ -203,7 +203,7 @@ class Standard
 		{
 			$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon' );
 
-			$search = $manager->createSearch()->setSlice( 0, 1 );
+			$search = $manager->filter()->setSlice( 0, 1 );
 			$search->setConditions( $search->compare( '=~', 'coupon.provider', 'Voucher' ) );
 
 			if( ( $item = $manager->search( $search )->first() ) === null ) {
