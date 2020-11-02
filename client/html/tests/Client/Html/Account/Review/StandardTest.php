@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetHeader()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$this->context->setUserId( $manager->findItem( 'test@example.com' )->getId() );
+		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$this->context->setUserId( $manager->findItem( 'test@example.com' )->getId() );
+		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<section class="aimeos account-review"', $output );

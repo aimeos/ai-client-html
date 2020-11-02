@@ -22,7 +22,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$catalogItem = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$productItem = $productManager->findItem( 'p-1:1' );
+		$productItem = $productManager->find( 'p-1:1' );
 
 		$this->view = \TestHelperHtml::getView( 'unitperf' );
 

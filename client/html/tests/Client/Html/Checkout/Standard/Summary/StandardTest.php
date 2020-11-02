@@ -193,18 +193,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 
 		$customerManager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$address = $customerManager->findItem( 'test@example.com' )->getPaymentAddress()->toArray();
+		$address = $customerManager->find( 'test@example.com' )->getPaymentAddress()->toArray();
 
 		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
 		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
 
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$controller->addProduct( $productManager->findItem( 'CNE', ['price'] ), 2 );
+		$controller->addProduct( $productManager->find( 'CNE', ['price'] ), 2 );
 
 		$domains = ['media', 'price', 'text'];
 		$serviceManager = \Aimeos\MShop::create( $this->context, 'service' );
-		$controller->addService( $serviceManager->findItem( 'unitpaymentcode', $domains, 'service', 'payment' ) );
-		$controller->addService( $serviceManager->findItem( 'unitcode', $domains, 'service', 'delivery' ) );
+		$controller->addService( $serviceManager->find( 'unitpaymentcode', $domains, 'service', 'payment' ) );
+		$controller->addService( $serviceManager->find( 'unitcode', $domains, 'service', 'delivery' ) );
 
 		return $controller->get();
 	}

@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com' );
+		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
 		$address = $customerItem->getPaymentAddress()->setEmail( 'unittest@aimeos.org' )->toArray();
 
 		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );

@@ -101,8 +101,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE', ['price'] );
-		$service = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE', ['price'] );
+		$service = \Aimeos\MShop::create( $this->context, 'service' )->find( 'paypalexpress' );
 
 		$basketMock->addProduct( $product );
 		$basketMock->addService( $service );
@@ -192,8 +192,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
-		$product = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNE', ['price'] );
-		$service = \Aimeos\MShop::create( $this->context, 'service' )->findItem( 'paypalexpress' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE', ['price'] );
+		$service = \Aimeos\MShop::create( $this->context, 'service' )->find( 'paypalexpress' );
 
 		$basketMock->addProduct( $product );
 		$basketMock->addService( $service );

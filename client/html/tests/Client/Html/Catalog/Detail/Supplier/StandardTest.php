@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 		$view = $this->object->getView();
-		$view->detailProductItem = \Aimeos\MShop::create( $this->context, 'product' )->findItem( 'CNC' );
+		$view->detailProductItem = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' );
 
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getBody();

@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend::cache( true );
 
 		$this->context = \TestHelperHtml::getContext();
-		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com' )->getId() );
+		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Delivery\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -207,7 +207,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessAddressDelete()
 	{
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com', ['customer/address'] );
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 		$id = $customer->getAddressItems()->first()->getId();
 
 		$view = \TestHelperHtml::getView();
@@ -232,7 +232,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessExistingAddress()
 	{
-		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->findItem( 'test@example.com', ['customer/address'] );
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 
 		$view = \TestHelperHtml::getView();
 		$param = array( 'ca_deliveryoption' => $customer->getAddressItems()->first()->getId() );
