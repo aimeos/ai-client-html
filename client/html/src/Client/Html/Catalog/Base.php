@@ -124,10 +124,10 @@ abstract class Base
 
 
 		$urls = [];
-		$codes = $products->getCode()->sort();
+		$ids = $products->getId()->sort();
 
-		while( !( $list = $codes->splice( -$max ) )->isEmpty() ) {
-			$urls[] = $view->url( $target, $cntl, $action, array( "s_prodcode" => $list->toArray() ), [], $config );
+		while( !( $list = $ids->splice( -$max ) )->isEmpty() ) {
+			$urls[] = $view->url( $target, $cntl, $action, ['s_prodid' => $list->toArray()], [], $config );
 		}
 
 		return map( $urls )->reverse();

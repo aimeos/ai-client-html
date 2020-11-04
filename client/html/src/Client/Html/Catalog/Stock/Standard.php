@@ -301,14 +301,14 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$stockItemsByProducts = [];
-		$productCodes = (array) $view->param( 's_prodcode', [] );
+		$prodIds = (array) $view->param( 's_prodid', [] );
 
-		foreach( $this->getStockItems( $productCodes ) as $stockItem ) {
-			$stockItemsByProducts[$stockItem->getProductCode()][] = $stockItem;
+		foreach( $this->getStockItems( $prodIds ) as $stockItem ) {
+			$stockItemsByProducts[$stockItem->getProductId()][] = $stockItem;
 		}
 
 		$view->stockItemsByProducts = $stockItemsByProducts;
-		$view->stockProductCodes = $productCodes;
+		$view->stockProductIds = $prodIds;
 
 		return parent::addData( $view, $tags, $expire );
 	}
@@ -317,10 +317,10 @@ class Standard
 	/**
 	 * Returns the list of stock items for the given product codes and the stock type
 	 *
-	 * @param array $productCodes List of product codes
+	 * @param array $prodIds List of product codes
 	 * @return \Aimeos\Map List stock IDs as keys and items implementing \Aimeos\MShop\Stock\Item\Iface
 	 */
-	protected function getStockItems( array $productCodes ) : \Aimeos\Map
+	protected function getStockItems( array $prodIds ) : \Aimeos\Map
 	{
 		$context = $this->getContext();
 
@@ -334,7 +334,7 @@ class Standard
 		 *
 		 * Possible keys for sorting are ("-stock.type" for descending order):
 		 *
-		 * * stock.productcode
+		 * * stock.productid
 		 * * stock.stocklevel
 		 * * stock.type
 		 * * stock.dateback
@@ -348,8 +348,8 @@ class Standard
 		$type = $context->getLocale()->getSiteItem()->getConfigValue( 'stocktype' );
 
 		return \Aimeos\Controller\Frontend::create( $context, 'stock' )
-			->code( $productCodes )->type( $type )->sort( $sort )
-			->slice( 0, count( $productCodes ) )
+			->product( $prodIds )->type( $type )->sort( $sort )
+			->slice( 0, count( $prodIds ) )
 			->search();
 	}
 }

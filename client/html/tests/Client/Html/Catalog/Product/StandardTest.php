@@ -35,6 +35,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = $this->object->getView();
 
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
+		$filter = $manager->filter()->add( ['product.code' => ['CNE', 'ABCD', 'CNC']] );
+		$map = $manager->search( $filter )->col( 'product.id', 'product.code' );
+
 		$tags = [];
 		$expire = null;
 
@@ -42,10 +46,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getHeader();
 
 		$this->assertStringContainsString( '<script type="text/javascript"', $output );
-		$prodCodeParam = '/s_prodcode%5B[0-9]%5D=';
-		$this->assertRegExp( $prodCodeParam . 'CNE/', $output );
-		$this->assertRegExp( $prodCodeParam . 'ABCD/', $output );
-		$this->assertRegExp( $prodCodeParam . 'CNC/', $output );
+		$prodCodeParam = '/s_prodid%5B[0-9]%5D=';
+		$this->assertRegExp( $prodCodeParam . $map['CNE'] . '/', $output );
+		$this->assertRegExp( $prodCodeParam . $map['ABCD'] . '/', $output );
+		$this->assertRegExp( $prodCodeParam . $map['CNC'] . '/', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 	}
 

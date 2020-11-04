@@ -54,12 +54,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
+		$prodid = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' )->getId();
+
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_prodcode' => 'CNC' ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_prodid' => $prodid ) );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
-		$this->assertRegExp( '/"CNC".*stock-high/', $output );
+		$this->assertRegExp( '/"' . $prodid . '".*stock-high/', $output );
 	}
 
 

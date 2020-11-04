@@ -61,15 +61,15 @@ $result = [];
 $stockItemsByProducts = $this->get( 'stockItemsByProducts', [] );
 
 
-foreach( $this->get( 'stockProductCodes', [] ) as $prodCode )
+foreach( $this->get( 'stockProductIds', [] ) as $prodId )
 {
-	if( !isset( $stockItemsByProducts[$prodCode] ) ) {
+	if( !isset( $stockItemsByProducts[$prodId] ) ) {
 		continue;
 	}
 
 	$stocks = array( 'stock-unlimited' => '', 'stock-high' => '', 'stock-low' => '', 'stock-out' => '' );
 
-	foreach( (array) $stockItemsByProducts[$prodCode] as $item )
+	foreach( (array) $stockItemsByProducts[$prodId] as $item )
 	{
 		$stockType = 'stocktype:' . $item->getType();
 
@@ -106,7 +106,7 @@ foreach( $this->get( 'stockProductCodes', [] ) as $prodCode )
 		}
 
 		$stocks[$level] .= '
-			<div class="stockitem ' . $level . '" data-prodcode="' . $enc->attr( $prodCode ) . '" title="' . $enc->attr( $textStock[$level] ) . '">
+			<div class="stockitem ' . $level . '" data-prodid="' . $enc->attr( $prodId ) . '" title="' . $enc->attr( $textStock[$level] ) . '">
 				<link itemprop="availability" href="' . $link . '" />
 				<div class="stocklevel"></div>
 				<span class="stocktext">' . nl2br( $enc->html( $text, $enc::TRUST ) ) . '</span>
@@ -114,7 +114,7 @@ foreach( $this->get( 'stockProductCodes', [] ) as $prodCode )
 		';
 	}
 
-	$result[$prodCode] = implode( '', $stocks );
+	$result[$prodId] = implode( '', $stocks );
 }
 
 
@@ -125,20 +125,20 @@ var aimeosStockHtml = <?= json_encode( $result, JSON_FORCE_OBJECT ); ?>;
 $(".aimeos .product .stock-list .articleitem").each(function() {
 
 	var elem = $(this);
-	var prodcode = elem.data("prodcode");
+	var prodid = elem.data("prodid");
 
-	if( aimeosStockHtml.hasOwnProperty( prodcode ) ) {
-		elem.html( aimeosStockHtml[prodcode] );
+	if( aimeosStockHtml.hasOwnProperty( prodid ) ) {
+		elem.html( aimeosStockHtml[prodid] );
 	}
 });
 
 $(".aimeos .product .selection .select-stock").each(function() {
 
 	var elem = $(this);
-	var prodcode = elem.data("prodcode");
+	var prodid = elem.data("prodid");
 
-	if( aimeosStockHtml.hasOwnProperty( prodcode ) ) {
-		elem.html( aimeosStockHtml[prodcode] );
+	if( aimeosStockHtml.hasOwnProperty( prodid ) ) {
+		elem.html( aimeosStockHtml[prodid] );
 	}
 });
 

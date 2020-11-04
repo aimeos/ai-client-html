@@ -258,16 +258,18 @@ class Standard
 	protected function getProducts( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, string $stockType )
 	{
 		$stockMap = [];
-		$productItems = $this->getProductItems( $context, $prodIds );
-		$productCodes = $productItems->getCode()->toArray();
 
-		foreach( $this->getStockItems( $context, $productCodes, $stockType ) as $stockItem ) {
-			$stockMap[$stockItem->getProductCode()] = true;
+		$manager = \Aimeos\MShop::create( $context, 'product' );
+		$filter = $manager->filter( true )->add( ['product.id' => $prodIds] )->slice( 0, count( $prodIds ) );
+		$productItems = $manager->search( $filter, ['text', 'price', 'media'] );
+
+		foreach( $this->getStockItems( $context, $productItems->keys()->toArray(), $stockType ) as $stockItem ) {
+			$stockMap[$stockItem->getProductId()] = true;
 		}
 
 		foreach( $productItems as $productId => $productItem )
 		{
-			if( !isset( $stockMap[$productItem->getCode()] ) ) {
+			if( !isset( $stockMap[$productId] ) ) {
 				unset( $productItems[$productId] );
 			}
 		}
@@ -277,43 +279,20 @@ class Standard
 
 
 	/**
-	 * Returns the product items for the given product IDs
+	 * Returns the stock items for the given product IDs
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param array $prodIds List of product IDs
-	 * @return \Aimeos\Map List of product items implementing \Aimeos\MShop\Product\Item\Iface
-	 */
-	protected function getProductItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds ) : \Aimeos\Map
-	{
-		$productManager = \Aimeos\MShop::create( $context, 'product' );
-
-		$search = $productManager->filter( true );
-		$expr = array(
-			$search->compare( '==', 'product.id', $prodIds ),
-			$search->getConditions(),
-		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, count( $prodIds ) );
-
-		return $productManager->search( $search, array( 'text', 'price', 'media' ) );
-	}
-
-
-	/**
-	 * Returns the stock items for the given product codes
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
-	 * @param array $prodCodes List of product codes
 	 * @param string $stockType Stock type code
 	 * @return \Aimeos\Map Associative list of stock IDs as keys and stock items implementing \Aimeos\MShop\Stock\Item\Iface
 	 */
-	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodCodes, string $stockType ) : \Aimeos\Map
+	protected function getStockItems( \Aimeos\MShop\Context\Item\Iface $context, array $prodIds, string $stockType ) : \Aimeos\Map
 	{
 		$stockManager = \Aimeos\MShop::create( $context, 'stock' );
 
 		$search = $stockManager->filter( true );
 		$expr = array(
-			$search->compare( '==', 'stock.productcode', $prodCodes ),
+			$search->compare( '==', 'stock.productid', $prodIds ),
 			$search->compare( '==', 'stock.type', $stockType ),
 			$search->combine( '||', array(
 				$search->compare( '==', 'stock.stocklevel', null ),
