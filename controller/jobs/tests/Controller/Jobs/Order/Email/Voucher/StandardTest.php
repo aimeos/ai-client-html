@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\MShop::inject( 'order', $orderManagerStub );
 
-		$orderItem = $orderManagerStub->createItem();
+		$orderItem = $orderManagerStub->create();
 
 		$orderManagerStub->expects( $this->once() )->method( 'search' )
 			->will( $this->returnValue( map( [$orderItem] ) ) );
@@ -114,9 +114,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
 		$addrManager = \Aimeos\MShop::create( $this->context, 'order/base/address' );
 
-		$item = $manager->createItem();
-		$item->addAddress( $addrManager->createItem(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
-		$item->addAddress( $addrManager->createItem(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
+		$item = $manager->create();
+		$item->addAddress( $addrManager->create(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
+		$item->addAddress( $addrManager->create(), \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY );
 
 		$result = $this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $item ) );
 
@@ -129,7 +129,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'order/base' );
 
 		$this->expectException( \Aimeos\Controller\Jobs\Exception::class );
-		$this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $manager->createItem() ) );
+		$this->access( 'getAddressItem' )->invokeArgs( $this->object, array( $manager->create() ) );
 	}
 
 
@@ -153,7 +153,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['load', 'store'] )
 			->getMock();
 
-		$orderBaseItem = $orderBaseManagerStub->createItem();
+		$orderBaseItem = $orderBaseManagerStub->create();
 
 		$orderBaseManagerStub->expects( $this->once() )->method( 'store' );
 		$orderBaseManagerStub->expects( $this->once() )->method( 'load' )
@@ -176,7 +176,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem()->setBaseId( '-1' );
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create()->setBaseId( '-1' );
 
 
 		$this->access( 'process' )->invokeArgs( $object, [$clientStub, map( [$orderItem] ), 1] );
@@ -199,7 +199,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem()->setBaseId( '-1' );
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create()->setBaseId( '-1' );
 
 		$this->access( 'process' )->invokeArgs( $this->object, [$clientStub, map( [$orderItem] ), 1] );
 	}
@@ -214,8 +214,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 			$object->expects( $this->once() )->method( 'addCouponCodes' );
 
-		$orderBaseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
-		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
+		$orderBaseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create();
 
 		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'MNOP' )->setStockType( 'unit_type4' ) );
 
@@ -256,10 +256,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 
-		$orderBaseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
-		$orderAddressItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->createItem();
-		$orderProductAttrItem = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->createItem();
-		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->createItem();
+		$orderBaseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$orderAddressItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
+		$orderProductAttrItem = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
+		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create();
 
 		$orderProductAttrItem->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( 'abcd' );
 		$orderProductItem->setAttributeItem( $orderProductAttrItem );

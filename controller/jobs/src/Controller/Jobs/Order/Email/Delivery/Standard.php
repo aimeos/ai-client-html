@@ -148,7 +148,7 @@ class Standard
 	{
 		$orderStatusManager = \Aimeos\MShop::create( $this->getContext(), 'order/status' );
 
-		$statusItem = $orderStatusManager->createItem();
+		$statusItem = $orderStatusManager->create();
 		$statusItem->setParentId( $orderId );
 		$statusItem->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY );
 		$statusItem->setValue( $value );

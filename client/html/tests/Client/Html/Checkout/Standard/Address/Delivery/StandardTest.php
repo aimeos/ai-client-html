@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$view = $this->object->getView();
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->createItem();
+		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$this->object->setView( $this->object->addData( $view ) );
 
 		$output = $this->object->getBody();

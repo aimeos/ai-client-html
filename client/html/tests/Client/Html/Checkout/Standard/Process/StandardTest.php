@@ -100,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
 		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE', ['price'] );
 		$service = \Aimeos\MShop::create( $this->context, 'service' )->find( 'paypalexpress' );
 
@@ -149,7 +149,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['store', 'save'] )
 			->getMock();
 
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
 
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get()->setId( '123' ) ) );
 		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
@@ -191,7 +191,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( ['save', 'store'] )
 			->getMock();
 
-		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->createItem();
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
 		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE', ['price'] );
 		$service = \Aimeos\MShop::create( $this->context, 'service' )->find( 'paypalexpress' );
 

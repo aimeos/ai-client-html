@@ -35,10 +35,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelper::getContext();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
-		$attrItem = \Aimeos\MShop::create( $context, 'attribute' )->createItem()->setType( 'color' )->setId( 123 );
+		$attrItem = \Aimeos\MShop::create( $context, 'attribute' )->create()->setType( 'color' )->setId( 123 );
 		$listItem = $manager->createListItem()->setType( 'variant' );
 
-		$mediaItem = $manager->createItem()->setLabel( 'testimage' )
+		$mediaItem = $manager->create()->setLabel( 'testimage' )
 			->setPreviews( ['100' => 'image-1.jpg', '200' => 'image-2.jpg'] )
 			->addListItem( 'attribute', $listItem, $attrItem );
 

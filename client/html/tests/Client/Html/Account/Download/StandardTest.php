@@ -98,7 +98,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$attrManagerStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $attrManagerStub->createItem() ) );
+			->will( $this->returnValue( $attrManagerStub->create() ) );
 
 		\Aimeos\MShop::inject( 'order/base/product/attribute', $attrManagerStub );
 
@@ -153,7 +153,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$fs = $this->context->getFilesystemManager()->get( 'fs-secure' );
 		$fs->write( 'tmp/download/test.txt', 'test' );
 
-		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->createItem();
+		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
 		$item->setValue( 'tmp/download/test.txt' );
 		$item->setName( 'test download' );
 
@@ -175,7 +175,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddDownloadRedirect()
 	{
-		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->createItem();
+		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
 		$item->setValue( 'http://localhost/dl/test.txt' );
 		$item->setName( 'test download' );
 
@@ -193,7 +193,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddDownloadNotFound()
 	{
-		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->createItem();
+		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
 		$item->setValue( 'test.txt' );
 		$item->setName( 'test download' );
 

@@ -586,7 +586,7 @@ class Standard
 		{
 			$params = $view->param( 'ca_delivery_' . $id, [] );
 			$basketValues = $addrMap->get( $id, map() )->toArray();
-			$addr = $manager->createItem()->copyFrom( $address )->fromArray( $basketValues )->fromArray( $params );
+			$addr = $manager->create()->copyFrom( $address )->fromArray( $basketValues )->fromArray( $params );
 
 			$addrStrings[$id] = $this->getAddressString( $view, $addr );
 			$addrValues[$id] = $addr->toArray();
@@ -594,7 +594,7 @@ class Standard
 
 		$values = !$addrMap->isEmpty() ? $addrMap->first()->toArray() : [];
 		$values = array_merge( $values, $view->param( 'ca_delivery', [] ) );
-		$addrNew = $manager->createItem()->fromArray( $values );
+		$addrNew = $manager->create()->fromArray( $values );
 
 		$addrStringNew = $this->getAddressString( $view, $addrNew );
 		$option = $addrNew->getAddressId() ?: ( $addrMap->isEmpty() ? 'like' : 'null' );

@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$context->setMail( $mailStub );
 		$subscription = $this->getSubscription( $context )->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
-		$order = \Aimeos\MShop::create( $context, 'order' )->createItem();
+		$order = \Aimeos\MShop::create( $context, 'order' )->create();
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Email\Standard( $context );
 		$object->renewAfter( $subscription, $order );

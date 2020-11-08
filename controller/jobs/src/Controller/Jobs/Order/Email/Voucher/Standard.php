@@ -143,7 +143,7 @@ class Standard
 
 		foreach( $map as $code => $ref )
 		{
-			$item = $manager->createItem()->setParentId( $couponId )
+			$item = $manager->create()->setParentId( $couponId )
 				->setCode( $code )->setRef( $ref )->setCount( null ); // unlimited
 
 			$manager->saveItem( $item );
@@ -161,7 +161,7 @@ class Standard
 	{
 		$orderStatusManager = \Aimeos\MShop::create( $this->getContext(), 'order/status' );
 
-		$statusItem = $orderStatusManager->createItem()->setParentId( $orderId )->setValue( $value )
+		$statusItem = $orderStatusManager->create()->setParentId( $orderId )->setValue( $value )
 			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER );
 
 		$orderStatusManager->saveItem( $statusItem );
@@ -346,7 +346,7 @@ class Standard
 					$codes[] = $code;
 				}
 
-				$item = $manager->createItem()->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( $codes );
+				$item = $manager->create()->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( $codes );
 				$orderProductItem->setAttributeItem( $item );
 			}
 		}
