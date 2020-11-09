@@ -101,6 +101,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testGetBodyLevelsDeep()
+	{
+		$tags = [];
+		$expire = null;
+
+		$config = $this->context->getConfig();
+		$config->set( 'client/html/catalog/filter/tree/deep', true );
+		$view = \TestHelperHtml::getView( 'unittest', $config );
+
+		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$output = $this->object->getBody();
+
+		$this->assertStringContainsString( 'level-2', $output );
+		$this->assertEquals( '2098-01-01 00:00:00', $expire );
+		$this->assertEquals( 3, count( $tags ) );
+	}
+
+
 	public function testGetSubClient()
 	{
 		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );

@@ -224,9 +224,10 @@ class Standard
 		 * @param array List of domain item names
 		 * @since 2014.03
 		 * @category Developer
+		 * @see controller/frontend/catalog/levels-always
+		 * @see controller/frontend/catalog/levels-only
 		 * @see client/html/catalog/filter/tree/startid
-		 * @see client/html/catalog/filter/tree/levels-always
-		 * @see client/html/catalog/filter/tree/levels-only
+		 * @see client/html/catalog/filter/tree/deep
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/tree/domains', ['text', 'media'] );
 
@@ -245,23 +246,46 @@ class Standard
 		 * @since 2014.03
 		 * @category User
 		 * @category Developer
-		 * @see client/html/catalog/filter/tree/levels-always
-		 * @see client/html/catalog/filter/tree/levels-only
+		 * @see controller/frontend/catalog/levels-always
+		 * @see controller/frontend/catalog/levels-only
 		 * @see client/html/catalog/filter/tree/domains
+		 * @see client/html/catalog/filter/tree/deep
 		 */
 		$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
+
+		/** client/html/catalog/filter/tree/deep
+		 * Load the category tree instead of the nodes of the first level only
+		 *
+		 * If you want to use the catalog filter component to display the whole
+		 * category tree without loading data in an asynchcron way, set this
+		 * configuration option to "1" or true.
+		 *
+		 * **Warning:** If your category tree has a lot of nodes, it will
+		 * take a very long time to render all categories. Thus, it's only
+		 * recommended for small category trees with a limited node size
+		 * (less than 50).
+		 *
+		 * @param bool True for category tree, false for first level only
+		 * @since 2020.10
+		 * @see controller/frontend/catalog/levels-always
+		 * @see controller/frontend/catalog/levels-only
+		 * @see client/html/catalog/filter/tree/domains
+		 * @see client/html/catalog/filter/tree/startid
+		 */
+		$deep = (bool) $view->config( 'client/html/catalog/filter/tree/deep', false );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )
 			->uses( $domains )->root( $startid );
 
+		$level = $cntl::TREE;
+		$catItems = map();
+		$catIds = [];
+
 		if( ( $currentid = $view->param( 'f_catid' ) ) !== null ) {
 			$catItems = $cntl->getPath( $currentid );
 			$catIds = $catItems->keys()->toArray();
-			$level = $cntl::TREE;
-		} else {
+		} elseif( $deep === false ) {
 			$level = $cntl::LIST;
-			$catItems = map();
-			$catIds = [];
 		}
 
 		$view->treeCatalogPath = $catItems;
