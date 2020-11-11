@@ -160,7 +160,7 @@ class Standard
 				$context->getLogger()->log( sprintf( $str, $custId, $e->getMessage() ) );
 			}
 
-			$listManager->deleteItems( $listIds );
+			$listManager->delete( $listIds );
 		}
 	}
 
