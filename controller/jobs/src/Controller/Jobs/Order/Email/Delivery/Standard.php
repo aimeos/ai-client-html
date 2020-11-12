@@ -153,7 +153,7 @@ class Standard
 		$statusItem->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY );
 		$statusItem->setValue( $value );
 
-		$orderStatusManager->saveItem( $statusItem );
+		$orderStatusManager->save( $statusItem );
 	}
 
 

@@ -146,7 +146,7 @@ class Standard
 			$item = $manager->create()->setParentId( $couponId )
 				->setCode( $code )->setRef( $ref )->setCount( null ); // unlimited
 
-			$manager->saveItem( $item );
+			$manager->save( $item );
 		}
 	}
 
@@ -164,7 +164,7 @@ class Standard
 		$statusItem = $orderStatusManager->create()->setParentId( $orderId )->setValue( $value )
 			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER );
 
-		$orderStatusManager->saveItem( $statusItem );
+		$orderStatusManager->save( $statusItem );
 	}
 
 

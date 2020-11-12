@@ -24,10 +24,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$codeManager = $this->getMockBuilder( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'saveItem' ) )
+			->setMethods( array( 'save' ) )
 			->getMock();
 
-		$codeManager->expects( $this->any() )->method( 'saveItem' );
+		$codeManager->expects( $this->any() )->method( 'save' );
 		\Aimeos\MShop::inject( 'coupon/code', $codeManager );
 
 		$this->object = new \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard( $this->context, $aimeos );
@@ -83,10 +83,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$managerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Coupon\\Manager\\Code\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'saveItem' ) )
+			->setMethods( array( 'save' ) )
 			->getMock();
 
-		$managerStub->expects( $this->once() )->method( 'saveItem' );
+		$managerStub->expects( $this->once() )->method( 'save' );
 
 		\Aimeos\MShop::inject( 'coupon/code', $managerStub );
 
@@ -98,10 +98,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$statusManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Status\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'saveItem' ) )
+			->setMethods( array( 'save' ) )
 			->getMock();
 
-		$statusManagerStub->expects( $this->once() )->method( 'saveItem' );
+		$statusManagerStub->expects( $this->once() )->method( 'save' );
 
 		\Aimeos\MShop::inject( 'order/status', $statusManagerStub );
 
