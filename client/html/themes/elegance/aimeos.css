@@ -415,6 +415,8 @@
 
 .aimeos .price-item:first-of-type {
 	display: block;
+	font-size: 125%;
+	font-weight: bold;
 }
 
 .aimeos .price-item:first-of-type .quantity,
@@ -1251,13 +1253,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	width: 240px;
 }
 
-.catalog-list .media-item {
+.catalog-list .media-list .media-item {
 	position: relative;
 	height: 320px;
 	width: 240px;
 }
 
-.catalog-list .media-item img {
+.catalog-list .media-list .media-item img {
 	position: relative;
 	max-width: 100%;
 	height: auto;
@@ -1430,6 +1432,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* product offer part */
 .catalog-list .offer {
+	padding: 0.5em 0;
 	max-width: 15em;
 	margin: auto;
 }
@@ -2020,6 +2023,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-basket .selection .select-name,
 .catalog-detail-basket-attribute .select-name {
 	min-width: 5em;
+	font-weight: bold;
 }
 
 .catalog-list-items .selection .select-hint,
@@ -2039,6 +2043,11 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	list-style: none;
 }
 
+.catalog-list-items .selection .input .select-entry,
+.catalog-detail-basket .selection .input .select-entry {
+	margin: 0.1em 0;
+}
+
 .catalog-list-items .selection .radio li.select-entry,
 .catalog-detail-basket .selection .radio li.select-entry {
 	display: inline-block;
@@ -2054,6 +2063,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-basket .selection .select-label {
 	width: calc(100% - 4em);
 	font-weight: normal;
+	margin-bottom: 0;
+	font-size: 95%;
 }
 
 .catalog-list-items .selection .color .select-label,
@@ -2098,22 +2109,17 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	opacity: 0.25;
 }
 
-.catalog-list-items .selection .input .select-entry,
-.catalog-detail-basket .selection .input .select-entry {
-	margin: 0.1em 0;
-}
-
 .catalog-list-items .selection input.select-option[type=number],
 .catalog-detail-basket .selection input.select-option[type=number] {
-	border: solid 1px #555;
+	border-bottom: solid 1px #555;
 	border-color: var(--ai-secondary, #555);
 	text-align: center;
 	max-width: 4em;
 	padding: 0;
 }
 
-.catalog-list-items .selection .custom input[type=number],
-.catalog-detail-basket .selection .custom input[type=number] {
+.catalog-list-items .selection input[type=number],
+.catalog-detail-basket .selection input[type=number] {
 	text-align: center;
 }
 
@@ -2128,8 +2134,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-list-items .selection .media-item > img,
 .catalog-detail-basket .selection .media-item > img {
 	border: none;
-	height: 1.33em;
-	width: 1.33em;
+	height: 1.3em;
+	width: 1.3em;
 }
 
 .catalog-list-items .selection .media-item + span,
