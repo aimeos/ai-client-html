@@ -415,7 +415,6 @@
 
 .aimeos .price-item:first-of-type {
 	display: block;
-	font-size: 125%;
 	font-weight: bold;
 }
 
@@ -1862,6 +1861,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	display: inline-block;
 }
 
+.catalog-list-items .price-item:first-of-type,
+.catalog-detail-basket .price-item:first-of-type {
+	display: block;
+	font-size: 125%;
+	font-weight: bold;
+}
+
 .catalog-detail-basket .price-item:first-of-type {
 	display: block;
 	cursor: pointer;
@@ -2080,17 +2086,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	min-width: 1.5em;
 }
 
-.catalog-list-items .selection .radio .select-label > span,
-.catalog-detail-basket .selection .radio .select-label > span {
-	text-align: center;
-	min-width: 2.5em;
-}
-
 .catalog-list-items .selection .radio .select-label,
 .catalog-detail-basket .selection .radio .select-label {
 	border: solid 1px #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	padding: 0.5em;
+	text-align: center;
+	min-width: 2.5em;
 	width: auto;
 }
 
