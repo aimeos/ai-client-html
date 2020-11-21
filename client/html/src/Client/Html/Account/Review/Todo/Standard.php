@@ -253,7 +253,7 @@ class Standard
 		 * @since 2020.10
 		 * @see client/html/account/review/todo/size
 		 */
-		$days = $config->get( 'client/html/account/review/todo/days-after', 5 );
+		$days = $config->get( 'client/html/account/review/todo/days-after', 0 );
 
 		$orders = \Aimeos\Controller\Frontend::create( $context, 'order' )
 			->compare( '>', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING )
