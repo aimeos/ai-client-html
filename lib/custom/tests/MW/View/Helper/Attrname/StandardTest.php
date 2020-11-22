@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testTransform()
 	{
 		$manager = \Aimeos\MShop::create( \TestHelper::getContext(), 'attribute' );
-		$search = $manager->filter()->setSlice( 0, 1 );
+		$search = $manager->filter()->slice( 0, 1 );
 		$search->setConditions( $search->compare( '!=', $search->createFunction( 'attribute:has', ['price'] ), null ) );
 		$item = $manager->search( $search, ['price'] )->first( new \Exception( 'No item found' ) );
 

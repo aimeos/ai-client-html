@@ -125,7 +125,7 @@ class Standard
 
 			do
 			{
-				$orderSearch->setSlice( $start );
+				$orderSearch->slice( $start );
 				$items = $orderManager->search( $orderSearch );
 
 				$this->process( $client, $items, $status );

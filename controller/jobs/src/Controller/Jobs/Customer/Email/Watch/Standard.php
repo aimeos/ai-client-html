@@ -89,7 +89,7 @@ class Standard
 
 			do
 			{
-				$search->setSlice( $start );
+				$search->slice( $start );
 				$customers = $custManager->search( $search );
 
 				$this->execute( $context, $customers );
@@ -199,7 +199,7 @@ class Standard
 			$search->compare( '==', 'customer.lists.type', 'watch' ),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 0x7fffffff );
+		$search->slice( 0, 0x7fffffff );
 
 		return $listManager->search( $search );
 	}
@@ -301,7 +301,7 @@ class Standard
 			$search->getConditions(),
 		);
 		$search->setConditions( $search->combine( '&&', $expr ) );
-		$search->setSlice( 0, 100000 ); // performance speedup
+		$search->slice( 0, 100000 ); // performance speedup
 
 		return $stockManager->search( $search );
 	}

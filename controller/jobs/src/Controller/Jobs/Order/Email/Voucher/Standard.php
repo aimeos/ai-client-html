@@ -125,7 +125,7 @@ class Standard
 
 			$count = count( $items );
 			$start += $count;
-			$orderSearch->setSlice( $start );
+			$orderSearch->slice( $start );
 		}
 		while( $count >= $orderSearch->getSliceSize() );
 	}
@@ -203,7 +203,7 @@ class Standard
 		{
 			$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon' );
 
-			$search = $manager->filter()->setSlice( 0, 1 );
+			$search = $manager->filter()->slice( 0, 1 );
 			$search->setConditions( $search->compare( '=~', 'coupon.provider', 'Voucher' ) );
 
 			if( ( $item = $manager->search( $search )->first() ) === null ) {

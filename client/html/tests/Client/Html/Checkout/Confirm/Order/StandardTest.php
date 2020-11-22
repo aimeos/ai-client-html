@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 
-		$search = $manager->filter()->setSlice( 0, 1 );
+		$search = $manager->filter()->slice( 0, 1 );
 		$search->setConditions( $search->compare( '==', 'order.base.customerid', $customerid ) );
 
 		if( ( $item = $manager->search( $search )->first() ) === null ) {

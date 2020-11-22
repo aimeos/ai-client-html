@@ -130,7 +130,7 @@ class Standard
 
 				$count = count( $items );
 				$start += $count;
-				$orderSearch->setSlice( $start );
+				$orderSearch->slice( $start );
 			}
 			while( $count >= $orderSearch->getSliceSize() );
 		}
