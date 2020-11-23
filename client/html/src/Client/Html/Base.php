@@ -666,29 +666,4 @@ abstract class Base
 
 		return $content;
 	}
-
-
-	/**
-	 * Translates the plugin error codes to human readable error strings.
-	 *
-	 * @param array $codes Associative list of scope and object as key and error code as value
-	 * @return array List of translated error messages
-	 * @deprecated
-	 */
-	protected function translatePluginErrorCodes( array $codes ) : array
-	{
-		$errors = [];
-		$i18n = $this->getContext()->getI18n();
-
-		foreach( $codes as $scope => $list )
-		{
-			foreach( $list as $object => $errcode )
-			{
-				$key = $scope . ( !in_array( $scope, ['coupon', 'product'] ) ? '.' . $object : '' ) . '.' . $errcode;
-				$errors[] = sprintf( $i18n->dt( 'mshop/code', $key ), $object );
-			}
-		}
-
-		return $errors;
-	}
 }
