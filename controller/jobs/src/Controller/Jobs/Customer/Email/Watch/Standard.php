@@ -97,7 +97,7 @@ class Standard
 				$count = count( $customers );
 				$start += $count;
 			}
-			while( $count >= $search->getSliceSize() );
+			while( $count >= $search->getLimit() );
 		}
 	}
 

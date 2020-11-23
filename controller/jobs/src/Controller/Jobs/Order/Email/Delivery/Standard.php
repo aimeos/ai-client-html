@@ -133,7 +133,7 @@ class Standard
 				$count = count( $items );
 				$start += $count;
 			}
-			while( $count >= $orderSearch->getSliceSize() );
+			while( $count >= $orderSearch->getLimit() );
 		}
 	}
 

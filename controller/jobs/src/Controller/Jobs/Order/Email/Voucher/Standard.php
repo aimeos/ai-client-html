@@ -127,7 +127,7 @@ class Standard
 			$start += $count;
 			$orderSearch->slice( $start );
 		}
-		while( $count >= $orderSearch->getSliceSize() );
+		while( $count >= $orderSearch->getLimit() );
 	}
 
 
