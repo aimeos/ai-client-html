@@ -10,7 +10,7 @@ $enc = $this->encoder();
 
 
 
-/** client/html/catalog/filter/standard/button
+/** client/html/catalog/filter/button
  * Displays the "Search" button in the catalog filter if Javascript is disabled
  *
  * Usually the "Search" button is shown in the catalog filter if the browser
@@ -93,7 +93,7 @@ $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
 			</div>
 		</div>
 
-		<?php if( $this->config( 'client/html/catalog/filter/standard/button', true ) ) : ?>
+		<?php if( $this->config( 'client/html/catalog/filter/button', true ) ) : ?>
 			<noscript>
 				<button class="filter btn btn-primary" type="submit">
 					<?= $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?>

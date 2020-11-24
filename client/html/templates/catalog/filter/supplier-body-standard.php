@@ -60,7 +60,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 			</fieldset>
 		</div>
 
-		<?php if( $this->config( 'client/html/catalog/filter/standard/button', true ) ) : ?>
+		<?php if( $this->config( 'client/html/catalog/filter/button', true ) ) : ?>
 			<noscript>
 				<button class="filter btn btn-primary" type="submit">
 					<?= $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?>
