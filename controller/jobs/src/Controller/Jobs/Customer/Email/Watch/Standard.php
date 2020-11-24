@@ -76,7 +76,7 @@ class Standard
 			$context->getLocale()->setLanguageId( $langId );
 
 			$search = $custManager->filter( true );
-			$func = $search->createFunction( 'customer:has', ['product', 'watch'] );
+			$func = $search->make( 'customer:has', ['product', 'watch'] );
 			$expr = array(
 				$search->compare( '==', 'customer.languageid', $langId ),
 				$search->compare( '!=', $func, null ),

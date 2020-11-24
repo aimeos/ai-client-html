@@ -114,7 +114,7 @@ class Standard
 			$orderSearch = $orderManager->filter();
 
 			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, (string) $status );
-			$orderFunc = $orderSearch->createFunction( 'order:status', $param );
+			$orderFunc = $orderSearch->make( 'order:status', $param );
 
 			$expr = array(
 				$orderSearch->compare( '>=', 'order.mtime', $limitDate ),
