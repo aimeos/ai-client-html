@@ -1492,7 +1492,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Product forms */
 .catalog-list .product .form-control {
-	font-size: 90%;
+	font-size: 95%;
 }
 
 
@@ -1565,7 +1565,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .catalog-list-items .addbasket .input-group {
-	padding: 2.25em 0;
+	padding: 2.55em 0;
 	margin: auto;
 }
 
