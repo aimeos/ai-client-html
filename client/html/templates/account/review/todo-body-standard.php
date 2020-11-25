@@ -98,6 +98,9 @@ $productItems = $this->get( 'todoProductItems', map() );
 <?php if( !$productItems->isEmpty() ) : ?>
 
 	<div class="account-review-todo">
+
+		<h1 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h1>
+
 		<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/review/url' ) ) ?>">
 			<?= $this->csrf()->formfield(); ?>
 

@@ -27,8 +27,6 @@ $enc = $this->encoder();
 		</ul>
 	<?php endif; ?>
 
-	<h1 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h1>
-
 	<?= $this->get( 'reviewBody' ); ?>
 
 </section>
