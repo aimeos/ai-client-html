@@ -2090,7 +2090,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-basket .selection .radio .select-label {
 	border: solid 1px #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
-	padding: 0.5em;
+	padding: 0.525em;
 	text-align: center;
 	min-width: 2.5em;
 	width: auto;
