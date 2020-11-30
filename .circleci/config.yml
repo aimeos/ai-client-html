@@ -15,6 +15,7 @@ jobs:
       - run: sudo docker-php-ext-configure gd --with-jpeg-dir=/usr/include/
       - run: sudo docker-php-ext-install -j$(nproc) gd zip pdo_mysql
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
+      - run: git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-jobs ../aimeos-core/ext/ai-controller-jobs
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
@@ -41,6 +42,7 @@ jobs:
       - checkout
       - run: sudo apt-get update && sudo apt-get install -y mysql-client php7.2-gd php7.2-intl php7.2-mysql
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
+      - run: git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-jobs ../aimeos-core/ext/ai-controller-jobs
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
@@ -65,6 +67,7 @@ jobs:
       - checkout
       - run: sudo apt-get update && sudo apt-get install -y postgresql-client php7.3-gd php7.3-intl php7.3-pgsql
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
+      - run: git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-jobs ../aimeos-core/ext/ai-controller-jobs
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
@@ -90,6 +93,7 @@ jobs:
       - checkout
       - run: sudo apt-get update && sudo apt-get install -y mysql-client php7.4-gd php7.4-intl php7.4-mysql php7.4-xdebug
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
+      - run: git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-jobs ../aimeos-core/ext/ai-controller-jobs
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
