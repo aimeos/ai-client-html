@@ -1419,14 +1419,14 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	font-weight: normal;
 	font-size: 100%;
 	overflow: hidden;
-	height: 2em;
+	height: 2.25em;
 	margin: 0;
     margin-bottom: 1rem;
 }
 
 .aimeos .product .text-list .text-item {
 	overflow: hidden;
-	height: 2em;
+	height: 2.25em;
 }
 
 /* product offer part */
