@@ -107,7 +107,7 @@
 }
 
 .aimeos .input-group .btn {
-	width: calc(100% - 4em);
+	width: calc(100% - 4rem);
 }
 
 .aimeos .addbasket .input-group {
@@ -119,7 +119,7 @@
 	border-color: var(--ai-secondary, #555);
 	border-right: none;
 	text-align: center;
-	width: 4em;
+	width: 4rem;
 }
 
 .aimeos .input-group {
@@ -1461,6 +1461,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .aimeos .product .stock-actual .stockitem {
+	vertical-align: text-bottom;
 	display: inline-block;
 }
 
@@ -1561,6 +1562,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-list-items .selection,
 .catalog-list-items .attribute {
+	text-align: center;
 	clear: both;
 }
 
@@ -1583,6 +1585,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-list-items .list .media-list,
 .catalog-list-items .list .text-list,
+.catalog-list-items .list .rating,
 .catalog-list-items .list .basket,
 .catalog-list-items .list .offer,
 .catalog-list-items .list .addbasket {
@@ -2219,6 +2222,10 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-detail-additional .attributes img {
 	height: 1em;
+}
+
+.catalog-detail-additional tbody tr:last-child {
+    border: none;
 }
 
 /* Product detail, additional download section */
