@@ -497,12 +497,13 @@ class Standard
 		 * @param array List of domain names
 		 * @since 2014.03
 		 * @category Developer
-		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/catid-default
-		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
+		 * @see client/html/catalog/lists/stock
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/sort
 		 */
 		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );
 
@@ -528,10 +529,11 @@ class Standard
 		 * @see client/html/catalog/detail/domains
 		 * @see client/html/catalog/stage/domains
 		 * @see client/html/catalog/lists/catid-default
-		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
+		 * @see client/html/catalog/lists/stock
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/sort
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
@@ -556,8 +558,9 @@ class Standard
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/stock
 		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/sort
 		 */
 		$pages = $config->get( 'client/html/catalog/lists/pages', 100 );
 
@@ -581,8 +584,9 @@ class Standard
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
+		 * @see client/html/catalog/lists/stock
+		 * @see client/html/catalog/lists/sort
 		 */
 		$size = $config->get( 'client/html/catalog/lists/size', 48 );
 
@@ -614,12 +618,12 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/pages
+		 * @see client/html/catalog/lists/stock
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/sort
-		 * @see client/html/catalog/lists/pages
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
-
 
 		/** client/html/catalog/lists/catid-default
 		 * The default category ID used if none is given as parameter
@@ -635,11 +639,12 @@ class Standard
 		 * @since 2014.03
 		 * @category User
 		 * @category Developer
-		 * @see client/html/catalog/lists/sort
-		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/lists/stock
+		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/size
 		 */
 		$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
 		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
@@ -659,9 +664,31 @@ class Standard
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/stock
+		 * @see client/html/catalog/lists/pages
 		 * @see client/html/catalog/lists/size
 		 */
 		$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
+
+		/** client/html/catalog/lists/stock
+		 * Minimum amount of required stock level for products
+		 *
+		 * If you need to filter products by a minium stock level amount, you can set
+		 * this configuration option to any integer or float value. It's also possible
+		 * to use the "f_stock" parameter in each request, which overwrites this
+		 * configuration.
+		 *
+		 * @param float Minimum stock amount
+		 * @since 2021.01
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/pages
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/sort
+		 */
+		$stock = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/stock', $view->param( 'f_stock', '' ) ) );
+
 		$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
 
@@ -675,6 +702,7 @@ class Standard
 			->oneOf( $view->param( 'f_optid', [] ) )
 			->oneOf( $view->param( 'f_oneid', [] ) )
 			->slice( ( $page - 1 ) * $size, $size )
+			->stock( $stock )
 			->uses( $domains )
 			->search( $total );
 

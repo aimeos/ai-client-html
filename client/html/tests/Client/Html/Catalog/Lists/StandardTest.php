@@ -240,6 +240,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testGetBodySearchStock()
+	{
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_stock' => 1 ) );
+		$view->addHelper( 'param', $helper );
+
+		$output = $this->object->getBody();
+
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringNotContainsString( '"U:TEST"', $output );
+		$this->assertStringContainsString( 'CNE', $output );
+	}
+
+
 	public function testGetBodySearchSupplier()
 	{
 		$view = $this->object->getView();
