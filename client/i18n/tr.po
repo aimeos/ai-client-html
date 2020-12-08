@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 09:22+0200\n"
-"PO-Revision-Date: 2020-10-05 19:51+0000\n"
+"POT-Creation-Date: 2020-12-02 15:52+0100\n"
+"PO-Revision-Date: 2020-12-02 19:41+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -380,6 +380,9 @@ msgstr "Ör: Bornova / 123 456 789 11"
 msgid "Go"
 msgstr "Ara"
 
+msgid "Grid view"
+msgstr "Izgara görünümü"
+
 msgid "HH:mm"
 msgstr "SS:dd"
 
@@ -467,6 +470,9 @@ msgstr "En yeni"
 
 msgid "Like entered by you"
 msgstr "Tarafınızdan girildiği gibi"
+
+msgid "List view"
+msgstr "Liste görünümü"
 
 msgid "Login"
 msgstr "Oturum aç"
@@ -631,6 +637,9 @@ msgstr "Ödeme işleme başarısız oldu"
 
 msgid "Product"
 msgstr "Ürün"
+
+msgid "Product image"
+msgstr "Ürün resmi"
 
 msgid "Products you might be also interested in"
 msgstr "İlgilenebileceğiniz diğer ürünler"

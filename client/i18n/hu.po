@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 09:22+0200\n"
-"PO-Revision-Date: 2020-10-05 07:29+0000\n"
+"POT-Creation-Date: 2020-12-02 15:52+0100\n"
+"PO-Revision-Date: 2020-12-02 14:24+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -337,7 +337,7 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr "A következő szállítási cím rész hiányzik: \"%1$s\" "
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Szállítás határnapja:"
 
 msgid "Description"
 msgstr "Leírás"
@@ -383,6 +383,9 @@ msgstr "GB999999973"
 msgid "Go"
 msgstr "Mehet"
 
+msgid "Grid view"
+msgstr ""
+
 msgid "HH:mm"
 msgstr ""
 
@@ -426,7 +429,7 @@ msgid "Included rebates"
 msgstr "Tartalmazza a kedvezményeket"
 
 msgid "Interval"
-msgstr ""
+msgstr "Időszak"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -469,6 +472,9 @@ msgid "Latest"
 msgstr ""
 
 msgid "Like entered by you"
+msgstr ""
+
+msgid "List view"
 msgstr ""
 
 msgid "Login"
@@ -635,6 +641,9 @@ msgstr "A fizetés feldolgozása sikertelen"
 msgid "Product"
 msgstr "Termék"
 
+msgid "Product image"
+msgstr ""
+
 msgid "Products you might be also interested in"
 msgstr "Termékek, melyek iránt még érdeklődhet"
 
@@ -648,7 +657,7 @@ msgid "Quantity"
 msgstr "Mennyiség"
 
 msgid "Rating"
-msgstr ""
+msgstr "Besorolás"
 
 msgid "Reference"
 msgstr ""

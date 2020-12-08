@@ -8,14 +8,15 @@
 # Translators:
 # Translators:
 # alessandro massarelli <alessandro@botteega.com>, 2017
+# isabella carlin <isabella@vg7.it>, 2020
 # R M <roberto@proprionoi.it>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-12-12 13:48+0000\n"
-"Last-Translator: R M <roberto@proprionoi.it>\n"
+"PO-Revision-Date: 2020-12-04 14:57+0000\n"
+"Last-Translator: isabella carlin <isabella@vg7.it>\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr " "
 
 #. Favorite action
 msgid "favorite"
-msgstr "favoriti"
+msgstr "preferiti"
 
 #. Pin action
 msgid "pin"
