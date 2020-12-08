@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 09:22+0200\n"
-"PO-Revision-Date: 2020-10-05 07:29+0000\n"
+"POT-Creation-Date: 2020-12-02 15:52+0100\n"
+"PO-Revision-Date: 2020-12-02 14:24+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -381,6 +381,9 @@ msgstr "BG999999973"
 msgid "Go"
 msgstr "Продължи"
 
+msgid "Grid view"
+msgstr ""
+
 msgid "HH:mm"
 msgstr ""
 
@@ -468,6 +471,9 @@ msgstr "Последни"
 
 msgid "Like entered by you"
 msgstr "Както вие сте въвели"
+
+msgid "List view"
+msgstr ""
 
 msgid "Login"
 msgstr ""
@@ -632,6 +638,9 @@ msgstr "Грешка при обработката на плащането"
 
 msgid "Product"
 msgstr "Продукт"
+
+msgid "Product image"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "Продукти, от които може да се интересувате"

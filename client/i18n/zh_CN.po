@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 09:22+0200\n"
-"PO-Revision-Date: 2020-10-05 07:29+0000\n"
+"POT-Creation-Date: 2020-12-02 15:52+0100\n"
+"PO-Revision-Date: 2020-12-02 14:24+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -380,6 +380,9 @@ msgstr "GB999999973"
 msgid "Go"
 msgstr "前往\n "
 
+msgid "Grid view"
+msgstr ""
+
 msgid "HH:mm"
 msgstr ""
 
@@ -467,6 +470,9 @@ msgstr "最新"
 
 msgid "Like entered by you"
 msgstr "与你输入的保持一致"
+
+msgid "List view"
+msgstr ""
 
 msgid "Login"
 msgstr ""
@@ -631,6 +637,9 @@ msgstr "处理支付失败"
 
 msgid "Product"
 msgstr "商品"
+
+msgid "Product image"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "你可能感兴趣的商品"

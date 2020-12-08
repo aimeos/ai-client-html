@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 09:22+0200\n"
-"PO-Revision-Date: 2020-10-05 08:10+0000\n"
+"POT-Creation-Date: 2020-12-02 15:52+0100\n"
+"PO-Revision-Date: 2020-12-02 14:28+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -383,6 +383,9 @@ msgstr "DE999999999"
 msgid "Go"
 msgstr "Los"
 
+msgid "Grid view"
+msgstr "Kachelansicht"
+
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -470,6 +473,9 @@ msgstr "Neuste"
 
 msgid "Like entered by you"
 msgstr "Wie von Ihnen eingegeben"
+
+msgid "List view"
+msgstr "Listenansicht"
 
 msgid "Login"
 msgstr "Benutzerkonto"
@@ -634,6 +640,9 @@ msgstr "Die Verarbeitung der Zahlung schlug fehl"
 
 msgid "Product"
 msgstr "Produkt"
+
+msgid "Product image"
+msgstr "Produktbild"
 
 msgid "Products you might be also interested in"
 msgstr "Produkte, die sie auch interessieren könnten"
