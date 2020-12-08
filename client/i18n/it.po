@@ -5,14 +5,16 @@
 # Translators:
 # alessandro massarelli <alessandro@botteega.com>, 2017
 # Enrico Porceddu <porceddu_enrico@yahoo.com>, 2018
+# isabella carlin <isabella@vg7.it>, 2020
+# Matteo Breschigliaro <matteo@vg7.it>, 2020
 # R M <roberto@proprionoi.it>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-02 15:52+0100\n"
-"PO-Revision-Date: 2020-12-02 14:24+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2020-12-04 14:55+0000\n"
+"Last-Translator: isabella carlin <isabella@vg7.it>\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -218,7 +220,7 @@ msgid "Change payment"
 msgstr "Modifica metodo di pagamento"
 
 msgid "Channel"
-msgstr ""
+msgstr "Canale"
 
 msgid "Characteristics"
 msgstr "Caratteristiche"
@@ -383,10 +385,10 @@ msgid "Go"
 msgstr "Vai"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Visualizzazione della griglia"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #, php-format
 msgid ""
@@ -428,7 +430,7 @@ msgid "Included rebates"
 msgstr "Incluso sconto"
 
 msgid "Interval"
-msgstr ""
+msgstr "Intervallo"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -474,13 +476,13 @@ msgid "Like entered by you"
 msgstr "Come da te inserito"
 
 msgid "List view"
-msgstr ""
+msgstr "Visualizzazione della lista"
 
 msgid "Login"
 msgstr "Login"
 
 msgid "More reviews"
-msgstr ""
+msgstr "Ulteriori recensioni"
 
 msgid "Name"
 msgstr "Nome"
@@ -522,7 +524,7 @@ msgstr "Il numero di coupon ha superato il limite consentito"
 
 #, php-format
 msgid "Object doesn't implement \"%1$s\""
-msgstr "L0oggetto non implementa \"%1$s\""
+msgstr "L'oggetto non implementa \"%1$s\""
 
 msgid "One month"
 msgstr "Un mese"
@@ -541,7 +543,7 @@ msgstr "Ordine"
 
 #, php-format
 msgid "Order %1$s"
-msgstr ""
+msgstr "Ordine %1$s"
 
 msgid "Order ID"
 msgstr "Ordine n."
@@ -550,7 +552,7 @@ msgid "Order channel"
 msgstr "Canale ordine"
 
 msgid "Order date"
-msgstr ""
+msgstr "Data dell'ordine"
 
 msgid "Order details"
 msgstr "Dettagli Ordine"
@@ -620,10 +622,10 @@ msgid "Please recheck your payment choice"
 msgstr "Verifica il tuo metodo di pagamento"
 
 msgid "Please select"
-msgstr "Perfavore seleziona"
+msgstr "Per favore seleziona"
 
 msgid "Postal code"
-msgstr " CAP - Codice di avviamento postale"
+msgstr "CAP - Codice di avviamento postale"
 
 msgid "Previous"
 msgstr "Precedente"
@@ -641,7 +643,7 @@ msgid "Product"
 msgstr "Prodotto"
 
 msgid "Product image"
-msgstr ""
+msgstr "Immagine del prodotto"
 
 msgid "Products you might be also interested in"
 msgstr "Prodotti a cui potresti essere interessato"
@@ -656,10 +658,10 @@ msgid "Quantity"
 msgstr "Quantità"
 
 msgid "Rating"
-msgstr ""
+msgstr "Valutazione"
 
 msgid "Reference"
-msgstr ""
+msgstr "Referenze"
 
 msgid "Related"
 msgstr "Collegato"
@@ -676,10 +678,10 @@ msgid "Result for \"%1$s\""
 msgstr "Risultati per \"%1$s\""
 
 msgid "Reviews"
-msgstr ""
+msgstr "Recensioni"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "Nome articolo"
 
 msgid "Salutation"
 msgstr "Saluto"
@@ -847,7 +849,7 @@ msgid ""
 msgstr "Grazie per il tuo ordine! \nAbbiamo ricevuto il pagamento. Un'email con i dettagli dell'ordine ti verrà inviata nei prossimi minuti."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "Grazie per la tua recensione!"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -864,7 +866,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr "L'ordine rimarrà in sospeso finchè riceveremo il pagamento. Se hai scelto di pagare in anticipo, perfavore trasferisci il denaro nel nostro conto bancario indicando Ordine n.%1$s come causale."
+msgstr "L'ordine rimarrà in sospeso finché non riceveremo il pagamento. Se hai scelto di pagare in anticipo, per favore trasferisci il denaro nel nostro conto bancario indicando Ordine n.%1$s come causale."
 
 msgid ""
 "The order was canceled.\n"
@@ -964,7 +966,7 @@ msgid "Vat ID"
 msgstr "Partita Iva"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Risposta del venditore"
 
 msgid "Watch"
 msgstr "Osserva"
@@ -974,7 +976,7 @@ msgstr "Osservati"
 
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr "Abbiamo ricevuto il tuo pagamento e procederemo con il tuo ordine immediatamente."
+msgstr "Abbiamo ricevuto il tuo pagamento e procederemo immediatamente con l'elaborazione del tuo ordine."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -988,7 +990,7 @@ msgid "Web site"
 msgstr "Sito Web"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "Cosa ne pensi del prodotto?"
 
 msgid "X"
 msgstr "X"
@@ -999,10 +1001,10 @@ msgid "Y-m-d"
 msgstr "A-m-g"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "GG-MM-AAAA"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "GG-MM-AAAA HH:mm"
 
 msgid "You are here:"
 msgstr "Ti trovi qui:"
@@ -1043,7 +1045,7 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Il tuo ordine %1$s del %2$sè stato spedito."
 
 msgid "Your rating"
-msgstr ""
+msgstr "La tua valutazione"
 
 msgid "Your reference"
 msgstr "La tua referenza"
@@ -1052,7 +1054,7 @@ msgid "Your reference number"
 msgstr "Il tuo numero di referenza"
 
 msgid "Your review"
-msgstr ""
+msgstr "La tua recensione"
 
 msgid "Your search result"
 msgstr "I tuoi risultati di ricerca"

@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
+# Tobias Madsen <tubbe.m@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-10-03 08:06+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2020-12-06 11:25+0000\n"
+"Last-Translator: Tobias Madsen <tubbe.m@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/aimeos/aimeos-core/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,19 +24,19 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "moms"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "GST"
 
 #. Price type default
 msgid "price:default"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
@@ -55,55 +56,55 @@ msgstr ""
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "Størrelse"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "Længde"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "Bredde"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "Farve"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "Mulighed"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "Pakkelængde"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "Pakkebredde"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "Pakkehøjde"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "Pakkevægt"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Kontoejer"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Kontonr."
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "Bankkode"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "Banknavn"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,19 +116,19 @@ msgstr "Efternavn"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Kreditkort nummer"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Verifikationsnummer"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "Udløbsmåned"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "Udløbsår"
 
 #. Pick-up date
 msgid "date.value"
@@ -147,4 +148,4 @@ msgstr ""
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "Leveringstype"

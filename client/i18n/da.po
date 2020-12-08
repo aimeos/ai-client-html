@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-02 15:52+0100\n"
-"PO-Revision-Date: 2020-12-02 14:24+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2020-12-07 10:55+0000\n"
+"Last-Translator: Tobias Madsen <tubbe.m@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/aimeos/aimeos-core/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,12 +54,12 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
@@ -70,7 +70,7 @@ msgstr "%1$s %2$s rabat"
 #. value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr ""
+msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -86,7 +86,7 @@ msgstr "%1$s%%"
 #. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr ""
+msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
@@ -99,7 +99,7 @@ msgstr "+ %1$s %2$s/vare"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -116,18 +116,18 @@ msgid "+ shipping costs"
 msgstr "+ leveringsomkostninger"
 
 msgid "+1 123 456 7890"
-msgstr ""
+msgstr "+4511223344"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "Account"
 msgstr "Konto"
 
 msgid "Add to basket"
-msgstr "Tilføj"
+msgstr "Tilføj til kurv"
 
 msgid "Additional"
 msgstr "Ekstra"
@@ -186,20 +186,20 @@ msgstr "Faktureringsadresse"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "Betalingsadressedelen \"%1$s\" er ugyldig"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr ""
+msgstr "Betalingsadressedelen \"%1$s\" mangler"
 
 msgid "Birthday"
 msgstr "Fødselsdag"
 
 msgid "Bulk order"
-msgstr "Masseordre"
+msgstr "Multi-vare bestilling"
 
 msgid "Bundled products"
-msgstr ""
+msgstr "Produktpakker"
 
 msgid "Buy now"
 msgstr "Køb nu"
@@ -328,11 +328,11 @@ msgstr "Leveringsadresse slettet"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "Leveringsadressedelen \"%1$s\" er ugyldig"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
-msgstr ""
+msgstr "Leveringsadressedelen \"%1$s\" mangler"
 
 msgid "Delivery within"
 msgstr "Levering inden"
@@ -367,7 +367,7 @@ msgstr "Felter med * skal udfyldes"
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
-msgstr ""
+msgstr "Filen \"%1$s\" eksisterer ikke"
 
 msgid "Filter"
 msgstr "Filter"
@@ -376,16 +376,16 @@ msgid "First name"
 msgstr "Fornavn"
 
 msgid "GB999999973"
-msgstr ""
+msgstr "DK11223344"
 
 msgid "Go"
 msgstr "Gå"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Flisevisning"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #, php-format
 msgid ""
@@ -403,10 +403,10 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr "Jeg acceptere <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">handelsbetingelser</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privatlivspolitik</a>og  <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">fortrydelsesbetingelser</a>"
+msgstr "Jeg accepterer <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">handelsbetingelser</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privatlivspolitik</a> og  <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">fortrydelsesbetingelser</a>"
 
 msgid "If back in stock"
-msgstr ""
+msgstr "Hvis tilbage på lager"
 
 msgid "If price decreases"
 msgstr "Hvis pris falder"
@@ -470,10 +470,10 @@ msgid "Latest"
 msgstr "Seneste"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Som skrevet af dig"
 
 msgid "List view"
-msgstr ""
+msgstr "Listevisning"
 
 msgid "Login"
 msgstr "Login"
@@ -491,7 +491,7 @@ msgid "Next"
 msgstr "Næste"
 
 msgid "Next order"
-msgstr ""
+msgstr "Næste ordre"
 
 #, php-format
 msgid ""
@@ -546,7 +546,7 @@ msgid "Order ID"
 msgstr "Ordre ID"
 
 msgid "Order channel"
-msgstr ""
+msgstr "Ordrekanal"
 
 msgid "Order date"
 msgstr "Ordredato"
@@ -605,18 +605,18 @@ msgid "Please choose your payment method"
 msgstr "Vælg venligst betalingsløsning"
 
 msgid "Please enter at least three characters"
-msgstr ""
+msgstr "Skriv mindst tre tegn"
 
 msgid "Please enter your payment details"
 msgstr "Skriv dine betalingsoplysninger"
 
 #, php-format
 msgid "Please recheck your delivery choice"
-msgstr ""
+msgstr "Check venligst dit valg af levering"
 
 #, php-format
 msgid "Please recheck your payment choice"
-msgstr ""
+msgstr "Check venligst dit valg af betaling"
 
 msgid "Please select"
 msgstr "Vælg"
@@ -634,16 +634,16 @@ msgid "Proceed"
 msgstr "Forsæt"
 
 msgid "Processing the payment failed"
-msgstr ""
+msgstr "Betalingen fejlede"
 
 msgid "Product"
 msgstr "Produkt"
 
 msgid "Product image"
-msgstr ""
+msgstr "Produktbillede"
 
 msgid "Products you might be also interested in"
-msgstr ""
+msgstr "Produkter du måske er interesseret i"
 
 msgid "Properties"
 msgstr "Egenskaber"
@@ -762,7 +762,7 @@ msgid "Street"
 msgstr "Gade"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "Sub-total"
 
 msgid "Subscription ID"
 msgstr ""
@@ -781,19 +781,19 @@ msgid "Subscription with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Abonnementer"
 
 msgid "Suggested products"
-msgstr ""
+msgstr "Forslåede produkter"
 
 msgid "Sum"
 msgstr "Total"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "Leverandør information"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "Leverandører"
 
 msgid "Telephone"
 msgstr "Telefon"
@@ -833,7 +833,7 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr ""
+msgstr "Tak for din ordre %1$s fra %2$s.\n\nVi har modtaget betalingen og vil håndtere din ordre med det samme."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -902,7 +902,7 @@ msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgstr "Værdien af din kode er %1$s"
 
 msgid "Three month"
 msgstr ""
@@ -911,16 +911,16 @@ msgid "Time frame"
 msgstr ""
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Aktiver/deaktiver fuldskærm"
 
 msgid "Top seller"
-msgstr ""
+msgstr "Topsælger"
 
 msgid "Total"
 msgstr "Total"
 
 msgid "Total quantity"
-msgstr ""
+msgstr "Totalt antal"
 
 msgid "Try again"
 msgstr "Prøv igen"
@@ -957,10 +957,10 @@ msgid "Update"
 msgstr "Opdater"
 
 msgid "Variant"
-msgstr ""
+msgstr "Variant"
 
 msgid "Vat ID"
-msgstr ""
+msgstr "CVR-nummer"
 
 msgid "Vendor response"
 msgstr ""
@@ -973,7 +973,7 @@ msgstr "Sete produkter"
 
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Vi har modtaget din betaling og vil håndtere din ordre med det samme."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -984,30 +984,30 @@ msgid "We received the returned parcel for your order %1$s from %2$s."
 msgstr ""
 
 msgid "Web site"
-msgstr ""
+msgstr "Webside"
 
 msgid "What do you think about the product"
 msgstr "Hvad synes du om produktet"
 
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #. / Date format with year (Y), month (m) and day (d). See
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
-msgstr ""
+msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "YYYY-MM-DD HH:mm"
 
 msgid "You are here:"
 msgstr "Du er her:"
 
 msgid "You can use your voucher any time in our online shop"
-msgstr ""
+msgstr "Du kan bruge din kode når som helst på vores webshop"
 
 msgid "You will now be forwarded to the next step"
 msgstr ""
@@ -1019,14 +1019,14 @@ msgid "Your account"
 msgstr "Din konto"
 
 msgid "Your choice"
-msgstr ""
+msgstr "Dit valg"
 
 msgid "Your comment"
 msgstr "Din kommentar"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
-msgstr ""
+msgstr "Din nye konto"
 
 #. / Payment e-mail subject with order ID
 #, php-format
@@ -1042,7 +1042,7 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Din ordre %1$s fra %2$s er blevet afsendt."
 
 msgid "Your rating"
-msgstr ""
+msgstr "Din bedømmelse"
 
 msgid "Your reference"
 msgstr "Din reference"
@@ -1054,7 +1054,7 @@ msgid "Your review"
 msgstr "Din anmeldelse"
 
 msgid "Your search result"
-msgstr "Din søgeresultat"
+msgstr "Dit søgeresultat"
 
 msgid "Your subscription"
 msgstr ""
@@ -1063,33 +1063,33 @@ msgid "Your subscription product"
 msgstr ""
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Din rabatkode"
 
 msgid "Your voucher: "
-msgstr ""
+msgstr "Din rabatkode:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Dine sete produkter"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Zoom ind/ud"
 
 #, php-format
 msgid "address"
 msgstr "Adresse"
 
 msgid "clear all"
-msgstr ""
+msgstr "slet alt"
 
 #, php-format
 msgid "delivery"
-msgstr "fragt"
+msgstr "Levering"
 
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "ved %1$s"
 
 msgid "like billing address"
 msgstr "Som faktura-adresse"
@@ -1098,11 +1098,11 @@ msgid "new address"
 msgstr "Ny adresse"
 
 msgid "none"
-msgstr ""
+msgstr "ingen"
 
 #, php-format
 msgid "order"
-msgstr ""
+msgstr "ordre"
 
 #, php-format
 msgid "payment"
@@ -1113,54 +1113,54 @@ msgstr ""
 
 #, php-format
 msgid "process"
-msgstr ""
+msgstr "process"
 
 #. / code for "product is in stock"
 msgid "stock-high"
-msgstr ""
+msgstr "Mange på lager"
 
 #. / code for "only a few products are available"
 msgid "stock-low"
-msgstr ""
+msgstr "Få på lager"
 
 #. / code for "product is out of stock"
 msgid "stock-out"
-msgstr ""
+msgstr "Udsolgt"
 
 #. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
-msgstr ""
+msgstr "Ubegrænset lager"
 
 #, php-format
 msgid "summary"
 msgstr "Opsummering"
 
 msgid "tax"
-msgstr ""
+msgstr "moms"
 
 msgid "▲ Name"
-msgstr ""
+msgstr "▲ Navn"
 
 msgid "▲ Price"
-msgstr ""
+msgstr "▲ Pris"
 
 msgid "▶"
-msgstr ""
+msgstr "▶"
 
 msgid "▶▶"
-msgstr ""
+msgstr "▶▶"
 
 msgid "▼"
-msgstr ""
+msgstr "▼"
 
 msgid "▼ Name"
-msgstr ""
+msgstr "▼ Navn"
 
 msgid "▼ Price"
-msgstr ""
+msgstr "▼ Pris"
 
 msgid "◀"
-msgstr ""
+msgstr "◀"
 
 msgid "◀◀"
-msgstr ""
+msgstr "◀◀"
