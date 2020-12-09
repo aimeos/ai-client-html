@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2020-11-19 21:32+0000\n"
+"PO-Revision-Date: 2020-12-09 14:45+0000\n"
 "Last-Translator: Goran Sabo <by.typo3@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/aimeos/aimeos-core/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -28,11 +28,11 @@ msgstr "davek"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "GST"
 
 #. Price type default
 msgid "price:default"
@@ -76,27 +76,27 @@ msgstr "Možnost"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "package-length"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "package-width"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "package-height"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "package-weight"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Account owner"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Account number"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
