@@ -294,7 +294,7 @@ class Standard
 		$expr = array(
 			$search->compare( '==', 'stock.productid', $prodIds ),
 			$search->compare( '==', 'stock.type', $stockType ),
-			$search->combine( '||', array(
+			$search->or( array(
 				$search->compare( '==', 'stock.stocklevel', null ),
 				$search->compare( '>', 'stock.stocklevel', 0 ),
 			) ),

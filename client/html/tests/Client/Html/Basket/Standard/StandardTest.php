@@ -196,7 +196,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search = $attrManager->filter();
 		$expr = array(
 			$search->compare( '==', 'attribute.domain', 'product' ),
-			$search->combine( '||', array(
+			$search->or( array(
 				$search->and( array(
 					$search->compare( '==', 'attribute.code', '30' ),
 					$search->compare( '==', 'attribute.type', 'length' ),
