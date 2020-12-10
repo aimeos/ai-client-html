@@ -197,17 +197,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expr = array(
 			$search->compare( '==', 'attribute.domain', 'product' ),
 			$search->combine( '||', array(
-				$search->combine( '&&', array(
+				$search->and( array(
 					$search->compare( '==', 'attribute.code', '30' ),
 					$search->compare( '==', 'attribute.type', 'length' ),
 				) ),
-				$search->combine( '&&', array(
+				$search->and( array(
 					$search->compare( '==', 'attribute.code', '30' ),
 					$search->compare( '==', 'attribute.type', 'width' ),
 				) ),
 			) ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$attributes = $attrManager->search( $search );
 
 		$view = $this->object->getView();
@@ -238,7 +238,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$search->compare( '==', 'attribute.domain', 'product' ),
 			$search->compare( '==', 'attribute.type', 'color' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 
 		if( ( $attribute = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No attribute' );
@@ -273,7 +273,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				$search->compare( '==', 'attribute.domain', 'product' ),
 				$search->compare( '==', 'attribute.type', 'date' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 
 		if( ( $attribute = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'No attribute' );

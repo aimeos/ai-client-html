@@ -118,7 +118,7 @@ class Standard
 				$orderSearch->compare( '==', 'order.statuspayment', $status ),
 				$orderSearch->compare( '==', $orderFunc, 0 ),
 			);
-			$orderSearch->setConditions( $orderSearch->combine( '&&', $expr ) );
+			$orderSearch->setConditions( $orderSearch->and( $expr ) );
 
 			$start = 0;
 

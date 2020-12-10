@@ -82,7 +82,7 @@ class Standard
 				$search->compare( '!=', $func, null ),
 				$search->getConditions(),
 			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
+			$search->setConditions( $search->and( $expr ) );
 			$search->setSortations( array( $search->sort( '+', 'customer.id' ) ) );
 
 			$start = 0;
@@ -198,7 +198,7 @@ class Standard
 			$search->compare( '==', 'customer.lists.parentid', $custIds->toArray() ),
 			$search->compare( '==', 'customer.lists.type', 'watch' ),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->slice( 0, 0x7fffffff );
 
 		return $listManager->search( $search );
@@ -300,7 +300,7 @@ class Standard
 			) ),
 			$search->getConditions(),
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 		$search->slice( 0, 100000 ); // performance speedup
 
 		return $stockManager->search( $search );

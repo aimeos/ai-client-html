@@ -121,7 +121,7 @@ class Standard
 				$orderSearch->compare( '==', 'order.statusdelivery', $status ),
 				$orderSearch->compare( '==', $orderFunc, 0 ),
 			);
-			$orderSearch->setConditions( $orderSearch->combine( '&&', $expr ) );
+			$orderSearch->setConditions( $orderSearch->and( $expr ) );
 
 			do
 			{

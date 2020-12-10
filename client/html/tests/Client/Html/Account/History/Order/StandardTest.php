@@ -110,7 +110,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$search->getConditions(),
 			$search->compare( '==', 'order.base.customerid', $customerid )
 		);
-		$search->setConditions( $search->combine( '&&', $expr ) );
+		$search->setConditions( $search->and( $expr ) );
 
 		if( ( $item = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( sprintf( 'No order item for customer with ID "%1$s" found', $customerid ) );

@@ -291,7 +291,7 @@ class Standard
 				$search->compare( '==', 'order.base.customerid', $customerId ),
 				$search->compare( '==', 'order.base.product.attribute.id', $id ),
 			);
-			$search->setConditions( $search->combine( '&&', $expr ) );
+			$search->setConditions( $search->and( $expr ) );
 			$search->slice( 0, 1 );
 
 			if( !$manager->search( $search )->isEmpty() ) {
