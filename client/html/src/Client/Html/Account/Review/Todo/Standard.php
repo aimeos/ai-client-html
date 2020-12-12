@@ -275,7 +275,7 @@ class Standard
 		{
 			$productItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
 				->uses( ['text' => ['name'], 'media' => ['default']] )
-				->product( $prodMap->keys()->diff( $exclude )->toArray() )
+				->product( $prodIds )
 				->search();
 
 			foreach( $prodMap as $prodId => $ordProdId )

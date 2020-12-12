@@ -35,12 +35,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$this->context->getConfig()->set( 'client/html/account/review/todo/days-after', 0 );
+		$view = $this->object->addData( \TestHelperHtml::getView() );
+		$view->todoProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
 
-		$view = \TestHelperHtml::getView();
-		$this->object->setView( $this->object->addData( $view ) );
-
-		$output = $this->object->getBody();
+		$output = $this->object->setView( $view )->getBody();
 
 		$this->assertStringContainsString( '<div class="account-review-todo">', $output );
 	}
