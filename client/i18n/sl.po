@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-02 15:52+0100\n"
-"PO-Revision-Date: 2020-12-09 14:45+0000\n"
-"Last-Translator: Goran Sabo <by.typo3@gmail.com>\n"
+"POT-Creation-Date: 2020-12-14 23:21+0100\n"
+"PO-Revision-Date: 2020-12-14 22:21+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Slovenian (http://www.transifex.com/aimeos/aimeos-core/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgid_plural "%1$d articles"
 msgstr[0] "%1$d article"
 msgstr[1] "%1$d articles"
 msgstr[2] "%1$d articles"
-msgstr[3] "%1$d articles"
+msgstr[3] "%1$d izdelkov"
 
 #, php-format
 msgid "%1$d review"
@@ -32,7 +32,7 @@ msgid_plural "%1$d reviews"
 msgstr[0] "%1$d review"
 msgstr[1] "%1$d reviews"
 msgstr[2] "%1$d reviews"
-msgstr[3] "%1$d reviews"
+msgstr[3] "%1$d mnenja"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -128,6 +128,9 @@ msgstr "-%1$s%%"
 
 msgid "Account"
 msgstr "Moj račun"
+
+msgid "Add billing address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "Dodaj v košarico"
@@ -385,7 +388,7 @@ msgid "Go"
 msgstr "Začni"
 
 msgid "Grid view"
-msgstr "Grid view"
+msgstr "Stolpci"
 
 msgid "HH:mm"
 msgstr "HH:mm"
@@ -476,7 +479,7 @@ msgid "Like entered by you"
 msgstr "Vi ste všečkali"
 
 msgid "List view"
-msgstr "List view"
+msgstr "Seznam"
 
 msgid "Login"
 msgstr "Prijava"
@@ -587,7 +590,7 @@ msgid "Payment"
 msgstr "Plačilo"
 
 msgid "Payment costs"
-msgstr "Payment costs"
+msgstr "Provizija plačila"
 
 msgid "Payment status"
 msgstr "Status plačila"
@@ -643,7 +646,7 @@ msgid "Product"
 msgstr "Izdelek"
 
 msgid "Product image"
-msgstr "Product image"
+msgstr "Slika izdelka"
 
 msgid "Products you might be also interested in"
 msgstr "Izdelki, ki ti lahko pride prav"
@@ -664,10 +667,10 @@ msgid "Reference"
 msgstr "Reference"
 
 msgid "Related"
-msgstr "Related"
+msgstr "Povezani"
 
 msgid "Relevance"
-msgstr "Relevance"
+msgstr "Ustrezni"
 
 msgid "Reset"
 msgstr "Ponastavi"
@@ -770,23 +773,23 @@ msgid "Sub-total"
 msgstr "Vmesni izračun"
 
 msgid "Subscription ID"
-msgstr "Subscription ID"
+msgstr "ID Naročnine"
 
 msgid "Subscription details"
-msgstr "Subscription details"
+msgstr "Podrobnosti naročnine"
 
 msgid "Subscription interval"
-msgstr "Subscription interval"
+msgstr "Obdobje naročnine"
 
 msgid "Subscription product"
-msgstr "Subscription product"
+msgstr "Izdelek v naročnini"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
-msgstr "Subscription with ID \"%1$s\" not found"
+msgstr "ID  Naročnine izdelka \"%1$s\" ni najden"
 
 msgid "Subscriptions"
-msgstr "Subscriptions"
+msgstr "Naročnine"
 
 msgid "Suggested products"
 msgstr "Priporočeni izdelki"
@@ -795,7 +798,7 @@ msgid "Sum"
 msgstr "Skupaj"
 
 msgid "Supplier information"
-msgstr "Supplier information"
+msgstr "Podrobnost dobavitelja"
 
 msgid "Suppliers"
 msgstr "Dobavitelji"
