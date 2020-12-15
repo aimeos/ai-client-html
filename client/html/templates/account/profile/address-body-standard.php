@@ -115,7 +115,8 @@ $pos = 0;
 
 				<div class="panel panel-default address-billing">
 					<div class="panel-heading" role="button" data-toggle="collapse" href="#address-payment" aria-expanded="false" aria-controls="address-payment">
-						<?= nl2br( $enc->html( $addr['string'] ?? '' ) ) ?><span class="act-show"></span>
+						<?= nl2br( $enc->html( $addr['string'] ?: $this->translate( 'client', 'Add billing address' ) ) ) ?>
+						<span class="act-show"></span>
 					</div>
 					<div class="panel-body collapse" id="address-payment">
 
