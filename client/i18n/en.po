@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 09:22+0200\n"
+"POT-Creation-Date: 2020-12-14 23:21+0100\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -126,6 +126,9 @@ msgid "-%1$s%%"
 msgstr ""
 
 msgid "Account"
+msgstr ""
+
+msgid "Add billing address"
 msgstr ""
 
 msgid "Add to basket"
@@ -385,6 +388,9 @@ msgstr ""
 msgid "Go"
 msgstr ""
 
+msgid "Grid view"
+msgstr ""
+
 msgid "HH:mm"
 msgstr ""
 
@@ -461,6 +467,9 @@ msgid "Latest"
 msgstr ""
 
 msgid "Like entered by you"
+msgstr ""
+
+msgid "List view"
 msgstr ""
 
 msgid "Login"
@@ -624,6 +633,9 @@ msgid "Processing the payment failed"
 msgstr ""
 
 msgid "Product"
+msgstr ""
+
+msgid "Product image"
 msgstr ""
 
 msgid "Products you might be also interested in"
