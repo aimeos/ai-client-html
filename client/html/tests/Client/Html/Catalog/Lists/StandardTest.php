@@ -139,8 +139,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $this->getCatalogItem()->getId() );
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::getView() );
 
 		$view = $this->object->getView();
@@ -159,8 +158,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$catid = $this->getCatalogItem()->getId();
 		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', array( $catid, $catid ) );
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::getView() );
 
 		$view = $this->object->getView();
@@ -179,8 +177,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$catid = $this->getCatalogItem()->getId();
 		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $catid . ',' . $catid );
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::getView() );
 
 		$view = $this->object->getView();
@@ -198,8 +195,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::getView() );
 
 		$view = $this->object->getView();

@@ -22,8 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $context->getConfig();
 		$config->set( 'client/html/catalog/lists/basket-add', true );
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Items\Standard( $context, $paths );
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Items\Standard( $context );
 
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $context );
 		$search = $catalogManager->filter();

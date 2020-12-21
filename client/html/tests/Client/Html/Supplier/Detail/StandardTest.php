@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetHeaderException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
@@ -95,8 +95,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/supplier/detail/supid-default', $this->getSupplierItem()->getId() );
 
-		$paths = \TestHelperHtml::getHtmlTemplatePaths();
-		$this->object = new \Aimeos\Client\Html\Supplier\Detail\Standard( $context, $paths );
+		$this->object = new \Aimeos\Client\Html\Supplier\Detail\Standard( $context );
 		$this->object->setView( \TestHelperHtml::getView() );
 
 		$view = $this->object->getView();
@@ -113,7 +112,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyClientHtmlException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
@@ -131,7 +130,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyControllerFrontendException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
@@ -149,7 +148,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyMShopException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
@@ -167,7 +166,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 

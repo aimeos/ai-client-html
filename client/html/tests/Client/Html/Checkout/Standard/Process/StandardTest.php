@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
-			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $view );
@@ -134,7 +134,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
-			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $view );
@@ -176,7 +176,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
-			->setConstructorArgs( [$this->context, \TestHelperHtml::getHtmlTemplatePaths()] )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $view );

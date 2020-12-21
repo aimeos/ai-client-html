@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetHeaderException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyClientHtmlException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyControllerFrontendException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyMShopException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 
@@ -119,7 +119,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'addData' ) )
 			->getMock();
 

@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Download\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperHtml::getHtmlTemplatePaths() ) )
+			->setConstructorArgs( [$this->context] )
 			->setMethods( array( 'checkAccess', 'checkDownload' ) )
 			->getMock();
 		$object->setView( $this->view );
