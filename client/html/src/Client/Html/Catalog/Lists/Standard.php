@@ -498,7 +498,6 @@ class Standard
 		 * @since 2014.03
 		 * @category Developer
 		 * @see client/html/catalog/lists/domains
-		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
@@ -528,6 +527,7 @@ class Standard
 		 * @see client/html/catalog/detail/domains
 		 * @see client/html/catalog/stage/domains
 		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
@@ -554,6 +554,7 @@ class Standard
 		 * @category User
 		 * @category Developer
 		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
@@ -579,6 +580,7 @@ class Standard
 		 * @category User
 		 * @category Developer
 		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
@@ -613,6 +615,7 @@ class Standard
 		 * @since 2015.11
 		 * @category Developer
 		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/sort
@@ -631,7 +634,7 @@ class Standard
 		 * category is best for this). In most cases you can set this value
 		 * via the administration interface of the shop application.
 		 *
-		 * @param string Category ID
+		 * @param array|string Category ID or IDs
 		 * @since 2014.03
 		 * @category User
 		 * @category Developer
@@ -640,9 +643,34 @@ class Standard
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/lists/supid-default
 		 */
 		$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
 		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
+
+
+		/** client/html/catalog/lists/supid-default
+		 * The default supplier ID used if none is given as parameter
+		 *
+		 * Products in the list page can be limited to one or more suppliers.
+		 * By default, the products are not limited to any supplier until one or
+		 * more supplier IDs are passed in the URL using the f_supid parameter.
+		 * You can also configure the default supplier IDs for limiting the
+		 * products if no IDs are passed in the URL using this configuration.
+		 *
+		 * @param array|string Supplier ID or IDs
+		 * @since 2021.01
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/detail/prodid-default
+		 */
+		$supids = $view->param( 'f_supid', $config->get( 'client/html/catalog/lists/supid-default' ) );
+		$supids = $supids != null && is_scalar( $supids ) ? explode( ',', $supids ) : $supids; // workaround for TYPO3
 
 		/** client/html/catalog/lists/sort
 		 * Default sorting of product list if no other sorting is given by parameter
@@ -657,6 +685,7 @@ class Standard
 		 * @category User
 		 * @category Developer
 		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/size
@@ -670,7 +699,7 @@ class Standard
 			->text( $view->param( 'f_search' ) )
 			->price( $view->param( 'f_price' ) )
 			->category( $catids, 'default', $level )
-			->supplier( $view->param( 'f_supid', [] ) )
+			->supplier( $supids )
 			->allOf( $view->param( 'f_attrid', [] ) )
 			->oneOf( $view->param( 'f_optid', [] ) )
 			->oneOf( $view->param( 'f_oneid', [] ) )
