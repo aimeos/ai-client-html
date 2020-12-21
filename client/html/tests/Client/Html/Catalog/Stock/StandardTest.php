@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$prodid = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' )->getId();
 
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_prodid' => $prodid ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'st_pid' => $prodid ) );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();

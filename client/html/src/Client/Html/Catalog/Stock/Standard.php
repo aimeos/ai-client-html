@@ -301,7 +301,7 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$stockItemsByProducts = [];
-		$prodIds = (array) $view->param( 's_prodid', [] );
+		$prodIds = (array) $view->param( 'st_pid', [] );
 
 		foreach( $this->getStockItems( $prodIds ) as $stockItem ) {
 			$stockItemsByProducts[$stockItem->getProductId()][] = $stockItem;

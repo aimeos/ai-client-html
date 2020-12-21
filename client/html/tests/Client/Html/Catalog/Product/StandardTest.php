@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getHeader();
 
 		$this->assertStringContainsString( '<script type="text/javascript"', $output );
-		$prodCodeParam = '/s_prodid%5B[0-9]%5D=';
+		$prodCodeParam = '/st_pid%5B[0-9]%5D=';
 		$this->assertRegExp( $prodCodeParam . $map['CNE'] . '/', $output );
 		$this->assertRegExp( $prodCodeParam . $map['ABCD'] . '/', $output );
 		$this->assertRegExp( $prodCodeParam . $map['CNC'] . '/', $output );

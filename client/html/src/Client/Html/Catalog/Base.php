@@ -127,7 +127,7 @@ abstract class Base
 		$ids = $products->getId()->sort();
 
 		while( !( $list = $ids->splice( -$max ) )->isEmpty() ) {
-			$urls[] = $view->url( $target, $cntl, $action, ['s_prodid' => $list->toArray()], [], $config );
+			$urls[] = $view->url( $target, $cntl, $action, ['st_pid' => $list->toArray()], [], $config );
 		}
 
 		return map( $urls )->reverse();
