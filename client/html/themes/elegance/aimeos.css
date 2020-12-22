@@ -1867,7 +1867,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-list-items .price-item:first-of-type,
 .catalog-detail-basket .price-item:first-of-type {
 	display: block;
-	font-size: 125%;
+	font-size: 110%;
 	font-weight: bold;
 }
 
@@ -2082,6 +2082,11 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	line-height: 0;
 }
 
+.catalog-list-items .selection .select-label > span {
+	height: calc(.5em + .75rem - 1px);
+	display: block;
+}
+
 .catalog-list-items .selection .select-label > span,
 .catalog-detail-basket .selection .select-label > span {
 	padding: 0 0.25em;
@@ -2092,7 +2097,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-basket .selection .radio .select-label {
 	border: solid 1px #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
-	padding: 0.525em;
+	padding: 0.5em;
 	text-align: center;
 	min-width: 2.5em;
 	width: auto;
@@ -2135,11 +2140,15 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	margin: 0;
 }
 
-.catalog-list-items .selection .media-item > img,
+.catalog-list-items .selection .media-item > img {
+	height: calc(.5em + .75rem - 1px);
+	width: calc(.5em + .75rem - 1px);
+}
+
 .catalog-detail-basket .selection .media-item > img {
+	height: 1.5rem;
+	width: 1.5rem;
 	border: none;
-	height: 1.3em;
-	width: 1.3em;
 }
 
 .catalog-list-items .selection .media-item + span,
