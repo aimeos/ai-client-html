@@ -81,7 +81,7 @@ class Standard
 	 */
 	public function getBody( string $uid = '' ) : string
 	{
-		$prefixes = ['s_supid'];
+		$prefixes = ['f_supid'];
 		$context = $this->getContext();
 
 		/** client/html/supplier/detail/cache
@@ -197,7 +197,7 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ?string
 	{
-		$prefixes = ['s_supid'];
+		$prefixes = ['f_supid'];
 		$confkey = 'client/html/supplier/detail';
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
@@ -419,7 +419,7 @@ class Standard
 		 * @since 2021.01
 		 * @see client/html/catalog/lists/catid-default
 		 */
-		if( $supid = $view->param( 's_supid', $config->get( 'client/html/supplier/detail/supid-default' ) ) )
+		if( $supid = $view->param( 'f_supid', $config->get( 'client/html/supplier/detail/supid-default' ) ) )
 		{
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'supplier' );
 

@@ -44,7 +44,7 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
 			<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
 		<?php endforeach; ?>
 
-		<?php $params = ['s_name' => $this->detailSupplierItem->getName( 'url' ), 's_supid' => $this->detailSupplierItem->getId()]; ?>
+		<?php $params = ['s_name' => $this->detailSupplierItem->getName( 'url' ), 'f_supid' => $this->detailSupplierItem->getId()]; ?>
 		<link rel="canonical" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config + ['absoluteUri' => true] ) ); ?>" />
 
 		<meta property="og:type" content="product" />

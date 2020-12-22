@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetHeader()
 	{
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_supid' => $this->getSupplierItem()->getId() ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
 		$view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$view = $this->object->getView();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['s_supid' => -1] ) );
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 's_supid' => $this->getSupplierItem()->getId() ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
 		$view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$view = $this->object->getView();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['s_supid' => -1] ) );
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
@@ -135,7 +135,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$view = $this->object->getView();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['s_supid' => -1] ) );
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
@@ -153,7 +153,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$view = $this->object->getView();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['s_supid' => -1] ) );
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
@@ -171,7 +171,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$view = $this->object->getView();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['s_supid' => -1] ) );
+		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
 		$mock->expects( $this->once() )->method( 'addData' )
