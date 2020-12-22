@@ -436,15 +436,74 @@ class Standard
 			 * @param array List of domain names
 			 * @since 2020.10
 			 */
-			$domains = $config->get( 'client/html/supplier/detail/domains', ['media', 'text'] );
+			$domains = $config->get( 'client/html/supplier/detail/domains', ['supplier/address', 'media', 'text'] );
 
 			$supplier = $controller->uses( $domains )->get( $supid );
 
 			$this->addMetaItems( $supplier, $expire, $tags );
 
 			$view->detailSupplierItem = $supplier;
+			$view->detailSupplierAddresses = $this->getAddressStrings( $view, $supplier->getAddressItems() );
 		}
 
 		return parent::addData( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the addresses as list of strings
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param iterable $addresses List of address items implementing \Aimeos\MShop\Common\Item\Address\Iface
+	 * @return \Aimeos\Map List of address strings
+	 */
+	protected function getAddressStrings( \Aimeos\MW\View\Iface $view, iterable $addresses ) : \Aimeos\Map
+	{
+		$list = [];
+
+		foreach( $addresses as $id => $addr )
+		{
+			$list[$id] = preg_replace( "/\n+/m", "\n", trim( sprintf(
+				/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
+				/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
+				/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
+				/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+				$view->translate( 'client', '%1$s
+%2$s %3$s %4$s %5$s
+%6$s %7$s
+%8$s
+%9$s %10$s
+%11$s
+%12$s
+%13$s
+%14$s
+%15$s
+%16$s
+%17$s
+%18$s
+'
+				),
+				$addr->getCompany(),
+				$view->translate( 'mshop/code', (string) $addr->getSalutation() ),
+				$addr->getTitle(),
+				$addr->getFirstName(),
+				$addr->getLastName(),
+				$addr->getAddress1(),
+				$addr->getAddress2(),
+				$addr->getAddress3(),
+				$addr->getPostal(),
+				$addr->getCity(),
+				$addr->getState(),
+				$view->translate( 'country', (string) $addr->getCountryId() ),
+				$view->translate( 'language', (string) $addr->getLanguageId() ),
+				$addr->getEmail(),
+				$addr->getTelephone(),
+				$addr->getTelefax(),
+				$addr->getWebsite(),
+				$addr->getVatID()
+			) ) );
+		}
+
+		return map( $list );
 	}
 }

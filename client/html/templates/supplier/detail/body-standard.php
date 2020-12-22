@@ -51,29 +51,33 @@ $enc = $this->encoder();
 					<?php endforeach; ?>
 				</div>
 
+				<?php if( !( $addresses = $this->get( 'detailSupplierAddresses', map() ) )->isEmpty() ) : ?>
+
+					<div class="supplier-detail-address">
+						<h2><?= $enc->html( $this->translate( 'client', 'Address', 'Addresses', count( $addresses ) ), $enc::TRUST ); ?></h2>
+
+						<?php foreach( $addresses as $address ) : ?>
+							<div class="address"><?= nl2br( $enc->html( $address, $enc::TRUST ) ) ?></div>
+						<?php endforeach ?>
+
+					</div>
+
+				<?php endif ?>
+
 			</div>
 
 
-			<div class="col-sm-12">
+			<?php if( !( $textItems = $this->detailSupplierItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
 
-				<div class="supplier-detail-additional">
+				<div class="supplier-detail-description col-sm-12">
 
-					<?php if( !( $textItems = $this->detailSupplierItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
-
-						<div class="additional-box">
-							<h2 class="header description"><?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ); ?></h2>
-							<div class="content description">
-
-								<?php foreach( $textItems as $textItem ) : ?>
-									<div class="long item"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></div>
-								<?php endforeach; ?>
-
-							</div>
-						</div>
-
-					<?php endif; ?>
+					<?php foreach( $textItems as $textItem ) : ?>
+						<div class="long item"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></div>
+					<?php endforeach; ?>
 
 				</div>
+
+			<?php endif; ?>
 
 			</div>
 

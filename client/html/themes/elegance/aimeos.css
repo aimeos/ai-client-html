@@ -3647,6 +3647,26 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 
+/* Suppliers */
+
+/* Supplier images */
+.supplier-detail-image {
+	background-color: #FFF;
+	background-color: var(--ai-bg, #FFF);
+	margin-bottom: 2em;
+}
+
+.supplier-detail-image .item {
+	width: 100%;
+}
+
+.supplier-detail-description {
+	margin: 0 1%;
+	margin-bottom: 2em;
+}
+
+
+
 /*! jQuery UI - v1.10.0 - 2013-01-17
 * http://jqueryui.com
 * Copyright 2013 jQuery Foundation and other contributors; Licensed MIT */

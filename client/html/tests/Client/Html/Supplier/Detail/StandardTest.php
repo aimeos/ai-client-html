@@ -82,8 +82,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="supplier-detail-basic">', $output );
 		$this->assertStringContainsString( '<div class="supplier-detail-image', $output );
 
-		$this->assertStringContainsString( '<div class="supplier-detail-additional">', $output );
-		$this->assertStringContainsString( '<h2 class="header description">', $output );
+		$this->assertStringContainsString( '<div class="supplier-detail-description', $output );
+		$this->assertStringContainsString( 'supplier-detail-address', $output );
 
 		$this->assertEquals( '2100-01-01 00:00:00', $expire );
 		$this->assertEquals( 3, count( $tags ) );
