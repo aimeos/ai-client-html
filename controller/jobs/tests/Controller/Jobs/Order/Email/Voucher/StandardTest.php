@@ -217,7 +217,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderBaseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create();
 
-		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'MNOP' )->setStockType( 'unit_type4' ) );
+		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'MNOP' )->setStockType( 'unitstock' ) );
 
 		$orderBaseItem = $this->access( 'createCoupons' )->invokeArgs( $object, [$orderBaseItem] );
 
@@ -265,7 +265,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderProductItem->setAttributeItem( $orderProductAttrItem );
 
 		$orderBaseItem->addAddress( $orderAddressItem, 'payment' );
-		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'MNOP' )->setStockType( 'unit_type4' ) );
+		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'MNOP' )->setStockType( 'unitstock' ) );
 
 		$this->access( 'sendEmails' )->invokeArgs( $object, [$orderBaseItem, $clientStub] );
 	}
