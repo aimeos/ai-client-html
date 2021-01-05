@@ -6,7 +6,7 @@ namespace Aimeos\Perf\Client\Html;
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2020
+ * @copyright Aimeos (aimeos.org), 2015-2021
  */
 class CatalogTest extends \PHPUnit\Framework\TestCase
 {
