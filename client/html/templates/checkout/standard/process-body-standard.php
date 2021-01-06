@@ -164,6 +164,12 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ); ?>
 			</a>
 
+		<?php elseif( $this->get( 'standardMethod', 'POST' ) === '' ) : ?>
+
+			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
+				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
+			</a>
+
 		<?php else : ?>
 
 			<button class="btn btn-primary btn-lg btn-action">
