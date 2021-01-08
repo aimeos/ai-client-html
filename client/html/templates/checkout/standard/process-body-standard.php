@@ -165,6 +165,10 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			</a>
 
 		<?php elseif( $this->paymentServices["11"]->getProvider() === "PaypalPlus" ) : ?>
+			
+			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ); ?>">
+				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ); ?>
+			</a>
 
 		<?php else : ?>
 
