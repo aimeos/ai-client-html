@@ -269,9 +269,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$search = $manager->filter();
 		$expr = array(
-				$search->compare( '==', 'attribute.code', 'custom' ),
-				$search->compare( '==', 'attribute.domain', 'product' ),
-				$search->compare( '==', 'attribute.type', 'date' ),
+			$search->compare( '==', 'attribute.code', 'custom' ),
+			$search->compare( '==', 'attribute.domain', 'product' ),
+			$search->compare( '==', 'attribute.type', 'date' ),
 		);
 		$search->setConditions( $search->and( $expr ) );
 
@@ -281,11 +281,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$view = $this->object->getView();
 		$param = array(
-				'b_action' => 'add',
-				'b_prodid' => $this->getProductItem( 'U:TESTP' )->getId(),
-				'b_quantity' => 2,
-				'b_attrcustid' => array( $attribute->getId() => '2000-01-01' ),
-				'b_stocktype' => 'default',
+			'b_action' => 'add',
+			'b_prodid' => $this->getProductItem( 'U:TESTP' )->getId(),
+			'b_quantity' => 2,
+			'b_attrcustid' => array( $attribute->getId() => '2000-01-01' ),
+			'b_stocktype' => 'default',
 		);
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );

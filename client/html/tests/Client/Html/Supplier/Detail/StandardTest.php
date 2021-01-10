@@ -203,7 +203,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function getSupplierItem( $code = 'unitCode001', $domains = [] )
+	protected function getSupplierItem( $code = 'unitSupplier001', $domains = [] )
 	{
 		return \Aimeos\MShop\Supplier\Manager\Factory::create( $this->context )->find( $code, $domains );
 	}
