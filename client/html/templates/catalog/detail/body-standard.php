@@ -143,10 +143,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<?= $this->csrf()->formfield(); ?>
 						<!-- catalog.detail.csrf -->
 
-						<?php if( $basketSite ) : ?>
-							<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
-						<?php endif ?>
-
 						<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
 
 							<div class="catalog-detail-basket-selection">
@@ -230,6 +226,15 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ); ?>"
 										value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
 									/>
+									<input type="hidden"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'supplier'] ) ); ?>"
+										value="<?= $enc->attr( $this->detailProductItem->getSupplierItems()->getId()->first() ); ?>"
+									/>
+									<?php if( $basketSite ) : ?>
+										<input type="hidden"
+											name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'siteid'] ) ); ?>"
+											value="<?= $enc->attr( $basketSite ) ?>" />
+									<?php endif ?>
 									<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ); ?>"
 										min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
