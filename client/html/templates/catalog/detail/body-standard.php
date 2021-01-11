@@ -509,7 +509,47 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				<?php endif; ?>
 
 
-				<?= $this->block()->get( 'catalog/detail/supplier' ); ?>
+				<?php if( !( $supplierItems = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : ?>
+					<div class="catalog-detail-supplier">
+
+						<h2 class="header"><?= $this->translate( 'client', 'Supplier information' ); ?></h2>
+
+						<?php foreach( $supplierItems as $supplierItem ) : ?>
+
+							<div class="content supplier">
+
+								<?php if( ( $mediaItem = $supplierItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
+									<div class="media-item">
+										<img class="lazy-image"
+											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
+											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+											alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
+										/>
+									</div>
+								<?php endif; ?>
+
+								<h3 class="supplier-name">
+									<?= $enc->html( $supplierItem->getName() ); ?>
+
+									<?php if( ( $addrItem = $supplierItem->getAddressItems()->first() ) !== null ) : ?>
+										<span class="supplier-address">(<?= $enc->html( $addrItem->getCity() ); ?>, <?= $enc->html( $addrItem->getCountryId() ); ?>)</span>
+									<?php endif ?>
+								</h3>
+
+								<?php foreach( $supplierItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+									<p class="supplier-short"><?= $enc->html( $textItem->getContent() ); ?></p>
+								<?php endforeach; ?>
+
+								<?php foreach( $supplierItem->getRefItems( 'text', 'long', 'default' ) as $textItem ) : ?>
+									<p class="supplier-long"><?= $enc->html( $textItem->getContent() ); ?></p>
+								<?php endforeach; ?>
+
+							</div>
+
+						<?php endforeach; ?>
+
+					</div>
+					<?php endif; ?>
 
 			</div>
 

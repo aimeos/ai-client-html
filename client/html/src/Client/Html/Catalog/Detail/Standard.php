@@ -89,7 +89,7 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-	private $subPartNames = ['seen', 'service', 'supplier'];
+	private $subPartNames = ['seen', 'service'];
 
 	private $tags = [];
 	private $expire;
@@ -464,7 +464,10 @@ class Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$domains = ['attribute', 'media', 'price', 'product', 'product/property', 'text'];
+		$domains = [
+			'attribute', 'media', 'price', 'product', 'product/property', 'text',
+			'supplier' => ['text', 'media', 'supplier/address']
+		];
 
 		/** client/html/catalog/domains
 		 * A list of domain names whose items should be available in the catalog view templates
@@ -534,7 +537,9 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
 
 		$productItem = ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $name ) ) );
+
 		$this->addMetaItems( $productItem, $expire, $tags );
+		$this->addMetaItems( $productItem->getSupplierItems(), $expire, $tags );
 
 		$propMap = $attrMap = [];
 		$propItems = $productItem->getPropertyItems();
