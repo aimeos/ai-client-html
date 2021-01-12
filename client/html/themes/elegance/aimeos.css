@@ -2591,6 +2591,19 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	padding: 1em;
 }
 
+.basket-mini-product .supplier {
+	background-color: #f8f8f8;
+	background-color: var(--ai-bg-light, #f8f8f8);
+}
+
+.basket-mini-product .supplier td {
+	padding: 0.5em 1em;
+}
+
+.basket-mini-product .supplier .supplier-name {
+	margin: 0;
+}
+
 .basket-mini-product th,
 .basket-mini-product .basket .quantity {
 	text-align: center;
@@ -3165,6 +3178,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .aimeos .common-summary-detail tr.subtotal {
 	color: #555;
 	color: var(--ai-secondary, #555);
+	background-color: #F8F8F8;
+	background-color: var(--ai-bg-light, #F8F8F8);
 }
 
 .aimeos .common-summary-detail tr.total {
@@ -3172,14 +3187,21 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	border-top-color: var(--ai-light, #D0D0D0);
 	color: #555;
 	color: var(--ai-secondary, #555);
-	background-color: #F8F8F8;
-	background-color: var(--ai-bg-light, #F8F8F8);
 }
 
 .aimeos .common-summary-detail th,
 .aimeos .common-summary-detail td {
 	vertical-align: middle;
 	padding: 0.5em;
+}
+
+.aimeos .common-summary-detail .supplier {
+	background-color: #F8F8F8;
+	background-color: var(--ai-bg-light, #F8F8F8);
+}
+
+.aimeos .common-summary-detail .supplier-name {
+	margin: 0;
 }
 
 .aimeos .common-summary-detail .image img.detail {

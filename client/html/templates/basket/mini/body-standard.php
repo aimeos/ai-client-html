@@ -163,30 +163,46 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 						<td class="price"></td>
 						<td class="action"><a class="delete" href="#"></a></td>
 					</tr>
-					<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
-						<?php
-							$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
-							if( $basketSite ) { $param['site'] = $basketSite; }
-						?>
-						<tr class="product"
-							data-url="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $param, [], $jsonConfig ) ); ?>"
-							data-urldata="<?= $enc->attr( $this->csrf()->name() . '=' . $this->csrf()->value() ); ?>"
-							>
-							<td class="name">
-								<?= $enc->html( $product->getName() ) ?>
-							</td>
-							<td class="quantity">
-								<?= $enc->html( $product->getQuantity() ) ?>
-							</td>
-							<td class="price">
-								<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ); ?>
-							</td>
-							<td class="action">
-								<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
-									<a class="delete" href="#"></a>
-								<?php endif; ?>
-							</td>
-						</tr>
+					<?php foreach( $this->miniBasket->getProducts()->groupBy( 'order.base.product.supplierid' )->ksort() as $supId => $list ) : ?>
+						<?php $sname = map( $list )->first()->getSupplierName() ?>
+
+						<?php if( $supId && $sname ) : ?>
+							<tr class="supplier">
+								<td colspan="4">
+									<h3 class="supplier-name">
+										<a class="supplier-link" href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $supId, 's_name' => $sname] ) ) ?>">
+											<?= $enc->html( $sname ) ?>
+										</a>
+									</h3>
+								</td>
+							</tr>
+						<?php endif ?>
+
+						<?php foreach( $list as $pos => $product ) : ?>
+							<?php
+								$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
+								if( $basketSite ) { $param['site'] = $basketSite; }
+							?>
+							<tr class="product"
+								data-url="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $param, [], $jsonConfig ) ); ?>"
+								data-urldata="<?= $enc->attr( $this->csrf()->name() . '=' . $this->csrf()->value() ); ?>"
+								>
+								<td class="name">
+									<?= $enc->html( $product->getName() ) ?>
+								</td>
+								<td class="quantity">
+									<?= $enc->html( $product->getQuantity() ) ?>
+								</td>
+								<td class="price">
+									<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ); ?>
+								</td>
+								<td class="action">
+									<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+										<a class="delete" href="#"></a>
+									<?php endif; ?>
+								</td>
+							</tr>
+						<?php endforeach; ?>
 					<?php endforeach; ?>
 				</tbody>
 				<tfoot class="basket-footer">

@@ -150,14 +150,15 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<tbody>
 
-		<?php foreach( $this->summaryBasket->getProducts()->groupBy( 'order.base.product.suppliername' ) as $suppliername => $list ) : ?>
+	<?php foreach( $this->summaryBasket->getProducts()->groupBy( 'order.base.product.supplierid' )->ksort() as $supId => $list ) : ?>
+			<?php $sname = map( $list )->first()->getSupplierName() ?>
 
-			<?php if( $suppliername ) : ?>
+			<?php if( $supId && $sname ) : ?>
 				<tr class="supplier">
 					<td colspan="<?= $modify ? 7 : 6 ?>">
 						<h3 class="supplier-name">
-							<a class="supplier-link" href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => map( $list )->first()->getSupplierId()] ) ) ?>">
-								<?= $enc->html( $suppliername ) ?>
+							<a class="supplier-link" href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $supId, 's_name' => $sname] ) ) ?>">
+								<?= $enc->html( $sname ) ?>
 							</a>
 						</h3>
 					</td>
