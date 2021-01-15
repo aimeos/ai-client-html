@@ -88,10 +88,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( $productNameCNC, $output );
 
 		$outputPosCNE = strpos( $output, $productNameCNE );
-		$outputPosIJKL = strpos( $output, $productNameABCD );
+		$outputPosABCD = strpos( $output, $productNameABCD );
 		$outputPosCNC = strpos( $output, $productNameCNC );
-		$this->assertGreaterThan( $outputPosCNE, $outputPosIJKL );
-		$this->assertGreaterThan( $productNameABCD, $outputPosCNC );
+		$this->assertGreaterThan( $outputPosCNE, $outputPosABCD );
+		$this->assertGreaterThan( $outputPosABCD, $outputPosCNC );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 	}
