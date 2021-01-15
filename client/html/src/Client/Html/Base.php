@@ -653,9 +653,10 @@ abstract class Base
 	{
 		$start = 0;
 		$len = strlen( $section );
+		$clen = strlen( $content );
 		$marker = '<!-- ' . $marker . ' -->';
 
-		while( ( $start = @strpos( $content, $marker, $start ) ) !== false )
+		while( $start < $clen && ( $start = @strpos( $content, $marker, $start ) ) !== false )
 		{
 			if( ( $end = strpos( $content, $marker, $start + 1 ) ) !== false ) {
 				$content = substr_replace( $content, $section, $start, $end - $start + strlen( $marker ) );
