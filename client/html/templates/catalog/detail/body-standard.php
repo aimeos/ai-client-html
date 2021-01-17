@@ -78,8 +78,12 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 			<div class="col-sm-6">
 
 				<div class="catalog-detail-basic">
-					<?php if( !( $suppliers = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : ?>
-						<h2 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ); ?></h2>
+					<?php if( !( $suppliers = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : $name = $suppliers->getName()->first() ?>
+						<h2 class="supplier">
+							<a href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $suppliers->firstKey(), 's_name' => $name] ) ) ?>">
+								<?= $enc->html( $name, $enc::TRUST ); ?>
+							</a>
+						</h2>
 					<?php endif ?>
 
 					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ); ?></h1>
