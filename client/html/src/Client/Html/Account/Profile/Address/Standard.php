@@ -256,6 +256,26 @@ class Standard
 			->col( 'locale.languageid', 'locale.languageid' );
 
 
+		/** client/html/account/profile/address/salutations
+		 * List of salutions the customers can select from in their account
+		 *
+		 * The following salutations are available:
+		 *
+		 * * empty string for "unknown"
+		 * * company
+		 * * mr
+		 * * mrs
+		 * * miss
+		 *
+		 * You can modify the list of salutation codes and remove the ones
+		 * which shouldn't be used or add new ones.
+		 *
+		 * @param array List of available salutation codes
+		 * @since 2020.10
+		 * @see client/html/common/address/salutations
+		 */
+		$salutations = $context->getConfig()->get( 'client/html/account/profile/address/salutations', ['company', 'mr', 'mrs'] );
+
 		$deliveries = [];
 		$addr = $view->profileCustomerItem->getPaymentAddress();
 
@@ -274,7 +294,7 @@ class Standard
 		$view->addressDelivery = $deliveries;
 		$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
 		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
-		$view->addressSalutations = array( 'company', 'mr', 'mrs' );
+		$view->addressSalutations = $salutations;
 		$view->addressLanguages = $languages;
 
 		return parent::addData( $view, $tags, $expire );
