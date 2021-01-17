@@ -72,7 +72,12 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 
 				--><a class="text-list" href="<?= $url; ?>">
+					<?php if( !( $suppliers = $productItem->getSupplierItems() )->isEmpty() ) : ?>
+						<h3 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ); ?></h3>
+					<?php endif ?>
+
 					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
+
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 						<div class="text-item" itemprop="description">
 							<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?><br/>
