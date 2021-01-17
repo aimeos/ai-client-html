@@ -504,21 +504,20 @@ class Standard
 	 */
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
+		$addr = $view->get( 'extAddressItem' );
 		$list = array(
-			/// E-mail intro with first name (%1$s) and last name (%2$s)
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_UNKNOWN => $view->translate( 'client', 'Dear %1$s %2$s' ),
 			/// E-mail intro with first name (%1$s) and last name (%2$s)
 			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MR => $view->translate( 'client', 'Dear Mr %1$s %2$s' ),
 			/// E-mail intro with first name (%1$s) and last name (%2$s)
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MRS => $view->translate( 'client', 'Dear Mrs %1$s %2$s' ),
-			/// E-mail intro with first name (%1$s) and last name (%2$s)
-			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MISS => $view->translate( 'client', 'Dear Miss %1$s %2$s' ),
+			\Aimeos\MShop\Common\Item\Address\Base::SALUTATION_MS => $view->translate( 'client', 'Dear Ms %1$s %2$s' ),
 		);
 
-		if( isset( $view->extAddressItem ) && ( $addr = $view->extAddressItem ) && isset( $list[$addr->getSalutation()] ) ) {
+		if( $addr && isset( $list[$addr->getSalutation()] ) ) {
 			$view->emailIntro = sprintf( $list[$addr->getSalutation()], $addr->getFirstName(), $addr->getLastName() );
+		} elseif( $addr ) {
+			$view->emailIntro = sprintf( 'Dear %1$s %2$s', $addr->getFirstName(), $addr->getLastName() );
 		} else {
-			$view->emailIntro = $view->translate( 'client', 'Dear Sir or Madam' );
+			$view->emailIntro = $view->translate( 'client', 'Dear customer' );
 		}
 
 

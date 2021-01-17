@@ -261,6 +261,7 @@ class Standard
 		$view->addressBillingValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
 		$view->addressBillingOption = $view->param( 'ca_billingoption', $id );
 
+		$salutations = $context->getConfig()->get( 'client/html/common/address/salutations', ['', 'company', 'mr', 'ms'] );
 
 		/** client/html/checkout/standard/address/billing/salutations
 		 * List of salutions the customer can select from for the billing address
@@ -270,16 +271,10 @@ class Standard
 		 * * empty string for "unknown"
 		 * * company
 		 * * mr
-		 * * mrs
-		 * * miss
+		 * * ms
 		 *
 		 * You can modify the list of salutation codes and remove the ones
-		 * which shouldn't be used. Adding new salutations is a little bit
-		 * more difficult because you have to adapt a few areas in the source
-		 * code.
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/billing/salutations" starting from 2014-03.
+		 * which shouldn't be used or add new ones.
 		 *
 		 * @param array List of available salutation codes
 		 * @since 2015.02
@@ -290,8 +285,8 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/optional
 		 * @see client/html/checkout/standard/address/billing/hidden
 		 * @see client/html/checkout/standard/address/countries
+		 * @see client/html/common/address/salutations
 		 */
-		$salutations = array( 'company', 'mr', 'mrs' );
 		$view->addressBillingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
 
 		$mandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
