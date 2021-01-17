@@ -22,7 +22,7 @@ $enc = $this->encoder();
 
 					<?= $this->partial(
 						$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-						array( 'prices' => $item->getRefItems( 'price', null, 'default' ), 'costsItem' => false )
+						array( 'prices' => $item->getRefItems( 'price', null, 'default' ), 'costsItem' => false, 'all' => true )
 					); ?>
 
 					<?php foreach( $item->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>

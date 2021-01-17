@@ -7,6 +7,8 @@
 
 /* Available data:
  * - prices : List of price items
+ * - costsItems : Show "per item" for costs
+ * - all: Show all properties including costs
  */
 
 
@@ -80,7 +82,7 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 			</span>
 		<?php endif; ?>
 
-		<?php if( $priceItem->getCosts() > 0 ) : ?>
+		<?php if( $this->get( 'all' ) || $priceItem->getCosts() > 0 ) : ?>
 			<span class="costs">
 				<?= $enc->html( sprintf( $format['costs'], $this->number( $priceItem->getCosts(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ); ?>
 			</span>

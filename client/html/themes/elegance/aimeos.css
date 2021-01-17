@@ -1929,17 +1929,19 @@ html.no-js .catalog-filter-price:hover .price-lists {
 /* services */
 .catalog-detail-basket .service-intro {
 	cursor: pointer;
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: #777;
+	color: var(--ai-secondary, #777);
 }
 
 .catalog-detail-service .service-list {
 	list-style: none;
-	color: #A0A0A0;
-	padding: 0;
-	max-width: 20em;
-	max-height: 10em;
+	font-size: 80%;
+	max-height: 12em;
 	overflow-y: auto;
+	margin-top: 0.5rem;
+	padding: 0;
+	color: #777;
+	color: var(--ai-secondary, #777);
 }
 
 .catalog-detail-service .service-name {
