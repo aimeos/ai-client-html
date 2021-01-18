@@ -56,7 +56,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 
-		/** controller/jobs/order/email/voucher/standard/limit-days
+		/** controller/jobs/order/email/voucher/limit-days
 		 * Only send voucher e-mails of orders that were created in the past within the configured number of days
 		 *
 		 * The voucher e-mails are normally send immediately after the voucher
@@ -68,9 +68,9 @@ class Standard
 		 * @since 2018.07
 		 * @category User
 		 * @category Developer
-		 * @see controller/jobs/order/email/voucher/standard/status
+		 * @see controller/jobs/order/email/voucher/status
 		 */
-		$limit = $config->get( 'controller/jobs/order/email/voucher/standard/limit-days', 30 );
+		$limit = $config->get( 'controller/jobs/order/email/voucher/limit-days', 30 );
 		$limitDate = date( 'Y-m-d H:i:s', time() - $limit * 86400 );
 
 		$default = array(
@@ -78,7 +78,7 @@ class Standard
 			\Aimeos\MShop\Order\Item\Base::PAY_RECEIVED,
 		);
 
-		/** controller/jobs/order/email/voucher/standard/status
+		/** controller/jobs/order/email/voucher/status
 		 * Only send e-mails containing voucher for these payment status values
 		 *
 		 * E-mail containing vouchers can be sent for these payment status values:
@@ -94,9 +94,9 @@ class Standard
 		 * @since 2018.07
 		 * @category User
 		 * @category Developer
-		 * @see controller/jobs/order/email/voucher/standard/limit-days
+		 * @see controller/jobs/order/email/voucher/limit-days
 		 */
-		$status = (array) $config->get( 'controller/jobs/order/email/voucher/standard/status', $default );
+		$status = (array) $config->get( 'controller/jobs/order/email/voucher/status', $default );
 
 
 		$client = \Aimeos\Client\Html\Email\Voucher\Factory::create( $context );

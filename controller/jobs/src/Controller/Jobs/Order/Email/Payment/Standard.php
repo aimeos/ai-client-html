@@ -58,7 +58,7 @@ class Standard
 
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
-		/** controller/jobs/order/email/payment/standard/limit-days
+		/** controller/jobs/order/email/payment/limit-days
 		 * Only send payment e-mails of orders that were created in the past within the configured number of days
 		 *
 		 * The payment e-mails are normally send immediately after the payment
@@ -70,10 +70,10 @@ class Standard
 		 * @since 2014.03
 		 * @category User
 		 * @category Developer
-		 * @see controller/jobs/order/email/delivery/standard/limit-days
+		 * @see controller/jobs/order/email/delivery/limit-days
 		 * @see controller/jobs/service/delivery/process/limit-days
 		 */
-		$limit = $config->get( 'controller/jobs/order/email/payment/standard/limit-days', 30 );
+		$limit = $config->get( 'controller/jobs/order/email/payment/limit-days', 30 );
 		$limitDate = date( 'Y-m-d H:i:s', time() - $limit * 86400 );
 
 		$default = array(
@@ -83,7 +83,7 @@ class Standard
 			\Aimeos\MShop\Order\Item\Base::PAY_RECEIVED,
 		);
 
-		/** controller/jobs/order/email/payment/standard/status
+		/** controller/jobs/order/email/payment/status
 		 * Only send order payment notification e-mails for these payment status values
 		 *
 		 * Notification e-mail about payment status changes can be sent for these
@@ -103,10 +103,10 @@ class Standard
 		 * @since 2014.03
 		 * @category User
 		 * @category Developer
-		 * @see controller/jobs/order/email/delivery/standard/status
-		 * @see controller/jobs/order/email/payment/standard/limit-days
+		 * @see controller/jobs/order/email/delivery/status
+		 * @see controller/jobs/order/email/payment/limit-days
 		 */
-		foreach( (array) $config->get( 'controller/jobs/order/email/payment/standard/status', $default ) as $status )
+		foreach( (array) $config->get( 'controller/jobs/order/email/payment/status', $default ) as $status )
 		{
 			$orderSearch = $orderManager->filter();
 
