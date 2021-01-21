@@ -263,6 +263,7 @@ class Standard
 			 * @since 2020.10
 			 * @see client/html/catalog/home/basket-add
 			 * @see client/html/catalog/lists/basket-add
+			 * @see client/html/catalog/detail/basket-add
 			 * @see client/html/catalog/product/basket-add
 			 */
 			if( $view->config( 'client/html/basket/related/basket-add', false ) ) {

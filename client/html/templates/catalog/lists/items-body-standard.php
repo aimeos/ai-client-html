@@ -26,8 +26,13 @@ $enc = $this->encoder();
  * @since 2016.01
  * @category Developer
  * @category User
+ * @see client/html/catalog/home/basket-add
+ * @see client/html/catalog/detail/basket-add
+ * @see client/html/catalog/product/basket-add
+ * @see client/html/basket/related/basket-add
  * @see client/html/catalog/domains
  */
+
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 $listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );

@@ -39,6 +39,27 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
  */
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
+/** client/html/catalog/detail/basket-add
+ * Display the "add to basket" button for each suggested/bought-together product item
+ *
+ * Enables the button for adding products to the basket for the related products
+ * in the basket. This works for all type of products, even for selection products
+ * with product variants and product bundles. By default, also optional attributes
+ * are displayed if they have been associated to a product.
+ *
+ * To fetch the variant articles of selection products too, add this setting to
+ * your configuration:
+ *
+ * mshop/common/manager/maxdepth = 3
+ *
+ * @param boolean True to display the button, false to hide it
+ * @since 2021.04
+ * @see client/html/catalog/home/basket-add
+ * @see client/html/catalog/lists/basket-add
+ * @see client/html/catalog/product/basket-add
+ * @see client/html/basket/related/basket-add
+ */
+
 
 ?>
 <section class="aimeos catalog-detail" itemscope="" itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
@@ -499,9 +520,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ); ?></h2>
 
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-							['products' => $products, 'itemprop' => 'isRelatedTo']
-						); ?>
+							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
+								'basket-add' => $this->config( 'client/html/catalog/detail/basket-add', false ),
+								'products' => $products, 'itemprop' => 'isRelatedTo'
+							] )
+						?>
 
 					</section>
 
@@ -514,9 +537,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ); ?></h2>
 
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-							['products' => $products, 'itemprop' => 'isRelatedTo']
-						); ?>
+							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
+								'basket-add' => $this->config( 'client/html/catalog/detail/basket-add', false ),
+								'products' => $products, 'itemprop' => 'isRelatedTo'
+							] )
+						?>
 
 					</section>
 

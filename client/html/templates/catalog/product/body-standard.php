@@ -31,6 +31,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
  * @category User
  * @see client/html/catalog/home/basket-add
  * @see client/html/catalog/lists/basket-add
+ * @see client/html/catalog/detail/basket-add
  * @see client/html/basket/related/basket-add
  */
 

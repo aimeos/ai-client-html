@@ -451,6 +451,7 @@ class Standard
 		 * @category Developer
 		 * @category User
 		 * @see client/html/catalog/lists/basket-add
+		 * @see client/html/catalog/detail/basket-add
 		 * @see client/html/basket/related/basket-add
 		 * @see client/html/catalog/product/basket-add
 		 */
