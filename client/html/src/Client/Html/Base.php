@@ -316,7 +316,7 @@ abstract class Base
 
 		foreach( $items as $item )
 		{
-			if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface )
+			if( $item instanceof \Aimeos\MShop\Common\Item\ListsRef\Iface )
 			{
 				$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
 				$idMap[$item->getResourceType()][] = $item->getId();
@@ -359,7 +359,7 @@ abstract class Base
 			$expires[] = $date;
 		}
 
-		if( $item instanceof \Aimeos\MShop\Common\Item\ListRef\Iface ) {
+		if( $item instanceof \Aimeos\MShop\Common\Item\ListsRef\Iface ) {
 			$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
 		}
 	}
@@ -368,12 +368,12 @@ abstract class Base
 	/**
 	 * Adds expire date and tags for referenced items
 	 *
-	 * @param \Aimeos\MShop\Common\Item\ListRef\Iface $item Item with associated list items
+	 * @param \Aimeos\MShop\Common\Item\ListsRef\Iface $item Item with associated list items
 	 * @param array &$expires Will contain the list of expiration dates
 	 * @param array &$tags List of tags the new tags will be added to
 	 * @param bool $tagAll True of tags for all items should be added, false if only for the main item
 	 */
-	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListRef\Iface $item, array &$expires, array &$tags, bool $tagAll )
+	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListsRef\Iface $item, array &$expires, array &$tags, bool $tagAll )
 	{
 		foreach( $item->getListItems() as $listitem )
 		{
