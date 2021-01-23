@@ -618,8 +618,8 @@ input[type="range"]::-moz-range-progress {
 .catalog-filter-attribute.col,
 .catalog-filter-price.col,
 .catalog-filter-supplier.col,
-.catalog-filter-search.col,
-.catalog-filter-tree.col {
+.catalog-filter-tree.col,
+.catalog-filter-search {
 	padding-right: 0;
 	padding-left: 0;
 	margin: 1rem 0;
