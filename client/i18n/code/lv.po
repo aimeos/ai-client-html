@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
+# Martins Nav <mveisis1@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2020-05-05 13:54+0000\n"
-"Last-Translator: Edgars Volkovs <edgarsloskots@gmail.com>\n"
+"PO-Revision-Date: 2021-01-21 16:42+0000\n"
+"Last-Translator: Martins Nav <mveisis1@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/aimeos/aimeos-core/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,35 +24,35 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "nodokļi"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "GST"
 
 #. Price type default
 msgid "price:default"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "favorīts"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "iepinot"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "vērot"
 
 #. Product attribute
 msgid "size"
@@ -67,43 +68,43 @@ msgstr "Platums"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "Krāsa"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "Opcija"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "iepakojuma-garums"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "iepakojuma-platums"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "iepakojuma-augstums"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "iepakojuma-svars"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Bankas konta lietotājs"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Bankas konts"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "Bankas kods"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "Bankas nosaukums"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -111,40 +112,40 @@ msgstr "Vārds"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr ""
+msgstr "Uzvārds"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Maksājuma kartes numurs"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Verifikācijas numurs"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "Derīguma mēnesis"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "Derīguma gads"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "Saņemšanas datums"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Saņemšanas laiks"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "Saņemšanas vieta"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "Saņemšanas adrese"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "Piegādes veids"

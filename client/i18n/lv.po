@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Martins Nav <mveisis1@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2020-12-14 22:21+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2021-01-21 16:46+0000\n"
+"Last-Translator: Martins Nav <mveisis1@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/aimeos/aimeos-core/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +60,7 @@ msgstr ""
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
@@ -70,7 +71,7 @@ msgstr ""
 #. value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr ""
+msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -80,7 +81,7 @@ msgstr ""
 #. / Percent format with value (%1$s) and % sign
 #, php-format
 msgid "%1$s%%"
-msgstr ""
+msgstr "%1$s%%"
 
 #. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
 #. (%3$s)
@@ -89,7 +90,7 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr ""
 
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -104,19 +105,19 @@ msgstr ""
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr ""
+msgstr "+ %1$s%% PVN"
 
 msgid "+ Payment costs"
-msgstr ""
+msgstr "+ Apmaksas izmaksas"
 
 msgid "+ Shipping"
-msgstr ""
+msgstr "+ Piegāde"
 
 msgid "+ shipping costs"
-msgstr ""
+msgstr "+ piegādes izmaksas"
 
 msgid "+1 123 456 7890"
-msgstr ""
+msgstr "+371 12 345 678"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
@@ -124,13 +125,13 @@ msgid "-%1$s%%"
 msgstr ""
 
 msgid "Account"
-msgstr ""
+msgstr "Konts"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Pievienot maksājumu adresi"
 
 msgid "Add to basket"
-msgstr ""
+msgstr "Pievienot grozam"
 
 msgid "Additional"
 msgstr ""
@@ -143,7 +144,7 @@ msgid "Address with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Addresses"
-msgstr ""
+msgstr "Adreses"
 
 msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
@@ -156,7 +157,7 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 msgid "An account has been created for you."
-msgstr ""
+msgstr "Jums tika izveidots lietotāja konts."
 
 msgid "Article"
 msgstr ""
@@ -176,13 +177,13 @@ msgid "At least one delivery address part is missing or invalid"
 msgstr ""
 
 msgid "Attributes"
-msgstr ""
+msgstr "Atribūti"
 
 msgid "Back"
-msgstr ""
+msgstr "Atpakļ"
 
 msgid "Basket"
-msgstr ""
+msgstr "Grozs"
 
 msgid "Billing address"
 msgstr "Norēķinu adrese"
@@ -196,16 +197,16 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Birthday"
-msgstr ""
+msgstr "Dzimšanas diena"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Lielapjoma pasūtījums"
 
 msgid "Bundled products"
-msgstr ""
+msgstr "Produktu komplekts"
 
 msgid "Buy now"
-msgstr ""
+msgstr "Pērc tagad"
 
 msgid "Cancel"
 msgstr "Atcelt"
@@ -214,19 +215,19 @@ msgid "Categories"
 msgstr "Kategorijas"
 
 msgid "Change"
-msgstr ""
+msgstr "Mainīt"
 
 msgid "Change payment"
-msgstr ""
+msgstr "Mainīt maksājuma veidu"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanāls"
 
 msgid "Characteristics"
-msgstr ""
+msgstr "Raksturlielumi"
 
 msgid "Check"
-msgstr ""
+msgstr "Pārbaudiet"
 
 msgid "Checkout"
 msgstr ""
@@ -266,19 +267,19 @@ msgid "Close"
 msgstr "Aizvērt"
 
 msgid "Company"
-msgstr ""
+msgstr "Uzņēmums"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Apstiprinājums"
 
 msgid "Country"
-msgstr ""
+msgstr "Valsts"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "Kupona kodi"
 
 msgid "Coupons"
-msgstr ""
+msgstr "Kuponi"
 
 msgid "Create a customer account for me"
 msgstr ""
@@ -287,7 +288,7 @@ msgid "Created"
 msgstr "Izveidots"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Klienta konts"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -341,13 +342,13 @@ msgid "Delivery within"
 msgstr ""
 
 msgid "Description"
-msgstr ""
+msgstr "Apraksts"
 
 msgid "Details"
-msgstr ""
+msgstr "Sīkāka informācija"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Lejupielādes"
 
 msgid "E-Mail"
 msgstr "E-pasts"
@@ -363,7 +364,7 @@ msgid "Favorite products"
 msgstr ""
 
 msgid "Fax"
-msgstr ""
+msgstr "Fakss"
 
 msgid "Fields with an * are mandatory"
 msgstr ""
@@ -464,7 +465,7 @@ msgid "Language"
 msgstr "Valoda"
 
 msgid "Last name"
-msgstr ""
+msgstr "Uzvārds"
 
 msgid "Last seen"
 msgstr ""
@@ -584,7 +585,7 @@ msgid "Pay now"
 msgstr ""
 
 msgid "Payment"
-msgstr ""
+msgstr "Apmaksa"
 
 msgid "Payment costs"
 msgstr ""
@@ -687,7 +688,7 @@ msgid "Salutation"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Saglabāt"
 
 msgid "Search"
 msgstr "Meklēt"
@@ -720,7 +721,7 @@ msgid "Service fees"
 msgstr ""
 
 msgid "Services"
-msgstr ""
+msgstr "Servisi"
 
 msgid "Share"
 msgstr ""
@@ -729,7 +730,7 @@ msgid "Shipping"
 msgstr ""
 
 msgid "Show"
-msgstr ""
+msgstr "Parādīt"
 
 msgid "Show all quotes"
 msgstr ""
@@ -763,7 +764,7 @@ msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr ""
 
 msgid "Street"
-msgstr ""
+msgstr "Iela"
 
 msgid "Sub-total"
 msgstr ""
@@ -1140,7 +1141,7 @@ msgid "summary"
 msgstr ""
 
 msgid "tax"
-msgstr ""
+msgstr "nodokļi"
 
 msgid "▲ Name"
 msgstr ""
