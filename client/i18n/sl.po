@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Goran Sabo <info@noaset.pro>, 2020
-# Goran Sabo <info@noaset.pro>, 2020
+# Goran Sabo <info@noaset.pro>, 2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2020-12-18 16:03+0000\n"
+"PO-Revision-Date: 2021-01-24 22:29+0000\n"
 "Last-Translator: Goran Sabo <info@noaset.pro>\n"
 "Language-Team: Slovenian (http://www.transifex.com/aimeos/aimeos-core/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -111,13 +111,13 @@ msgid "+ %1$s%% VAT"
 msgstr "+ %1$s%% DDV"
 
 msgid "+ Payment costs"
-msgstr "+ provizija plačil"
+msgstr "+ Provizija plačil"
 
 msgid "+ Shipping"
 msgstr "+ Dostava"
 
 msgid "+ shipping costs"
-msgstr "+ cenik dostave"
+msgstr "+ Cenik dostave"
 
 msgid "+1 123 456 7890"
 msgstr "+386 70 000 000"
@@ -423,12 +423,12 @@ msgstr "V primeru dodatnih vprašanj, le odgovorite na to sporočilo"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "Vključno. %1$s%% %2$s"
+msgstr "Vključno z %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr "Vključno. %1$s%% DDV"
+msgstr "Vključno z %1$s%% DDV"
 
 msgid "Included rebates"
 msgstr "Vključeni rabati"
@@ -704,7 +704,7 @@ msgid_plural ""
 msgstr[0] "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
 msgstr[1] "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[2] "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
-msgstr[3] "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgstr[3] "Zadetki za <span class=\"searchstring\">\"%1$s\"</span> (%2$d zadetkov)"
 
 msgid "Select country"
 msgstr "Izbira države"
