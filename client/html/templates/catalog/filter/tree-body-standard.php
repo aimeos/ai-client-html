@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2021
+ * @copyright Aimeos (aimeos.org), 2015-2020
  */
 
 $enc = $this->encoder();
@@ -49,10 +49,15 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 ?>
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
 <?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 && !$this->treeCatalogTree->getChildren()->isEmpty() ) : ?>
-	<section class="catalog-filter-tree col <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
-		<h2><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>
 
-		<div class="category-lists">
+	<section class="catalog-filter-tree col <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
+		<div class="category-lists zeynep first" data-menu-name="first">
+
+			<div class="menu-head row">
+				<h2 class="col-10"><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ); ?></h2>
+				<div class="menu-close col-2"></div>
+			</div>
+
 			<?php if( $this->param( 'f_catid' ) ) : ?>
 				<a class="btn btn-secondary category-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, map( $this->treeFilterParams )->remove( ['f_catid', 'f_name'] )->toArray(), [], $listConfig ) ); ?>">
 					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ); ?>
@@ -68,17 +73,17 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 			<fieldset>
 				<?= $this->partial(
-					$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ),
-					[
+					$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), [
 						'nodes' => $this->treeCatalogTree->getChildren(),
 						'path' => $this->get( 'treeCatalogPath', map() ),
 						'params' => $this->get( 'treeFilterParams', [] ),
 						'level' => 1
-					]
-				); ?>
+					] ); ?>
 			</fieldset>
 		</div>
 	</section>
+
+	<div class="zeynep-overlay"></div>
 <?php endif ?>
 <?php $this->block()->stop(); ?>
 <?= $this->block()->get( 'catalog/filter/tree' ); ?>
