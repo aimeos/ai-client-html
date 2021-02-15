@@ -5,34 +5,22 @@
  * @copyright Aimeos (aimeos.org), 2014-2021
  */
 
- @font-face {
+@font-face {
 	font-family: 'FontAwesome';
 	font-style:normal;
 	font-weight:900;
 	font-display:auto;
-	src: url('la-webfonts/fa-regular-400.eot');
-	src: url('la-webfonts/fa-solid-900.eot');
-	src: url('la-webfonts/fa-brands-400.eot');
-
-	src: url('la-webfonts/fa-regular-400.eot?#iefix') format('embedded-opentype');
-	src: url('la-webfonts/fa-solid-900.eot?#iefix') format('embedded-opentype');
-	src: url('la-webfonts/fa-brands-400.eot?#iefix') format('embedded-opentype'),
-
-	url('la-webfonts/fa-regular-400.woff2') format('woff2'),
-	url('la-webfonts/fa-solid-900.woff2') format('woff2'),
-	url('la-webfonts/fa-brands-400.woff2') format('woff2'),
-
-	url('la-webfonts/fa-regular-400.woff') format('woff'),
-	url('la-webfonts/fa-solid-900.woff') format('woff'),
-	url('la-webfonts/fa-brands-400.woff') format('woff'),
-
-	url('la-webfonts/fa-regular-400.ttf') format('truetype'),
-	url('la-webfonts/fa-solid-900.ttf') format('truetype'),
-	url('la-webfonts/fa-brands-400.ttf') format('truetype'),
-
-	url('la-webfonts/fa-regular-400.eot#fontawesomeregular') format('svg'),
-	url('la-webfonts/fa-solid-900.eot#fontawesomeregular') format('svg'),
-	url('la-webfonts/fa-brandsr-400.eot#fontawesomebrands') format('svg');
+	src: url('la-webfonts/fa-regular-400.eot'), url('la-webfonts/fa-solid-900.eot');
+	src: url('la-webfonts/fa-regular-400.eot?#iefix') format('embedded-opentype'),
+		url('la-webfonts/fa-solid-900.eot?#iefix') format('embedded-opentype'),
+		url('la-webfonts/fa-regular-400.woff2') format('woff2'),
+		url('la-webfonts/fa-solid-900.woff2') format('woff2'),
+		url('la-webfonts/fa-regular-400.woff') format('woff'),
+		url('la-webfonts/fa-solid-900.woff') format('woff'),
+		url('la-webfonts/fa-regular-400.ttf') format('truetype'),
+		url('la-webfonts/fa-solid-900.ttf') format('truetype'),
+		url('la-webfonts/fa-regular-400.eot#fontawesomeregular') format('svg'),
+		url('la-webfonts/fa-solid-900.eot#fontawesomeregular') format('svg');
 }
 
 
