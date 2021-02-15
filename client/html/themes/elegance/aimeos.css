@@ -5,22 +5,17 @@
  * @copyright Aimeos (aimeos.org), 2014-2021
  */
 
-@font-face {
-	font-family: 'FontAwesome';
+ @font-face{
+	font-family:'FontAwesome';
 	font-style:normal;
 	font-weight:900;
 	font-display:auto;
-	src: url('la-webfonts/fa-regular-400.eot'), url('la-webfonts/fa-solid-900.eot');
-	src: url('la-webfonts/fa-regular-400.eot?#iefix') format('embedded-opentype'),
-		url('la-webfonts/fa-solid-900.eot?#iefix') format('embedded-opentype'),
-		url('la-webfonts/fa-regular-400.woff2') format('woff2'),
-		url('la-webfonts/fa-solid-900.woff2') format('woff2'),
-		url('la-webfonts/fa-regular-400.woff') format('woff'),
-		url('la-webfonts/fa-solid-900.woff') format('woff'),
-		url('la-webfonts/fa-regular-400.ttf') format('truetype'),
-		url('la-webfonts/fa-solid-900.ttf') format('truetype'),
-		url('la-webfonts/fa-regular-400.eot#fontawesomeregular') format('svg'),
-		url('la-webfonts/fa-solid-900.eot#fontawesomeregular') format('svg');
+	src:url(https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/webfonts//webfonts/fa-solid-900.eot);
+	src:url(https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/webfonts//webfonts/fa-solid-900.eot?#iefix) format("embedded-opentype"),
+		url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/font-awesome-line-awesome/webfonts/fa-solid-900.woff2) format("woff2"),
+		url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/font-awesome-line-awesome/webfonts/fa-solid-900.woff) format("woff"),
+		url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/font-awesome-line-awesome/webfonts/fa-solid-900.ttf) format("truetype"),
+		url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/font-awesome-line-awesome/webfonts/fa-solid-900.svg#fontawesome) format("svg")
 }
 
 
