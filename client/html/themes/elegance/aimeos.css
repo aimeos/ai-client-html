@@ -1263,11 +1263,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-list .media-list .media-item img {
 	position: relative;
+	max-height: 100%;
 	max-width: 100%;
 	height: auto;
 	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	left: 0;
+	transform: translate(0, -50%);
 }
 
 /* ratings */
