@@ -1,5 +1,5 @@
 /*! jQuery UI - v1.12.1 - 2016-12-28
-* http://jqueryui.com
+* https://jqueryui.com
 * Includes: widget.js, position.js, keycode.js, unique-id.js, widgets/autocomplete.js, widgets/datepicker.js, widgets/menu.js
 * Copyright jQuery Foundation and other contributors; Licensed MIT */
 
@@ -21,7 +21,7 @@ y+="</select>"}if(v||(b+=y+(!o&&m&&_?"":"&#xa0;")),!t.yearshtml)if(t.yearshtml="
 /**
  * Aimeos related Javascript code
  *
- * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @license LGPLv3, https://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
  * @copyright Aimeos (aimeos.org), 2014-2018
  */
