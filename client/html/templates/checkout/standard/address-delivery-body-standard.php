@@ -8,24 +8,6 @@
 
 $enc = $this->encoder();
 
-/** client/html/common/address/delivery/disable-new
- * Disables the billing address form for a new address
- *
- * Normally, customers are allowed to enter new delivery addresses in the
- * checkout process which are stored in the current order. For registered
- * customers they are also added to the list of delivery addresses in their
- * profile.
- *
- * You can disable the address form for the new delivery address by this setting
- * if it shouldn't be allowed to add another delivery address.
- *
- * @param boolean True to disable the "new delivery address" form, false to allow a new address
- * @since 2014.03
- * @category Developer
- * @category User
- * @see client/html/common/address/billing/disable-new
- */
-
 
 $target = $this->config( 'client/html/checkout/standard/url/target' );
 $controller = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
@@ -87,7 +69,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 	<?php endforeach; ?>
 
 
-	<?php if( !$this->config( 'client/html/common/address/delivery/disable-new', false ) ) : ?>
+	<?php if( !$this->config( 'client/html/checkout/standard/address/delivery/disable-new', false ) ) : ?>
 
 		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressDeliveryOption' ) ); ?>">
 			<div class="header">
