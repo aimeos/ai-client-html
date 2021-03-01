@@ -8,24 +8,6 @@
 
 $enc = $this->encoder();
 
-/** client/html/common/address/billing/disable-new
- * Disables the billing address form for a new address
- *
- * Normally, customers are allowed to enter a different billing address in the
- * checkout process that is only stored along with the current order. Registered
- * customers also have the possibility to change their current billing address
- * but this updates the existing one in their profile.
- *
- * You can disable the address form for the new billing address by this setting
- * if it shouldn't be allowed to enter a different billing address.
- *
- * @param boolean True to disable the "new billing address" form, false to allow a new address
- * @since 2014.03
- * @category Developer
- * @category User
- * @see client/html/common/address/delivery/disable-new
- */
-
 
 ?>
 <?php $this->block()->start( 'checkout/standard/address/billing' ); ?>
@@ -78,7 +60,7 @@ $enc = $this->encoder();
 	<?php endif; ?>
 
 
-	<?php if( !$this->config( 'client/html/common/address/billing/disable-new', false ) ) : ?>
+	<?php if( !$this->config( 'client/html/checkout/standard/address/billing/disable-new', false ) ) : ?>
 		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressBillingOption' ) ); ?>">
 			<div class="header">
 				<input id="ca_billingoption-new" type="radio" value="null"
