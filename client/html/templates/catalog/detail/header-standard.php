@@ -43,7 +43,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<?php endforeach; ?>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
-			<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+			<meta name="description" content="<?= $enc->attr( trim(html_entity_decode(strip_tags( $textItem->getContent() ))) ) ?>" />
 		<?php endforeach; ?>
 
 		<?php $params = array_diff_key( ['d_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId(), 'd_pos' => ''], $detailFilter ); ?>
@@ -54,7 +54,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<meta property="og:url" content="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ); ?>" />
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-			<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>" />
+			<meta property="og:description" content="<?= $enc->attr( trim(html_entity_decode(strip_tags( $textItem->getContent() ))) ) ?>" />
 		<?php endforeach ?>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
