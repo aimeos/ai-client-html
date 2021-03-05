@@ -218,7 +218,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 					</table>
 
 					<div class="to-basket">
-						<a class="btn-primary" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
+						<a class="btn btn-primary" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
 							<span><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></span>
 						</a>
 					</div>
