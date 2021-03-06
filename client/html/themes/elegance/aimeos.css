@@ -4719,26 +4719,21 @@ body{
 	font-size: 80%;
 }
 .catalog-stage {
-        /*position: absolute;*/
         position: relative;
         width: 100%;
 }
 @media (max-width:991px) {
 	.catalog-stage {
-		/*padding-top: 1rem;*/
-                /*padding-top: 2.7rem;*/
                 padding-top: 5.8rem;
 	}
 }
 
 @media (min-width:991px) {
 	.catalog-stage{
-		/*padding-top: 3.25rem;*/
                 padding-top: 6.55rem;
 	}
         .catalog-list{
 		padding-top: 3.25rem;
-                /*padding-top: 6.55rem;*/
 	}
 
 }
@@ -5111,7 +5106,6 @@ basket-mini .btn-primary {
 
 .catalog-filter {
 	position: absolute;
-        /*position: relative;*/
 	top: 0;
 	width: 100%;
 }
@@ -5122,17 +5116,11 @@ basket-mini .btn-primary {
 }
 @media (min-width:991px) {
         .catalog-filter {
-            /*position: absolute;*/
-            /*position: relative;*/
-            /*top: 0;*/
             width: 100%;
     }
 }
 /*------------------------------ SEARCH BAR ----------------------------------*/
-.catalog-filter section{
-	/*min-width: auto;*/
-        /*width: auto;*/
-}
+
 
 .catalog-filter-search {
 	position: relative;
@@ -5179,7 +5167,6 @@ basket-mini .btn-primary {
 }
 
 .aimeos .suggest-item {
-	/*font-size: 0.8rem;*/
 	padding: .25em 1em;
 }
 
@@ -5264,7 +5251,6 @@ basket-mini .btn-primary {
 	right:0;
 	top:0;
 	z-index:4;
-            /*1010;*/
 }
 
 .zeynep-opened .zeynep-overlay{
@@ -5279,9 +5265,7 @@ basket-mini .btn-primary {
 
 	/*- MENU trigger Button -*/
 	.open-menu{
-		/*top: 50%;*/
 		position: absolute;
-		/*transform: translateY(-50%);*/
 		line-height: 1;
 		cursor: pointer;
 		z-index: 1;
@@ -5594,7 +5578,6 @@ basket-mini .btn-primary {
 	}
 
 	.catalog-filter form .catalog-filter-tree {
-		/*position: absolute;*/
                 position: relative;
                 border-bottom: 1px solid;
 		border-color: #555;
@@ -5759,21 +5742,15 @@ basket-mini .btn-primary {
 	background-color: var(--ai-bg, #FFF);
         padding: 0.75rem;
         z-index: 1;
-        /*min-height: 12rem;*/
 }
 .catalog-filter-attribute > h2, .catalog-filter-tree > h2, .catalog-filter-price > h2, .catalog-filter-supplier > h2 {
         font-size: 80%;
         margin-bottom: 0;
 }
-.catalog-filter-price.col {
-        /*margin-top: calc(2.64rem + 42px + 35%);*/
-
-}
 
 @media (min-width:768px) {
     .catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
             float: left;
-            /*width: calc(100% / 3);*/
             background-color: #FFF;
             background-color: var(--ai-bg, #FFF);
             margin: 0;
@@ -5788,16 +5765,11 @@ basket-mini .btn-primary {
             background-color: var(--ai-bg, #FFF);
             padding: 0.75rem;
             z-index: 1;
-            /*min-height: 12rem;*/
     }
     
     .catalog-filter-attribute > h2, .catalog-filter-tree > h2, .catalog-filter-price > h2, .catalog-filter-supplier > h2 {
             font-size: 80%;
             margin-bottom: 0;
-    }
-    
-    .catalog-filter-price.col {
-            /*margin-top: calc(2.64rem + 42px + 35%);*/
     }
 
 }
@@ -5819,7 +5791,6 @@ basket-mini .btn-primary {
             background-color: var(--ai-bg, #FFF);
             padding: 0.75rem;
             z-index: 1;
-            /*min-height: 12rem;*/
     }
     
     .catalog-filter-attribute > h2, .catalog-filter-tree > h2, .catalog-filter-price > h2, .catalog-filter-supplier > h2 {
@@ -5827,10 +5798,6 @@ basket-mini .btn-primary {
             margin-bottom: 0;
     }
     
-    .catalog-filter-price.col {
-            /*margin-top: calc(2.64rem + 42px + 35%);*/
-    }
-
 }
 
 /*--------------------------- Attribute Filter -------------------------------*/
@@ -5853,7 +5820,7 @@ basket-mini .btn-primary {
 }
 
 .catalog-filter-attribute .attr-name span{
-    font-size: 80%;
+        font-size: 80%;
 }
 .catalog-filter-attribute fieldset {
         width: calc(50% - 1em);
@@ -5873,9 +5840,9 @@ basket-mini .btn-primary {
 }
 
 .catalog-filter-attribute label::before, .catalog-filter-supplier label::before {
-    width: 0.75em;
-    height: 0.75em;
-    margin-right: 0.25em;
+        width: 0.75em;
+        height: 0.75em;
+        margin-right: 0.25em;
 }
 
 .catalog-filter-attribute .attr-count, .catalog-filter-supplier .attr-count {
@@ -5885,7 +5852,7 @@ basket-mini .btn-primary {
 /*----------------------------- Price Filter ---------------------------------*/
 
 .catalog-filter-price .price-high, .catalog-filter-price .price-low{
-    font-size: 80%;
-    margin-bottom: 0;
-    width: 6.5rem;
+        font-size: 80%;
+        margin-bottom: 0;
+        width: 6.5rem;
 }
