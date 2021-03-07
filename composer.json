@@ -19,7 +19,7 @@
 		"aimeos/aimeos-core": "dev-master",
 		"aimeos/ai-controller-jobs": "dev-master",
 		"aimeos/ai-controller-frontend": "dev-master",
-		"tecnickcom/tcpdf": "dev-master"
+		"tecnickcom/tcpdf": "dev-main"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~7.0||~8.0||~9.0",
