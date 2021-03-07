@@ -560,6 +560,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<?php if( ( $mediaItem = $supplierItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 									<div class="media-item">
 										<img class="lazy-image"
+											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
 											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 											alt="<?= $enc->attr( $mediaItem->getName() ); ?>"

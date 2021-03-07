@@ -53,6 +53,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 							<div class="media-item">
 								<img class="lazy-image"
 									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
+									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
