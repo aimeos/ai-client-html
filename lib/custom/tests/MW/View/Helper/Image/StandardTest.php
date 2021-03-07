@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$result = $this->object->transform( $mediaItem );
 
 		$this->assertStringContainsString( '/path/to/image-1.jpg 100w, /path/to/image-2.jpg 200w', $result );
-		$this->assertStringContainsString( 'src="/path/to/image-2.jpg"', $result );
+		$this->assertStringContainsString( 'src="/path/to/image-1.jpg"', $result );
 		$this->assertStringContainsString( 'data-variant-color="123"', $result );
 	}
 }
