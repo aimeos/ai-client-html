@@ -31,8 +31,8 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 
 	<audio <?= $boxattr; ?> >
 		<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
-		<?php foreach( $item->getRefItems( 'media' ) as $item ) : ?>
-			<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
+		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
+			<source src="<?= $enc->attr( $this->content( $subItem->getUrl() ) ); ?>" title="<?= $enc->attr( $subItem->getName() ); ?>" type="<?= $enc->attr( $subItem->getMimetype() ); ?>" <?= $itemattr; ?> />
 		<?php endforeach; ?>
 		<?= $enc->html( $item->getName() ); ?>
 	</audio>
@@ -41,8 +41,8 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 
 		<video <?= $boxattr; ?> >
 			<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
-		<?php foreach( $item->getRefItems( 'media' ) as $item ) : ?>
-			<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" type="<?= $enc->attr( $item->getMimetype() ); ?>" <?= $itemattr; ?> />
+		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
+			<source src="<?= $enc->attr( $this->content( $subItem->getUrl() ) ); ?>" title="<?= $enc->attr( $subItem->getName() ); ?>" type="<?= $enc->attr( $subItem->getMimetype() ); ?>" <?= $itemattr; ?> />
 		<?php endforeach; ?>
 		<?= $enc->html( $item->getName() ); ?>
 	</video>
@@ -50,9 +50,9 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 	<?php break; case 'image': ?>
 
 		<div <?= $boxattr; ?> ><!--
-			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr; ?> /><!--
-		<?php foreach( $item->getRefItems( 'media' ) as $item ) : ?>
-			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ); ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr; ?> /><!--
+			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ); ?>" srcset="<?= $enc->attr( $this->imageset( $item->getPreviews() ) ) ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr; ?> /><!--
+		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
+			--><img src="<?= $enc->attr( $this->content( $subItem->getPreview() ) ); ?>" srcset="<?= $enc->attr( $this->imageset( $subItem->getPreviews() ) ) ?>" title="<?= $enc->attr( $subItem->getName() ); ?>" <?= $itemattr; ?> /><!--
 		<?php endforeach; ?>
 		--></div>
 
