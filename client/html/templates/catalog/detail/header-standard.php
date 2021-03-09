@@ -50,11 +50,11 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<link rel="canonical" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ); ?>" />
 
 		<meta property="og:type" content="product" />
-		<meta property="og:title" content="<?= $enc->html( $this->detailProductItem->getName() ); ?>" />
+		<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->detailProductItem->getName() ) ); ?>" />
 		<meta property="og:url" content="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ); ?>" />
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-			<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>" />
+			<meta property="og:description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>" />
 		<?php endforeach ?>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
