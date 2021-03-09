@@ -149,83 +149,78 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 		<div class="basket-mini-product">
 			<div class="basket-mini-offscreen zeynep second" data-menu-name="second" >
 				<div class="basket-head row">
+					<div class="mini-basket-close col-2"></div>
+					<h1 class="col-10"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
+				</div>
 
-				<div class="mini-basket-close col-2"></div>
-						<h1 class="col-10"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
-					</div>
-
-					<table class="basket">
-						<thead class="basket-header">
-							<tr>
-								<th class="name"><?= $enc->html( $this->translate( 'client', 'Product' ), $enc::TRUST ); ?></th>
-								<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Qty' ), $enc::TRUST ); ?></th>
-								<th class="price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></th>
-								<th class="action"></th>
-							</tr>
-						</thead>
-						<tbody class="basket-body">
-							<tr class="product prototype">
-								<td class="name"></td>
-								<td class="quantity"></td>
-								<td class="price"></td>
-								<td class="action"><a class="delete" href="#"></a></td>
-							</tr>
-							<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
-								<?php
-										$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
-										if( $basketSite ) { $param['site'] = $basketSite; }
-								?>
-								<tr class="product"
-									data-url="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $param, [], $jsonConfig ) ); ?>"
-									data-urldata="<?= $enc->attr( $this->csrf()->name() . '=' . $this->csrf()->value() ); ?>">
-									<td class="name">
-											<?= $enc->html( $product->getName() ) ?>
-									</td>
-									<td class="quantity">
-											<?= $enc->html( $product->getQuantity() ) ?>
-									</td>
-									<td class="price">
-											<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ); ?>
-									</td>
-									<td class="action">
-										<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
-											<a class="delete" href="#"></a>
-										<?php endif; ?>
-									</td>
-								</tr>
-							<?php endforeach; ?>
-						</tbody>
-						<tfoot class="basket-footer">
-							<tr class="delivery">
-								<td class="name" colspan="2">
-									<?= $enc->html( $this->translate( 'client', 'Shipping' ), $enc::TRUST ); ?>
+				<table class="basket">
+					<thead class="basket-header">
+						<tr>
+							<th class="name"><?= $enc->html( $this->translate( 'client', 'Product' ), $enc::TRUST ); ?></th>
+							<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Qty' ), $enc::TRUST ); ?></th>
+							<th class="price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></th>
+							<th class="action"></th>
+						</tr>
+					</thead>
+					<tbody class="basket-body">
+						<tr class="product prototype">
+							<td class="name"></td>
+							<td class="quantity"></td>
+							<td class="price"></td>
+							<td class="action"><a class="delete" href="#"></a></td>
+						</tr>
+						<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
+							<?php
+									$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
+									if( $basketSite ) { $param['site'] = $basketSite; }
+							?>
+							<tr class="product"
+								data-url="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $param, [], $jsonConfig ) ); ?>"
+								data-urldata="<?= $enc->attr( $this->csrf()->name() . '=' . $this->csrf()->value() ); ?>">
+								<td class="name">
+										<?= $enc->html( $product->getName() ) ?>
+								</td>
+								<td class="quantity">
+										<?= $enc->html( $product->getQuantity() ) ?>
 								</td>
 								<td class="price">
-									<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?>
+										<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ); ?>
 								</td>
-								<td class="action"></td>
+								<td class="action">
+									<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+										<a class="delete" href="#"></a>
+									<?php endif; ?>
+								</td>
 							</tr>
-							<tr class="total">
-								<td class="name" colspan="2">
-									<?= $enc->html( $this->translate( 'client', 'Total' ), $enc::TRUST ); ?>
-								</td>
-								<td class="price">
-									<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?>
-								</td>
-								<td class="action"></td>
-							</tr>
-						</tfoot>
-					</table>
-
-					<div class="to-basket">
-						<a class="btn btn-primary" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
-							<span><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></span>
-						</a>
-					</div>
-
+						<?php endforeach; ?>
+					</tbody>
+					<tfoot class="basket-footer">
+						<tr class="delivery">
+							<td class="name" colspan="2">
+								<?= $enc->html( $this->translate( 'client', 'Shipping' ), $enc::TRUST ); ?>
+							</td>
+							<td class="price">
+								<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?>
+							</td>
+							<td class="action"></td>
+						</tr>
+						<tr class="total">
+							<td class="name" colspan="2">
+								<?= $enc->html( $this->translate( 'client', 'Total' ), $enc::TRUST ); ?>
+							</td>
+							<td class="price">
+								<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ); ?>
+							</td>
+							<td class="action"></td>
+						</tr>
+					</tfoot>
+				</table>
+				<div class="to-basket">
+					<a class="btn btn-primary" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
+						<span><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></span>
+					</a>
 				</div>
 			</div>
 		</div>
 	<?php endif; ?>
-
 </section>
