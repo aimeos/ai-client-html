@@ -569,7 +569,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<?php endif; ?>
 
 								<h3 class="supplier-name">
-									<?= $enc->html( $supplierItem->getName() ); ?>
+									<?= $enc->html( $supplierItem->getName(), $enc::TRUST ); ?>
 
 									<?php if( ( $addrItem = $supplierItem->getAddressItems()->first() ) !== null ) : ?>
 										<span class="supplier-address">(<?= $enc->html( $addrItem->getCity() ); ?>, <?= $enc->html( $addrItem->getCountryId() ); ?>)</span>
@@ -577,11 +577,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								</h3>
 
 								<?php foreach( $supplierItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-									<p class="supplier-short"><?= $enc->html( $textItem->getContent() ); ?></p>
+									<p class="supplier-short"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
 								<?php endforeach; ?>
 
 								<?php foreach( $supplierItem->getRefItems( 'text', 'long', 'default' ) as $textItem ) : ?>
-									<p class="supplier-long"><?= $enc->html( $textItem->getContent() ); ?></p>
+									<p class="supplier-long"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
 								<?php endforeach; ?>
 
 							</div>
