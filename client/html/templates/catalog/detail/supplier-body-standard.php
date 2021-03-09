@@ -30,7 +30,7 @@ $enc = $this->encoder();
 			<?php endif; ?>
 
 			<h3 class="supplier-name">
-				<?= $enc->html( $item->getName() ); ?>
+				<?= $enc->html( $item->getName(), $enc::TRUST ); ?>
 
 				<?php if( ( $addrItem = $item->getAddressItems()->first() ) !== null ) : ?>
 					<span class="supplier-address">(<?= $enc->html( $addrItem->getCity() ); ?>, <?= $enc->html( $addrItem->getCountryId() ); ?>)</span>
@@ -38,11 +38,11 @@ $enc = $this->encoder();
 			</h3>
 
 			<?php foreach( $item->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-				<p class="supplier-short"><?= $enc->html( $textItem->getContent() ); ?></p>
+				<p class="supplier-short"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
 			<?php endforeach; ?>
 
 			<?php foreach( $item->getRefItems( 'text', 'long', 'default' ) as $textItem ) : ?>
-				<p class="supplier-long"><?= $enc->html( $textItem->getContent() ); ?></p>
+				<p class="supplier-long"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
 			<?php endforeach; ?>
 
 		</div>
