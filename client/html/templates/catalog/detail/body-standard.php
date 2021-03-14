@@ -98,7 +98,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					<?php endif ?>
 
 					<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-						<p class="short" itemprop="description"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
+						<div class="short" itemprop="description"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></div>
 					<?php endforeach; ?>
 
 				</div>
