@@ -164,9 +164,11 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
 										value="<?= $id; ?>"
 									/>
-									<input type="number"
-										min="1" max="2147483647" maxlength="10"
-										step="1" required="required" value="1"
+									<input type="number" max="2147483647" maxlength="10"
+										min="<?= $enc->attr( $productItem->getScale() ) ?>"
+										step="<?= $enc->attr( $productItem->getScale() ) ?>"
+										value="<?= $enc->attr( $productItem->getScale() ) ?>"
+										required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
 										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
 									/><!--
 									--><button class="btn btn-primary" type="submit" value="">
