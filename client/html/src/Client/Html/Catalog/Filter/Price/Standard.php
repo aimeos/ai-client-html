@@ -211,12 +211,16 @@ class Standard
 	{
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop::create( $context, 'index' );
-		$filter = $manager->filter( true )->add( ['index.price.currencyid' => $context->getLocale()->getCurrencyId()] );
+
+		$filter = $manager->filter( true );
+		$name = $filter->make( 'index.price:value', [$context->getLocale()->getCurrencyId()] );
+		$filter->add( $filter->is( $name, '!=', null ) );
 
 		$params = $this->getClientParams( $view->param() );
 		unset( $params['f_price'] );
 
-		$view->priceHigh = (int) $manager->aggregate( $filter, 'index.price.currencyid', null, 'max' )->first();
+		// We need a key but there's no one for the currency alone available, only price/currency combinations
+		$view->priceHigh = (int) $manager->aggregate( $filter, 'product.status', null, 'max' )->sum();
 		$view->priceResetParams = $params;
 
 		return parent::addData( $view, $tags, $expire );
