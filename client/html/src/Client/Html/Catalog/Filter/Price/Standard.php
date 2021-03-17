@@ -220,7 +220,7 @@ class Standard
 		unset( $params['f_price'] );
 
 		// We need a key but there's no one for the currency alone available, only price/currency combinations
-		$view->priceHigh = (int) $manager->aggregate( $filter, 'product.status', null, 'max' )->sum();
+		$view->priceHigh = (int) $manager->aggregate( $filter, 'product.status', null, 'max' )->max();
 		$view->priceResetParams = $params;
 
 		return parent::addData( $view, $tags, $expire );
