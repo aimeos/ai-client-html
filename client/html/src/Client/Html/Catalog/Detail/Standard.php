@@ -543,7 +543,7 @@ class Standard
 
 		$propMap = $attrMap = [];
 		$propItems = $productItem->getPropertyItems();
-		$attrItems = $productItem->getRefItems( 'attribute', null, 'default' );
+		$attrListItems = $productItem->getListItems( 'attribute', 'default' );
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 
 		if( in_array( $productItem->getType(), ['bundle', 'select'] ) )
@@ -552,14 +552,17 @@ class Standard
 			{
 				$propItems->merge( $subProduct->getPropertyItems()->assign( ['parent' => $subProdId] ) );
 				$mediaItems->merge( $subProduct->getRefItems( 'media', 'default', 'default' ) );
-				$attrItems->merge( $subProduct->getRefItems( 'attribute', null, 'default' )
-					->merge( $subProduct->getRefItems( 'attribute', null, 'variant' ) )
+				$attrListItems->merge( $subProduct->getListItems( 'attribute', 'default' )
+					->merge( $subProduct->getListItems( 'attribute', 'variant' ) )
 					->assign( ['parent' => $subProdId] ) );
 			}
 		}
 
-		foreach( $attrItems as $attrId => $attrItem ) {
-			$attrMap[$attrItem->getType()][$attrId] = $attrItem;
+		foreach( $attrListItems as $listItem )
+		{
+			if( $attrItem = $listItem->getRefItem() ) {
+				$attrMap[$attrItem->getType()][$attrItem->getId()] = $attrItem;
+			}
 		}
 
 		foreach( $propItems as $propItem ) {
@@ -597,8 +600,8 @@ class Standard
 
 		$view->detailMediaItems = $mediaItems;
 		$view->detailProductItem = $productItem;
-		$view->detailPropertyMap = map( $propMap )->ksort();
-		$view->detailAttributeMap = map( $attrMap )->ksort();
+		$view->detailPropertyMap = map( $propMap );
+		$view->detailAttributeMap = map( $attrMap );
 
 		return parent::addData( $view, $tags, $expire );
 	}
