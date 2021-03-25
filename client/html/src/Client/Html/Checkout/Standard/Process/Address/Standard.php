@@ -185,7 +185,7 @@ class Standard
 
 				foreach( $basket->getAddress( 'delivery' ) as $address )
 				{
-					if( $address->getAddressId() == '' )
+					if( $address->getAddressId() == '' && $address->get( 'nostore', false ) == false )
 					{
 						$addrItem = $cntl->createAddressItem()->copyFrom( $address );
 						$cntl->addAddressItem( $addrItem )->store();
