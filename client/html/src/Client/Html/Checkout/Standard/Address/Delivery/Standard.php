@@ -283,9 +283,6 @@ class Standard
 		 * * order.base.address.email
 		 * * order.base.address.website
 		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/delivery/mandatory" starting from 2014-03.
-		 *
 		 * @param array List of field keys
 		 * @since 2015.02
 		 * @category User
@@ -323,9 +320,10 @@ class Standard
 		 * * order.base.address.telefax
 		 * * order.base.address.email
 		 * * order.base.address.website
+		 * * nostore
 		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/delivery/optional" starting from 2014-03.
+		 * Using the "nostore" field displays the option to avoid storing the
+		 * delivery address permanently in the customer account.
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
@@ -366,9 +364,6 @@ class Standard
 		 * * order.base.address.website
 		 *
 		 * Caution: Only hide fields that don't require any input
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/delivery/hidden" starting from 2014-03.
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
@@ -511,9 +506,6 @@ class Standard
 		 * Besides the billing address, customers can usually enter a different
 		 * delivery address as well. To suppress displaying the form fields for
 		 * a delivery address, you can set this configuration option to "1".
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/delivery/disable-new" starting from 2014-03.
 		 *
 		 * @param boolean A value of "1" to disable, "0" enables the delivery address form
 		 * @since 2015.02

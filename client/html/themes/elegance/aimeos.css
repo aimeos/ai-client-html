@@ -265,6 +265,11 @@
 	margin: 1em;
 }
 
+.aimeos .attr-list .custom-checkbox,
+.aimeos .form-list .custom-checkbox {
+	margin: 7px 0;
+}
+
 .aimeos li.attr-item,
 .aimeos li.form-item {
 	list-style: none;
@@ -2904,12 +2909,16 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	position: relative;
 }
 
+.checkout-standard-address .minibutton.delete {
+	position: absolute;
+	right: 1%;
+	top: 1%;
+}
+
 .checkout-standard-address .minibutton.delete:after {
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: 100%;
-	content: "\f014";
-	display: inline-block;
-	transform: translate(0, -12.5%);
+	content: "\f00d";
 }
 
 .checkout-standard-address .item-address .modify {

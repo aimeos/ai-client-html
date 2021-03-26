@@ -82,15 +82,6 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 			</div>
 
 			<div class="form-list">
-				<div class="row form-item form-group store">
-					<label class="col-md-5" for="address-delivery-store">
-						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ); ?>
-					</label>
-					<div class="col-md-7">
-						<input class="form-control" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ); ?>" />
-					</div>
-				</div>
-
 				<?= $this->partial(
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
 					array(
@@ -104,6 +95,15 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 						'type' => 'delivery'
 					)
 				); ?>
+
+				<div class="row form-item form-group store <?= join( ' ', $this->value( 'css', 'nostore', [] ) ) ?>">
+					<label class="col-md-5" for="address-delivery-store">
+						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ); ?>
+					</label>
+					<div class="col-md-7">
+						<input class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ); ?>" />
+					</div>
+				</div>
 			</div>
 		</div>
 
