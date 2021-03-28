@@ -96,7 +96,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 					)
 				); ?>
 
-				<div class="row form-item form-group store <?= join( ' ', $this->value( 'css', 'nostore', [] ) ) ?>">
+				<div class="row form-item form-group store <?= join( ' ', $this->value( 'addressDeliveryCss', 'nostore', [] ) ) ?>">
 					<label class="col-md-5" for="address-delivery-store">
 						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ); ?>
 					</label>
