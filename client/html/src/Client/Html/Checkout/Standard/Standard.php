@@ -482,7 +482,7 @@ class Standard
 			$view->standardStepActive = $current;
 		}
 
-		$cpos = (int) array_search( $view->standardStepActive, $steps );
+		$cpos = (int) array_search( $view->standardStepActive, array_values( $steps ) );
 
 		$view->standardStepsBefore = array_slice( $steps, 0, $cpos );
 		$view->standardStepsAfter = array_slice( $steps, $cpos + 1 );
