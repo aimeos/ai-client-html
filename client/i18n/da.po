@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2020-12-21 07:54+0000\n"
-"Last-Translator: Tobias Madsen <tubbe.m@gmail.com>\n"
+"POT-Creation-Date: 2021-04-01 18:35+0200\n"
+"PO-Revision-Date: 2021-04-01 16:36+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Danish (http://www.transifex.com/aimeos/aimeos-core/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,6 +137,11 @@ msgstr "Ekstra"
 
 msgid "Additional 2"
 msgstr "Ekstra 2"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
+msgstr[1] ""
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -313,8 +318,15 @@ msgstr "Kære %1$s %2$s"
 msgid "Dear Mrs %1$s %2$s"
 msgstr "Kære %1$s %2$s"
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
 msgstr "Kære"
+
+msgid "Dear customer"
+msgstr ""
 
 msgid "Delete"
 msgstr "Slet"
@@ -345,6 +357,9 @@ msgstr "Beskrivelse"
 
 msgid "Details"
 msgstr "Detajler"
+
+msgid "Don't store address"
+msgstr ""
 
 msgid "Downloads"
 msgstr "Downloads"
@@ -905,7 +920,9 @@ msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr "Værdien af din kode er %1$s"
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Three month"
 msgstr ""
@@ -1012,6 +1029,9 @@ msgstr "Du er her:"
 msgid "You can use your voucher any time in our online shop"
 msgstr "Du kan bruge din kode når som helst på vores webshop"
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr ""
 
@@ -1070,6 +1090,9 @@ msgstr "Din rabatkode"
 
 msgid "Your voucher: "
 msgstr "Din rabatkode:"
+
+msgid "Your vouchers: "
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

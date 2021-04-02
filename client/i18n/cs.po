@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2020-12-14 22:21+0000\n"
+"POT-Creation-Date: 2021-04-01 18:35+0200\n"
+"PO-Revision-Date: 2021-04-01 16:36+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Czech (http://www.transifex.com/aimeos/aimeos-core/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -141,6 +141,13 @@ msgstr "Další"
 
 msgid "Additional 2"
 msgstr "Dodatečné 2"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -317,8 +324,15 @@ msgstr ""
 msgid "Dear Mrs %1$s %2$s"
 msgstr ""
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
 msgstr "Vážený pane či paní"
+
+msgid "Dear customer"
+msgstr ""
 
 msgid "Delete"
 msgstr "Smazat"
@@ -349,6 +363,9 @@ msgstr "Popis"
 
 msgid "Details"
 msgstr "Podrobnosti"
+
+msgid "Don't store address"
+msgstr ""
 
 msgid "Downloads"
 msgstr "Ke stažení"
@@ -911,7 +928,11 @@ msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 msgid "Three month"
 msgstr "Tříměsíční"
@@ -1018,6 +1039,9 @@ msgstr "Vy jste tady:"
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "Nyní budete přesměrováni k dalšímu kroku"
 
@@ -1075,6 +1099,9 @@ msgid "Your voucher"
 msgstr ""
 
 msgid "Your voucher: "
+msgstr ""
+
+msgid "Your vouchers: "
 msgstr ""
 
 #. / Product notification e-mail subject

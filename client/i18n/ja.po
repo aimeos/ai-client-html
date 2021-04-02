@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2020-12-14 22:21+0000\n"
+"POT-Creation-Date: 2021-04-01 18:35+0200\n"
+"PO-Revision-Date: 2021-04-01 16:36+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Japanese (http://www.transifex.com/aimeos/aimeos-core/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -134,6 +134,10 @@ msgstr "追加の"
 
 msgid "Additional 2"
 msgstr "追加の2"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -310,8 +314,15 @@ msgstr ""
 msgid "Dear Mrs %1$s %2$s"
 msgstr ""
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
 msgstr "親愛なるサー/奥様"
+
+msgid "Dear customer"
+msgstr ""
 
 msgid "Delete"
 msgstr "削除"
@@ -342,6 +353,9 @@ msgstr "説明"
 
 msgid "Details"
 msgstr "詳細"
+
+msgid "Don't store address"
+msgstr ""
 
 msgid "Downloads"
 msgstr "ダウンロード"
@@ -901,7 +915,8 @@ msgstr "商品のサブスクリプションが終了しました。"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr "バウチャーの価値は%1$sです"
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
 
 msgid "Three month"
 msgstr "3ヶ月"
@@ -1008,6 +1023,9 @@ msgstr "あなたはここにいる："
 msgid "You can use your voucher any time in our online shop"
 msgstr "オンラインショップでいつでもバウチャーを使用できます"
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "次のステップに進む"
 
@@ -1066,6 +1084,9 @@ msgstr "あなたのバウチャー"
 
 msgid "Your voucher: "
 msgstr "あなたのバウチャー:"
+
+msgid "Your vouchers: "
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

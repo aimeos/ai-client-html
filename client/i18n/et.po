@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Alex Kay <alex110504@gmail.com>, 2017
-# Ranko Murumets <ranko@murumets.eu>, 2021
+# ranx2k <ranko@murumets.eu>, 2021
+# ranx2k <ranko@murumets.eu>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2021-03-26 13:51+0000\n"
-"Last-Translator: Ranko Murumets <ranko@murumets.eu>\n"
+"POT-Creation-Date: 2021-04-01 18:35+0200\n"
+"PO-Revision-Date: 2021-04-01 16:36+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,6 +139,11 @@ msgstr "Lisa"
 msgid "Additional 2"
 msgstr "Lisa 2"
 
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
+msgstr[1] ""
+
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
 msgstr "Aadress ID-ga \"%1$s\" ei ole leitav"
@@ -162,7 +168,7 @@ msgid "Article"
 msgstr "Artikkel"
 
 msgid "Article no."
-msgstr ""
+msgstr "Toote kood."
 
 msgid "Article no.:"
 msgstr "Toode nr.:"
@@ -229,7 +235,7 @@ msgid "Check"
 msgstr "Arve"
 
 msgid "Checkout"
-msgstr "Maksa"
+msgstr "Kassasse"
 
 msgid "City"
 msgstr "Linn"
@@ -313,8 +319,15 @@ msgstr ""
 msgid "Dear Mrs %1$s %2$s"
 msgstr ""
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
 msgstr "Lugupeetud härra/proua"
+
+msgid "Dear customer"
+msgstr ""
 
 msgid "Delete"
 msgstr "Kustuta"
@@ -345,6 +358,9 @@ msgstr "Kirjeldus"
 
 msgid "Details"
 msgstr "Detailid"
+
+msgid "Don't store address"
+msgstr ""
 
 msgid "Downloads"
 msgstr "Allalaetav info"
@@ -814,7 +830,7 @@ msgstr "Kasutustingimused"
 #. status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "Täname Teid tellimuse %1$s eest leheküljelt %2$s."
+msgstr "Täname Teid tellimuse %1$s eest kuupäeval %2$s."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -905,7 +921,9 @@ msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Three month"
 msgstr "Kolm kuud"
@@ -1012,6 +1030,9 @@ msgstr "Te olete siin:"
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "Teid suunatakse nüüd edasi järgmise sammuni"
 
@@ -1071,6 +1092,9 @@ msgstr ""
 msgid "Your voucher: "
 msgstr ""
 
+msgid "Your vouchers: "
+msgstr ""
+
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Teie jälgimisnimekirjas olevad tooted"
@@ -1080,7 +1104,7 @@ msgstr "Suumi sisse/välja"
 
 #, php-format
 msgid "address"
-msgstr "address"
+msgstr "aadress"
 
 msgid "clear all"
 msgstr "kustuta kõik"

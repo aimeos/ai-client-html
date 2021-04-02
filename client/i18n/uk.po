@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Alex k <akropivko@gmail.com>, 2021
+# Oleksandr Kropyvko <akropivko@gmail.com>, 2021
 # Федір Вільгота <fredy31415@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2021-03-13 11:13+0000\n"
-"Last-Translator: Alex k <akropivko@gmail.com>\n"
+"POT-Creation-Date: 2021-04-01 18:35+0200\n"
+"PO-Revision-Date: 2021-04-01 16:36+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Ukrainian (http://www.transifex.com/aimeos/aimeos-core/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,6 +141,13 @@ msgstr "Номер будинку"
 
 msgid "Additional 2"
 msgstr "Поверх / Квартира"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -317,8 +324,15 @@ msgstr ""
 msgid "Dear Mrs %1$s %2$s"
 msgstr ""
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
 msgstr "Вельмишановний Пан чи Пані"
+
+msgid "Dear customer"
+msgstr ""
 
 msgid "Delete"
 msgstr "Видалити"
@@ -349,6 +363,9 @@ msgstr "Опис"
 
 msgid "Details"
 msgstr "Деталі"
+
+msgid "Don't store address"
+msgstr ""
 
 msgid "Downloads"
 msgstr "Зкачувані матеріали"
@@ -790,7 +807,7 @@ msgid "Subscription with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "передплата"
 
 msgid "Suggested products"
 msgstr "Схожі моделі"
@@ -911,7 +928,11 @@ msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 msgid "Three month"
 msgstr "Три місяці"
@@ -1018,6 +1039,9 @@ msgstr "Ви тут:"
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "Перехід до наступного кроку"
 
@@ -1075,6 +1099,9 @@ msgid "Your voucher"
 msgstr ""
 
 msgid "Your voucher: "
+msgstr ""
+
+msgid "Your vouchers: "
 msgstr ""
 
 #. / Product notification e-mail subject

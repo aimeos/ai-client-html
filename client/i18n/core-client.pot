@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
+"POT-Creation-Date: 2021-04-01 18:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,6 +142,11 @@ msgstr "Additional"
 
 msgid "Additional 2"
 msgstr "Additional 2"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
+msgstr[1] ""
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -324,8 +329,15 @@ msgstr ""
 msgid "Dear Mrs %1$s %2$s"
 msgstr ""
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
 msgstr "Dear Sir or Madam"
+
+msgid "Dear customer"
+msgstr ""
 
 msgid "Delete"
 msgstr ""
@@ -356,6 +368,9 @@ msgstr "Description"
 
 msgid "Details"
 msgstr "Details"
+
+msgid "Don't store address"
+msgstr ""
 
 msgid "Downloads"
 msgstr "Downloads"
@@ -903,7 +918,9 @@ msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Three month"
 msgstr "Three month"
@@ -1009,6 +1026,9 @@ msgstr "You are here:"
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "You will now be forwarded to the next step"
 
@@ -1065,6 +1085,9 @@ msgid "Your voucher"
 msgstr ""
 
 msgid "Your voucher: "
+msgstr ""
+
+msgid "Your vouchers: "
 msgstr ""
 
 #. / Product notification e-mail subject

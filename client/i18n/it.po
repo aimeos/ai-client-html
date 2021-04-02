@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2020-12-14 22:21+0000\n"
+"POT-Creation-Date: 2021-04-01 18:35+0200\n"
+"PO-Revision-Date: 2021-04-01 16:36+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -140,6 +140,11 @@ msgstr "Aggiuntivo"
 
 msgid "Additional 2"
 msgstr "Aggiuntivo 2"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
+msgstr[1] ""
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -316,8 +321,15 @@ msgstr "Gentile signor %1$s %2$s"
 msgid "Dear Mrs %1$s %2$s"
 msgstr "Gentile signora %1$s %2$s"
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
 msgstr "Gentile Sig.ra/Sig."
+
+msgid "Dear customer"
+msgstr ""
 
 msgid "Delete"
 msgstr "Cancella"
@@ -348,6 +360,9 @@ msgstr "Descrizione"
 
 msgid "Details"
 msgstr "Dettagli"
+
+msgid "Don't store address"
+msgstr ""
 
 msgid "Downloads"
 msgstr "Download"
@@ -908,7 +923,9 @@ msgstr "L'iscrizione all'abbonamento è scaduta"
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr "Il valore del vostro voucher è %1$s"
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Three month"
 msgstr "Tre mesi"
@@ -1015,6 +1032,9 @@ msgstr "Ti trovi qui:"
 msgid "You can use your voucher any time in our online shop"
 msgstr "Puoi usare il tuo voucher in qualsiasi momento nel nostro shop online"
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr "Verrai inviato al prossimo passaggio"
 
@@ -1073,6 +1093,9 @@ msgstr "Il tuo voucher"
 
 msgid "Your voucher: "
 msgstr "Il tuo voucher:"
+
+msgid "Your vouchers: "
+msgstr ""
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
