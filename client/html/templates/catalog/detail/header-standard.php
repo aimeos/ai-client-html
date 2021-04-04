@@ -36,7 +36,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/detail/metatags', true ) === true ) : ?>
 	<?php if( isset( $this->detailProductItem ) ) : ?>
-		<title><?= $enc->html( $this->detailProductItem->getName() ); ?></title>
+		<title><?= $enc->html( $this->detailProductItem->getName() ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />

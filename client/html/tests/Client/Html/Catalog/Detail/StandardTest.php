@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
 
-		$this->assertStringContainsString( '<title>Cafe Noire Expresso</title>', $output );
+		$this->assertStringContainsString( '<title>Cafe Noire Expresso | Aimeos</title>', $output );
 		$this->assertStringContainsString( '<script type="text/javascript" defer="defer" src="http://baseurl/catalog/stock/?st_pid', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 7, count( $tags ) );

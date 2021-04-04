@@ -36,7 +36,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
 	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
-		<title><?= $enc->html( $catItem->getName() ); ?></title>
+		<title><?= $enc->html( $catItem->getName() ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
@@ -47,11 +47,11 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 		<?php endforeach; ?>
 
 	<?php elseif( ( $search = $this->param( 'f_search', null ) ) != null ) : /// Product search hint with user provided search string (%1$s) ?>
-		<title><?= $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ); ?></title>
+		<title><?= $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ); ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 		<meta name="keywords" content="<?= $enc->attr( strip_tags( $search ) ); ?>" />
 		<meta name="description" content="<?= $enc->attr( strip_tags( $search ) ); ?>" />
 	<?php else : ?>
-		<title><?= $enc->html( $this->translate( 'client', 'Our products' ) ); ?></title>
+		<title><?= $enc->html( $this->translate( 'client', 'Our products' ) ); ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 		<meta name="keywords" content="<?= $enc->attr( $this->translate( 'client', 'Our products' ) ); ?>" />
 		<meta name="description" content="<?= $enc->attr( $this->translate( 'client', 'Our products' ) ); ?>" />
 	<?php endif; ?>

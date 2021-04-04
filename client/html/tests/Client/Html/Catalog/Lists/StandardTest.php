@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getHeader();
 
-		$this->assertStringContainsString( '<title>Kaffee</title>', $output );
+		$this->assertStringContainsString( '<title>Kaffee | Aimeos</title>', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 5, count( $tags ) );
 	}
@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getHeader();
 
-		$this->assertRegexp( '#<title>[^>]*Search result[^<]*</title>#', $output );
+		$this->assertRegexp( '#<title>[^>]*Search result[^<]* | Aimeos</title>#', $output );
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 1, count( $tags ) );
 	}

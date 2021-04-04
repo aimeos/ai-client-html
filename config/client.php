@@ -1,18 +1,23 @@
 <?php
 
-return array(
-	'html' => array(
-		'catalog' => array(
-			'lists' => array(
-				'items' => array(
+return [
+	'html' => [
+		'catalog' => [
+			'common' => [
+				'decorators' => [
+					'default' => ['Context']
+				],
+			],
+			'lists' => [
+				'items' => [
 					'template-body-list' => 'catalog/lists/items-body-list',
-				),
-			),
-		),
-		'checkout' => array(
-			'standard' => array(
-				'address' => array(
-					'countries' => array(
+				],
+			],
+		],
+		'checkout' => [
+			'standard' => [
+				'address' => [
+					'countries' => [
 						'AD', // Andorra
 						'AE', // United Arab Emirates
 						'AF', // Afghanistan
@@ -262,9 +267,9 @@ return array(
 						'ZA', // South Africa
 						'ZM', // Zambia
 						'ZW', // Zimbabwe
-					),
-				),
-			),
-		),
-	),
-);
+					],
+				],
+			],
+		],
+	],
+];
