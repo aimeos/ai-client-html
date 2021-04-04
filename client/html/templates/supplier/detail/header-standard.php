@@ -34,7 +34,7 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
 ?>
 <?php if( (bool) $this->config( 'client/html/supplier/detail/metatags', true ) === true ) : ?>
 	<?php if( isset( $this->detailSupplierItem ) ) : ?>
-		<title><?= $enc->html( $this->detailSupplierItem->getName() ); ?></title>
+		<title><?= $enc->html( $this->detailSupplierItem->getName() ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
 		<?php foreach( $this->detailSupplierItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />

@@ -37,8 +37,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeader()
 	{
+		$tags = [];
+		$expire = null;
+
+		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
+
+		$this->assertStringContainsString( '<title>Basket | Aimeos</title>', $output );
 	}
 
 

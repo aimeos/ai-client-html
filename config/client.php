@@ -2,12 +2,12 @@
 
 return [
 	'html' => [
-		'catalog' => [
-			'common' => [
-				'decorators' => [
-					'default' => ['Context']
-				],
+		'common' => [
+			'decorators' => [
+				'default' => ['Context']
 			],
+		],
+		'catalog' => [
 			'lists' => [
 				'items' => [
 					'template-body-list' => 'catalog/lists/items-body-list',

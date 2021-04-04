@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
 
-		$this->assertStringContainsString( '<title>Test supplier</title>', $output );
+		$this->assertStringContainsString( '<title>Test supplier | Aimeos</title>', $output );
 		$this->assertEquals( '2100-01-01 00:00:00', $expire );
 		$this->assertEquals( 3, count( $tags ) );
 	}

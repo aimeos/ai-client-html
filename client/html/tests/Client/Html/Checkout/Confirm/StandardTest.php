@@ -33,11 +33,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeader()
 	{
+		$tags = [];
+		$expire = null;
+
 		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
 		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
 
+		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
-		$this->assertNotNull( $output );
+
+		$this->assertStringContainsString( '<title>Confirmation | Aimeos</title>', $output );
 	}
 
 
