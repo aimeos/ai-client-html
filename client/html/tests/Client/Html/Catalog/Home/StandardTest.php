@@ -36,8 +36,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = $this->object->getView();
 
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$output = $this->object->getHeader();
 
-		$this->assertEquals( '', trim( $this->object->getHeader() ) );
+		$this->assertStringContainsString( '<title>Root | Aimeos</title>', $output );
 	}
 
 

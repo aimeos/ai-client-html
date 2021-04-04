@@ -11,6 +11,8 @@ $enc = $this->encoder();
 ?>
 <?php if( isset( $this->homeTree ) ) : ?>
 
+	<title><?= $enc->html( strip_tags( $this->homeTree->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
 	<?php endforeach; ?>
@@ -19,6 +21,10 @@ $enc = $this->encoder();
 		<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
 	<?php endforeach; ?>
 
+<?php else : ?>
+
+	<title><?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+
 <?php endif ?>
 
 <?php if( isset( $this->homeStockUrl ) ) : ?>
@@ -26,3 +32,5 @@ $enc = $this->encoder();
 		<script type="text/javascript" defer="defer" src="<?= $enc->attr( $url ); ?>"></script>
 	<?php endforeach ?>
 <?php endif; ?>
+
+<meta name="application-name" content="Aimeos" />
