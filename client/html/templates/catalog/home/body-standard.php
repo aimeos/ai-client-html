@@ -30,7 +30,7 @@ $pos = 0;
 						<a class="stage-item" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
 							<img class="stage-image lazy-image"
 								src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
-								data-src="<?= $enc->attr( $mediaItem->getPreview() ) ?>"
+								data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 								data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 								alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>" />
 						</a>
@@ -65,7 +65,7 @@ $pos = 0;
 								<?php if( ++$pos % 2 ) : ?>
 									<img class="stage-image lazy-image col-md-<?= $text ? 8 : 12 ?>"
 										src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
-										data-src="<?= $enc->attr( $mediaItem->getPreview() ) ?>"
+										data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>" />
 									<?php if( $text ) : ?>
@@ -81,7 +81,7 @@ $pos = 0;
 									<?php endif ?>
 									<img class="stage-image lazy-image col-md-<?= $text ? 8 : 12 ?>"
 										src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
-										data-src="<?= $enc->attr( $mediaItem->getPreview() ) ?>"
+										data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>" />
 								<?php endif ?>

@@ -146,9 +146,9 @@ $params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_
 		<a class="social-button social-button-<?= $enc->attr( $entry ); ?>" rel="noopener"
 			href="<?= $enc->attr( sprintf( $link,
 				$enc->url( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ),
-				$enc->url( $this->productItem->getName() ),
-				$enc->url( $this->content( $this->productItem->getRefItems( 'media', 'default', 'default' )->getUrl()->first() ) )
-			) ); ?>"
+				$this->productItem->getName(),
+				$this->content( $this->productItem->getRefItems( 'media', 'default', 'default' )->getPreview( true )->first() )
+			) ) ?>"
 			title="<?= $enc->attr( $entry ); ?>"
 			target="_blank"
 		></a>

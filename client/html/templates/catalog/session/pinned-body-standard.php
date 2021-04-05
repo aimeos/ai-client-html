@@ -124,7 +124,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 					<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
 					<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
-						<div class="media-item" style="background-image: url('<?= $this->content( $mediaItem->getPreview() ); ?>')"></div>
+						<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"></div>
 					<?php else : ?>
 						<div class="media-item"></div>
 					<?php endif; ?>

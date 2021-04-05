@@ -39,8 +39,11 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 	<?php if( !$this->param( 'd_prodid', $this->param( 'd_name' ) ) && !( $mediaItems = $this->get( 'stageMediaItems', map() ) )->isEmpty() ) : ?>
 		<div class="catalog-stage-image">
-			<?php foreach( $mediaItems as $media ) : ?>
-				<img src="<?= $this->content( $media->getUrl() ); ?>" alt="<?= $enc->attr( $media->getName() ); ?>" />
+			<?php foreach( $mediaItems as $mediaItem ) : ?>
+				<img alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
+					src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
+					srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+				/>
 			<?php endforeach; ?>
 		</div>
 	<?php endif; ?>
