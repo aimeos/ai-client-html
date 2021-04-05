@@ -10,6 +10,6 @@ $enc = $this->encoder();
 
 
 ?>
-<title><?= $this->translate( 'client', 'Checkout' ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+<title><?= $this->translate( 'client', $this->get( 'standardStepActive' ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
 <?= $this->get( 'standardHeader' );
