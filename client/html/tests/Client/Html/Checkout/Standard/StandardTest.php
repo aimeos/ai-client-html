@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
 
-		$this->assertStringContainsString( '<title>Checkout | Aimeos</title>', $output );
+		$this->assertStringContainsString( '<title>summary | Aimeos</title>', $output );
 	}
 
 
