@@ -5,7 +5,7 @@
  * @copyright Aimeos (aimeos.org), 2014-2021
  */
 
-@font-face{
+ @font-face{
 	font-family:'FontAwesome';
 	font-style:normal;
 	font-weight:900;
@@ -56,6 +56,7 @@
 	font-weight: bold;
 	vertical-align: top;
 	border-radius: 0;
+	margin: auto;
 	color: #555;
 	color: var(--ai-secondary, #555);
 	border: solid 1px #555;
@@ -618,6 +619,7 @@ input[type="range"]::-moz-range-progress {
 /* Catalog filter */
 .catalog-filter {
 	text-align: center;
+	margin-top: 0.5em;
 }
 
 .catalog-filter h1 {
@@ -631,7 +633,8 @@ input[type="range"]::-moz-range-progress {
 .catalog-filter-tree.col {
 	padding-right: 0;
 	padding-left: 0;
-	margin: 1em 0;
+	margin: 0;
+	margin-bottom: 1em;
 }
 
 .catalog-filter-tree fieldset > ul {
@@ -690,8 +693,8 @@ input[type="range"]::-moz-range-progress {
 
 /* Catalog filter search section */
 .catalog-filter-search {
-	display: inline-block;
-	margin-bottom: 1em;
+	border-bottom: 1px solid #555;
+	border-bottom-color: var(--ai-secondary, #555);
 }
 
 .catalog-filter-search > h2 {
@@ -710,12 +713,6 @@ input[type="range"]::-moz-range-progress {
 
 .catalog-filter-search .form-group {
 	display: block;
-}
-
-.catalog-filter-search .input-group {
-	border-bottom: 1px solid #555;
-	border-bottom-color: var(--ai-secondary, #555);
-	margin-bottom: 1em;
 }
 
 .catalog-filter-search .value {
@@ -774,10 +771,6 @@ input[type="range"]::-moz-range-progress {
 }
 
 /* Catalog filter, tree section */
-.catalog-filter section {
-	min-width: 12.5rem;
-}
-
 .catalog-filter-tree ul {
 	text-align: left;
 	list-style: none;
@@ -1021,7 +1014,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	display: block;
 	padding: 0.5em;
 	margin: 0;
-	margin-bottom: 1em;
 }
 
 @media screen and (min-width: 480px) {
@@ -4731,21 +4723,6 @@ body{
 	position: relative;
 	width: 100%;
 }
-@media (max-width:991px) {
-	.catalog-stage {
-			 padding-top: 5.8rem;
-	}
-}
-
-@media (min-width:991px) {
-	.catalog-stage{
-			 padding-top: 6.55rem;
-	}
-	.catalog-list{
-		padding-top: 3.25rem;
-	}
-
-}
 
 /*----------------------link-colors Mobile & Desktop--------------------------*/
 
@@ -4982,11 +4959,6 @@ body{
 	margin-bottom: 0.25rem;
 }
 
-.basket-mini > a > span{
-	font-size: 80%;
-	display: block;
-}
-
 .basket-mini-main {
 	position: absolute;
 	border-radius: 1rem;
@@ -5109,36 +5081,8 @@ basket-mini .btn-primary {
 	color: var(--ai-bg, #FFF);
 }
 
-/*------------------ Catalog Filter Section (Search & Navi) ------------------*/
 
-
-
-.catalog-filter {
-	position: absolute;
-	top: 0;
-	width: 100%;
-}
-
-.catalog-filter form.row{
-	margin: 0;
-	display: block;
-}
-@media (min-width:991px) {
-	.catalog-filter {
-		 width: 100%;
-	}
-}
 /*------------------------------ SEARCH BAR ----------------------------------*/
-
-
-.catalog-filter-search {
-	position: relative;
-	margin: 0;
-	float: right;
-	z-index: 3;
-	width: calc(100% - 50px) !important;
-	padding: 0 !important;
-}
 
 .catalog-filter-search .btn-primary:hover {
 	color: #A00000;
@@ -5146,7 +5090,7 @@ basket-mini .btn-primary {
 }
 
 .catalog-filter-search .input-group {
-	margin-bottom: 0;
+	margin: 0.25em 0;
 }
 
 .aimeos input:focus {
@@ -5156,8 +5100,6 @@ basket-mini .btn-primary {
 }
 
 .catalog-filter .input-group > .form-control:not(:last-child) {
-	padding: .275rem .75rem;
-	margin: .2em 0 .2em;
 	font-size: 80%;
 }
 
@@ -5221,27 +5163,11 @@ basket-mini .btn-primary {
 	}
 }
 
-@media (min-width:991px) {
-
-	.catalog-filter-search {
-		min-width: 25rem !important;
-			 width: auto !important;
-	}
+@media (min-width:992px) {
 
 	.ui-widget-content{
 		width: 31.25em !important;
 	}
-
-	.catalog-filter-search .input-group{
-		padding: 0 0 .2em 0;
-		margin: .2em 0 0 0;
-	}
-
-	.catalog-filter .input-group > .form-control:not(:last-child) {
-		padding: .275rem .75rem;
-		margin: .2em 0 0;
-	}
-
 }
 
 /*---------------------------------- Filter-Tree -----------------------------*/
@@ -5270,15 +5196,22 @@ basket-mini .btn-primary {
 	overflow: hidden;
 }
 
+.open-menu{
+	display: none;
+}
+
 @media (max-width:991px) {
 
 	/*- MENU trigger Button -*/
 	.open-menu{
-		position: absolute;
+		border-bottom: 1px solid #555;
+		border-bottom-color: var(--ai-secondary, #555);
+		margin-bottom: 1em;
+		position: relative;
+		display: block;
 		line-height: 1;
 		cursor: pointer;
 		z-index: 1;
-			 min-height: 2.7rem;
 	}
 
 	.open-menu::before{
@@ -5287,14 +5220,8 @@ basket-mini .btn-primary {
 		font-size: 150%;
 		color: #555;
 		color: var(--ai-secondary, #555);
-			 top: 50%;
-			 position: absolute;
-			 transform: translateY(-50%);
-	}
-
-	.catalog-filter-tree.col {
-		margin: 0;
-			 min-height: .1rem;
+		transform: translate(-0.5em, 0.33em);
+		position: absolute;
 	}
 
 	.catalog-filter-tree .category-selected {
@@ -5523,7 +5450,7 @@ basket-mini .btn-primary {
 	}
 }
 
-@media (min-width:991px) {
+@media (min-width:992px) {
 	.trigger-open, .menu-close{
 		display: none;
 	}
@@ -5534,7 +5461,13 @@ basket-mini .btn-primary {
 	z-index: 5;
 }
 
-@media (min-width:991px) {
+.catalog-filter .catalog-filter-tree {
+	border-bottom: 1px solid;
+	border-color: #555;
+	border-color: var(--ai-secondary, #555);
+}
+
+@media (min-width:992px) {
 	.level-2 .cat-item {
 		text-align: left;
 	}
@@ -5560,7 +5493,7 @@ basket-mini .btn-primary {
 	width: 100%;
 }
 
-@media (min-width:991px) {
+@media (min-width:992px) {
 	.catalog-filter-tree div.media-list.shows-img {
 		display: block;
 		align-self: center;
@@ -5577,25 +5510,13 @@ basket-mini .btn-primary {
 
 /*------------------------------Megamenu--------------------------------------*/
 
-@media (min-width:991px) {
+@media (min-width:992px) {
 
 	.catalog-filter .filter-sections:after{
 		position: relative;
 		display: block;
 		content: "";
 		clear: both;
-	}
-
-	.catalog-filter form .catalog-filter-tree {
-			 position: relative;
-			 border-bottom: 1px solid;
-		border-color: #555;
-		border-color: var(--ai-secondary, #555);
-			 z-index: 2;
-	}
-
-	.catalog-filter-tree.col {
-		margin: 0;
 	}
 
 	.catalog-filter-tree h2 {
@@ -5612,7 +5533,7 @@ basket-mini .btn-primary {
 /*-------------------------------Top level------------------------------------*/
 
 	.catalog-filter-tree .top-cat-item.cat-item {
-		padding: 1.22em 1.5em;
+		padding: 1em 1.5em;
 		text-transform: uppercase;
 	}
 
@@ -5644,7 +5565,7 @@ basket-mini .btn-primary {
 		margin: .4rem 0;
 	}
 
-/*---------------------------MEGAMENUE level-2--------------------------------*/
+/*---------------------------MEGAMENU level-2--------------------------------*/
 
 	@keyframes FadeIn {
 		0% {
@@ -5706,7 +5627,7 @@ basket-mini .btn-primary {
 		font-weight: 600;
 	}
 
-/*---------------------- MEGAMENUE level-3 > ---------------------------------*/
+/*---------------------- MEGAMENU level-3 > ---------------------------------*/
 
 	.catalog-filter-tree .megamenu > .submenu .level-3 .has-submenu > a.cat-item {
 		margin: 0em 0 .5em 0;
@@ -5735,11 +5656,8 @@ basket-mini .btn-primary {
 }
 /*----------------------- Filter Container -----------------------------------*/
 .catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
-	float: left;
-	width: 100%;
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
-	margin: 0;
 	z-index: 1;
 }
 .catalog-filter-attribute .attribute-lists,
@@ -5754,7 +5672,6 @@ basket-mini .btn-primary {
 }
 .catalog-filter-attribute > h2, .catalog-filter-tree > h2, .catalog-filter-price > h2, .catalog-filter-supplier > h2 {
 	font-size: 80%;
-	margin-bottom: 0;
 }
 
 @media (min-width:768px) {
@@ -5773,22 +5690,13 @@ basket-mini .btn-primary {
 		 background-color: #FFF;
 		 background-color: var(--ai-bg, #FFF);
 		 padding: 0.75rem;
-		 z-index: 1;
 	}
-
-	.catalog-filter-attribute > h2, .catalog-filter-tree > h2, .catalog-filter-price > h2, .catalog-filter-supplier > h2 {
-		 font-size: 80%;
-		 margin-bottom: 0;
-	}
-
 }
 
-@media (min-width:991px) {
+@media (min-width:992px) {
 
 	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
-		 float: left;
-		 width: calc(100% / 3);
-		 margin: 1rem 0 0;
+		 margin-bottom: 1em;
 	}
 
 	.catalog-filter-attribute .attribute-lists,
@@ -5863,5 +5771,5 @@ basket-mini .btn-primary {
 .catalog-filter-price .price-high, .catalog-filter-price .price-low{
 	font-size: 80%;
 	margin-bottom: 0;
-	width: 6.5rem;
+	width: 5rem;
 }

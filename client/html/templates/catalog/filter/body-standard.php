@@ -101,13 +101,11 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<nav>
 		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></h1>
 		<form class="row" method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'filterParams', [] ), $listConfig ) ) ?>">
-			<div class="open-menu"></div>
-			<?= $this->block()->get( 'catalog/filter/search' ) ?>
 			<?= $this->block()->get( 'catalog/filter/tree' ) ?>
+			<?= $this->block()->get( 'catalog/filter/search' ) ?>
 			<?= $this->block()->get( 'catalog/filter/price' ) ?>
 			<?= $this->block()->get( 'catalog/filter/supplier' ) ?>
 			<?= $this->block()->get( 'catalog/filter/attribute' ) ?>
-			<div class="clearfix"></div>
 		</form>
 	</nav>
 

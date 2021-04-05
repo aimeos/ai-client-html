@@ -50,7 +50,10 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 <?php $this->block()->start( 'catalog/filter/tree' ) ?>
 <?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 && !$this->treeCatalogTree->getChildren()->isEmpty() ) : ?>
 
-	<section class="catalog-filter-tree col <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ) ?>">
+	<div class="zeynep-overlay"></div>
+	<div class="open-menu col-2"></div>
+
+	<section class="catalog-filter-tree col col-lg-9 <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
 		<div class="category-lists zeynep first" data-menu-name="first">
 
 			<div class="menu-head row">
@@ -87,7 +90,6 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 		</div>
 	</section>
 
-	<div class="zeynep-overlay"></div>
 <?php endif ?>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/filter/tree' ) ?>

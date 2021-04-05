@@ -116,7 +116,7 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 
 ?>
 <?php $this->block()->start( 'catalog/filter/search' ) ?>
-<section class="catalog-filter-search col-sm-12">
+<section class="catalog-filter-search col col-10 col-lg-3">
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ) ?></h2>
 	<div class="input-group">

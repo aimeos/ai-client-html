@@ -38,7 +38,7 @@ $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ) ?>
 <?php if( !empty( $this->get( 'attributeMap', [] ) ) ) : ?>
-	<section class="catalog-filter-attribute col">
+	<section class="catalog-filter-attribute col col-12 col-md-4">
 		<h2><?= $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ) ?></h2>
 
 		<div class="attribute-lists">

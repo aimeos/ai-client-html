@@ -113,7 +113,7 @@ class Standard
 	 * @since 2018.07
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'search', 'tree', 'price', 'supplier', 'attribute' );
+	private $subPartNames = ['tree', 'search', 'price', 'supplier', 'attribute'];
 	private $tags = [];
 	private $expire;
 	private $view;
