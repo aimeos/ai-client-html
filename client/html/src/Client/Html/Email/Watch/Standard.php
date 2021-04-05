@@ -138,6 +138,7 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ?string
 	{
+		$config = $this->getContext()->config();
 		$view = $this->getObject()->addData( $this->getView() );
 
 		$content = '';
@@ -154,10 +155,12 @@ class Standard
 		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
 
+		$fromName = $config->get( 'resource/email/from-name' );
+
 		/** client/html/email/from-name
 		 * @see client/html/email/watch/from-email
 		 */
-		$fromName = $view->config( 'client/html/email/from-name' );
+		$fromName = $config->get( 'client/html/email/from-name', $fromName );
 
 		/** client/html/email/watch/from-name
 		 * Name used when sending product notification e-mails
@@ -174,12 +177,14 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		$fromNameWatch = $view->config( 'client/html/email/watch/from-name', $fromName );
+		$fromNameWatch = $config->get( 'client/html/email/watch/from-name', $fromName );
+
+		$fromEmail = $config->get( 'resource/email/from-email' );
 
 		/** client/html/email/from-email
 		 * @see client/html/email/watch/from-email
 		 */
-		$fromEmail = $view->config( 'client/html/email/from-email' );
+		$fromEmail = $config->get( 'client/html/email/from-email', $fromEmail );
 
 		/** client/html/email/watch/from-email
 		 * E-Mail address used when sending product notification e-mails
@@ -196,7 +201,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $fromEmailWatch = $view->config( 'client/html/email/watch/from-email', $fromEmail ) ) != null ) {
+		if( ( $fromEmailWatch = $config->get( 'client/html/email/watch/from-email', $fromEmail ) ) != null ) {
 			$msg->addFrom( $fromEmailWatch, $fromNameWatch );
 		}
 
@@ -204,7 +209,7 @@ class Standard
 		/** client/html/email/reply-name
 		 * @see client/html/email/watch/reply-email
 		 */
-		$replyName = $view->config( 'client/html/email/reply-name', $fromName );
+		$replyName = $config->get( 'client/html/email/reply-name', $fromName );
 
 		/** client/html/email/watch/reply-name
 		 * Recipient name displayed when the customer replies to product notification e-mails
@@ -223,12 +228,12 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		$replyNameWatch = $view->config( 'client/html/email/watch/reply-name', $replyName );
+		$replyNameWatch = $config->get( 'client/html/email/watch/reply-name', $replyName );
 
 		/** client/html/email/reply-email
 		 * @see client/html/email/watch/reply-email
 		 */
-		$replyEmail = $view->config( 'client/html/email/reply-email', $fromEmail );
+		$replyEmail = $config->get( 'client/html/email/reply-email', $fromEmail );
 
 		/** client/html/email/watch/reply-email
 		 * E-Mail address used by the customer when replying to product notification e-mails
@@ -246,7 +251,7 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $replyEmailWatch = $view->config( 'client/html/email/watch/reply-email', $replyEmail ) ) != null ) {
+		if( ( $replyEmailWatch = $config->get( 'client/html/email/watch/reply-email', $replyEmail ) ) != null ) {
 			$msg->addReplyTo( $replyEmailWatch, $replyNameWatch );
 		}
 
@@ -254,7 +259,7 @@ class Standard
 		/** client/html/email/bcc-email
 		 * @see client/html/email/watch/bcc-email
 		 */
-		$bccEmail = $view->config( 'client/html/email/bcc-email' );
+		$bccEmail = $config->get( 'client/html/email/bcc-email' );
 
 		/** client/html/email/watch/bcc-email
 		 * E-Mail address all product notification e-mails should be also sent to
@@ -278,7 +283,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
 		 */
-		if( ( $bccEmailWatch = $view->config( 'client/html/email/watch/bcc-email', $bccEmail ) ) != null )
+		if( ( $bccEmailWatch = $config->get( 'client/html/email/watch/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailWatch as $emailAddr ) {
 				$msg->addBcc( $emailAddr );

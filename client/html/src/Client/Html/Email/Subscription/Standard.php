@@ -137,6 +137,7 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ? string
 	{
+		$config = $this->getContext()->config();
 		$view = $this->getObject()->addData( $this->getView() );
 
 		$content = '';
@@ -153,10 +154,12 @@ class Standard
 		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
 
+		$fromName = $config->get( 'resource/email/from-name' );
+
 		/** client/html/email/from-name
 		 * @see client/html/email/subscription/from-email
 		 */
-		$fromName = $view->config( 'client/html/email/from-name' );
+		$fromName = $config->get( 'client/html/email/from-name', $fromName );
 
 		/** client/html/email/subscription/from-name
 		 * Name used when sending subscription e-mails
@@ -173,12 +176,14 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		$fromNameSubscription = $view->config( 'client/html/email/subscription/from-name', $fromName );
+		$fromNameSubscription = $config->get( 'client/html/email/subscription/from-name', $fromName );
+
+		$fromEmail = $config->get( 'resource/email/from-email' );
 
 		/** client/html/email/from-email
 		 * @see client/html/email/subscription/from-email
 		 */
-		$fromEmail = $view->config( 'client/html/email/from-email' );
+		$fromEmail = $config->get( 'client/html/email/from-email', $fromEmail );
 
 		/** client/html/email/subscription/from-email
 		 * E-Mail address used when sending subscription e-mails
@@ -195,7 +200,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $fromEmailSubscription = $view->config( 'client/html/email/subscription/from-email', $fromEmail ) ) != null ) {
+		if( ( $fromEmailSubscription = $config->get( 'client/html/email/subscription/from-email', $fromEmail ) ) != null ) {
 			$msg->addFrom( $fromEmailSubscription, $fromNameSubscription );
 		}
 
@@ -203,7 +208,7 @@ class Standard
 		/** client/html/email/reply-name
 		 * @see client/html/email/subscription/reply-email
 		 */
-		$replyName = $view->config( 'client/html/email/reply-name', $fromName );
+		$replyName = $config->get( 'client/html/email/reply-name', $fromName );
 
 		/** client/html/email/subscription/reply-name
 		 * Recipient name displayed when the customer replies to subscription e-mails
@@ -222,12 +227,12 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		$replyNameSubscription = $view->config( 'client/html/email/subscription/reply-name', $replyName );
+		$replyNameSubscription = $config->get( 'client/html/email/subscription/reply-name', $replyName );
 
 		/** client/html/email/reply-email
 		 * @see client/html/email/subscription/reply-email
 		 */
-		$replyEmail = $view->config( 'client/html/email/reply-email', $fromEmail );
+		$replyEmail = $config->get( 'client/html/email/reply-email', $fromEmail );
 
 		/** client/html/email/subscription/reply-email
 		 * E-Mail address used by the customer when replying to subscription e-mails
@@ -245,7 +250,7 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $replyEmailSubscription = $view->config( 'client/html/email/subscription/reply-email', $replyEmail ) ) != null ) {
+		if( ( $replyEmailSubscription = $config->get( 'client/html/email/subscription/reply-email', $replyEmail ) ) != null ) {
 			$msg->addReplyTo( $replyEmailSubscription, $replyNameSubscription );
 		}
 
@@ -253,7 +258,7 @@ class Standard
 		/** client/html/email/bcc-email
 		 * @see client/html/email/subscription/bcc-email
 		 */
-		$bccEmail = $view->config( 'client/html/email/bcc-email' );
+		$bccEmail = $config->get( 'client/html/email/bcc-email' );
 
 		/** client/html/email/subscription/bcc-email
 		 * E-Mail address all subscription e-mails should be also sent to
@@ -277,7 +282,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
 		 */
-		if( ( $bccEmailSubscription = $view->config( 'client/html/email/subscription/bcc-email', $bccEmail ) ) != null )
+		if( ( $bccEmailSubscription = $config->get( 'client/html/email/subscription/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailSubscription as $emailAddr ) {
 				$msg->addBcc( $emailAddr );

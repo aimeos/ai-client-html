@@ -160,6 +160,7 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ?string
 	{
+		$config = $this->getContext()->config();
 		$view = $this->getObject()->addData( $this->getView() );
 
 		$content = '';
@@ -181,6 +182,9 @@ class Standard
 			$msg->addCc( $billAddr->getEMail(), $billAddr->getFirstName() . ' ' . $billAddr->getLastName() );
 		}
 
+
+		$fromName = $config->get( 'resource/email/from-name' );
+
 		/** client/html/email/from-name
 		 * Name used when sending e-mails
 		 *
@@ -194,8 +198,9 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
+		 * @see resource/email/from-name
 		 */
-		$fromName = $view->config( 'client/html/email/from-name' );
+		$fromName = $config->get( 'client/html/email/from-name', $fromName );
 
 		/** client/html/email/delivery/from-name
 		 * Name used when sending delivery e-mails
@@ -212,7 +217,9 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		$fromNameDelivery = $view->config( 'client/html/email/delivery/from-name', $fromName );
+		$fromNameDelivery = $config->get( 'client/html/email/delivery/from-name', $fromName );
+
+		$fromEmail = $config->get( 'resource/email/from-email' );
 
 		/** client/html/email/from-email
 		 * E-Mail address used when sending e-mails
@@ -227,8 +234,9 @@ class Standard
 		 * @see client/html/email/delivery/from-email
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
+		 * @see resource/email/from-email
 		 */
-		$fromEmail = $view->config( 'client/html/email/from-email' );
+		$fromEmail = $config->get( 'client/html/email/from-email', $fromEmail );
 
 		/** client/html/email/delivery/from-email
 		 * E-Mail address used when sending delivery e-mails
@@ -245,7 +253,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $fromEmailDelivery = $view->config( 'client/html/email/delivery/from-email', $fromEmail ) ) != null ) {
+		if( ( $fromEmailDelivery = $config->get( 'client/html/email/delivery/from-email', $fromEmail ) ) != null ) {
 			$msg->addFrom( $fromEmailDelivery, $fromNameDelivery );
 		}
 
@@ -267,7 +275,7 @@ class Standard
 		 * @see client/html/email/from-name
 		 * @see client/html/email/bcc-email
 		 */
-		$replyName = $view->config( 'client/html/email/reply-name', $fromName );
+		$replyName = $config->get( 'client/html/email/reply-name', $fromName );
 
 		/** client/html/email/delivery/reply-name
 		 * Recipient name displayed when the customer replies to delivery e-mails
@@ -285,7 +293,7 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		$replyNameDelivery = $view->config( 'client/html/email/delivery/reply-name', $replyName );
+		$replyNameDelivery = $config->get( 'client/html/email/delivery/reply-name', $replyName );
 
 		/** client/html/email/reply-email
 		 * E-Mail address used by the customer when replying to e-mails
@@ -301,7 +309,7 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		$replyEmail = $view->config( 'client/html/email/reply-email', $fromEmail );
+		$replyEmail = $config->get( 'client/html/email/reply-email', $fromEmail );
 
 		/** client/html/email/delivery/reply-email
 		 * E-Mail address used by the customer when replying to delivery e-mails
@@ -318,7 +326,7 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $replyEmailDelivery = $view->config( 'client/html/email/delivery/reply-email', $replyEmail ) ) != null ) {
+		if( ( $replyEmailDelivery = $config->get( 'client/html/email/delivery/reply-email', $replyEmail ) ) != null ) {
 			$msg->addReplyTo( $replyEmailDelivery, $replyNameDelivery );
 		}
 
@@ -342,7 +350,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
 		 */
-		$bccEmail = $view->config( 'client/html/email/bcc-email' );
+		$bccEmail = $config->get( 'client/html/email/bcc-email' );
 
 		/** client/html/email/delivery/bcc-email
 		 * E-Mail address all delivery e-mails should be also sent to
@@ -366,7 +374,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
 		 */
-		if( ( $bccEmailDelivery = $view->config( 'client/html/email/delivery/bcc-email', $bccEmail ) ) != null )
+		if( ( $bccEmailDelivery = $config->get( 'client/html/email/delivery/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailDelivery as $emailAddr ) {
 				$msg->addBcc( $emailAddr );

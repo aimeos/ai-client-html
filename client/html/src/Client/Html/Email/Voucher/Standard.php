@@ -137,6 +137,7 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : ?string
 	{
+		$config = $this->getContext()->config();
 		$view = $this->getObject()->addData( $this->getView() );
 
 		$content = '';
@@ -153,10 +154,12 @@ class Standard
 		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
 
+		$fromName = $config->get( 'resource/email/from-name' );
+
 		/** client/html/email/from-name
 		 * @see client/html/email/voucher/from-email
 		 */
-		$fromName = $view->config( 'client/html/email/from-name' );
+		$fromName = $config->get( 'client/html/email/from-name', $fromName );
 
 		/** client/html/email/voucher/from-name
 		 * Name used when sending voucher e-mails
@@ -173,12 +176,14 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		$fromNameVoucher = $view->config( 'client/html/email/voucher/from-name', $fromName );
+		$fromNameVoucher = $config->get( 'client/html/email/voucher/from-name', $fromName );
+
+		$fromEmail = $config->get( 'resource/email/from-email' );
 
 		/** client/html/email/from-email
 		 * @see client/html/email/voucher/from-email
 		 */
-		$fromEmail = $view->config( 'client/html/email/from-email' );
+		$fromEmail = $config->get( 'client/html/email/from-email', $fromEmail );
 
 		/** client/html/email/voucher/from-email
 		 * E-Mail address used when sending voucher e-mails
@@ -195,7 +200,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $fromEmailVoucher = $view->config( 'client/html/email/voucher/from-email', $fromEmail ) ) != null ) {
+		if( ( $fromEmailVoucher = $config->get( 'client/html/email/voucher/from-email', $fromEmail ) ) != null ) {
 			$msg->addFrom( $fromEmailVoucher, $fromNameVoucher );
 		}
 
@@ -203,7 +208,7 @@ class Standard
 		/** client/html/email/reply-name
 		 * @see client/html/email/voucher/reply-email
 		 */
-		$replyName = $view->config( 'client/html/email/reply-name', $fromName );
+		$replyName = $config->get( 'client/html/email/reply-name', $fromName );
 
 		/** client/html/email/voucher/reply-name
 		 * Recipient name displayed when the customer replies to voucher e-mails
@@ -222,12 +227,12 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		$replyNameVoucher = $view->config( 'client/html/email/voucher/reply-name', $replyName );
+		$replyNameVoucher = $config->get( 'client/html/email/voucher/reply-name', $replyName );
 
 		/** client/html/email/reply-email
 		 * @see client/html/email/voucher/reply-email
 		 */
-		$replyEmail = $view->config( 'client/html/email/reply-email', $fromEmail );
+		$replyEmail = $config->get( 'client/html/email/reply-email', $fromEmail );
 
 		/** client/html/email/voucher/reply-email
 		 * E-Mail address used by the customer when replying to voucher e-mails
@@ -245,7 +250,7 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $replyEmailVoucher = $view->config( 'client/html/email/voucher/reply-email', $replyEmail ) ) != null ) {
+		if( ( $replyEmailVoucher = $config->get( 'client/html/email/voucher/reply-email', $replyEmail ) ) != null ) {
 			$msg->addReplyTo( $replyEmailVoucher, $replyNameVoucher );
 		}
 
@@ -253,7 +258,7 @@ class Standard
 		/** client/html/email/bcc-email
 		 * @see client/html/email/voucher/bcc-email
 		 */
-		$bccEmail = $view->config( 'client/html/email/bcc-email' );
+		$bccEmail = $config->get( 'client/html/email/bcc-email' );
 
 		/** client/html/email/voucher/bcc-email
 		 * E-Mail address all voucher e-mails should be also sent to
@@ -277,7 +282,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
 		 */
-		if( ( $bccEmailVoucher = $view->config( 'client/html/email/voucher/bcc-email', $bccEmail ) ) != null )
+		if( ( $bccEmailVoucher = $config->get( 'client/html/email/voucher/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailVoucher as $emailAddr ) {
 				$msg->addBcc( $emailAddr );

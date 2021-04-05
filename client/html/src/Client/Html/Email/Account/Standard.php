@@ -137,6 +137,7 @@ class Standard
 	 */
 	public function getHeader( string $uid = '' ) : string
 	{
+		$config = $this->getContext()->config();
 		$view = $this->getObject()->addData( $this->getView() );
 
 		$content = '';
@@ -153,10 +154,12 @@ class Standard
 		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
 
+		$fromName = $config->get( 'resource/email/from-name' );
+
 		/** client/html/email/from-name
 		 * @see client/html/email/account/from-email
 		 */
-		$fromName = $view->config( 'client/html/email/from-name' );
+		$fromName = $config->get( 'client/html/email/from-name', $fromName );
 
 		/** client/html/email/account/from-name
 		 * Name used when sending account creation e-mails
@@ -173,12 +176,14 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		$fromNameAccount = $view->config( 'client/html/email/account/from-name', $fromName );
+		$fromNameAccount = $config->get( 'client/html/email/account/from-name', $fromName );
+
+		$fromEmail = $config->get( 'resource/email/from-email' );
 
 		/** client/html/email/from-email
 		 * @see client/html/email/account/from-email
 		 */
-		$fromEmail = $view->config( 'client/html/email/from-email' );
+		$fromEmail = $config->get( 'client/html/email/from-email', $fromEmail );
 
 		/** client/html/email/account/from-email
 		 * E-Mail address used when sending account creation e-mails
@@ -195,7 +200,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $fromEmailAccount = $view->config( 'client/html/email/account/from-email', $fromEmail ) ) != null ) {
+		if( ( $fromEmailAccount = $config->get( 'client/html/email/account/from-email', $fromEmail ) ) != null ) {
 			$msg->addFrom( $fromEmailAccount, $fromNameAccount );
 		}
 
@@ -203,7 +208,7 @@ class Standard
 		/** client/html/email/reply-name
 		 * @see client/html/email/account/reply-email
 		 */
-		$replyName = $view->config( 'client/html/email/reply-name', $fromName );
+		$replyName = $config->get( 'client/html/email/reply-name', $fromName );
 
 		/** client/html/email/account/reply-name
 		 * Recipient name displayed when the customer replies to account creation e-mails
@@ -222,12 +227,12 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		$replyNameAccount = $view->config( 'client/html/email/account/reply-name', $replyName );
+		$replyNameAccount = $config->get( 'client/html/email/account/reply-name', $replyName );
 
 		/** client/html/email/reply-email
 		 * @see client/html/email/account/reply-email
 		 */
-		$replyEmail = $view->config( 'client/html/email/reply-email', $fromEmail );
+		$replyEmail = $config->get( 'client/html/email/reply-email', $fromEmail );
 
 		/** client/html/email/account/reply-email
 		 * E-Mail address used by the customer when replying to account creation e-mails
@@ -245,7 +250,7 @@ class Standard
 		 * @see client/html/email/from-email
 		 * @see client/html/email/bcc-email
 		 */
-		if( ( $replyEmailAccount = $view->config( 'client/html/email/account/reply-email', $replyEmail ) ) != null ) {
+		if( ( $replyEmailAccount = $config->get( 'client/html/email/account/reply-email', $replyEmail ) ) != null ) {
 			$msg->addReplyTo( $replyEmailAccount, $replyNameAccount );
 		}
 
@@ -253,7 +258,7 @@ class Standard
 		/** client/html/email/bcc-email
 		 * @see client/html/email/account/bcc-email
 		 */
-		$bccEmail = $view->config( 'client/html/email/bcc-email' );
+		$bccEmail = $config->get( 'client/html/email/bcc-email' );
 
 		/** client/html/email/account/bcc-email
 		 * E-Mail address all account creation e-mails should be also sent to
@@ -277,7 +282,7 @@ class Standard
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
 		 */
-		if( ( $bccEmailAccount = $view->config( 'client/html/email/account/bcc-email', $bccEmail ) ) != null )
+		if( ( $bccEmailAccount = $config->get( 'client/html/email/account/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailAccount as $emailAddr ) {
 				$msg->addBcc( $emailAddr );
