@@ -123,7 +123,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
 							<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
-								<div class="media-item" style="background-imag: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"></div>
+								<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"></div>
 							<?php else : ?>
 								<div class="media-item"></div>
 							<?php endif ?>
