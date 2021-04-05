@@ -44,7 +44,10 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 						<noscript>
 							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
-								<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+								<img alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
+									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
+									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+								/>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
 							</div>
 						</noscript>
@@ -54,9 +57,9 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 								<img class="lazy-image"
 									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
 									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
-									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
+									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-									alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
+									alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
 								/>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
 							</div>

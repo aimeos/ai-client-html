@@ -178,7 +178,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 						<noscript>
 							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
-								<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+								<img alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
+									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+								/>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
 							</div>
 						</noscript>

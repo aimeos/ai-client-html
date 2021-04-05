@@ -29,7 +29,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	$priceItems = $productItem->getRefItems( 'price', 'default', 'default' );
 
 	if( ( $mediaItem = $mediaItems->first() ) !== null ) {
-		$media = 'background-image: url(' . $enc->attr( $this->content( $mediaItem->getPreview() ) ) . ')';
+		$media = 'background-image: url(' . $this->content( $mediaItem->getPreview() ) . ')';
 	}
 
 	if( ( $priceItem = $priceItems->first() ) !== null ) {
@@ -42,7 +42,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 		'html' => '
 			<li class="aimeos catalog-suggest">
 				<a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config ) ) . '">
-					<div class="item-image" style="' . $media . '"></div>
+					<div class="item-image" style="' . $enc->attr( $media ) . '"></div>
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 					<div class="item-price">' . $enc->html( $price ) . '</div>
 				</a>
