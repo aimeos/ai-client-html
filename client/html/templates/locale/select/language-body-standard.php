@@ -30,26 +30,26 @@ $config = $this->config( 'client/html/locale/select/language/url/config', [] );
 
 
 ?>
-<?php $this->block()->start( 'locale/select/language' ); ?>
+<?php $this->block()->start( 'locale/select/language' ) ?>
 <div class="locale-select-language">
-	<h2 class="header"><?= $this->translate( 'client', 'Select language' ); ?></h2>
+	<h2 class="header"><?= $this->translate( 'client', 'Select language' ) ?></h2>
 
 	<ul class="select-menu">
-		<li class="select-dropdown select-current"><a href="#"><?= $this->translate( 'language', $this->get( 'selectLanguageId', 'en' ) ); ?></a>
+		<li class="select-dropdown select-current"><a href="#"><?= $this->translate( 'language', $this->get( 'selectLanguageId', 'en' ) ) ?></a>
 			<ul class="select-dropdown">
 
 				<?php foreach( $this->get( 'selectMap', [] ) as $lang => $list ) : ?>
-					<li class="select-item <?= ( $lang === $this->get( 'selectLanguageId', 'en' ) ? 'active' : '' ); ?>">
-						<a href="<?= $enc->attr( $this->url( $this->request()->getTarget(), $this->param( 'controller' ), $this->param( 'action' ), array_merge( $this->get( 'selectParams', [] ), $list[$this->get( 'selectCurrencyId', 'EUR' )] ?? current( $list ) ), [], $config ) ); ?>">
-							<?= $enc->html( $this->translate( 'language', $lang ), $enc::TRUST ); ?>
+					<li class="select-item <?= ( $lang === $this->get( 'selectLanguageId', 'en' ) ? 'active' : '' ) ?>">
+						<a href="<?= $enc->attr( $this->url( $this->request()->getTarget(), $this->param( 'controller' ), $this->param( 'action' ), array_merge( $this->get( 'selectParams', [] ), $list[$this->get( 'selectCurrencyId', 'EUR' )] ?? current( $list ) ), [], $config ) ) ?>">
+							<?= $enc->html( $this->translate( 'language', $lang ), $enc::TRUST ) ?>
 						</a>
 					</li>
-				<?php endforeach; ?>
+				<?php endforeach ?>
 
 			</ul>
 		</li>
 	</ul>
 
 </div>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'locale/select/language' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'locale/select/language' ) ?>

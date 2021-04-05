@@ -91,12 +91,12 @@ $enc = $this->encoder();
 
 	<?php foreach( $this->typemap( $this->productItem->getRefItems( 'attribute', null, 'config' ) ) as $code => $attributes ) : ?>
 
-		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) ); ?>">
-			<label for="select-<?= $enc->attr( $code ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ); ?></label>
+		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) ) ?>">
+			<label for="select-<?= $enc->attr( $code ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
-				<div class="select-hint"><?= $enc->html( $hint ); ?></div>
-			<?php endif; ?>
+				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
+			<?php endif ?>
 
 			<div class="select-value">
 
@@ -107,47 +107,47 @@ $enc = $this->encoder();
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
 
 							<li class="input-group select-entry">
-								<input type="hidden" value="<?= $enc->attr( $attrId ); ?>"
-									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ); ?>"
+								<input type="hidden" value="<?= $enc->attr( $attrId ) ?>"
+									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
 								/>
-								<input class="form-control select-option" id="option-<?= $enc->attr( $attrId ); ?>" type="number" value="0" step="1" min="0"
-									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ); ?>"
+								<input class="form-control select-option" id="option-<?= $enc->attr( $attrId ) ?>" type="number" value="0" step="1" min="0"
+									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>"
 								/><!--
-								--><label class="form-control select-label" for="option-<?= $enc->attr( $attrId ); ?>">
+								--><label class="form-control select-label" for="option-<?= $enc->attr( $attrId ) ?>">
 									<?= $enc->html( $this->attrname( $attribute ) ) ?>
 								</label>
 							</li>
 
-						<?php endforeach; ?>
+						<?php endforeach ?>
 
 					</ul>
 
 				<?php else : ?>
 
-					<input type="hidden" value="1" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ); ?>" />
+					<input type="hidden" value="1" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>" />
 					<select id="select-<?= $enc->attr( $code ) ?>" class="form-control select-list"
-						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ); ?>">
+						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>">
 
 						<?php if( $this->config( 'client/html/catalog/attribute/preselect/' . $code, false ) === false ) : ?>
-							<option class="select-option" value=""><?= $enc->html( $this->translate( 'client', 'none' ) ); ?></option>
-						<?php endif; ?>
+							<option class="select-option" value=""><?= $enc->html( $this->translate( 'client', 'none' ) ) ?></option>
+						<?php endif ?>
 
 						<?php foreach( $attributes as $id => $attribute ) : ?>
 
-							<option class="select-option" value="<?= $enc->attr( $id ); ?>">
+							<option class="select-option" value="<?= $enc->attr( $id ) ?>">
 								<?= $enc->html( $this->attrname( $attribute ) ) ?>
 							</option>
 
-						<?php endforeach; ?>
+						<?php endforeach ?>
 
 					</select>
 
-				<?php endif; ?>
+				<?php endif ?>
 
 			</div>
 		</li>
 
-	<?php endforeach; ?>
+	<?php endforeach ?>
 
 </ul>
 
@@ -156,31 +156,31 @@ $enc = $this->encoder();
 
 	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'custom' ) as $id => $attribute ) : $key = $attribute->getType() . '-' . $attribute->getCode() ?>
 
-		<li class="select-item <?= $enc->attr( $key ); ?>">
-			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ); ?></label>
+		<li class="select-item <?= $enc->attr( $key ) ?>">
+			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $key . '-hint', null, 0, false ) ) : ?>
-				<div class="select-hint"><?= $enc->html( $hint ); ?></div>
-			<?php endif; ?>
+				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
+			<?php endif ?>
 
 			<div class="select-value">
 
 				<?php switch( $attribute->getType() ) : case 'price': ?>
 					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="number" min="0.01" step="0.01"
-						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ); ?>"
+						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>"
 						<?php if( $price = $this->productItem->getRefItems( 'price', 'default', 'default' )->first() ) : ?>
-							value="<?= $enc->attr( $price->getValue() ); ?>"
-						<?php endif; ?>
+							value="<?= $enc->attr( $price->getValue() ) ?>"
+						<?php endif ?>
 					/>
 				<?php break; case 'date': ?>
-					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="date" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ); ?>" />
+					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="date" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>" />
 				<?php break; default: ?>
-					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="text" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ); ?>" />
-				<?php endswitch; ?>
+					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="text" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>" />
+				<?php endswitch ?>
 
 			</div>
 		</li>
 
-	<?php endforeach; ?>
+	<?php endforeach ?>
 
 </ul>

@@ -14,10 +14,10 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 
 ?>
-<?php $this->block()->start( 'basket/related/bought' ); ?>
+<?php $this->block()->start( 'basket/related/bought' ) ?>
 	<?php if( !$this->get( 'boughtItems', map() )->isEmpty() ) : ?>
 		<section class="basket-related-bought">
-			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ); ?></h2>
+			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ) ?></h2>
 
 			<?= $this->partial(
 				$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
@@ -31,6 +31,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 		</section>
 
-	<?php endif; ?>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'basket/related/bought' ); ?>
+	<?php endif ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'basket/related/bought' ) ?>

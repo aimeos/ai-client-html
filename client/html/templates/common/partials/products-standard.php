@@ -161,16 +161,16 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 <ul class="list-items">
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
-		<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter ); ?>
+		<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter ) ?>
 
-		<li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ); ?>"
-			data-reqstock="<?= (int) $this->get( 'require-stock', true ); ?>"
-			itemprop="<?= $this->get( 'itemprop' ); ?>"
+		<li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
+			data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
+			itemprop="<?= $this->get( 'itemprop' ) ?>"
 			itemtype="http://schema.org/Product"
 			itemscope="" >
 
 
-			<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
+			<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
 
 				<div class="media-list">
 
@@ -182,7 +182,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 								/>
-								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
+								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>" />
 							</div>
 						</noscript>
 
@@ -192,14 +192,14 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 								<img class="lazy-image"
 									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
 									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
-									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
+									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 								/>
 							</div>
 
-						<?php endforeach; ?>
-					<?php endif; ?>
+						<?php endforeach ?>
+					<?php endif ?>
 
 				</div>
 
@@ -211,18 +211,18 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 				<div class="text-list">
 					<?php if( !( $suppliers = $productItem->getSupplierItems() )->isEmpty() ) : ?>
-						<h3 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ); ?></h3>
+						<h3 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ) ?></h3>
 					<?php endif ?>
 
-					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
+					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
 
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 
 						<div class="text-item" itemprop="description">
-							<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
+							<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
 						</div>
 
-					<?php endforeach; ?>
+					<?php endforeach ?>
 
 				</div>
 
@@ -233,25 +233,25 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 				<div class="stock-list">
 					<div class="articleitem stock-actual"
-						data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
-						data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
+						data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
+						data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
 					</div>
 
 					<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
 
 						<div class="articleitem"
-							data-prodid="<?= $enc->attr( $articleId ); ?>"
-							data-prodcode="<?= $enc->attr( $articleItem->getCode() ); ?>">
+							data-prodid="<?= $enc->attr( $articleId ) ?>"
+							data-prodcode="<?= $enc->attr( $articleItem->getCode() ) ?>">
 						</div>
 
-					<?php endforeach; ?>
+					<?php endforeach ?>
 
 				</div>
 
 				<div class="price-list">
 					<div class="articleitem price price-actual"
-						data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
-						data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
+						data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
+						data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
 
 						<?= $this->partial(
 							/** client/html/common/partials/price
@@ -271,7 +271,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							 */
 							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 							['prices' => $productItem->getRefItems( 'price', null, 'default' )]
-						); ?>
+						) ?>
 
 					</div>
 
@@ -280,17 +280,17 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 
 								<div class="articleitem price"
-									data-prodid="<?= $enc->attr( $prodid ); ?>"
-									data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
+									data-prodid="<?= $enc->attr( $prodid ) ?>"
+									data-prodcode="<?= $enc->attr( $product->getCode() ) ?>">
 									<?= $this->partial(
 										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 										array( 'prices' => $prices )
-									); ?>
+									) ?>
 								</div>
 
-							<?php endif; ?>
-						<?php endforeach; ?>
-					<?php endif; ?>
+							<?php endif ?>
+						<?php endforeach ?>
+					<?php endif ?>
 				</div>
 
 			</div>
@@ -304,9 +304,9 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 				?>
 
-				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
+				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
 					<!-- catalog.lists.items.csrf -->
-					<?= $this->csrf()->formfield(); ?>
+					<?= $this->csrf()->formfield() ?>
 					<!-- catalog.lists.items.csrf -->
 
 					<?php if( $basketSite = $this->config( 'client/html/basket/standard/url/site' ) ) : ?>
@@ -319,17 +319,17 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
 								['productItems' => $productItem->getRefItems( 'product', 'default', 'default' )]
-							); ?>
+							) ?>
 						</div>
 
-					<?php endif; ?>
+					<?php endif ?>
 
 					<div class="items-attribute">
 
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
 							['productItem' => $productItem]
-						); ?>
+						) ?>
 
 					</div>
 
@@ -337,31 +337,31 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<div class="addbasket">
 							<div class="input-group">
 								<input type="hidden" value="add"
-									name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
+									name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>"
 								/>
-								<input type="hidden" value="<?= $id; ?>"
-									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+								<input type="hidden" value="<?= $id ?>"
+									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ) ?>"
 								/>
 								<input type="number" max="2147483647" maxlength="10"
 									value="<?= $enc->attr( $productItem->getScale() ) ?>"
 									min="<?= $enc->attr( $productItem->getScale() ) ?>"
 									step="<?= $enc->attr( $productItem->getScale() ) ?>"
 									required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
-									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ) ?>"
 								/><!--
 								--><button class="btn btn-primary" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
-									<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+									<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 								</button>
 							</div>
 						</div>
-					<?php endif; ?>
+					<?php endif ?>
 
 				</form>
 
-			<?php endif; ?>
+			<?php endif ?>
 
 		</li>
 
-	<?php endforeach; ?>
+	<?php endforeach ?>
 
 </ul>

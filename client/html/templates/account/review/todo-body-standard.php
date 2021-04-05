@@ -102,7 +102,7 @@ $productItems = $this->get( 'todoProductItems', map() );
 		<h1 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h1>
 
 		<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/review/url' ) ) ?>">
-			<?= $this->csrf()->formfield(); ?>
+			<?= $this->csrf()->formfield() ?>
 
 			<?php foreach( $productItems as $prodId => $productItem ) : ?>
 				<?php $images = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
@@ -177,7 +177,7 @@ $productItems = $this->get( 'todoProductItems', map() );
 
 		</form>
 
-		<?= $this->get( 'todoBody' ); ?>
+		<?= $this->get( 'todoBody' ) ?>
 
 	</div>
 

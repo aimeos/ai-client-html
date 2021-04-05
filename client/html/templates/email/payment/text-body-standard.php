@@ -27,11 +27,11 @@
  */
 
 ?>
-<?php $this->block()->start( 'email/payment/text' ); ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ); ?>
+<?php $this->block()->start( 'email/payment/text' ) ?>
+<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ) ?>
 
 
-<?= wordwrap( strip_tags( $this->get( 'message' ) ) ); ?>
+<?= wordwrap( strip_tags( $this->get( 'message' ) ) ) ?>
 
 
 <?= $this->partial(
@@ -44,12 +44,12 @@
 		'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
 		'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 )
 	)
-); ?>
+) ?>
 
 
-<?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ) ?>
 
 
-<?= wordwrap( strip_tags( $this->translate( 'client', 'All orders are subject to our terms and conditions.' ) ) ); ?>
-<?php $this->block()->stop(); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'All orders are subject to our terms and conditions.' ) ) ) ?>
+<?php $this->block()->stop() ?>
 <?= $this->block()->get( 'email/payment/text' );

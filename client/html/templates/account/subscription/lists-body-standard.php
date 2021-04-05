@@ -85,12 +85,12 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 
 ?>
-<?php $this->block()->start( 'account/subscription/list' ); ?>
+<?php $this->block()->start( 'account/subscription/list' ) ?>
 
 <?php if( !$this->get( 'listsItems', map() )->isEmpty() ) : ?>
 
 	<div class="account-subscription-list">
-		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ); ?></h1>
+		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h1>
 
 		<div class="subscription-list">
 
@@ -114,24 +114,24 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 							<div class="col-md-6">
 								<div class="subscription-created row">
 									<span class="name col-5">
-										<?= $enc->html( $this->translate( 'client', 'Created' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Created' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
-										<?= $enc->html( date_create( $item->getTimeCreated() )->format( $dateformat ) ); ?>
+										<?= $enc->html( date_create( $item->getTimeCreated() )->format( $dateformat ) ) ?>
 									</span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="subscription-interval row">
 									<span class="name col-5">
-										<?= $enc->html( $this->translate( 'client', 'Interval' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Interval' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
 										<?php if( $interval = $this->get( 'listsIntervalItems', map() )->get( $item->getInterval() ) ) : ?>
-											<?= $enc->html( $interval->getName(), $enc::TRUST ); ?>
+											<?= $enc->html( $interval->getName(), $enc::TRUST ) ?>
 										<?php else : ?>
-											<?= $enc->html( $item->getInterval(), $enc::TRUST ); ?>
-										<?php endif; ?>
+											<?= $enc->html( $item->getInterval(), $enc::TRUST ) ?>
+										<?php endif ?>
 									</span>
 								</div>
 							</div>
@@ -140,24 +140,24 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 							<div class="col-md-6">
 								<div class="subscription-datenext row">
 									<span class="name col-5">
-										<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
 										<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
-											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
-										<?php endif; ?>
+											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ) ?>
+										<?php endif ?>
 									</span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="subscription-dateend row">
 									<span class="name col-5">
-										<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
 										<?php if( ( $date = $item->getDateEnd() ) != null ) : ?>
-											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ); ?>
-										<?php endif; ?>
+											<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ) ?>
+										<?php endif ?>
 									</span>
 								</div>
 							</div>
@@ -166,19 +166,19 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 					<div class="action col-md-2">
 						<?php $params = ['sub_action' => 'detail', 'sub_id' => $id] ?>
-						<a class="btn btn-outline" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+						<a class="btn btn-outline" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', 'Show' ) ) ?>
 						</a>
 					</div>
 				</div>
 
-			<?php endforeach; ?>
+			<?php endforeach ?>
 
 		</div>
 
 	</div>
 
-<?php endif; ?>
+<?php endif ?>
 
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'account/subscription/list' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'account/subscription/list' ) ?>

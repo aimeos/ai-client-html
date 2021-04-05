@@ -9,11 +9,11 @@
 $enc = $this->encoder();
 
 ?>
-<?php $this->block()->start( 'checkout/confirm/intro' ); ?>
+<?php $this->block()->start( 'checkout/confirm/intro' ) ?>
 <div class="checkout-confirm-intro">
 	<p class="note"><?= nl2br( $enc->html( $this->translate( 'client', 'Unfortunately, the payment for your order was refused.
-Do you wish to retry?' ), $enc::TRUST ) ); ?></p>
-<?= $this->get( 'introBody' ); ?>
+Do you wish to retry?' ), $enc::TRUST ) ) ?></p>
+<?= $this->get( 'introBody' ) ?>
 </div>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'checkout/confirm/intro' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'checkout/confirm/intro' ) ?>

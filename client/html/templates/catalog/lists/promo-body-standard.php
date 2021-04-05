@@ -7,11 +7,11 @@
 
 
 ?>
-<?php $this->block()->start( 'catalog/lists/promo' ); ?>
+<?php $this->block()->start( 'catalog/lists/promo' ) ?>
 
 <?php if( !$this->get( 'promoItems', map() )->isEmpty() ) : ?>
 	<section class="catalog-list-promo">
-		<h2 class="header"><?= $this->translate( 'client', 'Top seller' ); ?></h2>
+		<h2 class="header"><?= $this->translate( 'client', 'Top seller' ) ?></h2>
 		<?= $this->partial(
 			/** client/html/common/partials/products
 			 * Relative path to the products partial template file
@@ -26,9 +26,9 @@
 			 */
 			$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
 			['products' => $this->get( 'promoItems', map() )]
-		); ?>
+		) ?>
 	</section>
-<?php endif; ?>
+<?php endif ?>
 
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'catalog/lists/promo' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'catalog/lists/promo' ) ?>

@@ -9,7 +9,7 @@
 $enc = $this->encoder();
 
 ?>
-<?php $this->block()->start( 'catalog/stage/navigator' ); ?>
+<?php $this->block()->start( 'catalog/stage/navigator' ) ?>
 <!-- catalog.stage.navigator -->
 
 	<?php if( $this->param( 'd_pos' ) !== null ) : ?>
@@ -17,21 +17,21 @@ $enc = $this->encoder();
 			<nav>
 
 				<?php if( isset( $this->navigationPrev ) ) : ?>
-					<a class="prev" href="<?= $enc->attr( $this->navigationPrev ); ?>" rel="prev">
-						<?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ); ?>
+					<a class="prev" href="<?= $enc->attr( $this->navigationPrev ) ?>" rel="prev">
+						<?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ) ?>
 					</a>
-				<?php endif; ?>
+				<?php endif ?>
 
 				<?php if( isset( $this->navigationNext ) ) : ?>
-					<a class="next" href="<?= $enc->attr( $this->navigationNext ); ?>" rel="next">
-						<?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ); ?>
+					<a class="next" href="<?= $enc->attr( $this->navigationNext ) ?>" rel="next">
+						<?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ) ?>
 					</a>
-				<?php endif; ?>
+				<?php endif ?>
 
 			</nav>
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
 
 <!-- catalog.stage.navigator -->
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'catalog/stage/navigator' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'catalog/stage/navigator' ) ?>

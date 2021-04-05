@@ -14,16 +14,16 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'subscriptionErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?= $enc->html( $error ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $error ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
-	<?= $this->get( 'subscriptionBody' ); ?>
+	<?= $this->get( 'subscriptionBody' ) ?>
 
 </section>

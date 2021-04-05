@@ -92,20 +92,20 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos account-favorite" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos account-favorite" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'favoriteErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?= $enc->html( $error ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $error ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 
 	<?php if( !$this->get( 'favoriteItems', map() )->isEmpty() ) : ?>
 
-		<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ); ?></h1>
+		<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ) ?></h1>
 
 		<ul class="favorite-items">
 
@@ -113,33 +113,33 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
 					<li class="favorite-item">
-						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $this->get( 'favoriteParams', [] ); ?>
-						<a class="modify" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>">
-							<?= $this->translate( 'client', 'X' ); ?>
+						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $this->get( 'favoriteParams', [] ) ?>
+						<a class="modify" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>">
+							<?= $this->translate( 'client', 'X' ) ?>
 						</a>
 
-						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ); ?>
-						<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
-							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
+						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
+						<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
+							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
 							<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
-								<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"></div>
+								<div class="media-item" style="background-imag: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"></div>
 							<?php else : ?>
 								<div class="media-item"></div>
-							<?php endif; ?>
+							<?php endif ?>
 
-							<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
+							<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h3>
 							<div class="price-list">
 								<?= $this->partial(
 									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 									array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
-								); ?>
+								) ?>
 							</div>
 						</a>
 					</li>
 
-				<?php endif; ?>
-			<?php endforeach; ?>
+				<?php endif ?>
+			<?php endforeach ?>
 
 		</ul>
 
@@ -151,14 +151,14 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				</div>
 				<div class="browser">
 
-					<?php $params = array( 'fav_page' => $this->favoritePageFirst ) + $this->get( 'favoriteParams', [] ); ?>
-					<a class="first" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>">
-						<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ); ?>
+					<?php $params = array( 'fav_page' => $this->favoritePageFirst ) + $this->get( 'favoriteParams', [] ) ?>
+					<a class="first" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ) ?>
 					</a>
 
-					<?php $params = array( 'fav_page' => $this->favoritePagePrev ) + $this->get( 'favoriteParams', [] ); ?>
-					<a class="prev" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>" rel="prev">
-						<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ); ?>
+					<?php $params = array( 'fav_page' => $this->favoritePagePrev ) + $this->get( 'favoriteParams', [] ) ?>
+					<a class="prev" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>" rel="prev">
+						<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ) ?>
 					</a>
 
 					<span>
@@ -166,24 +166,24 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							$this->translate( 'client', 'Page %1$d of %2$d' ),
 							$this->get( 'favoritePageCurr', 1 ),
 							$this->get( 'favoritePageLast', 1 )
-						) ); ?>
+						) ) ?>
 					</span>
 
-					<?php $params = array( 'fav_page' => $this->favoritePageNext ) + $this->get( 'favoriteParams', [] ); ?>
-					<a class="next" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>" rel="next">
-						<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ); ?>
+					<?php $params = array( 'fav_page' => $this->favoritePageNext ) + $this->get( 'favoriteParams', [] ) ?>
+					<a class="next" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>" rel="next">
+						<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ) ?>
 					</a>
 
-					<?php $params = array( 'fav_page' => $this->favoritePageLast ) + $this->get( 'favoriteParams', [] ); ?>
-					<a class="last" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ); ?>">
-						<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ); ?>
+					<?php $params = array( 'fav_page' => $this->favoritePageLast ) + $this->get( 'favoriteParams', [] ) ?>
+					<a class="last" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ) ?>
 					</a>
 
 				</div>
 			</nav>
 
-		<?php endif; ?>
+		<?php endif ?>
 
-	<?php endif; ?>
+	<?php endif ?>
 
 </section>

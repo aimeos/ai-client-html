@@ -29,12 +29,12 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
 		<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>" />
-		<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
+		<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>" />
 	<?php endforeach ?>
 
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
-		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ); ?>" />
-	<?php endforeach; ?>
+		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>" />
+	<?php endforeach ?>
 
 	<meta name="twitter:card" content="summary_large_image" />
 
@@ -46,8 +46,8 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 
 <?php if( isset( $this->homeStockUrl ) ) : ?>
 	<?php foreach( $this->homeStockUrl as $url ) : ?>
-		<script type="text/javascript" defer="defer" src="<?= $enc->attr( $url ); ?>"></script>
+		<script type="text/javascript" defer="defer" src="<?= $enc->attr( $url ) ?>"></script>
 	<?php endforeach ?>
-<?php endif; ?>
+<?php endif ?>
 
 <meta name="application-name" content="Aimeos" />

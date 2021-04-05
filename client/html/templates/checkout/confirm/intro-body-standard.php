@@ -9,8 +9,8 @@
 $enc = $this->encoder();
 
 ?>
-<?php $this->block()->start( 'checkout/confirm/intro' ); ?>
+<?php $this->block()->start( 'checkout/confirm/intro' ) ?>
 <div class="checkout-confirm-intro">
 </div>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'checkout/confirm/intro' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'checkout/confirm/intro' ) ?>

@@ -6,7 +6,7 @@
  */
 
 ?>
-<?php $this->block()->start( 'email/voucher' ); ?>
-<?= $this->get( 'voucherBody' ); ?>
-<?php $this->block()->stop(); ?>
+<?php $this->block()->start( 'email/voucher' ) ?>
+<?= $this->get( 'voucherBody' ) ?>
+<?php $this->block()->stop() ?>
 <?= $this->block()->get( 'email/voucher' );

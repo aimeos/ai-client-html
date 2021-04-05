@@ -25,28 +25,28 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->standardErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->standardErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 
 
 	<?php if( isset( $this->standardBasket ) ) : ?>
-		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?></h1>
+		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
 
-		<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
-			<?= $this->csrf()->formfield(); ?>
+		<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
+			<?= $this->csrf()->formfield() ?>
 
 
 			<div class="common-summary-detail">
 				<div class="header">
-					<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
+					<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
 				</div>
 
 				<div class="basket table-responsive">
@@ -73,34 +73,34 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							'summaryCostsPayment' => $this->get( 'standardCostsPayment', 0 ),
 							'summaryCostsDelivery' => $this->get( 'standardCostsDelivery', 0 ),
 						)
-					); ?>
+					) ?>
 				</div>
 			</div>
 
 
 			<div class="basket-standard-coupon">
 				<div class="header">
-					<h2><?= $enc->html( $this->translate( 'client', 'Coupon codes' ) ); ?></h2>
+					<h2><?= $enc->html( $this->translate( 'client', 'Coupon codes' ) ) ?></h2>
 				</div>
 
 				<div class="content">
-					<?php $coupons = $this->standardBasket->getCoupons(); ?>
+					<?php $coupons = $this->standardBasket->getCoupons() ?>
 
 					<div class="input-group coupon-new">
-						<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ); ?>" type="text" maxlength="255" /><!--
-						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ); ?></button>
+						<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>" type="text" maxlength="255" /><!--
+						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ) ?></button>
 					</div>
 
 					<?php if( !$coupons->isEmpty() ) : ?>
 						<ul class="attr-list">
-							<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ); ?>
+							<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ) ?>
 							<li class="attr-item">
-								<span class="coupon-code"><?= $enc->html( $code ); ?></span>
-								<a class="minibutton delete" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ); ?>"></a>
+								<span class="coupon-code"><?= $enc->html( $code ) ?></span>
+								<a class="minibutton delete" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ) ?>"></a>
 							</li>
-							<?php endforeach; ?>
+							<?php endforeach ?>
 						</ul>
-					<?php endif; ?>
+					<?php endif ?>
 				</div>
 			</div>
 
@@ -108,30 +108,30 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 			<div class="button-group">
 
 				<?php if( isset( $this->standardBackUrl ) ) : ?>
-					<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->standardBackUrl ); ?>">
-						<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ); ?>
+					<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->standardBackUrl ) ?>">
+						<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ) ?>
 					</a>
-				<?php endif; ?>
+				<?php endif ?>
 
 				<button class="btn btn-default btn-lg btn-update" type="submit">
-					<?= $enc->html( $this->translate( 'client', 'Update' ), $enc::TRUST ); ?>
+					<?= $enc->html( $this->translate( 'client', 'Update' ), $enc::TRUST ) ?>
 				</button>
 
 				<?php if( $this->get( 'standardCheckout', false ) === true ) : ?>
 					<a class="btn btn-primary btn-lg btn-action"
-						href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, [], [], $checkoutConfig ) ); ?>">
-						<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ); ?>
+						href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, [], [], $checkoutConfig ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ) ?>
 					</a>
 				<?php else : ?>
 					<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1" />
 					<button class="btn btn-primary btn-lg btn-action" type="submit">
-						<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ); ?>
+						<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ) ?>
 					</button>
-				<?php endif; ?>
+				<?php endif ?>
 
 			</div>
 		</form>
 
-	<?php endif; ?>
+	<?php endif ?>
 
 </section>
