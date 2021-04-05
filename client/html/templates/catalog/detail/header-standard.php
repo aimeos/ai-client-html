@@ -39,34 +39,34 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<title><?= $enc->html( strip_tags( $this->detailProductItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
 		<?php $params = array_diff_key( ['d_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
-		<link rel="canonical" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ) ?>" />
+		<link rel="canonical" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ) ?>">
 
-		<meta property="og:type" content="product" />
-		<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->detailProductItem->getName() ) ) ?>" />
-		<meta property="og:url" content="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ) ?>" />
+		<meta property="og:type" content="product">
+		<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->detailProductItem->getName() ) ) ?>">
+		<meta property="og:url" content="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>" />
+			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>">
 		<?php endforeach ?>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
-			<meta property="og:description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>" />
-			<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>" />
+			<meta property="og:description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
+			<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 		<?php endforeach ?>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
-			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>" />
+			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 		<?php endforeach ?>
 
 		<?php if( ( $priceItem = $this->detailProductItem->getRefItems( 'price', 'default', 'default' )->first() ) !== null ) : ?>
-			<meta property="product:price:amount" content="<?= $enc->attr( $priceItem->getValue() ) ?>" />
-			<meta property="product:price:currency" content="<?= $enc->attr( $priceItem->getCurrencyId() ) ?>" />
+			<meta property="product:price:amount" content="<?= $enc->attr( $priceItem->getValue() ) ?>">
+			<meta property="product:price:currency" content="<?= $enc->attr( $priceItem->getCurrencyId() ) ?>">
 		<?php endif ?>
 
-		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:card" content="summary_large_image">
 	<?php endif ?>
 
-	<meta name="application-name" content="Aimeos" />
+	<meta name="application-name" content="Aimeos">
 
 <?php endif ?>
 

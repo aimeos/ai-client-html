@@ -28,7 +28,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 ?>
 <?php $this->block()->start( 'checkout/standard/summary' ) ?>
 <section class="checkout-standard-summary common-summary">
-	<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_order' ) ) ) ?>" value="1" />
+	<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_order' ) ) ) ?>" value="1">
 
 	<h1><?= $enc->html( $this->translate( 'client', 'summary' ), $enc::TRUST ) ?></h1>
 	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please check your order' ), $enc::TRUST ) ?></p>
@@ -173,7 +173,7 @@ $basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $bas
 			</div>
 
 			<div class="content">
-				<input class="customerref-value" name="<?= $this->formparam( array( 'cs_customerref' ) ) ?>" value="<?= $enc->attr( $this->standardBasket->getCustomerReference() ) ?>" />
+				<input class="customerref-value" name="<?= $this->formparam( array( 'cs_customerref' ) ) ?>" value="<?= $enc->attr( $this->standardBasket->getCustomerReference() ) ?>">
 			</div>
 		</div><!--
 

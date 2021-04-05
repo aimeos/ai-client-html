@@ -21,7 +21,7 @@ $type = $this->get( 'type' );
 	<div class="item">
 		<?php if( ( $url = $service->getMediaUrl() ) != '' ) : ?>
 			<div class="item-icons">
-				<img src="<?= $enc->attr( $this->content( $url ) ) ?>" />
+				<img src="<?= $enc->attr( $this->content( $url ) ) ?>">
 			</div>
 		<?php endif ?>
 		<h4><?= $enc->html( $service->getName() ) ?></h4>

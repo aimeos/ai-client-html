@@ -251,7 +251,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<?php if( !$this->detailProductItem->getRefItems( 'price', 'default', 'default' )->empty() ) : ?>
 							<div class="addbasket">
 								<div class="input-group">
-									<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" />
+									<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ) ?>"
 										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"

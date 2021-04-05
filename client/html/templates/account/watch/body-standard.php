@@ -137,8 +137,8 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 						<?php $url = $this->url( $watchTarget, $watchController, $watchAction, $this->get( 'watchParams', [] ), [], $watchConfig ) ?>
 						<form class="watch-details" method="POST" action="<?= $enc->attr( $url ) ?>">
-							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_action' ) ) ) ?>" value="edit" />
-							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ) ?>" value="<?= $enc->attr( $listItem->getRefId() ) ?>" />
+							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_action' ) ) ) ?>" value="edit">
+							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ) ?>" value="<?= $enc->attr( $listItem->getRefId() ) ?>">
 							<?= $this->csrf()->formfield() ?>
 
 							<ul class="form-list">

@@ -67,7 +67,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 	<?php endif ?>
 
 
-	<input type="hidden" name="<?php echo $enc->attr( $this->formparam( ['cp_payment'], $prefix ) ) ?>" value="1" />
+	<input type="hidden" name="<?php echo $enc->attr( $this->formparam( ['cp_payment'], $prefix ) ) ?>" value="1">
 
 	<?php foreach( $this->get( 'standardProcessHidden', [] ) as $id => $item ) : ?>
 		<?php foreach( (array) $item->getDefault() as $key => $value ) : ?>

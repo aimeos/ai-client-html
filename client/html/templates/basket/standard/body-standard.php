@@ -87,7 +87,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 					<?php $coupons = $this->standardBasket->getCoupons() ?>
 
 					<div class="input-group coupon-new">
-						<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>" type="text" maxlength="255" /><!--
+						<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>" type="text" maxlength="255"><!--
 						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ) ?></button>
 					</div>
 
@@ -123,7 +123,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ) ?>
 					</a>
 				<?php else : ?>
-					<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1" />
+					<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1">
 					<button class="btn btn-primary btn-lg btn-action" type="submit">
 						<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ) ?>
 					</button>

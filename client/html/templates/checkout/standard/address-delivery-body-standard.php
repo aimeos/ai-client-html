@@ -101,7 +101,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ) ?>
 					</label>
 					<div class="col-md-7">
-						<input class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ) ?>" />
+						<input class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ) ?>">
 					</div>
 				</div>
 			</div>

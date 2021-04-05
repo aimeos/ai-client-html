@@ -189,14 +189,14 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 		<?= $this->csrf()->formfield() ?>
 
 		<?php if( $basketSite ) : ?>
-			<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
+			<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
 		<?php endif ?>
 
-		<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" />
+		<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 
 		<?php foreach( $this->summaryBasket->getProducts() as $pos => $orderProduct ) : ?>
-			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'prodid'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getProductId() ) ?>" />
-			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'quantity'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getQuantity() ) ?>" />
+			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'prodid'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getProductId() ) ?>">
+			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'quantity'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getQuantity() ) ?>">
 
 			<?php foreach( $orderProduct->getAttributeItems( 'variant' ) as $attrItem ) : ?>
 				<input type="hidden" value="<?= $enc->attr( $attrItem->getAttributeId() ) ?>"

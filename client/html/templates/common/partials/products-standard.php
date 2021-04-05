@@ -182,7 +182,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 								/>
-								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>" />
+								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
 							</div>
 						</noscript>
 
@@ -310,7 +310,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<!-- catalog.lists.items.csrf -->
 
 					<?php if( $basketSite = $this->config( 'client/html/basket/standard/url/site' ) ) : ?>
-						<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
+						<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
 					<?php endif ?>
 
 					<?php if( $productItem->getType() === 'select' ) : ?>

@@ -49,7 +49,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 								/>
-								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>" />
+								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
 							</div>
 						</noscript>
 
@@ -62,7 +62,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 								/>
-								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>" />
+								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
 							</div>
 						<?php endforeach ?>
 					<?php endif ?>
@@ -139,7 +139,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 						<!-- catalog.lists.items.csrf -->
 
 						<?php if( $basketSite ) : ?>
-							<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
+							<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
 						<?php endif ?>
 
 						<?php if( $productItem->getType() === 'select' ) : ?>

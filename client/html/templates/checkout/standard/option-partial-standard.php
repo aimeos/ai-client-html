@@ -248,7 +248,7 @@ $cancelConfig = $this->config( 'client/html/checkout/standard/summary/option/ter
 	<h3><?= $enc->html( $this->translate( 'client', 'Terms and conditions' ), $enc::TRUST ) ?></h3>
 
 	<div class="single <?= !$this->value( $this->get( 'error', [] ), 'option/terms' ) ?: 'error' ?>">
-		<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms' ) ) ) ?>" value="1" />
+		<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms' ) ) ) ?>" value="1">
 		<input id="option-terms-accept" type="checkbox" value="1"
 			name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms_value' ) ) ) ?>"
 			<?= ( $this->param( 'cs_option_terms_value', null ) == 1 ? 'checked="checked"' : '' ) ?>

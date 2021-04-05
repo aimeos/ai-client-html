@@ -18,25 +18,25 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 
 	<title><?= $enc->html( strip_tags( $this->homeTree->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
-	<meta property="og:type" content="website" />
+	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="<?= $enc->attr( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?>">
-	<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->homeTree->getName() ) ) ?>" />
-	<meta property="og:url" content="<?= $enc->attr( $this->url( $target, $cntl, $action, [], [], $config + ['absoluteUri' => true] ) ) ?>" />
+	<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->homeTree->getName() ) ) ?>">
+	<meta property="og:url" content="<?= $enc->attr( $this->url( $target, $cntl, $action, [], [], $config + ['absoluteUri' => true] ) ) ?>">
 
 	<?php foreach( $this->homeTree->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-		<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>" />
+		<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>">
 	<?php endforeach ?>
 
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
-		<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>" />
-		<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>" />
+		<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>">
+		<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 	<?php endforeach ?>
 
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
-		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>" />
+		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 	<?php endforeach ?>
 
-	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:card" content="summary_large_image">
 
 <?php else : ?>
 
@@ -50,4 +50,4 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 	<?php endforeach ?>
 <?php endif ?>
 
-<meta name="application-name" content="Aimeos" />
+<meta name="application-name" content="Aimeos">

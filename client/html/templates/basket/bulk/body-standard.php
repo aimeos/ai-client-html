@@ -50,10 +50,10 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 		<!-- basket.bulk.csrf -->
 
 		<?php if( $basketSite ) : ?>
-			<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
+			<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
 		<?php endif ?>
 
-		<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" />
+		<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 
 		<table class="table">
 			<thead>
@@ -101,7 +101,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						<input type="hidden" class="productid" disabled="disabled"
 							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'prodid'] ) ) ?>"
 						/>
-						<input type="text" class="form-control search" tabindex="1" disabled="disabled" />
+						<input type="text" class="form-control search" tabindex="1" disabled="disabled">
 						<div class="vattributes"></div>
 					</td>
 					<td class="quantity">

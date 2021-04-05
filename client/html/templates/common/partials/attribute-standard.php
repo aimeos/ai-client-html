@@ -124,7 +124,7 @@ $enc = $this->encoder();
 
 				<?php else : ?>
 
-					<input type="hidden" value="1" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>" />
+					<input type="hidden" value="1" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>">
 					<select id="select-<?= $enc->attr( $code ) ?>" class="form-control select-list"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>">
 
@@ -173,9 +173,9 @@ $enc = $this->encoder();
 						<?php endif ?>
 					/>
 				<?php break; case 'date': ?>
-					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="date" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>" />
+					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="date" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
 				<?php break; default: ?>
-					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="text" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>" />
+					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="text" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
 				<?php endswitch ?>
 
 			</div>

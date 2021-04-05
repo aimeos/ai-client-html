@@ -176,7 +176,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 					<td class="image">
 						<?php if( ( $url = $product->getMediaUrl() ) != '' ) : ?>
-							<img class="detail" src="<?= $enc->attr( $this->content( $url ) ) ?>" />
+							<img class="detail" src="<?= $enc->attr( $this->content( $url ) ) ?>">
 						<?php endif ?>
 					</td>
 
@@ -298,7 +298,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<td class="status"></td>
 					<td class="image">
 						<?php if( ( $url = $service->getMediaUrl() ) != '' ) : ?>
-							<img class="detail" src="<?= $enc->attr( $this->content( $url ) ) ?>" />
+							<img class="detail" src="<?= $enc->attr( $this->content( $url ) ) ?>">
 						<?php endif ?>
 					</td>
 					<td class="details"><?= $enc->html( $service->getName() ) ?></td>
@@ -320,7 +320,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<td class="status"></td>
 					<td class="image">
 						<?php if( ( $url = $service->getMediaUrl() ) != '' ) : ?>
-							<img class="detail" src="<?= $enc->attr( $this->content( $url ) ) ?>" />
+							<img class="detail" src="<?= $enc->attr( $this->content( $url ) ) ?>">
 						<?php endif ?>
 					</td>
 					<td class="details"><?= $enc->html( $service->getName() ) ?></td>
