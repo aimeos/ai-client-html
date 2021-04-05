@@ -132,7 +132,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 						--><span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span>
 					</a>
 
-					<?php if( count( $item->getChildren() ) > 0 ): ?>
+					<?php if( count( $item->getChildren() ) > 0 ) : ?>
 
 						<div id="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>" class="submenu <?= $enc->attr(
 							( $item->hasChildren() ? '' : ' nochild' )

@@ -26,7 +26,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 				. ' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ) ?>"
 				data-id="<?= $item->getId() ?>">
 
-				<?phpif( $item->hasChildren() ) : ?>
+				<?php if( $item->hasChildren() ) : ?>
 					<div class="row item-links">
 						<a class="col-10 item-link" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></a>
 						<a class="col-2 data-link" data-submenu="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>" href="#"></a>
