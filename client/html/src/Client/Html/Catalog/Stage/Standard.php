@@ -440,7 +440,8 @@ class Standard
 			 *
 			 * @see client/html/catalog/stage/domains
 			 */
-			$domains = $config->get( 'client/html/catalog/domains', ['attribute', 'media', 'text'] );
+			$domains = ['attribute', 'media', 'media/property', 'text'];
+			$domains = $config->get( 'client/html/catalog/domains', $domains );
 
 			/** client/html/catalog/stage/domains
 			 * A list of domain names whose items should be available in the catalog stage view template

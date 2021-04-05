@@ -47,6 +47,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 								<img alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 								/>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
 							</div>
@@ -59,7 +60,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-									alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
+									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 								/>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
 							</div>

@@ -50,9 +50,9 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 	<?php break; case 'image': ?>
 
 		<div <?= $boxattr; ?> ><!--
-			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ); ?>" srcset="<?= $enc->attr( $this->imageset( $item->getPreviews() ) ) ?>" title="<?= $enc->attr( $item->getName() ); ?>" <?= $itemattr; ?> /><!--
+			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ); ?>" srcset="<?= $enc->attr( $this->imageset( $item->getPreviews() ) ) ?>" title="<?= $enc->attr( $item->getProperties( 'title' )->first() ) ?>" <?= $itemattr; ?> /><!--
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
-			--><img src="<?= $enc->attr( $this->content( $subItem->getPreview() ) ); ?>" srcset="<?= $enc->attr( $this->imageset( $subItem->getPreviews() ) ) ?>" title="<?= $enc->attr( $subItem->getName() ); ?>" <?= $itemattr; ?> /><!--
+			--><img src="<?= $enc->attr( $this->content( $subItem->getPreview() ) ); ?>" srcset="<?= $enc->attr( $this->imageset( $subItem->getPreviews() ) ) ?>" title="<?= $enc->attr( $subItem->getProperties( 'title' )->first() ) ?>" <?= $itemattr; ?> /><!--
 		<?php endforeach; ?>
 		--></div>
 

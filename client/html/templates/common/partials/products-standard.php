@@ -178,7 +178,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 						<noscript>
 							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
-								<img alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
+								<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 								/>
@@ -194,7 +194,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-									alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
+									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 								/>
 							</div>
 

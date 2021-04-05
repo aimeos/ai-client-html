@@ -423,16 +423,16 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ); ?></h2>
 							<ul class="content downloads">
 
-								<?php foreach( $mediaItems as $id => $item ) : ?>
+								<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 
 									<li class="item">
-										<a href="<?= $this->content( $item->getUrl() ); ?>" title="<?= $enc->attr( $item->getName() ); ?>">
+										<a href="<?= $this->content( $mediaItem->getUrl() ); ?>" title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>">
 											<img class="media-image"
-												alt="<?= $enc->attr( $item->getName() ) ?>"
-												src="<?= $enc->attr( $this->content( $item->getPreview() ) ) ?>"
-												srcset="<?= $enc->attr( $this->imageset( $item->getPreviews() ) ) ?>"
+												alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+												src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+												srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 											/>
-											<span class="media-name"><?= $enc->html( $item->getName() ) ?></span>
+											<span class="media-name"><?= $enc->html( $mediaItem->getProperties( 'title' )->first() ) ?></span>
 										</a>
 									</li>
 
@@ -561,7 +561,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<?php if( ( $mediaItem = $supplierItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 									<div class="media-item">
 										<img class="lazy-image"
-											alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
+											alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
 											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"

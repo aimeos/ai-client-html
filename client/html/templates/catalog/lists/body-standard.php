@@ -97,6 +97,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 					<img class="<?= $enc->attr( $mediaItem->getType() ); ?>"
 						src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
 						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 					/>
 				<?php endforeach; ?>
 			</div>

@@ -31,7 +31,11 @@ $enc = $this->encoder();
 
 			<td class="select-media">
 				<?php if( ( $mediaItem = $product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
-					<img class="media-image" src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
+					<img class="media-image"
+						src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+					/>
 				<?php endif; ?>
 			</td>
 

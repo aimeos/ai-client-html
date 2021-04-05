@@ -503,7 +503,7 @@ class Standard
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
 		 */
-		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );
+		$domains = $config->get( 'client/html/catalog/domains', ['media', 'media/property', 'price', 'text'] );
 
 		/** client/html/catalog/lists/domains
 		 * A list of domain names whose items should be available in the product list view template

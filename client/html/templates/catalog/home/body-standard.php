@@ -73,7 +73,8 @@ $pos = 0;
 								sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
 								data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
 								data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-								alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>" />
+								alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+							/>
 						</a>
 					<?php endforeach ?>
 				</div>

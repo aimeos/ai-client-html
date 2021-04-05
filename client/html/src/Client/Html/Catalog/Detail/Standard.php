@@ -465,7 +465,7 @@ class Standard
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$domains = [
-			'attribute', 'media', 'price', 'product', 'product/property', 'text',
+			'attribute', 'media', 'media/property', 'price', 'product', 'product/property', 'text',
 			'supplier' => ['text', 'media', 'supplier/address']
 		];
 

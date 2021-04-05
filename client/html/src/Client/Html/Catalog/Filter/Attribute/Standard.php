@@ -295,7 +295,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/filter/attribute/types
 		 */
-		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', array( 'text', 'media' ) );
+		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', ['text', 'media', 'media/property'] );
 
 		$attributes = \Aimeos\Controller\Frontend::create( $this->getContext(), 'attribute' )
 			->uses( $domains )->type( $attrTypes )->compare( '!=', 'attribute.type', ['date', 'price', 'text'] )

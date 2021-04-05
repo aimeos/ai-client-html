@@ -229,7 +229,7 @@ class Standard
 		 * @see client/html/catalog/filter/tree/startid
 		 * @see client/html/catalog/filter/tree/deep
 		 */
-		$domains = $view->config( 'client/html/catalog/filter/tree/domains', ['text', 'media'] );
+		$domains = $view->config( 'client/html/catalog/filter/tree/domains', ['text', 'media', 'media/property'] );
 
 		/** client/html/catalog/filter/tree/startid
 		 * The ID of the category node that should be the root of the displayed category tree

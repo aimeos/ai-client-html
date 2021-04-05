@@ -435,7 +435,8 @@ class Standard
 		 * @see client/html/catalog/stage/domains
 		 * @see client/html/catalog/lists/domains
 		 */
-		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text', 'product' => ['promotion']] );
+		$domains = ['media', 'media/property', 'price', 'text', 'product' => ['promotion']];
+		$domains = $config->get( 'client/html/catalog/domains', $domains );
 		$domains = $config->get( 'client/html/catalog/home/domains', $domains );
 
 		/** client/html/catalog/home/basket-add

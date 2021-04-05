@@ -225,7 +225,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/filter/supplier/types
 		 */
-		$domains = $view->config( 'client/html/catalog/filter/supplier/domains', ['text', 'media'] );
+		$domains = $view->config( 'client/html/catalog/filter/supplier/domains', ['text', 'media', 'media/property'] );
 
 		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();
 		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->getContext(), 'supplier' )
