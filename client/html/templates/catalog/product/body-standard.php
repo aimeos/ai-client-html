@@ -36,15 +36,15 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
  */
 
 ?>
-<section class="aimeos catalog-product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos catalog-product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->productErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->productErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 	<div class="catalog-product-items">
 		<?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
@@ -54,7 +54,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				'productItems' => $this->get( 'productProductItems', [] ),
 				'products' => $this->get( 'productItems', [] ),
 			)
-		); ?>
+		) ?>
 	</div>
 
 </section>

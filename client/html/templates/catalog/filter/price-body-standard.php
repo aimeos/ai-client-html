@@ -14,14 +14,14 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 
 ?>
-<?php $this->block()->start( 'catalog/filter/price' ); ?>
+<?php $this->block()->start( 'catalog/filter/price' ) ?>
 <?php if( $this->get( 'priceHigh', 0 ) ) : ?>
 	<section class="catalog-filter-price col">
-		<h2><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ); ?></h2>
+		<h2><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></h2>
 
 		<div class="price-lists">
 			<?php if( $this->param( 'f_price' ) ) : ?>
-				<a class="btn btn-secondary" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $this->get( 'priceResetParams', [] ), [], $config ) ); ?>">
+				<a class="btn btn-secondary" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $this->get( 'priceResetParams', [] ), [], $config ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Reset' ) ) ?>
 				</a>
 			<?php endif ?>
@@ -43,5 +43,5 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 		</div>
 	</section>
 <?php endif ?>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'catalog/filter/price' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'catalog/filter/price' ) ?>

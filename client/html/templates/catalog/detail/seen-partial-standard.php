@@ -16,26 +16,26 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 
 ?>
-<?php if( isset( $this->seenProductItem ) ) : $productItem = $this->seenProductItem; ?>
+<?php if( isset( $this->seenProductItem ) ) : $productItem = $this->seenProductItem ?>
 
-	<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ); ?>
+	<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
 
-	<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
+	<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
 
 		<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 			<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"></div>
 		<?php else : ?>
 			<div class="media-item"></div>
-		<?php endif; ?>
+		<?php endif ?>
 
-		<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
+		<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
 
 		<div class="price-list">
 			<?= $this->partial(
 				$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 				array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
-			); ?>
+			) ?>
 		</div>
 
 	</a>
-<?php endif; ?>
+<?php endif ?>

@@ -86,7 +86,7 @@ $this->pdf->setFooterFunction( function( $pdf ) {
 
 
 ?>
-<?php $this->block()->start( 'email/payment/pdf' ); ?>
+<?php $this->block()->start( 'email/payment/pdf' ) ?>
 	<style>
 		.address-self { font-size: 7px; font-weight: normal }
 		.address-self .company { font-weight: bold }
@@ -137,7 +137,7 @@ $this->pdf->setFooterFunction( function( $pdf ) {
 						$addr->getTelefax(),
 						$addr->getWebsite(),
 						$addr->getVatID()
-					) ) ) ); ?>
+					) ) ) ) ?>
 				<?php endif ?>
 			</td>
 			<td style="width: 33%">
@@ -179,6 +179,6 @@ $this->pdf->setFooterFunction( function( $pdf ) {
 			'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
 			'priceFormat' => $this->get( 'priceFormat' )
 		)
-	); ?>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/payment/pdf' ); ?>
+	) ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'email/payment/pdf' ) ?>

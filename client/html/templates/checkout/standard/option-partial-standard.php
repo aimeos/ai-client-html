@@ -228,30 +228,30 @@ $cancelConfig = $this->config( 'client/html/checkout/standard/summary/option/ter
 ?>
 <?php if( !$this->standardBasket->getCustomerId() ) : ?>
 	<div class="checkout-standard-summary-option-account col-sm-12">
-		<h3><?= $enc->html( $this->translate( 'client', 'Customer account' ), $enc::TRUST ); ?></h3>
+		<h3><?= $enc->html( $this->translate( 'client', 'Customer account' ), $enc::TRUST ) ?></h3>
 
 		<div class="single <?= !$this->value( $this->get( 'error', [] ), 'option/account' ) ?: 'error' ?>">
 			<input id="option-account" type="checkbox" value="1"
-				name="<?= $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ); ?>"
-				<?= ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ); ?>
+				name="<?= $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ) ?>"
+				<?= ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ) ?>
 			/>
 			<p>
 				<label for="option-account">
-					<?= $enc->html( $this->translate( 'client', 'Create a customer account for me' ), $enc::TRUST ); ?>
+					<?= $enc->html( $this->translate( 'client', 'Create a customer account for me' ), $enc::TRUST ) ?>
 				</label>
 			</p>
 		</div>
 	</div>
-<?php endif; ?>
+<?php endif ?>
 
 <div class="checkout-standard-summary-option-terms col-sm-12">
-	<h3><?= $enc->html( $this->translate( 'client', 'Terms and conditions' ), $enc::TRUST ); ?></h3>
+	<h3><?= $enc->html( $this->translate( 'client', 'Terms and conditions' ), $enc::TRUST ) ?></h3>
 
 	<div class="single <?= !$this->value( $this->get( 'error', [] ), 'option/terms' ) ?: 'error' ?>">
-		<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms' ) ) ); ?>" value="1" />
+		<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms' ) ) ) ?>" value="1">
 		<input id="option-terms-accept" type="checkbox" value="1"
-			name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms_value' ) ) ); ?>"
-			<?= ( $this->param( 'cs_option_terms_value', null ) == 1 ? 'checked="checked"' : '' ); ?>
+			name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms_value' ) ) ) ?>"
+			<?= ( $this->param( 'cs_option_terms_value', null ) == 1 ? 'checked="checked"' : '' ) ?>
 		/>
 
 		<p>
@@ -261,7 +261,7 @@ $cancelConfig = $this->config( 'client/html/checkout/standard/summary/option/ter
 					$enc->attr( $this->url( $termsTarget, $termsController, $termsAction, [], [], $termsConfig ) ),
 					$enc->attr( $this->url( $privacyTarget, $privacyController, $privacyAction, [], [], $privacyConfig ) ),
 					$enc->attr( $this->url( $cancelTarget, $cancelController, $cancelAction, [], [], $cancelConfig ) )
-				), $enc::TRUST ); ?>
+				), $enc::TRUST ) ?>
 			</label>
 		</p>
 

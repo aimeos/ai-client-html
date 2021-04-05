@@ -93,112 +93,112 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos account-watch" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos account-watch" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'watchErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?= $enc->html( $error ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $error ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 
 	<?php if( !$this->get( 'watchItems', map() )->isEmpty() ) : ?>
-		<h1 class="header"><?= $this->translate( 'client', 'Watched products' ); ?></h1>
+		<h1 class="header"><?= $this->translate( 'client', 'Watched products' ) ?></h1>
 
 		<ul class="watch-items">
 			<?php foreach( $this->get( 'watchItems', map() )->reverse() as $listItem ) : ?>
-				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) :  ?>
+				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
 					<li class="watch-item">
-						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $this->get( 'watchParams', [] ); ?>
-						<a class="modify" href="<?= $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ); ?>"></a>
+						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $this->get( 'watchParams', [] ) ?>
+						<a class="modify" href="<?= $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ?>"></a>
 
-						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ); ?>
-						<a class="watch-item" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
-							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
+						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
+						<a class="watch-item" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
+							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
 							<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
 								<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"></div>
 							<?php else : ?>
 								<div class="media-item"></div>
-							<?php endif; ?>
+							<?php endif ?>
 
-							<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
+							<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h3>
 
 							<div class="price-list">
 								<?= $this->partial(
 									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 									array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
-								); ?>
+								) ?>
 							</div>
 						</a>
 
-						<?php $url = $this->url( $watchTarget, $watchController, $watchAction, $this->get( 'watchParams', [] ), [], $watchConfig ); ?>
-						<form class="watch-details" method="POST" action="<?= $enc->attr( $url ); ?>">
-							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_action' ) ) ); ?>" value="edit" />
-							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ); ?>" value="<?= $enc->attr( $listItem->getRefId() ); ?>" />
-							<?= $this->csrf()->formfield(); ?>
+						<?php $url = $this->url( $watchTarget, $watchController, $watchAction, $this->get( 'watchParams', [] ), [], $watchConfig ) ?>
+						<form class="watch-details" method="POST" action="<?= $enc->attr( $url ) ?>">
+							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_action' ) ) ) ?>" value="edit">
+							<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ) ?>" value="<?= $enc->attr( $listItem->getRefId() ) ?>">
+							<?= $this->csrf()->formfield() ?>
 
 							<ul class="form-list">
-								<?php $config = $listItem->getConfig(); ?>
+								<?php $config = $listItem->getConfig() ?>
 
-								<?php $timeframe = ( isset( $config['timeframe'] ) ? (int) $config['timeframe'] : 7 ); ?>
+								<?php $timeframe = ( isset( $config['timeframe'] ) ? (int) $config['timeframe'] : 7 ) ?>
 								<li class="form-item timeframe">
-									<label for="watch-timeframe"><?= $enc->html( $this->translate( 'client', 'Time frame' ), $enc::TRUST ); ?></label><!--
-									--><select id="watch-timeframe" name="<?= $enc->attr( $this->formparam( array( 'wat_timeframe' ) ) ); ?>">
-										<option value="7" <?= ( $timeframe == 7 ? 'selected="selected"' : '' ); ?> >
-											<?= $enc->html( $this->translate( 'client', 'One week' ) ); ?>
+									<label for="watch-timeframe"><?= $enc->html( $this->translate( 'client', 'Time frame' ), $enc::TRUST ) ?></label><!--
+									--><select id="watch-timeframe" name="<?= $enc->attr( $this->formparam( array( 'wat_timeframe' ) ) ) ?>">
+										<option value="7" <?= ( $timeframe == 7 ? 'selected="selected"' : '' ) ?> >
+											<?= $enc->html( $this->translate( 'client', 'One week' ) ) ?>
 										</option>
-										<option value="14" <?= ( $timeframe == 14 ? 'selected="selected"' : '' ); ?> >
-											<?= $enc->html( $this->translate( 'client', 'Two weeks' ) ); ?>
+										<option value="14" <?= ( $timeframe == 14 ? 'selected="selected"' : '' ) ?> >
+											<?= $enc->html( $this->translate( 'client', 'Two weeks' ) ) ?>
 										</option>
-										<option value="30" <?= ( $timeframe == 30 ? 'selected="selected"' : '' ); ?> >
-											<?= $enc->html( $this->translate( 'client', 'One month' ) ); ?>
+										<option value="30" <?= ( $timeframe == 30 ? 'selected="selected"' : '' ) ?> >
+											<?= $enc->html( $this->translate( 'client', 'One month' ) ) ?>
 										</option>
-										<option value="90" <?= ( $timeframe == 90 ? 'selected="selected"' : '' ); ?> >
-											<?= $enc->html( $this->translate( 'client', 'Three month' ) ); ?>
+										<option value="90" <?= ( $timeframe == 90 ? 'selected="selected"' : '' ) ?> >
+											<?= $enc->html( $this->translate( 'client', 'Three month' ) ) ?>
 										</option>
 									</select>
 								</li>
 
-								<?php $price = ( isset( $config['price'] ) ? (int) $config['price'] : 0 ); ?>
+								<?php $price = ( isset( $config['price'] ) ? (int) $config['price'] : 0 ) ?>
 								<li class="form-item price">
-									<label for="watch-price"><?= $enc->html( $this->translate( 'client', 'If price decreases' ), $enc::TRUST ); ?></label><!--
+									<label for="watch-price"><?= $enc->html( $this->translate( 'client', 'If price decreases' ), $enc::TRUST ) ?></label><!--
 									--><input type="checkbox"
-										name="<?= $enc->attr( $this->formparam( array( 'wat_price' ) ) ); ?>"
+										name="<?= $enc->attr( $this->formparam( array( 'wat_price' ) ) ) ?>"
 										id="watch-price"
 										value="1"
-										<?= ( $price ? 'checked="checked"' : '' ); ?>
+										<?= ( $price ? 'checked="checked"' : '' ) ?>
 									/>
 									<input type="hidden"
-										name="<?= $enc->attr( $this->formparam( array( 'wat_pricevalue' ) ) ); ?>"
-										value="<?= $enc->attr( ( $priceItem = $productItem->getRefItems( 'price', null, 'default' )->first() ) !== null ? $priceItem->getValue() : '0.00' ); ?>"
+										name="<?= $enc->attr( $this->formparam( array( 'wat_pricevalue' ) ) ) ?>"
+										value="<?= $enc->attr( ( $priceItem = $productItem->getRefItems( 'price', null, 'default' )->first() ) !== null ? $priceItem->getValue() : '0.00' ) ?>"
 									/>
 								</li>
 
-								<?php $stock = ( isset( $config['stock'] ) ? (int) $config['stock'] : 0 ); ?>
+								<?php $stock = ( isset( $config['stock'] ) ? (int) $config['stock'] : 0 ) ?>
 								<li class="form-item stock">
-									<label for="watch-stock"><?= $enc->html( $this->translate( 'client', 'If back in stock' ), $enc::TRUST ); ?></label><!--
+									<label for="watch-stock"><?= $enc->html( $this->translate( 'client', 'If back in stock' ), $enc::TRUST ) ?></label><!--
 										--><input type="checkbox"
-											name="<?= $enc->attr( $this->formparam( array( 'wat_stock' ) ) ); ?>"
+											name="<?= $enc->attr( $this->formparam( array( 'wat_stock' ) ) ) ?>"
 											id="watch-stock"
 											value="1"
-											<?= ( $stock ? 'checked="checked"' : '' ); ?>
+											<?= ( $stock ? 'checked="checked"' : '' ) ?>
 										/>
 								</li>
 							</ul>
 
 							<div class="button-group">
-								<button class="btn btn-primary btn-action"><?= $enc->html( $this->translate( 'client', 'Watch' ), $enc::TRUST ); ?></button>
+								<button class="btn btn-primary btn-action"><?= $enc->html( $this->translate( 'client', 'Watch' ), $enc::TRUST ) ?></button>
 							</div>
 						</form>
 
 					</li>
 
-				<?php endif; ?>
-			<?php endforeach; ?>
+				<?php endif ?>
+			<?php endforeach ?>
 		</ul>
 
 
@@ -209,14 +209,14 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				</div>
 				<div class="browser">
 
-					<?php $params = array( 'wat_page' => $this->watchPageFirst ) + $this->get( 'watchParams', [] ); ?>
-					<a class="first" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ); ?>">
-						<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ); ?>
+					<?php $params = array( 'wat_page' => $this->watchPageFirst ) + $this->get( 'watchParams', [] ) ?>
+					<a class="first" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ) ?>
 					</a>
 
-					<?php $params = array( 'wat_page' => $this->watchPagePrev ) + $this->get( 'watchParams', [] ); ?>
-					<a class="prev" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ); ?>" rel="prev">
-						<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ); ?>
+					<?php $params = array( 'wat_page' => $this->watchPagePrev ) + $this->get( 'watchParams', [] ) ?>
+					<a class="prev" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ) ?>" rel="prev">
+						<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ) ?>
 					</a>
 
 					<span>
@@ -224,21 +224,21 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							$this->translate( 'client', 'Page %1$d of %2$d' ),
 							$this->get( 'watchPageCurr', 1 ),
 							$this->get( 'watchPageLast', 1 )
-						) ); ?>
+						) ) ?>
 					</span>
 
-					<?php $params = array( 'wat_page' => $this->watchPageNext ) + $this->get( 'watchParams', [] ); ?>
-					<a class="next" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ); ?>" rel="next">
-						<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ); ?>
+					<?php $params = array( 'wat_page' => $this->watchPageNext ) + $this->get( 'watchParams', [] ) ?>
+					<a class="next" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ) ?>" rel="next">
+						<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ) ?>
 					</a>
 
-					<?php $params = array( 'wat_page' => $this->watchPageLast ) + $this->get( 'watchParams', [] ); ?>
-					<a class="last" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ); ?>">
-						<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ); ?>
+					<?php $params = array( 'wat_page' => $this->watchPageLast ) + $this->get( 'watchParams', [] ) ?>
+					<a class="last" href="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ) ?>
 					</a>
 				</div>
 			</nav>
-		<?php endif; ?>
+		<?php endif ?>
 
-	<?php endif; ?>
+	<?php endif ?>
 </section>

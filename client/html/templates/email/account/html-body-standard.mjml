@@ -97,27 +97,27 @@ $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' 
 
 
 ?>
-<?php $this->block()->start( 'email/account/html' ); ?>
+<?php $this->block()->start( 'email/account/html' ) ?>
 <mjml>
 	<mj-head>
-		<mj-title><?= $enc->html( $this->translate( 'client', 'Your new account' ), $enc::TRUST ); ?></mj-title>
+		<mj-title><?= $enc->html( $this->translate( 'client', 'Your new account' ), $enc::TRUST ) ?></mj-title>
 		<mj-style>
-			<?= $this->get( 'htmlCss' ); ?>
+			<?= $this->get( 'htmlCss' ) ?>
 		</mj-style>
 	</mj-head>
 	<mj-body css-class="aimeos">
 		<mj-section>
 			<mj-column>
-				<mj-image css-class="logo" src="<?= $this->get( 'htmlLogo' ); ?>" align="center"/>
+				<mj-image css-class="logo" src="<?= $this->get( 'htmlLogo' ) ?>" align="center"/>
 			</mj-column>
 		</mj-section>
 		<mj-section>
 			<mj-column>
 				<mj-text css-class="email-common-salutation">
-					<?= $enc->html( $this->get( 'emailIntro' ) ); ?>
+					<?= $enc->html( $this->get( 'emailIntro' ) ) ?>
 				</mj-text>
 				<mj-text css-class="email-common-intro">
-					<?= $enc->html( nl2br( $this->translate( 'client', 'An account has been created for you.' ) ), $enc::TRUST ); ?>
+					<?= $enc->html( nl2br( $this->translate( 'client', 'An account has been created for you.' ) ), $enc::TRUST ) ?>
 				</mj-text>
 			</mj-column>
 		</mj-section>
@@ -125,19 +125,19 @@ $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' 
 			<mj-section css-class="account-code" padding="inherit">
 				<mj-column>
 					<mj-text css-class="name">
-						<?= $enc->html( $this->translate( 'client', 'Account' ), $enc::TRUST ); ?>:
+						<?= $enc->html( $this->translate( 'client', 'Account' ), $enc::TRUST ) ?>:
 					</mj-text>
 				</mj-column>
 				<mj-column>
 					<mj-text css-class="value">
-						<?= $enc->html( $this->extAccountCode, $enc::TRUST ); ?>
+						<?= $enc->html( $this->extAccountCode, $enc::TRUST ) ?>
 					</mj-text>
 				</mj-column>
 			</mj-section>
 			<mj-section css-class="account-password" padding="inherit">
 				<mj-column>
 					<mj-text css-class="name">
-						<?= $enc->html( $this->translate( 'client', 'Password' ), $enc::TRUST ); ?>:
+						<?= $enc->html( $this->translate( 'client', 'Password' ), $enc::TRUST ) ?>:
 					</mj-text>
 				</mj-column>
 				<mj-column>
@@ -150,7 +150,7 @@ $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' 
 				<mj-column>
 					<mj-button css-class="btn btn-primary" background-color="inherit" color="inherit"
 						href="<?= $enc->attr( $this->url( $target, $controller, $action, ['locale' => $this->extAddressItem->getLanguageId()], [], $config ) ) ?>">
-						<?= $enc->html( $this->translate( 'client', 'Login' ), $enc::TRUST ); ?>
+						<?= $enc->html( $this->translate( 'client', 'Login' ), $enc::TRUST ) ?>
 					</mj-button>
 				</mj-column>
 			</mj-section>
@@ -158,11 +158,11 @@ $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' 
 		<mj-section css-class="email-common-outro">
 			<mj-column>
 				<mj-text>
-					<?= $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ); ?>
+					<?= $enc->html( nl2br( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ), $enc::TRUST ) ?>
 				</mj-text>
 			</mj-column>
 		</mj-section>
 	</mj-body>
 </mjml>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/account/html' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'email/account/html' ) ?>

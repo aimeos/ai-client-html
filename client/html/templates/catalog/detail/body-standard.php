@@ -62,20 +62,20 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 ?>
-<section class="aimeos catalog-detail" itemscope="" itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos catalog-detail" itemscope="" itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->detailErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->detailErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 
 	<?php if( isset( $this->detailProductItem ) ) : ?>
 
-		<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>" data-id="<?= $this->detailProductItem->getId(); ?>">
+		<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>" data-id="<?= $this->detailProductItem->getId() ?>">
 
 			<div class="col-sm-6">
 				<?= $this->partial(
@@ -92,7 +92,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 */
 					$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-standard' ),
 					['mediaItems' => $this->get( 'detailMediaItems', map() ), 'params' => $this->param()]
-				); ?>
+				) ?>
 
 			</div>
 
@@ -102,16 +102,16 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					<?php if( !( $suppliers = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : $name = $suppliers->getName()->first() ?>
 						<h2 class="supplier">
 							<a href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $suppliers->firstKey(), 's_name' => $name] ) ) ?>">
-								<?= $enc->html( $name, $enc::TRUST ); ?>
+								<?= $enc->html( $name, $enc::TRUST ) ?>
 							</a>
 						</h2>
 					<?php endif ?>
 
-					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ); ?></h1>
+					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ) ?></h1>
 
 					<p class="code">
-						<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ); ?>: </span>
-						<span class="value" itemprop="sku"><?= $enc->html( $this->detailProductItem->getCode() ); ?></span>
+						<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?>: </span>
+						<span class="value" itemprop="sku"><?= $enc->html( $this->detailProductItem->getCode() ) ?></span>
 					</p>
 
 					<?php if( $this->detailProductItem->getRating() > 0 ) : ?>
@@ -123,23 +123,23 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					<?php endif ?>
 
 					<?php foreach( $this->detailProductItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-						<div class="short" itemprop="description"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></div>
-					<?php endforeach; ?>
+						<div class="short" itemprop="description"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></div>
+					<?php endforeach ?>
 
 				</div>
 
 
-				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock; ?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock ?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
 					<div class="price-list">
 						<div class="articleitem price price-actual"
-							data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
-							data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ); ?>">
+							data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
+							data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ) ?>">
 
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 								['prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' )]
-							); ?>
+							) ?>
 
 						</div>
 
@@ -148,29 +148,29 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 
 									<div class="articleitem price"
-										data-prodid="<?= $enc->attr( $prodid ); ?>"
-										data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
+										data-prodid="<?= $enc->attr( $prodid ) ?>"
+										data-prodcode="<?= $enc->attr( $product->getCode() ) ?>">
 
 										<?= $this->partial(
 											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 											['prices' => $prices]
-										); ?>
+										) ?>
 
 									</div>
 
-								<?php endif; ?>
-							<?php endforeach; ?>
-						<?php endif; ?>
+								<?php endif ?>
+							<?php endforeach ?>
+						<?php endif ?>
 
 					</div>
 
 
-					<?= $this->block()->get( 'catalog/detail/service' ); ?>
+					<?= $this->block()->get( 'catalog/detail/service' ) ?>
 
 
-					<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ); ?>">
+					<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
 						<!-- catalog.detail.csrf -->
-						<?= $this->csrf()->formfield(); ?>
+						<?= $this->csrf()->formfield() ?>
 						<!-- catalog.detail.csrf -->
 
 						<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
@@ -197,11 +197,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									 */
 									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
 									['productItems' => $this->detailProductItem->getRefItems( 'product', 'default', 'default' )]
-								); ?>
+								) ?>
 
 							</div>
 
-						<?php endif; ?>
+						<?php endif ?>
 
 						<div class="catalog-detail-basket-attribute">
 
@@ -225,25 +225,25 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								 */
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
 								['productItem' => $this->detailProductItem]
-							); ?>
+							) ?>
 
 						</div>
 
 
 						<div class="stock-list">
 							<div class="articleitem stock-actual"
-								data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
-								data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ); ?>">
+								data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
+								data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ) ?>">
 							</div>
 
 							<?php foreach( $this->detailProductItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
 
 								<div class="articleitem"
-									data-prodid="<?= $enc->attr( $articleId ); ?>"
-									data-prodcode="<?= $enc->attr( $articleItem->getCode() ); ?>">
+									data-prodid="<?= $enc->attr( $articleId ) ?>"
+									data-prodcode="<?= $enc->attr( $articleItem->getCode() ) ?>">
 								</div>
 
-							<?php endforeach; ?>
+							<?php endforeach ?>
 
 						</div>
 
@@ -251,28 +251,28 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<?php if( !$this->detailProductItem->getRefItems( 'price', 'default', 'default' )->empty() ) : ?>
 							<div class="addbasket">
 								<div class="input-group">
-									<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
+									<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 									<input type="hidden"
-										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ); ?>"
-										value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ) ?>"
+										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
 									/>
 									<input type="hidden"
-										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'supplier'] ) ); ?>"
-										value="<?= $enc->attr( $this->detailProductItem->getSupplierItems()->getId()->first() ); ?>"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'supplier'] ) ) ?>"
+										value="<?= $enc->attr( $this->detailProductItem->getSupplierItems()->getId()->first() ) ?>"
 									/>
 									<?php if( $basketSite ) : ?>
 										<input type="hidden"
-											name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'siteid'] ) ); ?>"
+											name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'siteid'] ) ) ?>"
 											value="<?= $enc->attr( $basketSite ) ?>" />
 									<?php endif ?>
 									<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
-										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ); ?>"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ) ?>"
 										min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
 										step="<?= $this->detailProductItem->getScale() ?>" maxlength="10"
 										value="<?= $this->detailProductItem->getScale() ?>" required="required"
 									/>
 									<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?> >
-										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 									</button>
 								</div>
 							</div>
@@ -298,7 +298,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 */
 					$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial-standard' ),
 					['productItem' => $this->detailProductItem]
-				); ?>
+				) ?>
 
 
 				<?= $this->partial(
@@ -316,7 +316,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 */
 					$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial-standard' ),
 					['productItem' => $this->detailProductItem]
-				); ?>
+				) ?>
 
 			</div>
 
@@ -326,16 +326,16 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				<?php if( $this->detailProductItem->getType() === 'bundle' && !( $products = $this->detailProductItem->getRefItems( 'product', null, 'default' ) )->isEmpty() ) : ?>
 
 					<section class="catalog-detail-bundle">
-						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ); ?></h2>
+						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ) ?></h2>
 
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
 							['products' => $products, 'itemprop' => 'isRelatedTo']
-						); ?>
+						) ?>
 
 					</section>
 
-				<?php endif; ?>
+				<?php endif ?>
 
 
 				<div class="catalog-detail-additional">
@@ -343,23 +343,23 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
 
 						<div class="additional-box">
-							<h2 class="header description"><?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ); ?></h2>
+							<h2 class="header description"><?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?></h2>
 							<div class="content description">
 
 								<?php foreach( $textItems as $textItem ) : ?>
-									<div class="long item"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></div>
-								<?php endforeach; ?>
+									<div class="long item"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></div>
+								<?php endforeach ?>
 
 							</div>
 						</div>
 
-					<?php endif; ?>
+					<?php endif ?>
 
 
 					<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
 						<div class="additional-box">
-							<h2 class="header attributes"><?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ); ?></h2>
+							<h2 class="header attributes"><?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?></h2>
 							<div class="content attributes">
 								<table class="attributes">
 									<tbody>
@@ -368,7 +368,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 											<?php foreach( $attrItems as $attrItem ) : ?>
 
 												<tr class="item <?= ( $id = $attrItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
-													<td class="name"><?= $enc->html( $this->translate( 'client/code', $type ), $enc::TRUST ); ?></td>
+													<td class="name"><?= $enc->html( $this->translate( 'client/code', $type ), $enc::TRUST ) ?></td>
 													<td class="value">
 														<div class="media-list">
 
@@ -377,56 +377,56 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 																	<?= $this->partial(
 																		$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
 																		['item' => $refitem, 'boxAttributes' => ['class' => 'media-item']]
-																	); ?>
-																<?php endif; ?>
-															<?php endforeach; ?>
+																	) ?>
+																<?php endif ?>
+															<?php endforeach ?>
 
 														</div><!--
-														--><span class="attr-name"><?= $enc->html( $attrItem->getName() ); ?></span>
+														--><span class="attr-name"><?= $enc->html( $attrItem->getName() ) ?></span>
 
 														<?php foreach( $attrItem->getRefItems( 'text', 'short' ) as $textItem ) : ?>
-															<div class="attr-short"><?= $enc->html( $textItem->getContent() ); ?></div>
+															<div class="attr-short"><?= $enc->html( $textItem->getContent() ) ?></div>
 														<?php endforeach ?>
 
 														<?php foreach( $attrItem->getRefItems( 'text', 'long' ) as $textItem ) : ?>
-															<div class="attr-long"><?= $enc->html( $textItem->getContent() ); ?></div>
+															<div class="attr-long"><?= $enc->html( $textItem->getContent() ) ?></div>
 														<?php endforeach ?>
 
 													</td>
 												</tr>
 
-											<?php endforeach; ?>
-										<?php endforeach; ?>
+											<?php endforeach ?>
+										<?php endforeach ?>
 
 										<?php foreach( $this->get( 'detailPropertyMap', map() ) as $type => $propItems ) : ?>
 											<?php foreach( $propItems as $propItem ) : ?>
 
 												<tr class="item <?= ( $id = $propItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
-													<td class="name"><?= $enc->html( $this->translate( 'client/code', $propItem->getType() ), $enc::TRUST ); ?></td>
-													<td class="value"><?= $enc->html( $propItem->getValue() ); ?></td>
+													<td class="name"><?= $enc->html( $this->translate( 'client/code', $propItem->getType() ), $enc::TRUST ) ?></td>
+													<td class="value"><?= $enc->html( $propItem->getValue() ) ?></td>
 												</tr>
 
-											<?php endforeach; ?>
-										<?php endforeach; ?>
+											<?php endforeach ?>
+										<?php endforeach ?>
 
 									</tbody>
 								</table>
 							</div>
 						</div>
 
-					<?php endif; ?>
+					<?php endif ?>
 
 
 					<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 
 						<div class="additional-box">
-							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ); ?></h2>
+							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?></h2>
 							<ul class="content downloads">
 
 								<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 
 									<li class="item">
-										<a href="<?= $this->content( $mediaItem->getUrl() ); ?>" title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>">
+										<a href="<?= $this->content( $mediaItem->getUrl() ) ?>" title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>">
 											<img class="media-image"
 												alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 												src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
@@ -436,12 +436,12 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 										</a>
 									</li>
 
-								<?php endforeach; ?>
+								<?php endforeach ?>
 
 							</ul>
 						</div>
 
-					<?php endif; ?>
+					<?php endif ?>
 
 
 					<div class="additional-box">
@@ -481,16 +481,16 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 							</div>
 							<div class="col-md-8 review-list">
 								<div class="sort">
-									<span><?= $enc->html( $this->translate( 'client', 'Sort by:' ), $enc::TRUST ); ?></span>
+									<span><?= $enc->html( $this->translate( 'client', 'Sort by:' ), $enc::TRUST ) ?></span>
 									<ul>
 										<li>
-											<a class="sort-option option-ctime active" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-ctime'], [], $optConfig ) ); ?>" >
-												<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ); ?>
+											<a class="sort-option option-ctime active" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-ctime'], [], $optConfig ) ) ?>" >
+												<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ) ?>
 											</a>
 										</li>
 										<li>
-											<a class="sort-option option-rating" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-rating,-ctime'], [], $optConfig ) ); ?>" >
-												<?= $enc->html( $this->translate( 'client', 'Rating' ), $enc::TRUST ); ?>
+											<a class="sort-option option-rating" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-rating,-ctime'], [], $optConfig ) ) ?>" >
+												<?= $enc->html( $this->translate( 'client', 'Rating' ), $enc::TRUST ) ?>
 											</a>
 										</li>
 									</ul>
@@ -518,7 +518,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				<?php if( !( $products = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) )->isEmpty() ) : ?>
 
 					<section class="catalog-detail-suggest">
-						<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ); ?></h2>
+						<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ) ?></h2>
 
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
@@ -529,13 +529,13 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 					</section>
 
-				<?php endif; ?>
+				<?php endif ?>
 
 
 				<?php if( !( $products = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) )->isEmpty() ) : ?>
 
 					<section class="catalog-detail-bought">
-						<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ); ?></h2>
+						<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ) ?></h2>
 
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
@@ -546,13 +546,13 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 					</section>
 
-				<?php endif; ?>
+				<?php endif ?>
 
 
 				<?php if( !( $supplierItems = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : ?>
 					<div class="catalog-detail-supplier">
 
-						<h2 class="header"><?= $this->translate( 'client', 'Supplier information' ); ?></h2>
+						<h2 class="header"><?= $this->translate( 'client', 'Supplier information' ) ?></h2>
 
 						<?php foreach( $supplierItems as $supplierItem ) : ?>
 
@@ -562,40 +562,40 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									<div class="media-item">
 										<img class="lazy-image"
 											alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
+											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 										/>
 									</div>
-								<?php endif; ?>
+								<?php endif ?>
 
 								<h3 class="supplier-name">
-									<?= $enc->html( $supplierItem->getName(), $enc::TRUST ); ?>
+									<?= $enc->html( $supplierItem->getName(), $enc::TRUST ) ?>
 
 									<?php if( ( $addrItem = $supplierItem->getAddressItems()->first() ) !== null ) : ?>
-										<span class="supplier-address">(<?= $enc->html( $addrItem->getCity() ); ?>, <?= $enc->html( $addrItem->getCountryId() ); ?>)</span>
+										<span class="supplier-address">(<?= $enc->html( $addrItem->getCity() ) ?>, <?= $enc->html( $addrItem->getCountryId() ) ?>)</span>
 									<?php endif ?>
 								</h3>
 
 								<?php foreach( $supplierItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-									<p class="supplier-short"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
-								<?php endforeach; ?>
+									<p class="supplier-short"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></p>
+								<?php endforeach ?>
 
 								<?php foreach( $supplierItem->getRefItems( 'text', 'long', 'default' ) as $textItem ) : ?>
-									<p class="supplier-long"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
-								<?php endforeach; ?>
+									<p class="supplier-long"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></p>
+								<?php endforeach ?>
 
 							</div>
 
-						<?php endforeach; ?>
+						<?php endforeach ?>
 
 					</div>
-					<?php endif; ?>
+					<?php endif ?>
 
 			</div>
 
 		</article>
 
-	<?php endif; ?>
+	<?php endif ?>
 
 </section>

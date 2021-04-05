@@ -25,37 +25,37 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 	<div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 		<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
-			<div id="image-<?= $enc->attr( $id ); ?>" class="media-item">
+			<div id="image-<?= $enc->attr( $id ) ?>" class="media-item">
 				<?= $this->image( $mediaItem ) ?>
 			</div>
-		<?php endforeach; ?>
+		<?php endforeach ?>
 
 	</div><!--
 
-	--><?php if( ( $num = count( $this->get( 'mediaItems', [] ) ) ) > 1 ) : $class = 'item selected'; ?>
+	--><?php if( ( $num = count( $this->get( 'mediaItems', [] ) ) ) > 1 ) : $class = 'item selected' ?>
 		<div class="image-thumbs thumbs-horizontal" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'><!--
 			<?php if( $num > 4 ) : ?>
-				--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ); ?></button><!--
+				--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ) ?></button><!--
 			<?php endif ?>
 			--><div class="thumbs"><!--
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 
-					--><a class="<?= $class; ?>"
-						title="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ); ?>"
-						style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>')"
-						href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', [] ), [], $detailConfig ) ) . '#image-' . $enc->attr( $id ); ?>"
+					--><a class="<?= $class ?>"
+						title="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
+						style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"
+						href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $this->get( 'params', [] ), [], $detailConfig ) ) . '#image-' . $enc->attr( $id ) ?>"
 					></a><!--
 
-					<?php $class = 'item'; ?>
-				<?php endforeach; ?>
+					<?php $class = 'item' ?>
+				<?php endforeach ?>
 
 			--></div><!--
 			<?php if( $num > 4 ) : ?>
-				--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ); ?></button><!--
+				--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ) ?></button><!--
 			<?php endif ?>
 		--></div>
-	<?php endif; ?>
+	<?php endif ?>
 
 
 	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -76,23 +76,23 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 					<div class="pswp__counter"></div>
 
 					<button class="pswp__button pswp__button--close"
-						title="<?= $enc->attr( $this->translate( 'client', 'Close' ) ); ?>">
+						title="<?= $enc->attr( $this->translate( 'client', 'Close' ) ) ?>">
 					</button>
 					<!-- button class="pswp__button pswp__button--share"
-						title="<?= $enc->attr( $this->translate( 'client', 'Share' ) ); ?>">
+						title="<?= $enc->attr( $this->translate( 'client', 'Share' ) ) ?>">
 					</button -->
 					<button class="pswp__button pswp__button--fs"
-						title="<?= $enc->attr( $this->translate( 'client', 'Toggle fullscreen' ) ); ?>">
+						title="<?= $enc->attr( $this->translate( 'client', 'Toggle fullscreen' ) ) ?>">
 					</button>
 					<button class="pswp__button pswp__button--zoom"
-						title="<?= $enc->attr( $this->translate( 'client', 'Zoom in/out' ) ); ?>">
+						title="<?= $enc->attr( $this->translate( 'client', 'Zoom in/out' ) ) ?>">
 					</button>
 
 					<div class="pswp__preloader">
 						<div class="pswp__preloader__icn">
-						  <div class="pswp__preloader__cut">
+							<div class="pswp__preloader__cut">
 							<div class="pswp__preloader__donut"></div>
-						  </div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -102,10 +102,10 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 				</div>
 
 				<button class="pswp__button pswp__button--arrow--left"
-					title="<?= $enc->attr( $this->translate( 'client', 'Previous' ) ); ?>">
+					title="<?= $enc->attr( $this->translate( 'client', 'Previous' ) ) ?>">
 				</button>
 				<button class="pswp__button pswp__button--arrow--right"
-					title="<?= $enc->attr( $this->translate( 'client', 'Next' ) ); ?>">
+					title="<?= $enc->attr( $this->translate( 'client', 'Next' ) ) ?>">
 				</button>
 
 				<div class="pswp__caption"><div class="pswp__caption__center"></div></div>

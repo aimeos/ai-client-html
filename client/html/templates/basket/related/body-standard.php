@@ -14,19 +14,19 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos basket-related" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos basket-related" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->relatedErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->relatedErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 
-	<h1><?= $enc->html( $this->translate( 'client', 'Related' ), $enc::TRUST ); ?></h1>
+	<h1><?= $enc->html( $this->translate( 'client', 'Related' ), $enc::TRUST ) ?></h1>
 
-	<?= $this->block()->get( 'basket/related/bought' ); ?>
+	<?= $this->block()->get( 'basket/related/bought' ) ?>
 
 </section>

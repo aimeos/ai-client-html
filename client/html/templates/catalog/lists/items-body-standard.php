@@ -52,7 +52,7 @@ $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', fa
 
 
 ?>
-<?php $this->block()->start( 'catalog/lists/items' ); ?>
+<?php $this->block()->start( 'catalog/lists/items' ) ?>
 <div class="catalog-list-items" data-infinite-url="<?= $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ? $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext' ) ) + $this->get( 'listParams', [] ), [], $listConfig ) : '' ?>">
 
 	<?= $this->partial(
@@ -64,8 +64,8 @@ $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', fa
 			'products' => $this->get( 'listProductItems', map() ),
 			'position' => $this->get( 'itemPosition' ),
 		)
-	); ?>
+	) ?>
 
 </div>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'catalog/lists/items' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'catalog/lists/items' ) ?>

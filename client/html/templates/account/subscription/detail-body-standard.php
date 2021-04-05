@@ -14,15 +14,15 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 
 
 ?>
-<?php $this->block()->start( 'account/subscription/detail' ); ?>
+<?php $this->block()->start( 'account/subscription/detail' ) ?>
 <div class="account-subscription-detail common-summary col-sm-12">
 
-	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscription details' ), $enc::TRUST ); ?></h2>
+	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscription details' ), $enc::TRUST ) ?></h2>
 
 	<div class="common-summary-address row">
 		<div class="item payment col-sm-6">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
@@ -44,14 +44,14 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 						 */
 						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
 						array( 'addresses' => $this->summaryBasket->getAddress( 'payment' ), 'type' => 'payment' )
-					); ?>
-				<?php endif; ?>
+					) ?>
+				<?php endif ?>
 			</div>
 		</div><!--
 
 		--><div class="item delivery col-sm-6">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
@@ -59,10 +59,10 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 					<?= $this->partial(
 						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
 						array( 'addresses' => $this->summaryBasket->getAddress( 'delivery' ), 'type' => 'delivery' )
-					); ?>
+					) ?>
 				<?php else : ?>
-					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
-				<?php endif; ?>
+					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
+				<?php endif ?>
 			</div>
 		</div>
 	</div>
@@ -70,7 +70,7 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 
 	<div class="common-summary-detail row">
 		<div class="header">
-			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
+			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
 		</div>
 
 		<div class="basket">
@@ -96,22 +96,22 @@ $accountConfig = $this->config( 'client/html/account/subscription/url/config', [
 					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
 					'summaryShowDownloadAttributes' => false,
 				)
-			); ?>
+			) ?>
 		</div>
 	</div>
 
 
 	<div class="button-group">
-		<a class="btn btn-close" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ); ?>">
-			<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ); ?>
+		<a class="btn btn-close" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ) ?>">
+			<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
 		</a>
 		<?php if( $this->detailItem->getDateEnd() == null ) : ?>
-			<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $this->detailItem->getId() ); ?>
-			<a class="btn btn-primary" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
-				<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ); ?>
+			<?php $params = array( 'sub_action' => 'cancel', 'sub_id' => $this->detailItem->getId() ) ?>
+			<a class="btn btn-primary" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ) ?>">
+				<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
 			</a>
-		<?php endif; ?>
+		<?php endif ?>
 	</div>
 </div>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'account/subscription/detail' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'account/subscription/detail' ) ?>

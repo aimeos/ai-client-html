@@ -7,9 +7,9 @@
  */
 
 ?>
-<?php $this->block()->start( 'catalog/count/tree' ); ?>
+<?php $this->block()->start( 'catalog/count/tree' ) ?>
 // <!--
-var catalogCounts = <?= $this->get( 'treeCountList', map() )->toJson( JSON_FORCE_OBJECT ); ?>;
+var catalogCounts = <?= $this->get( 'treeCountList', map() )->toJson( JSON_FORCE_OBJECT ) ?>;
 
 $(".catalog-filter-count li.cat-item").each(function(index, item) {
 	var id = $(item).data("id");
@@ -23,5 +23,5 @@ $(".catalog-filter-count li.cat-item").each(function(index, item) {
 	});
 });
 // -->
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'catalog/count/tree' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'catalog/count/tree' ) ?>

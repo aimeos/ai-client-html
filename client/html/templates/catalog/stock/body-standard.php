@@ -107,7 +107,7 @@ foreach( $this->get( 'stockProductIds', [] ) as $prodId )
 
 		$stocks[$level] .= '
 			<div class="stockitem ' . $level . '" data-prodid="' . $enc->attr( $prodId ) . '" title="' . $enc->attr( $textStock[$level] ) . '">
-				<link itemprop="availability" href="' . $link . '" />
+				<link itemprop="availability" href="' . $link . '">
 				<div class="stocklevel"></div>
 				<span class="stocktext">' . nl2br( $enc->html( $text, $enc::TRUST ) ) . '</span>
 			</div>
@@ -120,7 +120,7 @@ foreach( $this->get( 'stockProductIds', [] ) as $prodId )
 
 ?>
 // <!--
-var aimeosStockHtml = <?= json_encode( $result, JSON_FORCE_OBJECT ); ?>;
+var aimeosStockHtml = <?= json_encode( $result, JSON_FORCE_OBJECT ) ?>;
 
 $(".aimeos .product .stock-list .articleitem").each(function() {
 

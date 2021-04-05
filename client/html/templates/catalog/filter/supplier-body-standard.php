@@ -15,46 +15,46 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 
 ?>
-<?php $this->block()->start( 'catalog/filter/supplier' ); ?>
+<?php $this->block()->start( 'catalog/filter/supplier' ) ?>
 <?php if( !$this->get( 'supplierList', map() )->isEmpty() ) : ?>
 	<section class="catalog-filter-supplier col">
-		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ); ?></h2>
+		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ) ?></h2>
 
 		<div class="supplier-lists">
 			<?php if( $this->param( 'f_supid' ) ) : ?>
-				<a class="btn btn-secondary supplier-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'supplierResetParams', [] ), [], $listConfig ) ); ?>">
-					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ); ?>
+				<a class="btn btn-secondary supplier-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'supplierResetParams', [] ), [], $listConfig ) ) ?>">
+					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 				</a>
-			<?php endif; ?>
+			<?php endif ?>
 
 			<fieldset>
 				<ul class="attr-list"><!--
 
 					<?php foreach( $this->get( 'supplierList', [] ) as $id => $supplier ) : ?>
-						--><li class="attr-item" data-id="<?= $enc->attr( $id ); ?>">
+						--><li class="attr-item" data-id="<?= $enc->attr( $id ) ?>">
 
 							<input class="attr-item" type="checkbox"
-								id="sup-<?= $enc->attr( $id ); ?>"
-								name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ); ?>"
-								value="<?= $enc->attr( $id ); ?>"
-								<?= ( in_array( $id, $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ); ?>
+								id="sup-<?= $enc->attr( $id ) ?>"
+								name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>"
+								value="<?= $enc->attr( $id ) ?>"
+								<?= ( in_array( $id, $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ) ?>
 							/>
 
-							<label class="attr-name" for="sup-<?= $enc->attr( $id ); ?>"><!--
+							<label class="attr-name" for="sup-<?= $enc->attr( $id ) ?>"><!--
 								--><div class="media-list"><!--
 
 									<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 										<?= '-->' . $this->partial(
 											$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
 											array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-										) . '<!--'; ?>
-									<?php endforeach; ?>
+										) . '<!--' ?>
+									<?php endforeach ?>
 
 								--></div>
-								<span><?= $enc->html( $supplier->getName(), $enc::TRUST ); ?></span><!--
+								<span><?= $enc->html( $supplier->getName(), $enc::TRUST ) ?></span><!--
 							--></label>
 						</li><!--
-					<?php endforeach; ?>
+					<?php endforeach ?>
 
 				--></ul>
 			</fieldset>
@@ -63,12 +63,12 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 		<?php if( $this->config( 'client/html/catalog/filter/button', true ) ) : ?>
 			<noscript>
 				<button class="filter btn btn-primary" type="submit">
-					<?= $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ); ?>
+					<?= $enc->html( $this->translate( 'client', 'Show' ), $enc::TRUST ) ?>
 				</button>
 			</noscript>
-		<?php endif; ?>
+		<?php endif ?>
 
 	</section>
-<?php endif; ?>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'catalog/filter/supplier' ); ?>
+<?php endif ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'catalog/filter/supplier' ) ?>

@@ -41,7 +41,7 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 		 */
 		$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
 		['addresses' => $this->summaryBasket->getAddress( 'payment' ), 'separator' => "\n"]
-	);
+	)
 ?>
 
 
@@ -52,7 +52,7 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 <?=		$this->partial(
 			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
 			array( 'addresses' => $addrItems, 'separator' => "\n" )
-		);
+		)
 ?>
 <?php else : ?>
 <?=		$this->translate( 'client', 'like billing address' ) ?>
@@ -133,76 +133,76 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 <?php endif ?>
 
 
-<?= strip_tags( $this->translate( 'client', 'Order details' ) ); ?>:
-<?php foreach( $this->summaryBasket->getProducts() as $product ) : $priceItem = $product->getPrice(); ?>
+<?= strip_tags( $this->translate( 'client', 'Order details' ) ) ?>:
+<?php foreach( $this->summaryBasket->getProducts() as $product ) : $priceItem = $product->getPrice() ?>
 
-<?=		strip_tags( $product->getName() ); ?> (<?= $product->getProductCode(); ?>)
+<?=		strip_tags( $product->getName() ) ?> (<?= $product->getProductCode() ?>)
 <?php	foreach( $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant', 'config', 'custom'] ) as $attrType ) : ?>
 <?php		foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
-- <?php 		echo strip_tags( $this->translate( 'client/code', $attribute->getCode() ) ); ?>: <?= $attribute->getQuantity() > 1 ? $attribute->getQuantity() . '× ' : '' ?><?= strip_tags( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ); ?>
+- <?php 		echo strip_tags( $this->translate( 'client/code', $attribute->getCode() ) ) ?>: <?= $attribute->getQuantity() > 1 ? $attribute->getQuantity() . '× ' : '' ?><?= strip_tags( ( $attribute->getName() != '' ? $attribute->getName() : $attribute->getValue() ) ) ?>
 
-<?php		endforeach; ?>
-<?php	endforeach; ?>
+<?php		endforeach ?>
+<?php	endforeach ?>
 <?php	foreach( $product->getAttributeItems( 'hidden' ) as $attribute ) : ?>
 <?php		if( $this->get( 'summaryShowDownloadAttributes', false ) && $attribute->getCode() === 'download' ) : ?>
-- <?=			strip_tags( $attribute->getName() ); ?>: <?= $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ); ?>
+- <?=			strip_tags( $attribute->getName() ) ?>: <?= $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ) ?>
 
-<?php		endif; ?>
-<?php	endforeach; ?>
-<?=		strip_tags( $this->translate( 'client', 'Quantity' ) ); ?>: <?= $product->getQuantity(); ?>
+<?php		endif ?>
+<?php	endforeach ?>
+<?=		strip_tags( $this->translate( 'client', 'Quantity' ) ) ?>: <?= $product->getQuantity() ?>
 
-<?=		strip_tags( $this->translate( 'client', 'Price' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $priceItem->getValue() * $product->getQuantity(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
+<?=		strip_tags( $this->translate( 'client', 'Price' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $priceItem->getValue() * $product->getQuantity(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ?>
 
 <?php	if( ( $status = $product->getStatus() ) >= 0 ) : $key = 'stat:' . $status ?>
-<?=			strip_tags( $this->translate( 'client', 'Status' ) ); ?>: <?= strip_tags( $this->translate( 'mshop/code', $key ) ); ?>
-<?php	endif; ?>
-<?php endforeach; ?>
+<?=			strip_tags( $this->translate( 'client', 'Status' ) ) ?>: <?= strip_tags( $this->translate( 'mshop/code', $key ) ) ?>
+<?php	endif ?>
+<?php endforeach ?>
 
 <?php foreach( $this->summaryBasket->getService( 'delivery' ) as $service ) : ?>
-<?php	if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
-<?=			strip_tags( $service->getName() ); ?>
+<?php	if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice() ?>
+<?=			strip_tags( $service->getName() ) ?>
 
-<?=			strip_tags( $this->translate( 'client', 'Price' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
+<?=			strip_tags( $this->translate( 'client', 'Price' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ?>
 
-<?php	endif; ?>
-<?php endforeach; ?>
+<?php	endif ?>
+<?php endforeach ?>
 <?php foreach( $this->summaryBasket->getService( 'payment' ) as $service ) : ?>
-<?php	if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice(); ?>
-<?=			strip_tags( $service->getName() ); ?>
+<?php	if( $service->getPrice()->getValue() > 0 ) : $priceItem = $service->getPrice() ?>
+<?=			strip_tags( $service->getName() ) ?>
 
-<?=			strip_tags( $this->translate( 'client', 'Price' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
+<?=			strip_tags( $this->translate( 'client', 'Price' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ?>
 
-<?php	endif; ?>
-<?php endforeach; ?>
+<?php	endif ?>
+<?php endforeach ?>
 
-<?= strip_tags( $this->translate( 'client', 'Sub-total' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
+<?= strip_tags( $this->translate( 'client', 'Sub-total' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ?>
 
 <?php if( ( $costs = $this->get( 'summaryCostsDelivery', 0 ) ) > 0 ) : ?>
-<?= strip_tags( $this->translate( 'client', '+ Shipping' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
+<?= strip_tags( $this->translate( 'client', '+ Shipping' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ?>
 
-<?php endif; ?>
+<?php endif ?>
 <?php if( ( $costs = $this->get( 'summaryCostsPayment', 0 ) ) > 0 ) : ?>
-<?php	echo strip_tags( $this->translate( 'client', '+ Payment costs' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
+<?php	echo strip_tags( $this->translate( 'client', '+ Payment costs' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ?>
 
-<?php endif; ?>
+<?php endif ?>
 <?php if( $this->summaryBasket->getPrice()->getTaxFlag() === true ) : ?>
-<?php	echo strip_tags( $this->translate( 'client', 'Total' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
+<?php	echo strip_tags( $this->translate( 'client', 'Total' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ?>
 
-<?php endif; ?>
+<?php endif ?>
 <?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $map ) : ?>
 <?php 	foreach( $map as $taxRate => $priceItem ) : ?>
 <?php		if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
-<?php			$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ) ); ?>
-<?php			echo strip_tags( sprintf( $taxFormat, $this->number( $taxRate ), $this->translate( 'client/code', 'tax' . $taxName ) ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ); ?>
+<?php			$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ) ) ?>
+<?php			echo strip_tags( sprintf( $taxFormat, $this->number( $taxRate ), $this->translate( 'client/code', 'tax' . $taxName ) ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ?>
 
-<?php		endif; ?>
-<?php	endforeach; ?>
-<?php endforeach; ?>
+<?php		endif ?>
+<?php	endforeach ?>
+<?php endforeach ?>
 <?php if( $this->summaryBasket->getPrice()->getTaxFlag() === false ) : ?>
-<?php	echo strip_tags( $this->translate( 'client', 'Total' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
+<?php	echo strip_tags( $this->translate( 'client', 'Total' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ?>
 
-<?php endif; ?>
+<?php endif ?>
 <?php if( $this->summaryBasket->getPrice()->getRebate() > 0 ) : ?>
-<?= strip_tags( $this->translate( 'client', 'Included rebates' ) ); ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getRebate(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ); ?>
+<?= strip_tags( $this->translate( 'client', 'Included rebates' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getRebate(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ?>
 
-<?php endif; ?>
+<?php endif ?>

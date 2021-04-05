@@ -55,10 +55,10 @@ $pos = 0;
 	<?php if( isset( $this->homeErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->homeErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 	<?php if( isset( $this->homeTree ) ) : ?>
 

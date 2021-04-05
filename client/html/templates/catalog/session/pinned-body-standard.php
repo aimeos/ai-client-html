@@ -102,47 +102,47 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 
 ?>
-<?php $this->block()->start( 'catalog/session/pinned' ); ?>
+<?php $this->block()->start( 'catalog/session/pinned' ) ?>
 <section class="catalog-session-pinned">
 
 	<h1 class="header">
-		<?= $this->translate( 'client', 'Pinned products' ); ?>
+		<?= $this->translate( 'client', 'Pinned products' ) ?>
 		<?php if( $this->config( 'client/html/catalog/session/pinned/count/enable', true ) ) : ?>
-			<span class="count"><?= count( $this->get( 'pinnedProductItems', [] ) ); ?></span>
-		<?php endif; ?>
+			<span class="count"><?= count( $this->get( 'pinnedProductItems', [] ) ) ?></span>
+		<?php endif ?>
 	</h1>
 
 	<ul class="pinned-items">
 		<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
-			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id] + $this->get( 'pinnedParams', [] ); ?>
-			<?php $detailParams = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter ); ?>
+			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id] + $this->get( 'pinnedParams', [] ) ?>
+			<?php $detailParams = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter ) ?>
 
 			<li class="pinned-item">
-				<a class="modify" href="<?= $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ); ?>"></a>
+				<a class="modify" href="<?= $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ) ?>"></a>
 
-				<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $detailParams, [], $detailConfig ) ); ?>">
+				<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $detailParams, [], $detailConfig ) ) ?>">
 
-					<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ); ?>
+					<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 					<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
 						<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>')"></div>
 					<?php else : ?>
 						<div class="media-item"></div>
-					<?php endif; ?>
+					<?php endif ?>
 
-					<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h3>
+					<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h3>
 					<div class="price-list">
 						<?= $this->partial(
 							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
-						); ?>
+						) ?>
 					</div>
 
 				</a>
 			</li>
 
-		<?php endforeach; ?>
+		<?php endforeach ?>
 	</ul>
 
 </section>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'catalog/session/pinned' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'catalog/session/pinned' ) ?>

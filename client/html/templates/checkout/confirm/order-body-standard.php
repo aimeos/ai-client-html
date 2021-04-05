@@ -9,14 +9,14 @@ $enc = $this->encoder();
 
 
 ?>
-<?php $this->block()->start( 'checkout/confirm/order' ); ?>
+<?php $this->block()->start( 'checkout/confirm/order' ) ?>
 <div class="checkout-confirm-detail common-summary">
-	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Order details' ), $enc::TRUST ); ?></h2>
+	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Order details' ), $enc::TRUST ) ?></h2>
 
 	<div class="common-summary-address row">
 		<div class="item payment col-sm-6">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
@@ -39,14 +39,14 @@ $enc = $this->encoder();
 						 */
 						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard' ),
 						['addresses' => $addresses, 'type' => 'payment']
-					); ?>
-				<?php endif; ?>
+					) ?>
+				<?php endif ?>
 			</div>
 		</div><!--
 
 		--><div class="item delivery col-sm-6">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
@@ -54,10 +54,10 @@ $enc = $this->encoder();
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard' ),
 						['addresses' => $addresses, 'type' => 'delivery']
-					); ?>
+					) ?>
 				<?php else : ?>
-					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
-				<?php endif; ?>
+					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
+				<?php endif ?>
 			</div>
 		</div>
 	</div>
@@ -66,7 +66,7 @@ $enc = $this->encoder();
 	<div class="common-summary-service row">
 		<div class="item delivery col-sm-6">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
@@ -89,14 +89,14 @@ $enc = $this->encoder();
 						 */
 						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard' ),
 						['service' => $services, 'type' => 'delivery']
-					); ?>
-				<?php endif; ?>
+					) ?>
+				<?php endif ?>
 			</div>
 		</div><!--
 
 		--><div class="item payment col-sm-6">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
@@ -104,8 +104,8 @@ $enc = $this->encoder();
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard' ),
 						['service' => $services, 'type' => 'payment']
-					); ?>
-				<?php endif; ?>
+					) ?>
+				<?php endif ?>
 			</div>
 		</div>
 
@@ -115,37 +115,37 @@ $enc = $this->encoder();
 	<div class="common-summary-additional row">
 		<div class="item coupon col-sm-4">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
 				<?php if( !( $coupons = $this->summaryBasket->getCoupons() )->isEmpty() ) : ?>
 					<ul class="attr-list">
 						<?php foreach( $coupons as $code => $products ) : ?>
-							<li class="attr-item"><?= $enc->html( $code ); ?></li>
-						<?php endforeach; ?>
+							<li class="attr-item"><?= $enc->html( $code ) ?></li>
+						<?php endforeach ?>
 					</ul>
-				<?php endif; ?>
+				<?php endif ?>
 			</div>
 		</div><!--
 
 		--><div class="item customerref col-sm-4">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Your reference number' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Your reference number' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
-				<?= $enc->html( $this->summaryBasket->getCustomerReference() ); ?>
+				<?= $enc->html( $this->summaryBasket->getCustomerReference() ) ?>
 			</div>
 		</div><!--
 
 		--><div class="item comment col-sm-4">
 			<div class="header">
-				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ); ?></h3>
+				<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
-				<?= $enc->html( $this->summaryBasket->getComment() ); ?>
+				<?= $enc->html( $this->summaryBasket->getComment() ) ?>
 			</div>
 		</div>
 	</div>
@@ -153,7 +153,7 @@ $enc = $this->encoder();
 
 	<div class="common-summary-detail row">
 		<div class="header col-sm-12">
-			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ); ?></h2>
+			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
 		</div>
 
 		<div class="basket col-sm-12">
@@ -181,10 +181,10 @@ $enc = $this->encoder();
 					'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
 					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' ),
 				)
-			); ?>
+			) ?>
 		</div>
 	</div>
 
 </div>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'checkout/confirm/order' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'checkout/confirm/order' ) ?>

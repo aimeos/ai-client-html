@@ -10,22 +10,22 @@ $enc = $this->encoder();
 
 
 ?>
-<?php $this->block()->start( 'checkout/standard/payment' ); ?>
+<?php $this->block()->start( 'checkout/standard/payment' ) ?>
 <section class="checkout-standard-payment">
 
-	<h1><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ); ?></h1>
-	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please choose your payment method' ), $enc::TRUST ); ?></p>
+	<h1><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ) ?></h1>
+	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please choose your payment method' ), $enc::TRUST ) ?></p>
 
 	<?php foreach( $this->get( 'paymentServices', [] ) as $id => $service ) : ?>
-		<div id="c_payment-<?= $enc->attr( $id ); ?>" class="item item-service row">
+		<div id="c_payment-<?= $enc->attr( $id ) ?>" class="item item-service row">
 
 			<div class="col-sm-6">
-				<label class="description" for="c_paymentoption-<?= $enc->attr( $id ); ?>">
+				<label class="description" for="c_paymentoption-<?= $enc->attr( $id ) ?>">
 
 					<input class="option" type="radio"
-						id="c_paymentoption-<?= $enc->attr( $id ); ?>"
-						name="<?= $enc->attr( $this->formparam( ['c_paymentoption'] ) ); ?>"
-						value="<?= $enc->attr( $id ); ?>"
+						id="c_paymentoption-<?= $enc->attr( $id ) ?>"
+						name="<?= $enc->attr( $this->formparam( ['c_paymentoption'] ) ) ?>"
+						value="<?= $enc->attr( $id ) ?>"
 						<?= $id != $this->get( 'paymentOption' ) ?: 'checked="checked"' ?>
 					/>
 
@@ -37,7 +37,7 @@ $enc = $this->encoder();
 									$this->number( $price->getValue(), $price->getPrecision() ),
 									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
 									$this->translate( 'currency', $price->getCurrencyId() )
-								) ); ?>
+								) ) ?>
 							</span>
 						<?php elseif( $price->getCosts() > 0 ) : ?>
 							<span class="price-value">
@@ -46,27 +46,27 @@ $enc = $this->encoder();
 									$this->translate( 'client/code', 'price:default', null, 0, false ) ?: $this->translate( 'client', '%1$s %2$s' ),
 									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
 									$this->translate( 'currency', $price->getCurrencyId() )
-								) ); ?>
+								) ) ?>
 							</span>
-						<?php endif; ?>
-					<?php endif; ?>
+						<?php endif ?>
+					<?php endif ?>
 
 					<div class="icons">
 						<?php foreach( $service->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
 								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'icon' ) )
-							); ?>
-						<?php endforeach; ?>
+							) ?>
+						<?php endforeach ?>
 					</div>
 
-					<h2><?= $enc->html( $service->getName() ); ?></h2>
+					<h2><?= $enc->html( $service->getName() ) ?></h2>
 
 					<?php foreach( $service->getRefItems( 'text', null, 'default' ) as $textItem ) : ?>
 						<?php if( ( $type = $textItem->getType() ) !== 'name' ) : ?>
-							<p class="<?= $enc->attr( $type ); ?>"><?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?></p>
-						<?php endif; ?>
-					<?php endforeach; ?>
+							<p class="<?= $enc->attr( $type ) ?>"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></p>
+						<?php endif ?>
+					<?php endforeach ?>
 
 				</label>
 			</div>
@@ -109,25 +109,25 @@ $enc = $this->encoder();
 						 */
 						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial-standard' ),
 						['attributes' => $attributes, 'type' => 'payment', 'id' => $id]
-					); ?>
+					) ?>
 
-				<?php endif; ?>
+				<?php endif ?>
 
 			</div>
 
 		</div>
-	<?php endforeach; ?>
+	<?php endforeach ?>
 
 
 	<div class="button-group">
-		<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ); ?>">
-			<?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ); ?>
+		<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ) ?>">
+			<?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ) ?>
 		</a>
 		<button class="btn btn-primary btn-lg btn-action">
-			<?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ); ?>
+			<?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ) ?>
 		</button>
 	</div>
 
 </section>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'checkout/standard/payment' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'checkout/standard/payment' ) ?>

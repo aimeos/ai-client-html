@@ -10,9 +10,9 @@ $enc = $this->encoder();
 
 
 ?>
-<?php $this->block()->start( 'checkout/standard/address/billing' ); ?>
+<?php $this->block()->start( 'checkout/standard/address/billing' ) ?>
 <div class="checkout-standard-address-billing col-xs-12 col-xl">
-	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ); ?></h2>
+	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h2>
 
 
 	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ) : ?>
@@ -53,22 +53,22 @@ $enc = $this->encoder();
 						'css' => $this->get( 'addressBillingCss', [] ),
 						'type' => 'billing',
 					)
-				); ?>
+				) ?>
 			</div>
 
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
 
 
 	<?php if( !$this->config( 'client/html/checkout/standard/address/billing/disable-new', false ) ) : ?>
-		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressBillingOption' ) ); ?>">
+		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressBillingOption' ) ) ?>">
 			<div class="header">
 				<input id="ca_billingoption-new" type="radio" value="null"
-					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ); ?>"
+					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ) ?>"
 					<?= $this->get( 'addressBillingOption' ) == 'null' ? 'checked="checked"' : '' ?>
 				/>
 				<label for="ca_billingoption-new" class="values value-new">
-					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
+					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 				</label>
 			</div>
 			<div class="form-list">
@@ -84,12 +84,12 @@ $enc = $this->encoder();
 						'css' => $this->get( 'addressBillingCss', [] ),
 						'type' => 'billing',
 					)
-				); ?>
+				) ?>
 			</div>
 
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
 
 </div>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'checkout/standard/address/billing' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'checkout/standard/address/billing' ) ?>

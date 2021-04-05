@@ -15,17 +15,17 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos catalog-session" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos catalog-session" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->sessionErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->sessionErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
-	<?= $this->block()->get( 'catalog/session/pinned' ); ?>
-	<?= $this->block()->get( 'catalog/session/seen' ); ?>
+	<?= $this->block()->get( 'catalog/session/pinned' ) ?>
+	<?= $this->block()->get( 'catalog/session/seen' ) ?>
 
 </section>

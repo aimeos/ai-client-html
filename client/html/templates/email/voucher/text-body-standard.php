@@ -14,24 +14,24 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 
 ?>
-<?php $this->block()->start( 'email/voucher/text' ); ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ); ?>
+<?php $this->block()->start( 'email/voucher/text' ) ?>
+<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ) ?>
 
 
 <?php if( is_array( $this->extVoucherCode ) ) : ?>
-<?= wordwrap( strip_tags( $this->translate( 'client', 'Your vouchers: ' ) ) ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'Your vouchers: ' ) ) ) ?>
 <?php foreach( $this->extVoucherCode as $code ) : ?>
 - <?= $code ?>
 <?php endforeach ?>
 <?php else : ?>
-<?= wordwrap( strip_tags( $this->translate( 'client', 'Your voucher: ' ) . $this->extVoucherCode ) ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'Your voucher: ' ) . $this->extVoucherCode ) ) ?>
 <?php endif ?>
 
-<?php $price = $this->extOrderProductItem->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
-<?php $value = sprintf( $priceFormat, $this->number( $price->getValue() + $price->getRebate(), $price->getPrecision() ), $priceCurrency ); ?>
-<?= wordwrap( strip_tags( sprintf( $this->translate( 'client', 'The value of your voucher is %1$s', 'The value of your vouchers are %1$s', count( (array) $this->extVoucherCode ) ), $value ) ) ); ?>
+<?php $price = $this->extOrderProductItem->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ) ?>
+<?php $value = sprintf( $priceFormat, $this->number( $price->getValue() + $price->getRebate(), $price->getPrecision() ), $priceCurrency ) ?>
+<?= wordwrap( strip_tags( sprintf( $this->translate( 'client', 'The value of your voucher is %1$s', 'The value of your vouchers are %1$s', count( (array) $this->extVoucherCode ) ), $value ) ) ) ?>
 
 
-<?= wordwrap( strip_tags( $this->translate( 'client', 'You can use your vouchers at any time in our online shop' ) ) ); ?>
-<?php $this->block()->stop(); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'You can use your vouchers at any time in our online shop' ) ) ) ?>
+<?php $this->block()->stop() ?>
 <?= $this->block()->get( 'email/voucher/text' );

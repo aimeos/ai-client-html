@@ -7,7 +7,7 @@
  */
 
 ?>
-<?php $this->block()->start( 'email/watch' ); ?>
-<?= $this->get( 'watchBody' ); ?>
-<?php $this->block()->stop(); ?>
+<?php $this->block()->start( 'email/watch' ) ?>
+<?= $this->get( 'watchBody' ) ?>
+<?php $this->block()->stop() ?>
 <?= $this->block()->get( 'email/watch' );

@@ -36,15 +36,15 @@ $enc = $this->encoder();
 						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 					/>
-				<?php endif; ?>
+				<?php endif ?>
 			</td>
 
 			<td class="select-name">
-				<h2><?= $enc->html( $product->getName() ); ?></h2>
+				<h2><?= $enc->html( $product->getName() ) ?></h2>
 
 				<input type="hidden"
-					name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ); ?>"
-					value="<?= $enc->attr( $this->productItem->getId() ); ?>" />
+					name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ) ?>"
+					value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
 			</td>
 
 			<td class="select-attr">
@@ -54,10 +54,10 @@ $enc = $this->encoder();
 							<span class="name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ) ) ?></span>
 							<span class="value"><?= $enc->html( $attrItem->getName() ) ?></span>
 
-							<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ); ?>"
-								name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ); ?>" />
+							<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ) ?>"
+								name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ) ?>" />
 						</li>
-					<?php endforeach; ?>
+					<?php endforeach ?>
 				</ul>
 			</td>
 
@@ -65,12 +65,12 @@ $enc = $this->encoder();
 
 			<td class="select-quantity">
 				<input type="number" class="form-control"
-					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ); ?>"
+					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
 					min="1" max="2147483647" maxlength="10" step="1" value="" />
 			</td>
 
 		</tr>
 
-	<?php endforeach; ?>
+	<?php endforeach ?>
 
 </table>

@@ -9,31 +9,31 @@ $enc = $this->encoder();
 
 
 ?>
-<?php $this->block()->start( 'catalog/detail/service' ); ?>
+<?php $this->block()->start( 'catalog/detail/service' ) ?>
 <div class="catalog-detail-service">
 
 	<?php if( !$this->get( 'serviceItems', map() )->isEmpty() ) : ?>
-		<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ); ?></span>
+		<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ) ?></span>
 		<ul class="service-list">
 
 			<?php foreach( $this->get( 'serviceItems', [] ) as $item ) : ?>
 				<li class="service-item">
-					<span class="service-name"><?= $enc->html( $item->getName() ); ?></span>
+					<span class="service-name"><?= $enc->html( $item->getName() ) ?></span>
 
 					<?= $this->partial(
 						$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 						array( 'prices' => $item->getRefItems( 'price', null, 'default' ), 'costsItem' => false, 'all' => true )
-					); ?>
+					) ?>
 
 					<?php foreach( $item->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-						<span class="service-short"><?= $enc->html( $textItem->getContent() ); ?></span>
-					<?php endforeach; ?>
+						<span class="service-short"><?= $enc->html( $textItem->getContent() ) ?></span>
+					<?php endforeach ?>
 				</li>
 
-			<?php endforeach; ?>
+			<?php endforeach ?>
 
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 </div>
-<?php $this->block()->stop(); ?>
+<?php $this->block()->stop() ?>

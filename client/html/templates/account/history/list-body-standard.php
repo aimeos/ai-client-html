@@ -88,12 +88,12 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 
 ?>
-<?php $this->block()->start( 'account/history/list' ); ?>
+<?php $this->block()->start( 'account/history/list' ) ?>
 
 <?php if( !$this->get( 'listsOrderItems', map() )->isEmpty() ) : ?>
 
 	<div class="account-history-list">
-		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Order history' ), $enc::TRUST ); ?></h1>
+		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Order history' ), $enc::TRUST ) ?></h1>
 
 		<div class="history-list">
 
@@ -117,21 +117,21 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 							<div class="col-md-6">
 								<div class="order-created row">
 									<span class="name col-5">
-										<?= $enc->html( $this->translate( 'client', 'Created' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Created' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
-										<?= $enc->html( date_create( $orderItem->getTimeCreated() )->format( $dateformat ) ); ?>
+										<?= $enc->html( date_create( $orderItem->getTimeCreated() )->format( $dateformat ) ) ?>
 									</span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="order-channel row">
 									<span class="name col-5">
-										<?= $enc->html( $this->translate( 'client', 'Channel' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Channel' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
-										<?php $code = 'order:' . $orderItem->getType(); ?>
-										<?= $enc->html( $this->translate( 'mshop/code', $code ), $enc::TRUST ); ?>
+										<?php $code = 'order:' . $orderItem->getType() ?>
+										<?= $enc->html( $this->translate( 'mshop/code', $code ), $enc::TRUST ) ?>
 									</span>
 								</div>
 							</div>
@@ -140,26 +140,26 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 							<div class="col-md-6">
 								<div class="order-payment row">
 									<span class="name col-5">
-										<?= $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Payment' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
 										<?php if( ( $date = $orderItem->getDatePayment() ) !== null ) : ?>
-											<?php $code = 'pay:' . $orderItem->getPaymentStatus(); $paystatus = $this->translate( 'mshop/code', $code ); ?>
-											<?= $enc->html( sprintf( $attrformat, $paystatus, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
-										<?php endif; ?>
+											<?php $code = 'pay:' . $orderItem->getPaymentStatus(); $paystatus = $this->translate( 'mshop/code', $code ) ?>
+											<?= $enc->html( sprintf( $attrformat, $paystatus, date_create( $date )->format( $dateformat ) ), $enc::TRUST ) ?>
+										<?php endif ?>
 									</span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="order-delivery row">
 									<span class="name col-5">
-										<?= $enc->html( $this->translate( 'client', 'Delivery' ), $enc::TRUST ); ?>
+										<?= $enc->html( $this->translate( 'client', 'Delivery' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
 										<?php if( ( $date = $orderItem->getDateDelivery() ) !== null ) : ?>
-											<?php $code = 'stat:' . $orderItem->getDeliveryStatus(); $status = $this->translate( 'mshop/code', $code ); ?>
-											<?= $enc->html( sprintf( $attrformat, $status, date_create( $date )->format( $dateformat ) ), $enc::TRUST ); ?>
-										<?php endif; ?>
+											<?php $code = 'stat:' . $orderItem->getDeliveryStatus(); $status = $this->translate( 'mshop/code', $code ) ?>
+											<?= $enc->html( sprintf( $attrformat, $status, date_create( $date )->format( $dateformat ) ), $enc::TRUST ) ?>
+										<?php endif ?>
 									</span>
 								</div>
 							</div>
@@ -168,18 +168,18 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 					<div class="action col-md-2">
 						<?php $params = ['his_action' => 'order', 'his_id' => $id] ?>
-						<a class="btn btn-outline" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ); ?>">
+						<a class="btn btn-outline" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', 'Show' ) ) ?>
 						</a>
 					</div>
 				</div>
 
-			<?php endforeach; ?>
+			<?php endforeach ?>
 
 		</div>
 	</div>
 
-<?php endif; ?>
+<?php endif ?>
 
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'account/history/list' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'account/history/list' ) ?>

@@ -78,15 +78,15 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 
 
 ?>
-<section class="aimeos catalog-list <?= $enc->attr( $this->get( 'listCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ); ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos catalog-list <?= $enc->attr( $this->get( 'listCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->listErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->listErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 
 	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
@@ -94,28 +94,28 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 
 			<div class="imagelist-default">
 				<?php foreach( $catItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-					<img class="<?= $enc->attr( $mediaItem->getType() ); ?>"
+					<img class="<?= $enc->attr( $mediaItem->getType() ) ?>"
 						src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
 						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 					/>
-				<?php endforeach; ?>
+				<?php endforeach ?>
 			</div>
 
-			<h1><?= $enc->html( $catItem->getName() ); ?></h1>
+			<h1><?= $enc->html( $catItem->getName() ) ?></h1>
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
 
-	<?= $this->block()->get( 'catalog/lists/promo' ); ?>
+	<?= $this->block()->get( 'catalog/lists/promo' ) ?>
 
 	<?php if( $this->get( 'listProductTotal', 0 ) > 0 ) : ?>
 		<div class="catalog-list-type">
 			<a class="type-item type-grid" title="<?= $enc->attr( $this->translate( 'client', 'Grid view' ) ) ?>"
-				href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $this->get( 'listParams', [] ), [], $config ) ); ?>"></a>
+				href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $this->get( 'listParams', [] ), [], $config ) ) ?>"></a>
 			<a class="type-item type-list" title="<?= $enc->attr( $this->translate( 'client', 'List view' ) ) ?>"
-				href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $this->get( 'listParams', [] ), [], $config ) ); ?>"></a>
+				href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $this->get( 'listParams', [] ), [], $config ) ) ?>"></a>
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
 
 	<?php if( $this->get( 'listProductTotal', 0 ) > 0 && $this->config( 'client/html/catalog/lists/pagination/enable', true ) ) : ?>
 		<?= $this->partial(
@@ -129,7 +129,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 					'next' => $this->get( 'listPageNext', 0 ),
 					'last' => $this->get( 'listPageLast', 0 ),
 				)
-			);
+			)
 		?>
 	<?php endif ?>
 
@@ -146,7 +146,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 					),
 					$searchText,
 					$total
-				), $enc::TRUST ); ?>
+				), $enc::TRUST ) ?>
 			<?php else : ?>
 				<?= $enc->html( sprintf(
 					$this->translate(
@@ -154,13 +154,13 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 						'No articles found for <span class="searchstring">"%1$s"</span>. Please try again with a different keyword.'
 					),
 					$searchText
-				), $enc::TRUST ); ?>
-			<?php endif; ?>
+				), $enc::TRUST ) ?>
+			<?php endif ?>
 
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
 
-	<?= $this->block()->get( 'catalog/lists/items' ); ?>
+	<?= $this->block()->get( 'catalog/lists/items' ) ?>
 
 	<?php if( $this->get( 'listProductTotal', 0 ) > 0 && $this->config( 'client/html/catalog/lists/pagination/enable', true ) ) : ?>
 		<?= $this->partial(
@@ -174,7 +174,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 					'next' => $this->get( 'listPageNext', 0 ),
 					'last' => $this->get( 'listPageLast', 0 ),
 				)
-			);
+			)
 		?>
 	<?php endif ?>
 
@@ -183,12 +183,12 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 		<div class="catalog-list-footer">
 			<?php foreach( (array) $textTypes as $textType ) : ?>
 				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
-					<div class="<?= $enc->attr( $textItem->getType() ); ?>">
-						<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
+					<div class="<?= $enc->attr( $textItem->getType() ) ?>">
+						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
 					</div>
-				<?php endforeach; ?>
-			<?php endforeach; ?>
+				<?php endforeach ?>
+			<?php endforeach ?>
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
 
 </section>

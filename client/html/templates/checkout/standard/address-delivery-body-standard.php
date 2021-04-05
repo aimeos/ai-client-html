@@ -16,10 +16,10 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 
 
 ?>
-<?php $this->block()->start( 'checkout/standard/address/delivery' ); ?>
+<?php $this->block()->start( 'checkout/standard/address/delivery' ) ?>
 <div class="checkout-standard-address-delivery col-xs-12 col-xl">
 
-	<h2><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ); ?></h2>
+	<h2><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h2>
 
 	<div class="item-address item-like">
 		<div class="header">
@@ -27,7 +27,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 				name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
 				<?= $this->get( 'addressDeliveryOption', 'like' ) == 'like' ? 'checked="checked"' : '' ?> />
 			<label for="ca_deliveryoption-like" class="values value-like">
-				<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ); ?>
+				<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
 			</label>
 		</div>
 	</div>
@@ -40,10 +40,10 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 				<a class="modify minibutton delete"
 					href="<?= $enc->attr( $this->url( $target, $controller, $action, ['step' => 'address', 'ca_delivery_delete' => $id], [], $config ) ) ?>">
 				</a>
-				<input id="ca_deliveryoption-<?= $id; ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
+				<input id="ca_deliveryoption-<?= $id ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
 					<?= $this->get( 'addressDeliveryOption' ) == $id ? 'checked="checked"' : '' ?> />
-				<label for="ca_deliveryoption-<?= $id; ?>" class="values">
+				<label for="ca_deliveryoption-<?= $id ?>" class="values">
 					<?= nl2br( $this->value( 'addressDeliveryStrings', $id, '' ) ) ?>
 				</label>
 			</div>
@@ -62,22 +62,22 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 						'type' => 'delivery',
 						'id' => $id,
 					)
-				); ?>
+				) ?>
 			</div>
 		</div>
 
-	<?php endforeach; ?>
+	<?php endforeach ?>
 
 
 	<?php if( !$this->config( 'client/html/checkout/standard/address/delivery/disable-new', false ) ) : ?>
 
-		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressDeliveryOption' ) ); ?>">
+		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressDeliveryOption' ) ) ?>">
 			<div class="header">
 				<input id="ca_deliveryoption-null" type="radio" value="null"
-					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ); ?>"
+					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
 					<?= $this->get( 'addressDeliveryOption' ) == 'null' ? 'checked="checked"' : '' ?> />
 				<label for="ca_deliveryoption-null" class="values value-new">
-					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ); ?>
+					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 				</label>
 			</div>
 
@@ -94,21 +94,21 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 						'css' => $this->get( 'addressDeliveryCss', [] ),
 						'type' => 'delivery'
 					)
-				); ?>
+				) ?>
 
 				<div class="row form-item form-group store <?= join( ' ', $this->value( 'addressDeliveryCss', 'nostore', [] ) ) ?>">
 					<label class="col-md-5" for="address-delivery-store">
-						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ); ?>
+						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ) ?>
 					</label>
 					<div class="col-md-7">
-						<input class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ); ?>" />
+						<input class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ) ?>">
 					</div>
 				</div>
 			</div>
 		</div>
 
-	<?php endif; ?>
+	<?php endif ?>
 
 </div>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'checkout/standard/address/delivery' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'checkout/standard/address/delivery' ) ?>

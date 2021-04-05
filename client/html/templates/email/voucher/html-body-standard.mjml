@@ -14,24 +14,24 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 
 ?>
-<?php $this->block()->start( 'email/voucher/html' ); ?>
+<?php $this->block()->start( 'email/voucher/html' ) ?>
 <mjml>
 	<mj-head>
-		<mj-title><?= $enc->html( $this->translate( 'client', 'Your voucher' ), $enc::TRUST ); ?></mj-title>
+		<mj-title><?= $enc->html( $this->translate( 'client', 'Your voucher' ), $enc::TRUST ) ?></mj-title>
 		<mj-style>
-			<?= $this->get( 'htmlCss' ); ?>
+			<?= $this->get( 'htmlCss' ) ?>
 		</mj-style>
 	</mj-head>
 	<mj-body css-class="aimeos">
 		<mj-section>
 			<mj-column>
-				<mj-image css-class="logo" src="<?= $this->get( 'htmlLogo' ); ?>" align="center"/>
+				<mj-image css-class="logo" src="<?= $this->get( 'htmlLogo' ) ?>" align="center"/>
 			</mj-column>
 		</mj-section>
 		<mj-section>
 			<mj-column>
 				<mj-text css-class="email-common-salutation">
-					<?= $enc->html( $this->get( 'emailIntro' ) ); ?>
+					<?= $enc->html( $this->get( 'emailIntro' ) ) ?>
 				</mj-text>
 			</mj-column>
 		</mj-section>
@@ -39,29 +39,29 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 			<mj-column>
 				<mj-text css-class="email-common-intro">
 					<?php if( is_array( $this->extVoucherCode ) ) : ?>
-						<?= nl2br( $enc->html( $this->translate( 'client', 'Your vouchers: ' ) ) ); ?><br/>
+						<?= nl2br( $enc->html( $this->translate( 'client', 'Your vouchers: ' ) ) ) ?><br/>
 						<?php foreach( $this->extVoucherCode as $code ) : ?>
 							- <?= $code ?><br/>
 						<?php endforeach ?>
 					<?php else : ?>
-						<?= nl2br( $enc->html( $this->translate( 'client', 'Your voucher' ) . ': ' . $this->extVoucherCode, $enc::TRUST ) ); ?>
+						<?= nl2br( $enc->html( $this->translate( 'client', 'Your voucher' ) . ': ' . $this->extVoucherCode, $enc::TRUST ) ) ?>
 					<?php endif ?>
 				</mj-text>
 				<mj-text css-class="email-common-body">
-					<?php $priceCurrency = $this->translate( 'currency', $this->extOrderProductItem->getPrice()->getCurrencyId() ); ?>
-					<?php $value = sprintf( $priceFormat, $this->number( $this->extOrderProductItem->getPrice()->getValue() + $this->extOrderProductItem->getPrice()->getRebate(), $this->extOrderProductItem->getPrice()->getPrecision() ), $priceCurrency ); ?>
-					<?= nl2br( $enc->html( sprintf( $this->translate( 'client', 'The value of your voucher is %1$s', 'The value of your vouchers are %1$s', count( (array) $this->extVoucherCode ) ), $value ), $enc::TRUST ) ); ?>
+					<?php $priceCurrency = $this->translate( 'currency', $this->extOrderProductItem->getPrice()->getCurrencyId() ) ?>
+					<?php $value = sprintf( $priceFormat, $this->number( $this->extOrderProductItem->getPrice()->getValue() + $this->extOrderProductItem->getPrice()->getRebate(), $this->extOrderProductItem->getPrice()->getPrecision() ), $priceCurrency ) ?>
+					<?= nl2br( $enc->html( sprintf( $this->translate( 'client', 'The value of your voucher is %1$s', 'The value of your vouchers are %1$s', count( (array) $this->extVoucherCode ) ), $value ), $enc::TRUST ) ) ?>
 				</mj-text>
 			</mj-column>
 		</mj-section>
 		<mj-section>
 			<mj-column>
 				<mj-text css-class="email-common-outro">
-					<?= nl2br( $enc->html( $this->translate( 'client', 'You can use your vouchers at any time in our online shop' ), $enc::TRUST ) ); ?>
+					<?= nl2br( $enc->html( $this->translate( 'client', 'You can use your vouchers at any time in our online shop' ), $enc::TRUST ) ) ?>
 				</mj-text>
 			</mj-column>
 		</mj-section>
 	</mj-body>
 </mjml>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/voucher/html' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'email/voucher/html' ) ?>

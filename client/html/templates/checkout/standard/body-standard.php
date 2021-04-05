@@ -25,36 +25,36 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<nav>
 		<ol class="steps">
 
 			<li class="step active basket">
-				<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ); ?>">
-					<?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ); ?>
+				<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
+					<?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?>
 				</a>
 			</li>
 
 			<?php foreach( $this->get( 'standardStepsBefore', [] ) as $name ) : ?>
 				<li class="step active <?= $name ?>">
-					<a href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, ['c_step' => $name], [], $checkoutConfig ) ); ?>">
-						<?= $enc->html( $this->translate( 'client', $name ) ); ?>
+					<a href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, ['c_step' => $name], [], $checkoutConfig ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', $name ) ) ?>
 					</a>
 				</li>
-			<?php endforeach; ?>
+			<?php endforeach ?>
 
 			<?php if( $this->get( 'standardStepActive', false ) ) : ?>
 				<li class="step current <?= $this->get( 'standardStepActive', false ) ?>">
-					<?= $enc->html( $this->translate( 'client', $this->get( 'standardStepActive', false ) ) ); ?>
+					<?= $enc->html( $this->translate( 'client', $this->get( 'standardStepActive', false ) ) ) ?>
 				</li>
 			<?php endif ?>
 
 			<?php foreach( $this->get( 'standardStepsAfter', [] ) as $name ) : ?>
 				<li class="step <?= $name ?>">
-					<?= $enc->html( $this->translate( 'client', $name ) ); ?>
+					<?= $enc->html( $this->translate( 'client', $name ) ) ?>
 				</li>
-			<?php endforeach; ?>
+			<?php endforeach ?>
 
 		</ol>
 	</nav>
@@ -63,15 +63,15 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php if( isset( $this->standardErrorList ) ) : ?>
 		<ul class="error-list">
 			<?php foreach( (array) $this->standardErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
 
-	<form method="<?= $enc->attr( $this->get( 'standardMethod', 'POST' ) ); ?>" action="<?= $enc->attr( $this->get( 'standardUrlNext' ) ); ?>">
-		<?= $this->csrf()->formfield(); ?>
-		<?= $this->get( 'standardBody' ); ?>
+	<form method="<?= $enc->attr( $this->get( 'standardMethod', 'POST' ) ) ?>" action="<?= $enc->attr( $this->get( 'standardUrlNext' ) ) ?>">
+		<?= $this->csrf()->formfield() ?>
+		<?= $this->get( 'standardBody' ) ?>
 	</form>
 
 </section>

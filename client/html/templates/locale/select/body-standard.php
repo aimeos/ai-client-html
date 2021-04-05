@@ -15,19 +15,19 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<?php $this->block()->start( 'locale/select' ); ?>
-<section class="aimeos locale-select" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<?php $this->block()->start( 'locale/select' ) ?>
+<section class="aimeos locale-select" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'selectErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
 			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?= $enc->html( $error ); ?></li>
-			<?php endforeach; ?>
+				<li class="error-item"><?= $enc->html( $error ) ?></li>
+			<?php endforeach ?>
 		</ul>
-	<?php endif; ?>
+	<?php endif ?>
 
-	<?= $this->get( 'selectBody' ); ?>
+	<?= $this->get( 'selectBody' ) ?>
 
 </section>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'locale/select' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'locale/select' ) ?>

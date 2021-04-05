@@ -37,31 +37,31 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 
 
 ?>
-<?php $this->block()->start( 'email/watch/text' ); ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ); ?>
+<?php $this->block()->start( 'email/watch/text' ) ?>
+<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ) ?>
 
 
-<?= wordwrap( strip_tags( $this->translate( 'client', 'One or more products you are watching have been updated.' ) ) ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'One or more products you are watching have been updated.' ) ) ) ?>
 
 
 
-<?= strip_tags( $this->translate( 'client', 'Watched products' ) ); ?>:
-<?php foreach( $this->extProducts as $entry ) : $product = $entry['item']; ?>
+<?= strip_tags( $this->translate( 'client', 'Watched products' ) ) ?>:
+<?php foreach( $this->extProducts as $entry ) : $product = $entry['item'] ?>
 
-<?= strip_tags( $product->getName() ); ?>
+<?= strip_tags( $product->getName() ) ?>
 
 
-<?php $price = $entry['price']; $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ); ?>
-<?php printf( $priceFormat, $this->number( $price->getValue(), $price->getPrecision() ), $priceCurrency ); ?> <?php ( $price->getRebate() > '0.00' ? printf( $rebatePercentFormat, $this->number( round( $price->getRebate() * 100 / ( $price->getValue() + $price->getRebate() ) ), 0 ) ) : '' ); ?>
+<?php $price = $entry['price']; $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ) ?>
+<?php printf( $priceFormat, $this->number( $price->getValue(), $price->getPrecision() ), $priceCurrency ) ?> <?php ( $price->getRebate() > '0.00' ? printf( $rebatePercentFormat, $this->number( round( $price->getRebate() * 100 / ( $price->getValue() + $price->getRebate() ) ), 0 ) ) : '' ) ?>
 <?php if( $price->getCosts() > 0 ) { echo ' ' . strip_tags( sprintf( $costFormat, $this->number( $price->getCosts(), $price->getPrecision() ), $priceCurrency ) ); } ?>
 <?php if( $price->getTaxrate() > 0 ) { echo ', ' . strip_tags( sprintf( $vatFormat, $this->number( $price->getTaxrate() ) ) ); } ?>
 
-<?php $params = array_diff_key( array_merge( $this->param(), ['currency' => $entry['currency'], 'd_name' => $product->getName( 'url' ), 'd_prodid' => $product->getId(), 'd_pos' => ''] ), $detailFilter ); ?>
-<?= $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ); ?>
+<?php $params = array_diff_key( array_merge( $this->param(), ['currency' => $entry['currency'], 'd_name' => $product->getName( 'url' ), 'd_prodid' => $product->getId(), 'd_pos' => ''] ), $detailFilter ) ?>
+<?= $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ?>
 
-<?php endforeach; ?>
+<?php endforeach ?>
 
 
-<?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ); ?>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'email/watch/text' ); ?>
+<?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ) ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'email/watch/text' ) ?>

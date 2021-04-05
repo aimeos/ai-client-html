@@ -115,10 +115,10 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 
 
 ?>
-<?php $this->block()->start( 'catalog/filter/search' ); ?>
+<?php $this->block()->start( 'catalog/filter/search' ) ?>
 <section class="catalog-filter-search col-sm-12">
 
-	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
+	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ) ?></h2>
 	<div class="input-group">
 		<input class="form-control value" type="text"
 			name="<?= $enc->attr( $this->formparam( 'f_search' ) ) ?>"
@@ -137,5 +137,5 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 	</div>
 
 </section>
-<?php $this->block()->stop(); ?>
-<?= $this->block()->get( 'catalog/filter/search' ); ?>
+<?php $this->block()->stop() ?>
+<?= $this->block()->get( 'catalog/filter/search' ) ?>
