@@ -36,7 +36,7 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 	<?php endforeach ?>
 
-	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:card" content="summary">
 
 <?php else : ?>
 
