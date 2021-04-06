@@ -5071,12 +5071,12 @@ body{
 	position: relative;
 }
 
-basket-mini-product .basket .price {
+.basket-mini-product .basket .price {
 	white-space: nowrap;
 	text-align: left;
 }
 
-basket-mini .btn-primary {
+.basket-mini .btn-primary {
 	color: #FFF;
 	color: var(--ai-bg, #FFF);
 }
