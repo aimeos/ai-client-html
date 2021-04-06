@@ -16,9 +16,9 @@
 	"require": {
 		"php": "~7.1||~8.0",
 		"composer/installers": "^1.0",
-		"aimeos/aimeos-core": "dev-master",
-		"aimeos/ai-controller-jobs": "dev-master",
-		"aimeos/ai-controller-frontend": "dev-master",
+		"aimeos/aimeos-core": "2021.04.*",
+		"aimeos/ai-controller-jobs": "2021.04.*",
+		"aimeos/ai-controller-frontend": "2021.04.*",
 		"tecnickcom/tcpdf": "dev-main"
 	},
 	"require-dev": {
