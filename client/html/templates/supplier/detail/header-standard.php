@@ -56,7 +56,7 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
 		<?php endforeach ?>
 
 		<?php foreach( $this->detailSupplierItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-			<meta property="og:image" content="<?= $enc->attr( asset( $mediaItem->getPreview( true ) ) ) ?>">
+			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>">
 		<?php endforeach ?>
 
 		<meta name="twitter:card" content="summary_large_image">
