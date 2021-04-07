@@ -17,14 +17,14 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 	<div class="col-md-7">
 		<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-salutation-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.salutation' ) ) ) ?>"
-			<?= $this->value( 'css', 'order.base.address.salutation' ) ? '' : 'disabled' ?> >
+			<?= $this->value( 'css', 'order.base.address.salutation' ) ? '' : 'disabled' ?>>
 
 			<?php if( count( $this->get( 'salutations', [] ) ) > 1 ) : ?>
 				<option value=""><?= $enc->html( $this->translate( 'client', 'Select salutation' ), $enc::TRUST ) ?></option>
 			<?php endif ?>
 
 			<?php foreach( $this->get( 'salutations', [] ) as $salutation ) : ?>
-				<option value="<?= $enc->attr( $salutation ) ?>" <?= $this->value( 'address', 'order.base.address.salutation' ) == $salutation ? 'selected' : '' ?> >
+				<option value="<?= $enc->attr( $salutation ) ?>" <?= $this->value( 'address', 'order.base.address.salutation' ) == $salutation ? 'selected' : '' ?>>
 					<?= $enc->html( $this->translate( 'mshop/code', $salutation ) ) ?>
 				</option>
 			<?php endforeach ?>
@@ -35,7 +35,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 
 <div class="row form-item form-group firstname <?= $enc->attr( ( $this->value( 'error', 'order.base.address.firstname' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.firstname', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/firstname' ) ) ?>" >
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/firstname' ) ) ?>">
 
 	<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-firstname-<?= $this->get( 'id' ) ?>">
 		<?= $enc->html( $this->translate( 'client', 'First name' ), $enc::TRUST ) ?>
@@ -47,7 +47,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.firstname' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'First name' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.firstname' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -65,7 +65,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.lastname' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Last name' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.lastname' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -83,7 +83,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.company' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Company' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.company' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -101,7 +101,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.address1' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Street' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.address1' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -119,7 +119,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.address2' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.address2' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -137,7 +137,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.address3' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional 2' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.address3' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -155,7 +155,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.city' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'City' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.city' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -173,7 +173,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.postal' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Postal code' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.postal' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -187,7 +187,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		<div class="col-md-7">
 			<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-state-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.state' ) ) ) ?>"
-				<?= $this->value( 'css', 'order.base.address.state' ) ? '' : 'disabled' ?> >
+				<?= $this->value( 'css', 'order.base.address.state' ) ? '' : 'disabled' ?>>
 
 				<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ) ?></option>
 
@@ -196,7 +196,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 					<optgroup class="<?= $regioncode ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ) ?>">
 
 						<?php foreach( $stateList as $stateCode => $stateName ) : ?>
-							<option value="<?= $enc->attr( $stateCode ) ?>" <?= $this->value( 'address', 'order.base.address.state' ) == $stateCode ? 'selected' : '' ?> >
+							<option value="<?= $enc->attr( $stateCode ) ?>" <?= $this->value( 'address', 'order.base.address.state' ) == $stateCode ? 'selected' : '' ?>>
 								<?= $enc->html( $stateName ) ?>
 							</option>
 						<?php endforeach ?>
@@ -220,14 +220,14 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		<div class="col-md-7">
 			<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-countryid-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.countryid' ) ) ) ?>"
-				<?= $this->value( 'css', 'order.base.address.countryid' ) ? '' : 'disabled' ?> >
+				<?= $this->value( 'css', 'order.base.address.countryid' ) ? '' : 'disabled' ?>>
 
 				<?php if( count( $this->get( 'countries', [] ) ) > 1 ) : ?>
 					<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ) ?></option>
 				<?php endif ?>
 
 				<?php foreach( $this->get( 'countries', [] ) as $countryId ) : ?>
-					<option value="<?= $enc->attr( $countryId ) ?>" <?= $this->value( 'address', 'order.base.address.countryid' ) == $countryId ? 'selected' : '' ?> >
+					<option value="<?= $enc->attr( $countryId ) ?>" <?= $this->value( 'address', 'order.base.address.countryid' ) == $countryId ? 'selected' : '' ?>>
 						<?= $enc->html( $this->translate( 'country', $countryId ) ) ?>
 					</option>
 				<?php endforeach ?>
@@ -240,7 +240,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 
 <?php if( count( $this->get( 'languages', [] ) ) > 0 ) : ?>
 	<div class="row form-item form-group languageid <?= $enc->attr( ( $this->value( 'error', 'order.base.address.languageid' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.base.address.languageid', [] ) ) ) ?>"
-		<?= $this->value( 'css', 'order.base.address.languageid' ) ? '' : 'disabled' ?> >
+		<?= $this->value( 'css', 'order.base.address.languageid' ) ? '' : 'disabled' ?>>
 
 		<label class="col-md-5" for="address-<?= $this->get( 'type', 'billing' ) ?>-languageid-<?= $this->get( 'id' ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ) ?>
@@ -254,7 +254,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 				<?php endif ?>
 
 				<?php foreach( $this->get( 'languages', [] ) as $languageId ) : ?>
-					<option value="<?= $enc->attr( $languageId ) ?>" <?= $this->value( 'address', 'order.base.address.languageid' ) == $languageId ? 'selected' : '' ?> >
+					<option value="<?= $enc->attr( $languageId ) ?>" <?= $this->value( 'address', 'order.base.address.languageid' ) == $languageId ? 'selected' : '' ?>>
 						<?= $enc->html( $this->translate( 'language', $languageId ) ) ?>
 					</option>
 				<?php endforeach ?>
@@ -278,7 +278,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.vatid' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'GB999999973' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.vatid' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -296,7 +296,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.email' ) ) ?>"
 			placeholder="name@example.com"
 			<?= $this->value( 'css', 'order.base.address.email' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -314,7 +314,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.telephone' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.telephone' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -332,7 +332,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.telefax' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
 			<?= $this->value( 'css', 'order.base.address.telefax' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -350,7 +350,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.website' ) ) ?>"
 			placeholder="https://example.com"
 			<?= $this->value( 'css', 'order.base.address.website' ) ? '' : 'disabled' ?>
-		/>
+		>
 	</div>
 </div>
 
@@ -364,6 +364,6 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-birthday-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.base.address.birthday' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.base.address.birthday' ) ) ?>"
-		/>
+		>
 	</div>
 </div>

@@ -20,7 +20,8 @@ $pos = 0;
  *
  *  <img src="img.jpg"
  *  	srcset="img-small.jpg 240w, img-large.jpg 720w"
- *  	sizes="(max-width: 320px) 240px, 720px" />
+ *  	sizes="(max-width: 320px) 240px, 720px"
+ *  >
  *
  * The images and their width in the "srcset" attribute are automatically added
  * based on the sizes of the generated preview images. The value of the "sizes"
@@ -74,7 +75,7 @@ $pos = 0;
 								data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
 								data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 								alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-							/>
+							>
 						</a>
 					<?php endforeach ?>
 				</div>
@@ -110,7 +111,8 @@ $pos = 0;
 										sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
 										data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
 										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>" />
+										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+									>
 									<?php if( $text ) : ?>
 										<div class="stage-short col-md-4">
 											<?= $enc->html( $text, $enc::TRUST ) ?>
@@ -127,7 +129,8 @@ $pos = 0;
 										sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
 										data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
 										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>" />
+										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+									>
 								<?php endif ?>
 							</a>
 						<?php endforeach ?>

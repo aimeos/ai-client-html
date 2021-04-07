@@ -128,7 +128,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
  *
  *  <img src="img.jpg"
  *  	srcset="img-small.jpg 240w, img-large.jpg 720w"
- *  	sizes="(max-width: 320px) 240px, 720px" />
+ *  	sizes="(max-width: 320px) 240px, 720px"
+ *  >
  *
  * The images and their width in the "srcset" attribute are automatically added
  * based on the sizes of the generated preview images. The value of the "sizes"
@@ -181,7 +182,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 								<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-								/>
+								>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
 							</div>
 						</noscript>
@@ -195,7 +196,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-								/>
+								>
 							</div>
 
 						<?php endforeach ?>
@@ -338,18 +339,18 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<div class="input-group">
 								<input type="hidden" value="add"
 									name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>"
-								/>
+								>
 								<input type="hidden" value="<?= $id ?>"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ) ?>"
-								/>
+								>
 								<input type="number" max="2147483647" maxlength="10"
 									value="<?= $enc->attr( $productItem->getScale() ) ?>"
 									min="<?= $enc->attr( $productItem->getScale() ) ?>"
 									step="<?= $enc->attr( $productItem->getScale() ) ?>"
 									required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ) ?>"
-								/><!--
-								--><button class="btn btn-primary" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
+								><!--
+								--><button class="btn btn-primary" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>>
 									<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 								</button>
 							</div>

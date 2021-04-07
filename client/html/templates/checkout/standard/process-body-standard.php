@@ -74,11 +74,11 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			<?php if( is_array( $item->getDefault() ) ) : ?>
 				<input type="hidden" id="process-<?= $id ?>" value="<?= $enc->attr( $value ) ?>"
 					name="<?= $enc->attr( $this->formparam( [$item->getInternalCode(), $key], $prefix ) ) ?>"
-				/>
+				>
 			<?php else : ?>
 				<input type="hidden" id="process-<?= $id ?>" value="<?= $enc->attr( $value ) ?>"
 					name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
-				/>
+				>
 			<?php endif ?>
 		<?php endforeach ?>
 	<?php endforeach ?>
@@ -107,25 +107,29 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 						<input type="checkbox" id="process-<?= $key ?>"
 							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
 							value="<?= $enc->attr( $item->getDefault() ) ?>"
-							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>" />
+							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
+						>
 
 					<?php break; case 'integer': case 'number': ?>
 						<input type="number" id="process-<?= $key ?>"
 							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
 							value="<?= $enc->attr( $item->getDefault() ) ?>"
-							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>" />
+							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
+						>
 
 					<?php break; case 'date': case 'datetime': case 'time': ?>
 						<input type="<?= $attribute->getType() ?>" id="process-<?= $key ?>"
 							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
 							value="<?= $enc->attr( $item->getDefault() ) ?>"
-							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>" />
+							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
+						>
 
 					<?php break; default: ?>
 						<input type="text" id="process-<?= $key ?>"
 							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
 							value="<?= $enc->attr( $item->getDefault() ) ?>"
-							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>" />
+							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
+						>
 
 				<?php endswitch ?>
 

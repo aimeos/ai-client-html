@@ -35,7 +35,7 @@ $enc = $this->encoder();
 						src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-					/>
+					>
 				<?php endif ?>
 			</td>
 
@@ -44,7 +44,8 @@ $enc = $this->encoder();
 
 				<input type="hidden"
 					name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ) ?>"
-					value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
+					value="<?= $enc->attr( $this->productItem->getId() ) ?>"
+				>
 			</td>
 
 			<td class="select-attr">
@@ -55,7 +56,8 @@ $enc = $this->encoder();
 							<span class="value"><?= $enc->html( $attrItem->getName() ) ?></span>
 
 							<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ) ?>"
-								name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ) ?>" />
+								name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ) ?>"
+							>
 						</li>
 					<?php endforeach ?>
 				</ul>
@@ -66,7 +68,7 @@ $enc = $this->encoder();
 			<td class="select-quantity">
 				<input type="number" class="form-control"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
-					min="1" max="2147483647" maxlength="10" step="1" value="" />
+					min="1" max="2147483647" maxlength="10" step="1" value="">
 			</td>
 
 		</tr>

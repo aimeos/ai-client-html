@@ -48,7 +48,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-								/>
+								>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
 							</div>
 						</noscript>
@@ -61,7 +61,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-								/>
+								>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
 							</div>
 						<?php endforeach ?>
@@ -85,7 +85,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 						<div class="text-item" itemprop="description">
-							<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?><br/>
+							<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?><br>
 						</div>
 					<?php endforeach ?>
 				</a><!--
@@ -164,18 +164,18 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>"
 										value="add"
-									/>
+									>
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ) ?>"
 										value="<?= $id ?>"
-									/>
+									>
 									<input type="number" max="2147483647" maxlength="10"
 										min="<?= $enc->attr( $productItem->getScale() ) ?>"
 										step="<?= $enc->attr( $productItem->getScale() ) ?>"
 										value="<?= $enc->attr( $productItem->getScale() ) ?>"
 										required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
 										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ) ?>"
-									/><!--
+									><!--
 									--><button class="btn btn-primary" type="submit" value="">
 										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 									</button>
