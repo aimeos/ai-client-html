@@ -234,7 +234,7 @@ $cancelConfig = $this->config( 'client/html/checkout/standard/summary/option/ter
 			<input id="option-account" type="checkbox" value="1"
 				name="<?= $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ) ?>"
 				<?= ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ) ?>
-			/>
+			>
 			<p>
 				<label for="option-account">
 					<?= $enc->html( $this->translate( 'client', 'Create a customer account for me' ), $enc::TRUST ) ?>
@@ -252,7 +252,7 @@ $cancelConfig = $this->config( 'client/html/checkout/standard/summary/option/ter
 		<input id="option-terms-accept" type="checkbox" value="1"
 			name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms_value' ) ) ) ?>"
 			<?= ( $this->param( 'cs_option_terms_value', null ) == 1 ? 'checked="checked"' : '' ) ?>
-		/>
+		>
 
 		<p>
 			<label for="option-terms-accept">

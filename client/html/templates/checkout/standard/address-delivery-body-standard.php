@@ -25,7 +25,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 		<div class="header">
 			<input id="ca_deliveryoption-like" type="radio" value="like"
 				name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
-				<?= $this->get( 'addressDeliveryOption', 'like' ) == 'like' ? 'checked="checked"' : '' ?> />
+				<?= $this->get( 'addressDeliveryOption', 'like' ) == 'like' ? 'checked="checked"' : '' ?>>
 			<label for="ca_deliveryoption-like" class="values value-like">
 				<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
 			</label>
@@ -42,7 +42,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 				</a>
 				<input id="ca_deliveryoption-<?= $id ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
-					<?= $this->get( 'addressDeliveryOption' ) == $id ? 'checked="checked"' : '' ?> />
+					<?= $this->get( 'addressDeliveryOption' ) == $id ? 'checked="checked"' : '' ?>>
 				<label for="ca_deliveryoption-<?= $id ?>" class="values">
 					<?= nl2br( $this->value( 'addressDeliveryStrings', $id, '' ) ) ?>
 				</label>
@@ -75,7 +75,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 			<div class="header">
 				<input id="ca_deliveryoption-null" type="radio" value="null"
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
-					<?= $this->get( 'addressDeliveryOption' ) == 'null' ? 'checked="checked"' : '' ?> />
+					<?= $this->get( 'addressDeliveryOption' ) == 'null' ? 'checked="checked"' : '' ?>>
 				<label for="ca_deliveryoption-null" class="values value-new">
 					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 				</label>

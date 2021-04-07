@@ -43,7 +43,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 					src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
 					srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-				/>
+				>
 			<?php endforeach ?>
 		</div>
 	<?php endif ?>

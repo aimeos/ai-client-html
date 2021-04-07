@@ -128,7 +128,7 @@ ksort( $attrTypeDeps );
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
 									<?= ( $first && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ); $first = false ?>
-								/>
+								>
 								<label class="select-label" for="option-<?= $enc->attr( $attrId ) ?>"><!--
 
 									<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'default', 'icon' ) as $listItem ) : ?>
@@ -154,7 +154,8 @@ ksort( $attrTypeDeps );
 
 					<select id="select-<?= $enc->attr( $code ) ?>" class="form-control select-list"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
-						data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>" >
+						data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>"
+					>
 
 						<?php if( !$this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ) : ?>
 

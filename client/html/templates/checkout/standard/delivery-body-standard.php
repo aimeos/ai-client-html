@@ -27,7 +27,7 @@ $enc = $this->encoder();
 						name="<?= $enc->attr( $this->formparam( ['c_deliveryoption'] ) ) ?>"
 						value="<?= $enc->attr( $id ) ?>"
 						<?= $id != $this->get( 'deliveryOption' ) ?: 'checked="checked"' ?>
-					/>
+					>
 
 
 					<?php if( $price = $service->price ) : ?>
