@@ -58,7 +58,7 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 
 	<?php break; default: ?>
 
-		<a href="<?= $enc->attr( $this->content( $item->getUrl() ) ) ?>" <?= $boxattr ?> ><!--
+		<a href="<?= $enc->attr( $this->content( $item->getUrl() ) ) ?>" <?= $boxattr ?>><!--
 			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ) ?>" title="<?= $enc->attr( $item->getName() ) ?>" <?= $itemattr ?>><!--
 			<?= $enc->html( $item->getName() ) ?>
 		--></a>

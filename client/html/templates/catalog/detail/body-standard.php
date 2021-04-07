@@ -62,7 +62,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 ?>
-<section class="aimeos catalog-detail" itemscope="" itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->detailErrorList ) ) : ?>
 		<ul class="error-list">
@@ -115,7 +115,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</p>
 
 					<?php if( $this->detailProductItem->getRating() > 0 ) : ?>
-						<div class="rating" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+						<div class="rating" itemscope itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating">
 							<span class="stars"><?= str_repeat( '★', (int) round( $this->detailProductItem->getRating() ) ) ?></span>
 							<span class="rating-value" itemprop="ratingValue"><?= $enc->html( $this->detailProductItem->getRating() ) ?></span>
 							<span class="ratings" itemprop="reviewCount"><?= (int) $this->detailProductItem->getRatings() ?></span>
@@ -129,7 +129,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				</div>
 
 
-				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock ?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock ?>" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 
 					<div class="price-list">
 						<div class="articleitem price price-actual"
@@ -255,23 +255,24 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ) ?>"
 										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
-									/>
+									>
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'supplier'] ) ) ?>"
 										value="<?= $enc->attr( $this->detailProductItem->getSupplierItems()->getId()->first() ) ?>"
-									/>
+									>
 									<?php if( $basketSite ) : ?>
 										<input type="hidden"
 											name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'siteid'] ) ) ?>"
-											value="<?= $enc->attr( $basketSite ) ?>" />
+											value="<?= $enc->attr( $basketSite ) ?>"
+										>
 									<?php endif ?>
 									<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ) ?>"
 										min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
 										step="<?= $this->detailProductItem->getScale() ?>" maxlength="10"
 										value="<?= $this->detailProductItem->getScale() ?>" required="required"
-									/>
-									<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?> >
+									>
+									<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>>
 										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 									</button>
 								</div>
@@ -431,7 +432,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 												alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 												src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 												srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-											/>
+											>
 											<span class="media-name"><?= $enc->html( $mediaItem->getProperties( 'title' )->first() ) ?></span>
 										</a>
 									</li>
@@ -484,12 +485,12 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									<span><?= $enc->html( $this->translate( 'client', 'Sort by:' ), $enc::TRUST ) ?></span>
 									<ul>
 										<li>
-											<a class="sort-option option-ctime active" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-ctime'], [], $optConfig ) ) ?>" >
+											<a class="sort-option option-ctime active" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-ctime'], [], $optConfig ) ) ?>">
 												<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ) ?>
 											</a>
 										</li>
 										<li>
-											<a class="sort-option option-rating" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-rating,-ctime'], [], $optConfig ) ) ?>" >
+											<a class="sort-option option-rating" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-rating,-ctime'], [], $optConfig ) ) ?>">
 												<?= $enc->html( $this->translate( 'client', 'Rating' ), $enc::TRUST ) ?>
 											</a>
 										</li>
@@ -565,7 +566,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
-										/>
+										>
 									</div>
 								<?php endif ?>
 

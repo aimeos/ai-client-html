@@ -71,11 +71,11 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 				<input type="hidden"
 					name="<?= $enc->attr( $this->formparam( ['f_catid'] ) ) ?>"
 					value="<?= $enc->attr( $this->param( 'f_catid' ) ) ?>"
-				/>
+				>
 				<input type="hidden"
 					name="<?= $enc->attr( $this->formparam( ['f_name'] ) ) ?>"
 					value="<?= $enc->attr( $this->get( 'treeCatalogPath', map() )->getName()->get( $this->param( 'f_catid' ) ) ) ?>"
-				/>
+				>
 			<?php endif ?>
 
 			<fieldset>

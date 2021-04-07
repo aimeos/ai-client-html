@@ -27,7 +27,7 @@ $enc = $this->encoder();
 						name="<?= $enc->attr( $this->formparam( ['c_paymentoption'] ) ) ?>"
 						value="<?= $enc->attr( $id ) ?>"
 						<?= $id != $this->get( 'paymentOption' ) ?: 'checked="checked"' ?>
-					/>
+					>
 
 					<?php if( $price = $service->price ) : ?>
 						<?php if( $price->getValue() > 0 ) : ?>

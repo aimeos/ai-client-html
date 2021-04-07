@@ -109,10 +109,10 @@ $enc = $this->encoder();
 							<li class="input-group select-entry">
 								<input type="hidden" value="<?= $enc->attr( $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
-								/>
+								>
 								<input class="form-control select-option" id="option-<?= $enc->attr( $attrId ) ?>" type="number" value="0" step="1" min="0"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>"
-								/><!--
+								><!--
 								--><label class="form-control select-label" for="option-<?= $enc->attr( $attrId ) ?>">
 									<?= $enc->html( $this->attrname( $attribute ) ) ?>
 								</label>
@@ -171,7 +171,7 @@ $enc = $this->encoder();
 						<?php if( $price = $this->productItem->getRefItems( 'price', 'default', 'default' )->first() ) : ?>
 							value="<?= $enc->attr( $price->getValue() ) ?>"
 						<?php endif ?>
-					/>
+					>
 				<?php break; case 'date': ?>
 					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="date" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
 				<?php break; default: ?>

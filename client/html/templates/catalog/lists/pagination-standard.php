@@ -53,13 +53,13 @@ if( $sort === 'price' ) {
 		<ul>
 			<li>
 				<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'f_sort' => 'relevance' ) + $params, [], $listConfig ) ?>
-				<a class="option-relevance <?= ( $sort === 'relevance' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>" >
+				<a class="option-relevance <?= ( $sort === 'relevance' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Relevance' ), $enc::TRUST ) ?>
 				</a>
 			</li>
 			<li>
 				<?php $url = $this->url( $listTarget, $listController, $listAction, array( 'f_sort' => '-ctime' ) + $params, [], $listConfig ) ?>
-				<a class="option-ctime <?= ( $sort === '-ctime' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>" >
+				<a class="option-ctime <?= ( $sort === '-ctime' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ) ?>
 				</a>
 			</li>

@@ -70,20 +70,20 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						<td class="product">
 							<input type="hidden" class="attrvarid"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'attrvarid', '_type_'] ) ) ?>"
-							/>
+							>
 							<input type="hidden" class="productid"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'prodid'] ) ) ?>"
-							/>
+							>
 							<input type="text" class="form-control search" tabindex="1"
 								placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
-							/>
+							>
 							<div class="vattributes"></div>
 						</td>
 						<td class="quantity">
 							<input type="number" class="form-control" tabindex="1"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'quantity'] ) ) ?>"
 								min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
-							/>
+							>
 						</td>
 						<td class="price"></td>
 						<td class="buttons">
@@ -97,10 +97,10 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 					<td class="product">
 						<input type="hidden" class="attrvarid" disabled="disabled"
 							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'attrvarid', '_type_'] ) ) ?>"
-						/>
+						>
 						<input type="hidden" class="productid" disabled="disabled"
 							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'prodid'] ) ) ?>"
-						/>
+						>
 						<input type="text" class="form-control search" tabindex="1" disabled="disabled">
 						<div class="vattributes"></div>
 					</td>
@@ -108,7 +108,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						<input type="number" class="form-control" tabindex="1" disabled="disabled"
 							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'quantity'] ) ) ?>"
 							min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
-						/>
+						>
 					</td>
 					<td class="price"></td>
 					<td class="buttons">

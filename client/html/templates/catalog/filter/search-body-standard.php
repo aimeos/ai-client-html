@@ -127,7 +127,7 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 			value="<?= $enc->attr( $enforce ? $this->param( 'f_search' ) : '' ) ?>"
 			data-url="<?= $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, [], [], $suggestConfig ) ) ?>"
 			data-hint="<?= $enc->attr( $this->translate( 'client', 'Please enter at least three characters' ) ) ?>"
-		/><!--
+		><!--
 		--><button class="btn btn-default reset" type="reset" title="<?= $enc->attr( $this->translate( 'client', 'Reset' ) ) ?>">
 			<span class="symbol"/>
 		</button><!--

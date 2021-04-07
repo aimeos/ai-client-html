@@ -110,7 +110,8 @@ $productItems = $this->get( 'todoProductItems', map() );
 				<div class="todo-item">
 					<h3 class="todo-name"><?= $enc->html( $productItem->getName() ) ?></h3>
 					<input type="hidden" value="<?= $enc->attr( $productItem->get( 'orderProductId' ) ) ?>"
-						name="<?= $enc->attr( $this->formparam( ['review-todo', $prodId, 'review.orderproductid'] ) ) ?>" />
+						name="<?= $enc->attr( $this->formparam( ['review-todo', $prodId, 'review.orderproductid'] ) ) ?>"
+					>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="row">
@@ -121,6 +122,7 @@ $productItems = $this->get( 'todoProductItems', map() );
 											src="<?= $enc->attr( $this->content( $images->first()->getPreview() ) ) ?>"
 											srcset="<?= $enc->attr( $this->imageset( $images->first()->getPreviews() ) ) ?>"
 											alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+										>
 									<?php endif ?>
 								</div>
 								<div class="col-6">
@@ -129,31 +131,36 @@ $productItems = $this->get( 'todoProductItems', map() );
 										<div class="rating-line">
 											<input id="rating-<?= $enc->attr( $prodId ) ?>-5" class="rating rating-5"
 												type="radio" value="5" name="<?= $this->formparam( ['review-todo', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 5 ? 'selected' : '' ?> />
+												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 5 ? 'selected' : '' ?>
+											>
 											<label for="rating-<?= $enc->attr( $prodId ) ?>-5">★★★★★</label>
 										</div>
 										<div class="rating-line">
 											<input id="rating-<?= $enc->attr( $prodId ) ?>-4" class="rating rating-4"
 												type="radio" value="4" name="<?= $this->formparam( ['review-todo', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 4 ? 'selected' : '' ?> />
+												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 4 ? 'selected' : '' ?>
+											>
 											<label for="rating-<?= $enc->attr( $prodId ) ?>-4">★★★★</label>
 											</div>
 										<div class="rating-line">
 											<input id="rating-<?= $enc->attr( $prodId ) ?>-3" class="rating rating-3"
 												type="radio" value="3" name="<?= $this->formparam( ['review-todo', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 3 ? 'selected' : '' ?> />
+												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 3 ? 'selected' : '' ?>
+											>
 											<label for="rating-<?= $enc->attr( $prodId ) ?>-3">★★★</label>
 											</div>
 										<div class="rating-line">
 											<input id="rating-<?= $enc->attr( $prodId ) ?>-2" class="rating rating-2"
 												type="radio" value="2" name="<?= $this->formparam( ['review-todo', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 2 ? 'selected' : '' ?> />
+												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 2 ? 'selected' : '' ?>
+											>
 											<label for="rating-<?= $enc->attr( $prodId ) ?>-2">★★</label>
 											</div>
 										<div class="rating-line">
 											<input id="rating-<?= $enc->attr( $prodId ) ?>-1" class="rating rating-1"
 												type="radio" value="1" name="<?= $this->formparam( ['review-todo', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 1 ? 'selected' : '' ?> />
+												<?= $this->param( 'review-todo/' . $prodId . '/review.rating' ) == 1 ? 'selected' : '' ?>
+											>
 											<label for="rating-<?= $enc->attr( $prodId ) ?>-1">★</label>
 										</div>
 									</div>

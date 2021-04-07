@@ -22,7 +22,7 @@ $enc = $this->encoder();
 					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ) ?>"
 					value="<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>"
 					<?= $this->get( 'addressBillingOption' ) == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ?>
-				/>
+				>
 				<label for="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" class="values">
 					<?= nl2br( $this->get( 'addressBillingString', '' ) ) ?>
 				</label>
@@ -66,7 +66,7 @@ $enc = $this->encoder();
 				<input id="ca_billingoption-new" type="radio" value="null"
 					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ) ?>"
 					<?= $this->get( 'addressBillingOption' ) == 'null' ? 'checked="checked"' : '' ?>
-				/>
+				>
 				<label for="ca_billingoption-new" class="values value-new">
 					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 				</label>

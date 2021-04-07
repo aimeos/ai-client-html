@@ -226,7 +226,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
 									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ) ?></span>
 									<span class="value">
-										<a href="<?= $enc->attr( $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ) ) ?>" >
+										<a href="<?= $enc->attr( $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ) ) ?>">
 											<?= $enc->html( $attribute->getName() ) ?>
 										</a>
 									</span>
@@ -258,11 +258,11 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 							<input class="value" type="text"
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'quantity' ) ) ) ?>"
 								value="<?= $enc->attr( $product->getQuantity() ) ?>" maxlength="10" required="required"
-							/>
+							>
 							<input type="hidden" type="text"
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'position' ) ) ) ?>"
 								value="<?= $enc->attr( $position ) ?>"
-							/>
+							>
 
 							<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() + 1 ) ?>
 							<a class="minibutton change" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">+</a>

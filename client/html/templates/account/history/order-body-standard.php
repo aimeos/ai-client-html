@@ -201,22 +201,22 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 			<?php foreach( $orderProduct->getAttributeItems( 'variant' ) as $attrItem ) : ?>
 				<input type="hidden" value="<?= $enc->attr( $attrItem->getAttributeId() ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'attrvarid', $attrItem->getCode()] ) ) ?>"
-				/>
+				>
 			<?php endforeach ?>
 
 			<?php foreach( $orderProduct->getAttributeItems( 'custom' ) as $attrItem ) : ?>
 				<input type="hidden" value="<?= $enc->attr( $attrItem->getValue() ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'attrcustid', $attrItem->getAttributeId()] ) ) ?>"
-				/>
+				>
 			<?php endforeach ?>
 
 			<?php foreach( $orderProduct->getAttributeItems( 'config' ) as $attrItem ) : ?>
 				<input type="hidden" value="<?= $enc->attr( $attrItem->getAttributeId() ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'attrconfid', 'id', ''] ) ) ?>"
-				/>
+				>
 				<input type="hidden" value="<?= $enc->attr( $attrItem->getQuantity() ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'attrconfid', 'qty', ''] ) ) ?>"
-				/>
+				>
 			<?php endforeach ?>
 		<?php endforeach ?>
 

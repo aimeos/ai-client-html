@@ -148,16 +148,16 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 								<li class="form-item timeframe">
 									<label for="watch-timeframe"><?= $enc->html( $this->translate( 'client', 'Time frame' ), $enc::TRUST ) ?></label><!--
 									--><select id="watch-timeframe" name="<?= $enc->attr( $this->formparam( array( 'wat_timeframe' ) ) ) ?>">
-										<option value="7" <?= ( $timeframe == 7 ? 'selected="selected"' : '' ) ?> >
+										<option value="7" <?= ( $timeframe == 7 ? 'selected="selected"' : '' ) ?>>
 											<?= $enc->html( $this->translate( 'client', 'One week' ) ) ?>
 										</option>
-										<option value="14" <?= ( $timeframe == 14 ? 'selected="selected"' : '' ) ?> >
+										<option value="14" <?= ( $timeframe == 14 ? 'selected="selected"' : '' ) ?>>
 											<?= $enc->html( $this->translate( 'client', 'Two weeks' ) ) ?>
 										</option>
-										<option value="30" <?= ( $timeframe == 30 ? 'selected="selected"' : '' ) ?> >
+										<option value="30" <?= ( $timeframe == 30 ? 'selected="selected"' : '' ) ?>>
 											<?= $enc->html( $this->translate( 'client', 'One month' ) ) ?>
 										</option>
-										<option value="90" <?= ( $timeframe == 90 ? 'selected="selected"' : '' ) ?> >
+										<option value="90" <?= ( $timeframe == 90 ? 'selected="selected"' : '' ) ?>>
 											<?= $enc->html( $this->translate( 'client', 'Three month' ) ) ?>
 										</option>
 									</select>
@@ -171,11 +171,11 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 										id="watch-price"
 										value="1"
 										<?= ( $price ? 'checked="checked"' : '' ) ?>
-									/>
+									>
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( array( 'wat_pricevalue' ) ) ) ?>"
 										value="<?= $enc->attr( ( $priceItem = $productItem->getRefItems( 'price', null, 'default' )->first() ) !== null ? $priceItem->getValue() : '0.00' ) ?>"
-									/>
+									>
 								</li>
 
 								<?php $stock = ( isset( $config['stock'] ) ? (int) $config['stock'] : 0 ) ?>
@@ -186,7 +186,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 											id="watch-stock"
 											value="1"
 											<?= ( $stock ? 'checked="checked"' : '' ) ?>
-										/>
+										>
 								</li>
 							</ul>
 

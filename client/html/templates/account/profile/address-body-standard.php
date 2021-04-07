@@ -129,10 +129,11 @@ $pos = 0;
 								</label>
 								<div class="col-md-8">
 									<select class="form-control" id="address-payment-salutation"
-										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.salutation' ) ) ) ?>" >
+										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.salutation' ) ) ) ?>"
+									>
 
 										<?php foreach( $this->get( 'addressSalutations', [] ) as $salutation ) : ?>
-											<option value="<?= $enc->attr( $salutation ) ?>" <?= $selectfcn( $addr, 'customer.salutation', $salutation ) ?> >
+											<option value="<?= $enc->attr( $salutation ) ?>" <?= $selectfcn( $addr, 'customer.salutation', $salutation ) ?>>
 												<?= $enc->html( $this->translate( 'mshop/code', $salutation ) ) ?>
 											</option>
 										<?php endforeach ?>
@@ -153,7 +154,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.firstname' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.firstname' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'First name' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -170,7 +171,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.lastname' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.lastname' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Last name' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -187,7 +188,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.company' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.company' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Company' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -204,7 +205,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.address1' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.address1' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Street' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -221,7 +222,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.address2' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.address2' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -238,7 +239,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.address3' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.address3' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional 2' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -255,7 +256,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.city' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.city' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'City' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -275,7 +276,7 @@ $pos = 0;
 											<?php foreach( $this->get( 'addressStates', [] ) as $regioncode => $stateList ) : ?>
 												<optgroup class="<?= $regioncode ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ) ?>">
 													<?php foreach( $stateList as $stateCode => $stateName ) : ?>
-														<option value="<?= $enc->attr( $stateCode ) ?>" <?= $selectfcn( $addr, 'customer.state', $stateCode ) ?> >
+														<option value="<?= $enc->attr( $stateCode ) ?>" <?= $selectfcn( $addr, 'customer.state', $stateCode ) ?>>
 															<?= $enc->html( $stateName ) ?>
 														</option>
 													<?php endforeach ?>
@@ -300,7 +301,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.postal' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.postal' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Postal code' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -320,7 +321,7 @@ $pos = 0;
 												<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ) ?></option>
 											<?php endif ?>
 											<?php foreach( $this->get( 'addressCountries', [] ) as $countryId ) : ?>
-												<option value="<?= $enc->attr( $countryId ) ?>" <?= $selectfcn( $addr, 'customer.countryid', $countryId ) ?> >
+												<option value="<?= $enc->attr( $countryId ) ?>" <?= $selectfcn( $addr, 'customer.countryid', $countryId ) ?>>
 													<?= $enc->html( $this->translate( 'country', $countryId ) ) ?>
 												</option>
 											<?php endforeach ?>
@@ -341,7 +342,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.languageid' ) ) ) ?>">
 
 										<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
-											<option value="<?= $enc->attr( $languageId ) ?>" <?= $selectfcn( $addr, 'customer.languageid', $languageId ) ?> >
+											<option value="<?= $enc->attr( $languageId ) ?>" <?= $selectfcn( $addr, 'customer.languageid', $languageId ) ?>>
 												<?= $enc->html( $this->translate( 'language', $languageId ) ) ?>
 											</option>
 										<?php endforeach ?>
@@ -363,7 +364,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.vatid' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.vatid' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'GB999999973' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -381,7 +382,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.email' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.email' ) ) ?>"
 										placeholder="name@example.com"
-									/>
+									>
 								</div>
 
 							</div>
@@ -398,7 +399,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.telephone' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.telephone' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -415,7 +416,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.telefax' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.telefax' ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -433,7 +434,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.website' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.website' ) ) ?>"
 										placeholder="https://example.com"
-									/>
+									>
 								</div>
 							</div>
 
@@ -446,14 +447,14 @@ $pos = 0;
 										id="address-payment-birthday"
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.birthday' ) ) ) ?>"
 										value="<?= $enc->attr( $this->value( $addr, 'customer.birthday' ) ) ?>"
-									/>
+									>
 								</div>
 							</div>
 
 						</div>
 
 						<div class="button-group">
-							<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>" >
+							<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
 								<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
 							</button>
 						</div>
@@ -475,7 +476,8 @@ $pos = 0;
 
 							<input type="hidden"
 								name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.id', $pos ) ) ) ?>"
-								value="<?= $enc->attr( $this->value( $addr, 'customer.address.id' ) ) ?>" />
+								value="<?= $enc->attr( $this->value( $addr, 'customer.address.id' ) ) ?>"
+							>
 
 							<div class="form-list">
 
@@ -486,10 +488,11 @@ $pos = 0;
 									</label>
 									<div class="col-md-8">
 										<select class="form-control" id="address-delivery-salutation-<?= $pos ?>"
-											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.salutation', $pos ) ) ) ?>" >
+											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.salutation', $pos ) ) ) ?>"
+										>
 
 											<?php foreach( $this->get( 'addressSalutations', [] ) as $salutation ) : ?>
-												<option value="<?= $enc->attr( $salutation ) ?>" <?= $selectfcn( $addr, 'customer.address.salutation', $salutation ) ?> >
+												<option value="<?= $enc->attr( $salutation ) ?>" <?= $selectfcn( $addr, 'customer.address.salutation', $salutation ) ?>>
 													<?= $enc->html( $this->translate( 'mshop/code', $salutation ) ) ?>
 												</option>
 											<?php endforeach ?>
@@ -510,7 +513,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.firstname', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.firstname' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'First name' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -527,7 +530,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.lastname', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.lastname' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'Last name' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -544,7 +547,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.company', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.company' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'Company' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -561,7 +564,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address1', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.address1' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'Street' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -578,7 +581,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address2', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.address2' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -595,7 +598,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address3', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.address3' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional 2' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -612,7 +615,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.city', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.city' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'City' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -632,7 +635,7 @@ $pos = 0;
 												<?php foreach( $this->get( 'addressStates', [] ) as $regioncode => $stateList ) : ?>
 													<optgroup class="<?= $regioncode ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ) ?>">
 														<?php foreach( $stateList as $stateCode => $stateName ) : ?>
-															<option value="<?= $enc->attr( $stateCode ) ?>" <?= $selectfcn( $addr, 'customer.address.state', $stateCode ) ?> >
+															<option value="<?= $enc->attr( $stateCode ) ?>" <?= $selectfcn( $addr, 'customer.address.state', $stateCode ) ?>>
 																<?= $enc->html( $stateName ) ?>
 															</option>
 														<?php endforeach ?>
@@ -657,7 +660,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.postal', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.postal' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'Postal code' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -677,7 +680,7 @@ $pos = 0;
 													<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ) ?></option>
 												<?php endif ?>
 												<?php foreach( $this->get( 'addressCountries', [] ) as $countryId ) : ?>
-													<option value="<?= $enc->attr( $countryId ) ?>" <?= $selectfcn( $addr, 'customer.address.countryid', $countryId ) ?> >
+													<option value="<?= $enc->attr( $countryId ) ?>" <?= $selectfcn( $addr, 'customer.address.countryid', $countryId ) ?>>
 														<?= $enc->html( $this->translate( 'country', $countryId ) ) ?>
 													</option>
 												<?php endforeach ?>
@@ -698,7 +701,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.languageid', $pos ) ) ) ?>">
 
 											<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
-												<option value="<?= $enc->attr( $languageId ) ?>" <?= $selectfcn( $addr, 'customer.address.languageid', $languageId ) ?> >
+												<option value="<?= $enc->attr( $languageId ) ?>" <?= $selectfcn( $addr, 'customer.address.languageid', $languageId ) ?>>
 													<?= $enc->html( $this->translate( 'language', $languageId ) ) ?>
 												</option>
 											<?php endforeach ?>
@@ -720,7 +723,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.vatid', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.vatid' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', 'GB999999973' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -738,7 +741,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.email', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.email' ) ) ?>"
 											placeholder="name@example.com"
-										/>
+										>
 									</div>
 
 								</div>
@@ -755,7 +758,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telephone', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.telephone' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -772,7 +775,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telefax', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.telefax' ) ) ?>"
 											placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-										/>
+										>
 									</div>
 
 								</div>
@@ -790,7 +793,7 @@ $pos = 0;
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.website', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.website' ) ) ?>"
 											placeholder="https://example.com"
-										/>
+										>
 									</div>
 								</div>
 
@@ -803,17 +806,17 @@ $pos = 0;
 											id="address-delivery-birthday-<?= $pos ?>"
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.birthday', $pos ) ) ) ?>"
 											value="<?= $enc->attr( $this->value( $addr, 'customer.address.birthday' ) ) ?>"
-										/>
+										>
 									</div>
 								</div>
 
 							</div>
 
 							<div class="button-group">
-								<button class="btn btn-delete" value="<?= $pos ?>" name="<?= $enc->attr( $this->formparam( array( 'address', 'delete' ) ) ) ?>" >
+								<button class="btn btn-delete" value="<?= $pos ?>" name="<?= $enc->attr( $this->formparam( array( 'address', 'delete' ) ) ) ?>">
 									<?= $enc->html( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>
 								</button>
-								<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>" >
+								<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
 									<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
 								</button>
 							</div>
@@ -831,7 +834,8 @@ $pos = 0;
 					<div class="panel-body collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>">
 
 						<input type="hidden" value="" disabled
-							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.id', $pos ) ) ) ?>" />
+							name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.id', $pos ) ) ) ?>"
+						>
 
 						<div class="form-list">
 
@@ -842,11 +846,12 @@ $pos = 0;
 								</label>
 								<div class="col-md-8">
 									<select class="form-control" id="address-delivery-salutation-<?= $pos ?>" disabled
-										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.salutation', $pos ) ) ) ?>" >
+										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.salutation', $pos ) ) ) ?>"
+									>
 
 										<?php foreach( $this->get( 'addressSalutations', [] ) as $salutation ) : ?>
 											<option value="<?= $enc->attr( $salutation ) ?>"
-												<?= $this->param( 'address/delivery/customer.address.salutation/' . $pos ) === $salutation ? 'selected="selected"' : '' ?> >
+												<?= $this->param( 'address/delivery/customer.address.salutation/' . $pos ) === $salutation ? 'selected="selected"' : '' ?>>
 												<?= $enc->html( $this->translate( 'mshop/code', $salutation ) ) ?>
 											</option>
 										<?php endforeach ?>
@@ -866,7 +871,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.firstname', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.firstname/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'First name' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -882,7 +887,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.lastname', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.lastname/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Last name' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -898,7 +903,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.company', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.company/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Company' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -914,7 +919,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address1', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.address1/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Street' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -930,7 +935,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address2', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.address2/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -946,7 +951,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address3', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.address3/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional 2' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -962,7 +967,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.city', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.city/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'City' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -983,7 +988,7 @@ $pos = 0;
 												<optgroup class="<?= $regioncode ?>" label="<?= $enc->attr( $this->translate( 'country', $regioncode ) ) ?>">
 													<?php foreach( $stateList as $stateCode => $stateName ) : ?>
 														<option value="<?= $enc->attr( $stateCode ) ?>"
-															<?= $this->param( 'address/delivery/customer.address.state/' . $pos ) === $stateCode ? 'selected="selected"' : '' ?> >
+															<?= $this->param( 'address/delivery/customer.address.state/' . $pos ) === $stateCode ? 'selected="selected"' : '' ?>>
 															<?= $enc->html( $stateName ) ?>
 														</option>
 													<?php endforeach ?>
@@ -1007,7 +1012,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.postal', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.postal/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'Postal code' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -1028,7 +1033,7 @@ $pos = 0;
 											<?php endif ?>
 											<?php foreach( $this->get( 'addressCountries', [] ) as $countryId ) : ?>
 												<option value="<?= $enc->attr( $countryId ) ?>"
-													<?= $this->param( 'address/delivery/customer.address.countryid/' . $pos ) === $countryId ? 'selected="selected"' : '' ?> >
+													<?= $this->param( 'address/delivery/customer.address.countryid/' . $pos ) === $countryId ? 'selected="selected"' : '' ?>>
 													<?= $enc->html( $this->translate( 'country', $countryId ) ) ?>
 												</option>
 											<?php endforeach ?>
@@ -1050,7 +1055,7 @@ $pos = 0;
 
 										<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
 											<option value="<?= $enc->attr( $languageId ) ?>"
-												<?= $this->param( 'address/delivery/customer.address.languageid/' . $pos ) === $languageId ? 'selected="selected"' : '' ?> >
+												<?= $this->param( 'address/delivery/customer.address.languageid/' . $pos ) === $languageId ? 'selected="selected"' : '' ?>>
 												<?= $enc->html( $this->translate( 'language', $languageId ) ) ?>
 											</option>
 										<?php endforeach ?>
@@ -1071,7 +1076,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.vatid', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.vatid/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', 'GB999999973' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -1088,7 +1093,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.email', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.email/' . $pos ) ) ?>"
 										placeholder="name@example.com"
-									/>
+									>
 								</div>
 
 							</div>
@@ -1104,7 +1109,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telephone', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.telephone/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -1120,7 +1125,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telefax', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.telefax/' . $pos ) ) ?>"
 										placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-									/>
+									>
 								</div>
 
 							</div>
@@ -1137,7 +1142,7 @@ $pos = 0;
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.website', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.website/' . $pos ) ) ?>"
 										placeholder="https://example.com"
-									/>
+									>
 								</div>
 							</div>
 
@@ -1149,17 +1154,17 @@ $pos = 0;
 									<input class="form-control" type="date" id="address-delivery-birthday-<?= $pos ?>" disabled
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.birthday', $pos ) ) ) ?>"
 										value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.birthday/' . $pos ) ) ?>"
-									/>
+									>
 								</div>
 							</div>
 
 						</div>
 
 						<div class="button-group">
-							<button class="btn btn-cancel" value="1" type="reset" >
+							<button class="btn btn-cancel" value="1" type="reset">
 								<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
 							</button>
-							<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>" >
+							<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
 								<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
 							</button>
 						</div>

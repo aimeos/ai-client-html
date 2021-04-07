@@ -66,7 +66,7 @@ $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
 											value="<?= $enc->attr( $id ) ?>"
 											name="<?= $enc->attr( $this->formparam( $attribute->get( 'formparam', [] ) ) ) ?>"
 											<?= $attribute->get( 'checked', false ) ? 'checked="checked"' : '' ?>
-										/>
+										>
 
 										<label class="attr-name" for="attr-<?= $enc->attr( $id ) ?>"><!--
 											--><div class="media-list"><!--
