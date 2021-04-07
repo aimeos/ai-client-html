@@ -311,8 +311,8 @@ class Standard
 
 		$view->addressBilling = $billing;
 		$view->addressDelivery = $deliveries;
-		$view->addressCountries = $view->config( 'client/html/checkout/address/countries', [] );
-		$view->addressStates = $view->config( 'client/html/checkout/address/states', [] );
+		$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
+		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
 		$view->addressSalutations = $salutations;
 		$view->addressLanguages = $languages;
 
