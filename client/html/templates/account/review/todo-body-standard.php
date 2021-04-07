@@ -122,6 +122,7 @@ $productItems = $this->get( 'todoProductItems', map() );
 											src="<?= $enc->attr( $this->content( $images->first()->getPreview() ) ) ?>"
 											srcset="<?= $enc->attr( $this->imageset( $images->first()->getPreviews() ) ) ?>"
 											alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+										>
 									<?php endif ?>
 								</div>
 								<div class="col-6">
