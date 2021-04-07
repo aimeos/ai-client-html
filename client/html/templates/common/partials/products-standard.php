@@ -166,8 +166,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
 			data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
 			itemprop="<?= $this->get( 'itemprop' ) ?>"
-			itemtype="http://schema.org/Product"
-			itemscope="" >
+			itemscope itemtype="http://schema.org/Product"
+			>
 
 
 			<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
@@ -177,7 +177,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 
 						<noscript>
-							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
+							<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
 								<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
@@ -229,7 +229,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			</a>
 
 
-			<div class="offer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+			<div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 
 				<div class="stock-list">
 					<div class="articleitem stock-actual"

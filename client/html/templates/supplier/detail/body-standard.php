@@ -14,7 +14,7 @@ $enc = $this->encoder();
 
 
 ?>
-<section class="aimeos supplier-detail" itemscope="" itemtype="http://schema.org/Organization" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<section class="aimeos supplier-detail" itemscope itemtype="http://schema.org/Organization" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->detailErrorList ) ) : ?>
 		<ul class="error-list">

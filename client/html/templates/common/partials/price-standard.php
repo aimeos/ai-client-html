@@ -58,13 +58,13 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 		$currency = $this->translate( 'currency', $priceItem->getCurrencyId() );
 	?>
 
-	<div class="price-item <?= $enc->attr( $priceItem->getType() ) ?>" itemprop="priceSpecification" itemscope="" itemtype="http://schema.org/PriceSpecification">
+	<div class="price-item <?= $enc->attr( $priceItem->getType() ) ?>" itemscope itemprop="priceSpecification" itemtype="http://schema.org/PriceSpecification">
 
 		<meta itemprop="valueAddedTaxIncluded" content="<?= ( $priceItem->getTaxFlag() ? 'true' : 'false' ) ?>">
 		<meta itemprop="priceCurrency" content="<?= $priceItem->getCurrencyId() ?>">
 		<meta itemprop="price" content="<?= $priceItem->getValue() ?>">
 
-		<span class="quantity" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+		<span class="quantity" itemscope itemtype="http://schema.org/QuantitativeValue">
 			<meta itemprop="minValue" content="<?= $priceItem->getQuantity() ?>">
 			<?= $enc->html( sprintf( $format['quantity'], $priceItem->getQuantity() ), $enc::TRUST ) ?>
 		</span>

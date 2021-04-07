@@ -43,7 +43,7 @@ class Standard
 		}
 
 		return '<img class="item" id="image-' . $media->getId() . '"
-			itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"
+			itemscope itemprop="image" itemtype="http://schema.org/ImageObject"
 			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
 			srcset="' .  $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
 			data-image="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"

@@ -62,7 +62,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 ?>
-<section class="aimeos catalog-detail" itemscope="" itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->detailErrorList ) ) : ?>
 		<ul class="error-list">
@@ -115,7 +115,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</p>
 
 					<?php if( $this->detailProductItem->getRating() > 0 ) : ?>
-						<div class="rating" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+						<div class="rating" itemscope itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating">
 							<span class="stars"><?= str_repeat( '★', (int) round( $this->detailProductItem->getRating() ) ) ?></span>
 							<span class="rating-value" itemprop="ratingValue"><?= $enc->html( $this->detailProductItem->getRating() ) ?></span>
 							<span class="ratings" itemprop="reviewCount"><?= (int) $this->detailProductItem->getRatings() ?></span>
@@ -129,7 +129,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				</div>
 
 
-				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock ?>" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock ?>" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 
 					<div class="price-list">
 						<div class="articleitem price price-actual"

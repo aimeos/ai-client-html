@@ -36,14 +36,14 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 			--><li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
 				data-reqstock="<?= (int) $this->config( 'client/html/basket/require-stock', true ) ?>"
-				itemtype="http://schema.org/Product"
-				itemscope="">
+				itemscope itemtype="http://schema.org/Product"
+				>
 
 
 				<a class="media-list" href="<?= $url ?>">
 					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 						<noscript>
-							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
+							<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
 								<img alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
@@ -91,7 +91,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 				</a><!--
 
 
-				--><div class="offer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+				--><div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 					<div class="stock-list">
 						<div class="articleitem stock-actual"
 							data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
