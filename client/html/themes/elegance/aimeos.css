@@ -4726,7 +4726,7 @@ body{
 
 /*----------------------link-colors Mobile & Desktop--------------------------*/
 
-/*//Big Screens*/
+/*Big Screens*/
 .catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:link,
 .catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:visited {
 	color: #A0A0A0;
@@ -4767,7 +4767,7 @@ body{
 }
 
 
-/*//Mobile*/
+/*Mobile*/
 .catalog-filter-tree .list-container > .has-submenu > .submenu > .submenu-header > a:link,
 .catalog-filter-tree .list-container > .has-submenu > .submenu > .submenu-header > a:visited {
 	color: #555;
@@ -5071,12 +5071,12 @@ body{
 	position: relative;
 }
 
-basket-mini-product .basket .price {
+.basket-mini-product .basket .price {
 	white-space: nowrap;
 	text-align: left;
 }
 
-basket-mini .btn-primary {
+.basket-mini .btn-primary {
 	color: #FFF;
 	color: var(--ai-bg, #FFF);
 }

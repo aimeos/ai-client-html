@@ -129,7 +129,7 @@ class Standard
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
-		$prefixes = ['f_catid', 'f_supid'];
+		$prefixes = ['f_name', 'f_catid', 'f_supid'];
 
 		/** client/html/catalog/filter/cache
 		 * Enables or disables caching only for the catalog filter component
@@ -254,8 +254,8 @@ class Standard
 		}
 
 		$view = $this->getView();
-		$prefixes = ['f_catid', 'f_supid'];
 		$confkey = 'client/html/catalog/filter';
+		$prefixes = ['f_name', 'f_catid', 'f_supid'];
 
 		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
 			return !strncmp( $key, 'f_', 2 );
