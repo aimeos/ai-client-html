@@ -48,7 +48,6 @@ class Standard
 			srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
 			data-image="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
 			data-sources="' . $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) . '"
-			alt="' . $enc->html( $media->getName() ) . '"' . $variant . '
-			>';
+			alt="' . $enc->html( $media->getName() ) . '"' . $variant . '>';
 	}
 }
