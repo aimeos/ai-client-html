@@ -5117,8 +5117,8 @@ body{
 }
 
 .basket-mini-product .to-basket a {
-		color: #FFF !important;
-		color: var(--ai-bg, #FFF) !important;
+	color: #FFF !important;
+	color: var(--ai-bg, #FFF) !important;
 }
 
 .mini-basket-close {
@@ -5596,17 +5596,17 @@ body{
 /*------------------------------Megamenu--------------------------------------*/
 
 @media (min-width:992px) {
-		.catalog-filter-tree .megamenu > .submenu > .item-container > .list-container {
-				display: flex !important;
-				flex-wrap: wrap;
-		}
+	.catalog-filter-tree .megamenu > .submenu > .item-container > .list-container {
+		display: flex !important;
+		flex-wrap: wrap;
+	}
 
-		.megamenu > .submenu > .item-container > .list-container > .cat-item {
-				min-width: 33.3%;
-				flex: 1;
-				border-left: .5rem solid transparent;
-				border-right: .5rem solid transparent;
-		}
+	.megamenu > .submenu > .item-container > .list-container > .cat-item {
+		min-width: 33.3%;
+		flex: 1;
+		border-left: .5rem solid transparent;
+		border-right: .5rem solid transparent;
+	}
 
 	.catalog-filter .filter-sections:after{
 		position: relative;
