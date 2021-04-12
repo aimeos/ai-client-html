@@ -15,13 +15,13 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 
 ?>
-<div class="list-container row level-<?= $enc->attr( $this->get( 'level', 0 ) ) ?>">
+<div class="list-container level-<?= $enc->attr( $this->get( 'level', 0 ) ) ?>">
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 
 		<?php if( $item->getStatus() > 0 ) : ?>
 
 			<div class="cat-item catid-<?= $enc->attr( $item->getId()
-				. ( $item->hasChildren() ? ' col-lg-4 has-submenu withchild ' : ' col-lg-12 nochild' )
+				. ( $item->hasChildren() ? ' has-submenu withchild ' : ' nochild ' )
 				. ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' )
 				. ' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ) ?>"
 				data-id="<?= $item->getId() ?>">
@@ -33,11 +33,11 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 					</div>
 				<?php else : ?>
 					<div class="item-links">
-						<a class="col-12 item-link" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></a>
+						<a class="item-link" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></a>
 					</div>
 				<?php endif ?>
 
-				<a class="cat-item <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><!--
+				<a class="cat-item <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active ' : '' ) ) ?>" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><!--
 					--><div class="media-list"><!--
 						<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 							<?= '-->' . $this->partial(
@@ -52,12 +52,12 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 				<?php if( count( $item->getChildren() ) > 0 ) : ?>
 
 					<div id="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>" class="submenu <?= $enc->attr(
-						( $item->hasChildren() ? '' : ' nochild' )
+						( $item->hasChildren() ? '' : ' nochild ' )
 						. ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>">
 
 						<div class="submenu-header row">
-							<span class="arrow-back col-1"></span>
-							<a class="col-8" href="#" data-submenu-close="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>"><span><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span></a>
+							<a class="col-2" href="#" data-submenu-close="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>"><span class="arrow-back"></span></a>
+							<a class="col-7" href="#" data-submenu-close="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>"><span><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span></a>
 							<div class="menu-close col-3"></div>
 						</div>
 
