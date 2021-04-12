@@ -4952,19 +4952,17 @@ body{
 	font: normal normal normal 14px/1 FontAwesome;
 	content: "\f290";
 	font-size: 150%;
+	display: block;
 	color: #555;
 	color: var(--ai-primary-alt, #555);
-	display: block;
-	margin-right: .2rem;
-	margin-bottom: 0.25rem;
 }
 
 .basket-mini-main {
 	position: absolute;
 	border-radius: 1rem;
-	top: -0.5rem;;
 	background-color: #A00000;
 	background-color: var(--ai-primary, #A00000);
+	top: -0.5rem;
 	right: 0;
 }
 
