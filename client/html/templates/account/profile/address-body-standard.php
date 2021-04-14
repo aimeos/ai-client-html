@@ -341,6 +341,10 @@ $pos = 0;
 									<select class="form-control" id="address-payment-languageid"
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.languageid' ) ) ) ?>">
 
+										<?php if( count( $this->get( 'addressLanguages', [] ) ) > 1 ) : ?>
+											<option value=""><?= $enc->html( $this->translate( 'client', 'Select language' ), $enc::TRUST ) ?></option>
+										<?php endif ?>
+
 										<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
 											<option value="<?= $enc->attr( $languageId ) ?>" <?= $selectfcn( $addr, 'customer.languageid', $languageId ) ?>>
 												<?= $enc->html( $this->translate( 'language', $languageId ) ) ?>
@@ -700,6 +704,10 @@ $pos = 0;
 										<select class="form-control" id="address-delivery-languageid-<?= $pos ?>"
 											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.languageid', $pos ) ) ) ?>">
 
+											<?php if( count( $this->get( 'addressLanguages', [] ) ) > 1 ) : ?>
+												<option value=""><?= $enc->html( $this->translate( 'client', 'Select language' ), $enc::TRUST ) ?></option>
+											<?php endif ?>
+
 											<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
 												<option value="<?= $enc->attr( $languageId ) ?>" <?= $selectfcn( $addr, 'customer.address.languageid', $languageId ) ?>>
 													<?= $enc->html( $this->translate( 'language', $languageId ) ) ?>
@@ -1053,9 +1061,13 @@ $pos = 0;
 									<select class="form-control" id="address-delivery-languageid-<?= $pos ?>" disabled
 										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.languageid', $pos ) ) ) ?>">
 
+										<?php if( count( $this->get( 'addressLanguages', [] ) ) > 1 ) : ?>
+											<option value=""><?= $enc->html( $this->translate( 'client', 'Select language' ), $enc::TRUST ) ?></option>
+										<?php endif ?>
+
 										<?php foreach( $this->get( 'addressLanguages', [] ) as $languageId ) : ?>
 											<option value="<?= $enc->attr( $languageId ) ?>"
-												<?= $this->param( 'address/delivery/customer.address.languageid/' . $pos ) === $languageId ? 'selected="selected"' : '' ?>>
+												<?= $this->param( 'address/delivery/customer.address.languageid/' . $pos, $this->get( 'contextLanguage' ) ) === $languageId ? 'selected="selected"' : '' ?>>
 												<?= $enc->html( $this->translate( 'language', $languageId ) ) ?>
 											</option>
 										<?php endforeach ?>

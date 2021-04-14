@@ -298,6 +298,10 @@ class Standard
 		$deliveries = [];
 		$addr = $view->profileCustomerItem->getPaymentAddress();
 
+		if( !$addr->getLanguageId() ) {
+			$addr->setLanguageId( $context->getLocale()->getLanguageId() );
+		}
+
 		$billing = $addr->toArray();
 		$billing['string'] = $this->getAddressString( $view, $addr );
 
