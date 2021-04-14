@@ -21,6 +21,7 @@
 
 .aimeos {
 	clear: both;
+	text-align: start;
 }
 
 .aimeos progress {
@@ -858,7 +859,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	padding: 0.5em;
 	width: auto;
 	margin: 0;
-	left: -1px;
 	position: relative;
 }
 
@@ -991,13 +991,21 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-filter-price .price-low {
 	margin-bottom: -0.5rem;
 	text-align: center;
-	float: inline-start;
+	float: left;
+}
+
+[dir="rtl"] .catalog-filter-price .price-low {
+	float: right;
 }
 
 .catalog-filter-price .price-high {
 	margin-bottom: -0.5rem;
 	text-align: center;
-	float: inline-end;
+	float: right;
+}
+
+[dir="rtl"] .catalog-filter-price .price-high {
+	float: left;
 }
 
 .catalog-filter-attribute > h2,
@@ -1206,10 +1214,14 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	background-position: center;
 	background-size: contain;
 	display: block;
-	float: inline-start;
+	float: left;
 	width: 20%;
 	height: 2.5em;
 	margin-inline-end: 0.5em;
+}
+
+[dir="rtl"] .aimeos .suggest-item .item-image {
+	float: right;
 }
 
 
@@ -1307,12 +1319,20 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-detail-additional .rating-num {
 	font-size: 125%;
-	float: inline-start;
+	float: left;
+}
+
+[dir="rtl"] .catalog-detail-additional .rating-num {
+	float: right;
 }
 
 .catalog-detail-additional .rating-total {
 	font-size: 125%;
-	float: inline-end;
+	float: right;
+}
+
+[dir="rtl"] .catalog-detail-additional .rating-total {
+	float: left;
 }
 
 .catalog-detail-additional .rating-stars {
@@ -1589,13 +1609,25 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-list-items .list .addbasket {
 	display: block;
 	width: 240px;
-	float: inline-end;
+	float: right;
+}
+
+[dir="rtl"] .catalog-list-items .list .media-list,
+[dir="rtl"] .catalog-list-items .list .text-list,
+[dir="rtl"] .catalog-list-items .list .basket,
+[dir="rtl"] .catalog-list-items .list .offer,
+[dir="rtl"] .catalog-list-items .list .addbasket {
+	float: left;
 }
 
 .catalog-list-items .list .media-list {
 	overflow: hidden;
 	height: 320px;
-	float: inline-start;
+	float: left;
+}
+
+[dir="rtl"] .catalog-list-items .list .media-list {
+	float: right;
 }
 
 .catalog-list-items .list .text-list h2 {
@@ -1667,12 +1699,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .catalog-detail-image .image-single .media-item .item {
-	transform: translate(-50%, -50%);
+	transform: translate(0%, -50%);
 	position: relative;
 	max-height: 100%;
 	max-width: 100%;
+	display: block;
+	margin: auto;
 	top: 50%;
-	left: 50%;
 }
 
 .catalog-detail-image .item {
@@ -1789,8 +1822,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Product detail, social section */
 .catalog-detail .catalog-social {
-	float: inline-end;
+	float: right;
 	margin: 1em 0;
+}
+
+[dir="rtl"] .catalog-detail .catalog-social {
+	float: left;
 }
 
 .catalog-detail .catalog-social .social-button {
@@ -1818,8 +1855,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Product detail, action buttions */
 .catalog-detail .catalog-actions {
-	float: inline-start;
+	float: left;
 	margin: 1em 0;
+}
+
+[dir="rtl"] .catalog-detail .catalog-actions {
+	float: right;
 }
 
 .catalog-detail .catalog-actions .actions-button {
@@ -2173,7 +2214,11 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: 120%;
 	content: "\f196";
-	float: inline-end;
+	float: right;
+}
+
+[dir="rtl"] .catalog-detail-additional .header:after {
+	float: left;
 }
 
 .catalog-detail-additional .header.toggle-js:after {
@@ -2239,8 +2284,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .catalog-detail-supplier .media-item {
-	float: inline-end;
+	float: right;
 	margin: 1em;
+}
+
+[dir="rtl"] .catalog-detail-supplier .media-item {
+	float: left;
 }
 
 .catalog-detail-supplier .media-item img {
@@ -2403,10 +2452,11 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-session-pinned .media-item img {
 	position: relative;
 	max-width: 100%;
+	display: block;
+	margin: auto;
 	height: auto;
 	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(0, -50%);
 }
 
 .account-watch .name,
@@ -2872,9 +2922,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .checkout-standard .item-service .price-value {
-	float: inline-end;
+	float: right;
 	margin: 1em;
 	font-size: 100%;
+}
+
+[dir="rtl"] .checkout-standard .item-service .price-value {
+	float: left;
 }
 
 .checkout-standard .button-group {
@@ -2914,7 +2968,11 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .checkout-standard-address .item-address .modify {
-	float: inline-end;
+	float: right;
+}
+
+[dir="rtl"] .checkout-standard-address .item-address .modify {
+	float: left;
 }
 
 .checkout-standard-address .item-address .header input {
@@ -3037,7 +3095,11 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .checkout-standard-summary .modify {
-	float: inline-end;
+	float: right;
+}
+
+[dir="rtl"] .checkout-standard-summary .modify {
+	float: left;
 }
 
 
@@ -3412,7 +3474,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .account-profile-address .panel-heading .act-show,
 .account-profile-address .panel-heading .act-hide {
-	float: inline-end;
+	float: right;
+}
+
+[dir="rtl"] .account-profile-address .panel-heading .act-show,
+[dir="rtl"] .account-profile-address .panel-heading .act-hide {
+	float: left;
 }
 
 .account-profile-address .panel-heading .act-show:after {
@@ -3498,8 +3565,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .account-history-order .modify {
-	float: inline-end;
+	float: right;
 	margin: 0 1em;
+}
+
+[dir="rtl"] .account-history-order .modify {
+	float: left;
 }
 
 .account-history-order h2 {
@@ -3611,8 +3682,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .account-subscription-detail .modify {
-	float: inline-end;
+	float: right;
 	margin: 0 1em;
+}
+
+[dir="rtl"] .account-subscription-detail .modify {
+	float: left;
 }
 
 .account-subscription-detail h2 {
@@ -3793,7 +3868,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	border-bottom: 0;
 }
 .ui-datepicker .ui-datepicker-buttonpane button {
-	float: inline-end;
+	float: right;
 	margin: .5em .2em .4em;
 	cursor: pointer;
 	padding: .2em .6em .3em .6em;
@@ -3801,7 +3876,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	overflow: visible;
 }
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
-	float: inline-start;
+	float: left;
 }
 
 /* with multiple calendars */
@@ -3809,7 +3884,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	width: auto;
 }
 .ui-datepicker-multi .ui-datepicker-group {
-	float: inline-start;
+	float: left;
 }
 .ui-datepicker-multi .ui-datepicker-group table {
 	width: 95%;
@@ -3861,11 +3936,11 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	clear: right;
 }
 .ui-datepicker-rtl .ui-datepicker-buttonpane button {
-	float: inline-start;
+	float: left;
 }
 .ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
 .ui-datepicker-rtl .ui-datepicker-group {
-	float: inline-end;
+	float: right;
 }
 .ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
 .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
@@ -4083,7 +4158,7 @@ display: block;
 border: 0;
 padding: 0;
 margin: 0;
-float: inline-end;
+float: right;
 opacity: 0.75;
 -webkit-transition: opacity 0.2s;
 	 transition: opacity 0.2s;
@@ -4448,7 +4523,7 @@ margin: 0; }
 	left: auto;
 	top: auto;
 	margin: 0;
-	float: inline-end; } }
+	float: right; } }
 
 @-webkit-keyframes clockwise {
 0% {
@@ -4632,13 +4707,13 @@ background: none; }
 
 .slick-slide {
 	display: none;
-	float: inline-start;
+	float: left;
 	height: 100%;
 	min-height: 1px;
 }
 
 [dir='rtl'] .slick-slide {
-	float: inline-end;
+	float: right;
 }
 
 .slick-slide img {
@@ -5670,7 +5745,6 @@ body{
 
 @media (min-width:768px) {
 	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
-		 float: inline-start;
 		 background-color: #FFF;
 		 background-color: var(--ai-bg, #FFF);
 		 margin: 0;
