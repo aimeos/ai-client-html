@@ -128,7 +128,7 @@ $enc = $this->encoder();
 
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
 
-							<li class="input-group select-entry">
+							<li class="select-entry">
 								<input class="select-option" type="radio"
 									id="option-<?= $enc->attr( $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
