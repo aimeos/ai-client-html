@@ -122,6 +122,39 @@ $enc = $this->encoder();
 
 					</ul>
 
+				<?php elseif( $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) === 'radio' ) : ?>
+
+					<ul id="select-<?= $enc->attr( $code ) ?>" class="select-list">
+
+						<?php foreach( $attributes as $attrId => $attribute ) : ?>
+
+							<li class="input-group select-entry">
+								<input class="select-option" type="radio"
+									id="option-<?= $enc->attr( $attrId ) ?>"
+									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
+									value="<?= $enc->attr( $attrId ) ?>"
+								>
+								<label class="select-label" for="option-<?= $enc->attr( $attrId ) ?>"><!--
+
+									<?php foreach( $attribute->getListItems( 'media', 'default', 'icon' ) as $listItem ) : ?>
+										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
+
+											<?= '-->' . $this->partial( $this->config(
+												'client/html/common/partials/media', 'common/partials/media-standard' ),
+												['item' => $item, 'boxAttributes' => ['class' => 'media-item']]
+											) . '<!--' ?>
+
+										<?php endif ?>
+									<?php endforeach ?>
+
+									--><span><?= $enc->html( $attribute->getName() ) ?></span><!--
+								--></label>
+							</li>
+
+						<?php endforeach ?>
+
+					</ul>
+
 				<?php else : ?>
 
 					<input type="hidden" value="1" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>">
