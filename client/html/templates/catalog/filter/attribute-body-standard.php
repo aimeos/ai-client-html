@@ -33,25 +33,54 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 $attrIds = array_filter( $this->param( 'f_attrid', [] ) );
 $optIds = array_filter( $this->param( 'f_optid', [] ) );
 $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
+$attrMap = $this->get( 'attributeMap', [] );
+$params = $this->param();
 
 
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ) ?>
-<?php if( !empty( $this->get( 'attributeMap', [] ) ) ) : ?>
+<?php if( !empty( $attrMap ) ) : ?>
 	<section class="catalog-filter-attribute col col-12 col-md-4">
 		<h2><?= $enc->html( $this->translate( 'client', 'Attributes' ), $enc::TRUST ) ?></h2>
 
 		<div class="attribute-lists">
 
 			<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
-				<a class="btn btn-secondary attribute-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ) ?>">
-					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
-				</a>
-			<?php endif ?>
+
+				<div class="attribute-selected">
+					<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
+
+					<ul class="attr-list">
+						<?php foreach( $attrMap as $attrType => $attributes ) : ?>
+							<?php foreach( $attributes as $id => $attribute ) : ?>
+								<?php if( ( $key = array_search( $id, $attrIds ) ) !== false ) : ?>
+									<?php $current = $params; if( is_array( $current['f_attrid'] ) ) { unset( $current['f_attrid'][$key] ); } ?>
+								<?php elseif( ( $key = array_search( $id, $optIds ) ) !== false ) : ?>
+									<?php $current = $params; if( is_array( $current['f_optid'] ) ) { unset( $current['f_optid'][$key] ); } ?>
+								<?php elseif( isset( $oneIds[$attrType] ) && ( $key = array_search( $id, (array) $oneIds[$attrType] ) ) !== false ) : ?>
+									<?php $current = $params; if( is_array( $current['f_oneid'][$attrType] ) ) { unset( $current['f_oneid'][$attrType][$key] ); } ?>
+								<?php else : continue; ?>
+								<?php endif; ?>
+								<li class="attr-item">
+									<a class="attr-name" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $attribute->get( 'params', [] ), [], $listConfig ) ); ?>">
+										<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+									</a>
+								</li>
+							<?php endforeach; ?>
+						<?php endforeach; ?>
+					</ul>
+
+					<a class="btn btn-secondary attribute-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
+					</a>
+				</div>
+
+			<?php endif; ?>
+
 
 			<div class="fieldsets">
 
-				<?php foreach( $this->get( 'attributeMap', [] ) as $attrType => $attributes ) : ?>
+				<?php foreach( $attrMap as $attrType => $attributes ) : ?>
 					<?php if( !empty( $attributes ) ) : ?>
 
 						<fieldset class="attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ) ?>">
