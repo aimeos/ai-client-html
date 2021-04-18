@@ -1483,7 +1483,7 @@ AimeosCatalogFilter = {
 	 */
 	setupAttributeListsToggle: function() {
 
-		$(".catalog-filter-attribute .attribute-lists .attr-list").hide();
+		$(".catalog-filter-attribute .attribute-lists .fieldsets .attr-list").hide();
 
 		$(".catalog-filter-attribute fieldset").on("click", "legend", function(ev) {
 			$(".attr-list", ev.delegateTarget).slideToggle();
@@ -2139,7 +2139,7 @@ jQuery(document).ready(function($) {
 	/**
 	 * Offscreen
 	 */
-        
+
 	// loop all zeynepjs menus for initialization
 	$('.zeynep').each(function () {
 		$(this).zeynep({});
