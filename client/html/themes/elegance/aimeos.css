@@ -4972,14 +4972,16 @@ body{
 	}
 }
 
-/*---------------------------- LOGIN User Navbar------------------------------*/
+/*---------------------------- PROFILE Navbar------------------------------*/
 
-.navbar-nav > li:first-child > .nav-link {
+.navbar-nav .login .nav-link,
+.navbar-nav .profile .nav-link {
 	margin-inline-end: 1rem;
 	padding: 0;
 }
 
-.navbar-nav > li:first-child > .nav-link::before {
+.navbar-nav .login .nav-link::before,
+.navbar-nav .profile .nav-link::before {
 	font: normal normal normal 14px/1 FontAwesome;
 	content: "\f007";
 	text-decoration: none;
@@ -4989,53 +4991,6 @@ body{
 	display: block;
 	position: relative;
 	text-align: center;
-}
-
-.navbar-nav .nav-item.dropdown > .nav-link > .u-name,
-.navbar-nav .nav-item > .nav-link > .u-name{
-	font-size: 80%;
-}
-
-/*---------------------------- logged in User --------------------------------*/
-
-.navbar-nav .dropdown-menu .nav-link {
-	font-size: 80%;
-	padding: .2em .5em;
-}
-
-.navbar-nav .dropdown-menu {
-	position: absolute;
-	float: none;
-}
-
-/*---------------------------Wishlist Icon Navbar-----------------------------*/
-
-.navbar .actions-button.actions-button-favorite::before {
-	content: "\f004";
-	font: normal normal normal 14px/1 FontAwesome;
-	text-decoration: none;
-	font-size: 150%;
-	color: #555;
-	color: var(--ai-secondary, #555);
-	position: relative;
-	display: block;
-	text-align: center;
-}
-
-.navbar .actions-button.actions-button-favorite {
-	margin-inline-end: 1rem;
-}
-
-.navbar .actions-button.actions-button-favorite span {
-	font-size: 80%;
-}
-
-.catalog-stage-breadcrumb {
-	font-size: 80%;
-}
-
-.navbar .actions-button.actions-button-favorite:hover {
-	text-decoration: none;
 }
 
 /*-----------------------------BASKET MINI Navbar-----------------------------*/
