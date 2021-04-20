@@ -5723,6 +5723,7 @@ body{
 	z-index: 1;
 }
 .catalog-filter-attribute > h2, .catalog-filter-tree > h2, .catalog-filter-price > h2, .catalog-filter-supplier > h2 {
+	padding: 1.1em 0.5em;
 	font-size: 80%;
 }
 
