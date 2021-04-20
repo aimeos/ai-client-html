@@ -121,7 +121,7 @@ $productItems = $this->get( 'todoProductItems', map() );
 											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 											src="<?= $enc->attr( $this->content( $images->first()->getPreview() ) ) ?>"
 											srcset="<?= $enc->attr( $this->imageset( $images->first()->getPreviews() ) ) ?>"
-											alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+											alt="<?= $enc->attr( $images->first()->getProperties( 'title' )->first() ) ?>"
 										>
 									<?php endif ?>
 								</div>
