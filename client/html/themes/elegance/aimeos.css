@@ -1148,12 +1148,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .catalog-stage-navigator a.prev:before {
-	content: '◀';
+	content: '◀   ';
 	white-space: pre;
 }
 
 .catalog-stage-navigator a.next:after {
-	content: '▶';
+	content: '   ▶';
 	white-space: pre;
 }
 
@@ -5822,4 +5822,10 @@ body{
 	font-size: 80%;
 	margin-bottom: 0;
 	width: 5rem;
+}
+
+
+.supplier-detail .image-single img {
+	max-height: 20rem;
+	max-width: 100%;
 }
