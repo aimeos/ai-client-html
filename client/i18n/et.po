@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-06 09:37+0200\n"
-"PO-Revision-Date: 2021-04-04 10:50+0000\n"
+"POT-Creation-Date: 2021-04-21 11:32+0200\n"
+"PO-Revision-Date: 2021-04-08 14:24+0000\n"
 "Last-Translator: ranx2k <ranko@murumets.eu>\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -301,11 +301,11 @@ msgstr "Klient ID-ga \\\"%1$s\\\" pole leitav"
 
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Hea %1$s %2$s"
 
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
-msgstr "Lugupeetud %1$s %2$s %3$s"
+msgstr "Hea %1$s %2$s %3$s"
 
 #, php-format
 msgid "Dear Miss %1$s %2$s"

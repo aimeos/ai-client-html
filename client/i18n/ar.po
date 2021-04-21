@@ -6,13 +6,14 @@
 # Abdulkarim Itani <abdulkarim.itani@gmail.com>, 2019
 # elragoubi <elragoubi@yahoo.com>, 2018
 # elragoubi <elragoubi@yahoo.com>, 2018
+# mahmoud devo <devosystem.sarl@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-06 09:37+0200\n"
-"PO-Revision-Date: 2021-04-01 16:36+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-04-21 11:32+0200\n"
+"PO-Revision-Date: 2021-04-18 14:34+0000\n"
+"Last-Translator: mahmoud devo <devosystem.sarl@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/aimeos/aimeos-core/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -177,10 +178,10 @@ msgid "An account has been created for you."
 msgstr "تم إنشاء حسابك الجديد بنجاح "
 
 msgid "Article"
-msgstr ""
+msgstr "منتوج"
 
 msgid "Article no."
-msgstr ""
+msgstr "منتوج رقم"
 
 msgid "Article no.:"
 msgstr ""
@@ -498,7 +499,7 @@ msgid "Last seen"
 msgstr "اخر زيارة"
 
 msgid "Latest"
-msgstr ""
+msgstr "الأحدث "
 
 msgid "Like entered by you"
 msgstr ""
@@ -567,7 +568,7 @@ msgid "Options"
 msgstr ""
 
 msgid "Order"
-msgstr ""
+msgstr "طلب"
 
 #, php-format
 msgid "Order %1$s"
@@ -580,7 +581,7 @@ msgid "Order channel"
 msgstr ""
 
 msgid "Order date"
-msgstr ""
+msgstr "تاريخ الطلب"
 
 msgid "Order details"
 msgstr ""
@@ -599,7 +600,7 @@ msgid "Other customers also bought"
 msgstr ""
 
 msgid "Our products"
-msgstr ""
+msgstr "منتجاتنا"
 
 #, php-format
 msgid "Page %1$d of %2$d"
