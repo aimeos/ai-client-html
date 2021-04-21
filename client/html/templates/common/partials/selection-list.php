@@ -7,7 +7,7 @@
 
 /* Available data:
  * - productItem : Selection product for the variant products
- * - products : List of variant product items with referenced items
+ * - productItems : List of variant product items with referenced items
  */
 
 
