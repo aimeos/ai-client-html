@@ -25,7 +25,7 @@ $enc = $this->encoder();
 		<th class="select-quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></th>
 	</tr>
 
-	<?php foreach( $this->get( 'products', [] ) as $id => $product ) : ?>
+	<?php foreach( $this->get( 'productItems', [] ) as $id => $product ) : ?>
 
 		<tr class="select-item">
 
