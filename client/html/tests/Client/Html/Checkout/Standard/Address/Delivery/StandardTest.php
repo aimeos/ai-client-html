@@ -181,7 +181,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.address1' => 'mystreet 1',
 				'order.base.address.postal' => '20AB',
 				'order.base.address.city' => 'hamburg',
-				'order.base.address.email' => 'me@localhost',
+				'order.base.address.email' => 'me@example.com',
 				'order.base.address.languageid' => 'en',
 			),
 		);

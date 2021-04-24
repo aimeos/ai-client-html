@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetHeader()
 	{
 		$config = $this->context->getConfig();
-		$config->set( 'client/html/email/from-email', 'me@localhost' );
+		$config->set( 'client/html/email/from-email', 'me@example.com' );
 		$config->set( 'client/html/email/from-name', 'My company' );
 
 		$this->emailMock->expects( $this->once() )->method( 'addHeader' )
@@ -87,10 +87,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->with( $this->equalTo( 'test@example.com' ), $this->equalTo( 'Our Unittest' ) );
 
 		$this->emailMock->expects( $this->once() )->method( 'addFrom' )
-			->with( $this->equalTo( 'me@localhost' ), $this->equalTo( 'My company' ) );
+			->with( $this->equalTo( 'me@example.com' ), $this->equalTo( 'My company' ) );
 
 		$this->emailMock->expects( $this->once() )->method( 'addReplyTo' )
-			->with( $this->equalTo( 'me@localhost' ), $this->equalTo( 'My company' ) );
+			->with( $this->equalTo( 'me@example.com' ), $this->equalTo( 'My company' ) );
 
 		$this->emailMock->expects( $this->once() )->method( 'setSubject' )
 			->with( $this->stringContains( 'Your subscription' ) );
