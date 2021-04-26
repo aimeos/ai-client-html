@@ -63,10 +63,10 @@ $enc = $this->encoder();
 				</ul>
 			</td>
 
-			<td class="select-stock" data-prodcode="<?= $enc->attr( $product->getCode() ) ?>"></td>
+			<td class="select-stock" data-prodid="<?= $enc->attr( $id ) ?>"></td>
 
 			<td class="select-quantity">
-				<input type="number" class="form-control"
+				<input type="number" class="form-control" placeholder="0"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
 					min="1" max="2147483647" maxlength="10" step="1" value="">
 			</td>
