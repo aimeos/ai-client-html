@@ -167,7 +167,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									 *
 									 * The partial template files are usually stored in the templates/partials/ folder
 									 * of the core or the extensions. The configured path to the partial file must
-									 * be relative to the templates/ folder, e.g. "partials/selection-standard.php".
+									 * be relative to the templates/ folder, e.g. "common/partials/selection-standard".
 									 *
 									 * @param string Relative path to the template file
 									 * @since 2015.04
@@ -183,7 +183,38 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 							</div>
 
-						<?php endif; ?>
+						<?php elseif( $this->detailProductItem->getType() === 'group' ) : ?>
+
+							<div class="catalog-detail-basket-selection">
+
+								<?= $this->partial(
+									/** client/html/common/partials/group
+									 * Relative path to the group product partial template file
+									 *
+									 * Partials are templates which are reused in other templates and generate
+									 * reoccuring blocks filled with data from the assigned values. The group
+									 * partial creates an HTML block for a list of sub-products assigned to a
+									 * group product a customer can select from.
+									 *
+									 * The partial template files are usually stored in the templates/partials/ folder
+									 * of the core or the extensions. The configured path to the partial file must
+									 * be relative to the templates/ folder, e.g. "common/partials/selection-list".
+									 *
+									 * @param string Relative path to the template file
+									 * @since 2021.07
+									 * @category Developer
+									 * @see client/html/common/partials/attribute
+									 */
+									$this->config( 'client/html/common/partials/group', 'common/partials/selection-list' ),
+									[
+										'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
+										'productItem' => $this->detailProductItem
+									]
+								) ?>
+
+							</div>
+
+						<?php endif ?>
 
 						<div class="catalog-detail-basket-attribute">
 
@@ -235,17 +266,29 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<div class="input-group">
 									<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>" />
 									<input type="hidden"
-										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ); ?>"
-										value="<?= $enc->attr( $this->detailProductItem->getId() ); ?>"
-									/>
-									<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
-										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ); ?>"
-										min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
-										step="<?= $this->detailProductItem->getScale() ?>" maxlength="10"
-										value="<?= $this->detailProductItem->getScale() ?>" required="required"
-									/>
-									<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?> >
-										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ) ?>"
+										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
+									>
+									<input type="hidden"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'supplier'] ) ) ?>"
+										value="<?= $enc->attr( $this->detailProductItem->getSupplierItems()->getId()->first() ) ?>"
+									>
+									<?php if( $basketSite ) : ?>
+										<input type="hidden"
+											name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'siteid'] ) ) ?>"
+											value="<?= $enc->attr( $basketSite ) ?>"
+										>
+									<?php endif ?>
+									<?php if( $this->detailProductItem->getType() !== 'group' ) : ?>
+										<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
+											name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ) ?>"
+											min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
+											step="<?= $this->detailProductItem->getScale() ?>" maxlength="10"
+											value="<?= $this->detailProductItem->getScale() ?>" required="required"
+										>
+									<?php endif ?>
+									<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>>
+										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 									</button>
 								</div>
 							</div>
