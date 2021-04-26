@@ -19,7 +19,7 @@
 		"aimeos/aimeos-core": "2020.10.*",
 		"aimeos/ai-controller-jobs": "2020.10.*",
 		"aimeos/ai-controller-frontend": "2020.10.*",
-		"tecnickcom/tcpdf": "dev-main"
+		"tecnickcom/tcpdf": "~6.3"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~7.0||~8.0||~9.0",
