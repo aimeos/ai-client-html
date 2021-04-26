@@ -197,7 +197,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									 */
 									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
 									[
-										'productItems' => $this->detailProductItem->getRefItems( 'product', 'default', 'default' ),
+										'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
 										'productItem' => $this->detailProductItem
 									]
 								) ?>
