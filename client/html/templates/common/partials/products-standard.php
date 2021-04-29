@@ -213,6 +213,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 				<div class="text-list">
 					<?php if( !( $suppliers = $productItem->getSupplierItems() )->isEmpty() ) : ?>
 						<h3 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ) ?></h3>
+					<?php elseif( $this->get( 'contextSite' ) !== 'default' ) : ?>
+						<h3 class="site"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></h3>
 					<?php endif ?>
 
 					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>

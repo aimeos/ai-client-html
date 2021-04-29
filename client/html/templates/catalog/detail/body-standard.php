@@ -105,6 +105,8 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<?= $enc->html( $name, $enc::TRUST ) ?>
 							</a>
 						</h2>
+					<?php elseif( $this->get( 'contextSite' ) !== 'default' ) : ?>
+						<h2 class="site"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></h2>
 					<?php endif ?>
 
 					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ) ?></h1>
