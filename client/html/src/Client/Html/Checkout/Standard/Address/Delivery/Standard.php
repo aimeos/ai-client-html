@@ -59,7 +59,6 @@ class Standard
 	private $subPartNames = [];
 
 	private $mandatory = array(
-		'order.base.address.salutation',
 		'order.base.address.firstname',
 		'order.base.address.lastname',
 		'order.base.address.address1',
@@ -69,6 +68,7 @@ class Standard
 	);
 
 	private $optional = array(
+		'order.base.address.salutation',
 		'order.base.address.company',
 		'order.base.address.vatid',
 		'order.base.address.address2',

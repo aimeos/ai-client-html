@@ -126,8 +126,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 2, count( $view->addressDeliveryError ) );
-			$this->assertArrayHasKey( 'order.base.address.salutation', $view->addressDeliveryError );
+			$this->assertEquals( 1, count( $view->addressDeliveryError ) );
 			$this->assertArrayHasKey( 'order.base.address.languageid', $view->addressDeliveryError );
 			return;
 		}
