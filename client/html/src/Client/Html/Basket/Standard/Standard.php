@@ -495,7 +495,7 @@ class Standard
 
 			foreach( $entries as $values )
 			{
-				if( $values['prodid'] ?? null && ( $values['quantity'] ?? 0 ) > 0 )
+				if( ( $values['prodid'] ?? null ) && ( $values['quantity'] ?? 0 ) > 0 )
 				{
 					$basketCntl->addProduct( $productCntl->get( $values['prodid'] ),
 						(float) ( $values['quantity'] ?? 0 ),
