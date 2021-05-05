@@ -29,6 +29,7 @@ class Standard
 	 */
 	public function transform( \Aimeos\MShop\Media\Item\Iface $media ) : string
 	{
+		$mime = $media->getMimeType();
 		$view = $this->getView();
 		$enc = $view->encoder();
 
@@ -44,10 +45,10 @@ class Standard
 
 		return '<img class="item" id="image-' . $media->getId() . '"
 			itemscope itemprop="image" itemtype="http://schema.org/ImageObject"
-			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
-			srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
-			data-image="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
-			data-sources="' . $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) . '"
+			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '" ' .
+			( $mime !== 'image/svg+xml' ? 'srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"' : '' ) . '
+			data-image="' . $enc->attr( $view->content( $media->getPreview() ) ) . '" ' .
+			( $mime !== 'image/svg+xml' ? 'data-sources="' . $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) . '"' : '' ) . '
 			alt="' . $enc->html( $media->getName() ) . '"' . $variant . '>';
 	}
 }
