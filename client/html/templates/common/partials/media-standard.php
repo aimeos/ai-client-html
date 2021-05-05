@@ -6,7 +6,7 @@
  */
 
 /* Available data:
- * - item : Media item object implemnting \MShop\Media\Item\Iface
+ * - item : Media item object implementing \MShop\Media\Item\Iface
  */
 
 
@@ -30,9 +30,13 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 <?php switch( current( explode( '/', $item->getMimetype() ) ) ) : case 'audio': ?>
 
 	<audio <?= $boxattr ?>>
-		<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ) ?>" title="<?= $enc->attr( $item->getName() ) ?>" type="<?= $enc->attr( $item->getMimetype() ) ?>" <?= $itemattr ?>>
+		<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ) ?>"
+			title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>"
+			type="<?= $enc->attr( $item->getMimetype() ) ?>" <?= $itemattr ?>>
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
-			<source src="<?= $enc->attr( $this->content( $subItem->getUrl() ) ) ?>" title="<?= $enc->attr( $subItem->getName() ) ?>" type="<?= $enc->attr( $subItem->getMimetype() ) ?>" <?= $itemattr ?>>
+			<source src="<?= $enc->attr( $this->content( $subItem->getUrl() ) ) ?>"
+				title="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>"
+				type="<?= $enc->attr( $subItem->getMimetype() ) ?>" <?= $itemattr ?>>
 		<?php endforeach ?>
 		<?= $enc->html( $item->getName() ) ?>
 	</audio>
@@ -40,9 +44,13 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 	<?php break; case 'video': ?>
 
 		<video <?= $boxattr ?>>
-			<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ) ?>" title="<?= $enc->attr( $item->getName() ) ?>" type="<?= $enc->attr( $item->getMimetype() ) ?>" <?= $itemattr ?>>
+			<source src="<?= $enc->attr( $this->content( $item->getUrl() ) ) ?>"
+				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>"
+				type="<?= $enc->attr( $item->getMimetype() ) ?>" <?= $itemattr ?>>
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
-			<source src="<?= $enc->attr( $this->content( $subItem->getUrl() ) ) ?>" title="<?= $enc->attr( $subItem->getName() ) ?>" type="<?= $enc->attr( $subItem->getMimetype() ) ?>" <?= $itemattr ?>>
+			<source src="<?= $enc->attr( $this->content( $subItem->getUrl() ) ) ?>"
+				title="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>"
+				type="<?= $enc->attr( $subItem->getMimetype() ) ?>" <?= $itemattr ?>>
 		<?php endforeach ?>
 		<?= $enc->html( $item->getName() ) ?>
 	</video>
@@ -50,16 +58,21 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 	<?php break; case 'image': ?>
 
 		<div <?= $boxattr ?>><!--
-			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ) ?>" srcset="<?= $enc->attr( $this->imageset( $item->getPreviews() ) ) ?>" title="<?= $enc->attr( $item->getProperties( 'title' )->first() ) ?>" <?= $itemattr ?>><!--
+			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ) ?>"
+				srcset="<?= $item->getMimeType() !== 'image/svg+xml' ? $enc->attr( $this->imageset( $item->getPreviews() ) ) : '' ?>"
+				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>><!--
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
-			--><img src="<?= $enc->attr( $this->content( $subItem->getPreview() ) ) ?>" srcset="<?= $enc->attr( $this->imageset( $subItem->getPreviews() ) ) ?>" title="<?= $enc->attr( $subItem->getProperties( 'title' )->first() ) ?>" <?= $itemattr ?>><!--
+			--><img src="<?= $enc->attr( $this->content( $subItem->getPreview() ) ) ?>"
+				srcset="<?= $item->getMimeType() !== 'image/svg+xml' ? $enc->attr( $this->imageset( $subItem->getPreviews() ) ) : '' ?>"
+				title="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>><!--
 		<?php endforeach ?>
 		--></div>
 
 	<?php break; default: ?>
 
 		<a href="<?= $enc->attr( $this->content( $item->getUrl() ) ) ?>" <?= $boxattr ?>><!--
-			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ) ?>" title="<?= $enc->attr( $item->getName() ) ?>" <?= $itemattr ?>><!--
+			--><img src="<?= $enc->attr( $this->content( $item->getPreview() ) ) ?>"
+				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>><!--
 			<?= $enc->html( $item->getName() ) ?>
 		--></a>
 
