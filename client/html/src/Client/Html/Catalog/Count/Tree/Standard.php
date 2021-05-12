@@ -221,14 +221,9 @@ class Standard
 		 *
 		 * @param boolean Disabled if "0", enabled if "1"
 		 * @since 2014.03
-		 * @see client/html/catalog/count/limit
 		 */
 		if( $config->get( 'client/html/catalog/count/tree/aggregate', true ) == true )
 		{
-			/** client/html/catalog/count/limit
-			 * @see client/html/catalog/count/tree/aggregate
-			 */
-			$limit = $config->get( 'client/html/catalog/count/limit', 10000 );
 			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
 
@@ -249,7 +244,7 @@ class Standard
 				->oneOf( $view->param( 'f_optid', [] ) )
 				->oneOf( $view->param( 'f_oneid', [] ) )
 				->text( $view->param( 'f_search' ) )
-				->slice( 0, $limit )->sort();
+				->sort();
 
 			$view->treeCountList = $cntl->aggregate( 'index.catalog.id' );
 
