@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aimeos, 2015-2020
+# Aimeos, 2015-2021
 # cmann <c.mann@metaways.de>, 2013
 # Janosch Ott <janosch.ott@bluewin.ch>, 2015
 # Stephan Kellermayr <stephan.kellermayr@gmail.com>, 2021
@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2021-01-16 18:27+0000\n"
-"Last-Translator: Stephan Kellermayr <stephan.kellermayr@gmail.com>\n"
+"POT-Creation-Date: 2021-04-21 11:32+0200\n"
+"PO-Revision-Date: 2021-04-02 12:22+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,6 +140,11 @@ msgstr "Zusatz"
 
 msgid "Additional 2"
 msgstr "Zusatz 2"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] "Adresse"
+msgstr[1] "Adressen"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -316,8 +321,15 @@ msgstr "Sehr geehrter Herr %1$s %2$s"
 msgid "Dear Mrs %1$s %2$s"
 msgstr "Sehr geehrte Frau %1$s %2$s"
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr "Sehr geehrte Frau %1$s %2$s"
+
 msgid "Dear Sir or Madam"
 msgstr "Sehr geehrte Damen und Herren"
+
+msgid "Dear customer"
+msgstr "Lieber Kunde"
 
 msgid "Delete"
 msgstr "Löschen"
@@ -348,6 +360,9 @@ msgstr "Beschreibung"
 
 msgid "Details"
 msgstr "Details"
+
+msgid "Don't store address"
+msgstr "Adresse nicht speichern"
 
 msgid "Downloads"
 msgstr "Downloads"
@@ -908,7 +923,9 @@ msgstr "Ihr Abo für das Produkt ist ausgelaufen."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr "Der Wert ihres Gutscheins beträgt %1$s"
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] "Der Wert ihrer Gutscheine beträgt %1$s"
+msgstr[1] "Der Wert ihrer Gutscheine beträgt %1$s"
 
 msgid "Three month"
 msgstr "Drei Monate"
@@ -1015,6 +1032,9 @@ msgstr "Sie befinden sich hier:"
 msgid "You can use your voucher any time in our online shop"
 msgstr "Sie können Ihren Gutschein jederzeit in unserem Onlineshop einlösen"
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr "Sie können Ihren Gutschein jederzeit in unserem Onlineshop einlösen"
+
 msgid "You will now be forwarded to the next step"
 msgstr "Sie werden jetzt zu unserem Zahlungsanbieter weiter geleitet"
 
@@ -1073,6 +1093,9 @@ msgstr "Ihr Gutschein"
 
 msgid "Your voucher: "
 msgstr "Ihr Gutschein:"
+
+msgid "Your vouchers: "
+msgstr "Ihre Gutscheine:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

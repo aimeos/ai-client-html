@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
+# ranx2k <ranko@murumets.eu>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-10-03 08:06+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2021-03-27 11:07+0000\n"
+"Last-Translator: ranx2k <ranko@murumets.eu>\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "Maksud"
 
 #. PST tax name
 msgid "taxpst"
@@ -43,7 +44,7 @@ msgstr ""
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "lemmik"
 
 #. Pin action
 msgid "pin"
@@ -55,55 +56,55 @@ msgstr ""
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "Suurus"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "Pikkus"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "Laius"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "Värv"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "Valik"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "pakendi-pikkus"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "pakendi-laius"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "pakendi-kõrgus"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "pakendi-kaal"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Konto omanik"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Konto number"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "Panga kood"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "Panga nimi"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,36 +116,36 @@ msgstr "Perekonnanimi"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Krediitkaardi number"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Kontrollkood"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "Aegumise kuu"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "Aegumise aasta"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "Kättesaamise kuupäev"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Kättesaamise aeg"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "Kättesaamise koht"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "Kättesaamise aadress"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "Kättetoimetamise viis"

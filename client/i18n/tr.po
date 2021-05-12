@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2021-03-03 20:45+0000\n"
+"POT-Creation-Date: 2021-04-21 11:32+0200\n"
+"PO-Revision-Date: 2021-04-26 20:14+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -136,6 +136,11 @@ msgstr "Devam"
 
 msgid "Additional 2"
 msgstr "Devam 2"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] "Adres"
+msgstr[1] "Adresler"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -283,7 +288,7 @@ msgid "Create a customer account for me"
 msgstr "Benim için bir müşteri hesabı oluştur"
 
 msgid "Created"
-msgstr "Oluşturuldu"
+msgstr "Oluşturulma Tarihi"
 
 msgid "Customer account"
 msgstr "Müşteri hesabı"
@@ -312,8 +317,15 @@ msgstr "Sayın %1$s %2$s Bey"
 msgid "Dear Mrs %1$s %2$s"
 msgstr "Sayın %1$s %2$s Hanım"
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr "Sayın %1$s%2$s Hanım"
+
 msgid "Dear Sir or Madam"
 msgstr "Sayın Müşterimiz"
+
+msgid "Dear customer"
+msgstr "Değerli müşterimiz"
 
 msgid "Delete"
 msgstr "Sil"
@@ -344,6 +356,9 @@ msgstr "Açıklama"
 
 msgid "Details"
 msgstr "Detaylar"
+
+msgid "Don't store address"
+msgstr "Adresi saklama"
 
 msgid "Downloads"
 msgstr "İndirilebilir Dökümanlar"
@@ -574,7 +589,7 @@ msgstr "Ürünlerimiz"
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr "Toplam %2$d sayfadan %1$d.'si"
+msgstr "%2$d sayfadan %1$d."
 
 msgid "Password"
 msgstr "Şifre"
@@ -904,7 +919,9 @@ msgstr "Ürün için abonelik sona erdi."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr "Kuponunuzun değeri: %1$s"
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] "Kuponunuzun değeri: %1$s"
+msgstr[1] "Kuponlarınızın değeri: %1$s"
 
 msgid "Three month"
 msgstr "Üç ay"
@@ -1011,6 +1028,9 @@ msgstr "Buradasınız:"
 msgid "You can use your voucher any time in our online shop"
 msgstr "Kuponunuzu istediğiniz zaman online alışveriş mağazamızda kullanabilirsiniz"
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr "Kuponlarınızı istediğiniz zaman online alışveriş mağazamızda kullanabilirsiniz"
+
 msgid "You will now be forwarded to the next step"
 msgstr "Şimdi bir sonraki adıma yönlendirileceksiniz"
 
@@ -1069,6 +1089,9 @@ msgstr "Kuponunuz"
 
 msgid "Your voucher: "
 msgstr "Kuponunuz:"
+
+msgid "Your vouchers: "
+msgstr "Kuponlarınız:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"

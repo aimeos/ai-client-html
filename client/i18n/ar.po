@@ -6,13 +6,14 @@
 # Abdulkarim Itani <abdulkarim.itani@gmail.com>, 2019
 # elragoubi <elragoubi@yahoo.com>, 2018
 # elragoubi <elragoubi@yahoo.com>, 2018
+# mahmoud devo <devosystem.sarl@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2020-12-14 22:21+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-04-21 11:32+0200\n"
+"PO-Revision-Date: 2021-04-18 14:34+0000\n"
+"Last-Translator: mahmoud devo <devosystem.sarl@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/aimeos/aimeos-core/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,6 +148,15 @@ msgstr "إضافي"
 msgid "Additional 2"
 msgstr "إضافي 2"
 
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
 msgstr ""
@@ -168,10 +178,10 @@ msgid "An account has been created for you."
 msgstr "تم إنشاء حسابك الجديد بنجاح "
 
 msgid "Article"
-msgstr ""
+msgstr "منتوج"
 
 msgid "Article no."
-msgstr ""
+msgstr "منتوج رقم"
 
 msgid "Article no.:"
 msgstr ""
@@ -322,7 +332,14 @@ msgstr ""
 msgid "Dear Mrs %1$s %2$s"
 msgstr ""
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
+msgstr ""
+
+msgid "Dear customer"
 msgstr ""
 
 msgid "Delete"
@@ -354,6 +371,9 @@ msgstr ""
 
 msgid "Details"
 msgstr "التفاصيل"
+
+msgid "Don't store address"
+msgstr ""
 
 msgid "Downloads"
 msgstr ""
@@ -479,7 +499,7 @@ msgid "Last seen"
 msgstr "اخر زيارة"
 
 msgid "Latest"
-msgstr ""
+msgstr "الأحدث "
 
 msgid "Like entered by you"
 msgstr ""
@@ -548,7 +568,7 @@ msgid "Options"
 msgstr ""
 
 msgid "Order"
-msgstr ""
+msgstr "طلب"
 
 #, php-format
 msgid "Order %1$s"
@@ -561,7 +581,7 @@ msgid "Order channel"
 msgstr ""
 
 msgid "Order date"
-msgstr ""
+msgstr "تاريخ الطلب"
 
 msgid "Order details"
 msgstr ""
@@ -580,7 +600,7 @@ msgid "Other customers also bought"
 msgstr ""
 
 msgid "Our products"
-msgstr ""
+msgstr "منتجاتنا"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -918,7 +938,13 @@ msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Three month"
 msgstr "ثلاثة أشهر"
@@ -1025,6 +1051,9 @@ msgstr "أنت هنا"
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
+msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
 msgid "You will now be forwarded to the next step"
 msgstr ""
 
@@ -1082,6 +1111,9 @@ msgid "Your voucher"
 msgstr ""
 
 msgid "Your voucher: "
+msgstr ""
+
+msgid "Your vouchers: "
 msgstr ""
 
 #. / Product notification e-mail subject

@@ -4,13 +4,15 @@
 # 
 # Translators:
 # Alex Kay <alex110504@gmail.com>, 2017
+# ranx2k <ranko@murumets.eu>, 2021
+# ranx2k <ranko@murumets.eu>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 23:21+0100\n"
-"PO-Revision-Date: 2020-12-14 22:21+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-04-21 11:32+0200\n"
+"PO-Revision-Date: 2021-04-08 14:24+0000\n"
+"Last-Translator: ranx2k <ranko@murumets.eu>\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +128,7 @@ msgid "Account"
 msgstr "Konto"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Lisa arve esitamise aadress"
 
 msgid "Add to basket"
 msgstr "Lisa ostukorvi"
@@ -136,6 +138,11 @@ msgstr "Lisa"
 
 msgid "Additional 2"
 msgstr "Lisa 2"
+
+msgid "Address"
+msgid_plural "Addresses"
+msgstr[0] ""
+msgstr[1] ""
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -158,10 +165,10 @@ msgid "An account has been created for you."
 msgstr "Teie konto on loodud."
 
 msgid "Article"
-msgstr ""
+msgstr "Artikkel"
 
 msgid "Article no."
-msgstr ""
+msgstr "Toote kood."
 
 msgid "Article no.:"
 msgstr "Toode nr.:"
@@ -198,7 +205,7 @@ msgid "Birthday"
 msgstr "Sünnipäev"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Hulgitellimus"
 
 msgid "Bundled products"
 msgstr "Komplekteeritud tooted"
@@ -207,7 +214,7 @@ msgid "Buy now"
 msgstr "Osta kohe"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Katkesta"
 
 msgid "Categories"
 msgstr "Kategooriad"
@@ -219,7 +226,7 @@ msgid "Change payment"
 msgstr "Muuda makseviisi"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Characteristics"
 msgstr "Iseloomulikud omadused"
@@ -228,7 +235,7 @@ msgid "Check"
 msgstr "Arve"
 
 msgid "Checkout"
-msgstr "Maksa"
+msgstr "Kassasse"
 
 msgid "City"
 msgstr "Linn"
@@ -280,13 +287,13 @@ msgid "Coupons"
 msgstr "Allahindluskoodid"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Loo minule kasutajakonto"
 
 msgid "Created"
-msgstr ""
+msgstr "Loodud"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Kliendikonto"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -294,11 +301,11 @@ msgstr "Klient ID-ga \\\"%1$s\\\" pole leitav"
 
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Hea %1$s %2$s"
 
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
-msgstr "Lugupeetud %1$s %2$s %3$s"
+msgstr "Hea %1$s %2$s %3$s"
 
 #, php-format
 msgid "Dear Miss %1$s %2$s"
@@ -312,11 +319,18 @@ msgstr ""
 msgid "Dear Mrs %1$s %2$s"
 msgstr ""
 
+#, php-format
+msgid "Dear Ms %1$s %2$s"
+msgstr ""
+
 msgid "Dear Sir or Madam"
 msgstr "Lugupeetud härra/proua"
 
-msgid "Delete"
+msgid "Dear customer"
 msgstr ""
+
+msgid "Delete"
+msgstr "Kustuta"
 
 msgid "Delivery"
 msgstr "Saadetis"
@@ -326,7 +340,7 @@ msgstr "Saadetise kättetoimetamise aadress"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "Kättetoimetamise aadress edukalt kustutatud"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -337,7 +351,7 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Kauba kättetoimetamise aadressi osa \\\"%1$s\\\" on puudu"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Kättetoimetamine ajavahemikus"
 
 msgid "Description"
 msgstr "Kirjeldus"
@@ -345,11 +359,14 @@ msgstr "Kirjeldus"
 msgid "Details"
 msgstr "Detailid"
 
+msgid "Don't store address"
+msgstr ""
+
 msgid "Downloads"
 msgstr "Allalaetav info"
 
 msgid "E-Mail"
-msgstr "E-kiri"
+msgstr "E-posti aadress"
 
 #. / E-mail HTML title
 msgid "E-mail notification"
@@ -387,7 +404,7 @@ msgid "Grid view"
 msgstr ""
 
 msgid "HH:mm"
-msgstr ""
+msgstr "TT:mm"
 
 #, php-format
 msgid ""
@@ -469,7 +486,7 @@ msgid "Last seen"
 msgstr "Viimati sisse logitud"
 
 msgid "Latest"
-msgstr ""
+msgstr "Uusim"
 
 msgid "Like entered by you"
 msgstr ""
@@ -478,22 +495,22 @@ msgid "List view"
 msgstr ""
 
 msgid "Login"
-msgstr ""
+msgstr "Sisene"
 
 msgid "More reviews"
-msgstr ""
+msgstr "Veel arvustusi"
 
 msgid "Name"
 msgstr "Nimi"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "Uus kättetoimetamise aadress"
 
 msgid "Next"
 msgstr "Järgmine"
 
 msgid "Next order"
-msgstr ""
+msgstr "Järgmine tellimus"
 
 #, php-format
 msgid ""
@@ -551,7 +568,7 @@ msgid "Order channel"
 msgstr "Tellimise viis"
 
 msgid "Order date"
-msgstr ""
+msgstr "Tellimuse kuupäev"
 
 msgid "Order details"
 msgstr "Tellimuse detailid"
@@ -570,7 +587,7 @@ msgid "Other customers also bought"
 msgstr "Teised kliendid ostsid ka"
 
 msgid "Our products"
-msgstr ""
+msgstr "Meie tooted"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -614,11 +631,11 @@ msgstr "Palun sisestage oma makseandmed"
 
 #, php-format
 msgid "Please recheck your delivery choice"
-msgstr ""
+msgstr "Palun kontrollige üle kättetoimetamise valik"
 
 #, php-format
 msgid "Please recheck your payment choice"
-msgstr ""
+msgstr "Palun kontrolli üle oma makse valik"
 
 msgid "Please select"
 msgstr "Palun valige"
@@ -642,7 +659,7 @@ msgid "Product"
 msgstr "Toode"
 
 msgid "Product image"
-msgstr ""
+msgstr "Toote pilt"
 
 msgid "Products you might be also interested in"
 msgstr "Tooted, mis võiksid Teile veel huvi pakkuda"
@@ -657,7 +674,7 @@ msgid "Quantity"
 msgstr "Kogus"
 
 msgid "Rating"
-msgstr ""
+msgstr "Hinne"
 
 msgid "Reference"
 msgstr ""
@@ -677,7 +694,7 @@ msgid "Result for \"%1$s\""
 msgstr "Tulemused otsingule \"%1$s\""
 
 msgid "Reviews"
-msgstr ""
+msgstr "Arvustused"
 
 msgid "SKU or article name"
 msgstr ""
@@ -686,7 +703,7 @@ msgid "Salutation"
 msgstr "Pöördumine"
 
 msgid "Save"
-msgstr ""
+msgstr "Salvesta"
 
 msgid "Search"
 msgstr "Otsi"
@@ -739,10 +756,10 @@ msgid "State"
 msgstr "Maakond"
 
 msgid "Status"
-msgstr ""
+msgstr "Staatus"
 
 msgid "Stock"
-msgstr ""
+msgstr "Laoseis"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -783,7 +800,7 @@ msgid "Subscription with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Tellimused"
 
 msgid "Suggested products"
 msgstr "Soovitatud tooted"
@@ -792,10 +809,10 @@ msgid "Sum"
 msgstr "Summa"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "Tarnija info"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "Tarnijad"
 
 msgid "Telephone"
 msgstr "Telefon"
@@ -813,7 +830,7 @@ msgstr "Kasutustingimused"
 #. status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "Täname Teid tellimuse %1$s eest leheküljelt %2$s."
+msgstr "Täname Teid tellimuse %1$s eest kuupäeval %2$s."
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -848,7 +865,7 @@ msgid ""
 msgstr "Täname tellimuse eest.\nOleme Teie makse kätte saanud ja mõne minuti jooksul peaksite saama tellimust kinnitava E-kirja."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "Täname arvustuse eest!"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -904,7 +921,9 @@ msgstr ""
 
 #, php-format
 msgid "The value of your voucher is %1$s"
-msgstr ""
+msgid_plural "The value of your vouchers are %1$s"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Three month"
 msgstr "Kolm kuud"
@@ -962,7 +981,7 @@ msgid "Variant"
 msgstr ""
 
 msgid "Vat ID"
-msgstr "Käibemaksu määr"
+msgstr "Käibemaksukohuslase number"
 
 msgid "Vendor response"
 msgstr ""
@@ -1009,6 +1028,9 @@ msgid "You are here:"
 msgstr "Te olete siin:"
 
 msgid "You can use your voucher any time in our online shop"
+msgstr ""
+
+msgid "You can use your vouchers at any time in our online shop"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
@@ -1070,16 +1092,19 @@ msgstr ""
 msgid "Your voucher: "
 msgstr ""
 
+msgid "Your vouchers: "
+msgstr ""
+
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Teie jälgimisnimekirjas olevad tooted"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Suumi sisse/välja"
 
 #, php-format
 msgid "address"
-msgstr "address"
+msgstr "aadress"
 
 msgid "clear all"
 msgstr "kustuta kõik"
@@ -1138,7 +1163,7 @@ msgid "summary"
 msgstr "kokkuvõte"
 
 msgid "tax"
-msgstr ""
+msgstr "Maksud"
 
 msgid "▲ Name"
 msgstr "▲ Nimi"
