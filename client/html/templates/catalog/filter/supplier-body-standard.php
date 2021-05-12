@@ -37,7 +37,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 								id="sup-<?= $enc->attr( $id ) ?>"
 								name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>"
 								value="<?= $enc->attr( $id ) ?>"
-								<?= ( in_array( $id, $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ) ?>
+								<?= ( in_array( $id, (array) $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ) ?>
 							>
 
 							<label class="attr-name" for="sup-<?= $enc->attr( $id ) ?>"><!--
