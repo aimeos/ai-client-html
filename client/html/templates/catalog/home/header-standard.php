@@ -14,9 +14,9 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 
 
 ?>
-<?php if( isset( $this->homeTree ) ) : ?>
+<title><?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
-	<title><?= $enc->html( strip_tags( $this->homeTree->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+<?php if( isset( $this->homeTree ) ) : ?>
 
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="<?= $enc->attr( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?>">
@@ -37,10 +37,6 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 	<?php endforeach ?>
 
 	<meta name="twitter:card" content="summary">
-
-<?php else : ?>
-
-	<title><?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
 <?php endif ?>
 
