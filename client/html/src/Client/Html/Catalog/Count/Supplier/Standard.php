@@ -235,6 +235,7 @@ class Standard
 				->oneOf( $view->param( 'f_optid', [] ) )
 				->oneOf( $view->param( 'f_oneid', [] ) )
 				->text( $view->param( 'f_search' ) )
+				->slice( 0, 0x7fffffff ) // restricted by mshop/common/manager/aggregate/limit
 				->sort();
 
 			$view->supplierCountList = $cntl->aggregate( 'index.supplier.id' );
