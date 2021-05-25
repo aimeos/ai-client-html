@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
 
-		$this->assertStringContainsString( '<script type="text/javascript"', $output );
+		$this->assertStringContainsString( '<script', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 4, count( $tags ) );
 	}
