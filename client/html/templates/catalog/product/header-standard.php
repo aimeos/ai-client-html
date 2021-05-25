@@ -11,6 +11,6 @@ $enc = $this->encoder();
 ?>
 <?php if( isset( $this->itemsStockUrl ) ) : ?>
 	<?php foreach( $this->itemsStockUrl as $url ) : ?>
-		<script type="text/javascript" defer="defer" src="<?= $enc->attr( $url ) ?>"></script>
+		<script defer src="<?= $enc->attr( $url ) ?>"></script>
 	<?php endforeach ?>
 <?php endif ?>
