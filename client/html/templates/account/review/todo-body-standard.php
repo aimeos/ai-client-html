@@ -180,7 +180,7 @@ $productItems = $this->get( 'todoProductItems', map() );
 
 			<?php endforeach ?>
 
-			<button class="btn btn-primary">Submit</button>
+			<button class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Submit' ) ) ?></button>
 
 		</form>
 
