@@ -348,7 +348,7 @@ class Standard
 		}
 
 		$view->paymentServices = $services;
-		$view->paymentOption = $view->param( 'c_paymentoption', $orderServices->firstKey() ?: $services->firstKey() );
+		$view->paymentOption = $view->param( 'c_paymentoption', $orderServices->firstKey() ?: key( $services ) );
 
 		return parent::addData( $view, $tags, $expire );
 	}
