@@ -46,7 +46,7 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 
 <?php if( isset( $this->homeStockUrl ) ) : ?>
 	<?php foreach( $this->homeStockUrl as $url ) : ?>
-		<script type="text/javascript" defer="defer" src="<?= $enc->attr( $url ) ?>"></script>
+		<script defer src="<?= $enc->attr( $url ) ?>"></script>
 	<?php endforeach ?>
 <?php endif ?>
 
