@@ -7,14 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
-# Aimeos, 2015-2019
+# Aimeos, 2015-2019,2021
 # nsendetzky, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-10-03 08:14+0000\n"
+"PO-Revision-Date: 2021-05-26 12:14+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -130,6 +130,10 @@ msgstr "Ablaufmonat"
 #. Omnipay service provider
 msgid "payment.expiryyear"
 msgstr "Ablaufjahr"
+
+#. Omnipay service provider
+msgid "payment.expiry"
+msgstr "Ablaufdatum"
 
 #. Pick-up date
 msgid "date.value"
