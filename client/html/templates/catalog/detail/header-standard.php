@@ -47,6 +47,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
 			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>">
+			<meta name="twitter:card" content="summary_large_image">
 		<?php endforeach ?>
 
 		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
@@ -63,7 +64,6 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<meta property="product:price:currency" content="<?= $enc->attr( $priceItem->getCurrencyId() ) ?>">
 		<?php endif ?>
 
-		<meta name="twitter:card" content="summary_large_image">
 	<?php endif ?>
 
 	<meta name="application-name" content="Aimeos">
