@@ -114,7 +114,7 @@ class Standard
 		$view->pdf->writeHtml( $content );
 		$view->pdf->lastPage();
 
-		$view->mail()->addAttachment( $view->pdf->output( '', 'S' ), 'application/pdf', 'order_' . $view->extOrderItem->getId() . '.pdf' );
+		$view->mail()->addAttachment( $view->pdf->output( '', 'S' ), 'application/pdf', $view->translate( 'client', 'Order' ) . '_' . $view->extOrderItem->getId() . '.pdf' );
 
 		return '';
 	}
