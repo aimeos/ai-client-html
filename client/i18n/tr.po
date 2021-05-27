@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-06 09:37+0200\n"
-"PO-Revision-Date: 2021-04-03 01:15+0000\n"
+"PO-Revision-Date: 2021-04-26 20:14+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -288,7 +288,7 @@ msgid "Create a customer account for me"
 msgstr "Benim için bir müşteri hesabı oluştur"
 
 msgid "Created"
-msgstr "Oluşturuldu"
+msgstr "Oluşturulma Tarihi"
 
 msgid "Customer account"
 msgstr "Müşteri hesabı"
@@ -589,7 +589,7 @@ msgstr "Ürünlerimiz"
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr "Toplam %2$d sayfadan %1$d.'si"
+msgstr "%2$d sayfadan %1$d."
 
 msgid "Password"
 msgstr "Şifre"

@@ -348,7 +348,7 @@ class Standard
 		}
 
 		$view->deliveryServices = $services;
-		$view->deliveryOption = $view->param( 'c_deliveryoption', $orderServices->firstKey() ?: $providers->firstKey() );
+		$view->deliveryOption = $view->param( 'c_deliveryoption', $orderServices->firstKey() ?: key( $services ) );
 
 		return parent::addData( $view, $tags, $expire );
 	}

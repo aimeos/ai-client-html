@@ -132,6 +132,10 @@ msgstr "Expiry month"
 msgid "payment.expiryyear"
 msgstr "Expiry year"
 
+#. Omnipay service provider
+msgid "payment.expiry"
+msgstr "Expiry date"
+
 #. Pick-up date
 msgid "date.value"
 msgstr "Pick-up date"

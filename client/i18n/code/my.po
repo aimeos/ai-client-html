@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2019-10-03 08:06+0000\n"
+"PO-Revision-Date: 2021-05-26 12:13+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Burmese (http://www.transifex.com/aimeos/aimeos-core/language/my/)\n"
 "MIME-Version: 1.0\n"
@@ -129,6 +129,10 @@ msgstr "သက်တမ်းကုန်မည့်လ"
 #. Omnipay service provider
 msgid "payment.expiryyear"
 msgstr "သက်တမ်းကုန်မည့်နှစ်"
+
+#. Omnipay service provider
+msgid "payment.expiry"
+msgstr ""
 
 #. Pick-up date
 msgid "date.value"

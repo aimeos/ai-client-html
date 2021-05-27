@@ -261,7 +261,7 @@ class Standard
 		$view->addressBillingValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
 		$view->addressBillingOption = $view->param( 'ca_billingoption', $id );
 
-		$salutations = $context->getConfig()->get( 'client/html/common/address/salutations', ['', 'company', 'mr', 'ms'] );
+		$salutations = $context->getConfig()->get( 'client/html/common/address/salutations', ['', 'mr', 'ms'] );
 
 		/** client/html/checkout/standard/address/billing/salutations
 		 * List of salutions the customer can select from for the billing address

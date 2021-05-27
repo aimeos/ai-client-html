@@ -23,9 +23,9 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 	<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->homeTree->getName() ) ) ?>">
 	<meta property="og:url" content="<?= $enc->attr( $this->url( $target, $cntl, $action, [], [], $config + ['absoluteUri' => true] ) ) ?>">
 
-	<?php foreach( $this->homeTree->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-		<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>">
-	<?php endforeach ?>
+	<?php if( $icon = $this->get( 'contextSiteIcon' ) ) : ?>
+		<meta property="og:image" content="<?= $enc->attr( $this->content( $icon ) ) ?>">
+	<?php endif ?>
 
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
 		<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>">

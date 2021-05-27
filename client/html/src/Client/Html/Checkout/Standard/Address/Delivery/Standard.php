@@ -597,7 +597,7 @@ class Standard
 		$view->addressDeliveryStrings = $addrStrings;
 		$view->addressDeliveryValues = $addrValues;
 
-		$salutations = $context->getConfig()->get( 'client/html/common/address/salutations', ['', 'company', 'mr', 'ms'] );
+		$salutations = $context->getConfig()->get( 'client/html/common/address/salutations', ['', 'mr', 'ms'] );
 
 		/** client/html/checkout/standard/address/delivery/salutations
 		 * List of salutions the customer can select from for the delivery address
