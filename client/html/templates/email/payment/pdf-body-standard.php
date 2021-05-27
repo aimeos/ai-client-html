@@ -20,7 +20,6 @@ $enc = $this->encoder();
 
 $this->pdf->setMargins( 15, 30, 15 );
 $this->pdf->setAutoPageBreak( true, 30 );
-$this->pdf->setTitle( sprintf( $this->translate( 'client', 'Order %1$s' ), $this->extOrderItem->getId() ) );
 $this->pdf->setFont( 'dejavusans', '', 10 );
 
 $vmargin = [
