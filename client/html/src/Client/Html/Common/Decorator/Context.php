@@ -35,10 +35,12 @@ class Context extends Base implements Iface
 
 		$view->contextLanguage = $locale->getLanguageId();
 		$view->contextCurrency = $locale->getCurrencyId();
-		$view->contextLogo = $locale->getSiteItem()->getLogo();
-		$view->contextLogos = $locale->getSiteItem()->getLogos();
+		$view->contextSiteIcon = $locale->getSiteItem()->getIcon();
+		$view->contextSiteLogo = $locale->getSiteItem()->getLogo();
+		$view->contextSiteLogos = $locale->getSiteItem()->getLogos();
 		$view->contextSite = $locale->getSiteItem()->getCode();
 		$view->contextSiteLabel = $locale->getSiteItem()->getLabel();
+		$view->contextSiteTheme = $locale->getSiteItem()->getTheme();
 		$view->contextSiteId = $locale->getSiteId();
 		$view->contextUserId = $context->getUserId();
 		$view->contextGroupIds = $context->getGroupIds();

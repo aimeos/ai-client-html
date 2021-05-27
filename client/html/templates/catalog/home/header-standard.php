@@ -22,7 +22,10 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 	<meta property="og:site_name" content="<?= $enc->attr( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?>">
 	<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->homeTree->getName() ) ) ?>">
 	<meta property="og:url" content="<?= $enc->attr( $this->url( $target, $cntl, $action, [], [], $config + ['absoluteUri' => true] ) ) ?>">
-	<meta property="og:image" content="<?= $enc->attr( $this->content( $aimeossite->getIcon() ) ) ?>">
+
+	<?php if( isset( $this->contextSiteIcon ) ) : ?>
+		<meta property="og:image" content="<?= $enc->attr( $this->content( $this->contextSiteIcon ) ) ?>">
+	<?php endif ?>
 
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
 		<meta property="og:description" content="<?= $enc->attr( $textItem->getContent() ) ?>">
