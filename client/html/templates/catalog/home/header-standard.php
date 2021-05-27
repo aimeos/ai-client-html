@@ -25,6 +25,7 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 
 	<?php if( $icon = $this->get( 'contextSiteIcon' ) ) : ?>
 		<meta property="og:image" content="<?= $enc->attr( $this->content( $icon ) ) ?>">
+		<meta name="twitter:card" content="summary_large_image">
 	<?php endif ?>
 
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
@@ -35,8 +36,6 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 	<?php foreach( $this->homeTree->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 	<?php endforeach ?>
-
-	<meta name="twitter:card" content="summary">
 
 <?php else : ?>
 
