@@ -78,7 +78,7 @@ class Standard
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send customer account e-mail: ' . $e->getMessage();
-				$context->getLogger()->log( $str );
+				$context->getLogger()->log( $str . PHP_EOL . $e->getTraceAsString() );
 			}
 
 			$queue->del( $msg );

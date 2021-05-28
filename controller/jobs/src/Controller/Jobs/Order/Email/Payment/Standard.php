@@ -241,7 +241,7 @@ class Standard
 			{
 				$str = 'Error while trying to send payment e-mail for order ID "%1$s" and status "%2$s": %3$s';
 				$msg = sprintf( $str, $item->getId(), $item->getPaymentStatus(), $e->getMessage() );
-				$context->getLogger()->log( $msg );
+				$context->getLogger()->log( $msg . PHP_EOL . $e->getTraceAsString() );
 			}
 		}
 	}
