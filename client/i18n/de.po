@@ -437,7 +437,7 @@ msgstr "Falls Sie Fragen haben sollten, antworten Sie bitte auf diese E-Mail"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "Incl. %1$s%% %2$s"
+msgstr "Inkl. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -448,7 +448,7 @@ msgid "Included rebates"
 msgstr "Enthaltene Rabatte"
 
 msgid "Interval"
-msgstr "Interval"
+msgstr "Intervall"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -456,11 +456,11 @@ msgstr "Klassenname \"%1$s\" enthält unerlaubte Zeichen"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr "Client-Name \"%1$s\" enthält unerlaubte Zeichen"
+msgstr "Kunden-Name \"%1$s\" enthält unerlaubte Zeichen"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr "Client-Name \"%1$s\" enthält unerlaubte Zeichen in \"%2$s\""
+msgstr "Kunden-Name \"%1$s\" enthält unerlaubte Zeichen in \"%2$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -670,7 +670,7 @@ msgid "Properties"
 msgstr "Eigenschaften"
 
 msgid "Qty"
-msgstr "Anz"
+msgstr "Anz."
 
 msgid "Quantity"
 msgstr "Anzahl"
@@ -719,7 +719,7 @@ msgstr[0] "Ihr Suchergebnis für <span class=\"searchstring\">\"%1$s\"</span> (%
 msgstr[1] "Ihr Suchergebnis für <span class=\"searchstring\">\"%1$s\"</span> (%2$d Artikel)"
 
 msgid "Select country"
-msgstr "Bitte wählen"
+msgstr "Wählen Sie ein Land"
 
 msgid "Select currency"
 msgstr "Wählen Sie eine Währung"
@@ -728,7 +728,7 @@ msgid "Select language"
 msgstr "Wählen Sie eine Sprache"
 
 msgid "Select salutation"
-msgstr "Bitte wählen"
+msgstr "Wählen Sie eine Anrede"
 
 msgid "Select state"
 msgstr "Wählen Sie ein Bundesland"
