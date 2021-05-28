@@ -157,7 +157,7 @@ class Standard
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send product notification e-mail for customer ID "%1$s": %2$s';
-				$context->getLogger()->log( sprintf( $str, $custId, $e->getMessage() ) );
+				$context->getLogger()->log( sprintf( $str, $custId, $e->getMessage() ) . PHP_EOL . $e->getTraceAsString() );
 			}
 
 			$listManager->delete( $listIds );

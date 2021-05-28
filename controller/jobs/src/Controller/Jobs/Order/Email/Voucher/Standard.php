@@ -316,7 +316,7 @@ class Standard
 
 				$str = 'Error while trying to send voucher e-mails for order ID "%1$s": %2$s';
 				$msg = sprintf( $str, $item->getId(), $e->getMessage() );
-				$context->getLogger()->log( $msg );
+				$context->getLogger()->log( $msg . PHP_EOL . $e->getTraceAsString() );
 			}
 		}
 	}

@@ -635,10 +635,8 @@ abstract class Base
 	 */
 	protected function logException( \Exception $e )
 	{
-		$logger = $this->context->getLogger();
-
-		$logger->log( $e->getMessage(), \Aimeos\MW\Logger\Base::WARN, 'client/html' );
-		$logger->log( $e->getTraceAsString(), \Aimeos\MW\Logger\Base::WARN, 'client/html' );
+		$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
+		$this->context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::WARN, 'client/html' );
 	}
 
 
