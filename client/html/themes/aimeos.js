@@ -1225,9 +1225,9 @@ AimeosCatalog = {
 					if( parent.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out") ) {
 						$(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
 					} else {
-                        if(AimeosCatalog.validateVariant()) {
-    						$(".addbasket .btn-action", parent).removeClass("btn-disabled").removeAttr("disabled");
-                        }
+						if(AimeosCatalog.validateVariant()) {
+							$(".addbasket .btn-action", parent).removeClass("btn-disabled").removeAttr("disabled");
+						}
 					}
 
 					$(".catalog-detail-additional .subproduct-actual").removeClass("subproduct-actual");
@@ -1235,18 +1235,15 @@ AimeosCatalog = {
 				}
 			}
 
-            if(!AimeosCatalog.validateVariant()) {
-                $(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
-            }
-
-            if(!AimeosCatalog.validateVariant()) {
-                $(".articleitem").removeClass("stock-actual");
-            }
+			if(!AimeosCatalog.validateVariant()) {
+				$(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
+				$(".articleitem").removeClass("stock-actual");
+			}
 		});
 
-        if(!AimeosCatalog.validateVariant()) {
-            $(".articleitem").removeClass("stock-actual");
-        }
+		if(!AimeosCatalog.validateVariant()) {
+			$(".articleitem").removeClass("stock-actual");
+		}
 	},
 
 
@@ -1273,20 +1270,20 @@ AimeosCatalog = {
 		});
 	},
 
-    validateVariant: function () {
+	validateVariant: function () {
 
-        var result = true;
+		var result = true;
 
-        $(".selection .select-item").each( function() {
+		$(".selection .select-item").each( function() {
 
-            if( $(".select-list", this).val() === '' || $(".select-option:checked", this).length <= 0 ) {
-                result = false;
-            }
+			if( $(".select-list", this).val() === '' || $(".select-option:checked", this).length <= 0 ) {
+				result = false;
+			}
 
-        });
+		});
 
-        return result;
-    },
+		return result;
+	},
 
 
 	/**
@@ -2081,7 +2078,7 @@ jQuery(document).ready(function($) {
 	 */
 	var $dropdowns = $('.top-item'); // Specifying the element is faster for older browsers
 
-        //Uncomment below if Megamenu
+		//Uncomment below if Megamenu
 //	$('.has-submenu > .top-cat-item').on('click', function(t){
 //		t.preventDefault(), t.stopPropagation();
 //	});
