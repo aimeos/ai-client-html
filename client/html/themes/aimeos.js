@@ -1236,14 +1236,11 @@ AimeosCatalog = {
 			}
 
 			if(!AimeosCatalog.validateVariant()) {
+				var parent = $(this).parents(".catalog-detail-basket, .catalog-list .product");
 				$(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
-				$(".articleitem").removeClass("stock-actual");
+				$(".articleitem", parent).removeClass("stock-actual");
 			}
 		});
-
-		if(!AimeosCatalog.validateVariant()) {
-			$(".articleitem").removeClass("stock-actual");
-		}
 	},
 
 

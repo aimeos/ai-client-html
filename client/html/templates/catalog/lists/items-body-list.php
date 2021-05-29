@@ -93,7 +93,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 				--><div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 					<div class="stock-list">
-						<div class="articleitem stock-actual"
+						<div class="articleitem <?= !in_array( $productItem->getType(), ['select', 'group'] ) ? 'stock-actual' : '' ?>"
 							data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
 							data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
 						</div>
@@ -176,7 +176,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 										required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
 										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ) ?>"
 									><!--
-									--><button class="btn btn-primary" type="submit" value="">
+									--><button class="btn btn-primary btn-action" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>>
 										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 									</button>
 								</div>

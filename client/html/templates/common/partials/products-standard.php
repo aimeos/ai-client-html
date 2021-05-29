@@ -235,7 +235,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 
 				<div class="stock-list">
-					<div class="articleitem stock-actual"
+					<div class="articleitem <?= !in_array( $productItem->getType(), ['select', 'group'] ) ? 'stock-actual' : '' ?>"
 						data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
 						data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
 					</div>
