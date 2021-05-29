@@ -1225,14 +1225,28 @@ AimeosCatalog = {
 					if( parent.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out") ) {
 						$(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
 					} else {
-						$(".addbasket .btn-action", parent).removeClass("btn-disabled").removeAttr("disabled");
+                        if(AimeosCatalog.validateVariant()) {
+    						$(".addbasket .btn-action", parent).removeClass("btn-disabled").removeAttr("disabled");
+                        }
 					}
 
 					$(".catalog-detail-additional .subproduct-actual").removeClass("subproduct-actual");
 					$(".catalog-detail-additional .subproduct-" + prodId).addClass("subproduct-actual");
 				}
 			}
+
+            if(!AimeosCatalog.validateVariant()) {
+                $(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
+            }
+
+            if(!AimeosCatalog.validateVariant()) {
+                $(".articleitem").removeClass("stock-actual");
+            }
 		});
+
+        if(!AimeosCatalog.validateVariant()) {
+            $(".articleitem").removeClass("stock-actual");
+        }
 	},
 
 
@@ -1258,6 +1272,21 @@ AimeosCatalog = {
 			return result;
 		});
 	},
+
+    validateVariant: function () {
+
+        var result = true;
+
+        $(".selection .select-item").each( function() {
+
+            if( $(".select-list", this).val() === '' || $(".select-option:checked", this).length <= 0 ) {
+                result = false;
+            }
+
+        });
+
+        return result;
+    },
 
 
 	/**
