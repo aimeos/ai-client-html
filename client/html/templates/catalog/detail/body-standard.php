@@ -236,7 +236,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 						<div class="stock-list">
-							<div class="articleitem stock-actual"
+							<div class="articleitem <?= !in_array( $this->detailProductItem->getType(), ['select', 'group'] ) ? 'stock-actual' : '' ?>"
 								data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
 								data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ) ?>">
 							</div>
