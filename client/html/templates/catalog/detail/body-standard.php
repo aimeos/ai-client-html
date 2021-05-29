@@ -310,7 +310,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 											value="<?= $this->detailProductItem->getScale() ?>" required="required"
 										>
 									<?php endif ?>
-									<button class="btn btn-primary btn-lg" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>>
+									<button class="btn btn-primary btn-lg btn-action" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>>
 										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 									</button>
 								</div>
