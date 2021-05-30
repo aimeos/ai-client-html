@@ -261,10 +261,9 @@ class Standard
 
 
 			// Test if payment service is available
-			$services = $basketCtrl->get()->getServices( 'payment' );
-
-			if( !isset( $view->standardStepActive ) && $services->isEmpty()
-				&& count( $servCtrl->getProviders( 'payment' ) ) > 0
+			if( !isset( $view->standardStepActive )
+				&& empty( $basketCtrl->get()->getService( 'payment' ) )
+				&& !$servCtrl->type( 'payment' )->getProviders()->isEmpty()
 			) {
 				$view->standardStepActive = 'payment';
 				return;
