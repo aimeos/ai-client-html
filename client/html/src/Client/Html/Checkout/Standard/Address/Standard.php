@@ -261,11 +261,10 @@ class Standard
 				$context->getSession()->set( 'client/html/checkout/standard/address/extra', (array) $param );
 			}
 
-			$addresses = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get()->getAddresses();
-
 			// Test if addresses are available
-			if( !isset( $view->standardStepActive ) && count( $addresses ) === 0 )
-			{
+			if( !isset( $view->standardStepActive )
+				&& empty( \Aimeos\Controller\Frontend::create( $context, 'basket' )->get()->getAddress( 'payment' ) )
+			) {
 				$view->standardStepActive = 'address';
 				return;
 			}
