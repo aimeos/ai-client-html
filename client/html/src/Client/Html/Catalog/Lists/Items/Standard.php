@@ -315,7 +315,6 @@ class Standard
 			}
 
 			$this->addMetaItems( $productItems->toArray(), $expire, $tags );
-
 			$view->itemsProductItems = $productItems;
 		}
 

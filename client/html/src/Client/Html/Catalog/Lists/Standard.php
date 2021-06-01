@@ -535,10 +535,6 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
-		if( $view->config( 'client/html/catalog/lists/basket-add', false ) ) {
-			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
-		}
-
 		/** client/html/catalog/lists/pages
 		 * Maximum number of product pages shown in pagination
 		 *
@@ -694,19 +690,6 @@ class Standard
 		$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
 
-		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
-			->sort( $sort ) // prioritize user sorting over the sorting through relevance and category
-			->text( $view->param( 'f_search' ) )
-			->price( $view->param( 'f_price' ) )
-			->category( $catids, 'default', $level )
-			->supplier( $supids )
-			->allOf( $view->param( 'f_attrid', [] ) )
-			->oneOf( $view->param( 'f_optid', [] ) )
-			->oneOf( $view->param( 'f_oneid', [] ) )
-			->slice( ( $page - 1 ) * $size, $size )
-			->uses( $domains )
-			->search( $total );
-
 		if( $catids != null )
 		{
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains );
@@ -719,6 +702,23 @@ class Standard
 			$view->listCatPath = $listCatPath;
 			$this->addMetaItems( $listCatPath, $expire, $tags );
 		}
+
+		if( $view->config( 'client/html/catalog/lists/basket-add', false ) ) {
+			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
+		}
+
+		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+			->sort( $sort ) // prioritize user sorting over the sorting through relevance and category
+			->text( $view->param( 'f_search' ) )
+			->price( $view->param( 'f_price' ) )
+			->category( $catids, 'default', $level )
+			->supplier( $supids )
+			->allOf( $view->param( 'f_attrid', [] ) )
+			->oneOf( $view->param( 'f_optid', [] ) )
+			->oneOf( $view->param( 'f_oneid', [] ) )
+			->slice( ( $page - 1 ) * $size, $size )
+			->uses( $domains )
+			->search( $total );
 
 
 		// Delete cache when products are added or deleted even when in "tag-all" mode

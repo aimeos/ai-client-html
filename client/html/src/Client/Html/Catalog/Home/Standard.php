@@ -457,7 +457,7 @@ class Standard
 		 * @see client/html/catalog/product/basket-add
 		 */
 		if( $config->get( 'client/html/catalog/home/basket-add', false ) ) {
-			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
+			$domains = array_merge_recursive( $domains, ['attribute'] );
 		}
 
 		$tree = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
