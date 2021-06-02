@@ -144,10 +144,10 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 						<?php if( $productItem->getType() === 'select' ) : ?>
 							<div class="items-selection">
-								<?= $this->partial(
-									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
-									['productItems' => $productItem->getRefItems( 'product', 'default', 'default' )]
-								) ?>
+								<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ), [
+									'productItems' => $productItem->getRefItems( 'product', 'default', 'default' ),
+									'productItem' => $productItem
+								] ) ?>
 							</div>
 						<?php endif ?>
 

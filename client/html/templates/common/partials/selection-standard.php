@@ -119,18 +119,18 @@ ksort( $attrTypeDeps );
 
 				<?php if( $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) === 'radio' ) : $first = true ?>
 
-					<ul id="select-<?= $enc->attr( $code ) ?>" class="select-list" data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>">
+					<ul id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="select-list" data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>">
 
 						<?php foreach( $positions as $attrId => $position ) : ?>
 
 							<li class="select-entry">
 								<input class="select-option" type="radio"
-									id="option-<?= $enc->attr( $attrId ) ?>"
+									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
 									<?= ( $first && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ); $first = false ?>
 								>
-								<label class="select-label" for="option-<?= $enc->attr( $attrId ) ?>"><!--
+								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
 
 									<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'default', 'icon' ) as $listItem ) : ?>
 										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
@@ -153,7 +153,7 @@ ksort( $attrTypeDeps );
 
 				<?php else : ?>
 
-					<select id="select-<?= $enc->attr( $code ) ?>" class="form-control select-list"
+					<select id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="form-control select-list"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 						data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>"
 					>
@@ -168,7 +168,7 @@ ksort( $attrTypeDeps );
 
 						<?php foreach( $positions as $attrId => $position ) : ?>
 
-							<option class="select-option" value="<?= $enc->attr( $attrId ) ?>">
+							<option class="select-<?= $enc->attr( $this->productItem->getId() ) ?>-option" value="<?= $enc->attr( $attrId ) ?>">
 								<?= $enc->html( $attributeItems[$attrId]->getName() ) ?>
 							</option>
 

@@ -102,7 +102,7 @@ $enc = $this->encoder();
 
 				<?php if( $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) === 'input' ) : ?>
 
-					<ul id="select-<?= $enc->attr( $code ) ?>" class="select-list">
+					<ul id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="select-list">
 
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
 
@@ -110,10 +110,10 @@ $enc = $this->encoder();
 								<input type="hidden" value="<?= $enc->attr( $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
 								>
-								<input class="form-control select-option" id="option-<?= $enc->attr( $attrId ) ?>" type="number" value="0" step="1" min="0"
+								<input class="form-control select-option" id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>" type="number" value="0" step="1" min="0"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>"
 								><!--
-								--><label class="form-control select-label" for="option-<?= $enc->attr( $attrId ) ?>">
+								--><label class="form-control select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>">
 									<?= $enc->html( $this->attrname( $attribute ) ) ?>
 								</label>
 							</li>
@@ -124,17 +124,17 @@ $enc = $this->encoder();
 
 				<?php elseif( $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) === 'radio' ) : ?>
 
-					<ul id="select-<?= $enc->attr( $code ) ?>" class="select-list">
+					<ul id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="select-list">
 
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
 
 							<li class="select-entry">
 								<input class="select-option" type="radio"
-									id="option-<?= $enc->attr( $attrId ) ?>"
+									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
 								>
-								<label class="select-label" for="option-<?= $enc->attr( $attrId ) ?>"><!--
+								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
 
 									<?php foreach( $attribute->getListItems( 'media', 'default', 'icon' ) as $listItem ) : ?>
 										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
@@ -158,7 +158,7 @@ $enc = $this->encoder();
 				<?php else : ?>
 
 					<input type="hidden" value="1" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>">
-					<select id="select-<?= $enc->attr( $code ) ?>" class="form-control select-list"
+					<select id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="form-control select-list"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>">
 
 						<?php if( $this->config( 'client/html/catalog/attribute/preselect/' . $code, false ) === false ) : ?>
@@ -199,16 +199,16 @@ $enc = $this->encoder();
 			<div class="select-value">
 
 				<?php switch( $attribute->getType() ) : case 'price': ?>
-					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="number" min="0.01" step="0.01"
+					<input id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="form-control" type="number" min="0.01" step="0.01"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>"
 						<?php if( $price = $this->productItem->getRefItems( 'price', 'default', 'default' )->first() ) : ?>
 							value="<?= $enc->attr( $price->getValue() ) ?>"
 						<?php endif ?>
 					>
 				<?php break; case 'date': ?>
-					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="date" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
+					<input id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="form-control" type="date" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
 				<?php break; default: ?>
-					<input id="select-<?= $enc->attr( $key ) ?>" class="form-control" type="text" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
+					<input id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="form-control" type="text" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
 				<?php endswitch ?>
 
 			</div>

@@ -212,8 +212,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodySelection()
 	{
+		$prodId = $this->getProductItem( 'U:TEST' )->getId();
+
 		$view = $this->object->getView();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $this->getProductItem( 'U:TEST' )->getId() ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $prodId ) );
 		$view->addHelper( 'param', $helper );
 
 		$variantAttr1 = $this->getProductItem( 'U:TESTSUB02', array( 'attribute' ) )->getRefItems( 'attribute', null, 'variant' );
@@ -231,11 +233,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="catalog-detail-basket-selection', $output );
 
 		foreach( $variantAttr1 as $id => $item ) {
-			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
+			$this->assertRegexp( '#<option class="select-' . $prodId . '-option" value="' . $id . '">#', $output );
 		}
 
 		foreach( $variantAttr2 as $id => $item ) {
-			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
+			$this->assertRegexp( '#<option class="select-' . $prodId . '-option" value="' . $id . '">#', $output );
 		}
 
 		$this->assertEquals( null, $expire );
