@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-21 11:32+0200\n"
-"PO-Revision-Date: 2021-04-01 16:36+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-05-27 15:51+0200\n"
+"PO-Revision-Date: 2021-05-29 22:30+0000\n"
+"Last-Translator: Goran Sabo <info@noaset.pro>\n"
 "Language-Team: Slovenian (http://www.transifex.com/aimeos/aimeos-core/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,7 +164,7 @@ msgstr "All deliveries shipped are subject to our terms and conditions, which ar
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
-msgstr "All orders are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n\nThis email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
+msgstr "Več informacij o naročilih in plačilih najdete na naši strani Splošni pogoji.\n\nTo sporočilo vsebuje informacije, ki so namenjene izključno Vam. Ne delite jih z drugimi!"
 
 msgid "An account has been created for you."
 msgstr "Naročniški račun je ustvarjen"
@@ -332,7 +332,7 @@ msgid "Dear Sir or Madam"
 msgstr "Spoštovani Gospod/Gospa"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Spoštovani naročnik"
 
 msgid "Delete"
 msgstr "Izbriši"
@@ -365,7 +365,7 @@ msgid "Details"
 msgstr "Podrobnosti"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Ne shrani naslova"
 
 msgid "Downloads"
 msgstr "Za prenos"
@@ -669,6 +669,9 @@ msgstr "Slika izdelka"
 msgid "Products you might be also interested in"
 msgstr "Izdelki, ki ti lahko pride prav"
 
+msgid "Profile"
+msgstr "Profil"
+
 msgid "Properties"
 msgstr "Lastnosti"
 
@@ -790,6 +793,9 @@ msgstr "Ulica"
 msgid "Sub-total"
 msgstr "Vmesni izračun"
 
+msgid "Submit"
+msgstr "Pošlji"
+
 msgid "Subscription ID"
 msgstr "ID Naročnine"
 
@@ -837,7 +843,7 @@ msgstr "Pravila in pogoji poslovanja"
 #. status (%3%s)
 #, php-format
 msgid "Thank you for your order %1$s from %2$s."
-msgstr "Zahvaljujemo se za naročilo%1$s opravljeno %2$s."
+msgstr "Zahvaljujemo se za naročilo  opravljeno %2$s.\nPri plačilu se sklicujte na SI00 00%1$s"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -859,17 +865,17 @@ msgid ""
 "Thank you for your order %1$s from %2$s.\n"
 "\n"
 "We received the payment and will care about your order immediately."
-msgstr "Thank you for your order %1$s from %2$s.\n\nWe received the payment and will care about your order immediately."
+msgstr "Hvala za vaše naročilo %1$s dne %2$s.\n\nPrejeli smo plačilo! Kmalu boste obveščeni o spremembah."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Thank you for your order and authorizing the payment.\nAn e-mail with the order details will be sent to you within the next few minutes."
+msgstr "Hvala za naročilo in plačilo.\nV nekaj minutah boste prejeli sporočilo z novimi informacijami!"
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Thank you for your order.\nWe received your payment and an e-mail with the order details will be sent to you within the next few minutes."
+msgstr "Hvala za vaše plačilo.\nPrejeli smo avtorizirano plačilo, potrditveno e-poštno sporočilo boste prejeli v nekaj minutah."
 
 msgid "Thank you for your review!"
 msgstr "Hvala za prispevano mnenje"
@@ -1102,7 +1108,7 @@ msgid "Your voucher: "
 msgstr "Vaš darilni bon:"
 
 msgid "Your vouchers: "
-msgstr ""
+msgstr "Vaši darilni boni"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
