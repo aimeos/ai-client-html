@@ -212,7 +212,7 @@ class Standard
 		$context = $this->getContext();
 		$manager = \Aimeos\MShop::create( $context, 'index' );
 
-		$filter = $manager->filter( true );
+		$filter = $manager->filter( true )->slice( 0, 0x7fffffff );
 		$name = $filter->make( 'index.price:value', [$context->getLocale()->getCurrencyId()] );
 		$filter->add( $filter->is( $name, '!=', null ) );
 
