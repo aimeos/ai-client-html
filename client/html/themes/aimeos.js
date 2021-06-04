@@ -1716,7 +1716,7 @@ AimeosCatalogList = {
 					}).done( function( response ) {
 
 						var nextPage = $(response);
-						var nextUrl = nextPage.find('.catalog-list-items').data( 'infinite-url' );
+						var nextUrl = nextPage.find('.catalog-list-items').first().data( 'infinite-url' );
 
 						$('ul.list-items', list).append(nextPage.find('.catalog-list-items ul.list-items li.product'));
 						list.data('infinite-url', nextUrl);
