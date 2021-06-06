@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-06 09:37+0200\n"
-"PO-Revision-Date: 2021-05-26 07:30+0000\n"
+"POT-Creation-Date: 2021-05-27 15:51+0200\n"
+"PO-Revision-Date: 2021-05-27 13:51+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Finnish (http://www.transifex.com/aimeos/aimeos-core/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -662,6 +662,9 @@ msgstr "Tuotekuva"
 msgid "Products you might be also interested in"
 msgstr "Tuotteita, joista saatat olla kiinnostunut"
 
+msgid "Profile"
+msgstr ""
+
 msgid "Properties"
 msgstr "Ominaisuudet"
 
@@ -780,6 +783,9 @@ msgstr "Katu"
 
 msgid "Sub-total"
 msgstr "Välisumma"
+
+msgid "Submit"
+msgstr ""
 
 msgid "Subscription ID"
 msgstr "Tilauksen ID"
