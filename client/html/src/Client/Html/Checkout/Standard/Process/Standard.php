@@ -282,8 +282,19 @@ class Standard
 
 			if( ( $form = $this->processPayment( $basket, $orderItem ) ) === null )
 			{
+				$args = array();
+				$config = array();
+
+				$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
+
+				if( ( $service = reset( $services ) ) !== false )
+				{
+					$args = array( 'code' => $service->getCode() );
+					$config = array( 'absoluteUri' => true, 'namespace' => false );
+				}
+
 				$orderCntl->save( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
-				$view->standardUrlNext = $this->getUrlConfirm( $view, [], [] );
+				$view->standardUrlNext = $this->getUrlConfirm( $view, $args, $config );
 				$view->standardMethod = 'POST';
 			}
 			else // no payment service available
