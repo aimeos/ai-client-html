@@ -253,43 +253,19 @@ class Standard
 		 */
 		$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 
-		/** client/html/catalog/filter/tree/deep
-		 * Load the category tree instead of the nodes of the first level only
-		 *
-		 * If you want to use the catalog filter component to display the whole
-		 * category tree without loading data in an asynchcron way, set this
-		 * configuration option to "1" or true.
-		 *
-		 * **Warning:** If your category tree has a lot of nodes, it will
-		 * take a very long time to render all categories. Thus, it's only
-		 * recommended for small category trees with a limited node size
-		 * (less than 50).
-		 *
-		 * @param bool True for category tree, false for first level only
-		 * @since 2020.10
-		 * @see controller/frontend/catalog/levels-always
-		 * @see controller/frontend/catalog/levels-only
-		 * @see client/html/catalog/filter/tree/domains
-		 * @see client/html/catalog/filter/tree/startid
-		 */
-		$deep = (bool) $view->config( 'client/html/catalog/filter/tree/deep', false );
-
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )
 			->uses( $domains )->root( $startid );
 
-		$level = $cntl::TREE;
 		$catItems = map();
 		$catIds = [];
 
 		if( ( $currentid = $view->param( 'f_catid' ) ) !== null ) {
 			$catItems = $cntl->getPath( $currentid );
 			$catIds = $catItems->keys()->toArray();
-		} elseif( $deep === false ) {
-			$level = $cntl::LIST;
 		}
 
 		$view->treeCatalogPath = $catItems;
-		$view->treeCatalogTree = $cntl->visible( $catIds )->getTree( $level );
+		$view->treeCatalogTree = $cntl->visible( $catIds )->getTree( $cntl::TREE );
 		$view->treeFilterParams = $this->getClientParams( $view->param(), ['f_'] );
 
 		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );
