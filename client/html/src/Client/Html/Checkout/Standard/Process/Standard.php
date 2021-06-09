@@ -282,17 +282,11 @@ class Standard
 
 			if( ( $form = $this->processPayment( $basket, $orderItem ) ) === null )
 			{
-				$args = array();
-
 				$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
-
-				if( ( $service = reset( $services ) ) !== false )
-				{
-					$args = array( 'code' => $service->getCode() );
-				}
+				$args = ( $service = reset( $services ) ) ? ['code' => $service->getCode()] : [];
 
 				$orderCntl->save( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
-				$view->standardUrlNext = $this->getUrlConfirm( $view, $args, [] );
+				$view->standardUrlNext = $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] );
 				$view->standardMethod = 'POST';
 			}
 			else // no payment service available
@@ -396,8 +390,8 @@ class Standard
 			$args = array( 'code' => $service->getCode() );
 			$urls = array(
 				'payment.url-self' => $this->getUrlSelf( $view, ['c_step' => 'process'], [] ),
-				'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], [] ),
-				'payment.url-success' => $this->getUrlConfirm( $view, $args, [] ),
+				'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], ['absoluteUri' => true] ),
+				'payment.url-success' => $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] ),
 			);
 
 			$params = $view->param();
