@@ -1,33 +1,35 @@
 <?php
 
-return array(
+return [
 	'name' => 'ai-client-html',
-	'depends' => array(
+	'depends' => [
 		'aimeos-core',
 		'ai-controller-frontend',
-	),
-	'include' => array(
+	],
+	'include' => [
 		'lib/custom/src',
 		'client/html/src',
 		'controller/jobs/src',
 		'controller/common/src',
-	),
-	'i18n' => array(
+	],
+	'i18n' => [
 		'client' => 'client/i18n',
 		'client/code' => 'client/i18n/code',
-	),
-	'config' => array(
+	],
+	'config' => [
 		'config',
-	),
-	'custom' => array(
-		'client/html/templates' => array(
+	],
+	'template' => [
+		'client/html/templates' => [
 			'client/html/templates',
-		),
-		'controller/jobs/templates' => array(
+		],
+		'controller/jobs/templates' => [
 			'client/html/templates',
-		),
-		'controller/jobs' => array(
+		],
+	],
+	'custom' => [
+		'controller/jobs' => [
 			'controller/jobs/src',
-		),
-	),
-);
+		],
+	],
+];

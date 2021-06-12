@@ -96,7 +96,7 @@ class TestHelperCntl
 
 	protected static function createView( \Aimeos\MW\Config\Iface $config )
 	{
-		$view = new \Aimeos\MW\View\Standard( self::getAimeos()->getCustomPaths( 'client/html/templates' ) );
+		$view = new \Aimeos\MW\View\Standard( self::getAimeos()->getTemplatePaths( 'client/html/templates' ) );
 
 		$trans = new \Aimeos\MW\Translation\None( 'de_DE' );
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $trans );
