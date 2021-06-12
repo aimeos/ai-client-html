@@ -5479,8 +5479,6 @@ body{
 	.zeynep .submenu {
 		background-color: #FFF;
 		background-color: var(--ai-bg, #FFF);
-		left: 20rem;
-		bottom:0;
 		min-height:100%;
 		overflow:hidden;
 		-webkit-overflow-scrolling:touch;
@@ -5488,7 +5486,9 @@ body{
 		pointer-events:none;
 		position:fixed;
 		top:0;
-		width:100%;
+		bottom:0;
+		left: -20rem;
+		width: 20rem;
 		z-index: 1;
 	}
 
