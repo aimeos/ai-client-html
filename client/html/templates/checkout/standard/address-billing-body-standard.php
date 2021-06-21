@@ -24,7 +24,7 @@ $enc = $this->encoder();
 					<?= $this->get( 'addressBillingOption' ) == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ?>
 				>
 				<label for="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" class="values">
-					<?= nl2br( $this->get( 'addressBillingString', '' ) ) ?>
+					<?= nl2br( $enc->html( $this->get( 'addressBillingString', '' ) ) ) ?>
 				</label>
 			</div>
 			<div class="form-list">
