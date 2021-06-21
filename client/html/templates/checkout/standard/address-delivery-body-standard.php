@@ -44,7 +44,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
 					<?= $this->get( 'addressDeliveryOption' ) == $id ? 'checked="checked"' : '' ?> />
 				<label for="ca_deliveryoption-<?= $id; ?>" class="values">
-					<?= nl2br( $this->value( 'addressDeliveryStrings', $id, '' ) ) ?>
+					<?= nl2br( $enc->html( $this->value( 'addressDeliveryStrings', $id, '' ) ) ) ?>
 				</label>
 			</div>
 
