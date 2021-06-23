@@ -73,11 +73,6 @@ class Standard
 		$limit = $config->get( 'controller/jobs/order/email/voucher/standard/limit-days', 30 );
 		$limitDate = date( 'Y-m-d H:i:s', time() - $limit * 86400 );
 
-		$default = array(
-			\Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED,
-			\Aimeos\MShop\Order\Item\Base::PAY_RECEIVED,
-		);
-
 		/** controller/jobs/order/email/voucher/standard/status
 		 * Only send e-mails containing voucher for these payment status values
 		 *
@@ -96,7 +91,7 @@ class Standard
 		 * @category Developer
 		 * @see controller/jobs/order/email/voucher/standard/limit-days
 		 */
-		$status = (array) $config->get( 'controller/jobs/order/email/voucher/standard/status', $default );
+		$status = (array) $config->get( 'controller/jobs/order/email/voucher/standard/status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
 
 
 		$client = \Aimeos\Client\Html\Email\Voucher\Factory::create( $context );
