@@ -33,6 +33,15 @@
 
 
 
+/* ai-cms-grapesjs */
+
+.aimeos .contact-pot {
+	display: none;
+}
+
+
+/* ai-client-html */
+
 .aimeos {
 	clear: both;
 	text-align: start;
