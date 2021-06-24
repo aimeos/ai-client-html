@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-21 11:32+0200\n"
-"PO-Revision-Date: 2021-04-02 12:22+0000\n"
+"POT-Creation-Date: 2021-05-27 15:51+0200\n"
+"PO-Revision-Date: 2021-05-27 13:52+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -666,6 +666,9 @@ msgstr "Produktbild"
 msgid "Products you might be also interested in"
 msgstr "Produkte, die sie auch interessieren könnten"
 
+msgid "Profile"
+msgstr "Profil"
+
 msgid "Properties"
 msgstr "Eigenschaften"
 
@@ -784,6 +787,9 @@ msgstr "Straße"
 
 msgid "Sub-total"
 msgstr "Zwischensumme"
+
+msgid "Submit"
+msgstr "Abschicken"
 
 msgid "Subscription ID"
 msgstr "Abo-ID"

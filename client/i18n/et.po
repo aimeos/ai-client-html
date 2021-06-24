@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-21 11:32+0200\n"
-"PO-Revision-Date: 2021-04-08 14:24+0000\n"
-"Last-Translator: ranx2k <ranko@murumets.eu>\n"
+"POT-Creation-Date: 2021-05-27 15:51+0200\n"
+"PO-Revision-Date: 2021-05-27 13:51+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -664,6 +664,9 @@ msgstr "Toote pilt"
 msgid "Products you might be also interested in"
 msgstr "Tooted, mis võiksid Teile veel huvi pakkuda"
 
+msgid "Profile"
+msgstr ""
+
 msgid "Properties"
 msgstr "Detailsem info"
 
@@ -782,6 +785,9 @@ msgstr "Tänav"
 
 msgid "Sub-total"
 msgstr "Vahesumma"
+
+msgid "Submit"
+msgstr ""
 
 msgid "Subscription ID"
 msgstr ""

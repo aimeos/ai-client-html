@@ -7,10 +7,6 @@
 # Translators:
 # Translators:
 # Translators:
-# Dimitri <doleiynyk@metaways.de>, 2013
-# Irina Fedulova <istartlin@gmail.com>, 2020
-# Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
-# Вячеслав Васильев <uverst@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -18,16 +14,16 @@ msgstr ""
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2021-05-26 12:13+0000\n"
 "Last-Translator: Aimeos\n"
-"Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
+"Language-Team: Finnish (http://www.transifex.com/aimeos/aimeos-core/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Tax name
 msgid "tax"
-msgstr "налог"
+msgstr "vero"
 
 #. PST tax name
 msgid "taxpst"
@@ -47,91 +43,91 @@ msgstr ""
 
 #. Favorite action
 msgid "favorite"
-msgstr "в избранное"
+msgstr ""
 
 #. Pin action
 msgid "pin"
-msgstr "отметить"
+msgstr ""
 
 #. Watch action
 msgid "watch"
-msgstr "следить"
+msgstr ""
 
 #. Product attribute
 msgid "size"
-msgstr "Размер"
+msgstr ""
 
 #. Product attribute
 msgid "length"
-msgstr "Длина"
+msgstr ""
 
 #. Product attribute
 msgid "width"
-msgstr "Ширина"
+msgstr ""
 
 #. Product attribute
 msgid "color"
-msgstr "Цвет"
+msgstr ""
 
 #. Product attribute
 msgid "option"
-msgstr "Параметр"
+msgstr ""
 
 #. Product property package-length
 msgid "package-length"
-msgstr "длина пакета"
+msgstr ""
 
 #. Product property package-width
 msgid "package-width"
-msgstr "ширина пакета"
+msgstr ""
 
 #. Product property package-height
 msgid "package-height"
-msgstr "высота пакет"
+msgstr ""
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "вес пакета"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "Владелец учётной записи"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "Номер учётной записи"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "Код банка"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "Название банка"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr "Имя"
+msgstr "Etunimi"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr "Фамилия"
+msgstr "Sukunimi"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "Номер кредитной карты"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Контрольное число"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "Месяц окончания действия"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "Год окончания действия"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expiry"
@@ -139,20 +135,20 @@ msgstr ""
 
 #. Pick-up date
 msgid "date.value"
-msgstr "Дата самовывоза"
+msgstr ""
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "Время самовывоза"
+msgstr ""
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "Местоположение самовывоза"
+msgstr ""
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "Адрес самовывоза"
+msgstr ""
 
 #. Delivery type
 msgid "delivery.type"
-msgstr "Метод доставки"
+msgstr ""
