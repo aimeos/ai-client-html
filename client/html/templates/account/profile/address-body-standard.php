@@ -374,8 +374,7 @@ $pos = 0;
 							</div>
 
 
-							<div class="form-item form-group row email"
-								data-regex="^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$">
+							<div class="form-item form-group row email">
 
 								<label class="col-md-4" for="address-payment-email">
 									<?= $enc->html( $this->translate( 'client', 'E-Mail' ), $enc::TRUST ) ?>
@@ -383,8 +382,8 @@ $pos = 0;
 								<div class="col-md-8">
 									<input class="form-control" type="email"
 										id="address-payment-email"
-										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.email' ) ) ) ?>"
-										value="<?= $enc->attr( $this->value( $addr, 'customer.email' ) ) ?>"
+										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.code' ) ) ) ?>"
+										value="<?= $enc->attr( $this->value( $addr, 'customer.code' ) ) ?>"
 										placeholder="name@example.com"
 									>
 								</div>
@@ -737,8 +736,7 @@ $pos = 0;
 								</div>
 
 
-								<div class="form-item form-group row email"
-									data-regex="^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$">
+								<div class="form-item form-group row email">
 
 									<label class="col-md-4" for="address-delivery-email-<?= $pos ?>">
 										<?= $enc->html( $this->translate( 'client', 'E-Mail' ), $enc::TRUST ) ?>
