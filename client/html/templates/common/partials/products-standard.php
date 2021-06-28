@@ -307,7 +307,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 				?>
 
-				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
+				<form class="basket" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
 					<!-- catalog.lists.items.csrf -->
 					<?= $this->csrf()->formfield() ?>
 					<!-- catalog.lists.items.csrf -->
