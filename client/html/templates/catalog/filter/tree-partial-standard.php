@@ -144,7 +144,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 								<a class="col-7" href="#" data-submenu-close="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>"><span><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span></a>
 								<div class="menu-close col-3"></div>
 							</div>
-							<div class="item-container col-lg-8">
+							<div class="item-container">
 								<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-custom' ), [
 									'nodes' => $item->getChildren(),
 									'path' => $this->get( 'path', map() ),
@@ -152,7 +152,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 									'params' => $this->get( 'params', [] )
 								] ) ?>
 							</div>
-							<div class="cat-img col-lg-4">
+							<div class="cat-img">
 								<a class="cat-img-link <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><!--
 									--><div class="media-img"><!--
 										<?php foreach( $item->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>

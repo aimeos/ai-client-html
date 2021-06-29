@@ -28,12 +28,12 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'catalog/session/seen' ) ?>
 <section class="catalog-session-seen">
 
-	<h1 class="header">
+	<h2 class="header">
 		<?= $this->translate( 'client', 'Last seen' ) ?>
 		<?php if( $this->config( 'client/html/catalog/session/seen/count/enable', true ) ) : ?>
 			<span class="count"><?= count( $this->get( 'seenItems', [] ) ) ?></span>
 		<?php endif ?>
-	</h1>
+	</h2>
 
 	<ul class="seen-items">
 		<?php foreach( $this->get( 'seenItems', [] ) as $seen ) : ?>

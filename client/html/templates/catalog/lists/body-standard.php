@@ -104,8 +104,19 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 
 			<h1><?= $enc->html( $catItem->getName() ) ?></h1>
 		</div>
+    
 	<?php endif ?>
-
+	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+		<div class="catalog-list-footer test">
+			<?php foreach( (array) $textTypes as $textType ) : ?>
+				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
+					<div class="<?= $enc->attr( $textItem->getType() ) ?>">
+						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
+					</div>
+				<?php endforeach ?>
+			<?php endforeach ?>
+		</div>
+	<?php endif ?>
 	<?= $this->block()->get( 'catalog/lists/promo' ) ?>
 
 	<?php if( $this->get( 'listProductTotal', 0 ) > 0 ) : ?>
@@ -134,30 +145,32 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 	<?php endif ?>
 
 	<?php if( ( $searchText = $this->param( 'f_search', null ) ) != null ) : ?>
-		<div class="list-search">
+            <div class="container">
+                        <div class="list-search">
 
-			<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
-				<?= $enc->html( sprintf(
-					$this->translate(
-						'client',
-						'Search result for <span class="searchstring">"%1$s"</span> (%2$d article)',
-						'Search result for <span class="searchstring">"%1$s"</span> (%2$d articles)',
-						$total
-					),
-					$searchText,
-					$total
-				), $enc::TRUST ) ?>
-			<?php else : ?>
-				<?= $enc->html( sprintf(
-					$this->translate(
-						'client',
-						'No articles found for <span class="searchstring">"%1$s"</span>. Please try again with a different keyword.'
-					),
-					$searchText
-				), $enc::TRUST ) ?>
-			<?php endif ?>
+                                <?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
+                                        <?= $enc->html( sprintf(
+                                                $this->translate(
+                                                        'client',
+                                                        'Search result for <span class="searchstring">"%1$s"</span> (%2$d article)',
+                                                        'Search result for <span class="searchstring">"%1$s"</span> (%2$d articles)',
+                                                        $total
+                                                ),
+                                                $searchText,
+                                                $total
+                                        ), $enc::TRUST ) ?>
+                                <?php else : ?>
+                                        <?= $enc->html( sprintf(
+                                                $this->translate(
+                                                        'client',
+                                                        'No articles found for <span class="searchstring">"%1$s"</span>. Please try again with a different keyword.'
+                                                ),
+                                                $searchText
+                                        ), $enc::TRUST ) ?>
+                                <?php endif ?>
 
-		</div>
+                        </div>
+            </div>
 	<?php endif ?>
 
 	<?= $this->block()->get( 'catalog/lists/items' ) ?>
@@ -178,17 +191,5 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 		?>
 	<?php endif ?>
 
-
-	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
-		<div class="catalog-list-footer">
-			<?php foreach( (array) $textTypes as $textType ) : ?>
-				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
-					<div class="<?= $enc->attr( $textItem->getType() ) ?>">
-						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
-					</div>
-				<?php endforeach ?>
-			<?php endforeach ?>
-		</div>
-	<?php endif ?>
 
 </section>

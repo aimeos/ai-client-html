@@ -143,7 +143,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 				<span class="quantity"><?= $enc->html( $quantity ) ?></span>
 				<span class="value"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?></span>
 			</div>
-			<span><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></span>
+                    <span class="d-none"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></span>
 		</a>
 
 		<div class="basket-mini-product">

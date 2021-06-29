@@ -62,6 +62,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 ?>
+
 <section class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->detailErrorList ) ) : ?>

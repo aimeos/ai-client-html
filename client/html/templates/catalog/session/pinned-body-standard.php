@@ -105,12 +105,12 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 <?php $this->block()->start( 'catalog/session/pinned' ) ?>
 <section class="catalog-session-pinned">
 
-	<h1 class="header">
+	<h2 class="header">
 		<?= $this->translate( 'client', 'Pinned products' ) ?>
 		<?php if( $this->config( 'client/html/catalog/session/pinned/count/enable', true ) ) : ?>
 			<span class="count"><?= count( $this->get( 'pinnedProductItems', [] ) ) ?></span>
 		<?php endif ?>
-	</h1>
+	</h2>
 
 	<ul class="pinned-items">
 		<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>

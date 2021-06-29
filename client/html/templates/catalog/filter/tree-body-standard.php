@@ -51,9 +51,9 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 <?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 && !$this->treeCatalogTree->getChildren()->isEmpty() ) : ?>
 
 	<div class="zeynep-overlay"></div>
-	<div class="open-menu col-2"></div>
+	<div class="open-menu text-light align-self-center position-absolute"></div>
 
-	<section class="catalog-filter-tree col col-lg-9 <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
+	<section class="catalog-filter-tree mx-auto align-self-center <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
 		<div class="category-lists zeynep first" data-menu-name="first">
 
 			<div class="menu-head row">
