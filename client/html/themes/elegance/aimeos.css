@@ -5556,6 +5556,9 @@ footer p a:hover {
     color: var(--ai-bg, #FFF);
 }
 
+.basket-mini .name{
+    display: none;
+}
 
 /*------------------------------ SEARCH BAR ----------------------------------*/
 
@@ -6511,12 +6514,7 @@ footer p a:hover {
         display: block;
         color: #272727;
         line-height: 1.5;
-        margin-left: 9rem
+        margin-left: 9rem;
     }
 
-
-
 }
-
-
-
