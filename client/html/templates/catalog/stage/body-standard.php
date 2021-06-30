@@ -39,45 +39,45 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 	<?php if( !$this->param( 'd_prodid', $this->param( 'd_name' ) ) && ( $catItem = $this->get( 'stageCurrentCatItem' ) ) && !( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 
-                <div class="catalog-stage-image single-item">
+		<div class="catalog-stage-image single-item">
 
 			<?php foreach( $mediaItems as $mediaItem ) : ?>
-                            <div class="stage-item">
-				<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-					src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
-					srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-				>
-                            </div>
+				<div class="stage-item">
+					<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+						src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
+						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+					>
+				</div>
 			<?php endforeach ?>
 		</div>
 	<?php endif ?>
 
 
 	<div class="catalog-stage-breadcrumb">
-            <div class="container">
-		<nav class="breadcrumb">
-			<span class="title"><?= $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ) ?></span>
-			<ol>
+		<div class="container">
+			<nav class="breadcrumb">
+				<span class="title"><?= $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ) ?></span>
+				<ol>
 
-				<?php if( isset( $this->stageCatPath ) ) : ?>
-					<?php foreach( $this->get( 'stageCatPath', map() ) as $cat ) : ?>
+					<?php if( isset( $this->stageCatPath ) ) : ?>
+						<?php foreach( $this->get( 'stageCatPath', map() ) as $cat ) : ?>
+							<li>
+								<a href="<?= $enc->attr( $this->url( $treeTarget, $treeController, $treeAction, array_merge( $this->get( 'stageParams', [] ), ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] ), [], $treeConfig ) ) ?>">
+									<?= $enc->html( $cat->getName() ) ?>
+								</a>
+							</li>
+						<?php endforeach ?>
+					<?php else : ?>
 						<li>
-							<a href="<?= $enc->attr( $this->url( $treeTarget, $treeController, $treeAction, array_merge( $this->get( 'stageParams', [] ), ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] ), [], $treeConfig ) ) ?>">
-								<?= $enc->html( $cat->getName() ) ?>
+							<a href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'stageParams', [] ), [], $listConfig ) ) ?>">
+								<?= $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ) ?>
 							</a>
 						</li>
-					<?php endforeach ?>
-				<?php else : ?>
-					<li>
-						<a href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'stageParams', [] ), [], $listConfig ) ) ?>">
-							<?= $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ) ?>
-						</a>
-					</li>
-				<?php endif ?>
+					<?php endif ?>
 
-			</ol>
-		</nav>
-            </div>
+				</ol>
+			</nav>
+		</div>
 	</div>
 
 

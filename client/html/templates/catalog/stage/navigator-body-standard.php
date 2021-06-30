@@ -13,25 +13,25 @@ $enc = $this->encoder();
 <!-- catalog.stage.navigator -->
 
 	<?php if( $this->param( 'd_pos' ) !== null ) : ?>
-            <div class="container">
-                    <div class="catalog-stage-navigator">
-                            <nav>
+		<div class="container">
+			<div class="catalog-stage-navigator">
+				<nav>
 
-                                    <?php if( isset( $this->navigationPrev ) ) : ?>
-                                            <a class="prev" href="<?= $enc->attr( $this->navigationPrev ) ?>" rel="prev">
-                                                    <?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ) ?>
-                                            </a>
-                                    <?php endif ?>
+					<?php if( isset( $this->navigationPrev ) ) : ?>
+							<a class="prev" href="<?= $enc->attr( $this->navigationPrev ) ?>" rel="prev">
+									<?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ) ?>
+							</a>
+					<?php endif ?>
 
-                                    <?php if( isset( $this->navigationNext ) ) : ?>
-                                            <a class="next" href="<?= $enc->attr( $this->navigationNext ) ?>" rel="next">
-                                                    <?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ) ?>
-                                            </a>
-                                    <?php endif ?>
+					<?php if( isset( $this->navigationNext ) ) : ?>
+							<a class="next" href="<?= $enc->attr( $this->navigationNext ) ?>" rel="next">
+									<?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ) ?>
+							</a>
+					<?php endif ?>
 
-                            </nav>
-                    </div>
-            </div>
+				</nav>
+			</div>
+		</div>
 	<?php endif ?>
 
 <!-- catalog.stage.navigator -->
