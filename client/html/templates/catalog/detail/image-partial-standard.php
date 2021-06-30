@@ -41,11 +41,9 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 
-					-->
-                                        <div class="mx-1">
-                                        <img class="item-thumb" src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
-                                        </div>
-                                        <!--
+					--><img class="item-thumb" src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+						alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
+					><!--
 
 					<?php $class = 'item' ?>
 				<?php endforeach ?>

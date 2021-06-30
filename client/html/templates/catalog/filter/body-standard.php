@@ -88,7 +88,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos catalog-filter w-100" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->filterErrorList ) ) : ?>
 		<ul class="error-list">
@@ -100,7 +100,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 	<nav>
 		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></h1>
-		<form class="d-flex" method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'filterParams', [] ), $listConfig ) ) ?>">
+		<form method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'filterParams', [] ), $listConfig ) ) ?>">
 			<?= $this->block()->get( 'catalog/filter/tree' ) ?>
 			<?= $this->block()->get( 'catalog/filter/search' ) ?>
 			<?= $this->block()->get( 'catalog/filter/price' ) ?>

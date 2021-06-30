@@ -26,7 +26,6 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-
 <section class="aimeos catalog-stage <?= $enc->attr( $this->get( 'stageCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
 
 	<?php if( isset( $this->stageErrorList ) ) : ?>
@@ -39,9 +38,9 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 	<?php if( !$this->param( 'd_prodid', $this->param( 'd_name' ) ) && ( $catItem = $this->get( 'stageCurrentCatItem' ) ) && !( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
-		
+
                 <div class="catalog-stage-image single-item">
-                    
+
 			<?php foreach( $mediaItems as $mediaItem ) : ?>
                             <div class="stage-item">
 				<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
@@ -54,7 +53,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php endif ?>
 
 
-	<div class="catalog-stage-breadcrumb mb-3">
+	<div class="catalog-stage-breadcrumb">
             <div class="container">
 		<nav class="breadcrumb">
 			<span class="title"><?= $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ) ?></span>

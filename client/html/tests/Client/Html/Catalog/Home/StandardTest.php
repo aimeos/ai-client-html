@@ -68,8 +68,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( 'root', $output );
-		$this->assertStringContainsString( 'categories', $output );
-		$this->assertStringContainsString( 'group', $output );
 	}
 
 

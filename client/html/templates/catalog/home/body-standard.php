@@ -60,121 +60,120 @@ $pos = 0;
 			<?php endforeach ?>
 		</ul>
 	<?php endif ?>
-    
-	<?php if( isset( $this->homeTree ) ) : ?>
-
-            <div class="home-gallery">	
-
-                <?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
-                    <div class="home-item home-image <?= $enc->attr( $this->homeTree->getCode() ) ?>">
-                        <div class="home-stage catalog-stage-image">
-                            <?php foreach( $mediaItems as $mediaItem ) : ?>
-                                    <a class="stage-item" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
-                                            <img class="stage-image lazy-image"
-                                                    src=""
-                                                    sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
-                                                    data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
-                                                    data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-                                                    alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
-                                            >
-                                    </a>
-                            <?php endforeach ?>
-                        </div>
-                    </div>
-                <?php endif ?>
-		<?php foreach( $this->homeTree->getChildren() as $child ) : ?>
-
-                            <?php if( !( $mediaItems = $child->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
-                                    <div class="home-item cat-image <?= $enc->attr( $child->getCode() ) ?>">
-                                            <div class="home-stage catalog-stage-image">
-                                                    <?php foreach( $mediaItems as $mediaItem ) : ?>
-                                                            <a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
-                                                                    <?php $text = $child->getRefItems( 'text', 'short', 'default' )->getContent()->first() ?>
-                                                                    <?php if( ++$pos % 2 ) : ?>
-
-                                                                            <img class="stage-image lazy-image"
-                                                                                    src=""
-                                                                                    sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
-                                                                                    data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
-                                                                                    data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-                                                                                    alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
-                                                                            >
-
-                                                                            <?php if( $text ) : ?>
-                                                                            <div class="d-flex w-100 h-100 position-absolute justify-content-start">
-                                                                                    <div class="stage-short w-50 d-flex align-self-center">
-                                                                                            <?= $enc->html( $text, $enc::TRUST ) ?>
-                                                                                    </div>
-                                                                            </div>
-                                                                            <?php endif ?>
-
-                                                                    <?php else : ?>
-
-                                                                            <?php if( $text ) : ?>
-                                                                            <div class="d-flex w-100 h-100 position-absolute justify-content-end">
-                                                                                    <div class="stage-short w-50 d-flex align-self-center">
-                                                                                            <?= $enc->html( $text, $enc::TRUST ) ?>
-                                                                                    </div>
-                                                                            </div>
-                                                                            <?php endif ?>
-
-                                                                            <img class="stage-image lazy-image"
-                                                                                    src=""
-                                                                                    sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
-                                                                                    data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
-                                                                                    data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-                                                                                    alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
-                                                                            >
-
-                                                                    <?php endif ?>
-                                                            </a>
-                                                    <?php endforeach ?>
-                                            </div>
-                                    </div>
-                            <?php endif ?>
-                        
-                <?php endforeach ?>
-            </div>			
-        <?php endif ?>
 
 	<?php if( isset( $this->homeTree ) ) : ?>
-            <div class="container">
-                <div class="home-item home-list <?= $enc->attr( $this->homeTree->getCode() ) ?>">
-                        <?php if( !( $products = $child->getRefItems( 'product', null, 'promotion' ) )->isEmpty() ) : ?>
-                                <div class="home-product catalog-list">
-                                        <a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
-                                                <h2 class="home-name"><?= $enc->html( $child->getName() ) ?></h2>
-                                        </a>
-                                        <?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
-                                                'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
-                                                'basket-add' => $this->config( 'client/html/catalog/home/basket-add', false ),
-                                                'products' => $products
-                                        ] ) ?>
-                                </div>
-                        <?php endif ?>
-                </div>
-                <div class="home-item home-list <?= $enc->attr( $this->homeTree->getCode() ) ?>">
-                        <?php if( !( $products = $this->homeTree->getRefItems( 'product', null, 'promotion' ) )->isEmpty() ) : ?>
-                                <div class="home-product catalog-list">
-                                        <a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
-                                                <h2 class="home-name"><?= $enc->html( $this->translate( 'client', 'Top seller' ), $enc::TRUST ) ?></h2>
-                                        </a>
-                                        <?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
-                                                'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
-                                                'basket-add' => $this->config( 'client/html/catalog/home/basket-add', false ),
-                                                'products' => $products
-                                        ] ) ?>
-                                </div>
-                        <?php endif ?>
-                </div>
-            </div>
+
+		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?>">
+
+			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
+				<div class="home-item home-image <?= $enc->attr( $this->homeTree->getCode() ) ?>">
+					<div class="home-stage catalog-stage-image">
+						<?php foreach( $mediaItems as $mediaItem ) : ?>
+							<a class="stage-item" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
+								<img class="stage-image lazy-image" src=""
+									sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
+									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
+									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+									alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
+								>
+							</a>
+						<?php endforeach ?>
+					</div>
+				</div>
+			<?php endif ?>
+
+			<?php foreach( $this->homeTree->getChildren() as $child ) : ?>
+
+				<?php if( !( $mediaItems = $child->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
+					<div class="home-item cat-image <?= $enc->attr( $child->getCode() ) ?>">
+						<div class="home-stage catalog-stage-image">
+							<?php foreach( $mediaItems as $mediaItem ) : ?>
+								<a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
+									<?php $text = $child->getRefItems( 'text', 'short', 'default' )->getContent()->first() ?>
+									<?php if( ++$pos % 2 ) : ?>
+
+										<img class="stage-image lazy-image"
+											src=""
+											sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
+											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
+											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+											alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
+										>
+
+										<?php if( $text ) : ?>
+											<div class="stage-text">
+												<div class="stage-short">
+													<?= $enc->html( $text, $enc::TRUST ) ?>
+												</div>
+											</div>
+										<?php endif ?>
+
+									<?php else : ?>
+
+										<?php if( $text ) : ?>
+											<div class="stage-text">
+												<div class="stage-short">
+													<?= $enc->html( $text, $enc::TRUST ) ?>
+												</div>
+											</div>
+										<?php endif ?>
+
+										<img class="stage-image lazy-image" src=""
+											sizes="<?= $enc->attr( $this->config( 'client/html/catalog/home/imageset-sizes', '(max-width: 240px) 240px, (max-width: 720px) 720px, 2160px' ) ) ?>"
+											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
+											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+											alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
+										>
+
+									<?php endif ?>
+								</a>
+							<?php endforeach ?>
+						</div>
+					</div>
+				<?php endif ?>
+
+			<?php endforeach ?>
+		</div>
+	<?php endif ?>
+
+	<?php if( isset( $this->homeTree ) ) : ?>
+			<div class="container">
+				<div class="home-item home-list <?= $enc->attr( $this->homeTree->getCode() ) ?>">
+					<?php if( !( $products = $child->getRefItems( 'product', null, 'promotion' ) )->isEmpty() ) : ?>
+						<div class="home-product catalog-list">
+							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
+								<h2 class="home-name"><?= $enc->html( $child->getName() ) ?></h2>
+							</a>
+							<?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
+								'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
+								'basket-add' => $this->config( 'client/html/catalog/home/basket-add', false ),
+								'products' => $products
+							] ) ?>
+						</div>
+					<?php endif ?>
+				</div>
+				<div class="home-item home-list <?= $enc->attr( $this->homeTree->getCode() ) ?>">
+					<?php if( !( $products = $this->homeTree->getRefItems( 'product', null, 'promotion' ) )->isEmpty() ) : ?>
+						<div class="home-product catalog-list">
+							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
+								<h2 class="home-name"><?= $enc->html( $this->translate( 'client', 'Top seller' ), $enc::TRUST ) ?></h2>
+							</a>
+							<?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
+								'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
+								'basket-add' => $this->config( 'client/html/catalog/home/basket-add', false ),
+								'products' => $products
+							] ) ?>
+						</div>
+					<?php endif ?>
+				</div>
+			</div>
 	<?php endif ?>
 </section>
 
 <section class="module parallax parallax-1" data-type="background" data-speed="16">
-    <div class="parallax-container text-center">
-        <div class="parallax-text text-light">Favorite Summer!</div>
-        <div class="parallax-text text-light mb-3">Summer Fashion Sale 2021</div>
-        <div class="parallax-text3 aimeos text-center"><a class="btn btn-primary" href="#">Shop Now</a></div>
-    </div>
+	<div class="parallax-container">
+		<div class="parallax-text">Favorite Summer!</div>
+		<div class="parallax-text">Summer Fashion Sale 2021</div>
+		<div class="parallax-text3"><a class="btn btn-primary" href="#">Shop Now</a></div>
+	</div>
 </section>
