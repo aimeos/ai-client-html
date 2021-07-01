@@ -4926,16 +4926,18 @@ a.pswp__share--download:hover {
 
 /*----------------------- Parallax base styles ----------------------------- */
 
-section.module.parallax-1 {
+.aimeos section.parallax {
 	background-attachment: fixed;
 	background-position: 50% 0;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-image: url("http://www.mastamedia.at/ai21shop/public/files/product-images/parallax_01.png");
-	padding: 10rem 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 7.5rem 1rem;
 }
 
-.parallax-text{
+.aimeos .parallax-container{
 	font-weight: 600;
 	font-size: 4vw;
 }

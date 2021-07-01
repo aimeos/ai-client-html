@@ -24,47 +24,6 @@ y+="</select>"}if(v||(b+=y+(!o&&m&&_?"":"&#xa0;")),!t.yearshtml)if(t.yearshtml="
 !function(l,s){var n={htmlClass:!0};function i(e,t){this.element=e,this.eventController=o,this.options=l.extend({},n,t),this.options.initialized=!1,this.init()}i.prototype.init=function(){var s=this.element,e=this.options,i=this.eventController.bind(this);!0!==e.initialized&&(i("loading"),s.find("[data-submenu]").on("click",function(e){e.preventDefault();var t,n=l(this).attr("data-submenu"),o=l("#"+n);o.length&&(i("opening",t={subMenu:!0,menuId:n}),s.find(".submenu.current").removeClass("current"),o.addClass("opened current"),s.hasClass("submenu-opened")||s.addClass("submenu-opened"),s.scrollTop(0),i("opened",t))}),s.find("[data-submenu-close]").on("click",function(e){e.preventDefault();var t,n=l(this).attr("data-submenu-close"),o=l("#"+n);o.length&&(i("closing",t={subMenu:!0,menuId:n}),o.removeClass("opened current"),s.find(".submenu.opened:last").addClass("current"),s.find(".submenu.opened").length||s.removeClass("submenu-opened"),o.scrollTop(0),i("closed",t))}),i("load"),this.options.htmlClass&&!l("html").hasClass("zeynep-initialized")&&l("html").addClass("zeynep-initialized"),e.initialized=!0)},i.prototype.open=function(){this.eventController("opening",{subMenu:!1}),this.element.addClass("opened"),this.options.htmlClass&&l("html").addClass("zeynep-opened"),this.eventController("opened",{subMenu:!1})},i.prototype.close=function(e){e||this.eventController("closing",{subMenu:!1}),this.element.removeClass("opened"),this.options.htmlClass&&l("html").removeClass("zeynep-opened"),e||this.eventController("closed",{subMenu:!1})},i.prototype.destroy=function(){this.eventController("destroying"),this.close(!0),this.element.find(".submenu.opened").removeClass("opened"),this.element.removeData(s),this.eventController("destroyed"),this.options=n,this.options.htmlClass&&l("html").removeClass("zeynep-initialized"),delete this.element,delete this.options,delete this.eventController},i.prototype.on=function(e,t){r.call(this,e,t)};var o=function(e,t){if(this.options[e]){if("function"!=typeof this.options[e])throw Error("event handler must be a function: "+e);this.options[e].call(this,this.element,this.options,t)}},r=function(e,t){if("string"!=typeof e)throw Error("event name is expected to be a string but got: "+typeof e);if("function"!=typeof t)throw Error("event handler is not a function for: "+e);this.options[e]=t};l.fn[s]=function(e){var t,n,o;return t=l(this[0]),n=e,o=null,t.data(s)?o=t.data(s):(o=new i(t,n||{}),t.data(s,o)),o}}(window.jQuery,"zeynep");
 
 
-/*!
-* Parallax
-*/
-//parallax js
-$(document).ready(function(){
-  var $window = $(window);
-    $('section[data-type="background"]').each(function(){
-        var $bgobj = $(this); // assigning the object
-
-        $(window).scroll(function() {
-            var yPos = -($window.scrollTop() / $bgobj.data('speed'));
-
-            // Put together our final background position
-            var coords = '50%'+ yPos + 'px';
-
-            // Move the background
-            $bgobj.css({ backgroundPosition: coords });
-        });
-    });
-});
-
-//menu transition js
-$(document).ready(function(){
-  $(window).scroll(function(){
-  	var scroll = $(window).scrollTop();
-    	  if (scroll > 0) {
-	    $(".navbar").addClass("navbar-scroll");
-        }
-    	  else{
-		  $(".navbar").removeClass("navbar-scroll");
-	  }
-	  if (scroll > 10) {
-	    $(".navbar").addClass("navbar-dark");
-	  }
-
-	  else{
-		  $(".navbar").removeClass("navbar-dark");
-	  }
-  })
-})
-
 
 /**
  * Aimeos related Javascript code
@@ -2084,24 +2043,68 @@ jQuery(document).ready(function($) {
 
 
 
-jQuery(document).ready(function($) {
-        /**
+jQuery(function() {
+
+	/**
+	* Parallax scrolling
+	*/
+	var $window = $(window);
+
+	$('section[data-type="background"]').each(function() {
+		var $bgobj = $(this); // assigning the object
+		const url = ($bgobj.data('background').split(',').pop() || '').trim().split(' ').shift();
+		this.style.backgroundImage = "url(' + url + '')";
+
+		$(window).on("scroll", function() {
+			var yPos = -($window.scrollTop() / $bgobj.data('speed'));
+
+			// Put together our final background position
+			var coords = '50%'+ yPos + 'px';
+
+			// Move the background
+			$bgobj.css({ backgroundPosition: coords });
+		});
+	});
+
+
+	/**
+	 * Menu transition
+	 */
+	$(window).on("scroll", function() {
+		var scroll = $(window).scrollTop();
+
+		if (scroll > 0) {
+			$(".navbar").addClass("navbar-scroll");
+		} else {
+			$(".navbar").removeClass("navbar-scroll");
+		}
+
+		if (scroll > 10) {
+			$(".navbar").addClass("navbar-dark");
+		} else {
+			$(".navbar").removeClass("navbar-dark");
+		}
+	})
+
+
+	/**
 	* Link to top
-        */
+	*/
 	var offset = 220;
 	var duration = 500;
-	$(window).scroll(function() {
+	$(window).on("scroll", function() {
 		if ($(this).scrollTop() > offset) {
 			$(".back-to-top").fadeIn(duration);
 		} else {
 			$(".back-to-top").fadeOut(duration);
 		}
 	});
-	$(".back-to-top").click(function(event) {
+	$(".back-to-top").on("click", function(event) {
 		event.preventDefault(event);
 		$("html, body").animate({scrollTop: 0}, duration);
 		return false;
 	});
+
 
 	/**
 	 * Sets active classes in Menu
