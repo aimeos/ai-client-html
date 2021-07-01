@@ -2053,7 +2053,7 @@ jQuery(function() {
 	$('section[data-type="background"]').each(function() {
 		var $bgobj = $(this); // assigning the object
 		const url = ($bgobj.data('background').split(',').pop() || '').trim().split(' ').shift();
-		this.style.backgroundImage = "url(' + url + '')";
+		$bgobj.css({backgroundImage: "url('" + url + "')"});
 
 		$(window).on("scroll", function() {
 			var yPos = -($window.scrollTop() / $bgobj.data('speed'));
