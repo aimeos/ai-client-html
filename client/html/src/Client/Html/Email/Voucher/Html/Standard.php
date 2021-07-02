@@ -230,7 +230,7 @@ class Standard
 		 * @category User
 		 * @see client/html/email/from-email
 		 */
-		$file = $view->config( 'client/html/email/logo', 'client/html/themes/elegance/media/aimeos.png' );
+		$file = $view->config( 'client/html/email/logo', 'client/html/themes/default/media/aimeos.png' );
 
 		if( file_exists( $file ) && ( $content = file_get_contents( $file ) ) !== false )
 		{
@@ -241,7 +241,7 @@ class Standard
 		}
 
 
-		$path = $view->config( 'client/html/common/template/baseurl', 'client/html/themes/elegance' );
+		$path = $view->config( 'client/html/common/template/baseurl', 'client/html/themes/default' );
 		$filepath = $path . DIRECTORY_SEPARATOR . 'email.css';
 
 		if( file_exists( $filepath ) && ( $css = file_get_contents( $filepath ) ) !== false ) {

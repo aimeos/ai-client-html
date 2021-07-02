@@ -57,10 +57,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$ds = DIRECTORY_SEPARATOR;
 
-		$logo = '..' . $ds . 'themes' . $ds . 'elegance' . $ds . 'media' . $ds . 'aimeos.png';
+		$logo = '..' . $ds . 'themes' . $ds . 'default' . $ds . 'media' . $ds . 'aimeos.png';
 		$this->context->getConfig()->set( 'client/html/email/logo', $logo );
 
-		$theme = '..' . $ds . 'themes' . $ds . 'elegance';
+		$theme = '..' . $ds . 'themes' . $ds . 'default';
 		$this->context->getConfig()->set( 'client/html/common/template/baseurl', $theme );
 
 
