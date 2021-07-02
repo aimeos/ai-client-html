@@ -94,9 +94,7 @@ class Standard
 
 		try
 		{
-			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->getObject()->addData( $view );
-			}
+			$view = $this->view = $this->view ?? $this->getObject()->addData( $view, $this->tags, $this->expire );
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
@@ -165,9 +163,7 @@ class Standard
 
 		try
 		{
-			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->getObject()->addData( $view );
-			}
+			$view = $this->view = $this->view ?? $this->getObject()->addData( $view, $this->tags, $this->expire );
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
