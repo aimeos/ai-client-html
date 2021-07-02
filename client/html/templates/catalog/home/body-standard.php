@@ -168,12 +168,5 @@ $pos = 0;
 				</div>
 			</div>
 	<?php endif ?>
-</section>
 
-<section class="module parallax parallax-1" data-type="background" data-speed="16">
-	<div class="parallax-container">
-		<div class="parallax-text">Favorite Summer!</div>
-		<div class="parallax-text">Summer Fashion Sale 2021</div>
-		<div class="parallax-text3"><a class="btn btn-primary" href="#">Shop Now</a></div>
-	</div>
 </section>
