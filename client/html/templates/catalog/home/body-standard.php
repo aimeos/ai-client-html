@@ -78,7 +78,7 @@ $pos = 0;
 								<div class="stage-text">
 									<div class="stage-short">
 										<?php foreach( $this->homeTree->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-											<?= $enc->html( $textItem->getContent() ) ?>
+											<?= $textItem->getContent() ?>
 										<?php endforeach ?>
 									</div>
 									<div class="btn"><?= $enc->html( $this->translate( 'client', 'More' ) ) ?></div>
@@ -104,10 +104,13 @@ $pos = 0;
 										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
 									>
-									<div class="stage-short">
-										<?php foreach( $child->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-											<?= $enc->html( $textItem->getContent() ) ?>
-										<?php endforeach ?>
+									<div class="stage-text">
+										<div class="stage-short">
+											<?php foreach( $child->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+												<?= $textItem->getContent() ?>
+											<?php endforeach ?>
+										</div>
+										<div class="btn"><?= $enc->html( $this->translate( 'client', 'More' ) ) ?></div>
 									</div>
 								</a>
 

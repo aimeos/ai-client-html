@@ -1293,8 +1293,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
     border-width: 2px;
     font-weight: normal;
     color: #FFFFFF;
-    font-size: 100%;
     margin-top: 1em;
+    font-size: 50%;
     width: 8em;
 }
 
