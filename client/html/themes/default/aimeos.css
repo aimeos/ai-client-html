@@ -1264,48 +1264,64 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Catalog home */
 
-.catalog-home .stage-image {
-    padding: 0;
-}
-
 .catalog-home .stage-item {
     background-color: #FFF;
     background-color: var(--ai-bg-alt, #FFF);
+    position: relative;
+    display: block;
     margin: 0;
 }
 
-.catalog-home .stage-short {
-    color: #555 !important;
-    color: var(--ai-primary-alt, #555) !important;
-    font-size: 4vw;
-    /*margin: auto;*/
-    padding: 3rem 7.5%;
+.catalog-home .stage-image {
+    min-height: 480px;
+    object-fit: cover;
+    padding: 0;
 }
 
-@media (max-width: 767px) {
-    .catalog-home .stage-short {
-        font-size: 8vw;
+.catalog-home .stage-text {
+	position: absolute;
+	font-size: 200%;
+	margin: 0 5%;
+	color: #FFFFFF;
+	text-align: left;
+	top: 33%;
+}
+
+.catalog-home .stage-text .btn {
+    background-color: transparent;
+    border-color: #FFFFFF;
+    border-width: 2px;
+    font-weight: normal;
+    color: #FFFFFF;
+    font-size: 100%;
+    margin-top: 1em;
+    width: 8em;
+}
+
+@media (min-width:576px) {
+    .catalog-home .stage-text {
+        max-width: 66%;
     }
 }
 
-.catalog-home .stage-short p {
-    margin: 0;
+@media (min-width:768px) {
+    .catalog-home .stage-text {
+        max-width: 50%;
+        font-size: 225%;
+    }
 }
 
-.catalog-home .stage-item:nth-of-type(2n) {
-    text-align: start;
+@media (min-width:992px) {
+    .catalog-home .stage-text {
+        max-width: 40%;
+    }
 }
 
-.catalog-home .stage-item:nth-of-type(2n+1) {
-    text-align: end;
-}
-
-.aimeos .home-name {
-    text-align: center;
-    font-size: 200%;
-    padding: 2rem 0;
-    border-bottom: solid 1px #D0D0D0;
-    border-bottom-color: var(--ai-light, #D0D0D0);
+@media (min-width:1200px) {
+    .catalog-home .stage-text {
+        max-width: 35%;
+        font-size: 250%;
+    }
 }
 
 
