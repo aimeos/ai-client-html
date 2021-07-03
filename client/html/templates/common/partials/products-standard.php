@@ -159,12 +159,12 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 
 ?>
-<ul class="list-items">
+<div class="list-items">
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
 		<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter ) ?>
 
-		<li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
+		<div class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
 			data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
 			itemprop="<?= $this->get( 'itemprop' ) ?>"
 			itemscope itemtype="http://schema.org/Product"
@@ -363,8 +363,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 			<?php endif ?>
 
-		</li>
+		</div>
 
 	<?php endforeach ?>
 
-</ul>
+</div>
