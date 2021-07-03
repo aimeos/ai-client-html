@@ -106,6 +106,7 @@ class Standard
 		$view->pdf = new Tcpdf( PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false );
 		$view->pdf->setCreator( PDF_CREATOR );
 		$view->pdf->setAuthor( 'Aimeos' );
+		$view->pdf->setTitle( sprintf( $view->translate( 'client', 'Order %1$s' ), $view->extOrderItem->getId() ) );
 
 		// Generate HTML before creating first PDF page to include header added in template
 		$content = $view->render( $view->config( $tplconf, 'email/payment/pdf-body-standard' ) );
