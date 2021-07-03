@@ -89,6 +89,7 @@ $pos = 0;
 				</div>
 			<?php endif ?>
 
+			<?php $first = $mediaItems->isEmpty() ?>
 			<?php foreach( $this->homeTree->getChildren() as $child ) : ?>
 				<?php if( !( $mediaItems = $child->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 
@@ -98,12 +99,20 @@ $pos = 0;
 							<?php foreach( $mediaItems as $mediaItem ) : ?>
 
 								<a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
-									<img class="stage-image lazy-image"
-										src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
-										data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
-										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-										alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
-									>
+									<?php if( $first ) : ?>
+										<img class="stage-image"
+											src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
+											srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+											alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
+										>
+									<?php else : ?>
+										<img class="stage-image lazy-image"
+											src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
+											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
+											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+											alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
+										>
+									<?php endif ?>
 									<div class="stage-text">
 										<div class="stage-short">
 											<?php foreach( $child->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
@@ -114,6 +123,7 @@ $pos = 0;
 									</div>
 								</a>
 
+								<?php $first = false ?>
 							<?php endforeach ?>
 
 						</div>
