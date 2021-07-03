@@ -129,16 +129,24 @@ Aimeos = {
 	 */
 	loadImages: function() {
 
-		var elements = $(".aimeos .lazy-image");
+		if('IntersectionObserver' in window) {
 
-		for( var i = 0; i < elements.length; i++) {
-			var element = $(elements[i]);
+			let callback = function(entries, observer) {
+				for(let entry of entries) {
+					if(entry.isIntersecting) {
+						observer.unobserve(entry.target);
+						var element = $(entry.target);
 
-			if($(window).scrollTop() + $(window).height() * 1.5 >= element.offset().top) {
-				element.attr("srcset", element.data("srcset"));
-				element.attr("src", element.data("src"));
-				element.removeClass("lazy-image");
-			}
+						element.attr("srcset", element.data("srcset"));
+						element.attr("src", element.data("src"));
+						element.removeClass("lazy-image");
+					}
+				};
+			};
+
+			$(".aimeos .lazy-image").each(function() {
+				(new IntersectionObserver(callback, {})).observe(this);
+			});
 		}
 	},
 
@@ -2009,12 +2017,6 @@ Aimeos.loadImages();
 
 
 jQuery(document).ready(function($) {
-
-	/* Lazy product image loading in list view */
-	Aimeos.loadImages();
-	$(window).on("resize", Aimeos.loadImages);
-	$(window).on("scroll", Aimeos.loadImages);
-
 
 	Aimeos.init();
 
