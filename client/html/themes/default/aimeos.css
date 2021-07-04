@@ -5668,10 +5668,9 @@ footer .first-col, footer .sec-col, footer .last-col{
 }
 
 .ui-widget-content{
-	z-index: 1024;
+	z-index: 1030;
 	border: none;
 	padding: .5rem 0;
-	/*width: calc(90% - 50px) !important;*/
 }
 
 .aimeos .suggest-item {
