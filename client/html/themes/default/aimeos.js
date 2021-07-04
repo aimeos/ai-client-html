@@ -135,35 +135,17 @@ Aimeos = {
 				for(let entry of entries) {
 					if(entry.isIntersecting) {
 						observer.unobserve(entry.target);
-						var element = entry.target;
+						var element = $(entry.target);
 
-						if(element.tagName === 'IMG') {
-							element.setAttribute("srcset", element.getAttribute("data-srcset"));
-							element.setAttribute("src", element.getAttribute("data-src"));
-						} else if(element.classList.contains('background')) {
-							var url = '';
-							var srcset = element.getAttribute("data-background");
-
-							srcset && srcset.split(',').every(function(str) {
-								var parts = str.trim().split(' ');
-
-								if(parseInt((parts[1] || '').replace('w', '')) < window.innerWidth) {
-									return true;
-								}
-								url = parts[0];
-								return false;
-							});
-
-							element.style.backgroundImage = "url('" + url + "')";
-						}
-
-						element.classList.remove("lazy-image");
+						element.attr("srcset", element.data("srcset"));
+						element.attr("src", element.data("src"));
+						element.removeClass("lazy-image");
 					}
 				};
 			};
 
-			document.querySelectorAll(".aimeos .lazy-image").forEach(function(el) {
-				(new IntersectionObserver(callback, {})).observe(el);
+			$(".aimeos .lazy-image").each(function() {
+				(new IntersectionObserver(callback, {})).observe(this);
 			});
 		}
 	},
@@ -2066,6 +2048,28 @@ jQuery(document).ready(function($) {
 jQuery(function() {
 
 	/**
+	* Parallax scrolling
+	*/
+	var $window = $(window);
+
+	$('section[data-type="background"]').each(function() {
+		var $bgobj = $(this); // assigning the object
+		const url = ($bgobj.data('background').split(',').pop() || '').trim().split(' ').shift();
+		$bgobj.css({backgroundImage: "url('" + url + "')"});
+
+		$(window).on("scroll", function() {
+			var yPos = -($window.scrollTop() / $bgobj.data('speed'));
+
+			// Put together our final background position
+			var coords = '50%'+ yPos + 'px';
+
+			// Move the background
+			$bgobj.css({ backgroundPosition: coords });
+		});
+	});
+
+
+	/**
 	 * Menu transition
 	 */
 	$(window).on("scroll", function() {
@@ -2075,12 +2079,6 @@ jQuery(function() {
 			$(".navbar").addClass("navbar-scroll");
 		} else {
 			$(".navbar").removeClass("navbar-scroll");
-		}
-
-		if (scroll > 10) {
-			$(".navbar").addClass("navbar-dark");
-		} else {
-			$(".navbar").removeClass("navbar-dark");
 		}
 	})
 
@@ -2317,7 +2315,7 @@ $("#select-4-color .select-entry").on("click", (function(){
 
 
 
-$('.home-list .catalog-list .list-items').slick({
+$('.cms-content .catalog-list .list-items').slick({
       infinite: true,
       speed: 300,
       slidesToShow: 3,
