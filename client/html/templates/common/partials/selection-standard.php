@@ -168,7 +168,7 @@ ksort( $attrTypeDeps );
 
 						<?php foreach( $positions as $attrId => $position ) : ?>
 
-							<option class="select-<?= $enc->attr( $this->productItem->getId() ) ?>-option" value="<?= $enc->attr( $attrId ) ?>">
+							<option class="select-option" value="<?= $enc->attr( $attrId ) ?>">
 								<?= $enc->html( $attributeItems[$attrId]->getName() ) ?>
 							</option>
 
