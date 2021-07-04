@@ -85,10 +85,6 @@ body{
 	-webkit-font-smoothing: antialiased;
 }
 
-footer .bi{
-	margin-right: .5rem;
-}
-
 /* ai-cms-grapesjs */
 
 .aimeos .contact-pot {
@@ -5216,6 +5212,11 @@ footer {
 	color: var(--ai-primary-alt, #FFFFFF);
 	background-color: #272727;
 	background-color: var(--ai-primary, #272727);
+	padding: 3rem;
+}
+
+footer .bi{
+	margin-right: .5rem;
 }
 
 footer h2{
@@ -5242,7 +5243,7 @@ footer p a {
 }
 
 footer p a:hover {
-        color: #CCCCCC;
+		color: #CCCCCC;
 	color: var(--ai-primary-light, #CCCCCC);
 	transition: color .3s;
 
@@ -5252,12 +5253,22 @@ footer p a:hover {
 	text-decoration: none;
 	transition: color .3s;
 }
+
 footer .logo {
 	margin-bottom: 1rem;
 	display: block;
 }
-footer .first-col, footer .sec-col, footer .last-col{
+
+footer .footer-left, footer .footer-center, footer .footer-right{
 	text-align: left;
+}
+
+.footer-block{
+	position: relative;
+	margin: 0 auto;
+	text-align: left;
+	display: inline-block;
+	margin-bottom: 3rem;
 }
 
 @media (min-width:768px) {
@@ -5266,8 +5277,12 @@ footer .first-col, footer .sec-col, footer .last-col{
 		height: 22rem;
 	}
 
-	footer .first-col, footer .sec-col, footer .last-col{
+	footer .footer-left, footer .footer-center, footer .footer-right{
 	text-align: center;
+	}
+	
+	.footer-block{
+		margin-bottom: 0rem;
 	}
 
 }
@@ -5421,12 +5436,12 @@ footer .first-col, footer .sec-col, footer .last-col{
 
 @media (min-width:768px) {
 	.navbar {
-	    padding: 3.5rem 1rem;
+		padding: 3.5rem 1rem;
 	}
 	.navbar-scroll {
-	    background-color: rgba(0,123,255,0.4);
-	    transition: all 0.5s;
-	    padding: .5rem 1rem;
+		background-color: rgba(0,123,255,0.4);
+		transition: all 0.5s;
+		padding: .5rem 1rem;
 
 	}
 }
@@ -5443,14 +5458,6 @@ footer .first-col, footer .sec-col, footer .last-col{
 	padding-top: 6rem;
 	padding-bottom: 4rem;
 	display: none;
-}
-
-/*----------------------------Brand Image Navbar------------------------------*/
-
-@media (max-width:991px) {
-	.navbar-brand img {
-		height: 25px;
-	}
 }
 
 /*----------------------------- PROFILE Navbar--------------------------------*/
@@ -5783,7 +5790,6 @@ footer .first-col, footer .sec-col, footer .last-col{
 		line-height: 1;
 		cursor: pointer;
 		z-index: 1;
-		padding-top: .5rem;
 	}
 
 	.open-menu::before{
