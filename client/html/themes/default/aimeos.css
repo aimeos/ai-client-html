@@ -52,7 +52,7 @@ body {
 	--ai-bg-alt: #FFFFFF;
 	--ai-secondary: #555;
 	--ai-light: #CCCCCC;
-} 
+}
 
 body{
 	font-family: "Roboto Condensed", sans-serif, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -61,9 +61,9 @@ body{
 	line-height: 1.5;
 	color: #212529;
 	text-align: left;
-	color: #000; color: var(--ai-primary, #000); 
-	background-color: #FFF; 
-	background-color: var(--ai-bg-alt, #FFF); 
+	color: #000; color: var(--ai-primary, #000);
+	background-color: #FFF;
+	background-color: var(--ai-bg-alt, #FFF);
 }
 
 .bi {
@@ -4949,10 +4949,6 @@ a.pswp__share--download:hover {
 	font-size: 4vw;
 }
 
-.aimeos .container {
-	padding: 2em 0;
-}
-
 /*--------------------------- Slick Arrows --------------------------------- */
 
 /*Home Gallery*/
@@ -5022,7 +5018,7 @@ a.pswp__share--download:hover {
 
 /*Home List Items -----------------------------------------------------------*/
 
-.cms-content .slick-prev, 
+.cms-content .slick-prev,
 .cms-content .slick-next {
 	font-size: 0;
 	line-height: 0;
@@ -5055,7 +5051,7 @@ a.pswp__share--download:hover {
 	bottom: auto;
 }
 
-.cms-content .slick-prev:before, 
+.cms-content .slick-prev:before,
 .cms-content .slick-next:before {
 	font-family: 'bootstrap-icons';
 	font-size: 20px;
@@ -5215,7 +5211,7 @@ img{
 }
 /*---------------------------------- Footer ----------------------------------*/
 
-footer { 
+footer {
 	color: #FFFFFF;
 	color: var(--ai-primary-alt, #FFFFFF);
 	background-color: #272727;
@@ -5249,7 +5245,7 @@ footer p a:hover {
         color: #CCCCCC;
 	color: var(--ai-primary-light, #CCCCCC);
 	transition: color .3s;
-	
+
 }
 
 footer p a:hover {
@@ -5700,7 +5696,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 }
 
 .ui-widget-content{
-	z-index: 1030;
+	z-index: 1024;
 	border: none;
 	padding: .5rem 0;
 }
@@ -6025,11 +6021,9 @@ footer .first-col, footer .sec-col, footer .last-col{
 }
 
 @media (min-width:992px) {
-    
 	.trigger-open, .menu-close{
 		display: none;
 	}
-	
 }
 
 /*-------------------Main-MENU MEGAMENU----------------------*/
@@ -6074,12 +6068,12 @@ footer .first-col, footer .sec-col, footer .last-col{
 }
 
 @media (min-width:992px) {
-    
+
 	.submenu > .item-container > .list-container > .cat-item {
 		margin-left: 1rem;
 		margin-right: 1rem;
 	}
-	
+
 	.catalog-filter-tree div.media-list.shows-img {
 		display: block;
 		align-self: center;
@@ -6092,7 +6086,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 		width: 240px;
 		height: auto;
 	}
-	
+
 	.submenu > .cat-img {
 		margin: .5rem 1rem .5rem 0;
 	}
@@ -6269,7 +6263,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 }
 
 @media (min-width:768px) {
-    
+
 	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
 		background-color: #FFF;
 		background-color: var(--ai-bg-alt, #FFF);
@@ -6285,7 +6279,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 		background-color: var(--ai-bg-alt, #FFF);
 		padding: 0.75em;
 	}
-	
+
 }
 
 @media (min-width:992px) {
@@ -6354,13 +6348,11 @@ footer .first-col, footer .sec-col, footer .last-col{
 }
 
 /*----------------------------- Price Filter ---------------------------------*/
-
 .catalog-filter-price .price-high, .catalog-filter-price .price-low{
 	font-size: 80%;
 	margin-bottom: 0;
 	width: 8rem;
 }
-
 @media screen and (min-width: 992px) {
 	.catalog-filter-price .price-high, .catalog-filter-price .price-low{
 		width: 4rem;
@@ -6412,7 +6404,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 		font-size: 100%;
 		text-align: left;
 	}
-	
+
 	.shop-tools .catalog-session-pinned > h2,
 	.shop-tools .catalog-session-seen > h2 {
 		font-size: 130%;
@@ -6421,18 +6413,18 @@ footer .first-col, footer .sec-col, footer .last-col{
 		padding: .5em .75em;
 		letter-spacing: 1.5px;
 	}
-	
+
 	.shop-tools .pinned-item .price-item.default .value,
 	.shop-tools .seen-item .price-item.default .value {
 		font-size: 110%;
 	}
-	
+
 	/*last seen*/
 
 	.shop-tools .catalog-session-seen {
 		width: 100%;
 	}
-	
+
 	.shop-tools .catalog-session-seen .seen-item {
 		width: 100%;
 	}
@@ -6484,46 +6476,66 @@ footer .first-col, footer .sec-col, footer .last-col{
 		margin: 0;
 		text-align: left;
 	}
+}
 
-	/*CMS Content*/
 
-	.advert > .aimeos.cms-page .row .col a > div {
-		display: flex;
-		position: absolute;
-		justify-content: start;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		align-items: center;
-		padding: 1rem;
-		flex-direction: column;
-	}
-	
-	.advert > .aimeos.cms-page .row .col a > div > span{
-		padding-right: 0;
-		padding-left: 0;
-		font-size: 1.2rem;
-		font-weight: 600;
-		z-index: 1;
-		display: block;
-		color: #272727;
-		line-height: 1.2;
-		text-align: center;
-		margin-left: 9rem;
-		margin-right: 0;
-	}
-	
-	.advert > .aimeos.cms-page .row .col a > div > div{
-		padding-right: 0;
-		padding-left: 0;
-		font-size: 1rem;
-		font-weight: 600;
-		z-index: 1;
-		display: block;
-		color: #272727;
-		line-height: 1.5;
-		margin-left: 9rem;
-	}
+.advert > .aimeos.cms-page .row .col a > div {
+	display: flex;
+	position: absolute;
+	justify-content: start;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	align-items: center;
+	padding: 1rem;
+	flex-direction: column;
+}
 
+.advert > .aimeos.cms-page .row .col a > div > span{
+	padding-right: 0;
+	padding-left: 0;
+	font-size: 1.2rem;
+	font-weight: 600;
+	z-index: 1;
+	display: block;
+	color: #272727;
+	line-height: 1.2;
+	text-align: center;
+	margin-left: 9rem;
+	margin-right: 0;
+}
+
+.advert > .aimeos.cms-page .row .col a > div > div{
+	padding-right: 0;
+	padding-left: 0;
+	font-size: 1rem;
+	font-weight: 600;
+	z-index: 1;
+	display: block;
+	color: #272727;
+	line-height: 1.5;
+	margin-left: 9rem;
+}
+
+
+/* CMS page content */
+
+.aimeos.cms-page .container {
+	padding-top: 2em;
+	padding-bottom: 2em;
+}
+
+.aimeos.cms-page h1 {
+	font-size: 200%;
+	text-align: center;
+}
+
+.aimeos.cms-page h2 {
+	font-size: 150%;
+	text-align: center;
+}
+
+.aimeos.cms-page h3 {
+	font-size: 125%;
 }

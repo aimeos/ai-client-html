@@ -135,17 +135,35 @@ Aimeos = {
 				for(let entry of entries) {
 					if(entry.isIntersecting) {
 						observer.unobserve(entry.target);
-						var element = $(entry.target);
+						var element = entry.target;
 
-						element.attr("srcset", element.data("srcset"));
-						element.attr("src", element.data("src"));
-						element.removeClass("lazy-image");
+						if(element.tagName === 'IMG') {
+							element.setAttribute("srcset", element.getAttribute("data-srcset"));
+							element.setAttribute("src", element.getAttribute("data-src"));
+						} else if(element.classList.contains('background')) {
+							var url = '';
+							var srcset = element.getAttribute("data-background");
+
+							srcset && srcset.split(',').every(function(str) {
+								var parts = str.trim().split(' ');
+
+								if(parseInt((parts[1] || '').replace('w', '')) < window.innerWidth) {
+									return true;
+								}
+								url = parts[0];
+								return false;
+							});
+
+							element.style.backgroundImage = "url('" + url + "')";
+						}
+
+						element.classList.remove("lazy-image");
 					}
 				};
 			};
 
-			$(".aimeos .lazy-image").each(function() {
-				(new IntersectionObserver(callback, {})).observe(this);
+			document.querySelectorAll(".aimeos .lazy-image").forEach(function(el) {
+				(new IntersectionObserver(callback, {})).observe(el);
 			});
 		}
 	},
@@ -2046,27 +2064,6 @@ jQuery(document).ready(function($) {
 
 
 jQuery(function() {
-
-	/**
-	* Parallax scrolling
-	*/
-	var $window = $(window);
-
-	$('section[data-type="background"]').each(function() {
-		var $bgobj = $(this); // assigning the object
-		const url = ($bgobj.data('background').split(',').pop() || '').trim().split(' ').shift();
-		$bgobj.css({backgroundImage: "url('" + url + "')"});
-
-		$(window).on("scroll", function() {
-			var yPos = -($window.scrollTop() / $bgobj.data('speed'));
-
-			// Put together our final background position
-			var coords = '50%'+ yPos + 'px';
-
-			// Move the background
-			$bgobj.css({ backgroundPosition: coords });
-		});
-	});
 
 
 	/**
