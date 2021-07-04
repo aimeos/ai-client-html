@@ -4,8 +4,8 @@
  * @license LGPLv3, https://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2014-2021
  */
-/*
-*/ 
+
+
 /* roboto-condensed-regular - latin */
 @font-face {
 	font-family: 'Roboto Condensed';
@@ -14,11 +14,11 @@
 	font-display: swap;
 	src: url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.eot');
 	src: local('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.eot'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.eot?#iefix') format('embedded-opentype'), 
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.woff2') format('woff2'), 
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.woff') format('woff'), 
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.ttf') format('truetype'), 
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.svg#RobotoCondensed') format('svg'); 
+		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.eot?#iefix') format('embedded-opentype'),
+		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.woff2') format('woff2'),
+		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.woff') format('woff'),
+		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.ttf') format('truetype'),
+		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.svg#RobotoCondensed') format('svg');
 }
 
 /* roboto-condensed-700 - latin */
@@ -35,19 +35,6 @@
 		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.ttf') format('truetype'),
 		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.svg#RobotoCondensed') format('svg');
 }
-
-/*@font-face{
-	font-family:'FontAwesomeBrands';
-	font-style:normal;
-	font-weight:400;
-	font-display:auto;
-	src:url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/line-awesome/fonts/la-brands-400.eot);
-	src:url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/line-awesome/fonts/la-brands-400.eot?#iefix) format("embedded-opentype"),
-		url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/line-awesome/fonts/la-brands-400.woff) format("woff2"),
-		url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/line-awesome/fonts/la-brands-400.woff) format("woff"),
-		url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/line-awesome/fonts/la-brands-400.ttf) format("truetype"),
-		url(https://cdn.jsdelivr.net/npm/line-awesome@1/dist/line-awesome/fonts/la-brands-400.svg#fontawesome) format("svg")
-}*/
 
 @font-face {
 	font-family: 'bootstrap-icons';
@@ -161,8 +148,8 @@ footer .bi{
 	border: solid 1px #C00000;
 	border-color: var(--ai-primary-light, #C00000);
 }
-.btn-primary:not(:disabled):not(.disabled).active:focus, 
-.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
 	box-shadow: 0 0 0 .2rem rgba(255, 165, 0,.5);
 }
@@ -1990,14 +1977,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	text-decoration: none;
 }
 
-/*.catalog-detail .catalog-social .social-button.social-button-pinterest {
-	font: normal normal normal 14px/1 FontAwesomeBrands;
-	font-size: 200%;
-	padding: 0.25em;
-	padding-left: 0;
-	text-decoration: none;
-}*/
-
 .catalog-detail .catalog-social .social-button.social-button-pinterest {
 	background-image: url("./fonts/pinterest.svg");
 	background-repeat: no-repeat;
@@ -2017,10 +1996,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-detail .catalog-social .social-button-twitter:before {
 	content: "\f5ef";
-}
-
-.catalog-detail .catalog-social .social-button-pinterest:before {
-	/*content: "\f0d2";*/
 }
 
 /* Product detail, action buttions */
@@ -2540,7 +2515,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-suggest .list-items{
 	padding: 0;
 }
-.catalog-session-seen .seen-items, 
+.catalog-session-seen .seen-items,
 .catalog-session-pinned .pinned-items {
 	padding: 1.25em;
 	margin-bottom: 0;
@@ -5160,9 +5135,9 @@ body{
 	overflow: hidden;
 }
 
-.navbar-top .catalog-filter  .catalog-filter-price, 
-.navbar-top .catalog-filter  .catalog-filter-supplier, 
-.navbar-top .catalog-filter  .catalog-filter-attribute, 
+.navbar-top .catalog-filter  .catalog-filter-price,
+.navbar-top .catalog-filter  .catalog-filter-supplier,
+.navbar-top .catalog-filter  .catalog-filter-attribute,
 .navbar-top .catalog-filter-search .reset{
 	display: none;
 }
@@ -5240,13 +5215,13 @@ footer p a:hover {
 footer .first-col, footer .sec-col, footer .last-col{
 	text-align: left;
 }
-	
+
 @media (min-width:768px) {
 
 	.catalog-stage-image {
 		height: 22rem;
 	}
-	
+
 	footer .first-col, footer .sec-col, footer .last-col{
 	text-align: center;
 	}
@@ -5369,7 +5344,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 }
 
 @media (max-width:768px) {
-	
+
 	.navbar-expand-md .navbar-collapse {
 		display: -ms-flexbox !important;
 		display: flex !important;
@@ -5377,7 +5352,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 		flex-basis: auto;
 		margin-inline-end: calc(5% - 1rem);
 	}
-	
+
 	.navbar-expand-md .navbar-toggler {
 		display: none;
 	}
@@ -5510,8 +5485,8 @@ footer .first-col, footer .sec-col, footer .last-col{
 }
 
 /*---------------------------BASKET MINI offscreen----------------------------*/
-.dropdown-toggle:after { 
-	content: none 
+.dropdown-toggle:after {
+	content: none
 }
 
 .basket-mini-product {
@@ -5644,20 +5619,20 @@ footer .first-col, footer .sec-col, footer .last-col{
 	width: 0 !important;
 	padding: 0;
 	min-width: 0;
-	transition: all .3s; 
+	transition: all .3s;
 }
 
-.catalog-filter-search .input-group:hover input, 
+.catalog-filter-search .input-group:hover input,
 .catalog-filter-search .input-group input:focus {
 	width: 10rem !important;
 	padding: .375rem .75rem;
 	min-width: available;
-	transition: all .3s; 
+	transition: all .3s;
 }
 
 @media (min-width:768px) {
 
-	.catalog-filter-search .input-group:hover input, 
+	.catalog-filter-search .input-group:hover input,
 	.catalog-filter-search .input-group input:focus {
 		width: 15rem !important;
 	}
@@ -5714,19 +5689,6 @@ footer .first-col, footer .sec-col, footer .last-col{
 
 .ui-autocomplete li {
 	padding: 0;
-}
-
-@media (max-width:991px) {
-	.ui-widget-content{
-		/*top: 8.75em !important;*/
-	}
-}
-
-@media (min-width:992px) {
-
-	.ui-widget-content{
-		/*width: 26.55em !important;*/
-	}
 }
 
 /*---------------------------------- Filter-Tree -----------------------------*/
@@ -6039,9 +6001,6 @@ footer .first-col, footer .sec-col, footer .last-col{
 		font-weight: 600;
 
 	}
-	.catalog-filter-tree .item-container .withchild{
-		/*min-width: 10rem;*/
-	}
 
 	.submenu .item-container .list-container{
 		min-width: 10rem;
@@ -6244,9 +6203,9 @@ footer .first-col, footer .sec-col, footer .last-col{
 	z-index: 1;
 }
 
-.catalog-filter-attribute > h2, 
-.catalog-filter-tree > h2, 
-.catalog-filter-price > h2, 
+.catalog-filter-attribute > h2,
+.catalog-filter-tree > h2,
+.catalog-filter-price > h2,
 .catalog-filter-supplier > h2 {
 	padding: .5em .75em ;
 	text-align: left;
@@ -6287,9 +6246,9 @@ footer .first-col, footer .sec-col, footer .last-col{
 		z-index: 1;
 	}
 
-	.catalog-filter-attribute > h2, 
-	.catalog-filter-tree > h2, 
-	.catalog-filter-price > h2, 
+	.catalog-filter-attribute > h2,
+	.catalog-filter-tree > h2,
+	.catalog-filter-price > h2,
 	.catalog-filter-supplier > h2 {
 		font-size: 130%;
 		margin-bottom: 0;
@@ -6309,17 +6268,9 @@ footer .first-col, footer .sec-col, footer .last-col{
 	border: none;
 }
 
-.catalog-filter-attribute legend::before {
-
-
-}
 
 .catalog-filter-attribute fieldset {
 	border-left: none;
-}
-
-.catalog-filter-attribute .attr-name span{
-
 }
 
 .catalog-filter-attribute fieldset {
@@ -6337,18 +6288,10 @@ footer .first-col, footer .sec-col, footer .last-col{
 
 /*---------------------------- Suppliers Filter ------------------------------*/
 
-.catalog-filter-supplier .attr-name span {
-
-}
-
 .catalog-filter-attribute label::before, .catalog-filter-supplier label::before {
 	width: 0.75em;
 	height: 0.75em;
 	margin-inline-end: 0.25em;
-}
-
-.catalog-filter-attribute .attr-count, .catalog-filter-supplier .attr-count {
-
 }
 
 /*----------------------------- Price Filter ---------------------------------*/
@@ -6408,7 +6351,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 		font-size: 100%;
 		text-align: left;
 	}
-	.shop-tools .catalog-session-pinned > h2, 
+	.shop-tools .catalog-session-pinned > h2,
 	.shop-tools .catalog-session-seen > h2 {
 		font-size: 130%;
 		margin-bottom: 0rem;
@@ -6492,7 +6435,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 		padding: 1rem;
 		flex-direction: column;
 	}
-	.advert > .aimeos.cms-page .row .col a > div > span{ 
+	.advert > .aimeos.cms-page .row .col a > div > span{
 		padding-right: 0;
 		padding-left: 0;
 		font-size: 1.2rem;
@@ -6505,7 +6448,7 @@ footer .first-col, footer .sec-col, footer .last-col{
 		margin-left: 9rem;
 		margin-right: 0;
 	}
-	.advert > .aimeos.cms-page .row .col a > div > div{ 
+	.advert > .aimeos.cms-page .row .col a > div > div{
 		padding-right: 0;
 		padding-left: 0;
 		font-size: 1rem;
