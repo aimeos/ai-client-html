@@ -4939,24 +4939,27 @@ a.pswp__share--download:hover {
 		LAYOUT NEW RELEASE
 ##############################################################################*/
 
-/*----------------------- Parallax base styles ----------------------------- */
+/*----------------------- Background base styles ----------------------------- */
 
-.aimeos section.parallax {
-	background-attachment: fixed;
-	background-position: 50% 0;
-	background-repeat: no-repeat;
-	background-size: cover;
+.aimeos .background {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 7.5rem 1rem;
+	background-color: #F5F5F5;
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-align: center;
+	color: #FFFFFF;
+	padding: 2em 0;
 }
 
-.aimeos .parallax-container{
-	font-weight: 600;
+.aimeos .background[data-background] {
 	font-size: 4vw;
 }
 
+.aimeos .container {
+	padding: 2em 0;
+}
 
 /*--------------------------- Slick Arrows --------------------------------- */
 
@@ -6363,63 +6366,6 @@ footer .first-col, footer .sec-col, footer .last-col{
 .supplier-detail .image-single img {
 	max-height: 20rem;
 	max-width: 100%;
-}
-
-/*----------------------------- CMS Content ----------------------------------*/
-
-.aimeos.cms-page .row{
-	margin-right: 0;
-	margin-left: 0;
-	position: relative;
-}
-
-.aimeos.cms-page .row .col{
-	padding-right: 0;
-	padding-left: 0;
-	display: flex;
-}
-
-.aimeos.cms-page .row .col > a{
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	color: #f8f9fa;
-}
-
-.aimeos.cms-page .row .col > a > div{
-	display: flex;
-	position: absolute;
-	justify-content: end;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	align-items: center;
-}
-
-.aimeos.cms-page .row .col a > div > span{
-	padding-right: 0;
-	padding-left: 0;
-	font-size: 2.8vw;
-	font-weight: 600;
-	z-index: 1;
-	display: block;
-	margin-right: 2rem;
-}
-
-.aimeos.cms-page .row .col:nth-child(2) a > div{
-	justify-content: start;
-}
-
-.aimeos.cms-page .row .col:nth-child(2) a > div > span{
-	padding-right: 0;
-	padding-left: 0;
-	font-size: 2.8vw;
-	font-weight: 600;
-	z-index: 1;
-	display: block;
-	margin-left: 2rem;
 }
 
 /*----------------------------- Detail Page ----------------------------------*/
