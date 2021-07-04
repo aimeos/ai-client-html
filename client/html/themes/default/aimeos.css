@@ -1999,7 +1999,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }*/
 
 .catalog-detail .catalog-social .social-button.social-button-pinterest {
-	background-image: url("http://www.mastamedia.at/ai21shop/public/vendor/shop/themes/elegance/fonts/pinterest.svg");
+	background-image: url("./fonts/pinterest.svg");
 	background-repeat: no-repeat;
 	width: 36px;
 	display: inline-block;
