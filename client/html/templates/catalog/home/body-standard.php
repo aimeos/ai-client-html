@@ -81,7 +81,7 @@ $pos = 0;
 											<?= $textItem->getContent() ?>
 										<?php endforeach ?>
 									</div>
-									<div class="btn"><?= $enc->html( $this->translate( 'client', 'More' ) ) ?></div>
+									<div class="btn"><?= $enc->html( $this->translate( 'client', 'Take a look' ) ) ?></div>
 								</div>
 							</a>
 						<?php endforeach ?>
@@ -89,7 +89,6 @@ $pos = 0;
 				</div>
 			<?php endif ?>
 
-			<?php $first = $mediaItems->isEmpty() ?>
 			<?php foreach( $this->homeTree->getChildren() as $child ) : ?>
 				<?php if( !( $mediaItems = $child->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 
@@ -99,31 +98,21 @@ $pos = 0;
 							<?php foreach( $mediaItems as $mediaItem ) : ?>
 
 								<a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
-									<?php if( $first ) : ?>
-										<img class="stage-image"
-											src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
-											srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-											alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
-										>
-									<?php else : ?>
-										<img class="stage-image lazy-image"
-											src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
-											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
-											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-											alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
-										>
-									<?php endif ?>
+									<img class="stage-image"
+										src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
+										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+										alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
+									>
 									<div class="stage-text">
 										<div class="stage-short">
 											<?php foreach( $child->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 												<?= $textItem->getContent() ?>
 											<?php endforeach ?>
 										</div>
-										<div class="btn"><?= $enc->html( $this->translate( 'client', 'More' ) ) ?></div>
+										<div class="btn"><?= $enc->html( $this->translate( 'client', 'Take a look' ) ) ?></div>
 									</div>
 								</a>
 
-								<?php $first = false ?>
 							<?php endforeach ?>
 
 						</div>

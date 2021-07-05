@@ -100,13 +100,13 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 				<div class="catalog-detail-basic">
 					<?php if( !( $suppliers = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : $name = $suppliers->getName()->first() ?>
-						<h2 class="supplier">
+						<p class="supplier">
 							<a href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $suppliers->firstKey(), 's_name' => $name] ) ) ?>">
 								<?= $enc->html( $name, $enc::TRUST ) ?>
 							</a>
-						</h2>
+						</p>
 					<?php elseif( $this->get( 'contextSite' ) !== 'default' ) : ?>
-						<h2 class="site"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></h2>
+						<p class="site"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></p>
 					<?php endif ?>
 
 					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ) ?></h1>

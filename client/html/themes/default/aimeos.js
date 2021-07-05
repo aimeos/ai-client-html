@@ -163,7 +163,7 @@ Aimeos = {
 			};
 
 			document.querySelectorAll(".aimeos .lazy-image").forEach(function(el) {
-				(new IntersectionObserver(callback, {})).observe(el);
+				(new IntersectionObserver(callback, {rootMargin: '240px', threshold: 0})).observe(el);
 			});
 		}
 	},
