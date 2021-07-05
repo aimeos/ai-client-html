@@ -167,7 +167,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 							<td class="name"></td>
 							<td class="quantity"></td>
 							<td class="price"></td>
-							<td class="action"><a class="delete" href="#"></a></td>
+							<td class="action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>"></a></td>
 						</tr>
 						<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
 							<?php
