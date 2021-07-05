@@ -64,6 +64,17 @@ body{
 	color: #000; color: var(--ai-primary, #000);
 	background-color: #FFF;
 	background-color: var(--ai-bg-alt, #FFF);
+	background-image: url(./media/header-bg.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% calc(7em + 70px);
+}
+
+.content{
+	margin-top: calc(7em + 70px);
+}
+
+.aimeos .catalog-home{
+	margin-top: calc(-7em + 70px);
 }
 
 .bi {
@@ -1685,6 +1696,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	padding: 1em .25em;
 	margin: 0;
 	letter-spacing: 1.5px;
+	text-align: center;
 }
 
 .catalog-list-head .long,
@@ -4965,8 +4977,8 @@ a.pswp__share--download:hover {
 	position: absolute;
 	top: auto;
 	display: block;
-	width: 20px;
-	height: 20px;
+	width: 48px;
+	height: 48px;
 	padding: 0;
 	cursor: pointer;
 	color: transparent;
@@ -4977,7 +4989,7 @@ a.pswp__share--download:hover {
 }
 
 .home-gallery .slick-prev {
-	right: 50px !important;
+	right: 74px !important;
 	left: auto;
 	bottom: 1rem;
 }
@@ -4990,7 +5002,7 @@ a.pswp__share--download:hover {
 
 .home-gallery .slick-prev:before, .home-gallery .slick-next:before {
 	font-family: 'bootstrap-icons';
-	font-size: 20px;
+	font-size: 2.3rem;
 	line-height: 1;
 	opacity: .75;
 	color: white;
@@ -5031,8 +5043,8 @@ a.pswp__share--download:hover {
 	position: absolute;
 	top: 50%;
 	display: block;
-	width: 20px;
-	height: 20px;
+	width: 48px;
+	height: 48px;
 	padding: 0;
 	-webkit-transform: translate(0, -50%);
 	-ms-transform: translate(0, -50%);
@@ -5060,7 +5072,7 @@ a.pswp__share--download:hover {
 .cms-content .slick-prev:before,
 .cms-content .slick-next:before {
 	font-family: 'bootstrap-icons';
-	font-size: 20px;
+	font-size: 2.3rem;
 	line-height: 1;
 	opacity: .75;
 	color: #272727;
@@ -5113,7 +5125,7 @@ p{
 
 .content {
 	position: relative;
-	margin: 0
+	/*margin: 0*/
 }
 
 .content .imagelist-default img {
@@ -5124,7 +5136,6 @@ p{
 }
 
 .jumbotron {
-	/*background-image: url("../elegance/media/bg.jpg");*/
 	background-size: 100% 100%;
 	color: #b0bec5;
 	margin-bottom: 0;
@@ -5219,6 +5230,7 @@ img{
 .navbar .catalog-filter form{
 	display: flex;
 }
+
 /*---------------------------------- Footer ----------------------------------*/
 
 footer {
@@ -6303,7 +6315,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 .catalog-filter-price > h2,
 .catalog-filter-supplier > h2 {
 	padding: .5em .75em ;
-	text-align: left;
+	text-align: center;
 }
 
 @media (min-width:768px) {
@@ -6311,7 +6323,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
 		background-color: #FFF;
 		background-color: var(--ai-bg-alt, #FFF);
-		margin: 0;
 	}
 
 	.catalog-filter-attribute .attribute-lists,
@@ -6357,9 +6368,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 /*--------------------------- Attribute Filter -------------------------------*/
 
-.catalog-filter-attribute .attribute-lists, .catalog-filter-supplier .supplier-lists, .catalog-filter-price .price-lists {
-	display: block;
-}
+
 
 .catalog-filter-attribute legend {
 	border: none;
@@ -6379,6 +6388,9 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.catalog-filter-attribute fieldset {
 		width: 100%;
 		min-width: 0;
+	}
+	.catalog-filter-attribute .attribute-lists, .catalog-filter-supplier .supplier-lists, .catalog-filter-price .price-lists {
+		display: block;
 	}
 
 }
@@ -6432,7 +6444,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 .shop-tools .catalog-filter .catalog-filter-price,
 .shop-tools .catalog-filter .catalog-filter-supplier,
 .shop-tools .catalog-filter .catalog-filter-attribute {
-	display: block;
+	/*display: block;*/
 	width: 100%;
 	max-width: 100%;
 	border: 1px solid #efefef;
@@ -6578,6 +6590,32 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 .aimeos.cms-page h2 {
 	font-size: 150%;
 	text-align: center;
+	position: relative;
+	padding-bottom: .25rem;
+}
+
+.aimeos.cms-page .container > h2:before{
+	content: "";
+	position: absolute;
+	width: 298px;
+	height: 1px;
+	border-bottom: 1px solid #e4e4e4;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.aimeos.cms-page .container > h2:after{
+	content: "";
+	position: absolute;
+	width: 150px;
+	height: 1px;
+	border-bottom: 1px solid #1f1f1f;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0 auto;
 }
 
 .aimeos.cms-page h3 {
