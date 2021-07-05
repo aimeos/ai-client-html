@@ -73,8 +73,8 @@ body{
 	margin-top: calc(7em + 70px);
 }
 
-.aimeos .catalog-home{
-	margin-top: calc(-7em + 70px);
+.aimeos.catalog-home{
+	margin-top: calc(-7em - 70px);
 }
 
 .bi {
