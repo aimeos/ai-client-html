@@ -1740,6 +1740,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	padding: 1em .25em;
 	letter-spacing: 1.5px;
 	margin: 0;
+	text-align: center;
 }
 
 .catalog-list-head .long,
@@ -2119,16 +2120,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	font-size: 100%;
 	font-weight: bold;
 }
+
 .price-item.default .value {
 	font-size: 140%;
 	font-weight: 700;
 }
 
-
-.shop-tools .pinned-item .price-item .rebatepercent,
-.shop-tools .seen-item .price-item .rebatepercent{
-	font-size: 80%;
-}
 .catalog-detail-basket .price-item:first-of-type {
 	display: block;
 	cursor: pointer;
@@ -6382,10 +6379,12 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 @media screen and (min-width: 992px) {
+	
 	.catalog-filter-attribute fieldset {
 		width: 100%;
 		min-width: 0;
 	}
+	
 	.catalog-filter-attribute .attribute-lists, .catalog-filter-supplier .supplier-lists, .catalog-filter-price .price-lists {
 		display: block;
 	}
@@ -6401,12 +6400,15 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 /*----------------------------- Price Filter ---------------------------------*/
+
 .catalog-filter-price .price-high, .catalog-filter-price .price-low{
 	font-size: 80%;
 	margin-bottom: 0;
 	width: 8rem;
 }
+
 @media screen and (min-width: 992px) {
+	
 	.catalog-filter-price .price-high, .catalog-filter-price .price-low{
 		width: 4rem;
 	}
@@ -6449,6 +6451,23 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 /*--------------------- Catalog Session List Page  ---------------------------*/
 
+	.shop-tools .catalog-session-pinned > h2,
+	.shop-tools .catalog-session-seen > h2 {
+		font-size: 100%;
+		margin-bottom: 0rem;
+		text-align: start;
+		padding: .5em .75em;
+		letter-spacing: 1.5px;
+	}
+	
+	.shop-tools:nth-child(1){
+		margin-top: 1rem;
+	}
+	
+	.shop-tools .catalog-session{
+		padding-top: 0;
+	}
+
 @media screen and (min-width: 992px) {
 
 	.shop-tools .catalog-session-seen .name,
@@ -6461,10 +6480,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.shop-tools .catalog-session-pinned > h2,
 	.shop-tools .catalog-session-seen > h2 {
 		font-size: 130%;
-		margin-bottom: 0rem;
-		text-align: start;
-		padding: .5em .75em;
-		letter-spacing: 1.5px;
 	}
 
 	.shop-tools .pinned-item .price-item.default .value,
