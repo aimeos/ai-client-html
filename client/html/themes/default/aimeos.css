@@ -6513,6 +6513,10 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		margin: 0;
 		text-align: start;
 	}
+	
+	.shop-tools .aimeos .price-item .rebatepercent {
+		position: relative;
+	}
 
 	/*pinned*/
 
