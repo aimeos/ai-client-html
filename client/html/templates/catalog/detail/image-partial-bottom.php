@@ -49,7 +49,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 	--><div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 		<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
-			<div id="image-<?= $enc->attr( $id ) ?>" class="media-item">
+			<div class="media-item">
 				<?= $this->image( $mediaItem ) ?>
 			</div>
 		<?php endforeach ?>

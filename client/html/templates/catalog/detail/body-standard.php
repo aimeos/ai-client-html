@@ -308,6 +308,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 											min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
 											step="<?= $this->detailProductItem->getScale() ?>" maxlength="10"
 											value="<?= $this->detailProductItem->getScale() ?>" required="required"
+											title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
 										>
 									<?php endif ?>
 									<button class="btn btn-primary btn-lg btn-action" type="submit" value="" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>>

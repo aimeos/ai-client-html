@@ -190,7 +190,7 @@ $enc = $this->encoder();
 	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'custom' ) as $id => $attribute ) : $key = $attribute->getType() . '-' . $attribute->getCode() ?>
 
 		<li class="select-item <?= $enc->attr( $key ) ?>">
-			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ) ?></label>
+			<label for="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $key . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
