@@ -162,7 +162,6 @@ body > .content {
 }
 .aimeos .btn {
 	width: 12em;
-	font-weight: bold;
 	vertical-align: top;
 	border-radius: 0;
 	margin: auto;
@@ -419,8 +418,8 @@ body > .content {
 }
 
 .aimeos .media-item {
-	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: #F6f6F6;
+	background-color: var(--ai-bg-light, #F6f6F6);
 }
 
 .aimeos .pagination {
@@ -1491,15 +1490,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* ratings */
 .aimeos .product .rating {
-	margin: 1.25em 0.5em;
+	margin: 1.25em 0;
 	height: 0.8px;
 }
 
 .aimeos .product .stars {
 	color: #555;
 	color: var(--ai-secondary, #555);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
 	position: relative;
 	padding: 0 0.5em;
 	top: -0.7em;
@@ -1636,7 +1633,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	overflow: hidden;
 	color: #555;
 	color: var(--ai-secondary, #555);
-	margin: 0.5em;
+	margin: 0.5em 0;
+	padding: 0 1em;
 	letter-spacing: 1.5px;
 }
 
@@ -1650,7 +1648,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	font-weight: normal;
 	font-size: 100%;
 	overflow: hidden;
-	text-align: end;
+	text-align: right;
 	height: 2em;
 	margin: 0;
 	margin-bottom: .5rem;
@@ -1665,7 +1663,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 /* product offer part */
 .catalog-list .offer {
 	display: flex;
-	margin: 0 0.5em;
+	margin: 0 1em;
 }
 
 /* price list */
@@ -1807,7 +1805,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	border-left: solid 1px #555;
 	border-left-color: var(--ai-secondary, #555);
 	border-bottom: none;
-	text-align: end;
+	text-align: right;
 	width: 481px;
 }
 
@@ -1876,8 +1874,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Product images */
 .catalog-detail-image {
-	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: #F6f6F6;
+	background-color: var(--ai-bg-light, #F6f6F6);
 	margin-bottom: 2em;
 }
 
@@ -1885,8 +1883,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
-	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: #F6f6F6;
+	background-color: var(--ai-bg-alt, #F6f6F6);
 	display: inline-block;
 	position: relative;
 	overflow: hidden;
@@ -1913,8 +1911,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-image .item {
 	background-repeat: no-repeat;
 	background-position: center;
-	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: #F6f6F6;
+	background-color: var(--ai-bg-alt, #F6f6F6);
 	background-size: contain;
 }
 
@@ -2643,8 +2641,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-bundle .media-list,
 .catalog-detail-suggest .media-list,
 .catalog-session-seen .media-list {
-	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: #F6f6F6;
+	background-color: var(--ai-bg-alt, #F6f6F6);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
@@ -5586,7 +5584,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 .basket-mini-offscreen.zeynep{
-		background-color: #FFF;
+	background-color: #FFF;
 	background-color: var(--ai-bg-alt, #FFF);
 }
 

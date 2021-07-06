@@ -2125,7 +2125,6 @@ jQuery(function() {
 	 */
 	var $dropdowns = $('.top-item'); // Specifying the element is faster for older browsers
 
-        //Uncomment below if Megamenu
 	$('.has-submenu > .top-cat-item').on('click', function(t){
 		t.preventDefault(), t.stopPropagation();
 	});
@@ -2241,124 +2240,89 @@ jQuery(function() {
 	});
 
 
+	//SLICK SLIDERS
 
-	var maxLength = 250;
-	$(".content.description > .long.item").each(function(){
-		var myStr = $(this).text();
-		if($.trim(myStr).length > maxLength){
-			var newStr = myStr.substring(0, maxLength);
-			var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
-			$(this).empty().html(newStr);
-			$(this).append(' <br><a href="javascript:void(0);" class="read-more font-weight-bold">Mehr lesen...</a>');
-			$(this).append('<span class="more-text">' + removedStr + '</span>');
-		}
-	});
-	$(".read-more").click(function(){
-		$(this).siblings(".more-text").contents().unwrap();
-		$(this).remove();
+	$('.product .image-single').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		fade: false,
+		asNavFor: '.product .thumbs',
 	});
 
-//        $().alert('close')
-
-       	$('.product .image-thumbs .item').on('click', function(t){
-//		t.preventDefault();
-//                t.stopPropagation();
+	$('.product .thumbs').slick({
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		asNavFor: '.product .image-single',
+		dots: false,
+		arrows: false,
+		focusOnSelect: true
 	});
 
-//SLICK SLIDERS
+	// Remove active class from all thumbnail slides
+	$('.product .thumbs').removeClass('slick-active');
 
- $('.product .image-single').slick({
- 	slidesToShow: 1,
- 	slidesToScroll: 1,
- 	arrows: false,
- 	fade: false,
- 	asNavFor: '.product .thumbs',
- });
+	// Set active class to first thumbnail slides
+	$('.product .thumbs').eq(0).addClass('slick-active');
 
- $('.product .thumbs').slick({
- 	slidesToShow: 4,
- 	slidesToScroll: 1,
- 	asNavFor: '.product .image-single',
- 	dots: false,
-        arrows: false,
- 	focusOnSelect: true
- });
- // Remove active class from all thumbnail slides
- $('.product .thumbs').removeClass('slick-active');
-
- // Set active class to first thumbnail slides
- $('.product .thumbs').eq(0).addClass('slick-active');
-
- // On before slide change match active thumbnail to current slide
- $('.slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
- 	var mySlideNumber = nextSlide;
- 	$('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
- 	$('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
-});
+	// On before slide change match active thumbnail to current slide
+	$('.slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+		var mySlideNumber = nextSlide;
+		$('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+		$('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+	});
 
 
-$("#select-4-color .select-entry").on("click", (function(){
-//    e.preventDefault();
-    var slideIndex = $(this).index();
-    //console.log(slideIndex);
-    $( '.product .image-single' ).slick('slickGoTo', slideIndex, false);
-}));
+	$("#select-4-color .select-entry").on("click", (function(){
+		var slideIndex = $(this).index();
+		$( '.product .image-single' ).slick('slickGoTo', slideIndex, false);
+	}));
 
 
-
-    $('.home-gallery').slick({
-        dots: false,
-//            fade: true,
-//            autoplay: true,
-        adaptiveHeight: true
-//            autoplaySpeed: 5000
-    });
+	$('.home-gallery').slick({
+		dots: false,
+		adaptiveHeight: true
+	});
 
 
+	$('.cms-content .catalog-list .list-items').slick({
+		infinite: true,
+		speed: 300,
+		slidesToShow: 4,
+		slidesToScroll: 4,
+		arrows: true,
+		dots: false,
+		responsive: [{
+			breakpoint: 1200,
+			settings: {
+				slidesToShow: 4,
+				slidesToScroll: 4,
+				infinite: true
+			}
+		}, {
+			breakpoint: 992,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3,
+				infinite: true
+			}
+		}, {
+			breakpoint: 768,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2,
+				infinite: true
+			}
+		}, {
+			breakpoint: 576,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				infinite: true
 
-$('.cms-content .catalog-list .list-items').slick({
-      infinite: true,
-      speed: 300,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      arrows: true,
-      dots: false,
-      responsive: [
-              {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true
-          }
-        },
-        {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: true
-          }
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true
-          }
-        },
-        {
-          breakpoint: 576,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true
-
-          }
-        }
-      ]
-    });
+			}
+		}]
+	});
 
 	Aimeos.loadImages();
 });
