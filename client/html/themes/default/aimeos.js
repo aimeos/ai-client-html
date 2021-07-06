@@ -129,41 +129,51 @@ Aimeos = {
 	 */
 	loadImages: function() {
 
+		var render = function(element) {
+
+			if(element.tagName === 'IMG') {
+				element.setAttribute("srcset", element.getAttribute("data-srcset"));
+				element.setAttribute("src", element.getAttribute("data-src"));
+			} else if(element.classList.contains('background')) {
+				var url = '';
+				var srcset = element.getAttribute("data-background");
+
+				srcset && srcset.split(',').every(function(str) {
+					var parts = str.trim().split(' ');
+
+					if(parseInt((parts[1] || '').replace('w', '')) < window.innerWidth) {
+						return true;
+					}
+					url = parts[0];
+					return false;
+				});
+
+				element.style.backgroundImage = "url('" + url + "')";
+			}
+
+			element.classList.remove("lazy-image");
+		};
+
+
 		if('IntersectionObserver' in window) {
 
 			let callback = function(entries, observer) {
 				for(let entry of entries) {
 					if(entry.isIntersecting) {
 						observer.unobserve(entry.target);
-						var element = entry.target;
-
-						if(element.tagName === 'IMG') {
-							element.setAttribute("srcset", element.getAttribute("data-srcset"));
-							element.setAttribute("src", element.getAttribute("data-src"));
-						} else if(element.classList.contains('background')) {
-							var url = '';
-							var srcset = element.getAttribute("data-background");
-
-							srcset && srcset.split(',').every(function(str) {
-								var parts = str.trim().split(' ');
-
-								if(parseInt((parts[1] || '').replace('w', '')) < window.innerWidth) {
-									return true;
-								}
-								url = parts[0];
-								return false;
-							});
-
-							element.style.backgroundImage = "url('" + url + "')";
-						}
-
-						element.classList.remove("lazy-image");
+						render(entry.target);
 					}
 				};
 			};
 
 			document.querySelectorAll(".aimeos .lazy-image").forEach(function(el) {
 				(new IntersectionObserver(callback, {rootMargin: '240px', threshold: 0})).observe(el);
+			});
+
+		} else {
+
+			document.querySelectorAll(".aimeos .lazy-image").forEach(function(el) {
+				render(el);
 			});
 		}
 	},
@@ -2031,8 +2041,6 @@ document.createElement("article");
 $("html").removeClass("no-js");
 
 
-Aimeos.loadImages();
-
 
 jQuery(document).ready(function($) {
 
@@ -2069,6 +2077,10 @@ jQuery(function() {
 	/**
 	 * Menu transition
 	 */
+	if ($(window).scrollTop() > 0) {
+		$(".navbar").addClass("navbar-scroll");
+	}
+
 	$(window).on("scroll", function() {
 		var scroll = $(window).scrollTop();
 
@@ -2188,14 +2200,6 @@ jQuery(function() {
 		}
 	})
 
-
-	/**
-	 * Shows Image in Megamenu
-	 */
-
-//	if ($(".catalog-filter-tree .media-item").length) {
-//		$(".media-item").parent().parent().parent().addClass('shows-img');
-//	}
 
 	/**
 	 * Offscreen
@@ -2356,37 +2360,5 @@ $('.cms-content .catalog-list .list-items').slick({
       ]
     });
 
-
-
-    /* Slick needs no get Reinitialized on window Resize after it was destroyed */
-//    $(window).on('load resize orientationchange', function() {
-//        $('.home-list .catalog-list .list-items').each(function(){
-//            var $carousel = $(this);
-//            /* Initializes a slick carousel only on mobile screens */
-//            // slick on mobile
-//            if ($(window).width() > 991) {
-//                if ($carousel.hasClass('slick-initialized')) {
-//                    $carousel.slick('unslick');
-//                }
-//            }
-//            else{
-//                if (!$carousel.hasClass('slick-initialized')) {
-//                    $carousel.slick({
-//                        slidesToShow: 1,
-//                        slidesToScroll: 1,
-//                        mobileFirst: true,
-//                        responsive: [{
-//                            breakpoint: 576,
-//                            settings: {
-//                            slidesToShow: 2,
-//                            slidesToScroll: 1,
-//                            infinite: true,
-//                            mobileFirst: true
-//                          }
-//                        }]
-//                    });
-//                }
-//            }
-//        });
-//    });
+	Aimeos.loadImages();
 });
