@@ -58,18 +58,13 @@ $textStock = array(
 
 
 $result = [];
-$stockItemsByProducts = $this->get( 'stockItemsByProducts', [] );
 
 
-foreach( $this->get( 'stockProductIds', [] ) as $prodId )
+foreach( (array) $this->get( 'stockItemsByProducts', [] ) as $prodId => $list )
 {
-	if( !isset( $stockItemsByProducts[$prodId] ) ) {
-		continue;
-	}
-
 	$stocks = array( 'stock-unlimited' => '', 'stock-high' => '', 'stock-low' => '', 'stock-out' => '' );
 
-	foreach( (array) $stockItemsByProducts[$prodId] as $item )
+	foreach( $list as $item )
 	{
 		$stockType = 'stocktype:' . $item->getType();
 
