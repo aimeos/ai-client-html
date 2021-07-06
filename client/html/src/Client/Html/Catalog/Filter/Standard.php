@@ -289,7 +289,7 @@ class Standard
 
 			try
 			{
-				$html = '';
+				$html = ' ';
 
 				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
@@ -305,8 +305,6 @@ class Standard
 				if( $args->isEmpty() ) {
 					$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 				}
-
-				return $html;
 			}
 			catch( \Exception $e )
 			{
@@ -318,6 +316,7 @@ class Standard
 			$html = $this->modifyHeader( $html, $uid );
 		}
 
+		self::$headerSingleton = true;
 		return $html;
 	}
 
@@ -608,7 +607,6 @@ class Standard
 
 			$view->filterParams = $params;
 			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $conf );
-			self::$headerSingleton = true;
 		}
 
 		return parent::addData( $view, $tags, $expire );
