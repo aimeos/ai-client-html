@@ -1542,6 +1542,17 @@ AimeosCatalogFilter = {
 			$(".attribute-lists", ev.delegateTarget).slideToggle();
 		});
 	},
+	
+	/**
+	 * Toggles the Last Seen filters if hover isn't available
+	 */
+	
+	setupLastSeenToggle: function() {
+
+		$(".catalog-session-seen").on("click", "h2", function(ev) {
+			$(".seen-items", ev.delegateTarget).slideToggle();
+		});
+	},
 
 
 	/**
@@ -1555,7 +1566,7 @@ AimeosCatalogFilter = {
 			$(".attr-list", ev.delegateTarget).slideToggle();
 		});
 	},
-
+	
 
 	/**
 	 * Hides the attribute filter if no products are available for
@@ -1668,6 +1679,7 @@ AimeosCatalogFilter = {
 		this.setupPriceToggle();
 		this.setupSupplierToggle();
 		this.setupAttributeToggle();
+		this.setupLastSeenToggle();
 		this.setupAttributeListsEmtpy();
 		this.setupAttributeListsToggle();
 		this.setupListFadeout();

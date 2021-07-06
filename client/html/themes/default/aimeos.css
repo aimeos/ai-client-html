@@ -6465,8 +6465,16 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.shop-tools .catalog-session{
 		padding-top: 0;
 	}
+	
+	.shop-tools .catalog-session-seen .seen-items {
+		display: none;
+	}
 
 @media screen and (min-width: 992px) {
+	
+	.shop-tools .catalog-session-seen .seen-items {
+		display: block;
+	}
 
 	.shop-tools .catalog-session-seen .name,
 	.shop-tools .catalog-session-pinned .name {
