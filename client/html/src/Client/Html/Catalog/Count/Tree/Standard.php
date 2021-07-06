@@ -232,7 +232,7 @@ class Standard
 
 			if( ( $catId = $view->param( 'f_catid', $root->getId() ) ) != null && $catId != $root->getId() ) {
 				$cntl->visible( $cntl->getPath( $catId )->keys()->toArray() );
-			} elseif( $level !== \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
+			} elseif( $level != \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
 				$cntl->visible( [$root->getId()] );
 			}
 
