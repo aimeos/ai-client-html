@@ -6473,7 +6473,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.shop-tools .catalog-session-seen .name,
 	.shop-tools .catalog-session-pinned .name {
 		margin: 0 0 .25rem;
-		font-size: 100%;
+		font-size: 80%;
 		text-align: start;
 	}
 
