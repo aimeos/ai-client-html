@@ -92,16 +92,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'actions-button-watch', $output );
 		$this->assertStringContainsString( 'actions-button-favorite', $output );
 
-		$this->assertStringContainsString( '<div class="catalog-detail-additional">', $output );
-		$this->assertStringContainsString( '<h2 class="header description">', $output );
+		$this->assertStringContainsString( 'catalog-detail-additional', $output );
 
-		$this->assertStringContainsString( '<h2 class="header attributes">', $output );
 		$this->assertStringContainsString( '<td class="name">size</td>', $output );
 		$this->assertStringContainsString( '<span class="attr-name">XS</span>', $output );
 		$this->assertStringContainsString( '<td class="name">package-height</td>', $output );
 		$this->assertStringContainsString( '<td class="value">10.0</td>', $output );
 
-		$this->assertStringContainsString( '<h2 class="header downloads">', $output );
 		$this->assertStringContainsString( '<span class="media-name">Example image</span>', $output );
 
 		$this->assertStringContainsString( '<section class="catalog-detail-suggest">', $output );
