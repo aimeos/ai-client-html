@@ -361,49 +361,38 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 			</div>
 
 			<div class="col-sm-12">
-
-			    <nav>
-				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<nav class="nav nav-tabs" id="nav-tab" role="tablist">
 
 					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
-
-					<a class="nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">
-						<?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?>
-					</a>
-
+						<a class="nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">
+							<?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?>
+						</a>
 					<?php endif ?>
 
 					<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
-
-					<a class="nav-link nav-attribute" id="nav-attribute-tab" data-toggle="tab" href="#nav-attribute" type="button" role="tab" aria-controls="nav-attribute" aria-selected="true">
-						<?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?>
-					</a>
-
+						<a class="nav-link nav-attribute" id="nav-attribute-tab" data-toggle="tab" href="#nav-attribute" type="button" role="tab" aria-controls="nav-attribute">
+							<?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?>
+						</a>
 					<?php endif ?>
 
-			    		<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
-
-					<a class="nav-link nav-characteristics" id="nav-characteristics-tab" data-toggle="tab" href="#nav-characteristics" type="button" role="tab" aria-controls="nav-characteristics" aria-selected="true">
+					<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
+						<a class="nav-link nav-characteristics" id="nav-characteristics-tab" data-toggle="tab" href="#nav-characteristics" type="button" role="tab" aria-controls="nav-characteristics">
 							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?></h2>
-					</a>
-
+						</a>
 					<?php endif ?>
 
-					<a class="nav-link nav-review" id="nav-review-tab" data-toggle="tab" href="#nav-review" type="button" role="tab" aria-controls="nav-reviews" aria-selected="true">
-							<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
-							<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
+					<a class="nav-link nav-review" id="nav-review-tab" data-toggle="tab" href="#nav-review" type="button" role="tab" aria-controls="nav-review">
+						<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
+						<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
 					</a>
-				</div>
-			    </nav>
+				</nav>
 
 			    <div class="tab-content catalog-detail-additional" id="nav-tabContent">
 
-				<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+					<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
 
-					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
+						<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
 
-						<div class="additional-box">
-							<h2 class="header description"><?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?></h2>
 							<div class="content description">
 
 								<?php foreach( $textItems as $textItem ) : ?>
@@ -411,17 +400,15 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<?php endforeach ?>
 
 							</div>
-						</div>
 
-					<?php endif ?>
+						<?php endif ?>
 
-				</div>
+					</div>
 
-				<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab">
+					<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab">
 
-					<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
+						<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
-						<div class="additional-box">
 							<div class="content attributes">
 								<table class="attributes">
 									<tbody>
@@ -474,14 +461,13 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									</tbody>
 								</table>
 							</div>
-						</div>
 
-					<?php endif ?>
-				</div>
-				<div class="tab-pane fade" id="nav-characteristics" role="tabpanel" aria-labelledby="nav-characteristics-tab">
-					<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
+						<?php endif ?>
+					</div>
 
-						<div class="additional-box">
+					<div class="tab-pane fade" id="nav-characteristics" role="tabpanel" aria-labelledby="nav-characteristics-tab">
+						<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
+
 							<ul class="content downloads">
 
 								<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
@@ -500,13 +486,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<?php endforeach ?>
 
 							</ul>
-						</div>
 
-					<?php endif ?>
-				</div>
+						<?php endif ?>
+					</div>
 
-				<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
-					<div class="additional-box">
+					<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
 						<div class="content reviews row" data-productid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 							<div class="col-md-4 rating-list">
 								<div class="rating-numbers">
@@ -569,8 +553,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 							</div>
 						</div>
 					</div>
-
-				</div>
 				</div>
 
 
