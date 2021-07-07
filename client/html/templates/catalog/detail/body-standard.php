@@ -359,12 +359,12 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				) ?>
 
 			</div>
-		    
+
 			<div class="col-sm-12">
-			    
+
 			    <nav>
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				    
+
 					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
 
 					<a class="nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">
@@ -372,7 +372,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</a>
 
 					<?php endif ?>
-				    
+
 					<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
 					<a class="nav-link nav-attribute" id="nav-attribute-tab" data-toggle="tab" href="#nav-attribute" type="button" role="tab" aria-controls="nav-attribute" aria-selected="true">
@@ -380,7 +380,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</a>
 
 					<?php endif ?>
-				    
+
 			    		<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 
 					<a class="nav-link nav-characteristics" id="nav-characteristics-tab" data-toggle="tab" href="#nav-characteristics" type="button" role="tab" aria-controls="nav-characteristics" aria-selected="true">
@@ -388,16 +388,16 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</a>
 
 					<?php endif ?>
-				    
+
 					<a class="nav-link nav-review" id="nav-review-tab" data-toggle="tab" href="#nav-review" type="button" role="tab" aria-controls="nav-reviews" aria-selected="true">
 							<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
 							<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
 					</a>
 				</div>
 			    </nav>
-			    
+
 			    <div class="tab-content catalog-detail-additional" id="nav-tabContent">
-			    
+
 				<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
 
 					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
@@ -414,9 +414,9 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						</div>
 
 					<?php endif ?>
-				    
+
 				</div>
-				
+
 				<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab">
 
 					<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
@@ -504,7 +504,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 					<?php endif ?>
 				</div>
-				
+
 				<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
 					<div class="additional-box">
 						<div class="content reviews row" data-productid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
@@ -573,7 +573,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				</div>
 				</div>
 
-		    
+
 				<?php if( $this->detailProductItem->getType() === 'bundle' && !( $products = $this->detailProductItem->getRefItems( 'product', null, 'default' ) )->isEmpty() ) : ?>
 
 					<section class="catalog-detail-bundle">
