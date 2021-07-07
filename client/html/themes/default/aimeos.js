@@ -2307,14 +2307,14 @@ jQuery(function() {
 		responsive: [{
 			breakpoint: 1200,
 			settings: {
-				slidesToShow: 4,
+				slidesToShow: 3,
 				slidesToScroll: 4,
 				infinite: true
 			}
 		}, {
 			breakpoint: 992,
 			settings: {
-				slidesToShow: 3,
+				slidesToShow: 2,
 				slidesToScroll: 3,
 				infinite: true
 			}

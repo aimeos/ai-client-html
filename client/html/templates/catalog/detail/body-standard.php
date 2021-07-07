@@ -359,26 +359,46 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				) ?>
 
 			</div>
-
-
+		    
 			<div class="col-sm-12">
+			    
+			    <nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				    
+					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
 
-				<?php if( $this->detailProductItem->getType() === 'bundle' && !( $products = $this->detailProductItem->getRefItems( 'product', null, 'default' ) )->isEmpty() ) : ?>
+					<a class="nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">
+						<?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?>
+					</a>
 
-					<section class="catalog-detail-bundle">
-						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ) ?></h2>
+					<?php endif ?>
+				    
+					<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
-						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-							['products' => $products, 'itemprop' => 'isRelatedTo']
-						) ?>
+					<a class="nav-link nav-attribute" id="nav-attribute-tab" data-toggle="tab" href="#nav-attribute" type="button" role="tab" aria-controls="nav-attribute" aria-selected="true">
+						<?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?>
+					</a>
 
-					</section>
+					<?php endif ?>
+				    
+			    		<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 
-				<?php endif ?>
+					<a class="nav-link nav-characteristics" id="nav-characteristics-tab" data-toggle="tab" href="#nav-characteristics" type="button" role="tab" aria-controls="nav-characteristics" aria-selected="true">
+							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?></h2>
+					</a>
 
-
-				<div class="catalog-detail-additional">
+					<?php endif ?>
+				    
+					<a class="nav-link nav-review" id="nav-review-tab" data-toggle="tab" href="#nav-review" type="button" role="tab" aria-controls="nav-reviews" aria-selected="true">
+							<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
+							<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
+					</a>
+				</div>
+			    </nav>
+			    
+			    <div class="tab-content catalog-detail-additional" id="nav-tabContent">
+			    
+				<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
 
 					<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
 
@@ -394,12 +414,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						</div>
 
 					<?php endif ?>
-
+				    
+				</div>
+				
+				<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab">
 
 					<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
 						<div class="additional-box">
-							<h2 class="header attributes"><?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?></h2>
 							<div class="content attributes">
 								<table class="attributes">
 									<tbody>
@@ -455,12 +477,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						</div>
 
 					<?php endif ?>
-
-
+				</div>
+				<div class="tab-pane fade" id="nav-characteristics" role="tabpanel" aria-labelledby="nav-characteristics-tab">
 					<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 
 						<div class="additional-box">
-							<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?></h2>
 							<ul class="content downloads">
 
 								<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
@@ -482,13 +503,10 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						</div>
 
 					<?php endif ?>
-
-
+				</div>
+				
+				<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
 					<div class="additional-box">
-						<h2 class="header reviews">
-							<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
-							<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
-						</h2>
 						<div class="content reviews row" data-productid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 							<div class="col-md-4 rating-list">
 								<div class="rating-numbers">
@@ -553,6 +571,22 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</div>
 
 				</div>
+				</div>
+
+		    
+				<?php if( $this->detailProductItem->getType() === 'bundle' && !( $products = $this->detailProductItem->getRefItems( 'product', null, 'default' ) )->isEmpty() ) : ?>
+
+					<section class="catalog-detail-bundle">
+						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ) ?></h2>
+
+						<?= $this->partial(
+							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
+							['products' => $products, 'itemprop' => 'isRelatedTo']
+						) ?>
+
+					</section>
+
+				<?php endif ?>
 
 
 				<?php if( !( $products = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) )->isEmpty() ) : ?>
@@ -587,7 +621,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</section>
 
 				<?php endif ?>
-
 
 				<?php if( !( $supplierItems = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : ?>
 					<div class="catalog-detail-supplier">
