@@ -1328,7 +1328,7 @@ AimeosCatalog = {
 	 */
 	setupVariantImages: function() {
 
-		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", function(event) {
+		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", function() {
 
 			var elem = $(this);
 			var type = elem.data("type");
@@ -1337,8 +1337,8 @@ AimeosCatalog = {
 			elem.parents(".product").find(".image-single .item").each( function(ev) {
 
 				if( $(this).data("variant-" + type) == value ) {
-					window.location.hash = $(this).parents(".media-item").attr("id");
-					return false;
+					var idx = $(this).parent().data('slick-index');
+					$('.product .image-single').slick('slickGoTo', idx, false);
 				}
 			});
 		});
@@ -1539,11 +1539,11 @@ AimeosCatalogFilter = {
 			$(".attribute-lists", ev.delegateTarget).slideToggle();
 		});
 	},
-	
+
 	/**
 	 * Toggles the Last Seen filters if hover isn't available
 	 */
-	
+
 	setupLastSeenToggle: function() {
 
 		$(".catalog-session-seen").on("click", "h2", function(ev) {
@@ -1563,7 +1563,7 @@ AimeosCatalogFilter = {
 			$(".attr-list", ev.delegateTarget).slideToggle();
 		});
 	},
-	
+
 
 	/**
 	 * Hides the attribute filter if no products are available for
@@ -2280,12 +2280,6 @@ jQuery(function() {
 		$('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
 		$('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
 	});
-
-
-	$("#select-4-color .select-entry").on("click", (function(){
-		var slideIndex = $(this).index();
-		$( '.product .image-single' ).slick('slickGoTo', slideIndex, false);
-	}));
 
 
 	$('.home-gallery').slick({
