@@ -1219,6 +1219,7 @@ AimeosCatalog = {
 
 		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", function(event) {
 
+			var stock = false;
 			var map = {}, len = 0;
 			var attrDeps = $(event.delegateTarget).data("attrdeps") || {}; // {"<attrid>":["prodid",...],...}
 
@@ -1265,12 +1266,8 @@ AimeosCatalog = {
 					$(".articleitem", parent).removeClass("price-actual");
 					newPrice.addClass("price-actual");
 
-					if( parent.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out") ) {
-						$(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
-					} else {
-						if(AimeosCatalog.validateVariant()) {
-							$(".addbasket .btn-action", parent).removeClass("btn-disabled").removeAttr("disabled");
-						}
+					if( !(parent.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out")) ) {
+						stock = true;
 					}
 
 					$(".catalog-detail-additional .subproduct-actual").removeClass("subproduct-actual");
@@ -1278,10 +1275,12 @@ AimeosCatalog = {
 				}
 			}
 
+			var parent = $(this).parents(".catalog-detail-basket, .catalog-list .product");
+
 			if(!AimeosCatalog.validateVariant()) {
-				var parent = $(this).parents(".catalog-detail-basket, .catalog-list .product");
 				$(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
-				$(".articleitem", parent).removeClass("stock-actual");
+			} else if(stock) {
+				$(".addbasket .btn-action", parent).removeClass("btn-disabled").removeAttr("disabled");
 			}
 		});
 	},
@@ -1315,11 +1314,9 @@ AimeosCatalog = {
 		var result = true;
 
 		$(".selection .select-item").each( function() {
-
-			if( $(".select-list", this).val() === '' || $(".select-option:checked", this).length <= 0 ) {
+			if( $(".select-list", this).val() === '' && $(".select-option:checked", this).length <= 0 ) {
 				result = false;
 			}
-
 		});
 
 		return result;
