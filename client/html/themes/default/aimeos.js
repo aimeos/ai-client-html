@@ -2250,19 +2250,22 @@ jQuery(function() {
 
 
 	//SLICK SLIDERS
+	var rtl = $('html').attr("dir") == 'rtl';
 
 	$('.product .image-single').slick({
+		asNavFor: '.product .thumbs',
 		slidesToShow: 1,
 		slidesToScroll: 1,
-		arrows: false,
+		rtl: rtl,
 		fade: false,
-		asNavFor: '.product .thumbs',
+		arrows: false,
 	});
 
 	$('.product .thumbs').slick({
+		asNavFor: '.product .image-single',
 		slidesToShow: 4,
 		slidesToScroll: 1,
-		asNavFor: '.product .image-single',
+		rtl: rtl,
 		dots: false,
 		arrows: false,
 		focusOnSelect: true
