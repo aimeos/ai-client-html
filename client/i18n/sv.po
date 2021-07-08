@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 15:51+0200\n"
-"PO-Revision-Date: 2021-05-27 13:51+0000\n"
+"POT-Creation-Date: 2021-07-06 09:42+0200\n"
+"PO-Revision-Date: 2021-07-06 07:44+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Swedish (http://www.transifex.com/aimeos/aimeos-core/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -662,9 +662,6 @@ msgstr ""
 msgid "Products you might be also interested in"
 msgstr ""
 
-msgid "Profile"
-msgstr ""
-
 msgid "Properties"
 msgstr ""
 
@@ -816,6 +813,9 @@ msgid "Supplier information"
 msgstr ""
 
 msgid "Suppliers"
+msgstr ""
+
+msgid "Take a look"
 msgstr ""
 
 msgid "Telephone"

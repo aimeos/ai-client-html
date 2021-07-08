@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Dimitri <doleiynyk@metaways.de>, 2013
+# Emiliya Adigozalova <emiliyaadigozalova@gmail.com>, 2021
 # Irina Fedulova <istartlin@gmail.com>, 2020
 # nsendetzky, 2014
 # Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 15:51+0200\n"
-"PO-Revision-Date: 2021-05-27 13:51+0000\n"
+"POT-Creation-Date: 2021-07-06 09:42+0200\n"
+"PO-Revision-Date: 2021-07-06 07:44+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -269,7 +270,7 @@ msgstr "Отсутствует HTML тип клиента"
 
 #, php-format
 msgid "Client path is empty"
-msgstr ""
+msgstr "Клиентский путь пуст"
 
 #, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
@@ -367,7 +368,7 @@ msgid "Details"
 msgstr "Информация"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Не хранить адрес"
 
 msgid "Downloads"
 msgstr "Скачиваемые материалы"
@@ -393,7 +394,7 @@ msgstr "Поля, помеченные звёздочкой (*) обязател
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
-msgstr ""
+msgstr "Файл \"%1$s\" не существует"
 
 msgid "Filter"
 msgstr "Фильтр"
@@ -408,7 +409,7 @@ msgid "Go"
 msgstr "Далее"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Вид Сетка"
 
 msgid "HH:mm"
 msgstr ""
@@ -496,16 +497,16 @@ msgid "Latest"
 msgstr "Конечный"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Как вы ввели"
 
 msgid "List view"
-msgstr ""
+msgstr "Вид списка"
 
 msgid "Login"
 msgstr "Вход"
 
 msgid "More reviews"
-msgstr ""
+msgstr "Больше отзывов"
 
 msgid "Name"
 msgstr "названию"
@@ -671,9 +672,6 @@ msgstr ""
 msgid "Products you might be also interested in"
 msgstr "Товары, которые могут быть Вам интересны"
 
-msgid "Profile"
-msgstr ""
-
 msgid "Properties"
 msgstr "Свойства"
 
@@ -684,10 +682,10 @@ msgid "Quantity"
 msgstr "Количество"
 
 msgid "Rating"
-msgstr ""
+msgstr "Оценка"
 
 msgid "Reference"
-msgstr ""
+msgstr "Рекомендация"
 
 msgid "Related"
 msgstr "Связанный"
@@ -808,7 +806,7 @@ msgid "Subscription interval"
 msgstr ""
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Товар по подписке"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
@@ -828,6 +826,9 @@ msgstr ""
 
 msgid "Suppliers"
 msgstr "Поставщики"
+
+msgid "Take a look"
+msgstr ""
 
 msgid "Telephone"
 msgstr "Телефон"
@@ -918,7 +919,7 @@ msgid ""
 msgstr "Подтверждение оплаты за заказ пока ещё не получено.\nКак только оплата будет подтверждена, будет сформировано письмо с извещением об этом."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "Платеж не обновился "
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -937,10 +938,10 @@ msgstr "Подписка на товар закончилась."
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Стоимость вашего ваучера %1$s"
+msgstr[1] "Стоимость ваших ваучеров %1$s "
+msgstr[2] "Стоимость ваших ваучеров %1$s "
+msgstr[3] "Стоимость ваших ваучеров %1$s "
 
 msgid "Three month"
 msgstr "Три месяца"
@@ -976,7 +977,7 @@ msgstr "Невозможно создать учётную запись для \
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Невозможно создать учётную запись \"%1$s\""
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
@@ -1045,10 +1046,10 @@ msgid "You are here:"
 msgstr "Вы здесь:"
 
 msgid "You can use your voucher any time in our online shop"
-msgstr ""
+msgstr "Вы можете использовать свой ваучер в любое время в нашем интернет-магазине"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Вы можете использовать свои ваучеры в любое время в нашем интернет-магазине"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Переход к следующему шагу"
