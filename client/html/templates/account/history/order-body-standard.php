@@ -22,7 +22,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 ?>
 <?php $this->block()->start( 'account/history/order' ) ?>
-<div class="account-history-order common-summary col-sm-12">
+<div class="account-history-order common-summary container-fluid">
 
 	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Order details' ), $enc::TRUST ) ?></h2>
 
