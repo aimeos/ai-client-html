@@ -52,6 +52,9 @@ body {
 	--ai-bg-alt: #FFFFFF;
 	--ai-secondary: #555;
 	--ai-light: #CCCCCC;
+	--ai-danger: #FF3300;
+	--ai-warning: #FFA500;
+	--ai-success: #006000;
 }
 
 body{
@@ -5039,15 +5042,18 @@ img{
 	right:1.5em;
 	text-decoration:none;
 	color:#eee;
-	background-color:orange;
+	background-color: #FFA500;
+	background-color: var(--ai-warning, #FFA500);
 	opacity:.7;
 	padding:.25em;
 	z-index:999
 }
 
 .back-to-top:hover{
-	background-color:orange;
-	color:#999
+	background-color: #FFA500;
+	background-color: var(--ai-warning, #FFA500);
+	color: #282828;
+	color: var(--ai-primary, #282828);
 }
 
 .border-bottom {
@@ -5435,7 +5441,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	position: absolute;
 	border-radius: 1rem;
 	top: -0.25rem;
-	background-color: orange;
+	background-color: #FFA500;
+	background-color: var(--ai-warning, #FFA500);
 	right: -0.5rem;
 }
 
@@ -6372,7 +6379,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	white-space: nowrap;
 	vertical-align: text-bottom;
 	border-radius: .25rem;
-	background-color: orange;
+	background-color: #FFA500;
+	background-color: var(--ai-warning, #FFA500);
 	color: #FFFFFF;
 	color: var(--ai-primary-alt, #FFFFFF);
 }
