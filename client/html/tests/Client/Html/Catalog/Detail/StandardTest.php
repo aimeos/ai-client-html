@@ -81,13 +81,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-detail"', $output );
-		$this->assertStringContainsString( '<div class="catalog-detail-basic">', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-basic', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-image', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-social">', $output );
 		$this->assertRegExp( '/.*facebook.*/', $output );
 
-		$this->assertStringContainsString( '<div class="catalog-actions">', $output );
+		$this->assertStringContainsString( '<div class="catalog-actions', $output );
 		$this->assertStringContainsString( 'actions-button-pin', $output );
 		$this->assertStringContainsString( 'actions-button-watch', $output );
 		$this->assertStringContainsString( 'actions-button-favorite', $output );
@@ -101,10 +101,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<span class="media-name">Example image</span>', $output );
 
-		$this->assertStringContainsString( '<section class="catalog-detail-suggest">', $output );
+		$this->assertStringContainsString( '<section class="catalog-detail-suggest', $output );
 		$this->assertRegExp( '/.*Cappuccino.*/', $output );
 
-		$this->assertStringContainsString( '<section class="catalog-detail-bought">', $output );
+		$this->assertStringContainsString( '<section class="catalog-detail-bought', $output );
 		$this->assertRegExp( '/.*Cappuccino.*/', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-detail-service', $output );
