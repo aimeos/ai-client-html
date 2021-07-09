@@ -255,10 +255,6 @@ body > .content {
 	margin: 0;
 }
 
-.aimeos .input-group {
-	width: 100%;
-}
-
 .aimeos .input-lg {
 	height: auto;
 }
@@ -1451,6 +1447,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-list .product {
 	display: inline-block;
+	vertical-align: top;
 	margin: 2em 1%;
 }
 
@@ -1711,7 +1708,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 /* product offer part */
 .catalog-list .offer {
 	display: flex;
-	margin: 0 1em;
+	padding: 0 1em;
 	direction: ltr;
 }
 
@@ -1845,13 +1842,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	clear: both;
 }
 
-.catalog-list-items .addbasket .input-group {
-	padding: 2.25em 0;
-	margin: auto;
-}
-
-
-
 .catalog-list-items .list .product {
 	border-left: solid 1px #555;
 	border-left-color: var(--ai-secondary, #555);
@@ -1860,7 +1850,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	text-align: right;
 	width: auto;
 	display: flex;
-	flex-direction: column;	
+	flex-direction: column;
 }
 
 .catalog-list .catalog-list-items .list .media-list .media-item {
@@ -1870,7 +1860,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	margin: 0 auto;
 }
 
-.catalog-list-items .list .media-list {	
+.catalog-list-items .list .media-list {
 	vertical-align: top;
 	margin: 0;
 	text-align: start;
@@ -1902,14 +1892,14 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 @media screen and (min-width: 768px) {
-	
+
 	.catalog-list .catalog-list-items .list .media-list .media-item {
 		position: relative;
 		height: 320px;
 		width: 240px;
 		margin: 0;
 	}
-	
+
 	.catalog-list-items .list .product {
 		border-left: solid 1px #555;
 		border-left-color: var(--ai-secondary, #555);
@@ -1921,13 +1911,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 		margin: 0 auto;
 		height: 320px;
 	}
-	
-	
+
+
 	.catalog-list-items .list .media-list {
 		text-align: start;
 		overflow: hidden;
 		height: 320px;
-		float: left;		
+		float: left;
 		vertical-align: top;
 		margin: 0 1rem;
 		width: auto;
@@ -1936,7 +1926,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	[dir="rtl"] .catalog-list-items .list .media-list {
 		float: right;
 	}
-	
+
 }
 
 
@@ -2250,6 +2240,14 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-basket .selection,
 .catalog-detail-basket .attribute {
 	padding: 0;
+}
+
+.catalog-list-items .basket {
+	padding: 0 1em;
+}
+
+.catalog-list-items .basket .items-selection {
+	margin-top: 1em;
 }
 
 .catalog-list-items .basket .select-attr,
