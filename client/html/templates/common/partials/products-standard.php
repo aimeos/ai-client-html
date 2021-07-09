@@ -168,6 +168,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			itemprop="<?= $this->get( 'itemprop' ) ?>" itemscope itemtype="http://schema.org/Product">
 
 			<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
+				<div class="badges">
+					<span class="badge-item new"><?= $enc->html( $this->translate( 'client', 'New' ) ) ?></span>
+					<span class="badge-item sale">%</span>
+				</div>
 				<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
 
 					<div class="media-list">
