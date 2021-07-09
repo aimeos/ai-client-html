@@ -543,7 +543,7 @@ class Standard
 
 		$propMap = $attrMap = [];
 		$propItems = $productItem->getPropertyItems();
-		$attrListItems = $productItem->getListItems( 'attribute', 'default' );
+		$attrItems = $productItem->getRefItems( 'attribute', null, 'default' );
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 
 		if( in_array( $productItem->getType(), ['bundle', 'select'] ) )
@@ -552,17 +552,14 @@ class Standard
 			{
 				$propItems->merge( $subProduct->getPropertyItems()->assign( ['parent' => $subProdId] ) );
 				$mediaItems->merge( $subProduct->getRefItems( 'media', 'default', 'default' ) );
-				$attrListItems->merge( $subProduct->getListItems( 'attribute', 'default' )
-					->merge( $subProduct->getListItems( 'attribute', 'variant' ) )
+				$attrItems->merge( $subProduct->getRefItems( 'attribute', null, 'default' )
+					->merge( $subProduct->getRefItems( 'attribute', null, 'variant' ) )
 					->assign( ['parent' => $subProdId] ) );
 			}
 		}
 
-		foreach( $attrListItems as $listItem )
-		{
-			if( $attrItem = $listItem->getRefItem() ) {
-				$attrMap[$attrItem->getType()][$attrItem->getId()] = $attrItem;
-			}
+		foreach( $attrItems as $attrId => $attrItem ) {
+			$attrMap[$attrItem->getType()][$attrId] = $attrItem;
 		}
 
 		foreach( $propItems as $propItem ) {
