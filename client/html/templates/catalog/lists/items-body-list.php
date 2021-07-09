@@ -26,7 +26,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 <?php $this->block()->start( 'catalog/lists/items' ) ?>
 <div class="catalog-list-items">
 
-	<ul class="list-items list"><!--
+	<div class="list-items list"><!--
 
 		<?php foreach( $this->get( 'listProductItems', [] ) as $id => $productItem ) : $firstImage = true ?>
 			<?php
@@ -34,163 +34,167 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 				$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 			?>
 
-			--><li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
-				data-reqstock="<?= (int) $this->config( 'client/html/basket/require-stock', true ) ?>"
-				itemscope itemtype="http://schema.org/Product"
-				>
+			--><div class="product" itemscope itemtype="http://schema.org/Product"
+				data-reqstock="<?= (int) $this->config( 'client/html/basket/require-stock', true ) ?>">
 
-
-				<a class="media-list" href="<?= $url ?>">
-					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
-						<noscript>
-							<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
-								<img alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
-									src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-								>
-								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
-							</div>
-						</noscript>
-
-						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-							<div class="media-item">
-								<img class="lazy-image"
-									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
-									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
-									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-								>
-								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
-							</div>
-						<?php endforeach ?>
-					<?php endif ?>
-				</a><!--
-
-
-				--><div class="rating"><!--
-					<?php if( $productItem->getRating() > 0 ) : ?>
-						--><span class="stars"><?= str_repeat( '★', (int) round( $productItem->getRating() ) ) ?></span><!--
-					<?php endif ?>
-				--></div><!--
-
-
-				--><a class="text-list" href="<?= $url ?>">
-					<?php if( !( $suppliers = $productItem->getSupplierItems() )->isEmpty() ) : ?>
-						<h3 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ) ?></h3>
-					<?php endif ?>
-
-					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
-
-					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-						<div class="text-item" itemprop="description">
-							<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?><br>
-						</div>
-					<?php endforeach ?>
-				</a><!--
-
-
-				--><div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
-					<div class="stock-list">
-						<div class="articleitem <?= !in_array( $productItem->getType(), ['select', 'group'] ) ? 'stock-actual' : '' ?>"
-							data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
-							data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
-						</div>
-						<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
-							<div class="articleitem"
-								data-prodid="<?= $enc->attr( $articleId ) ?>"
-								data-prodcode="<?= $enc->attr( $articleItem->getCode() ) ?>">
-							</div>
-						<?php endforeach ?>
+				<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
+					<div class="badges">
+						<span class="badge-item new"><?= $enc->html( $this->translate( 'client', 'New' ) ) ?></span>
+						<span class="badge-item sale">%</span>
 					</div>
-					<div class="price-list">
-						<div class="articleitem price price-actual"
-							data-prodid="<?= $enc->attr( $id ) ?>"
-							data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
-							<?= $this->partial(
-								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-								['prices' => $productItem->getRefItems( 'price', null, 'default' )]
-							) ?>
-						</div>
 
-						<?php if( $productItem->getType() === 'select' ) : ?>
-							<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-								<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
-									<div class="articleitem price"
-										data-prodid="<?= $enc->attr( $prodid ) ?>"
-										data-prodcode="<?= $enc->attr( $product->getCode() ) ?>">
-										<?= $this->partial(
-											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-											['prices' => $prices]
-										) ?>
-									</div>
-								<?php endif ?>
+					<a class="media-list" href="<?= $url ?>">
+						<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
+							<noscript>
+								<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
+									<img alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
+										src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+									>
+									<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
+								</div>
+							</noscript>
+
+							<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+								<div class="media-item">
+									<img class="lazy-image"
+										src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
+										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
+										data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+									>
+									<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
+								</div>
 							<?php endforeach ?>
 						<?php endif ?>
-					</div>
-				</div>
+					</a><!--
+
+					--><div class="list-column"><!--
+						--><div class="rating"><!--
+							<?php if( $productItem->getRating() > 0 ) : ?>
+								--><span class="stars"><?= str_repeat( '★', (int) round( $productItem->getRating() ) ) ?></span><!--
+							<?php endif ?>
+						--></div><!--
 
 
-				<?php if( $this->config( 'client/html/catalog/lists/basket-add', false ) ) : ?>
-					<form class="basket" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
-						<!-- catalog.lists.items.csrf -->
-						<?= $this->csrf()->formfield() ?>
-						<!-- catalog.lists.items.csrf -->
+						--><a class="text-list" href="<?= $url ?>">
+							<?php if( !( $suppliers = $productItem->getSupplierItems() )->isEmpty() ) : ?>
+								<h3 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ) ?></h3>
+							<?php endif ?>
 
-						<?php if( $basketSite ) : ?>
-							<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
-						<?php endif ?>
+							<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
 
-						<?php if( $productItem->getType() === 'select' ) : ?>
-							<div class="items-selection">
-								<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ), [
-									'productItems' => $productItem->getRefItems( 'product', 'default', 'default' ),
-									'productItem' => $productItem
-								] ) ?>
+							<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+								<div class="text-item" itemprop="description">
+									<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?><br>
+								</div>
+							<?php endforeach ?>
+						</a><!--
+
+
+						--><div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
+							<div class="stock-list">
+								<div class="articleitem <?= !in_array( $productItem->getType(), ['select', 'group'] ) ? 'stock-actual' : '' ?>"
+									data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
+									data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
+								</div>
+								<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+									<div class="articleitem"
+										data-prodid="<?= $enc->attr( $articleId ) ?>"
+										data-prodcode="<?= $enc->attr( $articleItem->getCode() ) ?>">
+									</div>
+								<?php endforeach ?>
 							</div>
-						<?php endif ?>
+							<div class="price-list">
+								<div class="articleitem price price-actual"
+									data-prodid="<?= $enc->attr( $id ) ?>"
+									data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
+									<?= $this->partial(
+										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+										['prices' => $productItem->getRefItems( 'price', null, 'default' )]
+									) ?>
+								</div>
 
-						<div class="items-attribute">
-							<?= $this->partial(
-								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
-								['productItem' => $productItem]
-							) ?>
+								<?php if( $productItem->getType() === 'select' ) : ?>
+									<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
+										<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
+											<div class="articleitem price"
+												data-prodid="<?= $enc->attr( $prodid ) ?>"
+												data-prodcode="<?= $enc->attr( $product->getCode() ) ?>">
+												<?= $this->partial(
+													$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+													['prices' => $prices]
+												) ?>
+											</div>
+										<?php endif ?>
+									<?php endforeach ?>
+								<?php endif ?>
+							</div>
 						</div>
 
-						<?php if( !$productItem->getRefItems( 'price', 'default', 'default' )->empty() ) : ?>
-							<div class="addbasket">
-								<div class="input-group">
-									<input type="hidden"
-										name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>"
-										value="add"
-									>
-									<input type="hidden"
-										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ) ?>"
-										value="<?= $id ?>"
-									>
-									<input type="number" max="2147483647" maxlength="10"
-										min="<?= $enc->attr( $productItem->getScale() ) ?>"
-										step="<?= $enc->attr( $productItem->getScale() ) ?>"
-										value="<?= $enc->attr( $productItem->getScale() ) ?>"
-										required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
-										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ) ?>"
-									><!--
-									--><button class="btn btn-primary btn-action" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>>
-										<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
-									</button>
+
+						<?php if( $this->config( 'client/html/catalog/lists/basket-add', false ) ) : ?>
+							<form class="basket" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
+								<!-- catalog.lists.items.csrf -->
+								<?= $this->csrf()->formfield() ?>
+								<!-- catalog.lists.items.csrf -->
+
+								<?php if( $basketSite ) : ?>
+									<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
+								<?php endif ?>
+
+								<?php if( $productItem->getType() === 'select' ) : ?>
+									<div class="items-selection">
+										<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ), [
+											'productItems' => $productItem->getRefItems( 'product', 'default', 'default' ),
+											'productItem' => $productItem
+										] ) ?>
+									</div>
+								<?php endif ?>
+
+								<div class="items-attribute">
+									<?= $this->partial(
+										$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
+										['productItem' => $productItem]
+									) ?>
 								</div>
-							</div>
+
+								<?php if( !$productItem->getRefItems( 'price', 'default', 'default' )->empty() ) : ?>
+									<div class="addbasket">
+										<div class="input-group">
+											<input type="hidden"
+												name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>"
+												value="add"
+											>
+											<input type="hidden"
+												name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ) ?>"
+												value="<?= $id ?>"
+											>
+											<input type="number" max="2147483647" maxlength="10"
+												min="<?= $enc->attr( $productItem->getScale() ) ?>"
+												step="<?= $enc->attr( $productItem->getScale() ) ?>"
+												value="<?= $enc->attr( $productItem->getScale() ) ?>"
+												required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
+												name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ) ?>"
+											><!--
+											--><button class="btn btn-primary btn-action" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>>
+												<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
+											</button>
+										</div>
+									</div>
+								<?php endif ?>
+
+							</form>
 						<?php endif ?>
 
-					</form>
-				<?php endif ?>
-
-
-			</li><!--
+					</div>
+				</div>
+			</div><!--
 
 		<?php endforeach ?>
-	--></ul>
+	--></div>
 
 </div>
 <?php $this->block()->stop() ?>
