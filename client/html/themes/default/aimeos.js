@@ -1704,6 +1704,39 @@ AimeosCatalogFilter = {
 AimeosCatalogList = {
 
 	/**
+	 * Add to basket
+	 */
+	setupAddBasket: function() {
+
+		$(".catalog-list-items .list-items:not(.list) .product").on("click", ".btn-primary", function(ev) {
+
+			var empty = true;
+
+			$(".basket .items-selection .selection li, .basket .items-attribute .selection li", ev.delegateTarget).each(function() {
+				if($(this).length) {
+					empty = false; return false;
+				}
+			});
+
+			if(!empty) {
+				$("form.basket", ev.delegateTarget).on("click", ".btn-primary", function(ev) {
+					$.post($(ev.delegateTarget).attr("action"), $(ev.delegateTarget).serialize(), function(data) {
+						Aimeos.createContainer(AimeosBasketStandard.updateBasket(data));
+					});
+
+					return false;
+				});
+
+				Aimeos.createOverlay();
+				Aimeos.createContainer($('<div class="catalog-list catalog-list-items">')
+					.append($('<div class="list-items list">').append(ev.delegateTarget)) );
+				return false;
+			}
+		});
+	},
+
+
+	/**
 	 * Switches product images on hover
 	 */
 	setupImageSwitch: function() {
@@ -1788,6 +1821,7 @@ AimeosCatalogList = {
 	 * Initializes the catalog list actions
 	 */
 	init: function() {
+		this.setupAddBasket();
 		this.setupImageSwitch();
 		this.setupInfiniteScroll();
 	}
