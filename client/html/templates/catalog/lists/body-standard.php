@@ -106,17 +106,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 		</div>
 
 	<?php endif ?>
-	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
-		<div class="catalog-list-footer test">
-			<?php foreach( (array) $textTypes as $textType ) : ?>
-				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
-					<div class="<?= $enc->attr( $textItem->getType() ) ?>">
-						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
-					</div>
-				<?php endforeach ?>
-			<?php endforeach ?>
-		</div>
-	<?php endif ?>
+
 	<?= $this->block()->get( 'catalog/lists/promo' ) ?>
 
 	<?php if( $this->get( 'listProductTotal', 0 ) > 0 ) : ?>
@@ -191,5 +181,16 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 		?>
 	<?php endif ?>
 
+	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+		<div class="catalog-list-footer">
+			<?php foreach( (array) $textTypes as $textType ) : ?>
+				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
+					<div class="<?= $enc->attr( $textItem->getType() ) ?>">
+						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
+					</div>
+				<?php endforeach ?>
+			<?php endforeach ?>
+		</div>
+	<?php endif ?>
 
 </section>
