@@ -173,15 +173,20 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 												value="<?= $id ?>"
 											>
 											<input type="number" max="2147483647" maxlength="10"
+												value="<?= $enc->attr( $productItem->getScale() ) ?>"
 												min="<?= $enc->attr( $productItem->getScale() ) ?>"
 												step="<?= $enc->attr( $productItem->getScale() ) ?>"
-												value="<?= $enc->attr( $productItem->getScale() ) ?>"
 												required="required" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>
 												name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ) ?>"
+												title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ), $enc::TRUST ) ?>"
 											><!--
-											--><button class="btn btn-primary btn-action" type="submit" value="" <?= !$productItem->isAvailable() ? 'disabled' : '' ?>>
-												<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
-											</button>
+											--><button class="btn btn-primary" type="submit"
+												title="<?= $enc->attr( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>"
+												<?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
+											</button><!--
+											--><a class="btn-pin" href="#"
+												title="<?= $enc->attr( $this->translate( 'client', 'Pin product' ), $enc::TRUST ) ?>">
+											</a>
 										</div>
 									</div>
 								<?php endif ?>
