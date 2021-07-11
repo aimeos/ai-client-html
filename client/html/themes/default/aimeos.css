@@ -2638,7 +2638,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	background-size: contain;
 	height: 213px;
 	width: 160px;
-	position: absolute;
 }
 
 .account-watch .media-item img,
@@ -2736,6 +2735,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 /*suggested, bought Items hover transition*/
+
+.catalog-detail-suggest .media-list .media-item,
+.catalog-detail-bought .media-list .media-item{
+	position: absolute;
+}
+
 .catalog-detail-suggest .media-list div:first-of-type,
 .catalog-detail-bought .media-list div:first-of-type{
 	opacity: 1;
