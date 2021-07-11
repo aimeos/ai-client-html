@@ -2622,6 +2622,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	overflow: hidden;
 	height: 213px;
 	width: 160px;
+	display: block;
 }
 
 .account-watch .media-item,
@@ -2637,6 +2638,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	background-size: contain;
 	height: 213px;
 	width: 160px;
+	position: absolute;
 }
 
 .account-watch .media-item img,
@@ -2733,6 +2735,31 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	content: ") ";
 }
 
+/*suggested, bought Items hover transition*/
+.catalog-detail-suggest .media-list div:first-of-type,
+.catalog-detail-bought .media-list div:first-of-type{
+    opacity: 1;
+    transition: opacity .3s linear;
+    z-index: 1;
+}
+
+.catalog-detail-suggest .media-list:hover div:first-of-type,
+.catalog-detail-bought .media-list:hover div:first-of-type{
+    opacity: 0;
+    transition: opacity .3s linear;
+}
+
+.catalog-detail-suggest .product-item .badges,
+.catalog-detail-bought .product-item .badges{
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+}
+
+.catalog-detail-suggest .list-column .price-item .rebatepercent,
+.catalog-detail-bought .list-column .price-item .rebatepercent{
+    z-index: 2;
+}
 
 /* Basket */
 
