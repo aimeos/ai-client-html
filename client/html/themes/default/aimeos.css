@@ -2387,6 +2387,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	content: "\f4ec";
 }
 
+.catalog-list-items .addbasket .btn-pin.active,
 .catalog-list-items .addbasket .btn-primary:hover,
 .catalog-list-items .addbasket .btn-pin:hover {
 	background-color: #FFA500;
@@ -2670,15 +2671,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-session-pinned .modify {
 	position: absolute;
 	display: block;
-	right: 0;
-	width: 3rem;
-	height: 3rem;
-}
-
-[dir="rtl"] .account-watch .modify,
-[dir="rtl"] .account-favorite .modify,
-[dir="rtl"] .catalog-session-pinned .modify {
-	right: unset;
+	padding: .5rem 0.75rem;
 	left: 0;
 	bottom: 0;
 }
@@ -2689,9 +2682,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	content: "\f5de";
 	font-size: 120%;
-	position: absolute;
-	left: 0;
-	bottom: .5rem;
+	vertical-align: bottom;
 }
 
 .account-watch .watch-details {
@@ -6615,7 +6606,7 @@ aside .catalog-session-pinned .pinned-items {
 		float: left;
 		width: 60px;
 		height: 80px;
-		margin-bottom: 1rem;
+		margin-bottom: .5rem;
 		margin-inline-end: 1rem;
 		background-position: top left;
 	}

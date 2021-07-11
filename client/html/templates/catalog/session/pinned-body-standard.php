@@ -114,7 +114,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 	<ul class="pinned-items">
 		<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
-			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id] + $this->get( 'pinnedParams', [] ) ?>
+			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $productItem->getName( 'url' )] + $this->get( 'pinnedParams', [] ) ?>
 			<?php $detailParams = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter ) ?>
 
 			<li class="pinned-item">
