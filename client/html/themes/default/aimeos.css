@@ -5405,11 +5405,13 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	border: solid 1px #FFFFFF;
 	left: auto;
 	right: 0;
+	position: absolute;
 }
 
 .navbar-light .navbar-nav .nav-link {
 	color: #FFFFFF;
 	color: var(--ai-primary-alt, #FFFFFF);
+	padding: .25rem .5rem;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
