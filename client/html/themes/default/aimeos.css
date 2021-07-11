@@ -1997,7 +1997,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 @media (min-width:576px) {
-	
+
 	.catalog-detail .catalog-actions .actions-button,
 	.catalog-detail .catalog-social .social-button {
 		width: 48px;
@@ -2012,7 +2012,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 @media (max-width:768px) {
-	
+
 	.catalog-detail .catalog-actions .actions-button,
 	.catalog-detail .catalog-social .social-button {
 		width: 36px;
@@ -5120,9 +5120,9 @@ a.pswp__share--download:hover {
 		height: 720px;
 	}
 
-	.catalog-detail-image .image-single,
-	.catalog-detail-image .image-single .media-item,
-	.catalog-detail-image .image-single img.item {
+	.catalog-detail-image .thumbs-horizontal,
+	.catalog-detail-image .thumbs-horizontal .slick-slider,
+	.catalog-detail-image .thumbs-horizontal img.item-thumb {
 		height: 180px;
 	}
 }
@@ -5194,7 +5194,7 @@ img{
 	padding:.25rem;
 	z-index:999;
 	display: none;
-	
+
 }
 
 .back-to-top:hover{
