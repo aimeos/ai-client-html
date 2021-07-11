@@ -1821,10 +1821,23 @@ AimeosCatalogList = {
 
 		$(".catalog-list-items .product").on("click", ".btn-pin", function(ev) {
 
-			$(this).addClass('active');
+			var url;
+			var el = $(this);
+
+			if(el.hasClass('active')) {
+				el.removeClass('active');
+				url = el.data('rmurl');
+			} else {
+				el.addClass('active');
+				url = el.attr('href');
+			}
+
+			if(!url) {
+				return true;
+			}
 
 			$.ajax({
-				url: $(this).attr('href')
+				url: url
 			}).done( function(response) {
 				var doc = document.createElement("html");
 				doc.innerHTML = response;
