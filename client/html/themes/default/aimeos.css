@@ -6720,3 +6720,31 @@ aside .catalog-session-pinned .pinned-items {
 .aimeos.cms-page .background[data-background] {
 	font-size: 4vw;
 }
+
+
+/* Bootstrap components */
+
+.aimeos .card {
+	border: 1px solid #282828;
+	border-color: var(--ai-primary, #282828);
+}
+
+.aimeos .card-header {
+	background-color: #282828;
+	background-color: var(--ai-primary, #282828);
+	border-bottom: 1px solid #282828;
+	border-color: var(--ai-primary, #282828);
+	color: #FFFFFF;
+	color: var(--ai-bg, #FFFFFF);
+}
+
+.aimeos .card .form-check,
+.aimeos .card .form-check-input {
+	position: static;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.aimeos .card .btn {
+	margin: 0.5rem 1rem;
+}
