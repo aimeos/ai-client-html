@@ -1546,11 +1546,11 @@ AimeosCatalogFilter = {
 
 	setupLastSeenToggle: function() {
 
-		$(".catalog-session-seen").on("click", "h2", function(ev) {
+		$("body").on("click", ".catalog-session-seen h2", function(ev) {
 			$(".seen-items", ev.delegateTarget).slideToggle();
 		});
 
-		$(".catalog-session-pinned").on("click", "h2", function(ev) {
+		$("body").on("click", ".catalog-session-pinned h2", function(ev) {
 			$(".pinned-items", ev.delegateTarget).slideToggle();
 		});
 	},
@@ -1802,7 +1802,7 @@ AimeosCatalogList = {
 						url: infiniteUrl
 					}).fail( function() {
 						list.data('infinite-url', infiniteUrl);
-					}).done( function( response ) {
+					}).done( function(response) {
 
 						var nextPage = $(response);
 						var nextUrl = nextPage.find('.catalog-list-items').data( 'infinite-url' );
@@ -1817,6 +1817,29 @@ AimeosCatalogList = {
 	},
 
 
+	setupPinned: function() {
+
+		$(".catalog-list-items .product").on("click", ".btn-pin", function(ev) {
+
+			$(this).addClass('active');
+
+			$.ajax({
+				url: $(this).attr('href')
+			}).done( function(response) {
+				var doc = document.createElement("html");
+				doc.innerHTML = response;
+
+				var pinned = $(".catalog-session-pinned", doc);
+				if(pinned) {
+					$('.catalog-session-pinned').replaceWith(pinned);
+				}
+			});
+
+			return false;
+		});
+	},
+
+
 	/**
 	 * Initializes the catalog list actions
 	 */
@@ -1824,6 +1847,7 @@ AimeosCatalogList = {
 		this.setupAddBasket();
 		this.setupImageSwitch();
 		this.setupInfiniteScroll();
+		this.setupPinned();
 	}
 };
 

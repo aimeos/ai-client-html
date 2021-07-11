@@ -261,20 +261,20 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 								<?= $this->partial(
 									/** client/html/common/partials/price
-									 * Relative path to the price partial template file
-									 *
-									 * Partials are templates which are reused in other templates and generate
-									 * reoccuring blocks filled with data from the assigned values. The price
-									 * partial creates an HTML block for a list of price items.
-									 *
-									 * The partial template files are usually stored in the templates/partials/ folder
-									 * of the core or the extensions. The configured path to the partial file must
-									 * be relative to the templates/ folder, e.g. "partials/price-standard.php".
-									 *
-									 * @param string Relative path to the template file
-									 * @since 2015.04
-									 * @category Developer
-									 */
+									* Relative path to the price partial template file
+									*
+									* Partials are templates which are reused in other templates and generate
+									* reoccuring blocks filled with data from the assigned values. The price
+									* partial creates an HTML block for a list of price items.
+									*
+									* The partial template files are usually stored in the templates/partials/ folder
+									* of the core or the extensions. The configured path to the partial file must
+									* be relative to the templates/ folder, e.g. "partials/price-standard.php".
+									*
+									* @param string Relative path to the template file
+									* @since 2015.04
+									* @category Developer
+									*/
 									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 									['prices' => $productItem->getRefItems( 'price', null, 'default' )]
 								) ?>
@@ -358,7 +358,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 												title="<?= $enc->attr( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>"
 												<?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
 											</button><!--
-											--><a class="btn-pin" href="#"
+											--><a class="btn-pin"
+												href="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', ['pin_action' => 'add', 'pin_id' => $id, 'd_name' => $productItem->getName( 'url' )] ) ) ?>"
 												title="<?= $enc->attr( $this->translate( 'client', 'Pin product' ), $enc::TRUST ) ?>">
 											</a>
 										</div>
