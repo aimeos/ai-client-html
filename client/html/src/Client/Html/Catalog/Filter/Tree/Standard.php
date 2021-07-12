@@ -227,7 +227,6 @@ class Standard
 		 * @see controller/frontend/catalog/levels-always
 		 * @see controller/frontend/catalog/levels-only
 		 * @see client/html/catalog/filter/tree/startid
-		 * @see client/html/catalog/filter/tree/deep
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/tree/domains', ['text', 'media', 'media/property'] );
 
@@ -249,7 +248,6 @@ class Standard
 		 * @see controller/frontend/catalog/levels-always
 		 * @see controller/frontend/catalog/levels-only
 		 * @see client/html/catalog/filter/tree/domains
-		 * @see client/html/catalog/filter/tree/deep
 		 */
 		$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 

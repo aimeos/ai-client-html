@@ -105,10 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$tags = [];
 		$expire = null;
-
-		$config = $this->context->getConfig();
-		$config->set( 'client/html/catalog/filter/tree/deep', true );
-		$view = \TestHelperHtml::getView( 'unittest', $config );
+		$view = $this->object->getView();
 
 		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
