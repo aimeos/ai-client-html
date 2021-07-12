@@ -1918,13 +1918,9 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Product detail, social section / action buttons */
 .catalog-detail .catalog-social {
-	float: right;
 	margin: .5rem 0;
-}
-
-[dir="rtl"] .catalog-detail .catalog-social,
-[dir="rtl"] .catalog-detail .catalog-actions{
-	float: left;
+	float: right;
+	
 }
 
 .catalog-detail .catalog-social .social-button,
@@ -2020,6 +2016,20 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	}
 
 }
+
+[dir="rtl"] .catalog-detail .catalog-social{
+	float: right;
+}
+
+[dir="rtl"] .catalog-detail .catalog-actions{
+	float: left;
+}
+
+[dir="rtl"] .catalog-detail .catalog-social .social-button,
+[dir="rtl"] .catalog-detail .catalog-actions .actions-button{
+	text-align: end
+}
+
 
 /* Product detail, basket section */
 .catalog-detail-basket {
