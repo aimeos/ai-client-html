@@ -171,7 +171,7 @@ body > .content {
 	width: 12rem;
 	vertical-align: top;
 	border-radius: 0;
-	margin: auto;
+	margin: .5rem auto;
 	color: #282828;
 	color: var(--ai-primary, #282828);
 	border: solid 1px #555;
@@ -1922,7 +1922,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail .catalog-social {
 	margin: .5rem 0;
 	float: right;
-	
+
 }
 
 .catalog-detail .catalog-social .social-button,
@@ -6745,7 +6745,7 @@ aside .catalog-session-pinned .pinned-items {
 	width: 6rem;
 }
 
-.aimeos.cms-page .background {
+.aimeos .background {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -6757,7 +6757,7 @@ aside .catalog-session-pinned .pinned-items {
 	padding: 2rem 0;
 }
 
-.aimeos.cms-page .background[data-background] {
+.aimeos .background[data-background] {
 	font-size: 4vw;
 }
 
