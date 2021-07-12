@@ -173,7 +173,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
 				<div class="badges">
 					<span class="badge-item new"><?= $enc->html( $this->translate( 'client', 'New' ) ) ?></span>
-					<span class="badge-item sale">%</span>
+					<span class="badge-item sale"><?= $enc->html( $this->translate( 'client', 'Sale' ) ) ?></span>
 				</div>
 				<div class="list-column">
 					<a class="media-list" href="<?= $enc->attr( $url ) ?>">

@@ -20,12 +20,6 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 		<h2><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></h2>
 
 		<div class="price-lists">
-			<?php if( $this->param( 'f_price' ) ) : ?>
-				<a class="btn btn-secondary" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $this->get( 'priceResetParams', [] ), [], $config ) ) ?>">
-					<?= $enc->html( $this->translate( 'client', 'Reset' ) ) ?>
-				</a>
-			<?php endif ?>
-
 			<fieldset>
 				<div class="price-input">
 					<input type="number" class="price-low" name="<?= $this->formparam( ['f_price', 0] )?>"
@@ -42,6 +36,11 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 						title="<?= $enc->attr( $this->translate( 'client', 'Price range' ) ) ?>">
 				</div>
 				<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Save' ) ) ?></button>
+				<?php if( $this->param( 'f_price' ) ) : ?>
+					<a class="btn" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $this->get( 'priceResetParams', [] ), [], $config ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', 'Reset' ) ) ?>
+					</a>
+				<?php endif ?>
 			</fieldset>
 		</div>
 	</section>

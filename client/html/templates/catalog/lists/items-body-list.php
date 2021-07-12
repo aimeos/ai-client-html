@@ -40,7 +40,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 				<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
 					<div class="badges">
 						<span class="badge-item new"><?= $enc->html( $this->translate( 'client', 'New' ) ) ?></span>
-						<span class="badge-item sale">%</span>
+						<span class="badge-item sale"><?= $enc->html( $this->translate( 'client', 'Sale' ) ) ?></span>
 					</div>
 
 					<a class="media-list" href="<?= $url ?>">
