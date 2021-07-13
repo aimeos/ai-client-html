@@ -226,9 +226,9 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 					<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ) ?></option>
 				<?php endif ?>
 
-				<?php foreach( $this->get( 'countries', [] ) as $countryId ) : ?>
+				<?php foreach( $this->get( 'countries', [] ) as $countryId => $name ) : ?>
 					<option value="<?= $enc->attr( $countryId ) ?>" <?= $this->value( 'address', 'order.base.address.countryid' ) == $countryId ? 'selected' : '' ?>>
-						<?= $enc->html( $this->translate( 'country', $countryId ) ) ?>
+						<?= $enc->html( $name ) ?>
 					</option>
 				<?php endforeach ?>
 
