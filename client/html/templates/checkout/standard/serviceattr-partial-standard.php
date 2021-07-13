@@ -45,11 +45,13 @@ $enc = $this->encoder();
 
 	<?php foreach( $this->get( 'attributes', [] ) as $key => $item ) : ?>
 
-		<li class="form-item form-group <?= $enc->attr( $key ) . ( $item->isRequired() ? ' mandatory' : '' ) ?>">
+		<li class="row form-item form-group <?= $enc->attr( $key ) . ( $item->isRequired() ? ' mandatory' : '' ) ?>">
 
-			<label class="col-md-5 form-item-label" for="<?= $enc->attr( $this->type . '-' . $key ) ?>">
-				<?= $enc->html( $this->translate( 'client/code', $key ) ) ?>
-			</label>
+			<div class="col-md-5">
+				<label class="form-item-label" for="<?= $enc->attr( $this->type . '-' . $key ) ?>">
+					<?= $enc->html( $this->translate( 'client/code', $key ) ) ?>
+				</label>
+			</div>
 
 			<?php switch( $item->getType() ) : case 'select': ?>
 
@@ -82,7 +84,7 @@ $enc = $this->encoder();
 				<?php break; case 'boolean': ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7 form-item-value" type="checkbox" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+						<input class="form-control form-item-value" type="checkbox" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							name="<?= $enc->attr( $this->formparam( ['c_' . $this->type, $this->id, $key] ) ) ?>" value="1"
 							<?= $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ? 'checked="checked"' : '' ?>
 						>
@@ -91,7 +93,7 @@ $enc = $this->encoder();
 				<?php break; case 'integer': case 'number': ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7 form-item-value" type="number" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+						<input class="form-control form-item-value" type="number" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
 						>
@@ -100,7 +102,7 @@ $enc = $this->encoder();
 				<?php break; case 'date': ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
@@ -111,7 +113,7 @@ $enc = $this->encoder();
 				<?php break; case 'datetime': ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
@@ -122,7 +124,7 @@ $enc = $this->encoder();
 				<?php break; case 'time': ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
@@ -133,7 +135,7 @@ $enc = $this->encoder();
 				<?php break; case 'text': ?>
 
 					<div class="col-md-7">
-						<textarea class="form-control col-md-7"
+						<textarea class="form-control"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 						><?= $enc->html( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?></textarea>
@@ -142,7 +144,7 @@ $enc = $this->encoder();
 				<?php break; default: ?>
 
 					<div class="col-md-7">
-						<input class="form-control col-md-7 form-item-value" type="text" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+						<input class="form-control form-item-value" type="text" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
 						>
