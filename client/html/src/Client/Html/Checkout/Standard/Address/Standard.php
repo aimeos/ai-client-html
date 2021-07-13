@@ -354,7 +354,7 @@ class Standard
 		$view->addressCountries = map( $view->config( 'client/html/checkout/standard/address/countries', [] ) )
 			->flip()->map( function( $v, $key ) use ( $view ) {
 				return $view->translate( 'country', $key );
-			} )->sort();
+			} )->asort();
 
 		/** client/html/checkout/standard/address/states
 		 * List of available states that that users can select from in the front-end
