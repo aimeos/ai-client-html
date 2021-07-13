@@ -176,7 +176,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<span class="badge-item sale"><?= $enc->html( $this->translate( 'client', 'Sale' ) ) ?></span>
 				</div>
 				<div class="list-column">
-					<a class="media-list" href="<?= $enc->attr( $url ) ?>">
+					<a class="media-list" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $productItem->getName(), $enc::TRUST ) ?>">
 
 						<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 
