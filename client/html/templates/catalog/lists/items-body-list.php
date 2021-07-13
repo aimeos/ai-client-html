@@ -43,7 +43,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 						<span class="badge-item sale"><?= $enc->html( $this->translate( 'client', 'Sale' ) ) ?></span>
 					</div>
 
-					<a class="media-list" href="<?= $url ?>">
+					<a class="media-list" href="<?= $url ?>" title="<?= $enc->attr( $productItem->getName(), $enc::TRUST ) ?>">
 						<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 							<noscript>
 								<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
