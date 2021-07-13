@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 15:51+0200\n"
-"PO-Revision-Date: 2021-05-27 13:51+0000\n"
+"POT-Creation-Date: 2021-07-06 09:42+0200\n"
+"PO-Revision-Date: 2021-07-06 07:44+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -663,9 +663,6 @@ msgstr ""
 msgid "Products you might be also interested in"
 msgstr "Продукти, от които може да се интересувате"
 
-msgid "Profile"
-msgstr ""
-
 msgid "Properties"
 msgstr "Свойства"
 
@@ -818,6 +815,9 @@ msgstr ""
 
 msgid "Suppliers"
 msgstr "Доставчици"
+
+msgid "Take a look"
+msgstr ""
 
 msgid "Telephone"
 msgstr "Телефон"
