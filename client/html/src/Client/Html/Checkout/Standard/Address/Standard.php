@@ -351,7 +351,10 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/mandatory
 		 * @see client/html/checkout/standard/address/delivery/optional
 		 */
-		$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
+		$view->addressCountries = map( $view->config( 'client/html/checkout/standard/address/countries', [] ) )
+			->flip()->map( function( $v, $key ) use ( $view ) {
+				return $view->translate( 'country', $key );
+			} )->sort();
 
 		/** client/html/checkout/standard/address/states
 		 * List of available states that that users can select from in the front-end
