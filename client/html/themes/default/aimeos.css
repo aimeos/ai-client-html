@@ -227,6 +227,10 @@ body > .content {
 	letter-spacing: 1.5px;
 }
 
+.aimeos input.form-control[type='checkbox'] {
+	width: auto;
+}
+
 .aimeos .form-item label {
 	border-left: 2px solid transparent;
 	padding-inline-start: 1rem;
