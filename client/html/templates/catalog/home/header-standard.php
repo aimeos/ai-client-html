@@ -43,8 +43,8 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 		}
 	?>
 
-	<?php if( !$media->isEmpty() ) : ?>
-		<link rel="preload" imagesrcset="<?= $enc->attr( $this->imageset( $media->flat()->getPreviews()->first() ) ) ?>">
+	<?php if( $previews = $media->flat()->getPreviews()->first() ) : ?>
+		<link rel="preload" imagesrcset="<?= $enc->attr( $this->imageset( $previews ) ) ?>">
 	<?php endif ?>
 
 <?php else : ?>
