@@ -379,27 +379,27 @@ class Standard
 			return null;
 		}
 
-		$view = $this->getView();
 		$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 
-		if( ( $service = reset( $services ) ) !== false )
-		{
-			$args = array( 'code' => $service->getCode() );
-			$config = array( 'absoluteUri' => true, 'namespace' => false );
-			$urls = array(
-				'payment.url-self' => $this->getUrlSelf( $view, ['c_step' => 'process'], [] ),
-				'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], $config ),
-				'payment.url-success' => $this->getUrlConfirm( $view, $args, $config ),
-			);
-
-			$params = $view->param();
-			foreach( $service->getAttributeItems() as $item ) {
-				$params[$item->getCode()] = $item->getValue();
-			}
-
-			$serviceCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'service' );
-			return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
+		if( ( $service = reset( $services ) ) === false ) {
+			return null;
 		}
+
+		$view = $this->getView();
+		$args = array( 'code' => $service->getCode() );
+		$urls = array(
+			'payment.url-self' => $this->getUrlSelf( $view, ['c_step' => 'process'], [] ),
+			'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], ['absoluteUri' => true] ),
+			'payment.url-success' => $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] ),
+		);
+
+		$params = $view->param();
+		foreach( $service->getAttributeItems() as $item ) {
+			$params[$item->getCode()] = $item->getValue();
+		}
+
+		$serviceCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'service' );
+		return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 	}
 
 
