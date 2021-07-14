@@ -37,6 +37,16 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 		<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 	<?php endforeach ?>
 
+	<?php
+		if( ( $media = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) {
+			$media = $this->homeTree->getChildren()->getRefItems( 'media', 'stage', 'default' );
+		}
+	?>
+
+	<?php if( !$media->isEmpty() ) : ?>
+		<link rel="preload" imagesrcset="<?= $enc->attr( $this->imageset( $media->flat()->getPreviews()->first() ) ) ?>">
+	<?php endif ?>
+
 <?php else : ?>
 
 	<title><?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
