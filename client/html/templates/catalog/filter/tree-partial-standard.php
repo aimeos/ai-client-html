@@ -111,7 +111,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 					<?php if( $item->hasChildren() ) : ?>
 							<div class="item-links row">
 								<a class="col-10 item-link" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></a>
-								<a class="col-2 data-link" data-submenu="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>" href="#"></a>
+								<a class="col-2 data-link" data-submenu="<?= $enc->attr( $item->getId() ) ?>" href="#"></a>
 							</div>
 					<?php else : ?>
 							<div class="item-links">
@@ -134,14 +134,14 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 					<?php if( count( $item->getChildren() ) > 0 ) : ?>
 
-						<div id="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>" class="submenu <?= $enc->attr(
+						<div id="<?= $enc->attr( $item->getId() ) ?>" class="submenu <?= $enc->attr(
 							( $item->hasChildren() ? ' shadow-sm ' : ' nochild ' )
 							. ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active ' : '' ) ) ?>"
 							data-id="<?= $item->getId() ?>">
 
 							<div class="submenu-header row">
-								<a class="col-2" href="#" data-submenu-close="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>"><span class="arrow-back"></span></a>
-								<a class="col-7" href="#" data-submenu-close="<?= $enc->html( $item->getName(), $enc::TRUST ) ?>"><span><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span></a>
+								<a class="col-2" href="#" data-submenu-close="<?= $enc->attr( $item->getId() ) ?>"><span class="arrow-back"></span></a>
+								<a class="col-7" href="#" data-submenu-close="<?= $enc->attr( $item->getId() ) ?>"><span><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span></a>
 								<div class="menu-close col-3"></div>
 							</div>
 							<div class="item-container">
