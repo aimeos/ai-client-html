@@ -5445,6 +5445,10 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	padding: 0;
 }
 
+.navbar-nav .active>.nav-link {
+	color: #FFFFFF !important;
+}
+
 .navbar-nav .dropdown-menu {
 	text-align: start;
 	background-color: #282828;
@@ -5455,13 +5459,19 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	position: absolute;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.navbar-light .navbar-nav .nav-link,
+.navbar-default .navbar-nav .nav-link,
+.navbar-default-transition .navbar-nav .nav-link,
+.navbar-default-transition.navbar-transition .navbar-nav .nav-link {
 	color: #FFFFFF;
 	color: var(--ai-primary-alt, #FFFFFF);
 	padding: .25rem .5rem;
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-default .navbar-nav .nav-link:hover,
+.navbar-default-transition .navbar-nav .nav-link:hover,
+.navbar-default-transition.navbar-transition .navbar-nav .nav-link:hover {
 	color: #CCCCCC;
 	color: var(--ai-primary-light, #CCCCCC);
 }
