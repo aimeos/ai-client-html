@@ -76,6 +76,10 @@ body > .content {
 	margin-top: calc(1rem + 50px);
 }
 
+.section {
+	overflow: unset;
+}
+
 .aimeos .catalog-stage-image {
 	height: calc(1rem + 50px);
 }
@@ -5549,11 +5553,11 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		padding-top: 0;
 		padding-bottom: 0;
 	}
-	
+
 	.bp-page-content.main-section {
 		margin-top: 55px;
 	}
-	
+
 
 @media (min-width:992px) {
 
@@ -5569,25 +5573,25 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.navbar {
 		padding: 3.5rem 1rem;
 	}
-	
+
 	.navbar-scroll {
 		transition: all 0.5s;
 		padding: .5rem 1rem;
 	}
 
 	/*Typo3 Bootstrap-package*/
-	
+
 	.navbar-default {
 		background-color: transparent !important;
 	}
-	
+
 	.navbar-mainnavigation .navbar-brand {
 		height: auto;
 		padding-top: 0;
 		padding-bottom: 0;
 		transform: translate(0, 0%);
 	}
-	
+
 	.navbar-mainnavigation .navbar-brand img{
 		transform: translate(0, 0%);
 	}
@@ -5596,18 +5600,18 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		padding: 3.5rem 1rem;
 		box-shadow: none;
 	}
-	
+
 	.navbar-default.navbar-scroll {
 		padding: .5rem 1rem;
 		background-color: #282828 !important;
 		background-color: var(--ai-primary, #282828) !important;
 		transition: all 0.5s;
 	}
-	
+
 	.bp-page-content.main-section {
 		margin-top: 160px;
 	}
-	
+
 	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-tree{
 		background-color: #282828 !important;
 		background-color: var(--ai-primary, #282828) !important;
@@ -5623,20 +5627,20 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		content: "";
 		clear: both;
 	}
-	
+
 	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-price,
 	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-supplier,
 	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-attribute{
 		float: left;
-		
+
 	}
-	
+
 	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-attribute:after{
 		display: block;
 		content: "";
 		clear: both;
 	}
-	
+
 }
 
 .locale-select{
@@ -6007,7 +6011,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		padding: 0.5rem;
 		z-index: 1;
 	}
-	
+
 	.open-menu::before {
 		content: "\f479";
 		font: normal normal normal 14px/1 bootstrap-icons;
@@ -6020,13 +6024,13 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.catalog-filter-tree .category-selected {
 		display: none;
 	}
-	
+
 	/*Bootstrap Package Typo3*/
-	
+
 	.bp-page-content.main-section .open-menu {
 		text-align: start;
 	}
-	
+
 	.bp-page-content.main-section .open-menu::before {
 		color: #282828;
 		color: var(--ai-primary, #282828);
