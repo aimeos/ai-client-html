@@ -37,9 +37,9 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php endif ?>
 
 
-	<div class="catalog-stage-image single-item">
+	<?php if( !$this->param( 'd_prodid', $this->param( 'd_name' ) ) && ( $catItem = $this->get( 'stageCurrentCatItem' ) ) && !( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
+		<div class="catalog-stage-image single-item">
 
-		<?php if( !$this->param( 'd_prodid', $this->param( 'd_name' ) ) && ( $catItem = $this->get( 'stageCurrentCatItem' ) ) && !( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 			<?php foreach( $mediaItems as $mediaItem ) : ?>
 				<div class="stage-item">
 					<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
@@ -48,10 +48,9 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 					>
 				</div>
 			<?php endforeach ?>
-		<?php endif ?>
 
-	</div>
-
+		</div>
+	<?php endif ?>
 
 	<div class="catalog-stage-breadcrumb">
 		<nav class="breadcrumb">
