@@ -175,7 +175,7 @@ body > .content {
 	width: 12rem;
 	vertical-align: top;
 	border-radius: 0;
-	margin: .5rem auto;
+	margin: .5rem 0;
 	color: #282828;
 	color: var(--ai-primary, #282828);
 	border: solid 1px #555;
@@ -186,9 +186,7 @@ body > .content {
 }
 
 .aimeos .btn-primary,
-.aimeos .btn-primary:active,
-.aimeos .btn-primary:visited,
-.aimeos .btn-primary:not(:disabled):not(.disabled):active {
+.aimeos .btn-primary:visited {
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
 	border: solid 1px #282828;
@@ -198,16 +196,50 @@ body > .content {
 	letter-spacing: 1.5px;
 }
 
-.aimeos .btn-primary:hover {
+.aimeos .btn-primary:hover,
+.aimeos .btn-primary:active,
+.aimeos .btn-primary:focus,
+.aimeos .btn-primary:not(:disabled):not(.disabled):active{
+	color: #CCC;
+	color: var(--ai-primary-light, #CCC);
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
 	border: solid 1px #282828;
 	border-color: var(--ai-primary, #282828);
 }
 
-.btn-primary:not(:disabled):not(.disabled).active:focus,
-.btn-primary:not(:disabled):not(.disabled):active:focus,
-.show > .btn-primary.dropdown-toggle:focus {
+.aimeos .btn-primary:not(:disabled):not(.disabled).active:focus,
+.aimeos .btn-primary:not(:disabled):not(.disabled):active:focus,
+.aimeos .show > .btn-primary.dropdown-toggle:focus {
+	box-shadow: none;
+}
+
+.aimeos .btn-secondary,
+.aimeos .btn-secondary:visited {
+	background-color: #282828;
+	background-color: var(--ai-primary, #282828);
+	border: solid 1px #282828;
+	border-color: var(--ai-primary, #282828);
+	color: #fff;
+	color: var(--ai-primary-alt, #fff);
+	letter-spacing: 1.5px;
+}
+
+.aimeos .btn-secondary:hover,
+.aimeos .btn-secondary:active,
+.aimeos .btn-secondary:focus,
+.aimeos .btn-secondary:not(:disabled):not(.disabled):active {
+	color: #CCC;
+	color: var(--ai-primary-light, #CCC);
+	background-color: #282828;
+	background-color: var(--ai-primary, #282828);
+	border: solid 1px #282828;
+	border-color: var(--ai-primary, #282828);
+}
+
+.aimeos .btn-secondary:not(:disabled):not(.disabled):active:focus, 
+.aimeos .btn-secondary:not(:disabled):not(.disabled).active:focus, 
+.aimeos .show > .btn-secondary.dropdown-toggle:focus {
 	box-shadow: none;
 }
 
@@ -587,7 +619,7 @@ body > .content {
 
 .aimeos input[type=range] {
 	-webkit-appearance: none;
-	margin: 1.5rem 0;
+	margin: 1.5rem 0 .5rem;
 	width: 100%;
 	border: none;
 }
@@ -1076,7 +1108,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-filter-attribute .attribute-selected {
 	clear: both;
-	padding: 0;
 }
 
 .catalog-filter-attribute .attribute-selected .selected-intro:after {
@@ -1105,7 +1136,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-filter-attribute .attribute-selected,
 .catalog-filter-supplier .supplier-selected {
 	display: block;
-	margin: auto;
+	/*margin: auto;*/
 }
 
 .catalog-filter-attribute label:before,
