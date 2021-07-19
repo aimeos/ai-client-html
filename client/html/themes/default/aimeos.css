@@ -904,6 +904,11 @@ input[type="range"]::-moz-range-progress {
 	text-align: center;
 }
 
+/*Booststrap Package Typo3*/
+.bp-page-content.main-section .catalog-filter-search .btn-search:after {
+	font-size: 120%;
+}
+
 .catalog-filter-search .ui-helper-hidden-accessible {
 	display: none;
 }
@@ -5428,6 +5433,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	margin-inline-end: 1rem;
 }
 
+
+
 .navbar-collapse{
 	position: relative;
 	justify-content: flex-end;
@@ -5509,16 +5516,30 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	left: 0;
 }
 
+/*Typo3 Bootstrap-package*/
+
+	.navbar-mainnavigation .navbar-brand{
+		height: auto;
+	}
+
+	.navbar-mainnavigation .navbar-brand img{
+		transform: translate(0, 0%);
+	}
+
+	.navbar-mainnavigation .navbar-brand-image{
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	
+	.bp-page-content.main-section {
+		margin-top: 55px;
+	}
+	
+
 @media (min-width:992px) {
 
 	.navbar {
 		padding: 3.5rem 1rem;
-	}
-
-	.navbar-scroll {
-		background-color: rgba(18, 22, 26, 0.4);
-		transition: all 0.5s;
-		padding: .5rem 1rem;
 	}
 
 	.navbar .catalog-filter:first-child {
@@ -5529,12 +5550,74 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.navbar {
 		padding: 3.5rem 1rem;
 	}
-
+	
 	.navbar-scroll {
-		background-color: rgba(18, 22, 26, 0.4);
 		transition: all 0.5s;
 		padding: .5rem 1rem;
 	}
+
+	/*Typo3 Bootstrap-package*/
+	
+	.navbar-default {
+		background-color: transparent !important;
+	}
+	
+	.navbar-mainnavigation .navbar-brand {
+		height: auto;
+		padding-top: 0;
+		padding-bottom: 0;
+		transform: translate(0, 0%);
+	}
+	
+	.navbar-mainnavigation .navbar-brand img{
+		transform: translate(0, 0%);
+	}
+
+	.navbar.navbar-mainnavigation{
+		padding: 3.5rem 1rem;
+		box-shadow: none;
+	}
+	
+	.navbar-default.navbar-scroll {
+		padding: .5rem 1rem;
+		background-color: #282828 !important;
+		background-color: var(--ai-primary, #282828) !important;
+		transition: all 0.5s;
+	}
+	
+	.bp-page-content.main-section {
+		margin-top: 160px;
+	}
+	
+	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-tree{
+		background-color: #282828 !important;
+		background-color: var(--ai-primary, #282828) !important;
+		margin-bottom: 3rem;
+	}
+	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search{
+		background-color: #282828 !important;
+		background-color: var(--ai-primary, #282828) !important;
+		top: 0;
+	}
+	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search:after{
+		display: block;
+		content: "";
+		clear: both;
+	}
+	
+	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-price,
+	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-supplier,
+	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-attribute{
+		float: left;
+		
+	}
+	
+	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-attribute:after{
+		display: block;
+		content: "";
+		clear: both;
+	}
+	
 }
 
 .locale-select{
@@ -5760,7 +5843,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	margin: 0;
 }
 
-.catalog-filter .input-group > .form-control {
+.catalog-filter-search .input-group > .form-control {
 	font-size: 85%;
 	z-index: 1024;
 }
@@ -5790,6 +5873,22 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.catalog-filter-search .input-group input:focus {
 		width: 15rem;
 	}
+}
+
+
+/*Typo3 Bootstrap-package*/
+
+.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search .input-group > .form-control {
+	font-size: 85%;
+	z-index: 1024;
+	top: 50%;
+	position: absolute;
+	right: 1rem;
+	transform: translateY(-50%);
+}
+
+.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search .reset{
+	display: none;
 }
 
 /*- Suggests -*/
@@ -5881,7 +5980,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 	/*- MENU trigger Button -*/
 
-	.open-menu{
+	.open-menu {
 		position: relative;
 		display: block;
 		line-height: 1;
@@ -5889,8 +5988,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		padding: 0.5rem;
 		z-index: 1;
 	}
-
-	.open-menu::before{
+	
+	.open-menu::before {
 		content: "\f479";
 		font: normal normal normal 14px/1 bootstrap-icons;
 		font-size: 175%;
@@ -5901,6 +6000,17 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 	.catalog-filter-tree .category-selected {
 		display: none;
+	}
+	
+	/*Bootstrap Package Typo3*/
+	
+	.bp-page-content.main-section .open-menu {
+		text-align: start;
+	}
+	
+	.bp-page-content.main-section .open-menu::before {
+		color: #282828;
+		color: var(--ai-primary, #282828);
 	}
 
 
