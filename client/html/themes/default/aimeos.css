@@ -1052,7 +1052,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	font-size: 100%;
 	padding: 0;
 	width: auto;
-	margin-bottom: .25rem;
+	margin-bottom: .75rem;
 	position: relative;
 	letter-spacing: 1.5px;
 }
@@ -1206,12 +1206,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-filter-attribute .attr-name,
 .catalog-filter-supplier label{
-	margin-bottom: 0;
+	margin-bottom: .5rem;
 }
 
 .catalog-filter-attribute .attr-count,
 .catalog-filter-supplier .attr-count {
-	margin-bottom: 0;
+	margin-bottom: .5rem;
 	display: inline-block;
 	vertical-align: middle;
 }
