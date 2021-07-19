@@ -296,7 +296,7 @@ AimeosCatalogDetail = {
 	 */
 	setupReviews: function() {
 
-		var list = document.getElementsByClassName('content reviews');
+		var list = document.querySelectorAll('.catalog-detail .reviews');
 
 		if(list.length > 0) {
 			if('IntersectionObserver' in window) {
