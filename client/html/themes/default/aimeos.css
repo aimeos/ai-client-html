@@ -994,7 +994,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	border-left-color: var(--ai-light, #D0D0D0);
 	cursor: pointer;
 	font-size: 100%;
-	padding: .5rem 0;
+	padding: 0;
 	width: auto;
 	margin: 0;
 	position: relative;
@@ -1044,11 +1044,15 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-filter-attribute .attribute-lists .attr-item,
 .catalog-filter-supplier .supplier-lists .attr-item {
 	display: block;
-	padding: 0.4rem 0;
+	padding: 0.25rem 0;
 	margin: 0;
 }
 
 .catalog-filter-supplier .supplier-lists .attr-item {
+	display: block;
+}
+
+.catalog-filter-supplier .supplier-lists .attr-item label {
 	display: inline-block;
 }
 
@@ -1145,9 +1149,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	letter-spacing: 1.5px;
 }
 
+.catalog-filter-supplier label{
+	margin-bottom: 0;
+}
+
 .catalog-filter-attribute .attr-count,
 .catalog-filter-supplier .attr-count {
-	margin-bottom: 0.5rem;
+	margin-bottom: 0;
 	display: inline-block;
 	vertical-align: middle;
 }
