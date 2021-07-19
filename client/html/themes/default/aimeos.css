@@ -994,13 +994,11 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-filter-attribute legend {
 	border: none;
-	border-left: 1px solid #D0D0D0;
-	border-left-color: var(--ai-light, #D0D0D0);
 	cursor: pointer;
 	font-size: 100%;
 	padding: 0;
 	width: auto;
-	margin: 0;
+	margin-bottom: .25rem;
 	position: relative;
 	letter-spacing: 1.5px;
 }
@@ -1144,7 +1142,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	cursor: pointer;
 }
 
-
 .catalog-filter-attribute .attr-name,
 .catalog-filter-supplier .attr-name,
 .catalog-filter-attribute .attr-name span,
@@ -1153,6 +1150,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	letter-spacing: 1.5px;
 }
 
+
+.catalog-filter-attribute .attr-name,
 .catalog-filter-supplier label{
 	margin-bottom: 0;
 }
@@ -6560,13 +6559,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 /*--------------------------- Attribute Filter -------------------------------*/
-
-
-
-.catalog-filter-attribute legend {
-	border: none;
-}
-
 
 .catalog-filter-attribute fieldset {
 	border-left: none;
