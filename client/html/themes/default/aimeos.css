@@ -821,8 +821,6 @@ input[type="range"]::-moz-range-progress {
 
 /* Catalog filter search section */
 .catalog-filter-search {
-	/*	border-bottom: 1px solid #555;
-			border-bottom-color: var(--ai-secondary, #555);*/
 	right: 0;
 	z-index: 1000;
 	position: absolute;
@@ -905,6 +903,9 @@ input[type="range"]::-moz-range-progress {
 }
 
 /*Booststrap Package Typo3*/
+.bp-page-content.main-section .catalog-filter-search .btn-primary {
+	padding: .5rem 1rem;
+}
 .bp-page-content.main-section .catalog-filter-search .btn-search:after {
 	font-size: 120%;
 }
@@ -5883,7 +5884,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	z-index: 1024;
 	top: 50%;
 	position: absolute;
-	right: 1rem;
+	right: .5rem;
 	transform: translateY(-50%);
 }
 
