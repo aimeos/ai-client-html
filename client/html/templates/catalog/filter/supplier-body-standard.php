@@ -22,7 +22,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 		<div class="supplier-lists">
 			<?php if( $this->param( 'f_supid' ) ) : ?>
-				<a class="btn btn-secondary supplier-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'supplierResetParams', [] ), [], $listConfig ) ) ?>">
+				<a class="btn supplier-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'supplierResetParams', [] ), [], $listConfig ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 				</a>
 			<?php endif ?>
