@@ -5585,9 +5585,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	background-color: var(--ai-primary, #282828) !important;
 }
 
-.navbar-scroll .navbar-toggler-icon::after, .navbar-scroll .navbar-toggler-icon, .navbar-scroll .navbar-toggler-icon::before {
-	background-color: #fff;
-}
 
 .navbar .catalog-filter:first-child {
 	margin-inline-start: auto;
@@ -5614,22 +5611,46 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 /*Typo3 Bootstrap-package*/
 
-	.navbar-mainnavigation .navbar-brand{
-		height: auto;
-	}
 
-	.navbar-mainnavigation .navbar-brand img{
-		transform: translate(0, 0%);
-	}
+.navbar-toggler-icon::after, .navbar-toggler-icon, .navbar-toggler-icon::before {
+	background-color: #fff;
+}
 
-	.navbar-mainnavigation .navbar-brand-image{
-		padding-top: 0;
-		padding-bottom: 0;
-	}
+.navbar-mainnavigation.navbar-default a:not(.active), 
+.navbar-mainnavigation.navbar-default-transition a:not(.active), 
+.navbar-mainnavigation.navbar-default-transition.navbar-transition a:not(.active) {
+	color: #FFF !important;
+	color: var(--ai-primary-alt, #FFF) !important;
+}
 
-	.bp-page-content.main-section {
-		margin-top: 66px;
-	}
+.navbar-mainnavigation.navbar-default a:not(.active):hover, 
+.navbar-mainnavigation.navbar-default-transition a:not(.active):hover, 
+.navbar-mainnavigation.navbar-default-transition.navbar-transition a:not(.active):hover {
+	color: #CCC !important;
+	color: var(--ai-primary-light, #CCC) !important;
+}
+
+.navbar-mainnavigation {
+		background-color: #282828 !important;
+	background-color: var(--ai-primary, #282828) !important;
+}
+
+.navbar-mainnavigation .navbar-brand{
+	height: auto;
+}
+
+.navbar-mainnavigation .navbar-brand img{
+	transform: translate(0, 0%);
+}
+
+.navbar-mainnavigation .navbar-brand-image{
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.bp-page-content.main-section {
+	margin-top: 66px;
+}
 
 
 @media (min-width:992px) {
@@ -6083,10 +6104,25 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	top:0;
 	z-index:1031;
 }
-
 .zeynep-opened .zeynep-overlay{
 	display:block;
 }
+
+.zeynep-overlay1{
+	background-color:rgba(0, 0, 0, .42);
+	bottom:0;
+	display:none;
+	left:0;
+	position:fixed;
+	right:0;
+	top:0;
+	z-index:1031;
+}
+.zeynep-overlay1.open{
+	display:block;
+}
+
+
 
 .zeynep-opened body {
 	overflow: hidden;
