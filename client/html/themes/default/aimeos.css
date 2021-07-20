@@ -80,11 +80,7 @@ body > .content {
 	overflow: unset;
 }
 
-.aimeos .catalog-stage-image {
-	height: calc(1rem + 50px);
-}
-
-.aimeos.catalog-home, .aimeos.catalog-stage {
+.aimeos.catalog-home {
 	margin-top: calc(-1rem - 50px);
 }
 
@@ -97,11 +93,7 @@ body > .content {
 		margin-top: calc(7rem + 50px);
 	}
 
-	.aimeos .catalog-stage-image {
-		height: calc(7rem + 50px);
-	}
-
-	.aimeos.catalog-home, .aimeos.catalog-stage {
+	.aimeos.catalog-home {
 		margin-top: calc(-7rem - 50px);
 	}
 }
