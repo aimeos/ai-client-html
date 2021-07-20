@@ -507,7 +507,7 @@ class Standard
 		}
 
 		// Delete cache when products are added or deleted even when in "tag-all" mode
-		$this->addMetaItems( $products->union( $articles ), $expire, $tags, ['product'] );
+		$this->addMetaItems( $tree, $expire, $tags, ['catalog', 'product'] );
 
 		$view->homeTree = $tree;
 
