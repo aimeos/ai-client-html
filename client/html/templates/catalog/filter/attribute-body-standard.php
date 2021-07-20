@@ -48,7 +48,7 @@ $params = $this->param();
 			<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
 
 				<div class="attribute-selected">
-					<a class="btn btn-secondary attribute-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ) ?>">
+					<a class="btn attribute-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 					</a>
 
