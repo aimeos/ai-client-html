@@ -6101,7 +6101,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.bp-page-content.main-section .open-menu {
 		padding: 0.725rem;
 		text-align: start;
-		/*display: inline-block;*/
 		z-index: 1025;
 		position: absolute;
 		left: 0;
@@ -6583,6 +6582,17 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	text-align: start;
 }
 
+
+    
+/*Bootstrap Package Typo3*/
+
+.bp-page-content.main-section .catalog-filter-attribute.col, 
+.bp-page-content.main-section .catalog-filter-price.col, 
+.bp-page-content.main-section .catalog-filter-supplier.col {
+	max-width: unset;
+}
+
+
 @media (min-width:768px) {
 
 	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
@@ -6627,6 +6637,12 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		margin-bottom: 0;
 		border: 0;
 		letter-spacing: 1.5px;
+	}
+	
+	.bp-page-content.main-section .catalog-filter-attribute.col, 
+	.bp-page-content.main-section .catalog-filter-price.col, 
+	.bp-page-content.main-section .catalog-filter-supplier.col {
+		max-width: 33.3333333333%;
 	}
 
 }
