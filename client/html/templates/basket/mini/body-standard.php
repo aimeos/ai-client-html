@@ -114,6 +114,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 
 ?>
+
 <section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $jsonConfig ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
@@ -137,7 +138,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 		?>
 
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
-
+		<div class="zeynep-overlay"></div>
 		<a href="#">
 			<div class="basket-mini-main">
 				<span class="quantity"><?= $enc->html( $quantity ) ?></span>
