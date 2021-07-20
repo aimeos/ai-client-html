@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-06 09:42+0200\n"
-"PO-Revision-Date: 2021-07-07 11:35+0000\n"
+"PO-Revision-Date: 2021-07-19 08:40+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -437,7 +437,7 @@ msgstr "Falls Sie Fragen haben sollten, antworten Sie bitte auf diese E-Mail"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "Incl. %1$s%% %2$s"
+msgstr "Inkl. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -448,7 +448,7 @@ msgid "Included rebates"
 msgstr "Enthaltene Rabatte"
 
 msgid "Interval"
-msgstr "Interval"
+msgstr "Intervall"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
