@@ -48,6 +48,10 @@ $params = $this->param();
 			<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
 
 				<div class="attribute-selected">
+					<a class="btn btn-secondary attribute-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ) ?>">
+						<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
+					</a>
+
 					<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
 
 					<ul class="attr-list">
@@ -69,10 +73,6 @@ $params = $this->param();
 							<?php endforeach; ?>
 						<?php endforeach; ?>
 					</ul>
-
-					<a class="btn btn-secondary attribute-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ) ?>">
-						<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
-					</a>
 				</div>
 
 			<?php endif; ?>
