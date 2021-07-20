@@ -80,11 +80,7 @@ body > .content {
 	overflow: unset;
 }
 
-.aimeos .catalog-stage-image {
-	height: calc(1rem + 50px);
-}
-
-.aimeos.catalog-home, .aimeos.catalog-stage {
+.aimeos.catalog-home {
 	margin-top: calc(-1rem - 50px);
 }
 
@@ -97,11 +93,7 @@ body > .content {
 		margin-top: calc(7rem + 50px);
 	}
 
-	.aimeos .catalog-stage-image {
-		height: calc(7rem + 50px);
-	}
-
-	.aimeos.catalog-home, .aimeos.catalog-stage {
+	.aimeos.catalog-home {
 		margin-top: calc(-7rem - 50px);
 	}
 }
@@ -237,8 +229,8 @@ body > .content {
 	border-color: var(--ai-primary, #282828);
 }
 
-.aimeos .btn-secondary:not(:disabled):not(.disabled):active:focus, 
-.aimeos .btn-secondary:not(:disabled):not(.disabled).active:focus, 
+.aimeos .btn-secondary:not(:disabled):not(.disabled):active:focus,
+.aimeos .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .aimeos .show > .btn-secondary.dropdown-toggle:focus {
 	box-shadow: none;
 }
@@ -979,7 +971,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 @media (min-width:992px) {
-	
+
 	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search{
 		right: 0;
 		z-index: 1000;
@@ -987,7 +979,7 @@ input[type="range"]::-moz-range-progress {
 		background-color: transparent;
 		margin-bottom: 0;
 	}
-	
+
 }
 
 .catalog-filter-search .ui-helper-hidden-accessible {
@@ -5993,7 +5985,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 @media (min-width:992px) {
-	
+
 .bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search .input-group{
 	position: relative;
 	display: inline-block;
@@ -6003,8 +5995,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	align-self: end;
 	margin-left: auto;
 }
-	
-	
+
+
 }
 
 /*- Suggests -*/
@@ -6605,18 +6597,18 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 
-	
+
 /*Bootstrap Package Typo3*/
 
-.bp-page-content.main-section .catalog-filter-attribute.col, 
-.bp-page-content.main-section .catalog-filter-price.col, 
+.bp-page-content.main-section .catalog-filter-attribute.col,
+.bp-page-content.main-section .catalog-filter-price.col,
 .bp-page-content.main-section .catalog-filter-supplier.col {
 	max-width: unset;
 	margin-bottom: 1rem;
 }
 
-.bp-page-content.main-section .catalog-filter-attribute.col:after, 
-.bp-page-content.main-section .catalog-filter-price.col:after, 
+.bp-page-content.main-section .catalog-filter-attribute.col:after,
+.bp-page-content.main-section .catalog-filter-price.col:after,
 .bp-page-content.main-section .catalog-filter-supplier.col:after {
 	content: "";
 	border: 1px solid;
@@ -6676,17 +6668,17 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		border: 0;
 		letter-spacing: 1.5px;
 	}
-	
+
 	/*Bootstrap Package Typo3*/
-	
-	.bp-page-content.main-section .catalog-filter-attribute.col, 
-	.bp-page-content.main-section .catalog-filter-price.col, 
+
+	.bp-page-content.main-section .catalog-filter-attribute.col,
+	.bp-page-content.main-section .catalog-filter-price.col,
 	.bp-page-content.main-section .catalog-filter-supplier.col {
 		max-width: 33.3333333333%;
 	}
 
-	.bp-page-content.main-section .catalog-filter-attribute.col:after, 
-	.bp-page-content.main-section .catalog-filter-price.col:after, 
+	.bp-page-content.main-section .catalog-filter-attribute.col:after,
+	.bp-page-content.main-section .catalog-filter-price.col:after,
 	.bp-page-content.main-section .catalog-filter-supplier.col:after {
 		content: "";
 		border: 1px solid;
