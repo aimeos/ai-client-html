@@ -5457,7 +5457,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 .catalog-filter-tree .list-container.level-2 .nochild a.item-link:link,
 .catalog-filter-tree .list-container.level-2 .nochild a.item-link:visited {
-	color: #A0A0A0;
+	color: #555;
+	color: var(--ai-secondary, #555);
 }
 
 .catalog-filter-tree .list-container.level-2 .nochild a.item-link:link:hover,
@@ -5474,8 +5475,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 .catalog-filter-tree .list-container a.item-link:link:hover,
 .catalog-filter-tree .list-container a.item-link:visited:hover {
-	color: #CCCCCC;
-	color: var(--ai-light, #CCCCCC);
+	color: #555;
+	color: var(--ai-secondary, #555);
 }
 
 .catalog-filter-tree .list-container .top-item.nochild a.item-link:link,
@@ -5498,8 +5499,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 .catalog-filter-tree .list-container.level-2 .active > .item-links > a.item-link:link,
 .catalog-filter-tree .list-container.level-2 .active > .item-links > a.item-link:visited {
-	color: #CCCCCC;
-	color: var(--ai-light, #CCCCCC);
+	color: #555;
+	color: var(--ai-secondary, #555);
 }
 
 
@@ -5721,6 +5722,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		background-color: #282828 !important;
 		background-color: var(--ai-primary, #282828) !important;
 		margin-bottom: 3rem;
+		position: relative;
+		z-index: 2;
 	}
 
 	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search:after{
@@ -6364,8 +6367,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		width: 20rem;
 		min-height: 100%;
 		-webkit-overflow-scrolling: touch;
-		background-color: #282828;
-		background-color: var(--ai-primary, #282828);
+		background-color: #FFF;
+		background-color: var(--ai-bg, #FFF);
 		pointer-events: none;
 		z-index: 1;
 	}
