@@ -2170,8 +2170,10 @@ jQuery(function() {
 
 		if (scroll > 0) {
 			$(".navbar").addClass("navbar-scroll");
+			$("body").addClass("is-scrolled");
 		} else {
 			$(".navbar").removeClass("navbar-scroll");
+			$("body").removeClass("is-scrolled");
 		}
 	})
 

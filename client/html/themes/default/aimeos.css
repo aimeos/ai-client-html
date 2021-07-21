@@ -74,7 +74,7 @@ body{
 
 /*Bootstrap Package Typo3 begin*/
 
-body.layout-default{
+body.layout-default.is-scrolled{
 	background-size: 100% calc(1rem + 34px);
 }
 
@@ -6110,7 +6110,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	position:fixed;
 	right:0;
 	top:0;
-	z-index:1031;
+	z-index:1030;
 }
 .zeynep-opened .zeynep-overlay{
 	display:block;
@@ -6124,7 +6124,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	position:fixed;
 	right:0;
 	top:0;
-	z-index:1031;
+	z-index:1030;
 }
 .zeynep-overlay1.open{
 	display:block;
