@@ -73,11 +73,9 @@ body{
 }
 
 /*Bootstrap Package Typo3 begin*/
-
-body.layout-default.is-scrolled{
+body.layout-default{
 	background-size: 100% calc(1rem + 34px);
 }
-
 /*Bootstrap Package Typo3 end*/
 
 body > .content {
@@ -96,6 +94,12 @@ body > .content {
 	body {
 		background-size: 100% calc(7rem + 50px);
 	}
+	
+/*Bootstrap Package Typo3 begin*/
+	body.layout-default{
+		background-size: 100% calc(7rem + 34px);
+	}
+/*Bootstrap Package Typo3 end*/
 
 	body > .content {
 		margin-top: calc(7rem + 50px);
@@ -5621,7 +5625,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 
 .navbar-toggler-icon::after, .navbar-toggler-icon, .navbar-toggler-icon::before {
-    background-color: #fff;
+	background-color: #fff;
 }
 
 .navbar-mainnavigation.navbar-default a:not(.active), 
@@ -5639,7 +5643,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 .navbar-mainnavigation {
-    	background-color: #282828 !important;
+		background-color: #282828 !important;
 	background-color: var(--ai-primary, #282828) !important;
 }
 
