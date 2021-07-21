@@ -97,7 +97,7 @@ body > .content {
 	
 /*Bootstrap Package Typo3 begin*/
 	body.layout-default{
-		background-size: 100% calc(7rem + 34px);
+		background-size: 100% calc(7rem + 50px);
 	}
 /*Bootstrap Package Typo3 end*/
 
@@ -6134,10 +6134,8 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	display:block;
 }
 
-
-
 .zeynep-opened body {
-	overflow: hidden;
+	overflow: auto;
 }
 
 .open-menu{
@@ -6180,8 +6178,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		left: 0;
 	}
 
-
-
 	/*-------------------------PUSHMENU Mobile------------------------------------*/
 
 	body {
@@ -6209,7 +6205,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.btn-open:active {
 		box-shadow: inset 0 3px 5px 0px rgba(0, 0, 0, .1);
 	}
-
 
 	.zeynep {
 		position: fixed;
@@ -6453,7 +6448,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	}
 
 }
-
 
 /*------------------------Images in media-list--------------------------------*/
 
