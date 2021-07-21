@@ -5625,7 +5625,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 
 .navbar-toggler-icon::after, .navbar-toggler-icon, .navbar-toggler-icon::before {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 .navbar-mainnavigation.navbar-default a:not(.active), 
@@ -5643,7 +5643,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 .navbar-mainnavigation {
-		background-color: #282828 !important;
+    	background-color: #282828 !important;
 	background-color: var(--ai-primary, #282828) !important;
 }
 
@@ -6773,7 +6773,16 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		min-width: 0;
 	}
 
-	.catalog-filter-attribute .attribute-lists, .catalog-filter-supplier .supplier-lists, .catalog-filter-price .price-lists {
+	.catalog-filter-attribute .attribute-lists, 
+	.catalog-filter-supplier .supplier-lists, 
+	.catalog-filter-price .price-lists {
+		display: block;
+	}
+	
+/*Bootstrap Package Typo3*/
+	.bp-page-content.main-section .catalog-filter-attribute .attribute-lists, 
+	.bp-page-content.main-section  .catalog-filter-supplier .supplier-lists, 
+	.bp-page-content.main-section  .catalog-filter-price .price-lists {
 		display: none;
 	}
 
