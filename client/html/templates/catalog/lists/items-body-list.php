@@ -96,7 +96,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 						--><div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 							<div class="stock-list">
-								<div class="articleitem <?= !in_array( $productItem->getType(), ['select', 'group'] ) ? 'stock-actual' : '' ?>"
+								<div class="articleitem <?= !in_array( $productItem->getType(), ['group'] ) ? 'stock-actual' : '' ?>"
 									data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
 									data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
 								</div>
