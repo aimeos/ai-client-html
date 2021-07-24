@@ -42,6 +42,14 @@ $this->pdf->setHtmlVSpace( $vmargin );
 $this->pdf->setListIndentWidth( 4 );
 
 $this->pdf->setHeaderFunction( function( $pdf ) {
+	/* Add background image
+	$margin = $pdf->getBreakMargin();
+	$pdf->setAutoPageBreak( false, 0 );
+	$pdf->image( __DIR__ . '/pdf-background.png', 0, 0, $pdf->getPageWidth(), $pdf->getPageHeight(), 'PNG' );
+	$pdf->setAutoPageBreak( true, $margin );
+	$pdf->setPageMark();
+	*/
+
 	$pdf->writeHtmlCell( 210, 20, 0, 0, '
 		<div style="background-color: #103050; color: #ffffff; text-align: center; font-weight: bold">
 			<div style="font-size: 0px"> </div>
