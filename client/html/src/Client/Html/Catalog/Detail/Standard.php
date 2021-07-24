@@ -78,17 +78,6 @@ class Standard
 	 * @since 2014.03
 	 * @category Developer
 	 */
-
-	/** client/html/catalog/detail/supplier/name
-	 * Name of the supplier part used by the catalog detail client implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Detail\Supplier\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the client class name
-	 * @since 2014.03
-	 * @category Developer
-	 */
 	private $subPartNames = ['seen', 'service'];
 
 	private $tags = [];
