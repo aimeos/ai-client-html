@@ -69,7 +69,7 @@ body{
 	background-color: var(--ai-bg-alt, #FFF);
 	background-image: url(./media/header-bg.jpg);
 	background-repeat: no-repeat;
-	background-size: 100% calc(1rem + 55px);
+	background-size: 100% calc(1rem + 50px);
 }
 
 /*Bootstrap Package Typo3 begin*/
