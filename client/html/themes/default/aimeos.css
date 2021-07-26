@@ -6197,7 +6197,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		position: absolute;
 		left: 0;
 	}
-	
+
 	[dir="rtl"] .zeynep.first {
 		transition: right .25s;
 		right: -20rem;
@@ -6210,7 +6210,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	}
 
 	/*-------------------------PUSHMENU Mobile------------------------------------*/
-	
+
 	/*Layout Styles*/
 
 	body {
@@ -6443,24 +6443,24 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.zeynep .submenu.opened:not(.current){
 		overflow:hidden;
 	}
-	
+
 }
 /*Minibasket right Menu*/
 
 .zeynep-opened body {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .zeynep.second {
-    left: auto;
-    right: 0;
+	left: auto;
+	right: 0;
 }
 .zeynep.second:not(.opened) {
-    transform: translateX(100%);
-}	
-	
-	
-	
+	transform: translateX(100%);
+}
+
+
+
 /*-------------------Main-MENU MEGAMENU----------------------*/
 
 .catalog-filter-tree.col {
