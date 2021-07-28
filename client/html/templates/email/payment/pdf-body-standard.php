@@ -92,6 +92,25 @@ $this->pdf->setFooterFunction( function( $pdf ) {
 	' );
 } );
 
+// SEPA payment QR-Code
+$total = $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts();
+$data = [
+	'BCD', // required
+	'002', // Version 2 (required, 1=UTF-8, 2=ISO 8859-1, 3=ISO 8859-2, 4=ISO 8859-4, 5=ISO 8859-5, 6=ISO 8859-7, 7=ISO 8859-10, 8=ISO 8859-15)
+	1,     // UTF-8 (required)
+	'SCT', // SEPA Credit Transfer (required)
+	'',    // BIC (optional)
+	'',    // Name of recipient (required, name of your company)
+	'',    // IBAN (required)
+	$this->summaryBasket->getPrice()->getCurrencyId() . $total,    // Currency and value (required)
+	'',    // Purpose (optional, 4 char code, https://wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
+	'',    // ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
+	$this->translate( 'client', 'Order' ) . ' ' . $this->extOrderItem->getId(), // Reference of order and other data (optional, max. 140 characters)
+	$this->extOrderBaseItem->getCustomerReference(), // Notice to the customer (optional, max. 70 characters)
+];
+
+$barcode = new TCPDF2DBarcode( join( "\n", $data ), 'QRCODE,M' );
+
 
 ?>
 <?php $this->block()->start( 'email/payment/pdf' ) ?>
@@ -160,6 +179,14 @@ $this->pdf->setFooterFunction( function( $pdf ) {
 							<td><?= $enc->html( $this->extOrderBaseItem->getCustomerReference() ) ?></td>
 						</tr>
 					<?php endif ?>
+					<tr>
+						<td colspan="2"></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<img style="padding: 5px" src="@<?= base64_encode( $barcode->getBarcodePngData( 3, 3, [0, 0, 0] ) ) ?>" />
+						</td>
+					</tr>
 				</table>
 			</td>
 		</tr>
