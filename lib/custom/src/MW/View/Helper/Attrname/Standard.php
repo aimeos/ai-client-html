@@ -32,7 +32,7 @@ class Standard
 		if( $priceItem = $item->getRefItems( 'price', 'default', 'default' )->first() )
 		{
 			/// Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
-			$str = $this->translate( 'client', '%1$s ( %4$s%2$s%3$s )' );
+			$str = $this->translate( 'client', '%1$s (%4$s%2$s%3$s)' );
 			$value = $priceItem->getValue() + $priceItem->getCosts();
 			$view = $this->getView();
 

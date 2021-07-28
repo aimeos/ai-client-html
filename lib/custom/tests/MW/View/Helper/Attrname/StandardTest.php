@@ -41,6 +41,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->object->transform( $item );
 
-		$this->assertRegexp( '/[^ ]+ \( \+[0-9]+\.[0-9]+EUR \)/', $result );
+		$this->assertRegexp( '/[^ ]+ \(\+[0-9]+\.[0-9]+EUR\)/', $result );
 	}
 }
