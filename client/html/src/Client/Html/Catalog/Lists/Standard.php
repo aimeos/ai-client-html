@@ -704,7 +704,7 @@ class Standard
 		}
 
 		if( $view->config( 'client/html/catalog/lists/basket-add', false ) ) {
-			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
+			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
 		}
 
 		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )

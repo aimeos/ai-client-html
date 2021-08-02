@@ -441,7 +441,7 @@ class Standard
 		$domains = $config->get( 'client/html/catalog/product/domains', $domains );
 
 		if( $config->get( 'client/html/catalog/product/basket-add', false ) ) {
-			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
+			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
 		}
 
 		/** client/html/catalog/product/product-codes
