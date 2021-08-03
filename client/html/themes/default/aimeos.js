@@ -2209,10 +2209,6 @@ jQuery(function() {
 	 */
 	var $dropdowns = $('.top-item'); // Specifying the element is faster for older browsers
 
-	$('.has-submenu > .top-cat-item').on('click', function(t){
-		t.preventDefault(), t.stopPropagation();
-	});
-
 	/**
 	 * Touch events
 	 *
