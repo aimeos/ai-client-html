@@ -88,6 +88,7 @@ class Standard
 		 *
 		 * Notification e-mail about payment status changes can be sent for these
 		 * status values:
+		 *
 		 * * 0: deleted
 		 * * 1: canceled
 		 * * 2: refused

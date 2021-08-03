@@ -77,6 +77,7 @@ class Standard
 		 * Only send e-mails containing voucher for these payment status values
 		 *
 		 * E-mail containing vouchers can be sent for these payment status values:
+		 *
 		 * * 0: deleted
 		 * * 1: canceled
 		 * * 2: refused

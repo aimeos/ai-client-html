@@ -89,6 +89,7 @@ class Standard
 		 *
 		 * Notification e-mail about delivery status changes can be sent for these
 		 * status values:
+		 *
 		 * * 0: deleted
 		 * * 1: pending
 		 * * 2: progress
