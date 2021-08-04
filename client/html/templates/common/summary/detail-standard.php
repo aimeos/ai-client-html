@@ -273,8 +273,13 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					</td>
 
 
-					<td class="unitprice"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $precision ), $priceCurrency ) ) ?></td>
-					<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></td>
+					<?php if( $product->getPrice()->getValue() !== null ) : ?>
+						<td class="unitprice"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $precision ), $priceCurrency ) ) ?></td>
+						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></td>
+					<?php else : ?>
+						<td class="unitprice"></td>
+						<td class="price"><?= $enc->html( $this->translate( 'client', 'on request' ) ) ?></td>
+					<?php endif ?>
 
 
 					<?php if( $modify ) : ?>
