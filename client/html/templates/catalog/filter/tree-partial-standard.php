@@ -111,7 +111,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 					<?php if( $item->hasChildren() ) : ?>
 							<div class="item-links row">
 								<a class="col-10 item-link" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></a>
-								<a class="col-2 data-link" data-submenu="<?= $enc->attr( $item->getId() ) ?>" href="#"></a>
+								<a class="col-2 data-link" data-submenu="<?= $enc->attr( $item->getId() ) ?>" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Open submenu' ) ) ?>"></a>
 							</div>
 					<?php else : ?>
 							<div class="item-links">
