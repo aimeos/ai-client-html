@@ -1429,6 +1429,14 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Catalog home */
 
+/* Prevent flashing of slider images */
+.catalog-home .home-item {
+	display: none;
+}
+.catalog-home .home-item:first-of-type {
+	display: block;
+}
+
 .catalog-home .stage-item {
 	background-color: #FFF;
 	background-color: var(--ai-bg-alt, #FFF);
