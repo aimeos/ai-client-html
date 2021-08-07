@@ -25,7 +25,7 @@ foreach( $priceItems as $priceItem )
 }
 
 $prices->ksort();
-$price = $prices->getValue()->first();
+$price = $prices->first()->getValue();
 
 $format = array(
 	/// Price quantity format with quantity (%1$s)
