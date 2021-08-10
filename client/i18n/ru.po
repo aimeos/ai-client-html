@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 15:51+0200\n"
-"PO-Revision-Date: 2021-06-16 13:58+0000\n"
-"Last-Translator: Emiliya Adigozalova <emiliyaadigozalova@gmail.com>\n"
+"POT-Creation-Date: 2021-07-06 09:42+0200\n"
+"PO-Revision-Date: 2021-07-06 07:44+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -672,9 +672,6 @@ msgstr ""
 msgid "Products you might be also interested in"
 msgstr "Товары, которые могут быть Вам интересны"
 
-msgid "Profile"
-msgstr ""
-
 msgid "Properties"
 msgstr "Свойства"
 
@@ -829,6 +826,9 @@ msgstr ""
 
 msgid "Suppliers"
 msgstr "Поставщики"
+
+msgid "Take a look"
+msgstr ""
 
 msgid "Telephone"
 msgstr "Телефон"

@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aimeos, 2021
 # Goran Sabo <info@noaset.pro>, 2020
 # Goran Sabo <info@noaset.pro>, 2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 15:51+0200\n"
-"PO-Revision-Date: 2021-05-29 22:30+0000\n"
-"Last-Translator: Goran Sabo <info@noaset.pro>\n"
+"POT-Creation-Date: 2021-07-06 09:42+0200\n"
+"PO-Revision-Date: 2021-07-06 07:44+0000\n"
+"Last-Translator: Aimeos\n"
 "Language-Team: Slovenian (http://www.transifex.com/aimeos/aimeos-core/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,7 +165,7 @@ msgstr "All deliveries shipped are subject to our terms and conditions, which ar
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
-msgstr "Več informacij o naročilih in plačilih najdete na naši strani Splošni pogoji.\n\nTo sporočilo vsebuje informacije, ki so namenjene izključno Vam. Ne delite jih z drugimi!"
+msgstr "Za vsa naročila veljajo naši Splošni pogoji poslovanja, ki so na voljo na naši spletni strani in ste jih sprejeli pri oddaji naročila.\n\nTa elektronska pošta vsebuje informacije, ki so lahko zaupne narave in so namenjene samo naslovniku. Če je bilo zaradi napake v naslovu ali pri prenosu sporočilo poslano drugam, prosimo, da nam odgovorite s povratno e-pošto. Če sporočilo ni bilo namenjeno vam, ne smete uporabljati, razkriti, širiti, kopirati, tiskati ali kakorkoli uporabiti informacije v sporočilu."
 
 msgid "An account has been created for you."
 msgstr "Naročniški račun je ustvarjen"
@@ -669,9 +670,6 @@ msgstr "Slika izdelka"
 msgid "Products you might be also interested in"
 msgstr "Izdelki, ki ti lahko pride prav"
 
-msgid "Profile"
-msgstr "Profil"
-
 msgid "Properties"
 msgstr "Lastnosti"
 
@@ -827,6 +825,9 @@ msgstr "Podrobnost dobavitelja"
 msgid "Suppliers"
 msgstr "Dobavitelji"
 
+msgid "Take a look"
+msgstr ""
+
 msgid "Telephone"
 msgstr "Telefon"
 
@@ -895,7 +896,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+msgstr "Vaše naročilo bo zadržano do nadaljnjega oziroma dokler ne prejmemo vašega plačila. Če želite plačate preko neposredne bančne transakcije ne pozabite vpisati številko naročila, ki je %1$s."
 
 msgid ""
 "The order was canceled.\n"

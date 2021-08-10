@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 15:51+0200\n"
-"PO-Revision-Date: 2021-06-14 10:05+0000\n"
-"Last-Translator: Gülsüm Akça <akcagulsum1@gmail.com>\n"
+"POT-Creation-Date: 2021-07-06 09:42+0200\n"
+"PO-Revision-Date: 2021-07-12 21:06+0000\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -663,9 +663,6 @@ msgstr "Ürün resmi"
 msgid "Products you might be also interested in"
 msgstr "İlgilenebileceğiniz diğer ürünler"
 
-msgid "Profile"
-msgstr "Profil"
-
 msgid "Properties"
 msgstr "Özellikler"
 
@@ -786,7 +783,7 @@ msgid "Sub-total"
 msgstr "Ara Toplam"
 
 msgid "Submit"
-msgstr "Kaydet"
+msgstr "Gönder"
 
 msgid "Subscription ID"
 msgstr "Abonelik kimlik numarası"
@@ -818,6 +815,9 @@ msgstr "Tedarikçi bilgileri"
 
 msgid "Suppliers"
 msgstr "Tedarikçiler"
+
+msgid "Take a look"
+msgstr "Gözat"
 
 msgid "Telephone"
 msgstr "Telefon"
