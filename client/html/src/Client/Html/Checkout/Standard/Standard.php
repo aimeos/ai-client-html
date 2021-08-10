@@ -453,7 +453,7 @@ class Standard
 		$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
 
 		$steps = (array) $context->getConfig()->get( $this->subPartPath, $this->subPartNames );
-		$steps = array_diff( $steps, $onepage ); // remove all remaining steps in $onepage
+		$steps = array_values( array_diff( $steps, $onepage ) ); // remove all remaining steps in $onepage and reindex
 
 		// use first step if default step isn't available
 		$default = ( !in_array( $default, $steps ) ? reset( $steps ) : $default );
