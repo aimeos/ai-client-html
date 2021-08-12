@@ -105,7 +105,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/checkout/confirm/intro/template-body';
 
-		$status = $view->confirmOrderItem->getPaymentStatus();
+		$status = $view->confirmOrderItem->getStatusPayment();
 		$default = array( 'checkout/confirm/' . $status . '/intro-body-standard', 'checkout/confirm/intro-body-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) );

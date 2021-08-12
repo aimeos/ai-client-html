@@ -211,7 +211,7 @@ class Standard
 	{
 		if( isset( $view->confirmOrderItem ) )
 		{
-			if( $view->confirmOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+			if( $view->confirmOrderItem->getStatusPayment() >= $this->getDownloadPaymentStatus() ) {
 				$view->summaryShowDownloadAttributes = true;
 			}
 

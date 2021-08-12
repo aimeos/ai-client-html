@@ -145,7 +145,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/delivery/template-body';
 
-		$status = $view->extOrderItem->getDeliveryStatus();
+		$status = $view->extOrderItem->getStatusDelivery();
 		$default = array( 'email/delivery/' . $status . '/body-standard', 'email/delivery/body-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) );
@@ -412,7 +412,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/delivery/template-header';
 
-		$status = $view->extOrderItem->getDeliveryStatus();
+		$status = $view->extOrderItem->getStatusDelivery();
 		$default = array( 'email/delivery/' . $status . '/header-standard', 'email/delivery/header-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) ); ;
@@ -584,10 +584,10 @@ class Standard
 		}
 
 
-		$key = 'stat:' . $view->extOrderItem->getDeliveryStatus();
+		$key = 'stat:' . $view->extOrderItem->getStatusDelivery();
 		$status = $view->translate( 'mshop/code', $key );
 
-		switch( $view->extOrderItem->getDeliveryStatus() )
+		switch( $view->extOrderItem->getStatusDelivery() )
 		{
 			case 3:
 				/// Delivery e-mail intro with order ID (%1$s), order date (%2$s) and delivery status (%3%s)

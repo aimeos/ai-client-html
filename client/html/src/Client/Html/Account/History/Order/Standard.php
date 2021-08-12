@@ -221,7 +221,7 @@ class Standard
 			$orderItem = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $orderId );
 			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $orderItem->getBaseId() );
 
-			if( $orderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+			if( $orderItem->getStatusPayment() >= $this->getDownloadPaymentStatus() ) {
 				$view->summaryShowDownloadAttributes = true;
 			}
 

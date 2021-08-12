@@ -285,7 +285,7 @@ class Standard
 				$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 				$args = ( $service = reset( $services ) ) ? ['code' => $service->getCode()] : [];
 
-				$orderCntl->save( $orderItem->setPaymentStatus( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
+				$orderCntl->save( $orderItem->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
 				$view->standardUrlNext = $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] );
 				$view->standardMethod = 'POST';
 			}

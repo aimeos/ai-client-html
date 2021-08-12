@@ -54,7 +54,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<?= $enc->html( $this->translate( 'client', 'Payment status' ), $enc::TRUST ) ?>
 					</span>
 					<span class="value">
-						<?php $code = 'pay:' . $this->confirmOrderItem->getPaymentStatus() ?>
+						<?php $code = 'pay:' . $this->confirmOrderItem->getStatusPayment() ?>
 						<?= $enc->html( $this->translate( 'mshop/code', $code ) ) ?>
 					</span>
 				</li>
@@ -64,7 +64,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 	<div class="checkout-confirm-retry">
-		<?php if( isset( $this->confirmOrderItem ) && $this->confirmOrderItem->getPaymentStatus() < \Aimeos\MShop\Order\Item\Base::PAY_REFUND ) : ?>
+		<?php if( isset( $this->confirmOrderItem ) && $this->confirmOrderItem->getStatusPayment() < \Aimeos\MShop\Order\Item\Base::PAY_REFUND ) : ?>
 			<div class="button-group">
 				<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->url( $target, $controller, $action, ['c_step' => 'payment'], [], $config ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ) ?>

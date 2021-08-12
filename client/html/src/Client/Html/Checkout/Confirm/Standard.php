@@ -330,7 +330,7 @@ class Standard
 
 			parent::process();
 
-			if( $orderItem->getPaymentStatus() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
+			if( $orderItem->getStatusPayment() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
 			{
 				\Aimeos\Controller\Frontend::create( $context, 'basket' )->clear();
 				$session->remove( array_keys( $session->get( 'aimeos/basket/cache', [] ) ) );

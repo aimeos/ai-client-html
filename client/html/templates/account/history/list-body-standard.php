@@ -144,7 +144,7 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 									</span>
 									<span class="value col-7">
 										<?php if( ( $date = $orderItem->getDatePayment() ) !== null ) : ?>
-											<?php $code = 'pay:' . $orderItem->getPaymentStatus(); $paystatus = $this->translate( 'mshop/code', $code ) ?>
+											<?php $code = 'pay:' . $orderItem->getStatusPayment(); $paystatus = $this->translate( 'mshop/code', $code ) ?>
 											<?= $enc->html( sprintf( $attrformat, $paystatus, date_create( $date )->format( $dateformat ) ), $enc::TRUST ) ?>
 										<?php endif ?>
 									</span>
@@ -157,7 +157,7 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 									</span>
 									<span class="value col-7">
 										<?php if( ( $date = $orderItem->getDateDelivery() ) !== null ) : ?>
-											<?php $code = 'stat:' . $orderItem->getDeliveryStatus(); $status = $this->translate( 'mshop/code', $code ) ?>
+											<?php $code = 'stat:' . $orderItem->getStatusDelivery(); $status = $this->translate( 'mshop/code', $code ) ?>
 											<?= $enc->html( sprintf( $attrformat, $status, date_create( $date )->format( $dateformat ) ), $enc::TRUST ) ?>
 										<?php endif ?>
 									</span>

@@ -260,7 +260,7 @@ class Standard
 		$view->summaryTaxRates = $this->getTaxRates( $basket );
 		$view->summaryBasket = $basket;
 
-		if( $view->extOrderItem->getPaymentStatus() >= $this->getDownloadPaymentStatus() ) {
+		if( $view->extOrderItem->getStatusPayment() >= $this->getDownloadPaymentStatus() ) {
 			$view->summaryShowDownloadAttributes = true;
 		}
 

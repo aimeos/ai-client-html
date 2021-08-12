@@ -253,7 +253,7 @@
 								</ul>
 							<?php endif ?>
 						<?php endforeach ?>
-						<?php if( $this->extOrderItem->getPaymentStatus() >= $this->config( 'client/html/common/summary/detail/download/payment-status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
+						<?php if( $this->extOrderItem->getStatusPayment() >= $this->config( 'client/html/common/summary/detail/download/payment-status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
 								&& ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) !== null ) : ?>
 							<ul class="attr-list attr-list-hidden">
 								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">

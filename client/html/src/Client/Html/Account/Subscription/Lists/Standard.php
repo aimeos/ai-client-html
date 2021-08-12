@@ -251,7 +251,7 @@ class Standard
 		{
 			$subscription = $map[$item->getBaseId()];
 
-			if( $subscription && $item->getPaymentStatus() >= \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) {
+			if( $subscription && $item->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) {
 				$list[$subscription->getId()] = $subscription;
 			}
 		}

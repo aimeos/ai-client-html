@@ -156,7 +156,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/payment/template-body';
 
-		$status = $view->extOrderItem->getPaymentStatus();
+		$status = $view->extOrderItem->getStatusPayment();
 		$default = array( 'email/payment/' . $status . '/body-standard', 'email/payment/body-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) );
@@ -354,7 +354,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/payment/template-header';
 
-		$status = $view->extOrderItem->getPaymentStatus();
+		$status = $view->extOrderItem->getStatusPayment();
 		$default = array( 'email/payment/' . $status . '/header-standard', 'email/payment/header-standard' );
 
 		return $view->render( $view->config( $tplconf, $default ) ); ;
@@ -526,13 +526,13 @@ class Standard
 		}
 
 
-		$key = 'pay:' . $view->extOrderItem->getPaymentStatus();
+		$key = 'pay:' . $view->extOrderItem->getStatusPayment();
 		$status = $view->translate( 'mshop/code', $key );
 
 		/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
 		$msg = $view->translate( 'client', 'Thank you for your order %1$s from %2$s.' );
 
-		switch( $view->extOrderItem->getPaymentStatus() )
+		switch( $view->extOrderItem->getStatusPayment() )
 		{
 			case 3:
 				/// Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment status (%3%s)
