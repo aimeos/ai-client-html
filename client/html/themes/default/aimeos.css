@@ -597,7 +597,7 @@ body .main-section {
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
 	position: fixed;
-	z-index: 1000;
+	z-index: 1500;
 	height: 100%;
 	width: 100%;
 	opacity: 0;
@@ -607,7 +607,7 @@ body .main-section {
 
 .aimeos-container {
 	position: absolute;
-	z-index: 1001;
+	z-index: 1501;
 	opacity: 1;
 	border: solid 1px #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
@@ -803,9 +803,21 @@ input[type="range"]::-moz-range-progress {
 	text-decoration: none;
 	white-space: nowrap;
 	display: block;
-	color: #555;
-	color: var(--ai-secondary, #555);
 	padding: 0.5rem 1rem;
+}
+
+.locale-select ul.select-menu .select-current > a,
+.locale-select ul.select-menu .select-current > a:link,
+.locale-select ul.select-menu .select-current > a:visited {
+	color: #FFFFFF;
+	color: var(--ai-primary-alt, #FFFFFF);
+}
+
+.locale-select ul.select-menu .select-current > a:hover
+.locale-select ul.select-menu .select-current > a:link:hover,
+.locale-select ul.select-menu .select-current > a:visited:hover {
+	color: #CCCCCC;
+	color: var(--ai-light, #CCCCCC);
 }
 
 .locale-select ul.select-menu a:hover {
@@ -3579,6 +3591,10 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	color: var(--ai-secondary, #555);
 }
 
+.aimeos .common-summary-detail tr.supplier h3 {
+	margin-top: 0.5rem;
+}
+
 .aimeos .common-summary-detail tr.subtotal {
 	color: #555;
 	color: var(--ai-secondary, #555);
@@ -5775,10 +5791,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		clear: both;
 	}
 
-}
-
-.locale-select{
-	display: none;
 }
 
 .catalog-filter-tree .media-list {
