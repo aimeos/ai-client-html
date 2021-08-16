@@ -5799,7 +5799,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 /*----------------------------- PROFILE Navbar--------------------------------*/
 
-.navbar-nav .nav-link > span {
+.navbar-nav .nav-item > .nav-link > span {
 	display: none;
 }
 
