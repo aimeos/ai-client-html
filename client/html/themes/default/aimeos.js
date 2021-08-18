@@ -1809,6 +1809,7 @@ AimeosCatalogList = {
 
 						$('ul.list-items', list).append(nextPage.find('.catalog-list-items ul.list-items li.product'));
 						list.data('infinite-url', nextUrl);
+						Aimeos.loadImages();
 						$(window).trigger('scroll');
 					});
 				}
