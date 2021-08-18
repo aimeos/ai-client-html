@@ -284,8 +284,9 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/mandatory
 		 * @see client/html/checkout/standard/address/billing/optional
 		 * @see client/html/checkout/standard/address/billing/hidden
-		 * @see client/html/checkout/standard/address/countries
 		 * @see client/html/common/address/salutations
+		 * @see common/countries
+		 * @see common/states
 		 */
 		$view->addressBillingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
 
@@ -362,8 +363,9 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/salutations
 		 * @see client/html/checkout/standard/address/billing/optional
 		 * @see client/html/checkout/standard/address/billing/hidden
-		 * @see client/html/checkout/standard/address/countries
 		 * @see client/html/checkout/standard/address/validate
+		 * @see common/countries
+		 * @see common/states
 		 */
 		$mandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
 
@@ -403,8 +405,9 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/salutations
 		 * @see client/html/checkout/standard/address/billing/mandatory
 		 * @see client/html/checkout/standard/address/billing/hidden
-		 * @see client/html/checkout/standard/address/countries
 		 * @see client/html/checkout/standard/address/validate
+		 * @see common/countries
+		 * @see common/states
 		 */
 		$optional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
 
@@ -446,7 +449,8 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/salutations
 		 * @see client/html/checkout/standard/address/billing/mandatory
 		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see client/html/checkout/standard/address/countries
+		 * @see common/countries
+		 * @see common/states
 		 */
 		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
 

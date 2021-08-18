@@ -320,11 +320,11 @@ class Standard
 		$view->addressLanguages = $localeManager->search( $localeManager->filter( true ) )
 			->col( 'locale.languageid', 'locale.languageid' );
 
-		/** client/html/checkout/standard/address/countries
-		 * List of available countries that that users can select from in the front-end
+		/** common/countries
+		 * List of available country codes for frontend and backend
 		 *
 		 * This configration option is used whenever a list of countries is
-		 * shown in the front-end users can select from. It's used e.g.
+		 * shown in the frontend or backend. It's used e.g.
 		 * if the customer should select the country he is living in the
 		 * checkout process. In case that the list is empty, no country
 		 * selection is shown.
@@ -335,32 +335,21 @@ class Standard
 		 *
 		 *  array( 'DE', 'GB', ... )
 		 *
-		 * To display the country selection, you have to add the key for the
-		 * country ID (order.base.address.languageid) to the "mandatory" or
-		 * "optional" configuration option for billing and delivery addresses.
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/countries" starting from 2014-03.
-		 *
 		 * @param array List of two letter ISO country codes
-		 * @since 2015.02
-		 * @category User
-		 * @category Developer
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see client/html/checkout/standard/address/delivery/mandatory
-		 * @see client/html/checkout/standard/address/delivery/optional
+		 * @since 2021.10
 		 */
-		$view->addressCountries = map( $view->config( 'client/html/checkout/standard/address/countries', [] ) )
+		$default = $view->config( 'common/countries', [] );
+		/** @deprecated 2022.01 Use common/countries */
+		$view->addressCountries = map( $view->config( 'client/html/checkout/standard/address/countries', $default ) )
 			->flip()->map( function( $v, $key ) use ( $view ) {
 				return $view->translate( 'country', $key );
 			} )->asort();
 
-		/** client/html/checkout/standard/address/states
-		 * List of available states that that users can select from in the front-end
+		/** common/states
+		 * List of available states for frontend and backend
 		 *
 		 * This configration option is used whenever a list of states is
-		 * shown in the front-end users can select from. It's used e.g.
+		 * shown in the frontend or bakcend. It's used e.g.
 		 * if the customer should select the state he is living in the
 		 * checkout process. In case that the list is empty, no state
 		 * selection is shown.
@@ -383,25 +372,12 @@ class Standard
 		 * state codes determine the order of the states in the frontend and
 		 * the state codes are later used for per state tax calculation.
 		 *
-		 * To display the country selection, you have to add the key for the
-		 * state (order.base.address.state) to the "mandatory" or
-		 * "optional" configuration option for billing and delivery addresses.
-		 * You also need to add order.base.address.countryid as well because
-		 * it is required to display the states that belong to this country.
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/states" starting from 2014-09.
-		 *
 		 * @param array Multi-dimensional list ISO country codes and state codes/names
-		 * @since 2015.02
-		 * @category User
-		 * @category Developer
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see client/html/checkout/standard/address/delivery/mandatory
-		 * @see client/html/checkout/standard/address/delivery/optional
+		 * @since 2020.10
 		 */
-		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
+		$default = $view->config( 'common/states', [] );
+		/** @deprecated 2022.01 Use common/states */
+		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', $default );
 
 		$view->addressExtra = $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
 

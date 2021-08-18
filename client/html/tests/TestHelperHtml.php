@@ -50,7 +50,7 @@ class TestHelperHtml
 		$helper = new \Aimeos\MW\View\Helper\Date\Standard( $view, 'Y-m-d' );
 		$view->addHelper( 'date', $helper );
 
-		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, ['client', 'resource/fs/baseurl'] );
+		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, ['client', 'common', 'resource/fs/baseurl'] );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );
 

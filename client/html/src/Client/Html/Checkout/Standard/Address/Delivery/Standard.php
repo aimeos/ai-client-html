@@ -291,8 +291,9 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/salutations
 		 * @see client/html/checkout/standard/address/delivery/optional
 		 * @see client/html/checkout/standard/address/delivery/hidden
-		 * @see client/html/checkout/standard/address/countries
 		 * @see client/html/checkout/standard/address/validate
+		 * @see common/countries
+		 * @see common/states
 		 */
 		$mandatory = $view->config( 'client/html/checkout/standard/address/delivery/mandatory', $this->mandatory );
 
@@ -333,8 +334,9 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/salutations
 		 * @see client/html/checkout/standard/address/delivery/mandatory
 		 * @see client/html/checkout/standard/address/delivery/hidden
-		 * @see client/html/checkout/standard/address/countries
 		 * @see client/html/checkout/standard/address/validate
+		 * @see common/countries
+		 * @see common/states
 		 */
 		$optional = $view->config( 'client/html/checkout/standard/address/delivery/optional', $this->optional );
 
@@ -373,7 +375,8 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/salutations
 		 * @see client/html/checkout/standard/address/delivery/mandatory
 		 * @see client/html/checkout/standard/address/delivery/optional
-		 * @see client/html/checkout/standard/address/countries
+		 * @see common/countries
+		 * @see common/states
 		 */
 		$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );
 
@@ -620,8 +623,9 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/mandatory
 		 * @see client/html/checkout/standard/address/delivery/optional
 		 * @see client/html/checkout/standard/address/delivery/hidden
-		 * @see client/html/checkout/standard/address/countries
 		 * @see client/html/common/address/salutations
+		 * @see common/countries
+		 * @see common/states
 		 */
 		$view->addressDeliverySalutations = $view->config( 'client/html/checkout/standard/address/delivery/salutations', $salutations );
 
