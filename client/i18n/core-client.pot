@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-06 09:37+0200\n"
+"POT-Creation-Date: 2021-08-18 13:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -416,6 +416,9 @@ msgstr ""
 msgid "HH:mm"
 msgstr ""
 
+msgid "Highest price"
+msgstr ""
+
 #, php-format
 msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
@@ -497,11 +500,17 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "Lowest price"
+msgstr ""
+
 msgid "More reviews"
 msgstr ""
 
 msgid "Name"
 msgstr "Name"
+
+msgid "New"
+msgstr ""
 
 msgid "New delivery address"
 msgstr ""
@@ -548,6 +557,9 @@ msgstr "One or more products you are watching have been updated."
 
 msgid "One week"
 msgstr "One week"
+
+msgid "Open submenu"
+msgstr ""
 
 msgid "Options"
 msgstr "Options"
@@ -606,6 +618,9 @@ msgstr "Payment costs"
 msgid "Payment status"
 msgstr "Payment status"
 
+msgid "Pin product"
+msgstr ""
+
 msgid "Pinned products"
 msgstr "Pinned products"
 
@@ -646,6 +661,9 @@ msgstr "Previous"
 
 msgid "Price"
 msgstr "Price"
+
+msgid "Price range"
+msgstr ""
 
 msgid "Proceed"
 msgstr "Proceed"
@@ -695,6 +713,9 @@ msgid "Reviews"
 msgstr ""
 
 msgid "SKU or article name"
+msgstr ""
+
+msgid "Sale"
 msgstr ""
 
 msgid "Salutation"
@@ -777,6 +798,9 @@ msgstr "Street"
 msgid "Sub-total"
 msgstr "Sub-total"
 
+msgid "Submit"
+msgstr ""
+
 msgid "Subscription ID"
 msgstr ""
 
@@ -806,6 +830,9 @@ msgid "Supplier information"
 msgstr ""
 
 msgid "Suppliers"
+msgstr ""
+
+msgid "Take a look"
 msgstr ""
 
 msgid "Telephone"
@@ -1121,6 +1148,9 @@ msgstr "new address"
 
 msgid "none"
 msgstr "none"
+
+msgid "on request"
+msgstr ""
 
 #, php-format
 msgid "order"

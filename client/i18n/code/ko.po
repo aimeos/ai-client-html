@@ -86,6 +86,10 @@ msgid "payment.cvv"
 msgstr ""
 
 #. Omnipay service provider
+msgid "payment.expiry"
+msgstr "Expiry date"
+
+#. Omnipay service provider
 msgid "payment.expirymonth"
 msgstr ""
 

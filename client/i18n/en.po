@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-01 18:35+0200\n"
+"POT-Creation-Date: 2021-08-18 12:58+0200\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -410,6 +410,9 @@ msgstr ""
 msgid "HH:mm"
 msgstr ""
 
+msgid "Highest price"
+msgstr ""
+
 #, php-format
 msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr ""
@@ -491,10 +494,16 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "Lowest price"
+msgstr ""
+
 msgid "More reviews"
 msgstr ""
 
 msgid "Name"
+msgstr ""
+
+msgid "New"
 msgstr ""
 
 msgid "New delivery address"
@@ -541,6 +550,9 @@ msgid "One or more products you are watching have been updated."
 msgstr ""
 
 msgid "One week"
+msgstr ""
+
+msgid "Open submenu"
 msgstr ""
 
 msgid "Options"
@@ -601,6 +613,9 @@ msgstr ""
 msgid "Payment status"
 msgstr ""
 
+msgid "Pin product"
+msgstr ""
+
 msgid "Pinned products"
 msgstr ""
 
@@ -640,6 +655,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Price"
+msgstr ""
+
+msgid "Price range"
 msgstr ""
 
 msgid "Proceed"
@@ -690,6 +708,9 @@ msgid "Reviews"
 msgstr ""
 
 msgid "SKU or article name"
+msgstr ""
+
+msgid "Sale"
 msgstr ""
 
 msgid "Salutation"
@@ -772,6 +793,9 @@ msgstr ""
 msgid "Sub-total"
 msgstr ""
 
+msgid "Submit"
+msgstr ""
+
 msgid "Subscription ID"
 msgstr ""
 
@@ -801,6 +825,9 @@ msgid "Supplier information"
 msgstr ""
 
 msgid "Suppliers"
+msgstr ""
+
+msgid "Take a look"
 msgstr ""
 
 msgid "Telephone"
@@ -1099,6 +1126,9 @@ msgid "new address"
 msgstr ""
 
 msgid "none"
+msgstr ""
+
+msgid "on request"
 msgstr ""
 
 #, php-format

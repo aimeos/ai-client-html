@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-01 18:35+0200\n"
+"POT-Creation-Date: 2021-08-18 12:58+0200\n"
 "PO-Revision-Date: 2020-12-14 22:21+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
@@ -417,6 +417,9 @@ msgstr ""
 msgid "HH:mm"
 msgstr ""
 
+msgid "Highest price"
+msgstr ""
+
 #, php-format
 msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 msgstr "我接受 <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">条款及细则</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">隐私权政策</a>"
@@ -498,11 +501,17 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "Lowest price"
+msgstr ""
+
 msgid "More reviews"
 msgstr ""
 
 msgid "Name"
 msgstr "名"
+
+msgid "New"
+msgstr ""
 
 msgid "New delivery address"
 msgstr ""
@@ -549,6 +558,9 @@ msgstr "您所浏览过产品中至少有一个已经被更新了"
 
 msgid "One week"
 msgstr "一个星期"
+
+msgid "Open submenu"
+msgstr ""
 
 msgid "Options"
 msgstr "选项"
@@ -607,6 +619,10 @@ msgstr "支付费"
 msgid "Payment status"
 msgstr "支付状态"
 
+#, fuzzy
+msgid "Pin product"
+msgstr "被关注的商品"
+
 msgid "Pinned products"
 msgstr "被关注的商品"
 
@@ -646,6 +662,10 @@ msgid "Previous"
 msgstr "前面一个"
 
 msgid "Price"
+msgstr "价格"
+
+#, fuzzy
+msgid "Price range"
 msgstr "价格"
 
 msgid "Proceed"
@@ -696,6 +716,9 @@ msgid "Reviews"
 msgstr ""
 
 msgid "SKU or article name"
+msgstr ""
+
+msgid "Sale"
 msgstr ""
 
 msgid "Salutation"
@@ -777,6 +800,9 @@ msgstr "街道"
 msgid "Sub-total"
 msgstr "小计"
 
+msgid "Submit"
+msgstr ""
+
 msgid "Subscription ID"
 msgstr ""
 
@@ -806,6 +832,9 @@ msgid "Supplier information"
 msgstr ""
 
 msgid "Suppliers"
+msgstr ""
+
+msgid "Take a look"
 msgstr ""
 
 msgid "Telephone"
@@ -1121,6 +1150,9 @@ msgstr "新地址"
 
 msgid "none"
 msgstr "没有"
+
+msgid "on request"
+msgstr ""
 
 #, php-format
 msgid "order"
