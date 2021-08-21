@@ -29,7 +29,6 @@ class Standard
 	 */
 	public function transform( \Aimeos\MShop\Media\Item\Iface $media ) : string
 	{
-		$mime = $media->getMimeType();
 		$view = $this->getView();
 		$enc = $view->encoder();
 
