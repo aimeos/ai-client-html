@@ -43,12 +43,23 @@ class Standard
 			$variant .= ' data-variant-' . $item->getType() . '="' . $enc->attr( $id ) . '"';
 		}
 
+		if( !strncmp( $media->getMimetype(), 'video/', 6 ) )
+		{
+			return '<video autoplay muted class="item" id="image-' . $media->getId() . '"
+				itemscope itemtype="http://schema.org/VideoObject"
+				poster="' . $enc->attr( $view->content( $media->getPreview( 600 ) ) ) . '"
+				src="' . $enc->attr( $view->content( $media->getUrl() ) ) . '"
+				alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
+				' . $variant . '></video>';
+		}
+
 		return '<img class="item" id="image-' . $media->getId() . '"
 			itemscope itemprop="image" itemtype="http://schema.org/ImageObject"
-			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '" ' .
-			( $mime !== 'image/svg+xml' ? 'srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"' : '' ) . '
-			data-image="' . $enc->attr( $view->content( $media->getPreview() ) ) . '" ' .
-			( $mime !== 'image/svg+xml' ? 'data-sources="' . $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) . '"' : '' ) . '
-			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"' . $variant . '>';
+			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
+			srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
+			data-image="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
+			data-sources="' . $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) . '"
+			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
+			' . $variant . ' />';
 	}
 }
