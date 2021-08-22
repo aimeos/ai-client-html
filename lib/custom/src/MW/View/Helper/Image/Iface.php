@@ -5,6 +5,7 @@
  * @copyright Aimeos (aimeos.org), 2020-2021
  * @package MW
  * @subpackage View
+ * @todo 2022.01 Rename namespace to Aimeos\MW\View\Helper\Media
  */
 
 
