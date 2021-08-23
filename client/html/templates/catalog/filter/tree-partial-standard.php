@@ -168,7 +168,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 									<a class="cat-img-link <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
 										href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><!--
 										--><div class="media-img"><!--
-											<?php foreach( $item->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+											<?php foreach( $item->getRefItems( 'media', 'menu', 'default' ) as $mediaItem ) : ?>
 												<?= '-->' . $this->partial(
 													$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
 													array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
