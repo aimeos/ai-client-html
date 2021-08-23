@@ -254,7 +254,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 				<?php endif ?>
 
 				<?php foreach( $this->get( 'languages', [] ) as $languageId ) : ?>
-					<option value="<?= $enc->attr( $languageId ) ?>" <?= $this->value( 'address', 'order.base.address.languageid' ) == $languageId ? 'selected' : '' ?>>
+					<option value="<?= $enc->attr( $languageId ) ?>" <?= $this->value( 'address', 'order.base.address.languageid', $this->get( 'languageid' ) ) == $languageId ? 'selected' : '' ?>>
 						<?= $enc->html( $this->translate( 'language', $languageId ) ) ?>
 					</option>
 				<?php endforeach ?>
