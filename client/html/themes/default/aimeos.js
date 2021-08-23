@@ -833,9 +833,6 @@ AimeosBasketBulk = {
  */
 AimeosBasketMini = {
 
-	WIDTH: '25em',
-
-
 	/**
 	 * Updates the basket mini content using the JSON API
 	 */
@@ -943,42 +940,11 @@ AimeosBasketMini = {
 
 
 	/**
-	 * Displays or hides the small basket
-	 */
-	setupBasketToggle: function() {
-
-		var width = $(".aimeos.basket-mini").innerWidth();
-
-		$(".aimeos.basket-mini").on("click", ".basket-toggle.toggle-open", function(ev) {
-
-			$(".basket", ev.delegateTarget).toggle();
-			$(".basket", ev.delegateTarget).css("width", width);
-
-			$(ev.delegateTarget).animate({"width": width}, {done: function() {
-				$(ev.currentTarget).removeClass("toggle-open").addClass("toggle-close");
-			}});
-		});
-
-		$(".aimeos.basket-mini").on("click", ".basket-toggle.toggle-close", function(ev) {
-
-			$(ev.delegateTarget).animate({"width": AimeosBasketMini.WIDTH}, {done: function() {
-
-				$(".basket", ev.delegateTarget).toggle();
-				$(".basket", ev.delegateTarget).css("width", AimeosBasketMini.WIDTH);
-
-				$(ev.currentTarget).removeClass("toggle-close").addClass("toggle-open");
-			}});
-		});
-	},
-
-
-	/**
 	 * Initializes the basket mini actions
 	 */
 	init: function() {
 
 		this.setupBasketDelete();
-		this.setupBasketToggle();
 	}
 };
 
