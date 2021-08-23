@@ -2,6 +2,11 @@
 
 return array(
 	'html' => array(
+		'common' => [
+			'decorators' => [
+				'default' => ['Context']
+			],
+		],
 		'catalog' => array(
 			'lists' => array(
 				'items' => array(

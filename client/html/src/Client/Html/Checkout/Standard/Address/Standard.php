@@ -305,14 +305,11 @@ class Standard
 
 		$deliveryAddressItems = [];
 		$item = $controller->uses( ['customer/address'] )->get();
+		$paymentAddressItem = $orderAddressManager->create()->copyFrom( $item->getPaymentAddress() );
 
 		foreach( $item->getAddressItems() as $pos => $addrItem ) {
 			$deliveryAddressItems[$pos] = $orderAddressManager->createItem()->copyFrom( $addrItem );
 		}
-
-		$paymentAddressItem = $orderAddressManager->createItem()
-			->setLanguageId( $context->getLocale()->getLanguageId() )
-			->copyFrom( $item->getPaymentAddress() );
 
 		$view->addressCustomerItem = $item;
 		$view->addressPaymentItem = $paymentAddressItem;
