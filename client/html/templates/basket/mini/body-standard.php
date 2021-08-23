@@ -138,7 +138,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 		?>
 
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
-		<div class="zeynep-overlay"></div>
+		<div class="aimeos-overlay-offscreen"></div>
 		<a href="#">
 			<div class="basket-mini-main">
 				<span class="quantity"><?= $enc->html( $quantity ) ?></span>
@@ -148,7 +148,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 		</a>
 
 		<div class="basket-mini-product">
-			<div class="basket-mini-offscreen zeynep second" data-menu-name="second">
+			<div class="basket-mini-offscreen zeynep">
 				<div class="basket-head row">
 					<div class="mini-basket-close col-2"></div>
 					<h1 class="col-10"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>

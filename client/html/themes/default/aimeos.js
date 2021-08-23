@@ -79,8 +79,7 @@ Aimeos = {
 	createOverlay: function() {
 
 		var overlay = $(document.createElement("div"));
-		overlay.addClass("aimeos-overlay");
-		overlay.fadeTo(1000, 0.5);
+		overlay.addClass("aimeos-overlay").addClass("show");
 		$("body").append(overlay);
 	},
 
@@ -2326,7 +2325,10 @@ AimeosPage = {
 	},
 
 
-	setupOffscreenMenu: function() {
+	/**
+	 * Initializes offscreen menus
+	 */
+	setupOffscreen: function() {
 
 		// loop all zeynepjs menus for initialization
 		$('.zeynep').each(function () {
@@ -2334,42 +2336,46 @@ AimeosPage = {
 		})
 
 		// handle zeynepjs overlay click
-		$('.zeynep-overlay').on('click', function () {
-			// close all zeynepjs menus
-			$('.zeynep.opened').each(function () {
-				$(this).data('zeynep').close()
-			})
-		});
-		$('.zeynep-overlay1').on('click', function () {
-			$(this).removeClass('open');
-			// close all zeynepjs menus
+		$('.aimeos-overlay-offscreen').on('click', function () {
+			$(this).removeClass('show');
 			$('.zeynep.opened').each(function () {
 				$(this).data('zeynep').close();
 			})
 		});
+	},
 
-		// open first zeynepjs side menu
-		$('.btn-open.first').on('click', function () {
-			$('.zeynep.first').data('zeynep').open();
-		});
 
-		$(".open-menu").on('click', function () {
-			$('.zeynep.first').data('zeynep').open();
-			$('.zeynep-overlay1').addClass('open');
-		});
+	/**
+	 * Show/hide basket offscreen menu
+	 */
+	setupOffscreenBasket: function() {
 
-		$(".menu-close").on('click', function () {
-			$('.zeynep.first').data('zeynep').close();
-			$('.zeynep-overlay1').removeClass('open');
-		});
-
-		// open second zeynepjs side menu
+		// open basket side menu
 		$('.aimeos.basket-mini > a').on('click', function () {
-			$('.zeynep.second').data('zeynep').open();
+			$('.basket-mini .aimeos-overlay-offscreen').addClass('show');
+			$('.basket-mini-offscreen').data('zeynep').open();
 		});
 
 		$('.mini-basket-close').on('click', function () {
-			$('.zeynep.second').data('zeynep').close();
+			$('.basket-mini .aimeos-overlay-offscreen').removeClass('show');
+			$('.basket-mini-offscreen').data('zeynep').close();
+		});
+	},
+
+
+	/**
+	 * Show/hide category offscreen menu
+	 */
+	setupOffscreenCategory: function() {
+
+		$(".open-menu").on('click', function () {
+			$('.category-lists').data('zeynep').open();
+			$('.catalog-filter .aimeos-overlay-offscreen').addClass('show');
+		});
+
+		$(".menu-close").on('click', function () {
+			$('.category-lists').data('zeynep').close();
+			$('.catalog-filter .aimeos-overlay-offscreen').removeClass('show');
 		});
 	},
 
@@ -2381,7 +2387,9 @@ AimeosPage = {
 		this.setupMenuTransition();
 		this.setupLinkTop();
 		this.setupMenuMenu();
-		this.setupOffscreenMenu;
+		this.setupOffscreen();
+		this.setupOffscreenBasket();
+		this.setupOffscreenCategory();
 	}
 };
 
