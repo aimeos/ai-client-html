@@ -1662,48 +1662,6 @@ AimeosCatalogFilter = {
 
 
 /**
- */
-AimeosCatalogDetail = {
-
-	/**
-	 * Single and thumbnail image slider
-	 */
-	setupImageSlider: function() {
-
-		var rtl = $('html').attr("dir") == 'rtl';
-
-		$('.product .image-single').slick({
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			rtl: rtl,
-			fade: false,
-			arrows: false,
-		});
-
-		$('.product .thumbs').slick({
-			asNavFor: '.product .image-single',
-			slidesToShow: 4,
-			slidesToScroll: 1,
-			rtl: rtl,
-			dots: false,
-			arrows: false,
-			focusOnSelect: true
-		});
-	},
-
-
-	/**
-	 * Initialize the catalog detail actions
-	 */
-	init: function() {
-
-		this.setupImageSlider();
-	}
-};
-
-
-
-/**
  * Catalog home actions
  */
 AimeosCatalogHome = {
@@ -2422,7 +2380,6 @@ jQuery(function() {
 	AimeosCatalogHome.init();
 	AimeosCatalogFilter.init();
 	AimeosCatalogList.init();
-	AimeosCatalogDetail.init();
 	AimeosCatalogSession.init();
 	AimeosCatalogStage.init();
 
