@@ -2434,17 +2434,3 @@ jQuery(function() {
 
 	Aimeos.loadImages();
 });
-
-
-
-jQuery(function() {
-
-	/**
-	 * Sets active classes in Menu
-	 */
-	$('.category-lists').find('.active').each(function() {
-		var $this = $(this);
-		$this.parents(".submenu").addClass('opened');
-		$this.parents('.cat-item').add(this).addClass('active');
-	});
-});

@@ -102,11 +102,11 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
 
-			<div class="cat-item catid-<?= $enc->attr( $item->getId()
-				. ( $item->getLevel() == 1 ? ' top-item' : '' )
-				. ( $item->hasChildren() ? ' has-submenu withchild' : ' nochild' )
-				. ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' )
-				. ' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ) ?>"
+			<div class="cat-item catid-<?= $enc->attr( $item->getId() .
+				( $item->getLevel() == 1 ? ' top-item' : '' ) .
+				( $item->hasChildren() ? ' has-submenu withchild' : ' nochild' ) .
+				( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) .
+				' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ) ?>"
 				data-id="<?= $item->getId() ?>">
 
 					<?php if( $item->hasChildren() ) : ?>
@@ -124,9 +124,8 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 							</div>
 					<?php endif ?>
 
-					<a class="cat-item <?=
-						( $item->getLevel() == 1 ? 'top-cat-item ' : '' ) .
-						( $this->get( 'path', map() )->getId()->last() == $item->getId() ? 'active' : '' ) ?>"
+					<a class="cat-item <?= ( $item->getLevel() == 1 ? 'top-cat-item' : '' ) .
+						( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) ?>"
 						href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><!--
 						--><div class="media-list"><!--
 								<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
@@ -142,8 +141,8 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 					<?php if( count( $item->getChildren() ) > 0 ) : ?>
 
 						<div id="<?= $enc->attr( $item->getId() ) ?>" class="submenu <?= $enc->attr(
-							( $item->hasChildren() ? ' shadow-sm' : ' nochild' )
-							. ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
+							( $this->get( 'path', map() )->has( $item->getId() ) ? ' active opened' : '' ) ) .
+							( $item->hasChildren() ? ' shadow-sm' : ' nochild' ) ?>"
 							data-id="<?= $item->getId() ?>">
 
 							<div class="submenu-header row">
