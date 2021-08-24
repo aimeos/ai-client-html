@@ -6186,34 +6186,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	margin: 0;
 }
 
-.zeynep-overlay{
-	background-color:rgba(0, 0, 0, .42);
-	bottom:0;
-	display:none;
-	left:0;
-	position:fixed;
-	right:0;
-	top:0;
-	z-index:1020;
-}
-.zeynep-opened .zeynep-overlay{
-	display:block;
-}
-
-.zeynep-overlay1{
-	background-color:rgba(0, 0, 0, .42);
-	bottom:0;
-	display:none;
-	left:0;
-	position:fixed;
-	right:0;
-	top:0;
-	z-index:1020;
-}
-.zeynep-overlay1.open{
-	display:block;
-}
-
 .open-menu{
 	display: none;
 }
@@ -6267,16 +6239,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 	/*-------------------------PUSHMENU Mobile------------------------------------*/
 
-	/*Layout Styles*/
-
-	body {
-		left: 0;
-	}
-
-	.zeynep .cat-img {
-		display: none;
-	}
-
 	.btn-open {
 		border: 0;
 		border-radius: 27.5px;
@@ -6295,6 +6257,68 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		box-shadow: inset 0 3px 5px 0px rgba(0, 0, 0, .1);
 	}
 
+	.zeynep{
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		width: 20rem;
+		z-index: 1031;
+		overflow: hidden;
+		overflow-y: auto;
+		pointer-events: none;
+		background-color: #FFF;
+		background-color: var(--ai-bg-alt, #FFF);
+		-webkit-overflow-scrolling: touch;
+		transition: transform 250ms;
+	}
+
+	.zeynep.basket-mini-offscreen {
+		right: -20rem;
+		left: auto;
+	}
+
+	.zeynep.basket-mini-offscreen.opened {
+		pointer-events: auto;
+		transition: transform 250ms;
+		transform: translateX(-20rem);
+	}
+
+	.zeynep.category-lists {
+		left: -20rem;
+		right: auto;
+	}
+
+	.zeynep.category-lists.opened {
+		pointer-events: auto;
+		transition: transform 250ms;
+		transform: translateX(20rem);
+	}
+
+	.zeynep .submenu {
+		position:fixed;
+		top: 0;
+		bottom: 0;
+		left: -20rem;
+		width: 20rem;
+		z-index: 1032;
+		overflow: hidden;
+		overflow-y: auto;
+		pointer-events: none;
+		background-color: #FFF;
+		background-color: var(--ai-bg-alt, #FFF);
+		-webkit-overflow-scrolling: touch;
+		transition: transform 250ms;
+	}
+
+	.zeynep.category-lists.opened .submenu.opened {
+		pointer-events: auto;
+		transition: transform 250ms;
+		transform: translateX(20rem);
+	}
+
+	.zeynep .cat-img {
+		display: none;
+	}
 
 	.zeynep h2 {
 		text-align: center;
@@ -6305,7 +6329,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		padding: .5rem 1rem;
 	}
 
-	.zeynep .menu-close{
+	.zeynep .menu-close {
 		cursor: pointer;
 		padding: .5rem;
 		text-align: end;
@@ -6336,7 +6360,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 	/*- LISTS -*/
 
-	.zeynep .list-container{
+	.zeynep .list-container {
 		margin: 1rem 0;
 	}
 
@@ -6440,82 +6464,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		display: none;
 	}
 }
-/*Layout Styles end*/
-
-.zeynep:not(.no-transition),
-.zeynep .submenu:not(.no-transition){
-	transition:all 250ms;
-}
-
-@media (max-width:991px) {
-	/*ZEYNEP Base*/
-	.zeynep{
-		bottom:0;
-		overflow:hidden;
-		-webkit-overflow-scrolling:touch;
-		overflow-y:auto;
-		pointer-events:none;
-		position:fixed;
-		top:0;
-		transform:translateX(-100%);
-		z-index:1031;
-		right: auto;
-		left: 0;
-		width: 20rem;
-		background-color: #FFF;
-		background-color: var(--ai-bg-alt, #FFF);
-	}
-
-	.zeynep.opened{
-		pointer-events:auto;
-		transform:translateX(0px);
-	}
-
-	.zeynep.submenu-opened{
-		overflow:hidden;
-	}
-
-	.zeynep .submenu{
-		bottom:0;
-		min-height:100%;
-		overflow:hidden;
-		-webkit-overflow-scrolling:touch;
-		overflow-y:auto;
-		pointer-events:none;
-		position:fixed;
-		top:0;
-		width:100%;
-		background-color: #FFF;
-		background-color: var(--ai-bg-alt, #FFF);
-		left: 20rem;
-		z-index: 1032;
-	}
-
-	.zeynep .submenu.opened{
-		left:0;
-		pointer-events:auto;
-	}
-
-	.zeynep .submenu.opened:not(.current){
-		overflow:hidden;
-	}
-
-}
-
-/* Minibasket right menu*/
-
-.zeynep-opened body {
-	overflow: hidden;
-}
-
-.basket-mini-offscreen {
-	left: auto;
-	right: 0;
-}
-.basket-mini-offscreen:not(.opened) {
-	transform: translateX(100%);
-}
-
 
 
 /*-------------------Main-MENU MEGAMENU----------------------*/
