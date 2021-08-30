@@ -66,7 +66,7 @@ class Standard
 	 * @since 2019.10
 	 * @category Developer
 	 */
-	private $subPartNames = ['address'];
+	private $subPartNames = ['address', 'account'];
 	private $view;
 
 
