@@ -95,15 +95,14 @@ $passwordErrors = $this->get('passwordErrors', []);
     <h1 class="header"><?= $enc->html( $this->translate( 'client', 'account' ) ) ?></h1>
     <form class="container-fluid" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/profile/url' ) ) ?>">
         <?= $this->csrf()->formfield() ?>
-        <?php if ( $this->get('passwordChanged', null) === true ) : ?>
-            <div class="row d-flex justify-content-center">
-                <h2 class="text-success"><?= $this->translate('client', 'Password changed successfull!') ?></h2>
+
+            <div class="row password-change-notifications">
+                <?php if ( $this->get('passwordChanged', null) === true ) : ?>
+                    <h2 class="text-success"><?= $this->translate('client', 'Password changed successfull!') ?></h2>
+                <?php elseif ($this->get('passwordChanged', null) === false) : ?>
+                    <h2 class="text-danger"><?= $this->translate('client', 'Error(s) occured!') ?></h2>
+                <?php endif ?>
             </div>
-        <?php elseif ($this->get('passwordChanged', null) === false) :?>
-            <div class="row d-flex justify-content-center">
-                <h2 class="text-danger"><?= $this->translate('client', 'Error(s) occured!') ?></h2>
-            </div>
-        <?php endif ?>
         <div class="row">
             <div class="password col-lg-12">
                 <h2 class="header"><?= $enc->html( $this->translate( 'client', 'Password' ) ) ?></h2>
@@ -179,7 +178,7 @@ $passwordErrors = $this->get('passwordErrors', []);
 
                     </div>
                 </div>
-                <div class="button-group">
+                <div class="password-button-group">
                     <button class="btn btn-cancel" value="1" type="reset">
                         <?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
                     </button>
