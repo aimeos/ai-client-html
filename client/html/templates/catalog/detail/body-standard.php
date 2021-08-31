@@ -170,8 +170,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					<?= $this->block()->get( 'catalog/detail/service' ) ?>
 
 
-					<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
-						<!-- catalog.detail.csrf -->
+					<form enctype="multipart/form-data"
+                          method="POST"
+                          action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>"
+                    >
+						<!-- catalog.detail.csrf asd -->
 						<?= $this->csrf()->formfield() ?>
 						<!-- catalog.detail.csrf -->
 

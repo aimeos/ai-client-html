@@ -18,6 +18,7 @@
 		"aimeos/aimeos-core": "dev-master",
 		"aimeos/ai-controller-jobs": "dev-master",
 		"aimeos/ai-controller-frontend": "dev-master",
+		"illuminate/http": "^8.54.0",
 		"tecnickcom/tcpdf": "^6.4.1"
 	},
 	"require-dev": {
