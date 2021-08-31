@@ -95,13 +95,13 @@ $passwordErrors = $this->get('passwordErrors', []);
     <h1 class="header"><?= $enc->html( $this->translate( 'client', 'account' ) ) ?></h1>
     <form class="container-fluid" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/profile/url' ) ) ?>">
         <?= $this->csrf()->formfield() ?>
-        <?php if ( $this->get('passwordChanged', '') === 'true' ) : ?>
+        <?php if ( $this->get('passwordChanged', null) === true ) : ?>
             <div class="row d-flex justify-content-center">
-                <h2 class="text-success">Password changed successfull!</h2>
+                <h2 class="text-success"><?= $this->translate('client', 'Password changed successfull!') ?></h2>
             </div>
-        <?php elseif ($this->get('passwordChanged', '') === 'false') :?>
+        <?php elseif ($this->get('passwordChanged', null) === false) :?>
             <div class="row d-flex justify-content-center">
-                <h2 class="text-danger">Error(s) occured!</h2>
+                <h2 class="text-danger"><?= $this->translate('client', 'Error(s) occured!') ?></h2>
             </div>
         <?php endif ?>
         <div class="row">
@@ -109,7 +109,6 @@ $passwordErrors = $this->get('passwordErrors', []);
                 <h2 class="header"><?= $enc->html( $this->translate( 'client', 'Password' ) ) ?></h2>
                 <div class="panel panel-default password-change">
                     <div class="form-item form-group row old-password">
-
                         <label class="col-md-4" for="old-password">
                             <?= $enc->html( $this->translate( 'client', 'Old password' ), $enc::TRUST ) ?>
                         </label>
@@ -121,7 +120,7 @@ $passwordErrors = $this->get('passwordErrors', []);
                             >
                             <?php if( isset($passwordErrors['oldPassword']) ) : ?>
                                 <span class="invalid-feedback d-block" role="alert">
-                                    <strong><?= $passwordErrors['oldPassword'] ?></strong>
+                                    <strong><?= $enc->html($this->translate('client', $passwordErrors['oldPassword'])) ?></strong>
                                 </span>
                             <?php endif ?>
                         </div>
@@ -140,19 +139,23 @@ $passwordErrors = $this->get('passwordErrors', []);
                             >
                             <?php if( isset($passwordErrors['confirm']) ) : ?>
                                 <span class="invalid-feedback d-block" role="alert">
-                                    <strong><?= $passwordErrors['confirm'] ?></strong>
+                                    <strong><?= $enc->html($this->translate('client', $passwordErrors['confirm'])) ?></strong>
                                 </span>
                             <?php endif ?>
                             <?php if( isset($passwordErrors['isNew']) ) : ?>
                                 <span class="invalid-feedback d-block" role="alert">
-                                    <strong><?= $passwordErrors['isNew'] ?></strong>
+                                    <strong><?= $enc->html($this->translate('client', $passwordErrors['isNew'])) ?></strong>
+                                </span>
+                            <?php endif ?>
+                            <?php if( isset($passwordErrors['passwordRules']) ) : ?>
+                                <span class="invalid-feedback d-block" role="alert">
+                                    <strong><?= $enc->html($this->translate('client', $passwordErrors['passwordRules'])) ?></strong>
                                 </span>
                             <?php endif ?>
                         </div>
 
                     </div>
                     <div class="form-item form-group row old-password">
-
                         <label class="col-md-4" for="confirm-new-password">
                             <?= $enc->html( $this->translate( 'client', 'Confirm password' ), $enc::TRUST ) ?>
                         </label>
@@ -164,12 +167,12 @@ $passwordErrors = $this->get('passwordErrors', []);
                             >
                             <?php if( isset($passwordErrors['confirm']) ) : ?>
                                 <span class="invalid-feedback d-block" role="alert">
-                                    <strong><?= $passwordErrors['confirm'] ?></strong>
+                                    <strong><?= $enc->html($this->translate('client', $passwordErrors['confirm'])) ?></strong>
                                 </span>
                             <?php endif ?>
                             <?php if( isset($passwordErrors['isNew']) ) : ?>
                                 <span class="invalid-feedback d-block" role="alert">
-                                    <strong><?= $passwordErrors['isNew'] ?></strong>
+                                    <strong><?= $enc->html($this->translate('client', $passwordErrors['isNew'])) ?></strong>
                                 </span>
                             <?php endif ?>
                         </div>
