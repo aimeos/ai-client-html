@@ -413,7 +413,7 @@ body .main-section {
 	background-color: var(--ai-bg, #FFF);
 	color: #555;
 	color: var(--ai-secondary, #555);
-	text-indent: 0.25rem;
+	padding: 0.5rem;
 }
 
 .aimeos input:focus {
@@ -3817,6 +3817,16 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	margin: 1rem 0;
 }
 
+.checkout-standard-process .form-list label,
+.checkout-standard-process .form-list input {
+	max-width: 15rem;
+	width: 49%;
+}
+
+.checkout-standard-process .form-list label {
+	text-align: end;
+}
+
 .checkout-standard-process .button-group {
 	display: block;
 }
@@ -5311,12 +5321,8 @@ a.pswp__share--download:hover {
 
 /*-------------------------------- general -----------------------------------*/
 
-body{
+body {
 	background-color: var(--ai-bg-alt, #FFF) !important;
-}
-
-p{
-	letter-spacing: 1.5px;
 }
 
 .content {
