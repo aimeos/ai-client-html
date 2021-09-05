@@ -22,7 +22,7 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'email/delivery/html' ) ?>
 <mjml>
 	<mj-head>
-		<mj-title><?= $enc->html( sprintf( $this->translate( 'client', 'Your order %1$s' ), $this->extOrderItem->getId() ), $enc::TRUST ) ?></mj-title>
+		<mj-title><?= $enc->html( sprintf( $this->translate( 'client', 'Your order %1$s' ), $this->extOrderItem->getOrderNumber() ), $enc::TRUST ) ?></mj-title>
 		<mj-style>
 			<?= $this->get( 'htmlCss' ) ?>
 		</mj-style>
