@@ -2491,6 +2491,17 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	opacity: 0.25;
 }
 
+.catalog-list-items .selection .select-option:disabled + .select-label:after,
+.catalog-detail-basket .selection .select-option:disabled + .select-label:after {
+	position: absolute;
+	content: "";
+	width: 2.25rem;
+	transform-origin: 0% 0%;
+	transform: rotate(135deg);
+	border-top: 1px solid #555;
+	border-color: var(--ai-secondary, #555);
+}
+
 .catalog-list-items .basket .selection input[type=number],
 .catalog-detail-basket .selection input[type=number] {
 	border-bottom: solid 1px #555;
