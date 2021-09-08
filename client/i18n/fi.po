@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-06 09:42+0200\n"
-"PO-Revision-Date: 2021-07-06 07:44+0000\n"
+"POT-Creation-Date: 2021-08-18 13:26+0200\n"
+"PO-Revision-Date: 2021-08-18 12:12+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Finnish (http://www.transifex.com/aimeos/aimeos-core/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -404,6 +404,9 @@ msgstr "Ruudukkonäkymä"
 msgid "HH:mm"
 msgstr "HH:mm"
 
+msgid "Highest price"
+msgstr ""
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -495,11 +498,17 @@ msgstr "Listanäkymä"
 msgid "Login"
 msgstr "Kirjaudu sisään"
 
+msgid "Lowest price"
+msgstr ""
+
 msgid "More reviews"
 msgstr "Lisää arviointeja"
 
 msgid "Name"
 msgstr "Nimi"
+
+msgid "New"
+msgstr ""
 
 msgid "New delivery address"
 msgstr "Uusi toimitusosoite"
@@ -548,6 +557,9 @@ msgstr "Yksi tai useampi seuraamasi tuote on päivitetty."
 
 msgid "One week"
 msgstr "Yksi viikko"
+
+msgid "Open submenu"
+msgstr ""
 
 msgid "Options"
 msgstr "Vaihtoehdot"
@@ -606,6 +618,9 @@ msgstr "Maksukustannukset"
 msgid "Payment status"
 msgstr "Maksun tila"
 
+msgid "Pin product"
+msgstr ""
+
 msgid "Pinned products"
 msgstr "Kiinnitetyt tuotteet"
 
@@ -646,6 +661,9 @@ msgstr "Edellinen"
 
 msgid "Price"
 msgstr "Hinta"
+
+msgid "Price range"
+msgstr ""
 
 msgid "Proceed"
 msgstr "Jatka"
@@ -696,6 +714,9 @@ msgstr "Arvioinnit"
 
 msgid "SKU or article name"
 msgstr "SKU tai esineen nimi"
+
+msgid "Sale"
+msgstr ""
 
 msgid "Salutation"
 msgstr "Tervehdys"
@@ -1130,6 +1151,9 @@ msgstr "uusi osoite"
 
 msgid "none"
 msgstr "ei mitään"
+
+msgid "on request"
+msgstr ""
 
 #, php-format
 msgid "order"

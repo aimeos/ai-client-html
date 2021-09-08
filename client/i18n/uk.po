@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Vadym Strutovskyi <vadim.strutovskii@gmail.com>, 2021
 # Oleksandr Kropyvko <akropivko@gmail.com>, 2021
 # Федір Вільгота <fredy31415@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-06 09:42+0200\n"
-"PO-Revision-Date: 2021-07-06 07:44+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-08-18 13:26+0200\n"
+"PO-Revision-Date: 2021-08-18 12:12+0000\n"
+"Last-Translator: Oleksandr Kropyvko <akropivko@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/aimeos/aimeos-core/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,10 +31,10 @@ msgstr[3] "%1$d товарів"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%1$dвідгук"
+msgstr[1] "%1$dвідгуків"
+msgstr[2] "%1$dвідгуки"
+msgstr[3] "%1$dвідгуки"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -117,7 +118,7 @@ msgid "+ Shipping"
 msgstr "+ Доставка"
 
 msgid "+ shipping costs"
-msgstr ""
+msgstr "+ вартість доставки"
 
 msgid "+1 123 456 7890"
 msgstr ""
@@ -128,7 +129,7 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "Account"
-msgstr ""
+msgstr "Акаунт"
 
 msgid "Add billing address"
 msgstr "Додати адресу"
@@ -144,10 +145,10 @@ msgstr "Поверх / Квартира"
 
 msgid "Address"
 msgid_plural "Addresses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Адреса"
+msgstr[1] "Адрес"
+msgstr[2] "Адреси"
+msgstr[3] "Адреси"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -167,7 +168,7 @@ msgid "All orders are subject to our terms and conditions."
 msgstr ""
 
 msgid "An account has been created for you."
-msgstr ""
+msgstr "Акаунт було створено для вас."
 
 msgid "Article"
 msgstr "Артикул"
@@ -237,7 +238,7 @@ msgid "Characteristics"
 msgstr "Характеристики"
 
 msgid "Check"
-msgstr ""
+msgstr "Перевірити"
 
 msgid "Checkout"
 msgstr "Перейти до оформлення"
@@ -298,7 +299,7 @@ msgid "Created"
 msgstr "Створено"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Акаунт користувача"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -411,6 +412,9 @@ msgstr "Сітка"
 msgid "HH:mm"
 msgstr ""
 
+msgid "Highest price"
+msgstr ""
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -502,11 +506,17 @@ msgstr "Список"
 msgid "Login"
 msgstr "Логін"
 
+msgid "Lowest price"
+msgstr ""
+
 msgid "More reviews"
 msgstr ""
 
 msgid "Name"
 msgstr "Назва"
+
+msgid "New"
+msgstr "Новий"
 
 msgid "New delivery address"
 msgstr "Нова адреса доставки"
@@ -555,6 +565,9 @@ msgstr "Один або кілька продуктів, які ви перег�
 
 msgid "One week"
 msgstr "Один тиджень"
+
+msgid "Open submenu"
+msgstr ""
 
 msgid "Options"
 msgstr "Параметри"
@@ -613,6 +626,9 @@ msgstr "Вартість оплати"
 msgid "Payment status"
 msgstr "Статус оплати"
 
+msgid "Pin product"
+msgstr ""
+
 msgid "Pinned products"
 msgstr "Відмічені товари"
 
@@ -653,6 +669,9 @@ msgstr "Назад"
 
 msgid "Price"
 msgstr "Ціна"
+
+msgid "Price range"
+msgstr ""
 
 msgid "Proceed"
 msgstr "Продовжити"
@@ -702,6 +721,9 @@ msgid "Reviews"
 msgstr "огляд"
 
 msgid "SKU or article name"
+msgstr ""
+
+msgid "Sale"
 msgstr ""
 
 msgid "Salutation"
@@ -1055,17 +1077,17 @@ msgid "You've cancelled the subscription"
 msgstr ""
 
 msgid "Your account"
-msgstr ""
+msgstr "Ваш акаунт"
 
 msgid "Your choice"
-msgstr ""
+msgstr "Ваш вибір"
 
 msgid "Your comment"
 msgstr "Ваш коментар до замовлення"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
-msgstr ""
+msgstr "Ваш новий акаунт"
 
 #. / Payment e-mail subject with order ID
 #, php-format
@@ -1081,7 +1103,7 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Ваше замовлення %1$s від %2$s оброблено"
 
 msgid "Your rating"
-msgstr ""
+msgstr "Ваш рейтинг"
 
 msgid "Your reference"
 msgstr ""
@@ -1090,22 +1112,22 @@ msgid "Your reference number"
 msgstr ""
 
 msgid "Your review"
-msgstr ""
+msgstr "Ваш відгук"
 
 msgid "Your search result"
 msgstr "Ваш результат пошуку"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Ваша підписка"
 
 msgid "Your subscription product"
 msgstr ""
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Ваш ваучер"
 
 msgid "Your voucher: "
-msgstr ""
+msgstr "Ваш ваучер:"
 
 msgid "Your vouchers: "
 msgstr ""
@@ -1122,7 +1144,7 @@ msgid "address"
 msgstr "Адреса"
 
 msgid "clear all"
-msgstr ""
+msgstr "очистити все"
 
 #, php-format
 msgid "delivery"
@@ -1141,6 +1163,9 @@ msgstr "нова адреса"
 
 msgid "none"
 msgstr "не обрано"
+
+msgid "on request"
+msgstr ""
 
 #, php-format
 msgid "order"
@@ -1178,7 +1203,7 @@ msgid "summary"
 msgstr "Резюме"
 
 msgid "tax"
-msgstr ""
+msgstr "податок"
 
 msgid "▲ Name"
 msgstr "▲ Назва"

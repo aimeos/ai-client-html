@@ -18,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-06 09:42+0200\n"
-"PO-Revision-Date: 2021-07-06 07:44+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-08-18 13:26+0200\n"
+"PO-Revision-Date: 2021-08-18 12:12+0000\n"
+"Last-Translator: Nicolas Lapointe (ComradeNixco) <nixcocpp@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -414,6 +414,9 @@ msgstr ""
 msgid "HH:mm"
 msgstr "HH:mm"
 
+msgid "Highest price"
+msgstr ""
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -505,11 +508,17 @@ msgstr "Vue en liste"
 msgid "Login"
 msgstr "Se connecter"
 
+msgid "Lowest price"
+msgstr ""
+
 msgid "More reviews"
 msgstr "Autres avis"
 
 msgid "Name"
 msgstr "Nom"
+
+msgid "New"
+msgstr "Nouveau"
 
 msgid "New delivery address"
 msgstr "Nouvelle adresse de livraison"
@@ -558,6 +567,9 @@ msgstr "Un ou plusieurs produits que vous consultez vient d'être mis à jour."
 
 msgid "One week"
 msgstr "Une semaine"
+
+msgid "Open submenu"
+msgstr ""
 
 msgid "Options"
 msgstr "Options"
@@ -616,6 +628,9 @@ msgstr "Frais de paiement"
 msgid "Payment status"
 msgstr "Statut du paiement"
 
+msgid "Pin product"
+msgstr ""
+
 msgid "Pinned products"
 msgstr "Produits épinglés"
 
@@ -656,6 +671,9 @@ msgstr "Précédent"
 
 msgid "Price"
 msgstr "Prix"
+
+msgid "Price range"
+msgstr ""
 
 msgid "Proceed"
 msgstr "Continuer"
@@ -706,6 +724,9 @@ msgstr "Avis"
 
 msgid "SKU or article name"
 msgstr "Nom d'article ou SKU"
+
+msgid "Sale"
+msgstr ""
 
 msgid "Salutation"
 msgstr "Titre"
@@ -1140,6 +1161,9 @@ msgstr "nouvelle adresse"
 
 msgid "none"
 msgstr "aucun"
+
+msgid "on request"
+msgstr ""
 
 #, php-format
 msgid "order"

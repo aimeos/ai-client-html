@@ -7,13 +7,14 @@
 # Dávid Siklaky <siklaky.david@gmail.com>, 2016
 # nzed <nemesreviz@gmail.com>, 2021
 # Nóra Antal <nora1984antal@gmail.com>, 2016
+# Patrik Szakos <szakos0208@gmail.com>, 2021
 # Péter Kozma <kopegrafika@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-06 09:42+0200\n"
-"PO-Revision-Date: 2021-08-07 10:56+0000\n"
+"POT-Creation-Date: 2021-08-18 13:26+0200\n"
+"PO-Revision-Date: 2021-08-23 18:14+0000\n"
 "Last-Translator: Patrik Szakos <szakos0208@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -207,7 +208,7 @@ msgid "Birthday"
 msgstr "Születésnap"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Tömeges megrendelés"
 
 msgid "Bundled products"
 msgstr "Csomagtermékek"
@@ -228,7 +229,7 @@ msgid "Change payment"
 msgstr "Fizetés módosítás"
 
 msgid "Channel"
-msgstr ""
+msgstr "Csatorna"
 
 msgid "Characteristics"
 msgstr "Jellemzők"
@@ -264,7 +265,7 @@ msgstr "Client HTML típus üres"
 
 #, php-format
 msgid "Client path is empty"
-msgstr ""
+msgstr "Az ügyfél elérési útja üres"
 
 #, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
@@ -289,13 +290,13 @@ msgid "Coupons"
 msgstr "Kuponok"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Hozzon létre egy felhasználói fiókot számomra"
 
 msgid "Created"
 msgstr "Létrehozva"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Ügyfél fiók"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -329,7 +330,7 @@ msgid "Dear Sir or Madam"
 msgstr "Kedves Hölgyem/Uram"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Tisztelt Ügyfelünk"
 
 msgid "Delete"
 msgstr "Törlés"
@@ -362,7 +363,7 @@ msgid "Details"
 msgstr "Részletek"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Ne tárolja a címet"
 
 msgid "Downloads"
 msgstr "Letöltések"
@@ -407,6 +408,9 @@ msgstr "Rácsnézet"
 
 msgid "HH:mm"
 msgstr "ÓÓ:pp"
+
+msgid "Highest price"
+msgstr "Legmagasabb ár"
 
 #, php-format
 msgid ""
@@ -491,7 +495,7 @@ msgid "Latest"
 msgstr "Legújabb"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Ahogy beléptél"
 
 msgid "List view"
 msgstr "Soronkénti nézet"
@@ -499,11 +503,17 @@ msgstr "Soronkénti nézet"
 msgid "Login"
 msgstr "Bejelentkezés"
 
+msgid "Lowest price"
+msgstr "Legalacsonyabb ár"
+
 msgid "More reviews"
 msgstr "További értékelések"
 
 msgid "Name"
 msgstr "Név"
+
+msgid "New"
+msgstr "Új"
 
 msgid "New delivery address"
 msgstr "Új szállítási cím"
@@ -553,6 +563,9 @@ msgstr "Az Ön által nézegetett termékek közül egy vagy több idő közben 
 msgid "One week"
 msgstr "Egy hét"
 
+msgid "Open submenu"
+msgstr "Nyissa meg az almenüt"
+
 msgid "Options"
 msgstr "Opciók"
 
@@ -567,10 +580,10 @@ msgid "Order ID"
 msgstr "Rendelés azonosító"
 
 msgid "Order channel"
-msgstr ""
+msgstr "Csatorna megrendelése"
 
 msgid "Order date"
-msgstr ""
+msgstr "Rendelés dátuma"
 
 msgid "Order details"
 msgstr "Megrendelés adatai"
@@ -589,7 +602,7 @@ msgid "Other customers also bought"
 msgstr "Mások is vásárolták"
 
 msgid "Our products"
-msgstr ""
+msgstr "Termékeink"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -609,6 +622,9 @@ msgstr "Fizetési költségek"
 
 msgid "Payment status"
 msgstr "Fizetési státusz"
+
+msgid "Pin product"
+msgstr "Pin termék"
 
 msgid "Pinned products"
 msgstr "Rögzített termékek"
@@ -633,11 +649,11 @@ msgstr "Kérjük, adja meg fizetési adatait"
 
 #, php-format
 msgid "Please recheck your delivery choice"
-msgstr ""
+msgstr "Kérjük, ellenőrizze a kiválasztott szállítási módot"
 
 #, php-format
 msgid "Please recheck your payment choice"
-msgstr ""
+msgstr "Kérjük ellenőrizze a fizetési módot"
 
 msgid "Please select"
 msgstr "Válasszon"
@@ -651,6 +667,9 @@ msgstr "Előző"
 msgid "Price"
 msgstr "Ár"
 
+msgid "Price range"
+msgstr "Árkategória"
+
 msgid "Proceed"
 msgstr "Folytassa"
 
@@ -661,7 +680,7 @@ msgid "Product"
 msgstr "Termék"
 
 msgid "Product image"
-msgstr ""
+msgstr "A termék képe"
 
 msgid "Products you might be also interested in"
 msgstr "Termékek, melyek iránt még érdeklődhet"
@@ -700,6 +719,9 @@ msgstr "Értékelések"
 
 msgid "SKU or article name"
 msgstr ""
+
+msgid "Sale"
+msgstr "Eladás"
 
 msgid "Salutation"
 msgstr "Üdvözlés"
@@ -740,7 +762,7 @@ msgid "Services"
 msgstr "Szolgáltatlások"
 
 msgid "Share"
-msgstr ""
+msgstr "Részvény"
 
 msgid "Shipping"
 msgstr "Szállítás"
@@ -786,19 +808,19 @@ msgid "Sub-total"
 msgstr "Részösszeg"
 
 msgid "Submit"
-msgstr ""
+msgstr "Beküldés"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "Előfizetési azonosító"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Előfizetés részletei"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "Előfizetési intervallum"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Előfizetési termék"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
@@ -814,13 +836,13 @@ msgid "Sum"
 msgstr "Összeg"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "Szállítói információk"
 
 msgid "Suppliers"
 msgstr "Szállítók"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Nézd meg"
 
 msgid "Telephone"
 msgstr "Telefon"
@@ -911,7 +933,7 @@ msgid ""
 msgstr "Megrendelésének fizetés megerősítése függőben van. Amint a fizetés hitelesítésre kerül, e-mailben értesítjük."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "A fizetést nem lehetett frissíteni"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -922,10 +944,10 @@ msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "%2$s-i %1$s azonosítószámú megrendelésének összege visszatérítésre került."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "A termék előfizetése véget ért"
 
 msgid "The subscription for the product has ended."
-msgstr ""
+msgstr "A termék előfizetése véget ért."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
@@ -940,7 +962,7 @@ msgid "Time frame"
 msgstr "Időkeret"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Teljes képernyőre váltás"
 
 msgid "Top seller"
 msgstr "Legnépszerűbb termékek"
@@ -986,13 +1008,13 @@ msgid "Update"
 msgstr "Frissítés"
 
 msgid "Variant"
-msgstr ""
+msgstr "Változat"
 
 msgid "Vat ID"
 msgstr "Adószám"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Szállítói válasz"
 
 msgid "Watch"
 msgstr "Megtekintés"
@@ -1002,7 +1024,7 @@ msgstr "Megtekintett termékek"
 
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Megkaptuk a fizetésedet, és azonnal gondoskodunk a rendelésedről."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -1016,7 +1038,7 @@ msgid "Web site"
 msgstr "Weboldal"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "Mit gondolsz a termékről?"
 
 msgid "X"
 msgstr "X"
@@ -1036,16 +1058,16 @@ msgid "You are here:"
 msgstr "Ön itt van:"
 
 msgid "You can use your voucher any time in our online shop"
-msgstr ""
+msgstr "Az utalványt bármikor felhasználhatja online áruházunkban"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Az utalványokat bármikor felhasználhatja online áruházunkban"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Most már jöhet a következő lépés"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Lemondta az előfizetést"
 
 msgid "Your account"
 msgstr "Fiókja"
@@ -1054,7 +1076,7 @@ msgid "Your choice"
 msgstr "Választásod"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Megjegyzésed"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
@@ -1074,13 +1096,13 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "%2$s-i %1$s azonosítószámú megrendelése kézbesítésre került."
 
 msgid "Your rating"
-msgstr ""
+msgstr "Értékelésed"
 
 msgid "Your reference"
-msgstr ""
+msgstr "Referenciád"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Az Ön hivatkozási száma"
 
 msgid "Your review"
 msgstr "Az ön értékelése"
@@ -1089,26 +1111,26 @@ msgid "Your search result"
 msgstr "Keresési eredmény"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Előfizetésed"
 
 msgid "Your subscription product"
-msgstr ""
+msgstr "Előfizetési terméke"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Az utalványod"
 
 msgid "Your voucher: "
-msgstr ""
+msgstr "Az utalványod:"
 
 msgid "Your vouchers: "
-msgstr ""
+msgstr "Az utalványod:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Figyelt termékek"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Nagyítás/kicsinyítés"
 
 #, php-format
 msgid "address"
@@ -1135,6 +1157,9 @@ msgstr "új cím"
 msgid "none"
 msgstr "egyik sem"
 
+msgid "on request"
+msgstr "kérésre"
+
 #, php-format
 msgid "order"
 msgstr "Rendelés"
@@ -1144,7 +1169,7 @@ msgid "payment"
 msgstr "fizetés"
 
 msgid "price:default"
-msgstr ""
+msgstr "ár:alapértelmezett"
 
 #, php-format
 msgid "process"

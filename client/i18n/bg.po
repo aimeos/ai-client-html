@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-06 09:42+0200\n"
-"PO-Revision-Date: 2021-07-06 07:44+0000\n"
+"POT-Creation-Date: 2021-08-18 13:26+0200\n"
+"PO-Revision-Date: 2021-08-18 12:12+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -405,6 +405,9 @@ msgstr ""
 msgid "HH:mm"
 msgstr ""
 
+msgid "Highest price"
+msgstr ""
+
 #, php-format
 msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
@@ -496,11 +499,17 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "Lowest price"
+msgstr ""
+
 msgid "More reviews"
 msgstr ""
 
 msgid "Name"
 msgstr "Име"
+
+msgid "New"
+msgstr ""
 
 msgid "New delivery address"
 msgstr ""
@@ -549,6 +558,9 @@ msgstr "Един или повече от прегледаните от Вас �
 
 msgid "One week"
 msgstr "Една седмица"
+
+msgid "Open submenu"
+msgstr ""
 
 msgid "Options"
 msgstr "Опции"
@@ -607,6 +619,9 @@ msgstr "Разходи за плащане"
 msgid "Payment status"
 msgstr "Статус на плащане"
 
+msgid "Pin product"
+msgstr ""
+
 msgid "Pinned products"
 msgstr "Маркирани продукти"
 
@@ -647,6 +662,9 @@ msgstr "Предходен"
 
 msgid "Price"
 msgstr "Цена"
+
+msgid "Price range"
+msgstr ""
 
 msgid "Proceed"
 msgstr "Продължете"
@@ -696,6 +714,9 @@ msgid "Reviews"
 msgstr ""
 
 msgid "SKU or article name"
+msgstr ""
+
+msgid "Sale"
 msgstr ""
 
 msgid "Salutation"
@@ -1131,6 +1152,9 @@ msgstr "нов адрес"
 
 msgid "none"
 msgstr "нищо"
+
+msgid "on request"
+msgstr ""
 
 #, php-format
 msgid "order"
