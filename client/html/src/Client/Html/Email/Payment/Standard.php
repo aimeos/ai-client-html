@@ -549,7 +549,7 @@ class Standard
 		}
 
 		$date = date_create( $view->extOrderItem->getTimeCreated() )->format( $view->translate( 'client', 'Y-m-d' ) );
-		$view->message = sprintf( $msg, $view->extOrderItem->getId(), $date, $status );
+		$view->message = sprintf( $msg, $view->extOrderItem->getOrderNumber(), $date, $status );
 
 		$pricefmt = $view->translate( 'client/code', 'price:default' );
 		/// Price format with price value (%1$s) and currency (%2$s)

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-18 12:12+0000\n"
+"PO-Revision-Date: 2021-08-20 16:21+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -406,7 +406,7 @@ msgid "HH:mm"
 msgstr "SS:dd"
 
 msgid "Highest price"
-msgstr ""
+msgstr "En yüksek fiyat"
 
 #, php-format
 msgid ""
@@ -500,7 +500,7 @@ msgid "Login"
 msgstr "Oturum aç"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "En düşük fiyat"
 
 msgid "More reviews"
 msgstr "Daha fazla yorum"
@@ -560,7 +560,7 @@ msgid "One week"
 msgstr "Bir hafta"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Alt Kategoriyi Aç"
 
 msgid "Options"
 msgstr "Seçenekler"
@@ -620,7 +620,7 @@ msgid "Payment status"
 msgstr "Ödeme durumu"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Ürünü sabitle"
 
 msgid "Pinned products"
 msgstr "Sabitlenmiş ürünler"
@@ -664,7 +664,7 @@ msgid "Price"
 msgstr "Fiyat"
 
 msgid "Price range"
-msgstr ""
+msgstr "Fiyat aralığı"
 
 msgid "Proceed"
 msgstr "Devam et"
@@ -717,7 +717,7 @@ msgid "SKU or article name"
 msgstr "Ürün kodu veya adı"
 
 msgid "Sale"
-msgstr ""
+msgstr "Satış"
 
 msgid "Salutation"
 msgstr "Selamlama"
@@ -1154,7 +1154,7 @@ msgid "none"
 msgstr "Hiçbiri"
 
 msgid "on request"
-msgstr ""
+msgstr "Talep üzerine"
 
 #, php-format
 msgid "order"

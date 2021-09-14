@@ -122,7 +122,7 @@ msgstr "Credit card number"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Verfification number"
+msgstr "Verification number"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -134,7 +134,7 @@ msgstr "Expiry year"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "Expiry date"
+msgstr "Expiry (MMYY)"
 
 #. Pick-up date
 msgid "date.value"
