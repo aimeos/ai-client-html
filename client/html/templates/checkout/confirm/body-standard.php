@@ -46,7 +46,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 						<?= $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ) ?>
 					</span>
 					<span class="value">
-						<?= $enc->html( $this->confirmOrderItem->getId() ) ?>
+						<?= $enc->html( $this->confirmOrderItem->getOrderNumber() ) ?>
 					</span>
 				</li>
 				<li class="form-item">

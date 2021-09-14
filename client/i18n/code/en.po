@@ -16,25 +16,85 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+#. Tax name
+msgid "tax"
+msgstr "tax"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "GST"
+
+
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr " "
+
+#. Favorite action
+msgid "favorite"
+msgstr "favorite"
+
+#. Pin action
+msgid "pin"
+msgstr "pin"
+
+#. Watch action
+msgid "watch"
+msgstr "watch"
+
+
+#. Product attribute
+msgid "size"
+msgstr "Size"
+
+#. Product attribute
+msgid "length"
+msgstr "Length"
+
+#. Product attribute
+msgid "width"
+msgstr "Width"
+
 #. Product attribute
 msgid "color"
 msgstr "Color"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "Pick-up date"
+#. Product attribute
+msgid "option"
+msgstr "Option"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr "Delivery type"
+#. Product property package-length
+msgid "package-length"
+msgstr "package-length"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "Account number"
+#. Product property package-width
+msgid "package-width"
+msgstr "package-width"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "package-height"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "package-weight"
+
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
 msgstr "Account owner"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Account number"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -44,33 +104,13 @@ msgstr "Bank code"
 msgid "directdebit.bankname"
 msgstr "Bank name"
 
-#. Favorite action
-msgid "favorite"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "First name"
 
-#. Product attribute
-msgid "length"
-msgstr "Length"
-
-#. Product attribute
-msgid "option"
-msgstr "Option"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "Package height"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "Package length"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "Package weight"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "Package width"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Last name"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -78,12 +118,7 @@ msgstr "Credit card number"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Verfification number"
-
-#. Omnipay service provider
-#, fuzzy
-msgid "payment.expiry"
-msgstr "Expiry year"
+msgstr "Verification number"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -94,129 +129,25 @@ msgid "payment.expiryyear"
 msgstr "Expiry year"
 
 #. Omnipay service provider
-msgid "payment.firstname"
-msgstr "First name"
+msgid "payment.expiry"
+msgstr "Expiry (MMYY)"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Last name"
-
-#. Pin action
-msgid "pin"
-msgstr "Pin"
-
-#. Price type default
-msgid "price:default"
-msgstr "%2$s %1$s"
-
-#. Product attribute
-msgid "size"
-msgstr "Size"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr " "
-
-#. Pick-up location
-msgid "supplier.address"
-msgstr "Pick-up location"
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr "Pick-up location"
-
-#. Tax name
-msgid "tax"
-msgstr "VAT"
-
-#. GST tax name
-msgid "taxgst"
-msgstr "GST"
-
-#. PST tax name
-msgid "taxpst"
-msgstr "PST"
+#. Pick-up date
+msgid "date.value"
+msgstr "Pick-up date"
 
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "Pick-up time"
 
-#. Watch action
-msgid "watch"
-msgstr ""
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Pick-up location"
 
-#. Product attribute
-msgid "width"
-msgstr "Width"
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Pick-up address"
 
-#~ msgid "company"
-#~ msgstr "Company"
-
-#~ msgid "miss"
-#~ msgstr "Miss"
-
-#~ msgid "mr"
-#~ msgstr "Mr"
-
-#~ msgid "mrs"
-#~ msgstr "Mrs"
-
-#~ msgid "order:phone"
-#~ msgstr "telephone"
-
-#~ msgid "order:repeat"
-#~ msgstr "repeated"
-
-#~ msgid "order:web"
-#~ msgstr "internet"
-
-#~ msgid "pay:-1"
-#~ msgstr "unfinished"
-
-#~ msgid "pay:0"
-#~ msgstr "deleted"
-
-#~ msgid "pay:1"
-#~ msgstr "canceled"
-
-#~ msgid "pay:2"
-#~ msgstr "refused"
-
-#~ msgid "pay:3"
-#~ msgstr "refunded"
-
-#~ msgid "pay:4"
-#~ msgstr "pending"
-
-#~ msgid "pay:5"
-#~ msgstr "authorized"
-
-#~ msgid "pay:6"
-#~ msgstr "received"
-
-#~ msgid "stat:-1"
-#~ msgstr "unfinished"
-
-#~ msgid "stat:0"
-#~ msgstr "deleted"
-
-#~ msgid "stat:1"
-#~ msgstr "pending"
-
-#~ msgid "stat:2"
-#~ msgstr "in progress"
-
-#~ msgid "stat:3"
-#~ msgstr "dispatched"
-
-#~ msgid "stat:4"
-#~ msgstr "delivered"
-
-#~ msgid "stat:5"
-#~ msgstr "lost"
-
-#~ msgid "stat:6"
-#~ msgstr "refused"
-
-#~ msgid "stat:7"
-#~ msgstr "returned"
+#. Delivery type
+msgid "delivery.type"
+msgstr "Delivery type"

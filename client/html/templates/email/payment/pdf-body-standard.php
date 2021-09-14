@@ -20,7 +20,7 @@ $enc = $this->encoder();
 
 $this->pdf->setMargins( 15, 30, 15 );
 $this->pdf->setAutoPageBreak( true, 30 );
-$this->pdf->setTitle( sprintf( $this->translate( 'client', 'Order %1$s' ), $this->extOrderItem->getId() ) );
+$this->pdf->setTitle( sprintf( $this->translate( 'client', 'Order %1$s' ), $this->extOrderItem->getOrderNumber() ) );
 $this->pdf->setFont( 'dejavusans', '', 10 );
 
 $vmargin = [
@@ -105,7 +105,7 @@ $data = [
 	$this->summaryBasket->getPrice()->getCurrencyId() . $total,    // Currency and value (required)
 	'',    // Purpose (optional, 4 char code, https://wiki.windata.de/index.php?title=Purpose-SEPA-Codes)
 	'',    // ISO 11649 RF Creditor Reference (optional, 35 characters structured code)
-	$this->translate( 'client', 'Order' ) . ' ' . $this->extOrderItem->getId(), // Reference of order and other data (optional, max. 140 characters)
+	$this->translate( 'client', 'Order' ) . ' ' . $this->extOrderItem->getOrderNumber(), // Reference of order and other data (optional, max. 140 characters)
 	$this->extOrderBaseItem->getCustomerReference(), // Notice to the customer (optional, max. 70 characters)
 ];
 
@@ -191,7 +191,7 @@ $barcode = new TCPDF2DBarcode( join( "\n", $data ), 'QRCODE,M' );
 			</td>
 		</tr>
 	</table>
-	<h2><?= $enc->html( $this->translate( 'client', 'Order' ) ) ?>: <?= $enc->html( $this->extOrderItem->getId() ) ?></h2>
+	<h2><?= $enc->html( $this->translate( 'client', 'Order' ) ) ?>: <?= $enc->html( $this->extOrderItem->getOrderNumber() ) ?></h2>
 	<?= $this->partial(
 		/** client/html/email/common/summary/pdf
 		 * Location of the address partial template for the text e-mails
