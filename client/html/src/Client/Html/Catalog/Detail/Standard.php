@@ -183,6 +183,8 @@ class Standard
 			{
 				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 				$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
+
+				if ( $e->getCode() === 404 ) { throw $e; }
 			}
 			catch( \Aimeos\MShop\Exception $e )
 			{
