@@ -58,8 +58,11 @@ $urls = array(
 <div class="catalog-actions">
 	<?php foreach( $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'favorite'] ) as $entry ) : ?>
 		<?php if( isset( $urls[$entry] ) ) : ?>
-			<a class="actions-button actions-button-<?= $enc->attr( $entry ) ?>" href="<?= $enc->attr( $urls[$entry] ) ?>" title="<?= $enc->attr( $this->translate( 'client/code', $entry ) ) ?>"></a>
-
+			<form method="POST" action="<?= $enc->attr( $urls[$entry] ) ?>">
+				<button class="actions-button actions-button-<?= $enc->attr( $entry ) ?>"
+					title="<?= $enc->attr( $this->translate( 'client/code', $entry ) ) ?>">
+				</button>
+			</form>
 		<?php endif ?>
 	<?php endforeach ?>
 </div>

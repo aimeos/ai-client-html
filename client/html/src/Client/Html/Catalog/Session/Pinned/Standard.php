@@ -229,45 +229,48 @@ class Standard
 		$session = $context->getSession();
 		$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
 
-		switch( $view->param( 'pin_action' ) )
+		if( $view->request()->getMethod() === 'POST' )
 		{
-			case 'add':
+			switch( $view->param( 'pin_action' ) )
+			{
+				case 'add':
 
-				foreach( (array) $view->param( 'pin_id', [] ) as $id ) {
-					$pinned[$id] = $id;
-				}
+					foreach( (array) $view->param( 'pin_id', [] ) as $id ) {
+						$pinned[$id] = $id;
+					}
 
-				/** client/html/catalog/session/pinned/maxitems
-				 * Maximum number of products displayed in the "pinned" section
-				 *
-				 * This option limits the number of products that are shown in the
-				 * "pinned" section after the users added the product to their list
-				 * of pinned products. It must be a positive integer value greater
-				 * than 0.
-				 *
-				 * Note: The higher the value is the more data has to be transfered
-				 * to the client each time the user loads a page with the list of
-				 * pinned products.
-				 *
-				 * @param integer Number of products
-				 * @since 2014.09
-				 * @category User
-				 * @category Developer
-				 */
-				$max = $context->getConfig()->get( 'client/html/catalog/session/pinned/maxitems', 50 );
+					/** client/html/catalog/session/pinned/maxitems
+					* Maximum number of products displayed in the "pinned" section
+					*
+					* This option limits the number of products that are shown in the
+					* "pinned" section after the users added the product to their list
+					* of pinned products. It must be a positive integer value greater
+					* than 0.
+					*
+					* Note: The higher the value is the more data has to be transfered
+					* to the client each time the user loads a page with the list of
+					* pinned products.
+					*
+					* @param integer Number of products
+					* @since 2014.09
+					* @category User
+					* @category Developer
+					*/
+					$max = $context->getConfig()->get( 'client/html/catalog/session/pinned/maxitems', 50 );
 
-				$pinned = array_slice( $pinned, -$max, $max, true );
-				$refresh = true;
-				break;
+					$pinned = array_slice( $pinned, -$max, $max, true );
+					$refresh = true;
+					break;
 
-			case 'delete':
+				case 'delete':
 
-				foreach( (array) $view->param( 'pin_id', [] ) as $id ) {
-					unset( $pinned[$id] );
-				}
+					foreach( (array) $view->param( 'pin_id', [] ) as $id ) {
+						unset( $pinned[$id] );
+					}
 
-				$refresh = true;
-				break;
+					$refresh = true;
+					break;
+			}
 		}
 
 

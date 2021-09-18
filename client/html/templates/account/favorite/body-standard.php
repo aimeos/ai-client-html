@@ -114,9 +114,10 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 					<li class="favorite-item">
 						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $this->get( 'favoriteParams', [] ) ?>
-						<a class="modify" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>">
-							<?= $this->translate( 'client', 'X' ) ?>
-						</a>
+						<form method="POST" action="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>">
+							<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
+							<?= $this->csrf()->formfield() ?>
+						</form>
 
 						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
 						<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">

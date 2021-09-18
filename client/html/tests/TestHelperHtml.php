@@ -58,7 +58,7 @@ class TestHelperHtml
 		$view->addHelper( 'csrf', $helper );
 
 		$psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
-		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $psr17Factory->createServerRequest( 'GET', 'https://aimeos.org' ) );
+		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $psr17Factory->createServerRequest( 'POST', 'https://aimeos.org' ) );
 		$view->addHelper( 'request', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Response\Standard( $view, $psr17Factory->createResponse() );

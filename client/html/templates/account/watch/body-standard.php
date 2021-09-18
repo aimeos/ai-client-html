@@ -113,7 +113,10 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 					<li class="watch-item">
 						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $this->get( 'watchParams', [] ) ?>
-						<a class="modify" href="<?= $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ?>"></a>
+						<form method="POST" action="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, $params, [], $watchConfig ) ) ?>">
+							<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
+							<?= $this->csrf()->formfield() ?>
+						</form>
 
 						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
 						<a class="watch-item" href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">

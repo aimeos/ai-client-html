@@ -118,9 +118,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<?php $detailParams = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter ) ?>
 
 			<li class="pinned-item">
-				<a class="modify" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"
-					href="<?= $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ) ?>">
-				</a>
+				<form method="POST" action="<?= $enc->attr( $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ) ) ?>">
+					<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
+					<?= $this->csrf()->formfield() ?>
+				</form>
 
 				<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $detailParams, [], $detailConfig ) ) ?>">
 
