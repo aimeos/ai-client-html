@@ -152,6 +152,7 @@ class Standard
 			 * @since 2014.03
 			 * @category Developer
 			 * @see client/html/catalog/detail/template-header
+			 * @see client/html/catalog/detail/404
 			 */
 			$tplconf = 'client/html/catalog/detail/template-body';
 			$default = 'catalog/detail/body-standard';
@@ -184,7 +185,21 @@ class Standard
 				$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
 				$view->detailErrorList = array_merge( $view->get( 'detailErrorList', [] ), $error );
 
-				if( $e->getCode() === 404 ) { throw $e; }
+				/** client/html/catalog/detail/404
+				 * Configures 404 handling for catalog detail pages
+				 *
+				 * By default, no HTTP 404 status code is returned to the browser, just
+				 * an error message that the product could not be found. Changing this
+				 * setting to TRUE will return a 404 page depending on the host application.
+				 *
+				 * @param bool TRUE to return HTTP status code 404, FALSE to return an error message
+				 * @since 2021.10
+				 * @see client/html/catalog/detail/template-header
+				 * @see client/html/catalog/detail/template-body
+				 */
+				$throw = $context->config()->get( 'client/html/catalog/detail/404', false );
+
+				if( $throw && $e->getCode() === 404 ) { throw $e; }
 			}
 			catch( \Aimeos\MShop\Exception $e )
 			{
@@ -251,6 +266,7 @@ class Standard
 			 * @since 2014.03
 			 * @category Developer
 			 * @see client/html/catalog/detail/template-body
+			 * @see client/html/catalog/detail/404
 			 */
 			$tplconf = 'client/html/catalog/detail/template-header';
 			$default = 'catalog/detail/header-standard';
