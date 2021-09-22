@@ -732,7 +732,7 @@ class Standard
 		$view->listPageSize = $size;
 		$view->listPageCurr = $page;
 		$view->listPagePrev = ( $page > 1 ? $page - 1 : 1 );
-		$view->listPageLast = ( $total != 0 ? ceil( $total / $size ) : 1 );
+		$view->listPageLast = ( $total != 0 ? min( ceil( $total / $size ), $pages ) : 1 );
 		$view->listPageNext = ( $page < $view->listPageLast ? $page + 1 : $view->listPageLast );
 
 		$view->listParams = $this->getClientParams( map( $view->param() )->toArray() );
