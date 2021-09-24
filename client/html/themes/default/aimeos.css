@@ -2408,6 +2408,38 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	list-style: none;
 }
 
+.catalog-list-items .basket .select-item .upload-wrapper,
+.catalog-detail-basket .select-item .upload-wrapper {
+	display: block;
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper input,
+.catalog-detail-basket .select-item .upload-wrapper input {
+	display: none;
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-view,
+.catalog-detail-basket .select-item .upload-wrapper .upload-view {
+	position: relative;
+	height: 40px;
+	width: 100%;
+	border: 1px dashed #929292;
+	border-radius: 5px;
+	overflow: hidden;
+	background-color: #e8e8e8;
+
+	cursor: pointer;
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-view::after,
+.catalog-detail-basket .select-item .upload-wrapper .upload-view::after {
+	position: absolute;
+	content: attr(data-title);
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .catalog-list-items .basket .select-name,
 .catalog-detail-baske .select-name {
 	min-width: 5rem;

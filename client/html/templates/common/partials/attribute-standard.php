@@ -207,11 +207,18 @@ $enc = $this->encoder();
 				<?php break; case 'date': ?>
 					<input id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="form-control" type="date" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
                 <?php break;case 'upload': ?>
-                    <input id="upload-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>"
-                           class="form-control"
-                           type="file"
-                           name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>[]"
-                           multiple>
+                    <div class="upload-wrapper">
+                        <div class="upload-view"
+                             data-title="<?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ) ?>"
+                             onclick="document.querySelector('#upload-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>').click()"
+                        >
+                        </div>
+                        <input id="upload-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>"
+                               class="form-control hidden"
+                               type="file"
+                               name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>[]"
+                               multiple>
+                    </div>
 				<?php break; default: ?>
 					<input id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="form-control" type="text" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
 				<?php endswitch ?>
