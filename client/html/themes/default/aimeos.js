@@ -1323,7 +1323,6 @@ AimeosCatalog = {
 				const formData = new FormData($(this)[0]);
 				formData.append($(fileInput[0]).attr('name'), $(fileInput[0]).prop('files'));
 
-				console.log(formData);
 				$.ajax({
 					url: $(this).attr("action"),
 					type: 'post',
@@ -1331,7 +1330,6 @@ AimeosCatalog = {
 					contentType: false,
 					processData: false,
 					success: function(response) {
-						console.log(response);
 						if(response != 0) {
 							Aimeos.createContainer(AimeosBasketStandard.updateBasket(response));
 						}

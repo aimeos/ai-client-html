@@ -461,7 +461,9 @@ class Standard
 	 */
 	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
-        $attrId = \Aimeos\MShop::create( $this->getContext(), 'attribute' )->find( 'custom', [], 'product', 'upload' )->getId();
+		$attrIds[] = \Aimeos\MShop::create( $this->getContext(), 'attribute' )->find( 'custom', [], 'product', 'upload' )->getId();
+
+		$attrIds[] = \Aimeos\MShop::create( $this->getContext(), 'attribute' )->find( 'file', [], 'product', 'upload' )->getId();
 
         $fs = $this->getContext()->fs( 'fs' );
 
@@ -495,47 +497,30 @@ class Standard
 
 			for($i = 0; $i < count($entries); ++$i) {
 			    $paths = [];
-                if (isset( $entries[$i]['attrcustid'][$attrId] ) && is_array($entries[$i]['attrcustid'][$attrId])) {
-                    /** @var UploadedFile $file */
-                    foreach($entries[$i]['attrcustid'][$attrId] as $file) {
-                        $filepath = 'basket-upload/' . md5($file->getFilename() . microtime(true)) . '.' . $file->extension();
-                        try {
-                            $stream = fopen($file->getRealPath(), 'r+');
-                            $fs->writes($filepath, $stream);
-                            fclose($stream);
-                        } catch (\Exception $ex) {
-                            Log::error($ex->getMessage());
-                        }
-                        $paths[] = $filepath;
-                    }
-                    $entries[$i]['attrcustid'][$attrId] = $paths;
-                }
-                if( isset( $entries[$i]['prodid'] ) ) {
-                    $list[] = $entries[$i]['prodid'];
-                }
-            }
-			/*foreach( $entries as $values )
-			{
-                if (isset( $values['attrcustid'][$attrId] )) {
-                    $file = $values['attrcustid'][$attrId];
-                    $filepath = 'basket/' . md5($file->getFilename() . microtime(true)) . '.' . $file->extension();
-                    try {
-                        $stream = fopen($file->getRealPath(), 'r+');
-                        $fs->writes($filepath, $stream);
-                        fclose($stream);
-                    } catch (\Exception $ex) {
-                        Log::error($ex->getMessage());
-                    }
-                    $values['attrcustid'][$attrId] = $filepath;
-                }
-				if( isset( $values['prodid'] ) ) {
-					$list[] = $values['prodid'];
+				foreach ($attrIds as $attrId) {
+					if (isset($entries[$i]['attrcustid'][$attrId]) && is_array($entries[$i]['attrcustid'][$attrId])) {
+						/** @var UploadedFile $file */
+						foreach ($entries[$i]['attrcustid'][$attrId] as $file) {
+							$filepath = 'basket-upload/' . md5($file->getFilename() . microtime(true)) . '.' . $file->extension();
+							try {
+								$stream = fopen($file->getRealPath(), 'r+');
+								$fs->writes($filepath, $stream);
+								fclose($stream);
+							} catch (\Exception $ex) {
+								Log::error($ex->getMessage());
+							}
+							$paths[] = $filepath;
+						}
+						$entries[$i]['attrcustid'][$attrId] = $paths;
+					}
+					if (isset($entries[$i]['prodid'])) {
+						$list[] = $entries[$i]['prodid'];
+					}
 				}
-			}*/
+            }
 
 			foreach( $entries as $values )
 			{
-			    Log::debug(print_r($values, true));
 				if( ( $values['prodid'] ?? null ) && ( $values['quantity'] ?? 0 ) > 0 )
 				{
 					$basketCntl->addProduct( $productCntl->get( $values['prodid'] ),
