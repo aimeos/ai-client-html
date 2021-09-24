@@ -2421,12 +2421,12 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-list-items .basket .select-item .upload-wrapper .upload-view,
 .catalog-detail-basket .select-item .upload-wrapper .upload-view {
 	position: relative;
-	height: 40px;
+	height: 60px;
 	width: 100%;
 	border: 1px dashed #929292;
-	border-radius: 5px;
+	border-radius: 1px;
 	overflow: hidden;
-	background-color: #e8e8e8;
+	background-color: #f3f3f3;
 
 	cursor: pointer;
 }
@@ -2438,6 +2438,45 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-file-list,
+.catalog-detail-basket .select-item .upload-wrapper .upload-file-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	margin-right: -12px;
+	margin-bottom: -12px;
+}
+
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-file-list .upload-file-entry,
+.catalog-detail-basket .select-item .upload-wrapper .upload-file-list .upload-file-entry {
+	border: 1px solid #f8f8f8;
+	border-radius: 1px;
+
+	background-color: #fcfcfc;
+
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	align-items: center;
+
+	margin-right: 12px;
+	margin-bottom: 12px;
+
+	font-weight: bolder;
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-file-list .upload-file-entry img,
+.catalog-detail-basket .select-item .upload-wrapper .upload-file-list .upload-file-entry img {
+	max-height: 100px;
+	width: auto;
 }
 
 .catalog-list-items .basket .select-name,

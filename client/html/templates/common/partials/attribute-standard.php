@@ -87,6 +87,36 @@ $enc = $this->encoder();
 
 
 ?>
+<script type="text/javascript">
+    function removeFile(event) {
+        console.log($(event).parents('.upload-file-entry').remove());
+    }
+    function slugName(name) {
+        return name.toLowerCase().replaceAll(' ', '_').replaceAll('.', '_');
+    }
+    function updateFileList() {
+        $('input[type=file]').each((i, input) => {
+            $('.upload-file-list').html('');
+            if(input.files && input.files.length > 0) {
+                $('.upload-view').addClass('bg-success');
+                $('.upload-view').attr('data-title', $('.upload-view').attr('data-title').replace('hinzufügen', 'ändern'));
+                for(let file of input.files) {
+                    const localUrl = URL.createObjectURL(file);
+                    $el = $('<div class="upload-file-entry"></div>');
+                    $el.attr('id', `file-${slugName(file.name)}`);
+                    $el.append(`<img src="${localUrl}" alt="image">`);
+                    $el.append(`<span class="m-2">${file.name}</span>`);
+                    $('.upload-file-list').append($el);
+                }
+            }
+        })
+    }
+    if (window.fileListInterval) {
+        clearInterval(window.fileListInterval);
+        window.fileListInterval = null;
+    }
+
+</script>
 <ul class="selection">
 
 	<?php foreach( $this->typemap( $this->productItem->getRefItems( 'attribute', null, 'config' ) ) as $code => $attributes ) : ?>
@@ -189,7 +219,9 @@ $enc = $this->encoder();
 
 	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'custom' ) as $id => $attribute ) : $key = $attribute->getType() . '-' . $attribute->getCode() ?>
 		<li class="select-item <?= $enc->attr( $key ) ?>">
-			<label for="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ) ?></label>
+            <?php if ( $attribute->getType() !== 'upload' ) { ?>
+			    <label for="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ) ?></label>
+            <?php } ?>
 
 			<?php if( $hint = $this->translate( 'client/code', $key . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
@@ -209,7 +241,7 @@ $enc = $this->encoder();
                 <?php break;case 'upload': ?>
                     <div class="upload-wrapper">
                         <div class="upload-view"
-                             data-title="<?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ) ?>"
+                             data-title="<?= $enc->html( $this->translate( 'client/code', $attribute->getName() ) ) ?> Klicken zum hinzufügen."
                              onclick="document.querySelector('#upload-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>').click()"
                         >
                         </div>
@@ -217,12 +249,15 @@ $enc = $this->encoder();
                                class="form-control hidden"
                                type="file"
                                name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>[]"
-                               multiple>
+                               multiple
+                               onchange="updateFileList()"
+                        >
+                        <div class="upload-file-list p-1">
+                        </div>
                     </div>
 				<?php break; default: ?>
 					<input id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $key ) ?>" class="form-control" type="text" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrcustid', $id] ) ) ?>">
 				<?php endswitch ?>
-
 			</div>
 		</li>
 
