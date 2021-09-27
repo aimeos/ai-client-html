@@ -1318,9 +1318,28 @@ AimeosCatalog = {
 		$(".catalog-detail-basket form, .catalog-list-items form").on("submit", function(ev) {
 
 			Aimeos.createOverlay();
-			$.post($(this).attr("action"), $(this).serialize(), function(data) {
-				Aimeos.createContainer(AimeosBasketStandard.updateBasket(data));
-			});
+			let fileInput = $("input[type=file]");
+			if (fileInput.length > 0 && fileInput[0].files.length > 0) {
+				const formData = new FormData($(this)[0]);
+				formData.append($(fileInput[0]).attr('name'), $(fileInput[0]).prop('files'));
+
+				$.ajax({
+					url: $(this).attr("action"),
+					type: 'post',
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function(response) {
+						if(response != 0) {
+							Aimeos.createContainer(AimeosBasketStandard.updateBasket(response));
+						}
+					},
+				});
+			} else {
+				$.post($(this).attr("action"), $(this).serialize(), function (data) {
+					Aimeos.createContainer(AimeosBasketStandard.updateBasket(data));
+				});
+			}
 
 			return false;
 		});

@@ -2414,6 +2414,77 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	list-style: none;
 }
 
+.catalog-list-items .basket .select-item .upload-wrapper,
+.catalog-detail-basket .select-item .upload-wrapper {
+	display: block;
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper input,
+.catalog-detail-basket .select-item .upload-wrapper input {
+	display: none;
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-view,
+.catalog-detail-basket .select-item .upload-wrapper .upload-view {
+	position: relative;
+	height: 60px;
+	width: 100%;
+	border: 1px dashed #929292;
+	border-radius: 1px;
+	overflow: hidden;
+	background-color: #f3f3f3;
+
+	cursor: pointer;
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-view::after,
+.catalog-detail-basket .select-item .upload-wrapper .upload-view::after {
+	position: absolute;
+	content: attr(data-title);
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-file-list,
+.catalog-detail-basket .select-item .upload-wrapper .upload-file-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	margin-right: -12px;
+	margin-bottom: -12px;
+}
+
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-file-list .upload-file-entry,
+.catalog-detail-basket .select-item .upload-wrapper .upload-file-list .upload-file-entry {
+	border: 1px solid #f8f8f8;
+	border-radius: 1px;
+
+	background-color: #fcfcfc;
+
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	align-items: center;
+
+	margin-right: 12px;
+	margin-bottom: 12px;
+
+	font-weight: bolder;
+}
+
+.catalog-list-items .basket .select-item .upload-wrapper .upload-file-list .upload-file-entry img,
+.catalog-detail-basket .select-item .upload-wrapper .upload-file-list .upload-file-entry img {
+	max-height: 100px;
+	width: auto;
+}
+
 .catalog-list-items .basket .select-name,
 .catalog-detail-baske .select-name {
 	min-width: 5rem;
@@ -3693,6 +3764,21 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .aimeos .common-summary-detail .attr-item .name:after {
 	content: ":";
+}
+
+.aimeos .common-summary-detail .image-uploads {
+	display: flex;
+}
+
+.aimeos .common-summary-detail .image-uploads .image-upload {
+	margin-right: 1rem;
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+
+.aimeos .common-summary-detail .image-uploads .image-uploads img {
+	max-height: 100px;
+	width: auto;
 }
 
 .aimeos .common-summary-detail tfoot tr.quantity,

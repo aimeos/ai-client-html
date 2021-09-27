@@ -40,7 +40,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php if( isset( $this->standardBasket ) ) : ?>
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
 
-		<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
+		<form enctype="multipart/form-data" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
 			<?= $this->csrf()->formfield() ?>
 
 

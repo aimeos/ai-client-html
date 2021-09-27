@@ -221,6 +221,23 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 							<?php endif ?>
 						<?php endforeach ?>
 
+                        <?php foreach( $product->getAttributeItems( 'custom' ) as $attribute) : ?>
+                            <?php if( $attribute->getCode() === 'upload' ) : ?>
+                                <div class="attr-list attr-type-<?= $enc->attr( $attribute ) ?>">
+                                    <span class="name"><?= $attribute->getName() ?></span>
+                                    <span class="value">
+                                        <span class="image-uploads">
+                                            <?php foreach( $attribute->getValue() as $upload) : ?>
+                                                <span class="image-upload">
+                                                    <img src="<?= $enc->attr( $this->content($upload) ) ?>" alt="upload-image" />
+                                                </span>
+                                            <?php endforeach ?>
+                                        </span>
+                                    </span>
+                                </div>
+                            <?php endif ?>
+                        <?php endforeach ?>
+
 						<?php if( $unhide && ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) !== null ) : ?>
 							<ul class="attr-list attr-list-hidden">
 								<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
