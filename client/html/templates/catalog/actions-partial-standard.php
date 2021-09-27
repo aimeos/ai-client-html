@@ -46,23 +46,40 @@ $favConfig = $this->config( 'client/html/account/favorite/url/config', [] );
  * @category User
  * @category Developer
  */
-
-$urls = array(
-	'pin' => $this->url( $pinTarget, $pinController, $pinAction, ['pin_action' => 'add', 'pin_id' => $this->productItem->getId(), 'd_name' => $this->productItem->getName( 'url' )], $pinConfig ),
-	'watch' => $this->url( $watchTarget, $watchController, $watchAction, ['wat_action' => 'add', 'wat_id' => $this->productItem->getId(), 'd_name' => $this->productItem->getName( 'url' )], $watchConfig ),
-	'favorite' => $this->url( $favTarget, $favController, $favAction, ['fav_action' => 'add', 'fav_id' => $this->productItem->getId(), 'd_name' => $this->productItem->getName( 'url' )], $favConfig ),
-);
+$list = $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'favorite'] );
 
 
 ?>
 <div class="catalog-actions">
-	<?php foreach( $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'favorite'] ) as $entry ) : ?>
-		<?php if( isset( $urls[$entry] ) ) : ?>
-			<form method="POST" action="<?= $enc->attr( $urls[$entry] ) ?>">
-				<button class="actions-button actions-button-<?= $enc->attr( $entry ) ?>"
-					title="<?= $enc->attr( $this->translate( 'client/code', $entry ) ) ?>">
-				</button>
-			</form>
-		<?php endif ?>
-	<?php endforeach ?>
+
+	<?php if( in_array( 'pin', $list ) ) : ?>
+		<form class="actions-pin" method="POST" action="<?= $enc->attr( $this->url( $pinTarget, $pinController, $pinAction, [], $pinConfig ) ) ?>">
+			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
+			<input type="hidden" name="<?= $this->formparam( 'pin_action' ) ?>" value="add" />
+			<input type="hidden" name="<?= $this->formparam( 'pin_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
+			<input type="hidden" name="<?= $this->formparam( 'd_name' ) ?>" value="<?= $this->productItem->getName( 'url' ) ?>" />
+			<button class="actions-button actions-button-pin" title="<?= $enc->attr( $this->translate( 'client/code', 'pin' ) ) ?>"></button>
+		</form>
+	<?php endif ?>
+
+	<?php if( in_array( 'watch', $list ) ) : ?>
+		<form class="actions-watch" method="POST" action="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, [], $watchConfig ) ) ?>">
+			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
+			<input type="hidden" name="<?= $this->formparam( 'wat_action' ) ?>" value="add" />
+			<input type="hidden" name="<?= $this->formparam( 'wat_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
+			<input type="hidden" name="<?= $this->formparam( 'd_name' ) ?>" value="<?= $this->productItem->getName( 'url' ) ?>" />
+			<button class="actions-button actions-button-watch" title="<?= $enc->attr( $this->translate( 'client/code', 'watch' ) ) ?>"></button>
+		</form>
+	<?php endif ?>
+
+	<?php if( in_array( 'favorite', $list ) ) : ?>
+		<form class="actions-favorite" method="POST" action="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, [], $favConfig ) ) ?>">
+			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
+			<input type="hidden" name="<?= $this->formparam( 'fav_action' ) ?>" value="add" />
+			<input type="hidden" name="<?= $this->formparam( 'fav_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
+			<input type="hidden" name="<?= $this->formparam( 'd_name' ) ?>" value="<?= $this->productItem->getName( 'url' ) ?>" />
+			<button class="actions-button actions-button-favorite" title="<?= $enc->attr( $this->translate( 'client/code', 'favorite' ) ) ?>"></button>
+		</form>
+	<?php endif ?>
+
 </div>
