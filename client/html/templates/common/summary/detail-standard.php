@@ -255,9 +255,9 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								&nbsp;
 							<?php endif ?>
 
-							<input class="value" type="text"
+							<input class="value" type="number"
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'quantity' ) ) ) ?>"
-								value="<?= $enc->attr( $product->getQuantity() ) ?>" maxlength="10" required="required"
+								value="<?= $enc->attr( $product->getQuantity() ) ?>" required="required"
 							>
 							<input type="hidden" type="text"
 								name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'position' ) ) ) ?>"

@@ -346,7 +346,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 											<input type="hidden" value="<?= $id ?>"
 												name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ) ?>"
 											>
-											<input type="number" max="2147483647" maxlength="10"
+											<input type="number" max="2147483647"
 												value="<?= $enc->attr( $productItem->getScale() ) ?>"
 												min="<?= $enc->attr( $productItem->getScale() ) ?>"
 												step="<?= $enc->attr( $productItem->getScale() ) ?>"
