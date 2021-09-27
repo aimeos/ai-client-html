@@ -12,6 +12,7 @@
  * - summaryShowDownloadAttributes : True if product download links should be shown, false if not
  * - summaryCostsDelivery : Sum of all shipping costs
  * - summaryCostsPayment : Sum of all payment costs
+ * - priceFormat : Format of the shown prices
  */
 
 

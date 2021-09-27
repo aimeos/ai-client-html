@@ -12,6 +12,7 @@
  * - summaryShowDownloadAttributes : True if product download links should be shown, false if not
  * - summaryCostsDelivery : Sum of all shipping costs
  * - summaryCostsPayment : Sum of all payment costs
+ * - priceFormat : Format of the shown prices
  */
 
 
@@ -42,7 +43,8 @@
 		'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
 		'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes', false ),
 		'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
-		'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 )
+		'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
+		'priceFormat' => $this->get( 'priceFormat', '%2$s %1$s' )
 	)
 ) ?>
 
