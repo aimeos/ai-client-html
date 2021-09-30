@@ -31,7 +31,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Voucher related e-mails' );
+		return $this->getContext()->translate( 'controller/jobs', 'Voucher related e-mails' );
 	}
 
 
@@ -42,7 +42,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Sends the e-mail with the voucher to the customer' );
+		return $this->getContext()->translate( 'controller/jobs', 'Sends the e-mail with the voucher to the customer' );
 	}
 
 

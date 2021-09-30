@@ -83,22 +83,22 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->translate( 'client', $e->getMessage() ) );
 			$view->favoriteErrorList = array_merge( $view->get( 'favoriteErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
 			$view->favoriteErrorList = array_merge( $view->get( 'favoriteErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
 			$view->favoriteErrorList = array_merge( $view->get( 'favoriteErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
 			$view->favoriteErrorList = array_merge( $view->get( 'favoriteErrorList', [] ), $error );
 			$this->logException( $e );
 		}
@@ -300,22 +300,22 @@ class Standard
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
 			$view->favoriteErrorList = array_merge( $view->get( 'favoriteErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
 			$view->favoriteErrorList = array_merge( $view->get( 'favoriteErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->translate( 'client', $e->getMessage() ) );
 			$view->favoriteErrorList = array_merge( $view->get( 'favoriteErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
 			$view->favoriteErrorList = array_merge( $view->get( 'favoriteErrorList', [] ), $error );
 			$this->logException( $e );
 		}
@@ -349,7 +349,7 @@ class Standard
 
 		if( count( $item->getRefItems( 'product', null, 'favorite' ) ) + count( $ids ) > $max )
 		{
-			$msg = sprintf( $context->getI18n()->dt( 'client', 'You can only save up to %1$s products as favorites' ), $max );
+			$msg = sprintf( $context->translate( 'client', 'You can only save up to %1$s products as favorites' ), $max );
 			throw new \Aimeos\Client\Html\Exception( $msg );
 		}
 

@@ -105,22 +105,22 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->translate( 'client', $e->getMessage() ) );
 			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
 			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
 			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
 			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 			$this->logException( $e );
 		}
@@ -338,22 +338,22 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->translate( 'client', $e->getMessage() ) );
 			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
 			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
 			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
 			$view->confirmErrorList = array_merge( $view->get( 'confirmErrorList', [] ), $error );
 			$this->logException( $e );
 		}

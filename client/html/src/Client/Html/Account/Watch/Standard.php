@@ -83,22 +83,22 @@ class Standard
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->translate( 'client', $e->getMessage() ) );
 			$view->watchErrorList = array_merge( $view->get( 'watchErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
 			$view->watchErrorList = array_merge( $view->get( 'watchErrorList', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
 			$view->watchErrorList = array_merge( $view->get( 'watchErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
 			$view->watchErrorList = array_merge( $view->get( 'watchErrorList', [] ), $error );
 			$this->logException( $e );
 		}
@@ -303,22 +303,22 @@ class Standard
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'mshop', $e->getMessage() ) );
+			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
 			$view->watchErrorList = array_merge( $view->get( 'watchErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'controller/frontend', $e->getMessage() ) );
+			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
 			$view->watchErrorList = array_merge( $view->get( 'watchErrorList', [] ), $error );
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', $e->getMessage() ) );
+			$error = array( $context->translate( 'client', $e->getMessage() ) );
 			$view->watchErrorList = array_merge( $view->get( 'watchErrorList', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
-			$error = array( $context->getI18n()->dt( 'client', 'A non-recoverable error occured' ) );
+			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
 			$view->watchErrorList = array_merge( $view->get( 'watchErrorList', [] ), $error );
 			$this->logException( $e );
 		}
@@ -360,7 +360,7 @@ class Standard
 
 		if( count( $item->getRefItems( 'product', null, 'watch' ) ) + count( $ids ) > $max )
 		{
-			$msg = sprintf( $context->getI18n()->dt( 'client', 'You can only watch up to %1$s products' ), $max );
+			$msg = sprintf( $context->translate( 'client', 'You can only watch up to %1$s products' ), $max );
 			throw new \Aimeos\Client\Html\Exception( $msg );
 		}
 

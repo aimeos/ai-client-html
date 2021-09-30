@@ -33,7 +33,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Product notification e-mails' );
+		return $this->getContext()->translate( 'controller/jobs', 'Product notification e-mails' );
 	}
 
 
@@ -44,7 +44,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->getI18n()->dt( 'controller/jobs', 'Sends e-mails for watched products' );
+		return $this->getContext()->translate( 'controller/jobs', 'Sends e-mails for watched products' );
 	}
 
 
