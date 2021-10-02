@@ -86,6 +86,9 @@ $optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
 $optAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
+$key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$url = $this->link( $key, $this->param() );
+
 
 ?>
 <section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
@@ -100,7 +103,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 	<nav>
 		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></h1>
-		<form method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'filterParams', [] ), $listConfig ) ) ?>">
+		<form method="GET" action="<?= $enc->attr( $url ) ?>">
 			<?= $this->block()->get( 'catalog/filter/tree' ) ?>
 			<?= $this->block()->get( 'catalog/filter/search' ) ?>
 			<?= $this->block()->get( 'catalog/filter/price' ) ?>
