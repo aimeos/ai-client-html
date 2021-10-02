@@ -11,6 +11,8 @@
 
 namespace Aimeos\Controller\Jobs\Order\Email\Delivery;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Order delivery e-mail job controller.
@@ -242,13 +244,13 @@ class Standard
 				$this->addOrderStatus( $id, $status );
 
 				$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
-				$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::INFO );
+				$context->getLogger()->log( $str, Log::INFO, 'email/order/delivery' );
 			}
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send delivery e-mail for order ID "%1$s" and status "%2$s": %3$s';
 				$msg = sprintf( $str, $item->getId(), $item->getStatusDelivery(), $e->getMessage() );
-				$context->getLogger()->log( $msg . PHP_EOL . $e->getTraceAsString() );
+				$context->getLogger()->log( $msg . PHP_EOL . $e->getTraceAsString(), Log::ERR, 'email/order/payment' );
 			}
 		}
 	}

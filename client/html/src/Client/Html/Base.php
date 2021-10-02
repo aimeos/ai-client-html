@@ -11,6 +11,8 @@
 
 namespace Aimeos\Client\Html;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Common abstract class for all HTML client classes.
@@ -623,7 +625,7 @@ abstract class Base
 		catch( \Exception $e )
 		{
 			$msg = sprintf( 'Unable to set cache entry: %1$s', $e->getMessage() );
-			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::NOTICE );
+			$context->getLogger()->log( $msg, Log::NOTICE, 'client/html' );
 		}
 	}
 
@@ -636,7 +638,7 @@ abstract class Base
 	protected function logException( \Exception $e )
 	{
 		$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-		$this->context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::WARN, 'client/html' );
+		$this->context->getLogger()->log( $msg, Log::WARN, 'client/html' );
 	}
 
 

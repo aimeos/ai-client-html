@@ -11,6 +11,8 @@
 
 namespace Aimeos\Controller\Jobs\Customer\Email\Watch;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Product notification e-mail job controller.
@@ -149,7 +151,7 @@ class Standard
 					$this->sendMail( $context, $addr, $custProducts );
 
 					$str = sprintf( 'Sent product notification e-mail to "%1$s"', $addr->getEmail() );
-					$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::DEBUG );
+					$context->getLogger()->log( $str, Log::DEBUG, 'email/customer/watch' );
 
 					$listIds += array_keys( $custProducts );
 				}
@@ -157,7 +159,8 @@ class Standard
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send product notification e-mail for customer ID "%1$s": %2$s';
-				$context->getLogger()->log( sprintf( $str, $custId, $e->getMessage() ) . PHP_EOL . $e->getTraceAsString() );
+				$msg = sprintf( $str, $custId, $e->getMessage() ) . PHP_EOL . $e->getTraceAsString();
+				$context->getLogger()->log( $msg, Log::ERR, 'email/customer/watch' );
 			}
 
 			$listManager->delete( $listIds );

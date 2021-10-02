@@ -11,6 +11,8 @@
 
 namespace Aimeos\Client\Html\Checkout\Standard\Process\Address;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Default implementation of checkout address process HTML client.
@@ -197,7 +199,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = sprintf( 'Unable to save address for customer "%1$s": %2$s', $context->getUserId(), $e->getMessage() );
-			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
+			$context->getLogger()->log( $msg, Log::INFO, 'client/html' );
 		}
 
 		parent::process();

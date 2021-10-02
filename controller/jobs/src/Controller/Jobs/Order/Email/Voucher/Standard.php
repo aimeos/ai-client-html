@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Order\Email\Voucher;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Order voucher e-mail job controller.
@@ -303,7 +305,7 @@ class Standard
 				$couponManager->commit();
 
 				$str = sprintf( 'Sent voucher e-mails for order ID "%1$s"', $item->getId() );
-				$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::INFO );
+				$context->getLogger()->log( $str, Log::INFO, 'email/order/voucher' );
 			}
 			catch( \Exception $e )
 			{
@@ -311,8 +313,8 @@ class Standard
 				$couponManager->rollback();
 
 				$str = 'Error while trying to send voucher e-mails for order ID "%1$s": %2$s';
-				$msg = sprintf( $str, $item->getId(), $e->getMessage() );
-				$context->getLogger()->log( $msg . PHP_EOL . $e->getTraceAsString() );
+				$msg = sprintf( $str, $item->getId(), $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+				$context->getLogger()->log( $msg, Log::INFO, 'email/order/voucher' );
 			}
 		}
 	}

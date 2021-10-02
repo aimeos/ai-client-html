@@ -10,6 +10,8 @@
 
 namespace Aimeos\Controller\Jobs\Customer\Email\Account;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Customer account e-mail job controller
@@ -73,12 +75,12 @@ class Standard
 				$this->sendEmail( $context, $item, $password );
 
 				$str = sprintf( 'Sent customer account e-mail to "%1$s"', $item->getPaymentAddress()->getEmail() );
-				$context->getLogger()->log( $str, \Aimeos\MW\Logger\Base::DEBUG );
+				$context->getLogger()->log( $str, Log::DEBUG, 'email/customer/account' );
 			}
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send customer account e-mail: ' . $e->getMessage();
-				$context->getLogger()->log( $str . PHP_EOL . $e->getTraceAsString() );
+				$context->getLogger()->log( $str . PHP_EOL . $e->getTraceAsString(), Log::ERR, 'email/customer/account' );
 			}
 
 			$queue->del( $msg );

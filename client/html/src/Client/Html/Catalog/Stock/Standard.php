@@ -11,6 +11,8 @@
 
 namespace Aimeos\Client\Html\Catalog\Stock;
 
+use \Aimeos\MW\Logger\Base as Log;
+
 
 /**
  * Default implementation of catalog stock HTML clients.
@@ -107,7 +109,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
+			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'client/html' );
 		}
 
 		return '';
@@ -162,7 +165,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
+			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'client/html' );
 		}
 
 		return null;
@@ -270,7 +274,8 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$this->getContext()->getLogger()->log( $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
+			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'client/html' );
 		}
 	}
 
