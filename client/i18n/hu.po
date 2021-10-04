@@ -7,15 +7,16 @@
 # Dávid Siklaky <siklaky.david@gmail.com>, 2016
 # nzed <nemesreviz@gmail.com>, 2021
 # Nóra Antal <nora1984antal@gmail.com>, 2016
+# nzed <nemesreviz@gmail.com>, 2021
 # Patrik Szakos <szakos0208@gmail.com>, 2021
 # Péter Kozma <kopegrafika@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-23 18:14+0000\n"
-"Last-Translator: Patrik Szakos <szakos0208@gmail.com>\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
+"Last-Translator: Péter Kozma <kopegrafika@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/aimeos/aimeos-core/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,6 +127,9 @@ msgstr "+1 123 456 7890"
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
+
+msgid "A non-recoverable error occured"
+msgstr ""
 
 msgid "Account"
 msgstr "Felhasználói fiók"
@@ -334,6 +338,9 @@ msgstr "Tisztelt Ügyfelünk"
 
 msgid "Delete"
 msgstr "Törlés"
+
+msgid "Delete item"
+msgstr ""
 
 msgid "Delivery"
 msgstr "Szállítás"
@@ -1057,6 +1064,14 @@ msgstr "ÉÉÉÉ-HH-NN ÓÓ:pp"
 msgid "You are here:"
 msgstr "Ön itt van:"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr "Az utalványt bármikor felhasználhatja online áruházunkban"
 
@@ -1143,6 +1158,9 @@ msgstr "Az összes törlése"
 msgid "delivery"
 msgstr "Szállítás"
 
+msgid "favorite"
+msgstr "kedvenc"
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1167,6 +1185,9 @@ msgstr "Rendelés"
 #, php-format
 msgid "payment"
 msgstr "fizetés"
+
+msgid "pin"
+msgstr "kitűzés"
 
 msgid "price:default"
 msgstr "ár:alapértelmezett"
@@ -1197,6 +1218,9 @@ msgstr "összegzés"
 
 msgid "tax"
 msgstr "adó"
+
+msgid "watch"
+msgstr "Megtekintés"
 
 msgid "▲ Name"
 msgstr "▲ Név"

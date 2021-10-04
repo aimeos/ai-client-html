@@ -5,6 +5,7 @@
 # Translators:
 # alessandro massarelli <alessandro@botteega.com>, 2017
 # Enrico Porceddu <porceddu_enrico@yahoo.com>, 2018
+# Fabio Barbon <fabio.barbon@gmail.com>, 2021
 # isabella carlin <isabella@vg7.it>, 2020
 # Matteo Breschigliaro <matteo@vg7.it>, 2020
 # R M <roberto@proprionoi.it>, 2019
@@ -12,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-18 12:12+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
+"Last-Translator: alessandro massarelli <alessandro@botteega.com>\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,8 +32,8 @@ msgstr[1] "%1$d prodotti"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d recensione"
+msgstr[1] "%1$d recensioni"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -126,11 +127,14 @@ msgstr "+1 123 456 7890"
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
+msgid "A non-recoverable error occured"
+msgstr ""
+
 msgid "Account"
 msgstr "Account"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Aggiungi indirizzo di fatturazione"
 
 msgid "Add to basket"
 msgstr "Aggiungi al carrello"
@@ -143,8 +147,8 @@ msgstr "Aggiuntivo 2"
 
 msgid "Address"
 msgid_plural "Addresses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Indirizzo"
+msgstr[1] "Indirizzi"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -323,16 +327,19 @@ msgstr "Gentile signora %1$s %2$s"
 
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Cara Sig.ra %1$s %2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "Gentile Sig.ra/Sig."
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Caro cliente"
 
 msgid "Delete"
 msgstr "Cancella"
+
+msgid "Delete item"
+msgstr ""
 
 msgid "Delivery"
 msgstr "Consegna"
@@ -362,7 +369,7 @@ msgid "Details"
 msgstr "Dettagli"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Non registrare l'indirizzo"
 
 msgid "Downloads"
 msgstr "Download"
@@ -409,7 +416,7 @@ msgid "HH:mm"
 msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Prezzo più alto"
 
 #, php-format
 msgid ""
@@ -503,7 +510,7 @@ msgid "Login"
 msgstr "Login"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Prezzo più basso"
 
 msgid "More reviews"
 msgstr "Ulteriori recensioni"
@@ -512,7 +519,7 @@ msgid "Name"
 msgstr "Nome"
 
 msgid "New"
-msgstr ""
+msgstr "Nuovo"
 
 msgid "New delivery address"
 msgstr "Nuovo indirizzo di consegna"
@@ -563,7 +570,7 @@ msgid "One week"
 msgstr "Una settimana"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Apri sotto-menu"
 
 msgid "Options"
 msgstr "Opzioni"
@@ -623,7 +630,7 @@ msgid "Payment status"
 msgstr "Status del pagamento"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Appunta prodotto"
 
 msgid "Pinned products"
 msgstr "Prodotti memorizzati."
@@ -667,7 +674,7 @@ msgid "Price"
 msgstr "Prezzo"
 
 msgid "Price range"
-msgstr ""
+msgstr "Intervallo di prezzi"
 
 msgid "Proceed"
 msgstr "Procedi"
@@ -720,7 +727,7 @@ msgid "SKU or article name"
 msgstr "Nome articolo"
 
 msgid "Sale"
-msgstr ""
+msgstr "Vendita"
 
 msgid "Salutation"
 msgstr "Saluto"
@@ -807,7 +814,7 @@ msgid "Sub-total"
 msgstr "Subtotale"
 
 msgid "Submit"
-msgstr ""
+msgstr "Invia"
 
 msgid "Subscription ID"
 msgstr "Id di iscrizione"
@@ -841,7 +848,7 @@ msgid "Suppliers"
 msgstr "Fornitori"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Dai un'occhiata"
 
 msgid "Telephone"
 msgstr "Telefono"
@@ -951,8 +958,8 @@ msgstr "L'iscrizione all'abbonamento è scaduta"
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Il valore del tuo buono è %1$s"
+msgstr[1] "Il valore dei tuoi buoni è %1$s"
 
 msgid "Three month"
 msgstr "Tre mesi"
@@ -1056,11 +1063,19 @@ msgstr "GG-MM-AAAA HH:mm"
 msgid "You are here:"
 msgstr "Ti trovi qui:"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr "Puoi usare il tuo voucher in qualsiasi momento nel nostro shop online"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Puoi usare i tuoi buoni in ogni momento nel nostro negozio online"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Verrai inviato al prossimo passaggio"
@@ -1122,7 +1137,7 @@ msgid "Your voucher: "
 msgstr "Il tuo voucher:"
 
 msgid "Your vouchers: "
-msgstr ""
+msgstr "I tuoi buoni:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
@@ -1142,6 +1157,9 @@ msgstr "elimina tutto"
 msgid "delivery"
 msgstr "consegna"
 
+msgid "favorite"
+msgstr "preferiti"
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1157,7 +1175,7 @@ msgid "none"
 msgstr "nessuno"
 
 msgid "on request"
-msgstr ""
+msgstr "su richiesta"
 
 #, php-format
 msgid "order"
@@ -1166,6 +1184,9 @@ msgstr "ordine"
 #, php-format
 msgid "payment"
 msgstr "pagamento"
+
+msgid "pin"
+msgstr "pin"
 
 msgid "price:default"
 msgstr "prezzo:default"
@@ -1196,6 +1217,9 @@ msgstr "Riepilogo"
 
 msgid "tax"
 msgstr "tassa"
+
+msgid "watch"
+msgstr "osserva"
 
 msgid "▲ Name"
 msgstr "▲ Nome"

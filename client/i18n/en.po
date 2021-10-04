@@ -7,12 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 12:58+0200\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
@@ -125,6 +126,9 @@ msgstr ""
 msgid "-%1$s%%"
 msgstr ""
 
+msgid "A non-recoverable error occured"
+msgstr ""
+
 msgid "Account"
 msgstr ""
 
@@ -140,7 +144,6 @@ msgstr ""
 msgid "Additional 2"
 msgstr ""
 
-#, fuzzy
 msgid "Address"
 msgid_plural "Addresses"
 msgstr[0] "Address"
@@ -206,7 +209,6 @@ msgstr ""
 msgid "Birthday"
 msgstr ""
 
-#, fuzzy
 msgid "Bulk order"
 msgstr "Order"
 
@@ -335,6 +337,9 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+msgid "Delete item"
+msgstr ""
+
 msgid "Delivery"
 msgstr ""
 
@@ -353,7 +358,6 @@ msgstr ""
 msgid "Delivery address part \"%1$s\" is missing"
 msgstr ""
 
-#, fuzzy
 msgid "Delivery within"
 msgstr "Delivery"
 
@@ -558,7 +562,6 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#, fuzzy
 msgid "Order"
 msgstr "Order"
 
@@ -1029,6 +1032,14 @@ msgstr ""
 msgid "You are here:"
 msgstr ""
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
@@ -1114,6 +1125,9 @@ msgstr ""
 msgid "delivery"
 msgstr "Delivery"
 
+msgid "favorite"
+msgstr ""
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1138,6 +1152,9 @@ msgstr "Order"
 #, php-format
 msgid "payment"
 msgstr "Payment"
+
+msgid "pin"
+msgstr ""
 
 msgid "price:default"
 msgstr ""
@@ -1168,6 +1185,9 @@ msgid "summary"
 msgstr "Summary"
 
 msgid "tax"
+msgstr ""
+
+msgid "watch"
 msgstr ""
 
 msgid "▲ Name"

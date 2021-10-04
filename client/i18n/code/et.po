@@ -8,12 +8,13 @@
 # Translators:
 # Translators:
 # ranx2k <ranko@murumets.eu>, 2021
+# ranx2k <ranko@murumets.eu>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2021-05-26 12:13+0000\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Estonian (http://www.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +121,7 @@ msgstr "Krediitkaardi number"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Kontrollkood"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expirymonth"

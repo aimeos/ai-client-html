@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-18 12:12+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
+"Last-Translator: Bistra Kumanova <b.kumanova@creato.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/aimeos/aimeos-core/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,9 @@ msgstr "+1 123 456 7890"
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
+
+msgid "A non-recoverable error occured"
+msgstr ""
 
 msgid "Account"
 msgstr "Регистрация"
@@ -330,6 +333,9 @@ msgstr ""
 
 msgid "Delete"
 msgstr "Изтрий"
+
+msgid "Delete item"
+msgstr ""
 
 msgid "Delivery"
 msgstr "Доставка"
@@ -1053,6 +1059,14 @@ msgstr ""
 msgid "You are here:"
 msgstr "Вие сте тук:"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr "Вие можете да използвате вашия ваучер по-всяко време в нашия електронен магазин"
 
@@ -1139,6 +1153,9 @@ msgstr "изчисти всичко"
 msgid "delivery"
 msgstr "доставка"
 
+msgid "favorite"
+msgstr "предпочитани"
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1163,6 +1180,9 @@ msgstr "поръчка"
 #, php-format
 msgid "payment"
 msgstr "плащане"
+
+msgid "pin"
+msgstr "отбележи"
 
 msgid "price:default"
 msgstr ""
@@ -1193,6 +1213,9 @@ msgstr "резюме"
 
 msgid "tax"
 msgstr ""
+
+msgid "watch"
+msgstr "разгледай"
 
 msgid "▲ Name"
 msgstr "▲ Име"

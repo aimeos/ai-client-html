@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-18 12:14+0000\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"PO-Revision-Date: 2021-10-04 16:39+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: German (http://www.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -125,6 +125,9 @@ msgstr "+49 123 456 7890"
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
+
+msgid "A non-recoverable error occured"
+msgstr "Ein Problem ist aufgetreten"
 
 msgid "Account"
 msgstr "Benutzerkonto"
@@ -333,6 +336,9 @@ msgstr "Lieber Kunde"
 
 msgid "Delete"
 msgstr "Löschen"
+
+msgid "Delete item"
+msgstr "Eintrag löschen"
 
 msgid "Delivery"
 msgstr "Versand"
@@ -1056,6 +1062,14 @@ msgstr "YYYY-MM-DD HH:mm"
 msgid "You are here:"
 msgstr "Sie befinden sich hier:"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr "Sie können nur bis zu %1$s Produkte als Favoriten speichern"
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr "Sie können nur bis zu %1$s Produkte beobachten"
+
 msgid "You can use your voucher any time in our online shop"
 msgstr "Sie können Ihren Gutschein jederzeit in unserem Onlineshop einlösen"
 
@@ -1142,6 +1156,9 @@ msgstr "alles löschen"
 msgid "delivery"
 msgstr "Versand"
 
+msgid "favorite"
+msgstr "Als Favorit speichern"
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1166,6 +1183,9 @@ msgstr "Bestellung"
 #, php-format
 msgid "payment"
 msgstr "Zahlung"
+
+msgid "pin"
+msgstr "Merken"
 
 msgid "price:default"
 msgstr " "
@@ -1196,6 +1216,9 @@ msgstr "Übersicht"
 
 msgid "tax"
 msgstr "USt."
+
+msgid "watch"
+msgstr "Beobachten"
 
 msgid "▲ Name"
 msgstr "▲ Name"

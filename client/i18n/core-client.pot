@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: ai-client-html\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,6 +126,9 @@ msgstr "+1 123 456 7890"
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
+
+msgid "A non-recoverable error occured"
+msgstr ""
 
 msgid "Account"
 msgstr "Account"
@@ -340,6 +342,9 @@ msgid "Dear customer"
 msgstr ""
 
 msgid "Delete"
+msgstr ""
+
+msgid "Delete item"
 msgstr ""
 
 msgid "Delivery"
@@ -1050,6 +1055,14 @@ msgstr ""
 msgid "You are here:"
 msgstr "You are here:"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
@@ -1135,6 +1148,9 @@ msgstr "clear all"
 msgid "delivery"
 msgstr "delivery"
 
+msgid "favorite"
+msgstr ""
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1159,6 +1175,9 @@ msgstr "order"
 #, php-format
 msgid "payment"
 msgstr "payment"
+
+msgid "pin"
+msgstr ""
 
 msgid "price:default"
 msgstr ""
@@ -1188,6 +1207,9 @@ msgid "summary"
 msgstr "summary"
 
 msgid "tax"
+msgstr ""
+
+msgid "watch"
 msgstr ""
 
 msgid "▲ Name"

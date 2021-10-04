@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Aimeos, 2021
+# Aimeos, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-18 12:12+0000\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Finnish (http://www.transifex.com/aimeos/aimeos-core/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -121,6 +122,9 @@ msgstr "+1 123 456 7890"
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
+
+msgid "A non-recoverable error occured"
+msgstr ""
 
 msgid "Account"
 msgstr "Käyttäjätili"
@@ -329,6 +333,9 @@ msgstr "Arvoisa asiakas"
 
 msgid "Delete"
 msgstr "Poista"
+
+msgid "Delete item"
+msgstr ""
 
 msgid "Delivery"
 msgstr "Toimitus"
@@ -1052,6 +1059,14 @@ msgstr "YYYY-MM-DD HH:mm"
 msgid "You are here:"
 msgstr "Olet tässä:"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr "Voit kauttaa etuseteliäsi nettikaupassamme milloin vain"
 
@@ -1138,6 +1153,9 @@ msgstr "tyhjennä"
 msgid "delivery"
 msgstr "toimitus"
 
+msgid "favorite"
+msgstr ""
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1162,6 +1180,9 @@ msgstr "tilaus"
 #, php-format
 msgid "payment"
 msgstr "maksu"
+
+msgid "pin"
+msgstr ""
 
 msgid "price:default"
 msgstr "hinta:oletusarvo"
@@ -1192,6 +1213,9 @@ msgstr "yhteenveto"
 
 msgid "tax"
 msgstr "vero"
+
+msgid "watch"
+msgstr ""
 
 msgid "▲ Name"
 msgstr "▲ Nimi"

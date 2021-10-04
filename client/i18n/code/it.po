@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # alessandro massarelli <alessandro@botteega.com>, 2017
+# Fabio Barbon <fabio.barbon@gmail.com>, 2021
 # isabella carlin <isabella@vg7.it>, 2020
 # R M <roberto@proprionoi.it>, 2019
 msgid ""
@@ -15,7 +16,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2021-05-26 12:13+0000\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +123,7 @@ msgstr "Numero della carta di credito"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Numero di verifica"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expirymonth"

@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2021-05-26 12:13+0000\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Polish (http://www.transifex.com/aimeos/aimeos-core/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +122,7 @@ msgstr "Numer karty kredytowej"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Numer weryfikacyjny"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expirymonth"

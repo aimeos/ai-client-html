@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-18 12:12+0000\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
 "Last-Translator: iulian iulian <iulian.abc@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/aimeos/aimeos-core/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -123,6 +123,9 @@ msgstr "+1 123 456 7890"
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
+
+msgid "A non-recoverable error occured"
+msgstr ""
 
 msgid "Account"
 msgstr "Contul meu"
@@ -332,6 +335,9 @@ msgstr ""
 
 msgid "Delete"
 msgstr "Sterge"
+
+msgid "Delete item"
+msgstr ""
 
 msgid "Delivery"
 msgstr "LIvrare"
@@ -1057,6 +1063,14 @@ msgstr ""
 msgid "You are here:"
 msgstr "Sunteti aici:"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr "Iti poti folosi voucherul oricand in magazinul nostru online"
 
@@ -1143,6 +1157,9 @@ msgstr "sterge tot"
 msgid "delivery"
 msgstr "livrare"
 
+msgid "favorite"
+msgstr "favorite"
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1167,6 +1184,9 @@ msgstr "comanda"
 #, php-format
 msgid "payment"
 msgstr "plata"
+
+msgid "pin"
+msgstr "PIN"
 
 msgid "price:default"
 msgstr ""
@@ -1197,6 +1217,9 @@ msgstr "sumar"
 
 msgid "tax"
 msgstr ""
+
+msgid "watch"
+msgstr "ceas"
 
 msgid "▲ Name"
 msgstr "▲ Nume"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-20 16:21+0000\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -122,6 +122,9 @@ msgstr "+90 232 222 2222"
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
+
+msgid "A non-recoverable error occured"
+msgstr ""
 
 msgid "Account"
 msgstr "Hesap"
@@ -330,6 +333,9 @@ msgstr "Değerli müşterimiz"
 
 msgid "Delete"
 msgstr "Sil"
+
+msgid "Delete item"
+msgstr ""
 
 msgid "Delivery"
 msgstr "Teslimat"
@@ -1053,6 +1059,14 @@ msgstr "YYYY-AA-GG SS:dd"
 msgid "You are here:"
 msgstr "Buradasınız:"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr "Kuponunuzu istediğiniz zaman online alışveriş mağazamızda kullanabilirsiniz"
 
@@ -1139,6 +1153,9 @@ msgstr "Hepsini temizle"
 msgid "delivery"
 msgstr "Teslimat"
 
+msgid "favorite"
+msgstr "Favorilere Ekle"
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1163,6 +1180,9 @@ msgstr "Sipariş"
 #, php-format
 msgid "payment"
 msgstr "Ödeme"
+
+msgid "pin"
+msgstr "Sayfaya Sabitle"
 
 msgid "price:default"
 msgstr "fiyat:varsayılan"
@@ -1193,6 +1213,9 @@ msgstr "Özet"
 
 msgid "tax"
 msgstr "vergi"
+
+msgid "watch"
+msgstr "İzlemeye Al"
 
 msgid "▲ Name"
 msgstr "▲ Ad"

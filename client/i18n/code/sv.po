@@ -7,7 +7,6 @@
 # Translators:
 # Translators:
 # Translators:
-# Ranu Yulianto <vanarif@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -15,108 +14,108 @@ msgstr ""
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2021-10-04 16:35+0000\n"
 "Last-Translator: Aimeos\n"
-"Language-Team: Indonesian (http://www.transifex.com/aimeos/aimeos-core/language/id/)\n"
+"Language-Team: Swedish (http://www.transifex.com/aimeos/aimeos-core/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "moms"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "GST"
 
 #. Price type default
 msgid "price:default"
-msgstr ""
+msgstr "%2$s %1$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
-msgstr "favorit"
+msgstr "Favorit"
 
 #. Pin action
 msgid "pin"
-msgstr "pin"
+msgstr "Pin"
 
 #. Watch action
 msgid "watch"
-msgstr "amati"
+msgstr "Bevaka"
 
 #. Product attribute
 msgid "size"
-msgstr "Ukuran"
+msgstr "Storlek"
 
 #. Product attribute
 msgid "length"
-msgstr "Panjang"
+msgstr "Längd"
 
 #. Product attribute
 msgid "width"
-msgstr "Lebar"
+msgstr "Width"
 
 #. Product attribute
 msgid "color"
-msgstr "Warna"
+msgstr "Färg"
 
 #. Product attribute
 msgid "option"
-msgstr "Pilihan"
+msgstr "Option"
 
 #. Product property package-length
 msgid "package-length"
-msgstr "ukuran paket"
+msgstr "Paket längd"
 
 #. Product property package-width
 msgid "package-width"
-msgstr "panjang paket"
+msgstr "Pakent bredd"
 
 #. Product property package-height
 msgid "package-height"
-msgstr "tinggi paket"
+msgstr "Paket höjd"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "berat paket"
+msgstr "Paket vikt"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "Pemilik akun"
+msgstr "Kontoägare"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "Nomor akun"
+msgstr "Kontonummer"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "Kode bank"
+msgstr "Bankkod"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "Nama bank"
+msgstr "Banknamn"
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr "Nama depan"
+msgstr "Förnamn"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr "Nama akhir (keluarga)"
+msgstr "Efternamn"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "Nomor kartu kredit"
+msgstr "Kreditkortsnummer"
 
 #. Omnipay service provider
 msgid "payment.cvv"
@@ -124,11 +123,11 @@ msgstr ""
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "Bulan kadaluarsa"
+msgstr "Giltigt till månad"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "Tahun kadaluarsa"
+msgstr "Giltigt till år"
 
 #. Omnipay service provider
 msgid "payment.expiry"
@@ -136,20 +135,20 @@ msgstr ""
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "Upphämtning datum"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "Waktu penjemputan"
+msgstr "upphämtning tid"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "Tempat penjemputan"
+msgstr "Upphämtningsplats"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "Upphämtningsplats"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "Leveranstyp"

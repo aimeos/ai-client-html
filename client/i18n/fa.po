@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 13:26+0200\n"
-"PO-Revision-Date: 2021-08-18 12:12+0000\n"
+"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"PO-Revision-Date: 2021-10-04 16:35+0000\n"
 "Last-Translator: Aimeos\n"
 "Language-Team: Persian (http://www.transifex.com/aimeos/aimeos-core/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -121,6 +121,9 @@ msgstr "+۹۸ ۲۱ ۲۳۴۵۶۷۸۹"
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
+msgstr ""
+
+msgid "A non-recoverable error occured"
 msgstr ""
 
 msgid "Account"
@@ -330,6 +333,9 @@ msgstr ""
 
 msgid "Delete"
 msgstr "پاک کردن"
+
+msgid "Delete item"
+msgstr ""
 
 msgid "Delivery"
 msgstr "تحویل"
@@ -1053,6 +1059,14 @@ msgstr ""
 msgid "You are here:"
 msgstr "شما اینجا هستید"
 
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr ""
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr ""
+
 msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
@@ -1139,6 +1153,9 @@ msgstr "پاک نمودن همه"
 msgid "delivery"
 msgstr "تحویل"
 
+msgid "favorite"
+msgstr ""
+
 #. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
@@ -1163,6 +1180,9 @@ msgstr "سفارش"
 #, php-format
 msgid "payment"
 msgstr "پرداخت"
+
+msgid "pin"
+msgstr ""
 
 msgid "price:default"
 msgstr ""
@@ -1192,6 +1212,9 @@ msgid "summary"
 msgstr "خلاصه"
 
 msgid "tax"
+msgstr ""
+
+msgid "watch"
 msgstr ""
 
 msgid "▲ Name"
