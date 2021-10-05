@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-04 18:31+0200\n"
-"PO-Revision-Date: 2021-10-04 16:35+0000\n"
+"PO-Revision-Date: 2021-10-04 19:06+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Kurtarılamaz bir hata oluştu"
 
 msgid "Account"
 msgstr "Hesap"
@@ -335,7 +335,7 @@ msgid "Delete"
 msgstr "Sil"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Öğeyi sil"
 
 msgid "Delivery"
 msgstr "Teslimat"
@@ -1061,11 +1061,11 @@ msgstr "Buradasınız:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "En fazla %1$s ürünü favori olarak kaydedebilirsiniz"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "En fazla %1$s ürünü izleyebilirsiniz"
 
 msgid "You can use your voucher any time in our online shop"
 msgstr "Kuponunuzu istediğiniz zaman online alışveriş mağazamızda kullanabilirsiniz"
