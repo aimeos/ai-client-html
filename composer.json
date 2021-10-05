@@ -15,9 +15,9 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php": "~7.1||~8.0",
-		"aimeos/aimeos-core": "dev-master",
-		"aimeos/ai-controller-jobs": "dev-master",
-		"aimeos/ai-controller-frontend": "dev-master",
+		"aimeos/aimeos-core": "2021.10.*",
+		"aimeos/ai-controller-jobs": "2021.10.*",
+		"aimeos/ai-controller-frontend": "2021.10.*",
 		"tecnickcom/tcpdf": "^6.4.1"
 	},
 	"require-dev": {
