@@ -84,59 +84,63 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 	<?php endforeach ?>
 
 
-	<ul class="form-list">
+	<div class="form-list">
 		<?php foreach( $this->get( 'standardProcessPublic', [] ) as $key => $item ) : ?>
-			<li class="form-item <?= $key . ( $item->isRequired() ? ' mandatory' : ' optional' ) ?>" data-regex="<?= $regex[$key] ?? '' ?>">
+			<div class="row form-item form-group <?= $key . ( $item->isRequired() ? ' mandatory' : ' optional' ) ?>" data-regex="<?= $regex[$key] ?? '' ?>">
 
-				<label for="process-<?= $key ?>">
-					<?= $enc->html( $this->translate( 'client/code', $item->getCode() ), $enc::TRUST ) ?>
-				</label>
+				<div class="col-md-6">
+					<label for="process-<?= $key ?>">
+						<?= $enc->html( $this->translate( 'client/code', $item->getCode() ), $enc::TRUST ) ?>
+					</label>
+				</div>
 
-				<?php switch( $item->getType() ) : case 'select': ?>
-						<select id="process-<?= $key ?>" name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>">
-							<option value=""><?= $enc->html( $this->translate( 'client', 'Please select' ) ) ?></option>
-							<?php foreach( (array) $item->getDefault() as $option ) : ?>
-								<option value="<?= $enc->attr( $option ) ?>"><?= $enc->html( $option ) ?></option>
-							<?php endforeach ?>
-						</select>
+				<div class="col-md-6">
+					<?php switch( $item->getType() ) : case 'select': ?>
+							<select id="process-<?= $key ?>" name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>">
+								<option value=""><?= $enc->html( $this->translate( 'client', 'Please select' ) ) ?></option>
+								<?php foreach( (array) $item->getDefault() as $option ) : ?>
+									<option value="<?= $enc->attr( $option ) ?>"><?= $enc->html( $option ) ?></option>
+								<?php endforeach ?>
+							</select>
 
-					<?php break; case 'container': ?>
-						<div id="process-<?= $key ?>"></div>
+						<?php break; case 'container': ?>
+							<div id="process-<?= $key ?>"></div>
 
-					<?php break; case 'boolean': ?>
-						<input type="checkbox" id="process-<?= $key ?>"
-							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
-							value="<?= $enc->attr( $item->getDefault() ) ?>"
-							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
-						>
+						<?php break; case 'boolean': ?>
+							<input type="checkbox" id="process-<?= $key ?>"
+								name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
+								value="<?= $enc->attr( $item->getDefault() ) ?>"
+								placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
+							>
 
-					<?php break; case 'integer': case 'number': ?>
-						<input type="number" id="process-<?= $key ?>"
-							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
-							value="<?= $enc->attr( $item->getDefault() ) ?>"
-							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
-						>
+						<?php break; case 'integer': case 'number': ?>
+							<input type="number" id="process-<?= $key ?>"
+								name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
+								value="<?= $enc->attr( $item->getDefault() ) ?>"
+								placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
+							>
 
-					<?php break; case 'date': case 'datetime': case 'time': ?>
-						<input type="<?= $attribute->getType() ?>" id="process-<?= $key ?>"
-							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
-							value="<?= $enc->attr( $item->getDefault() ) ?>"
-							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
-						>
+						<?php break; case 'date': case 'datetime': case 'time': ?>
+							<input type="<?= $attribute->getType() ?>" id="process-<?= $key ?>"
+								name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
+								value="<?= $enc->attr( $item->getDefault() ) ?>"
+								placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
+							>
 
-					<?php break; default: ?>
-						<input type="text" id="process-<?= $key ?>"
-							name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
-							value="<?= $enc->attr( $item->getDefault() ) ?>"
-							placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
-						>
+						<?php break; default: ?>
+							<input type="text" id="process-<?= $key ?>"
+								name="<?= $enc->attr( $this->formparam( $item->getInternalCode(), $prefix ) ) ?>"
+								value="<?= $enc->attr( $item->getDefault() ) ?>"
+								placeholder="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
+							>
 
-				<?php endswitch ?>
+					<?php endswitch ?>
+				</div>
 
-			</li>
+			</div>
 
 		<?php endforeach ?>
-	</ul>
+	</div>
 
 
 	<?= $this->get( 'standardHtml', '' ); //Custom html from Provider ?>
