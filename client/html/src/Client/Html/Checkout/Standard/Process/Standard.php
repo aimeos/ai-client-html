@@ -389,12 +389,13 @@ class Standard
 		}
 
 		$view = $this->getView();
-		$args = array( 'code' => $service->getCode() );
-		$urls = array(
-			'payment.url-self' => $this->getUrlSelf( $view, ['c_step' => 'process'], [] ),
-			'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], ['absoluteUri' => true] ),
-			'payment.url-success' => $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] ),
-		);
+		$conf = ['absoluteUri' => true];
+		$args = ['code' => $service->getCode()];
+		$urls = [
+			'payment.url-self' => $this->getUrlSelf( $view, ['c_step' => 'process'], $conf ),
+			'payment.url-update' => $this->getUrlUpdate( $view, $args + ['orderid' => $orderItem->getId()], $conf ),
+			'payment.url-success' => $this->getUrlConfirm( $view, $args, $conf ),
+		];
 
 		$params = $view->param();
 		foreach( $service->getAttributeItems() as $item ) {
