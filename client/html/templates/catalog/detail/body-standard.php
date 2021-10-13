@@ -474,13 +474,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 
 										<li class="item">
-											<a href="<?= $this->content( $mediaItem->getUrl() ) ?>" title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>">
+											<a href="<?= $this->content( $mediaItem->getUrl() ) ?>"
+												title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>">
 												<img class="media-image"
-													alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+													alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>"
 													src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
 													srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
 												>
-												<span class="media-name"><?= $enc->html( $mediaItem->getProperties( 'title' )->first() ) ?></span>
+												<span class="media-name"><?= $enc->html( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?></span>
 											</a>
 										</li>
 
