@@ -310,7 +310,7 @@
 				<?php endif ?>
 			<?php endforeach ?>
 
-			<?php if( $this->summaryBasket->getPrice()->getCosts() > 0 ) : ?>
+			<?php if( $this->summaryBasket->getPrice()->getCosts() > 0 || $this->summaryBasket->getPrice()->getTaxFlag() === false ) : ?>
 				<tr class="footer subtotal">
 					<td class="status"></td>
 					<td class="label"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ) ?></td>

@@ -97,7 +97,7 @@ $totalQty = 0;
 		<?php endif ?>
 	<?php endforeach ?>
 
-	<?php if( $this->summaryBasket->getPrice()->getCosts() > 0 ) : ?>
+	<?php if( $this->summaryBasket->getPrice()->getCosts() > 0 || $this->summaryBasket->getPrice()->getTaxFlag() === false ) : ?>
 		<tr class="footer subtotal">
 			<td class="label"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ) ?></td>
 			<td class="code"></td>
