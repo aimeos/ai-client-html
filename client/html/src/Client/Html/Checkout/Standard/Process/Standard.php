@@ -269,10 +269,10 @@ class Standard
 
 				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
 			}
-			elseif( $view->param( 'cp_payment', null ) !== null )
+			elseif( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) !== null )
 			{
 				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
-				$orderItem = $orderCntl->get( $context->getSession()->get( 'aimeos/orderid' ), false );
+				$orderItem = $orderCntl->get( $orderid, false );
 				$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
 			}
 			else
