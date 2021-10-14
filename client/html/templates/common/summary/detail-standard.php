@@ -374,17 +374,19 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			</tr>
 		<?php endif ?>
 
-		<?php if( $priceTaxflag === true ) : ?>
-			<tr class="total">
-				<td colspan="3"></td>
-				<td class="quantity"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></td>
+		<tr class="total">
+			<td colspan="3"></td>
+			<td class="quantity"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></td>
+			<?php if( $priceTaxflag === false ) : ?>
+				<td><?= $enc->html( $this->translate( 'client', 'Sub-Total' ) ) ?></td>
+			<?php else : ?>
 				<td><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></td>
-				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></td>
-				<?php if( $modify ) : ?>
-					<td class="action"></td>
-				<?php endif ?>
-			</tr>
-		<?php endif ?>
+			<?php endif ?>
+			<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></td>
+			<?php if( $modify ) : ?>
+				<td class="action"></td>
+			<?php endif ?>
+		</tr>
 
 		<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $map ) : ?>
 			<?php foreach( $map as $taxRate => $priceItem ) : ?>
@@ -403,7 +405,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php if( $priceTaxflag === false ) : ?>
 			<tr class="total">
 				<td colspan="3"></td>
-				<td class="quantity"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></td>
+				<td class="quantity"></td>
 				<td><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></td>
 				<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $precision ), $priceCurrency ) ) ?></td>
 				<?php if( $modify ) : ?>
