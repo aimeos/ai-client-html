@@ -189,9 +189,6 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 <?php if( $this->summaryBasket->getPrice()->getTaxFlag() === true ) : ?>
 <?php	echo strip_tags( $this->translate( 'client', 'Total' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ?>
 
-<?php else : ?>
-<?php	echo strip_tags( $this->translate( 'client', 'Sub-Total' ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->summaryBasket->getPrice()->getCurrencyId() ) ?>
-
 <?php endif ?>
 <?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $map ) : ?>
 <?php 	foreach( $map as $taxRate => $priceItem ) : ?>

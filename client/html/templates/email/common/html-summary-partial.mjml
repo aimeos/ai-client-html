@@ -337,16 +337,14 @@
 				</tr>
 			<?php endif ?>
 
-			<tr class="footer total">
-				<td class="status"></td>
-				<?php if( $this->summaryBasket->getPrice()->getTaxFlag() === false ) : ?>
-					<td class="label"><?= $enc->html( $this->translate( 'client', 'Sub-Total' ) ) ?></td>
-				<?php else : ?>
+			<?php if( $this->summaryBasket->getPrice()->getTaxFlag() === true ) : ?>
+				<tr class="footer total">
+					<td class="status"></td>
 					<td class="label"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></td>
-				<?php endif ?>
-				<td class="quantity"><?= $enc->html( $totalQty ) ?></td>
-				<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
-			</tr>
+					<td class="quantity"><?= $enc->html( $totalQty ) ?></td>
+					<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
+				</tr>
+			<?php endif ?>
 
 			<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $map ) : ?>
 				<?php foreach( $map as $taxRate => $priceItem ) : ?>
@@ -365,7 +363,7 @@
 				<tr class="footer total">
 					<td class="status"></td>
 					<td class="label"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></td>
-					<td class="quantity"></td>
+					<td class="quantity"><?= $enc->html( $totalQty ) ?></td>
 					<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
 				</tr>
 			<?php endif ?>
