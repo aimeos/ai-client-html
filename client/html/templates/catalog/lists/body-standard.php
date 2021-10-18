@@ -181,7 +181,7 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 		?>
 	<?php endif ?>
 
-	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+	<?php if( $this->get( 'listPageCurr', 0 ) <= 1 && ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
 		<div class="catalog-list-footer">
 			<?php foreach( (array) $textTypes as $textType ) : ?>
 				<?php foreach( $catItem->getRefItems( 'text', $textType, 'default' ) as $textItem ) : ?>
