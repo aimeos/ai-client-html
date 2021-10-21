@@ -532,8 +532,31 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
+		 * @see client/html/catalog/lists/instock
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
+
+		/** client/html/catalog/lists/instock
+		 * Show only products which are in stock
+		 *
+		 * This configuration option overwrites the "client/html/catalog/domains"
+		 * option that allows to configure the domain names of the items fetched
+		 * for all catalog related data.
+		 *
+		 * @param int Zero to show all products, "1" to show only products with stock
+		 * @since 2021.10
+		 * @see client/html/catalog/domains
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/detail/domains
+		 * @see client/html/catalog/stage/domains
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/supid-default
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/pages
+		 */
+		$inStock = $config->get( 'client/html/catalog/lists/instock', 0 );
 
 		/** client/html/catalog/lists/pages
 		 * Maximum number of product pages shown in pagination
@@ -555,6 +578,7 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/instock
 		 */
 		$pages = $config->get( 'client/html/catalog/lists/pages', 100 );
 
@@ -581,6 +605,7 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
+		 * @see client/html/catalog/lists/instock
 		 */
 		$size = $config->get( 'client/html/catalog/lists/size', 48 );
 
@@ -616,6 +641,7 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
+		 * @see client/html/catalog/lists/instock
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
@@ -640,6 +666,7 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/supid-default
+		 * @see client/html/catalog/lists/instock
 		 */
 		$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
 		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
@@ -664,6 +691,7 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/lists/instock
 		 */
 		$supids = $view->param( 'f_supid', $config->get( 'client/html/catalog/lists/supid-default' ) );
 		$supids = $supids != null && is_scalar( $supids ) ? explode( ',', $supids ) : $supids; // workaround for TYPO3
@@ -685,6 +713,7 @@ class Standard
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/instock
 		 */
 		$sort = $view->param( 'f_sort', $config->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 		$size = min( max( $view->param( 'l_size', $size ), 1 ), 100 );
@@ -707,7 +736,7 @@ class Standard
 			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
 		}
 
-		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
 			->sort( $sort ) // prioritize user sorting over the sorting through relevance and category
 			->text( $view->param( 'f_search' ) )
 			->price( $view->param( 'f_price' ) )
@@ -717,8 +746,13 @@ class Standard
 			->oneOf( $view->param( 'f_optid', [] ) )
 			->oneOf( $view->param( 'f_oneid', [] ) )
 			->slice( ( $page - 1 ) * $size, $size )
-			->uses( $domains )
-			->search( $total );
+			->uses( $domains );
+
+		if( $inStock ) {
+			$cntl->compare( '>', 'product.instock', 0 );
+		}
+
+		$products = $cntl->search( $total );
 
 
 		// Delete cache when products are added or deleted even when in "tag-all" mode
