@@ -523,11 +523,6 @@ body .main-section {
 	background-size: contain;
 }
 
-.aimeos .media-item {
-	background-color: #F6f6F6;
-	background-color: var(--ai-bg-light, #F6f6F6);
-}
-
 .aimeos .pagination {
 	text-align: center;
 	display: block;
