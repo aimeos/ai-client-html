@@ -400,7 +400,7 @@ class Standard
 			$config = $view->config( 'client/html/catalog/lists/url/config', [] );
 		}
 
-		if( empty( $params ) === false ) {
+		if( empty( $params ) === false && $params['f_name'] && $params['f_catid'] > 0 ) {
 			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
 		}
 
