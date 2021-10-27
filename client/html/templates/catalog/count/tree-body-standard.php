@@ -11,7 +11,7 @@
 // <!--
 var catalogCounts = <?= $this->get( 'treeCountList', map() )->toJson( JSON_FORCE_OBJECT ) ?>;
 
-$(".catalog-filter-count li.cat-item").each(function(index, item) {
+$(".catalog-filter-count div.cat-item").each(function(index, item) {
 	var id = $(item).data("id");
 
 	$("> a.cat-item", item).append(function() {
