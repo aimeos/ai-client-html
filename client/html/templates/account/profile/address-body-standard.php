@@ -382,8 +382,8 @@ $pos = 0;
 								<div class="col-md-8">
 									<input class="form-control" type="email"
 										id="address-payment-email"
-										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.code' ) ) ) ?>"
-										value="<?= $enc->attr( $this->value( $addr, 'customer.code' ) ) ?>"
+										name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.email' ) ) ) ?>"
+										value="<?= $enc->attr( $this->value( $addr, 'customer.email' ) ) ?>"
 										placeholder="name@example.com"
 									>
 								</div>
