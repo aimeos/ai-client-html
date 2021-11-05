@@ -127,7 +127,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'addOrderStatus', 'getAddressItem', 'processItem' ) )
 			->getMock();
 
-		$addrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
+		$addrItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setEmail( 'me@example.com' );
 		$object->expects( $this->once() )->method( 'getAddressItem' )->will( $this->returnValue( $addrItem ) );
 		$object->expects( $this->once() )->method( 'addOrderStatus' );
 		$object->expects( $this->once() )->method( 'processItem' );

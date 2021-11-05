@@ -240,11 +240,15 @@ class Standard
 				$orderBaseItem = $orderBaseManager->load( $item->getBaseId() );
 				$addr = $this->getAddressItem( $orderBaseItem );
 
-				$this->processItem( $client, $item, $orderBaseItem, $addr );
-				$this->addOrderStatus( $id, $status );
+				if( $addr->getEmail() )
+				{
+					$this->processItem( $client, $item, $orderBaseItem, $addr );
 
-				$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
-				$context->getLogger()->log( $str, Log::INFO, 'email/order/delivery' );
+					$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
+					$context->getLogger()->log( $str, Log::INFO, 'email/order/delivery' );
+				}
+
+				$this->addOrderStatus( $id, $status );
 			}
 			catch( \Exception $e )
 			{

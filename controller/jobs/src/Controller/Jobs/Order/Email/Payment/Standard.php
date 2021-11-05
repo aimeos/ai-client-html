@@ -234,11 +234,15 @@ class Standard
 				$orderBaseItem = $orderBaseManager->load( $item->getBaseId() );
 				$addr = $this->getAddressItem( $orderBaseItem );
 
-				$this->processItem( $client, $item, $orderBaseItem, $addr );
-				$this->addOrderStatus( $id, $status );
+				if( $addr->getEmail() )
+				{
+					$this->processItem( $client, $item, $orderBaseItem, $addr );
 
-				$str = sprintf( 'Sent order payment e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
-				$context->getLogger()->log( $str, Log::INFO, 'email/order/payment' );
+					$str = sprintf( 'Sent order payment e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
+					$context->getLogger()->log( $str, Log::INFO, 'email/order/payment' );
+				}
+
+				$this->addOrderStatus( $id, $status );
 			}
 			catch( \Exception $e )
 			{
