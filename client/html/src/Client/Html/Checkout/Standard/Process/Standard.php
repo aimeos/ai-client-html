@@ -397,7 +397,13 @@ class Standard
 			'payment.url-success' => $this->getUrlConfirm( $view, $args, $conf ),
 		];
 
-		$params = $view->param();
+		$params = array_merge(
+			(array) $view->param(),
+			(array) $view->request()->getQueryParams(),
+			(array) $view->request()->getParsedBody(),
+			(array) $view->request()->getAttributes()
+		);
+
 		foreach( $service->getAttributeItems() as $item ) {
 			$params[$item->getCode()] = $item->getValue();
 		}
