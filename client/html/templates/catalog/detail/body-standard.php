@@ -417,7 +417,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 											<?php foreach( $this->get( 'detailAttributeMap', map() ) as $type => $attrItems ) : ?>
 												<?php foreach( $attrItems as $attrItem ) : ?>
 
-													<tr class="item <?= ( $id = $attrItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
+													<tr class="item <?= ( $ids = $attrItem->get( 'parent' ) ) ? 'subproduct ' . map( $ids )->prefix( 'subproduct-' )->join( ' ' ) : '' ?>">
 														<td class="name"><?= $enc->html( $this->translate( 'client/code', $type ), $enc::TRUST ) ?></td>
 														<td class="value">
 															<div class="media-list">
