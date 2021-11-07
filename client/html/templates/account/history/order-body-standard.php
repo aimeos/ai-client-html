@@ -195,7 +195,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 		<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 
 		<?php foreach( $this->summaryBasket->getProducts() as $pos => $orderProduct ) : ?>
-			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'prodid'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getProductId() ) ?>">
+			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'prodid'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getParentProductId() ?: $orderProduct->getProductId() ) ?>">
 			<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'quantity'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getQuantity() ) ?>">
 
 			<?php foreach( $orderProduct->getAttributeItems( 'variant' ) as $attrItem ) : ?>

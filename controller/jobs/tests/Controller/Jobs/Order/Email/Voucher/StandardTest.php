@@ -216,8 +216,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderBaseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create();
+		$prodid = \Aimeos\MShop::create( $this->context, 'product' )->find( 'MNOP' )->getId();
 
-		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'MNOP' )->setStockType( 'unitstock' ) );
+		$orderProductItem->setType( 'voucher' )->setProductId( $prodid )->setProductCode( 'MNOP' )->setStockType( 'unitstock' );
+		$orderBaseItem->addProduct( $orderProductItem );
 
 		$orderBaseItem = $this->access( 'createCoupons' )->invokeArgs( $object, [$orderBaseItem] );
 
@@ -261,11 +263,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderProductAttrItem = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
 		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create();
 
+		$prodid = \Aimeos\MShop::create( $this->context, 'product' )->find( 'MNOP' )->getId();
+		$orderProductItem->setType( 'voucher' )->setProductId( $prodid )->setProductCode( 'MNOP' )->setStockType( 'unitstock' );
+
 		$orderProductAttrItem->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( 'abcd' );
 		$orderProductItem->setAttributeItem( $orderProductAttrItem );
 
 		$orderBaseItem->addAddress( $orderAddressItem, 'payment' );
-		$orderBaseItem->addProduct( $orderProductItem->setType( 'voucher' )->setProductCode( 'MNOP' )->setStockType( 'unitstock' ) );
+		$orderBaseItem->addProduct( $orderProductItem );
 
 		$this->access( 'sendEmails' )->invokeArgs( $object, [$orderBaseItem, $clientStub] );
 	}

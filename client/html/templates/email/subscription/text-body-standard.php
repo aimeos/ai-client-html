@@ -59,7 +59,7 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 <?php if( $price->getCosts() > 0 ) { echo ' ' . strip_tags( sprintf( $costFormat, $this->number( $price->getCosts(), $price->getPrecision() ), $priceCurrency ) ); } ?>
 <?php if( $price->getTaxrate() > 0 ) { echo ', ' . strip_tags( sprintf( $vatFormat, $this->number( $price->getTaxrate() ) ) ); } ?>
 
-<?php $params = array_diff_key( array_merge( $this->param(), ['currency' => $this->extOrderProductItem->getPrice()->getCurrencyId(), 'd_name' => $this->extOrderProductItem->getName( 'url' ), 'd_prodid' => $this->extOrderProductItem->getProductId(), 'd_pos' => ''] ), $detailFilter ) ?>
+<?php $params = array_diff_key( array_merge( $this->param(), ['currency' => $this->extOrderProductItem->getPrice()->getCurrencyId(), 'd_name' => $this->extOrderProductItem->getName( 'url' ), 'd_prodid' => $this->extOrderProductItem->getParentProductId() ?: $this->extOrderProductItem->getProductId(), 'd_pos' => ''] ), $detailFilter ) ?>
 <?= $this->url( ( $this->extOrderProductItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ?>
 
 
