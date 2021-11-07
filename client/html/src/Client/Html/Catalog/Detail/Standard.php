@@ -555,22 +555,21 @@ class Standard
 
 		if( in_array( $productItem->getType(), ['bundle', 'select'] ) )
 		{
+			\Aimeos\Map::method( 'attrparent', function( $subProdId ) {
+				foreach( $this->list as $item ) {
+					$item->parent = array_merge( $item->parent ?? [], [$subProdId] );
+				}
+				return $this;
+			} );
+
 			foreach( $productItem->getRefItems( 'product', null, 'default' ) as $subProdId => $subProduct )
 			{
 				$propItems->merge( $subProduct->getPropertyItems()->assign( ['parent' => $subProdId] ) );
 				$mediaItems->merge( $subProduct->getRefItems( 'media', 'default', 'default' ) );
-				$attrItems->merge( $subProduct->getRefItems( 'attribute', null, 'default' )
-					->merge( $subProduct->getRefItems( 'attribute', null, 'variant' ) )
-					->assign( ['parent' => $subProdId] ) );
+				$attrItems->replace(
+					$subProduct->getRefItems( 'attribute', null, ['default', 'variant'] )->attrparent( $subProdId )
+				);
 			}
-		}
-
-		foreach( $attrItems as $attrId => $attrItem ) {
-			$attrMap[$attrItem->getType()][$attrId] = $attrItem;
-		}
-
-		foreach( $propItems as $propItem ) {
-			$propMap[$propItem->getType()][$propItem->getId()] = $propItem;
 		}
 
 
@@ -604,8 +603,8 @@ class Standard
 
 		$view->detailMediaItems = $mediaItems;
 		$view->detailProductItem = $productItem;
-		$view->detailPropertyMap = map( $propMap );
-		$view->detailAttributeMap = map( $attrMap );
+		$view->detailAttributeMap = $attrItems->groupBy( 'attribute.type' );
+		$view->detailPropertyMap = $propItems->groupBy( 'product.property.type' );
 
 		return parent::addData( $view, $tags, $expire );
 	}
