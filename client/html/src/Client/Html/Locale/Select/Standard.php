@@ -99,7 +99,7 @@ class Standard
 		try
 		{
 			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				$view = $this->view = $this->getObject()->data( $view, $this->tags, $this->expire );
 			}
 
 			$html = '';
@@ -170,7 +170,7 @@ class Standard
 		try
 		{
 			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				$view = $this->view = $this->getObject()->data( $view, $this->tags, $this->expire );
 			}
 
 			$html = '';
@@ -319,7 +319,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$map = [];
 		$context = $this->getContext();
@@ -370,6 +370,6 @@ class Standard
 		$view->selectLanguageId = $locale->getLanguageId();
 		$view->selectCurrencyId = $locale->getCurrencyId();
 
-		return parent::addData( $view, $tags, $expire );
+		return parent::data( $view, $tags, $expire );
 	}
 }

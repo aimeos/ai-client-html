@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$this->object->setView( $this->object->addData( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->getView() ) );
 
 		$output = $this->object->getBody();
 
@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBodyTemplate()
 	{
 		$view = $this->object->getView();
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
 		$view->addHelper( 'param', $helper );

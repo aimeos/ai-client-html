@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$seen = array( 1 => 'html product one', 2 => 'html product two' );
 		$this->context->getSession()->set( 'aimeos/catalog/session/seen/list', $seen );
 
-		$this->object->setView( $this->object->addData( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#.*html product two.*html product one.*#smU', $output ); // list is reversed

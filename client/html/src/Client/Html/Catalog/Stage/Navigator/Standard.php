@@ -198,7 +198,7 @@ class Standard
 	 */
 	public function modifyBody( string $content, string $uid ) : string
 	{
-		$this->setView( $this->addData( $this->getView() ) );
+		$this->setView( $this->data( $this->getView() ) );
 
 		return $this->replaceSection( $content, $this->getBody( $uid ), 'catalog.stage.navigator' );
 	}
@@ -223,7 +223,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$pos = $view->param( 'd_pos' );
 
@@ -270,6 +270,6 @@ class Standard
 			}
 		}
 
-		return parent::addData( $view, $tags, $expire );
+		return parent::data( $view, $tags, $expire );
 	}
 }

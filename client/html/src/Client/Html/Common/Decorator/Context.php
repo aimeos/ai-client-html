@@ -28,7 +28,7 @@ class Context extends Base implements Iface
 	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
 	 * @since 2020.07
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->getContext();
 		$locale = $context->getLocale();
@@ -45,6 +45,6 @@ class Context extends Base implements Iface
 		$view->contextUserId = $context->getUserId();
 		$view->contextGroupIds = $context->getGroupIds();
 
-		return $this->getClient()->addData( $view, $tags, $expire );
+		return $this->getClient()->data( $view, $tags, $expire );
 	}
 }

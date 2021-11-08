@@ -208,7 +208,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		/** client/html/catalog/filter/tree/domains
 		 * List of domain names whose items should be fetched with the filter categories
@@ -268,7 +268,7 @@ class Standard
 
 		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );
 
-		return parent::addData( $view, $tags, $expire );
+		return parent::data( $view, $tags, $expire );
 	}
 
 

@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$view = $this->object->addData( \TestHelperHtml::getView() );
+		$view = $this->object->data( \TestHelperHtml::getView() );
 		$view->todoProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
 
 		$output = $this->object->setView( $view )->getBody();

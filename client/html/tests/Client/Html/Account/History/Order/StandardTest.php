@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getBody();
 

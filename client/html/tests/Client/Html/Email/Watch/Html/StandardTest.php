@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
 			->with( $this->matchesRegularExpression( '#<title>.*Your watched products.*</title>#smu' ) );
 
-		$this->object->setView( $this->object->addData( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<!doctype html>', $output );

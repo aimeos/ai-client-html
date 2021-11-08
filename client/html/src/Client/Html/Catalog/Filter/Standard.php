@@ -192,7 +192,7 @@ class Standard
 				$html = '';
 
 				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+					$view = $this->view = $this->getObject()->data( $view, $this->tags, $this->expire );
 				}
 
 				foreach( $this->getSubClients() as $subclient ) {
@@ -292,7 +292,7 @@ class Standard
 				$html = ' ';
 
 				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+					$view = $this->view = $this->getObject()->data( $view, $this->tags, $this->expire );
 				}
 
 				foreach( $this->getSubClients() as $subclient ) {
@@ -481,7 +481,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$config = $this->getContext()->getConfig();
 
@@ -609,6 +609,6 @@ class Standard
 			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $conf );
 		}
 
-		return parent::addData( $view, $tags, $expire );
+		return parent::data( $view, $tags, $expire );
 	}
 }

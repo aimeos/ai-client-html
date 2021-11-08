@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$view->addressPaymentItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing', $output );

@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
 
 		$this->assertStringContainsString( '<title>Test supplier | Aimeos</title>', $output );
@@ -52,14 +52,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
 		$view = $this->object->getView();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
-		$mock->expects( $this->once() )->method( 'addData' )
+		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getHeader();
@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="aimeos supplier-detail"', $output );
@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( '<h1 class="name" itemprop="name">Test supplier</h1>', $output );
@@ -113,14 +113,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
 		$view = $this->object->getView();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
-		$mock->expects( $this->once() )->method( 'addData' )
+		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
 		$mock->getBody();
@@ -131,14 +131,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
 		$view = $this->object->getView();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
-		$mock->expects( $this->once() )->method( 'addData' )
+		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
 		$mock->getBody();
@@ -149,14 +149,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
 		$view = $this->object->getView();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
-		$mock->expects( $this->once() )->method( 'addData' )
+		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
 		$mock->getBody();
@@ -167,14 +167,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
 		$view = $this->object->getView();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
 		$mock->setView( $view );
 
-		$mock->expects( $this->once() )->method( 'addData' )
+		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$mock->getBody();

@@ -29,7 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$this->object->setView( $this->object->addData( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( '<section class="aimeos catalog-filter"', $output );

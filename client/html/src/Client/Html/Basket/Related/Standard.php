@@ -83,7 +83,7 @@ class Standard
 
 		try
 		{
-			$view = $this->view = $this->view ?? $this->getObject()->addData( $view );
+			$view = $this->view = $this->view ?? $this->getObject()->data( $view );
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
@@ -152,7 +152,7 @@ class Standard
 
 		try
 		{
-			$view = $this->view = $this->view ?? $this->getObject()->addData( $view );
+			$view = $this->view = $this->view ?? $this->getObject()->data( $view );
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
@@ -300,12 +300,12 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->getContext();
 
 		$view->relatedBasket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 
-		return parent::addData( $view, $tags, $expire );
+		return parent::data( $view, $tags, $expire );
 	}
 }

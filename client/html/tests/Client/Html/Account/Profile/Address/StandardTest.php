@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$view = \TestHelperHtml::getView();
 		$view->profileCustomerItem = $customer;
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 		$this->context->setUserId( $customer->getId() );
 
 		$output = $this->object->getBody();

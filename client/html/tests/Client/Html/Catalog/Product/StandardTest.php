@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
 		$output = $this->object->getHeader();
 
 		$this->assertStringContainsString( '<script', $output );
@@ -58,10 +58,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Product\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
 		$productNameCNE = '<h2 itemprop="name">Cafe Noire Expresso</h2>';
@@ -101,10 +101,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Product\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -117,10 +117,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Product\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -133,10 +133,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Product\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -149,10 +149,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Product\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );

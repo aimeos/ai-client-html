@@ -44,10 +44,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -67,10 +67,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -83,10 +83,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -99,10 +99,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
 		$object->setView( \TestHelperHtml::getView() );
@@ -115,10 +115,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'addData' ) )
+			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'addData' )
+		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->setView( \TestHelperHtml::getView() );

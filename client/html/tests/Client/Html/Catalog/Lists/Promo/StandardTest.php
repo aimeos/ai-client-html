@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getHeader();
 
 		$this->assertStringContainsString( '<script', $output );
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getBody( 1, $tags, $expire );
 
 		$this->assertStringContainsString( '<section class="catalog-list-promo">', $output );
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->view );
 		$this->context->getConfig()->set( 'client/html/catalog/lists/catid-default', $this->catItem->getId() );
 
-		$this->object->setView( $this->object->addData( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( '<section class="catalog-list-promo">', $output );

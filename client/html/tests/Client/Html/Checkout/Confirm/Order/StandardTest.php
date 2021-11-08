@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$view = \TestHelperHtml::getView();
 		$view->confirmOrderItem = $this->getOrderItem( $customer->getId() );
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getBody();
 

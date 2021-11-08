@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $controller->get();
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
 		$view->standardSteps = array( 'before', 'summary' );
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getBody();
 
@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringContainsString( '<div class="common-summary-detail', $output );

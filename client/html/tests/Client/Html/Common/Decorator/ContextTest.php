@@ -21,7 +21,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
 			->setConstructorArgs( [$context] )
-			->setMethods( ['addData'] )
+			->setMethods( ['data'] )
 			->getMock();
 
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Context( $this->client, $context );
@@ -37,9 +37,9 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddData()
 	{
-		$this->client->expects( $this->once() )->method( 'addData' ) ->will( $this->returnArgument( 0 ) );
+		$this->client->expects( $this->once() )->method( 'data' ) ->will( $this->returnArgument( 0 ) );
 
-		$result = $this->object->addData( \TestHelperHtml::getView() );
+		$result = $this->object->data( \TestHelperHtml::getView() );
 
 		$this->assertInstanceOf( '\Aimeos\MW\View\Iface', $result );
 		$this->assertEquals( 'unittest', $result->get( 'contextSite' ) );

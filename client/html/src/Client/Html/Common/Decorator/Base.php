@@ -62,9 +62,9 @@ abstract class Base
 	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
 	 * @since 2018.01
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		return $this->client->addData( $view, $tags, $expire );
+		return $this->client->data( $view, $tags, $expire );
 	}
 
 

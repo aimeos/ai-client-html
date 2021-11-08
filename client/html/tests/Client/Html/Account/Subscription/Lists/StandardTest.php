@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customer = $this->getCustomerItem( 'test@example.com' );
 		$this->context->setUserId( $customer->getId() );
 
-		$this->object->setView( $this->object->addData( \TestHelperHtml::getView() ) );
+		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
 
 		$output = $this->object->getBody();
 
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$cntlStub = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Subscription\\Standard' )
 			->setConstructorArgs( [$this->context] )

@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( '<fieldset class="attr-color">', $output );
@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $conf );
 		$view->addHelper( 'config', $helper );
 
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 		$output = $this->object->getBody();
 
 		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-width">.*<fieldset class="attr-length">/smu';
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => -1 ) );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'test' ) );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );
@@ -96,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_attrid' => array( -1, -2 ) ) );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );

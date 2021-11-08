@@ -236,7 +236,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' );
 
@@ -259,6 +259,6 @@ class Standard
 		$view->listsItems = map( $list );
 		$view->listsIntervalItems = $cntl->getIntervals();
 
-		return parent::addData( $view, $tags, $expire );
+		return parent::data( $view, $tags, $expire );
 	}
 }

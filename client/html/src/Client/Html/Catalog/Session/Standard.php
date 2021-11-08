@@ -99,7 +99,7 @@ class Standard
 		try
 		{
 			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				$view = $this->view = $this->getObject()->data( $view, $this->tags, $this->expire );
 			}
 
 			$html = '';
@@ -170,7 +170,7 @@ class Standard
 		try
 		{
 			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->getObject()->addData( $view, $this->tags, $this->expire );
+				$view = $this->view = $this->getObject()->data( $view, $this->tags, $this->expire );
 			}
 
 			$html = '';

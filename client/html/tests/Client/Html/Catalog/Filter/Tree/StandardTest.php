@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( 'Groups', $output );
@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( 'level-2', $output );
@@ -92,7 +92,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringNotContainsString( 'level-2', $output );
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 		$view = $this->object->getView();
 
-		$this->object->setView( $this->object->addData( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringContainsString( 'level-2', $output );

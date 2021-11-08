@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$pinned = array( $this->getProductItem( 'CNC' )->getId() );
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', $pinned );
 
-		$this->object->setView( $this->object->addData( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->getView() ) );
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smU', $output );

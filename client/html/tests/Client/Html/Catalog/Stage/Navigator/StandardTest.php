@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->navigationPrev = '#';
 		$view->navigationNext = '#';
 
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 		$output = $this->object->getBody();
 
 		$this->assertStringStartsWith( '<!-- catalog.stage.navigator -->', $output );

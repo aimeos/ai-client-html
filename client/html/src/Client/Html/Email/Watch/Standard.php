@@ -89,7 +89,7 @@ class Standard
 	 */
 	public function getBody( string $uid = '' ) : string
 	{
-		$view = $this->getObject()->addData( $this->getView() );
+		$view = $this->getObject()->data( $this->getView() );
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -139,7 +139,7 @@ class Standard
 	public function getHeader( string $uid = '' ) : ?string
 	{
 		$config = $this->getContext()->config();
-		$view = $this->getObject()->addData( $this->getView() );
+		$view = $this->getObject()->data( $this->getView() );
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -431,7 +431,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$addr = $view->get( 'extAddressItem' );
 		$list = [
@@ -449,6 +449,6 @@ class Standard
 			$view->emailIntro = $view->translate( 'client', 'Dear customer' );
 		}
 
-		return parent::addData( $view, $tags, $expire );
+		return parent::data( $view, $tags, $expire );
 	}
 }

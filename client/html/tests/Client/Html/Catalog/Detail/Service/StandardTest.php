@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->addData( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
 		$output = $this->object->getBody();
 
 		$this->assertEquals( '', $output );

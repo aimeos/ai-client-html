@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$view = $this->object->getView();
 		$view->relatedBasket = $basket;
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getBody();
 

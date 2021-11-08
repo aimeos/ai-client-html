@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'process';
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getHeader();
 		$this->assertNotNull( $output );
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'process';
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<div class="checkout-standard-process">', $output );

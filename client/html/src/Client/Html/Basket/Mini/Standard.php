@@ -90,7 +90,7 @@ class Standard
 			try
 			{
 				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view );
+					$view = $this->view = $this->getObject()->data( $view );
 				}
 
 				$output = '';
@@ -176,7 +176,7 @@ class Standard
 			try
 			{
 				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->addData( $view );
+					$view = $this->view = $this->getObject()->data( $view );
 				}
 
 				$output = '';
@@ -332,11 +332,11 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
 		$view->miniBasket = $controller->get();
 
-		return parent::addData( $view, $tags, $expire );
+		return parent::data( $view, $tags, $expire );
 	}
 }

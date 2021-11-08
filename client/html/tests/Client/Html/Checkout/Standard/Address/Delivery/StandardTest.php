@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$view = $this->object->getView();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$this->object->setView( $this->object->addData( $view ) );
+		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->getBody();
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-delivery', $output );
