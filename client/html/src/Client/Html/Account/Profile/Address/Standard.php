@@ -194,12 +194,12 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function process()
+	public function init()
 	{
 		$view = $this->getView();
 
 		if( !$view->param( 'address/save' ) && !$view->param( 'address/delete' ) ) {
-			return parent::process();
+			return parent::init();
 		}
 
 		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
@@ -234,7 +234,7 @@ class Standard
 
 		$cntl->store();
 
-		parent::process();
+		parent::init();
 	}
 
 

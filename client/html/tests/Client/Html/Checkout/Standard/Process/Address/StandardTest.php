@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customerStub->expects( $this->once() )->method( 'store' );
 
 		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
-		$this->object->process();
+		$this->object->init();
 		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 }

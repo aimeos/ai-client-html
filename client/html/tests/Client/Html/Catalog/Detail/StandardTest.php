@@ -337,7 +337,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEmpty( $this->object->getView()->get( 'detailErrorList' ) );
 	}
@@ -355,7 +355,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
-		$mock->process();
+		$mock->init();
 	}
 
 
@@ -371,7 +371,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
-		$mock->process();
+		$mock->init();
 	}
 
 
@@ -387,7 +387,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
-		$mock->process();
+		$mock->init();
 	}
 
 
@@ -403,7 +403,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$mock->process();
+		$mock->init();
 	}
 
 

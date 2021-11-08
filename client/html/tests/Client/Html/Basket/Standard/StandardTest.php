@@ -150,7 +150,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
@@ -183,7 +183,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
@@ -226,7 +226,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<li class="attr-item.*<span class="value">.*30.*</span>.*</li>.*<li class="attr-item.*<span class="value">.*30.*</span>.*</li>#smU', $output );
@@ -261,7 +261,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<li class="attr-item.*<span class="value">.*weiß.*</span>.*</li>#smU', $output );
@@ -296,7 +296,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<li class="attr-item.*<span class="value">.*2000-01-01.*</span>.*</li>#smU', $output );
@@ -317,7 +317,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
@@ -350,7 +350,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">36.00 .+</td>.*</tbody>#smU', $output );
@@ -375,7 +375,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">36.00 .+</td>.*</tbody>#smU', $output );
@@ -399,7 +399,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$output = $this->object->getBody();
 
 		$this->assertRegExp( '#<tfoot>.*<tr class="total">.*<td class="price">0.00 .+</td>.*</tfoot>#smU', $output );
@@ -417,7 +417,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEquals( 1, count( $view->get( 'standardErrorList', [] ) ) );
 	}
@@ -434,7 +434,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
@@ -455,7 +455,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 
 		$param = array( 'b_action' => 'coupon-delete', 'b_coupon' => '90AB' );
@@ -463,7 +463,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
@@ -485,12 +485,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['b_coupon' => '90AB'] );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['b_coupon' => 'OPQR'] );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
@@ -541,7 +541,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 	}
 
 

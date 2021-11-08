@@ -155,7 +155,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $request, '127.0.0.1', 'test' );
 		$view->addHelper( 'request', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEquals( 400, $view->response()->getStatusCode() );
 	}
@@ -172,7 +172,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->process();
+		$this->object->init();
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
 
 		$this->assertEquals( 500, $this->view->response()->getStatusCode() );

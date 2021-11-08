@@ -151,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEmpty( $this->object->getView()->get( 'homeErrorList' ) );
 	}

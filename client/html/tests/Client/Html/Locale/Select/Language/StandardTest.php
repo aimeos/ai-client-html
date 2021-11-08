@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['locale' => 'de'] );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEquals( 'de', $this->context->getSession()->get( 'aimeos/locale/languageid' ) );
 	}

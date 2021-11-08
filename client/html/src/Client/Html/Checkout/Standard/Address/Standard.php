@@ -247,13 +247,13 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function process()
+	public function init()
 	{
 		$view = $this->getView();
 
 		try
 		{
-			parent::process();
+			parent::init();
 
 			$context = $this->getContext();
 

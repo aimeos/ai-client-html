@@ -175,7 +175,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
 		$this->view->addHelper( 'request', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertNotEmpty( $this->object->getView()->get( 'confirmErrorList' ) );
 	}
@@ -183,7 +183,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessNoCode()
 	{
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertNotEmpty( $this->object->getView()->get( 'confirmErrorList' ) );
 	}
@@ -205,7 +205,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->process();
+		$this->object->init();
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
 
 		$this->assertEquals( 1, count( $this->view->get( 'confirmErrorList', [] ) ) );
@@ -228,7 +228,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->process();
+		$this->object->init();
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
 
 		$this->assertEquals( 1, count( $this->view->get( 'confirmErrorList', [] ) ) );
@@ -251,7 +251,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->process();
+		$this->object->init();
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
 
 		$this->assertEquals( 1, count( $this->view->get( 'confirmErrorList', [] ) ) );
@@ -274,7 +274,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->will( $this->throwException( new \RuntimeException() ) );
 
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->process();
+		$this->object->init();
 		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
 
 		$this->assertEquals( 1, count( $this->view->get( 'confirmErrorList', [] ) ) );

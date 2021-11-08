@@ -242,7 +242,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function process()
+	public function init()
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
@@ -266,7 +266,7 @@ class Standard
 				$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
 
 				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
-				parent::process();
+				parent::init();
 			}
 			elseif( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) !== null )
 			{
@@ -408,7 +408,7 @@ class Standard
 		}
 
 		$serviceCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'service' );
-		return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
+		return $serviceCntl->init( $orderItem, $service->getServiceId(), $urls, $params );
 	}
 
 

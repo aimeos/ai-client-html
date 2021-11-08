@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$str = $session->get( 'aimeos/catalog/session/seen/list' );
 		$this->assertIsArray( $str );
@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$str = $session->get( 'aimeos/catalog/session/seen/list' );
 		$this->assertIsArray( $str );

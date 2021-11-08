@@ -118,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $view );
 
 		$this->expectException( \Aimeos\MShop\Order\Exception::class );
-		$this->object->process();
+		$this->object->init();
 	}
 
 
@@ -134,7 +134,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
 
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEmpty( $this->object->getView()->get( 'standardStepActive' ) );
 	}
@@ -155,7 +155,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$this->assertEquals( null, $view->get( 'standardStepActive' ) );
 	}
 
@@ -174,7 +174,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 		$this->assertEquals( 'summary', $view->get( 'standardStepActive' ) );
 		$this->assertArrayHasKey( 'option', $view->get( 'summaryErrorCodes', [] ) );
 	}
@@ -182,7 +182,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessSkip()
 	{
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEmpty( $this->object->getView()->get( 'standardStepActive' ) );
 	}

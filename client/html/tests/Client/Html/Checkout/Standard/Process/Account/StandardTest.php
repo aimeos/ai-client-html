@@ -82,6 +82,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		\Aimeos\Controller\Frontend::inject( 'customer', $customerStub );
 
-		$this->object->process();
+		$this->object->init();
 	}
 }

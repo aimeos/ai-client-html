@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$pinned = $this->context->getSession()->get( 'aimeos/catalog/session/pinned/list' );
 		$this->assertEquals( array( $prodId => $prodId ), $pinned );
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$pinned = $this->context->getSession()->get( 'aimeos/catalog/session/pinned/list' );
 		$this->assertEquals( [], $pinned );

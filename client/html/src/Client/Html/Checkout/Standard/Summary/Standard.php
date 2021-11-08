@@ -225,7 +225,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function process()
+	public function init()
 	{
 		$result = true;
 		$view = $this->getView();
@@ -262,7 +262,7 @@ class Standard
 			}
 
 
-			parent::process();
+			parent::init();
 
 			$controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL );
 		}

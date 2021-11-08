@@ -339,7 +339,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEmpty( $this->object->getView()->get( 'listErrorList' ) );
 	}
@@ -357,7 +357,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$object->process();
+		$object->init();
 
 		$this->assertIsArray( $object->getView()->listErrorList );
 	}
@@ -375,7 +375,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$object->process();
+		$object->init();
 
 		$this->assertIsArray( $object->getView()->listErrorList );
 	}
@@ -393,7 +393,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$object->process();
+		$object->init();
 
 		$this->assertIsArray( $object->getView()->listErrorList );
 	}
@@ -411,7 +411,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$object->process();
+		$object->init();
 
 		$this->assertIsArray( $object->getView()->listErrorList );
 	}

@@ -280,7 +280,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function process()
+	public function init()
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
@@ -290,7 +290,7 @@ class Standard
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
 			$cntl->updatePush( $view->request(), $view->response(), $view->param( 'code', '' ) );
 
-			parent::process();
+			parent::init();
 		}
 		catch( \Exception $e )
 		{

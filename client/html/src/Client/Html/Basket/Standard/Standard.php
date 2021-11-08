@@ -276,7 +276,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function process()
+	public function init()
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
@@ -300,7 +300,7 @@ class Standard
 					$this->addCoupon( $view );
 			}
 
-			parent::process();
+			parent::init();
 
 			/** client/html/basket/standard/check
 			 * Alters the behavior of the product checks before continuing with the checkout

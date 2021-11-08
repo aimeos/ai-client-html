@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Response\Standard( $this->view, $response );
 		$this->view->addHelper( 'response', $helper );
 
-		$this->object->process();
+		$this->object->init();
 	}
 
 
@@ -114,7 +114,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
 		$this->view->addHelper( 'response', $helper );
 
-		$object->process();
+		$object->init();
 	}
 
 

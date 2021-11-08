@@ -109,7 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEquals( 'address', $this->object->getView()->get( 'standardStepActive' ) );
 	}

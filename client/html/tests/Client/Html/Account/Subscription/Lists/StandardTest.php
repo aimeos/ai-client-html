@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$cntlStub->expects( $this->once() )->method( 'cancel' );
 
-		$this->object->process();
+		$this->object->init();
 	}
 
 

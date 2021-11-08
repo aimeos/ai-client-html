@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['currency' => 'EUR'] );
 		$view->addHelper( 'param', $helper );
 
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEquals( 'EUR', $this->context->getSession()->get( 'aimeos/locale/currencyid' ) );
 	}

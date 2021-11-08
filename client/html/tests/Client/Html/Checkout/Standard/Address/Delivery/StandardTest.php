@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEmpty( $this->object->getView()->get( 'addressDeliveryError' ) );
 	}
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $view );
 
-		$this->object->process();
+		$this->object->init();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'hamburg', $basket->getAddress( 'delivery', 0 )->getCity() );
@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		try
 		{
-			$this->object->process();
+			$this->object->init();
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
@@ -155,7 +155,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $view );
-		$this->object->process();
+		$this->object->init();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'test', $basket->getAddress( 'delivery', 0 )->getFirstName() );
@@ -191,7 +191,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		try
 		{
-			$this->object->process();
+			$this->object->init();
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
@@ -225,7 +225,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend::inject( 'customer', $customerStub );
 
 		$this->expectException( \Aimeos\Client\Html\Exception::class );
-		$this->object->process();
+		$this->object->init();
 	}
 
 
@@ -239,7 +239,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
 
-		$this->object->process();
+		$this->object->init();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'Example company', $basket->getAddress( 'delivery', 0 )->getCompany() );
@@ -265,7 +265,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
 
-		$this->object->process();
+		$this->object->init();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'mr', $basket->getAddress( 'delivery', 0 )->getSalutation() );
@@ -280,7 +280,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
 
-		$this->object->process();
+		$this->object->init();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertCount( 0, $basket->getAddress( 'delivery' ) );

@@ -169,12 +169,12 @@ abstract class Base
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function process()
+	public function init()
 	{
 		$view = $this->getView();
 
 		foreach( $this->getSubClients() as $subclient ) {
-			$subclient->setView( $view )->process();
+			$subclient->setView( $view )->init();
 		}
 	}
 

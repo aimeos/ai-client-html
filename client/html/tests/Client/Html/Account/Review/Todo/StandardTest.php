@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$stub->expects( $this->once() )->method( 'save' );
 
 		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', $stub );
-		$this->object->process();
+		$this->object->init();
 		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', null );
 
 		$this->assertEmpty( $view->get( 'reviewErrorList' ) );

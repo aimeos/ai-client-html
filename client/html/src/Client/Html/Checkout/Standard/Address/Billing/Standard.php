@@ -214,7 +214,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function process()
+	public function init()
 	{
 		$view = $this->getView();
 
@@ -227,7 +227,7 @@ class Standard
 
 			$this->setAddress( $view );
 
-			parent::process();
+			parent::init();
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{

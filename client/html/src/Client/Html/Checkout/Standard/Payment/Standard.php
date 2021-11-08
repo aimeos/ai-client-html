@@ -225,7 +225,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function process()
+	public function init()
 	{
 		$view = $this->getView();
 
@@ -257,7 +257,7 @@ class Standard
 			}
 
 
-			parent::process();
+			parent::init();
 
 
 			// Test if payment service is available

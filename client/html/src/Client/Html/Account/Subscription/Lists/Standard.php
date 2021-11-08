@@ -198,7 +198,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function process()
+	public function init()
 	{
 		try
 		{
@@ -208,7 +208,7 @@ class Standard
 				\Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' )->cancel( $id );
 			}
 
-			parent::process();
+			parent::init();
 		}
 		catch( \Exception $e )
 		{

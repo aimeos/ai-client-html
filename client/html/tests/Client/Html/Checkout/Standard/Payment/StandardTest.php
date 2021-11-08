@@ -96,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$this->object->process();
+		$this->object->init();
 
 		$this->assertEquals( 'payment', $this->object->getView()->get( 'standardStepActive' ) );
 	}
@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $view );
 
-		$this->object->process();
+		$this->object->init();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
 		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment', 0 )->getCode() );
@@ -140,7 +140,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $view );
 
 		$this->expectException( '\\Aimeos\\MShop\\Exception' );
-		$this->object->process();
+		$this->object->init();
 	}
 
 
@@ -170,6 +170,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $view );
 
 		$this->expectException( '\\Aimeos\\Controller\\Frontend\\Basket\\Exception' );
-		$this->object->process();
+		$this->object->init();
 	}
 }

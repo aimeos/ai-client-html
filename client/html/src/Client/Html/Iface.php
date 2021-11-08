@@ -95,7 +95,7 @@ interface Iface
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function process();
+	public function init();
 
 	/**
 	 * Injects the reference of the outmost client object or decorator

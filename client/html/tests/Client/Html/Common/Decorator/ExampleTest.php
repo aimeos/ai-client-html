@@ -95,7 +95,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcess()
 	{
-		$this->object->process();
+		$this->object->init();
 	}
 
 
