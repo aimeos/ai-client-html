@@ -141,7 +141,7 @@ $(".aimeos .catalog-detail-basket").each(function() {
 
 	var elem = $(this);
 
-	if( elem.data("reqstock") && $(".stockitem:first-child", elem).hasClass("stock-out") ) {
+	if( elem.data("reqstock") && $(".articleitem:first-child .stockitem:first-child", elem).hasClass("stock-out") ) {
 		$(".addbasket .btn-action", elem).addClass("btn-disabled").attr("disabled", "disabled");
 	}
 });
