@@ -548,7 +548,6 @@ class Standard
 		$this->addMetaItems( $productItem, $expire, $tags );
 		$this->addMetaItems( $productItem->getSupplierItems(), $expire, $tags );
 
-		$propMap = $attrMap = [];
 		$propItems = $productItem->getPropertyItems();
 		$attrItems = $productItem->getRefItems( 'attribute', null, 'default' );
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
