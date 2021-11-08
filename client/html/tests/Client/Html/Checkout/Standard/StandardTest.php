@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>summary | Aimeos</title>', $output );
 	}
@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertEquals( null, $object->getHeader() );
+		$this->assertEquals( null, $object->header() );
 	}
 
 

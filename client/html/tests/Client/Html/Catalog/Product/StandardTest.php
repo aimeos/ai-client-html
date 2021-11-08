@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<script', $output );
 		$prodCodeParam = '/st_pid%5B[0-9]%5D=';
@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertEmpty( $object->getHeader() );
+		$this->assertEmpty( $object->header() );
 	}
 
 

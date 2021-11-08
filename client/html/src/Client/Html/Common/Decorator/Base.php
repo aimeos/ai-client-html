@@ -87,9 +87,9 @@ abstract class Base
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( string $uid = '' ) : ?string
+	public function header( string $uid = '' ) : ?string
 	{
-		return $this->client->getHeader( $uid );
+		return $this->client->header( $uid );
 	}
 
 

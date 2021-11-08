@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$tags = [];
 		$expire = null;
-		$output = $this->object->getHeader( 1, $tags, $expire );
+		$output = $this->object->header( 1, $tags, $expire );
 
 		$this->assertNotNull( $output );
 		$this->assertEquals( null, $expire );
@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertEquals( null, $object->getHeader() );
+		$this->assertEquals( null, $object->header() );
 	}
 
 

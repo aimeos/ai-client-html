@@ -123,13 +123,13 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( string $uid = '' ) : ?string
+	public function header( string $uid = '' ) : ?string
 	{
 		$view = $this->getView();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getHeader( $uid );
+			$html .= $subclient->setView( $view )->header( $uid );
 		}
 		$view->promoHeader = $html;
 

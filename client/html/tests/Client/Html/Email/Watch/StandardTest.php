@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setSubject' )
 			->with( $this->stringContains( 'Your watched products' ) );
 
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 

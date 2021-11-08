@@ -383,7 +383,7 @@ class Standard
 					$view->extVoucherCode = $code;
 
 					$client->setView( $view );
-					$client->getHeader();
+					$client->header();
 					$client->body();
 
 					$context->getMail()->send( $view->mail() );

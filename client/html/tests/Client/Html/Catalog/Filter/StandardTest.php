@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$tags = [];
 		$expire = null;
-		$output = $this->object->getHeader( 1, $tags, $expire );
+		$output = $this->object->header( 1, $tags, $expire );
 
 		$this->assertNotNull( $output );
 	}
@@ -43,8 +43,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeaderSingleton()
 	{
-		$this->object->getHeader();
-		$this->assertEquals( '', $this->object->getHeader() );
+		$this->object->header();
+		$this->assertEquals( '', $this->object->header() );
 	}
 
 

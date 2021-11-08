@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
 
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 
 		$this->assertNotNull( $output );
 	}
@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertEquals( null, $object->getHeader() );
+		$this->assertEquals( null, $object->header() );
 	}
 
 

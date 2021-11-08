@@ -41,14 +41,14 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->body();
-		$client->getHeader();
+		$client->header();
 
 
 		$start = microtime( true );
 
 		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getHeader();
+		$client->header();
 		$client->body();
 
 		$stop = microtime( true );
@@ -62,7 +62,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getHeader();
+		$client->header();
 
 		$stop = microtime( true );
 		echo "\n    catalog filter header: " . ( ( $stop - $start ) * 1000 ) . " msec\n";
@@ -88,14 +88,14 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->body();
-		$client->getHeader();
+		$client->header();
 
 
 		$start = microtime( true );
 
 		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getHeader();
+		$client->header();
 		$client->body();
 
 		$stop = microtime( true );
@@ -109,7 +109,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getHeader();
+		$client->header();
 
 		$stop = microtime( true );
 		echo "\n    catalog list header: " . ( ( $stop - $start ) * 1000 ) . " msec\n";
@@ -135,14 +135,14 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->body();
-		$client->getHeader();
+		$client->header();
 
 
 		$start = microtime( true );
 
 		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getHeader();
+		$client->header();
 		$client->body();
 
 		$stop = microtime( true );
@@ -156,7 +156,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getHeader();
+		$client->header();
 
 		$stop = microtime( true );
 		echo "\n    catalog detail header: " . ( ( $stop - $start ) * 1000 ) . " msec\n";

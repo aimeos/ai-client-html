@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setSubject' )
 			->with( $this->stringContains( 'Your new account' ) );
 
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 

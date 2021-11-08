@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeader()
 	{
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 

@@ -38,14 +38,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'delivery';
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
 	public function testGetHeaderSkip()
 	{
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 

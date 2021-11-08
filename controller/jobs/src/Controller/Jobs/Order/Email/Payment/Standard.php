@@ -274,7 +274,7 @@ class Standard
 		$view->extOrderItem = $orderItem;
 
 		$client->setView( $view );
-		$client->getHeader();
+		$client->header();
 		$client->body();
 
 		$context->getMail()->send( $view->mail() );

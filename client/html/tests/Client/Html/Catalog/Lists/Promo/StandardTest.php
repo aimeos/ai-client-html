@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<script', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );

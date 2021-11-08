@@ -161,7 +161,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string|null String including HTML tags for the header on error
 	 */
-	public function getHeader( string $uid = '' ) : ?string
+	public function header( string $uid = '' ) : ?string
 	{
 		$context = $this->getContext();
 		$site = $context->getLocale()->getSiteId();
@@ -180,7 +180,7 @@ class Standard
 
 				$output = '';
 				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->getHeader( $uid );
+					$output .= $subclient->setView( $view )->header( $uid );
 				}
 				$view->bulkHeader = $output;
 

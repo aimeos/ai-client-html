@@ -40,14 +40,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'address';
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
 	public function testGetHeaderSkip()
 	{
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'xyz';
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertEquals( '', $output );
 	}
 

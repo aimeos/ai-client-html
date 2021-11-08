@@ -43,14 +43,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardBasket = $controller->get();
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
 	public function testGetHeaderOtherStep()
 	{
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 		$this->assertEquals( '', $output );
 	}
 

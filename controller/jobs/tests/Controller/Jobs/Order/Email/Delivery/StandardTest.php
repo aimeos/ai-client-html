@@ -178,12 +178,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Delivery\Standard::class )
-			->setMethods( array( 'body', 'getHeader' ) )
+			->setMethods( array( 'body', 'header' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$clientStub->expects( $this->once() )->method( 'body' );
-		$clientStub->expects( $this->once() )->method( 'getHeader' );
+		$clientStub->expects( $this->once() )->method( 'header' );
 
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
@@ -208,7 +208,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Delivery\Standard::class )
-			->setMethods( array( 'body', 'getHeader' ) )
+			->setMethods( array( 'body', 'header' ) )
 			->disableOriginalConstructor()
 			->getMock();
 

@@ -30,7 +30,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelperHtml::getContext();
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
-			->setMethods( array( 'getHeader', 'body', 'testMethod' ) )
+			->setMethods( array( 'header', 'body', 'testMethod' ) )
 			->setConstructorArgs( array( $context, [] ) )
 			->getMock();
 
@@ -54,8 +54,8 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetHeader()
 	{
-		$this->client->expects( $this->once() )->method( 'getHeader' )->will( $this->returnValue( 'header' ) );
-		$this->assertEquals( 'header', $this->object->getHeader() );
+		$this->client->expects( $this->once() )->method( 'header' )->will( $this->returnValue( 'header' ) );
+		$this->assertEquals( 'header', $this->object->header() );
 	}
 
 

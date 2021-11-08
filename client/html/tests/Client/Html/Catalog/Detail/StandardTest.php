@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
-		$output = $this->object->getHeader();
+		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>Cafe Noire Expresso | Aimeos</title>', $output );
 		$this->assertStringContainsString( '<script defer src="http://baseurl/catalog/stock/?st_pid', $output );
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$mock->getHeader();
+		$mock->header();
 	}
 
 
