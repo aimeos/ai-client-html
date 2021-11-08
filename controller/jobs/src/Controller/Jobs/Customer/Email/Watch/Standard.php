@@ -347,7 +347,7 @@ class Standard
 		$client = $this->getClient( $context );
 		$client->setView( $view );
 		$client->getHeader();
-		$client->getBody();
+		$client->body();
 
 		$mailer->send( $message );
 	}

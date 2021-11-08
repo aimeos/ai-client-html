@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$regex = '#<div class="supplier-lists">.*<ul class="attr-list">.*<li.*<li.*</ul>.*</fieldset>#smu';
 		$this->assertRegexp( $regex, $output );
@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
 	}
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
 	}
@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
 	}

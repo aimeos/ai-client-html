@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = $this->object->getView();
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'root', $output );
 	}
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -99,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -115,7 +115,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->getBody() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
 	}
 
 

@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<div class="catalog-list-items"', $output );
 
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyCsrf()
 	{
-		$output = $this->object->getBody( 1 );
+		$output = $this->object->body( 1 );
 		$output = str_replace( '_csrf_value', '_csrf_new', $output );
 
 		$this->assertStringContainsString( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_new"', $output );
@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
 		$view->addHelper( 'param', $helper );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<div class="catalog-list-items">', $output );
 	}

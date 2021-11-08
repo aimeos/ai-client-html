@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->getSession()->set( 'aimeos/catalog/session/seen/list', $seen );
 
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#.*html product two.*html product one.*#smU', $output ); // list is reversed
 		$this->assertStringStartsWith( '<section class="catalog-session-seen">', $output );

@@ -178,11 +178,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Payment\Standard::class )
-			->setMethods( array( 'getBody', 'getHeader' ) )
+			->setMethods( array( 'body', 'getHeader' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$clientStub->expects( $this->once() )->method( 'getBody' );
+		$clientStub->expects( $this->once() )->method( 'body' );
 		$clientStub->expects( $this->once() )->method( 'getHeader' );
 
 
@@ -208,7 +208,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Payment\Standard::class )
-			->setMethods( array( 'getBody', 'getHeader' ) )
+			->setMethods( array( 'body', 'getHeader' ) )
 			->disableOriginalConstructor()
 			->getMock();
 

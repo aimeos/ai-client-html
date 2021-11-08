@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->with( $this->matchesRegularExpression( '#<title>.*Your voucher.*</title>#smu' ) );
 
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<!doctype html>', $output );
 		$this->assertStringContainsString( 'cid:123-unique-id', $output );

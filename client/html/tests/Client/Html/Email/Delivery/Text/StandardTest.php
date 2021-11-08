@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->with( $this->stringContains( 'delivery status' ) );
 
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'The delivery status', $output );
 		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );

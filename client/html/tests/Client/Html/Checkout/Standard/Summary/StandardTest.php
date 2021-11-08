@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardSteps = array( 'before', 'summary' );
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="checkout-standard-summary common-summary">', $output );
 		$this->assertStringContainsString( '<div class="checkout-standard-summary-option', $output );
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardBasket = $this->getBasket();
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringContainsString( '<div class="common-summary-detail', $output );
 		$this->assertRegExp( '#<tfoot>.*<tr class="tax">.*<td class="price">10.52 EUR</td>.*.*</tfoot>#smU', $output );
 	}
@@ -91,7 +91,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBodyOtherStep()
 	{
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertEquals( '', $output );
 	}
 

@@ -65,7 +65,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( string $uid = '' ) : string
+	public function body( string $uid = '' ) : string
 	{
 		$view = $this->getView();
 		$context = $this->getContext();
@@ -88,7 +88,7 @@ class Standard
 		{
 			$output = '';
 			foreach( $this->getSubClients() as $subclient ) {
-				$output .= $subclient->setView( $view )->getBody( $uid );
+				$output .= $subclient->setView( $view )->body( $uid );
 			}
 			$view->seenBody = $output;
 

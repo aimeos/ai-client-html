@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'st_pid' => $prodid ) );
 		$view->addHelper( 'param', $helper );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertRegExp( '/"' . $prodid . '".*stock-high/', $output );
 	}
 
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertEquals( null, $object->getBody() );
+		$this->assertEquals( null, $object->body() );
 	}
 
 

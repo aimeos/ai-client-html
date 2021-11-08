@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', $pinned );
 
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smU', $output );
 		$this->assertStringStartsWith( '<section class="catalog-session-pinned">', $output );

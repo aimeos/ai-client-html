@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<div class="account-subscription-detail common-summary', $output );
 

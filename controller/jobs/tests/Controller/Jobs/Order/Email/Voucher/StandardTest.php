@@ -245,11 +245,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$clientStub = $this->getMockBuilder( \Aimeos\Client\Html\Email\Voucher\Standard::class )
-			->setMethods( ['getBody', 'getHeader'] )
+			->setMethods( ['body', 'getHeader'] )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$clientStub->expects( $this->once() )->method( 'getBody' );
+		$clientStub->expects( $this->once() )->method( 'body' );
 		$clientStub->expects( $this->once() )->method( 'getHeader' );
 
 

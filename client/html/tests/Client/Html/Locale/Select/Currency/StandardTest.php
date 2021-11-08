@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$tags = [];
 		$expire = null;
-		$output = $this->object->getBody( 1, $tags, $expire );
+		$output = $this->object->body( 1, $tags, $expire );
 
 		$this->assertStringStartsWith( '<div class="locale-select-currency">', $output );
 		$this->assertStringContainsString( '<li class="select-dropdown select-current"><a href="#">EUR', $output );

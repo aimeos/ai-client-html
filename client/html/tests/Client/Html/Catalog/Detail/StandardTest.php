@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-detail"', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-basic', $output );
@@ -125,7 +125,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<span class="value" itemprop="sku">CNE</span>', $output );
 	}
@@ -144,7 +144,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<span class="value" itemprop="sku">CNE</span>', $output );
 	}
@@ -163,7 +163,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<span class="value" itemprop="sku">CNE</span>', $output );
 	}
@@ -175,7 +175,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
 		$view->detailProductItem = $this->getProductItem();
 
-		$output = $this->object->getBody( 1 );
+		$output = $this->object->body( 1 );
 		$output = str_replace( '_csrf_value', '_csrf_new', $output );
 
 		$this->assertStringContainsString( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_new"', $output );
@@ -198,7 +198,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertGreaterThan( 0, count( $configAttr ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringContainsString( '<div class="catalog-detail-basket-attribute', $output );
 
 		foreach( $configAttr as $id => $item ) {
@@ -225,7 +225,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getBody( 1, $tags, $expire );
+		$output = $this->object->body( 1, $tags, $expire );
 
 		$this->assertStringContainsString( '<div class="catalog-detail-basket-selection', $output );
 
@@ -256,7 +256,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -274,7 +274,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -292,7 +292,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -310,7 +310,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 

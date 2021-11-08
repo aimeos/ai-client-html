@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'Unterpro' ) );
 		$view->addHelper( 'param', $helper );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$suggestItems = $this->object->getView()->suggestItems;
 
 		$this->assertRegExp( '#\[\{"label":"Unterpro.*","html":".*Unterpro.*"\}\]#smU', $output );
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'CNC' ) );
 		$view->addHelper( 'param', $helper );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$suggestItems = $this->object->getView()->suggestItems;
 
 		$this->assertRegExp( '#\[.*\{"label":"Cafe.*","html":".*Cafe.*"\}.*\]#smU', $output );
@@ -104,7 +104,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertEquals( null, $object->getBody() );
+		$this->assertEquals( null, $object->body() );
 	}
 
 

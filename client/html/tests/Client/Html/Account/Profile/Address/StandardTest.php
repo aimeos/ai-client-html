@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $view ) );
 		$this->context->setUserId( $customer->getId() );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<div class="account-profile-address">', $output );
 		$this->assertRegExp( '#id="address-payment-salutation"#', $output );

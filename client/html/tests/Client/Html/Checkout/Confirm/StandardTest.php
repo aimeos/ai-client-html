@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
 		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<section class="aimeos checkout-confirm"', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-retry">', $output );
@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -113,7 +113,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -129,7 +129,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -145,7 +145,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->getBody() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
 	}
 
 

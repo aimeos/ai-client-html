@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'Groups', $output );
 		$this->assertStringContainsString( 'Neu', $output );
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'level-2', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringNotContainsString( 'level-2', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
@@ -108,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = $this->object->getView();
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'level-2', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );

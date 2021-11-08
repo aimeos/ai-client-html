@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="aimeos supplier-detail"', $output );
 		$this->assertStringContainsString( '<div class="supplier-detail-basic">', $output );
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<h1 class="name" itemprop="name">Test supplier</h1>', $output );
 	}
@@ -123,7 +123,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -141,7 +141,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -159,7 +159,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -177,7 +177,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 

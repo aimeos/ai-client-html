@@ -69,7 +69,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( string $uid = '' ) : string
+	public function body( string $uid = '' ) : string
 	{
 		$view = $this->getView();
 		$step = $view->get( 'standardStepActive' );
@@ -81,7 +81,7 @@ class Standard
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->getBody( $uid );
+			$html .= $subclient->setView( $view )->body( $uid );
 		}
 		$view->summaryBody = $html;
 

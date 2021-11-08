@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<fieldset class="attr-color">', $output );
 		$this->assertStringContainsString( '<fieldset class="attr-length">', $output );
@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'config', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-width">.*<fieldset class="attr-length">/smu';
 		$this->assertStringNotContainsString( '<fieldset class="attr-size">', $output );
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );
 	}
@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );
 	}
@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $view ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );
 	}

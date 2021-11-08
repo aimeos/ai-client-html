@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$this->assertStringContainsString( '<section class="aimeos basket-bulk"', $this->object->getBody() );
+		$this->assertStringContainsString( '<section class="aimeos basket-bulk"', $this->object->body() );
 	}
 
 
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 

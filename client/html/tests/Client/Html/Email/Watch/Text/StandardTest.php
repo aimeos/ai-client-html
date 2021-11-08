@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->with( $this->stringContains( 'Noire' ) );
 
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'One or more products', $output );
 		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );

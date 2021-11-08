@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 
 		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
-		$output = $this->object->getBody( 1, $tags, $expire );
+		$output = $this->object->body( 1, $tags, $expire );
 
 		$this->assertStringContainsString( '<section class="catalog-list-promo">', $output );
 		$this->assertRegExp( '/.*Expresso.*Cappuccino.*/smu', $output );
@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->getConfig()->set( 'client/html/catalog/lists/catid-default', $this->catItem->getId() );
 
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<section class="catalog-list-promo">', $output );
 		$this->assertRegExp( '/.*Expresso.*Cappuccino.*/smu', $output );

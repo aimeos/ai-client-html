@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->relatedBasket = $basket;
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<section class="basket-related-bought', $output );
 		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );

@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'An account', $output );
 		$this->assertStringContainsString( 'Account', $output );

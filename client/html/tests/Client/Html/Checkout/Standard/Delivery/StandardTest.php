@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="checkout-standard-delivery">', $output );
 
 		$this->assertGreaterThan( 0, count( $view->deliveryServices ) );
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertEquals( '', $output );
 	}
 

@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testGetBody()
 	{
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-session"', $output );
 	}
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -109,7 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -125,7 +125,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->getBody() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
 	}
 
 

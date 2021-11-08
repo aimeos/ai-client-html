@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="aimeos account-profile"', $output );
 	}
 
@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -110,7 +110,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'test exception', $object->getBody() );
+		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
@@ -126,7 +126,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->getBody() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
 	}
 
 

@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->confirmOrderItem = $item;
 		$this->object->setView( $view );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringStartsWith( '<div class="checkout-confirm-intro">', $output );
 	}
 

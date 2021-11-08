@@ -64,7 +64,7 @@ class Standard
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
 	 * @return string HTML code
 	 */
-	public function getBody( string $uid = '' ) : string
+	public function body( string $uid = '' ) : string
 	{
 		return '';
 	}

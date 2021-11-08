@@ -281,7 +281,7 @@ class Standard
 
 		$client->setView( $view );
 		$client->getHeader();
-		$client->getBody();
+		$client->body();
 
 		$context->getMail()->send( $view->mail() );
 	}

@@ -69,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' );
 
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<!doctype html>', $output );
 		$this->assertStringContainsString( 'cid:123-unique-id', $output );

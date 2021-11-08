@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="aimeos basket-standard"', $output );
 		$this->assertStringContainsString( '<div class="common-summary-detail', $output );
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -133,7 +133,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$mock->getBody();
+		$mock->body();
 	}
 
 
@@ -151,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
 		$this->assertRegExp( '#<tfoot>.*<tr class="subtotal">.*<td class="price">18.00 .+</td>.*</tfoot>#smU', $output );
@@ -184,7 +184,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
 		$this->assertRegExp( '#<tbody>.*<td class="price">600.00 .+</td>.*</tbody>#smU', $output );
@@ -227,7 +227,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<li class="attr-item.*<span class="value">.*30.*</span>.*</li>.*<li class="attr-item.*<span class="value">.*30.*</span>.*</li>#smU', $output );
 	}
@@ -262,7 +262,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<li class="attr-item.*<span class="value">.*weiß.*</span>.*</li>#smU', $output );
 	}
@@ -297,7 +297,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<li class="attr-item.*<span class="value">.*2000-01-01.*</span>.*</li>#smU', $output );
 	}
@@ -318,7 +318,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
 		$this->assertRegExp( '#<tfoot>.*<tr class="subtotal">.*<td class="price">18.00 .+</td>.*</tfoot>#smU', $output );
@@ -351,7 +351,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">36.00 .+</td>.*</tbody>#smU', $output );
 		$this->assertRegExp( '#<tbody>.*<td class="price">600.00 .+</td>.*</tbody>#smU', $output );
@@ -376,7 +376,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<tbody>.*<td class="price">36.00 .+</td>.*</tbody>#smU', $output );
 		$this->assertRegExp( '#<tfoot>.*<tr class="subtotal">.*<td class="price">36.00 .+</td>.*</tfoot>#smU', $output );
@@ -400,7 +400,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<tfoot>.*<tr class="total">.*<td class="price">0.00 .+</td>.*</tfoot>#smU', $output );
 	}
@@ -438,7 +438,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertRegExp( '#<li class="attr-item">.*90AB.*</li>#smU', $output );
 	}
@@ -467,7 +467,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertNotRegExp( '#<ul class="attr-list">#smU', $output );
 	}
@@ -494,7 +494,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$view->standardBasket = $controller->get();
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'OPQR', $output );
 		$this->assertStringNotContainsString( '90AB', $output );

@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<div class="account-history-list">', $output );
 		$this->assertRegExp( '#<div class="history-item#', $output );

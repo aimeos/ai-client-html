@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'process';
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringStartsWith( '<div class="checkout-standard-process">', $output );
 		$this->assertEquals( 'http://baseurl/checkout/index/?c_step=payment', $view->standardUrlPayment );
 	}

@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->addressPaymentItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing', $output );
 		$this->assertRegexp( '/form-item form-group city.*form-item form-group postal/smU', $output );
 

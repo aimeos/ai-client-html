@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertNotNull( $output );
 	}
 
@@ -95,7 +95,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/email/payment/attachments', array( __FILE__ ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertNotNull( $output );
 	}
 
@@ -106,7 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config->set( 'client/html/email/payment/attachments', array( 'invalid' ) );
 
 		$this->expectException( \Aimeos\Client\Html\Exception::class );
-		$this->object->getBody();
+		$this->object->body();
 	}
 
 

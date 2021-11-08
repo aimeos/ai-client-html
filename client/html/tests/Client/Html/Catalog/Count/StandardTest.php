@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'var catalogCounts', $output );
 	}
@@ -79,7 +79,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( \TestHelperHtml::getView() );
 
-		$this->assertEquals( null, $object->getBody() );
+		$this->assertEquals( null, $object->body() );
 	}
 
 

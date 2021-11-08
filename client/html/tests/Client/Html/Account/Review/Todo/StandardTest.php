@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = $this->object->data( \TestHelperHtml::getView() );
 		$view->todoProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
 
-		$output = $this->object->setView( $view )->getBody();
+		$output = $this->object->setView( $view )->body();
 
 		$this->assertStringContainsString( '<div class="account-review-todo">', $output );
 	}

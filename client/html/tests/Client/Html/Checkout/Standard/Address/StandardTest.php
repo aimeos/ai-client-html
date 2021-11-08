@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="checkout-standard-address">', $output );
 
 		$this->assertGreaterThanOrEqual( 0, count( $view->addressLanguages ) );
@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardStepActive = 'xyz';
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertEquals( '', $output );
 	}
 

@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$this->object->setView( $this->object->data( $view ) );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="checkout-standard-payment">', $output );
 		$this->assertRegExp( '#<li class="row form-item form-group directdebit.accountowner mandatory">#smU', $output );
 		$this->assertRegExp( '#<li class="row form-item form-group directdebit.accountno mandatory">#smU', $output );
@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$view = \TestHelperHtml::getView();
 		$this->object->setView( $view );
 
-		$output = $this->object->getBody();
+		$output = $this->object->body();
 		$this->assertEquals( '', $output );
 	}
 

@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetBody()
 	{
-		$this->assertEquals( '', $this->object->getBody() );
+		$this->assertEquals( '', $this->object->body() );
 	}
 
 
@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$object->getBody();
+		$object->body();
 	}
 
 
@@ -90,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$object->getBody();
+		$object->body();
 	}
 
 
@@ -106,7 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$object->getBody();
+		$object->body();
 	}
 
 
@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object->setView( $this->view );
 
-		$object->getBody();
+		$object->body();
 	}
 
 

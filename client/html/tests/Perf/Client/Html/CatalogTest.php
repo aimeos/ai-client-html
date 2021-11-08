@@ -40,7 +40,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		// parser warm up so files are already parsed (same as APC is used)
 		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getBody();
+		$client->body();
 		$client->getHeader();
 
 
@@ -49,7 +49,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
-		$client->getBody();
+		$client->body();
 
 		$stop = microtime( true );
 		echo "\n    catalog filter: " . ( ( $stop - $start ) * 1000 ) . " msec\n";
@@ -75,7 +75,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$client = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getBody();
+		$client->body();
 
 		$stop = microtime( true );
 		echo "\n    catalog filter body: " . ( ( $stop - $start ) * 1000 ) . " msec\n";
@@ -87,7 +87,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		// parser warm up so files are already parsed (same as APC is used)
 		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getBody();
+		$client->body();
 		$client->getHeader();
 
 
@@ -96,7 +96,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
-		$client->getBody();
+		$client->body();
 
 		$stop = microtime( true );
 		echo "\n    catalog list: " . ( ( $stop - $start ) * 1000 ) . " msec\n";
@@ -122,7 +122,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$client = \Aimeos\Client\Html\Catalog\Lists\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getBody();
+		$client->body();
 
 		$stop = microtime( true );
 		echo "\n    catalog list body: " . ( ( $stop - $start ) * 1000 ) . " msec\n";
@@ -134,7 +134,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		// parser warm up so files are already parsed (same as APC is used)
 		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getBody();
+		$client->body();
 		$client->getHeader();
 
 
@@ -143,7 +143,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
 		$client->getHeader();
-		$client->getBody();
+		$client->body();
 
 		$stop = microtime( true );
 		echo "\n    catalog detail: " . ( ( $stop - $start ) * 1000 ) . " msec\n";
@@ -169,7 +169,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 		$client = \Aimeos\Client\Html\Catalog\Detail\Factory::create( $this->context );
 		$client->setView( $this->view );
-		$client->getBody();
+		$client->body();
 
 		$stop = microtime( true );
 		echo "\n    catalog detail body: " . ( ( $stop - $start ) * 1000 ) . " msec\n";
