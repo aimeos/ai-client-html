@@ -134,9 +134,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock ?>" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 
 					<div class="price-list">
-						<div class="articleitem price price-actual"
-							data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
-							data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ) ?>">
+						<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
@@ -149,9 +147,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 							<?php foreach( $this->detailProductItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
 								<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 
-									<div class="articleitem price"
-										data-prodid="<?= $enc->attr( $prodid ) ?>"
-										data-prodcode="<?= $enc->attr( $product->getCode() ) ?>">
+									<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
 
 										<?= $this->partial(
 											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
@@ -268,16 +264,12 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 						<div class="stock-list">
 							<div class="articleitem <?= !in_array( $this->detailProductItem->getType(), ['select', 'group'] ) ? 'stock-actual' : '' ?>"
-								data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
-								data-prodcode="<?= $enc->attr( $this->detailProductItem->getCode() ) ?>">
+								data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 							</div>
 
 							<?php foreach( $this->detailProductItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
 
-								<div class="articleitem"
-									data-prodid="<?= $enc->attr( $articleId ) ?>"
-									data-prodcode="<?= $enc->attr( $articleItem->getCode() ) ?>">
-								</div>
+								<div class="articleitem" data-prodid="<?= $enc->attr( $articleId ) ?>"></div>
 
 							<?php endforeach ?>
 

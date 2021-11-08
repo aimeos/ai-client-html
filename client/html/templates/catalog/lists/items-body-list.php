@@ -97,20 +97,14 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 						--><div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 							<div class="stock-list">
 								<div class="articleitem <?= !in_array( $productItem->getType(), ['group'] ) ? 'stock-actual' : '' ?>"
-									data-prodid="<?= $enc->attr( $productItem->getId() ) ?>"
-									data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
+									data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
 								</div>
 								<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
-									<div class="articleitem"
-										data-prodid="<?= $enc->attr( $articleId ) ?>"
-										data-prodcode="<?= $enc->attr( $articleItem->getCode() ) ?>">
-									</div>
+									<div class="articleitem" data-prodid="<?= $enc->attr( $articleId ) ?>"></div>
 								<?php endforeach ?>
 							</div>
 							<div class="price-list">
-								<div class="articleitem price price-actual"
-									data-prodid="<?= $enc->attr( $id ) ?>"
-									data-prodcode="<?= $enc->attr( $productItem->getCode() ) ?>">
+								<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $id ) ?>">
 									<?= $this->partial(
 										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 										['prices' => $productItem->getRefItems( 'price', null, 'default' )]
@@ -120,9 +114,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 								<?php if( $productItem->getType() === 'select' ) : ?>
 									<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
 										<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
-											<div class="articleitem price"
-												data-prodid="<?= $enc->attr( $prodid ) ?>"
-												data-prodcode="<?= $enc->attr( $product->getCode() ) ?>">
+											<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
 												<?= $this->partial(
 													$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
 													['prices' => $prices]
