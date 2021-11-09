@@ -92,6 +92,22 @@ abstract class Base
 
 
 	/**
+	 * Processes the input, e.g. store given values.
+	 *
+	 * A view must be available and this method doesn't generate any output
+	 * besides setting view variables.
+	 */
+	public function init()
+	{
+		$view = $this->view();
+
+		foreach( $this->getSubClients() as $subclient ) {
+			$subclient->setView( $view )->init();
+		}
+	}
+
+
+	/**
 	 * Returns the outmost decorator of the decorator stack
 	 *
 	 * @return \Aimeos\Client\Html\Iface Outmost decorator object
@@ -160,22 +176,6 @@ abstract class Base
 		}
 
 		return $content;
-	}
-
-
-	/**
-	 * Processes the input, e.g. store given values.
-	 *
-	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables.
-	 */
-	public function init()
-	{
-		$view = $this->getView();
-
-		foreach( $this->getSubClients() as $subclient ) {
-			$subclient->setView( $view )->init();
-		}
 	}
 
 

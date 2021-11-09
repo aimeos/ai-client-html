@@ -408,7 +408,7 @@ class Standard
 		}
 
 		$serviceCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'service' );
-		return $serviceCntl->init( $orderItem, $service->getServiceId(), $urls, $params );
+		return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 	}
 
 
