@@ -99,7 +99,7 @@ abstract class Base
 	 */
 	public function init()
 	{
-		$view = $this->view();
+		$view = $this->getView();
 
 		foreach( $this->getSubClients() as $subclient ) {
 			$subclient->setView( $view )->init();
