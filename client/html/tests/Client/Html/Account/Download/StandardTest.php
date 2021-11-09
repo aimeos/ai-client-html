@@ -36,14 +36,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$output = $this->object->body();
 		$this->assertEquals( '', $output );
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$output = $this->object->header();
 		$this->assertEquals( '', $output );
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessOK()
+	public function testInitOK()
 	{
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['dl_id' => '-1'] );
 		$this->view->addHelper( 'param', $helper );
@@ -118,13 +118,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessCheckAccess()
+	public function testInitCheckAccess()
 	{
 		$this->assertFalse( $this->access( 'checkAccess' )->invokeArgs( $this->object, [-1, -2] ) );
 	}
 
 
-	public function testProcessCheckDownload()
+	public function testInitCheckDownload()
 	{
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
@@ -140,7 +140,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessCheckDownloadMaxCount()
+	public function testInitCheckDownloadMaxCount()
 	{
 		$this->context->getConfig()->set( 'client/html/account/download/maxcount', 0 );
 

@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
 

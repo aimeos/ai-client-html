@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/email/from-email', 'me@example.com' );
@@ -83,14 +83,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$output = $this->object->body();
 		$this->assertNotNull( $output );
 	}
 
 
-	public function testGetBodyFiles()
+	public function testBodyFiles()
 	{
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/email/payment/attachments', array( __FILE__ ) );
@@ -100,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyFilesException()
+	public function testBodyFilesException()
 	{
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/email/payment/attachments', array( 'invalid' ) );

@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
 
@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Count\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
 
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Count\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )

@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/email/from-email', 'me@example.com' );
@@ -100,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$output = $this->object->body();
 

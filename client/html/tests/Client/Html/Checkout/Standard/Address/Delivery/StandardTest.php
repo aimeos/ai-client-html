@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = $this->object->getView();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNewAddress()
+	public function testInitNewAddress()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNewAddressMissing()
+	public function testInitNewAddressMissing()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -135,7 +135,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNewAddressUnknown()
+	public function testInitNewAddressUnknown()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -162,7 +162,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNewAddressInvalid()
+	public function testInitNewAddressInvalid()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -204,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessAddressDelete()
+	public function testInitAddressDelete()
 	{
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 		$id = $customer->getAddressItems()->first()->getId();
@@ -229,7 +229,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessExistingAddress()
+	public function testInitExistingAddress()
 	{
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 
@@ -246,7 +246,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessExistingAddressInvalid()
+	public function testInitExistingAddressInvalid()
 	{
 		$view = \TestHelperHtml::getView();
 		$param = [
@@ -272,7 +272,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessRemoveAddress()
+	public function testInitRemoveAddress()
 	{
 		$view = \TestHelperHtml::getView();
 		$param = array( 'ca_delivery_delete' => -1 );

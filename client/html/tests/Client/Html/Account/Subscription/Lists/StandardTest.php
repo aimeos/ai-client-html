@@ -30,7 +30,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$customer = $this->getCustomerItem( 'test@example.com' );
 		$this->context->setUserId( $customer->getId() );
@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$view = \TestHelperHtml::getView();
 		$param = array(

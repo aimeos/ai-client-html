@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$tags = [];
 		$expire = null;
@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$output = $this->object->body();
 
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyClientHtmlException()
+	public function testBodyClientHtmlException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyControllerFrontendException()
+	public function testBodyControllerFrontendException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -121,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -137,7 +137,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyAddSingle()
+	public function testBodyAddSingle()
 	{
 		$view = $this->object->getView();
 		$param = array(
@@ -161,7 +161,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyAddMulti()
+	public function testBodyAddMulti()
 	{
 		$view = $this->object->getView();
 		$param = array(
@@ -194,7 +194,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyAddVariantAttribute()
+	public function testBodyAddVariantAttribute()
 	{
 		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
@@ -233,7 +233,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyAddConfigAttribute()
+	public function testBodyAddConfigAttribute()
 	{
 		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
@@ -268,7 +268,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyAddCustomAttribute()
+	public function testBodyAddCustomAttribute()
 	{
 		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
 
@@ -303,7 +303,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyEditSingle()
+	public function testBodyEditSingle()
 	{
 		$this->addProduct( 'CNE', 2, 'default' );
 
@@ -327,7 +327,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyEditMulti()
+	public function testBodyEditMulti()
 	{
 		$this->addProduct( 'CNE', 1, 'default' );
 		$this->addProduct( 'CNC', 2, 'default' );
@@ -361,7 +361,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDeleteSingle()
+	public function testBodyDeleteSingle()
 	{
 		$this->addProduct( 'CNE', 2, 'default' );
 		$this->addProduct( 'CNC', 1, 'default' );
@@ -385,7 +385,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDeleteMulti()
+	public function testBodyDeleteMulti()
 	{
 		$this->addProduct( 'CNE', 1, 'default' );
 		$this->addProduct( 'CNC', 1, 'default' );
@@ -406,7 +406,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDeleteInvalid()
+	public function testBodyDeleteInvalid()
 	{
 		$view = $this->object->getView();
 		$param = array(
@@ -423,7 +423,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyAddCoupon()
+	public function testBodyAddCoupon()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
@@ -444,7 +444,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDeleteCoupon()
+	public function testBodyDeleteCoupon()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
@@ -473,7 +473,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyOverwriteCoupon()
+	public function testBodyOverwriteCoupon()
 	{
 		$this->context->getConfig()->set( 'client/html/basket/standard/coupon/overwrite', true );
 

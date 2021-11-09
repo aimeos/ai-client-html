@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = \TestHelperHtml::getView();
 		$this->object->setView( $this->object->data( $view ) );
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
 		$address = $customerItem->getPaymentAddress()->setEmail( 'unittest@aimeos.org' )->toArray();

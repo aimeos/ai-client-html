@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$ds = DIRECTORY_SEPARATOR;
 

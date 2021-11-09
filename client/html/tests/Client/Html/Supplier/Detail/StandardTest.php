@@ -30,7 +30,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
@@ -90,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDefaultId()
+	public function testBodyDefaultId()
 	{
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/supplier/detail/supid-default', $this->getSupplierItem()->getId() );
@@ -109,7 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyClientHtmlException()
+	public function testBodyClientHtmlException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -127,7 +127,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyControllerFrontendException()
+	public function testBodyControllerFrontendException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -145,7 +145,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -163,7 +163,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -195,7 +195,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 

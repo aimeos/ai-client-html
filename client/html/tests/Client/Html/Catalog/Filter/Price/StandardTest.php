@@ -27,7 +27,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$this->object->getView()->priceHigh = 100;
 		$output = $this->object->body();

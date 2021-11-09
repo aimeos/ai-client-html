@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$pinned = array( $this->getProductItem( 'CNC' )->getId() );
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', $pinned );
@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessAdd()
+	public function testInitAdd()
 	{
 		$prodId = $this->getProductItem( 'CNE' )->getId();
 
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessDelete()
+	public function testInitDelete()
 	{
 		$prodId = $this->getProductItem( 'CNE' )->getId();
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', array( $prodId => $prodId ) );

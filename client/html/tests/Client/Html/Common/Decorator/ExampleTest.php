@@ -52,14 +52,14 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$this->client->expects( $this->once() )->method( 'header' )->will( $this->returnValue( 'header' ) );
 		$this->assertEquals( 'header', $this->object->header() );
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$this->client->expects( $this->once() )->method( 'body' )->will( $this->returnValue( 'body' ) );
 		$this->assertEquals( 'body', $this->object->body() );
@@ -93,7 +93,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 	}

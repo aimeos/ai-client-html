@@ -31,14 +31,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Suggest\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'Unterpro' ) );
@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyUseCodes()
+	public function testBodyUseCodes()
 	{
 		$this->context->getConfig()->set( 'client/html/catalog/suggest/usecode', true );
 
@@ -92,7 +92,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Suggest\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )

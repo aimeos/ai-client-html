@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'address';
@@ -45,14 +45,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderSkip()
+	public function testHeaderSkip()
 	{
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
-	public function testGetHeaderOtherStep()
+	public function testHeaderOtherStep()
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'xyz';
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$item = $this->getCustomerItem();
 		$this->context->setUserId( $item->getId() );
@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyOtherStep()
+	public function testBodyOtherStep()
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'xyz';
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 

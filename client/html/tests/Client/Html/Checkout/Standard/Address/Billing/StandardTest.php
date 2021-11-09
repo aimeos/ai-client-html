@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 
@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNewAddress()
+	public function testInitNewAddress()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -104,7 +104,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNewAddressMissing()
+	public function testInitNewAddressMissing()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -139,7 +139,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNewAddressUnknown()
+	public function testInitNewAddressUnknown()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -167,7 +167,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNewAddressInvalid()
+	public function testInitNewAddressInvalid()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -209,7 +209,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessExistingAddress()
+	public function testInitExistingAddress()
 	{
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 		$id = $customer->getAddressItems()->first()->getId();

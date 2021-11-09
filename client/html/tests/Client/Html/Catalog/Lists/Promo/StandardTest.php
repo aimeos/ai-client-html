@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$tags = [];
 		$expire = null;
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$tags = [];
 		$expire = null;
@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDefaultCatid()
+	public function testBodyDefaultCatid()
 	{
 		unset( $this->view->listCurrentCatItem );
 		$this->object->setView( $this->view );

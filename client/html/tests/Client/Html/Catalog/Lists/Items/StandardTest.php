@@ -58,14 +58,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
 
@@ -81,7 +81,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyCsrf()
+	public function testBodyCsrf()
 	{
 		$output = $this->object->body( 1 );
 		$output = str_replace( '_csrf_value', '_csrf_new', $output );
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyTemplate()
+	public function testBodyTemplate()
 	{
 		$view = $this->object->getView();
 		$this->object->setView( $this->object->data( $view ) );

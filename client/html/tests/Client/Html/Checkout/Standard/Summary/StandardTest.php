@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
@@ -48,14 +48,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderOtherStep()
+	public function testHeaderOtherStep()
 	{
 		$output = $this->object->header();
 		$this->assertEquals( '', $output );
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDetail()
+	public function testBodyDetail()
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'summary';
@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyOtherStep()
+	public function testBodyOtherStep()
 	{
 		$output = $this->object->body();
 		$this->assertEquals( '', $output );
@@ -110,7 +110,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'cs_order' => 1 ) );
@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessComment()
+	public function testInitComment()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
@@ -140,7 +140,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessOptionOK()
+	public function testInitOptionOK()
 	{
 		$view = $this->object->getView();
 		$view->standardBasket = $this->getBasket();
@@ -160,7 +160,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessOptionInvalid()
+	public function testInitOptionInvalid()
 	{
 		$view = $this->object->getView();
 		$view->standardBasket = $this->getBasket();
@@ -180,7 +180,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessSkip()
+	public function testInitSkip()
 	{
 		$this->object->init();
 

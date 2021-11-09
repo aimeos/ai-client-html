@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$this->object->setView( $this->object->data( $this->object->getView() ) );
 		$output = $this->object->body();
@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$prodid = $this->getProductItem()->getId();
 
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNoCache()
+	public function testInitNoCache()
 	{
 		$name = $this->getProductItem()->getName( 'url' );
 		$session = $this->context->getSession();

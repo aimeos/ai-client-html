@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $this->getCatalogItem()->getId() ) );
@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderSearch()
+	public function testHeaderSearch()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => '<b>Search result</b>' ) );
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $this->getCatalogItem()->getId() ) );
@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyPagination()
+	public function testBodyPagination()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['l_size' => 2] );
@@ -118,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyNoDefaultCat()
+	public function testBodyNoDefaultCat()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
@@ -134,7 +134,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDefaultCat()
+	public function testBodyDefaultCat()
 	{
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $this->getCatalogItem()->getId() );
@@ -152,7 +152,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMultipleDefaultCat()
+	public function testBodyMultipleDefaultCat()
 	{
 		$context = clone $this->context;
 		$catid = $this->getCatalogItem()->getId();
@@ -171,7 +171,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMultipleDefaultCatString()
+	public function testBodyMultipleDefaultCatString()
 	{
 		$context = clone $this->context;
 		$catid = $this->getCatalogItem()->getId();
@@ -190,7 +190,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyCategoryLevels()
+	public function testBodyCategoryLevels()
 	{
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
@@ -211,7 +211,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodySearchText()
+	public function testBodySearchText()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => '<b>Search result</b>' ) );
@@ -224,7 +224,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodySearchAttribute()
+	public function testBodySearchAttribute()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_attrid' => array( -1, -2 ) ) );
@@ -236,7 +236,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodySearchSupplier()
+	public function testBodySearchSupplier()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => array( -1, -2 ) ) );
@@ -248,7 +248,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyHtmlException()
+	public function testBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -264,7 +264,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyFrontendException()
+	public function testBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -280,7 +280,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -296,7 +296,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -333,7 +333,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
@@ -345,7 +345,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessHtmlException()
+	public function testInitHtmlException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -363,7 +363,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessFrontendException()
+	public function testInitFrontendException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -381,7 +381,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessMShopException()
+	public function testInitMShopException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -399,7 +399,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessException()
+	public function testInitException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Lists\Standard::class )
 		->setConstructorArgs( array( $this->context, [] ) )

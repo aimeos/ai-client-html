@@ -29,14 +29,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Stock\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$prodid = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' )->getId();
 
@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Stock\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )

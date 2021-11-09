@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$tags = [];
 		$expire = null;
@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = $this->object->getView();
 		$request = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyHtmlException()
+	public function testBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -92,7 +92,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyFrontendException()
+	public function testBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -108,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -124,7 +124,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )

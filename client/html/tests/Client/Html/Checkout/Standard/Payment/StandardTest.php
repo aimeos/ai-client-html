@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'payment';
@@ -44,14 +44,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderSkip()
+	public function testHeaderSkip()
 	{
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = \TestHelperHtml::getView();
 		$view->standardStepActive = 'payment';
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyOtherStep()
+	public function testBodyOtherStep()
 	{
 		$view = \TestHelperHtml::getView();
 		$this->object->setView( $view );
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 
@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessExistingId()
+	public function testInitExistingId()
 	{
 		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
 		$search = $manager->filter();
@@ -129,7 +129,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessInvalidId()
+	public function testInitInvalidId()
 	{
 		$view = \TestHelperHtml::getView();
 
@@ -144,7 +144,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNotExistingAttributes()
+	public function testInitNotExistingAttributes()
 	{
 		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
 		$search = $manager->filter();

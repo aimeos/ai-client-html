@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = $this->object->data( \TestHelperHtml::getView() );
 		$view->todoProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function getProcess()
+	public function getInit()
 	{
 		$view = $this->object->getView();
 		$param = ['review-todo' => [['review.rating' => 5]]];

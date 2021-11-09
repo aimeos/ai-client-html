@@ -34,14 +34,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -57,14 +57,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="aimeos account-history"', $output );
 	}
 
 
-	public function testGetBodyHtmlException()
+	public function testBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyFrontendException()
+	public function testBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -96,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -112,7 +112,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -149,7 +149,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 

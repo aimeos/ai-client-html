@@ -30,7 +30,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 

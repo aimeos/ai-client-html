@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $this->getProductItem()->getId() ) );
@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $this->getProductItem()->getId() ) );
@@ -115,7 +115,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyByName()
+	public function testBodyByName()
 	{
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $this->context );
 		$this->object->setView( \TestHelperHtml::getView() );
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDefaultId()
+	public function testBodyDefaultId()
 	{
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/catalog/detail/prodid-default', $this->getProductItem()->getId() );
@@ -150,7 +150,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyDefaultCode()
+	public function testBodyDefaultCode()
 	{
 		$context = clone $this->context;
 		$context->getConfig()->set( 'client/html/catalog/detail/prodcode-default', 'CNE' );
@@ -169,7 +169,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyCsrf()
+	public function testBodyCsrf()
 	{
 		$view = $this->object->getView();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
@@ -186,7 +186,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyAttributes()
+	public function testBodyAttributes()
 	{
 		$product = $this->getProductItem( 'U:TESTP', array( 'attribute' ) );
 
@@ -207,7 +207,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodySelection()
+	public function testBodySelection()
 	{
 		$prodId = $this->getProductItem( 'U:TEST' )->getId();
 
@@ -242,7 +242,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyClientHtmlException()
+	public function testBodyClientHtmlException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -260,7 +260,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyControllerFrontendException()
+	public function testBodyControllerFrontendException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -278,7 +278,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -296,7 +296,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -335,7 +335,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 
@@ -343,7 +343,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessClientHtmlException()
+	public function testInitClientHtmlException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -359,7 +359,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessControllerFrontendException()
+	public function testInitControllerFrontendException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -375,7 +375,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessMShopException()
+	public function testInitMShopException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -391,7 +391,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessException()
+	public function testInitException()
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )

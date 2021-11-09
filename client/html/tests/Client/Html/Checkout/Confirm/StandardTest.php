@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$tags = [];
 		$expire = null;
@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
 		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyHtmlException()
+	public function testBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyFrontendException()
+	public function testBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -133,7 +133,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -163,7 +163,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$orderId = $this->getOrder( '2011-09-17 16:14:32' )->getId();
 		$this->context->getSession()->set( 'aimeos/orderid', $orderId );
@@ -181,7 +181,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessNoCode()
+	public function testInitNoCode()
 	{
 		$this->object->init();
 
@@ -189,7 +189,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessClientException()
+	public function testInitClientException()
 	{
 		$this->context->getSession()->set( 'aimeos/orderid', -1 );
 
@@ -212,7 +212,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessControllerException()
+	public function testInitControllerException()
 	{
 		$this->context->getSession()->set( 'aimeos/orderid', -1 );
 
@@ -235,7 +235,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessMShopException()
+	public function testInitMShopException()
 	{
 		$this->context->getSession()->set( 'aimeos/orderid', -1 );
 
@@ -258,7 +258,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcessException()
+	public function testInitException()
 	{
 		$this->context->getSession()->set( 'aimeos/orderid', -1 );
 

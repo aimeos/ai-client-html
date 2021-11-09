@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$tags = [];
 		$expire = null;
@@ -41,14 +41,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderSingleton()
+	public function testHeaderSingleton()
 	{
 		$this->object->header();
 		$this->assertEquals( '', $this->object->header() );
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$tags = [];
 		$expire = null;
@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyHtmlException()
+	public function testBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Filter\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyFrontendException()
+	public function testBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Filter\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Filter\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -110,7 +110,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Filter\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -147,7 +147,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 

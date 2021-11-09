@@ -35,7 +35,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testAddData()
+	public function testData()
 	{
 		$this->client->expects( $this->once() )->method( 'data' ) ->will( $this->returnArgument( 0 ) );
 

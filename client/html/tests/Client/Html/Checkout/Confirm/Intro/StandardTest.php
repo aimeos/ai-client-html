@@ -31,7 +31,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
 

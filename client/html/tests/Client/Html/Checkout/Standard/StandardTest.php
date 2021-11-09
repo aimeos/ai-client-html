@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$tags = [];
 		$expire = null;
@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeaderException()
+	public function testHeaderException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'address';
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyOnepage()
+	public function testBodyOnepage()
 	{
 		$view = $this->object->getView();
 
@@ -100,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyOnepagePartitial()
+	public function testBodyOnepagePartitial()
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'delivery';
@@ -121,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyOnepageDifferentStep()
+	public function testBodyOnepageDifferentStep()
 	{
 		$view = $this->object->getView();
 		$view->standardStepActive = 'address';
@@ -142,7 +142,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyHtmlException()
+	public function testBodyHtmlException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -158,7 +158,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyFrontendException()
+	public function testBodyFrontendException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -174,7 +174,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyMShopException()
+	public function testBodyMShopException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -190,7 +190,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyException()
+	public function testBodyException()
 	{
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Standard::class )
 			->setConstructorArgs( array( $this->context, [] ) )
@@ -227,7 +227,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testProcess()
+	public function testInit()
 	{
 		$this->object->init();
 

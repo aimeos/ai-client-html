@@ -58,14 +58,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetHeader()
+	public function testHeader()
 	{
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
 	}
 
 
-	public function testGetBody()
+	public function testBody()
 	{
 		$ds = DIRECTORY_SEPARATOR;
 		$file = '..' . $ds . 'themes' . $ds . 'default' . $ds . 'media' . $ds . 'aimeos.png';
