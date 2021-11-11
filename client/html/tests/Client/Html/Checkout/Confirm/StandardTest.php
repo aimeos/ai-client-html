@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'mr Our Unittest', $output );
 		$this->assertStringContainsString( 'Example company', $output );
 
-		$this->assertStringContainsString( 'solucia', $output );
+		$this->assertStringContainsString( 'unitdeliverycode', $output );
 		$this->assertStringContainsString( 'paypal', $output );
 
 		$this->assertStringContainsString( 'This is a comment', $output );

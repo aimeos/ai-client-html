@@ -204,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$domains = ['media', 'price', 'text'];
 		$serviceManager = \Aimeos\MShop::create( $this->context, 'service' );
 		$controller->addService( $serviceManager->find( 'unitpaymentcode', $domains, 'service', 'payment' ) );
-		$controller->addService( $serviceManager->find( 'unitcode', $domains, 'service', 'delivery' ) );
+		$controller->addService( $serviceManager->find( 'unitdeliverycode', $domains, 'service', 'delivery' ) );
 
 		return $controller->get();
 	}

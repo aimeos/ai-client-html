@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
 		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'service.code', 'unitcode' ) );
+		$search->setConditions( $search->compare( '==', 'service.code', 'unitdeliverycode' ) );
 
 		if( ( $service = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'Service item not found' );
@@ -120,7 +120,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
-		$this->assertEquals( 'unitcode', $basket->getService( 'delivery', 0 )->getCode() );
+		$this->assertEquals( 'unitdeliverycode', $basket->getService( 'delivery', 0 )->getCode() );
 	}
 
 
@@ -143,7 +143,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
 		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'service.code', 'unitcode' ) );
+		$search->setConditions( $search->compare( '==', 'service.code', 'unitdeliverycode' ) );
 
 		if( ( $service = $manager->search( $search )->first() ) === null ) {
 			throw new \RuntimeException( 'Service item not found' );
