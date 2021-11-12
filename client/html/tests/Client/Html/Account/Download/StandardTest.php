@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		\Aimeos\MShop::cache( true );
 
-		$this->view = \TestHelperHtml::getView();
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 

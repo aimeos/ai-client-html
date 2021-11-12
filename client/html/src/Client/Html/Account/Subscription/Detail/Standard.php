@@ -66,7 +66,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		if( $view->param( 'sub_action' ) != 'detail' ) {
 			return '';

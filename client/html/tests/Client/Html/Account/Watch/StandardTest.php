@@ -22,7 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Account\Watch\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEquals( null, $object->header() );
 	}
@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -88,7 +88,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -104,7 +104,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -128,7 +128,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'watchErrorList' ) );
+		$this->assertEmpty( $this->object->view()->get( 'watchErrorList' ) );
 	}
 
 
@@ -138,7 +138,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$id = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' )->getId();
 		$this->context->setUserId( $item->getId() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = ['wat_action' => 'add', 'wat_id' => $id];
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
@@ -166,7 +166,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$id = $item->getListItems( 'product', 'watch' )->first()->getRefId();
 		$this->context->setUserId( $item->getId() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = ['wat_action' => 'delete', 'wat_id' => $id];
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
@@ -194,7 +194,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$id = $item->getListItems( 'product', 'watch' )->first()->getRefId();
 		$this->context->setUserId( $item->getId() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = ['wat_action' => 'edit', 'wat_id' => $id];
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );

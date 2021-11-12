@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Payment\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardStepActive = 'payment';
 		$this->object->setView( $this->object->data( $view ) );
 
@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardStepActive = 'payment';
 		$view->standardSteps = array( 'before', 'payment', 'after' );
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOtherStep()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$this->object->setView( $view );
 
 		$output = $this->object->body();
@@ -98,7 +98,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEquals( 'payment', $this->object->getView()->get( 'standardStepActive' ) );
+		$this->assertEquals( 'payment', $this->object->view()->get( 'standardStepActive' ) );
 	}
 
 
@@ -112,7 +112,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'Service item not found' );
 		}
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'c_paymentoption' => $service->getId(),
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitInvalidId()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array( 'c_paymentoption' => -1 );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -154,7 +154,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'Service item not found' );
 		}
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'c_paymentoption' => $service->getId(),

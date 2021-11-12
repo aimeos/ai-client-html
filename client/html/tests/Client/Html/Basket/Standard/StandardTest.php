@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Basket\Standard\Standard( $this->context );
@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>Basket | Aimeos</title>', $output );
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
@@ -96,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
@@ -112,7 +112,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
@@ -128,7 +128,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
@@ -139,7 +139,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAddSingle()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
@@ -163,7 +163,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAddMulti()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prod' => array(
@@ -215,7 +215,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search->setConditions( $search->and( $expr ) );
 		$attributes = $attrManager->search( $search );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'U:TEST' )->getId(),
@@ -249,7 +249,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'No attribute' );
 		}
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
@@ -284,7 +284,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'No attribute' );
 		}
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'U:TESTP' )->getId(),
@@ -307,7 +307,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->addProduct( 'CNE', 2, 'default' );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'edit',
 			'b_position' => 0,
@@ -332,7 +332,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->addProduct( 'CNE', 1, 'default' );
 		$this->addProduct( 'CNC', 2, 'default' );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'edit',
 			'b_prod' => array(
@@ -366,7 +366,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->addProduct( 'CNE', 2, 'default' );
 		$this->addProduct( 'CNC', 1, 'default' );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'delete',
 			'b_position' => 1,
@@ -390,7 +390,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->addProduct( 'CNE', 1, 'default' );
 		$this->addProduct( 'CNC', 1, 'default' );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'delete',
 			'b_position' => array( 0, 1 ),
@@ -408,7 +408,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyDeleteInvalid()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'delete',
 			'b_position' => -1,
@@ -428,7 +428,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 
 		$param = array( 'b_coupon' => '90AB' );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -449,7 +449,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 
 		$param = array( 'b_coupon' => '90AB' );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -480,7 +480,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['b_coupon' => '90AB'] );
 		$view->addHelper( 'param', $helper );
@@ -530,7 +530,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $item->getId(),

@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
+		$view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
 		$view->extSubscriptionItem = self::$subscriptionItem;
 		$view->extOrderProductItem = self::$productItem;
 		$view->extAddressItem = self::$addressItem;
@@ -86,7 +86,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
 			->with( $this->matchesRegularExpression( '#<title>.*Your subscription.*</title>#smu' ) );
 
-		$this->object->setView( $this->object->data( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->view() ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<!doctype html>', $output );

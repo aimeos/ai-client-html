@@ -22,7 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>summary | Aimeos</title>', $output );
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEquals( null, $object->header() );
 	}
@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'address';
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'c_step' => 'payment' ) );
@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOnepage()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'address', 'delivery', 'payment', 'summary' ) );
@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOnepagePartitial()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'delivery';
 
 		$config = $this->context->getConfig();
@@ -123,7 +123,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOnepageDifferentStep()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'address';
 
 		$config = $this->context->getConfig();
@@ -152,7 +152,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -168,7 +168,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -184,7 +184,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -200,7 +200,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
 	}
@@ -231,6 +231,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'standardErrorList' ) );
+		$this->assertEmpty( $this->object->view()->get( 'standardErrorList' ) );
 	}
 }

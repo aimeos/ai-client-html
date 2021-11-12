@@ -114,7 +114,7 @@ class Standard
 
 		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
-			$view = $this->getView();
+			$view = $this->view();
 
 			/** client/html/catalog/stage/template-body
 			 * Relative path to the HTML body template of the catalog stage client.
@@ -203,7 +203,7 @@ class Standard
 
 		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
-			$view = $this->getView();
+			$view = $this->view();
 
 			/** client/html/catalog/stage/template-header
 			 * Relative path to the HTML header template of the catalog stage client.
@@ -356,7 +356,7 @@ class Standard
 	public function init()
 	{
 		$context = $this->getContext();
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{

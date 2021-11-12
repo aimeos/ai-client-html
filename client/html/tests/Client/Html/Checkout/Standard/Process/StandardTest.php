@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'process';
 		$this->object->setView( $this->object->data( $view ) );
 
@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'process';
 		$this->object->setView( $this->object->data( $view ) );
 
@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
@@ -128,7 +128,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNoPayment()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
@@ -170,7 +170,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNoService()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
@@ -224,7 +224,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitHtmlException()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
 		$view->addHelper( 'param', $helper );
 
@@ -246,7 +246,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitFrontendException()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
 		$view->addHelper( 'param', $helper );
 
@@ -268,7 +268,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitMShopException()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
 		$view->addHelper( 'param', $helper );
 
@@ -290,7 +290,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitException()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
 		$view->addHelper( 'param', $helper );
 

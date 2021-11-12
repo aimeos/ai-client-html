@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( $customer->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Account\Review\Todo\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->data( \TestHelperHtml::getView() );
+		$view = $this->object->data( \TestHelperHtml::view() );
 		$view->todoProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
 
 		$output = $this->object->setView( $view )->body();
@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function getInit()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = ['review-todo' => [['review.rating' => 5]]];
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );

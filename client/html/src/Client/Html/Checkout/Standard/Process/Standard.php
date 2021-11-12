@@ -92,7 +92,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		if( $view->get( 'standardStepActive' ) !== 'process' ) {
 			return '';
@@ -139,7 +139,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		if( $view->get( 'standardStepActive' ) !== 'process' ) {
 			return '';
@@ -244,7 +244,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 
 		if( $view->param( 'c_step' ) !== 'process'
@@ -387,7 +387,7 @@ class Standard
 			return null;
 		}
 
-		$view = $this->getView();
+		$view = $this->view();
 		$conf = ['absoluteUri' => true];
 		$args = ['code' => $service->getCode()];
 		$urls = [

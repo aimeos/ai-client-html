@@ -141,7 +141,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetView()
 	{
-		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, 'unittest', 'EUR', 'de' ) );
+		$result = $this->access( 'view' )->invokeArgs( $this->object, array( $this->context, 'unittest', 'EUR', 'de' ) );
 		$this->assertInstanceof( \Aimeos\MW\View\Iface::class, $result );
 	}
 

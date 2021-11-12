@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Basket\Mini\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEquals( null, $object->header() );
 	}
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBody()
 	{
 		$output = $this->object->body();
-		$miniBasket = $this->object->getView()->miniBasket;
+		$miniBasket = $this->object->view()->miniBasket;
 
 		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Base\Iface );
 		$this->assertStringContainsString( '<section class="aimeos basket-mini"', $output );
@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$productItem = $this->getProductItem( 'CNE' );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 
 		$controller->addProduct( $productItem, 9 );
 		$view->miniBasket = $controller->get();
@@ -97,7 +97,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -113,7 +113,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -129,7 +129,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -153,7 +153,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'miniErrorList' ) );
+		$this->assertEmpty( $this->object->view()->get( 'miniErrorList' ) );
 	}
 
 

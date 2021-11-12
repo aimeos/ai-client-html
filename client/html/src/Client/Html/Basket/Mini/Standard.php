@@ -70,7 +70,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$site = $context->getLocale()->getSiteId();
-		$view = $this->getView();
+		$view = $this->view();
 
 		/** client/html/basket/mini
 		 * All parameters defined for the small basket component and its subparts
@@ -166,7 +166,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$site = $context->getLocale()->getSiteId();
-		$view = $this->getView();
+		$view = $this->view();
 
 		$config = $context->getConfig()->get( 'client/html/basket/mini', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:mini-header', $config );

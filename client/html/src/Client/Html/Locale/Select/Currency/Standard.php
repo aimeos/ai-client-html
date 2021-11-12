@@ -67,7 +67,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -197,7 +197,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 		$config = $context->getConfig();
 		$session = $context->getSession();

@@ -93,7 +93,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 		$prefixes = ['f_catid', 'f_supid', 'f_sort', 'l_page', 'l_type'];
 
@@ -230,7 +230,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$confkey = 'client/html/catalog/lists';
 		$prefixes = ['f_catid', 'f_supid', 'f_sort', 'l_page', 'l_type'];
 
@@ -410,7 +410,7 @@ class Standard
 	public function init()
 	{
 		$context = $this->getContext();
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{

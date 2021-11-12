@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Account\History\Standard( $this->context );
@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEquals( null, $object->header() );
 	}
@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -90,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -106,7 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
 	}
@@ -153,6 +153,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'historyErrorList' ) );
+		$this->assertEmpty( $this->object->view()->get( 'historyErrorList' ) );
 	}
 }

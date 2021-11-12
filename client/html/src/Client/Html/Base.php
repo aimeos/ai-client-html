@@ -102,7 +102,7 @@ abstract class Base
 	 */
 	public function init()
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		foreach( $this->getSubClients() as $subclient ) {
 			$subclient->setView( $view )->init();
@@ -130,7 +130,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output
 	 */
-	public function getView() : \Aimeos\MW\View\Iface
+	public function view() : \Aimeos\MW\View\Iface
 	{
 		if( !isset( $this->view ) ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'No view available' ) );
@@ -149,7 +149,7 @@ abstract class Base
 	 */
 	public function modifyBody( string $content, string $uid ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		foreach( $this->getSubClients() as $subclient )
 		{
@@ -170,7 +170,7 @@ abstract class Base
 	 */
 	public function modifyHeader( string $content, string $uid ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		foreach( $this->getSubClients() as $subclient )
 		{
@@ -483,7 +483,7 @@ abstract class Base
 	protected function getParamHash( array $prefixes = ['f_', 'l_', 'd_'], string $key = '', array $config = [] ) : string
 	{
 		$locale = $this->getContext()->getLocale();
-		$pstr = map( $this->getClientParams( $this->getView()->param(), $prefixes ) )->ksort()->toJson();
+		$pstr = map( $this->getClientParams( $this->view()->param(), $prefixes ) )->ksort()->toJson();
 
 		if( ( $cstr = json_encode( $config ) ) === false ) {
 			throw new \Aimeos\Client\Html\Exception( 'Unable to encode parameters or configuration options' );

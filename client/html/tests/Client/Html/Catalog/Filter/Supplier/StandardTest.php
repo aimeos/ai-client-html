@@ -17,7 +17,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Supplier\Standard( \TestHelperHtml::getContext() );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
 		$output = $this->object->body();
 
 		$regex = '#<div class="supplier-lists">.*<ul class="attr-list">.*<li.*<li.*</ul>.*</fieldset>#smu';
@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyCategory()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => -1 ) );
 		$view->addHelper( 'param', $helper );
 
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchText()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'test' ) );
 		$view->addHelper( 'param', $helper );
 
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchSupplier()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => array( -1, -2 ) ) );
 		$view->addHelper( 'param', $helper );
 

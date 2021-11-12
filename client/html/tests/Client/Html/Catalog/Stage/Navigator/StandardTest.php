@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Stage\Navigator\Standard( $context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -32,7 +32,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_pos' => 1 ) );
 		$view->addHelper( 'param', $helper );
 
@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testModifyHeader()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_pos' => 1 ) );
 		$view->addHelper( 'param', $helper );
 
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testModifyBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_pos' => 1 ) );
 		$view->addHelper( 'param', $helper );
 

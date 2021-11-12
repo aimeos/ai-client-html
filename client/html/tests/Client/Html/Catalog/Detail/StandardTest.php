@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -33,14 +33,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $this->getProductItem()->getId() ) );
 		$view->addHelper( 'param', $helper );
 
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>Cafe Noire Expresso | Aimeos</title>', $output );
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
 		$mock->setView( $view );
 
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $this->getProductItem()->getId() ) );
 		$view->addHelper( 'param', $helper );
 
@@ -118,9 +118,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyByName()
 	{
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_name' => 'Cafe-Noire-Expresso' ) );
 		$view->addHelper( 'param', $helper );
 
@@ -137,9 +137,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context->getConfig()->set( 'client/html/catalog/detail/prodid-default', $this->getProductItem()->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
@@ -156,9 +156,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context->getConfig()->set( 'client/html/catalog/detail/prodcode-default', 'CNE' );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
@@ -171,7 +171,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyCsrf()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
 		$view->detailProductItem = $this->getProductItem();
 
@@ -190,7 +190,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$product = $this->getProductItem( 'U:TESTP', array( 'attribute' ) );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $product->getId() ) );
 		$view->addHelper( 'param', $helper );
 
@@ -211,7 +211,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$prodId = $this->getProductItem( 'U:TEST' )->getId();
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_prodid' => $prodId ) );
 		$view->addHelper( 'param', $helper );
 
@@ -249,7 +249,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
 		$mock->setView( $view );
 
@@ -267,7 +267,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
 		$mock->setView( $view );
 
@@ -285,7 +285,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
 		$mock->setView( $view );
 
@@ -303,7 +303,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['d_prodid' => -1] ) );
 		$mock->setView( $view );
 
@@ -339,7 +339,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'detailErrorList' ) );
+		$this->assertEmpty( $this->object->view()->get( 'detailErrorList' ) );
 	}
 
 
@@ -350,7 +350,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
@@ -366,7 +366,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
@@ -382,7 +382,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
@@ -398,7 +398,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'getClientParams' ) )
 			->getMock();
 
-		$mock->setView( \TestHelperHtml::getView() );
+		$mock->setView( \TestHelperHtml::view() );
 
 		$mock->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \RuntimeException() ) );

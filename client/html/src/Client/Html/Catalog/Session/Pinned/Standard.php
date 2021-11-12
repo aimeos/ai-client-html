@@ -67,7 +67,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 		$session = $context->getSession();
 
@@ -224,7 +224,7 @@ class Standard
 	public function init()
 	{
 		$refresh = false;
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 		$session = $context->getSession();
 		$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );

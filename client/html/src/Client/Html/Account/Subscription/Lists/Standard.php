@@ -66,7 +66,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		if( !in_array( $view->param( 'sub_action', 'list' ), ['cancel', 'list'], true ) ) {
 			return '';
@@ -202,7 +202,7 @@ class Standard
 	{
 		try
 		{
-			$view = $this->getView();
+			$view = $this->view();
 
 			if( ( $id = $view->param( 'sub_id' ) ) != null && $view->param( 'sub_action' ) === 'cancel' ) {
 				\Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' )->cancel( $id );

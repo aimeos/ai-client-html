@@ -24,7 +24,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$productItem = $productManager->find( 'p-1:1' );
 
-		$this->view = \TestHelperHtml::getView( 'unitperf' );
+		$this->view = \TestHelperHtml::view( 'unitperf' );
 
 		$param = array(
 			'f_catid' => $catalogItem->getId(),

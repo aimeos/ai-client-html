@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Count\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
+		$this->object->setView( $this->object->data( \TestHelperHtml::view() ) );
 
 		$output = $this->object->header();
 
@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEquals( null, $object->header() );
 	}
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
+		$this->object->setView( $this->object->data( \TestHelperHtml::view() ) );
 
 		$output = $this->object->body();
 
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEquals( null, $object->body() );
 	}

@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Account\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->body();
@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'cs_option_account' => 1 ) );
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );

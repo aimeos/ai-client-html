@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
-		$this->view = \TestHelperHtml::getView();
+		$this->view = \TestHelperHtml::view();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Update\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -147,7 +147,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'orderid' => $this->getOrder( '2011-09-17 16:14:32' )->getId(),
 		);
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
 		$view->addHelper( 'param', $helper );
 

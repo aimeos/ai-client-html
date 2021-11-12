@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Seen\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->object->setView( $this->object->data( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->view() ) );
 		$output = $this->object->body();
 		$this->assertEquals( '', $output );
 	}
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$session->set( 'aimeos/catalog/session/seen/list', array( $prodid => 'test' ) );
 		$session->set( 'aimeos/catalog/session/seen/cache', array( $prodid => 'test' ) );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array( 'd_prodid' => $prodid );
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$name = $this->getProductItem()->getName( 'url' );
 		$session = $this->context->getSession();
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array( 'd_name' => $name );
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );

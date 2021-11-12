@@ -252,9 +252,9 @@ class Standard
 	 * @param string|null $langId ISO language code, maybe country specific
 	 * @return \Aimeos\MW\View\Iface Initialized view object
 	 */
-	protected function getView( \Aimeos\MShop\Context\Item\Iface $context, string $site, string $currencyId = null, string $langId = null ) : \Aimeos\MW\View\Iface
+	protected function view( \Aimeos\MShop\Context\Item\Iface $context, string $site, string $currencyId = null, string $langId = null ) : \Aimeos\MW\View\Iface
 	{
-		$view = $context->getView();
+		$view = $context->view();
 		$params = ['locale' => $langId, 'site' => $site, 'currency' => $currencyId];
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
@@ -367,7 +367,7 @@ class Standard
 		$currencyId = $orderBaseItem->getPrice()->getCurrencyId();
 		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->getLocale()->getLanguageId() );
 
-		$view = $this->getView( $context, $orderBaseItem->getSiteCode(), $currencyId, $langId );
+		$view = $this->view( $context, $orderBaseItem->getSiteCode(), $currencyId, $langId );
 
 		foreach( $this->getOrderProducts( $orderBaseItem ) as $orderProductItem )
 		{

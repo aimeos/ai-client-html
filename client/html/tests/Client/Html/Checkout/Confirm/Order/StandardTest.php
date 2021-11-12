@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Confirm\Order\Standard( $this->context );
@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->confirmOrderItem = $this->getOrderItem( $customer->getId() );
 		$this->object->setView( $this->object->data( $view ) );
 

@@ -108,7 +108,7 @@ class Standard
 	protected function sendMail( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription,
 		\Aimeos\MShop\Common\Item\Address\Iface $address, \Aimeos\MShop\Order\Item\Base\Product\Iface $product )
 	{
-		$view = $context->getView();
+		$view = $context->view();
 		$view->extAddressItem = $address;
 		$view->extOrderProductItem = $product;
 		$view->extSubscriptionItem = $subscription;

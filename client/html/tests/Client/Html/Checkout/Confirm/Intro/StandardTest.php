@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Confirm\Intro\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->confirmOrderItem = $item;
 		$this->object->setView( $view );
 

@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
+		$view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
 		$view->message = 'Thank you';
 		$view->extOrderItem = self::$orderItem;
 		$view->extOrderBaseItem = self::$orderBaseItem;
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' );
 
-		$this->object->setView( $this->object->data( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->view() ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<!doctype html>', $output );

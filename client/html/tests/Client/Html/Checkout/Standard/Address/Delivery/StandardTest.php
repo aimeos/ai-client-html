@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Delivery\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$this->object->setView( $this->object->data( $view ) );
 
@@ -69,13 +69,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'addressDeliveryError' ) );
+		$this->assertEmpty( $this->object->view()->get( 'addressDeliveryError' ) );
 	}
 
 
 	public function testInitNewAddress()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_deliveryoption' => 'null',
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressMissing()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_deliveryoption' => 'null',
@@ -137,7 +137,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressUnknown()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_deliveryoption' => 'null',
@@ -164,7 +164,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressInvalid()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/checkout/standard/address/validate/postal', '^[0-9]{5}$' );
@@ -209,7 +209,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 		$id = $customer->getAddressItems()->first()->getId();
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['ca_delivery_delete' => $id] );
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
@@ -233,7 +233,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$param = array( 'ca_deliveryoption' => $customer->getAddressItems()->first()->getId() );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );
@@ -248,7 +248,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitExistingAddressInvalid()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$param = [
 			'ca_deliveryoption' => -2,
 			'ca_delivery_-2' => [
@@ -274,7 +274,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitRemoveAddress()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$param = array( 'ca_delivery_delete' => -1 );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
 		$view->addHelper( 'param', $helper );

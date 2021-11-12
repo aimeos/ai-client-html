@@ -93,7 +93,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 		$prefixes = ['d_prodid', 'd_name'];
 
@@ -232,7 +232,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 		$prefixes = ['d_prodid', 'd_name'];
 		$confkey = 'client/html/catalog/detail';
@@ -401,7 +401,7 @@ class Standard
 	{
 		$content = parent::modifyBody( $content, $uid );
 
-		return $this->replaceSection( $content, $this->getView()->csrf()->formfield(), 'catalog.detail.csrf' );
+		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.detail.csrf' );
 	}
 
 
@@ -414,7 +414,7 @@ class Standard
 	public function init()
 	{
 		$context = $this->getContext();
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{

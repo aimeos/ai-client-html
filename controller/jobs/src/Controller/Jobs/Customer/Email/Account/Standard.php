@@ -115,7 +115,7 @@ class Standard
 	{
 		$address = $item->getPaymentAddress();
 
-		$view = $context->getView();
+		$view = $context->view();
 		$view->extAddressItem = $address;
 		$view->extAccountCode = $item->getCode();
 		$view->extAccountPassword = $password;

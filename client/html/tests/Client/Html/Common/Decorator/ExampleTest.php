@@ -35,7 +35,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, [] );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -68,7 +68,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetView()
 	{
-		$this->assertInstanceOf( '\\Aimeos\\MW\\View\\Iface', $this->object->getView() );
+		$this->assertInstanceOf( '\\Aimeos\\MW\\View\\Iface', $this->object->view() );
 	}
 
 
@@ -77,7 +77,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 		$view = new \Aimeos\MW\View\Standard();
 		$this->object->setView( $view );
 
-		$this->assertSame( $view, $this->object->getView() );
+		$this->assertSame( $view, $this->object->view() );
 	}
 
 

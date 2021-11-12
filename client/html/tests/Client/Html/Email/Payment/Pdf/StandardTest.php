@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
+		$view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
 		$view->extOrderItem = self::$orderItem;
 		$view->extOrderBaseItem = self::$orderBaseItem;
 		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->emailMock->expects( $this->once() )->method( 'addAttachment' );
 
-		$this->object->setView( $this->object->data( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->view() ) );
 		$this->object->body();
 	}
 

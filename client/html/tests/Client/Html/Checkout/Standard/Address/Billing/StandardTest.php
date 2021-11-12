@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Billing\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 		$view->addressPaymentItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
 		$this->object->setView( $this->object->data( $view ) );
@@ -71,13 +71,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'addressBillingError' ) );
+		$this->assertEmpty( $this->object->view()->get( 'addressBillingError' ) );
 	}
 
 
 	public function testInitNewAddress()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_billingoption' => 'null',
@@ -106,7 +106,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressMissing()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_billingoption' => 'null',
@@ -141,7 +141,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressUnknown()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_billingoption' => 'null',
@@ -169,7 +169,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressInvalid()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/checkout/standard/address/validate/postal', '^[0-9]{5}$' );
@@ -214,7 +214,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 		$id = $customer->getAddressItems()->first()->getId();
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['ca_billingoption' => $id] );
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );

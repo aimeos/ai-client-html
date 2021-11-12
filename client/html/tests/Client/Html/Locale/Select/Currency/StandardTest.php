@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Locale\Select\Currency\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->selectCurrencyId = 'EUR';
 		$view->selectLanguageId = 'de';
 		$view->selectMap = map( [
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['currency' => 'EUR'] );
 		$view->addHelper( 'param', $helper );
 

@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Account\History\Order\Standard( $this->context );
@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customer = $this->getCustomerItem( 'test@example.com' );
 		$this->context->setUserId( $customer->getId() );
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$param = array(
 			'his_action' => 'order',
 			'his_id' => $this->getOrderItem( $customer->getId() )->getId()

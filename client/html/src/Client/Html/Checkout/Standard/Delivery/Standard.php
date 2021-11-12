@@ -71,7 +71,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$step = $view->get( 'standardStepActive' );
 		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
@@ -120,7 +120,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$step = $view->get( 'standardStepActive' );
 		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
@@ -227,7 +227,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{

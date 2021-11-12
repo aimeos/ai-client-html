@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$total = 0;
 
 
-		$view = \TestHelperHtml::getView( 'unittest', $config );
+		$view = \TestHelperHtml::view( 'unittest', $config );
 
 		$view->listProductItems = $productManager->search( $search, $domains, $total );
 		$view->listProductTotal = $total;
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->object->setView( $this->object->data( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->view() ) );
 
 		$output = $this->object->body();
 
@@ -96,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyTemplate()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$this->object->setView( $this->object->data( $view ) );
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );

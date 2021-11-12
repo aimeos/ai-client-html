@@ -22,7 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'address';
 		$this->object->setView( $this->object->data( $view ) );
 
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeaderOtherStep()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'xyz';
 		$this->object->setView( $this->object->data( $view ) );
 
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = $this->getCustomerItem();
 		$this->context->setUserId( $item->getId() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'address';
 		$view->standardSteps = array( 'address', 'after' );
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOtherStep()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardStepActive = 'xyz';
 		$this->object->setView( $this->object->data( $view ) );
 
@@ -111,7 +111,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEquals( 'address', $this->object->getView()->get( 'standardStepActive' ) );
+		$this->assertEquals( 'address', $this->object->view()->get( 'standardStepActive' ) );
 	}
 
 

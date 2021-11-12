@@ -177,7 +177,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		if( ( $name = $view->param( 'd_name' ) ) !== null )
 		{
@@ -239,7 +239,7 @@ class Standard
 		{
 			$expire = null;
 			$tags = [];
-			$view = $this->getView();
+			$view = $this->view();
 			$config = $context->getConfig();
 
 			$default = array( 'media', 'price', 'text' );

@@ -127,7 +127,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 		$prefixes = ['f_name', 'f_catid', 'f_supid'];
 
@@ -253,7 +253,7 @@ class Standard
 			return '';
 		}
 
-		$view = $this->getView();
+		$view = $this->view();
 		$confkey = 'client/html/catalog/filter';
 		$prefixes = ['f_name', 'f_catid', 'f_supid'];
 
@@ -419,7 +419,7 @@ class Standard
 	{
 		$content = parent::modifyBody( $content, $uid );
 
-		return $this->replaceSection( $content, $this->getView()->csrf()->formfield(), 'catalog.filter.csrf' );
+		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.filter.csrf' );
 	}
 
 
@@ -432,7 +432,7 @@ class Standard
 	public function init()
 	{
 		$context = $this->getContext();
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{

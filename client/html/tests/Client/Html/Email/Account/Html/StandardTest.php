@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$view = \TestHelperHtml::getView( 'unittest', $this->context->getConfig() );
+		$view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
 		$view->extAddressItem = self::$customerItem->getPaymentAddress();
 		$view->extAccountCode = self::$customerItem->getCode();
 		$view->extAccountPassword = 'testpwd';
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
 			->with( $this->matchesRegularExpression( '#<title>.*Your new account.*</title>#smu' ) );
 
-		$this->object->setView( $this->object->data( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->view() ) );
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<!doctype html>', $output );

@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Session\Pinned\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$pinned = array( $this->getProductItem( 'CNC' )->getId() );
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', $pinned );
 
-		$this->object->setView( $this->object->data( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->view() ) );
 		$output = $this->object->body();
 
 		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smU', $output );
@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$prodId = $this->getProductItem( 'CNE' )->getId();
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'pin_action' => 'add',
 			'pin_id' => $prodId,
@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$prodId = $this->getProductItem( 'CNE' )->getId();
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', array( $prodId => $prodId ) );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$param = array(
 			'pin_action' => 'delete',
 			'pin_id' => $prodId,

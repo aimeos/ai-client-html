@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -33,7 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $this->getCatalogItem()->getId() ) );
 		$view->addHelper( 'param', $helper );
 
@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeaderSearch()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => '<b>Search result</b>' ) );
 		$view->addHelper( 'param', $helper );
 
@@ -77,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEmpty( $object->header() );
 	}
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $this->getCatalogItem()->getId() ) );
 		$view->addHelper( 'param', $helper );
 
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyPagination()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['l_size' => 2] );
 		$view->addHelper( 'param', $helper );
 
@@ -120,7 +120,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyNoDefaultCat()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
@@ -140,9 +140,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $this->getCatalogItem()->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
@@ -159,9 +159,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', array( $catid, $catid ) );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
@@ -178,9 +178,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $catid . ',' . $catid );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
 		$view->addHelper( 'param', $helper );
 
@@ -196,9 +196,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context->getConfig()->set( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $this->getCatalogItem( 'root' )->getId() ) );
 		$view->addHelper( 'param', $helper );
 
@@ -213,7 +213,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchText()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => '<b>Search result</b>' ) );
 		$view->addHelper( 'param', $helper );
 
@@ -226,7 +226,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchAttribute()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_attrid' => array( -1, -2 ) ) );
 		$view->addHelper( 'param', $helper );
 
@@ -238,7 +238,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchSupplier()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => array( -1, -2 ) ) );
 		$view->addHelper( 'param', $helper );
 
@@ -258,7 +258,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -274,7 +274,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -290,7 +290,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
@@ -306,7 +306,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException( 'test exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
 	}
@@ -335,13 +335,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
 		$view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'listErrorList' ) );
+		$this->assertEmpty( $this->object->view()->get( 'listErrorList' ) );
 	}
 
 
@@ -355,11 +355,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'text exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$object->init();
 
-		$this->assertIsArray( $object->getView()->listErrorList );
+		$this->assertIsArray( $object->view()->listErrorList );
 	}
 
 
@@ -373,11 +373,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'text exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$object->init();
 
-		$this->assertIsArray( $object->getView()->listErrorList );
+		$this->assertIsArray( $object->view()->listErrorList );
 	}
 
 
@@ -391,11 +391,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'getClientParams' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'text exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$object->init();
 
-		$this->assertIsArray( $object->getView()->listErrorList );
+		$this->assertIsArray( $object->view()->listErrorList );
 	}
 
 
@@ -409,11 +409,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'getClientParams' )
 		->will( $this->throwException( new \RuntimeException( 'text exception' ) ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$object->init();
 
-		$this->assertIsArray( $object->getView()->listErrorList );
+		$this->assertIsArray( $object->view()->listErrorList );
 	}
 
 

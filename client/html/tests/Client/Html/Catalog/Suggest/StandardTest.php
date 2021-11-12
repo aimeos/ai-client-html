@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Suggest\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEquals( null, $object->header() );
 	}
@@ -56,12 +56,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'Unterpro' ) );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
-		$suggestItems = $this->object->getView()->suggestItems;
+		$suggestItems = $this->object->view()->suggestItems;
 
 		$this->assertRegExp( '#\[\{"label":"Unterpro.*","html":".*Unterpro.*"\}\]#smU', $output );
 		$this->assertNotEquals( [], $suggestItems );
@@ -76,12 +76,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'client/html/catalog/suggest/usecode', true );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'CNC' ) );
 		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
-		$suggestItems = $this->object->getView()->suggestItems;
+		$suggestItems = $this->object->view()->suggestItems;
 
 		$this->assertRegExp( '#\[.*\{"label":"Cafe.*","html":".*Cafe.*"\}.*\]#smU', $output );
 		$this->assertNotEquals( [], $suggestItems );
@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		$object->setView( \TestHelperHtml::getView() );
+		$object->setView( \TestHelperHtml::view() );
 
 		$this->assertEquals( null, $object->body() );
 	}

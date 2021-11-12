@@ -180,7 +180,7 @@ class Standard
 
 		try
 		{
-			$view = $this->getView();
+			$view = $this->view();
 			$id = $view->param( 'dl_id' );
 
 			/** client/html/account/download/error/url/target
@@ -237,7 +237,7 @@ class Standard
 	protected function addDownload( \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface $item )
 	{
 		$fs = $this->getContext()->getFilesystemManager()->get( 'fs-secure' );
-		$response = $this->getView()->response();
+		$response = $this->view()->response();
 		$value = (string) $item->getValue();
 
 		if( $fs->has( $value ) )

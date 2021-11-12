@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Delivery\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardStepActive = 'delivery';
 		$this->object->setView( $this->object->data( $view ) );
 
@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardStepActive = 'delivery';
 		$view->standardSteps = array( 'before', 'delivery', 'after' );
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOtherStep()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$this->object->setView( $this->object->data( $view ) );
 
 		$output = $this->object->body();
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEquals( 'delivery', $this->object->getView()->get( 'standardStepActive' ) );
+		$this->assertEquals( 'delivery', $this->object->view()->get( 'standardStepActive' ) );
 	}
 
 
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'Service item not found' );
 		}
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'c_deliveryoption' => $service->getId(),
@@ -126,7 +126,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitInvalidId()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array( 'c_deliveryoption' => -1 );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
@@ -149,7 +149,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'Service item not found' );
 		}
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 
 		$param = array(
 			'c_deliveryoption' => $service->getId(),

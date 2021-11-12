@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Summary\Standard( $this->context );
@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $controller->get();
 		$this->object->setView( $this->object->data( $view ) );
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
 		$view->standardSteps = array( 'before', 'summary' );
@@ -78,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyDetail()
 	{
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardStepActive = 'summary';
 		$view->standardBasket = $this->getBasket();
 		$this->object->setView( $this->object->data( $view ) );
@@ -112,7 +112,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'cs_order' => 1 ) );
 		$view->addHelper( 'param', $helper );
 		$this->object->setView( $view );
@@ -126,7 +126,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->standardBasket = $controller->get();
 
 		$param = array( 'cs_comment' => 'test comment' );
@@ -136,13 +136,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'standardStepActive' ) );
+		$this->assertEmpty( $this->object->view()->get( 'standardStepActive' ) );
 	}
 
 
 	public function testInitOptionOK()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardBasket = $this->getBasket();
 		$this->object->setView( $view );
 
@@ -162,7 +162,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitOptionInvalid()
 	{
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->standardBasket = $this->getBasket();
 		$this->object->setView( $view );
 
@@ -184,7 +184,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->getView()->get( 'standardStepActive' ) );
+		$this->assertEmpty( $this->object->view()->get( 'standardStepActive' ) );
 	}
 
 

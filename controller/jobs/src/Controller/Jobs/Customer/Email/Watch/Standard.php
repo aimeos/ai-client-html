@@ -320,7 +320,7 @@ class Standard
 	protected function sendMail( \Aimeos\MShop\Context\Item\Iface $context,
 		\Aimeos\MShop\Common\Item\Address\Iface $address, array $products )
 	{
-		$view = $context->getView();
+		$view = $context->view();
 		$view->extProducts = $products;
 		$view->extAddressItem = $address;
 

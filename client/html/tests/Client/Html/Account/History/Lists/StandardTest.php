@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Account\History\Lists\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customer = $this->getCustomerItem( 'test@example.com' );
 		$this->context->setUserId( $customer->getId() );
 
-		$this->object->setView( $this->object->data( \TestHelperHtml::getView() ) );
+		$this->object->setView( $this->object->data( \TestHelperHtml::view() ) );
 
 		$output = $this->object->body();
 

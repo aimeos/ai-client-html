@@ -61,7 +61,7 @@ interface Iface
 	 *
 	 * @return \Aimeos\MW\View\Iface The view object which generates the HTML output
 	 */
-	public function getView() : \Aimeos\MW\View\Iface;
+	public function view() : \Aimeos\MW\View\Iface;
 
 	/**
 	 * Sets the view object that will generate the HTML output.

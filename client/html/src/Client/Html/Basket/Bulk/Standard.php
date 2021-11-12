@@ -69,7 +69,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$site = $context->getLocale()->getSiteId();
-		$view = $this->getView();
+		$view = $this->view();
 
 		/** client/html/basket/bulk
 		 * All parameters defined for the bulk order component and its subparts
@@ -165,7 +165,7 @@ class Standard
 	{
 		$context = $this->getContext();
 		$site = $context->getLocale()->getSiteId();
-		$view = $this->getView();
+		$view = $this->view();
 
 		$config = $context->getConfig()->get( 'client/html/basket/bulk', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:bulk-header', $config );

@@ -69,7 +69,7 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$context = $this->getContext();
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{
@@ -138,7 +138,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{
@@ -279,7 +279,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$context = $this->getContext();
 		$ids = (array) $view->param( 'fav_id', [] );
 

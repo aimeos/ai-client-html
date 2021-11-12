@@ -68,7 +68,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -183,7 +183,7 @@ class Standard
 
 			if( $context->getUserId() == null && ( $address = current( $addresses ) ) !== false )
 			{
-				$create = (bool) $this->getView()->param( 'cs_option_account' );
+				$create = (bool) $this->view()->param( 'cs_option_account' );
 				$userId = $this->getCustomerId( $address, $create );
 				$context->setUserId( $userId );
 			}

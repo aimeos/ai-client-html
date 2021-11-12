@@ -100,7 +100,7 @@ class Standard
 
 		if( ( $html = $this->getCached( 'body', $uid, [], $confkey ) ) === null )
 		{
-			$view = $this->getView();
+			$view = $this->view();
 			$config = $this->getContext()->getConfig();
 
 			/** client/html/catalog/home/template-body
@@ -189,7 +189,7 @@ class Standard
 
 		if( ( $html = $this->getCached( 'header', $uid, [], $confkey ) ) === null )
 		{
-			$view = $this->getView();
+			$view = $this->view();
 			$config = $this->getContext()->getConfig();
 
 			/** client/html/catalog/home/template-header
@@ -344,7 +344,7 @@ class Standard
 	public function init()
 	{
 		$context = $this->getContext();
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{
@@ -396,7 +396,7 @@ class Standard
 	{
 		$content = parent::modifyBody( $content, $uid );
 
-		return $this->replaceSection( $content, $this->getView()->csrf()->formfield(), 'catalog.lists.items.csrf' );
+		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.lists.items.csrf' );
 	}
 
 	/**

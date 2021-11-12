@@ -67,7 +67,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		if( $view->param( 'his_action' ) != 'order' ) {
 			return '';

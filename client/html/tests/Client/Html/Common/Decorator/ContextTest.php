@@ -25,7 +25,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Context( $this->client, $context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -39,7 +39,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->client->expects( $this->once() )->method( 'data' ) ->will( $this->returnArgument( 0 ) );
 
-		$result = $this->object->data( \TestHelperHtml::getView() );
+		$result = $this->object->data( \TestHelperHtml::view() );
 
 		$this->assertInstanceOf( '\Aimeos\MW\View\Iface', $result );
 		$this->assertEquals( 'unittest', $result->get( 'contextSite' ) );

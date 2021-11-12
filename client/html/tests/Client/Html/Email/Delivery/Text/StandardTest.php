@@ -40,7 +40,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->message = 'The delivery status';
 		$view->extOrderItem = self::$orderItem;
 		$view->extOrderBaseItem = self::$orderBaseItem;
@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->emailMock->expects( $this->once() )->method( 'setBody' )
 			->with( $this->stringContains( 'delivery status' ) );
 
-		$this->object->setView( $this->object->data( $this->object->getView() ) );
+		$this->object->setView( $this->object->data( $this->object->view() ) );
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'The delivery status', $output );

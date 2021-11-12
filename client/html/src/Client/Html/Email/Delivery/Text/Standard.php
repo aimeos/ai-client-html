@@ -67,7 +67,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {

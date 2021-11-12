@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Account\Profile\Address\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
 		$customer = $manager->find( 'test@example.com', ['customer/address'] );
 
-		$view = \TestHelperHtml::getView();
+		$view = \TestHelperHtml::view();
 		$view->profileCustomerItem = $customer;
 		$this->object->setView( $this->object->data( $view ) );
 		$this->context->setUserId( $customer->getId() );

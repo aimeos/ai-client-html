@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Basket\Related\Bought\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basket = $controller->get();
 		$basket->addProduct( $this->getOrderProductItem( 'CNE' ) );
 
-		$view = $this->object->getView();
+		$view = $this->object->view();
 		$view->relatedBasket = $basket;
 		$this->object->setView( $this->object->data( $view ) );
 

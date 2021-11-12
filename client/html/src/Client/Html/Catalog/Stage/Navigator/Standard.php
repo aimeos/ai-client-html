@@ -67,7 +67,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -198,7 +198,7 @@ class Standard
 	 */
 	public function modifyBody( string $content, string $uid ) : string
 	{
-		$this->setView( $this->data( $this->getView() ) );
+		$this->setView( $this->data( $this->view() ) );
 
 		return $this->replaceSection( $content, $this->body( $uid ), 'catalog.stage.navigator' );
 	}

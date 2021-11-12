@@ -86,7 +86,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -216,7 +216,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		try
 		{
@@ -325,7 +325,7 @@ class Standard
 	 */
 	protected function checkFields( array &$params ) : array
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		/** client/html/checkout/standard/address/billing/mandatory
 		 * List of billing address input fields that are required

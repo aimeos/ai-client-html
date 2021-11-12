@@ -17,7 +17,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Service\Standard( \TestHelperHtml::getContext() );
-		$this->object->setView( \TestHelperHtml::getView() );
+		$this->object->setView( \TestHelperHtml::view() );
 	}
 
 
@@ -32,14 +32,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
 		$output = $this->object->body();
 
 		$this->assertEquals( '', $output );
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 3, count( $tags ) );
 
-		$rendered = $this->object->getView()->block()->get( 'catalog/detail/service' );
+		$rendered = $this->object->view()->block()->get( 'catalog/detail/service' );
 		$this->assertStringStartsWith( '<div class="catalog-detail-service', $rendered );
 	}
 

@@ -66,7 +66,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -196,7 +196,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$view = $this->getView();
+		$view = $this->view();
 
 		if( !$view->param( 'address/save' ) && !$view->param( 'address/delete' ) ) {
 			return parent::init();

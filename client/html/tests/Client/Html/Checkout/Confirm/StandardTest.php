@@ -16,7 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->view = \TestHelperHtml::getView();
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->setEditor( 'test@example.com' );
 
@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
 		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
 
-		$this->object->setView( $this->object->data( $this->object->getView(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>Confirmation | Aimeos</title>', $output );
@@ -177,7 +177,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$this->assertNotEmpty( $this->object->getView()->get( 'confirmErrorList' ) );
+		$this->assertNotEmpty( $this->object->view()->get( 'confirmErrorList' ) );
 	}
 
 
@@ -185,7 +185,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertNotEmpty( $this->object->getView()->get( 'confirmErrorList' ) );
+		$this->assertNotEmpty( $this->object->view()->get( 'confirmErrorList' ) );
 	}
 
 

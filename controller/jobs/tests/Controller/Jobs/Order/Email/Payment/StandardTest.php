@@ -114,7 +114,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setMail( $mailStub );
 		$baseItem = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
-		$result = $this->access( 'getView' )->invokeArgs( $this->object, array( $this->context, $baseItem, 'de' ) );
+		$result = $this->access( 'view' )->invokeArgs( $this->object, array( $this->context, $baseItem, 'de' ) );
 
 		$this->assertInstanceof( \Aimeos\MW\View\Iface::class, $result );
 	}
