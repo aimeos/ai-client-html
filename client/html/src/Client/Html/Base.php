@@ -45,19 +45,6 @@ abstract class Base
 
 
 	/**
-	 * Catch unknown methods
-	 *
-	 * @param string $name Name of the method
-	 * @param array $param List of method parameter
-	 * @throws \Aimeos\Client\Html\Exception If method call failed
-	 */
-	public function __call( string $name, array $param )
-	{
-		throw new \Aimeos\Client\Html\Exception( sprintf( 'Unable to call method "%1$s"', $name ) );
-	}
-
-
-	/**
 	 * Adds the data to the view object required by the templates
 	 *
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
