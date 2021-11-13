@@ -12,24 +12,29 @@ namespace Aimeos\Client\Html\Catalog\Tree;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
-		$this->object = new \Aimeos\Client\Html\Catalog\Tree\Standard( \TestHelperHtml::getContext() );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->view = \TestHelperHtml::view();
+		$this->context = \TestHelperHtml::getContext();
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Tree\Standard( $this->context );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testBody()
 	{
-		$this->object->setView( $this->object->data( $this->object->view() ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<section class="aimeos catalog-filter"', $output );

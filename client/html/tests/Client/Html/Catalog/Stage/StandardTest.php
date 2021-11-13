@@ -14,33 +14,34 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Stage\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testHeader()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $this->getCatalogItem()->getId() ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $this->getCatalogItem()->getId() ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertNotNull( $output );
@@ -70,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-stage', $output );
@@ -84,14 +85,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyCatId()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => $this->getCatalogItem()->getId() ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $this->getCatalogItem()->getId() ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-stage home categories coffee"', $output );
@@ -207,7 +207,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'stageErrorList' ) );
+		$this->assertEmpty( $this->view->get( 'stageErrorList' ) );
 	}
 
 

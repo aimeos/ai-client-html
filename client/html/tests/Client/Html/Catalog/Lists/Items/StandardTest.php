@@ -13,18 +13,20 @@ namespace Aimeos\Client\Html\Catalog\Lists\Items;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
-		$context = \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::getContext();
 
-		$config = $context->getConfig();
+		$config = $this->context->getConfig();
 		$config->set( 'client/html/catalog/lists/basket-add', true );
 
-		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Items\Standard( $context );
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Items\Standard( $this->context );
 
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $context );
+		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$search = $catalogManager->filter();
 		$search->setConditions( $search->compare( '==', 'catalog.code', 'cafe' ) );
 
@@ -33,28 +35,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 		$domains = array( 'media', 'price', 'text', 'attribute', 'product' );
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $context );
+		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
 		$search = $productManager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', array( 'CNE', 'U:TEST', 'U:BUNDLE' ) ) );
 		$total = 0;
 
 
-		$view = \TestHelperHtml::view( 'unittest', $config );
+		$this->view = \TestHelperHtml::view( 'unittest', $config );
 
-		$view->listProductItems = $productManager->search( $search, $domains, $total );
-		$view->listProductTotal = $total;
-		$view->listPageSize = 100;
-		$view->listPageCurr = 1;
-		$view->listParams = [];
-		$view->listCatPath = array( $catalogManager->create(), $catItem );
+		$this->view->listProductItems = $productManager->search( $search, $domains, $total );
+		$this->view->listProductTotal = $total;
+		$this->view->listPageSize = 100;
+		$this->view->listPageCurr = 1;
+		$this->view->listParams = [];
+		$this->view->listCatPath = array( $catalogManager->create(), $catItem );
 
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -67,7 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->object->setView( $this->object->data( $this->object->view() ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 
@@ -96,11 +98,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyTemplate()
 	{
-		$view = $this->object->view();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'l_type' => 'list' ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'l_type' => 'list' ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
 

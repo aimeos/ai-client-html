@@ -16,6 +16,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 	private $context;
 	private $emailMock;
+	private $view;
 
 
 	public static function setUpBeforeClass() : void
@@ -39,19 +40,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
-		$view->extOrderItem = self::$orderItem;
-		$view->extOrderBaseItem = self::$orderBaseItem;
-		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
+		$this->view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
+		$this->view->extOrderItem = self::$orderItem;
+		$this->view->extOrderBaseItem = self::$orderBaseItem;
+		$this->view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $this->view, $this->emailMock ) );
 
 		$this->object = new \Aimeos\Client\Html\Email\Payment\Pdf\Standard( $this->context );
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -59,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->emailMock->expects( $this->once() )->method( 'addAttachment' );
 
-		$this->object->setView( $this->object->data( $this->object->view() ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$this->object->body();
 	}
 

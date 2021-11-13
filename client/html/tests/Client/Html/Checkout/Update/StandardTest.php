@@ -12,15 +12,15 @@ namespace Aimeos\Client\Html\Checkout\Update;
 
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
-	private $view;
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
-		$this->context = \TestHelperHtml::getContext();
 		$this->view = \TestHelperHtml::view();
+		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Update\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -147,17 +147,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'orderid' => $this->getOrder( '2011-09-17 16:14:32' )->getId(),
 		);
 
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $params );
+		$this->view->addHelper( 'param', $helper );
 
 		$request = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
-		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $view, $request, '127.0.0.1', 'test' );
-		$view->addHelper( 'request', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
+		$this->view->addHelper( 'request', $helper );
 
 		$this->object->init();
 
-		$this->assertEquals( 400, $view->response()->getStatusCode() );
+		$this->assertEquals( 400, $this->view->response()->getStatusCode() );
 	}
 
 

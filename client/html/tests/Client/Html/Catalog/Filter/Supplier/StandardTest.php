@@ -12,18 +12,23 @@ namespace Aimeos\Client\Html\Catalog\Filter\Supplier;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
-		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Supplier\Standard( \TestHelperHtml::getContext() );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->view = \TestHelperHtml::view();
+		$this->context = \TestHelperHtml::getContext();
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Supplier\Standard( $this->context );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -32,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
 		$regex = '#<div class="supplier-lists">.*<ul class="attr-list">.*<li.*<li.*</ul>.*</fieldset>#smu';
@@ -45,11 +50,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyCategory()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => -1 ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_catid' => -1 ) );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
@@ -58,11 +62,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchText()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'test' ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'test' ) );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
@@ -71,11 +74,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchSupplier()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => array( -1, -2 ) ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_supid' => array( -1, -2 ) ) );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );

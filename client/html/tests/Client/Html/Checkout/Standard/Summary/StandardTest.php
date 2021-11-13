@@ -14,23 +14,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::view();
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Summary\Standard( $this->context );
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -38,10 +40,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
-		$view = \TestHelperHtml::view();
-		$view->standardStepActive = 'summary';
-		$view->standardBasket = $controller->get();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardStepActive = 'summary';
+		$this->view->standardBasket = $controller->get();
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
@@ -57,11 +59,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::view();
-		$view->standardStepActive = 'summary';
-		$view->standardBasket = $this->getBasket();
-		$view->standardSteps = array( 'before', 'summary' );
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardStepActive = 'summary';
+		$this->view->standardBasket = $this->getBasket();
+		$this->view->standardSteps = array( 'before', 'summary' );
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 
@@ -78,10 +80,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyDetail()
 	{
-		$view = \TestHelperHtml::view();
-		$view->standardStepActive = 'summary';
-		$view->standardBasket = $this->getBasket();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardStepActive = 'summary';
+		$this->view->standardBasket = $this->getBasket();
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertStringContainsString( '<div class="common-summary-detail', $output );
@@ -112,10 +114,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'cs_order' => 1 ) );
-		$view->addHelper( 'param', $helper );
-		$this->object->setView( $view );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'cs_order' => 1 ) );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
 
 		$this->expectException( \Aimeos\MShop\Order\Exception::class );
 		$this->object->init();
@@ -126,25 +127,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 
-		$view = \TestHelperHtml::view();
-		$view->standardBasket = $controller->get();
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardBasket = $controller->get();
 
 		$param = array( 'cs_comment' => 'test comment' );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-		$this->object->setView( $view );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
 
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'standardStepActive' ) );
+		$this->assertEmpty( $this->view->get( 'standardStepActive' ) );
 	}
 
 
 	public function testInitOptionOK()
 	{
-		$view = $this->object->view();
-		$view->standardBasket = $this->getBasket();
-		$this->object->setView( $view );
+		$this->view->standardBasket = $this->getBasket();
+		$this->object->setView( $this->view );
 
 		$param = array(
 			'cs_order' => '1',
@@ -152,31 +152,30 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'cs_option_terms_value' => '1',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$this->assertEquals( null, $view->get( 'standardStepActive' ) );
+		$this->assertEquals( null, $this->view->get( 'standardStepActive' ) );
 	}
 
 
 	public function testInitOptionInvalid()
 	{
-		$view = $this->object->view();
-		$view->standardBasket = $this->getBasket();
-		$this->object->setView( $view );
+		$this->view->standardBasket = $this->getBasket();
+		$this->object->setView( $this->view );
 
 		$param = array(
 			'cs_order' => '1',
 			'cs_option_terms' => '1',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
-		$this->assertEquals( 'summary', $view->get( 'standardStepActive' ) );
-		$this->assertArrayHasKey( 'option', $view->get( 'summaryErrorCodes', [] ) );
+		$this->assertEquals( 'summary', $this->view->get( 'standardStepActive' ) );
+		$this->assertArrayHasKey( 'option', $this->view->get( 'summaryErrorCodes', [] ) );
 	}
 
 
@@ -184,7 +183,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'standardStepActive' ) );
+		$this->assertEmpty( $this->view->get( 'standardStepActive' ) );
 	}
 
 

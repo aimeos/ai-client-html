@@ -14,29 +14,31 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Delivery\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testHeader()
 	{
-		$view = \TestHelperHtml::view();
-		$view->standardStepActive = 'delivery';
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardStepActive = 'delivery';
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
@@ -52,23 +54,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::view();
-		$view->standardStepActive = 'delivery';
-		$view->standardSteps = array( 'before', 'delivery', 'after' );
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardStepActive = 'delivery';
+		$this->view->standardSteps = array( 'before', 'delivery', 'after' );
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="checkout-standard-delivery">', $output );
 
-		$this->assertGreaterThan( 0, count( $view->deliveryServices ) );
+		$this->assertGreaterThan( 0, count( $this->view->deliveryServices ) );
 	}
 
 
 	public function testBodyOtherStep()
 	{
-		$view = \TestHelperHtml::view();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertEquals( '', $output );
@@ -93,7 +95,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEquals( 'delivery', $this->object->view()->get( 'standardStepActive' ) );
+		$this->assertEquals( 'delivery', $this->view->get( 'standardStepActive' ) );
 	}
 
 
@@ -107,15 +109,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'Service item not found' );
 		}
 
-		$view = \TestHelperHtml::view();
+		$this->view = \TestHelperHtml::view();
 
 		$param = array(
 			'c_deliveryoption' => $service->getId(),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 
 		$this->object->init();
 
@@ -126,13 +128,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitInvalidId()
 	{
-		$view = \TestHelperHtml::view();
+		$this->view = \TestHelperHtml::view();
 
 		$param = array( 'c_deliveryoption' => -1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 
 		$this->expectException( '\\Aimeos\\MShop\\Exception' );
 		$this->object->init();
@@ -149,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'Service item not found' );
 		}
 
-		$view = \TestHelperHtml::view();
+		$this->view = \TestHelperHtml::view();
 
 		$param = array(
 			'c_deliveryoption' => $service->getId(),
@@ -159,10 +161,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				),
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 
 		$this->expectException( '\\Aimeos\\Controller\\Frontend\\Basket\\Exception' );
 		$this->object->init();

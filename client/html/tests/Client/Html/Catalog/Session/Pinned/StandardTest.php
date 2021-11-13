@@ -13,21 +13,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Session\Pinned\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', null );
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -36,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$pinned = array( $this->getProductItem( 'CNC' )->getId() );
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', $pinned );
 
-		$this->object->setView( $this->object->data( $this->object->view() ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smU', $output );
@@ -55,14 +57,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$prodId = $this->getProductItem( 'CNE' )->getId();
 
-		$view = $this->object->view();
 		$param = array(
 			'pin_action' => 'add',
 			'pin_id' => $prodId,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
@@ -76,14 +77,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$prodId = $this->getProductItem( 'CNE' )->getId();
 		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', array( $prodId => $prodId ) );
 
-		$view = $this->object->view();
 		$param = array(
 			'pin_action' => 'delete',
 			'pin_id' => $prodId,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 

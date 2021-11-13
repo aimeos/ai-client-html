@@ -14,21 +14,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -37,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>summary | Aimeos</title>', $output );
@@ -62,11 +64,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->view();
-		$view->standardStepActive = 'address';
+		$this->view->standardStepActive = 'address';
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'c_step' => 'payment' ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'c_step' => 'payment' ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
 
@@ -82,13 +83,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOnepage()
 	{
-		$view = $this->object->view();
 
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'address', 'delivery', 'payment', 'summary' ) );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
-		$view->addHelper( 'config', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
+		$this->view->addHelper( 'config', $helper );
 
 		$output = $this->object->body();
 
@@ -102,14 +102,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOnepagePartitial()
 	{
-		$view = $this->object->view();
-		$view->standardStepActive = 'delivery';
+		$this->view->standardStepActive = 'delivery';
 
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'delivery', 'payment' ) );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
-		$view->addHelper( 'config', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
+		$this->view->addHelper( 'config', $helper );
 
 		$output = $this->object->body();
 
@@ -123,14 +122,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOnepageDifferentStep()
 	{
-		$view = $this->object->view();
-		$view->standardStepActive = 'address';
+		$this->view->standardStepActive = 'address';
 
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'delivery', 'payment' ) );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
-		$view->addHelper( 'config', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
+		$this->view->addHelper( 'config', $helper );
 
 		$output = $this->object->body();
 
@@ -231,6 +229,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'standardErrorList' ) );
+		$this->assertEmpty( $this->view->get( 'standardErrorList' ) );
 	}
 }

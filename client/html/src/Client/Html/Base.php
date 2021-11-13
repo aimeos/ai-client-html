@@ -98,36 +98,6 @@ abstract class Base
 
 
 	/**
-	 * Returns the outmost decorator of the decorator stack
-	 *
-	 * @return \Aimeos\Client\Html\Iface Outmost decorator object
-	 */
-	protected function getObject() : \Aimeos\Client\Html\Iface
-	{
-		if( $this->object !== null ) {
-			return $this->object;
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Returns the view object that will generate the HTML output.
-	 *
-	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output
-	 */
-	public function view() : \Aimeos\MW\View\Iface
-	{
-		if( !isset( $this->view ) ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'No view available' ) );
-		}
-
-		return $this->view;
-	}
-
-
-	/**
 	 * Modifies the cached body content to replace content based on sessions or cookies.
 	 *
 	 * @param string $content Cached content
@@ -192,6 +162,36 @@ abstract class Base
 	{
 		$this->view = $view;
 		return $this;
+	}
+
+
+	/**
+	 * Returns the outmost decorator of the decorator stack
+	 *
+	 * @return \Aimeos\Client\Html\Iface Outmost decorator object
+	 */
+	protected function getObject() : \Aimeos\Client\Html\Iface
+	{
+		if( $this->object !== null ) {
+			return $this->object;
+		}
+
+		return $this;
+	}
+
+
+	/**
+	 * Returns the view object that will generate the HTML output.
+	 *
+	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 */
+	protected function view() : \Aimeos\MW\View\Iface
+	{
+		if( !isset( $this->view ) ) {
+			throw new \Aimeos\Client\Html\Exception( sprintf( 'No view available' ) );
+		}
+
+		return $this->view;
 	}
 
 

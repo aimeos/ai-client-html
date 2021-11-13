@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<script', $output );
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body( 1, $tags, $expire );
 
 		$this->assertStringContainsString( '<section class="catalog-list-promo">', $output );
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->view );
 		$this->context->getConfig()->set( 'client/html/catalog/lists/catid-default', $this->catItem->getId() );
 
-		$this->object->setView( $this->object->data( $this->object->view() ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<section class="catalog-list-promo">', $output );

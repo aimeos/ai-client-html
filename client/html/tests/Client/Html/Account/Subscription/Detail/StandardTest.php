@@ -13,23 +13,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::view();
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Account\Subscription\Detail\Standard( $this->context );
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -38,16 +39,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customer = $this->getCustomerItem( 'test@example.com' );
 		$this->context->setUserId( $customer->getId() );
 
-		$view = \TestHelperHtml::view();
+		$this->view = \TestHelperHtml::view();
 		$param = array(
 			'sub_action' => 'detail',
 			'sub_id' => $this->getSubscriptionItem( $customer->getId() )->getId()
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 

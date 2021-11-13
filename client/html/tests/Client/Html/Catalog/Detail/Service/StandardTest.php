@@ -12,18 +12,23 @@ namespace Aimeos\Client\Html\Catalog\Detail\Service;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
-		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Service\Standard( \TestHelperHtml::getContext() );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->view = \TestHelperHtml::view();
+		$this->context = \TestHelperHtml::getContext();
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Service\Standard( $this->context );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -32,14 +37,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
 		$this->assertEquals( '', $output );
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 3, count( $tags ) );
 
-		$rendered = $this->object->view()->block()->get( 'catalog/detail/service' );
+		$rendered = $this->view->block()->get( 'catalog/detail/service' );
 		$this->assertStringStartsWith( '<div class="catalog-detail-service', $rendered );
 	}
 

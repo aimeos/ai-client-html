@@ -12,24 +12,29 @@ namespace Aimeos\Client\Html\Catalog\Filter\Price;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
-		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Price\Standard( \TestHelperHtml::getContext() );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->view = \TestHelperHtml::view();
+		$this->context = \TestHelperHtml::getContext();
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Price\Standard( $this->context );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testBody()
 	{
-		$this->object->view()->priceHigh = 100;
+		$this->view->priceHigh = 100;
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="catalog-filter-price', $output );
 	}

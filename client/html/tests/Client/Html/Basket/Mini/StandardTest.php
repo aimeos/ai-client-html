@@ -14,20 +14,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Basket\Mini\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -57,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBody()
 	{
 		$output = $this->object->body();
-		$miniBasket = $this->object->view()->miniBasket;
+		$miniBasket = $this->view->miniBasket;
 
 		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Base\Iface );
 		$this->assertStringContainsString( '<section class="aimeos basket-mini"', $output );
@@ -72,10 +74,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$productItem = $this->getProductItem( 'CNE' );
 
-		$view = $this->object->view();
 
 		$controller->addProduct( $productItem, 9 );
-		$view->miniBasket = $controller->get();
+		$this->view->miniBasket = $controller->get();
 
 		$output = $this->object->body();
 
@@ -153,7 +154,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'miniErrorList' ) );
+		$this->assertEmpty( $this->view->get( 'miniErrorList' ) );
 	}
 
 

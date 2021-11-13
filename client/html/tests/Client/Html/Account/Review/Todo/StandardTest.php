@@ -13,32 +13,34 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$customer = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context )->find( 'test@example.com' );
 		$this->context->setUserId( $customer->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Account\Review\Todo\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testBody()
 	{
-		$view = $this->object->data( \TestHelperHtml::view() );
-		$view->todoProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
+		$this->view = $this->object->data( \TestHelperHtml::view() );
+		$this->view->todoProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
 
-		$output = $this->object->setView( $view )->body();
+		$output = $this->object->setView( $this->view )->body();
 
 		$this->assertStringContainsString( '<div class="account-review-todo">', $output );
 	}
@@ -60,11 +62,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function getInit()
 	{
-		$view = $this->object->view();
 		$param = ['review-todo' => [['review.rating' => 5]]];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-		$this->object->setView( $view );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
 
 		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Review\Standard::class )
 			->setConstructorArgs( [$this->context] )
@@ -77,7 +78,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', null );
 
-		$this->assertEmpty( $view->get( 'reviewErrorList' ) );
-		$this->assertCount( 1, $view->get( 'reviewInfoList' ) );
+		$this->assertEmpty( $this->view->get( 'reviewErrorList' ) );
+		$this->assertCount( 1, $this->view->get( 'reviewInfoList' ) );
 	}
 }

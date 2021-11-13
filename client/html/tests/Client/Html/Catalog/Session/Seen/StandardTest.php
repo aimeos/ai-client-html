@@ -12,20 +12,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Session\Seen\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -34,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$seen = array( 1 => 'html product one', 2 => 'html product two' );
 		$this->context->getSession()->set( 'aimeos/catalog/session/seen/list', $seen );
 
-		$this->object->setView( $this->object->data( $this->object->view() ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertRegExp( '#.*html product two.*html product one.*#smU', $output ); // list is reversed

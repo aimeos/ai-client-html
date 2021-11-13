@@ -13,33 +13,35 @@ namespace Aimeos\Client\Html\Catalog\Stage\Navigator;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
-		$context = \TestHelperHtml::getContext();
+		$this->view = \TestHelperHtml::view();
+		$this->context = \TestHelperHtml::getContext();
 
-		$this->object = new \Aimeos\Client\Html\Catalog\Stage\Navigator\Standard( $context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object = new \Aimeos\Client\Html\Catalog\Stage\Navigator\Standard( $this->context );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testBody()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_pos' => 1 ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_pos' => 1 ) );
+		$this->view->addHelper( 'param', $helper );
 
-		$view->navigationPrev = '#';
-		$view->navigationNext = '#';
+		$this->view->navigationPrev = '#';
+		$this->view->navigationNext = '#';
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<!-- catalog.stage.navigator -->', $output );
@@ -50,9 +52,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testModifyHeader()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_pos' => 1 ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_pos' => 1 ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$content = '<!-- catalog.stage.navigator -->test<!-- catalog.stage.navigator -->';
 		$output = $this->object->modifyHeader( $content, 1 );
@@ -63,9 +64,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testModifyBody()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'd_pos' => 1 ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_pos' => 1 ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$content = '<!-- catalog.stage.navigator -->test<!-- catalog.stage.navigator -->';
 		$output = $this->object->modifyBody( $content, 1 );

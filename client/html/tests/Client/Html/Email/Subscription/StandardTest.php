@@ -17,6 +17,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	private $object;
 	private $context;
 	private $emailMock;
+	private $view;
 
 
 	public static function setUpBeforeClass() : void
@@ -57,20 +58,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::getContext();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
-		$view->extSubscriptionItem = self::$subscriptionItem;
-		$view->extOrderProductItem = self::$productItem;
-		$view->extAddressItem = self::$addressItem;
-		$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $this->emailMock ) );
+		$this->view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
+		$this->view->extSubscriptionItem = self::$subscriptionItem;
+		$this->view->extOrderProductItem = self::$productItem;
+		$this->view->extAddressItem = self::$addressItem;
+		$this->view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $this->view, $this->emailMock ) );
 
 		$this->object = new \Aimeos\Client\Html\Email\Subscription\Standard( $this->context );
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 

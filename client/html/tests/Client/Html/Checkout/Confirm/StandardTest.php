@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
 		$this->context->getSession()->set( 'aimeos/orderid', $orderid );
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>Confirmation | Aimeos</title>', $output );
@@ -177,7 +177,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$this->assertNotEmpty( $this->object->view()->get( 'confirmErrorList' ) );
+		$this->assertNotEmpty( $this->view->get( 'confirmErrorList' ) );
 	}
 
 
@@ -185,7 +185,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertNotEmpty( $this->object->view()->get( 'confirmErrorList' ) );
+		$this->assertNotEmpty( $this->view->get( 'confirmErrorList' ) );
 	}
 
 

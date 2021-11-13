@@ -14,15 +14,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Address\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
@@ -30,14 +32,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::view();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertNotNull( $output );

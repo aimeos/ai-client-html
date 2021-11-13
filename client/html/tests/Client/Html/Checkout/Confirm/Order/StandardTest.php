@@ -13,23 +13,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::view();
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Confirm\Order\Standard( $this->context );
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -37,9 +38,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
 
-		$view = \TestHelperHtml::view();
-		$view->confirmOrderItem = $this->getOrderItem( $customer->getId() );
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->view->confirmOrderItem = $this->getOrderItem( $customer->getId() );
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 

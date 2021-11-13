@@ -14,15 +14,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
@@ -30,15 +32,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testHeader()
 	{
-		$view = $this->object->view();
-		$view->standardStepActive = 'address';
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view->standardStepActive = 'address';
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
@@ -54,9 +55,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeaderOtherStep()
 	{
-		$view = $this->object->view();
-		$view->standardStepActive = 'xyz';
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view->standardStepActive = 'xyz';
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->header();
 		$this->assertEquals( '', $output );
@@ -68,25 +68,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$item = $this->getCustomerItem();
 		$this->context->setUserId( $item->getId() );
 
-		$view = $this->object->view();
-		$view->standardStepActive = 'address';
-		$view->standardSteps = array( 'address', 'after' );
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view->standardStepActive = 'address';
+		$this->view->standardSteps = array( 'address', 'after' );
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="checkout-standard-address">', $output );
 
-		$this->assertGreaterThanOrEqual( 0, count( $view->addressLanguages ) );
-		$this->assertGreaterThanOrEqual( 0, count( $view->addressCountries ) );
+		$this->assertGreaterThanOrEqual( 0, count( $this->view->addressLanguages ) );
+		$this->assertGreaterThanOrEqual( 0, count( $this->view->addressCountries ) );
 	}
 
 
 	public function testBodyOtherStep()
 	{
-		$view = $this->object->view();
-		$view->standardStepActive = 'xyz';
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view->standardStepActive = 'xyz';
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertEquals( '', $output );
@@ -111,7 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEquals( 'address', $this->object->view()->get( 'standardStepActive' ) );
+		$this->assertEquals( 'address', $this->view->get( 'standardStepActive' ) );
 	}
 
 

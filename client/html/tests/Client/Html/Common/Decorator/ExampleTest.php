@@ -10,32 +10,32 @@
 namespace Aimeos\Client\Html\Common\Decorator;
 
 
-/**
- * Test class for \Aimeos\Client\Html\Common\Decorator\Example.
- */
 class ExampleTest extends \PHPUnit\Framework\TestCase
 {
 	private $client;
 	private $object;
+	private $context;
+	private $view;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp() : void
 	{
-		$context = \TestHelperHtml::getContext();
+		$this->view = \TestHelperHtml::view();
+		$this->context = \TestHelperHtml::getContext();
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
 			->setMethods( array( 'header', 'body', 'testMethod' ) )
-			->setConstructorArgs( array( $context, [] ) )
+			->setConstructorArgs( array( $this->context, [] ) )
 			->getMock();
 
-		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $context, [] );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object = new \Aimeos\Client\Html\Common\Decorator\Example( $this->client, $this->context, [] );
+		$this->object->setView( $this->view );
+	}
+
+
+	protected function tearDown() : void
+	{
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -68,16 +68,16 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetView()
 	{
-		$this->assertInstanceOf( '\\Aimeos\\MW\\View\\Iface', $this->object->view() );
+		$this->assertInstanceOf( '\\Aimeos\\MW\\View\\Iface', $this->view );
 	}
 
 
 	public function testSetView()
 	{
-		$view = new \Aimeos\MW\View\Standard();
-		$this->object->setView( $view );
+		$this->view = new \Aimeos\MW\View\Standard();
+		$this->object->setView( $this->view );
 
-		$this->assertSame( $view, $this->object->view() );
+		$this->assertSame( $this->view, $this->view );
 	}
 
 

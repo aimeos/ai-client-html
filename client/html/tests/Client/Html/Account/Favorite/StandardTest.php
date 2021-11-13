@@ -14,21 +14,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Account\Favorite\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -144,7 +146,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'favoriteErrorList' ) );
+		$this->assertEmpty( $this->view->get( 'favoriteErrorList' ) );
 	}
 
 
@@ -154,11 +156,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$id = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' )->getId();
 		$this->context->setUserId( $item->getId() );
 
-		$view = $this->object->view();
 		$param = ['fav_action' => 'add', 'fav_id' => $id];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-		$this->object->setView( $view );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
 
 
 		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
@@ -182,11 +183,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$id = $item->getListItems( 'product', 'favorite' )->first()->getRefId();
 		$this->context->setUserId( $item->getId() );
 
-		$view = $this->object->view();
 		$param = ['fav_action' => 'delete', 'fav_id' => $id];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
-		$this->object->setView( $view );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
 
 
 		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )

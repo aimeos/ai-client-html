@@ -13,15 +13,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
 		\Aimeos\Controller\Frontend::cache( true );
+
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Account\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
@@ -30,14 +33,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 		\Aimeos\Controller\Frontend::cache( false );
 
-		unset( $this->object, $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::view();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertNotNull( $output );
@@ -66,10 +69,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
 
-		$view = \TestHelperHtml::view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'cs_option_account' => 1 ) );
-		$view->addHelper( 'param', $helper );
-		$this->object->setView( $view );
+		$this->view = \TestHelperHtml::view();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'cs_option_account' => 1 ) );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )

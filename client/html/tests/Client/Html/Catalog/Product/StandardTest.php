@@ -13,27 +13,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->getConfig()->set( 'client/html/catalog/product/product-codes', ['CNE', 'ABCD', 'CNC'] );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Product\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testHeader()
 	{
-		$view = $this->object->view();
 
 		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$filter = $manager->filter()->add( ['product.code' => ['CNE', 'ABCD', 'CNC']] );
@@ -42,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<script', $output );
@@ -72,12 +73,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->view();
 
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
 		$productNameCNE = '<h2 itemprop="name">Cafe Noire Expresso</h2>';
@@ -179,6 +179,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'productErrorList' ) );
+		$this->assertEmpty( $this->view->get( 'productErrorList' ) );
 	}
 }

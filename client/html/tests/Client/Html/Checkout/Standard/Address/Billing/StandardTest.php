@@ -14,17 +14,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
 		\Aimeos\Controller\Frontend::cache( true );
 
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Address\Billing\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
@@ -33,23 +35,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
 		\Aimeos\Controller\Frontend::cache( false );
 
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testBody()
 	{
-		$view = \TestHelperHtml::view();
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$view->addressPaymentItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view->addressPaymentItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing', $output );
 		$this->assertRegexp( '/form-item form-group city.*form-item form-group postal/smU', $output );
 
-		$this->assertGreaterThan( 0, count( $view->addressBillingMandatory ) );
-		$this->assertGreaterThan( 0, count( $view->addressBillingOptional ) );
+		$this->assertGreaterThan( 0, count( $this->view->addressBillingMandatory ) );
+		$this->assertGreaterThan( 0, count( $this->view->addressBillingOptional ) );
 	}
 
 
@@ -71,13 +73,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'addressBillingError' ) );
+		$this->assertEmpty( $this->view->get( 'addressBillingError' ) );
 	}
 
 
 	public function testInitNewAddress()
 	{
-		$view = \TestHelperHtml::view();
+		$this->view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_billingoption' => 'null',
@@ -92,10 +94,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.languageid' => 'en',
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 
 		$this->object->init();
 
@@ -106,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressMissing()
 	{
-		$view = \TestHelperHtml::view();
+		$this->view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_billingoption' => 'null',
@@ -118,10 +120,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.city' => 'hamburg',
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 
 		try
 		{
@@ -129,9 +131,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 2, count( $view->addressBillingError ) );
-			$this->assertArrayHasKey( 'order.base.address.email', $view->addressBillingError );
-			$this->assertArrayHasKey( 'order.base.address.languageid', $view->addressBillingError );
+			$this->assertEquals( 2, count( $this->view->addressBillingError ) );
+			$this->assertArrayHasKey( 'order.base.address.email', $this->view->addressBillingError );
+			$this->assertArrayHasKey( 'order.base.address.languageid', $this->view->addressBillingError );
 			return;
 		}
 
@@ -141,7 +143,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressUnknown()
 	{
-		$view = \TestHelperHtml::view();
+		$this->view = \TestHelperHtml::view();
 
 		$param = array(
 			'ca_billingoption' => 'null',
@@ -156,10 +158,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.languageid' => 'en',
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 		$this->object->init();
 
 		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
@@ -169,12 +171,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNewAddressInvalid()
 	{
-		$view = \TestHelperHtml::view();
+		$this->view = \TestHelperHtml::view();
 
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/checkout/standard/address/validate/postal', '^[0-9]{5}$' );
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
-		$view->addHelper( 'config', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
+		$this->view->addHelper( 'config', $helper );
 
 		$param = array(
 			'ca_billingoption' => 'null',
@@ -189,10 +191,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.languageid' => 'en',
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 
 		try
 		{
@@ -200,8 +202,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 1, count( $view->addressBillingError ) );
-			$this->assertArrayHasKey( 'order.base.address.postal', $view->addressBillingError );
+			$this->assertEquals( 1, count( $this->view->addressBillingError ) );
+			$this->assertArrayHasKey( 'order.base.address.postal', $this->view->addressBillingError );
 			return;
 		}
 
@@ -214,10 +216,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['customer/address'] );
 		$id = $customer->getAddressItems()->first()->getId();
 
-		$view = \TestHelperHtml::view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['ca_billingoption' => $id] );
-		$view->addHelper( 'param', $helper );
-		$this->object->setView( $view );
+		$this->view = \TestHelperHtml::view();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['ca_billingoption' => $id] );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )

@@ -14,20 +14,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Suggest\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -56,12 +58,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'Unterpro' ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'Unterpro' ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
-		$suggestItems = $this->object->view()->suggestItems;
+		$suggestItems = $this->view->suggestItems;
 
 		$this->assertRegExp( '#\[\{"label":"Unterpro.*","html":".*Unterpro.*"\}\]#smU', $output );
 		$this->assertNotEquals( [], $suggestItems );
@@ -76,12 +77,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->getConfig()->set( 'client/html/catalog/suggest/usecode', true );
 
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'CNC' ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'CNC' ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
-		$suggestItems = $this->object->view()->suggestItems;
+		$suggestItems = $this->view->suggestItems;
 
 		$this->assertRegExp( '#\[.*\{"label":"Cafe.*","html":".*Cafe.*"\}.*\]#smU', $output );
 		$this->assertNotEquals( [], $suggestItems );

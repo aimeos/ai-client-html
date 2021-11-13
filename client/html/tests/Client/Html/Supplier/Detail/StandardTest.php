@@ -13,33 +13,34 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Supplier\Detail\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testHeader()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>Test supplier | Aimeos</title>', $output );
@@ -55,9 +56,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->view();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
-		$mock->setView( $view );
+		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
+		$mock->setView( $this->view );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
@@ -68,14 +68,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
+		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="aimeos supplier-detail"', $output );
@@ -98,11 +97,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\Client\Html\Supplier\Detail\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );
 
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, [] );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<h1 class="name" itemprop="name">Test supplier</h1>', $output );
@@ -116,9 +114,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->view();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
-		$mock->setView( $view );
+		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
+		$mock->setView( $this->view );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
@@ -134,9 +131,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->view();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
-		$mock->setView( $view );
+		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
+		$mock->setView( $this->view );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
@@ -152,9 +148,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->view();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
-		$mock->setView( $view );
+		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
+		$mock->setView( $this->view );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
@@ -170,9 +165,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setMethods( array( 'data' ) )
 			->getMock();
 
-		$view = $this->object->view();
-		$view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $view, ['f_supid' => -1] ) );
-		$mock->setView( $view );
+		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
+		$mock->setView( $this->view );
 
 		$mock->expects( $this->once() )->method( 'data' )
 			->will( $this->throwException( new \RuntimeException() ) );
@@ -199,7 +193,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'detailErrorList' ) );
+		$this->assertEmpty( $this->view->get( 'detailErrorList' ) );
 	}
 
 

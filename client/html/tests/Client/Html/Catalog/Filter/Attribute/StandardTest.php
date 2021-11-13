@@ -13,18 +13,23 @@ namespace Aimeos\Client\Html\Catalog\Filter\Attribute;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
-		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Attribute\Standard( \TestHelperHtml::getContext() );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->view = \TestHelperHtml::view();
+		$this->context = \TestHelperHtml::getContext();
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Filter\Attribute\Standard( $this->context );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -33,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<fieldset class="attr-color">', $output );
@@ -48,14 +53,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAttributeOrder()
 	{
-		$view = $this->object->view();
 
 		$conf = new \Aimeos\MW\Config\PHPArray();
 		$conf->set( 'client/html/catalog/filter/attribute/types', array( 'color', 'width', 'length' ) );
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $conf );
-		$view->addHelper( 'config', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $conf );
+		$this->view->addHelper( 'config', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-width">.*<fieldset class="attr-length">/smu';
@@ -66,11 +70,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyCategory()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_catid' => -1 ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_catid' => -1 ) );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );
@@ -79,11 +82,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchText()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_search' => 'test' ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'test' ) );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );
@@ -92,11 +94,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchAttribute()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, array( 'f_attrid' => array( -1, -2 ) ) );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_attrid' => array( -1, -2 ) ) );
+		$this->view->addHelper( 'param', $helper );
 
-		$this->object->setView( $this->object->data( $view ) );
+		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );

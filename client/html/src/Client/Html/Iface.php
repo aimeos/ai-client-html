@@ -32,13 +32,12 @@ interface Iface
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface;
 
 	/**
-	 * Returns the sub-client given by its name.
+	 * Returns the HTML code for insertion into the body.
 	 *
-	 * @param string $type Name of the client type
-	 * @param string|null $name Name of the sub-client (Default if null)
-	 * @return \Aimeos\Client\Html\Iface Sub-client object
+	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
+	 * @return string HTML code
 	 */
-	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface;
+	public function body( string $uid = '' ) : string;
 
 	/**
 	 * Returns the HTML string for insertion into the header.
@@ -49,27 +48,21 @@ interface Iface
 	public function header( string $uid = '' ) : ?string;
 
 	/**
-	 * Returns the HTML code for insertion into the body.
+	 * Processes the input, e.g. store given values.
 	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string HTML code
+	 * A view must be available and this method doesn't generate any output
+	 * besides setting view variables if necessary.
 	 */
-	public function body( string $uid = '' ) : string;
+	public function init();
 
 	/**
-	 * Returns the view object that will generate the HTML output.
+	 * Returns the sub-client given by its name.
 	 *
-	 * @return \Aimeos\MW\View\Iface The view object which generates the HTML output
+	 * @param string $type Name of the client type
+	 * @param string|null $name Name of the sub-client (Default if null)
+	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function view() : \Aimeos\MW\View\Iface;
-
-	/**
-	 * Sets the view object that will generate the HTML output.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
-	 * @return \Aimeos\Client\Html\Iface Reference to this object for fluent calls
-	 */
-	public function setView( \Aimeos\MW\View\Iface $view ) : \Aimeos\Client\Html\Iface;
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface;
 
 	/**
 	 * Modifies the cached body content to replace content based on sessions or cookies.
@@ -90,18 +83,18 @@ interface Iface
 	public function modifyHeader( string $content, string $uid ) : string;
 
 	/**
-	 * Processes the input, e.g. store given values.
-	 *
-	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables if necessary.
-	 */
-	public function init();
-
-	/**
 	 * Injects the reference of the outmost client object or decorator
 	 *
 	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
 	 * @return \Aimeos\Client\Html\Iface Client object for chaining method calls
 	 */
 	public function setObject( \Aimeos\Client\Html\Iface $object ) : \Aimeos\Client\Html\Iface;
+
+	/**
+	 * Sets the view object that will generate the HTML output.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @return \Aimeos\Client\Html\Iface Reference to this object for fluent calls
+	 */
+	public function setView( \Aimeos\MW\View\Iface $view ) : \Aimeos\Client\Html\Iface;
 }

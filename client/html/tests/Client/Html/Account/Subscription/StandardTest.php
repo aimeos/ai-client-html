@@ -13,23 +13,24 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::view();
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Account\Subscription\Standard( $this->context );
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -152,6 +153,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->object->view()->get( 'subscriptionErrorList' ) );
+		$this->assertEmpty( $this->view->get( 'subscriptionErrorList' ) );
 	}
 }

@@ -14,29 +14,30 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
+		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::getContext();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Standard( $this->context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
-		unset( $this->object, $this->context );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testHeader()
 	{
-		$view = $this->object->view();
-		$view->standardStepActive = 'process';
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view->standardStepActive = 'process';
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->header();
 		$this->assertNotNull( $output );
@@ -52,13 +53,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$view = $this->object->view();
-		$view->standardStepActive = 'process';
-		$this->object->setView( $this->object->data( $view ) );
+		$this->view->standardStepActive = 'process';
+		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<div class="checkout-standard-process">', $output );
-		$this->assertEquals( 'http://baseurl/checkout/index/?c_step=payment', $view->standardUrlPayment );
+		$this->assertEquals( 'http://baseurl/checkout/index/?c_step=payment', $this->view->standardUrlPayment );
 	}
 
 
@@ -78,16 +78,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$view = $this->object->view();
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['processPayment'] )
 			->getMock();
-		$object->setView( $view );
+		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -118,26 +117,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertEquals( 0, count( $view->get( 'standardErrorList', [] ) ) );
-		$this->assertEquals( 'url', $view->standardUrlNext );
-		$this->assertEquals( 'POST', $view->standardMethod );
-		$this->assertEquals( [], $view->standardProcessParams );
-		$this->assertEquals( true, $view->standardUrlExternal );
+		$this->assertEquals( 0, count( $this->view->get( 'standardErrorList', [] ) ) );
+		$this->assertEquals( 'url', $this->view->standardUrlNext );
+		$this->assertEquals( 'POST', $this->view->standardMethod );
+		$this->assertEquals( [], $this->view->standardProcessParams );
+		$this->assertEquals( true, $this->view->standardUrlExternal );
 	}
 
 
 	public function testInitNoPayment()
 	{
-		$view = $this->object->view();
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['processPayment'] )
 			->getMock();
-		$object->setView( $view );
+		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -163,23 +161,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertEquals( 0, count( $view->get( 'standardErrorList', [] ) ) );
-		$this->assertEquals( 'http://baseurl/checkout/confirm/', $view->standardUrlNext );
+		$this->assertEquals( 0, count( $this->view->get( 'standardErrorList', [] ) ) );
+		$this->assertEquals( 'http://baseurl/checkout/confirm/', $this->view->standardUrlNext );
 	}
 
 
 	public function testInitNoService()
 	{
-		$view = $this->object->view();
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['processPayment'] )
 			->getMock();
-		$object->setView( $view );
+		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -210,9 +207,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertEquals( 0, count( $view->get( 'standardErrorList', [] ) ) );
-		$this->assertTrue( isset( $view->standardUrlNext ) );
-		$this->assertEquals( 'POST', $view->standardMethod );
+		$this->assertEquals( 0, count( $this->view->get( 'standardErrorList', [] ) ) );
+		$this->assertTrue( isset( $this->view->standardUrlNext ) );
+		$this->assertEquals( 'POST', $this->view->standardMethod );
 	}
 
 
@@ -224,9 +221,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitHtmlException()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
+		$this->view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -240,15 +236,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertIsArray( $view->standardErrorList );
+		$this->assertIsArray( $this->view->standardErrorList );
 	}
 
 
 	public function testInitFrontendException()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
+		$this->view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -262,15 +257,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertIsArray( $view->standardErrorList );
+		$this->assertIsArray( $this->view->standardErrorList );
 	}
 
 
 	public function testInitMShopException()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
+		$this->view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -284,15 +278,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertIsArray( $view->standardErrorList );
+		$this->assertIsArray( $this->view->standardErrorList );
 	}
 
 
 	public function testInitException()
 	{
-		$view = $this->object->view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['c_step' => 'process', 'cs_order' => 1] );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
+		$this->view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
 			->setConstructorArgs( [$this->context] )
@@ -306,7 +299,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
-		$this->assertIsArray( $view->standardErrorList );
+		$this->assertIsArray( $this->view->standardErrorList );
 	}
 
 

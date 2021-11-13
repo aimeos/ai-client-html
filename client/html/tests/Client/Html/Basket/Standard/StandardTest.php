@@ -14,24 +14,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $context;
+	private $view;
 
 
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::getContext();
 
-		$view = \TestHelperHtml::view();
-		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view = \TestHelperHtml::view();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Basket\Standard\Standard( $this->context );
-		$this->object->setView( $view );
+		$this->object->setView( $this->view );
 	}
 
 
 	protected function tearDown() : void
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
-		unset( $this->object );
+		unset( $this->object, $this->context, $this->view );
 	}
 
 
@@ -40,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$tags = [];
 		$expire = null;
 
-		$this->object->setView( $this->object->data( $this->object->view(), $tags, $expire ) );
+		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>Basket | Aimeos</title>', $output );
@@ -139,7 +140,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAddSingle()
 	{
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
@@ -147,8 +147,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_stocktype' => 'default',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -163,7 +163,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAddMulti()
 	{
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prod' => array(
@@ -180,8 +179,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -215,7 +214,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$search->setConditions( $search->and( $expr ) );
 		$attributes = $attrManager->search( $search );
 
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'U:TEST' )->getId(),
@@ -223,8 +221,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_attrvarid' => $attributes->keys()->toArray(),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -249,7 +247,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'No attribute' );
 		}
 
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'CNE' )->getId(),
@@ -258,8 +255,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_stocktype' => 'default',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -284,7 +281,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( 'No attribute' );
 		}
 
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $this->getProductItem( 'U:TESTP' )->getId(),
@@ -293,8 +289,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_stocktype' => 'default',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -307,15 +303,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->addProduct( 'CNE', 2, 'default' );
 
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'edit',
 			'b_position' => 0,
 			'b_quantity' => 1,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -332,7 +327,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->addProduct( 'CNE', 1, 'default' );
 		$this->addProduct( 'CNC', 2, 'default' );
 
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'edit',
 			'b_prod' => array(
@@ -347,8 +341,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -366,14 +360,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->addProduct( 'CNE', 2, 'default' );
 		$this->addProduct( 'CNC', 1, 'default' );
 
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'delete',
 			'b_position' => 1,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -390,14 +383,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->addProduct( 'CNE', 1, 'default' );
 		$this->addProduct( 'CNC', 1, 'default' );
 
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'delete',
 			'b_position' => array( 0, 1 ),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 		$output = $this->object->body();
@@ -408,18 +400,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyDeleteInvalid()
 	{
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'delete',
 			'b_position' => -1,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
-		$this->assertEquals( 1, count( $view->get( 'standardErrorList', [] ) ) );
+		$this->assertEquals( 1, count( $this->view->get( 'standardErrorList', [] ) ) );
 	}
 
 
@@ -428,16 +419,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
-		$view = $this->object->view();
 
 		$param = array( 'b_coupon' => '90AB' );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
-		$view->standardBasket = $controller->get();
+		$this->view->standardBasket = $controller->get();
 		$output = $this->object->body();
 
 		$this->assertRegExp( '#<li class="attr-item">.*90AB.*</li>#smU', $output );
@@ -449,24 +439,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
-		$view = $this->object->view();
 
 		$param = array( 'b_coupon' => '90AB' );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
 
 		$param = array( 'b_action' => 'coupon-delete', 'b_coupon' => '90AB' );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
-		$view->standardBasket = $controller->get();
+		$this->view->standardBasket = $controller->get();
 		$output = $this->object->body();
 
 		$this->assertNotRegExp( '#<ul class="attr-list">#smU', $output );
@@ -480,20 +469,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
-		$view = $this->object->view();
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['b_coupon' => '90AB'] );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['b_coupon' => '90AB'] );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, ['b_coupon' => 'OPQR'] );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['b_coupon' => 'OPQR'] );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
-		$view->standardBasket = $controller->get();
+		$this->view->standardBasket = $controller->get();
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'OPQR', $output );
@@ -530,7 +518,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
-		$view = $this->object->view();
 		$param = array(
 			'b_action' => 'add',
 			'b_prodid' => $item->getId(),
@@ -538,8 +525,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_stocktype' => $stockType,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $param );
-		$view->addHelper( 'param', $helper );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 	}
