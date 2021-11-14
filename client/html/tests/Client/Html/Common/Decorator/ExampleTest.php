@@ -99,6 +99,12 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testResponse()
+	{
+		$this->assertInstanceOf( '\Psr\Http\Message\ResponseInterface', $this->object->response() );
+	}
+
+
 	public function testSetObject()
 	{
 		$this->assertInstanceOf( \Aimeos\Client\Html\Iface::class, $this->object->setObject( $this->object ) );

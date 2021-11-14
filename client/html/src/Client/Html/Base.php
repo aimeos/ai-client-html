@@ -140,6 +140,17 @@ abstract class Base
 
 
 	/**
+	 * Returns the PSR-7 response object for the request
+	 *
+	 * @return \Psr\Http\Message\ResponseInterface Response object
+	 */
+	public function response() : \Psr\Http\Message\ResponseInterface
+	{
+		return $this->view()->response();
+	}
+
+
+	/**
 	 * Injects the reference of the outmost client object or decorator
 	 *
 	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator

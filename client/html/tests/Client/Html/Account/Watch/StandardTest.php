@@ -13,6 +13,7 @@ namespace Aimeos\Client\Html\Account\Watch;
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $context;
 	private $view;
 
 

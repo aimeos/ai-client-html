@@ -83,6 +83,13 @@ interface Iface
 	public function modifyHeader( string $content, string $uid ) : string;
 
 	/**
+	 * Returns the PSR-7 response object for the request
+	 *
+	 * @return \Psr\Http\Message\ResponseInterface Response object
+	 */
+	public function response() : \Psr\Http\Message\ResponseInterface;
+
+	/**
 	 * Injects the reference of the outmost client object or decorator
 	 *
 	 * @param \Aimeos\Client\Html\Iface $object Reference to the outmost client or decorator
