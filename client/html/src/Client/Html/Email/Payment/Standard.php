@@ -100,7 +100,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->getObject()->data( $this->view() );
+		$view = $this->object()->data( $this->view() );
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {
@@ -172,7 +172,7 @@ class Standard
 	public function header( string $uid = '' ) : ?string
 	{
 		$config = $this->getContext()->config();
-		$view = $this->getObject()->data( $this->view() );
+		$view = $this->object()->data( $this->view() );
 
 		$content = '';
 		foreach( $this->getSubClients() as $subclient ) {

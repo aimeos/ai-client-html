@@ -181,7 +181,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\Client\Html\Iface Outmost decorator object
 	 */
-	protected function getObject() : \Aimeos\Client\Html\Iface
+	protected function object() : \Aimeos\Client\Html\Iface
 	{
 		if( $this->object !== null ) {
 			return $this->object;

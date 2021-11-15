@@ -90,7 +90,7 @@ class Standard
 			try
 			{
 				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->data( $view );
+					$view = $this->view = $this->object()->data( $view );
 				}
 
 				$output = '';
@@ -176,7 +176,7 @@ class Standard
 			try
 			{
 				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->data( $view );
+					$view = $this->view = $this->object()->data( $view );
 				}
 
 				$output = '';

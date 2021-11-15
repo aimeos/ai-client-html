@@ -83,7 +83,7 @@ class Standard
 
 		try
 		{
-			$view = $this->view = $this->view ?? $this->getObject()->data( $view );
+			$view = $this->view = $this->view ?? $this->object()->data( $view );
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {
@@ -152,7 +152,7 @@ class Standard
 
 		try
 		{
-			$view = $this->view = $this->view ?? $this->getObject()->data( $view );
+			$view = $this->view = $this->view ?? $this->object()->data( $view );
 
 			$html = '';
 			foreach( $this->getSubClients() as $subclient ) {

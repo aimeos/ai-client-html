@@ -192,7 +192,7 @@ class Standard
 				$html = '';
 
 				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->data( $view, $this->tags, $this->expire );
+					$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
 				}
 
 				foreach( $this->getSubClients() as $subclient ) {
@@ -292,7 +292,7 @@ class Standard
 				$html = ' ';
 
 				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->getObject()->data( $view, $this->tags, $this->expire );
+					$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
 				}
 
 				foreach( $this->getSubClients() as $subclient ) {
