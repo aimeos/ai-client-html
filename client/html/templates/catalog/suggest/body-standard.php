@@ -29,7 +29,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	$priceItems = $productItem->getRefItems( 'price', 'default', 'default' );
 
 	if( ( $mediaItem = $mediaItems->first() ) !== null ) {
-		$media = 'background-image: url(\'' . $enc->attr( $this->content( $mediaItem->getPreview() ) ) . '\')';
+		$media = 'background-image: url(\'' . $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) . '\')';
 	}
 
 	if( ( $priceItem = $priceItems->first() ) !== null ) {

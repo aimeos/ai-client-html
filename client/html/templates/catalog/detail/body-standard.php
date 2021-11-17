@@ -466,12 +466,12 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 
 										<li class="item">
-											<a href="<?= $this->content( $mediaItem->getUrl() ) ?>"
+											<a href="<?= $this->content( $mediaItem->getUrl(), $mediaItem->getFileSystem() ) ?>"
 												title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>">
 												<img class="media-image"
 													alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>"
-													src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-													srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+													src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+													srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 												>
 												<span class="media-name"><?= $enc->html( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?></span>
 											</a>
@@ -614,8 +614,8 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									<div class="media-item">
 										<img class="lazy-image"
 											alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+											data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+											data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 										>
 									</div>

@@ -148,11 +148,12 @@ $params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_
 <div class="catalog-social">
 <?php foreach( $list as $entry ) : $default = ( isset( $urls[$entry] ) ? $urls[$entry] : null ) ?>
 	<?php if( ( $link = $this->config( 'client/html/catalog/social/url/' . $entry, $default ) ) !== null ) : ?>
+		<?php $mediaItem = $this->productItem->getRefItems( 'media', 'default', 'default' )->first() ?>
 		<a class="social-button social-button-<?= $enc->attr( $entry ) ?>" rel="noopener"
 			href="<?= $enc->attr( sprintf( $link,
 				$enc->url( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ),
 				$this->productItem->getName(),
-				$this->content( $this->productItem->getRefItems( 'media', 'default', 'default' )->getPreview( true )->first() )
+				$mediaItem ? $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) : ''
 			) ) ?>"
 			title="<?= $enc->attr( $entry ) ?>"
 			target="_blank"

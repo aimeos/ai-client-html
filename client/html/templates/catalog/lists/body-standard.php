@@ -95,8 +95,8 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 			<div class="imagelist-default">
 				<?php foreach( $catItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
 					<img class="<?= $enc->attr( $mediaItem->getType() ) ?>"
-						src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>"
-						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+						src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
+						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 					>
 				<?php endforeach ?>

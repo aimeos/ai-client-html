@@ -48,11 +48,11 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 							<noscript>
 								<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
 									<img alt="<?= $enc->attr( $mediaItem->getName() ) ?>"
-										src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+										src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 									>
-									<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
+									<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>">
 								</div>
 							</noscript>
 
@@ -61,11 +61,11 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 									<img class="lazy-image"
 										src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
 										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
-										data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
-										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+										data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+										data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 									>
-									<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>">
+									<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>">
 								</div>
 							<?php endforeach ?>
 						<?php endif ?>

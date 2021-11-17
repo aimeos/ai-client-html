@@ -41,7 +41,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 
-					--><img class="item-thumb" src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ) ?>"
+					--><img class="item-thumb" src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 						alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
 					><!--
 

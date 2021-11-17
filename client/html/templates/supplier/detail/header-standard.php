@@ -52,7 +52,7 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
 		<meta property="og:url" content="<?= $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config + ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $this->detailSupplierItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ) ) ) ?>">
+			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>">
 			<meta name="twitter:card" content="summary_large_image">
 		<?php endforeach ?>
 

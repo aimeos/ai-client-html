@@ -116,12 +116,12 @@ $productItems = $this->get( 'todoProductItems', map() );
 						<div class="col-md-6">
 							<div class="row">
 								<div class="col-6">
-									<?php if( !$images->isEmpty() ) : ?>
+									<?php if( $image = $images->first() ) : ?>
 										<img class="todo-image"
 											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
-											src="<?= $enc->attr( $this->content( $images->first()->getPreview() ) ) ?>"
-											srcset="<?= $enc->attr( $this->imageset( $images->first()->getPreviews() ) ) ?>"
-											alt="<?= $enc->attr( $images->first()->getProperties( 'title' )->first() ) ?>"
+											src="<?= $enc->attr( $this->content( $image->getPreview(), $image->getFileSystem() ) ) ?>"
+											srcset="<?= $enc->attr( $this->imageset( $image->getPreviews(), $image->getFileSystem() ) ) ?>"
+											alt="<?= $enc->attr( $image->getProperties( 'title' )->first() ) ?>"
 										>
 									<?php endif ?>
 								</div>
