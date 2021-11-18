@@ -7,7 +7,7 @@
  */
 
 /// Product notification e-mail subject
-$this->mail()->setSubject( $this->translate( 'client', 'Your watched products' ) );
+$this->mail()->subject( $this->translate( 'client', 'Your watched products' ) );
 
 ?>
 <?= $this->get( 'watchHeader' );

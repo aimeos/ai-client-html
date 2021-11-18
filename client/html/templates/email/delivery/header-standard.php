@@ -8,7 +8,7 @@
 
 /// Delivery e-mail subject with order ID
 $str = $this->translate( 'client', 'Your order %1$s' );
-$this->mail()->setSubject( sprintf( $str, $this->extOrderItem->getOrderNumber() ) );
+$this->mail()->subject( sprintf( $str, $this->extOrderItem->getOrderNumber() ) );
 
 ?>
 <?= $this->get( 'deliveryHeader' );

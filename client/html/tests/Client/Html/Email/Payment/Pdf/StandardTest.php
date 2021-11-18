@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->emailMock->expects( $this->once() )->method( 'addAttachment' );
+		$this->emailMock->expects( $this->once() )->method( 'attach' );
 
 		$this->object->setView( $this->object->data( $this->view ) );
 		$this->object->body();

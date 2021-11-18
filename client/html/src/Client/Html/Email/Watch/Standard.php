@@ -151,8 +151,8 @@ class Standard
 		$addr = $view->extAddressItem;
 
 		$msg = $view->mail();
-		$msg->addHeader( 'X-MailGenerator', 'Aimeos' );
-		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
+		$msg->header( 'X-MailGenerator', 'Aimeos' );
+		$msg->to( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
 
 		$fromName = $config->get( 'resource/email/from-name' );
@@ -202,7 +202,7 @@ class Standard
 		 * @see client/html/email/bcc-email
 		 */
 		if( ( $fromEmailWatch = $config->get( 'client/html/email/watch/from-email', $fromEmail ) ) != null ) {
-			$msg->addFrom( $fromEmailWatch, $fromNameWatch );
+			$msg->from( $fromEmailWatch, $fromNameWatch );
 		}
 
 
@@ -252,7 +252,7 @@ class Standard
 		 * @see client/html/email/bcc-email
 		 */
 		if( ( $replyEmailWatch = $config->get( 'client/html/email/watch/reply-email', $replyEmail ) ) != null ) {
-			$msg->addReplyTo( $replyEmailWatch, $replyNameWatch );
+			$msg->replyTo( $replyEmailWatch, $replyNameWatch );
 		}
 
 
@@ -286,7 +286,7 @@ class Standard
 		if( ( $bccEmailWatch = $config->get( 'client/html/email/watch/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailWatch as $emailAddr ) {
-				$msg->addBcc( $emailAddr );
+				$msg->Bcc( $emailAddr );
 			}
 		}
 

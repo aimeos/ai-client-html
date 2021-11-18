@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$mailStub->expects( $this->once() )
-			->method( 'createMessage' )
+			->method( 'create' )
 			->will( $this->returnValue( $mailMsgStub ) );
 
 		$context->setMail( $mailStub );
@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$mailStub->expects( $this->once() )
-			->method( 'createMessage' )
+			->method( 'create' )
 			->will( $this->returnValue( $mailMsgStub ) );
 
 		$context->setMail( $mailStub );

@@ -64,19 +64,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config->set( 'client/html/email/from-email', 'me@example.com' );
 		$config->set( 'client/html/email/from-name', 'My company' );
 
-		$this->emailMock->expects( $this->once() )->method( 'addHeader' )
+		$this->emailMock->expects( $this->once() )->method( 'header' )
 			->with( $this->equalTo( 'X-MailGenerator' ), $this->equalTo( 'Aimeos' ) );
 
-		$this->emailMock->expects( $this->once() )->method( 'addTo' )
+		$this->emailMock->expects( $this->once() )->method( 'to' )
 			->with( $this->equalTo( 'test@example.com' ), $this->equalTo( 'Our Unittest' ) );
 
-		$this->emailMock->expects( $this->once() )->method( 'addFrom' )
+		$this->emailMock->expects( $this->once() )->method( 'from' )
 			->with( $this->equalTo( 'me@example.com' ), $this->equalTo( 'My company' ) );
 
-		$this->emailMock->expects( $this->once() )->method( 'addReplyTo' )
+		$this->emailMock->expects( $this->once() )->method( 'replyTo' )
 			->with( $this->equalTo( 'me@example.com' ), $this->equalTo( 'My company' ) );
 
-		$this->emailMock->expects( $this->once() )->method( 'setSubject' )
+		$this->emailMock->expects( $this->once() )->method( 'subject' )
 			->with( $this->stringContains( 'Your order' ) );
 
 		$output = $this->object->header();

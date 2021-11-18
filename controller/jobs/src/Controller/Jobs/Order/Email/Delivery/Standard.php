@@ -211,7 +211,7 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
 		$view->addHelper( 'config', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $context->getMail()->createMessage() );
+		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $context->getMail()->create() );
 		$view->addHelper( 'mail', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $langId ) );

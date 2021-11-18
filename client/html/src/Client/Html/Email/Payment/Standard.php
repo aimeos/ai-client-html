@@ -124,7 +124,7 @@ class Standard
 		 */
 		$files = $view->config( 'client/html/email/payment/attachments', [] );
 
-		$this->addAttachments( $view->mail(), $files );
+		$this->attachs( $view->mail(), $files );
 
 
 		/** client/html/email/payment/template-body
@@ -184,8 +184,8 @@ class Standard
 		$addr = $view->extAddressItem;
 
 		$msg = $view->mail();
-		$msg->addHeader( 'X-MailGenerator', 'Aimeos' );
-		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
+		$msg->header( 'X-MailGenerator', 'Aimeos' );
+		$msg->to( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
 
 		$fromName = $config->get( 'resource/email/from-name' );
@@ -235,7 +235,7 @@ class Standard
 		 * @see client/html/email/bcc-email
 		 */
 		if( ( $fromEmailPayment = $config->get( 'client/html/email/payment/from-email', $fromEmail ) ) != null ) {
-			$msg->addFrom( $fromEmailPayment, $fromNamePayment );
+			$msg->from( $fromEmailPayment, $fromNamePayment );
 		}
 
 
@@ -285,7 +285,7 @@ class Standard
 		 * @see client/html/email/bcc-email
 		 */
 		if( ( $replyEmailPayment = $config->get( 'client/html/email/payment/reply-email', $replyEmail ) ) != null ) {
-			$msg->addReplyTo( $replyEmailPayment, $replyNamePayment );
+			$msg->replyTo( $replyEmailPayment, $replyNamePayment );
 		}
 
 
@@ -319,7 +319,7 @@ class Standard
 		if( ( $bccEmailPayment = $config->get( 'client/html/email/payment/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailPayment as $emailAddr ) {
-				$msg->addBcc( $emailAddr );
+				$msg->Bcc( $emailAddr );
 			}
 		}
 
@@ -454,7 +454,7 @@ class Standard
 	 * @param \Aimeos\MW\Mail\Message\Iface $msg Mail message
 	 * @param array $files List of absolute file paths
 	 */
-	protected function addAttachments( \Aimeos\MW\Mail\Message\Iface $msg, array $files )
+	protected function attachs( \Aimeos\MW\Mail\Message\Iface $msg, array $files )
 	{
 		foreach( $files as $filename )
 		{
@@ -483,7 +483,7 @@ class Standard
 				$mimetype = 'application/binary';
 			}
 
-			$msg->addAttachment( $content, $mimetype, basename( $filename ) );
+			$msg->attach( $content, $mimetype, basename( $filename ) );
 		}
 	}
 

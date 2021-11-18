@@ -65,10 +65,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->getConfig()->set( 'client/html/common/template/baseurl', $theme );
 
 
-		$this->emailMock->expects( $this->once() )->method( 'embedAttachment' )
+		$this->emailMock->expects( $this->once() )->method( 'embed' )
 			->will( $this->returnValue( 'cid:123-unique-id' ) );
 
-		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
+		$this->emailMock->expects( $this->once() )->method( 'html' )
 			->with( $this->matchesRegularExpression( '#<title>.*Your new account.*</title>#smu' ) );
 
 		$this->object->setView( $this->object->data( $this->view ) );

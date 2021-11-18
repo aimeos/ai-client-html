@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->emailMock->expects( $this->once() )->method( 'setBody' )
+		$this->emailMock->expects( $this->once() )->method( 'text' )
 			->with( $this->stringContains( 'Noire' ) );
 
 		$this->object->setView( $this->object->data( $this->view ) );

@@ -125,7 +125,7 @@ class Standard
 		$view->addHelper( 'translate', $helper );
 
 		$mailer = $context->getMail();
-		$message = $mailer->createMessage();
+		$message = $mailer->create();
 
 		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message );
 		$view->addHelper( 'mail', $helper );

@@ -105,7 +105,7 @@ class Standard
 		$tplconf = 'client/html/email/watch/text/template-body';
 
 		$text = $view->render( $view->config( $tplconf, 'email/watch/text-body-standard' ) );
-		$view->mail()->setBody( $text );
+		$view->mail()->text( $text );
 		return $text;
 	}
 

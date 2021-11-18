@@ -105,7 +105,7 @@ class Standard
 		$tplconf = 'client/html/email/payment/text/template-body';
 
 		$text = $view->render( $view->config( $tplconf, 'email/payment/text-body-standard' ) );
-		$view->mail()->setBody( $text );
+		$view->mail()->text( $text );
 
 		return $text;
 	}

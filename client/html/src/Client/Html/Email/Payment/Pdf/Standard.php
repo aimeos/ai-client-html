@@ -115,7 +115,7 @@ class Standard
 		$view->pdf->lastPage();
 
 		$filename = $view->translate( 'client', 'Order' ) . '-' . $view->extOrderItem->getOrderNumber() . '.pdf';
-		$view->mail()->addAttachment( $view->pdf->output( '', 'S' ), 'application/pdf', $filename );
+		$view->mail()->attach( $view->pdf->output( '', 'S' ), 'application/pdf', $filename );
 
 		return '';
 	}

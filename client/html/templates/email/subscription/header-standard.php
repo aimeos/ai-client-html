@@ -6,7 +6,7 @@
  */
 
 /// Product notification e-mail subject
-$this->mail()->setSubject( $this->translate( 'client', 'Your subscription' ) );
+$this->mail()->subject( $this->translate( 'client', 'Your subscription' ) );
 
 ?>
 <?= $this->get( 'subscriptionHeader' );

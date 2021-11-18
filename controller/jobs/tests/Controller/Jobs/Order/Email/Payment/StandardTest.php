@@ -108,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$mailStub->expects( $this->once() )
-			->method( 'createMessage' )
+			->method( 'create' )
 			->will( $this->returnValue( $mailMsgStub ) );
 
 		$this->context->setMail( $mailStub );
@@ -166,7 +166,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalClone()
 			->getMock();
 
-		$mailStub->expects( $this->once() )->method( 'createMessage' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
 		$mailStub->expects( $this->once() )->method( 'send' );
 
 		$this->context->setMail( $mailStub );

@@ -76,10 +76,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$file = '..' . $ds . 'themes' . $ds . 'default' . $ds . 'media' . $ds . 'aimeos.png';
 		$this->context->getConfig()->set( 'client/html/email/logo', $file );
 
-		$this->emailMock->expects( $this->once() )->method( 'embedAttachment' )
+		$this->emailMock->expects( $this->once() )->method( 'embed' )
 			->will( $this->returnValue( 'cid:123-unique-id' ) );
 
-		$this->emailMock->expects( $this->once() )->method( 'setBodyHtml' )
+		$this->emailMock->expects( $this->once() )->method( 'html' )
 			->with( $this->matchesRegularExpression( '#<title>.*Your watched products.*</title>#smu' ) );
 
 		$this->object->setView( $this->object->data( $this->view ) );

@@ -104,7 +104,7 @@ class Standard
 		$tplconf = 'client/html/email/account/text/template-body';
 
 		$text = $view->render( $view->config( $tplconf, 'email/account/text-body-standard' ) );
-		$view->mail()->setBody( $text );
+		$view->mail()->text( $text );
 		return $text;
 	}
 

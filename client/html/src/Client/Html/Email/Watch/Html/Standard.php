@@ -105,7 +105,7 @@ class Standard
 		$tplconf = 'client/html/email/watch/html/template-body';
 
 		$html = $view->render( $view->config( $tplconf, 'email/watch/html-body-standard' ) );
-		$view->mail()->setBodyHtml( $html );
+		$view->mail()->html( $html );
 		return $html;
 	}
 
@@ -238,7 +238,7 @@ class Standard
 			$finfo = new \finfo( FILEINFO_MIME_TYPE );
 			$mimetype = $finfo->file( $file );
 
-			$view->htmlLogo = $view->mail()->embedAttachment( $content, $mimetype, basename( $file ) );
+			$view->htmlLogo = $view->mail()->embed( $content, $mimetype, basename( $file ) );
 		}
 
 

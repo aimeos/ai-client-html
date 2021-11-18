@@ -150,8 +150,8 @@ class Standard
 		$addr = $view->extAddressItem;
 
 		$msg = $view->mail();
-		$msg->addHeader( 'X-MailGenerator', 'Aimeos' );
-		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
+		$msg->header( 'X-MailGenerator', 'Aimeos' );
+		$msg->to( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
 
 		$fromName = $config->get( 'resource/email/from-name' );
@@ -201,7 +201,7 @@ class Standard
 		 * @see client/html/email/bcc-email
 		 */
 		if( ( $fromEmailSubscription = $config->get( 'client/html/email/subscription/from-email', $fromEmail ) ) != null ) {
-			$msg->addFrom( $fromEmailSubscription, $fromNameSubscription );
+			$msg->from( $fromEmailSubscription, $fromNameSubscription );
 		}
 
 
@@ -251,7 +251,7 @@ class Standard
 		 * @see client/html/email/bcc-email
 		 */
 		if( ( $replyEmailSubscription = $config->get( 'client/html/email/subscription/reply-email', $replyEmail ) ) != null ) {
-			$msg->addReplyTo( $replyEmailSubscription, $replyNameSubscription );
+			$msg->replyTo( $replyEmailSubscription, $replyNameSubscription );
 		}
 
 
@@ -285,7 +285,7 @@ class Standard
 		if( ( $bccEmailSubscription = $config->get( 'client/html/email/subscription/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailSubscription as $emailAddr ) {
-				$msg->addBcc( $emailAddr );
+				$msg->Bcc( $emailAddr );
 			}
 		}
 

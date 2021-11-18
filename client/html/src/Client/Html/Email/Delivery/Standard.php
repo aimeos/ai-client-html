@@ -113,7 +113,7 @@ class Standard
 		 */
 		$files = $view->config( 'client/html/email/delivery/attachments', [] );
 
-		$this->addAttachments( $view->mail(), $files );
+		$this->attachs( $view->mail(), $files );
 
 
 		/** client/html/email/delivery/template-body
@@ -173,13 +173,13 @@ class Standard
 		$addr = $view->extAddressItem;
 
 		$msg = $view->mail();
-		$msg->addHeader( 'X-MailGenerator', 'Aimeos' );
-		$msg->addTo( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
+		$msg->header( 'X-MailGenerator', 'Aimeos' );
+		$msg->to( $addr->getEMail(), $addr->getFirstName() . ' ' . $addr->getLastName() );
 
 		$addresses = $view->extOrderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT );
 
 		if( ( $billAddr = current( $addresses ) ) !== false && $billAddr->getEMail() != $addr->getEmail() ) {
-			$msg->addCc( $billAddr->getEMail(), $billAddr->getFirstName() . ' ' . $billAddr->getLastName() );
+			$msg->cc( $billAddr->getEMail(), $billAddr->getFirstName() . ' ' . $billAddr->getLastName() );
 		}
 
 
@@ -254,7 +254,7 @@ class Standard
 		 * @see client/html/email/bcc-email
 		 */
 		if( ( $fromEmailDelivery = $config->get( 'client/html/email/delivery/from-email', $fromEmail ) ) != null ) {
-			$msg->addFrom( $fromEmailDelivery, $fromNameDelivery );
+			$msg->from( $fromEmailDelivery, $fromNameDelivery );
 		}
 
 
@@ -327,7 +327,7 @@ class Standard
 		 * @see client/html/email/bcc-email
 		 */
 		if( ( $replyEmailDelivery = $config->get( 'client/html/email/delivery/reply-email', $replyEmail ) ) != null ) {
-			$msg->addReplyTo( $replyEmailDelivery, $replyNameDelivery );
+			$msg->replyTo( $replyEmailDelivery, $replyNameDelivery );
 		}
 
 
@@ -377,7 +377,7 @@ class Standard
 		if( ( $bccEmailDelivery = $config->get( 'client/html/email/delivery/bcc-email', $bccEmail ) ) != null )
 		{
 			foreach( (array) $bccEmailDelivery as $emailAddr ) {
-				$msg->addBcc( $emailAddr );
+				$msg->Bcc( $emailAddr );
 			}
 		}
 
@@ -512,7 +512,7 @@ class Standard
 	 * @param \Aimeos\MW\Mail\Message\Iface $msg Mail message
 	 * @param array $files List of absolute file paths
 	 */
-	protected function addAttachments( \Aimeos\MW\Mail\Message\Iface $msg, array $files )
+	protected function attachs( \Aimeos\MW\Mail\Message\Iface $msg, array $files )
 	{
 		foreach( $files as $filename )
 		{
@@ -541,7 +541,7 @@ class Standard
 				$mimetype = 'application/binary';
 			}
 
-			$msg->addAttachment( $content, $mimetype, basename( $filename ) );
+			$msg->attach( $content, $mimetype, basename( $filename ) );
 		}
 	}
 
