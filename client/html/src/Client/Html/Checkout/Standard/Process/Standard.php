@@ -260,7 +260,7 @@ class Standard
 			$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
-			if( $view->param( 'cs_order', null ) !== null )
+			if( $view->param( 'cs_order' ) !== null )
 			{
 				$basket = $basketCntl->store();
 				$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
@@ -279,7 +279,7 @@ class Standard
 				return;
 			}
 
-			if( ( $form = $this->processPayment( $basket, $orderItem ) ) === null )
+			if( ( $form = $this->processPayment( $basket, $orderItem ) ) === null ) // no payment service available
 			{
 				$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 				$args = ( $service = reset( $services ) ) ? ['code' => $service->getCode()] : [];
@@ -288,7 +288,7 @@ class Standard
 				$view->standardUrlNext = $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] );
 				$view->standardMethod = 'POST';
 			}
-			else // no payment service available
+			else
 			{
 				$view = $this->addFormData( $view, $form );
 			}
