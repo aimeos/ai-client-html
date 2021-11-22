@@ -391,6 +391,6 @@ class Standard
 
 		$view->confirmOrderItem = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $id, false );
 
-		return parent::data( $view, $tags, $expire );
+		return parent::addData( $view, $tags, $expire );
 	}
 }
