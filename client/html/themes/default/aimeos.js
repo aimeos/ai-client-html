@@ -898,7 +898,9 @@ AimeosBasketMini = {
 					var product = prototype.clone();
 
 					product.data("urldata", csrf);
-					product.data("url", entry.links.self.href);
+					if (typeof entry.links !== 'undefined') {
+						product.data("url", entry.links.self.href);
+					}
 
 					$(".name", product).html(entry.attributes['order.base.product.name']);
 					$(".quantity", product).html(entry.attributes['order.base.product.quantity']);
