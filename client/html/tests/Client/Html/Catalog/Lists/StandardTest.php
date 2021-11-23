@@ -118,7 +118,29 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetBodyNoDefaultCat()
+	public function testBodyDefaultAttribute()
+	{
+		$manager = \Aimeos\MShop::create( $this->context, 'attribute' );
+		$attrId = $manager->find( 'xs', [], 'product', 'size' )->getId();
+
+		$context = clone $this->context;
+		$context->getConfig()->set( 'client/html/catalog/lists/attrid-default', $attrId );
+
+		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
+		$this->object->setView( \TestHelperHtml::view() );
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, [] );
+		$this->view->addHelper( 'param', $helper );
+
+		$output = $this->object->getBody();
+
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smu', $output );
+		$this->assertRegExp( '#.*Cafe Noire Expresso.*#smu', $output );
+	}
+
+
+	public function testBodyNoDefaultCat()
 	{
 		$view = $this->object->getView();
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
