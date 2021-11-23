@@ -129,8 +129,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::getView() );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, [] );
-		$this->view->addHelper( 'param', $helper );
+		$view = $this->object->getView();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, [] );
+		$view->addHelper( 'param', $helper );
 
 		$output = $this->object->getBody();
 
