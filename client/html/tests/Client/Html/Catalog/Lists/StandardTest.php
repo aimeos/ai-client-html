@@ -127,7 +127,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$context->getConfig()->set( 'client/html/catalog/lists/attrid-default', $attrId );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
-		$this->object->setView( \TestHelperHtml::view() );
+		$this->object->setView( \TestHelperHtml::getView() );
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, [] );
 		$this->view->addHelper( 'param', $helper );
