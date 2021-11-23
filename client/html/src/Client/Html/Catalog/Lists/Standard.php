@@ -526,6 +526,7 @@ class Standard
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/detail/domains
 		 * @see client/html/catalog/stage/domains
+		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/size
@@ -549,6 +550,7 @@ class Standard
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/detail/domains
 		 * @see client/html/catalog/stage/domains
+		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/size
@@ -572,6 +574,7 @@ class Standard
 		 * @since 2019.04
 		 * @category User
 		 * @category Developer
+		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/domains
@@ -599,6 +602,7 @@ class Standard
 		 * @since 2014.03
 		 * @category User
 		 * @category Developer
+		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/domains
@@ -635,6 +639,7 @@ class Standard
 		 * @param integer Tree level constant
 		 * @since 2015.11
 		 * @category Developer
+		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/domains
@@ -645,6 +650,30 @@ class Standard
 		 */
 		$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
+
+		/** client/html/catalog/lists/attrid-default
+		 * Additional attribute IDs used to limit search results
+		 *
+		 * Using this setting, products result lists can be limited by additional
+		 * attributes. Then, only products which have associated the configured
+		 * attribute IDs will be returned and shown in the frontend. The value
+		 * can be either a single attribute ID or a list of attribute IDs.
+		 *
+		 * @param array|string Attribute ID or IDs
+		 * @since 2021.10
+		 * @category User
+		 * @category Developer
+		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/instock
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/supid-default
+		 * @see client/html/catalog/detail/prodid-default
+		 */
+		$attrids = $config->get( 'client/html/catalog/lists/attrid-default' );
+		$attrids = $attrids != null && is_scalar( $attrids ) ? explode( ',', $attrids ) : $attrids; // workaround for TYPO3
 
 		/** client/html/catalog/lists/catid-default
 		 * The default category ID used if none is given as parameter
@@ -664,13 +693,13 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/instock
 		 */
 		$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
 		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
-
 
 		/** client/html/catalog/lists/supid-default
 		 * The default supplier ID used if none is given as parameter
@@ -689,6 +718,7 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/instock
@@ -708,6 +738,7 @@ class Standard
 		 * @since 2018.07
 		 * @category User
 		 * @category Developer
+		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/lists/domains
@@ -742,6 +773,7 @@ class Standard
 			->price( $view->param( 'f_price' ) )
 			->category( $catids, 'default', $level )
 			->supplier( $supids )
+			->allOf( $attrids )
 			->allOf( $view->param( 'f_attrid', [] ) )
 			->oneOf( $view->param( 'f_optid', [] ) )
 			->oneOf( $view->param( 'f_oneid', [] ) )
