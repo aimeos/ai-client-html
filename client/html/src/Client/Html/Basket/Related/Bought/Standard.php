@@ -267,7 +267,7 @@ class Standard
 			 * @see client/html/catalog/product/basket-add
 			 */
 			if( $view->config( 'client/html/basket/related/basket-add', false ) ) {
-				$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute'] );
+				$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
 			}
 
 			$items = map();
