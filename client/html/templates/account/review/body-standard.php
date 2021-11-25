@@ -9,7 +9,7 @@ $enc = $this->encoder();
 
 
 ?>
-<section class="aimeos account-review" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url', [], [] ) ) ?>">
+<section class="aimeos account-review" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'reviewErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
