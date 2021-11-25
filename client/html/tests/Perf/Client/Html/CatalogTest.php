@@ -16,7 +16,7 @@ class CatalogTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->context = \TestHelperHtml::getContext( 'unitperf' );
+		$this->context = \TestHelperHtml::context( 'unitperf' );
 
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$catalogItem = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );

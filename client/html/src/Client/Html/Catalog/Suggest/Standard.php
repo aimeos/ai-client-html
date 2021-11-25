@@ -88,7 +88,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'client/html' );
+			$this->context()->getLogger()->log( $msg, Log::ERR, 'client/html' );
 			return '';
 		}
 
@@ -146,7 +146,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'client/html' );
+			$this->context()->getLogger()->log( $msg, Log::ERR, 'client/html' );
 			return null;
 		}
 
@@ -284,7 +284,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->getContext()->getLogger()->log( $msg, Log::ERR, 'client/html' );
+			$this->context()->getLogger()->log( $msg, Log::ERR, 'client/html' );
 		}
 	}
 
@@ -296,7 +296,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -310,7 +310,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )

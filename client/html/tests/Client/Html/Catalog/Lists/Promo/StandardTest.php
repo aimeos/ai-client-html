@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->context = \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::context();
 
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( $this->context );
 		$search = $catalogManager->filter();

@@ -33,7 +33,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Voucher related e-mails' );
+		return $this->context()->translate( 'controller/jobs', 'Voucher related e-mails' );
 	}
 
 
@@ -44,7 +44,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Sends the e-mail with the voucher to the customer' );
+		return $this->context()->translate( 'controller/jobs', 'Sends the e-mail with the voucher to the customer' );
 	}
 
 
@@ -55,7 +55,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		/** controller/jobs/order/email/voucher/limit-days
@@ -137,7 +137,7 @@ class Standard
 	protected function addCouponCodes( array $map )
 	{
 		$couponId = $this->getCouponId();
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon/code' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'coupon/code' );
 
 		foreach( $map as $code => $ref )
 		{
@@ -157,7 +157,7 @@ class Standard
 	 */
 	protected function addOrderStatus( string $orderId, int $value )
 	{
-		$orderStatusManager = \Aimeos\MShop::create( $this->getContext(), 'order/status' );
+		$orderStatusManager = \Aimeos\MShop::create( $this->context(), 'order/status' );
 
 		$statusItem = $orderStatusManager->create()->setParentId( $orderId )->setValue( $value )
 			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER );
@@ -199,7 +199,7 @@ class Standard
 	{
 		if( !isset( $this->couponId ) )
 		{
-			$manager = \Aimeos\MShop::create( $this->getContext(), 'coupon' );
+			$manager = \Aimeos\MShop::create( $this->context(), 'coupon' );
 
 			$search = $manager->filter()->slice( 0, 1 );
 			$search->setConditions( $search->compare( '=~', 'coupon.provider', 'Voucher' ) );
@@ -282,7 +282,7 @@ class Standard
 	 */
 	protected function process( \Aimeos\Client\Html\Iface $client, \Aimeos\Map $items, int $status )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );
 		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );
 
@@ -328,7 +328,7 @@ class Standard
 	protected function createCoupons( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
 	{
 		$map = [];
-		$manager = \Aimeos\MShop::create( $this->getContext(), 'order/base/product/attribute' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/base/product/attribute' );
 
 		foreach( $this->getOrderProducts( $orderBaseItem ) as $orderProductItem )
 		{
@@ -362,7 +362,7 @@ class Standard
 	 */
 	protected function sendEmails( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\Client\Html\Iface $client )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$addrItem = $this->getAddressItem( $orderBaseItem );
 		$currencyId = $orderBaseItem->getPrice()->getCurrencyId();
 		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->getLocale()->getLanguageId() );

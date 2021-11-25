@@ -69,7 +69,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/catalog/home/cache
 		 * Enables or disables caching only for the catalog home component
@@ -101,7 +101,7 @@ class Standard
 		if( ( $html = $this->getCached( 'body', $uid, [], $confkey ) ) === null )
 		{
 			$view = $this->view();
-			$config = $this->getContext()->getConfig();
+			$config = $this->context()->getConfig();
 
 			/** client/html/catalog/home/template-body
 			 * Relative path to the HTML body template of the catalog home client.
@@ -190,7 +190,7 @@ class Standard
 		if( ( $html = $this->getCached( 'header', $uid, [], $confkey ) ) === null )
 		{
 			$view = $this->view();
-			$config = $this->getContext()->getConfig();
+			$config = $this->context()->getConfig();
 
 			/** client/html/catalog/home/template-header
 			 * Relative path to the HTML header template of the catalog home client.
@@ -343,7 +343,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $this->view();
 
 		try
@@ -381,7 +381,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -409,7 +409,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		/** client/html/catalog/home/domains

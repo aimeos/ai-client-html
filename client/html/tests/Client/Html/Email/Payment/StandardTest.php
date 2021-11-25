@@ -22,7 +22,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public static function setUpBeforeClass() : void
 	{
-		$manager = \Aimeos\MShop\Order\Manager\Factory::create( \TestHelperHtml::getContext() );
+		$manager = \Aimeos\MShop\Order\Manager\Factory::create( \TestHelperHtml::context() );
 		$orderBaseManager = $manager->getSubManager( 'base' );
 
 		$search = $manager->filter();
@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->context = \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::context();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
 		$this->view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );

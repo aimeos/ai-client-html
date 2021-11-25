@@ -464,7 +464,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\MShop\Context\Item\Iface Context object
 	 */
-	protected function getContext() : \Aimeos\MShop\Context\Item\Iface
+	protected function context() : \Aimeos\MShop\Context\Item\Iface
 	{
 		return $this->context;
 	}
@@ -480,7 +480,7 @@ abstract class Base
 	 */
 	protected function getParamHash( array $prefixes = ['f_', 'l_', 'd_'], string $key = '', array $config = [] ) : string
 	{
-		$locale = $this->getContext()->getLocale();
+		$locale = $this->context()->getLocale();
 		$pstr = map( $this->getClientParams( $this->view()->param(), $prefixes ) )->ksort()->toJson();
 
 		if( ( $cstr = json_encode( $config ) ) === false ) {
@@ -550,7 +550,7 @@ abstract class Base
 	 */
 	protected function getCached( string $type, string $uid, array $prefixes, string $confkey ) : ?string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		/** client/html/common/cache/force
@@ -606,7 +606,7 @@ abstract class Base
 	 */
 	protected function setCached( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, string $expire = null )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		$force = $config->get( 'client/html/common/cache/force', false );

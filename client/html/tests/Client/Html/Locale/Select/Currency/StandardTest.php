@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->view = \TestHelperHtml::view();
-		$this->context = \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::context();
 
 		$this->object = new \Aimeos\Client\Html\Locale\Select\Currency\Standard( $this->context );
 		$this->object->setView( $this->view );

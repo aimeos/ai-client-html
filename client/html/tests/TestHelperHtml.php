@@ -19,7 +19,7 @@ class TestHelperHtml
 	}
 
 
-	public static function getContext( $site = 'unittest' )
+	public static function context( $site = 'unittest' )
 	{
 		if( !isset( self::$context[$site] ) ) {
 			self::$context[$site] = self::createContext( $site );
@@ -32,7 +32,7 @@ class TestHelperHtml
 	public static function view( $site = 'unittest', \Aimeos\MW\Config\Iface $config = null )
 	{
 		if( $config === null ) {
-			$config = self::getContext( $site )->getConfig();
+			$config = self::context( $site )->getConfig();
 		}
 
 		$view = new \Aimeos\MW\View\Standard( self::getHtmlTemplatePaths() );

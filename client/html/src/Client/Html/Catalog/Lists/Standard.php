@@ -94,7 +94,7 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 		$prefixes = ['f_catid', 'f_supid', 'f_sort', 'l_page', 'l_type'];
 
 		/** client/html/catalog/lists/cache
@@ -409,7 +409,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $this->view();
 
 		try
@@ -460,7 +460,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -475,7 +475,7 @@ class Standard
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$total = 0;
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 

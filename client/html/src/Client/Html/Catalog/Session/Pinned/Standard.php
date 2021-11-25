@@ -68,7 +68,7 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 		$session = $context->getSession();
 
 		/** client/html/catalog/session/pinned
@@ -225,7 +225,7 @@ class Standard
 	{
 		$refresh = false;
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 		$session = $context->getSession();
 		$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
 
@@ -294,7 +294,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -309,7 +309,7 @@ class Standard
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$items = [];
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$session = $context->getSession();
 

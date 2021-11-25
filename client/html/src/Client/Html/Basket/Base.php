@@ -26,7 +26,7 @@ abstract class Base
 	 */
 	protected function clearCached()
 	{
-		$session = $this->getContext()->getSession();
+		$session = $this->context()->getSession();
 
 		foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
 			$session->set( $key, null );
@@ -44,7 +44,7 @@ abstract class Base
 	 */
 	protected function getBasketCached( string $key, $default = null )
 	{
-		return $this->getContext()->getSession()->get( $key, $default );
+		return $this->context()->getSession()->get( $key, $default );
 	}
 
 
@@ -56,7 +56,7 @@ abstract class Base
 	 */
 	protected function setBasketCached( string $key, $value )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/basket/cache/enable
 		 * Enables or disables caching of the basket content

@@ -205,7 +205,7 @@ class Standard
 			$view = $this->view();
 
 			if( ( $id = $view->param( 'sub_id' ) ) != null && $view->param( 'sub_action' ) === 'cancel' ) {
-				\Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' )->cancel( $id );
+				\Aimeos\Controller\Frontend::create( $this->context(), 'subscription' )->cancel( $id );
 			}
 
 			parent::init();
@@ -224,7 +224,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -238,13 +238,13 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'subscription' );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'subscription' );
 
 		$list = [];
 		$items = $cntl->search();
 		$map = $items->col( null, 'subscription.ordbaseid' );
 
-		$orderCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'order' );
+		$orderCntl = \Aimeos\Controller\Frontend::create( $this->context(), 'order' );
 		$orderCntl->compare( '==', 'order.baseid', $map->keys()->toArray() );
 
 		foreach( $orderCntl->search() as $item )

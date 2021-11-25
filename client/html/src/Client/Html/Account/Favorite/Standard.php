@@ -68,7 +68,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $this->view();
 
 		try
@@ -280,7 +280,7 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 		$ids = (array) $view->param( 'fav_id', [] );
 
 		try
@@ -329,7 +329,7 @@ class Standard
 	 */
 	protected function addFavorites( array $ids )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/account/favorite/maxitems
 		 * Maximum number of products that can be favorites
@@ -372,7 +372,7 @@ class Standard
 	 */
 	protected function deleteFavorites( array $ids )
 	{
-		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'customer' );
 		$item = $cntl->uses( ['product' => ['favorite']] )->get();
 
 		foreach( $ids as $id )
@@ -393,7 +393,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -437,7 +437,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/lists/size
 		 */
-		$defaultSize = $this->getContext()->getConfig()->get( 'client/html/account/favorite/size', 48 );
+		$defaultSize = $this->context()->getConfig()->get( 'client/html/account/favorite/size', 48 );
 
 		$size = (int) $view->param( 'fav-size', $defaultSize );
 		return ( $size < 1 || $size > 100 ? $defaultSize : $size );
@@ -454,7 +454,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/account/favorite/domains
 		 * A list of domain names whose items should be available in the account favorite view template

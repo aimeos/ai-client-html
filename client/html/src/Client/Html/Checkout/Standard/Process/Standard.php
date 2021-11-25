@@ -245,7 +245,7 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 
 		if( $view->param( 'c_step' ) !== 'process'
 			|| $view->get( 'standardErrorList', [] ) !== []
@@ -407,7 +407,7 @@ class Standard
 			$params[$item->getCode()] = $item->getValue();
 		}
 
-		$serviceCntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'service' );
+		$serviceCntl = \Aimeos\Controller\Frontend::create( $this->context(), 'service' );
 		return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 	}
 
@@ -419,7 +419,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 

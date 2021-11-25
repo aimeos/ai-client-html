@@ -68,7 +68,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $this->view();
 
 		try
@@ -279,7 +279,7 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 		$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		try
@@ -366,7 +366,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -380,7 +380,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$site = $context->getLocale()->getSiteItem()->getCode();
 
 		if( ( $params = $context->getSession()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) !== null )
@@ -404,7 +404,7 @@ class Standard
 			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
 		}
 
-		$basket = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->get();
+		$basket = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->get();
 
 		$view->standardBasket = $basket;
 		$view->standardTaxRates = $this->getTaxRates( $basket );
@@ -425,7 +425,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			$context = $this->getContext();
+			$context = $this->context();
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 			$code = $cntl->get()->getCoupons()->keys()->first();
 
@@ -458,7 +458,7 @@ class Standard
 	 */
 	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$domains = ['attribute', 'media', 'price', 'product', 'text'];
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
@@ -519,7 +519,7 @@ class Standard
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
-			\Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' )->deleteCoupon( $coupon );
+			\Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->deleteCoupon( $coupon );
 			$this->clearCached();
 		}
 	}
@@ -532,7 +532,7 @@ class Standard
 	 */
 	protected function deleteProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
 		$products = (array) $view->param( 'b_position', [] );
 
 		foreach( $products as $position ) {
@@ -567,7 +567,7 @@ class Standard
 	 */
 	protected function updateProducts( \Aimeos\MW\View\Iface $view )
 	{
-		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );
 
 		if( ( $position = $view->param( 'b_position', '' ) ) !== '' )

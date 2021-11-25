@@ -35,7 +35,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Product notification e-mails' );
+		return $this->context()->translate( 'controller/jobs', 'Product notification e-mails' );
 	}
 
 
@@ -46,7 +46,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Sends e-mails for watched products' );
+		return $this->context()->translate( 'controller/jobs', 'Sends e-mails for watched products' );
 	}
 
 
@@ -58,7 +58,7 @@ class Standard
 	public function run()
 	{
 		$langIds = [];
-		$context = $this->getContext();
+		$context = $this->context();
 
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$custManager = \Aimeos\MShop::create( $context, 'customer' );
@@ -218,7 +218,7 @@ class Standard
 	protected function getProductList( \Aimeos\Map $products, array $listItems ) : array
 	{
 		$result = [];
-		$priceManager = \Aimeos\MShop::create( $this->getContext(), 'price' );
+		$priceManager = \Aimeos\MShop::create( $this->context(), 'price' );
 
 		foreach( $listItems as $id => $listItem )
 		{

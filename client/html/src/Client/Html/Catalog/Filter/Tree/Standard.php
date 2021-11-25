@@ -196,7 +196,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -251,7 +251,7 @@ class Standard
 		 */
 		$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
 
-		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'catalog' )
 			->uses( $domains )->root( $startid );
 
 		$catItems = map();

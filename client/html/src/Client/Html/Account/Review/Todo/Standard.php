@@ -200,7 +200,7 @@ class Standard
 
 		if( ( $reviews = $view->param( 'review-todo', [] ) ) !== [] )
 		{
-			$context = $this->getContext();
+			$context = $this->context();
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'review' );
 			$addr = \Aimeos\Controller\Frontend::create( $context, 'customer' )->get()->getPaymentAddress();
 
@@ -226,7 +226,7 @@ class Standard
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$products = [];
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		/** client/html/account/review/todo/size
@@ -299,6 +299,6 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 }

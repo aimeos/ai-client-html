@@ -196,7 +196,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -297,7 +297,7 @@ class Standard
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', ['text', 'media', 'media/property'] );
 
-		$attributes = \Aimeos\Controller\Frontend::create( $this->getContext(), 'attribute' )
+		$attributes = \Aimeos\Controller\Frontend::create( $this->context(), 'attribute' )
 			->uses( $domains )->type( $attrTypes )->compare( '!=', 'attribute.type', ['date', 'price', 'text'] )
 			->sort( 'position' )->slice( 0, 10000 )->search();
 

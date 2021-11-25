@@ -29,7 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testTransform()
 	{
-		$manager = \Aimeos\MShop::create( \TestHelper::getContext(), 'attribute' );
+		$manager = \Aimeos\MShop::create( \TestHelper::context(), 'attribute' );
 		$items = $manager->search( $manager->filter()->slice( 0, 1 ) );
 
 		$result = $this->object->transform( $items );

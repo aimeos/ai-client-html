@@ -199,7 +199,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -215,7 +215,7 @@ class Standard
 	{
 		if( ( $id = $view->param( 'sub_id' ) ) != null )
 		{
-			$context = $this->getContext();
+			$context = $this->context();
 			$item = \Aimeos\Controller\Frontend::create( $context, 'subscription' )->get( $id );
 
 			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT | \Aimeos\MShop\Order\Item\Base\Base::PARTS_ADDRESS;

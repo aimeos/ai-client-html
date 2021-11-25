@@ -83,7 +83,7 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$prefixes = ['f_catid'];
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/catalog/stage/cache
 		 * Enables or disables caching only for the catalog stage component
@@ -355,7 +355,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $this->view();
 
 		try
@@ -397,7 +397,7 @@ class Standard
 	{
 		if( isset( $params['d_prodid'] ) || isset( $params['d_name'] ) )
 		{
-			$context = $this->getContext();
+			$context = $this->context();
 			$site = $context->getLocale()->getSiteItem()->getCode();
 			$params += (array) $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 		}
@@ -413,7 +413,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -427,7 +427,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 		$params = map( $this->getClientParams( $view->param(), ['f_catid'] ) );
 

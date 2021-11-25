@@ -17,7 +17,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$context = \TestHelperHtml::getContext();
+		$context = \TestHelperHtml::context();
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
 			->setConstructorArgs( [$context] )

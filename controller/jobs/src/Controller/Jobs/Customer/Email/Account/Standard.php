@@ -33,7 +33,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Customer account e-mails' );
+		return $this->context()->translate( 'controller/jobs', 'Customer account e-mails' );
 	}
 
 
@@ -44,7 +44,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Sends e-mails for new customer accounts' );
+		return $this->context()->translate( 'controller/jobs', 'Sends e-mails for new customer accounts' );
 	}
 
 
@@ -55,7 +55,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$queue = $context->getMessageQueue( 'mq-email', 'customer/email/account' );
 		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 

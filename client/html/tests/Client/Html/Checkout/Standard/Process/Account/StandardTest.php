@@ -21,7 +21,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend::cache( true );
 
 		$this->view = \TestHelperHtml::view();
-		$this->context = \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::context();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Account\Standard( $this->context );
 		$this->object->setView( $this->view );

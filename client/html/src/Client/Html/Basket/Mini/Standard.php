@@ -68,7 +68,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$site = $context->getLocale()->getSiteId();
 		$view = $this->view();
 
@@ -164,7 +164,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$site = $context->getLocale()->getSiteId();
 		$view = $this->view();
 
@@ -320,7 +320,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -334,7 +334,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
 		$view->miniBasket = $controller->get();
 
 		return parent::data( $view, $tags, $expire );

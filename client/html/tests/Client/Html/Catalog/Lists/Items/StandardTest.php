@@ -19,7 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->context = \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::context();
 
 		$config = $this->context->getConfig();
 		$config->set( 'client/html/catalog/lists/basket-add', true );

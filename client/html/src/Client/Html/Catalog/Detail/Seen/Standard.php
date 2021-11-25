@@ -165,7 +165,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -181,7 +181,7 @@ class Standard
 
 		if( ( $name = $view->param( 'd_name' ) ) !== null )
 		{
-			$context = $this->getContext();
+			$context = $this->context();
 			$session = $context->getSession();
 			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
@@ -205,7 +205,7 @@ class Standard
 				 * @category User
 				 * @category Developer
 				 */
-				$max = $this->getContext()->getConfig()->get( 'client/html/catalog/session/seen/maxitems', 6 );
+				$max = $this->context()->getConfig()->get( 'client/html/catalog/session/seen/maxitems', 6 );
 
 				$lastSeen[$name] = $this->getHtml( $name, $view->param( 'd_prodid' ) );
 				$lastSeen = array_slice( $lastSeen, -$max, $max, true );
@@ -231,7 +231,7 @@ class Standard
 	 */
 	protected function getHtml( string $name, string $prodId = null ) : string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$cache = $context->getCache();
 		$key = md5( $name . 'product:detail-seen' );
 

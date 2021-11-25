@@ -82,7 +82,7 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$prefixes = ['f_supid'];
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/supplier/detail/cache
 		 * Enables or disables caching only for the supplier detail component
@@ -355,7 +355,7 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 
 		try
 		{
@@ -392,7 +392,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -406,7 +406,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		/** client/html/supplier/detail/supid-default

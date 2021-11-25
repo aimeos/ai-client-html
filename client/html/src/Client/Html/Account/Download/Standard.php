@@ -176,7 +176,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		try
 		{
@@ -225,7 +225,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -236,7 +236,7 @@ class Standard
 	 */
 	protected function addDownload( \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface $item )
 	{
-		$fs = $this->getContext()->getFilesystemManager()->get( 'fs-secure' );
+		$fs = $this->context()->getFilesystemManager()->get( 'fs-secure' );
 		$response = $this->view()->response();
 		$value = (string) $item->getValue();
 
@@ -280,7 +280,7 @@ class Standard
 	 */
 	protected function checkAccess( string $id = null ) : bool
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		if( ( $customerId = $context->getUserId() ) !== null && $id !== null )
 		{
@@ -311,7 +311,7 @@ class Standard
 	 */
 	protected function checkDownload( string $id = null ) : bool
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/account/download/maxcount
 		 * Maximum number of file downloads allowed for an ordered product

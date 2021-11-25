@@ -67,7 +67,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$site = $context->getLocale()->getSiteId();
 		$view = $this->view();
 
@@ -163,7 +163,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$site = $context->getLocale()->getSiteId();
 		$view = $this->view();
 
@@ -319,6 +319,6 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 }

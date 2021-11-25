@@ -174,7 +174,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		try
 		{
@@ -205,7 +205,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -218,7 +218,7 @@ class Standard
 	 */
 	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, bool $new ) : ?string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
 		try {

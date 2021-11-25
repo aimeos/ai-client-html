@@ -18,7 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->context = \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::context();
 
 		$this->view = \TestHelperHtml::view();
 		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();

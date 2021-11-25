@@ -70,7 +70,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $this->view();
 
 		try
@@ -283,7 +283,7 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 
 		try
 		{
@@ -312,7 +312,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 

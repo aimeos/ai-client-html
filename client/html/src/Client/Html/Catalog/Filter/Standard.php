@@ -128,7 +128,7 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 		$prefixes = ['f_name', 'f_catid', 'f_supid'];
 
 		/** client/html/catalog/filter/cache
@@ -431,7 +431,7 @@ class Standard
 	 */
 	public function init()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $this->view();
 
 		try
@@ -469,7 +469,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -483,7 +483,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$config = $this->getContext()->getConfig();
+		$config = $this->context()->getConfig();
 
 		/** client/html/catalog/count/enable
 		 * Enables or disables displaying product counts in the catalog filter

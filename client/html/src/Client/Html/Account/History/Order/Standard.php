@@ -200,7 +200,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -216,7 +216,7 @@ class Standard
 	{
 		if( ( $orderId = $view->param( 'his_id', null ) ) !== null )
 		{
-			$context = $this->getContext();
+			$context = $this->context();
 
 			$orderItem = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $orderId );
 			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $orderItem->getBaseId() );

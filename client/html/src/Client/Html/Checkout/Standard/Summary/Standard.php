@@ -237,7 +237,7 @@ class Standard
 			}
 
 
-			$controller = \Aimeos\Controller\Frontend::create( $this->getContext(), 'basket' );
+			$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
 			$customerref = strip_tags( $view->param( 'cs_customerref', '', false ) );
 			$comment = strip_tags( $view->param( 'cs_comment', '', false ) );
 
@@ -281,7 +281,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -295,7 +295,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$basket = $view->standardBasket;
 
 		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );

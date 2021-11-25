@@ -195,7 +195,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -211,7 +211,7 @@ class Standard
 	{
 		if( isset( $view->relatedBasket ) )
 		{
-			$context = $this->getContext();
+			$context = $this->context();
 			$config = $context->getConfig();
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );

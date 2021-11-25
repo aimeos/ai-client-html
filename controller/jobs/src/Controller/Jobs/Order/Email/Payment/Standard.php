@@ -31,7 +31,7 @@ class Standard
 	 */
 	public function getName() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Order payment related e-mails' );
+		return $this->context()->translate( 'controller/jobs', 'Order payment related e-mails' );
 	}
 
 
@@ -42,7 +42,7 @@ class Standard
 	 */
 	public function getDescription() : string
 	{
-		return $this->getContext()->translate( 'controller/jobs', 'Sends order confirmation or payment status update e-mails' );
+		return $this->context()->translate( 'controller/jobs', 'Sends order confirmation or payment status update e-mails' );
 	}
 
 
@@ -53,7 +53,7 @@ class Standard
 	 */
 	public function run()
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$config = $context->getConfig();
 
 		$client = \Aimeos\Client\Html\Email\Payment\Factory::create( $context );
@@ -148,7 +148,7 @@ class Standard
 	 */
 	protected function addOrderStatus( string $orderId, int $value )
 	{
-		$orderStatusManager = \Aimeos\MShop::create( $this->getContext(), 'order/status' );
+		$orderStatusManager = \Aimeos\MShop::create( $this->context(), 'order/status' );
 
 		$statusItem = $orderStatusManager->create();
 		$statusItem->setParentId( $orderId );
@@ -224,7 +224,7 @@ class Standard
 	 */
 	protected function process( \Aimeos\Client\Html\Iface $client, \Aimeos\Map $items, int $status )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );
 
 		foreach( $items as $id => $item )
@@ -265,7 +265,7 @@ class Standard
 	protected function processItem( \Aimeos\Client\Html\Iface $client, \Aimeos\MShop\Order\Item\Iface $orderItem,
 		\Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\MShop\Order\Item\Base\Address\Iface $addrItem )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->getLocale()->getLanguageId() );
 
 		$view = $this->view( $context, $orderBaseItem, $langId );

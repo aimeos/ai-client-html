@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRenewAfter()
 	{
-		$context = \TestHelperCntl::getContext();
+		$context = \TestHelperCntl::context();
 
 		$mailStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\None' )
 			->disableOriginalConstructor()
@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testEnd()
 	{
-		$context = \TestHelperCntl::getContext();
+		$context = \TestHelperCntl::context();
 
 		$mailStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\None' )
 			->disableOriginalConstructor()

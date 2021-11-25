@@ -68,7 +68,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$view = $this->view();
 
 		try
@@ -281,7 +281,7 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
-		$context = $this->getContext();
+		$context = $this->context();
 		$ids = (array) $view->param( 'wat_id', [] );
 
 		try
@@ -333,7 +333,7 @@ class Standard
 	 */
 	protected function addItems( \Aimeos\MW\View\Iface $view, array $ids )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/account/watch/maxitems
 		 * Maximum number of products that can be watched in parallel
@@ -384,7 +384,7 @@ class Standard
 	 */
 	protected function deleteItems( \Aimeos\MW\View\Iface $view, array $ids )
 	{
-		$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'customer' );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'customer' );
 		$item = $cntl->uses( ['product' => ['watch']] )->get();
 
 		foreach( $ids as $id )
@@ -406,7 +406,7 @@ class Standard
 	 */
 	protected function editItems( \Aimeos\MW\View\Iface $view, array $ids )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$item = $cntl->uses( ['product' => ['watch']] )->get();
 
@@ -440,7 +440,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -484,7 +484,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/lists/size
 		 */
-		$defaultSize = $this->getContext()->getConfig()->get( 'client/html/account/watch/size', 48 );
+		$defaultSize = $this->context()->getConfig()->get( 'client/html/account/watch/size', 48 );
 
 		$size = (int) $view->param( 'watch-size', $defaultSize );
 		return ( $size < 1 || $size > 100 ? $defaultSize : $size );
@@ -501,7 +501,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		/** client/html/account/watch/domains
 		 * A list of domain names whose items should be available in the account watch view template

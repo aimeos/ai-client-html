@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testTransform()
 	{
-		$context = \TestHelper::getContext();
+		$context = \TestHelper::context();
 		$manager = \Aimeos\MShop::create( $context, 'media' );
 
 		$attrItem = \Aimeos\MShop::create( $context, 'attribute' )->create()->setType( 'color' )->setId( 123 );

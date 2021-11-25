@@ -138,7 +138,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$config = $this->getContext()->config();
+		$config = $this->context()->config();
 		$view = $this->object()->data( $this->view() );
 
 		$content = '';
@@ -419,7 +419,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 

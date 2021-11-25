@@ -81,7 +81,7 @@ class Standard
 	 */
 	protected function process( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		$context = $this->getContext();
+		$context = $this->context();
 
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
 		$baseItem = $manager->get( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );

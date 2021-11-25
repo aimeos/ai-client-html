@@ -195,7 +195,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->getContext()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -228,7 +228,7 @@ class Standard
 		$domains = $view->config( 'client/html/catalog/filter/supplier/domains', ['text', 'media', 'media/property'] );
 
 		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();
-		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->getContext(), 'supplier' )
+		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->context(), 'supplier' )
 			->uses( $domains )->slice( 0, 10000 )->search();
 
 		// Delete cache when suppliers are added or deleted even in "tag-all" mode

@@ -14,7 +14,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 {
 	public function testCreateController()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$obj = \Aimeos\Controller\Jobs\Customer\Email\Watch\Factory::create( $context, $aimeos );
@@ -24,7 +24,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 
 	public function testFactoryExceptionWrongName()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
@@ -34,7 +34,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 
 	public function testFactoryExceptionWrongClass()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );
@@ -44,7 +44,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
 
 	public function testFactoryExceptionWrongInterface()
 	{
-		$context = \TestHelperJobs::getContext();
+		$context = \TestHelperJobs::context();
 		$aimeos = \TestHelperJobs::getAimeos();
 
 		$this->expectException( '\\Aimeos\\Controller\\Jobs\\Exception' );

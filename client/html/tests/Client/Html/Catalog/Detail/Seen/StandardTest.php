@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->view = \TestHelperHtml::view();
-		$this->context = \TestHelperHtml::getContext();
+		$this->context = \TestHelperHtml::context();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Seen\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getProductItem()
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperHtml::getContext() );
+		$manager = \Aimeos\MShop\Product\Manager\Factory::create( \TestHelperHtml::context() );
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', 'CNE' ) );
 
