@@ -390,7 +390,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			<?php foreach( $map as $taxRate => $priceItem ) : ?>
 				<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 					<tr class="tax">
-						<td colspan="5"><?= $enc->html( sprintf( $priceTaxflag ? $taxFormatIncl : $taxFormatExcl, $this->number( $taxRate ), $this->translate( 'client/code', 'tax' . $taxName ) ) ) ?></td>
+						<td colspan="5"><?= $enc->html( sprintf( $priceTaxflag ? $taxFormatIncl : $taxFormatExcl, $this->number( $taxRate ), $this->translate( 'client/code', $taxName ) ) ) ?></td>
 						<td class="price"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $precision ), $priceCurrency ) ) ?></td>
 						<?php if( $modify ) : ?>
 							<td class="action"></td>

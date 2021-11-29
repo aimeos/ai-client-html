@@ -194,7 +194,7 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 <?php 	foreach( $map as $taxRate => $priceItem ) : ?>
 <?php		if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 <?php			$taxFormat = ( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ) ) ?>
-<?php			echo strip_tags( sprintf( $taxFormat, $this->number( $taxRate ), $this->translate( 'client/code', 'tax' . $taxName ) ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ?>
+<?php			echo strip_tags( sprintf( $taxFormat, $this->number( $taxRate ), $this->translate( 'client/code', $taxName ) ) ) ?>: <?php printf( $this->get( 'priceFormat' ), $this->number( $taxValue, $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ?>
 
 <?php		endif ?>
 <?php	endforeach ?>
