@@ -401,7 +401,7 @@ class Standard
 		}
 
 		if( empty( $params ) === false ) {
-			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
+			$view->standardBackUrl = $view->url( $target, $controller, $action, array_filter( $params ), [], $config );
 		}
 
 		$basket = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->get();
