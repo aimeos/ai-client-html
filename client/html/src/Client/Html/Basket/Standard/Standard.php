@@ -401,6 +401,12 @@ class Standard
 		}
 
 		if( empty( $params ) === false ) {
+			foreach( $params as $key => $val ) {
+				if( is_null( $val ) ) {
+					unset( $params[$key] );
+				}
+			}
+
 			$view->standardBackUrl = $view->url( $target, $controller, $action, $params, [], $config );
 		}
 
