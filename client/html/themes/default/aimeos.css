@@ -5292,9 +5292,9 @@ a.pswp__share--download:hover {
 	max-width: 100%;
 	max-height: 100%;
 	position: relative;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	/*top: 50%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
 }
 
 .catalog-detail-image .image-single,
@@ -5327,13 +5327,13 @@ a.pswp__share--download:hover {
 	.catalog-detail-image .image-single,
 	.catalog-detail-image .image-single .media-item,
 	.catalog-detail-image .image-single img.item {
-		height: 720px;
+		height: auto;
 	}
 
 	.catalog-detail-image .thumbs-horizontal,
 	.catalog-detail-image .thumbs-horizontal .slick-slider,
 	.catalog-detail-image .thumbs-horizontal img.item-thumb {
-		height: 180px;
+		height: auto;
 	}
 }
 
@@ -6893,6 +6893,10 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	transition: all .3s linear;
 }
 
+.nav-link:focus, .nav-link:hover {
+	color: #282828;
+}
+
 .nav-tabs a:link:not(.btn):hover {
 	border: 1px solid transparent;
 	color: #282828;
@@ -6997,6 +7001,7 @@ aside .catalog-session-seen > h2 {
 	text-align: start;
 	padding: .5rem .75rem;
 	letter-spacing: 1.5px;
+	cursor: pointer;
 }
 
 aside .catalog-session-seen > h2 {

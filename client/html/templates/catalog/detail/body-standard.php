@@ -354,30 +354,32 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 			<div class="col-sm-12">
 				<div class="catalog-detail-additional content-block">
-					<nav class="nav nav-tabs" id="nav-tab" role="tablist">
+					<nav>
+						<div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-						<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
-							<a class="nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">
-								<?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?>
-							</a>
-						<?php endif ?>
+						    <?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
+							    <a class="nav-link active" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">
+								    <?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?>
+							    </a>
+						    <?php endif ?>
 
-						<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
-							<a class="nav-link nav-attribute" id="nav-attribute-tab" data-toggle="tab" href="#nav-attribute" type="button" role="tab" aria-controls="nav-attribute">
-								<?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?>
-							</a>
-						<?php endif ?>
+						    <?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
+							    <a class="nav-link nav-attribute" id="nav-attribute-tab" data-bs-toggle="tab" data-bs-target="#nav-attribute" type="button" role="tab" aria-controls="nav-attribute">
+								    <?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?>
+							    </a>
+						    <?php endif ?>
 
-						<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
-							<a class="nav-link nav-characteristics" id="nav-characteristics-tab" data-toggle="tab" href="#nav-characteristics" type="button" role="tab" aria-controls="nav-characteristics">
-								<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?></h2>
-							</a>
-						<?php endif ?>
+						    <?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
+							    <a class="nav-link nav-characteristics" id="nav-characteristics-tab" data-bs-toggle="tab" data-bs-target="#nav-characteristics" type="button" role="tab" aria-controls="nav-characteristics">
+								    <h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?></h2>
+							    </a>
+						    <?php endif ?>
 
-						<a class="nav-link nav-review" id="nav-review-tab" data-toggle="tab" href="#nav-review" type="button" role="tab" aria-controls="nav-review">
-							<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
-							<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
-						</a>
+						    <a class="nav-link nav-review" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review">
+							    <?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
+							    <span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
+						    </a>
+						</div>
 					</nav>
 
 					<div class="tab-content" id="nav-tabContent">
