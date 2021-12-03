@@ -135,25 +135,6 @@ body .main-section {
 	height: auto;
 }
 
-.bi {
-	display: inline-block;
-	direction: ltr;
-	font-family: bootstrap-icons;
-	font-feature-settings: 'liga';
-	font-style: normal;
-	font-size: 1.2rem;
-	letter-spacing: normal;
-	line-height: 0;
-	margin-top: -2px;
-	text-rendering: optimizeLegibility;
-	text-transform: none;
-	vertical-align: middle;
-	white-space: nowrap;
-	word-wrap: normal;
-	-webkit-font-feature-settings: 'liga';
-	-webkit-font-smoothing: antialiased;
-}
-
 /* ai-cms-grapesjs */
 
 .aimeos .contact-pot {
@@ -2120,7 +2101,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .catalog-detail .catalog-social .social-button-facebook:before,
-.catalog-detail .catalog-social .social-button-twitter:before{
+.catalog-detail .catalog-social .social-button-twitter:before,
+.catalog-detail .catalog-social .social-button-pinterest:before {
 	display: inline-block;
 	position: relative;
 	left: 50%;
@@ -2140,12 +2122,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	content: "\f5ef";
 }
 
-.catalog-detail .catalog-social .social-button.social-button-pinterest {
-	background-image: url("./fonts/pinterest.svg");
-	background-repeat: no-repeat;
-	display: inline-block;
-	background-position: center;
-	background-size: 24px 24px;
+.catalog-detail .catalog-social .social-button-pinterest:before {
+	content: "\f663";
 }
 
 /* action buttons */
@@ -5402,6 +5380,15 @@ img{
 	display: none;
 }
 
+.back-to-top .top-icon:before{
+	content:"\f145";
+    	position: relative;
+	font: normal normal normal 14px/1 bootstrap-icons;
+	font-size: 150%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
 .back-to-top:hover{
 	background-color: #FFA500;
 	background-color: var(--ai-warning, #FFA500);
@@ -5486,6 +5473,34 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	text-align: start;
 	display: inline-block;
 	margin-bottom: 3rem;
+}
+
+.footer-right .social .facebook:before,
+.footer-right .social .twitter:before,
+.footer-right .social .instagram:before,
+.footer-right .social .youtube:before{
+	position: relative;
+	font: normal normal normal 14px/1 bootstrap-icons;
+	font-size: 100%;
+	display: inline-block;
+	text-decoration: none;
+	vertical-align: middle;
+	background: none;
+	border: none;
+	margin-right: .5rem;
+}
+
+.footer-right .social .facebook:before{
+	content:"\f344";
+}
+.footer-right .social .twitter:before{
+        content:"\f5ef";
+}
+.footer-right .social .instagram:before{
+        content:"\f437";
+}
+.footer-right .social .youtube:before{
+        content:"\f62b";
 }
 
 @media (min-width:768px) {
