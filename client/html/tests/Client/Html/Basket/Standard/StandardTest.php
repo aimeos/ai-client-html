@@ -153,11 +153,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="subtotal">.*<td class="price">18.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="delivery">.*<td class="price">1.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="total">.*<td class="price">19.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="tax">.*<td class="price">3.03 .+</td>.*.*</tfoot>#smU', $output );
+		$this->assertRegExp( '#<div class="price.+18.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="subtotal.+<div class="price.+18.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="delivery.+<div class="price.+1.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="total.+<div class="price.+19.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="tax.+<div class="price.+3.03 .+</div>#smU', $output );
 	}
 
 
@@ -185,11 +185,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
-		$this->assertRegExp( '#<tbody>.*<td class="price">600.00 .+</td>.*</tbody>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="subtotal">.*<td class="price">618.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="delivery">.*<td class="price">31.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="total">.*<td class="price">649.00 .+</td>.*</tfoot>#smU', $output );
+		$this->assertRegExp( '#<div class="price.+18.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="price.+600.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="subtotal.+<div class="price.+618.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="delivery.+<div class="price.+31.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="total.+<div class="price.+649.00 .+</div>#smU', $output );
 	}
 
 
@@ -315,10 +315,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#<tbody>.*<td class="price">18.00 .+</td>.*</tbody>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="subtotal">.*<td class="price">18.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="delivery">.*<td class="price">1.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="total">.*<td class="price">19.00 .+</td>.*</tfoot>#smU', $output );
+		$this->assertRegExp( '#<div class="price.+18.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="subtotal.+<div class="price.+18.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="delivery.+<div class="price.+1.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="total.+<div class="price.+19.00 .+</div>#smU', $output );
 	}
 
 
@@ -347,11 +347,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#<tbody>.*<td class="price">36.00 .+</td>.*</tbody>#smU', $output );
-		$this->assertRegExp( '#<tbody>.*<td class="price">600.00 .+</td>.*</tbody>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="subtotal">.*<td class="price">636.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="delivery">.*<td class="price">32.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="total">.*<td class="price">668.00 .+</td>.*</tfoot>#smU', $output );
+		$this->assertRegExp( '#<div class="price.+36.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="price.+600.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="subtotal.+<div class="price.+636.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="delivery.+<div class="price.+32.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="total.+<div class="price.+668.00 .+</div>#smU', $output );
 	}
 
 
@@ -371,10 +371,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#<tbody>.*<td class="price">36.00 .+</td>.*</tbody>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="subtotal">.*<td class="price">36.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="delivery">.*<td class="price">2.00 .+</td>.*</tfoot>#smU', $output );
-		$this->assertRegExp( '#<tfoot>.*<tr class="total">.*<td class="price">38.00 .+</td>.*</tfoot>#smU', $output );
+		$this->assertRegExp( '#<div class="price.+36.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="subtotal.+<div class="price.+36.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="delivery.+<div class="price.+2.00 .+</div>#smU', $output );
+		$this->assertRegExp( '#<div class="total.+<div class="price.+38.00 .+</div>#smU', $output );
 	}
 
 
@@ -394,7 +394,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#<tfoot>.*<tr class="total">.*<td class="price">0.00 .+</td>.*</tfoot>#smU', $output );
+		$this->assertRegExp( '#<div class="total.+<div class="price.+0.00 .+</div>#smU', $output );
 	}
 
 
