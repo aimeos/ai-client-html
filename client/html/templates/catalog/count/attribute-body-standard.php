@@ -13,7 +13,7 @@ var attributeCounts = <?= $this->get( 'attributeCountList', map() )->toJson( JSO
 
 $( ".catalog-filter-attribute .attribute-lists li.attr-item" ).each( function( index, item ) {
 	$(item).append( function() {
-		var itemId = $(this).data( "id" );
+		var itemId = $(item).data( "id" );
 
 		if( attributeCounts[itemId] ) {
 			var node = document.createElement( 'span' );
@@ -22,7 +22,7 @@ $( ".catalog-filter-attribute .attribute-lists li.attr-item" ).each( function( i
 			return node;
 		}
 
-		$(this).addClass( 'disabled' );
+		$(item).addClass( 'disabled' );
 	});
 });
 // -->
