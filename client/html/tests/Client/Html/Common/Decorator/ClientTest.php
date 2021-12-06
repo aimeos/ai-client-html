@@ -22,7 +22,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
 	public function testDecorateFactoryClientCommon()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/common/decorators/default', array( 'Example' ) );
 
 		$object = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
@@ -33,7 +33,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
 	public function testDecorateFactoryClientGlobal()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/catalog/filter/decorators/global', array( 'Example' ) );
 
 		$object = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
@@ -44,7 +44,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
 	public function testDecorateSubClientGlobal()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/catalog/filter/tree/decorators/global', array( 'Example' ) );
 
 		$object = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context )->getSubClient( 'tree' );

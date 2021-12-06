@@ -101,7 +101,7 @@ class Standard
 		if( ( $html = $this->getCached( 'body', $uid, [], $confkey ) ) === null )
 		{
 			$view = $this->view();
-			$config = $this->context()->getConfig();
+			$config = $this->context()->config();
 
 			/** client/html/catalog/home/template-body
 			 * Relative path to the HTML body template of the catalog home client.
@@ -190,7 +190,7 @@ class Standard
 		if( ( $html = $this->getCached( 'header', $uid, [], $confkey ) ) === null )
 		{
 			$view = $this->view();
-			$config = $this->context()->getConfig();
+			$config = $this->context()->config();
 
 			/** client/html/catalog/home/template-header
 			 * Relative path to the HTML header template of the catalog home client.
@@ -381,7 +381,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -410,7 +410,7 @@ class Standard
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** client/html/catalog/home/domains
 		 * A list of domain names whose items should be available in the catalog home view template

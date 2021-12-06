@@ -92,7 +92,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyDefaultId()
 	{
 		$context = clone $this->context;
-		$context->getConfig()->set( 'client/html/supplier/detail/supid-default', $this->getSupplierItem()->getId() );
+		$context->config()->set( 'client/html/supplier/detail/supid-default', $this->getSupplierItem()->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Supplier\Detail\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );

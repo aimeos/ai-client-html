@@ -270,7 +270,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -285,7 +285,7 @@ class Standard
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		if( isset( $view->listCurrentCatItem ) ) {
 			$catId = $view->listCurrentCatItem->getId();

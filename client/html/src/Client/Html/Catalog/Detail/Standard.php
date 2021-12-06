@@ -97,8 +97,8 @@ class Standard
 		$context = $this->context();
 		$prefixes = ['d_prodid', 'd_name'];
 
-		$code = $context->getConfig()->get( 'client/html/catalog/detail/prodcode-default' );
-		$id = $context->getConfig()->get( 'client/html/catalog/detail/prodid-default', $code );
+		$code = $context->config()->get( 'client/html/catalog/detail/prodcode-default' );
+		$id = $context->config()->get( 'client/html/catalog/detail/prodid-default', $code );
 
 		if( !$view->param( 'd_prodid', $id ) && !$view->param( 'd_name' ) ) {
 			return '';
@@ -237,8 +237,8 @@ class Standard
 		$prefixes = ['d_prodid', 'd_name'];
 		$confkey = 'client/html/catalog/detail';
 
-		$code = $context->getConfig()->get( 'client/html/catalog/detail/prodcode-default' );
-		$id = $context->getConfig()->get( 'client/html/catalog/detail/prodid-default', $code );
+		$code = $context->config()->get( 'client/html/catalog/detail/prodcode-default' );
+		$id = $context->config()->get( 'client/html/catalog/detail/prodid-default', $code );
 
 		if( !$view->param( 'd_prodid', $id ) && !$view->param( 'd_name' ) ) {
 			return '';
@@ -455,7 +455,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -470,7 +470,7 @@ class Standard
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$domains = [
 			'attribute', 'media', 'media/property', 'price', 'product', 'product/property', 'text',
 			'supplier' => ['text', 'media', 'supplier/address']

@@ -132,7 +132,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyDefaultId()
 	{
 		$context = clone $this->context;
-		$context->getConfig()->set( 'client/html/catalog/detail/prodid-default', $this->getProductItem()->getId() );
+		$context->config()->set( 'client/html/catalog/detail/prodid-default', $this->getProductItem()->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );
@@ -150,7 +150,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyDefaultCode()
 	{
 		$context = clone $this->context;
-		$context->getConfig()->set( 'client/html/catalog/detail/prodcode-default', 'CNE' );
+		$context->config()->set( 'client/html/catalog/detail/prodcode-default', 'CNE' );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );

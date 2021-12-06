@@ -284,7 +284,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -315,7 +315,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/checkout/standard/delivery/domains
 		 */
-		$domains = $context->getConfig()->get( 'client/html/checkout/standard/payment/domains', $domains );
+		$domains = $context->config()->get( 'client/html/checkout/standard/payment/domains', $domains );
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 		$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );

@@ -72,7 +72,7 @@ abstract class Base
 		 * @category Developer
 		 * @since 2014.11
 		 */
-		if( $context->getConfig()->get( 'client/html/basket/cache/enable', true ) != false )
+		if( $context->config()->get( 'client/html/basket/cache/enable', true ) != false )
 		{
 			$session = $context->getSession();
 

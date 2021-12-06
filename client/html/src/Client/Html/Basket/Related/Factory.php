@@ -65,7 +65,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'client/html/basket/related/name', 'Standard' );
+			$name = $context->config()->get( 'client/html/basket/related/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Client\\Html\\Iface';

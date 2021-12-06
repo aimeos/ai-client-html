@@ -81,7 +81,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog#session
 		 */
-		$config = $context->getConfig()->get( 'client/html/catalog/session/seen', [] );
+		$config = $context->config()->get( 'client/html/catalog/session/seen', [] );
 		$key = $this->getParamHash( [], $uid . ':catalog:session-seen-body', $config );
 
 		if( ( $html = $session->get( $key ) ) === null )
@@ -222,7 +222,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 

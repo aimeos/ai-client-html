@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::context();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$this->view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
+		$this->view = \TestHelperHtml::view( 'unittest', $this->context->config() );
 		$this->view->extAddressItem = self::$customerItem->getPaymentAddress();
 		$this->view->extAccountCode = self::$customerItem->getCode();
 		$this->view->extAccountPassword = 'testpwd';

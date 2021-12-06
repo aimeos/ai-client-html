@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::context();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$this->view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
+		$this->view = \TestHelperHtml::view( 'unittest', $this->context->config() );
 		$this->view->extOrderItem = self::$orderItem;
 		$this->view->extOrderBaseItem = self::$orderBaseItem;
 		$this->view->extAddressItem = self::$orderBaseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, 0 );
@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/email/from-email', 'me@example.com' );
 		$config->set( 'client/html/email/from-name', 'My company' );
 
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyFiles()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/email/delivery/attachments', array( __FILE__ ) );
 
 		$output = $this->object->body();
@@ -103,7 +103,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyFilesException()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/email/delivery/attachments', array( 'invalid' ) );
 
 		$this->expectException( \Aimeos\Client\Html\Exception::class );

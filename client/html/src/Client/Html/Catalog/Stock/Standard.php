@@ -287,7 +287,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -345,7 +345,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/stock/level/low
 		 */
-		$sort = $context->getConfig()->get( 'client/html/catalog/stock/sort', 'stock.type' );
+		$sort = $context->config()->get( 'client/html/catalog/stock/sort', 'stock.type' );
 		$type = $context->getLocale()->getSiteItem()->getConfigValue( 'stocktype' );
 
 		return \Aimeos\Controller\Frontend::create( $context, 'stock' )

@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$attrId = $manager->find( 'xs', [], 'product', 'size' )->getId();
 
 		$context = clone $this->context;
-		$context->getConfig()->set( 'client/html/catalog/lists/attrid-default', $attrId );
+		$context->config()->set( 'client/html/catalog/lists/attrid-default', $attrId );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );
@@ -156,7 +156,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyDefaultCat()
 	{
 		$context = clone $this->context;
-		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $this->getCatalogItem()->getId() );
+		$context->config()->set( 'client/html/catalog/lists/catid-default', $this->getCatalogItem()->getId() );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );
@@ -174,7 +174,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = clone $this->context;
 		$catid = $this->getCatalogItem()->getId();
-		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', array( $catid, $catid ) );
+		$context->config()->set( 'client/html/catalog/lists/catid-default', array( $catid, $catid ) );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );
@@ -192,7 +192,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$context = clone $this->context;
 		$catid = $this->getCatalogItem()->getId();
-		$context->getConfig()->set( 'client/html/catalog/lists/catid-default', $catid . ',' . $catid );
+		$context->config()->set( 'client/html/catalog/lists/catid-default', $catid . ',' . $catid );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );
@@ -209,7 +209,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyCategoryLevels()
 	{
 		$context = clone $this->context;
-		$context->getConfig()->set( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
+		$context->config()->set( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Lists\Standard( $context );
 		$this->object->setView( \TestHelperHtml::view() );

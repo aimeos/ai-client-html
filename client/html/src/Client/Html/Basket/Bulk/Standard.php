@@ -81,7 +81,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/basket#bulk
 		 */
-		$config = $context->getConfig()->get( 'client/html/basket/bulk', [] );
+		$config = $context->config()->get( 'client/html/basket/bulk', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:bulk-body', $config );
 
 		if( ( $html = $this->getBasketCached( $key ) ) === null )
@@ -167,7 +167,7 @@ class Standard
 		$site = $context->getLocale()->getSiteId();
 		$view = $this->view();
 
-		$config = $context->getConfig()->get( 'client/html/basket/bulk', [] );
+		$config = $context->config()->get( 'client/html/basket/bulk', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:bulk-header', $config );
 
 		if( ( $html = $this->getBasketCached( $key ) ) === null )
@@ -319,6 +319,6 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 }

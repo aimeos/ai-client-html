@@ -173,7 +173,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->view = \TestHelperHtml::view();
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/checkout/standard/address/validate/postal', '^[0-9]{5}$' );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
 		$this->view->addHelper( 'config', $helper );

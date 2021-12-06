@@ -464,7 +464,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyOverwriteCoupon()
 	{
-		$this->context->getConfig()->set( 'client/html/basket/standard/coupon/overwrite', true );
+		$this->context->config()->set( 'client/html/basket/standard/coupon/overwrite', true );
 
 		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );

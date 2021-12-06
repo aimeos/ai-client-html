@@ -82,7 +82,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/basket#mini
 		 */
-		$config = $context->getConfig()->get( 'client/html/basket/mini', [] );
+		$config = $context->config()->get( 'client/html/basket/mini', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:mini-body', $config );
 
 		if( ( $html = $this->getBasketCached( $key ) ) === null )
@@ -168,7 +168,7 @@ class Standard
 		$site = $context->getLocale()->getSiteId();
 		$view = $this->view();
 
-		$config = $context->getConfig()->get( 'client/html/basket/mini', [] );
+		$config = $context->config()->get( 'client/html/basket/mini', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:mini-header', $config );
 
 		if( ( $html = $this->getBasketCached( $key ) ) === null )
@@ -320,7 +320,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 

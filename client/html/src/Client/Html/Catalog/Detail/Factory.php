@@ -66,7 +66,7 @@ class Factory
 		 * @category Developer
 		 */
 		if( $name === null ) {
-			$name = $context->getConfig()->get( 'client/html/catalog/detail/name', 'Standard' );
+			$name = $context->config()->get( 'client/html/catalog/detail/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Client\\Html\\Iface';

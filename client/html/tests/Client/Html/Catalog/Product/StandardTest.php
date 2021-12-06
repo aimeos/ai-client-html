@@ -20,7 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->view = \TestHelperHtml::view();
 		$this->context = \TestHelperHtml::context();
-		$this->context->getConfig()->set( 'client/html/catalog/product/product-codes', ['CNE', 'ABCD', 'CNC'] );
+		$this->context->config()->set( 'client/html/catalog/product/product-codes', ['CNE', 'ABCD', 'CNC'] );
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Product\Standard( $this->context );
 		$this->object->setView( $this->view );

@@ -88,7 +88,7 @@ class Base
 		}
 
 		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** client/html/common/decorators/default
 		 * Configures the list of decorators applied to all html clients

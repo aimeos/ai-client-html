@@ -373,7 +373,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -452,7 +452,7 @@ class Standard
 		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 		$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
 
-		$steps = (array) $context->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		$steps = (array) $context->config()->get( $this->subPartPath, $this->subPartNames );
 		$steps = array_values( array_diff( $steps, $onepage ) ); // remove all remaining steps in $onepage and reindex
 
 		// use first step if default step isn't available

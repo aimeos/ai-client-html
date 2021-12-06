@@ -253,7 +253,7 @@ abstract class Base
 		}
 
 		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
 		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
@@ -309,7 +309,7 @@ abstract class Base
 		 * @see madmin/cache/manager/name
 		 * @see madmin/cache/name
 		 */
-		$tagAll = $this->context->getConfig()->get( 'client/html/common/cache/tag-all', false );
+		$tagAll = $this->context->config()->get( 'client/html/common/cache/tag-all', false );
 
 		if( !is_array( $items ) && !is_map( $items ) ) {
 			$items = map( [$items] );
@@ -409,7 +409,7 @@ abstract class Base
 		$path = strtolower( $path );
 
 		if( $name === null ) {
-			$name = $this->context->getConfig()->get( 'client/html/' . $path . '/name', 'Standard' );
+			$name = $this->context->config()->get( 'client/html/' . $path . '/name', 'Standard' );
 		}
 
 		if( empty( $name ) || ctype_alnum( $name ) === false ) {
@@ -551,7 +551,7 @@ abstract class Base
 	protected function getCached( string $type, string $uid, array $prefixes, string $confkey ) : ?string
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** client/html/common/cache/force
 		 * Enforces content caching regardless of user logins
@@ -586,7 +586,7 @@ abstract class Base
 		);
 
 		if( !isset( $this->cache[$keys[$type]] ) ) {
-			$this->cache = $context->getCache()->getMultiple( $keys );
+			$this->cache = $context->cache()->getMultiple( $keys );
 		}
 
 		return ( isset( $this->cache[$keys[$type]] ) ? $this->cache[$keys[$type]] : null );
@@ -607,7 +607,7 @@ abstract class Base
 	protected function setCached( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, string $expire = null )
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		$force = $config->get( 'client/html/common/cache/force', false );
 		$enable = $config->get( $confkey . '/cache', true );
@@ -621,7 +621,7 @@ abstract class Base
 			$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
 			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
-			$context->getCache()->set( $key, $value, $expire, array_unique( $tags ) );
+			$context->cache()->set( $key, $value, $expire, array_unique( $tags ) );
 		}
 		catch( \Exception $e )
 		{

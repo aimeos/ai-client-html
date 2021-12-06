@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::context();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$this->view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
+		$this->view = \TestHelperHtml::view( 'unittest', $this->context->config() );
 		$this->view->extProducts = self::$productItems;
 		$this->view->extAddressItem = self::$customerItem->getPaymentAddress();
 		$this->view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $this->view, $this->emailMock ) );
@@ -72,7 +72,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/email/from-email', 'me@example.com' );
 		$config->set( 'client/html/email/from-name', 'My company' );
 

@@ -227,7 +227,7 @@ class Standard
 	{
 		$products = [];
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** client/html/account/review/todo/size
 		 * Maximum number of products shown for review
@@ -299,6 +299,6 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 }

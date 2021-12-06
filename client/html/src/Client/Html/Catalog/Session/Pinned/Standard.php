@@ -81,7 +81,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/session#pinned
 		 */
-		$config = $context->getConfig()->get( 'client/html/catalog/session/pinned', [] );
+		$config = $context->config()->get( 'client/html/catalog/session/pinned', [] );
 		$key = $this->getParamHash( [], $uid . ':catalog:session-pinned-body', $config );
 
 		if( ( $html = $session->get( $key ) ) === null )
@@ -256,7 +256,7 @@ class Standard
 					 * @category User
 					 * @category Developer
 					 */
-					$max = $context->getConfig()->get( 'client/html/catalog/session/pinned/maxitems', 50 );
+					$max = $context->config()->get( 'client/html/catalog/session/pinned/maxitems', 50 );
 
 					$pinned = array_slice( $pinned, -$max, $max, true );
 					$refresh = true;
@@ -294,7 +294,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -310,7 +310,7 @@ class Standard
 	{
 		$items = [];
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$session = $context->getSession();
 
 		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );

@@ -261,7 +261,7 @@ class Standard
 		$view->addressBillingValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
 		$view->addressBillingOption = $view->param( 'ca_billingoption', $id );
 
-		$salutations = $context->getConfig()->get( 'client/html/common/address/salutations', ['', 'mr', 'ms'] );
+		$salutations = $context->config()->get( 'client/html/common/address/salutations', ['', 'mr', 'ms'] );
 
 		/** client/html/checkout/standard/address/billing/salutations
 		 * List of salutions the customer can select from for the billing address
@@ -613,7 +613,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -686,7 +686,7 @@ class Standard
 	 */
 	protected function validateFields( array &$params, array $fields ) : array
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 
 		/** client/html/checkout/standard/address/validate/company
 		 * Regular expression to check the "company" address value

@@ -417,7 +417,7 @@ class Standard
 			$site = $context->getLocale()->getSiteItem()->getCode();
 			$params = $this->getClientParams( $view->param() );
 
-			$catId = $context->getConfig()->get( 'client/html/catalog/lists/catid-default' );
+			$catId = $context->config()->get( 'client/html/catalog/lists/catid-default' );
 
 			if( ( $catId = $view->param( 'f_catid', $catId ) ) )
 			{
@@ -460,7 +460,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -476,7 +476,7 @@ class Standard
 	{
 		$total = 0;
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 
 		/** client/html/catalog/domains

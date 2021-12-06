@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::context();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$this->view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
+		$this->view = \TestHelperHtml::view( 'unittest', $this->context->config() );
 		$this->view->extSubscriptionItem = self::$subscriptionItem;
 		$this->view->extOrderProductItem = self::$productItem;
 		$this->view->extAddressItem = self::$addressItem;

@@ -32,7 +32,7 @@ class TestHelperHtml
 	public static function view( $site = 'unittest', \Aimeos\MW\Config\Iface $config = null )
 	{
 		if( $config === null ) {
-			$config = self::context( $site )->getConfig();
+			$config = self::context( $site )->config();
 		}
 
 		$view = new \Aimeos\MW\View\Standard( self::getHtmlTemplatePaths() );

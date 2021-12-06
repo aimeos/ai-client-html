@@ -307,7 +307,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -323,7 +323,7 @@ class Standard
 	{
 		$map = [];
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$locale = $context->getLocale();
 
 		/** client/html/locale/select/language/param-name

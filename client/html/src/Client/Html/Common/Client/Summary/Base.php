@@ -197,7 +197,7 @@ abstract class Base
 	 */
 	protected function getDownloadPaymentStatus() : int
 	{
-		$config = $this->context()->getConfig();
+		$config = $this->context()->config();
 		$default = \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED;
 
 		/** client/html/common/summary/detail/download/payment-status

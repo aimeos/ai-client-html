@@ -353,7 +353,7 @@ class Standard
 		 * @category User
 		 * @category Developer
 		 */
-		$max = $context->getConfig()->get( 'client/html/account/watch/maxitems', 100 );
+		$max = $context->config()->get( 'client/html/account/watch/maxitems', 100 );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$item = $cntl->uses( ['product' => ['watch']] )->get();
@@ -440,7 +440,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -484,7 +484,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/lists/size
 		 */
-		$defaultSize = $this->context()->getConfig()->get( 'client/html/account/watch/size', 48 );
+		$defaultSize = $this->context()->config()->get( 'client/html/account/watch/size', 48 );
 
 		$size = (int) $view->param( 'watch-size', $defaultSize );
 		return ( $size < 1 || $size > 100 ? $defaultSize : $size );
@@ -519,7 +519,7 @@ class Standard
 		 * @category Developer
 		 * @see client/html/catalog/domains
 		 */
-		$domains = $context->getConfig()->get( 'client/html/account/watch/domains', ['text', 'price', 'media'] );
+		$domains = $context->config()->get( 'client/html/account/watch/domains', ['text', 'price', 'media'] );
 		$domains['product'] = ['watch'];
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );

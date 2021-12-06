@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyOnepage()
 	{
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'address', 'delivery', 'payment', 'summary' ) );
 
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
@@ -104,7 +104,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->view->standardStepActive = 'delivery';
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'delivery', 'payment' ) );
 
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
@@ -124,7 +124,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->view->standardStepActive = 'address';
 
-		$config = $this->context->getConfig();
+		$config = $this->context->config();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'delivery', 'payment' ) );
 
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );

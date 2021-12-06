@@ -142,7 +142,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitCheckDownloadMaxCount()
 	{
-		$this->context->getConfig()->set( 'client/html/account/download/maxcount', 0 );
+		$this->context->config()->set( 'client/html/account/download/maxcount', 0 );
 
 		$this->assertFalse( $this->access( 'checkDownload' )->invokeArgs( $this->object, [-1, -2] ) );
 	}

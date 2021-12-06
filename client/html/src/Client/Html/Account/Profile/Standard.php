@@ -328,7 +328,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -356,7 +356,7 @@ class Standard
 		 * @since 2016.10
 		 * @category Developer
 		 */
-		$domains = $context->getConfig()->get( 'client/html/account/profile/domains', ['customer/address'] );
+		$domains = $context->config()->get( 'client/html/account/profile/domains', ['customer/address'] );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$view->profileCustomerItem = $cntl->uses( $domains )->get();

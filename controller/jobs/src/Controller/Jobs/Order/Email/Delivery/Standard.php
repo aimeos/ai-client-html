@@ -54,7 +54,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		$client = \Aimeos\Client\Html\Email\Delivery\Factory::create( $context );
 
@@ -208,7 +208,7 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $langId );
 		$view->addHelper( 'number', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->config() );
 		$view->addHelper( 'config', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $context->getMail()->create() );

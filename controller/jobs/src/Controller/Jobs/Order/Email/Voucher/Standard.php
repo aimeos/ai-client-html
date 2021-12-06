@@ -56,7 +56,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 
 		/** controller/jobs/order/email/voucher/limit-days
 		 * Only send voucher e-mails of orders that were created in the past within the configured number of days
@@ -263,7 +263,7 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $langId );
 		$view->addHelper( 'number', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->getConfig() );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->config() );
 		$view->addHelper( 'config', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $langId ) );

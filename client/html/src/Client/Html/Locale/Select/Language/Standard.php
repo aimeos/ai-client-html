@@ -199,7 +199,7 @@ class Standard
 	{
 		$view = $this->view();
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$session = $context->getSession();
 
 		$name = $config->get( 'client/html/locale/select/language/param-name', 'locale' );
@@ -219,6 +219,6 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 }

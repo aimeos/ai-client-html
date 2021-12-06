@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyUseCodes()
 	{
-		$this->context->getConfig()->set( 'client/html/catalog/suggest/usecode', true );
+		$this->context->config()->set( 'client/html/catalog/suggest/usecode', true );
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'CNC' ) );
 		$this->view->addHelper( 'param', $helper );

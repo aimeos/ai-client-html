@@ -194,7 +194,7 @@ class Standard
 			 * @since 2019.04
 			 * @category Developer
 			 */
-			$target = $context->getConfig()->get( 'client/html/account/download/error/url/target' );
+			$target = $context->config()->get( 'client/html/account/download/error/url/target' );
 
 			if( $this->checkAccess( $id ) === false ) {
 				return $view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
@@ -225,7 +225,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -328,7 +328,7 @@ class Standard
 		 * @category Developer
 		 * @category User
 		 */
-		$maxcnt = $context->getConfig()->get( 'client/html/account/download/maxcount' );
+		$maxcnt = $context->config()->get( 'client/html/account/download/maxcount' );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$item = $cntl->uses( ['order' => ['download']] )->get();

@@ -270,7 +270,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -301,7 +301,7 @@ class Standard
 	{
 		$productItems = map();
 		$context = $this->context();
-		$config = $context->getConfig();
+		$config = $context->config();
 		$products = $view->get( 'listProductItems', [] );
 
 

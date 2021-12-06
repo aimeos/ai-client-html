@@ -37,7 +37,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::context();
 		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
 
-		$this->view = \TestHelperHtml::view( 'unittest', $this->context->getConfig() );
+		$this->view = \TestHelperHtml::view( 'unittest', $this->context->config() );
 		$this->view->extAddressItem = self::$customerItem->getPaymentAddress();
 		$this->view->extAccountCode = self::$customerItem->getCode();
 		$this->view->extAccountPassword = 'testpwd';
@@ -59,10 +59,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$ds = DIRECTORY_SEPARATOR;
 
 		$logo = '..' . $ds . 'themes' . $ds . 'default' . $ds . 'media' . $ds . 'aimeos.png';
-		$this->context->getConfig()->set( 'client/html/email/logo', $logo );
+		$this->context->config()->set( 'client/html/email/logo', $logo );
 
 		$theme = '..' . $ds . 'themes' . $ds . 'default';
-		$this->context->getConfig()->set( 'client/html/common/template/baseurl', $theme );
+		$this->context->config()->set( 'client/html/common/template/baseurl', $theme );
 
 
 		$this->emailMock->expects( $this->once() )->method( 'embed' )

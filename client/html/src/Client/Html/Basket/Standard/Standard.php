@@ -366,7 +366,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -441,7 +441,7 @@ class Standard
 			 * @category Developer
 			 * @category User
 			 */
-			if( $code && $context->getConfig()->get( 'client/html/basket/standard/coupon/overwrite', false ) ) {
+			if( $code && $context->config()->get( 'client/html/basket/standard/coupon/overwrite', false ) ) {
 				$cntl->deleteCoupon( $code );
 			}
 

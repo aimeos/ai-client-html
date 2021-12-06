@@ -165,7 +165,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->getConfig()->get( $this->subPartPath, $this->subPartNames );
+		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -205,7 +205,7 @@ class Standard
 				 * @category User
 				 * @category Developer
 				 */
-				$max = $this->context()->getConfig()->get( 'client/html/catalog/session/seen/maxitems', 6 );
+				$max = $this->context()->config()->get( 'client/html/catalog/session/seen/maxitems', 6 );
 
 				$lastSeen[$name] = $this->getHtml( $name, $view->param( 'd_prodid' ) );
 				$lastSeen = array_slice( $lastSeen, -$max, $max, true );
@@ -232,7 +232,7 @@ class Standard
 	protected function getHtml( string $name, string $prodId = null ) : string
 	{
 		$context = $this->context();
-		$cache = $context->getCache();
+		$cache = $context->cache();
 		$key = md5( $name . 'product:detail-seen' );
 
 		if( ( $html = $cache->get( $key ) ) === null )
@@ -240,7 +240,7 @@ class Standard
 			$expire = null;
 			$tags = [];
 			$view = $this->view();
-			$config = $context->getConfig();
+			$config = $context->config();
 
 			$default = array( 'media', 'price', 'text' );
 			$domains = $config->get( 'client/html/catalog/domains', $default );
