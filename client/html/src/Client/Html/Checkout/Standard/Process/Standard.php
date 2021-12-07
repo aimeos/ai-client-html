@@ -262,11 +262,12 @@ class Standard
 
 			if( $view->param( 'cs_order' ) !== null )
 			{
+				parent::init();
+
 				$basket = $basketCntl->store();
 				$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
 
 				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
-				parent::init();
 			}
 			elseif( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) !== null )
 			{
