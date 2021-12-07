@@ -211,7 +211,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 				<div class="list-column">
 					<a href="<?= $enc->attr( $url ) ?>">
 
-						<?php if( $supplier = $productItem->getSupplierItems()->getName()->first() ) : ?>
+						<?php if( $supplier = $productItem->getRefItems( 'supplier' )->getName()->first() ) : ?>
 							<div class="supplier"><?= $enc->html( $supplier ) ?></div>
 						<?php elseif( ( $site = $this->get( 'contextSite' ) ) && $site !== 'default' ) : ?>
 							<div class="supplier"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></div>

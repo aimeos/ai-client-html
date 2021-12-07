@@ -472,8 +472,8 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 		$domains = [
-			'attribute', 'media', 'media/property', 'price', 'product', 'product/property', 'text',
-			'supplier' => ['text', 'media', 'supplier/address']
+			'attribute', 'media', 'media/property', 'price', 'product',
+			'product/property', 'supplier', 'supplier/address', 'text'
 		];
 
 		/** client/html/catalog/domains
@@ -545,12 +545,13 @@ class Standard
 
 		$productItem = ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $name ) ) );
 
-		$this->addMetaItems( $productItem, $expire, $tags );
-		$this->addMetaItems( $productItem->getSupplierItems(), $expire, $tags );
-
 		$propItems = $productItem->getPropertyItems();
+		$supItems = $productItem->getRefItems( 'supplier', null, 'default' );
 		$attrItems = $productItem->getRefItems( 'attribute', null, 'default' );
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
+
+		$this->addMetaItems( $productItem, $expire, $tags );
+		$this->addMetaItems( $supItems, $expire, $tags );
 
 		if( in_array( $productItem->getType(), ['bundle', 'select'] ) )
 		{

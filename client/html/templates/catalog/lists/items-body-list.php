@@ -80,7 +80,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 
 						--><a class="text-list" href="<?= $url ?>">
-							<?php if( !( $suppliers = $productItem->getSupplierItems() )->isEmpty() ) : ?>
+							<?php if( !( $suppliers = $productItem->getRefItems( 'supplier' ) )->isEmpty() ) : ?>
 								<h3 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ) ?></h3>
 							<?php endif ?>
 

@@ -99,7 +99,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 			<div class="col-sm-6">
 
 				<div class="catalog-detail-basic">
-					<?php if( !( $suppliers = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : $name = $suppliers->getName()->first() ?>
+					<?php if( !( $suppliers = $this->detailProductItem->getRefItems( 'supplier' ) )->isEmpty() ) : $name = $suppliers->getName()->first() ?>
 						<p class="supplier">
 							<a href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $suppliers->firstKey(), 's_name' => $name] ) ) ?>">
 								<?= $enc->html( $name, $enc::TRUST ) ?>
@@ -286,7 +286,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									>
 									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'supplier'] ) ) ?>"
-										value="<?= $enc->attr( $this->detailProductItem->getSupplierItems()->getId()->first() ) ?>"
+										value="<?= $enc->attr( $this->detailProductItem->getRefItems( 'supplier' )->getId()->first() ) ?>"
 									>
 									<?php if( $basketSite ) : ?>
 										<input type="hidden"
@@ -603,7 +603,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 				<?php endif ?>
 
-				<?php if( !( $supplierItems = $this->detailProductItem->getSupplierItems() )->isEmpty() ) : ?>
+				<?php if( !( $supplierItems = $this->detailProductItem->getRefItems( 'supplier', null, 'default' ) )->isEmpty() ) : ?>
 					<div class="catalog-detail-supplier content-block">
 
 						<h2 class="header"><?= $this->translate( 'client', 'Supplier information' ) ?></h2>
