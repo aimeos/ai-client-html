@@ -4123,6 +4123,29 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	min-width: 0;
 }
 
+.account-profile-account .container-fluid {
+	padding: 1rem;
+}
+
+.account-profile-account .password-button-group {
+	padding-top: 1rem;
+	display: flex;
+	justify-content: center;
+}
+
+.account-profile-account .password-button-group .btn {
+	margin: 0;
+}
+
+.account-profile-account .password-change-notifications {
+	display: flex;
+	justify-content: center;
+}
+
+.account-profile-account .password-change > div {
+	flex-wrap: nowrap!important;
+}
+
 
 /*! jQuery UI - v1.10.0 - 2013-01-17
 * https://jqueryui.com
