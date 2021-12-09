@@ -1803,7 +1803,7 @@ AimeosCatalogList = {
 
 						$('.list-items', list).append(nextPage.find('.catalog-list-items .list-items .product'));
 						list.data('infinite-url', nextUrl);
-						$(nextPage).filter( function (i,a){ return $(a).is('script.catalog-list-stock-script');}).each( function() {
+						$(nextPage).find('script.catalog-stock-script').each( function() {
 							var script = document.createElement('script');
 							script.src = $(this).attr("src");
 							document.head.appendChild(script);
