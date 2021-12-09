@@ -12,6 +12,6 @@ $enc = $this->encoder();
 ?>
 <?php if( isset( $this->itemsStockUrl ) ) : ?>
 	<?php foreach( $this->itemsStockUrl as $url ) : ?>
-		<script class="catalog-list-stock-script" defer src="<?= $enc->attr( $url ) ?>"></script>
+		<script class="catalog-stock-script" defer src="<?= $enc->attr( $url ) ?>"></script>
 	<?php endforeach ?>
 <?php endif ?>
