@@ -1647,7 +1647,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .catalog-list .media-list .media-item {
-	position: relative;
+	position: absolute;
 	height: 320px;
 	width: 240px;
 }
@@ -1660,6 +1660,21 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	top: 50%;
 	left: 0;
 	transform: translate(0, -50%);
+}
+
+.catalog-list .media-list .media-item {
+	position: absolute;
+}
+
+.catalog-list .media-list div:first-of-type {
+	opacity: 1;
+	transition: opacity .3s linear;
+	z-index: 1;
+}
+
+.catalog-list .media-list:hover div:first-of-type {
+	opacity: 0;
+	transition: opacity .3s linear;
 }
 
 .aimeos .product .supplier {
@@ -5375,6 +5390,34 @@ img{
 	margin: 0;
 }
 
+.back-to-top {
+  /*background-color: black;*/
+  border: none;
+  /*color: white;*/
+  cursor: pointer;
+  /*font-size: 18px;*/
+  /*line-height: 48px;*/
+  /*width: 48px;*/
+
+  /* place it at the bottom right corner */
+  /*position: fixed;*/
+  /*bottom: 20px;*/
+  /*right: 20px;*/
+  /* keep it at the top of everything else */
+  /*z-index: 100;*/
+  /* hide with opacity */
+  opacity: 0;
+  /* also add a translate effect */
+  transform: translateY(100px);
+  /* and a transition */
+  transition: all 0.5s ease;
+}
+
+.showBtn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .back-to-top{
 	position:fixed;
 	bottom:2rem;
@@ -5383,17 +5426,17 @@ img{
 	color:#eee;
 	background-color: #FFA500;
 	background-color: var(--ai-warning, #FFA500);
-	opacity:.7;
+	/*opacity:.7;*/
 	padding:.25rem;
 	z-index:999;
-	display: none;
+	/*display: none;*/
 }
 
 .back-to-top .top-icon:before{
 	content:"\f145";
 		position: relative;
 	font: normal normal normal 14px/1 bootstrap-icons;
-	font-size: 150%;
+	font-size: 200%;
 	display: inline-block;
 	vertical-align: middle;
 }
