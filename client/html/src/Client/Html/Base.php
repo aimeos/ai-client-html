@@ -21,9 +21,9 @@ use \Aimeos\MW\Logger\Base as Log;
  * @subpackage Html
  */
 abstract class Base
-	implements \Aimeos\Client\Html\Iface, \Aimeos\MW\Macro\Iface
+	implements \Aimeos\Client\Html\Iface, \Aimeos\Macro\Iface
 {
-	use \Aimeos\MW\Macro\Traits;
+	use \Aimeos\Macro\Macroable;
 
 
 	private $view;
