@@ -236,7 +236,7 @@ class Standard
 	 */
 	protected function addDownload( \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface $item )
 	{
-		$fs = $this->context()->getFilesystemManager()->get( 'fs-secure' );
+		$fs = $this->context()->fs( 'fs-secure' );
 		$response = $this->view()->response();
 		$value = (string) $item->getValue();
 
