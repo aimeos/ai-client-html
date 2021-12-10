@@ -150,7 +150,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddDownload()
 	{
-		$fs = $this->context->getFilesystemManager()->get( 'fs-secure' );
+		$fs = $this->context->fs( 'fs-secure' );
 		$fs->write( 'tmp/download/test.txt', 'test' );
 
 		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
