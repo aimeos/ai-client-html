@@ -2150,43 +2150,47 @@ AimeosPage = {
 	*/
 	setupLinkTop: function() {
 
-		var offset = 220;
-		var duration = 500;
+	var target = document.querySelector("footer");
 
-		$(window).on("scroll", function() {
-			if ($(this).scrollTop() > offset) {
-				$(".back-to-top").fadeIn(duration);
-			} else {
-				$(".back-to-top").fadeOut(duration);
-			}
-		});
+	var backToTop = document.querySelector(".back-to-top");
+	var rootElement = document.documentElement;
 
-		$(".back-to-top").on("click", function(event) {
-			event.preventDefault(event);
-			$("html, body").animate({scrollTop: 0}, duration);
-			return false;
+	function callback(entries, observer) {
+		  entries.forEach((entry) => {
+		if (entry.isIntersecting) {
+		  // Show button
+			  backToTop.classList.add("showBtn");
+		} else {
+		  // Hide button
+			  backToTop.classList.remove("showBtn");
+		}
+		  });
+	}
+	function scrollToTop() {
+		rootElement.scrollTo({
+		top: 0,
+		behavior: "smooth"
 		});
+	}
+	backToTop.addEventListener("click", scrollToTop);
+	let observer = new IntersectionObserver(callback);
+	observer.observe(target);
 	},
-
 
 	/**
 	 * Menu transition
 	 */
 	setupMenuTransition: function() {
 
-		if ($(window).scrollTop() > 0) {
-			$(".navbar").addClass("navbar-scroll");
-		}
+		window.onscroll = function() {scrollFunction()};
 
-		$(window).on("scroll", function() {
-			var scroll = $(window).scrollTop();
-
-			if (scroll > 0) {
+		function scrollFunction() {
+			if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
 				$(".navbar").addClass("navbar-scroll");
 			} else {
 				$(".navbar").removeClass("navbar-scroll");
 			}
-		});
+		}
 	},
 
 
@@ -2276,16 +2280,14 @@ AimeosPage = {
 	setupOffscreen: function() {
 
 		// loop all zeynepjs menus for initialization
-		$('.zeynep').each(function () {
-			$(this).zeynep({});
+		$('.zeynep').each(function (idx, el) {
+			$(el).zeynep({});
 		})
 
 		// handle zeynepjs overlay click
-		$('.aimeos-overlay-offscreen').on('click', function () {
-			$(this).removeClass('show');
-			$('.zeynep.opened').each(function () {
-				$(this).data('zeynep').close();
-			})
+		$('.aimeos-overlay-offscreen').on('click', function (idx, el) {
+			$(el).removeClass('show');
+			$('.zeynep.opened').removeClass('opened');
 		});
 	},
 
@@ -2297,13 +2299,13 @@ AimeosPage = {
 
 		// open basket side menu
 		$('.aimeos.basket-mini > a').on('click', function () {
+			$('.basket-mini-offscreen').addClass('opened');
 			$('.basket-mini .aimeos-overlay-offscreen').addClass('show');
-			$('.basket-mini-offscreen').data('zeynep').open();
 		});
 
 		$('.mini-basket-close').on('click', function () {
+			$('.basket-mini-offscreen').removeClass('opened');
 			$('.basket-mini .aimeos-overlay-offscreen').removeClass('show');
-			$('.basket-mini-offscreen').data('zeynep').close();
 		});
 	},
 
@@ -2314,12 +2316,12 @@ AimeosPage = {
 	setupOffscreenCategory: function() {
 
 		$(".open-menu").on('click', function () {
-			$('.category-lists').data('zeynep').open();
+			$('.category-lists').addClass('opened');
 			$('.catalog-filter .aimeos-overlay-offscreen').addClass('show');
 		});
 
 		$(".menu-close").on('click', function () {
-			$('.category-lists').data('zeynep').close();
+			$('.category-lists').removeClass('opened');
 			$('.catalog-filter .aimeos-overlay-offscreen').removeClass('show');
 		});
 	},
