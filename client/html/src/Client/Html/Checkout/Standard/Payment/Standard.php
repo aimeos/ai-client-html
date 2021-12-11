@@ -228,10 +228,10 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
+		$context = $this->context();
 
 		try
 		{
-			$context = $this->context();
 			$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 			$servCtrl = \Aimeos\Controller\Frontend::create( $context, 'service' )->uses( ['media', 'price', 'text'] );
 
@@ -260,13 +260,8 @@ class Standard
 			parent::init();
 
 
-			// Test if payment service is available
-			if( !isset( $view->standardStepActive )
-				&& empty( $basketCtrl->get()->getService( 'payment' ) )
-				&& !$servCtrl->type( 'payment' )->getProviders()->isEmpty()
-			) {
+			if( !isset( $view->standardStepActive ) && !$this->call( 'isAvailable', $basketCtrl->get() ) ) {
 				$view->standardStepActive = 'payment';
-				return;
 			}
 		}
 		catch( \Exception $e )
@@ -350,5 +345,17 @@ class Standard
 		$view->paymentOption = $view->param( 'c_paymentoption', $orderServices->firstKey() ?: key( $services ) );
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Tests if an item is available and the step can be skipped
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object
+	 * @return bool TRUE if step can be skipped, FALSE if not
+	 */
+	protected function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
+	{
+		return !empty( $basket->getService( 'payment' ) );
 	}
 }

@@ -250,28 +250,25 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
+		$context = $this->context();
 
 		try
 		{
 			parent::init();
 
-			$context = $this->context();
-
 			if( ( $param = $view->param( 'ca_extra' ) ) !== null ) {
 				$context->getSession()->set( 'client/html/checkout/standard/address/extra', (array) $param );
 			}
 
-			// Test if addresses are available
 			if( !isset( $view->standardStepActive )
-				&& empty( \Aimeos\Controller\Frontend::create( $context, 'basket' )->get()->getAddress( 'payment' ) )
+				&& !$this->call( 'isAvailable', \Aimeos\Controller\Frontend::create( $context, 'basket' )->get() )
 			) {
 				$view->standardStepActive = 'address';
-				return;
 			}
 		}
 		catch( \Exception $e )
 		{
-			$this->view()->standardStepActive = 'address';
+			$view->standardStepActive = 'address';
 			throw $e;
 		}
 	}
@@ -379,5 +376,17 @@ class Standard
 		$view->addressExtra = $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Tests if an item is available and the step can be skipped
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object
+	 * @return bool TRUE if step can be skipped, FALSE if not
+	 */
+	protected function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
+	{
+		return !empty( $basket->getAddress( 'payment' ) );
 	}
 }
