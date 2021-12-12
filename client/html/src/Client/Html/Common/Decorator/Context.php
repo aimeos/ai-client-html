@@ -31,7 +31,7 @@ class Context extends Base implements Iface
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->context();
-		$locale = $context->getLocale();
+		$locale = $context->locale();
 
 		$view->contextLanguage = $locale->getLanguageId();
 		$view->contextCurrency = $locale->getCurrencyId();

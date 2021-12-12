@@ -324,7 +324,7 @@ class Standard
 		$map = [];
 		$context = $this->context();
 		$config = $context->config();
-		$locale = $context->getLocale();
+		$locale = $context->locale();
 
 		/** client/html/locale/select/language/param-name
 		 * Name of the parameter that contains the language ID value

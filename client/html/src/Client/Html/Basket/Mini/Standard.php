@@ -69,7 +69,7 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$context = $this->context();
-		$site = $context->getLocale()->getSiteId();
+		$site = $context->locale()->getSiteId();
 		$view = $this->view();
 
 		/** client/html/basket/mini
@@ -165,7 +165,7 @@ class Standard
 	public function header( string $uid = '' ) : ?string
 	{
 		$context = $this->context();
-		$site = $context->getLocale()->getSiteId();
+		$site = $context->locale()->getSiteId();
 		$view = $this->view();
 
 		$config = $context->config()->get( 'client/html/basket/mini', [] );

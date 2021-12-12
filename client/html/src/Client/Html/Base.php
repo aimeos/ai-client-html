@@ -480,7 +480,7 @@ abstract class Base
 	 */
 	protected function getParamHash( array $prefixes = ['f_', 'l_', 'd_'], string $key = '', array $config = [] ) : string
 	{
-		$locale = $this->context()->getLocale();
+		$locale = $this->context()->locale();
 		$pstr = map( $this->getClientParams( $this->view()->param(), $prefixes ) )->ksort()->toJson();
 
 		if( ( $cstr = json_encode( $config ) ) === false ) {

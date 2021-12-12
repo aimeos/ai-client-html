@@ -299,7 +299,7 @@ class Standard
 		$addr = $view->profileCustomerItem->getPaymentAddress();
 
 		if( !$addr->getLanguageId() ) {
-			$addr->setLanguageId( $context->getLocale()->getLanguageId() );
+			$addr->setLanguageId( $context->locale()->getLanguageId() );
 		}
 
 		$billing = $addr->toArray();

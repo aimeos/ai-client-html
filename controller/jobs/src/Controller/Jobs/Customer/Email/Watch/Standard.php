@@ -75,7 +75,7 @@ class Standard
 
 			$langIds[$langId] = true;
 			// fetch language specific text and media items for products
-			$context->getLocale()->setLanguageId( $langId );
+			$context->locale()->setLanguageId( $langId );
 
 			$search = $custManager->filter( true );
 			$func = $search->make( 'customer:has', ['product', 'watch'] );
@@ -325,14 +325,14 @@ class Standard
 		$view->extAddressItem = $address;
 
 		$params = [
-			'locale' => $context->getLocale()->getLanguageId(),
-			'site' => $context->getLocale()->getSiteItem()->getCode(),
+			'locale' => $context->locale()->getLanguageId(),
+			'site' => $context->locale()->getSiteItem()->getCode(),
 		];
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
 		$view->addHelper( 'param', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $context->getLocale()->getLanguageId() );
+		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $context->locale()->getLanguageId() );
 		$view->addHelper( 'number', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ) );

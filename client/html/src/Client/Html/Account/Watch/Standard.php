@@ -415,7 +415,7 @@ class Standard
 			'pricevalue' => $view->param( 'wat_pricevalue', '0.00' ),
 			'price' => $view->param( 'wat_price', 0 ),
 			'stock' => $view->param( 'wat_stock', 0 ),
-			'currency' => $context->getLocale()->getCurrencyId(),
+			'currency' => $context->locale()->getCurrencyId(),
 		];
 
 		foreach( $ids as $id )

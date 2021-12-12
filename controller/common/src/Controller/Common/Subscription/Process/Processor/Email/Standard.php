@@ -114,8 +114,8 @@ class Standard
 		$view->extSubscriptionItem = $subscription;
 
 		$params = [
-			'locale' => $context->getLocale()->getLanguageId(),
-			'site' => $context->getLocale()->getSiteItem()->getCode(),
+			'locale' => $context->locale()->getLanguageId(),
+			'site' => $context->locale()->getSiteItem()->getCode(),
 		];
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );

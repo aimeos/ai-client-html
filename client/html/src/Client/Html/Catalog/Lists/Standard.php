@@ -414,7 +414,7 @@ class Standard
 
 		try
 		{
-			$site = $context->getLocale()->getSiteItem()->getCode();
+			$site = $context->locale()->getSiteItem()->getCode();
 			$params = $this->getClientParams( $view->param() );
 
 			$catId = $context->config()->get( 'client/html/catalog/lists/catid-default' );

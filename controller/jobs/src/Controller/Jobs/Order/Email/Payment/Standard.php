@@ -193,7 +193,7 @@ class Standard
 		$params = [
 			'locale' => $langId,
 			'site' => $orderBaseItem->getSiteCode(),
-			'currency' => $orderBaseItem->getLocale()->getCurrencyId()
+			'currency' => $orderBaseItem->locale()->getCurrencyId()
 		];
 
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
@@ -266,7 +266,7 @@ class Standard
 		\Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\MShop\Order\Item\Base\Address\Iface $addrItem )
 	{
 		$context = $this->context();
-		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->getLocale()->getLanguageId() );
+		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->locale()->getLanguageId() );
 
 		$view = $this->view( $context, $orderBaseItem, $langId );
 		$view->extAddressItem = $addrItem;

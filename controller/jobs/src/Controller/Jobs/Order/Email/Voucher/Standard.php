@@ -365,7 +365,7 @@ class Standard
 		$context = $this->context();
 		$addrItem = $this->getAddressItem( $orderBaseItem );
 		$currencyId = $orderBaseItem->getPrice()->getCurrencyId();
-		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->getLocale()->getLanguageId() );
+		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->locale()->getLanguageId() );
 
 		$view = $this->view( $context, $orderBaseItem->getSiteCode(), $currencyId, $langId );
 

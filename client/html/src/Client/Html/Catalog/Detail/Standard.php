@@ -418,7 +418,7 @@ class Standard
 
 		try
 		{
-			$site = $context->getLocale()->getSiteItem()->getCode();
+			$site = $context->locale()->getSiteItem()->getCode();
 			$params = $this->getClientParams( $view->param() );
 			$context->getSession()->set( 'aimeos/catalog/detail/params/last/' . $site, $params );
 

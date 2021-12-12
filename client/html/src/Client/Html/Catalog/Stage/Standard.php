@@ -398,7 +398,7 @@ class Standard
 		if( isset( $params['d_prodid'] ) || isset( $params['d_name'] ) )
 		{
 			$context = $this->context();
-			$site = $context->getLocale()->getSiteItem()->getCode();
+			$site = $context->locale()->getSiteItem()->getCode();
 			$params += (array) $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 		}
 
