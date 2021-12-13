@@ -300,7 +300,7 @@ class Standard
 			$body = (string) $view->request()->getBody();
 			$str = "Updating order status failed: %1\$s\n%2\$s\n%3\$s";
 			$msg = sprintf( $str, $e->getMessage(), print_r( $view->param(), true ), $body );
-			$context->getLogger()->log( $msg, Log::ERR, 'client/html' );
+			$context->logger()->log( $msg, Log::ERR, 'client/html' );
 		}
 	}
 

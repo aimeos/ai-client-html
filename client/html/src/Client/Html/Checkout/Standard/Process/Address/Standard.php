@@ -199,7 +199,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = sprintf( 'Unable to save address for customer "%1$s": %2$s', $context->getUserId(), $e->getMessage() );
-			$context->getLogger()->log( $msg, Log::INFO, 'client/html' );
+			$context->logger()->log( $msg, Log::INFO, 'client/html' );
 		}
 
 		parent::init();

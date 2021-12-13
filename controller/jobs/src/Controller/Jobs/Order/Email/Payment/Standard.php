@@ -239,7 +239,7 @@ class Standard
 					$this->processItem( $client, $item, $orderBaseItem, $addr );
 
 					$str = sprintf( 'Sent order payment e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
-					$context->getLogger()->log( $str, Log::INFO, 'email/order/payment' );
+					$context->logger()->log( $str, Log::INFO, 'email/order/payment' );
 				}
 
 				$this->addOrderStatus( $id, $status );
@@ -248,7 +248,7 @@ class Standard
 			{
 				$str = 'Error while trying to send payment e-mail for order ID "%1$s" and status "%2$s": %3$s';
 				$msg = sprintf( $str, $item->getId(), $item->getStatusPayment(), $e->getMessage() );
-				$context->getLogger()->log( $msg . PHP_EOL . $e->getTraceAsString(), Log::ERR, 'email/order/payment' );
+				$context->logger()->log( $msg . PHP_EOL . $e->getTraceAsString(), Log::ERR, 'email/order/payment' );
 			}
 		}
 	}

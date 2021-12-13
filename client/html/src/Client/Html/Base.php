@@ -626,7 +626,7 @@ abstract class Base
 		catch( \Exception $e )
 		{
 			$msg = sprintf( 'Unable to set cache entry: %1$s', $e->getMessage() );
-			$context->getLogger()->log( $msg, Log::NOTICE, 'client/html' );
+			$context->logger()->log( $msg, Log::NOTICE, 'client/html' );
 		}
 	}
 
@@ -639,7 +639,7 @@ abstract class Base
 	protected function logException( \Exception $e )
 	{
 		$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-		$this->context->getLogger()->log( $msg, Log::WARN, 'client/html' );
+		$this->context->logger()->log( $msg, Log::WARN, 'client/html' );
 	}
 
 

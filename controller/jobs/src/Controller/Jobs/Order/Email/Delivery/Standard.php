@@ -245,7 +245,7 @@ class Standard
 					$this->processItem( $client, $item, $orderBaseItem, $addr );
 
 					$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
-					$context->getLogger()->log( $str, Log::INFO, 'email/order/delivery' );
+					$context->logger()->log( $str, Log::INFO, 'email/order/delivery' );
 				}
 
 				$this->addOrderStatus( $id, $status );
@@ -254,7 +254,7 @@ class Standard
 			{
 				$str = 'Error while trying to send delivery e-mail for order ID "%1$s" and status "%2$s": %3$s';
 				$msg = sprintf( $str, $item->getId(), $item->getStatusDelivery(), $e->getMessage() );
-				$context->getLogger()->log( $msg . PHP_EOL . $e->getTraceAsString(), Log::ERR, 'email/order/payment' );
+				$context->logger()->log( $msg . PHP_EOL . $e->getTraceAsString(), Log::ERR, 'email/order/payment' );
 			}
 		}
 	}

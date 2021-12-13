@@ -151,7 +151,7 @@ class Standard
 					$this->sendMail( $context, $addr, $custProducts );
 
 					$str = sprintf( 'Sent product notification e-mail to "%1$s"', $addr->getEmail() );
-					$context->getLogger()->log( $str, Log::DEBUG, 'email/customer/watch' );
+					$context->logger()->log( $str, Log::DEBUG, 'email/customer/watch' );
 
 					$listIds += array_keys( $custProducts );
 				}
@@ -160,7 +160,7 @@ class Standard
 			{
 				$str = 'Error while trying to send product notification e-mail for customer ID "%1$s": %2$s';
 				$msg = sprintf( $str, $custId, $e->getMessage() ) . PHP_EOL . $e->getTraceAsString();
-				$context->getLogger()->log( $msg, Log::ERR, 'email/customer/watch' );
+				$context->logger()->log( $msg, Log::ERR, 'email/customer/watch' );
 			}
 
 			$listManager->delete( $listIds );

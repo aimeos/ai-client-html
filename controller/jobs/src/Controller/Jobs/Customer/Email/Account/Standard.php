@@ -75,12 +75,12 @@ class Standard
 				$this->sendEmail( $context, $item, $password );
 
 				$str = sprintf( 'Sent customer account e-mail to "%1$s"', $item->getPaymentAddress()->getEmail() );
-				$context->getLogger()->log( $str, Log::DEBUG, 'email/customer/account' );
+				$context->logger()->log( $str, Log::DEBUG, 'email/customer/account' );
 			}
 			catch( \Exception $e )
 			{
 				$str = 'Error while trying to send customer account e-mail: ' . $e->getMessage();
-				$context->getLogger()->log( $str . PHP_EOL . $e->getTraceAsString(), Log::ERR, 'email/customer/account' );
+				$context->logger()->log( $str . PHP_EOL . $e->getTraceAsString(), Log::ERR, 'email/customer/account' );
 			}
 
 			$queue->del( $msg );

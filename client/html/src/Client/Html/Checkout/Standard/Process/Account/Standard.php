@@ -191,7 +191,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = sprintf( 'Unable to create an account: %1$s', $e->getMessage() );
-			$context->getLogger()->log( $msg, Log::NOTICE, 'client/html' );
+			$context->logger()->log( $msg, Log::NOTICE, 'client/html' );
 		}
 
 		parent::init();

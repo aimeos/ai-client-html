@@ -88,7 +88,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->context()->getLogger()->log( $msg, Log::ERR, 'client/html' );
+			$this->context()->logger()->log( $msg, Log::ERR, 'client/html' );
 			return '';
 		}
 
@@ -146,7 +146,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->context()->getLogger()->log( $msg, Log::ERR, 'client/html' );
+			$this->context()->logger()->log( $msg, Log::ERR, 'client/html' );
 			return null;
 		}
 
@@ -284,7 +284,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->context()->getLogger()->log( $msg, Log::ERR, 'client/html' );
+			$this->context()->logger()->log( $msg, Log::ERR, 'client/html' );
 		}
 	}
 
