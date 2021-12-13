@@ -375,7 +375,7 @@ class Standard
 			{
 				foreach( (array) $codes as $code )
 				{
-					$message = $context->getMail()->create();
+					$message = $context->mail()->create();
 					$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message ) );
 
 					$view->extOrderProductItem = $orderProductItem;
@@ -386,7 +386,7 @@ class Standard
 					$client->header();
 					$client->body();
 
-					$context->getMail()->send( $view->mail() );
+					$context->mail()->send( $view->mail() );
 				}
 			}
 		}

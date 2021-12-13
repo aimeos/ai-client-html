@@ -123,7 +123,7 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ?: 'en' ) );
 		$view->addHelper( 'translate', $helper );
 
-		$mailer = $context->getMail();
+		$mailer = $context->mail();
 		$message = $mailer->create();
 
 		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message );
