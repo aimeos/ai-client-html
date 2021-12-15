@@ -10,8 +10,6 @@
 
 namespace Aimeos\Controller\Jobs\Customer\Email\Account;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Customer account e-mail job controller
