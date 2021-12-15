@@ -149,7 +149,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				</div>
 			</div>
 		</div>
-    
+
 		<?php foreach( $this->summaryBasket->getProducts()->groupBy( 'order.base.product.supplierid' )->ksort() as $supId => $list ) : ?>
 			<?php $sname = map( $list )->first()->getSupplierName() ?>
 
@@ -278,7 +278,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						</div>
 					</div>
 				</div>
-    
+
 			<?php endforeach ?>
 		<?php endforeach ?>
 
@@ -338,7 +338,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						</div>
 					</div>
 				</div>
-    
+
 			<?php endif ?>
 		<?php endforeach ?>
 
@@ -405,7 +405,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<div class="tax row g-0">
 						<div class="col-7 col-md-6 offset-5 offset-md-6">
 							<div class="row g-0">
-							    <div class="col-8"><?= $enc->html( sprintf( $priceTaxflag ? $taxFormatIncl : $taxFormatExcl, $this->number( $taxRate ), $this->translate( 'client/code', 'tax' . $taxName ) ) ) ?></div>
+							    <div class="col-8"><?= $enc->html( sprintf( $priceTaxflag ? $taxFormatIncl : $taxFormatExcl, $this->number( $taxRate ), $this->translate( 'client/code', $taxName ) ) ) ?></div>
 							    <div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $precision ), $priceCurrency ) ) ?></div>
 							    <?php if( $modify ) : ?>
 								    <div class="action col-1"></div>

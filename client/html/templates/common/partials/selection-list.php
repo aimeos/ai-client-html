@@ -44,7 +44,7 @@ $enc = $this->encoder();
 
 				<input type="hidden"
 					name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ) ?>"
-					value="<?= $enc->attr( $this->productItem->getId() ) ?>"
+					value="<?= $enc->attr( $id ) ?>"
 				>
 			</td>
 
