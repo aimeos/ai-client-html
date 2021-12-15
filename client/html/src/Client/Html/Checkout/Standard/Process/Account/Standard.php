@@ -10,8 +10,6 @@
 
 namespace Aimeos\Client\Html\Checkout\Standard\Process\Account;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Default implementation of checkout process account HTML client
@@ -191,7 +189,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$msg = sprintf( 'Unable to create an account: %1$s', $e->getMessage() );
-			$context->logger()->log( $msg, Log::NOTICE, 'client/html' );
+			$context->logger()->notice( $msg, 'client/html' );
 		}
 
 		parent::init();

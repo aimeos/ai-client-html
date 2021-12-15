@@ -11,8 +11,6 @@
 
 namespace Aimeos\Client\Html\Checkout\Update;
 
-use \Aimeos\MW\Logger\Base as Log;
-
 
 /**
  * Default implementation of update checkout HTML client.
@@ -300,7 +298,7 @@ class Standard
 			$body = (string) $view->request()->getBody();
 			$str = "Updating order status failed: %1\$s\n%2\$s\n%3\$s";
 			$msg = sprintf( $str, $e->getMessage(), print_r( $view->param(), true ), $body );
-			$context->logger()->log( $msg, Log::ERR, 'client/html' );
+			$context->logger()->error( $msg, 'client/html' );
 		}
 	}
 
