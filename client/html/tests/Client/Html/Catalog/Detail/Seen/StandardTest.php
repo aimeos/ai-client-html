@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$prodid = $this->getProductItem()->getId();
 
-		$session = $this->context->getSession();
+		$session = $this->context->session();
 		$session->set( 'aimeos/catalog/session/seen/list', array( $prodid => 'test' ) );
 		$session->set( 'aimeos/catalog/session/seen/cache', array( $prodid => 'test' ) );
 
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testInitNoCache()
 	{
 		$name = $this->getProductItem()->getName( 'url' );
-		$session = $this->context->getSession();
+		$session = $this->context->session();
 
 		$param = array( 'd_name' => $name );
 

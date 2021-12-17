@@ -69,7 +69,7 @@ class Standard
 	{
 		$view = $this->view();
 		$context = $this->context();
-		$session = $context->getSession();
+		$session = $context->session();
 
 		/** client/html/catalog/session/seen
 		 * All parameters defined for the catalog session seen subpart
@@ -236,7 +236,7 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$session = $this->context()->getSession();
+		$session = $this->context()->session();
 		$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
 		$view->seenItems = array_reverse( $lastSeen );

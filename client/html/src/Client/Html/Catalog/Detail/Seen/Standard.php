@@ -182,7 +182,7 @@ class Standard
 		if( ( $name = $view->param( 'd_name' ) ) !== null )
 		{
 			$context = $this->context();
-			$session = $context->getSession();
+			$session = $context->session();
 			$lastSeen = $session->get( 'aimeos/catalog/session/seen/list', [] );
 
 			if( isset( $lastSeen[$name] ) )

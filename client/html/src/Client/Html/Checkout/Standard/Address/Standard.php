@@ -257,7 +257,7 @@ class Standard
 			parent::init();
 
 			if( ( $param = $view->param( 'ca_extra' ) ) !== null ) {
-				$context->getSession()->set( 'client/html/checkout/standard/address/extra', (array) $param );
+				$context->session()->set( 'client/html/checkout/standard/address/extra', (array) $param );
 			}
 
 			if( !isset( $view->standardStepActive )
@@ -373,7 +373,7 @@ class Standard
 		/** @deprecated 2022.01 Use common/states */
 		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', $default );
 
-		$view->addressExtra = $context->getSession()->get( 'client/html/checkout/standard/address/extra', [] );
+		$view->addressExtra = $context->session()->get( 'client/html/checkout/standard/address/extra', [] );
 
 		return parent::data( $view, $tags, $expire );
 	}

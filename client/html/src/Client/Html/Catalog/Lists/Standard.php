@@ -425,7 +425,7 @@ class Standard
 				$params['f_catid'] = $catId;
 			}
 
-			$context->getSession()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
+			$context->session()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
 
 			parent::init();
 		}

@@ -76,6 +76,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$this->assertEquals( 'EUR', $this->context->getSession()->get( 'aimeos/locale/currencyid' ) );
+		$this->assertEquals( 'EUR', $this->context->session()->get( 'aimeos/locale/currencyid' ) );
 	}
 }

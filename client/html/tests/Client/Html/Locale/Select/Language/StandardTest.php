@@ -76,6 +76,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$this->assertEquals( 'de', $this->context->getSession()->get( 'aimeos/locale/languageid' ) );
+		$this->assertEquals( 'de', $this->context->session()->get( 'aimeos/locale/languageid' ) );
 	}
 }

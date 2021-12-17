@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBody()
 	{
 		$seen = array( 1 => 'html product one', 2 => 'html product two' );
-		$this->context->getSession()->set( 'aimeos/catalog/session/seen/list', $seen );
+		$this->context->session()->set( 'aimeos/catalog/session/seen/list', $seen );
 
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();

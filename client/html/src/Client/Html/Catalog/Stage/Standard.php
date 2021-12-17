@@ -399,7 +399,7 @@ class Standard
 		{
 			$context = $this->context();
 			$site = $context->locale()->getSiteItem()->getCode();
-			$params += (array) $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+			$params += (array) $context->session()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 		}
 
 		return parent::getClientParams( $params, $prefixes );

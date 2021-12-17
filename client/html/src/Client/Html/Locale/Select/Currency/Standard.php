@@ -200,7 +200,7 @@ class Standard
 		$view = $this->view();
 		$context = $this->context();
 		$config = $context->config();
-		$session = $context->getSession();
+		$session = $context->session();
 
 		$name = $config->get( 'client/html/locale/select/currency/param-name', 'currency' );
 

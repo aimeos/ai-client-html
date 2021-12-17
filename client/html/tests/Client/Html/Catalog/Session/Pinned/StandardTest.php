@@ -28,7 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', null );
+		$this->context->session()->set( 'aimeos/catalog/session/pinned/list', null );
 		unset( $this->object, $this->context, $this->view );
 	}
 
@@ -36,7 +36,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBody()
 	{
 		$pinned = array( $this->getProductItem( 'CNC' )->getId() );
-		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', $pinned );
+		$this->context->session()->set( 'aimeos/catalog/session/pinned/list', $pinned );
 
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$pinned = $this->context->getSession()->get( 'aimeos/catalog/session/pinned/list' );
+		$pinned = $this->context->session()->get( 'aimeos/catalog/session/pinned/list' );
 		$this->assertEquals( array( $prodId => $prodId ), $pinned );
 	}
 
@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testInitDelete()
 	{
 		$prodId = $this->getProductItem( 'CNE' )->getId();
-		$this->context->getSession()->set( 'aimeos/catalog/session/pinned/list', array( $prodId => $prodId ) );
+		$this->context->session()->set( 'aimeos/catalog/session/pinned/list', array( $prodId => $prodId ) );
 
 		$param = array(
 			'pin_action' => 'delete',
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$pinned = $this->context->getSession()->get( 'aimeos/catalog/session/pinned/list' );
+		$pinned = $this->context->session()->get( 'aimeos/catalog/session/pinned/list' );
 		$this->assertEquals( [], $pinned );
 	}
 

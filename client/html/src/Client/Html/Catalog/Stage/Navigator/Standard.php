@@ -237,7 +237,7 @@ class Standard
 
 			$context = $this->context();
 			$site = $context->locale()->getSiteItem()->getCode();
-			$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+			$params = $context->session()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 			$catids = $view->value( $params, 'f_catid', $view->config( 'client/html/catalog/lists/catid-default' ) );

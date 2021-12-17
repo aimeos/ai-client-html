@@ -267,9 +267,9 @@ class Standard
 				$basket = $basketCntl->store();
 				$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
 
-				$context->getSession()->set( 'aimeos/orderid', $orderItem->getId() );
+				$context->session()->set( 'aimeos/orderid', $orderItem->getId() );
 			}
-			elseif( ( $orderid = $context->getSession()->get( 'aimeos/orderid' ) ) !== null )
+			elseif( ( $orderid = $context->session()->get( 'aimeos/orderid' ) ) !== null )
 			{
 				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
 				$orderItem = $orderCntl->get( $orderid, false );

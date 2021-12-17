@@ -420,7 +420,7 @@ class Standard
 		{
 			$site = $context->locale()->getSiteItem()->getCode();
 			$params = $this->getClientParams( $view->param() );
-			$context->getSession()->set( 'aimeos/catalog/detail/params/last/' . $site, $params );
+			$context->session()->set( 'aimeos/catalog/detail/params/last/' . $site, $params );
 
 			parent::init();
 		}

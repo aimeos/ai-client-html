@@ -383,7 +383,7 @@ class Standard
 		$context = $this->context();
 		$site = $context->locale()->getSiteItem()->getCode();
 
-		if( ( $params = $context->getSession()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) !== null )
+		if( ( $params = $context->session()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) !== null )
 		{
 			$target = $view->config( 'client/html/catalog/detail/url/target' );
 			$controller = $view->config( 'client/html/catalog/detail/url/controller', 'catalog' );
@@ -392,7 +392,7 @@ class Standard
 		}
 		else
 		{
-			$params = $context->getSession()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+			$params = $context->session()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
 
 			$target = $view->config( 'client/html/catalog/lists/url/target' );
 			$controller = $view->config( 'client/html/catalog/lists/url/controller', 'catalog' );

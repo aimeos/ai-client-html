@@ -69,7 +69,7 @@ class Standard
 	{
 		$view = $this->view();
 		$context = $this->context();
-		$session = $context->getSession();
+		$session = $context->session();
 
 		/** client/html/catalog/session/pinned
 		 * All parameters defined for the catalog session pinned subpart
@@ -226,7 +226,7 @@ class Standard
 		$refresh = false;
 		$view = $this->view();
 		$context = $this->context();
-		$session = $context->getSession();
+		$session = $context->session();
 		$pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] );
 
 		if( $view->request()->getMethod() === 'POST' )
@@ -311,7 +311,7 @@ class Standard
 		$items = [];
 		$context = $this->context();
 		$config = $context->config();
-		$session = $context->getSession();
+		$session = $context->session();
 
 		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );
 
