@@ -29,7 +29,7 @@ class Standard
 	 */
 	public function transform( \Aimeos\MShop\Media\Item\Iface $media ) : string
 	{
-		$view = $this->getView();
+		$view = $this->view();
 		$enc = $view->encoder();
 
 		$sources = [];
