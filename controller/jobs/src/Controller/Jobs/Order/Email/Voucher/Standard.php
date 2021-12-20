@@ -264,7 +264,7 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->config() );
 		$view->addHelper( 'config', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $langId ) );
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->i18n( $langId ) );
 		$view->addHelper( 'translate', $helper );
 
 		return $view;

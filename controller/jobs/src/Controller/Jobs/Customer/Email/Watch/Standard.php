@@ -333,7 +333,7 @@ class Standard
 		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $context->locale()->getLanguageId() );
 		$view->addHelper( 'number', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ) );
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->i18n( $address->getLanguageId() ) );
 		$view->addHelper( 'translate', $helper );
 
 		$mailer = $context->mail();

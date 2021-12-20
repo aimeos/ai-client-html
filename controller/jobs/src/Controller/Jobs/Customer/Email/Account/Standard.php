@@ -54,7 +54,7 @@ class Standard
 	public function run()
 	{
 		$context = $this->context();
-		$queue = $context->getMessageQueue( 'mq-email', 'customer/email/account' );
+		$queue = $context->queue( 'mq-email', 'customer/email/account' );
 		$custManager = \Aimeos\MShop::create( $context, 'customer' );
 
 		while( ( $msg = $queue->get() ) !== null )
@@ -118,7 +118,7 @@ class Standard
 		$view->extAccountCode = $item->getCode();
 		$view->extAccountPassword = $password;
 
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->getI18n( $address->getLanguageId() ?: 'en' ) );
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->i18n( $address->getLanguageId() ?: 'en' ) );
 		$view->addHelper( 'translate', $helper );
 
 		$mailer = $context->mail();
