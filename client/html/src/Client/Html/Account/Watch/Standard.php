@@ -286,7 +286,7 @@ class Standard
 
 		try
 		{
-			if( $context->user() != null && !empty( $ids ) && $view->request()->getMethod() === 'POST' )
+			if( $context->user() !== null && !empty( $ids ) && $view->request()->getMethod() === 'POST' )
 			{
 				switch( $view->param( 'wat_action' ) )
 				{

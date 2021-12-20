@@ -177,7 +177,7 @@ class Standard
 
 		try
 		{
-			if( $context->user() != null )
+			if( $context->user() !== null )
 			{
 				$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );

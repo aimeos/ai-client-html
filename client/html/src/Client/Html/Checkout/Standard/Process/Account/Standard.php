@@ -179,7 +179,7 @@ class Standard
 			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
 			$addresses = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get()->getAddress( $type );
 
-			if( $context->user() == null && ( $address = current( $addresses ) ) !== false )
+			if( $context->user() === null && ( $address = current( $addresses ) ) !== false )
 			{
 				$create = (bool) $this->view()->param( 'cs_option_account' );
 				$userId = $this->getCustomerId( $address, $create );
