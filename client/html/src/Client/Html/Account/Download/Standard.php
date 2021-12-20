@@ -282,7 +282,7 @@ class Standard
 	{
 		$context = $this->context();
 
-		if( ( $customerId = $context->getUserId() ) !== null && $id !== null )
+		if( ( $customerId = $context->user() ) !== null && $id !== null )
 		{
 			$manager = \Aimeos\MShop::create( $context, 'order/base' );
 

@@ -285,7 +285,7 @@ class Standard
 
 		try
 		{
-			if( $context->getUserId() != null && !empty( $ids ) && $view->request()->getMethod() === 'POST' )
+			if( $context->user() != null && !empty( $ids ) && $view->request()->getMethod() === 'POST' )
 			{
 				switch( $view->param( 'fav_action' ) )
 				{

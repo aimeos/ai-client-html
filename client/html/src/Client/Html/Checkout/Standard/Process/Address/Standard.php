@@ -177,7 +177,7 @@ class Standard
 
 		try
 		{
-			if( $context->getUserId() != null )
+			if( $context->user() != null )
 			{
 				$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
@@ -196,7 +196,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
-			$msg = sprintf( 'Unable to save address for customer "%1$s": %2$s', $context->getUserId(), $e->getMessage() );
+			$msg = sprintf( 'Unable to save address for customer "%1$s": %2$s', $context->user(), $e->getMessage() );
 			$context->logger()->info( $msg, 'client/html' );
 		}
 
