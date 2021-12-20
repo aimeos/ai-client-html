@@ -43,7 +43,7 @@ class Context extends Base implements Iface
 		$view->contextSiteTheme = $locale->getSiteItem()->getTheme();
 		$view->contextSiteId = $locale->getSiteId();
 		$view->contextUserId = $context->user();
-		$view->contextGroupIds = $context->getGroupIds();
+		$view->contextGroupIds = $context->groups();
 
 		return $this->getClient()->data( $view, $tags, $expire );
 	}
