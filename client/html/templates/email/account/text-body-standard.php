@@ -14,7 +14,7 @@ $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' 
 
 ?>
 <?php $this->block()->start( 'email/account/text' ) ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ) ?>
+<?= wordwrap( strip_tags( $this->get( 'emailIntro', '' ) ) ) ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'An account has been created for you.' ) ) ) ?>

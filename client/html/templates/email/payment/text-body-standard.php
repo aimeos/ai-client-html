@@ -29,10 +29,10 @@
 
 ?>
 <?php $this->block()->start( 'email/payment/text' ) ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ) ?>
+<?= wordwrap( strip_tags( $this->get( 'emailIntro', '' ) ) ) ?>
 
 
-<?= wordwrap( strip_tags( $this->get( 'message' ) ) ) ?>
+<?= wordwrap( strip_tags( $this->get( 'message', '' ) ) ) ?>
 
 
 <?= $this->partial(

@@ -38,7 +38,7 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 
 ?>
 <?php $this->block()->start( 'email/watch/text' ) ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ) ?>
+<?= wordwrap( strip_tags( $this->get( 'emailIntro', '' ) ) ) ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'One or more products you are watching have been updated.' ) ) ) ?>

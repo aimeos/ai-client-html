@@ -70,7 +70,7 @@ $totalQty = 0;
 				<?= $enc->html( $product->getQuantity() ) ?>
 			</td>
 			<td class="price">
-				<?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $product->getPrice()->getPrecision() ), $this->translate( 'currency', $product->getPrice()->getCurrencyId() ) ) ) ?>
+				<?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $product->getPrice()->getPrecision() ), $this->translate( 'currency', $product->getPrice()->getCurrencyId() ) ) ) ?>
 			</td>
 		</tr>
 	<?php endforeach ?>
@@ -81,7 +81,7 @@ $totalQty = 0;
 				<td class="label"><?= $enc->html( $service->getName() ) ?></td>
 				<td class="code"></td>
 				<td class="quantity">1</td>
-				<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) ) ) ?></td>
+				<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) ) ) ?></td>
 			</tr>
 		<?php endif ?>
 	<?php endforeach ?>
@@ -92,7 +92,7 @@ $totalQty = 0;
 				<td class="label"><?= $enc->html( $service->getName() ) ?></td>
 				<td class="code"></td>
 				<td class="quantity">1</td>
-				<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) ) ) ?></td>
+				<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) ) ) ?></td>
 			</tr>
 		<?php endif ?>
 	<?php endforeach ?>
@@ -102,7 +102,7 @@ $totalQty = 0;
 			<td class="label"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ) ?></td>
 			<td class="code"></td>
 			<td class="quantity"></td>
-			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
+			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $this->summaryBasket->getPrice()->getValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
 		</tr>
 	<?php endif ?>
 
@@ -111,7 +111,7 @@ $totalQty = 0;
 			<td class="label"><?= $enc->html( $this->translate( 'client', '+ Shipping' ) ) ?></td>
 			<td class="code"></td>
 			<td class="quantity"></td>
-			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
+			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
 		</tr>
 	<?php endif ?>
 
@@ -120,7 +120,7 @@ $totalQty = 0;
 			<td class="label"><?= $enc->html( $this->translate( 'client', '+ Payment costs' ) ) ?></td>
 			<td class="code"></td>
 			<td class="quantity"></td>
-			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
+			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $costs, $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
 		</tr>
 	<?php endif ?>
 
@@ -129,7 +129,7 @@ $totalQty = 0;
 			<td class="label"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></td>
 			<td class="code"></td>
 			<td class="quantity"><?= $enc->html( $totalQty ) ?></td>
-			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
+			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
 		</tr>
 	<?php endif ?>
 
@@ -140,7 +140,7 @@ $totalQty = 0;
 					<td class="label"><?= $enc->html( sprintf( $priceItem->getTaxFlag() ? $this->translate( 'client', 'Incl. %1$s%% %2$s' ) : $this->translate( 'client', '+ %1$s%% %2$s' ), $this->number( $taxRate ), $this->translate( 'client/code', 'tax' . $taxName ) ) ) ?></td>
 					<td class="code"></td>
 					<td class="quantity"></td>
-					<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $taxValue, $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) ) ) ?></td>
+					<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $taxValue, $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) ) ) ?></td>
 				</tr>
 			<?php endif ?>
 		<?php endforeach ?>
@@ -151,7 +151,7 @@ $totalQty = 0;
 			<td class="label"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></td>
 			<td class="code"></td>
 			<td class="quantity"><?= $enc->html( $totalQty ) ?></td>
-			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
+			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
 		</tr>
 	<?php endif ?>
 
@@ -160,7 +160,7 @@ $totalQty = 0;
 			<td class="label"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ) ?></td>
 			<td class="code"></td>
 			<td class="quantity"></td>
-			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat' ), $this->number( $this->summaryBasket->getPrice()->getRebate(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
+			<td class="price"><?= $enc->html( sprintf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $this->summaryBasket->getPrice()->getRebate(), $this->summaryBasket->getPrice()->getPrecision() ), $this->translate( 'currency', $this->summaryBasket->getPrice()->getCurrencyId() ) ) ) ?></td>
 		</tr>
 	<?php endif ?>
 </table>

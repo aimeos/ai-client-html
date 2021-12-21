@@ -15,7 +15,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 ?>
 <?php $this->block()->start( 'email/voucher/text' ) ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ) ?>
+<?= wordwrap( strip_tags( $this->get( 'emailIntro', '' ) ) ) ?>
 
 
 <?php if( is_array( $this->extVoucherCode ) ) : ?>

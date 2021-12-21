@@ -212,7 +212,7 @@ $barcode = new TCPDF2DBarcode( join( "\n", $data ), 'QRCODE,M' );
 			'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes', false ),
 			'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
 			'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
-			'priceFormat' => $this->get( 'priceFormat' )
+			'priceFormat' => $this->get( 'priceFormat', '%1$s %2$s' )
 		)
 	) ?>
 <?php $this->block()->stop() ?>

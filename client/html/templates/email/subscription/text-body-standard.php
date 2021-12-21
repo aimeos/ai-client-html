@@ -37,7 +37,7 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 
 ?>
 <?php $this->block()->start( 'email/subscription/text' ) ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro' ) ) ) ?>
+<?= wordwrap( strip_tags( $this->get( 'emailIntro', '' ) ) ) ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'The subscription for the product has ended' ) ) ) ?>:
