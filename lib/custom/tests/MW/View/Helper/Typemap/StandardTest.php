@@ -35,6 +35,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$result = $this->object->transform( $items );
 
 		$this->assertCount( 1, $result );
-		$this->assertIsArray( reset( $result ) );
+		$this->assertIsArray( $result->first() );
 	}
 }
