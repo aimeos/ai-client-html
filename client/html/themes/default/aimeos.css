@@ -1288,9 +1288,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-filter-attribute .attr-count,
 .catalog-filter-supplier .attr-count {
-	margin-bottom: .5rem;
-	display: inline-block;
-	vertical-align: middle;
+	vertical-align: text-top;
 }
 
 .catalog-filter-price .btn {
