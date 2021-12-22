@@ -22,7 +22,6 @@ $enc = $this->encoder();
  * @see client/html/account/favorite/url/action
  * @see client/html/account/favorite/url/config
  */
-$favTarget = $this->config( 'client/html/account/favorite/url/target' );
 
 /** client/html/account/favorite/url/controller
  * Name of the controller whose action should be called
@@ -38,7 +37,6 @@ $favTarget = $this->config( 'client/html/account/favorite/url/target' );
  * @see client/html/account/favorite/url/action
  * @see client/html/account/favorite/url/config
  */
-$favController = $this->config( 'client/html/account/favorite/url/controller', 'account' );
 
 /** client/html/account/favorite/url/action
  * Name of the action that should create the output
@@ -54,7 +52,6 @@ $favController = $this->config( 'client/html/account/favorite/url/controller', '
  * @see client/html/account/favorite/url/controller
  * @see client/html/account/favorite/url/config
  */
-$favAction = $this->config( 'client/html/account/favorite/url/action', 'favorite' );
 
 /** client/html/account/favorite/url/config
  * Associative list of configuration options used for generating the URL
@@ -77,22 +74,10 @@ $favAction = $this->config( 'client/html/account/favorite/url/action', 'favorite
  * @see client/html/account/favorite/url/action
  * @see client/html/url/config
  */
-$favConfig = $this->config( 'client/html/account/favorite/url/config', [] );
-
-$detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
-$detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-$detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
-$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
-
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
 ?>
-<section class="aimeos account-favorite" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos account-favorite" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'favoriteErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
@@ -114,13 +99,13 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 					<li class="favorite-item">
 						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $this->get( 'favoriteParams', [] ) ?>
-						<form method="POST" action="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>">
+						<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>">
 							<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 							<?= $this->csrf()->formfield() ?>
 						</form>
 
-						<?php $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
-						<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
+						<?php $params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ?>
+						<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
 							<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
@@ -153,12 +138,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<div class="browser">
 
 					<?php $params = array( 'fav_page' => $this->favoritePageFirst ) + $this->get( 'favoriteParams', [] ) ?>
-					<a class="first" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>">
+					<a class="first" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ) ?>
 					</a>
 
 					<?php $params = array( 'fav_page' => $this->favoritePagePrev ) + $this->get( 'favoriteParams', [] ) ?>
-					<a class="prev" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>" rel="prev">
+					<a class="prev" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>" rel="prev">
 						<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ) ?>
 					</a>
 
@@ -171,12 +156,12 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 					</span>
 
 					<?php $params = array( 'fav_page' => $this->favoritePageNext ) + $this->get( 'favoriteParams', [] ) ?>
-					<a class="next" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>" rel="next">
+					<a class="next" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>" rel="next">
 						<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ) ?>
 					</a>
 
 					<?php $params = array( 'fav_page' => $this->favoritePageLast ) + $this->get( 'favoriteParams', [] ) ?>
-					<a class="last" href="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, $params, [], $favConfig ) ) ?>">
+					<a class="last" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ) ?>
 					</a>
 

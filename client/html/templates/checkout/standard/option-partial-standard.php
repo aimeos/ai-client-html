@@ -23,7 +23,6 @@
  * @see client/html/checkout/standard/summary/option/terms/url/action
  * @see client/html/checkout/standard/summary/option/terms/url/config
  */
-$termsTarget = $this->config( 'client/html/checkout/standard/summary/option/terms/url/target' );
 
 /** client/html/checkout/standard/summary/option/terms/url/controller
  * Name of the controller whose action should be called
@@ -39,7 +38,6 @@ $termsTarget = $this->config( 'client/html/checkout/standard/summary/option/term
  * @see client/html/checkout/standard/summary/option/terms/url/action
  * @see client/html/checkout/standard/summary/option/terms/url/config
  */
-$termsController = $this->config( 'client/html/checkout/standard/summary/option/terms/url/controller' );
 
 /** client/html/checkout/standard/summary/option/terms/url/action
  * Name of the action that should create the output
@@ -55,7 +53,6 @@ $termsController = $this->config( 'client/html/checkout/standard/summary/option/
  * @see client/html/checkout/standard/summary/option/terms/url/controller
  * @see client/html/checkout/standard/summary/option/terms/url/config
  */
-$termsAction = $this->config( 'client/html/checkout/standard/summary/option/terms/url/action' );
 
 /** client/html/checkout/standard/summary/option/terms/url/config
  * Associative list of configuration options used for generating the URL
@@ -78,7 +75,6 @@ $termsAction = $this->config( 'client/html/checkout/standard/summary/option/term
  * @see client/html/checkout/standard/summary/option/terms/url/action
  * @see client/html/url/config
  */
-$termsConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/url/config', [] );
 
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/target
@@ -95,7 +91,6 @@ $termsConfig = $this->config( 'client/html/checkout/standard/summary/option/term
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
  */
-$privacyTarget = $this->config( 'client/html/checkout/standard/summary/option/terms/privacy/url/target' );
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/controller
  * Name of the controller whose action should be called
@@ -111,7 +106,6 @@ $privacyTarget = $this->config( 'client/html/checkout/standard/summary/option/te
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
  */
-$privacyController = $this->config( 'client/html/checkout/standard/summary/option/terms/privacy/url/controller' );
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/action
  * Name of the action that should create the output
@@ -127,7 +121,6 @@ $privacyController = $this->config( 'client/html/checkout/standard/summary/optio
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
  */
-$privacyAction = $this->config( 'client/html/checkout/standard/summary/option/terms/privacy/url/action' );
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/config
  * Associative list of configuration options used for generating the URL
@@ -150,7 +143,6 @@ $privacyAction = $this->config( 'client/html/checkout/standard/summary/option/te
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
  * @see client/html/url/config
  */
-$privacyConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/privacy/url/config', [] );
 
 
 /** client/html/checkout/standard/summary/option/terms/cancel/url/target
@@ -167,7 +159,6 @@ $privacyConfig = $this->config( 'client/html/checkout/standard/summary/option/te
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
  */
-$cancelTarget = $this->config( 'client/html/checkout/standard/summary/option/terms/cancel/url/target' );
 
 /** client/html/checkout/standard/summary/option/terms/cancel/url/controller
  * Name of the controller whose action should be called
@@ -183,7 +174,6 @@ $cancelTarget = $this->config( 'client/html/checkout/standard/summary/option/ter
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
  */
-$cancelController = $this->config( 'client/html/checkout/standard/summary/option/terms/cancel/url/controller' );
 
 /** client/html/checkout/standard/summary/option/terms/cancel/url/action
  * Name of the action that should create the output
@@ -199,7 +189,6 @@ $cancelController = $this->config( 'client/html/checkout/standard/summary/option
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/controller
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
  */
-$cancelAction = $this->config( 'client/html/checkout/standard/summary/option/terms/cancel/url/action' );
 
 /** client/html/checkout/standard/summary/option/terms/cancel/url/config
  * Associative list of configuration options used for generating the URL
@@ -222,7 +211,6 @@ $cancelAction = $this->config( 'client/html/checkout/standard/summary/option/ter
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
  * @see client/html/url/config
  */
-$cancelConfig = $this->config( 'client/html/checkout/standard/summary/option/terms/cancel/url/config', [] );
 
 
 ?>
@@ -258,9 +246,9 @@ $cancelConfig = $this->config( 'client/html/checkout/standard/summary/option/ter
 			<label for="option-terms-accept">
 				<?= $enc->html( sprintf( $this->translate( 'client',
 					'I accept the <a href="%1$s" target="_blank" title="terms and conditions" alt="terms and conditions">terms and conditions</a>, <a href="%2$s" target="_blank" title="privacy policy" alt="privacy policy">privacy policy</a> and <a href="%3$s" target="_blank" title="cancellation policy" alt="cancellation policy">cancellation policy</a>' ),
-					$enc->attr( $this->url( $termsTarget, $termsController, $termsAction, [], [], $termsConfig ) ),
-					$enc->attr( $this->url( $privacyTarget, $privacyController, $privacyAction, [], [], $privacyConfig ) ),
-					$enc->attr( $this->url( $cancelTarget, $cancelController, $cancelAction, [], [], $cancelConfig ) )
+					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/url' ) ),
+					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/privacy/url' ) ),
+					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/cancel/url' ) )
 				), $enc::TRUST ) ?>
 			</label>
 		</p>

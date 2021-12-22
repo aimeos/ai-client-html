@@ -22,7 +22,6 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/action
  * @see client/html/account/subscription/url/config
  */
-$accountTarget = $this->config( 'client/html/account/subscription/url/target' );
 
 /** client/html/account/subscription/url/controller
  * Name of the controller whose action should be called
@@ -38,7 +37,6 @@ $accountTarget = $this->config( 'client/html/account/subscription/url/target' );
  * @see client/html/account/subscription/url/action
  * @see client/html/account/subscription/url/config
  */
-$accountController = $this->config( 'client/html/account/subscription/url/controller', 'account' );
 
 /** client/html/account/subscription/url/action
  * Name of the action that should create the output
@@ -54,7 +52,6 @@ $accountController = $this->config( 'client/html/account/subscription/url/contro
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/config
  */
-$accountAction = $this->config( 'client/html/account/subscription/url/action', 'subscription' );
 
 /** client/html/account/subscription/url/config
  * Associative list of configuration options used for generating the URL
@@ -77,7 +74,6 @@ $accountAction = $this->config( 'client/html/account/subscription/url/action', '
  * @see client/html/account/subscription/url/action
  * @see client/html/url/config
  */
-$accountConfig = $this->config( 'client/html/account/subscription/url/config', [] );
 
 
 /// Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
@@ -166,7 +162,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 					<div class="action col-md-2">
 						<?php $params = ['sub_action' => 'detail', 'sub_id' => $id] ?>
-						<a class="btn btn-outline" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ) ?>">
+						<a class="btn btn-outline" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', 'Show' ) ) ?>
 						</a>
 					</div>

@@ -9,12 +9,6 @@
 $enc = $this->encoder();
 
 
-$target = $this->config( 'client/html/checkout/standard/url/target' );
-$controller = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
-$action = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$config = $this->config( 'client/html/checkout/standard/url/config', [] );
-
-
 ?>
 <?php $this->block()->start( 'checkout/standard/address/delivery' ) ?>
 <div class="checkout-standard-address-delivery col-xs-12 col-xl">
@@ -38,7 +32,7 @@ $config = $this->config( 'client/html/checkout/standard/url/config', [] );
 		<div class="item-address">
 			<div class="header">
 				<a class="modify minibutton delete"
-					href="<?= $enc->attr( $this->url( $target, $controller, $action, ['step' => 'address', 'ca_delivery_delete' => $id], [], $config ) ) ?>">
+					href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">
 				</a>
 				<input id="ca_deliveryoption-<?= $id ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"

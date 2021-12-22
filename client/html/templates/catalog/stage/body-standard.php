@@ -9,24 +9,9 @@
 $enc = $this->encoder();
 
 
-$treeTarget = $this->config( 'client/html/catalog/tree/url/target' );
-$treeController = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
-$treeAction = $this->config( 'client/html/catalog/tree/url/action', 'tree' );
-$treeConfig = $this->config( 'client/html/catalog/tree/url/config', [] );
-
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
-
-
 ?>
-<section class="aimeos catalog-stage <?= $enc->attr( $this->get( 'stageCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos catalog-stage <?= $enc->attr( $this->get( 'stageCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>"
+	data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->stageErrorList ) ) : ?>
 		<ul class="error-list">
@@ -60,14 +45,14 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 				<?php if( isset( $this->stageCatPath ) ) : ?>
 					<?php foreach( $this->get( 'stageCatPath', map() ) as $cat ) : ?>
 						<li>
-							<a href="<?= $enc->attr( $this->url( $treeTarget, $treeController, $treeAction, array_merge( $this->get( 'stageParams', [] ), ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] ), [], $treeConfig ) ) ?>">
+							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', array_merge( $this->get( 'stageParams', [] ), ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] ) ) ) ?>">
 								<?= $enc->html( $cat->getName() ) ?>
 							</a>
 						</li>
 					<?php endforeach ?>
 				<?php else : ?>
 					<li>
-						<a href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'stageParams', [] ), [], $listConfig ) ) ?>">
+						<a href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'stageParams', [] ) ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ) ?>
 						</a>
 					</li>

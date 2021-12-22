@@ -13,17 +13,7 @@
 
 $enc = $this->encoder();
 
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
-
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
-
 
 /** client/html/basket/require-stock
  * Customers can order products only if there are enough products in stock
@@ -62,7 +52,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 ?>
-<section class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->detailErrorList ) ) : ?>
 		<ul class="error-list">
@@ -166,7 +156,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					<?= $this->block()->get( 'catalog/detail/service' ) ?>
 
 
-					<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
+					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
 						<!-- catalog.detail.csrf -->
 						<?= $this->csrf()->formfield() ?>
 						<!-- catalog.detail.csrf -->
@@ -523,12 +513,12 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 											<span><?= $enc->html( $this->translate( 'client', 'Sort by:' ), $enc::TRUST ) ?></span>
 											<ul>
 												<li>
-													<a class="sort-option option-ctime active" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-ctime'], [], $optConfig ) ) ?>">
+													<a class="sort-option option-ctime active" href="<?= $enc->attr( $this->link( 'client/jsonapi/url', ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-ctime'] ) ) ?>">
 														<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ) ?>
 													</a>
 												</li>
 												<li>
-													<a class="sort-option option-rating" href="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-rating,-ctime'], [], $optConfig ) ) ?>">
+													<a class="sort-option option-rating" href="<?= $enc->attr( $this->link( 'client/jsonapi/url', ['resource' => 'review', 'filter' => ['f_refid' => $this->detailProductItem->getId()], 'sort' => '-rating,-ctime'] ) ) ?>">
 														<?= $enc->html( $this->translate( 'client', 'Rating' ), $enc::TRUST ) ?>
 													</a>
 												</li>

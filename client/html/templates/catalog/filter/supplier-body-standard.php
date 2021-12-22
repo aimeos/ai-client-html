@@ -8,12 +8,6 @@
 $enc = $this->encoder();
 
 
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-
-
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ) ?>
 <?php if( !$this->get( 'supplierList', map() )->isEmpty() ) : ?>
@@ -22,7 +16,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 		<div class="supplier-lists">
 			<?php if( $this->param( 'f_supid' ) ) : ?>
-				<a class="btn supplier-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'supplierResetParams', [] ), [], $listConfig ) ) ?>">
+				<a class="btn supplier-selected" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'supplierResetParams', [] ) ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 				</a>
 			<?php endif ?>

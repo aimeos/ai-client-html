@@ -13,22 +13,6 @@
 $enc = $this->encoder();
 
 
-$pinTarget = $this->config( 'client/html/catalog/session/pinned/url/target' );
-$pinController = $this->config( 'client/html/catalog/session/pinned/url/controller', 'catalog' );
-$pinAction = $this->config( 'client/html/catalog/session/pinned/url/action', 'detail' );
-$pinConfig = $this->config( 'client/html/catalog/session/pinned/url/config', [] );
-
-$watchTarget = $this->config( 'client/html/account/watch/url/target' );
-$watchController = $this->config( 'client/html/account/watch/url/controller', 'account' );
-$watchAction = $this->config( 'client/html/account/watch/url/action', 'watch' );
-$watchConfig = $this->config( 'client/html/account/watch/url/config', [] );
-
-$favTarget = $this->config( 'client/html/account/favorite/url/target' );
-$favController = $this->config( 'client/html/account/favorite/url/controller', 'account' );
-$favAction = $this->config( 'client/html/account/favorite/url/action', 'favorite' );
-$favConfig = $this->config( 'client/html/account/favorite/url/config', [] );
-
-
 /** client/html/catalog/actions/list
  * List of user action names that should be displayed in the catalog detail view
  *
@@ -53,7 +37,7 @@ $list = $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'fav
 <div class="catalog-actions">
 
 	<?php if( in_array( 'pin', $list ) ) : ?>
-		<form class="actions-pin" method="POST" action="<?= $enc->attr( $this->url( $pinTarget, $pinController, $pinAction, [], $pinConfig ) ) ?>">
+		<form class="actions-pin" method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url' ) ) ?>">
 			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
 			<input type="hidden" name="<?= $this->formparam( 'pin_action' ) ?>" value="add" />
 			<input type="hidden" name="<?= $this->formparam( 'pin_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
@@ -63,7 +47,7 @@ $list = $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'fav
 	<?php endif ?>
 
 	<?php if( in_array( 'watch', $list ) ) : ?>
-		<form class="actions-watch" method="POST" action="<?= $enc->attr( $this->url( $watchTarget, $watchController, $watchAction, [], $watchConfig ) ) ?>">
+		<form class="actions-watch" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/watch/url' ) ) ?>">
 			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
 			<input type="hidden" name="<?= $this->formparam( 'wat_action' ) ?>" value="add" />
 			<input type="hidden" name="<?= $this->formparam( 'wat_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
@@ -73,7 +57,7 @@ $list = $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'fav
 	<?php endif ?>
 
 	<?php if( in_array( 'favorite', $list ) ) : ?>
-		<form class="actions-favorite" method="POST" action="<?= $enc->attr( $this->url( $favTarget, $favController, $favAction, [], $favConfig ) ) ?>">
+		<form class="actions-favorite" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>">
 			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
 			<input type="hidden" name="<?= $this->formparam( 'fav_action' ) ?>" value="add" />
 			<input type="hidden" name="<?= $this->formparam( 'fav_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />

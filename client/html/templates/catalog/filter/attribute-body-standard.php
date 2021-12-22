@@ -25,11 +25,6 @@ $enc = $this->encoder();
  * @category Developer
  */
 
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-
 $attrIds = array_filter( $this->param( 'f_attrid', [] ) );
 $optIds = array_filter( $this->param( 'f_optid', [] ) );
 $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
@@ -48,7 +43,7 @@ $params = $this->param();
 			<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
 
 				<div class="attribute-selected">
-					<a class="btn attribute-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'attributeResetParams', [] ), [], $listConfig ) ) ?>">
+					<a class="btn attribute-selected" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'attributeResetParams', [] ) ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 					</a>
 
@@ -66,7 +61,7 @@ $params = $this->param();
 								<?php else : continue; ?>
 								<?php endif; ?>
 								<li class="attr-item">
-									<a class="attr-name" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $attribute->get( 'params', [] ), [], $listConfig ) ); ?>">
+									<a class="attr-name" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $attribute->get( 'params', [] ) ) ); ?>">
 										<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
 									</a>
 								</li>

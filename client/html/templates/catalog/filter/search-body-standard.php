@@ -27,7 +27,6 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/config
  * @see client/html/catalog/listsimple/url/target
  */
-$suggestTarget = $this->config( 'client/html/catalog/suggest/url/target' );
 
 /** client/html/catalog/suggest/url/controller
  * Name of the controller whose action should be called
@@ -47,7 +46,6 @@ $suggestTarget = $this->config( 'client/html/catalog/suggest/url/target' );
  * @see client/html/catalog/suggest/url/config
  * @see client/html/catalog/listsimple/url/controller
  */
-$suggestController = $this->config( 'client/html/catalog/suggest/url/controller', 'catalog' );
 
 /** client/html/catalog/suggest/url/action
  * Name of the action that should create the output
@@ -67,7 +65,6 @@ $suggestController = $this->config( 'client/html/catalog/suggest/url/controller'
  * @see client/html/catalog/suggest/url/config
  * @see client/html/catalog/listsimple/url/action
  */
-$suggestAction = $this->config( 'client/html/catalog/suggest/url/action', 'suggest' );
 
 /** client/html/catalog/suggest/url/config
  * Associative list of configuration options used for generating the URL
@@ -94,7 +91,6 @@ $suggestAction = $this->config( 'client/html/catalog/suggest/url/action', 'sugge
  * @see client/html/url/config
  * @see client/html/catalog/listsimple/url/config
  */
-$suggestConfig = $this->config( 'client/html/catalog/suggest/url/config', [] );
 
 /** client/html/catalog/filter/search/force-search
  * Always reuse the current input for full text searches
@@ -125,7 +121,7 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 			title="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
 			value="<?= $enc->attr( $enforce ? $this->param( 'f_search' ) : '' ) ?>"
-			data-url="<?= $enc->attr( $this->url( $suggestTarget, $suggestController, $suggestAction, [], [], $suggestConfig ) ) ?>"
+			data-url="<?= $enc->attr( $this->link( 'client/html/catalog/suggest/url' ) ) ?>"
 			data-hint="<?= $enc->attr( $this->translate( 'client', 'Please enter at least three characters' ) ) ?>"
 		><!--
 		--><button class="btn btn-default reset" type="reset" title="<?= $enc->attr( $this->translate( 'client', 'Reset' ) ) ?>">

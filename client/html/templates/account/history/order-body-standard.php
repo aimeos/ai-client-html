@@ -8,15 +8,6 @@
 
 $enc = $this->encoder();
 
-$accountTarget = $this->config( 'client/html/account/history/url/target' );
-$accountController = $this->config( 'client/html/account/history/url/controller', 'account' );
-$accountAction = $this->config( 'client/html/account/history/url/action', 'history' );
-$accountConfig = $this->config( 'client/html/account/history/url/config', [] );
-
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'standard' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 
@@ -185,7 +176,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 	</div>
 
 
-	<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
+	<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
 		<?= $this->csrf()->formfield() ?>
 
 		<?php if( $basketSite ) : ?>
@@ -222,7 +213,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 		<div class="button-group">
 			<a class="btn btn-default btn-close"
-				href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ) ?>">
+				href="<?= $enc->attr( $this->link( 'client/html/account/history/url' ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
 			</a>
 			<button class="btn btn-primary btn-action">

@@ -8,27 +8,16 @@
 
 $enc = $this->encoder();
 
-
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-$basketCntl = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
-
-$coTarget = $this->config( 'client/html/checkout/standard/url/target' );
-$coCntl = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
-$coAction = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$coConfig = $this->config( 'client/html/checkout/standard/url/config', [] );
-
-$checkoutAddressUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'address' ), [], $coConfig );
-$checkoutDeliveryUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'delivery' ), [], $coConfig );
-$checkoutPaymentUrl = $this->url( $coTarget, $coCntl, $coAction, array( 'c_step' => 'payment' ), [], $coConfig );
-$basketUrl = $this->url( $basketTarget, $basketCntl, $basketAction, [], [], $basketConfig );
+$checkoutAddressUrl = $this->link( 'client/html/checkout/standard/url', ['c_step' => 'address'] );
+$checkoutDeliveryUrl = $this->link( 'client/html/checkout/standard/url', ['c_step' => 'delivery'] );
+$checkoutPaymentUrl = $this->link( 'client/html/checkout/standard/url', ['c_step' => 'payment'] );
+$basketUrl = $this->link( 'client/html/basket/standard/url' );
 
 
 ?>
 <?php $this->block()->start( 'checkout/standard/summary' ) ?>
 <section class="checkout-standard-summary common-summary">
-	<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_order' ) ) ) ?>" value="1">
+	<input type="hidden" name="<?= $enc->attr( $this->formparam( ['cs_order'] ) ) ?>" value="1">
 
 	<h1><?= $enc->html( $this->translate( 'client', 'summary' ), $enc::TRUST ) ?></h1>
 	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please check your order' ), $enc::TRUST ) ?></p>

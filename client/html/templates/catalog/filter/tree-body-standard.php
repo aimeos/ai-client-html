@@ -9,12 +9,6 @@
 $enc = $this->encoder();
 
 
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-
-
 /** client/html/catalog/filter/tree/force-search
  * Use the current category in full text searches
  *
@@ -62,7 +56,8 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 			</div>
 
 			<?php if( $this->param( 'f_catid' ) ) : ?>
-				<a class="btn btn-secondary category-selected" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, map( $this->treeFilterParams )->remove( ['f_catid', 'f_name'] )->toArray(), [], $listConfig ) ) ?>">
+				<a class="btn btn-secondary category-selected"
+					href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', map( $this->treeFilterParams )->remove( ['f_catid', 'f_name'] )->all() ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 				</a>
 			<?php endif ?>

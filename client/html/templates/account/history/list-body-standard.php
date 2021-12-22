@@ -23,7 +23,6 @@ $enc = $this->encoder();
  * @see client/html/account/history/url/action
  * @see client/html/account/history/url/config
  */
-$accountTarget = $this->config( 'client/html/account/history/url/target' );
 
 /** client/html/account/history/url/controller
  * Name of the controller whose action should be called
@@ -39,7 +38,6 @@ $accountTarget = $this->config( 'client/html/account/history/url/target' );
  * @see client/html/account/history/url/action
  * @see client/html/account/history/url/config
  */
-$accountController = $this->config( 'client/html/account/history/url/controller', 'account' );
 
 /** client/html/account/history/url/action
  * Name of the action that should create the output
@@ -55,7 +53,6 @@ $accountController = $this->config( 'client/html/account/history/url/controller'
  * @see client/html/account/history/url/controller
  * @see client/html/account/history/url/config
  */
-$accountAction = $this->config( 'client/html/account/history/url/action', 'history' );
 
 /** client/html/account/history/url/config
  * Associative list of configuration options used for generating the URL
@@ -78,7 +75,6 @@ $accountAction = $this->config( 'client/html/account/history/url/action', 'histo
  * @see client/html/account/history/url/action
  * @see client/html/url/config
  */
-$accountConfig = $this->config( 'client/html/account/history/url/config', [] );
 
 
 /// Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php
@@ -168,7 +164,7 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 					<div class="action col-md-2">
 						<?php $params = ['his_action' => 'order', 'his_id' => $id] ?>
-						<a class="btn btn-outline" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ) ?>">
+						<a class="btn btn-outline" href="<?= $enc->attr( $this->link( 'client/html/account/history/url', $params ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', 'Show' ) ) ?>
 						</a>
 					</div>

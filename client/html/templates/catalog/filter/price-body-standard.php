@@ -7,11 +7,6 @@
 
 $enc = $this->encoder();
 
-$target = $this->config( 'client/html/catalog/lists/url/target' );
-$cntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$config = $this->config( 'client/html/catalog/lists/url/config', [] );
-
 
 ?>
 <?php $this->block()->start( 'catalog/filter/price' ) ?>
@@ -37,7 +32,7 @@ $config = $this->config( 'client/html/catalog/lists/url/config', [] );
 				</div>
 				<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Save' ) ) ?></button>
 				<?php if( $this->param( 'f_price' ) ) : ?>
-					<a class="btn" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $this->get( 'priceResetParams', [] ), [], $config ) ) ?>">
+					<a class="btn" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'priceResetParams', [] ) ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Reset' ) ) ?>
 					</a>
 				<?php endif ?>

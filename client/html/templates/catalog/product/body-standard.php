@@ -36,7 +36,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
  */
 
 ?>
-<section class="aimeos catalog-product" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos catalog-product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->productErrorList ) ) : ?>
 		<ul class="error-list">

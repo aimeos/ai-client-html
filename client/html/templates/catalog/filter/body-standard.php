@@ -24,7 +24,6 @@ $enc = $this->encoder();
  * @see client/html/catalog/lists/url/action
  * @see client/html/catalog/lists/url/config
  */
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
 
 /** client/html/catalog/lists/url/controller
  * Name of the controller whose action should be called
@@ -40,7 +39,6 @@ $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
  * @see client/html/catalog/lists/url/action
  * @see client/html/catalog/lists/url/config
  */
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
 
 /** client/html/catalog/lists/url/action
  * Name of the action that should create the output
@@ -56,7 +54,6 @@ $listController = $this->config( 'client/html/catalog/lists/url/controller', 'ca
  * @see client/html/catalog/lists/url/controller
  * @see client/html/catalog/lists/url/config
  */
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
 
 /** client/html/catalog/lists/url/config
  * Associative list of configuration options used for generating the URL
@@ -79,19 +76,13 @@ $listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
  * @see client/html/catalog/lists/url/action
  * @see client/html/url/config
  */
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 $key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 $url = $this->link( $key, $this->param() );
 
 
 ?>
-<section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->filterErrorList ) ) : ?>
 		<ul class="error-list">

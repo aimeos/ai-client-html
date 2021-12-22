@@ -8,37 +8,22 @@
 
 $enc = $this->encoder();
 
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
-
-$checkoutTarget = $this->config( 'client/html/checkout/standard/url/target' );
-$checkoutController = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
-$checkoutAction = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', [] );
-
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
-
 
 ?>
-<section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<nav>
 		<ol class="steps">
 
 			<li class="step active basket">
-				<a href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
+				<a href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?>
 				</a>
 			</li>
 
 			<?php foreach( $this->get( 'standardStepsBefore', [] ) as $name ) : ?>
 				<li class="step active <?= $name ?>">
-					<a href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, ['c_step' => $name], [], $checkoutConfig ) ) ?>">
+					<a href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['c_step' => $name] ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', $name ) ) ?>
 					</a>
 				</li>

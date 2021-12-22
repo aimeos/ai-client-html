@@ -7,16 +7,7 @@
 
 $enc = $this->encoder();
 
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
-
-$jsonTarget = $this->config( 'client/jsonapi/url/target' );
-$jsonController = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$jsonAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 /** client/html/basket/bulk/rows
  * Number or rows shown in the product bulk order form by default
@@ -32,7 +23,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 
 ?>
-<section class="aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $jsonConfig ) ) ?>">
+<section class="aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
 
 	<?php if( isset( $this->bulkErrorList ) ) : ?>
 		<ul class="error-list">
@@ -44,7 +35,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 	<h1><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ) ?></h1>
 
-	<form class="container" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
+	<form class="container" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
 		<!-- basket.bulk.csrf -->
 		<?= $this->csrf()->formfield() ?>
 		<!-- basket.bulk.csrf -->

@@ -7,27 +7,7 @@
  */
 
 $enc = $this->encoder();
-
-
-if( $this->param( 'f_catid' ) !== null )
-{
-	$target = $this->config( 'client/html/catalog/tree/url/target' );
-	$cntl = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
-	$action = $this->config( 'client/html/catalog/tree/url/action', 'tree' );
-	$config = $this->config( 'client/html/catalog/tree/url/config', [] );
-}
-else
-{
-	$target = $this->config( 'client/html/catalog/lists/url/target' );
-	$cntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-	$action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-	$config = $this->config( 'client/html/catalog/lists/url/config', [] );
-}
-
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
+$key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
 
 /** client/html/catalog/lists/head/text-types
@@ -78,7 +58,8 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 
 
 ?>
-<section class="aimeos catalog-list <?= $enc->attr( $this->get( 'listCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos catalog-list <?= $enc->attr( $this->get( 'listCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>"
+	data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->listErrorList ) ) : ?>
 		<ul class="error-list">
@@ -112,9 +93,9 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
 	<?php if( $this->get( 'listProductTotal', 0 ) > 0 ) : ?>
 		<div class="catalog-list-type">
 			<a class="type-item type-grid" title="<?= $enc->attr( $this->translate( 'client', 'Grid view' ) ) ?>"
-				href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $this->get( 'listParams', [] ), [], $config ) ) ?>"></a>
+				href="<?= $enc->attr( $this->link( $key, ['l_type' => 'grid'] + $this->get( 'listParams', [] ) ) ) ?>"></a>
 			<a class="type-item type-list" title="<?= $enc->attr( $this->translate( 'client', 'List view' ) ) ?>"
-				href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $this->get( 'listParams', [] ), [], $config ) ) ?>"></a>
+				href="<?= $enc->attr( $this->link( $key, ['l_type' => 'list'] + $this->get( 'listParams', [] ) ) ) ?>"></a>
 		</div>
 	<?php endif ?>
 

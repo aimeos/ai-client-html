@@ -8,19 +8,9 @@
 
 $enc = $this->encoder();
 
-$target = $this->config( 'client/html/checkout/standard/url/target' );
-$controller = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
-$action = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$config = $this->config( 'client/html/checkout/standard/url/config', [] );
-
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
-
 
 ?>
-<section class="aimeos checkout-confirm" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos checkout-confirm" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->confirmErrorList ) ) : ?>
 		<ul class="error-list">
@@ -66,10 +56,10 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<div class="checkout-confirm-retry">
 		<?php if( isset( $this->confirmOrderItem ) && $this->confirmOrderItem->getStatusPayment() < \Aimeos\MShop\Order\Item\Base::PAY_REFUND ) : ?>
 			<div class="button-group">
-				<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->url( $target, $controller, $action, ['c_step' => 'payment'], [], $config ) ) ?>">
+				<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['c_step' => 'payment'] ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ) ?>
 				</a>
-				<a class="btn btn-primary btn-lg" href="<?= $enc->attr( $this->url( $target, $controller, $action, ['c_step' => 'process', 'cs_option_terms' => 1, 'cs_option_terms_value' => 1, 'cs_order' => 1], [], $config ) ) ?>">
+				<a class="btn btn-primary btn-lg" href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['c_step' => 'process', 'cs_option_terms' => 1, 'cs_option_terms_value' => 1, 'cs_order' => 1] ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ) ?>
 				</a>
 			</div>

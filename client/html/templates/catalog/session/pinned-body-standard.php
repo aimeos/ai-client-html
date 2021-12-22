@@ -23,7 +23,6 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
  */
-$pinTarget = $this->config( 'client/html/catalog/session/pinned/url/target' );
 
 /** client/html/catalog/session/pinned/url/controller
  * Name of the controller whose action should be called
@@ -39,7 +38,6 @@ $pinTarget = $this->config( 'client/html/catalog/session/pinned/url/target' );
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
  */
-$pinController = $this->config( 'client/html/catalog/session/pinned/url/controller', 'catalog' );
 
 /** client/html/catalog/session/pinned/url/action
  * Name of the action that should create the output
@@ -55,7 +53,6 @@ $pinController = $this->config( 'client/html/catalog/session/pinned/url/controll
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/config
  */
-$pinAction = $this->config( 'client/html/catalog/session/pinned/url/action', 'detail' );
 
 /** client/html/catalog/session/pinned/url/config
  * Associative list of configuration options used for generating the URL
@@ -78,13 +75,6 @@ $pinAction = $this->config( 'client/html/catalog/session/pinned/url/action', 'de
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/url/config
  */
-$pinConfig = $this->config( 'client/html/catalog/session/pinned/url/config', [] );
-
-$detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
-$detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-$detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
-$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 /** client/html/catalog/session/pinned/count/enable
  * Displays the number of pinned products in the header of the pinned list
@@ -115,15 +105,15 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 	<ul class="pinned-items">
 		<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
 			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $productItem->getName( 'url' )] + $this->get( 'pinnedParams', [] ) ?>
-			<?php $detailParams = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''], $detailFilter ) ?>
+			<?php $detailParams = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''] ?>
 
 			<li class="pinned-item">
-				<form method="POST" action="<?= $enc->attr( $this->url( $pinTarget, $pinController, $pinAction, $pinParams, [], $pinConfig ) ) ?>">
+				<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">
 					<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 					<?= $this->csrf()->formfield() ?>
 				</form>
 
-				<a href="<?= $enc->attr( $this->url( $detailTarget, $detailController, $detailAction, $detailParams, [], $detailConfig ) ) ?>">
+				<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $detailParams ) ) ?>">
 
 					<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 					<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>

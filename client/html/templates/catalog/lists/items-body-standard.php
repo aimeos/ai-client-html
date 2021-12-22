@@ -33,11 +33,6 @@ $enc = $this->encoder();
  * @see client/html/catalog/domains
  */
 
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-
 /** client/html/catalog/lists/infinite-scroll
  * Enables infinite scrolling in product catalog list
  *
@@ -50,10 +45,14 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
  */
 $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
 
+$url = '';
+if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ) {
+	$url = $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPageNext' )] + $this->get( 'listParams', [] ) );
+}
 
 ?>
 <?php $this->block()->start( 'catalog/lists/items' ) ?>
-<div class="catalog-list-items" data-infinite-url="<?= $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ? $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext' ) ) + $this->get( 'listParams', [] ), [], $listConfig ) : '' ?>">
+<div class="catalog-list-items" data-infinite-url="<?= $url ?>">
 
 	<?= $this->partial(
 		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),

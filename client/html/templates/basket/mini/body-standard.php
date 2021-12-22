@@ -24,7 +24,6 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/config
  * @see client/html/basket/standard/url/site
  */
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
 
 /** client/html/basket/standard/url/controller
  * Name of the controller whose action should be called
@@ -41,7 +40,6 @@ $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
  * @see client/html/basket/standard/url/config
  * @see client/html/basket/standard/url/site
  */
-$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
 
 /** client/html/basket/standard/url/action
  * Name of the action that should create the output
@@ -58,7 +56,6 @@ $basketController = $this->config( 'client/html/basket/standard/url/controller',
  * @see client/html/basket/standard/url/config
  * @see client/html/basket/standard/url/site
  */
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
 
 /** client/html/basket/standard/url/config
  * Associative list of configuration options used for generating the URL
@@ -82,7 +79,6 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index'
  * @see client/html/basket/standard/url/site
  * @see client/html/url/config
  */
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 
 /** client/html/basket/standard/url/site
  * Locale site code where products will be added to the basket
@@ -101,13 +97,6 @@ $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
  */
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
-
-$jsonTarget = $this->config( 'client/jsonapi/url/target' );
-$jsonController = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$jsonAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$jsonConfig = $this->config( 'client/jsonapi/url/config', [] );
-
-
 $pricefmt = $this->translate( 'client/code', 'price:default' );
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
@@ -115,7 +104,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 ?>
 
-<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $jsonConfig ) ) ?>">
+<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
@@ -176,7 +165,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 									if( $basketSite ) { $param['site'] = $basketSite; }
 							?>
 							<tr class="product"
-								data-url="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, $param, [], $jsonConfig ) ) ?>"
+								data-url="<?= $enc->attr( $this->link( 'client/jsonapi/url', $param ) ) ?>"
 								data-urldata="<?= $enc->attr( $this->csrf()->name() . '=' . $this->csrf()->value() ) ?>">
 								<td class="name">
 										<?= $enc->html( $product->getName() ) ?>
@@ -217,7 +206,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 					</tfoot>
 				</table>
 				<div class="to-basket">
-					<a class="btn btn-primary" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
+					<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?>
 					</a>
 				</div>

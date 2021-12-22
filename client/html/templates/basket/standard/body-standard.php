@@ -8,24 +8,9 @@
 
 $enc = $this->encoder();
 
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
-
-$checkoutTarget = $this->config( 'client/html/checkout/standard/url/target' );
-$checkoutController = $this->config( 'client/html/checkout/standard/url/controller', 'checkout' );
-$checkoutAction = $this->config( 'client/html/checkout/standard/url/action', 'index' );
-$checkoutConfig = $this->config( 'client/html/checkout/standard/url/config', [] );
-
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
-
 
 ?>
-<section class="aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ) ?>">
+<section class="aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->standardErrorList ) ) : ?>
 		<ul class="error-list">
@@ -40,7 +25,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php if( isset( $this->standardBasket ) ) : ?>
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
 
-		<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, [], [], $basketConfig ) ) ?>">
+		<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 			<?= $this->csrf()->formfield() ?>
 
 
@@ -96,7 +81,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 							<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ) ?>
 							<li class="attr-item">
 								<span class="coupon-code"><?= $enc->html( $code ) ?></span>
-								<a class="minibutton delete" href="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $params, [], $basketConfig ) ) ?>"></a>
+								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
 							</li>
 							<?php endforeach ?>
 						</ul>
@@ -119,7 +104,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 				<?php if( $this->get( 'standardCheckout', false ) === true ) : ?>
 					<a class="btn btn-primary btn-lg btn-action"
-						href="<?= $enc->attr( $this->url( $checkoutTarget, $checkoutController, $checkoutAction, [], [], $checkoutConfig ) ) ?>">
+						href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url' ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ) ?>
 					</a>
 				<?php else : ?>

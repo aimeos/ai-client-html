@@ -39,7 +39,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
  * @see client/html/account/download/url/action
  * @see client/html/account/download/url/config
  */
-$dlTarget = $this->config( 'client/html/account/download/url/target' );
 
 /** client/html/account/download/url/controller
  * Name of the controller whose action should be called
@@ -55,7 +54,6 @@ $dlTarget = $this->config( 'client/html/account/download/url/target' );
  * @see client/html/account/download/url/action
  * @see client/html/account/download/url/config
  */
-$dlController = $this->config( 'client/html/account/download/url/controller', 'account' );
 
 /** client/html/account/download/url/action
  * Name of the action that should create the output
@@ -71,7 +69,6 @@ $dlController = $this->config( 'client/html/account/download/url/controller', 'a
  * @see client/html/account/download/url/controller
  * @see client/html/account/download/url/config
  */
-$dlAction = $this->config( 'client/html/account/download/url/action', 'download' );
 
 /** client/html/account/download/url/config
  * Associative list of configuration options used for generating the URL
@@ -93,7 +90,6 @@ $dlAction = $this->config( 'client/html/account/download/url/action', 'download'
  * @see client/html/account/download/url/controller
  * @see client/html/account/download/url/action
  */
-$dlConfig = $this->config( 'client/html/account/download/url/config', array( 'absoluteUri' => 1 ) );
 
 /** client/html/common/summary/detail/product/attribute/types
  * List of attribute type codes that should be displayed in the basket along with their product
@@ -219,7 +215,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 										<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
 											<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ) ?></span>
 											<span class="value">
-												<a href="<?= $enc->attr( $this->url( $dlTarget, $dlController, $dlAction, array( 'dl_id' => $attribute->getId() ), [], $dlConfig ) ) ?>">
+												<a href="<?= $enc->attr( $this->link( 'client/html/account/download/url', ['dl_id' => $attribute->getId()] ) ) ?>">
 													<?= $enc->html( $attribute->getName() ) ?>
 												</a>
 											</span>
