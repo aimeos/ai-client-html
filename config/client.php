@@ -8,6 +8,11 @@ return [
 			],
 		],
 		'catalog' => [
+			'detail' => [
+				'url' => [
+					'filter' => ['d_prodid'] // Remove product ID from URLs, only use URL segment
+				]
+			],
 			'lists' => [
 				'items' => [
 					'template-body-list' => 'catalog/lists/items-body-list',
