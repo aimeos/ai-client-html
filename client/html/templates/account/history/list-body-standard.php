@@ -126,7 +126,7 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 										<?= $enc->html( $this->translate( 'client', 'Channel' ), $enc::TRUST ) ?>
 									</span>
 									<span class="value col-7">
-										<?php $code = 'order:' . $orderItem->getType() ?>
+										<?php $code = 'order:' . $orderItem->getChannel() ?>
 										<?= $enc->html( $this->translate( 'mshop/code', $code ), $enc::TRUST ) ?>
 									</span>
 								</div>
