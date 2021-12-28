@@ -14,13 +14,11 @@ var catalogCounts = <?= $this->get( 'treeCountList', map() )->toJson( JSON_FORCE
 $(".catalog-filter-count .cat-item").each(function(index, item) {
 	var id = $(item).data("id");
 
-	$("a.cat-item", item).append(function() {
-		if( catalogCounts[id] ) {
-			return '<span class="cat-count">' + catalogCounts[id] + '</span>';
-		} else if($(item).hasClass("nochild")) {
-			$(item).addClass("disabled");
-		}
-	});
+	if(catalogCounts[id]) {
+		$("a.cat-item", item).append('<span class="cat-count">' + catalogCounts[id] + '</span>');
+	} else if($(item).hasClass("nochild")) {
+		$(item).addClass("disabled");
+	}
 });
 // -->
 <?php $this->block()->stop() ?>
