@@ -159,7 +159,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 
 ?>
-<div class="list-items">
+<div class="list-items slider-container">
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
 		<?php

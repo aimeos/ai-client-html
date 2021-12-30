@@ -12,19 +12,15 @@
 var attributeCounts = <?= $this->get( 'attributeCountList', map() )->toJson( JSON_FORCE_OBJECT ) ?>;
 
 $( ".catalog-filter-attribute .attribute-lists li.attr-item" ).each( function( index, item ) {
-	$(item).append( function() {
+
 		var itemId = $(item).data( "id" );
 
-		if( attributeCounts[itemId] ) {
-			var node = document.createElement( 'span' );
-			node.appendChild( document.createTextNode( attributeCounts[itemId] ) );
-			$(node).addClass( 'attr-count' );
-			return node;
-		}
-
-		$(item).addClass( 'disabled' );
+		if( attributeCounts[itemId]) {
+			$(".attr-name", item).after('&nbsp;' + '<span class="attr-count">' + attributeCounts[itemId] + '</span>');
+		}else{ $(item).addClass("disabled"); }
+		
 	});
-});
+
 // -->
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/count/attribute' ) ?>

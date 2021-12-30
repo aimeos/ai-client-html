@@ -11,18 +11,15 @@
 var supplierCounts = <?= $this->get( 'supplierCountList', map() )->toJson( JSON_FORCE_OBJECT ) ?>;
 
 $( ".catalog-filter-supplier .supplier-lists li.attr-item" ).each( function( index, item ) {
-	$(item).append( function() {
-		var itemId = $(item).data( "id" );
 
-		if( supplierCounts[itemId] ) {
-			var node = document.createElement( 'span' );
-			node.appendChild( document.createTextNode( supplierCounts[itemId] ) );
-			$(node).addClass( 'attr-count' );
-			return node;
-		}
+	var itemId = $(item).data( "id" );
 
-		$(item).addClass( 'disabled' );
-	});
+	if( supplierCounts[itemId] ) {
+
+		$(".attr-name", item).after('&nbsp;' + '<span class="attr-count">' + supplierCounts[itemId] + '</span>');
+
+	}else{$(item).addClass( 'disabled' );}
+
 });
 // -->
 <?php $this->block()->stop() ?>

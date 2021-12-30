@@ -19,40 +19,60 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 
-?>
-<div class="catalog-detail-image">
+?>    
+<div class="catalog-detail-image" >
 
-	<div class="image-single" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
+	<?php if( ( $imgNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?><!--
+												  
+		--><div class="swiffy-slider slider-item-ratio slider-item-ratio-1x1 slider-nav-round slider-nav-animation-fadein" id="pgallery">
 
-		<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
-			<div class="media-item">
-				<?= $this->image( $mediaItem ) ?>
-			</div>
-		<?php endforeach ?>
+			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}"><!--
 
-	</div><!--
+			    <?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
+				    --><div class="media-item">
+					    <?= $this->image( $mediaItem ) ?>
+				    </div><!--
+			    <?php endforeach ?>
 
-	--><?php if( ( $num = count( $this->get( 'mediaItems', [] ) ) ) > 1 ) : $class = 'item selected' ?>
-		<div class="image-thumbs thumbs-horizontal" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'><!--
-			<?php if( $num > 4 ) : ?>
+		    --></div><!--
+
+		    <?php if( $imgNum > 1 ) : ?>
+		    --><button type="button" class="slider-nav" aria-label="Go previous"></button><!--
+		    --><button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button><!--
+		    <?php endif ?>
+
+		--></div><!--
+	   
+	<?php endif ?>
+
+	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
+	
+		--><div class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-show4 slider-item-snapstart slider-item-ratio slider-item-ratio-1x1 slider-nav-visible slider-nav-page slider-nav-outside-expand pt-3"><!--
+			
+			<?php if( $thumbNum > 4 ) : ?>
 				--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ) ?></button><!--
 			<?php endif ?>
-			--><div class="thumbs"><!--
+														      
+			--><div class="thumbs slider-container" id="pgallerythumbs" style="cursor:pointer"><!--
 
-				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
-
-					--><img class="item-thumb" src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-						alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
-					><!--
-
-					<?php $class = 'item' ?>
-				<?php endforeach ?>
+				    <?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
+						 
+					    --><img class="item-thumb img-<?= $index ?>" src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+						    alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
+					    ><!--
+						 
+					    <?php  $class = 'item' ?>
+	  
+				    <?php endforeach ?>
 
 			--></div><!--
-			<?php if( $num > 4 ) : ?>
+			<?php if( $thumbNum > 4 ) : ?>
 				--><button type="button" class="slick-next"><?= $enc->html( $this->translate( 'client', 'Next' ) ) ?></button><!--
+				--><button type="button" class="slider-nav" aria-label="Go previous"></button><!--
+				--><button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button><!--
 			<?php endif ?>
-		--></div>
+
+	--></div>
 	<?php endif ?>
 
 
