@@ -41,10 +41,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<fieldset class="attr-color">', $output );
-		$this->assertStringContainsString( '<fieldset class="attr-length">', $output );
-		$this->assertStringContainsString( '<fieldset class="attr-width">', $output );
-		$this->assertStringContainsString( '<fieldset class="attr-size">', $output );
+		$this->assertStringContainsString( '<fieldset class="attr-sets attr-color">', $output );
+		$this->assertStringContainsString( '<fieldset class="attr-sets attr-length">', $output );
+		$this->assertStringContainsString( '<fieldset class="attr-sets attr-width">', $output );
+		$this->assertStringContainsString( '<fieldset class="attr-sets attr-size">', $output );
 
 		$this->assertGreaterThanOrEqual( 3, count( $tags ) );
 		$this->assertEquals( null, $expire );
@@ -62,8 +62,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
-		$regex = '/<fieldset class="attr-color">.*<fieldset class="attr-width">.*<fieldset class="attr-length">/smu';
-		$this->assertStringNotContainsString( '<fieldset class="attr-size">', $output );
+		$regex = '/<fieldset class="attr-sets attr-color">.*<fieldset class="attr-sets attr-width">.*<fieldset class="attr-sets attr-length">/smu';
+		$this->assertStringNotContainsString( '<fieldset class="attr-sets attr-size">', $output );
 		$this->assertRegexp( $regex, $output );
 	}
 
