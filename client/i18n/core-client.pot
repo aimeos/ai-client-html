@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ai-client-html\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"POT-Creation-Date: 2021-12-30 16:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -529,6 +530,9 @@ msgstr ""
 #, php-format
 msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+
+msgid "No order ID available in session"
+msgstr ""
 
 #, php-format
 msgid "No product with ID \"%1$s\" found"

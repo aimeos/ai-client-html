@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-04 18:31+0200\n"
+"POT-Creation-Date: 2021-12-30 16:30+0100\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
 msgid "%1$d article"
@@ -521,6 +521,9 @@ msgstr ""
 
 #, php-format
 msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgstr ""
+
+msgid "No order ID available in session"
 msgstr ""
 
 #, php-format
