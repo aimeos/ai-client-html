@@ -2009,30 +2009,24 @@ AimeosCheckoutStandard = {
 	/**
 	 * Shows only selected address forms
 	 */
-		setupAddressForms: function() {
+	setupAddressForms: function() {
 
 		$(".checkout-standard-address .item-address").has(".header input:not(:checked)").find(".form-list").hide();
 
 		/* Address form slide up/down when selected */
-
-				// when you click the button, slide the div up and down:
-		const divToToggleDown = document.querySelector('.new-delivery-address');
-		const divToToggleUp = document.querySelector('.new-delivery-address');
+		
+		const divToToggle = document.querySelector('.checkout-standard-address-delivery .item-new .form-list');
 
 		document.querySelectorAll('.checkout-standard-address-delivery .header input').forEach(function(el) {
-		    el.addEventListener('click', (
-			    ) => {
-			slideDown(divToToggleDown, 350);
-
-//			slideUp(divToToggleUp, 350, () => {});
-		    });
+			el.addEventListener('click', (
+				) => {
+				if( $('.checkout-standard-address-delivery .item-like .header input').is(":checked") ) {
+					slideUp(divToToggle, 350, () => {});
+				} else {
+					slideDown(divToToggle, 350, () => {});
+				}
+			});
 		});
-
-//		$(".checkout-standard-address-billing,.checkout-standard-address-delivery").on("click", ".header input",
-//			function(ev) {
-//				$(".form-list", ev.delegateTarget).slideUp(400);
-//				$(".item-address", ev.delegateTarget).has(this).find(".form-list").slideDown(400);
-//			});
 	},
 
 
