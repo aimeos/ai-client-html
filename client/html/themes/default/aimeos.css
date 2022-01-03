@@ -6721,6 +6721,11 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	text-align: start;
 }
 
+/* Enabled by JS */
+.catalog-filter-attribute .attribute-lists fieldset.attr-sets,
+.catalog-filter-attribute .attribute-lists fieldset.attr-sets .attr-list {
+	display: none;
+}
 
 
 /*Bootstrap Package Typo3*/
