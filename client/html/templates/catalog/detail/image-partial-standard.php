@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2014-2021
+ * @copyright Aimeos (aimeos.org), 2014-2022
  */
 
 /* Available data:
@@ -19,11 +19,11 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 
-?>    
+?>
 <div class="catalog-detail-image" >
 
 	<?php if( ( $imgNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?><!--
-												  
+
 		--><div class="swiffy-slider slider-item-ratio slider-item-ratio-1x1 slider-nav-round slider-nav-animation-fadein" id="pgallery">
 
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}"><!--
@@ -42,27 +42,27 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 		    <?php endif ?>
 
 		--></div><!--
-	   
+
 	<?php endif ?>
 
 	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
-	
+
 		--><div class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-show4 slider-item-snapstart slider-item-ratio slider-item-ratio-1x1 slider-nav-visible slider-nav-page slider-nav-outside-expand pt-3"><!--
-			
+
 			<?php if( $thumbNum > 4 ) : ?>
 				--><button type="button" class="slick-prev"><?= $enc->html( $this->translate( 'client', 'Previous' ) ) ?></button><!--
 			<?php endif ?>
-														      
+
 			--><div class="thumbs slider-container" id="pgallerythumbs" style="cursor:pointer"><!--
 
 				    <?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
-						 
+
 					    --><img class="item-thumb img-<?= $index ?>" src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 						    alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
 					    ><!--
-						 
+
 					    <?php  $class = 'item' ?>
-	  
+
 				    <?php endforeach ?>
 
 			--></div><!--

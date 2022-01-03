@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2021
+ * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
 ?>
@@ -18,7 +18,7 @@ $( ".catalog-filter-attribute .attribute-lists li.attr-item" ).each( function( i
 		if( attributeCounts[itemId]) {
 			$(".attr-name", item).after('&nbsp;' + '<span class="attr-count">' + attributeCounts[itemId] + '</span>');
 		}else{ $(item).addClass("disabled"); }
-		
+
 	});
 
 // -->

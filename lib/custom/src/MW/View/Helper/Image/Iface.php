@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2021
+ * @copyright Aimeos (aimeos.org), 2020-2022
  * @package MW
  * @subpackage View
  * @todo 2022.01 Rename namespace to Aimeos\MW\View\Helper\Media
