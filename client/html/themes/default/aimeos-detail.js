@@ -229,7 +229,7 @@ AimeosCatalogDetail = {
 	 * Shows the images associated to the variant attributes
 	 */
 	setupVariantImages: function() {
-		$(".select-list-li").on("click", function() {
+		$(".select-list li").on("click", function() {
 		    var index = $(this).index();
 		    const sliderElement = document.getElementById('pgallery');
 		    swiffyslider.slideTo(sliderElement, index)
@@ -244,9 +244,10 @@ AimeosCatalogDetail = {
 
 		$(".catalog-detail-basket .price-item:not(.price-item:first-of-type)").hide();
 
-		$(".catalog-detail-basket .price-list").on("click", function(ev) {
-			$(".price-item:not(.price-item:first-of-type)", this).slideToggle();
-			$(".price-item:first-of-type", ev.delegateTarget).toggleClass("toggle-js");
+		$('.catalog-detail-basket .price-list').on("click", function(ev) {
+			$(".price-item:not(.price-item:first-of-type)").each(function() {
+				slideToggle(this, 300);
+			});
 		});
 	},
 
@@ -258,9 +259,10 @@ AimeosCatalogDetail = {
 
 		$(".catalog-detail-service .service-list").hide();
 
-		$(".catalog-detail-basket").on("click", ".service-intro", function(ev) {
-			$(".service-list", ev.delegateTarget).slideToggle();
-			$(".service-intro", ev.delegateTarget).toggleClass("toggle-js");
+		$('.catalog-detail-service').on("click", function(ev) {
+			$(".service-list").each(function() {
+				slideToggle(this, 300);
+			});
 		});
 	},
 
