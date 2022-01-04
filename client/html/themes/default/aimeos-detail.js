@@ -217,25 +217,16 @@ AimeosCatalogDetail = {
 	 */
 	setupImageSlider: function() {
 
-		var rtl = $('html').attr("dir") == 'rtl';
+		var g = document.getElementById('pgallerythumbs');
+		for (var i = 0, len = g.children.length; i < len; i++){
+			(function(index){
+				g.children[i].onclick = function(){
+				    const sliderElement = document.getElementById('pgallery');
+				    swiffyslider.slideTo(sliderElement, index)
+				}    
+			})(i);
 
-		$('.product .image-single').slick({
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			rtl: rtl,
-			fade: false,
-			arrows: false,
-		});
-
-		$('.product .thumbs').slick({
-			asNavFor: '.product .image-single',
-			slidesToShow: 4,
-			slidesToScroll: 1,
-			rtl: rtl,
-			dots: false,
-			arrows: false,
-			focusOnSelect: true
-		});
+		}
 	},
 
 
