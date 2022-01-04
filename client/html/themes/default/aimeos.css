@@ -1558,7 +1558,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	outline: none;
 }
 
-.aimeos .list-items {
+.catalog-list {
 	font-size: 90%;
 	padding: 0;
 }
@@ -1980,7 +1980,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	color: var(--ai-secondary, #555);
 }
 
-.catalog-list-promo .list-items {
+.catalog-list-promo {
 	white-space: nowrap;
 	overflow: auto;
 	font-size: 90%;
@@ -2374,8 +2374,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* product attributes */
 
-.catalog-list-items .list-items:not(.list) .items-selection,
-.catalog-list-items .list-items:not(.list) .items-attribute {
+.catalog-list-items:not(.list) .items-selection,
+.catalog-list-items:not(.list) .items-attribute {
 	display: none;
 }
 
@@ -2780,13 +2780,10 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .account-watch .watch-items,
-.account-favorite .favorite-items,
-.basket-related-bought .list-items,
-.catalog-detail-bought .list-items,
-.catalog-detail-bundle .list-items,
-.catalog-detail-suggest .list-items{
+.account-favorite .favorite-items {
 	padding: 0;
 }
+
 .catalog-session-seen .seen-items,
 .catalog-session-pinned .pinned-items {
 	padding: 1.25rem;

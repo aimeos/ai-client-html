@@ -1790,7 +1790,7 @@ AimeosCatalogList = {
 	 */
 	setupAddBasket: function() {
 
-		$(".catalog-list-items .list-items:not(.list) .product").on("click", ".btn-primary", function() {
+		$(".catalog-list-items:not(.list) .product").on("click", ".btn-primary", function() {
 
 			var empty = true;
 			var target = $(this).parents(".product");
@@ -1892,7 +1892,7 @@ AimeosCatalogList = {
 						var nextPage = $(data);
 						var nextUrl = nextPage.find('.catalog-list-items').data( 'infinite-url' );
 
-						$('.list-items', list).append(nextPage.find('.catalog-list-items .list-items .product'));
+						$('.catalog-list-items', list).append(nextPage.find('.catalog-list-items .product'));
 						list.data('infinite-url', nextUrl);
 						$(nextPage).filter( function (i,a){ return $(a).is('script.catalog-list-stock-script');}).each( function() {
 							var script = document.createElement('script');
