@@ -99,7 +99,7 @@ $enc = $this->encoder();
 
 					<li class="favorite-item">
 						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $this->get( 'favoriteParams', [] ) ?>
-						<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>">
+						<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/favorite/url', $params ) ) ?>">
 							<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 							<?= $this->csrf()->formfield() ?>
 						</form>

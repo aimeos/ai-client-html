@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<div class="catalog-list-items">', $output );
+		$this->assertStringStartsWith( '<div class="catalog-list-items', $output );
 	}
 
 
