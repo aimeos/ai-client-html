@@ -44,15 +44,14 @@ Aimeos = {
 		container.addClass("aimeos-container");
 		container.addClass("aimeos");
 		container.prepend(btnclose);
-		container.fadeTo(400, 1.0);
 		container.append(content);
 
 		$("body").append(container);
 
 		var resize = function() {
-			var jqwin = $(window);
-			var left = (jqwin.width() - container.outerWidth()) / 2;
-			var top = jqwin.scrollTop() + (jqwin.height() - container.outerHeight()) / 2;
+			var win = $(window);
+			var left = (win.width() - container.outerWidth()) / 2;
+			var top = window.scrollY + (win.height() - container.outerHeight()) / 2;
 
 			container.css("left", (left > 0 ? left : 0));
 			container.css("top", (top > 0 ? top : 0));
@@ -209,16 +208,19 @@ AimeosAccountFavorite = {
 	 */
 	setupProductRemoval: function() {
 
-		$("body").on("click", ".account-favorite a.modify", function(ev) {
+		$("body").on("click", ".account-favorite .delete", function() {
 
-			var item = $(this).parents("favorite-item");
-			item.addClass("loading");
+			var form = $(this).parents("form");
+			$(this).parents("favorite-item").addClass("loading");
 
-			$.get($(this).attr("href"), function(data) {
-
+			fetch(form.attr("action"), {
+				body: new FormData(form.get(0)),
+				method: 'POST'
+			}).then(response => {
+				return response.text();
+			}).then(data => {
 				var doc = document.createElement("html");
 				doc.innerHTML = data;
-
 				$(".account-favorite").html($(".account-favorite", doc).html());
 			});
 
@@ -256,8 +258,9 @@ AimeosAccountHistory = {
 
 			if(details.length === 0) {
 
-				$.get($(this).attr('href'), function(data) {
-
+				fetch($(this).attr("href")).then(response => {
+					return response.text();
+				}).then(data => {
 					var doc = document.createElement("html");
 					doc.innerHTML = data;
 
@@ -413,8 +416,9 @@ AimeosAccountSubscription = {
 
 			if(details.length === 0) {
 
-				$.get($(this).find('.action a.btn').attr("href"), function(data) {
-
+				fetch($(this).find('.action a.btn').attr("href")).then(response => {
+					return response.text();
+				}).then(data => {
 					var doc = document.createElement("html");
 					doc.innerHTML = data;
 
@@ -469,16 +473,19 @@ AimeosAccountWatch = {
 	 */
 	setupProductRemoval: function() {
 
-		$("body").on("click", ".account-watch a.modify", function(ev) {
+		$("body").on("click", ".account-watch .delete", function() {
 
-			var item = $(this).parents("watch-item");
-			item.addClass("loading");
+			var form = $(this).parents("form");
+			$(this).parents("watch-item").addClass("loading");
 
-			$.get($(this).attr("href"), function(data) {
-
+			fetch(form.attr("action"), {
+				body: new FormData(form.get(0)),
+				method: 'POST'
+			}).then(response => {
+				return response.text();
+			}).then(data => {
 				var doc = document.createElement("html");
 				doc.innerHTML = data;
-
 				$(".account-watch").html($(".account-watch", doc).html());
 			});
 
@@ -492,13 +499,17 @@ AimeosAccountWatch = {
 	 */
 	setupProductSave: function() {
 
-		$("body").on("click", ".account-watch .standardbutton", function(ev) {
+		$("body").on("click", ".account-watch .standardbutton", function() {
 
 			var form = $(this).parents("form.watch-details");
 			form.addClass("loading");
 
-			$.post(form.attr("action"), form.serialize(), function(data) {
-
+			fetch(form.attr("action"), {
+				body: new FormData(form.get(0)),
+				method: 'POST'
+			}).then(function(response) {
+				return response.text();
+			}).then(function(data) {
 				var doc = document.createElement("html");
 				doc.innerHTML = data;
 
@@ -856,14 +867,17 @@ AimeosBasketMini = {
 			return;
 		}
 
-		$.ajax(jsonurl, {
-			"method": "OPTIONS",
-			"dataType": "json"
-		}).then(function(options) {
-			$.ajax({
-				dataType: "json",
-				url: options.meta.resources['basket']
-			}).then(function(basket) {
+		fetch(jsonurl, {
+			method: "OPTIONS",
+			headers: {'Content-Type': 'application/json'}
+		}).then(response => {
+			return response.json();
+		}).then(options => {
+			fetch(options.meta.resources['basket'], {
+				headers: {'Content-Type': 'application/json'}
+			}).then(response => {
+				return response.json();
+			}).then(basket => {
 				AimeosBasketMini.updateBasket(basket);
 			});
 		});
@@ -934,14 +948,13 @@ AimeosBasketMini = {
 	 */
 	setupBasketDelete: function() {
 
-		$(".aimeos .basket-mini-product").on("click", ".delete", function(ev) {
+		$(".aimeos .basket-mini-product").on("click", ".delete", function() {
 
-			var product = $(this).closest(".product");
-
-			$.ajax(product.data("url"), {
-				"method": "DELETE",
-				"dataType": "json",
-				"data": product.data("urldata")
+			fetch($(this).closest(".product").data("url"), {
+				method: "DELETE",
+				headers: {'Content-Type': 'application/json'}
+			}).then(response => {
+				return response.json();
 			}).then(function(basket) {
 				AimeosBasketMini.updateBasket(basket);
 			});
@@ -1001,7 +1014,7 @@ AimeosBasketStandard = {
 	 */
 	setupBasketBack: function() {
 
-		$("body").on("click", ".basket-standard .btn-back", function(ev) {
+		$("body").on("click", ".basket-standard .btn-back", function() {
 			return Aimeos.removeOverlay();
 		});
 	},
@@ -1014,7 +1027,7 @@ AimeosBasketStandard = {
 
 		$(".basket-standard .btn-update").hide();
 
-		$("body").on("focusin", ".basket-standard .basket .product .quantity .value", {}, function(ev) {
+		$("body").on("focusin", ".basket-standard .basket .product .quantity .value", {}, function() {
 			$(".btn-update").show();
 			$(".btn-action").hide();
 		});
@@ -1026,13 +1039,17 @@ AimeosBasketStandard = {
 	 */
 	setupUpdateSubmit: function() {
 
-		$("body").on("submit", ".basket-standard form", function(ev) {
-			var form = $(this);
+		$("body").on("submit", ".basket-standard form", function() {
 
 			Aimeos.createSpinner();
-			$.post(form.attr("action"), form.serialize(), function(data) {
+			fetch(product.data("url"), {
+				body: new FormData(this),
+				method: 'POST'
+			}).then(function(response) {
+				return response.text();
+			}).then(function(data) {
 				$(".basket-standard").html(AimeosBasketStandard.updateBasket(data).html());
-			}).always(function() {
+			}).finally(() => {
 				Aimeos.removeSpinner();
 			});
 
@@ -1049,9 +1066,11 @@ AimeosBasketStandard = {
 		$("body").on("click", ".basket-standard a.change", function(ev) {
 
 			Aimeos.createSpinner();
-			$.get($(this).attr("href"), function(data) {
+			fetch($(this).attr("href")).then(response => {
+				return response.text();
+			}).then(data => {
 				$(".basket-standard").html(AimeosBasketStandard.updateBasket(data).html());
-			}).always(function() {
+			}).finally(function() {
 				Aimeos.removeSpinner();
 			});
 
@@ -1323,10 +1342,15 @@ AimeosCatalog = {
 	 */
 	setupBasketAdd: function() {
 
-		$(".catalog-detail-basket form, .catalog-list-items form").on("submit", function(ev) {
+		$(".catalog-detail-basket form, .catalog-list-items form").on("submit", function() {
 
 			Aimeos.createOverlay();
-			$.post($(this).attr("action"), $(this).serialize(), function(data) {
+			fetch($(this).attr("action"), {
+				body: new FormData(this),
+				method: 'POST'
+			}).then(function(response) {
+				return response.text();
+			}).then(function(data) {
 				Aimeos.createContainer(AimeosBasketStandard.updateBasket(data));
 			});
 
@@ -1345,14 +1369,12 @@ AimeosCatalog = {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
-			$.ajax({
-				url: $(this).attr("action"),
-				data: new FormData(this),
-				processData: false,
-				contentType: false,
+			fetch($(this).attr("action"), {
+				body: new FormData(this),
 				method: 'POST'
-			}).done(function(data) {
-
+			}).then(response => {
+				return response.text();
+			}).then(data => {
 				var doc = document.createElement("html");
 				doc.innerHTML = data;
 				var content = $(".account-favorite", doc);
@@ -1380,14 +1402,12 @@ AimeosCatalog = {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
-			$.ajax({
-				url: $(this).attr("action"),
-				data: new FormData(this),
-				processData: false,
-				contentType: false,
+			fetch($(this).attr("action"), {
+				body: new FormData(this),
 				method: 'POST'
-			}).done(function(data) {
-
+			}).then(response => {
+				return response.text();
+			}).then(data => {
 				var doc = document.createElement("html");
 				doc.innerHTML = data;
 				var content = $(".account-watch", doc);
@@ -1783,7 +1803,12 @@ AimeosCatalogList = {
 
 			if(!empty) {
 				$("form.basket", target).on("click", ".btn-primary", function(ev) {
-					$.post($(target).attr("action"), $(target).serialize(), function(data) {
+					fetch($(target).attr("action"), {
+						body: new FormData(target),
+						method: 'POST'
+					}).then(function(response) {
+						return response.text();
+					}).then(function(data) {
 						Aimeos.createContainer(AimeosBasketStandard.updateBasket(data));
 					});
 
@@ -1861,13 +1886,10 @@ AimeosCatalogList = {
 
 					list.data('infinite-url', '');
 
-					$.ajax({
-						url: infiniteUrl
-					}).fail( function() {
-						list.data('infinite-url', infiniteUrl);
-					}).done( function(response) {
-
-						var nextPage = $(response);
+					fetch(infiniteUrl).then(response => {
+						return response.text();
+					}).then(data => {
+						var nextPage = $(data);
 						var nextUrl = nextPage.find('.catalog-list-items').data( 'infinite-url' );
 
 						$('.list-items', list).append(nextPage.find('.catalog-list-items .list-items .product'));
@@ -1880,6 +1902,8 @@ AimeosCatalogList = {
 						Aimeos.loadImages();
 
 						$(window).trigger('scroll');
+					}).catch( function() {
+						list.data('infinite-url', infiniteUrl);
 					});
 				}
 			});
@@ -1906,11 +1930,11 @@ AimeosCatalogList = {
 				return true;
 			}
 
-			$.ajax({
-				url: url
-			}).done( function(response) {
+			fetch(url).then(response => {
+				return response.text();
+			}).then(data => {
 				var doc = document.createElement("html");
-				doc.innerHTML = response;
+				doc.innerHTML = data;
 
 				var pinned = $(".catalog-session-pinned", doc);
 				if(pinned) {
@@ -2090,10 +2114,10 @@ AimeosCheckoutStandard = {
 		var node = $(".checkout-standard-process", form);
 		var anchor = $("a.btn-action", node);
 
-		if(anchor.length > 0) {
+		if(form.length && node.length && anchor.length > 0) {
 			window.location = anchor.attr("href");
 		} else if(node.length > 0 && node.has(".mandatory").length === 0 && node.has(".optional").length === 0 && form.attr("action") !== '' ) {
-			form.submit();
+			form.get(0).submit();
 		}
 	},
 

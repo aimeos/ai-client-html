@@ -223,7 +223,7 @@ AimeosCatalogDetail = {
 				g.children[i].onclick = function(){
 				    const sliderElement = document.getElementById('pgallery');
 				    swiffyslider.slideTo(sliderElement, index)
-				}    
+				}
 			})(i);
 
 		}
@@ -393,6 +393,6 @@ AimeosCatalogDetail = {
 /**
  * Setup the JS for the catalog detail section
  */
-jQuery(document).ready( function($) {
+$(function() {
 	AimeosCatalogDetail.init();
 });
