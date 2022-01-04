@@ -216,17 +216,24 @@ AimeosCatalogDetail = {
 	 * Single and thumbnail image slider
 	 */
 	setupImageSlider: function() {
+	    
+		$(".thumbs img").on("click", function() {
+		    var index = $(this).index();
+		    const sliderElement = document.getElementById('pgallery');
+		    swiffyslider.slideTo(sliderElement, index)
+		});
+	},
 
-		var g = document.getElementById('pgallerythumbs');
-		for (var i = 0, len = g.children.length; i < len; i++){
-			(function(index){
-				g.children[i].onclick = function(){
-				    const sliderElement = document.getElementById('pgallery');
-				    swiffyslider.slideTo(sliderElement, index)
-				}
-			})(i);
-
-		}
+	
+	/**
+	 * Shows the images associated to the variant attributes
+	 */
+	setupVariantImages: function() {
+		$(".select-list-li").on("click", function() {
+		    var index = $(this).index();
+		    const sliderElement = document.getElementById('pgallery');
+		    swiffyslider.slideTo(sliderElement, index)
+		});
 	},
 
 
@@ -376,6 +383,7 @@ AimeosCatalogDetail = {
 	init: function() {
 
 		this.setupImageSlider();
+		this.setupVariantImages();
 		this.setupImageLightbox();
 		this.setupServiceSlider();
 		this.setupBlockPriceSlider();
