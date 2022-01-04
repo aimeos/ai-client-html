@@ -117,13 +117,9 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 	<?php if( isset( $this->miniBasket ) ) : ?>
 		<?php
-			$quantity = 0;
 			$priceItem = $this->miniBasket->getPrice();
 			$priceCurrency = $this->translate( 'currency', $priceItem->getCurrencyId() );
-
-			foreach( $this->miniBasket->getProducts() as $product ) {
-				$quantity += $product->getQuantity();
-			}
+			$quantity = $this->miniBasket->getProducts()->sum( 'order.base.product.quantity' );
 		?>
 
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
@@ -153,28 +149,21 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 						</tr>
 					</thead>
 					<tbody class="basket-body">
-						<tr class="product prototype">
-							<td class="name"></td>
-							<td class="quantity"></td>
-							<td class="price"></td>
-							<td class="action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>"></a></td>
-						</tr>
 						<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
 							<?php
-									$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
-									if( $basketSite ) { $param['site'] = $basketSite; }
+								$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
+								$param[$this->csrf()->name()] = $this->csrf()->value();
+								if( $basketSite ) { $param['site'] = $basketSite; }
 							?>
-							<tr class="product"
-								data-url="<?= $enc->attr( $this->link( 'client/jsonapi/url', $param ) ) ?>"
-								data-urldata="<?= $enc->attr( $this->csrf()->name() . '=' . $this->csrf()->value() ) ?>">
+							<tr class="product" data-url="<?= $enc->attr( $this->link( 'client/jsonapi/url', $param ) ) ?>">
 								<td class="name">
-										<?= $enc->html( $product->getName() ) ?>
+									<?= $enc->html( $product->getName() ) ?>
 								</td>
 								<td class="quantity">
-										<?= $enc->html( $product->getQuantity() ) ?>
+									<?= $enc->html( $product->getQuantity() ) ?>
 								</td>
 								<td class="price">
-										<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ) ?>
+									<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ) ?>
 								</td>
 								<td class="action">
 									<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
