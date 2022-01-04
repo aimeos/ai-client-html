@@ -1993,27 +1993,58 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Product list, items section */
 
-@-webkit-keyframes fadein {
+@keyframes fadein {
 	from {
-		opacity:0;
-	}
-	    to {
-		opacity:1;
-	}
-}
-@-webkit-keyframes fadeout {
-	from {
-		opacity:1;
+		opacity: 0.5;
 	}
 	to {
-		opacity:0;
+		opacity: 1;
+	}
+}
+@keyframes fadeout {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0.5;
 	}
 }
 
 .catalog-list-items {
 	text-align: center;
-	-webkit-animation:fadein 1s;
-	-webkit-animation-delay:fadein 4s;
+	animation: fadein 1s;
+	animation-delay: fadein 4s;
+}
+
+.catalog-list-items.swiffy-slider {
+	--swiffy-slider-snap-align: start;
+}
+
+.catalog-list-items .slider-container {
+	overflow-x: hidden;
+}
+
+.catalog-list-items .slider-nav::after {
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+}
+
+@media (min-width: 520px) {
+	.catalog-list-items.swiffy-slider {
+		--swiffy-slider-item-count: 2;
+	}
+}
+
+@media (min-width: 768px) {
+	.catalog-list-items.swiffy-slider {
+		--swiffy-slider-item-count: 3;
+	}
+}
+
+@media (min-width: 992px) {
+	.catalog-list-items.swiffy-slider {
+		--swiffy-slider-item-count: 4;
+	}
 }
 
 .catalog-list-items .selection,

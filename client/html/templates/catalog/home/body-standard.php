@@ -51,7 +51,7 @@ $pos = 0;
 
 
 ?>
-<section id="swiffy-animation" class="aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<section class="aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->homeErrorList ) ) : ?>
 		<ul class="error-list">
@@ -63,7 +63,7 @@ $pos = 0;
 
 	<?php if( isset( $this->homeTree ) ) : ?>
 
-		<div id="container1" class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
+		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
 
 			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 				<div class="home-item home-image <?= $enc->attr( $this->homeTree->getCode() ) ?>">
@@ -122,6 +122,7 @@ $pos = 0;
 			<?php endforeach ?>
 
 		</div>
+
 		<button type="button" class="slider-nav" aria-label="Go to previous"></button>
 		<button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
 
