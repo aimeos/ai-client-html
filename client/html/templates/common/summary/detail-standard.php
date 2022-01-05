@@ -166,7 +166,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<div class="col-5 col-md-6">
 						<div class="row g-0">
 							<div class="status col-1">
-								<?php if( ( $status = $product->getStatus() ) >= 0 ) : $key = 'stat:' . $status ?>
+								<?php if( ( $status = $product->getStatusDelivery() ) >= 0 ) : $key = 'stat:' . $status ?>
 									<?= $enc->html( $this->translate( 'mshop/code', $key ) ) ?>
 								<?php endif ?>
 							</div>

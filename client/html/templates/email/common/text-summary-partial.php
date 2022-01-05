@@ -154,7 +154,7 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 
 <?=		strip_tags( $this->translate( 'client', 'Price' ) ) ?>: <?php printf( $this->get( 'priceFormat', '%1$s %2$s' ), $this->number( $priceItem->getValue() * $product->getQuantity(), $priceItem->getPrecision() ), $priceItem->getCurrencyId() ) ?>
 
-<?php	if( ( $status = $product->getStatus() ) >= 0 ) : $key = 'stat:' . $status ?>
+<?php	if( ( $status = $product->getStatusDelivery() ) >= 0 ) : $key = 'stat:' . $status ?>
 <?=			strip_tags( $this->translate( 'client', 'Status' ) ) ?>: <?= strip_tags( $this->translate( 'mshop/code', $key ) ) ?>
 <?php	endif ?>
 <?php endforeach ?>

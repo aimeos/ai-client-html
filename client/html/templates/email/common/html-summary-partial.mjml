@@ -220,7 +220,7 @@
 			<?php foreach( $this->summaryBasket->getProducts() as $product ) : $totalQty += $product->getQuantity() ?>
 				<tr class="body product">
 					<td class="status">
-						<?php if( ( $status = $product->getStatus() ) >= 0 ) : $key = 'stat:' . $status ?>
+						<?php if( ( $status = $product->getStatusDelivery() ) >= 0 ) : $key = 'stat:' . $status ?>
 							<?= $enc->html( $this->translate( 'mshop/code', $key ) ) ?>
 						<?php endif ?>
 					</td>
