@@ -271,7 +271,7 @@ class Standard
 			}
 			elseif( ( $orderid = $context->session()->get( 'aimeos/orderid' ) ) !== null )
 			{
-				$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
+				$parts = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 				$orderItem = $orderCntl->get( $orderid, false );
 				$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
 			}

@@ -218,7 +218,7 @@ class Standard
 			$context = $this->context();
 			$item = \Aimeos\Controller\Frontend::create( $context, 'subscription' )->get( $id );
 
-			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT | \Aimeos\MShop\Order\Item\Base\Base::PARTS_ADDRESS;
+			$parts = ['order/base/address', 'order/base/product'];
 			$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $item->getOrderBaseId(), $parts );
 
 			foreach( $basket->getProducts() as $pos => $orderProduct )

@@ -215,7 +215,7 @@ class Standard
 				$view->summaryShowDownloadAttributes = true;
 			}
 
-			$parts = \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL;
+			$parts = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 			$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
 			$basket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
 

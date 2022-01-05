@@ -333,7 +333,7 @@ class Standard
 			switch( $check )
 			{
 				case 2: if( $view->param( 'b_check', 0 ) == 0 ) { break; }
-				case 1: $controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_PRODUCT );
+				case 1: $controller->get()->check( ['order/base/product'] );
 				default: $view->standardCheckout = true;
 			}
 		}

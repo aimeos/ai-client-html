@@ -264,7 +264,7 @@ class Standard
 
 			parent::init();
 
-			$controller->get()->check( \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL );
+			$controller->get()->check( ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'] );
 		}
 		catch( \Exception $e )
 		{
