@@ -51,7 +51,8 @@ $pos = 0;
 
 
 ?>
-<section class="aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<section class="aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
+	data-slider-nav-autoplay-interval="4000" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->homeErrorList ) ) : ?>
 		<ul class="error-list">

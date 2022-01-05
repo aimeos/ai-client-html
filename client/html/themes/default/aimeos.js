@@ -174,7 +174,7 @@ Aimeos = {
 
 		/* Go back to underlying page when ESC is pressed */
 		$("body").on("keydown", function(ev) {
-			if(ev.which == 27) {
+			if(ev.key == "Escape") {
 				return Aimeos.removeOverlay();
 			}
 		});
@@ -1718,50 +1718,6 @@ AimeosCatalogList = {
 
 
 	/**
-	 * Switches product images on hover
-	 */
-	setupImageSwitch: function() {
-
-//		$(".catalog-list-items .product .media-list").on("mouseenter", function() {
-//			var list = $(".media-item", this);
-//
-//			if( list.length > 1 ) {
-//				var second = list.eq(1);
-//				var size = $(this).outerHeight();
-//				var image = $("img", second);
-//
-//				$(this).css("background-image", "none"); // Don't let default image shine through
-//				image.attr("srcset", image.data("srcset"));
-//				image.attr("src", image.data("src"));
-//				second.fadeTo(0, 0.33);
-//
-//				list.first().fadeTo(400, 0.33, function() {
-//					list.css('top', -size);
-//					second.fadeTo(400, 1);
-//				});
-//			}
-//		});
-//
-//		$(".catalog-list-items .product .media-list").on("mouseleave", function() {
-//			var list = $(".media-item", this);
-//
-//			if( list.length > 1 ) {
-//				list.first().css('opacity', 0.33);
-//
-//				list.eq(1).fadeTo(400, 0.33, function() {
-//					list.css('top', 0);
-//					list.first().fadeTo(400, 1);
-//				});
-//			}
-//		});
-
-		$(".catalog-list-items .product .media-list a").on("click", function(ev) {
-			window.location.href = $(this).attr('href');
-		});
-	},
-
-
-	/**
 	 * Enables infinite scroll if available
 	 */
 	setupInfiniteScroll: function() {
@@ -1845,7 +1801,6 @@ AimeosCatalogList = {
 	 */
 	init: function() {
 		this.setupAddBasket();
-		this.setupImageSwitch();
 		this.setupInfiniteScroll();
 		this.setupPinned();
 	}
@@ -2293,14 +2248,6 @@ AimeosPage = {
 		this.setupOffscreenCategory();
 	}
 };
-
-
-/*
- * CSS3 support for IE8
- */
-document.createElement("nav");
-document.createElement("section");
-document.createElement("article");
 
 
 /*

@@ -188,7 +188,7 @@ body .main-section {
 	margin: .5rem 0;
 	color: #282828;
 	color: var(--ai-primary, #282828);
-	border: solid 1px #555;
+	border: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
@@ -199,7 +199,7 @@ body .main-section {
 .aimeos .btn-primary:visited {
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
-	border: solid 1px #282828;
+	border: 1px solid #282828;
 	border-color: var(--ai-primary, #282828);
 	color: #fff;
 	color: var(--ai-primary-alt, #fff);
@@ -214,7 +214,7 @@ body .main-section {
 	color: var(--ai-primary-light, #CCC);
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
-	border: solid 1px #282828;
+	border: 1px solid #282828;
 	border-color: var(--ai-primary, #282828);
 }
 
@@ -228,7 +228,7 @@ body .main-section {
 .aimeos .btn-secondary:visited {
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
-	border: solid 1px #282828;
+	border: 1px solid #282828;
 	border-color: var(--ai-primary, #282828);
 	color: #fff;
 	color: var(--ai-primary-alt, #fff);
@@ -243,7 +243,7 @@ body .main-section {
 	color: var(--ai-primary-light, #CCC);
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
-	border: solid 1px #282828;
+	border: 1px solid #282828;
 	border-color: var(--ai-primary, #282828);
 }
 
@@ -298,7 +298,7 @@ body .main-section {
 }
 
 .aimeos .addbasket input {
-	border: solid 1px #555;
+	border: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 	text-align: center;
 	width: 4rem;
@@ -392,7 +392,7 @@ body .main-section {
 
 
 .aimeos input {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
@@ -618,7 +618,7 @@ body .main-section {
 	position: absolute;
 	z-index: 1501;
 	opacity: 1;
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
@@ -834,7 +834,7 @@ input[type="range"]::-moz-range-progress {
 
 .locale-select ul.select-menu li.select-dropdown:hover > ul,
 .locale-select ul.select-menu ul.active {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	visibility: visible;
 	opacity: 1;
@@ -938,7 +938,7 @@ input[type="range"]::-moz-range-progress {
 
 .catalog-filter .search-hint {
 	position: absolute;
-	border: solid 1px #FF3300;
+	border: 1px solid #FF3300;
 	border-color: var(--ai-danger, #FF3300);
 	padding: 0.5rem;
 	color: #FF0000;
@@ -1089,7 +1089,7 @@ html.no-js .catalog-filter-tree:hover > ul {
 }
 
 .catalog-filter-tree .category-selected .selected-category {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	display: inline-block;
 	margin: 0.5rem;
@@ -1215,7 +1215,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-filter-attribute .attribute-selected .selected-all,
 .catalog-filter-attribute .attribute-selected .attr-name {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	display: inline-block;
 	margin: 0.5rem;
 	padding: 0 0.25rem;
@@ -1233,7 +1233,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-filter-attribute label:before,
 .catalog-filter-supplier label:before {
-	border: solid 1px #555;
+	border: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 	display: inline-block;
 	vertical-align: top;
@@ -2492,7 +2492,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-list-items .basket .color .select-label,
 .catalog-detail-basket .color .select-label {
-	border: solid 1px #FFF;
+	border: 1px solid #FFF;
 	border-color: var(--ai-bg-alt, #FFF);
 	line-height: 0;
 }
@@ -2505,7 +2505,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-list-items .basket .radio .select-label,
 .catalog-detail-basket .radio .select-label {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	padding: 0.525rem;
 	text-align: center;
@@ -2515,7 +2515,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-list-items .basket .select-option:checked + .select-label,
 .catalog-detail-basket .select-option:checked + .select-label {
-	border: solid 1px #555;
+	border: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 	background-color: #555;
 	background-color: var(--ai-secondary, #555);
@@ -2550,7 +2550,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 .catalog-detail-basket .select-quantity input[type=number] {
 	width: 4rem;
 	margin: 0 auto;
-	border: solid 1px #555;
+	border: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 }
 
@@ -2582,7 +2582,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-list-items .basket .error select,
 .catalog-detail-basket .error select {
-	border: solid 1px #FF3300;
+	border: 1px solid #FF3300;
 	border-color: var(--ai-danger, #FF3300);
 }
 
@@ -2608,7 +2608,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .catalog-list-items .addbasket .btn-pin {
-	border: solid 1px #282828;
+	border: 1px solid #282828;
 	border-color: var(--ai-primary, #282828);
 	display: block;
 	width: 3rem;
@@ -3126,7 +3126,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Standard basket */
 .basket-standard-main {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	padding: 1rem;
 	margin: 0;
@@ -3510,7 +3510,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .checkout-standard-delivery .item,
 .checkout-standard-payment .item {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	margin: 1rem 0.5rem;
 	text-align: start;
@@ -3780,7 +3780,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .aimeos .common-summary-additional textarea {
-	border: solid 1px #CCC;
+	border: 1px solid #CCC;
 	border-color: var(--ai-light, #CCC);
 	background-color: #FFF;
 	background-color: var(--ai-bg-alt, #FFF);
@@ -3945,7 +3945,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .account-profile .form-list .error input,
 .account-profile .form-list .error select {
-	border: solid 1px #FF3300;
+	border: 1px solid #FF3300;
 	border-color: var(--ai-danger, #FF3300);
 }
 
@@ -3961,7 +3961,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .account-history-list .history-item {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	padding: 1rem;
 	margin: 1rem;
@@ -3980,7 +3980,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .account-history-list .action .btn {
-	border: solid 1px #555;
+	border: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 	display: block;
 	width: 100%;
@@ -4078,7 +4078,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .account-subscription-list .subscription-item {
-	border: solid 1px #D0D0D0;
+	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	padding: 1rem;
 	margin: 1rem 0;
@@ -4097,7 +4097,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .account-subscription-list .action .btn {
-	border: solid 1px #555;
+	border: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 	display: block;
 	width: 100%;
@@ -5488,7 +5488,7 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	text-align: start;
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
-	border: solid 1px #FFFFFF;
+	border: 1px solid #FFFFFF;
 	left: auto;
 	right: 0;
 	position: absolute;
