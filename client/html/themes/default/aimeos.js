@@ -1,8 +1,8 @@
-/*
- * Autocomplete
- * https://github.com/tomik23/autocomplete
-*/
-var Autocomplete=function(){"use strict";const t=(t,e)=>{for(let s in e)"addClass"===s?t.classList.add(e[s]):"removeClass"===s?t.classList.remove(e[s]):t.setAttribute(s,e[s])},e=(t,e)=>e.value=(t=>t.firstElementChild||t)(t).textContent.trim(),s=(t,e)=>{t.scrollTop=t.offsetTop-e.offsetHeight},i=(t,e)=>{t.setAttribute("aria-activedescendant",e||"")},h=(t,e,s,i)=>{const h=i.previousSibling,r=h?h.offsetHeight:0;if("0"==t.getAttribute("aria-posinset")&&(i.scrollTop=t.offsetTop-((t,e)=>{const s=document.querySelectorAll("#"+t+" > li:not(."+e+")");let i=0;return[].slice.call(s).map(t=>i+=t.offsetHeight),i})(e,s)),t.offsetTop-r<i.scrollTop)i.scrollTop=t.offsetTop-r;else{const e=t.offsetTop+t.offsetHeight-r;e>i.scrollTop+i.offsetHeight&&(i.scrollTop=e-i.offsetHeight)}},r=27,o=13,n=38,l=40,a=9;return class{constructor(c,d){let{delay:u=500,clearButton:m=!0,howManyCharacters:p=1,selectFirst:L=!1,insertToInput:v=!1,showAllValues:x=!1,cache:f=!1,disableCloseOnSelect:g=!1,classGroup:A,classPreventClosing:b,classPrefix:y,ariaLabelClear:C,onSearch:S,onResults:E=(()=>{}),onSubmit:T=(()=>{}),onOpened:B=(()=>{}),onReset:k=(()=>{}),onRender:w=(()=>{}),onClose:I=(()=>{}),noResults:R=(()=>{}),onSelectedItem:F=(()=>{})}=d;var O;this.init=()=>{const{resultList:e,root:s}=this;this.clearbutton(),((e,s,i,h,r)=>{t(s,{id:i,tabIndex:"0",role:"listbox"}),t(h,{addClass:r+"-results-wrapper"}),h.insertAdjacentElement("beforeend",s),e.parentNode.insertBefore(h,e.nextSibling)})(s,e,this.outputUl,this.resultWrap,this.prefix),s.addEventListener("input",this.handleInput),this.showAll&&s.addEventListener("click",this.handleInput),this.onRender({element:s,results:e})},this.cacheAct=(t,e)=>{const s=this.root;this.cache&&("update"===t?s.setAttribute(this.cacheData,e.value):"remove"===t?s.removeAttribute(this.cacheData):s.value=s.getAttribute(this.cacheData))},this.handleInput=t=>{let{target:e,type:s}=t;if("true"===this.root.getAttribute("aria-expanded")&&"click"===s)return;const i=e.value.replace(this.regex,"\\$&");this.cacheAct("update",e);const h=this.showAll?0:this.delay;clearTimeout(this.timeout),this.timeout=setTimeout(()=>{this.searchItem(i.trim())},h)},this.reset=()=>{var e;t(this.root,{"aria-owns":this.id+"-list","aria-expanded":"false","aria-autocomplete":"list","aria-activedescendant":"",role:"combobox",removeClass:"auto-expanded"}),this.resultWrap.classList.remove(this.isActive),(0==(null==(e=this.matches)?void 0:e.length)&&!this.toInput||this.showAll)&&(this.resultList.innerHTML=""),this.index=this.selectFirst?0:-1,this.onClose()},this.searchItem=t=>{this.value=t,this.onLoading(!0),function(t,e){void 0===t&&(t=!1),t&&(t.classList.remove("hidden"),t.addEventListener("click",e))}(this.cBtn,this.destroy),0==t.length&&this.clearButton&&this.cBtn.classList.add("hidden"),this.characters>t.length&&!this.showAll?this.onLoading():this.onSearch({currentValue:t,element:this.root}).then(e=>{const s=this.root.value.length,i=e.length;this.matches=Array.isArray(e)?[...e]:JSON.parse(JSON.stringify(e)),this.onLoading(),this.error(),0==i&&0==s&&this.cBtn.classList.add("hidden"),0==i&&s?(this.root.classList.remove("auto-expanded"),this.reset(),this.noResults({element:this.root,currentValue:t,template:this.results}),this.events()):(i>0||(t=>t&&"object"==typeof t&&t.constructor===Object)(e))&&(this.index=this.selectFirst?0:-1,this.results(),this.events())}).catch(()=>{this.onLoading(),this.reset()})},this.onLoading=t=>this.root.parentNode.classList[t?"add":"remove"](this.isLoading),this.error=()=>this.root.classList.remove(this.err),this.events=()=>{const{root:t,resultList:e}=this;t.addEventListener("keydown",this.handleKeys),t.addEventListener("click",this.handleShowItems),["mousemove","click"].map(t=>{e.addEventListener(t,this.handleMouse)}),document.addEventListener("click",this.handleDocClick)},this.results=e=>{t(this.root,{"aria-expanded":"true",addClass:this.prefix+"-expanded"}),this.resultList.innerHTML=0===this.matches.length?this.onResults({currentValue:this.value,matches:0,template:e}):this.onResults({currentValue:this.value,matches:this.matches,classGroup:this.classGroup}),this.resultWrap.classList.add(this.isActive);const i=this.classGroup?":not(."+this.classGroup+")":"";this.itemsLi=document.querySelectorAll("#"+this.outputUl+" > li"+i),this.selectFirstEl(),this.onOpened({type:"results",element:this.root,results:this.resultList}),(e=>{for(let s=0;s<e.length;s++)t(e[s],{role:"option",tabindex:"-1","aria-selected":"false","aria-setsize":e.length,"aria-posinset":s})})(this.itemsLi),s(this.resultList,this.resultWrap)},this.handleDocClick=t=>{let{target:e}=t,s=null;(e.closest("ul")&&this.disable||e.closest("."+this.prevClosing))&&(s=!0),e.id===this.id||s||this.reset()},this.selectFirstEl=()=>{const{index:e,activeList:s,selectedOption:h,selectFirst:r,root:o}=this;if(this.remAria(document.querySelector("."+s)),!r)return;const{firstElementChild:n}=this.resultList,l=this.classGroup&&this.matches.length>0&&r?n.nextElementSibling:n;t(l,{id:h+"-0",addClass:s,"aria-selected":"true"}),this.onSelected({index:e,element:o,object:this.matches[e]}),i(o,h+"-0")},this.setAttr=(t,e)=>{for(let s in e)"addClass"===s?t.classList.add(e[s]):"removeClass"===s?t.classList.remove(e[s]):t.setAttribute(s,e[s])},this.handleShowItems=()=>{const{root:e,resultWrap:i,resultList:h,isActive:r}=this;h.textContent.length>0&&!i.classList.contains(r)&&(t(e,{"aria-expanded":"true",addClass:this.prefix+"-expanded"}),i.classList.add(r),s(h,i),this.selectFirstEl(),this.onOpened({type:"showItems",element:e,results:h}))},this.handleMouse=t=>{t.preventDefault();const{target:e,type:s}=t,i=e.closest("li"),h=null==i?void 0:i.hasAttribute("role"),r=this.activeList,o=document.querySelector("."+r);i&&h&&("click"===s&&this.getTextFromLi(i),"mousemove"!==s||i.classList.contains(r)||(this.remAria(o),this.setAria(i),this.index=this.indexLiSelected(i),this.onSelected({index:this.index,element:this.root,object:this.matches[this.index]})))},this.getTextFromLi=t=>{const{root:s,index:i,disable:h}=this;t&&0!==this.matches.length?(e(t,s),this.onSubmit({index:i,element:s,object:this.matches[i],results:this.resultList}),h||(this.remAria(t),this.reset()),this.clearButton&&this.cBtn.classList.remove("hidden"),this.cacheAct("remove")):!h&&this.reset()},this.indexLiSelected=t=>Array.prototype.indexOf.call(this.itemsLi,t),this.handleKeys=t=>{const{root:s}=this,{keyCode:h}=t,c=this.resultWrap.classList.contains(this.isActive),d=this.matches.length+1;switch(this.selectedLi=document.querySelector("."+this.activeList),h){case n:case l:if(t.preventDefault(),d<=1&&this.selectFirst||!c)return;h===n?(this.index<0&&(this.index=d-1),this.index-=1):(this.index+=1,this.index>=d&&(this.index=0)),this.remAria(this.selectedLi),d>0&&this.index>=0&&this.index<d-1?(this.onSelected({index:this.index,element:s,object:this.matches[this.index]}),this.setAria(this.itemsLi[this.index]),this.toInput&&c&&e(this.itemsLi[this.index],s)):(this.cacheAct(),i(s));break;case o:this.getTextFromLi(this.selectedLi);break;case a:case r:t.stopPropagation(),this.reset()}},this.setAria=e=>{const s=this.selectedOption+"-"+this.indexLiSelected(e);t(e,{id:s,"aria-selected":"true",addClass:this.activeList}),i(this.root,s),h(e,this.outputUl,this.classGroup,this.resultList)},this.remAria=e=>{e&&t(e,{id:"",removeClass:this.activeList,"aria-selected":"false"})},this.clearbutton=()=>{if(!this.clearButton)return;const{cBtn:e}=this;t(e,{class:this.prefix+"-clear hidden",type:"button","aria-label":this.clearBtnAriLabel}),this.root.insertAdjacentElement("afterend",e)},this.destroy=()=>{const{root:t}=this;this.clearButton&&this.cBtn.classList.add("hidden"),t.value="",t.focus(),this.resultList.textContent="",this.reset(),this.error(),this.onReset(t),t.removeEventListener("keydown",this.handleKeys),t.removeEventListener("click",this.handleShowItems),document.removeEventListener("click",this.handleDocClick)},this.id=c,this.root=document.getElementById(c),this.onSearch=(O=S,Boolean(O&&"function"==typeof O.then)?S:t=>{let{currentValue:e,element:s}=t;return Promise.resolve(S({currentValue:e,element:s}))}),this.onResults=E,this.onRender=w,this.onSubmit=T,this.onSelected=F,this.onOpened=B,this.onReset=k,this.noResults=R,this.onClose=I,this.delay=u,this.characters=p,this.clearButton=m,this.selectFirst=L,this.toInput=v,this.showAll=x,this.classGroup=A,this.prevClosing=b,this.clearBtnAriLabel=C||"clear text from input",this.prefix=y?y+"-auto":"auto",this.disable=g,this.cache=f,this.outputUl=this.prefix+"-"+this.id+"-results",this.cacheData="data-cache-auto-"+this.id,this.isLoading=this.prefix+"-is-loading",this.isActive=this.prefix+"-is-active",this.activeList=this.prefix+"-selected",this.selectedOption=this.prefix+"-selected-option",this.err=this.prefix+"-error",this.regex=/[|\\{}()[\]^$+*?.]/g,this.timeout=null,this.resultWrap=document.createElement("div"),this.resultList=document.createElement("ul"),this.cBtn=document.createElement("button"),this.init()}}}();
+/* Nested parameter encoding 1.1.8 https://github.com/knowledgecode/jquery-param (MIT License) */
+(function(c,d){"object"===typeof exports&&"undefined"!==typeof module?module.exports=d():"function"===typeof define&&define.amd?define(d):(c="undefined"!==typeof globalThis?globalThis:c||self,c.param=d())})(this,function(){return function(c){var d=[],g=function(e,a){a="function"===typeof a?a():a;a=null===a?"":void 0===a?"":a;d[d.length]=encodeURIComponent(e)+"="+encodeURIComponent(a)},f=function(e,a){var c;if(e)if(Array.isArray(a)){var b=0;for(c=a.length;b<c;b++)f(e+"["+("object"===typeof a[b]&&a[b]?b:"")+"]",a[b])}else if("[object Object]"===Object.prototype.toString.call(a))for(b in a)f(e+"["+b+"]",a[b]);else g(e,a);else if(Array.isArray(a))for(b=0,c=a.length;b<c;b++)g(a[b].name,a[b].value);else for(b in a)f(b,a[b]);return d};return f("",c).join("&")}});
+
+/* Autocomplete 1590fe0 https://github.com/kraaden/autocomplete (MIT License) */
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).autocomplete=t()}(this,(function(){"use strict";return function(e){var t,n,o=document,i=e.container||o.createElement("div"),r=i.style,f=navigator.userAgent,l=~f.indexOf("Firefox")&&~f.indexOf("Mobile"),s=e.debounceWaitMs||0,a=e.preventSubmit||!1,u=e.disableAutoSelect||!1,d=l?"input":"keyup",c=[],p="",v=2,g=e.showOnFocus,m=0;if(void 0!==e.minLength&&(v=e.minLength),!e.input)throw new Error("input undefined");var h=e.input;function E(){n&&window.clearTimeout(n)}function w(){return!!i.parentNode}function y(){var e;m++,c=[],p="",t=void 0,(e=i.parentNode)&&e.removeChild(i)}function L(){for(;i.firstChild;)i.removeChild(i.firstChild);var n=function(e,t){var n=o.createElement("div");return n.textContent=e.label||"",n};e.render&&(n=e.render);var f=function(e,t){var n=o.createElement("div");return n.textContent=e,n};e.renderGroup&&(f=e.renderGroup);var l=o.createDocumentFragment(),s="#9?$";if(c.forEach((function(o){if(o.group&&o.group!==s){s=o.group;var i=f(o.group,p);i&&(i.className+=" group",l.appendChild(i))}var r=n(o,p);r&&(r.addEventListener("click",(function(t){e.onSelect(o,h),y(),t.preventDefault(),t.stopPropagation()})),o===t&&(r.className+=" selected"),l.appendChild(r))})),i.appendChild(l),c.length<1){if(!e.emptyMsg)return void y();var a=o.createElement("div");a.className="empty",a.textContent=e.emptyMsg,i.appendChild(a)}i.parentNode||o.body.appendChild(i),function(){if(w()){r.height="auto",r.width=h.offsetWidth+"px";var t,n=0;f(),f(),e.customize&&t&&e.customize(h,t,i,n)}function f(){var e=o.documentElement,i=e.clientTop||o.body.clientTop||0,f=e.clientLeft||o.body.clientLeft||0,l=window.pageYOffset||e.scrollTop,s=window.pageXOffset||e.scrollLeft,a=(t=h.getBoundingClientRect()).top+h.offsetHeight+l-i,u=t.left+s-f;r.top=a+"px",r.left=u+"px",(n=window.innerHeight-(t.top+h.offsetHeight))<0&&(n=0),r.top=a+"px",r.bottom="",r.left=u+"px",r.maxHeight=n+"px"}}(),function(){var e=i.getElementsByClassName("selected");if(e.length>0){var t=e[0],n=t.previousElementSibling;if(n&&-1!==n.className.indexOf("group")&&!n.previousElementSibling&&(t=n),t.offsetTop<i.scrollTop)i.scrollTop=t.offsetTop;else{var o=t.offsetTop+t.offsetHeight,r=i.scrollTop+i.offsetHeight;o>r&&(i.scrollTop+=o-r)}}}()}function b(){w()&&L()}function T(){b()}function x(e){e.target!==i?b():e.preventDefault()}function C(t){for(var n=t.which||t.keyCode||0,o=0,i=e.keysToIgnore||[38,13,27,39,37,16,17,18,20,91,9];o<i.length;o++){if(n===i[o])return}n>=112&&n<=123&&!e.keysToIgnore||40===n&&w()||S(0)}function k(n){var o=n.which||n.keyCode||0;if(38===o||40===o||27===o){var i=w();if(27===o)y();else{if(!i||c.length<1)return;38===o?function(){if(c.length<1)t=void 0;else if(t===c[0])t=c[c.length-1];else for(var e=c.length-1;e>0;e--)if(t===c[e]||1===e){t=c[e-1];break}}():function(){if(c.length<1&&(t=void 0),t&&t!==c[c.length-1]){for(var e=0;e<c.length-1;e++)if(t===c[e]){t=c[e+1];break}}else t=c[0]}(),L()}return n.preventDefault(),void(i&&n.stopPropagation())}13===o&&(t&&(e.onSelect(t,h),y()),a&&n.preventDefault())}function N(){g&&S(1)}function S(o){var i=++m,r=h.value,f=h.selectionStart||0;r.length>=v||1===o?(E(),n=window.setTimeout((function(){e.fetch(r,(function(e){m===i&&e&&(p=r,t=(c=e).length<1||u?void 0:c[0],L())}),o,f)}),0===o?s:0)):y()}function D(){setTimeout((function(){o.activeElement!==h&&y()}),200)}return i.className="autocomplete "+(e.className||""),r.position="absolute",i.addEventListener("mousedown",(function(e){e.stopPropagation(),e.preventDefault()})),i.addEventListener("focus",(function(){return h.focus()})),h.addEventListener("keydown",k),h.addEventListener(d,C),h.addEventListener("blur",D),h.addEventListener("focus",N),window.addEventListener("resize",T),o.addEventListener("scroll",x,!0),{destroy:function(){h.removeEventListener("focus",N),h.removeEventListener("keydown",k),h.removeEventListener(d,C),h.removeEventListener("blur",D),window.removeEventListener("resize",T),o.removeEventListener("scroll",x,!0),E(),y()}}}}));
 
 /* slideToggle 44ede23 https://github.com/ericbutler555/plain-js-slidetoggle (MIT License) */
 function slideToggle(t,e,o){0===t.clientHeight?j(t,e,o,!0):j(t,e,o)}function slideUp(t,e,o){j(t,e,o)}function slideDown(t,e,o){j(t,e,o,!0)}function j(t,e,o,i){void 0===e&&(e=400),void 0===i&&(i=!1),t.style.overflow="hidden",i&&(t.style.display="block");var p,l=window.getComputedStyle(t),n=parseFloat(l.getPropertyValue("height")),a=parseFloat(l.getPropertyValue("padding-top")),s=parseFloat(l.getPropertyValue("padding-bottom")),r=parseFloat(l.getPropertyValue("margin-top")),d=parseFloat(l.getPropertyValue("margin-bottom")),g=n/e,y=a/e,m=s/e,u=r/e,h=d/e;window.requestAnimationFrame(function l(x){void 0===p&&(p=x);var f=x-p;i?(t.style.height=g*f+"px",t.style.paddingTop=y*f+"px",t.style.paddingBottom=m*f+"px",t.style.marginTop=u*f+"px",t.style.marginBottom=h*f+"px"):(t.style.height=n-g*f+"px",t.style.paddingTop=a-y*f+"px",t.style.paddingBottom=s-m*f+"px",t.style.marginTop=r-u*f+"px",t.style.marginBottom=d-h*f+"px"),f>=e?(t.style.height="",t.style.paddingTop="",t.style.paddingBottom="",t.style.marginTop="",t.style.marginBottom="",t.style.overflow="",i||(t.style.display="none"),"function"==typeof o&&o()):window.requestAnimationFrame(l)})}
@@ -547,93 +547,67 @@ AimeosBasketBulk = {
 	meta: {},
 
 	/**
-	 * Autocomplete for products based on entered text
-	 */
-	bulkcomplete: function() {
-
-//		$.widget( "custom.bulkcomplete", $.ui.autocomplete, {
-//			_create: function() {
-//				this._super();
-//				this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
-//			},
-//			_renderMenu: function(ul, items) {
-//				var that = this,
-//				currentCategory = "";
-//				$.each(items, function(index, item) {
-//					var li;
-//					if(item.category != currentCategory) {
-//						ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
-//						currentCategory = item.category;
-//					}
-//					li = that._renderItemData(ul, item);
-//					if(item.category) {
-//						li.attr("aria-label", item.category + " : " + item.label);
-//					}
-//				});
-//			}
-//		});
-	},
-
-
-	/**
 	 * Sets up autocompletion for the given node
 	 *
 	 * @param {object} node
 	 */
-	autocomplete: function(node) {
+	autocomplete: function(nodes) {
 
-//		node.bulkcomplete({
-//			minLength : AimeosBasketBulk.MIN_INPUT_LEN,
-//			delay : 200,
-//			source : function(req, resp) {
-//
-//				var params = {};
-//				var relFilter = {};
-//				var langid = AimeosBasketBulk.meta.locale && AimeosBasketBulk.meta.locale['locale.languageid'];
-//				relFilter['index.text:relevance("' + langid + '","' + req.term + '")'] = 0;
-//
-//				var filter = {
-//					filter: {'||': [{'=~': {'product.code': req.term}}, {'>': relFilter}]},
-//					include: 'attribute,text,price,product'
-//				};
-//
-//				if(AimeosBasketBulk.meta.prefix) {
-//					params[AimeosBasketBulk.meta.prefix] = filter;
-//				} else {
-//					params = filter;
-//				}
-//
-//				if(AimeosBasketBulk.meta.resources && AimeosBasketBulk.meta.resources['product']) {
-//
-//					$.getJSON(AimeosBasketBulk.meta.resources['product'], params, function(response) {
-//
-//						var data = [];
-//						for(var key in (response.data || {})) {
-//							data = data.concat(AimeosBasketBulk.get(response.data[key], response.included));
-//						}
-//
-//						resp(data);
-//					});
-//				}
-//			},
-//			select : function(ev, ui) {
-//
-//				if($(".aimeos.basket-bulk tbody .details .search").last().val() != '') {
-//					AimeosBasketBulk.add();
-//				}
-//
-//				var product = $(ev.target).parent();
-//				product.find(".productid").val(ui.item.id);
-//				product.find(".search").val(ui.item.label);
-//
-//				var row = product.parent();
-//				row.data('prices', ui.item['prices'] || []);
-//				row.data('vattributes', ui.item['vattributes'] || []);
-//				AimeosBasketBulk.update(product.parent());
-//
-//				return false;
-//			}
-//		});
+		nodes.each(function() {
+			var node = this;
+			autocomplete({
+				input: node,
+				debounceWaitMs: 200,
+				minLength: AimeosBasketBulk.MIN_INPUT_LEN,
+				fetch: function(text, update) {
+
+					if(AimeosBasketBulk.meta.resources && AimeosBasketBulk.meta.resources['product']) {
+						var params = {};
+						var relFilter = {};
+						var langid = AimeosBasketBulk.meta.locale && AimeosBasketBulk.meta.locale['locale.languageid'] || '';
+						relFilter['index.text:relevance("' + langid + '","' + text + '")'] = 0;
+
+						var filter = {
+							filter: {'||': [{'=~': {'product.code': text}}, {'>': relFilter}]},
+							include: 'attribute,text,price,product'
+						};
+
+						if(AimeosBasketBulk.meta.prefix) {
+							params[AimeosBasketBulk.meta.prefix] = filter;
+						} else {
+							params = filter;
+						}
+
+						var url = new URL(AimeosBasketBulk.meta.resources['product']);
+						url.search = window.param(params);
+
+						fetch(url).then(response => {
+							return response.json();
+						}).then(response => {
+							var data = [];
+							for(var key in (response.data || {})) {
+								data = data.concat(AimeosBasketBulk.get(response.data[key], response.included));
+							}
+							update(data);
+						});
+					}
+				},
+				onSelect: function(item) {
+					if($(".aimeos.basket-bulk tbody .details .search").last().val() != '') {
+							AimeosBasketBulk.add();
+					}
+
+					var product = $(node).parent();
+					product.find(".productid").val(item.id);
+					product.find(".search").val(item.label);
+
+					var row = product.parent();
+					row.data('prices', item['prices'] || []);
+					row.data('vattributes', item['vattributes'] || []);
+					AimeosBasketBulk.update(product.parent());
+				}
+			});
+		});
 	},
 
 
@@ -770,40 +744,20 @@ AimeosBasketBulk = {
 	 * Sets up autocompletion for bulk order form
 	 */
 	setup: function() {
-//	    	var jsonurl = $(".aimeos.basket-bulk[data-jsonurl]").data("jsonurl");
-//		console.log(jsonurl);
+		var jsonurl = $(".aimeos.basket-bulk[data-jsonurl]").data("jsonurl");
 
-//		if(typeof jsonurl === 'undefined' || jsonurl == '') {
-//			return;
-//		}
+		if(typeof jsonurl === 'undefined' || jsonurl == '') {
+			return;
+		}
 
-//	    		new Autocomplete('bulk', {
-//		    onSearch: ({ currentValue }) => {
-//			const api = $(".aimeos.basket-bulk[data-jsonurl]").data("jsonurl");
-//		    return new Promise((resolve) => {
-//			    fetch(api)
-//			    .then((response) => response.json())
-//			    .then((data) => {
-//			    resolve(data);
-//			})
-//			.catch((error) => {
-//			    console.error(error);
-//			});
-//		    });
-//		},
-//
-//		onResults: ({ matches }) =>
-//		    matches.map((el) => `<li>${el.meta}</li>`).join(''),
-//		});
-
-
-
-//		$.ajax(jsonurl, {
-//			"method": "OPTIONS",
-//			"dataType": "json"
-//		}).then(function(options) {
-//			AimeosBasketBulk.meta = options.meta || {};
-//		});
+		fetch(jsonurl, {
+			method: "OPTIONS",
+			header: ["Content-type: application/json"]
+		}).then(response => {
+			return response.json();
+		}).then(options => {
+			AimeosBasketBulk.meta = options.meta || {};
+		});
 
 		$(".aimeos.basket-bulk").on("click", ".buttons .add", this.add);
 		this.autocomplete($(".aimeos.basket-bulk .details .search"));
@@ -849,7 +803,6 @@ AimeosBasketBulk = {
 	 */
 	init: function() {
 
-		this.bulkcomplete();
 		this.setup();
 		this.delete();
 	}
@@ -1452,101 +1405,35 @@ AimeosCatalog = {
  */
 AimeosCatalogFilter = {
 
-//	MIN_INPUT_LEN: 3,
+	MIN_INPUT_LEN: 3,
+
 
 	/**
 	 * Autocompleter for quick search
 	 */
 	setupSearchAutocompletion: function() {
 
-//		var aimeosInputComplete = $(".catalog-filter-search .value");
-//
-//		if(aimeosInputComplete.length) {
-//			aimeosInputComplete.autocomplete({
-//				minLength : AimeosCatalogFilter.MIN_INPUT_LEN,
-//				delay : 200,
-//				source : function(req, resp) {
-//					var nameTerm = {};
-//					nameTerm[aimeosInputComplete.attr("name")] = req.term;
-//
-//					$.getJSON(aimeosInputComplete.data("url"), nameTerm, function(data) {
-//						resp(data);
-//					});
-//				},
-//				select : function(ev, ui) {
-//					aimeosInputComplete.val(ui.item.label);
-//					return false;
-//				}
-//			}).autocomplete("instance")._renderItem = function(ul, item) {
-//				return $(item.html).appendTo(ul);
-//			};
-//		}
+		$(".catalog-filter-search .value").each(function() {
+			var url = $(this).data("url");
 
-
-		$(".catalog-filter-search .value").each(function(idx, el){
-
-			new Autocomplete('complex', {
-				//  selectFirst: true,
-
-				// onSearch
-				onSearch: ({ currentValue }) => {
-					// static file
-					const api = $(el).data("url");
-
-					return new Promise((resolve) => {
-						fetch(api)
-						.then((response) => response.json())
-						.then((data) => {
-							const result = data
-							.sort((a, b) => a.label.localeCompare(b.label))
-							.filter((element) => {
-								return element.label.match(new RegExp(currentValue, 'gi'));
-							});
-							resolve(result);
-						})
-						.catch((error) => {
-							console.error(error);
-						});
+			autocomplete({
+				input: this,
+				debounceWaitMs: 200,
+				minLength: AimeosCatalogFilter.MIN_INPUT_LEN,
+				fetch: function(text, update) {
+					fetch(url.replace('_term_', encodeURIComponent(text))).then(response => {
+						return response.json();
+					}).then(data => {
+						update(data);
 					});
 				},
-
-				onResults: ({ currentValue, matches }) => {
-					return matches
-					.map(({ label, html }) => {
-						return `
-						<!--<li class="loupe">-->
-						<!--<p>${label.replace(
-							new RegExp(currentValue, 'gi'),
-							(str) => `<b>${str}</b>`
-						)}</p>-->
-						${html}
-						<!--</li>-->`;
-					})
-					.join('');
-				},
-
-				// event onsubmit
-//				onSubmit: ({ index, element, object }) => {
-//					const { label, html } = object;
-//
-//					console.table('static-file-data', index, element, object);
-//
-//					const template = `
-//					<p>name - ${label}</p>
-//					<div class="desc">${html}</div>`;
-//
-//				},
-
-				// get index and data from li element after
-				// hovering over li with the mouse
-//				onSelectedItem: ({ index, element, object }) => {
-//					console.log('onSelectedItem:', index, element.value, object);
-//				},
+				render: function(item, text) {
+					return $(item.html.trim()).get(0);
+				}
 			});
-
 		});
-
 	},
+
 
 	/**
 	 * Sets up the form checks

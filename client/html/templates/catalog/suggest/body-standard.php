@@ -34,13 +34,13 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	$items[] = array(
 		'label' => $name,
 		'html' => '
-			<li class="aimeos catalog-suggest">
+			<div class="aimeos catalog-suggest">
 				<a class="suggest-item" href="' . $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) . '">
 					<div class="item-image" style="' . $media . '"></div>
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 					<div class="item-price">' . $enc->html( $price ) . '</div>
 				</a>
-			</li>
+			</div>
 		'
 	);
 }
