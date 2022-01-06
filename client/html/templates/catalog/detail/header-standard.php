@@ -70,6 +70,9 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 <?php endif ?>
 
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->contextSite . '/catalog-detail.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->contextSite . '/catalog-detail.js', 'fs-theme' ) ) ?>"></script>
+
 <?php if( isset( $this->detailStockUrl ) ) : ?>
 	<?php foreach( $this->detailStockUrl as $url ) : ?>
 		<script defer src="<?= $enc->attr( $url ) ?>"></script>
