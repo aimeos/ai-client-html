@@ -579,7 +579,7 @@ AimeosBasketBulk = {
 						}
 
 						var url = new URL(AimeosBasketBulk.meta.resources['product']);
-						url.search = window.param(params);
+						url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
 						fetch(url).then(response => {
 							return response.json();
