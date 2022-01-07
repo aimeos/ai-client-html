@@ -72,7 +72,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 <?php endif ?>
 
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->contextSite . '/catalog-lists.css', 'fs-theme' ) ) ?>">
-<script defer src="<?= $enc->attr( $this->content( $this->contextSite . '/catalog-lists.js', 'fs-theme' ) ) ?>"></script>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-lists.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-lists.js', 'fs-theme' ) ) ?>"></script>
 
 <?= $this->get( 'listHeader' ) ?>

@@ -23,7 +23,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelperHtml::context();
 
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $this->context );
-		$this->object = new \Aimeos\Client\Html\Common\Decorator\Context( $this->object, $this->context );
 		$this->object->setView( $this->view );
 	}
 
@@ -45,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
-		$this->assertStringContainsString( '<title>Cafe Noire Expresso | Unit test site</title>', $output );
+		$this->assertStringContainsString( '<title>Cafe Noire Expresso | Aimeos</title>', $output );
 		$this->assertStringContainsString( '<script defer src="http://baseurl/catalog/stock/?st_pid', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 7, count( $tags ) );

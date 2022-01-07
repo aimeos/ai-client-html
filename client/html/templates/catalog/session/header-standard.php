@@ -5,8 +5,11 @@
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
+$enc = $this->encoder();
+
+
 ?>
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->contextSite . '/catalog-session.css', 'fs-theme' ) ) ?>">
-<script defer src="<?= $enc->attr( $this->content( $this->contextSite . '/catalog-session.js', 'fs-theme' ) ) ?>"></script>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-session.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-session.js', 'fs-theme' ) ) ?>"></script>
 
 <?= $this->get( 'sessionHeader' ) ?>
