@@ -70,6 +70,10 @@
 	}
 }
 
+.home-item .catalog-stage-image {
+	height: auto;
+}
+
 .home-item .home-product.catalog-list .product{
 	margin: 0;
 }

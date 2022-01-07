@@ -1418,19 +1418,6 @@ AimeosCatalogSession = {
 
 
 /**
- * Catalog stage actions
- */
-AimeosCatalogStage = {
-
-	/**
-	 * Initializes the catalog stage actions
-	 */
-	init: function() {
-	}
-};
-
-
-/**
  * Checkout standard client actions
  */
 AimeosCheckoutStandard = {
@@ -1839,7 +1826,6 @@ $(function() {
 
 	AimeosCatalog.init();
 	AimeosCatalogSession.init();
-	AimeosCatalogStage.init();
 
 	AimeosBasketBulk.init();
 	AimeosBasketMini.init();
