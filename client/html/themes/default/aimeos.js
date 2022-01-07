@@ -1399,24 +1399,6 @@ AimeosCatalog = {
 };
 
 
-
-
-
-
-
-/**
- * Catalog session actions
- */
-AimeosCatalogSession = {
-
-	/**
-	 * Initializes the catalog session actions
-	 */
-	init: function() {
-	}
-};
-
-
 /**
  * Checkout standard client actions
  */
@@ -1825,7 +1807,6 @@ $(function() {
 	AimeosLocaleSelect.init();
 
 	AimeosCatalog.init();
-	AimeosCatalogSession.init();
 
 	AimeosBasketBulk.init();
 	AimeosBasketMini.init();

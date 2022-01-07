@@ -1069,8 +1069,7 @@ input[type="range"]::-moz-range-progress {
 /* Watched, favorite, suggested products and session items */
 
 .account-watch .minibutton.delete,
-.account-favorite .minibutton.delete,
-.catalog-session .minibutton.delete {
+.account-favorite .minibutton.delete {
 	position: absolute;
 	right: 1%;
 	top: 1%;
@@ -1078,37 +1077,22 @@ input[type="range"]::-moz-range-progress {
 }
 
 .account-watch .price-list .rebatepercent,
-.account-favorite .price-list .rebatepercent,
-.catalog-session .price-list .rebatepercent {
+.account-favorite .price-list .rebatepercent {
 	display: none;
 }
 
 .account-watch,
 .account-favorite,
-.basket-related-bought,
-.catalog-session {
+.basket-related-bought {
 	clear: both;
 	padding: 0;
 	text-align: center;
 	margin: 1rem 0;
 }
 
-.catalog-session-pinned,
-.catalog-session-seen {
-	margin-bottom: 1rem;
-	border: 1px solid #efefef;
-}
-
 .account-watch .watch-items,
 .account-favorite .favorite-items {
 	padding: 0;
-}
-
-.catalog-session-seen .seen-items,
-.catalog-session-pinned .pinned-items {
-	padding: 1.25rem;
-	margin-bottom: 0;
-	padding-bottom: 0;
 }
 
 .account-profile h1.header,
@@ -1128,19 +1112,9 @@ input[type="range"]::-moz-range-progress {
 	color: var(--ai-secondary, #555);
 }
 
-.catalog-session .header{
-	color: #1f1f1f;
-	margin-bottom: 0;
-	border: 0;
-	padding: .5rem .75rem;
-
-}
-
 .account-watch .watch-item,
 .account-favorite .favorite-item,
-.basket-related-bought .product,
-.catalog-session-seen .seen-item,
-.catalog-session-pinned .pinned-item {
+.basket-related-bought .product {
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
@@ -1161,8 +1135,7 @@ input[type="range"]::-moz-range-progress {
 	margin: 0;
 }
 
-.basket-related-bought .media-list,
-.catalog-session-seen .media-list {
+.basket-related-bought .media-list {
 	background-color: #F6f6F6;
 	background-color: var(--ai-bg-alt, #F6f6F6);
 	background-repeat: no-repeat;
@@ -1178,9 +1151,7 @@ input[type="range"]::-moz-range-progress {
 
 .account-watch .media-item,
 .account-favorite .media-item,
-.basket-related-bought .media-item,
-.catalog-session-seen .media-item,
-.catalog-session-pinned .media-item {
+.basket-related-bought .media-item {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
@@ -1190,9 +1161,7 @@ input[type="range"]::-moz-range-progress {
 
 .account-watch .media-item img,
 .account-favorite .media-item img,
-.basket-related-bought .media-item img,
-.catalog-session-seen .media-item img,
-.catalog-session-pinned .media-item img {
+.basket-related-bought .media-item img {
 	position: relative;
 	max-width: 100%;
 	display: block;
@@ -1204,9 +1173,7 @@ input[type="range"]::-moz-range-progress {
 
 .account-watch .name,
 .account-favorite .name,
-.basket-related-bought .name,
-.catalog-session-seen .name,
-.catalog-session-pinned .name {
+.basket-related-bought .name {
 	margin: 0;
 	padding: 0;
 	height: 1rem;
@@ -1219,8 +1186,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 .account-watch .modify,
-.account-favorite .modify,
-.catalog-session-pinned .modify {
+.account-favorite .modify {
 	position: absolute;
 	display: block;
 	padding: .5rem 0.75rem;
@@ -1229,8 +1195,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 .account-watch .modify:before,
-.account-favorite .modify:before,
-.catalog-session-pinned .modify:before {
+.account-favorite .modify:before {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	content: "\f5de";
 	font-size: 120%;
@@ -1264,16 +1229,6 @@ input[type="range"]::-moz-range-progress {
 
 .account-watch .btn {
 	width: 100%;
-}
-
-.catalog-session-seen .count:before,
-.catalog-session-pinned .count:before {
-	content: " (";
-}
-
-.catalog-session-seen .count:after,
-.catalog-session-pinned .count:after {
-	content: ") ";
 }
 
 
@@ -3551,120 +3506,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 
 .tab-content .fade {
 	transition: opacity .15s linear;
-}
-
-/*--------------------- Catalog Session/List Page  ---------------------------*/
-
-aside .catalog-session {
-	margin: 0;
-	margin-bottom: 1rem;
-}
-
-@media screen and (min-width: 576px) and (max-width: 991px) {
-	aside .catalog-session {
-		display: flex;
-	}
-
-	aside .catalog-session-pinned,
-	aside .catalog-session-seen {
-		width: 50%;
-	}
-}
-
-aside .catalog-session-pinned > h2,
-aside .catalog-session-seen > h2 {
-	font-size: 100%;
-	margin-bottom: 0rem;
-	text-align: start;
-	padding: .5rem .75rem;
-	letter-spacing: 1.5px;
-	cursor: pointer;
-}
-
-aside .catalog-session-seen > h2 {
-	cursor: pointer;
-}
-
-aside:nth-child(1){
-	margin-top: 1rem;
-}
-
-aside .catalog-session{
-	padding-top: 0;
-}
-
-aside .catalog-session-seen .seen-items,
-aside .catalog-session-pinned .pinned-items {
-	display: none;
-}
-
-@media screen and (min-width: 992px) {
-
-	aside .catalog-session-seen .seen-items,
-	aside .catalog-session-pinned .pinned-items {
-		display: block;
-	}
-
-	aside .catalog-session-seen .name,
-	aside .catalog-session-pinned .name {
-		margin: 0 0 .25rem;
-		font-size: 80%;
-		text-align: start;
-	}
-
-	aside .catalog-session-pinned > h2,
-	aside .catalog-session-seen > h2 {
-		font-size: 130%;
-	}
-
-	aside .pinned-item .price-item.default .value,
-	aside .seen-item .price-item.default .value {
-		vertical-align: middle;
-		font-size: 110%;
-	}
-
-	/*last seen*/
-
-	aside .catalog-session-seen {
-		width: 100%;
-	}
-
-	aside .catalog-session-seen .seen-item,
-	aside .catalog-session-pinned .pinned-item {
-		width: 100%;
-	}
-
-	aside .catalog-session-seen .seen-item .media-item,
-	aside .catalog-session-pinned .pinned-item .media-item {
-		float: left;
-		width: 60px;
-		height: 80px;
-		margin-bottom: .5rem;
-		margin-inline-end: 1rem;
-		background-position: top left;
-	}
-
-	[dir="rtl"] aside .catalog-session-seen .seen-item .media-item,
-	[dir="rtl"] aside .catalog-session-pinned .pinned-item .media-item {
-		float: right;
-	}
-
-	aside .catalog-session-seen .seen-item .price-list,
-	aside .catalog-session-pinned .pinned-item .price-list {
-		font-weight: normal;
-		text-align: start;
-		padding: 0;
-		margin: 0;
-	}
-
-	aside .aimeos .price-item .rebatepercent {
-		position: relative;
-		font-size: 80%;
-	}
-
-	.catalog-session-pinned .name {
-		margin-inline-end: 3rem;
-	}
 }
 
 
