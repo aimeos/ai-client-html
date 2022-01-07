@@ -4,34 +4,6 @@
 AimeosBasketMini = {
 
 	/**
-	 * Updates the basket mini content using the JSON API
-	 */
-	update: function() {
-
-		var jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
-
-		if(typeof jsonurl === 'undefined' || jsonurl == '') {
-			return;
-		}
-
-		fetch(jsonurl, {
-			method: "OPTIONS",
-			headers: {'Content-Type': 'application/json'}
-		}).then(response => {
-			return response.json();
-		}).then(options => {
-			fetch(options.meta.resources['basket'], {
-				headers: {'Content-Type': 'application/json'}
-			}).then(response => {
-				return response.json();
-			}).then(basket => {
-				AimeosBasketMini.updateBasket(basket);
-			});
-		});
-	},
-
-
-	/**
 	 * Updates the basket mini content
 	 */
 	updateBasket: function(basket) {

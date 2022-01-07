@@ -538,6 +538,39 @@ AimeosAccountWatch = {
 };
 
 
+/**
+ * Basket mini client actions
+ */
+AimeosBasketMini = {
+
+	/**
+	 * Updates the basket mini content using the JSON API
+	 */
+	update: function() {
+
+		var jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
+
+		if(typeof jsonurl === 'undefined' || jsonurl == '') {
+			return;
+		}
+
+		fetch(jsonurl, {
+			method: "OPTIONS",
+			headers: {'Content-Type': 'application/json'}
+		}).then(response => {
+			return response.json();
+		}).then(options => {
+			fetch(options.meta.resources['basket'], {
+				headers: {'Content-Type': 'application/json'}
+			}).then(response => {
+				return response.json();
+			}).then(basket => {
+				AimeosBasketMini.updateBasket(basket);
+			});
+		});
+	}
+};
+
 
 /**
  * Basket standard client actions
@@ -558,90 +591,9 @@ AimeosBasketStandard = {
 		AimeosBasketMini.update();
 
 		return basket;
-	},
-
-
-	/**
-	 * Goes back to underlying page when back or close button of the basket is clicked
-	 */
-	setupBasketBack: function() {
-
-		$("body").on("click", ".basket-standard .btn-back", function() {
-			return Aimeos.removeOverlay();
-		});
-	},
-
-
-	/**
-	 * Hides the update button and show only on quantity change
-	 */
-	setupUpdateHide: function() {
-
-		$(".basket-standard .btn-update").hide();
-
-		$("body").on("focusin", ".basket-standard .basket .product .quantity .value", {}, function() {
-			$(".btn-update").show();
-			$(".btn-action").hide();
-		});
-	},
-
-
-	/**
-	 * Updates basket without page reload
-	 */
-	setupUpdateSubmit: function() {
-
-		$("body").on("submit", ".basket-standard form", function() {
-
-			Aimeos.createSpinner();
-			fetch(product.data("url"), {
-				body: new FormData(this),
-				method: 'POST'
-			}).then(function(response) {
-				return response.text();
-			}).then(function(data) {
-				$(".basket-standard").html(AimeosBasketStandard.updateBasket(data).html());
-			}).finally(() => {
-				Aimeos.removeSpinner();
-			});
-
-			return false;
-		});
-	},
-
-
-	/**
-	 * Updates quantity and deletes products without page reload
-	 */
-	setupUpdateChange: function() {
-
-		$("body").on("click", ".basket-standard a.change", function(ev) {
-
-			Aimeos.createSpinner();
-			fetch($(this).attr("href")).then(response => {
-				return response.text();
-			}).then(data => {
-				$(".basket-standard").html(AimeosBasketStandard.updateBasket(data).html());
-			}).finally(function() {
-				Aimeos.removeSpinner();
-			});
-
-			return false;
-		});
-	},
-
-
-	/**
-	 * Initializes the basket standard actions
-	 */
-	init: function() {
-
-		this.setupBasketBack();
-		this.setupUpdateHide();
-		this.setupUpdateSubmit();
-		this.setupUpdateChange();
 	}
 };
+
 
 
 /**
@@ -1400,8 +1352,6 @@ $(function() {
 	AimeosLocaleSelect.init();
 
 	AimeosCatalog.init();
-
-	AimeosBasketStandard.init();
 
 	AimeosCheckoutStandard.init();
 	AimeosCheckoutConfirm.init();
