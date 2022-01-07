@@ -5,5 +5,11 @@
  * @copyright Aimeos (aimeos.org), 2019-2022
  */
 
+$enc = $this->encoder();
+
+
 ?>
-<?= $this->get( 'bulkHeader' );
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/basket-bulk.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/basket-bulk.js', 'fs-theme' ) ) ?>"></script>
+
+<?= $this->get( 'bulkHeader' ) ?>

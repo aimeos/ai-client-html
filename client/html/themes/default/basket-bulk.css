@@ -1,0 +1,54 @@
+/* Basket bulk order */
+
+.basket-bulk thead>tr>th,
+.basket-bulk tbody>tr>td {
+	vertical-align: middle;
+}
+
+.basket-bulk table th.quantity,
+.basket-bulk table th.price {
+	text-align: center;
+}
+
+.basket-bulk table th.product,
+.basket-bulk table td.product {
+	width: 50%;
+}
+
+.basket-bulk table th.quantity {
+	text-align: center;
+	width: 15%;
+}
+
+.basket-bulk table td.quantity {
+	width: 15%;
+}
+
+.basket-bulk table td.quantity input {
+	text-align: center;
+}
+
+.basket-bulk table th.price {
+	text-align: center;
+	width: 25%;
+}
+
+.basket-bulk table td.price {
+	text-align: end;
+	width: 25%;
+}
+
+.basket-bulk table th.buttons,
+.basket-bulk table td.buttons {
+	vertical-align: middle;
+	text-align: center;
+	width: 10%;
+}
+
+.basket-bulk .minibutton {
+	color: #A00000;
+	color: var(--ai-primary, #A00000);
+	padding: 0 0.5rem;
+	line-height: 1;
+	width: 2rem;
+}
