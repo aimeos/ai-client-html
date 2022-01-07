@@ -926,10 +926,6 @@ input[type="range"]::-moz-range-progress {
 	overflow: hidden;
 }
 
-.basket-related .product .text-list {
-	margin: 0.5rem 0;
-}
-
 .aimeos .product .text-list h2 {
 	text-transform: uppercase;
 	font-weight: normal;
@@ -1035,8 +1031,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 .account-watch,
-.account-favorite,
-.basket-related-bought {
+.account-favorite {
 	clear: both;
 	padding: 0;
 	text-align: center;
@@ -1053,8 +1048,7 @@ input[type="range"]::-moz-range-progress {
 .account-watch .header,
 .account-history .header,
 .account-favorite .header,
-.account-subscription .header,
-.basket-related-bought .header {
+.account-subscription .header {
 	border-bottom: solid 1px #555;
 	border-bottom-color: var(--ai-secondary, #555);
 	text-transform: uppercase;
@@ -1066,8 +1060,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 .account-watch .watch-item,
-.account-favorite .favorite-item,
-.basket-related-bought .product {
+.account-favorite .favorite-item {
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
@@ -1088,23 +1081,8 @@ input[type="range"]::-moz-range-progress {
 	margin: 0;
 }
 
-.basket-related-bought .media-list {
-	background-color: #F6f6F6;
-	background-color: var(--ai-bg-alt, #F6f6F6);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
-	position: relative;
-	text-align: center;
-	overflow: hidden;
-	height: 213px;
-	width: 160px;
-	display: block;
-}
-
 .account-watch .media-item,
-.account-favorite .media-item,
-.basket-related-bought .media-item {
+.account-favorite .media-item {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
@@ -1113,8 +1091,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 .account-watch .media-item img,
-.account-favorite .media-item img,
-.basket-related-bought .media-item img {
+.account-favorite .media-item img {
 	position: relative;
 	max-width: 100%;
 	display: block;
@@ -1125,8 +1102,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 .account-watch .name,
-.account-favorite .name,
-.basket-related-bought .name {
+.account-favorite .name {
 	margin: 0;
 	padding: 0;
 	height: 1rem;
@@ -1267,10 +1243,6 @@ input[type="range"]::-moz-range-progress {
 		display: block;
 		width: 100%;
 	}
-}
-
-.basket-related h1 {
-	display: none;
 }
 
 

@@ -540,19 +540,6 @@ AimeosAccountWatch = {
 
 
 /**
- * Basket related client actions
- */
-AimeosBasketRelated = {
-
-	/**
-	 * Initializes the basket related actions
-	 */
-	init: function() {
-	}
-};
-
-
-/**
  * Basket standard client actions
  */
 AimeosBasketStandard = {
@@ -1414,7 +1401,6 @@ $(function() {
 
 	AimeosCatalog.init();
 
-	AimeosBasketRelated.init();
 	AimeosBasketStandard.init();
 
 	AimeosCheckoutStandard.init();
