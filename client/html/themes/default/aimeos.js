@@ -1977,29 +1977,6 @@ AimeosCheckoutConfirm = {
 
 
 /**
- * CMS page actions
- */
-AimeosCmsPage = {
-
-	/**
-	 * CMS page sliders
-	 */
-	setupSlider: function() {
-
-	},
-
-
-	/**
-	 * Initialize the CMS page actions
-	 */
-	init: function() {
-
-		this.setupSlider();
-	}
-};
-
-
-/**
  * Locale selector actions
  */
 AimeosLocaleSelect = {
@@ -2238,7 +2215,6 @@ $(function() {
 	Aimeos.init();
 
 	AimeosPage.init();
-	AimeosCmsPage.init();
 	AimeosLocaleSelect.init();
 
 	AimeosCatalog.init();
