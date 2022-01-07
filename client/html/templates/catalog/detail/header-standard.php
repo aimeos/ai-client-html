@@ -70,7 +70,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 <?php endif ?>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/swiffy-slider@1/dist/css/swiffy-slider.min.css,npm/photoswipe@4/dist/photoswipe.min.css,npm/photoswipe@4/dist/default-skin/default-skin.min.css">
 <link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->contextSite . '/catalog-detail.css', 'fs-theme' ) ) ?>">
+
+<script src="https://cdn.jsdelivr.net/combine/npm/swiffy-slider@1/dist/js/swiffy-slider.min.js,npm/photoswipe@4,npm/photoswipe@4/dist/photoswipe-ui-default.min.js"></script>
 <script defer src="<?= $enc->attr( $this->content( $this->contextSite . '/catalog-detail.js', 'fs-theme' ) ) ?>"></script>
 
 <?php if( isset( $this->detailStockUrl ) ) : ?>
