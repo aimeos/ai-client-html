@@ -69,3 +69,7 @@
 		font-size: 250%;
 	}
 }
+
+.home-item .home-product.catalog-list .product{
+	margin: 0;
+}
