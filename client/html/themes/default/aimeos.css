@@ -871,53 +871,6 @@ input[type="range"]::-moz-range-progress {
 }
 
 
-/* Suggested products */
-.ui-autocomplete {
-	overflow-y: auto;
-	max-height: 25rem;
-	padding: 0;
-}
-
-.aimeos.catalog-suggest {
-	border-bottom: solid 1px #D0D0D0;
-	border-bottom-color: var(--ai-light, #D0D0D0);
-}
-
-.aimeos.catalog-suggest:last-child {
-	border: none;
-}
-
-.aimeos .suggest-item {
-	text-decoration: none;
-	padding: 0.5% 2.5%;
-	display: table;
-	width: 100%;
-}
-
-.aimeos .suggest-item .item-name {
-	display: inline-block;
-	width: calc(80% - 0.5rem);
-}
-
-.aimeos .suggest-item .item-price {
-	display: inline-block;
-}
-
-.aimeos .suggest-item .item-image {
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
-	display: block;
-	float: left;
-	width: 20%;
-	height: 2.5rem;
-	margin-inline-end: 0.5rem;
-}
-
-[dir="rtl"] .aimeos .suggest-item .item-image {
-	float: right;
-}
-
 
 .aimeos .product-item .badges {
 	position: absolute;
@@ -1066,7 +1019,7 @@ input[type="range"]::-moz-range-progress {
 }
 
 
-/* Watched, favorite, suggested products and session items */
+/* Watched, favorite, products and session items */
 
 .account-watch .minibutton.delete,
 .account-favorite .minibutton.delete {
@@ -3035,73 +2988,15 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 }
 
 @media (min-width:992px) {
-
-.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search .input-group{
-	position: relative;
-	display: inline-block;
-	flex-wrap: wrap;
-	align-items: stretch;
-	width: 100%;
-	align-self: end;
-	margin-left: auto;
-}
-
-
-}
-
-/*- Suggests -*/
-
-.ui-widget {
-	font-family: "Roboto Condensed", sans-serif, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-	font-size: 85%;
-}
-
-.ui-widget-content{
-	z-index: 1030;
-	border: none;
-	padding: .5rem 0;
-}
-
-.aimeos .suggest-item {
-	padding: .25rem 1rem;
-}
-
-.aimeos.catalog-suggest {
-	border-bottom: none;
-}
-
-.aimeos a.suggest-item:link:not(.btn),
-.aimeos a.suggest-item:visited:not(.btn) {
-	color: #282828;
-	color: var(--ai-primary, #282828);
-	text-decoration: none;
-	transition: color .3s;
-}
-
-.aimeos a.suggest-item:link:not(.btn):hover,
-.aimeos a.suggest-item:visited:not(.btn):hover {
-	color: #555555;
-	color: var(--ai-secondary, #555);
-	text-decoration: none;
-	transition: color .3s;
-}
-
-.ui-menu-item:focus, .ui-state-active {
-	background-color: #FFFFFF;
-	background-color: var(--ai-bg-alt, #FFFFFF);
-	color: #555;
-	color: var(--ai-secondary, #555);
-}
-
-.ui-menu-item:hover {
-	background-color: #FFFFFF;
-	background-color: var(--ai-bg-alt, #FFFFFF);
-	color: #CCCCCC;
-	color: var(--ai-primary-light, #CCCCCC);
-}
-
-.ui-autocomplete li {
-	padding: 0;
+	.bp-page-content.main-section .aimeos.catalog-filter .catalog-filter-search .input-group{
+		position: relative;
+		display: inline-block;
+		flex-wrap: wrap;
+		align-items: stretch;
+		width: 100%;
+		align-self: end;
+		margin-left: auto;
+	}
 }
 
 /*---------------------------------- Filter-Tree -----------------------------*/

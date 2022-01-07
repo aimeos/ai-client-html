@@ -2,8 +2,14 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2013
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
-echo $this->get( 'suggestHeader' );
+$enc = $this->encoder();
+
+
+?>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-suggest.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-suggest.js', 'fs-theme' ) ) ?>"></script>
+
+<?= $this->get( 'suggestHeader' ) ?>
