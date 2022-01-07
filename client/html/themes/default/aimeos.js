@@ -1098,19 +1098,6 @@ AimeosCheckoutStandard = {
 
 
 /**
- * Checkout confirm client actions
- */
-AimeosCheckoutConfirm = {
-
-	/**
-	 * Initializes the checkout confirm section
-	 */
-	init: function() {
-	}
-};
-
-
-/**
  * Locale selector actions
  */
 AimeosLocaleSelect = {
@@ -1354,7 +1341,6 @@ $(function() {
 	AimeosCatalog.init();
 
 	AimeosCheckoutStandard.init();
-	AimeosCheckoutConfirm.init();
 
 	AimeosAccountProfile.init();
 	AimeosAccountSubscription.init();

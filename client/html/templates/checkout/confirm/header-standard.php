@@ -5,11 +5,13 @@
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
-
 $enc = $this->encoder();
 
 
 ?>
 <title><?= $this->translate( 'client', 'Confirmation' ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
-<?= $this->get( 'confirmHeader' );
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/checkout-confirm.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/checkout-confirm.js', 'fs-theme' ) ) ?>"></script>
+
+<?= $this->get( 'confirmHeader' ) ?>
