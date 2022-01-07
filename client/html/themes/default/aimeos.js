@@ -1651,29 +1651,6 @@ AimeosCatalogFilter = {
 
 
 /**
- * Catalog home actions
- */
-AimeosCatalogHome = {
-
-	/**
-	 * Home slider
-	 */
-	setupSlider: function() {
-
-	},
-
-
-	/**
-	 * Initialize the catalog home actions
-	 */
-	init: function() {
-
-		this.setupSlider();
-	}
-};
-
-
-/**
  * Catalog list actions
  */
 AimeosCatalogList = {
@@ -2265,7 +2242,6 @@ $(function() {
 	AimeosLocaleSelect.init();
 
 	AimeosCatalog.init();
-	AimeosCatalogHome.init();
 	AimeosCatalogFilter.init();
 	AimeosCatalogList.init();
 	AimeosCatalogSession.init();
