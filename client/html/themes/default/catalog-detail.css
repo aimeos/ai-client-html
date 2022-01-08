@@ -683,6 +683,35 @@
 
 /* Rating */
 
+.catalog-detail-additional progress {
+	vertical-align: middle;
+	width: 100%;
+}
+
+.catalog-detail-additional progress[value] {
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	height: 0.25rem;
+	background-color: #D0D0D0;
+	background-color: var(--ai-light, #D0D0D0);
+	color: #A00000;
+	color: var(--ai-primary, #A00000);
+}
+
+.catalog-detail-additional progress[value]::-webkit-progress-bar {
+	background-color: #D0D0D0;
+	background-color: var(--ai-light, #D0D0D0);
+}
+
+.catalog-detail-additional progress::-moz-progress-bar {
+	background-color: #A00000;
+}
+
+.catalog-detail-additional progress::-webkit-progress-value {
+	background-color: #A00000;
+}
+
 .catalog-detail-basic .rating {
 	text-align: start;
 }

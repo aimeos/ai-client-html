@@ -52,3 +52,32 @@
 	line-height: 1;
 	width: 2rem;
 }
+
+
+/* JS autocomplete */
+
+.autocomplete {
+	z-index: 1050;
+	overflow: auto;
+	box-sizing: border-box;
+	border: 1px solid #555;
+	border-color: var(--ai-secondary, #555);
+	background-color: #FFF;
+	background-color: var(--ai-bg, #FFF);
+}
+
+.autocomplete > div {
+	padding: 0.25rem;
+}
+
+.autocomplete .group {
+	background-color: #F6F6F6;
+	background-color: var(--ai-bg-light, #F6F6F6);
+}
+
+.autocomplete > div:hover:not(.group),
+.autocomplete > div.selected {
+	cursor: pointer;
+	background-color: #CCC;
+	background-color: var(--ai-primary-light, #CCC);
+}

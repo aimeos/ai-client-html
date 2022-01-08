@@ -9,6 +9,10 @@
 	display: none;
 }
 
+.catalog-filter-tree.col{
+	margin-bottom: 0;
+}
+
 .catalog-filter-tree fieldset > ul {
 	padding-inline-start: 0;
 	margin: 0.5rem 1rem;
@@ -432,6 +436,113 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	display: block;
 	padding: 0.5rem;
 	margin: 0;
+}
+
+/* slider */
+
+.catalog-filter-price input[type=range] {
+	-webkit-appearance: none;
+	margin: 1.5rem 0 .5rem;
+	width: 100%;
+	border: none;
+}
+
+.catalog-filter-price input[type=range]:focus {
+	outline: none;
+}
+
+.catalog-filter-price input[type=range]::-webkit-slider-runnable-track {
+	background-color: #D0D0D0;
+	background-color: var(--ai-light, #D0D0D0);
+	border-radius: 0.1rem;
+	border: none;
+	cursor: ew-resize;
+	margin: 1rem 0;
+	height: 0.2rem;
+	width: 100%;
+}
+
+.catalog-filter-price input[type=range]:focus::-webkit-slider-runnable-track {
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+}
+
+.catalog-filter-price input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+	border-radius: 50%;
+	cursor: ew-resize;
+	height: 1.5rem;
+	width: 1.5rem;
+	margin-top: -0.7rem;
+}
+
+.catalog-filter-price input[type=range]::-moz-range-track {
+	background-color: #D0D0D0;
+	background-color: var(--ai-light, #D0D0D0);
+	cursor: pointer;
+	height: 0.2rem;
+	width: 100%;
+	border: none;
+}
+
+.catalog-filter-price input[type="range"]::-moz-range-progress {
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+}
+
+.catalog-filter-price input[type=range]::-moz-range-thumb {
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+	border-radius: 50%;
+	cursor: pointer;
+	height: 1.5rem;
+	width: 1.5rem;
+}
+
+.catalog-filter-price input[type=range]::-ms-track {
+	cursor: pointer;
+	color: transparent;
+	background: transparent;
+	border-color: transparent;
+	border-width: 0;
+	height: 0.2rem;
+	width: 100%;
+}
+
+.catalog-filter-price input[type=range]::-ms-fill-lower {
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+	border-radius: 50%;
+	border: none;
+}
+
+.catalog-filter-price input[type=range]::-ms-fill-upper {
+	background-color: #D0D0D0;
+	background-color: var(--ai-light, #D0D0D0);
+	border-radius: 50%;
+	border: none;
+}
+
+.catalog-filter-price input[type=range]::-ms-thumb {
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	height: 1.5rem;
+	width: 1.5rem;
+}
+
+.catalog-filter-price input[type=range]:focus::-ms-fill-lower {
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+}
+
+.catalog-filter-price input[type=range]:focus::-ms-fill-upper {
+	background-color: #D0D0D0;
+	background-color: var(--ai-light, #D0D0D0);
 }
 
 /*Big Screens*/
@@ -975,4 +1086,33 @@ aside .catalog-filter .catalog-filter-attribute {
 	width: 100%;
 	max-width: 100%;
 	border: 1px solid #efefef;
+}
+
+
+/* JS autocomplete */
+
+.autocomplete {
+	z-index: 1050;
+	overflow: auto;
+	box-sizing: border-box;
+	border: 1px solid #555;
+	border-color: var(--ai-secondary, #555);
+	background-color: #FFF;
+	background-color: var(--ai-bg, #FFF);
+}
+
+.autocomplete > div {
+	padding: 0.25rem;
+}
+
+.autocomplete .group {
+	background-color: #F6F6F6;
+	background-color: var(--ai-bg-light, #F6F6F6);
+}
+
+.autocomplete > div:hover:not(.group),
+.autocomplete > div.selected {
+	cursor: pointer;
+	background-color: #CCC;
+	background-color: var(--ai-primary-light, #CCC);
 }

@@ -129,34 +129,6 @@ body .main-section {
 	margin: 4rem 0;
 }
 
-.aimeos progress {
-	vertical-align: middle;
-	width: 100%;
-}
-
-.aimeos progress[value] {
-	-webkit-appearance: none;
-	appearance: none;
-	border: none;
-	height: 0.25rem;
-	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
-	color: #A00000;
-	color: var(--ai-primary, #A00000);
-}
-
-.aimeos progress[value]::-webkit-progress-bar {
-	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
-}
-
-.aimeos progress::-moz-progress-bar {
-	background-color: #A00000;
-}
-
-.aimeos progress::-webkit-progress-value {
-	background-color: #A00000;
-}
 .aimeos .btn {
 	width: 12rem;
 	vertical-align: top;
@@ -552,113 +524,6 @@ body .main-section {
 	margin-inline-start: auto;
 }
 
-/* slider */
-
-.aimeos input[type=range] {
-	-webkit-appearance: none;
-	margin: 1.5rem 0 .5rem;
-	width: 100%;
-	border: none;
-}
-
-.aimeos input[type=range]:focus {
-	outline: none;
-}
-
-.aimeos input[type=range]::-webkit-slider-runnable-track {
-	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
-	border-radius: 0.1rem;
-	border: none;
-	cursor: ew-resize;
-	margin: 1rem 0;
-	height: 0.2rem;
-	width: 100%;
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
-}
-
-.aimeos input[type=range]::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
-	border-radius: 50%;
-	cursor: ew-resize;
-	height: 1.5rem;
-	width: 1.5rem;
-	margin-top: -0.7rem;
-}
-
-.aimeos input[type=range]::-moz-range-track {
-	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
-	cursor: pointer;
-	height: 0.2rem;
-	width: 100%;
-	border: none;
-}
-
-input[type="range"]::-moz-range-progress {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
-}
-
-.aimeos input[type=range]::-moz-range-thumb {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
-	border-radius: 50%;
-	cursor: pointer;
-	height: 1.5rem;
-	width: 1.5rem;
-}
-
-.aimeos input[type=range]::-ms-track {
-	cursor: pointer;
-	color: transparent;
-	background: transparent;
-	border-color: transparent;
-	border-width: 0;
-	height: 0.2rem;
-	width: 100%;
-}
-
-.aimeos input[type=range]::-ms-fill-lower {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
-	border-radius: 50%;
-	border: none;
-}
-
-.aimeos input[type=range]::-ms-fill-upper {
-	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
-	border-radius: 50%;
-	border: none;
-}
-
-.aimeos input[type=range]::-ms-thumb {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
-	border-radius: 50%;
-	border: none;
-	cursor: pointer;
-	height: 1.5rem;
-	width: 1.5rem;
-}
-
-.aimeos input[type=range]:focus::-ms-fill-lower {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
-}
-
-.aimeos input[type=range]:focus::-ms-fill-upper {
-	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
-}
-
 
 
 
@@ -726,10 +591,6 @@ body {
 .navbar-top .catalog-filter  .catalog-filter-attribute,
 .navbar-top .catalog-filter-search .reset{
 	display: none;
-}
-
-.catalog-filter-tree.col{
-	margin-bottom: 0;
 }
 
 /*- content-list section -*/
@@ -1491,60 +1352,4 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 	.bp-page-content.main-section  .catalog-filter-price .price-lists {
 		display: none;
 	}
-}
-
-/* Bootstrap components */
-
-.aimeos .card {
-	border: 1px solid #282828;
-	border-color: var(--ai-primary, #282828);
-}
-
-.aimeos .card-header {
-	background-color: #282828;
-	background-color: var(--ai-primary, #282828);
-	border-bottom: 1px solid #282828;
-	border-color: var(--ai-primary, #282828);
-	color: #FFFFFF;
-	color: var(--ai-bg, #FFFFFF);
-}
-
-.aimeos .card .form-check,
-.aimeos .card .form-check-input {
-	position: static;
-	padding-left: 0;
-	margin-left: 0;
-}
-
-.aimeos .card .btn {
-	margin: 0.5rem 1rem;
-}
-
-
-/* JS autocomplete */
-
-.autocomplete {
-	z-index: 1050;
-	overflow: auto;
-	box-sizing: border-box;
-	border: 1px solid #555;
-	border-color: var(--ai-secondary, #555);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
-}
-
-.autocomplete > div {
-	padding: 0.25rem;
-}
-
-.autocomplete .group {
-	background-color: #F6F6F6;
-	background-color: var(--ai-bg-light, #F6F6F6);
-}
-
-.autocomplete > div:hover:not(.group),
-.autocomplete > div.selected {
-	cursor: pointer;
-	background-color: #CCC;
-	background-color: var(--ai-primary-light, #CCC);
 }
