@@ -924,31 +924,27 @@ input[type="range"]::-moz-range-progress {
 }
 
 
-/* Watched, favorite, products and session items */
+/* Watched products */
 
-.account-watch .minibutton.delete,
-.account-favorite .minibutton.delete {
+.account-watch .minibutton.delete {
 	position: absolute;
 	right: 1%;
 	top: 1%;
 	z-index: 5;
 }
 
-.account-watch .price-list .rebatepercent,
-.account-favorite .price-list .rebatepercent {
+.account-watch .price-list .rebatepercent {
 	display: none;
 }
 
-.account-watch,
-.account-favorite {
+.account-watch {
 	clear: both;
 	padding: 0;
 	text-align: center;
 	margin: 1rem 0;
 }
 
-.account-watch .watch-items,
-.account-favorite .favorite-items {
+.account-watch .watch-items {
 	padding: 0;
 }
 
@@ -956,7 +952,6 @@ input[type="range"]::-moz-range-progress {
 .account-review h1.header,
 .account-watch .header,
 .account-history .header,
-.account-favorite .header,
 .account-subscription .header {
 	border-bottom: solid 1px #555;
 	border-bottom-color: var(--ai-secondary, #555);
@@ -968,8 +963,7 @@ input[type="range"]::-moz-range-progress {
 	color: var(--ai-secondary, #555);
 }
 
-.account-watch .watch-item,
-.account-favorite .favorite-item {
+.account-watch .watch-item {
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
@@ -990,8 +984,7 @@ input[type="range"]::-moz-range-progress {
 	margin: 0;
 }
 
-.account-watch .media-item,
-.account-favorite .media-item {
+.account-watch .media-item {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
@@ -999,8 +992,7 @@ input[type="range"]::-moz-range-progress {
 	width: 160px;
 }
 
-.account-watch .media-item img,
-.account-favorite .media-item img {
+.account-watch .media-item img {
 	position: relative;
 	max-width: 100%;
 	display: block;
@@ -1010,8 +1002,7 @@ input[type="range"]::-moz-range-progress {
 	transform: translate(0, -50%);
 }
 
-.account-watch .name,
-.account-favorite .name {
+.account-watch .name {
 	margin: 0;
 	padding: 0;
 	height: 1rem;
@@ -1023,8 +1014,7 @@ input[type="range"]::-moz-range-progress {
 	margin: .75rem auto;
 }
 
-.account-watch .modify,
-.account-favorite .modify {
+.account-watch .modify {
 	position: absolute;
 	display: block;
 	padding: .5rem 0.75rem;
@@ -1032,8 +1022,7 @@ input[type="range"]::-moz-range-progress {
 	bottom: 0;
 }
 
-.account-watch .modify:before,
-.account-favorite .modify:before {
+.account-watch .modify:before {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	content: "\f5de";
 	font-size: 120%;
