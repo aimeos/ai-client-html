@@ -944,34 +944,6 @@ AimeosCatalog = {
 };
 
 
-
-
-/**
- * Locale selector actions
- */
-AimeosLocaleSelect = {
-
-	/**
-	 * Keeps menu open on click resp. closes on second click
-	 */
-	setupMenuToggle: function() {
-
-		$(".select-menu .select-dropdown").on('click', function() {
-			$("ul", this).toggleClass("active");
-			$(this).toggleClass("active");
-		});
-	},
-
-
-	/**
-	 * Initializes the locale selector actions
-	 */
-	init: function() {
-		this.setupMenuToggle();
-	}
-};
-
-
 /**
  * Page actions
  */
@@ -1183,10 +1155,7 @@ $("html").removeClass("no-js");
 $(function() {
 
 	Aimeos.init();
-
 	AimeosPage.init();
-	AimeosLocaleSelect.init();
-
 	AimeosCatalog.init();
 
 	AimeosAccountProfile.init();

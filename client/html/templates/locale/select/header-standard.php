@@ -2,9 +2,14 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
+$enc = $this->encoder();
+
+
 ?>
-<?= $this->get( 'selectHeader' );
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/locale-select.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/locale-select.js', 'fs-theme' ) ) ?>"></script>
+
+<?= $this->get( 'selectHeader' ) ?>
