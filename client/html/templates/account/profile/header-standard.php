@@ -5,5 +5,11 @@
  * @copyright Aimeos (aimeos.org), 2016-2022
  */
 
+$enc = $this->encoder();
+
+
 ?>
-<?= $this->get( 'profileHeader' );
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-profile.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-profile.js', 'fs-theme' ) ) ?>"></script>
+
+<?= $this->get( 'profileHeader' ) ?>

@@ -948,7 +948,6 @@ input[type="range"]::-moz-range-progress {
 	padding: 0;
 }
 
-.account-profile h1.header,
 .account-review h1.header,
 .account-watch .header,
 .account-subscription .header {
@@ -1301,74 +1300,6 @@ input[type="range"]::-moz-range-progress {
 	color: var(--ai-secondary, #555);
 	width: 100%;
 	height: 4rem;
-}
-
-
-/* Account profile */
-.account-profile-address h2 {
-	margin: 8px 15px;
-}
-
-.account-profile-address .row {
-	padding: 0 1rem;
-}
-
-.account-profile-address .panel {
-	box-shadow: none;
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
-	margin: 0.5rem 0;
-}
-
-.account-profile-address .panel-heading {
-	padding: 15px;
-}
-
-.account-profile-address .panel-heading .act-show,
-.account-profile-address .panel-heading .act-hide {
-	float: right;
-}
-
-[dir="rtl"] .account-profile-address .panel-heading .act-show,
-[dir="rtl"] .account-profile-address .panel-heading .act-hide {
-	float: left;
-}
-
-.account-profile-address .panel-heading .act-show:after {
-	font: normal normal normal 14px/1 bootstrap-icons;
-	content: "\f4cb";
-	font-size: 130%;
-}
-
-.account-profile-address .panel-heading .act-hide:after {
-	font: normal normal normal 14px/1 bootstrap-icons;
-	content: "\f62a";
-	font-size: 130%;
-}
-
-.account-profile li.form-item.mandatory label {
-	font-weight: bold;
-}
-
-.account-profile li.form-item label {
-	font-weight: normal;
-	margin: 7px 0;
-}
-
-.account-profile .form-list .error {
-	color: #FF3300;
-	color: var(--ai-danger, #FF3300);
-}
-
-.account-profile .form-list .error a {
-	color: #FF3300;
-	color: var(--ai-danger, #FF3300);
-}
-
-.account-profile .form-list .error input,
-.account-profile .form-list .error select {
-	border: 1px solid #FF3300;
-	border-color: var(--ai-danger, #FF3300);
 }
 
 
