@@ -1,0 +1,127 @@
+.account-watch .minibutton.delete {
+	position: absolute;
+	right: 1%;
+	top: 1%;
+	z-index: 5;
+}
+
+.account-watch .price-list .rebatepercent {
+	display: none;
+}
+
+.account-watch {
+	clear: both;
+	padding: 0;
+	text-align: center;
+	margin: 1rem 0;
+}
+
+.account-watch .watch-items {
+	padding: 0;
+}
+
+.account-watch .header {
+	border-bottom: solid 1px #555;
+	border-bottom-color: var(--ai-secondary, #555);
+	text-transform: uppercase;
+	text-align: start;
+	font-weight: normal;
+	padding: 0.5rem 1rem;
+	color: #555;
+	color: var(--ai-secondary, #555);
+}
+
+.account-watch .watch-item {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	text-align: right;
+	width: 160px;
+	margin: 1%;
+	padding: 0;
+}
+
+.account-watch .watch-item {
+	min-width: 160px;
+	max-width: 320px;
+	width: 100%;
+}
+
+.account-watch a.watch-item {
+	width: 160px;
+	margin: 0;
+}
+
+.account-watch .media-item {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	height: 213px;
+	width: 160px;
+}
+
+.account-watch .media-item img {
+	position: relative;
+	max-width: 100%;
+	display: block;
+	margin: auto;
+	height: auto;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+.account-watch .name {
+	margin: 0;
+	padding: 0;
+	height: 1rem;
+	font-size: 100%;
+	font-weight: normal;
+	overflow: hidden;
+	text-transform: uppercase;
+	max-width: 15rem;
+	margin: .75rem auto;
+}
+
+.account-watch .modify {
+	position: absolute;
+	display: block;
+	padding: .5rem 0.75rem;
+	left: 0;
+	bottom: 0;
+}
+
+.account-watch .modify:before {
+	font: normal normal normal 14px/1 bootstrap-icons;
+	content: "\f5de";
+	font-size: 120%;
+	vertical-align: bottom;
+}
+
+.account-watch .watch-details {
+	display: inline-block;
+	text-align: center;
+	width: 116px;
+	margin-top: 1.5rem;
+}
+
+.account-watch .form-list label {
+	width: 114px;
+}
+
+.account-watch .form-list input {
+	width: 114px;
+	height: 1rem;
+}
+
+.account-watch .form-list select {
+	width: 114px;
+	font-size: 100%;
+}
+
+.account-watch .button-group {
+	padding: 0;
+}
+
+.account-watch .btn {
+	width: 100%;
+}
