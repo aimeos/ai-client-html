@@ -602,6 +602,84 @@
 	color: #A00000;
 }
 
+/* Additional section */
+
+
+.catalog-detail-additional .nav-tabs {
+	border-bottom: 1px solid transparent;
+	border-bottom-color: #282828;
+	border-bottom-color: var(--ai-primary, #282828);
+}
+
+.catalog-detail-additional .nav-tabs .nav-link {
+	margin-bottom: -1px;
+	border: 1px solid transparent;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	transition: all .3s linear;
+}
+
+.catalog-detail-additional .nav-link:focus, .nav-link:hover {
+	color: #282828;
+}
+
+.catalog-detail-additional .nav-tabs a:link:not(.btn):hover {
+	border: 1px solid transparent;
+	color: #282828;
+	color: var(--ai-primary, #282828);
+	background-color: #F6F6F6;
+	background-color: var(--ai-bg-light, #F6F6F6);
+	transition: all .3s linear;
+}
+
+.catalog-detail-additional .nav-tabs a {
+	font-size: 120%;
+	text-transform: uppercase;
+	color: #282828;
+	color: var(--ai-primary, #282828);
+}
+
+.catalog-detail-additional .nav-tabs .nav-item.show .nav-link {
+	color: #495057;
+	background-color: #fff;
+	border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.catalog-detail-additional .nav-tabs .nav-link.active:not(.btn) {
+	color: #FFFFFF;
+	color: var(--ai-primary-alt, #FFFFFF);
+	border: 1px solid transparent;
+	background-color: #282828;
+	background-color: var(--ai-primary, #282828);
+}
+
+.catalog-detail-additional .nav-review .ratings {
+	display: inline-block;
+	margin-inline-start: .25rem;
+	padding: .25rem .4rem;
+	font-weight: bold;
+	font-size: 75%;
+	line-height: 1;
+	white-space: nowrap;
+	vertical-align: text-bottom;
+	border-radius: .25rem;
+	background-color: #FFA500;
+	background-color: var(--ai-warning, #FFA500);
+	color: #FFFFFF;
+	color: var(--ai-primary-alt, #FFFFFF);
+}
+
+.catalog-detail-additional.tab-content {
+	background-color: #F6F6F6;
+	background-color: var(--ai-bg-light, #F6F6F6);
+	border: none;
+	width: 100%;
+}
+
+.catalog-detail-additional.tab-content .fade {
+	transition: opacity .15s linear;
+}
+
 
 /* Rating */
 
@@ -723,6 +801,29 @@
 
 .catalog-detail .product .text-list {
 	margin: 0.5rem 0;
+}
+
+.catalog-detail table > thead > tr > th,
+.catalog-detail table > tbody > tr > td,
+.catalog-detail table > tfoot > tr > td {
+	color: #555;
+	color: var(--ai-secondary, #555);
+	border: none;
+}
+
+.catalog-detail thead {
+	border-bottom: 1px solid #555;
+	border-bottom-color: var(--ai-secondary, #555);
+}
+
+.catalog-detail tbody tr {
+	border-bottom: 1px solid #D0D0D0;
+	border-bottom-color: var(--ai-light, #D0D0D0);
+}
+
+.catalog-detail tbody tr:last-child {
+	border-bottom: 1px solid #555;
+	border-bottom-color: var(--ai-secondary, #555);
 }
 
 /* product suggest, product bought */

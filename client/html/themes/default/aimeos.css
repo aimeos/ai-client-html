@@ -273,33 +273,6 @@ body .main-section {
 	height: auto;
 }
 
-.aimeos table > thead > tr > th,
-.aimeos table > tbody > tr > td,
-.aimeos table > tfoot > tr > td {
-	color: #555;
-	color: var(--ai-secondary, #555);
-	border: none;
-}
-
-.aimeos thead {
-	border-bottom: 1px solid #555;
-	border-bottom-color: var(--ai-secondary, #555);
-}
-
-.aimeos tbody tr {
-	border-bottom: 1px solid #D0D0D0;
-	border-bottom-color: var(--ai-light, #D0D0D0);
-}
-
-.aimeos tbody tr:last-child {
-	border-bottom: 1px solid #555;
-	border-bottom-color: var(--ai-secondary, #555);
-}
-
-.aimeos table .form-control {
-	border: none;
-}
-
 .aimeos,
 .aimeos h1, .aimeos h2,
 .aimeos h3, .aimeos h4 {
@@ -1519,84 +1492,6 @@ footer .footer-left, footer .footer-center, footer .footer-right{
 		display: none;
 	}
 }
-
-/*----------------------------- Detail Page ----------------------------------*/
-
-.nav-tabs {
-	border-bottom: 1px solid transparent;
-	border-bottom-color: #282828;
-	border-bottom-color: var(--ai-primary, #282828);
-}
-
-.nav-tabs .nav-link {
-	margin-bottom: -1px;
-	border: 1px solid transparent;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	transition: all .3s linear;
-}
-
-.nav-link:focus, .nav-link:hover {
-	color: #282828;
-}
-
-.nav-tabs a:link:not(.btn):hover {
-	border: 1px solid transparent;
-	color: #282828;
-	color: var(--ai-primary, #282828);
-	background-color: #F6F6F6;
-	background-color: var(--ai-bg-light, #F6F6F6);
-	transition: all .3s linear;
-}
-
-.nav-tabs a {
-	font-size: 120%;
-	text-transform: uppercase;
-	color: #282828;
-	color: var(--ai-primary, #282828);
-}
-
-.nav-tabs .nav-item.show .nav-link {
-	color: #495057;
-	background-color: #fff;
-	border-color: #dee2e6 #dee2e6 #fff;
-}
-
-.nav-tabs .nav-link.active:not(.btn) {
-	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
-	border: 1px solid transparent;
-	background-color: #282828;
-	background-color: var(--ai-primary, #282828);
-}
-
-.nav-review .ratings {
-	display: inline-block;
-	margin-inline-start: .25rem;
-	padding: .25rem .4rem;
-	font-weight: bold;
-	font-size: 75%;
-	line-height: 1;
-	white-space: nowrap;
-	vertical-align: text-bottom;
-	border-radius: .25rem;
-	background-color: #FFA500;
-	background-color: var(--ai-warning, #FFA500);
-	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
-}
-
-.tab-content.catalog-detail-additional {
-	background-color: #F6F6F6;
-	background-color: var(--ai-bg-light, #F6F6F6);
-	border: none;
-	width: 100%;
-}
-
-.tab-content .fade {
-	transition: opacity .15s linear;
-}
-
 
 /* Bootstrap components */
 
