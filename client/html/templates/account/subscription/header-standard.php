@@ -5,5 +5,11 @@
  * @copyright Aimeos (aimeos.org), 2018-2022
  */
 
+$enc = $this->encoder();
+
+
 ?>
-<?= $this->get( 'subscriptionHeader' );
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-subscription.css', 'fs-theme' ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-subscription.js', 'fs-theme' ) ) ?>"></script>
+
+<?= $this->get( 'subscriptionHeader' ) ?>

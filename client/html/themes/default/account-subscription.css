@@ -1,0 +1,80 @@
+.account-subscription .header {
+	text-transform: uppercase;
+	text-align: start;
+	font-weight: normal;
+	padding: 0.5rem 1rem;
+	color: #555;
+	color: var(--ai-secondary, #555);
+	border-bottom: solid 1px #555;
+	border-bottom-color: var(--ai-secondary, #555);
+}
+
+.account-subscription {
+	margin: 0 auto;
+}
+
+.account-subscription-list .subscription-list {
+	list-style: none;
+	padding: 0;
+}
+
+.account-subscription-list .subscription-item {
+	border: 1px solid #D0D0D0;
+	border-color: var(--ai-light, #D0D0D0);
+	padding: 1rem;
+	margin: 1rem 0;
+}
+
+.account-subscription-list .name:after {
+	content: ": ";
+}
+
+.account-subscription-list .subscription-basic {
+	font-weight: bold;
+}
+
+.account-subscription-list .action {
+	margin-top: 0.5rem;
+}
+
+.account-subscription-list .action .btn {
+	border: 1px solid #555;
+	border-color: var(--ai-secondary, #555);
+	display: block;
+	width: 100%;
+	max-width: 6rem;
+	margin: auto;
+}
+
+.account-subscription-detail {
+	padding-top: 1rem;
+}
+
+.account-subscription-detail a:hover {
+	text-decoration: underline;
+}
+
+.account-subscription-detail .modify {
+	float: right;
+	margin: 0 1rem;
+}
+
+[dir="rtl"] .account-subscription-detail .modify {
+	float: left;
+}
+
+.account-subscription-detail h2 {
+	margin: 0.5rem 0;
+}
+
+.account-subscription-detail h3 {
+	display: inline-block;
+	font-size: 1rem;
+	margin: 0;
+}
+
+
+.account-subscription-detail .attr-item .name,
+.account-subscription-detail .attr-item .value {
+	min-width: 0;
+}
