@@ -1,0 +1,54 @@
+.account-review h1.header {
+	border-bottom: solid 1px #555;
+	border-bottom-color: var(--ai-secondary, #555);
+	text-transform: uppercase;
+	text-align: start;
+	font-weight: normal;
+	padding: 0.5rem 1rem;
+	color: #555;
+	color: var(--ai-secondary, #555);
+}
+
+.account-review h2 {
+	margin: 8px 15px;
+}
+
+.account-review .todo-item {
+	padding: 1rem;
+}
+
+.account-review h3 {
+	padding: 0 1rem;
+}
+
+.account-review .col-md-6 {
+	padding-top: 1rem;
+}
+
+.account-review .todo-image {
+	max-width: 100%;
+	max-height: 10rem;
+}
+
+.account-review .todo-rating label {
+	vertical-align: middle;
+	height: 1.25rem;
+	width: 1.25rem;
+}
+
+.account-review .todo-rating input:checked ~ label {
+	color: var(--ai-primary, #A00000);
+}
+
+.account-review .todo-comment {
+	width: 100%;
+	height: 8.5rem;
+	padding: 0.5rem;
+	border: 1px solid #D0D0D0;
+	border-color: var(--ai-light, #D0D0D0);
+}
+
+.account-review .btn {
+	display: block;
+	margin: 1rem auto;
+}
