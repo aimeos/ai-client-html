@@ -232,7 +232,7 @@ class Standard
 		 * @category User
 		 * @see client/html/email/from-email
 		 */
-		$file = $view->config( 'client/html/email/logo', 'client/html/themes/default/media/aimeos.png' );
+		$file = $view->config( 'client/html/email/logo', 'client/html/themes/default/media/logo.png' );
 
 		if( file_exists( $file ) && ( $content = file_get_contents( $file ) ) !== false )
 		{
