@@ -6,39 +6,28 @@
  */
 
 
-/* roboto-condensed-regular - latin */
 @font-face {
 	font-family: 'Roboto Condensed';
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.eot');
-	src: local('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.eot'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.woff2') format('woff2'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.woff') format('woff'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.ttf') format('truetype'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-regular.svg#RobotoCondensed') format('svg');
+	src: url('./fonts/roboto-condensed-v19-latin-regular.woff2') format('woff2'),
+		url('./fonts/roboto-condensed-v19-latin-regular.woff') format('woff');
 }
 
-/* roboto-condensed-700 - latin */
 @font-face {
 	font-family: 'Roboto Condensed';
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src: url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.eot');
-	src: local('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.eot'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.woff2') format('woff2'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.woff') format('woff'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.ttf') format('truetype'),
-		url('./fonts/roboto-condensed-v19-latin/roboto-condensed-v19-latin-700.svg#RobotoCondensed') format('svg');
+	src: url('./fonts/roboto-condensed-v19-latin-700.woff2') format('woff2'),
+		url('./fonts/roboto-condensed-v19-latin-700.woff') format('woff');
 }
 
 @font-face {
 	font-family: 'bootstrap-icons';
-	src: url('./fonts/bootstrap-icons.woff2') format('woff2');
+	src: url('./fonts/bootstrap-icons.woff2') format('woff2'),
+		url('./fonts/bootstrap-icons.woff') format('woff');
 }
 
 
@@ -67,7 +56,7 @@ body {
 	color: var(--ai-primary, #000);
 	background-color: #FFF;
 	background-color: var(--ai-bg-alt, #FFF);
-	background-image: url(./media/header-bg.jpg);
+	background-image: url(./media/header-bg.webp);
 	background-repeat: no-repeat;
 	background-size: 100% calc(1rem + 50px);
 }
@@ -445,13 +434,13 @@ body .main-section {
 }
 
 .aimeos .loading {
-	background-image: url(media/progress.gif);
+	background-image: url(media/spinner.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .aimeos-spinner {
-	background-image: url(media/spinner.gif);
+	background-image: url(media/spinner.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 	position: fixed;
