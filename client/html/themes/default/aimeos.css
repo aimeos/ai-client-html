@@ -26,6 +26,7 @@
 
 @font-face {
 	font-family: 'bootstrap-icons';
+	font-display: swap;
 	src: url('./fonts/bootstrap-icons.woff2') format('woff2'),
 		url('./fonts/bootstrap-icons.woff') format('woff');
 }
@@ -365,7 +366,7 @@ body .main-section {
 }
 
 .aimeos .lazy-image {
-	background-image: url(media/progress.gif);
+	background-image: url(media/spinner.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;

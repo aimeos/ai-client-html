@@ -99,7 +99,7 @@ $pos = 0;
 							<?php foreach( $mediaItems as $mediaItem ) : ?>
 
 								<a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
-									<img class="stage-image"
+									<img loading="lazy" class="stage-image"
 										src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
 										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
