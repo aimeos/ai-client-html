@@ -232,11 +232,9 @@ AimeosCatalog = {
 			var type = elem.data("type");
 			var value = elem.find(".select-option:checked").val();
 
-			elem.parents(".product").find(".image-single .item").each( function(ev) {
-
-				if( $(this).data("variant-" + type) == value ) {
-					var idx = $(this).parent().data('slick-index');
-					$('.product .image-single').slick('slickGoTo', idx, false);
+			elem.closest(".product").find(".image-single .item").each( function() {
+				if($(this).data("variant-" + type) == value) {
+					swiffyslider.slideTo(this, $(this).parent().data('slick-index'))
 				}
 			});
 		});
