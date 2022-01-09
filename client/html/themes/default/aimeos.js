@@ -191,18 +191,18 @@ Aimeos = {
 
 
 /**
- * Basket mini client actions
+ * Basket client actions
  */
-AimeosBasketMini = {
+AimeosBasket = {
 
 	/**
 	 * Updates the basket mini content using the JSON API
 	 */
-	update: function() {
+	updateMini: function() {
 
 		var jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
 
-		if(typeof jsonurl === 'undefined' || jsonurl == '') {
+		if(!jsonurl) {
 			return;
 		}
 
@@ -220,14 +220,7 @@ AimeosBasketMini = {
 				AimeosBasketMini.updateBasket(basket);
 			});
 		});
-	}
-};
-
-
-/**
- * Basket standard client actions
- */
-AimeosBasketStandard = {
+	},
 
 	/**
 	 * Updates the basket without page reload
@@ -240,7 +233,7 @@ AimeosBasketStandard = {
 		var basket = $(".basket-standard", doc);
 
 		$(".btn-update", basket).hide();
-		AimeosBasketMini.update();
+		AimeosBasket.updateMini();
 
 		return basket;
 	}

@@ -42,7 +42,7 @@ AimeosBasketStandard = {
 			}).then(function(response) {
 				return response.text();
 			}).then(function(data) {
-				$(".basket-standard").html(AimeosBasketStandard.updateBasket(data).html());
+				$(".basket-standard").html(AimeosBasket.updateBasket(data).html());
 			}).finally(() => {
 				Aimeos.removeSpinner();
 			});
@@ -63,7 +63,7 @@ AimeosBasketStandard = {
 			fetch($(this).attr("href")).then(response => {
 				return response.text();
 			}).then(data => {
-				$(".basket-standard").html(AimeosBasketStandard.updateBasket(data).html());
+				$(".basket-standard").html(AimeosBasket.updateBasket(data).html());
 			}).finally(function() {
 				Aimeos.removeSpinner();
 			});
