@@ -37,7 +37,7 @@ $enc = $this->encoder();
 
 	<ul class="seen-items">
 		<?php foreach( $this->get( 'seenItems', [] ) as $seen ) : ?>
-			<li class="seen-item">
+			<li class="seen-item product">
 				<?= $seen ?>
 			</li>
 		<?php endforeach ?>
