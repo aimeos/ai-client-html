@@ -122,9 +122,9 @@ AimeosCatalog = {
 			var attrDeps = target.data("attrdeps") || {}; // {"<attrid>":["prodid",...],...}
 
 
-			$(".select-option:checked", target).each(function(idx, option) {
+			$(".select-option:checked", target).each(function() {
 
-				var value = $(option).val();
+				var value = $(this).val();
 
 				if( value !== "" && attrDeps.hasOwnProperty(value) ) {
 
@@ -147,8 +147,8 @@ AimeosCatalog = {
 				if( map.hasOwnProperty(prodId) && map[prodId] === len ) {
 
 					var parent = $(this).parents(".catalog-detail-basket, .catalog-list .product");
-					var newStock = $(".stock-list [data-prodid=" + prodId + "]", parent);
-					var newPrice = $(".price-list [data-prodid=" + prodId + "]", parent);
+					var newStock = $('.stock-list [data-prodid="' + prodId + '"]', parent);
+					var newPrice = $('.price-list [data-prodid="' + prodId + '"]', parent);
 
 					if( newStock.length === 0 ) {
 						newStock = $(".stock-list .articleitem:first-child", parent);
