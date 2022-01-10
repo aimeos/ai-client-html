@@ -438,7 +438,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	margin: 0;
 }
 
-/* slider */
+/* price slider */
 
 .catalog-filter-price input[type=range] {
 	-webkit-appearance: none;
@@ -548,46 +548,25 @@ html.no-js .catalog-filter-price:hover .price-lists {
 /*Big Screens*/
 
 .catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:link,
-.catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:visited {
-	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
-}
-.catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:link:hover,
-.catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:visited:hover {
-	color: #CCCCCC;
-	color: var(--ai-light, #CCCCCC);
-}
+.catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:visited,
 .catalog-filter-tree .list-container a.cat-item:link,
-.catalog-filter-tree .list-container a.cat-item:visited {
-	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
-}
-.catalog-filter-tree .list-container a.cat-item:link:hover,
-.catalog-filter-tree .list-container a.cat-item:visited:hover {
-	color: #CCCCCC;
-	color: var(--ai-light, #CCCCCC);
-}
+.catalog-filter-tree .list-container a.cat-item:visited,
 .catalog-filter-tree .list-container .top-item.nochild a.cat-item:link,
-.catalog-filter-tree .list-container .top-item.nochild a.cat-item:visited {
-	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
-}
-.catalog-filter-tree .list-container .top-item.nochild a.cat-item:link:hover,
-.catalog-filter-tree .list-container .top-item.nochild a.cat-item:visited:hover {
-	color: #CCCCCC;
-	color: var(--ai-light, #CCCCCC);
-}
-.catalog-filter-tree .list-container > .top-item.active > a.cat-item:link,
-.catalog-filter-tree .list-container > .top-item.active > a.cat-item:visited {
-	color: #CCCCCC;
-	color: var(--ai-light, #CCCCCC);
-}
+.catalog-filter-tree .list-container .top-item.nochild a.cat-item:visited,
 .catalog-filter-tree .list-container.level-2 .active > a.cat-item:link,
 .catalog-filter-tree .list-container.level-2 .active > a.cat-item:visited {
 	color: #FFFFFF;
 	color: var(--ai-primary-alt, #FFFFFF);
 }
 
+.catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:link:hover,
+.catalog-filter-tree .list-container.level-2 .nochild > a.cat-item:visited:hover,
+.catalog-filter-tree .list-container a.cat-item:link:hover,
+.catalog-filter-tree .list-container a.cat-item:visited:hover,
+.catalog-filter-tree .list-container .top-item.nochild a.cat-item:link:hover,
+.catalog-filter-tree .list-container .top-item.nochild a.cat-item:visited:hover,
+.catalog-filter-tree .list-container > .top-item.active > a.cat-item:link,
+.catalog-filter-tree .list-container > .top-item.active > a.cat-item:visited,
 .catalog-filter-tree .megamenu > .submenu .has-submenu > a.cat-item {
 	color: #CCCCCC;
 	color: var(--ai-light, #CCCCCC);
@@ -596,53 +575,25 @@ html.no-js .catalog-filter-price:hover .price-lists {
 /*Mobile*/
 
 .catalog-filter-tree .list-container > .has-submenu > .submenu > .submenu-header > a:link,
-.catalog-filter-tree .list-container > .has-submenu > .submenu > .submenu-header > a:visited {
-	color: #555;
-	color: var(--ai-secondary, #555);
-}
-
+.catalog-filter-tree .list-container > .has-submenu > .submenu > .submenu-header > a:visited,
 .catalog-filter-tree .list-container.level-2 .nochild a.item-link:link,
-.catalog-filter-tree .list-container.level-2 .nochild a.item-link:visited {
-	color: #555;
-	color: var(--ai-secondary, #555);
-}
-
+.catalog-filter-tree .list-container.level-2 .nochild a.item-link:visited,
 .catalog-filter-tree .list-container.level-2 .nochild a.item-link:link:hover,
-.catalog-filter-tree .list-container.level-2 .nochild a.item-link:visited:hover {
-	color: #555;
-	color: var(--ai-secondary, #555);
-}
-
-.catalog-filter-tree .list-container a.item-link:link,
-.catalog-filter-tree .list-container a.item-link:visited {
-	color: #282828;
-	color: var(--ai-primary, #282828);
-}
-
+.catalog-filter-tree .list-container.level-2 .nochild a.item-link:visited:hover,
 .catalog-filter-tree .list-container a.item-link:link:hover,
-.catalog-filter-tree .list-container a.item-link:visited:hover {
-	color: #555;
-	color: var(--ai-secondary, #555);
-}
-
-.catalog-filter-tree .list-container .top-item.nochild a.item-link:link,
-.catalog-filter-tree .list-container .top-item.nochild a.item-link:visited {
-	color: #282828;
-	color: var(--ai-primary, #282828);
-}
-
+.catalog-filter-tree .list-container a.item-link:visited:hover,
 .catalog-filter-tree .list-container .top-item.nochild a.item-link:link:hover,
 .catalog-filter-tree .list-container .top-item.nochild a.item-link:visited:hover {
 	color: #555;
 	color: var(--ai-secondary, #555);
 }
 
+.catalog-filter-tree .list-container a.item-link:link,
+.catalog-filter-tree .list-container a.item-link:visited,
+.catalog-filter-tree .list-container .top-item.nochild a.item-link:link,
+.catalog-filter-tree .list-container .top-item.nochild a.item-link:visited,
 .catalog-filter-tree .list-container > .top-item.active > .item-links > a.item-link:link,
-.catalog-filter-tree .list-container > .top-item.active > .item-links > a.item-link:visited {
-	color: #282828;
-	color: var(--ai-primary, #282828);
-}
-
+.catalog-filter-tree .list-container > .top-item.active > .item-links > a.item-link:visited,
 .catalog-filter-tree .list-container.level-2 .active > .item-links > a.item-link:link,
 .catalog-filter-tree .list-container.level-2 .active > .item-links > a.item-link:visited {
 	color: #282828;
@@ -1028,12 +979,9 @@ html.no-js .catalog-filter-price:hover .price-lists {
 /* Attribute Filter */
 
 .catalog-filter-attribute fieldset {
-	border-left: none;
-}
-
-.catalog-filter-attribute fieldset {
 	width: 49%;
 	min-width: 8rem;
+	border-left: none;
 }
 
 @media screen and (min-width: 992px) {
