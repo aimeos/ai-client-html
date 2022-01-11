@@ -378,7 +378,6 @@ body .main-section {
 	clear: left;
 	color: #555;
 	color: var(--ai-secondary, #555);
-	font-size: 90%;
 	margin: 0;
 }
 
@@ -404,7 +403,7 @@ body .main-section {
 	display: inline-block;
 	text-decoration: none;
 	white-space: nowrap;
-	padding: 0.5rem;
+	padding: 0.75rem;
 	color: #555;
 	color: var(--ai-secondary, #555);
 }
@@ -427,7 +426,7 @@ body .main-section {
 .aimeos .browser span,
 .aimeos .browser a {
 	display: inline-block;
-	padding: 0 0.5rem;
+	padding: 0.75rem 1rem;
 	color: #555;
 	color: var(--ai-secondary, #555);
 	text-align: center;
