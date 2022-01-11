@@ -30,7 +30,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 					<div class="media-item">
-						<?= $this->image( $mediaItem ) ?>
+						<?= $this->image( $mediaItem, '(min-width: 360px) 720px, 240px' ) ?>
 					</div>
 				<?php endforeach ?>
 
