@@ -23,10 +23,13 @@ AimeosCatalogDetail = {
 
 		if(prodid && jsonUrl) {
 
-			this.options = $.ajax({
-				url: jsonUrl,
+			fetch(jsonUrl, {
 				method: "OPTIONS",
-				dataType: "json"
+				headers: ['Content-type: application/json']
+			}).then(response => {
+				return response.json();
+			}).then(data => {
+				this.options = data;
 			});
 
 			this.options.done(function(data) {
@@ -45,12 +48,14 @@ AimeosCatalogDetail = {
 						params = args;
 					}
 
-					$.ajax({
-						url: data.meta.resources.review,
-						method: "GET",
-						dataType: "json",
-						data: params
-					}).done(function(response) {
+					var url = new URL(data.meta.resources.review);
+					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
+
+					fetch(url, {
+						headers: ['Content-type: application/json']
+					}).then(response => {
+						return response.json();
+					}).then(response => {
 						AimeosCatalogDetail.addReviews(response, container);
 					});
 
@@ -63,18 +68,18 @@ AimeosCatalogDetail = {
 						params = args;
 					}
 
-					$.ajax({
-						url: data.meta.resources.review,
-						method: "GET",
-						dataType: "json",
-						data: params
-					}).done(function(response) {
+					var url = new URL(data.meta.resources.review);
+					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
+					fetch(url, {
+						headers: ['Content-type: application/json']
+					}).then(response => {
+						return response.json();
+					}).then(response => {
 						if(response && response.data) {
-
 							var ratings = $(".rating-dist", container).data("ratings") || 1;
 
-							$.each(response.data, function(idx, entry) {
+							response.data.forEach(function(entry) {
 								var percent = (entry.attributes || 0) * 100 / ratings;
 								$("#rating-" + (entry.id || 0)).val(percent).text(percent);
 							});
@@ -94,7 +99,7 @@ AimeosCatalogDetail = {
 			var more = $(".review-list .more", container);
 			var list = $(".review-items", container);
 
-			$.each(response.data, function(idx, entry) {
+			response.data.forEach(function(entry) {
 				item = AimeosCatalogDetail.updateReview(entry, template);
 				list.append(item);
 
@@ -216,12 +221,12 @@ AimeosCatalogDetail = {
 	/**
 	 * Initializes the slide in/out for block prices
 	 */
-	setupBlockPriceSlider: function() {
+	setupPriceSlider: function() {
 
 		$(".catalog-detail-basket .price-item:not(.price-item:first-of-type)").hide();
 
-		$('.catalog-detail-basket .price-list').on("click", function(ev) {
-			$(".price-item:not(.price-item:first-of-type)").each(function() {
+		$('.catalog-detail-basket .price-list').on("click", function() {
+			$(".price-item:not(.price-item:first-of-type)", this).each(function() {
 				slideToggle(this, 300);
 			});
 		});
@@ -235,24 +240,10 @@ AimeosCatalogDetail = {
 
 		$(".catalog-detail-service .service-list").hide();
 
-		$('.catalog-detail-service').on("click", function(ev) {
-			$(".service-list").each(function() {
+		$('.catalog-detail-service').on("click", function() {
+			$(".service-list", this).each(function() {
 				slideToggle(this, 300);
 			});
-		});
-	},
-
-
-	/**
-	 * Initializes the slide in/out for additional content
-	 */
-	setupAdditionalContentSlider: function() {
-
-		$(".catalog-detail-additional .content").hide();
-
-		$(".catalog-detail-additional .additional-box").on("click", ".header", function(ev) {
-			$(".content", ev.delegateTarget).slideToggle();
-			$(".header", ev.delegateTarget).toggleClass("toggle-js");
 		});
 	},
 
@@ -292,14 +283,13 @@ AimeosCatalogDetail = {
 	setupReviewLoadMore: function() {
 
 		$(".catalog-detail-additional .reviews").on("click", ".more", function(ev) {
-
 			ev.preventDefault();
 
-			$.ajax({
-				url: $(this).attr("href"),
-				method: "GET",
-				dataType: "json"
-			}).done(function(response) {
+			fetch($(this).attr("href"), {
+				headers: ['Content-type: application/json']
+			}).then(response => {
+				return response.json();
+			}).then(response => {
 				if(response && response.data) {
 					AimeosCatalogDetail.addReviews(response, ev.delegateTarget);
 				}
@@ -314,17 +304,14 @@ AimeosCatalogDetail = {
 	setupReviewsSort: function() {
 
 		$(".catalog-detail-additional .reviews").on("click", ".sort .sort-option", function(ev) {
-
 			ev.preventDefault();
 
-			$.ajax({
-				url: $(this).attr("href"),
-				method: "GET",
-				dataType: "json"
-			}).done(function(response) {
-
+			fetch($(this).attr("href"), {
+				headers: ['Content-type: application/json']
+			}).then(response => {
+				return response.json();
+			}).then(response => {
 				if(response && response.data) {
-
 					var reviews = $(".review-items", ev.delegateTarget);
 					var prototype = $(".prototype", reviews);
 
@@ -363,8 +350,7 @@ AimeosCatalogDetail = {
 		this.setupImageSlider();
 		this.setupImageLightbox();
 		this.setupServiceSlider();
-		this.setupBlockPriceSlider();
-		this.setupAdditionalContentSlider();
+		this.setupPriceSlider();
 
 		this.setupReviews();
 		this.setupReviewsShow();
