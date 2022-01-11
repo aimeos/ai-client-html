@@ -25,16 +25,17 @@ class Standard
 	 * Returns the HTML image tag for the given media item
 	 *
 	 * @param \Aimeos\MShop\Media\Item\Iface $media Media item
+	 * @param string $sizes Preferred image srcset sizes
 	 * @return string HTML image tag
 	 */
-	public function transform( \Aimeos\MShop\Media\Item\Iface $media ) : string
+	public function transform( \Aimeos\MShop\Media\Item\Iface $media, string $sizes = '' ) : string
 	{
 		$view = $this->view();
 		$enc = $view->encoder();
 
 		$sources = [];
 		foreach( $media->getPreviews() as $type => $path ) {
-			$sources[$type] = $view->content( $path );
+			$sources[$type] = $view->content( $path, 'fs-media' );
 		}
 
 		$variant = '';
@@ -59,6 +60,6 @@ class Standard
 			data-image="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
 			data-sources="' . $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) . '"
 			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-			' . $variant . ' />';
+			sizes="' . $sizes . '" ' . $variant . ' />';
 	}
 }

@@ -45,10 +45,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->setPreviews( ['100' => 'image-1.jpg', '200' => 'image-2.jpg'] )
 			->addListItem( 'attribute', $listItem, $attrItem );
 
-		$result = $this->object->transform( $mediaItem );
+		$result = $this->object->transform( $mediaItem, '240px' );
 
 		$this->assertStringContainsString( '/path/to/image-1.jpg 100w, /path/to/image-2.jpg 200w', $result );
 		$this->assertStringContainsString( 'src="/path/to/image-1.jpg"', $result );
 		$this->assertStringContainsString( 'data-variant-color="123"', $result );
+		$this->assertStringContainsString( 'sizes="240px"', $result );
 	}
 }
