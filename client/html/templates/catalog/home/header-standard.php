@@ -55,11 +55,11 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 
 <?php endif ?>
 
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/slider.css', 'fs-theme' ) ) ?>">
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-home.css', 'fs-theme' ) ) ?>">
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/slider.css', 'fs-theme', true ) ) ?>">
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-home.css', 'fs-theme', true ) ) ?>">
 
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/slider.js', 'fs-theme' ) ) ?>"></script>
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-home.js', 'fs-theme' ) ) ?>"></script>
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/slider.js', 'fs-theme', true ) ) ?>"></script>
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-home.js', 'fs-theme', true ) ) ?>"></script>
 
 <?php if( isset( $this->homeStockUrl ) ) : ?>
 	<?php foreach( $this->homeStockUrl as $url ) : ?>

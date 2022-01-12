@@ -9,7 +9,7 @@ $enc = $this->encoder();
 
 
 ?>
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/basket-mini.css', 'fs-theme' ) ) ?>">
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/basket-mini.js', 'fs-theme' ) ) ?>"></script>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/basket-mini.css', 'fs-theme', true ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/basket-mini.js', 'fs-theme', true ) ) ?>"></script>
 
 <?= $this->get( 'miniHeader' ) ?>

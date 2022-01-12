@@ -72,10 +72,10 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 <?php endif ?>
 
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog.css', 'fs-theme' ) ) ?>">
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-lists.css', 'fs-theme' ) ) ?>">
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog.css', 'fs-theme', true ) ) ?>">
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-lists.css', 'fs-theme', true ) ) ?>">
 
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog.js', 'fs-theme' ) ) ?>"></script>
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-lists.js', 'fs-theme' ) ) ?>"></script>
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog.js', 'fs-theme', true ) ) ?>"></script>
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-lists.js', 'fs-theme', true ) ) ?>"></script>
 
 <?= $this->get( 'listHeader' ) ?>

@@ -111,7 +111,7 @@ class TestHelperCntl
 		$helper = new \Aimeos\MW\View\Helper\Date\Standard( $view, 'Y-m-d' );
 		$view->addHelper( 'date', $helper );
 
-		$paths = ['controller/jobs', 'client/html', 'resource/fs/baseurl', 'resource/fs-media/baseurl'];
+		$paths = ['version', 'controller/jobs', 'client/html', 'resource/fs/baseurl', 'resource/fs-media/baseurl'];
 		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, $paths );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );

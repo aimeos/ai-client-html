@@ -9,7 +9,7 @@ $enc = $this->encoder();
 
 
 ?>
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-review.css', 'fs-theme' ) ) ?>">
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-review.js', 'fs-theme' ) ) ?>"></script>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-review.css', 'fs-theme', true ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-review.js', 'fs-theme', true ) ) ?>"></script>
 
 <?= $this->get( 'reviewHeader' ) ?>

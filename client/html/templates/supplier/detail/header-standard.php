@@ -66,7 +66,7 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
 
 <?php endif ?>
 
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/supplier-detail.css', 'fs-theme' ) ) ?>">
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/supplier-detail.js', 'fs-theme' ) ) ?>"></script>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/supplier-detail.css', 'fs-theme', true ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/supplier-detail.js', 'fs-theme', true ) ) ?>"></script>
 
 <?= $this->get( 'detailHeader' ) ?>

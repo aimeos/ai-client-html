@@ -9,8 +9,8 @@
 $enc = $this->encoder();
 
 ?>
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-filter.css', 'fs-theme' ) ) ?>">
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-filter.js', 'fs-theme' ) ) ?>"></script>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-filter.css', 'fs-theme', true ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-filter.js', 'fs-theme', true ) ) ?>"></script>
 
 <?php if( ( $url = $this->get( 'filterCountUrl' ) ) != null ) : ?>
 	<script defer src="<?= $enc->attr( $url ) ?>"></script>
