@@ -648,12 +648,6 @@ footer .footer-right{
 	right: 0;
 	left: 0;
 	z-index: 1030;
-	display: flex;
-}
-
-.navbar-brand {
-	margin: 0;
-	margin-inline-end: 1rem;
 }
 
 .navbar-collapse{

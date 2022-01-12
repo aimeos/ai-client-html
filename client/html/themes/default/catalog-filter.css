@@ -9,7 +9,7 @@
 	display: none;
 }
 
-.catalog-filter-tree.col{
+.catalog-filter-tree.col {
 	margin-bottom: 0;
 }
 
@@ -381,7 +381,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 
 .catalog-filter-attribute .attr-name,
-.catalog-filter-supplier label{
+.catalog-filter-supplier label {
 	margin-bottom: .5rem;
 }
 
@@ -664,20 +664,23 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 @media (min-width:768px) {
+
 	.catalog-filter-search .input-group:hover input,
 	.catalog-filter-search .input-group input:focus {
 		width: 15rem;
 	}
+
 }
 
 
 /* Filter-Tree */
 
-.catalog-filter-tree .row.item-links{
+.catalog-filter-tree .row.item-links {
 	margin: 0;
 }
 
 @media (max-width:991px) {
+
 	.catalog-filter-tree .category-selected {
 		display: none;
 	}
@@ -698,6 +701,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	.catalog-filter-tree .has-submenu .submenu .col-lg-4 {
 		padding: 0;
 	}
+
 }
 
 
@@ -708,12 +712,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 @media (min-width:992px) {
+
 	.catalog-filter-tree .category-lists div.level-1 > .top-item > div.submenu > div.list-container > div.cat-item,
 	.catalog-filter-tree .category-lists div.level-1 > .top-item > div.submenu > a.cat-item {
 		font-size: 85%;
 	}
 
-	.catalog-filter-tree .category-lists div.level-1 > .cat-item > div.submenu > div.list-container > div.active .cat-name{
+	.catalog-filter-tree .category-lists div.level-1 > .cat-item > div.submenu > div.list-container > div.active .cat-name {
 		border: none;
 	}
 
@@ -725,9 +730,10 @@ html.no-js .catalog-filter-price:hover .price-lists {
 		display: none !important;
 	}
 
-	.submenu .item-container .list-container{
+	.submenu .item-container .list-container {
 		min-width: 10rem;
 	}
+
 }
 
 .catalog-filter-tree .cat-img-link .media-item img {
@@ -790,7 +796,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 		margin-inline-end: 0;
 	}
 
-	.catalog-filter .filter-sections:after{
+	.catalog-filter .filter-sections:after {
 		position: relative;
 		display: block;
 		content: "";
@@ -811,7 +817,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 		margin: .5rem 0;
 	}
 
-
 	/* Top level */
 
 	.catalog-filter-tree .top-cat-item.cat-item {
@@ -821,7 +826,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 		font-size: 100%;
 	}
 
-	/*Items level-1 */
+	/* Items level-1 */
 
 	.catalog-filter-tree .category-lists div.level-1 {
 		display: flex;
@@ -906,7 +911,9 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Filter Container */
 
-.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
+.catalog-filter-attribute.col,
+.catalog-filter-price.col,
+.catalog-filter-supplier.col {
 	background-color: #FFF;
 	background-color: var(--ai-bg-alt, #FFF);
 	z-index: 1;
@@ -936,7 +943,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 @media (min-width:768px) {
-	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
+
+	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col {
 		background-color: #FFF;
 		background-color: var(--ai-bg-alt, #FFF);
 	}
@@ -948,11 +956,13 @@ html.no-js .catalog-filter-price:hover .price-lists {
 		display: none;
 		padding: 0.75rem;
 	}
+
 }
 
 
 @media (min-width:992px) {
-	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col{
+
+	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col {
 		margin-bottom: 1rem;
 	}
 
@@ -974,6 +984,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 		border: 0;
 		letter-spacing: 1.5px;
 	}
+
 }
 
 /* Attribute Filter */
@@ -985,6 +996,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 @media screen and (min-width: 992px) {
+
 	.catalog-filter-attribute fieldset {
 		width: 100%;
 		min-width: 0;
@@ -995,6 +1007,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	.catalog-filter-price .price-lists {
 		display: block;
 	}
+
 }
 
 /* Suppliers Filter */
@@ -1007,7 +1020,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 /* Price Filter */
 
-.catalog-filter-price .price-high, .catalog-filter-price .price-low{
+.catalog-filter-price .price-high, .catalog-filter-price .price-low {
 	font-size: 80%;
 	width: 3.75rem;
 	padding: .5rem;
@@ -1019,6 +1032,7 @@ aside .catalog-filter {
 }
 
 @media screen and (min-width: 576px) and (max-width: 991px) {
+
 	aside .catalog-filter-group {
 		display: flex;
 	}
@@ -1026,6 +1040,7 @@ aside .catalog-filter {
 	aside .catalog-filter {
 		width: 33.33%;
 	}
+
 }
 
 aside .catalog-filter .catalog-filter-price,

@@ -187,7 +187,7 @@ aside .catalog-session-pinned .pinned-items {
 	aside .pinned-item .price-item.default .value,
 	aside .seen-item .price-item.default .value {
 		vertical-align: middle;
-		font-size: 110%;
+		font-size: 110% !important;
 	}
 
 	/*last seen*/
@@ -218,6 +218,7 @@ aside .catalog-session-pinned .pinned-items {
 
 	aside .catalog-session-seen .seen-item .price-list,
 	aside .catalog-session-pinned .pinned-item .price-list {
+		display: flex;
 		font-weight: normal;
 		text-align: start;
 		padding: 0;
@@ -225,7 +226,7 @@ aside .catalog-session-pinned .pinned-items {
 	}
 
 	aside .aimeos .price-item .rebatepercent {
-		position: relative;
+		position: relative !important;
 		font-size: 80%;
 	}
 
