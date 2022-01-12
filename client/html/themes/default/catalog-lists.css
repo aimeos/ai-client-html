@@ -102,7 +102,7 @@
 /* product offer part */
 .catalog-list .offer {
 	display: flex;
-	flex-wrap: wrap;
+	justify-content: space-between;
 	direction: ltr;
 }
 
