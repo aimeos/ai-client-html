@@ -142,7 +142,7 @@
 }
 
 .aimeos .product .price-item .rebatepercent {
-	position: absolute;
+	position: relative;
 	display: inline-block;
 	background-color: #A00000;
 	padding: .1rem 0.25rem;

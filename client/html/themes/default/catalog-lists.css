@@ -76,7 +76,7 @@
 	z-index: 1;
 }
 
-.catalog-list .media-list:hover div:first-of-type {
+.catalog-list .media-list:not(.no-switch):hover div:first-of-type {
 	opacity: 0;
 	transition: opacity .3s linear;
 }

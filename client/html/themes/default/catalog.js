@@ -1,7 +1,7 @@
 /**
  * Aimeos common catalog actions
  */
-AimeosCatalog = {
+ AimeosCatalog = {
 
 	/**
 	 * Evaluates the product variant dependencies.
@@ -255,7 +255,7 @@ AimeosCatalog = {
 			}).then(function(response) {
 				return response.text();
 			}).then(function(data) {
-				Aimeos.createContainer(AimeosBasketStandard.updateBasket(data));
+				Aimeos.createContainer(AimeosBasket.updateBasket(data));
 			});
 
 			return false;

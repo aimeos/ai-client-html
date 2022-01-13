@@ -221,10 +221,10 @@ AimeosCatalogDetail = {
 	 */
 	setupImageSlider: function() {
 
-		$(".thumbs img").on("click", function(ev) {
-			$(ev.currentTarget).closest('.swiffy-slider').each(function() {
-				swiffyslider.slideTo(this, $(ev.currentTarget).index())
-			});
+		$(".thumbs img").on("click", function() {
+		    var index = $(this).index();
+		    const sliderElement = document.querySelector('.catalog-detail-image div:first-child');
+		    swiffyslider.slideTo(sliderElement, index)
 		});
 	},
 
