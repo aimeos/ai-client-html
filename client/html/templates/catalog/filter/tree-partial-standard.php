@@ -163,19 +163,17 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 										'params' => $this->get( 'params', [] )
 									] ) ?>
 								</div>
-								<div class="cat-img">
-									<a class="cat-img-link <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
-										href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><!--
-										--><div class="media-img"><!--
-											<?php foreach( $item->getRefItems( 'media', 'menu', 'default' ) as $mediaItem ) : ?>
-												<?= '-->' . $this->partial(
-													$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
-													array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-												) . '<!--' ?>
-											<?php endforeach ?>
-										--></div><!--
-									--></a>
-								</div>
+								<a class="cat-img <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
+									href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
+									<?php foreach( $item->getRefItems( 'media', 'menu', 'default' ) as $mediaItem ) : ?>
+										<img class="img-menu" loading="lazy"
+											src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+											srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
+											alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+										>
+									<?php endforeach ?>
+								</a>
 							<?php else : ?>
 								<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), [
 									'nodes' => $item->getChildren(),

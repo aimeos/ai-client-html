@@ -736,9 +736,9 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 }
 
-.catalog-filter-tree .cat-img-link .media-item img {
+.catalog-filter-tree .cat-img .img-menu {
 	height: auto;
-	width: 100%;
+	width: 240px;
 	max-width: 12rem
 }
 
