@@ -12,17 +12,12 @@
 var catalogCounts = <?= $this->get( 'treeCountList', map() )->toJson( JSON_FORCE_OBJECT ) ?>;
 
 $(".catalog-filter-count .cat-item").each(function(index, item) {
-
 	var id = $(item).data("id");
 
 	if(catalogCounts[id]) {
-
-		$("a.cat-item", item).append('&nbsp;' + '<span class="cat-count">' + catalogCounts[id] + '</span>');
-
+		$(":scope > a.cat-item", item).append('&nbsp;' + '<span class="cat-count">' + catalogCounts[id] + '</span>');
 	} else if( $(item).hasClass("nochild") ) {
-
 		$(item).addClass("disabled");
-
 	}
 });
 // -->
