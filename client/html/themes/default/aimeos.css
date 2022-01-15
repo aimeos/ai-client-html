@@ -6,7 +6,7 @@
  */
 
 
- @font-face {
+@font-face {
 	font-family: 'Roboto Condensed';
 	font-style: normal;
 	font-weight: 400;
@@ -75,15 +75,19 @@ body .main-section {
 	}
 }
 
+img {
+	max-width: 100%;
+}
+
+.section {
+	overflow: unset;
+}
+
 .content > .container:not(.cms-page),
 .content > .container-xl:not(.cms-page),
 .content > .container-fluid:not(.cms-page) {
 	padding-top: 1rem;
 	padding-bottom: 4rem;
-}
-
-.section {
-	overflow: unset;
 }
 
 .aimeos {
@@ -460,56 +464,6 @@ body .main-section {
 	margin-inline-start: auto;
 }
 
-/*below moved from catalog.css */
-
-/* price list */
-
-.aimeos .product .price-list {
-	font-weight: normal;
-	color: #1f1f1f;;
-	padding: 0;
-	margin: 0;
-}
-
-.aimeos .product .price-item {
-	display: none;
-}
-
-.aimeos .product .price-item:first-of-type {
-	display: block;
-	font-weight: bold;
-}
-
-.aimeos .product .price-item:first-of-type .quantity,
-.aimeos .product .price-item:first-of-type .rebate,
-.aimeos .product .price-item:first-of-type .costs,
-.aimeos .product .price-item:first-of-type .taxrate {
-	display: none;
-}
-
-.aimeos .product .price-item .rebatepercent {
-	position: relative;
-	display: inline-block;
-	background-color: #A00000;
-	padding: .1rem 0.25rem;
-	color: #FFF;
-	z-index: 2;
-	right: 0;
-	top: 0;
-}
-
-[dir="rtl"] .aimeos .product .price-item .rebatepercent {
-	right: unset;
-	left: 0;
-}
-
-.aimeos .product .price-item.default .value {
-	font-size: 140%;
-	font-weight: 700;
-}
-/* moved from catalog.css */
-/*-------------------------------- general -----------------------------------*/
-
 .content .imagelist-default img {
 	width: 100%;
 	height: auto;
@@ -517,26 +471,7 @@ body .main-section {
 	margin: 0 auto;
 }
 
-.navbar .catalog-filter-tree {
-	margin-inline-start: auto;
-}
-
-.navbar .catalog-filter-tree .category-selected {
-	display: none;
-}
-
-.navbar-top .catalog-filter  .catalog-filter-price,
-.navbar-top .catalog-filter  .catalog-filter-supplier,
-.navbar-top .catalog-filter  .catalog-filter-attribute,
-.navbar-top .catalog-filter-search .reset {
-	display: none;
-}
-
 /* content-list section */
-
-img{
-	max-width: 100%;
-}
 
 .back-to-top {
 	position:fixed;
@@ -786,6 +721,21 @@ footer .footer-right{
 		padding: .5rem 1rem;
 	}
 
+}
+
+.navbar .catalog-filter-tree {
+	margin-inline-start: auto;
+}
+
+.navbar .catalog-filter-tree .category-selected {
+	display: none;
+}
+
+.navbar .catalog-filter  .catalog-filter-price,
+.navbar .catalog-filter  .catalog-filter-supplier,
+.navbar .catalog-filter  .catalog-filter-attribute,
+.navbar .catalog-filter-search .reset {
+	display: none;
 }
 
 /*----------------------------- Profile Navbar --------------------------------*/

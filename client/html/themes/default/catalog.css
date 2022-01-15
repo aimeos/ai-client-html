@@ -1,3 +1,4 @@
+
 .aimeos .product-item .badges {
 	position: absolute;
 	text-align: start;
@@ -41,6 +42,51 @@
 	top: -0.7rem;
 }
 
+/* price list */
+
+.aimeos .product .price-list {
+	font-weight: normal;
+	color: #1f1f1f;;
+	padding: 0;
+	margin: 0;
+}
+
+.aimeos .product .price-item {
+	display: none;
+}
+
+.aimeos .product .price-item:first-of-type {
+	display: block;
+	font-weight: bold;
+}
+
+.aimeos .product .price-item:first-of-type .quantity,
+.aimeos .product .price-item:first-of-type .rebate,
+.aimeos .product .price-item:first-of-type .costs,
+.aimeos .product .price-item:first-of-type .taxrate {
+	display: none;
+}
+
+.aimeos .product .price-item .rebatepercent {
+	position: relative;
+	display: inline-block;
+	background-color: #A00000;
+	padding: .1rem 0.25rem;
+	color: #FFF;
+	z-index: 2;
+	right: 0;
+	top: 0;
+}
+
+[dir="rtl"] .aimeos .product .price-item .rebatepercent {
+	right: unset;
+	left: 0;
+}
+
+.aimeos .product .price-item.default .value {
+	font-size: 140%;
+	font-weight: 700;
+}
 
 /* text list */
 .aimeos .product .text-list {
