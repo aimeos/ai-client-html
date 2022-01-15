@@ -36,16 +36,12 @@ AimeosCatalogDetail = {
 
 			fetch(jsonUrl, {
 				method: "OPTIONS",
-				headers: ['Content-type: application/json']
+				header: ['Content-type: application/json']
 			}).then(response => {
 				return response.json();
-			}).then(data => {
-				this.options = data;
-			});
+			}).then(options => {
 
-			this.options.done(function(data) {
-
-				if(data && data.meta && data.meta.resources && data.meta.resources.review) {
+				if(options && options.meta && options.meta.resources && options.meta.resources.review) {
 
 					var args = {
 						filter: {f_refid: prodid},
@@ -53,17 +49,17 @@ AimeosCatalogDetail = {
 					};
 					var params = {};
 
-					if(data.meta.prefix) {
-						params[data.meta.prefix] = args;
+					if(options.meta.prefix) {
+						params[options.meta.prefix] = args;
 					} else {
 						params = args;
 					}
 
-					var url = new URL(data.meta.resources.review);
+					var url = new URL(options.meta.resources.review);
 					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
 					fetch(url, {
-						headers: ['Content-type: application/json']
+						header: ['Content-type: application/json']
 					}).then(response => {
 						return response.json();
 					}).then(response => {
@@ -73,17 +69,17 @@ AimeosCatalogDetail = {
 
 					args['aggregate'] = 'review.rating';
 
-					if(data.meta.prefix) {
-						params[data.meta.prefix] = args;
+					if(options.meta.prefix) {
+						params[options.meta.prefix] = args;
 					} else {
 						params = args;
 					}
 
-					var url = new URL(data.meta.resources.review);
+					var url = new URL(options.meta.resources.review);
 					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
 					fetch(url, {
-						headers: ['Content-type: application/json']
+						header: ['Content-type: application/json']
 					}).then(response => {
 						return response.json();
 					}).then(response => {
@@ -116,7 +112,7 @@ AimeosCatalogDetail = {
 
 				var height = item.innerHeight();
 
-				$("> *:not(.review-show)", item).each(function() {
+				$(":scope > *:not(.review-show)", item).each(function() {
 					height -= $(this).outerHeight(true);
 				});
 
@@ -297,7 +293,7 @@ AimeosCatalogDetail = {
 			ev.preventDefault();
 
 			fetch($(this).attr("href"), {
-				headers: ['Content-type: application/json']
+				header: ['Content-type: application/json']
 			}).then(response => {
 				return response.json();
 			}).then(response => {
@@ -318,7 +314,7 @@ AimeosCatalogDetail = {
 			ev.preventDefault();
 
 			fetch($(this).attr("href"), {
-				headers: ['Content-type: application/json']
+				header: ['Content-type: application/json']
 			}).then(response => {
 				return response.json();
 			}).then(response => {
