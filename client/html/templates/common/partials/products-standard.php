@@ -235,60 +235,62 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 				<div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 
-					<div class="stock-list">
-						<div class="articleitem <?= !in_array( $productItem->getType(), ['group'] ) ? 'stock-actual' : '' ?>"
-							data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
-						</div>
+					<div class="section">
+						<div class="stock-list">
+							<div class="articleitem <?= !in_array( $productItem->getType(), ['group'] ) ? 'stock-actual' : '' ?>"
+								data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
+							</div>
 
-						<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+							<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
 
-							<div class="articleitem" data-prodid="<?= $enc->attr( $articleId ) ?>"></div>
+								<div class="articleitem" data-prodid="<?= $enc->attr( $articleId ) ?>"></div>
 
-						<?php endforeach ?>
-
-					</div>
-
-					<div class="price-list">
-						<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
-
-							<?= $this->partial(
-								/** client/html/common/partials/price
-								 * Relative path to the price partial template file
-								 *
-								 * Partials are templates which are reused in other templates and generate
-								 * reoccuring blocks filled with data from the assigned values. The price
-								 * partial creates an HTML block for a list of price items.
-								 *
-								 * The partial template files are usually stored in the templates/partials/ folder
-								 * of the core or the extensions. The configured path to the partial file must
-								 * be relative to the templates/ folder, e.g. "partials/price-standard.php".
-								 *
-								 * @param string Relative path to the template file
-								 * @since 2015.04
-								 * @category Developer
-								 */
-								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-								['prices' => $productItem->getRefItems( 'price', null, 'default' )]
-							) ?>
-
-						</div>
-
-						<?php if( $productItem->getType() === 'select' ) : ?>
-							<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-								<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
-
-									<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
-										<?= $this->partial(
-											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-											array( 'prices' => $prices )
-										) ?>
-									</div>
-
-								<?php endif ?>
 							<?php endforeach ?>
-						<?php endif ?>
-					</div>
 
+						</div>
+
+						<div class="price-list">
+							<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
+
+								<?= $this->partial(
+									/** client/html/common/partials/price
+									* Relative path to the price partial template file
+									*
+									* Partials are templates which are reused in other templates and generate
+									* reoccuring blocks filled with data from the assigned values. The price
+									* partial creates an HTML block for a list of price items.
+									*
+									* The partial template files are usually stored in the templates/partials/ folder
+									* of the core or the extensions. The configured path to the partial file must
+									* be relative to the templates/ folder, e.g. "partials/price-standard.php".
+									*
+									* @param string Relative path to the template file
+									* @since 2015.04
+									* @category Developer
+									*/
+									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+									['prices' => $productItem->getRefItems( 'price', null, 'default' )]
+								) ?>
+
+							</div>
+
+							<?php if( $productItem->getType() === 'select' ) : ?>
+								<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
+									<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
+
+										<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
+											<?= $this->partial(
+												$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+												array( 'prices' => $prices )
+											) ?>
+										</div>
+
+									<?php endif ?>
+								<?php endforeach ?>
+							<?php endif ?>
+						</div>
+
+					</div>
 
 					<?php if( $this->get( 'basket-add', false ) ) : ?>
 
