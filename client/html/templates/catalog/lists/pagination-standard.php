@@ -7,10 +7,11 @@
  */
 
 $enc = $this->encoder();
-$key = $this->get( 'params/f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
-$params = $this->get( 'params', [] );
+$infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
+$key = $this->get( 'params/f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 $sort = $this->get( 'params/f_sort', $this->config( 'client/html/catalog/lists/sort', 'relevance' ) );
+$params = $this->get( 'params', [] );
 $sortname = ltrim( $sort, '-' );
 $nameDir = $priceDir = '';
 
@@ -64,7 +65,7 @@ if( $sort === 'price' ) {
 		</ul>
 	</div>
 
-	<?php if( $this->last > 1 ) : ?>
+	<?php if( !$infiniteScroll && $this->last > 1 ) : ?>
 		<div class="browser">
 
 			<?php $url = $this->link( $key, ['l_page' => 1] + $params ) ?>

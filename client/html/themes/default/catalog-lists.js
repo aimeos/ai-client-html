@@ -21,13 +21,14 @@ AimeosCatalogList = {
 
 			if(!empty) {
 				$("form.basket", target).on("click", ".btn-primary", function(ev) {
-					fetch($(target).attr("action"), {
-						body: new FormData(target),
+					var form = $(ev.currentTarget).closest("form.basket");
+					fetch(form.attr("action"), {
+						body: new FormData(form[0]),
 						method: 'POST'
 					}).then(function(response) {
 						return response.text();
 					}).then(function(data) {
-						Aimeos.createContainer(AimeosBasketStandard.updateBasket(data));
+						Aimeos.createContainer(AimeosBasket.updateBasket(data));
 					});
 
 					return false;
@@ -66,8 +67,9 @@ AimeosCatalogList = {
 						var nextPage = $(data);
 						var nextUrl = nextPage.find('.catalog-list-items').data( 'infinite-url' );
 
-						$('.catalog-list-items', list).append(nextPage.find('.catalog-list-items .product'));
+						list.append(nextPage.find('.catalog-list-items .product'));
 						list.data('infinite-url', nextUrl);
+
 						$(nextPage).filter( function (i,a){ return $(a).is('script.catalog-list-stock-script');}).each( function() {
 							var script = document.createElement('script');
 							script.src = $(this).attr("src");

@@ -21,10 +21,17 @@ $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index'
 $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
+$infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
+
+$url = '';
+if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ) {
+	$url = $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPageNext' )] + $this->get( 'listParams', [] ) );
+}
+
 
 ?>
 <?php $this->block()->start( 'catalog/lists/items' ) ?>
-<div class="catalog-list-items list"><!--
+<div class="catalog-list-items list" data-infinite-url="<?= $url ?>"><!--
 
 	<?php foreach( $this->get( 'listProductItems', [] ) as $id => $productItem ) : $firstImage = true ?>
 		<?php
@@ -93,34 +100,36 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 
 					--><div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
-						<div class="stock-list">
-							<div class="articleitem <?= !in_array( $productItem->getType(), ['group'] ) ? 'stock-actual' : '' ?>"
-								data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
-							</div>
-							<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
-								<div class="articleitem" data-prodid="<?= $enc->attr( $articleId ) ?>"></div>
-							<?php endforeach ?>
-						</div>
-						<div class="price-list">
-							<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $id ) ?>">
-								<?= $this->partial(
-									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-									['prices' => $productItem->getRefItems( 'price', null, 'default' )]
-								) ?>
-							</div>
-
-							<?php if( $productItem->getType() === 'select' ) : ?>
-								<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-									<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
-										<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
-											<?= $this->partial(
-												$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-												['prices' => $prices]
-											) ?>
-										</div>
-									<?php endif ?>
+						<div class="section">
+							<div class="stock-list">
+								<div class="articleitem <?= !in_array( $productItem->getType(), ['group'] ) ? 'stock-actual' : '' ?>"
+									data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
+								</div>
+								<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+									<div class="articleitem" data-prodid="<?= $enc->attr( $articleId ) ?>"></div>
 								<?php endforeach ?>
-							<?php endif ?>
+							</div>
+							<div class="price-list">
+								<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $id ) ?>">
+									<?= $this->partial(
+										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+										['prices' => $productItem->getRefItems( 'price', null, 'default' )]
+									) ?>
+								</div>
+
+								<?php if( $productItem->getType() === 'select' ) : ?>
+									<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
+										<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
+											<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
+												<?= $this->partial(
+													$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+													['prices' => $prices]
+												) ?>
+											</div>
+										<?php endif ?>
+									<?php endforeach ?>
+								<?php endif ?>
+							</div>
 						</div>
 					</div>
 
