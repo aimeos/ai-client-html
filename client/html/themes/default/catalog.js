@@ -286,7 +286,7 @@
 				if( content.length > 0 ) {
 					Aimeos.createContainer(content);
 				} else {
-					$("html").replaceWith(doc);
+					document.querySelector("html").replaceWith(doc);
 				}
 			});
 
@@ -319,7 +319,7 @@
 				if( content.length > 0 ) {
 					Aimeos.createContainer(content);
 				} else {
-					$("html").replaceWith(doc);
+					document.querySelector("html").replaceWith(doc);
 				}
 			});
 
