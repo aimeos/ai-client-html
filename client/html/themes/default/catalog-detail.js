@@ -36,7 +36,7 @@ AimeosCatalogDetail = {
 
 			fetch(jsonUrl, {
 				method: "OPTIONS",
-				header: ['Content-type: application/json']
+				headers: {'Content-type': 'application/json'}
 			}).then(response => {
 				return response.json();
 			}).then(options => {
@@ -59,7 +59,7 @@ AimeosCatalogDetail = {
 					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
 					fetch(url, {
-						header: ['Content-type: application/json']
+						headers: {'Content-type': 'application/json'}
 					}).then(response => {
 						return response.json();
 					}).then(response => {
@@ -79,7 +79,7 @@ AimeosCatalogDetail = {
 					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
 					fetch(url, {
-						header: ['Content-type: application/json']
+						headers: {'Content-type': 'application/json'}
 					}).then(response => {
 						return response.json();
 					}).then(response => {
@@ -293,7 +293,7 @@ AimeosCatalogDetail = {
 			ev.preventDefault();
 
 			fetch($(this).attr("href"), {
-				header: ['Content-type: application/json']
+				headers: {'Content-type': 'application/json'}
 			}).then(response => {
 				return response.json();
 			}).then(response => {
@@ -314,7 +314,7 @@ AimeosCatalogDetail = {
 			ev.preventDefault();
 
 			fetch($(this).attr("href"), {
-				header: ['Content-type: application/json']
+				headers: {'Content-type': 'application/json'}
 			}).then(response => {
 				return response.json();
 			}).then(response => {

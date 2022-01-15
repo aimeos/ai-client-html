@@ -215,7 +215,7 @@ AimeosBasketBulk = {
 
 		fetch(jsonurl, {
 			method: "OPTIONS",
-			header: ["Content-type: application/json"]
+			headers: {'Content-type': 'application/json'}
 		}).then(response => {
 			return response.json();
 		}).then(options => {
