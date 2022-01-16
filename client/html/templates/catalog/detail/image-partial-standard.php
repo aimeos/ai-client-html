@@ -24,7 +24,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 	<?php if( ( $imgNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
 
-		<div class="swiffy-slider slider-item-ratio-contain slider-item-ratio-3x4 slider-nav-round slider-nav-animation-fadein">
+		<div class="swiffy-slider slider-item-ratio-contain slider-nav-round slider-nav-animation-fadein">
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
@@ -46,7 +46,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 
 	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
 
-		<div class="thumbs swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-snapstart slider-item-ratio slider-item-ratio-3x4 slider-nav-visible slider-nav-page slider-nav-outside-expand">
+		<div class="thumbs swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-snapstart slider-nav-visible slider-nav-page slider-nav-outside-expand">
 			<div class="slider-container">
 
 					<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>

@@ -45,8 +45,8 @@
 }
 
 .account-watch .media-item {
-	height: 240px;
-	width: 180px;
+	height: calc((--var(ai-product-image-height)) / 4 * 3);
+	width: calc((--var(ai-product-image-width)) / 4 * 3);
 }
 
 .account-watch .name {

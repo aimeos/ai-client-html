@@ -57,7 +57,7 @@ AimeosCatalogList = {
 				var list = document.querySelector('.catalog-list-items');
 				var infiniteUrl = list.dataset['infiniteurl'];
 
-				if(infiniteUrl && list.getBoundingClientRect().bottom < window.innerHeight * 2) {
+				if(infiniteUrl && list.getBoundingClientRect().bottom < window.innerHeight * 3) {
 					list.dataset['infiniteurl'] = '';
 
 					fetch(infiniteUrl).then(response => {

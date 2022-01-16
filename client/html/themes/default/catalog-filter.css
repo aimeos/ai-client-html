@@ -737,8 +737,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 }
 
 .catalog-filter-tree .cat-img .img-menu {
+	width: --var(ai-product-image-width);
 	height: auto;
-	width: 240px;
 	max-width: 12rem
 }
 
@@ -757,8 +757,8 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	}
 
 	.catalog-filter-tree div.media-list.shows-img img {
+		width: --var(ai-product-image-width);
 		display: block;
-		width: 240px;
 		height: auto;
 	}
 

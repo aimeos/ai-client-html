@@ -45,6 +45,9 @@ body {
 	--ai-danger: #FF3300;
 	--ai-warning: #FFA500;
 	--ai-success: #006000;
+	--ai-product-image-ratio: 3/4;
+	--ai-product-image-width: 240px;
+	--ai-product-image-height: 320px;
 	font-family: "Roboto Condensed",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 	font-size: 1rem;
 	font-weight: 400;
