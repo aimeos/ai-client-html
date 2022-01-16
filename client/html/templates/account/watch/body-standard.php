@@ -92,28 +92,35 @@ $enc = $this->encoder();
 	<?php if( !$this->get( 'watchItems', map() )->isEmpty() ) : ?>
 		<h1 class="header"><?= $this->translate( 'client', 'Watched products' ) ?></h1>
 
-		<ul class="watch-items">
+		<div class="watch-items">
 			<?php foreach( $this->get( 'watchItems', map() )->reverse() as $listItem ) : ?>
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
-					<li class="watch-item">
+					<div class="product watch-item">
 						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $this->get( 'watchParams', [] ) ?>
-						<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/watch/url', $params ) ) ?>">
+						<form class="delete" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/watch/url', $params ) ) ?>">
 							<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 							<?= $this->csrf()->formfield() ?>
 						</form>
 
 						<?php $params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ?>
-						<a class="watch-item" href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) ?>">
+						<a class="watch-basic" href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
-							<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
-								<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>')"></div>
+							<?php if( $mediaItem = $mediaItems->first() ) : ?>
+								<div class="media-item">
+									<img loading="lazy"
+										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '180px' ) ) ?>"
+										src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ?: $mediaItem->getLabel() ) ?>"
+									>
+								</div>
 							<?php else : ?>
 								<div class="media-item"></div>
 							<?php endif ?>
 
-							<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h3>
+							<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
 
 							<div class="price-list">
 								<?= $this->partial(
@@ -178,16 +185,14 @@ $enc = $this->encoder();
 								</li>
 							</ul>
 
-							<div class="button-group">
-								<button class="btn btn-primary btn-action"><?= $enc->html( $this->translate( 'client', 'Watch' ), $enc::TRUST ) ?></button>
-							</div>
+							<button class="btn btn-primary btn-action"><?= $enc->html( $this->translate( 'client', 'Watch' ), $enc::TRUST ) ?></button>
 						</form>
 
-					</li>
+					</div>
 
 				<?php endif ?>
 			<?php endforeach ?>
-		</ul>
+		</div>
 
 
 		<?php if( $this->get( 'watchPageLast', 1 ) > 1 ) : ?>

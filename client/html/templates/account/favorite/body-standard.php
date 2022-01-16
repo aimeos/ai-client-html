@@ -92,14 +92,14 @@ $enc = $this->encoder();
 
 		<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ) ?></h1>
 
-		<ul class="favorite-items">
+		<div class="favorite-items">
 
 			<?php foreach( $this->get( 'favoriteItems', map() )->reverse() as $listItem ) : ?>
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
-					<li class="favorite-item">
+					<div class="product favorite-item">
 						<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $this->get( 'favoriteParams', [] ) ?>
-						<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/favorite/url', $params ) ) ?>">
+						<form class="delete" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/favorite/url', $params ) ) ?>">
 							<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 							<?= $this->csrf()->formfield() ?>
 						</form>
@@ -108,13 +108,20 @@ $enc = $this->encoder();
 						<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) ?>">
 							<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
-							<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
-								<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>')"></div>
+							<?php if( $mediaItem = $mediaItems->first() ) : ?>
+								<div class="media-item">
+									<img loading="lazy"
+										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '180px' ) ) ?>"
+										src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ?: $mediaItem->getLabel() ) ?>"
+									>
+								</div>
 							<?php else : ?>
 								<div class="media-item"></div>
 							<?php endif ?>
 
-							<h3 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h3>
+							<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
 							<div class="price-list">
 								<?= $this->partial(
 									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
@@ -122,12 +129,12 @@ $enc = $this->encoder();
 								) ?>
 							</div>
 						</a>
-					</li>
+					</div>
 
 				<?php endif ?>
 			<?php endforeach ?>
 
-		</ul>
+		</div>
 
 		<?php if( $this->get( 'favoritePageLast', 1 ) > 1 ) : ?>
 

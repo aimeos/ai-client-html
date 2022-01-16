@@ -6,12 +6,12 @@ AimeosAccountWatch = {
 	/**
 	 * Deletes a watched item without page reload
 	 */
-	setupProductRemoval: function() {
+	setupRemoveProduct: function() {
 
 		$("body").on("click", ".account-watch .delete", function() {
 
-			var form = $(this).parents("form");
-			$(this).parents("watch-item").addClass("loading");
+			var form = $(this).closest("form");
+			$(this).closest("watch-item").addClass("loading");
 
 			fetch(form.attr("action"), {
 				body: new FormData(form.get(0)),
@@ -21,7 +21,12 @@ AimeosAccountWatch = {
 			}).then(data => {
 				var doc = document.createElement("html");
 				doc.innerHTML = data;
-				$(".account-watch").html($(".account-watch", doc).html());
+
+				if($(".aimeos.account-watch .watch-items", doc).length) {
+					$(".aimeos.account-watch").html($(".aimeos.account-watch", doc).html());
+				} else {
+					Aimeos.removeOverlay();
+				}
 			});
 
 			return false;
@@ -32,11 +37,11 @@ AimeosAccountWatch = {
 	/**
 	 * Saves a modifed watched item without page reload
 	 */
-	setupProductSave: function() {
+	setupSaveProduct: function() {
 
-		$("body").on("click", ".account-watch .standardbutton", function() {
+		$("body").on("click", ".account-watch .btn-action", function() {
 
-			var form = $(this).parents("form.watch-details");
+			var form = $(this).closest("form.watch-details");
 			form.addClass("loading");
 
 			fetch(form.attr("action"), {
@@ -48,7 +53,7 @@ AimeosAccountWatch = {
 				var doc = document.createElement("html");
 				doc.innerHTML = data;
 
-				$(".account-watch").html($(".account-watch", doc).html());
+				$(".aimeos.account-watch").html($(".aimeos.account-watch", doc).html());
 			});
 
 			return false;
@@ -61,8 +66,8 @@ AimeosAccountWatch = {
 	 */
 	init: function() {
 
-		this.setupProductRemoval();
-		this.setupProductSave();
+		this.setupRemoveProduct();
+		this.setupSaveProduct();
 	}
 };
 

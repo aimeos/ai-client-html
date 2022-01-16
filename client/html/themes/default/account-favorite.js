@@ -21,7 +21,12 @@ AimeosAccountFavorite = {
 			}).then(data => {
 				var doc = document.createElement("html");
 				doc.innerHTML = data;
-				$(".account-favorite").html($(".account-favorite", doc).html());
+
+				if($(".aimeos.account-favorite .favorite-items", doc).length) {
+					$(".aimeos.account-favorite").html($(".aimeos.account-favorite", doc).html());
+				} else {
+					Aimeos.removeOverlay();
+				}
 			});
 
 			return false;

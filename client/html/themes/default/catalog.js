@@ -284,6 +284,14 @@
 				var content = $(".account-favorite", doc);
 
 				if( content.length > 0 ) {
+					doc.querySelectorAll('head link.account-favorite').forEach(el => {
+						document.head.appendChild(el);
+					});
+					doc.querySelectorAll('head script.account-favorite').forEach(el => {
+						var node = document.createElement('script');
+						node.src = el.getAttribute('src');
+						document.head.appendChild(node);
+					});
 					Aimeos.createContainer(content);
 				} else {
 					document.querySelector("html").replaceWith(doc);
@@ -317,6 +325,14 @@
 				var content = $(".account-watch", doc);
 
 				if( content.length > 0 ) {
+					doc.querySelectorAll('head link.account-watch').forEach(el => {
+						document.head.appendChild(el);
+					});
+					doc.querySelectorAll('head script.account-watch').forEach(el => {
+						var node = document.createElement('script');
+						node.src = el.getAttribute('src');
+						document.head.appendChild(node);
+					});
 					Aimeos.createContainer(content);
 				} else {
 					document.querySelector("html").replaceWith(doc);

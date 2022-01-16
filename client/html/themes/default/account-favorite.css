@@ -1,43 +1,25 @@
-.account-favorite .minibutton.delete {
-	position: absolute;
-	right: 1%;
-	top: 1%;
-	z-index: 5;
-}
-
-.account-favorite .price-list .rebatepercent {
-	display: none;
-}
-
 .account-favorite {
-	clear: both;
-	padding: 0;
-	text-align: center;
 	margin: 1rem 0;
-}
-
-.account-watch .watch-items,
-.account-favorite .favorite-items {
 	padding: 0;
 }
 
 .account-favorite .header {
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
 	text-transform: uppercase;
 	text-align: start;
 	font-weight: normal;
 	padding: 0.5rem 1rem;
 	color: #555;
 	color: var(--ai-secondary, #555);
+	border-bottom: solid 1px #555;
+	border-bottom-color: var(--ai-secondary, #555);
 }
 
 .account-favorite .favorite-item {
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
-	text-align: right;
-	width: 160px;
+	text-align: end;
+	width: 180px;
 	margin: 1%;
 	padding: 0;
 }
@@ -46,18 +28,8 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
-	height: 213px;
-	width: 160px;
-}
-
-.account-favorite .media-item img {
-	position: relative;
-	max-width: 100%;
-	display: block;
-	margin: auto;
-	height: auto;
-	top: 50%;
-	transform: translate(0, -50%);
+	height: 240px;
+	width: 180px;
 }
 
 .account-favorite .name {
@@ -72,17 +44,21 @@
 	margin: .75rem auto;
 }
 
-.account-favorite .modify {
-	position: absolute;
-	display: block;
-	padding: .5rem 0.75rem;
-	left: 0;
-	bottom: 0;
+.account-favorite .price-list .rebatepercent {
+	display: none;
 }
 
-.account-favorite .modify:before {
-	font: normal normal normal 14px/1 bootstrap-icons;
-	content: "\f5de";
-	font-size: 120%;
-	vertical-align: bottom;
+.account-favorite form.delete {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.account-favorite .minibutton.delete {
+	color: #555;
+	color: var(--ai-secondary, #555);
+	background-color: #fff;
+	background-color: var(--ai-bg, #fff);
+	padding: .5rem 0.75rem;
+	z-index: 5;
 }
