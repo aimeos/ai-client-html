@@ -31,7 +31,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 ?>
 <?php $this->block()->start( 'catalog/lists/items' ) ?>
-<div class="catalog-list-items list" data-infinite-url="<?= $url ?>"><!--
+<div class="catalog-list-items list" data-infiniteurl="<?= $url ?>"><!--
 
 	<?php foreach( $this->get( 'listProductItems', [] ) as $id => $productItem ) : $firstImage = true ?>
 		<?php

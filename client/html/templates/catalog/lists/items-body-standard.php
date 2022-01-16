@@ -52,7 +52,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 ?>
 <?php $this->block()->start( 'catalog/lists/items' ) ?>
-<div class="catalog-list-items" data-infinite-url="<?= $url ?>">
+<div class="catalog-list-items" data-infiniteurl="<?= $url ?>">
 
 	<?= $this->partial(
 		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
