@@ -18,8 +18,8 @@ $enc = $this->encoder();
 
 	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
 
-		<div class="swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-show4 slider-item-snapstart slider-item-ratio slider-item-ratio-1x1 slider-nav-visible slider-nav-page slider-nav-outside-expand">
-			<div class="thumbs slider-container" style="cursor:pointer">
+		<div class="thumbs thumbs-vertical swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-snapstart slider-item-ratio slider-item-ratio-3x4 slider-nav-visible slider-nav-page slider-nav-outside-expand">
+			<div class="slider-container">
 
 					<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
 
@@ -43,8 +43,7 @@ $enc = $this->encoder();
 
 	<?php if( ( $imgNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
 
-		<div class="image-thumbs thumbs-vertical swiffy-slider slider-item-ratio slider-item-ratio-1x1 slider-nav-round slider-nav-animation-fadein">
-
+		<div class="swiffy-slider slider-item-ratio-contain slider-item-ratio-3x4 slider-nav-round slider-nav-animation-fadein">
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
