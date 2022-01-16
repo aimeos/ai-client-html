@@ -299,13 +299,13 @@
 }
 
 .catalog-detail-service .service-item .price-item {
-	display: inline-block;
+	display: inline-block !important;
 	text-align: end;
 	min-width: 4rem;
 }
 
 .catalog-detail-service .service-item .price-item .costs {
-	display: block;
+	display: block !important;
 }
 
 .catalog-detail-service .service-item .price-item .value,

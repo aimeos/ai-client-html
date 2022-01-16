@@ -106,7 +106,7 @@ $pos = 0;
 <div class="account-profile-address">
 	<h1 class="header"><?= $enc->html( $this->translate( 'client', 'address' ) ) ?></h1>
 
-	<form class="container-fluid" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/profile/url' ) ) ?>">
+	<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/profile/url' ) ) ?>">
 		<?= $this->csrf()->formfield() ?>
 
 		<div class="row">

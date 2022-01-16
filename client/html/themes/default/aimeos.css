@@ -75,6 +75,10 @@ body .main-section {
 	}
 }
 
+a {
+	text-decoration: none;
+}
+
 img {
 	max-width: 100%;
 }
@@ -212,14 +216,12 @@ img {
 .aimeos a:visited:not(.btn) {
 	color: #282828;
 	color: var(--ai-primary, #282828);
-	text-decoration: none;
 }
 
 .aimeos a:link:not(.btn):hover,
 .aimeos a:visited:not(.btn):hover {
 	color: #555;
 	color: var(--ai-secondary, #555);
-	text-decoration: none;
 }
 
 .aimeos input {
