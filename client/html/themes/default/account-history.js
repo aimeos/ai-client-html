@@ -1,7 +1,7 @@
 /**
  * Account history actions
  */
-AimeosAccountSubscription = {
+AimeosAccountHistory = {
 
 	/**
 	 * Shows history details without page reload
