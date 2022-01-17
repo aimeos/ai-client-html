@@ -1,25 +1,32 @@
 /**
  * Catalog list actions
  */
-AimeosCatalogList = {
+AimeosCatalogLists = {
+
+	/**
+	 * Marks products as pinned
+	 */
+	setPinned: function() {
+
+		$('.catalog-list-items').each(function() {
+			$('.product .btn-pin', this).removeClass('active');
+
+			for(id in $(this).data('pinned')) {
+				$('.product[data-prodid="' + id + '"] .btn-pin', this).addClass('active');
+			}
+		});
+	},
+
 
 	/**
 	 * Add to basket
 	 */
-	setupAddBasket: function() {
+	onAddBasket: function() {
 
 		$(".catalog-list-items:not(.list) .product").on("click", ".btn-primary", function() {
+			var target = $(this).parents(".product").clone();
 
-			var empty = true;
-			var target = $(this).parents(".product");
-
-			$(".basket .items-selection .selection li, .basket .items-attribute .selection li", target).each(function() {
-				if($(this).length) {
-					empty = false; return false;
-				}
-			});
-
-			if(!empty) {
+			if($(".basket .items-selection .selection li, .basket .items-attribute .selection li", target).length) {
 				$("form.basket", target).on("click", ".btn-primary", function(ev) {
 					var form = $(ev.currentTarget).closest("form.basket");
 					fetch(form.attr("action"), {
@@ -35,8 +42,7 @@ AimeosCatalogList = {
 				});
 
 				Aimeos.createOverlay();
-				Aimeos.createContainer($('<div class="catalog-list catalog-list-items">')
-					.append($('<div class="list-items list">').append(target)) );
+				Aimeos.createContainer($('<div class="catalog-list catalog-list-items list">').append(target));
 				return false;
 			}
 		});
@@ -46,42 +52,39 @@ AimeosCatalogList = {
 	/**
 	 * Enables infinite scroll if available
 	 */
-	setupInfiniteScroll: function() {
+	onScroll: function() {
 
-		var url = document.querySelector('.catalog-list-items').dataset['infiniteurl'];
+		var url = $('.catalog-list-items').data('infiniteurl');
 
-		if( typeof url === "string" && url != '' ) {
+		if(url) {
 
 			$(window).on('scroll', function() {
 
-				var list = document.querySelector('.catalog-list-items');
-				var infiniteUrl = list.dataset['infiniteurl'];
+				var list = $('.catalog-list-items');
+				var infiniteUrl = list.data('infiniteurl');
 
-				if(infiniteUrl && list.getBoundingClientRect().bottom < window.innerHeight * 3) {
-					list.dataset['infiniteurl'] = '';
+				if(infiniteUrl && list.length && list[0].getBoundingClientRect().bottom < window.innerHeight * 3) {
+					list.data('infiniteurl', '');
 
 					fetch(infiniteUrl).then(response => {
 						return response.text();
 					}).then(data => {
-						var nextPage = document.createElement("html");
-						nextPage.innerHTML = data;
+						var nextPage = $('<html/>').html(data);
+						var newList = $('.catalog-list-items', nextPage);
+						var ids = newList.data('pinned') || {};
 
-						list.dataset['infiniteurl'] = nextPage.querySelector('.catalog-list-items').dataset['infiniteurl'];
-
-						nextPage.querySelectorAll('.catalog-list-items .product').forEach(el => {
-							list.append(el);
+						$('.product', newList).each((idx, node) => {
+							ids[node.dataset.prodid] ? $('.btn-pin', node).addClass('active') : null;
+							list.append(node);
 						});
 
-						nextPage.querySelectorAll('head .items-stock').forEach(el => {
-							var script = document.createElement('script');
-							script.src = el.getAttribute("src");
-							document.head.appendChild(script);
+						$('head .items-stock', nextPage).each(() => {
+							$(document.head).append($('<script/>').attr('src', $(this).attr('src')));
 						});
 
-						Aimeos.loadImages();
+						list.data('infiniteurl', newList.data('infiniteurl'));
 						$(window).trigger('scroll');
-					}).catch( function() {
-						list.data('infiniteurl', infiniteUrl);
+						Aimeos.loadImages();
 					});
 				}
 			});
@@ -89,38 +92,36 @@ AimeosCatalogList = {
 	},
 
 
-	setupPinned: function() {
+	onPin: function() {
 
-		$(".catalog-list-items .product").on("click", ".btn-pin", function(ev) {
+		$("body").on("click", ".catalog-list-items .product .btn-pin", function() {
 
-			var url;
 			var el = $(this);
+			var url = el.hasClass('active') ? el.data('rmurl') : el.attr('href');
 
-			if(el.hasClass('active')) {
-				el.removeClass('active');
-				url = el.data('rmurl');
-			} else {
-				el.addClass('active');
-				url = el.attr('href');
+			if(url) {
+				var form = new FormData();
+				var csrf = el.closest('form').find('.csrf-token');
+
+				form.append(csrf.attr('name'), csrf.attr('value'));
+				el.toggleClass('active');
+
+				fetch(url, {
+					method: 'POST',
+					body: form
+				}).then(response => {
+					return response.text();
+				}).then(data => {
+					var doc = $('<html/>').html(data);
+					var pinned = $(".catalog-session-pinned", doc);
+
+					if(pinned.length) {
+						$('.catalog-session-pinned').replaceWith(pinned);
+					}
+				});
+
+				return false;
 			}
-
-			if(!url) {
-				return true;
-			}
-
-			fetch(url).then(response => {
-				return response.text();
-			}).then(data => {
-				var doc = document.createElement("html");
-				doc.innerHTML = data;
-
-				var pinned = $(".catalog-session-pinned", doc);
-				if(pinned) {
-					$('.catalog-session-pinned').replaceWith(pinned);
-				}
-			});
-
-			return false;
 		});
 	},
 
@@ -129,13 +130,14 @@ AimeosCatalogList = {
 	 * Initializes the catalog list actions
 	 */
 	init: function() {
-		this.setupAddBasket();
-		this.setupInfiniteScroll();
-		this.setupPinned();
+		this.setPinned();
+		this.onAddBasket();
+		this.onScroll();
+		this.onPin();
 	}
 };
 
 
 $(function() {
-	AimeosCatalogList.init();
+	AimeosCatalogLists.init();
 });

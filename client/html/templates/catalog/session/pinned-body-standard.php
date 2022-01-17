@@ -107,7 +107,7 @@ $enc = $this->encoder();
 			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $productItem->getName( 'url' )] + $this->get( 'pinnedParams', [] ) ?>
 			<?php $detailParams = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''] ?>
 
-			<li class="pinned-item product">
+			<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>">
 				<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">
 					<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 					<?= $this->csrf()->formfield() ?>

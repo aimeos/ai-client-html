@@ -167,7 +167,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		$mediaItems = $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' );
 	?>
 
-	<div class="product" data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
+	<div class="product" data-prodid="<?= $enc->attr( $id ) ?>" data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
 		itemprop="<?= $this->get( 'itemprop' ) ?>" itemscope itemtype="http://schema.org/Product">
 
 		<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
