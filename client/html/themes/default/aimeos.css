@@ -219,12 +219,14 @@ img {
 .aimeos a:visited:not(.btn) {
 	color: #282828;
 	color: var(--ai-primary, #282828);
+	text-decoration: none;
 }
 
 .aimeos a:link:not(.btn):hover,
 .aimeos a:visited:not(.btn):hover {
 	color: #555;
 	color: var(--ai-secondary, #555);
+	text-decoration: none;
 }
 
 .aimeos input {
@@ -250,8 +252,8 @@ img {
 }
 
 .aimeos .minibutton {
-	color: #D0D0D0;
-	color: var(--ai-light, #D0D0D0);
+	color: #555;
+	color: var(--ai-secondary, #555);
 	font-size: 100%;
 	vertical-align: middle;
 	min-width: 1rem;
@@ -1008,6 +1010,9 @@ footer .footer-right{
 
 /* Product */
 
+.aimeos .product .swiffy-slider {
+	--swiffy-slider-item-ratio: var(--ai-product-image-ratio);
+}
 
 .aimeos .product-item .badges {
 	position: absolute;

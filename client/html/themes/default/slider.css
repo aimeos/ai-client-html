@@ -22,10 +22,6 @@
 	--swiffy-slider-animation-timing: ease-in-out
 }
 
-.product .swiffy-slider {
-	--swiffy-slider-item-ratio: var(--ai-product-image-ratio);
-}
-
 .swiffy-slider,.swiffy-slider::after,.swiffy-slider::before {
 	box-sizing: border-box
 }
