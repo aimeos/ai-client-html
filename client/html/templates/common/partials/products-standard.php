@@ -163,6 +163,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 	<?php
 		$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 		$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
+
+		$mediaItems = $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' );
 	?>
 
 	<div class="product" data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
@@ -174,9 +176,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 				<span class="badge-item sale"><?= $enc->html( $this->translate( 'client', 'Sale' ) ) ?></span>
 			</div>
 			<div class="list-column">
-				<a class="media-list" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $productItem->getName(), $enc::TRUST ) ?>">
+				<a class="media-list <?= $mediaItems->count() > 1 ? 'multiple' : '' ?>"
+					href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $productItem->getName(), $enc::TRUST ) ?>">
 
-					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
+					<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
 
 						<noscript>
 							<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
@@ -188,7 +191,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							</div>
 						</noscript>
 
-						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+						<?php foreach( $mediaItems as $mediaItem ) : ?>
 
 							<div class="media-item">
 								<img class="lazy-image"

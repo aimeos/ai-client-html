@@ -655,18 +655,6 @@ AimeosPage = {
 		}
 	},
 
-	/**
-	 * Image switch
-	 */
-	setupImageSwitch: function() {
-
-		$('.media-list').each(function() {
-			if ($(this).find('div').length < 2) {
-				$(this).addClass('no-switch');
-			}
-		});
-	},
-
 
 	/**
 	 * Mega menu
@@ -808,7 +796,6 @@ AimeosPage = {
 		this.setupMenuTransition();
 		this.setupLinkTop();
 		this.setupMenuMenu();
-		this.setupImageSwitch();
 		this.setupOffscreen();
 		this.setupOffscreenBasket();
 		this.setupOffscreenCategory();
