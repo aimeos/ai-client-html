@@ -641,18 +641,20 @@ AimeosPage = {
 	/**
 	 * Menu transition
 	 */
-	 setupMenuTransition: function() {
+	setupMenuTransition: function() {
 
-		var defaultHeight = parseInt( document.querySelector(".navbar").offsetHeight );
-		window.onscroll = function () {
-			var tdiv = document.querySelector('.navbar');
-			tdiv.style.height = ( defaultHeight - document.documentElement.scrollTop ) +"px"
-			if (document.body.scrollTop > defaultHeight || document.documentElement.scrollTop > defaultHeight){
+		var height = parseInt( document.querySelector(".navbar").offsetHeight );
+		console.log(height);
+
+		$(window).on('scroll', function() {
+			$('.navbar').css('height', (height - document.documentElement.scrollTop) + "px");
+
+			if(document.body.scrollTop > 65 || document.documentElement.scrollTop > 65){
 				$(".navbar").addClass("navbar-scroll");
 			} else {
 				$(".navbar").removeClass("navbar-scroll");
 			}
-		}
+		});
 	},
 
 

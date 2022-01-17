@@ -6,7 +6,7 @@
  */
 
 
-@font-face {
+ @font-face {
 	font-family: 'Roboto Condensed';
 	font-style: normal;
 	font-weight: 400;
@@ -632,9 +632,7 @@ footer .footer-right{
 /*----------------------------------- Navbar -----------------------------------*/
 
 .navbar {
-	height: 65px;
-	min-height: 65px;
-	padding: .5rem 1rem;
+	padding: 0 1rem;
 	color: #282828;
 	color: var(--ai-primary, #282828);
 	background-color: transparent;
@@ -643,6 +641,8 @@ footer .footer-right{
 	right: 0;
 	left: 0;
 	z-index: 1030;
+	height: 4rem;
+	min-height: 4rem;
 }
 
 .navbar-collapse{
@@ -690,6 +690,15 @@ footer .footer-right{
 	border: none;
 }
 
+.navbar-scroll {
+	background-color: rgba(18, 22, 26, 0.4);
+	transition: background-color .5s;
+	padding: 0 1rem;
+	background-color: #282828 !important;
+	background-color: var(--ai-primary, #282828) !important;
+	min-height: 4rem;
+}
+
 @media (max-width:768px) {
 
 	.navbar-brand img {
@@ -710,28 +719,14 @@ footer .footer-right{
 
 }
 
-.navbar-scroll {
-	background-color: rgba(18, 22, 26, 0.4);
-	transition: background-color .5s;
-	padding: .5rem 1rem;
-	background-color: #282828 !important;
-	background-color: var(--ai-primary, #282828) !important;
-}
-
 @media (min-width:992px) {
-
 	.navbar {
-		height: 165px;
+		height: 10rem;
 	}
 
 	.navbar .catalog-filter:first-child {
 		margin-inline-start: auto;
 		margin-inline-end: 0;
-	}
-
-	.navbar-scroll {
-		height: 65px;
-		min-height: 65px;
 	}
 
 }
