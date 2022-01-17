@@ -820,7 +820,7 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	/* Top level */
 
 	.catalog-filter-tree .top-cat-item.cat-item {
-		padding: 1rem 1.75rem;
+		padding: 1rem 1.5rem;
 		margin: 0;
 		letter-spacing: 1.5px;
 		font-size: 100%;

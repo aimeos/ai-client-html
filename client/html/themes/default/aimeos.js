@@ -644,12 +644,11 @@ AimeosPage = {
 	setupMenuTransition: function() {
 
 		var height = parseInt( document.querySelector(".navbar").offsetHeight );
-		console.log(height);
 
 		$(window).on('scroll', function() {
 			$('.navbar').css('height', (height - document.documentElement.scrollTop) + "px");
 
-			if(document.body.scrollTop > 65 || document.documentElement.scrollTop > 65){
+			if(document.body.scrollTop > 64 || document.documentElement.scrollTop > 64){
 				$(".navbar").addClass("navbar-scroll");
 			} else {
 				$(".navbar").removeClass("navbar-scroll");

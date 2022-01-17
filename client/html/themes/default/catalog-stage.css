@@ -1,6 +1,6 @@
 .aimeos .catalog-stage-image {
-	margin-top: calc(-1rem - 50px);
-	height: calc(1rem + 50px);
+	margin-top: calc(-1rem - 80px);
+	height: calc(1rem + 80px);
 }
 
 @media screen and (min-width: 992px) {

@@ -59,12 +59,12 @@ body {
 	background-color: var(--ai-bg-alt, #FFF);
 	background-image: url(./media/header-bg.webp);
 	background-repeat: no-repeat;
-	background-size: 100% calc(1rem + 50px);
+	background-size: 100% calc(1rem + 80px);
 }
 
 body > .content,
 body .main-section {
-	margin-top: calc(1rem + 50px);
+	margin-top: calc(1rem + 80px);
 }
 
 @media screen and (min-width: 992px) {
@@ -641,8 +641,8 @@ footer .footer-right{
 	right: 0;
 	left: 0;
 	z-index: 1030;
-	height: 4rem;
-	min-height: 4rem;
+	height: 6rem;
+	min-height: 6rem;
 }
 
 .navbar-collapse{
@@ -696,7 +696,12 @@ footer .footer-right{
 	padding: 0 1rem;
 	background-color: #282828 !important;
 	background-color: var(--ai-primary, #282828) !important;
-	min-height: 4rem;
+
+}
+
+@media (max-width:576px) {
+
+
 }
 
 @media (max-width:768px) {
@@ -721,7 +726,8 @@ footer .footer-right{
 
 @media (min-width:992px) {
 	.navbar {
-		height: 10rem;
+		height: 10.15rem;
+		min-height: 4rem;
 	}
 
 	.navbar .catalog-filter:first-child {
