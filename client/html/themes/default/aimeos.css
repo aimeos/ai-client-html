@@ -6,7 +6,7 @@
  */
 
 
- @font-face {
+@font-face {
 	font-family: 'Roboto Condensed';
 	font-style: normal;
 	font-weight: 400;
@@ -100,6 +100,10 @@ img {
 .aimeos {
 	clear: both;
 	text-align: start;
+}
+
+.aimeos .hidden {
+	display: none !important;
 }
 
 .aimeos .content-block {

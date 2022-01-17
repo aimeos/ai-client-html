@@ -228,7 +228,7 @@ class Standard
 				}
 			}
 
-			$view->detailItem = $item;
+			$view->subscriptionItem = $item;
 			$view->summaryBasket = $basket;
 			$view->summaryTaxRates = $this->getTaxRates( $basket );
 			$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );

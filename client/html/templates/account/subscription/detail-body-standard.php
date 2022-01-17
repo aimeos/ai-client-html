@@ -5,6 +5,16 @@
  * @copyright Aimeos (aimeos.org), 2018-2022
  */
 
+/* Available data:
+ * - subscriptionItem : Subscription item
+ * - summaryBasket : Basket
+ * - summaryTaxRates : Prices by tax rates
+ * - summaryNamedTaxes : Prices by tax names
+ * - summaryCostsDelivery : Delivery costs
+ * - summaryCostsPayment : Payment costs
+ */
+
+
 $enc = $this->encoder();
 
 
@@ -97,12 +107,12 @@ $enc = $this->encoder();
 
 
 	<div class="button-group">
-		<a class="btn btn-close" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url' ) ) ?>">
+		<a class="btn btn-secondary close" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url' ) ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
 		</a>
-		<?php if( $this->detailItem->getDateEnd() == null ) : ?>
-			<?php $params = ['sub_action' => 'cancel', 'sub_id' => $this->detailItem->getId()] ?>
-			<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params ) ) ?>">
+		<?php if( $this->subscriptionItem->getDateEnd() == null ) : ?>
+			<?php $params = ['sub_action' => 'cancel', 'sub_id' => $this->subscriptionItem->getId()] ?>
+			<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params, ['account-subscription'] ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
 			</a>
 		<?php endif ?>

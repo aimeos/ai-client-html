@@ -85,14 +85,15 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 <?php if( !$this->get( 'listsItems', map() )->isEmpty() ) : ?>
 
-	<div class="account-subscription-list">
+	<div id="account-subscription" class="account-subscription-list">
 		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h1>
 
 		<div class="subscription-list">
 
 			<?php foreach( $this->get( 'listsItems', [] ) as $id => $item ) : ?>
 
-				<div class="subscription-item row">
+				<div class="subscription-item row"
+					data-url="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', ['sub_action' => 'detail', 'sub_id' => $id] ) ) ?>">
 
 					<div class="col-12">
 						<h2 class="subscription-basic">
@@ -161,10 +162,8 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 					</div>
 
 					<div class="action col-md-2">
-						<?php $params = ['sub_action' => 'detail', 'sub_id' => $id] ?>
-						<a class="btn btn-outline" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params ) ) ?>">
-							<?= $enc->html( $this->translate( 'client', 'Show' ) ) ?>
-						</a>
+						<a class="btn btn-secondary show" href="#"><?= $enc->html( $this->translate( 'client', 'Show' ) ) ?></a>
+						<a class="btn btn-secondary close hidden" href="#"><?= $enc->html( $this->translate( 'client', 'Close' ) ) ?></a>
 					</div>
 				</div>
 

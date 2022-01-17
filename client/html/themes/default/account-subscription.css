@@ -22,7 +22,7 @@
 	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);
 	padding: 1rem;
-	margin: 1rem 0;
+	margin: 1rem;
 }
 
 .account-subscription-list .name:after {
@@ -54,15 +54,6 @@
 	text-decoration: underline;
 }
 
-.account-subscription-detail .modify {
-	float: right;
-	margin: 0 1rem;
-}
-
-[dir="rtl"] .account-subscription-detail .modify {
-	float: left;
-}
-
 .account-subscription-detail h2 {
 	margin: 0.5rem 0;
 }
@@ -72,7 +63,6 @@
 	font-size: 1rem;
 	margin: 0;
 }
-
 
 .account-subscription-detail .attr-item .name,
 .account-subscription-detail .attr-item .value {
