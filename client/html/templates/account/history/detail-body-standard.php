@@ -6,14 +6,24 @@
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
+/* Available data:
+ * - orderItem : Order item
+ * - summaryBasket : Basket
+ * - summaryTaxRates : Prices by tax rates
+ * - summaryNamedTaxes : Prices by tax names
+ * - summaryCostsDelivery : Delivery costs
+ * - summaryCostsPayment : Payment costs
+ */
+
+
 $enc = $this->encoder();
 
 $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 
 ?>
-<?php $this->block()->start( 'account/history/order' ) ?>
-<div class="account-history-order common-summary container-fluid">
+<?php $this->block()->start( 'account/history/detail' ) ?>
+<div class="account-history-detail common-summary container-fluid">
 
 	<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Order details' ), $enc::TRUST ) ?></h2>
 
@@ -212,8 +222,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 		<?php endforeach ?>
 
 		<div class="button-group">
-			<a class="btn btn-default btn-close"
-				href="<?= $enc->attr( $this->link( 'client/html/account/history/url' ) ) ?>">
+			<a class="btn btn-secondary close" href="<?= $enc->attr( $this->link( 'client/html/account/history/url', [], ['account-history'] ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
 			</a>
 			<button class="btn btn-primary btn-action">
@@ -224,4 +233,4 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 </div>
 <?php $this->block()->stop() ?>
-<?= $this->block()->get( 'account/history/order' ) ?>
+<?= $this->block()->get( 'account/history/detail' ) ?>

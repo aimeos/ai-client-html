@@ -78,7 +78,7 @@ class Standard
 	 * @since 2015.02
 	 * @category Developer
 	 */
-	private $subPartNames = array( 'lists', 'order' );
+	private $subPartNames = array( 'lists', 'detail' );
 	private $view;
 
 

@@ -7,7 +7,7 @@
  */
 
 
-namespace Aimeos\Client\Html\Account\History\Order;
+namespace Aimeos\Client\Html\Account\History\Detail;
 
 
 class StandardTest extends \PHPUnit\Framework\TestCase
@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view = \TestHelperHtml::view();
 		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
-		$this->object = new \Aimeos\Client\Html\Account\History\Order\Standard( $this->context );
+		$this->object = new \Aimeos\Client\Html\Account\History\Detail\Standard( $this->context );
 		$this->object->setView( $this->view );
 	}
 
@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->view = \TestHelperHtml::view();
 		$param = array(
-			'his_action' => 'order',
+			'his_action' => 'detail',
 			'his_id' => $this->getOrderItem( $customer->getId() )->getId()
 		);
 
@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<div class="account-history-order common-summary', $output );
+		$this->assertStringStartsWith( '<div class="account-history-detail common-summary', $output );
 
 		$this->assertStringContainsString( 'Our Unittest', $output );
 		$this->assertStringContainsString( 'Example company', $output );

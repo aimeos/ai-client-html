@@ -88,14 +88,15 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 <?php if( !$this->get( 'listsOrderItems', map() )->isEmpty() ) : ?>
 
-	<div class="account-history-list">
+	<div id="account-history" class="account-history-list">
 		<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Order history' ), $enc::TRUST ) ?></h1>
 
 		<div class="history-list">
 
 			<?php foreach( $this->get( 'listsOrderItems', [] ) as $id => $orderItem ) : ?>
 
-				<div class="history-item row">
+				<div class="history-item row"
+					data-url="<?= $enc->attr( $this->link( 'client/html/account/history/url', ['his_action' => 'detail', 'his_id' => $id] ) ) ?>">
 
 					<div class="col-12">
 						<h2 class="order-basic">
@@ -163,10 +164,8 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 					</div>
 
 					<div class="action col-md-2">
-						<?php $params = ['his_action' => 'order', 'his_id' => $id] ?>
-						<a class="btn btn-outline" href="<?= $enc->attr( $this->link( 'client/html/account/history/url', $params ) ) ?>">
-							<?= $enc->html( $this->translate( 'client', 'Show' ) ) ?>
-						</a>
+						<a class="btn btn-secondary show" href="#"><?= $enc->html( $this->translate( 'client', 'Show' ) ) ?></a>
+						<a class="btn btn-secondary close hidden" href="#"><?= $enc->html( $this->translate( 'client', 'Close' ) ) ?></a>
 					</div>
 				</div>
 
