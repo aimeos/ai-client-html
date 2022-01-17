@@ -641,12 +641,13 @@ AimeosPage = {
 	/**
 	 * Menu transition
 	 */
-	setupMenuTransition: function() {
+	 setupMenuTransition: function() {
 
-		window.onscroll = function() {scrollFunction()};
-
-		function scrollFunction() {
-			if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
+		var defaultHeight = parseInt( document.querySelector(".navbar").offsetHeight );
+		window.onscroll = function () {
+			var tdiv = document.querySelector('.navbar');
+			tdiv.style.height = ( defaultHeight - document.documentElement.scrollTop ) +"px"
+			if (document.body.scrollTop > defaultHeight || document.documentElement.scrollTop > defaultHeight){
 				$(".navbar").addClass("navbar-scroll");
 			} else {
 				$(".navbar").removeClass("navbar-scroll");

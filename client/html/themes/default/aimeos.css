@@ -6,7 +6,7 @@
  */
 
 
-@font-face {
+ @font-face {
 	font-family: 'Roboto Condensed';
 	font-style: normal;
 	font-weight: 400;
@@ -626,7 +626,8 @@ footer .footer-right{
 /*----------------------------------- Navbar -----------------------------------*/
 
 .navbar {
-	transition: all .5s;
+	height: 65px;
+	min-height: 65px;
 	padding: .5rem 1rem;
 	color: #282828;
 	color: var(--ai-primary, #282828);
@@ -685,6 +686,11 @@ footer .footer-right{
 
 @media (max-width:768px) {
 
+	.navbar-brand img {
+		width: 120px;
+		height: auto;
+	}
+
 	.navbar-expand-md .navbar-collapse {
 		display: -ms-flexbox !important;
 		display: flex !important;
@@ -700,7 +706,7 @@ footer .footer-right{
 
 .navbar-scroll {
 	background-color: rgba(18, 22, 26, 0.4);
-	transition: none;
+	transition: background-color .5s;
 	padding: .5rem 1rem;
 	background-color: #282828 !important;
 	background-color: var(--ai-primary, #282828) !important;
@@ -709,7 +715,7 @@ footer .footer-right{
 @media (min-width:992px) {
 
 	.navbar {
-		padding: 3.5rem 1rem;
+		height: 165px;
 	}
 
 	.navbar .catalog-filter:first-child {
@@ -717,13 +723,9 @@ footer .footer-right{
 		margin-inline-end: 0;
 	}
 
-	.navbar {
-		padding: 3.5rem 1rem;
-	}
-
 	.navbar-scroll {
-		transition: all 0.5s;
-		padding: .5rem 1rem;
+		height: 65px;
+		min-height: 65px;
 	}
 
 }
@@ -752,7 +754,7 @@ footer .footer-right{
 .navbar-nav .login > .nav-link,
 .navbar-nav .register > .nav-link,
 .navbar-nav .profile > .nav-link {
-	padding: 0.5rem;
+	padding: 0.25rem;
 }
 
 .navbar-nav .login > .nav-link::before,
@@ -789,14 +791,14 @@ footer .footer-right{
 
 @media (max-width:991px) {
 
-	/*- MENU trigger Button -*/
+	/* MENU trigger Button */
 
 	.open-menu {
 		position: relative;
 		display: block;
 		line-height: 1;
 		cursor: pointer;
-		padding: 0.5rem;
+		padding: 0.5rem .25rem .5rem 0;
 		z-index: 1;
 	}
 
