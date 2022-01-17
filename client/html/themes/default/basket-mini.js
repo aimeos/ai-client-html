@@ -91,3 +91,8 @@ AimeosBasketMini = {
 		this.setupBasketDelete();
 	}
 };
+
+
+$(function() {
+	AimeosBasketMini.init();
+});
