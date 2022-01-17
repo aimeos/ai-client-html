@@ -44,6 +44,9 @@ class TestHelperHtml
 		$helper = new \Aimeos\MW\View\Helper\Url\Standard( $view, 'http://baseurl' );
 		$view->addHelper( 'url', $helper );
 
+		$helper = new \Aimeos\MW\View\Helper\Session\Standard( $view, self::context( $site )->session() );
+		$view->addHelper( 'session', $helper );
+
 		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, '.', '' );
 		$view->addHelper( 'number', $helper );
 
