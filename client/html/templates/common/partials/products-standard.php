@@ -219,11 +219,11 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<?php endif ?>
 
 					<div class="rating"><!--
-							--><span class="stars"><?= str_repeat( '★', (int) round( $productItem->getRating() ) ) ?></span><!--
+						--><span class="stars"><?= str_repeat( '★', (int) round( $productItem->getRating() ) ) ?></span><!--
 					--></div>
 
 					<div class="text-list">
-						<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
+						<h2 class="name" itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
 
 						<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 

@@ -24,13 +24,10 @@
  */
 AimeosCatalogDetail = {
 
-	options: null,
+	fetchReviews(container) {
 
-
-	fetchReviews: function(container) {
-
-		var jsonUrl = $(".catalog-detail").data("jsonurl");
-		var prodid = $(container).data("productid");
+		const jsonUrl = $(".catalog-detail").data("jsonurl");
+		const prodid = $(container).data("productid");
 
 		if(prodid && jsonUrl) {
 
@@ -43,11 +40,12 @@ AimeosCatalogDetail = {
 
 				if(options && options.meta && options.meta.resources && options.meta.resources.review) {
 
-					var args = {
+					const args = {
 						filter: {f_refid: prodid},
 						sort: "-ctime"
 					};
-					var params = {};
+					let params = {};
+					let url;
 
 					if(options.meta.prefix) {
 						params[options.meta.prefix] = args;
@@ -55,7 +53,7 @@ AimeosCatalogDetail = {
 						params = args;
 					}
 
-					var url = new URL(options.meta.resources.review);
+					url = new URL(options.meta.resources.review);
 					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
 					fetch(url, {
@@ -75,7 +73,7 @@ AimeosCatalogDetail = {
 						params = args;
 					}
 
-					var url = new URL(options.meta.resources.review);
+					url = new URL(options.meta.resources.review);
 					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
 					fetch(url, {
@@ -84,10 +82,10 @@ AimeosCatalogDetail = {
 						return response.json();
 					}).then(response => {
 						if(response && response.data) {
-							var ratings = $(".rating-dist", container).data("ratings") || 1;
+							const ratings = $(".rating-dist", container).data("ratings") || 1;
 
 							response.data.forEach(function(entry) {
-								var percent = (entry.attributes || 0) * 100 / ratings;
+								const percent = (entry.attributes || 0) * 100 / ratings;
 								$("#rating-" + (entry.id || 0)).val(percent).text(percent);
 							});
 						}
@@ -98,22 +96,22 @@ AimeosCatalogDetail = {
 	},
 
 
-	addReviews: function(response, container) {
+	addReviews(response, container) {
 
 		if(response && response.data) {
 
-			var template = $(".review-item.prototype", container);
-			var more = $(".review-list .more", container);
-			var list = $(".review-items", container);
+			const template = $(".review-item.prototype", container);
+			const more = $(".review-list .more", container);
+			const list = $(".review-items", container);
 
-			response.data.forEach(function(entry) {
+			response.data.forEach(entry => {
 				item = AimeosCatalogDetail.updateReview(entry, template);
 				list.append(item);
 
-				var height = item.innerHeight();
+				let height = item.innerHeight();
 
-				$(":scope > *:not(.review-show)", item).each(function() {
-					height -= $(this).outerHeight(true);
+				$(":scope > *:not(.review-show)", item).each((idx, el) => {
+					height -= $(el).outerHeight(true);
 				});
 
 				if(height >= 0) {
@@ -130,14 +128,14 @@ AimeosCatalogDetail = {
 	},
 
 
-	updateReview: function(entry, template) {
+	updateReview(entry, template) {
 
-		var response = (entry.attributes['review.response'] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-		var comment = (entry.attributes['review.comment'] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-		var date = new Date(entry.attributes['review.ctime'] || '');
-		var cnt = parseInt(entry.attributes['review.rating'], 10);
-		var item = template.clone().removeClass("prototype");
-		var symbol = $(".review-rating", item).text();
+		const response = (entry.attributes['review.response'] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		const comment = (entry.attributes['review.comment'] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		const date = new Date(entry.attributes['review.ctime'] || '');
+		const cnt = parseInt(entry.attributes['review.rating'], 10);
+		const item = template.clone().removeClass("prototype");
+		const symbol = $(".review-rating", item).text();
 
 		if(response) {
 			$(".review-response", item).html($(".review-response", item).html() + response.replace(/\n+/g, '<br/>'));
@@ -157,24 +155,24 @@ AimeosCatalogDetail = {
 	/**
 	 * Opens the lightbox with big images
 	 */
-	setupImageLightbox: function() {
+	onOpenLightbox() {
 
-		$(".catalog-detail-image").on("click", ".image-single .item", function(ev) {
+		$(".catalog-detail-image").on("click", ".image-single .item", ev => {
 
-			var list = [];
-			var vwidth = $(window).width();
-			var gallery = $(ev.delegateTarget);
-			var pswp = $(".pswp", gallery);
-			var options = $(gallery).data("options") || {};
+			const list = [];
+			const vwidth = $(window).width();
+			const gallery = $(ev.delegateTarget);
+			const pswp = $(".pswp", gallery);
+			const options = $(gallery).data("options") || {};
 
 			if( pswp.length === 0 ) {
 				console.log( 'No element with class .pswp for PhotoSwipe found' );
 				return false;
 			}
 
-			$(".image-single .item", gallery).each(function(idx, item) {
-				var entries = $(item).data("sources");
-				var imgurl;
+			$(".image-single .item", gallery).each((idx, item) => {
+				const entries = $(item).data("sources");
+				let imgurl;
 
 				for(var width in entries) {
 					if(width <= vwidth) {
@@ -194,10 +192,10 @@ AimeosCatalogDetail = {
 			gallery._photoswipe = new PhotoSwipe(pswp[0], PhotoSwipeUI_Default, list, options);
 			gallery._photoswipe.init();
 
-			gallery._photoswipe.listen("imageLoadComplete", function(idx, item) {
+			gallery._photoswipe.listen("imageLoadComplete", (idx, item) => {
 
 				if( item.w === 0 && item.h === 0 ) {
-					var imgpreload = new Image();
+					const imgpreload = new Image();
 
 					imgpreload.onload = function() {
 						item.w = this.width;
@@ -215,10 +213,10 @@ AimeosCatalogDetail = {
 	/**
 	 * Single and thumbnail image slider
 	 */
-	setupImageSlider: function() {
+	onSelectThumbnail() {
 
-		$(".thumbs img").on("click", function() {
-		    var index = $(this).index();
+		$(".thumbs img").on("click", (ev) => {
+		    const index = $(ev.currentTarget).index();
 		    const sliderElement = document.querySelector('.catalog-detail-image div:first-child');
 		    swiffyslider.slideTo(sliderElement, index)
 		});
@@ -228,13 +226,14 @@ AimeosCatalogDetail = {
 	/**
 	 * Initializes the slide in/out for block prices
 	 */
-	setupPriceSlider: function() {
+	onTogglePrice() {
 
 		$(".catalog-detail-basket .price-item:not(.price-item:first-of-type)").hide();
 
-		$('.catalog-detail-basket .price-list').on("click", function() {
-			$(".price-item:not(.price-item:first-of-type)", this).each(function() {
-				slideToggle(this, 300);
+		$('.catalog-detail-basket .price-list').on("click", ev => {
+			$(".price-item").toggleClass('toggle-js');
+			$(".price-item:not(.price-item:first-of-type)", ev.currentTarget).each((idx, el) => {
+				slideToggle(el, 300);
 			});
 		});
 	},
@@ -243,13 +242,13 @@ AimeosCatalogDetail = {
 	/**
 	 * Initializes the slide in/out for delivery/payment services
 	 */
-	setupServiceSlider: function() {
+	onToggleServices() {
 
 		$(".catalog-detail-service .service-list").hide();
 
-		$('.catalog-detail-service').on("click", function() {
-			$(".service-list", this).each(function() {
-				slideToggle(this, 300);
+		$('.catalog-detail-service').on("click", ev => {
+			$(".service-list", ev.currentTarget).each((idx, el) => {
+				slideToggle(el, 300);
 			});
 		});
 	},
@@ -258,13 +257,13 @@ AimeosCatalogDetail = {
 	/**
 	 * Initializes loading reviews
 	 */
-	setupReviews: function() {
+	onShowReviews() {
 
-		var list = document.querySelectorAll('.catalog-detail .reviews');
+		const list = document.querySelectorAll('.catalog-detail .reviews');
 
 		if(list.length > 0) {
 			if('IntersectionObserver' in window) {
-				let observer = new IntersectionObserver(function(entries, observer) {
+				let observer = new IntersectionObserver((entries, observer) => {
 					for(let entry of entries) {
 						if(entry.isIntersecting) {
 							observer.unobserve(entry.target);
@@ -287,12 +286,12 @@ AimeosCatalogDetail = {
 	/**
 	 * Initializes loading more reviews
 	 */
-	setupReviewLoadMore: function() {
+	onMoreReviews() {
 
-		$(".catalog-detail-additional .reviews").on("click", ".more", function(ev) {
+		$(".catalog-detail-additional .reviews").on("click", ".more", ev => {
 			ev.preventDefault();
 
-			fetch($(this).attr("href"), {
+			fetch($(ev.currentTarget).attr("href"), {
 				headers: {'Content-type': 'application/json'}
 			}).then(response => {
 				return response.json();
@@ -308,19 +307,19 @@ AimeosCatalogDetail = {
 	/**
 	 * Initializes sorting reviews
 	 */
-	setupReviewsSort: function() {
+	onSortReviews() {
 
-		$(".catalog-detail-additional .reviews").on("click", ".sort .sort-option", function(ev) {
+		$(".catalog-detail-additional .reviews").on("click", ".sort .sort-option", ev => {
 			ev.preventDefault();
 
-			fetch($(this).attr("href"), {
+			fetch($(ev.currentTarget).attr("href"), {
 				headers: {'Content-type': 'application/json'}
 			}).then(response => {
 				return response.json();
 			}).then(response => {
 				if(response && response.data) {
-					var reviews = $(".review-items", ev.delegateTarget);
-					var prototype = $(".prototype", reviews);
+					const reviews = $(".review-items", ev.delegateTarget);
+					const prototype = $(".prototype", reviews);
 
 					reviews.empty().append(prototype);
 					AimeosCatalogDetail.addReviews(response, ev.delegateTarget);
@@ -336,11 +335,11 @@ AimeosCatalogDetail = {
 
 
 	/**
-	 * Initializes sorting reviews
+	 * Initializes expanding reviews
 	 */
-	setupReviewsShow: function() {
+	onExpandReviews() {
 
-		$(".catalog-detail-additional .reviews").on("click", ".review-show", function(ev) {
+		$(".catalog-detail-additional .reviews").on("click", ".review-show", ev => {
 
 			$(ev.currentTarget).parents(".review-item").css('max-height', 'fit-content');
 			$(ev.currentTarget).hide();
@@ -352,17 +351,16 @@ AimeosCatalogDetail = {
 	/**
 	 * Initializes the catalog detail actions
 	 */
-	init: function() {
+	init() {
+		this.onOpenLightbox();
+		this.onSelectThumbnail();
+		this.onToggleServices();
+		this.onTogglePrice();
 
-		this.setupImageSlider();
-		this.setupImageLightbox();
-		this.setupServiceSlider();
-		this.setupPriceSlider();
-
-		this.setupReviews();
-		this.setupReviewsShow();
-		this.setupReviewsSort();
-		this.setupReviewLoadMore();
+		this.onExpandReviews();
+		this.onMoreReviews();
+		this.onShowReviews();
+		this.onSortReviews();
 	}
 };
 
