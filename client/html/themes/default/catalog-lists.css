@@ -282,20 +282,6 @@
 	width: 25%;
 }
 
-.catalog-list-items .basket .select-stock {
-	text-align: center;
-	width: 10%;
-}
-
-.catalog-list-items .basket .select-stock .stockitem,
-.catalog-list-items .basket .select-stock .stocklevel {
-	display: block;
-}
-
-.catalog-list-items .basket .select-stock .stocktext {
-	display: none;
-}
-
 .catalog-list-items .basket .select-quantity {
 	text-align: center;
 	width: 15%;

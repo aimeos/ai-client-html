@@ -343,7 +343,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 											name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ) ?>"
 											title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ), $enc::TRUST ) ?>"
 										><!--
-										--><button class="btn btn-primary" type="submit"
+										--><button class="btn btn-primary btn-action" type="submit"
 											title="<?= $enc->attr( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>"
 											<?= !$productItem->isAvailable() ? 'disabled' : '' ?> >
 										</button><!--

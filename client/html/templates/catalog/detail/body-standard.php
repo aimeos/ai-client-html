@@ -65,7 +65,8 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 	<?php if( isset( $this->detailProductItem ) ) : ?>
 
-		<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>" data-id="<?= $this->detailProductItem->getId() ?>">
+		<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>"
+			data-id="<?= $this->detailProductItem->getId() ?>" data-reqstock="<?= $reqstock ?>">
 
 			<div class="col-sm-6">
 				<?= $this->partial(
@@ -121,7 +122,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				</div>
 
 
-				<div class="catalog-detail-basket" data-reqstock="<?= $reqstock ?>" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
+				<div class="catalog-detail-basket" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 
 					<div class="price-list">
 						<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
@@ -156,7 +157,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					<?= $this->block()->get( 'catalog/detail/service' ) ?>
 
 
-					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
+					<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
 						<!-- catalog.detail.csrf -->
 						<?= $this->csrf()->formfield() ?>
 						<!-- catalog.detail.csrf -->

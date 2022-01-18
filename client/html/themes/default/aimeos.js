@@ -146,11 +146,11 @@ Aimeos = {
 	 */
 	onCloseContainer() {
 
-		$("body").on("click", ".aimeos-overlay, .aimeos-container .btn-close", () => {
+		$(document).on("click", ".aimeos-overlay, .aimeos-container .btn-close", () => {
 			return Aimeos.removeOverlay();
 		});
 
-		$("body").on("keydown", (ev) => {
+		$(document).on("keydown", ev => {
 			if(ev.key == "Escape") {
 				return Aimeos.removeOverlay();
 			}
@@ -257,7 +257,7 @@ AimeosBasket = {
 	 */
 	onSelectDependencies() {
 
-		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", ev => {
+		$(document).on("change", ".product .selection .select-list", ev => {
 
 			const node = ev.currentTarget;
 			const el = $(node);
@@ -341,15 +341,15 @@ AimeosBasket = {
 	 */
 	onSelectVariant() {
 
-		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", ev => {
+		$(document).on("change", ".product .selection .select-list", ev => {
 
 			let len = 0;
 			let stock = false;
 
 			const map = {};
+			const item = $(ev.currentTarget).closest(".product");
 			const target = $(ev.currentTarget).closest(".selection");
 			const attrDeps = target.data("attrdeps") || {}; // {"<attrid>":["prodid",...],...}
-			const item = $(ev.currentTarget).closest(".catalog-detail-basket, .catalog-list .product");
 
 
 			$(".select-option:checked", target).each((idx, el) => {
@@ -374,25 +374,24 @@ AimeosBasket = {
 
 				if(map.hasOwnProperty(prodId) && map[prodId] === len) {
 
-					let parent = $(ev.currentTarget).closest(".catalog-detail-basket, .catalog-list .product");
-					let newStock = $('.stock-list [data-prodid="' + prodId + '"]', parent);
-					let newPrice = $('.price-list [data-prodid="' + prodId + '"]', parent);
+					let newStock = $('.stock-list [data-prodid="' + prodId + '"]', item);
+					let newPrice = $('.price-list [data-prodid="' + prodId + '"]', item);
 
 					if(newStock.length === 0) {
-						newStock = $(".stock-list .articleitem:first-child", parent);
+						newStock = $(".stock-list .articleitem:first-child", item);
 					}
 
 					if(newPrice.length === 0) {
-						newPrice = $(".price-list .articleitem:first-child", parent);
+						newPrice = $(".price-list .articleitem:first-child", item);
 					}
 
-					$(".articleitem", parent).removeClass("stock-actual");
+					$(".articleitem", item).removeClass("stock-actual");
 					newStock.addClass("stock-actual");
 
-					$(".articleitem", parent).removeClass("price-actual");
+					$(".articleitem", item).removeClass("price-actual");
 					newPrice.addClass("price-actual");
 
-					if(!(parent.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out"))) {
+					if(!(item.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out"))) {
 						stock = true;
 					}
 
@@ -415,7 +414,7 @@ AimeosBasket = {
 	 */
 	onCheckVariant() {
 
-		$(".catalog-detail-basket-selection, .catalog-list-items .items-selection").on("click", ".addbasket .btn-action", (ev) => {
+		$(document).on("click", ".product .addbasket .btn-action", ev => {
 			let result = true;
 
 			$(".selection .select-item", $(ev.currentTarget).closest(".items-selection")).each((idx, el) => {
@@ -438,7 +437,7 @@ AimeosBasket = {
 	 */
 	onImageVariant() {
 
-		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", (ev) => {
+		$(document).on("change", ".product .selection .select-list", ev => {
 
 			const elem = $(ev.currentTarget);
 			const type = elem.data("type");
@@ -458,7 +457,7 @@ AimeosBasket = {
 	 */
 	onAddBasket() {
 
-		$(".catalog-detail-basket form, .catalog-list-items form").on("submit", (ev) => {
+		$(document).on("submit", ".product form.basket", ev => {
 			Aimeos.createOverlay();
 
 			fetch($(ev.currentTarget).attr("action"), {
@@ -480,7 +479,7 @@ AimeosBasket = {
 	 */
 	onFavoriteAction() {
 
-		$(".catalog-actions .actions-favorite").on("submit", ev => {
+		$(document).on("submit", ".catalog-actions .actions-favorite", ev => {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
@@ -517,7 +516,7 @@ AimeosBasket = {
 	 */
 	onWatchAction() {
 
-		$(".catalog-actions .actions-watch").on("submit", ev => {
+		$(document).on("submit", ".catalog-actions .actions-watch", ev => {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
@@ -600,18 +599,11 @@ AimeosPage = {
 
 		const height = parseFloat($(".navbar").outerHeight());
 		const relHeight = parseFloat(getComputedStyle(document.documentElement).fontSize) * 4; // 4rem in px
-		const newHeight = height - document.documentElement.scrollTop;
-
-		$(".navbar").css('min-height', Math.max(newHeight, relHeight));
-		newHeight < relHeight ? $(".navbar").addClass("scroll") : $(".navbar").removeClass("scroll");
 
 		$(window).on('scroll', () => {
 			const newHeight = height - document.documentElement.scrollTop;
-
-			if(newHeight > 0) {
-				$(".navbar").css('min-height', Math.max(newHeight, relHeight));
-				newHeight < relHeight ? $(".navbar").addClass("scroll") : $(".navbar").removeClass("scroll");
-			}
+			$(".navbar").css('min-height', Math.max(newHeight, relHeight));
+			newHeight < relHeight ? $(".navbar").addClass("scroll") : $(".navbar").removeClass("scroll");
 		});
 	},
 
@@ -623,7 +615,7 @@ AimeosPage = {
 
 		const $dropdowns = $('.top-item');
 
-		$dropdowns.on('mouseover', (ev) => {
+		$dropdowns.on('mouseover', ev => {
 			var $this = $(ev.currentTarget);
 			if ($this.prop('hoverTimeout')){
 				$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
@@ -631,7 +623,7 @@ AimeosPage = {
 			$this.prop('hoverIntent', setTimeout(() => {
 				$this.addClass('hover');
 			}));
-		}).on('mouseleave', (ev) => {
+		}).on('mouseleave', ev => {
 			var $this = $(ev.currentTarget);
 			if ($this.prop('hoverIntent')){
 				$this.prop('hoverIntent', clearTimeout($this.prop('hoverIntent')));
@@ -663,7 +655,7 @@ AimeosPage = {
 								$dropdowns.removeClass('hover');
 								$this.addClass('hover');
 
-								document.addEventListener('touchstart', closeDropdown = function(ev){
+								document.addEventListener('touchstart', closeDropdown = function(ev) {
 									ev.stopPropagation();
 									$this.removeClass('hover');
 									document.removeEventListener('touchstart', closeDropdown);
