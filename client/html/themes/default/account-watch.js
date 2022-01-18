@@ -6,25 +6,24 @@ AimeosAccountWatch = {
 	/**
 	 * Deletes a watched item without page reload
 	 */
-	setupRemoveProduct: function() {
+	onRemoveProduct() {
 
-		$("body").on("click", ".account-watch .delete", function() {
+		$("body").on("click", ".account-watch .delete", ev => {
 
-			var form = $(this).closest("form");
-			$(this).closest("watch-item").addClass("loading");
+			const form = $(ev.currentTarget).parents("form");
+			$(ev.currentTarget).closest("watch-item").addClass("loading");
 
 			fetch(form.attr("action"), {
-				body: new FormData(form.get(0)),
+				body: new FormData(form[0]),
 				method: 'POST'
 			}).then(response => {
 				return response.text();
 			}).then(data => {
-				var doc = document.createElement("html");
-				doc.innerHTML = data;
+				const doc = $("<html/>").html(data);
 
-				if($(".aimeos.account-watch .watch-items", doc).length) {
-					$(".aimeos.account-watch").html($(".aimeos.account-watch", doc).html());
-				} else {
+				$(".aimeos.account-watch").replaceWith($(".aimeos.account-watch", doc));
+
+				if(!$(".aimeos.account-watch .watch-items").length) {
 					Aimeos.removeOverlay();
 				}
 			});
@@ -37,23 +36,21 @@ AimeosAccountWatch = {
 	/**
 	 * Saves a modifed watched item without page reload
 	 */
-	setupSaveProduct: function() {
+	onSaveProduct() {
 
-		$("body").on("click", ".account-watch .btn-action", function() {
+		$("body").on("click", ".account-watch .btn-action", ev => {
 
-			var form = $(this).closest("form.watch-details");
+			const form = $(ev.currentTarget).closest("form.watch-details");
 			form.addClass("loading");
 
 			fetch(form.attr("action"), {
-				body: new FormData(form.get(0)),
+				body: new FormData(form[0]),
 				method: 'POST'
-			}).then(function(response) {
+			}).then(response => {
 				return response.text();
-			}).then(function(data) {
-				var doc = document.createElement("html");
-				doc.innerHTML = data;
-
-				$(".aimeos.account-watch").html($(".aimeos.account-watch", doc).html());
+			}).then(data => {
+				const doc = $("<html/>").html(data);
+				$(".aimeos.account-watch").replaceWith($(".aimeos.account-watch", doc));
 			});
 
 			return false;
@@ -64,10 +61,10 @@ AimeosAccountWatch = {
 	/**
 	 * Initializes the account watch actions
 	 */
-	init: function() {
+	init() {
 
-		this.setupRemoveProduct();
-		this.setupSaveProduct();
+		this.onRemoveProduct();
+		this.onSaveProduct();
 	}
 };
 
