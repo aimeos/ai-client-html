@@ -599,12 +599,14 @@ AimeosPage = {
 
 		const height = parseFloat($(".navbar").outerHeight());
 		const relHeight = parseFloat(getComputedStyle(document.documentElement).fontSize) * 4; // 4rem in px
-
-		$(window).on('scroll', () => {
+		const scroll = function() {
 			const newHeight = height - document.documentElement.scrollTop;
 			$(".navbar").css('min-height', Math.max(newHeight, relHeight));
 			newHeight < relHeight ? $(".navbar").addClass("scroll") : $(".navbar").removeClass("scroll");
-		});
+		}
+
+		$(window).on('scroll', scroll);
+		scroll();
 	},
 
 

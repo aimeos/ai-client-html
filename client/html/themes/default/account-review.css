@@ -30,10 +30,8 @@
 	max-height: 10rem;
 }
 
-.account-review .todo-rating label {
+.account-review .todo-rating input {
 	vertical-align: middle;
-	height: 1.25rem;
-	width: 1.25rem;
 }
 
 .account-review .todo-rating input:checked ~ label {
