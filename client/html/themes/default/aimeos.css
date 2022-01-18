@@ -57,25 +57,6 @@ body {
 	color: var(--ai-primary, #000);
 	background-color: #FFF;
 	background-color: var(--ai-bg-alt, #FFF);
-	background-image: url(./media/header-bg.webp);
-	background-repeat: no-repeat;
-	background-size: 100% calc(1rem + 80px);
-}
-
-body > .content,
-body .main-section {
-	margin-top: calc(1rem + 80px);
-}
-
-@media screen and (min-width: 992px) {
-	body {
-		background-size: 100% calc(7rem + 50px);
-	}
-
-	body > .content,
-	body .main-section {
-		margin-top: calc(7rem + 50px);
-	}
 }
 
 a {
@@ -629,7 +610,30 @@ footer .footer-right{
 
 }
 
-/*----------------------------------- Navbar -----------------------------------*/
+
+/* Navbar background */
+
+body {
+	background-image: url(./media/header-bg.webp);
+	background-repeat: no-repeat;
+	background-size: 100% 6rem;
+}
+
+body > .content, body .main-section {
+	margin-top: 6rem;
+}
+
+@media (min-width: 992px) {
+	body {
+		background-size: 100% 10rem;
+	}
+
+	body > .content, body .main-section {
+		margin-top: 10rem;
+	}
+}
+
+/* Navbar */
 
 .navbar {
 	padding: 0 1rem;
@@ -641,8 +645,14 @@ footer .footer-right{
 	right: 0;
 	left: 0;
 	z-index: 1030;
-	height: 6rem;
 	min-height: 6rem;
+}
+
+.navbar.scroll {
+	padding: 0 1rem;
+	background-size: 100% 4rem;
+	background-color: #282828 !important;
+	background-color: var(--ai-primary, #282828) !important;
 }
 
 .navbar-collapse{
@@ -690,22 +700,7 @@ footer .footer-right{
 	border: none;
 }
 
-.navbar-scroll {
-	background-color: rgba(18, 22, 26, 0.4);
-	transition: background-color .5s;
-	padding: 0 1rem;
-	background-color: #282828 !important;
-	background-color: var(--ai-primary, #282828) !important;
-
-}
-
-@media (max-width:576px) {
-
-
-}
-
 @media (max-width:768px) {
-
 	.navbar-brand img {
 		width: 120px;
 		height: auto;
@@ -721,20 +716,17 @@ footer .footer-right{
 	.navbar-expand-md .navbar-toggler {
 		display: none;
 	}
-
 }
 
 @media (min-width:992px) {
 	.navbar {
-		height: 10.15rem;
-		min-height: 4rem;
+		min-height: 10rem;
 	}
 
 	.navbar .catalog-filter:first-child {
 		margin-inline-start: auto;
 		margin-inline-end: 0;
 	}
-
 }
 
 .navbar .catalog-filter-tree {

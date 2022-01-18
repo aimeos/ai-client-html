@@ -638,20 +638,25 @@ AimeosPage = {
 	observer.observe(target);
 	},
 
+
 	/**
 	 * Menu transition
 	 */
-	setupMenuTransition: function() {
+	onMenuScroll: function() {
 
-		var height = parseInt( document.querySelector(".navbar").offsetHeight );
+		const height = parseFloat($(".navbar").outerHeight());
+		const relHeight = parseFloat(getComputedStyle(document.documentElement).fontSize) * 4; // 4rem in px
+		const newHeight = height - document.documentElement.scrollTop;
 
-		$(window).on('scroll', function() {
-			$('.navbar').css('height', (height - document.documentElement.scrollTop) + "px");
+		$(".navbar").css('min-height', Math.max(newHeight, relHeight));
+		newHeight < relHeight ? $(".navbar").addClass("scroll") : $(".navbar").removeClass("scroll");
 
-			if(document.body.scrollTop > 64 || document.documentElement.scrollTop > 64){
-				$(".navbar").addClass("navbar-scroll");
-			} else {
-				$(".navbar").removeClass("navbar-scroll");
+		$(window).on('scroll', () => {
+			const newHeight = height - document.documentElement.scrollTop;
+
+			if(newHeight > 0) {
+				$(".navbar").css('min-height', Math.max(newHeight, relHeight));
+				newHeight < relHeight ? $(".navbar").addClass("scroll") : $(".navbar").removeClass("scroll");
 			}
 		});
 	},
@@ -794,7 +799,7 @@ AimeosPage = {
 	 * Initializes the menu actions
 	 */
 	init: function() {
-		this.setupMenuTransition();
+		this.onMenuScroll();
 		this.setupLinkTop();
 		this.setupMenuMenu();
 		this.setupOffscreen();

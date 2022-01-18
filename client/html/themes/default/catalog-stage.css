@@ -1,14 +1,18 @@
+/* Navbar background */
+
 .aimeos .catalog-stage-image {
-	margin-top: calc(-1rem - 80px);
-	height: calc(1rem + 80px);
+	margin-top: -6rem;
+	height: 6rem;
 }
 
 @media screen and (min-width: 992px) {
 	.aimeos .catalog-stage-image {
-		margin-top: calc(-7rem - 50px);
-		height: calc(7rem + 50px);
+		margin-top: -10rem;
+		height: 10rem;
 	}
 }
+
+/* Stage image */
 
 .catalog-stage {
 	position: relative;
