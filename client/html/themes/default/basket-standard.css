@@ -7,8 +7,8 @@
 	margin: 0;
 }
 
-.basket-standard-main td.quantity a,
-.basket-standard-main td.action a {
+.basket-standard-main quantity a,
+.basket-standard-main action a {
 	text-decoration: none;
 }
 

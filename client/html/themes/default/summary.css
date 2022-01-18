@@ -96,6 +96,10 @@
 	background-color: var(--ai-bg-light, #CCCCCC);
 }
 
+.aimeos .common-summary-detail .status {
+	display: none;
+}
+
 .aimeos .common-summary-detail .supplier h3 {
 	margin-top: 0.5rem;
 }
@@ -106,8 +110,8 @@
 }
 
 .aimeos .common-summary-detail .total {
-	border-top: 1px solid #D0D0D0;
-	border-top-color: var(--ai-light, #D0D0D0);
+	border-top: 1px solid #555;
+	border-top-color: var(--ai-secondary, #555);
 	color: #555;
 	color: var(--ai-secondary, #555);
 	background-color: #CCC;
@@ -204,6 +208,15 @@
 	content: "+ ";
 }
 
+.aimeos .common-summary-detail .subtotal {
+	margin-top: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.aimeos .common-summary-detail .delivery {
+	margin-bottom: 1rem;
+}
+
 .aimeos .common-summary-detail .price-total {
 	font-weight: bold;
 }
@@ -217,7 +230,7 @@
 }
 
 .aimeos .common-summary-detail .product {
-	padding-bottom: .25rem;
+	padding: 0.5rem 0;
 	border-bottom: 1px solid;
 }
 

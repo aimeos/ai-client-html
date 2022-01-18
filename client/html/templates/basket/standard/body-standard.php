@@ -34,7 +34,7 @@ $enc = $this->encoder();
 					<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
 				</div>
 
-				<div class="basket table-responsive">
+				<div class="basket">
 					<?= $this->partial(
 						/** client/html/basket/standard/summary/detail
 						 * Location of the detail partial template for the basket standard component
