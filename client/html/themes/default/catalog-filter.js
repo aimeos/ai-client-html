@@ -13,13 +13,13 @@ AimeosCatalogFilter = {
 	/**
 	 * Autocompleter for quick search
 	 */
-	setupSearchAutocompletion: function() {
+	onLoadSearch() {
 
-		$(".catalog-filter-search .value").each(function() {
-			var url = $(this).data("url");
+		$(".catalog-filter-search .value").each((idx, el) => {
+			const url = $(el).data("url");
 
 			autocomplete({
-				input: this,
+				input: el,
 				debounceWaitMs: 200,
 				minLength: AimeosCatalogFilter.MIN_INPUT_LEN,
 				fetch: function(text, update) {
@@ -29,7 +29,7 @@ AimeosCatalogFilter = {
 						update(data);
 					});
 				},
-				render: function(item, text) {
+				render: function(item) {
 					return $(item.html.trim()).get(0);
 				}
 			});
@@ -38,31 +38,52 @@ AimeosCatalogFilter = {
 
 
 	/**
+	 * Registers events for the catalog filter search input reset
+	 */
+	onResetSearch() {
+
+		$(".catalog-filter-search .value").on("keyup", ev => {
+			const val = $(ev.currentTarget).val() !== "" ? "visible" : "hidden";
+			$(".reset .symbol", $(ev.currentTarget).closest(".catalog-filter-search")).css("visibility", val);
+		});
+
+		$(".catalog-filter-search .reset").on("click", ev => {
+			const input = $(ev.currentTarget).parents(".catalog-filter-search").find(".value");
+
+			$(".symbol", ev.currentTarget).css("visibility", "hidden");
+			input[0].focus();
+			input.val("");
+
+			return false;
+		});
+	},
+
+
+	/**
 	 * Sets up the form checks
 	 */
-	setupFormChecks: function() {
+	onCheckForm() {
 
-		$(".catalog-filter form").on("submit", function(ev) {
+		$(".catalog-filter form").on("submit", ev => {
+			let result = true;
 
-			var result = true;
-			var form = $(this);
+			$("input.value", ev.currentTarget).each((idx, el) => {
 
-			$("input.value", this).each(function() {
-
-				var input = $(this);
+				const input = $(el);
 
 				if(input.val() !== '' && input.val().length < AimeosCatalogFilter.MIN_INPUT_LEN) {
 
-					if($(this).has(".search-hint").length === 0) {
+					if(input.has(".search-hint").length === 0) {
 
-						var node = $('<div class="search-hint">' + input.data("hint") + '</div>');
-						$(".catalog-filter-search", form).after(node);
+						const node = $('<div class="search-hint">' + input.data("hint") + '</div>');
+						const pos = node.position();
 
-						var pos = node.position();
 						node.css("left", pos.left).css("top", pos.top);
-						node.delay(3000).fadeOut(1000, function() {
+						node.delay(3000).fadeOut(1000, () => {
 							node.remove();
 						});
+
+						$(".catalog-filter-search", ev.currentTarget).after(node);
 					}
 
 					result = false;
@@ -77,37 +98,11 @@ AimeosCatalogFilter = {
 	/**
 	 * Toggles the attribute filters if hover isn't available
 	 */
-	setupAttributeToggle: function() {
+	onToggleAttribute() {
 
-		$('.catalog-filter-attribute h2').on("click", function() {
-			$(".attribute-lists", $(this).parents(".catalog-filter-attribute")).each(function() {
-				slideToggle(this, 300);
-			});
-		});
-	},
-
-	/**
-	 * Toggles the Last Seen filters if hover isn't available
-	 */
-
-	setupLastSeenToggle: function() {
-
-		$('.catalog-session-seen .header').on("click", function() {
-			$(".seen-items", $(this).parents(".catalog-session-seen")).each(function() {
-				slideToggle(this, 300);
-			});
-		});
-	},
-
-	/**
-	 * Toggles pinned items
-	 */
-
-	setupPinnedToggle: function() {
-
-		$('.catalog-session-pinned .header').on("click", function() {
-			$(".pinned-items", $(this).parents(".catalog-session-pinned")).each(function() {
-				slideToggle(this, 300);
+		$('.catalog-filter-attribute h2').on("click", ev => {
+			$(".attribute-lists", $(ev.currentTarget).closest(".catalog-filter-attribute")).each((idx, el) => {
+				slideToggle(el, 300);
 			});
 		});
 	},
@@ -116,11 +111,11 @@ AimeosCatalogFilter = {
 	/**
 	 * Toggles the attribute filters if hover isn't available
 	 */
-	setupAttributeListsToggle: function() {
+	onToggleAttributes() {
 
-		$(".catalog-filter-attribute .attribute-lists legend").on("click", function() {
-			$(".attr-list", $(this).parents("fieldset.attr-sets")).each(function() {
-				slideToggle(this, 300);
+		$(".catalog-filter-attribute .attribute-lists legend").on("click", ev => {
+			$(".attr-list", $(ev.currentTarget).closest("fieldset.attr-sets")).each((idx, el) => {
+				slideToggle(el, 300);
 			});
 		});
 	},
@@ -129,10 +124,10 @@ AimeosCatalogFilter = {
 	/**
 	 * Hides the attribute filter if no products are available for
 	 */
-	setupAttributeListsEmtpy: function() {
+	onShowAttributes() {
 
-		$(".catalog-filter-attribute .attribute-lists .attr-count").each(function() {
-			$(this).parents("fieldset.attr-sets").show();
+		$(".catalog-filter-attribute .attribute-lists .attr-count").each((idx, el) => {
+			$(el).closest("fieldset.attr-sets").show();
 		});
 	},
 
@@ -140,13 +135,14 @@ AimeosCatalogFilter = {
 	/**
 	 * Submits the form when clicking on filter attribute names or counts
 	 */
-	setupAttributeItemSubmit: function() {
+	onSubmitAttribute() {
 
-		$(".catalog-filter-attribute li.attr-item").on("click", function(ev) {
-			var input = $("input", ev.currentTarget);
+		$(".catalog-filter-attribute li.attr-item").on("click", ev => {
+			const input = $("input", ev.currentTarget);
+
 			input.prop("checked", !input.prop("checked"));
+			$(ev.currentTarget).closest(".catalog-filter form")[0].submit();
 
-			$(this).parents(".catalog-filter form").get(0).submit();
 			return false;
 		});
 	},
@@ -155,14 +151,14 @@ AimeosCatalogFilter = {
 	/**
 	 * Syncs the price input field and slider
 	 */
-	setupPriceSync: function() {
+	onSyncPrice() {
 
-		$(".catalog-filter-price").on("input", ".price-high", function() {
-			$(".price-slider", $(this).parents(".catalog-filter-price")).val($(this).val());
+		$(".catalog-filter-price").on("input", ".price-high", ev => {
+			$(".price-slider", $(ev.currentTarget).closest(".catalog-filter-price")).val($(ev.currentTarget).val());
 		});
 
-		$(".catalog-filter-price").on("input", ".price-slider", function() {
-			$(".price-high", $(this).parents(".catalog-filter-price")).val($(this).val());
+		$(".catalog-filter-price").on("input", ".price-slider", ev => {
+			$(".price-high", $(ev.currentTarget).closest(".catalog-filter-price")).val($(ev.currentTarget).val());
 		});
 	},
 
@@ -170,11 +166,11 @@ AimeosCatalogFilter = {
 	/**
 	 * Toggles the price filters if hover isn't available
 	 */
-	setupPriceToggle: function() {
+	onTogglePrice() {
 
-		$('.catalog-filter-price h2').on("click", function() {
-			$(".price-lists", $(this).parents(".catalog-filter-price")).each(function() {
-				slideToggle(this, 300);
+		$('.catalog-filter-price h2').on("click", ev => {
+			$(".price-lists", $(ev.currentTarget).closest(".catalog-filter-price")).each((idx, el) => {
+				slideToggle(el, 300);
 			});
 		});
 	},
@@ -183,11 +179,11 @@ AimeosCatalogFilter = {
 	/**
 	 * Toggles the supplier filters if hover isn't available
 	 */
-	setupSupplierToggle: function() {
+	onToggleSupplier() {
 
-		$('.catalog-filter-supplier').on("click", 'h2', function(ev) {
-			$(".supplier-lists", $(this).parents(".catalog-filter-supplier")).each(function() {
-				slideToggle(this, 300);
+		$('.catalog-filter-supplier').on("click", 'h2', ev => {
+			$(".supplier-lists", $(ev.currentTarget).closest(".catalog-filter-supplier")).each((idx, el) => {
+				slideToggle(el, 300);
 			});
 		});
 	},
@@ -196,33 +192,14 @@ AimeosCatalogFilter = {
 	/**
 	 * Submits the form when clicking on filter supplier names or counts
 	 */
-	setupSupplierItemSubmit: function() {
+	onSubmitSupplier() {
 
-		$(".catalog-filter-supplier li.attr-item").on("click", function(ev) {
-			var input = $("input", ev.currentTarget);
+		$(".catalog-filter-supplier li.attr-item").on("click", ev => {
+			const input = $("input", ev.currentTarget);
+
 			input.prop("checked", !input.prop("checked"));
+			$(ev.currentTarget).closest(".catalog-filter form")[0].submit();
 
-			$(this).parents(".catalog-filter form").get(0).submit();
-			return false;
-		});
-	},
-
-
-	/**
-	 * Registers events for the catalog filter search input reset
-	 */
-	setupSearchTextReset: function() {
-
-		$(".catalog-filter-search .value").on("keyup", function() {
-			var val = $(this).val() !== "" ? "visible" : "hidden";
-			$(".reset .symbol", $(this).parents(".catalog-filter-search")).css("visibility", val);
-		});
-
-		$(".catalog-filter-search .reset").on("click", function() {
-			var input = $(this).parents(".catalog-filter-search").find(".value");
-			$(".symbol", this).css("visibility", "hidden");
-			input.get(0).focus();
-			input.val("");
 			return false;
 		});
 	},
@@ -231,23 +208,22 @@ AimeosCatalogFilter = {
 	/**
 	 * Initialize the catalog filter actions
 	 */
-	init: function() {
+	init() {
+		this.onSyncPrice();
+		this.onTogglePrice();
 
-		this.setupPriceSync();
-		this.setupPriceToggle();
-		this.setupSupplierToggle();
-		this.setupAttributeToggle();
-		this.setupLastSeenToggle();
-		this.setupPinnedToggle();
-		this.setupAttributeListsEmtpy();
-		this.setupAttributeListsToggle();
+		this.onShowAttributes();
+		this.onSubmitAttribute();
+		this.onToggleAttribute();
+		this.onToggleAttributes();
 
-		this.setupAttributeItemSubmit();
-		this.setupSupplierItemSubmit();
+		this.onSubmitSupplier();
+		this.onToggleSupplier();
 
-		this.setupFormChecks();
-		this.setupSearchTextReset();
-		this.setupSearchAutocompletion();
+		this.onLoadSearch();
+		this.onResetSearch();
+
+		this.onCheckForm();
 	}
 };
 
