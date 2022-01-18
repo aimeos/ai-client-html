@@ -14,14 +14,17 @@
 	border-bottom-color: var(--ai-secondary, #555);
 }
 
+.account-favorite .favorite-items {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
 .account-favorite .favorite-item {
-	display: inline-block;
-	vertical-align: top;
 	position: relative;
 	text-align: end;
 	width: 180px;
 	margin: 1%;
-	padding: 0;
 }
 
 .account-favorite .media-item {

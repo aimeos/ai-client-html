@@ -6,25 +6,24 @@ AimeosAccountFavorite = {
 	/**
 	 * Deletes a favorite item without page reload
 	 */
-	setupProductRemoval: function() {
+	onRemoveProduct() {
 
-		$("body").on("click", ".account-favorite .delete", function() {
+		$("body").on("click", ".account-favorite .delete", ev => {
 
-			var form = $(this).parents("form");
-			$(this).parents("favorite-item").addClass("loading");
+			const form = $(ev.currentTarget).closest("form");
+			$(ev.currentTarget).closest("favorite-item").addClass("loading");
 
 			fetch(form.attr("action"), {
-				body: new FormData(form.get(0)),
+				body: new FormData(form[0]),
 				method: 'POST'
 			}).then(response => {
 				return response.text();
 			}).then(data => {
-				var doc = document.createElement("html");
-				doc.innerHTML = data;
+				const doc = $("<html/>").html(data);
 
-				if($(".aimeos.account-favorite .favorite-items", doc).length) {
-					$(".aimeos.account-favorite").html($(".aimeos.account-favorite", doc).html());
-				} else {
+				$(".aimeos.account-favorite").replaceWith($(".aimeos.account-favorite", doc));
+
+				if(!$(".aimeos.account-favorite .favorite-items").length) {
 					Aimeos.removeOverlay();
 				}
 			});
@@ -37,8 +36,8 @@ AimeosAccountFavorite = {
 	/**
 	 * Initializes the account favorite actions
 	 */
-	init: function() {
-		this.setupProductRemoval();
+	init() {
+		this.onRemoveProduct();
 	}
 };
 
