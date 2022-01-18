@@ -13,7 +13,7 @@ function slideToggle(t,e,o){0===t.clientHeight?j(t,e,o,!0):j(t,e,o)}function sli
  *
  * @license LGPLv3, https://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2014-2018
+ * @copyright Aimeos (aimeos.org), 2014-2022
  */
 
 
@@ -25,25 +25,18 @@ Aimeos = {
 	/**
 	 * Creates a floating container over the page displaying the given content node
 	 */
-	createContainer: function(content) {
+	createContainer(content) {
+		const container = $("<div/>").addClass("aimeos aimeos-container");
 
-		var container = $(document.createElement("div"));
-		var btnclose = $(document.createElement("a"));
-
-		btnclose.addClass("minibutton");
-		btnclose.addClass("btn-close");
-
-		container.addClass("aimeos-container");
-		container.addClass("aimeos");
-		container.prepend(btnclose);
+		container.prepend($("<a/>").addClass("minibutton btn-close"));
 		container.append(content);
 
 		$("body").append(container);
 
-		var resize = function() {
-			var win = $(window);
-			var left = (win.width() - container.outerWidth()) / 2;
-			var top = window.scrollY + (win.height() - container.outerHeight()) / 2;
+		const resize = function() {
+			const win = $(window);
+			const left = (win.width() - container.outerWidth()) / 2;
+			const top = window.scrollY + (win.height() - container.outerHeight()) / 2;
 
 			container.css("left", (left > 0 ? left : 0));
 			container.css("top", (top > 0 ? top : 0));
@@ -57,35 +50,27 @@ Aimeos = {
 	/**
 	 *  Adds an overlay on top of the current page
 	 */
-	createOverlay: function() {
-
-		var overlay = $(document.createElement("div"));
-		overlay.addClass("aimeos-overlay").addClass("show");
-		$("body").append(overlay);
+	createOverlay() {
+		$("body").append($("<div/>").addClass("aimeos-overlay show"));
 	},
 
 
 	/**
 	 *  Adds a spinner on top of the current page
 	 */
-	createSpinner: function() {
-
-		var spinner = $(document.createElement("div"));
-		spinner.addClass("aimeos-spinner");
-		$("body").append(spinner);
+	createSpinner() {
+		$("body").append($("<div/>").addClass("aimeos-spinner"));
 	},
 
 
 	/**
 	 * Removes an existing overlay from the current page
 	 */
-	removeOverlay: function() {
+	removeOverlay() {
+		const container = $(".aimeos-container");
+		const overlay = $(".aimeos-overlay");
 
-		var container = $(".aimeos-container");
-		var overlay = $(".aimeos-overlay");
-
-		// remove only if in overlay mode
-		if(container.length + overlay.length > 0) {
+		if(container.length + overlay.length > 0) { // remove only if in overlay mode
 
 			container.remove();
 			overlay.remove();
@@ -99,7 +84,7 @@ Aimeos = {
 	/**
 	 * Removes an existing spinner from the current page
 	 */
-	removeSpinner: function() {
+	removeSpinner() {
 		$(".aimeos-spinner").remove();
 	},
 
@@ -107,9 +92,9 @@ Aimeos = {
 	/**
 	 * Lazy load product image in list views
 	 */
-	loadImages: function() {
+	loadImages() {
 
-		var render = function(element) {
+		const render = function(element) {
 
 			if(element.tagName === 'IMG') {
 				element.setAttribute("srcset", element.getAttribute("data-srcset"));
@@ -127,8 +112,6 @@ Aimeos = {
 					url = parts[0];
 					return false;
 				});
-
-				element.style.backgroundImage = "url('" + url + "')";
 			}
 
 			element.classList.remove("lazy-image");
@@ -137,7 +120,7 @@ Aimeos = {
 
 		if('IntersectionObserver' in window) {
 
-			let callback = function(entries, observer) {
+			const callback = function(entries, observer) {
 				for(let entry of entries) {
 					if(entry.isIntersecting) {
 						observer.unobserve(entry.target);
@@ -146,13 +129,12 @@ Aimeos = {
 				};
 			};
 
-			document.querySelectorAll(".aimeos .lazy-image").forEach(function(el) {
+			$(".aimeos .lazy-image").each((idx, el) => {
 				(new IntersectionObserver(callback, {rootMargin: '240px', threshold: 0})).observe(el);
 			});
 
 		} else {
-
-			document.querySelectorAll(".aimeos .lazy-image").forEach(function(el) {
+			$(".aimeos .lazy-image").each((idx, el) => {
 				render(el);
 			});
 		}
@@ -162,15 +144,13 @@ Aimeos = {
 	/**
 	 * Sets up the ways to close the container by the user
 	 */
-	setupContainerClose: function() {
+	onCloseContainer() {
 
-		/* Go back to underlying page when back or close button is clicked */
-		$("body").on("click", ".aimeos-overlay, .aimeos-container .btn-close", function() {
+		$("body").on("click", ".aimeos-overlay, .aimeos-container .btn-close", () => {
 			return Aimeos.removeOverlay();
 		});
 
-		/* Go back to underlying page when ESC is pressed */
-		$("body").on("keydown", function(ev) {
+		$("body").on("keydown", (ev) => {
 			if(ev.key == "Escape") {
 				return Aimeos.removeOverlay();
 			}
@@ -181,8 +161,8 @@ Aimeos = {
 	/**
 	 * Initializes the setup methods
 	 */
-	init: function() {
-		this.setupContainerClose();
+	init() {
+		this.onCloseContainer();
 	}
 };
 
@@ -195,39 +175,36 @@ AimeosBasket = {
 	/**
 	 * Updates the basket mini content using the JSON API
 	 */
-	updateMini: function() {
+	updateMini() {
 
-		var jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
+		const jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
 
-		if(!jsonurl) {
-			return;
-		}
-
-		fetch(jsonurl, {
-			method: "OPTIONS",
-			headers: {'Content-Type': 'application/json'}
-		}).then(response => {
-			return response.json();
-		}).then(options => {
-			fetch(options.meta.resources['basket'], {
+		if(jsonurl) {
+			fetch(jsonurl, {
+				method: "OPTIONS",
 				headers: {'Content-Type': 'application/json'}
 			}).then(response => {
 				return response.json();
-			}).then(basket => {
-				AimeosBasketMini.updateBasket(basket);
+			}).then(options => {
+				fetch(options.meta.resources['basket'], {
+					headers: {'Content-Type': 'application/json'}
+				}).then(response => {
+					return response.json();
+				}).then(basket => {
+					AimeosBasketMini.updateBasket(basket);
+				});
 			});
-		});
+		}
 	},
+
 
 	/**
 	 * Updates the basket without page reload
 	 */
-	updateBasket: function(data) {
+	updateBasket(data) {
 
-		var doc = document.createElement("html");
-		doc.innerHTML = data;
-
-		var basket = $(".basket-standard", doc);
+		const doc = $("<html/>").html(data);
+		const basket = $(".basket-standard", doc);
 
 		$(".btn-update", basket).hide();
 		AimeosBasket.updateMini();
@@ -241,6 +218,25 @@ AimeosBasket = {
  * Aimeos common catalog actions
  */
  AimeosCatalog = {
+
+	/**
+	 * Checks if all variant attributes of a variant article have been selected
+	 *
+	 * @param DomNode node Node of the product item
+	 * @returns bool TRUE if all variant attributes have been selected, FALSE if not
+	 */
+	isValidVariant(node) {
+		let result = true;
+
+		$(".selection .select-item", node).each((idx, el) => {
+			if($(".select-list", el).val() === '' && $(".select-option:checked", el).length <= 0) {
+				result = false;
+			}
+		});
+
+		return result;
+	},
+
 
 	/**
 	 * Evaluates the product variant dependencies.
@@ -259,21 +255,21 @@ AimeosBasket = {
 	 * (and therefore dependent containers within an .selection node) is 31
 	 * because it's an integer bitmap.
 	 */
-	setupSelectionDependencies: function() {
+	onSelectDependencies() {
 
-		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", function() {
+		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", ev => {
 
-			var node = this;
-			var el = $(this);
-			var index = el.data("index");
-			var target = el.parents(".selection");
-			var value = el.find(".select-option:checked").val();
+			const node = ev.currentTarget;
+			const el = $(node);
+			const index = el.data("index");
+			const target = el.parents(".selection");
+			const value = el.find(".select-option:checked").val();
 
-			var attrDeps = target.data("attrdeps") || {}; // {"<attrid>":["prodid",...],...}
-			var prodDeps = target.data("proddeps") || {}; // {"<prodid>":["attrid",...],...}
-			var attrMap = {};
+			const attrDeps = target.data("attrdeps") || {}; // {"<attrid>":["prodid",...],...}
+			const prodDeps = target.data("proddeps") || {}; // {"<prodid>":["attrid",...],...}
+			const attrMap = {};
 
-			if( typeof index === "undefined" ) {
+			if(typeof index === "undefined") {
 				throw new Error( "HTML select node has no attribute data-index" );
 			}
 
@@ -282,13 +278,11 @@ AimeosBasket = {
 			// combinations for the selected value
 			if( attrDeps.hasOwnProperty(value) ) {
 
-				for( var i=0; i<attrDeps[value].length; i++ ) {
+				for(let i=0; i<attrDeps[value].length; i++) {
+					let prodId = attrDeps[value][i];
 
-					var prodId = attrDeps[value][i];
-
-					if( prodDeps.hasOwnProperty(prodId) ) {
-
-						for( var j=0; j<prodDeps[prodId].length; j++ ) {
+					if(prodDeps.hasOwnProperty(prodId)) {
+						for(let j=0; j<prodDeps[prodId].length; j++) {
 							attrMap[prodDeps[prodId][j]] = prodId;
 						}
 					}
@@ -303,21 +297,15 @@ AimeosBasket = {
 				}
 
 				if( index === 0 ) {
-
-					var options = $(".select-option", this);
-
-					options.removeAttr("disabled");
-					options.data("disabled", 0);
-					options.data("by", {});
+					$(".select-option", select).removeAttr("disabled").data("disabled", 0).data("by", {});
 				}
 
+				$(".select-option", select).each((idx, option) => {
 
-				$(".select-option", this).each(function(i, option) {
-
-					var opt = $(option);
-					var val = opt.val();
-					var by = opt.data("by") || {};
-					var disabled = opt.data("disabled") || 0;
+					const opt = $(option);
+					const val = opt.val();
+					const by = opt.data("by") || {};
+					let disabled = opt.data("disabled") || 0;
 
 
 					// Sets or removes the disabled bits in the bitmap of the
@@ -332,7 +320,7 @@ AimeosBasket = {
 						delete by[index];
 					}
 
-					if( idx !== 0 && disabled > 0 ) {
+					if(idx !== 0 && disabled > 0) {
 						opt.attr("disabled", "disabled");
 						opt.prop("selected", false);
 						opt.prop("checked", false);
@@ -351,25 +339,26 @@ AimeosBasket = {
 	/**
 	 * Displays the associated stock level, price items and attributes for the selected product variant
 	 */
-	setupSelectionContent: function() {
+	onSelectVariant() {
 
-		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", function() {
+		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", ev => {
 
-			var stock = false;
-			var map = {}, len = 0;
-			var target = $(this).parents(".selection");
-			var attrDeps = target.data("attrdeps") || {}; // {"<attrid>":["prodid",...],...}
+			let len = 0;
+			let stock = false;
+
+			const map = {};
+			const target = $(ev.currentTarget).closest(".selection");
+			const attrDeps = target.data("attrdeps") || {}; // {"<attrid>":["prodid",...],...}
+			const item = $(ev.currentTarget).closest(".catalog-detail-basket, .catalog-list .product");
 
 
-			$(".select-option:checked", target).each(function() {
+			$(".select-option:checked", target).each((idx, el) => {
+				let value = $(el).val();
 
-				var value = $(this).val();
+				if(value !== "" && attrDeps.hasOwnProperty(value)) {
 
-				if( value !== "" && attrDeps.hasOwnProperty(value) ) {
-
-					for( var i=0; i<attrDeps[value].length; i++ ) {
-
-						if( map.hasOwnProperty(attrDeps[value][i]) ) {
+					for(let i=0; i<attrDeps[value].length; i++) {
+						if(map.hasOwnProperty(attrDeps[value][i])) {
 							map[attrDeps[value][i]]++;
 						} else {
 							map[attrDeps[value][i]] = 1;
@@ -381,19 +370,19 @@ AimeosBasket = {
 			});
 
 
-			for( var prodId in map ) {
+			for(let prodId in map) {
 
-				if( map.hasOwnProperty(prodId) && map[prodId] === len ) {
+				if(map.hasOwnProperty(prodId) && map[prodId] === len) {
 
-					var parent = $(this).parents(".catalog-detail-basket, .catalog-list .product");
-					var newStock = $('.stock-list [data-prodid="' + prodId + '"]', parent);
-					var newPrice = $('.price-list [data-prodid="' + prodId + '"]', parent);
+					let parent = $(ev.currentTarget).closest(".catalog-detail-basket, .catalog-list .product");
+					let newStock = $('.stock-list [data-prodid="' + prodId + '"]', parent);
+					let newPrice = $('.price-list [data-prodid="' + prodId + '"]', parent);
 
-					if( newStock.length === 0 ) {
+					if(newStock.length === 0) {
 						newStock = $(".stock-list .articleitem:first-child", parent);
 					}
 
-					if( newPrice.length === 0 ) {
+					if(newPrice.length === 0) {
 						newPrice = $(".price-list .articleitem:first-child", parent);
 					}
 
@@ -403,7 +392,7 @@ AimeosBasket = {
 					$(".articleitem", parent).removeClass("price-actual");
 					newPrice.addClass("price-actual");
 
-					if( !(parent.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out")) ) {
+					if(!(parent.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out"))) {
 						stock = true;
 					}
 
@@ -412,12 +401,10 @@ AimeosBasket = {
 				}
 			}
 
-			var parent = $(this).parents(".catalog-detail-basket, .catalog-list .product");
-
-			if(!AimeosCatalog.validateVariant()) {
-				$(".addbasket .btn-action", parent).addClass("btn-disabled").attr("disabled", "disabled");
-			} else if(stock) {
-				$(".addbasket .btn-action", parent).removeClass("btn-disabled").removeAttr("disabled");
+			if(AimeosCatalog.isValidVariant(item) && stock) {
+				$(".addbasket .btn-action", item).removeClass("btn-disabled").removeAttr("disabled");
+			} else {
+				$(".addbasket .btn-action", item).addClass("btn-disabled").attr("disabled", "disabled");
 			}
 		});
 	},
@@ -426,18 +413,17 @@ AimeosBasket = {
 	/**
 	 * Checks if all required variant attributes are selected
 	 */
-	setupVariantCheck: function() {
+	onCheckVariant() {
 
-		$(".catalog-detail-basket-selection, .catalog-list-items .items-selection").on("click", ".addbasket .btn-action", function() {
+		$(".catalog-detail-basket-selection, .catalog-list-items .items-selection").on("click", ".addbasket .btn-action", (ev) => {
+			let result = true;
 
-			var result = true;
+			$(".selection .select-item", $(ev.currentTarget).closest(".items-selection")).each((idx, el) => {
 
-			$(".selection .select-item", $(this).parents(".items-selection")).each( function() {
-
-				if( $(".select-list", this).val() !== '' || $(".select-option:checked", this).length > 0 ) {
-					$(this).removeClass("error");
+				if($(".select-list", el).val() !== '' || $(".select-option:checked", el).length > 0) {
+					$(el).removeClass("error");
 				} else {
-					$(this).addClass("error");
+					$(el).addClass("error");
 					result = false;
 				}
 			});
@@ -446,34 +432,21 @@ AimeosBasket = {
 		});
 	},
 
-	validateVariant: function () {
-
-		var result = true;
-
-		$(".selection .select-item").each( function() {
-			if( $(".select-list", this).val() === '' && $(".select-option:checked", this).length <= 0 ) {
-				result = false;
-			}
-		});
-
-		return result;
-	},
-
 
 	/**
 	 * Shows the images associated to the variant attributes
 	 */
-	setupVariantImages: function() {
+	onImageVariant() {
 
-		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", function() {
+		$(".catalog-detail-basket-selection .selection, .catalog-list-items .items-selection .selection").on("change", ".select-list", (ev) => {
 
-			var elem = $(this);
-			var type = elem.data("type");
-			var value = elem.find(".select-option:checked").val();
+			const elem = $(ev.currentTarget);
+			const type = elem.data("type");
+			const value = elem.find(".select-option:checked").val();
 
-			elem.closest(".product").find(".image-single .item").each( function() {
-				if($(this).data("variant-" + type) == value) {
-					swiffyslider.slideTo(this, $(this).parent().data('slick-index'))
+			elem.closest(".product").find(".image-single .item").each((idx, el) => {
+				if($(el).data("variant-" + type) == value) {
+					swiffyslider.slideTo(el, $(el).parent().data('slick-index'))
 				}
 			});
 		});
@@ -483,13 +456,13 @@ AimeosBasket = {
 	/**
 	 * Adds products to the basket without page reload
 	 */
-	setupBasketAdd: function() {
+	onAddBasket() {
 
-		$(".catalog-detail-basket form, .catalog-list-items form").on("submit", function() {
-
+		$(".catalog-detail-basket form, .catalog-list-items form").on("submit", (ev) => {
 			Aimeos.createOverlay();
-			fetch($(this).attr("action"), {
-				body: new FormData(this),
+
+			fetch($(ev.currentTarget).attr("action"), {
+				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(function(response) {
 				return response.text();
@@ -505,35 +478,31 @@ AimeosBasket = {
 	/**
 	 * Adds a product to the favorite list without page reload
 	 */
-	setupFavoriteAction: function() {
+	onFavoriteAction() {
 
-		$(".catalog-actions .actions-favorite").on("submit", function(ev) {
-
+		$(".catalog-actions .actions-favorite").on("submit", ev => {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
-			fetch($(this).attr("action"), {
-				body: new FormData(this),
+			fetch($(ev.currentTarget).attr("action"), {
+				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(response => {
 				return response.text();
 			}).then(data => {
-				var doc = document.createElement("html");
-				doc.innerHTML = data;
-				var content = $(".account-favorite", doc);
+				const doc = $("<html/>").html(data);
+				const content = $(".aimeos.account-favorite", doc);
 
-				if( content.length > 0 ) {
-					doc.querySelectorAll('head link.account-favorite').forEach(el => {
-						document.head.appendChild(el);
+				if(content.length > 0) {
+					$('head link.account-favorite', doc).each((idx, el) => {
+						document.head.append(el);
 					});
-					doc.querySelectorAll('head script.account-favorite').forEach(el => {
-						var node = document.createElement('script');
-						node.src = el.getAttribute('src');
-						document.head.appendChild(node);
+					$('head script.account-favorite', doc).each((idx, el) => {
+						$(document.head).append($('<script/>').attr('src', el.getAttribute('src')));
 					});
 					Aimeos.createContainer(content);
 				} else {
-					document.querySelector("html").replaceWith(doc);
+					$("html").replaceWith(doc);
 				}
 			});
 
@@ -546,35 +515,31 @@ AimeosBasket = {
 	/**
 	 * Adds a product to the watch list without page reload
 	 */
-	setupWatchAction: function() {
+	onWatchAction() {
 
-		$(".catalog-actions .actions-watch").on("click", function(ev) {
-
+		$(".catalog-actions .actions-watch").on("submit", ev => {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
-			fetch($(this).attr("action"), {
-				body: new FormData(this),
+			fetch($(ev.currentTarget).attr("action"), {
+				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(response => {
 				return response.text();
 			}).then(data => {
-				var doc = document.createElement("html");
-				doc.innerHTML = data;
-				var content = $(".account-watch", doc);
+				const doc = $("<html/>").html(data);
+				const content = $(".aimeos.account-watch", doc);
 
-				if( content.length > 0 ) {
-					doc.querySelectorAll('head link.account-watch').forEach(el => {
-						document.head.appendChild(el);
+				if(content.length > 0) {
+					$('head link.account-watch', doc).each((idx, el) => {
+						document.head.append(el);
 					});
-					doc.querySelectorAll('head script.account-watch').forEach(el => {
-						var node = document.createElement('script');
-						node.src = el.getAttribute('src');
-						document.head.appendChild(node);
+					$('head script.account-watch', doc).each((idx, el) => {
+						$(document.head).append($('<script/>').attr('src', el.getAttribute('src')));
 					});
 					Aimeos.createContainer(content);
 				} else {
-					document.querySelector("html").replaceWith(doc);
+					$("html").replaceWith(doc);
 				}
 			});
 
@@ -587,14 +552,13 @@ AimeosBasket = {
 	 * Initializes the common catalog actions
 	 */
 	init: function() {
-
-		this.setupSelectionDependencies();
-		this.setupSelectionContent();
-		this.setupVariantImages();
-		this.setupVariantCheck();
-		this.setupBasketAdd();
-		this.setupWatchAction();
-		this.setupFavoriteAction();
+		this.onSelectDependencies();
+		this.onSelectVariant();
+		this.onCheckVariant();
+		this.onImageVariant();
+		this.onAddBasket();
+		this.onWatchAction();
+		this.onFavoriteAction();
 	}
 };
 
@@ -609,33 +573,23 @@ AimeosPage = {
 	/**
 	* Link to top
 	*/
-	setupLinkTop: function() {
+	onLinkTop() {
+		const backToTop = document.querySelector(".back-to-top");
 
-	var target = document.querySelector("footer");
-
-	var backToTop = document.querySelector(".back-to-top");
-	var rootElement = document.documentElement;
-
-	function callback(entries, observer) {
-		  entries.forEach((entry) => {
-		if (entry.isIntersecting) {
-		  // Show button
-			  backToTop.classList.add("showBtn");
-		} else {
-		  // Hide button
-			  backToTop.classList.remove("showBtn");
-		}
-		  });
-	}
-	function scrollToTop() {
-		rootElement.scrollTo({
-		top: 0,
-		behavior: "smooth"
+		backToTop.addEventListener("click", () => {
+			document.documentElement.scrollTo({top: 0, behavior: "smooth"});
 		});
-	}
-	backToTop.addEventListener("click", scrollToTop);
-	let observer = new IntersectionObserver(callback);
-	observer.observe(target);
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if(entry.isIntersecting) {
+					backToTop.classList.add("show");
+				} else {
+					backToTop.classList.remove("show");
+				}
+			});
+		});
+		observer.observe(document.querySelector("footer"));
 	},
 
 
@@ -665,73 +619,54 @@ AimeosPage = {
 	/**
 	 * Mega menu
 	 */
-	setupMenuMenu: function() {
+	onMenuHover() {
 
-		var $dropdowns = $('.top-item'); // Specifying the element is faster for older browsers
+		const $dropdowns = $('.top-item');
 
-		/**
-		* Touch events
-		*
-		* Support click to open if we're dealing with a touchscreen
-		* Mouseenter (used with .hover()) does not trigger when user enters from outside document window
-		*/
-		$dropdowns.on('mouseover', function(){
-			var $this = $(this);
+		$dropdowns.on('mouseover', (ev) => {
+			var $this = $(ev.currentTarget);
 			if ($this.prop('hoverTimeout')){
 				$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
 			}
-			$this.prop('hoverIntent', setTimeout(function(){
+			$this.prop('hoverIntent', setTimeout(() => {
 				$this.addClass('hover');
-			},));
-		})
-		.on('mouseleave', function(){
-			var $this = $(this);
+			}));
+		}).on('mouseleave', (ev) => {
+			var $this = $(ev.currentTarget);
 			if ($this.prop('hoverIntent')){
 				$this.prop('hoverIntent', clearTimeout($this.prop('hoverIntent')));
 			}
-			$this.prop('hoverTimeout', setTimeout(function(){
+			$this.prop('hoverTimeout', setTimeout(() => {
 				$this.removeClass('hover');
-			},));
+			}));
 		});
 
 
-		/**
-		* Functions for Touch Devices (such as Laptops or screens with touch)
-		*/
-		window.matchMedia('(min-width: 991px)').addEventListener('change', event => {
+		// For touch devices
+		window.matchMedia('(min-width: 991px)').addEventListener('change', ev => {
 
-			if (event.matches) {
+			if (ev.matches) {
 
-				/**
-				* Mouse events
-				*
-				* Mimic hoverIntent plugin by waiting for the mouse to 'settle' within the target before triggering
-				*/
-				$dropdowns.each(function(){
+				$dropdowns.each((idx, el) => {
+					const $this = $(el);
 
-					var $this = $(this);
-
-					this.addEventListener('touchstart', function(e){
+					el.addEventListener('touchstart', function(e) {
 
 						if (e.touches.length === 1){
-							// Prevent touch events within dropdown bubbling down to document
 							e.stopPropagation();
-							// Toggle hover
-							if (!$this.hasClass('hover')){
-								// Prevent link on first touch
-								if (e.target === this || e.target.parentNode === this){
+
+							if(!$this.hasClass('hover')) {
+								if(e.target === this || e.target.parentNode === this) {
 									e.preventDefault();
 								}
-								// Hide other open dropdowns
+
 								$dropdowns.removeClass('hover');
 								$this.addClass('hover');
-								// Hide dropdown on touch outside
-								document.addEventListener('touchstart', closeDropdown = function(e){
 
-									e.stopPropagation();
+								document.addEventListener('touchstart', closeDropdown = function(ev){
+									ev.stopPropagation();
 									$this.removeClass('hover');
 									document.removeEventListener('touchstart', closeDropdown);
-
 								});
 							}
 						}
@@ -745,15 +680,20 @@ AimeosPage = {
 	/**
 	 * Initializes offscreen menus
 	 */
-	setupOffscreen: function() {
+	setupOffscreen() {
 
-		// loop all zeynepjs menus for initialization
-		$('.zeynep').each(function (idx, el) {
+		$('.zeynep').each((idx, el) => {
 			$(el).zeynep({});
 		})
+	},
 
-		// handle zeynepjs overlay click
-		$('.aimeos-overlay-offscreen').on('click', function () {
+
+	/**
+	 * Close offscreen on overlay click
+	 */
+	onHideOffscreen() {
+
+		$('.aimeos-overlay-offscreen').on('click', () => {
 			$('.aimeos-overlay-offscreen').removeClass('show');
 			$('.zeynep.opened').removeClass('opened');
 		});
@@ -761,17 +701,23 @@ AimeosPage = {
 
 
 	/**
-	 * Show/hide basket offscreen menu
+	 * Show basket offscreen menu
 	 */
-	setupOffscreenBasket: function() {
+	onShowBasket() {
 
-		// open basket side menu
-		$('.aimeos.basket-mini > a').on('click', function () {
+		$('.aimeos.basket-mini > a').on('click', () => {
 			$('.basket-mini-offscreen').addClass('opened');
 			$('.basket-mini .aimeos-overlay-offscreen').addClass('show');
 		});
+	},
 
-		$('.mini-basket-close').on('click', function () {
+
+	/**
+	 * Hide basket offscreen menu
+	 */
+	onHideBasket() {
+
+		$('.mini-basket-close').on('click', () => {
 			$('.basket-mini-offscreen').removeClass('opened');
 			$('.basket-mini .aimeos-overlay-offscreen').removeClass('show');
 		});
@@ -779,16 +725,23 @@ AimeosPage = {
 
 
 	/**
-	 * Show/hide category offscreen menu
+	 * Show category offscreen menu
 	 */
-	setupOffscreenCategory: function() {
+	onShowCategories() {
 
-		$(".open-menu").on('click', function () {
+		$(".open-menu").on('click', () => {
 			$('.category-lists').addClass('opened');
 			$('.catalog-filter .aimeos-overlay-offscreen').addClass('show');
 		});
+	},
 
-		$(".menu-close").on('click', function () {
+
+	/**
+	 * Hide category offscreen menu
+	 */
+	onHideCategories() {
+
+		$(".menu-close").on('click', () => {
 			$('.category-lists').removeClass('opened');
 			$('.catalog-filter .aimeos-overlay-offscreen').removeClass('show');
 		});
@@ -799,12 +752,15 @@ AimeosPage = {
 	 * Initializes the menu actions
 	 */
 	init: function() {
+		this.onLinkTop();
+		this.onMenuHover();
 		this.onMenuScroll();
-		this.setupLinkTop();
-		this.setupMenuMenu();
+		this.onShowBasket();
+		this.onHideBasket();
+		this.onShowCategories();
+		this.onHideCategories();
+		this.onHideOffscreen();
 		this.setupOffscreen();
-		this.setupOffscreenBasket();
-		this.setupOffscreenCategory();
 	}
 };
 
@@ -816,7 +772,6 @@ $("html").removeClass("no-js");
 
 
 $(function() {
-
 	Aimeos.init();
 	AimeosPage.init();
 	AimeosCatalog.init();

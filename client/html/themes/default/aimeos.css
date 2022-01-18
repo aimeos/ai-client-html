@@ -498,7 +498,7 @@ img {
 	color: var(--ai-primary, #000);
 }
 
-.showBtn {
+.back-to-top.show {
 	opacity: 1;
 	transform: translateY(0);
 }
