@@ -4,23 +4,48 @@
 AimeosCatalogSession = {
 
 	/**
+	 * Toggles the Last Seen filters if hover isn't available
+	 */
+	onToggleSeen() {
+
+		$('.catalog-session-seen .header').on("click", ev => {
+			$(".seen-items", $(ev.currentTarget).closest(".catalog-session-seen")).each((idx, el) => {
+				slideToggle(el, 300);
+			});
+		});
+	},
+
+
+	/**
+	 * Toggles pinned items
+	 */
+	onTogglePinned() {
+
+		$('.catalog-session-pinned .header').on("click", ev => {
+			$(".pinned-items", $(ev.currentTarget).closest(".catalog-session-pinned")).each((idx, el) => {
+				slideToggle(el, 300);
+			});
+		});
+	},
+
+
+	/**
 	 * Delete a product without page reload
 	 */
-	onRemoveProduct: function() {
+	onRemovePinned() {
 
-		$("body").on("click", ".catalog-session-pinned .delete", function() {
+		$("body").on("click", ".catalog-session-pinned .delete", ev => {
 
-			var form = $(this).closest("form");
-			var prodid = $(this).closest(".product").data('prodid');
+			const form = $(ev.currentTarget).closest("form");
+			const prodid = $(ev.currentTarget).closest(".product").data('prodid');
 
 			fetch(form.attr("action"), {
 				method: "POST",
 				body: new FormData(form[0])
 			}).then(response => {
 				return response.text();
-			}).then(html => {
-				var doc = document.createElement("html");
-				doc.innerHTML = html;
+			}).then(data => {
+				const doc = $("<html/>").html(data);
 
 				$(".catalog-session-pinned").replaceWith($(".catalog-session-pinned", doc));
 				$('.product[data-prodid="' + prodid + '"] .btn-pin').removeClass('active');
@@ -35,7 +60,9 @@ AimeosCatalogSession = {
 	 * Initializes the catalog session actions
 	 */
 	init: function() {
-		this.onRemoveProduct();
+		this.onRemovePinned();
+		this.onTogglePinned();
+		this.onToggleSeen();
 	}
 };
 
