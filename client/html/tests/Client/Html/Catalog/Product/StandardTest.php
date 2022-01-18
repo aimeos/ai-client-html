@@ -80,9 +80,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
-		$productNameCNE = '<h2 itemprop="name">Cafe Noire Expresso</h2>';
-		$productNameABCD = '<h2 itemprop="name">Unterproduct 1</h2>';
-		$productNameCNC = '<h2 itemprop="name">Cafe Noire Cappuccino</h2>';
+		$productNameCNE = '<h2 class="name" itemprop="name">Cafe Noire Expresso</h2>';
+		$productNameABCD = '<h2 class="name" itemprop="name">Unterproduct 1</h2>';
+		$productNameCNC = '<h2 class="name" itemprop="name">Cafe Noire Cappuccino</h2>';
 		$this->assertStringContainsString( $productNameCNE, $output );
 		$this->assertStringContainsString( $productNameABCD, $output );
 		$this->assertStringContainsString( $productNameCNC, $output );
