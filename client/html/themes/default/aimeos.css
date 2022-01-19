@@ -149,25 +149,21 @@ img {
 	background-color: var(--ai-bg-alt, #FFF);
 	color: #555;
 	color: var(--ai-secondary, #555);
-	vertical-align: top;
 	box-shadow: none;
 	letter-spacing: 1.5px;
 }
 
-.aimeos input.form-control[type='checkbox'] {
+.aimeos .form-control::placeholder {
+	color: var(--ai-light, #CCC);
+}
+
+.aimeos .form-control[type='checkbox'] {
 	width: auto;
 }
 
 .aimeos .form-item label {
 	letter-spacing: 1.5px;
 	margin: 0.5rem 0;
-}
-
-.aimeos .form-item-value {
-	border-bottom: 1px solid #555;
-	border-bottom-color: var(--ai-secondary, #555);
-	padding: 0.75rem 0.5rem;
-	margin: 0.25rem 0;
 }
 
 .aimeos .input-group .btn {
@@ -221,7 +217,6 @@ img {
 	background-color: var(--ai-bg, #FFF);
 	color: #555;
 	color: var(--ai-secondary, #555);
-	padding: 0.25rem;
 }
 
 .aimeos input:focus {

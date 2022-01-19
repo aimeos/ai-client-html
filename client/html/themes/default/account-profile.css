@@ -50,15 +50,6 @@
 	font-size: 130%;
 }
 
-.account-profile li.form-item.mandatory label {
-	font-weight: bold;
-}
-
-.account-profile li.form-item label {
-	font-weight: normal;
-	margin: 7px 0;
-}
-
 .account-profile .form-list .error {
 	color: #FF3300;
 	color: var(--ai-danger, #FF3300);
@@ -73,4 +64,16 @@
 .account-profile .form-list .error select {
 	border: 1px solid #FF3300;
 	border-color: var(--ai-danger, #FF3300);
+}
+
+.account-profile .form-item.mandatory label {
+	font-weight: bold;
+}
+
+.account-profile .form-item label {
+	margin: 0.875rem 0;
+}
+
+.account-profile .form-item .form-control {
+	margin: 0.5rem 0;
 }

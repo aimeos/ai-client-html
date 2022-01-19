@@ -1,5 +1,9 @@
 /* Checkout */
 
+.checkout-standard {
+	margin: 0 auto;
+}
+
 .checkout-standard .steps {
 	font-weight: bold;
 	text-align: center;
@@ -49,6 +53,10 @@
 	counter-increment: step;
 }
 
+.checkout-standard .form-list {
+	margin: 1rem;
+}
+
 .checkout-standard .form-list .mandatory {
 	font-weight: bold;
 }
@@ -56,6 +64,105 @@
 .checkout-standard .form-list .mandatory > label:after {
 	content: " *";
 }
+
+.checkout-standard .form-list .error {
+	color: #FF3300;
+	color: var(--ai-danger, #FF3300);
+}
+
+.checkout-standard .form-list .error input,
+.checkout-standard .form-list .error select {
+	border-bottom: solid 1px #FF3300;
+	border-bottom-color: var(--ai-danger, #FF3300);
+}
+
+.checkout-standard .button-group {
+	display: none;
+}
+
+.checkout-standard section:last-child .button-group {
+	display: block;
+}
+
+
+/* Checkout address */
+
+.checkout-standard-address h2 {
+	padding: 1%;
+	letter-spacing: 1.5px;
+}
+
+.checkout-standard-address .item-address {
+	padding: 1%;
+}
+
+.checkout-standard-address .item-address .header {
+	border: 1px solid;
+	border-color: #F6F6F6;
+	border-color: var(--ai-bg-light, #F6F6F6);
+	padding: 1rem;
+	position: relative;
+}
+
+.checkout-standard-address .minibutton.delete {
+	position: absolute;
+	padding: 1rem;
+	right: 0;
+	top: 0;
+}
+
+.checkout-standard-address .item-address .header input {
+	display: inline-block;
+	vertical-align: middle;
+	border: none;
+	margin: 0;
+	margin-inline-end: 1rem;
+}
+
+.checkout-standard-address .item-address .values {
+	display: inline-block;
+	margin: 0;
+	letter-spacing: 1.5px;
+}
+
+.checkout-standard .form-list .mandatory,
+.checkout-standard .form-list .optional,
+.checkout-standard .form-list .hidden,
+.checkout-standard .form-list .error,
+.checkout-standard .attr-list .mandatory,
+.checkout-standard .attr-list .optional,
+.checkout-standard .attr-list .hidden,
+.checkout-standard .attr-list .error {
+	clear: both;
+}
+
+.checkout-standard-address .form-list .form-item {
+	display: none;
+}
+
+.checkout-standard-address .form-list .mandatory,
+.checkout-standard-address .form-list .optional {
+	display: flex;
+}
+
+.checkout-standard-address .form-list .hidden {
+	display: none;
+}
+
+.checkout-standard-address .form-list .mandatory label:after {
+	content: "*";
+}
+
+.checkout-standard-address .form-item label {
+	margin: 0.875rem 0;
+}
+
+.checkout-standard-address .form-item .form-control {
+	margin: 0.5rem 0;
+}
+
+
+/* Common for delivery/payment */
 
 .checkout-standard .item-service .description {
 	display: inline-block;
@@ -108,110 +215,8 @@
 	float: left;
 }
 
-.checkout-standard .button-group {
-	display: none;
-}
-
-.checkout-standard section:last-child .button-group {
-	display: block;
-}
-
-/* Checkout address */
-.checkout-standard-address h2 {
-	padding: 1%;
-	letter-spacing: 1.5px;
-}
-
-.checkout-standard-address .item-address {
-	padding: 1%;
-}
-
-.checkout-standard-address .item-address .header {
-	border: 1px solid;
-	border-color: #F6F6F6;
-	border-color: var(--ai-bg-light, #F6F6F6);
-	padding: 1rem;
-	position: relative;
-}
-
-.checkout-standard-address .minibutton.delete {
-	position: absolute;
-	right: 1%;
-	top: 1%;
-}
-
-.checkout-standard-address .item-address .modify {
-	float: right;
-}
-
-[dir="rtl"] .checkout-standard-address .item-address .modify {
-	float: left;
-}
-
-.checkout-standard-address .item-address .header input {
-	display: inline-block;
-	vertical-align: middle;
-	border: none;
-	margin: 0;
-	margin-inline-end: 1rem;
-}
-
-.checkout-standard-address .item-address .values {
-	display: inline-block;
-	margin: 0;
-	letter-spacing: 1.5px;
-}
-
-.checkout-standard .form-list .mandatory,
-.checkout-standard .form-list .optional,
-.checkout-standard .form-list .hidden,
-.checkout-standard .form-list .error,
-.checkout-standard .attr-list .mandatory,
-.checkout-standard .attr-list .optional,
-.checkout-standard .attr-list .hidden,
-.checkout-standard .attr-list .error {
-	clear: both;
-}
-
-.checkout-standard-address .form-list .form-item {
-	display: none;
-}
-
-.checkout-standard-address .form-list .mandatory,
-.checkout-standard-address .form-list .optional {
-	display: flex;
-}
-
-.checkout-standard-address .form-list .hidden {
-	display: none;
-}
-
-.checkout-standard-address .form-list .mandatory label:after {
-	content: "*";
-}
-
-.checkout-standard .form-list .error {
-	color: #FF3300;
-	color: var(--ai-danger, #FF3300);
-}
-
-.checkout-standard .form-list .error a {
-	color: #FF3300;
-	color: var(--ai-danger, #FF3300);
-}
-
-.checkout-standard .form-list .error input,
-.checkout-standard .form-list .error select {
-	border-bottom: solid 1px #FF3300;
-	border-bottom-color: var(--ai-danger, #FF3300);
-}
-
 .checkout-standard .item-service .icon {
 	display: inline-block;
-}
-
-.checkout-standard .item-service li.form-item {
-	padding-top: 0;
 }
 
 .checkout-standard .item-service .form-item-value input {
@@ -219,17 +224,22 @@
 }
 
 .checkout-standard .item-service .form-item-value label {
+	border-left: 2px solid transparent;
+	font-weight: normal;
+	padding: 0.5rem;
 	display: block;
 }
 
 .checkout-standard .item-service .form-item-value input:checked + label {
-	border-left: 2px solid #CCCCCC;
+	border-left-color: #CCCCCC;
 	border-left-color: var(--ai-light, #CCCCCC);
 	background-color: #F8F8F8;
 	background-color: var(--ai-bg-light, #CCCCCC);
 }
 
+
 /* Checkout delivery/payment */
+
 .checkout-standard-delivery .note,
 .checkout-standard-payment .note {
 	padding: 0 0 1rem 0;
@@ -254,6 +264,7 @@
 }
 
 /* Checkout summary */
+
 .checkout-standard-summary h3 {
 	display: inline-block;
 	font-size: 1rem;
@@ -278,6 +289,7 @@
 
 
 /* Checkout summary option terms */
+
 .checkout-standard-summary-option {
 	padding-top: 0.5rem;
 	padding-bottom: 1rem;
@@ -323,6 +335,7 @@
 
 
 /* Checkout order */
+
 .checkout-standard-order {
 	padding: 0;
 	padding-inline-start: 1rem;
@@ -349,9 +362,4 @@
 
 .checkout-standard-process .button-group {
 	display: block;
-}
-
-.checkout-standard {
-	min-width: 240px;
-	margin: 0 auto;
 }
