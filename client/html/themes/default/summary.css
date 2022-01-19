@@ -111,8 +111,6 @@
 }
 
 .aimeos .common-summary-detail .total {
-	border-top: 1px solid #555;
-	border-top-color: var(--ai-secondary, #555);
 	color: #555;
 	color: var(--ai-secondary, #555);
 	background-color: #CCC;

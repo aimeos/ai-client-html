@@ -808,6 +808,11 @@
 	.catalog-filter-tree .top-item.hover.megamenu > .submenu {
 		background-color: #282828;
 		background-color: var(--ai-primary, #282828);
+		position: fixed;
+		width:100vw;
+		right: 0;
+		display: flex;
+		justify-content: center;
 	}
 
 	.catalog-filter-tree .megamenu > .submenu .has-submenu > a.cat-item {
