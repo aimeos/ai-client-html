@@ -778,6 +778,12 @@ body > .content, body .main-section {
 	content: "\f4e1";
 }
 
+.navbar-nav .login > .nav-link::after {
+	position: absolute;
+	top: 0.25rem;
+	right: 0;
+}
+
 .navbar-nav .register > .nav-link::before {
 	content: "\f4dd";
 }
@@ -785,6 +791,11 @@ body > .content, body .main-section {
 .navbar-nav .dropdown-menu {
 	color: var(--ai-bg-alt, #FFF);
 }
+
+.dropdown-item:focus, .dropdown-item:hover {
+	background-color: #555;
+	background-color: var(--ai-secondary, #555);
+  }
 
 /*---------------------------------- Filter-Tree ------------------------------*/
 
