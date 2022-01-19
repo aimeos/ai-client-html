@@ -29,9 +29,7 @@ Aimeos = {
 		const container = $("<div/>").addClass("aimeos aimeos-container");
 
 		container.prepend($("<a/>").addClass("minibutton btn-close"));
-		container.append(content);
-
-		$("body").append(container);
+		$("body").append(container.append(content));
 
 		const resize = function() {
 			const win = $(window);
@@ -71,7 +69,6 @@ Aimeos = {
 		const overlay = $(".aimeos-overlay");
 
 		if(container.length + overlay.length > 0) { // remove only if in overlay mode
-
 			container.remove();
 			overlay.remove();
 			return false;
@@ -95,23 +92,9 @@ Aimeos = {
 	loadImages() {
 
 		const render = function(element) {
-
 			if(element.tagName === 'IMG') {
 				element.setAttribute("srcset", element.getAttribute("data-srcset"));
 				element.setAttribute("src", element.getAttribute("data-src"));
-			} else if(element.classList.contains('background')) {
-				var url = '';
-				var srcset = element.getAttribute("data-background");
-
-				srcset && srcset.split(',').every(function(str) {
-					var parts = str.trim().split(' ');
-
-					if(parseInt((parts[1] || '').replace('w', '')) < window.innerWidth) {
-						return true;
-					}
-					url = parts[0];
-					return false;
-				});
 			}
 
 			element.classList.remove("lazy-image");
@@ -119,7 +102,6 @@ Aimeos = {
 
 
 		if('IntersectionObserver' in window) {
-
 			const callback = function(entries, observer) {
 				for(let entry of entries) {
 					if(entry.isIntersecting) {
@@ -132,7 +114,6 @@ Aimeos = {
 			$(".aimeos .lazy-image").each((idx, el) => {
 				(new IntersectionObserver(callback, {rootMargin: '240px', threshold: 0})).observe(el);
 			});
-
 		} else {
 			$(".aimeos .lazy-image").each((idx, el) => {
 				render(el);

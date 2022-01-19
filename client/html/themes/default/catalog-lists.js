@@ -77,10 +77,7 @@ AimeosCatalogLists = {
 	 */
 	onScroll() {
 
-		const url = $('.catalog-list-items').data('infiniteurl');
-
-		if(url) {
-
+		if($('.catalog-list-items').data('infiniteurl')) {
 			const scroll = function() {
 
 				const list = $('.catalog-list-items');

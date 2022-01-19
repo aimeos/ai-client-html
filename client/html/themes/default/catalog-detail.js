@@ -215,7 +215,7 @@ AimeosCatalogDetail = {
 	 */
 	onSelectThumbnail() {
 
-		$(".thumbs img").on("click", (ev) => {
+		$(".catalog-detail-image .thumbs img").on("click", (ev) => {
 		    const index = $(ev.currentTarget).index();
 		    const sliderElement = document.querySelector('.catalog-detail-image div:first-child');
 		    swiffyslider.slideTo(sliderElement, index)
@@ -259,7 +259,7 @@ AimeosCatalogDetail = {
 	 */
 	onShowReviews() {
 
-		const list = document.querySelectorAll('.catalog-detail .reviews');
+		const list = document.querySelectorAll('.catalog-detail-additional .reviews');
 
 		if(list.length > 0) {
 			if('IntersectionObserver' in window) {
