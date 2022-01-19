@@ -202,9 +202,15 @@ AimeosBasket = {
 	 * Updates the basket without page reload
 	 */
 	updateBasket(data) {
-
 		const doc = $("<html/>").html(data);
-		const basket = $(".basket-standard", doc);
+		const basket = $(".aimeos.basket-standard", doc);
+
+		$('head link.basket-standard', doc).each((idx, el) => {
+			basket.append(el);
+		});
+		$('head script.basket-standard', doc).each((idx, el) => {
+			basket.append($('<script/>').attr('src', el.getAttribute('src')));
+		});
 
 		$(".btn-update", basket).hide();
 		AimeosBasket.updateMini();
