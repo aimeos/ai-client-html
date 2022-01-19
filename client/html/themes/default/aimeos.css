@@ -179,7 +179,8 @@ img {
 .aimeos h3, .aimeos h4 {
 	font-weight: normal;
 	font-size: 100%;
-	color: #1f1f1f;
+	color: #282828;
+	color: var(--ai-primary, #282828);
 }
 
 .aimeos h1, .aimeos h2 {
@@ -613,7 +614,7 @@ footer .footer-right{
 /* Navbar background */
 
 body {
-	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1px" height="1px"><style>svg{background-color:#282828}</style></svg>');
+	background-image: url('data:image/gif;base64,R0lGODdhAQABAIABACgoKP///ywAAAAAAQABAAACAkQBADs=');
 	background-repeat: no-repeat;
 	background-size: 100% 6rem;
 }
@@ -1067,8 +1068,9 @@ body > .content, body .main-section {
 /* price list */
 
 .aimeos .product .price-list {
+	color: #282828;
+	color: var(--ai-primary, #282828);
 	font-weight: normal;
-	color: #1f1f1f;;
 	padding: 0;
 	margin: 0;
 }
