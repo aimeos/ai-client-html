@@ -4,26 +4,17 @@
 AimeosBasketStandard = {
 
 	/**
-	 * Goes back to underlying page when back or close button of the basket is clicked
-	 */
-	setupBasketBack: function() {
-
-		$("body").on("click", ".basket-standard .btn-back", function() {
-			return Aimeos.removeOverlay();
-		});
-	},
-
-
-	/**
 	 * Hides the update button and show only on quantity change
 	 */
-	setupUpdateHide: function() {
+	onQuantity() {
 
 		$(".basket-standard .btn-update").hide();
 
-		$("body").on("focusin", ".basket-standard .basket .product .quantity .value", {}, function() {
-			$(".btn-update").show();
-			$(".btn-action").hide();
+		$(document).on("focusin", ".basket-standard .basket .product .quantity .value", {}, ev => {
+			const target = $(ev.currentTarget).closest('.basket-standard');
+
+			$(".btn-update", target).show();
+			$(".btn-action", target).hide();
 		});
 	},
 
@@ -31,17 +22,17 @@ AimeosBasketStandard = {
 	/**
 	 * Updates basket without page reload
 	 */
-	setupUpdateSubmit: function() {
+	onSubmit() {
 
-		$("body").on("submit", ".basket-standard form", function() {
-
+		$(document).on("submit", ".basket-standard form", ev => {
 			Aimeos.createSpinner();
+
 			fetch(product.data("url"), {
-				body: new FormData(this),
+				body: new FormData(ev.currentTarget),
 				method: 'POST'
-			}).then(function(response) {
+			}).then(response => {
 				return response.text();
-			}).then(function(data) {
+			}).then(data => {
 				$(".basket-standard").html(AimeosBasket.updateBasket(data).html());
 			}).finally(() => {
 				Aimeos.removeSpinner();
@@ -55,16 +46,16 @@ AimeosBasketStandard = {
 	/**
 	 * Updates quantity and deletes products without page reload
 	 */
-	setupUpdateChange: function() {
+	onChange() {
 
-		$("body").on("click", ".basket-standard a.change", function(ev) {
-
+		$(document).on("click", ".basket-standard a.change", ev => {
 			Aimeos.createSpinner();
-			fetch($(this).attr("href")).then(response => {
+
+			fetch($(ev.currentTarget).attr("href")).then(response => {
 				return response.text();
 			}).then(data => {
 				$(".basket-standard").html(AimeosBasket.updateBasket(data).html());
-			}).finally(function() {
+			}).finally(() => {
 				Aimeos.removeSpinner();
 			});
 
@@ -76,12 +67,10 @@ AimeosBasketStandard = {
 	/**
 	 * Initializes the basket standard actions
 	 */
-	init: function() {
-
-		this.setupBasketBack();
-		this.setupUpdateHide();
-		this.setupUpdateSubmit();
-		this.setupUpdateChange();
+	init() {
+		this.onChange();
+		this.onSubmit();
+		this.onQuantity();
 	}
 };
 

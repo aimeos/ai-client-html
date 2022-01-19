@@ -172,6 +172,12 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 								</td>
 							</tr>
 						<?php endforeach ?>
+						<tr class="product prototype">
+							<td class="name"></td>
+							<td class="quantity"></td>
+							<td class="price"></td>
+							<td class="action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a></td>
+						</tr>
 					</tbody>
 					<tfoot class="basket-footer">
 						<tr class="delivery">

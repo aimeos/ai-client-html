@@ -4,6 +4,24 @@
 AimeosCatalogLists = {
 
 	/**
+	 * Shows the basket after submitting the form
+	 *
+	 * @param DomNode form Form DOM element
+	 */
+	showBasket(form) {
+
+		fetch(form.getAttribute("action"), {
+			body: new FormData(form),
+			method: 'POST'
+		}).then(response => {
+			return response.text();
+		}).then(data => {
+			Aimeos.createContainer(AimeosBasket.updateBasket(data));
+		});
+	},
+
+
+	/**
 	 * Marks products as pinned
 	 */
 	setPinned() {
@@ -23,11 +41,12 @@ AimeosCatalogLists = {
 	 */
 	onAddBasket() {
 
-		$(".catalog-list-items:not(.list) .product").on("click", ".btn-primary", ev => {
+		$(document).on("click", ".catalog-list-items:not(.list) .product .btn-action", ev => {
 			const target = $(ev.currentTarget).closest(".product");
 
-			if($(".basket .items-selection .selection li, .basket .items-attribute .selection li", target).length) {
+			Aimeos.createOverlay();
 
+			if($(".basket .items-selection .selection li, .basket .items-attribute .selection li", target).length) {
 				const node = target.clone();
 
 				$("[id]", node).each((idx, el) => {
@@ -38,25 +57,17 @@ AimeosCatalogLists = {
 					el.setAttribute("for", el.getAttribute("for") + '-2');
 				});
 
-				$("form.basket", node).on("click", ".btn-primary", (ev) => {
-					const form = $(ev.currentTarget).closest("form.basket");
-
-					fetch(form.attr("action"), {
-						body: new FormData(form[0]),
-						method: 'POST'
-					}).then(response => {
-						return response.text();
-					}).then(data => {
-						Aimeos.createContainer(AimeosBasket.updateBasket(data));
-					});
-
+				node.on("click", ".btn-action", (ev) => {
+					this.showBasket($(ev.currentTarget).closest("form.basket")[0]);
 					return false;
 				});
 
-				Aimeos.createOverlay();
 				Aimeos.createContainer($('<div class="catalog-list catalog-list-items list">').append(node));
 				return false;
 			}
+
+			this.showBasket($("form.basket", target)[0]);
+			return false;
 		});
 	},
 

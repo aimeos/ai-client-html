@@ -349,11 +349,34 @@ AimeosCatalogDetail = {
 
 
 	/**
+	 * Adds products to the basket without page reload
+	 */
+	onAddBasket() {
+
+		$(document).on("submit", ".product form.basket", ev => {
+			Aimeos.createOverlay();
+
+			fetch($(ev.currentTarget).attr("action"), {
+				body: new FormData(ev.currentTarget),
+				method: 'POST'
+			}).then(response => {
+				return response.text();
+			}).then(data => {
+				Aimeos.createContainer(AimeosBasket.updateBasket(data));
+			});
+
+			return false;
+		});
+	},
+
+
+	/**
 	 * Initializes the catalog detail actions
 	 */
 	init() {
 		this.onOpenLightbox();
 		this.onSelectThumbnail();
+
 		this.onToggleServices();
 		this.onTogglePrice();
 
@@ -361,6 +384,8 @@ AimeosCatalogDetail = {
 		this.onMoreReviews();
 		this.onShowReviews();
 		this.onSortReviews();
+
+		this.onAddBasket();
 	}
 };
 

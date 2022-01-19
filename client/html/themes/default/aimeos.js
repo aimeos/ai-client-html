@@ -173,28 +173,14 @@ Aimeos = {
 AimeosBasket = {
 
 	/**
-	 * Updates the basket mini content using the JSON API
+	 * Goes back to underlying page when back or close button of the basket is clicked
 	 */
-	updateMini() {
+	onBack() {
 
-		const jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
-
-		if(jsonurl) {
-			fetch(jsonurl, {
-				method: "OPTIONS",
-				headers: {'Content-Type': 'application/json'}
-			}).then(response => {
-				return response.json();
-			}).then(options => {
-				fetch(options.meta.resources['basket'], {
-					headers: {'Content-Type': 'application/json'}
-				}).then(response => {
-					return response.json();
-				}).then(basket => {
-					AimeosBasketMini.updateBasket(basket);
-				});
-			});
-		}
+		$(document).on("click", ".basket-standard .btn-back", () => {
+			Aimeos.removeOverlay();
+			return false;
+		});
 	},
 
 
@@ -213,9 +199,36 @@ AimeosBasket = {
 		});
 
 		$(".btn-update", basket).hide();
-		AimeosBasket.updateMini();
+
+
+		const jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
+
+		if(AimeosBasketMini && jsonurl) {
+			fetch(jsonurl, {
+				method: "OPTIONS",
+				headers: {'Content-Type': 'application/json'}
+			}).then(response => {
+				return response.json();
+			}).then(options => {
+				fetch(options.meta.resources['basket'], {
+					headers: {'Content-Type': 'application/json'}
+				}).then(response => {
+					return response.json();
+				}).then(basket => {
+					AimeosBasketMini.updateBasket(basket);
+				});
+			});
+		}
 
 		return basket;
+	},
+
+
+	/**
+	 * Initializes the basket actions
+	 */
+	init: function() {
+		this.onBack();
 	}
 };
 
@@ -459,28 +472,6 @@ AimeosBasket = {
 
 
 	/**
-	 * Adds products to the basket without page reload
-	 */
-	onAddBasket() {
-
-		$(document).on("submit", ".product form.basket", ev => {
-			Aimeos.createOverlay();
-
-			fetch($(ev.currentTarget).attr("action"), {
-				body: new FormData(ev.currentTarget),
-				method: 'POST'
-			}).then(function(response) {
-				return response.text();
-			}).then(function(data) {
-				Aimeos.createContainer(AimeosBasket.updateBasket(data));
-			});
-
-			return false;
-		});
-	},
-
-
-	/**
 	 * Adds a product to the favorite list without page reload
 	 */
 	onFavoriteAction() {
@@ -561,7 +552,6 @@ AimeosBasket = {
 		this.onSelectVariant();
 		this.onCheckVariant();
 		this.onImageVariant();
-		this.onAddBasket();
 		this.onWatchAction();
 		this.onFavoriteAction();
 	}

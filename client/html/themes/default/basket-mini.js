@@ -6,17 +6,17 @@ AimeosBasketMini = {
 	/**
 	 * Updates the basket mini content
 	 */
-	updateBasket: function(basket) {
+	updateBasket(basket) {
 
 		if(!(basket.data && basket.data.attributes)) {
 			return;
 		}
 
-		var attr = basket.data.attributes;
-		var price = Number.parseFloat(attr['order.base.price']);
-		var delivery = Number.parseFloat(attr['order.base.costs']);
+		const attr = basket.data.attributes;
+		const price = Number.parseFloat(attr['order.base.price']);
+		const delivery = Number.parseFloat(attr['order.base.costs']);
 
-		var formatter = new Intl.NumberFormat([], {
+		const formatter = new Intl.NumberFormat([], {
 			currency: attr['order.base.currencyid'],
 			style: "currency"
 		});
@@ -26,11 +26,10 @@ AimeosBasketMini = {
 		$(".aimeos .basket-mini-product .delivery .price").html(formatter.format(delivery));
 
 		if(basket.included) {
-
-			var csrf = '';
-			var count = 0;
-			var body = $(".aimeos .basket-mini-product .basket-body");
-			var prototype = $(".aimeos .basket-mini-product .product.prototype");
+			let csrf = '';
+			let count = 0;
+			const body = $(".aimeos .basket-mini-product .basket-body");
+			const prototype = $(".aimeos .basket-mini-product .product.prototype");
 
 			if(basket.meta && basket.meta.csrf) {
 				csrf = basket.meta.csrf.name + '=' + basket.meta.csrf.value;
@@ -38,21 +37,26 @@ AimeosBasketMini = {
 
 			$(".aimeos .basket-mini-product .product").not(".prototype").remove();
 
-			for(var i=0; i<basket.included.length; i++) {
-				var entry = basket.included[i];
+			for(let i=0; i<basket.included.length; i++) {
+				let entry = basket.included[i];
 
 				if(entry.type === 'basket/product') {
-					var product = prototype.clone();
+					let product = prototype.clone().removeClass("prototype");
 
-					product.data("urldata", csrf);
-					product.data("url", entry.links && entry.links.self && entry.links.self.href || '');
+					if(entry.links && entry.links.self && entry.links.self.href) {
+						let urldata = (entry.links.self.href.indexOf('?') === -1 ? '?' : '&') + csrf;
+						product.data("url", entry.links.self.href + urldata);
+					}
 
 					$(".name", product).html(entry.attributes['order.base.product.name']);
 					$(".quantity", product).html(entry.attributes['order.base.product.quantity']);
 					$(".price", product).html(formatter.format(entry.attributes['order.base.product.price']));
 
-					body.append(product.removeClass("prototype"));
+					if(entry.attributes['order.base.product.flags']) {
+						$(".action .delete", product).addClass("hidden");
+					}
 
+					body.append(product);
 					count += Number.parseInt(entry.attributes["order.base.product.quantity"]);
 				}
 			}
@@ -65,16 +69,16 @@ AimeosBasketMini = {
 	/**
 	 * Delete a product without page reload
 	 */
-	setupBasketDelete: function() {
+	onDelete() {
 
-		$(".aimeos .basket-mini-product").on("click", ".delete", function() {
+		$(".aimeos .basket-mini-product").on("click", ".delete", ev => {
 
-			fetch($(this).closest(".product").data("url"), {
+			fetch($(ev.currentTarget).closest(".product").data("url"), {
 				method: "DELETE",
 				headers: {'Content-Type': 'application/json'}
 			}).then(response => {
 				return response.json();
-			}).then(function(basket) {
+			}).then(basket => {
 				AimeosBasketMini.updateBasket(basket);
 			});
 
@@ -86,9 +90,8 @@ AimeosBasketMini = {
 	/**
 	 * Initializes the basket mini actions
 	 */
-	init: function() {
-
-		this.setupBasketDelete();
+	init() {
+		this.onDelete();
 	}
 };
 
