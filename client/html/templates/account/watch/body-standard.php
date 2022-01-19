@@ -96,7 +96,7 @@ $enc = $this->encoder();
 			<?php foreach( $this->get( 'watchItems', map() )->reverse() as $listItem ) : ?>
 				<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
-					<div class="product watch-item">
+					<div class="product watch-item" data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
 						<?php $params = ['wat_action' => 'delete', 'wat_id' => $listItem->getRefId()] + $this->get( 'watchParams', [] ) ?>
 						<form class="delete" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/watch/url', $params ) ) ?>">
 							<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>

@@ -40,7 +40,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 			$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 		?>
 
-		--><div class="product" itemscope itemtype="http://schema.org/Product"
+		--><div class="product" itemscope itemtype="http://schema.org/Product" data-prodid="<?= $enc->attr( $id ) ?>"
 			data-reqstock="<?= (int) $this->config( 'client/html/basket/require-stock', true ) ?>">
 
 			<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
