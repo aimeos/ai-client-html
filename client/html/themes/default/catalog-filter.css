@@ -802,7 +802,6 @@
 		animation: FadeIn .25s ease-in-out;
 		min-width: 12rem;
 		z-index: 1;
-		right: 0;
 	}
 
 	.catalog-filter-tree .top-item.hover.megamenu > .submenu {
