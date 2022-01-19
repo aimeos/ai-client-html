@@ -61,7 +61,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 					<th class="product"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></th>
 					<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></th>
 					<th class="price"><?= $enc->html( $this->translate( 'client', 'Price' ) ) ?></th>
-					<th class="buttons"><a href="#" class="minibutton add">+</a></th>
+					<th class="buttons"><div class="btn minibutton add"></div></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -86,9 +86,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 							>
 						</td>
 						<td class="price"></td>
-						<td class="buttons">
-							<a href="#" class="minibutton delete"></a>
-						</td>
+						<td class="buttons"><div class="btn minibutton delete"></div></td>
 					</tr>
 				<?php endfor ?>
 			</tbody>
@@ -111,9 +109,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						>
 					</td>
 					<td class="price"></td>
-					<td class="buttons">
-						<a href="#" class="btn minibutton delete"></a>
-					</td>
+					<td class="buttons"><div class="btn minibutton delete"></div></td>
 				</tr>
 			</tfoot>
 		</table>

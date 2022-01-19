@@ -9,28 +9,27 @@ AimeosBasketBulk = {
 	MIN_INPUT_LEN: 3,
 	meta: {},
 
+
 	/**
 	 * Sets up autocompletion for the given node
 	 *
 	 * @param {object} node
 	 */
-	autocomplete: function(nodes) {
-
-		nodes.each(function() {
-			var node = this;
+	autocomplete(nodes) {
+		nodes.each((idx, node) => {
 			autocomplete({
 				input: node,
 				debounceWaitMs: 200,
 				minLength: AimeosBasketBulk.MIN_INPUT_LEN,
-				fetch: function(text, update) {
+				fetch(text, update) {
 
 					if(AimeosBasketBulk.meta.resources && AimeosBasketBulk.meta.resources['product']) {
-						var params = {};
-						var relFilter = {};
-						var langid = AimeosBasketBulk.meta.locale && AimeosBasketBulk.meta.locale['locale.languageid'] || '';
+						let params = {};
+						const relFilter = {};
+						const langid = AimeosBasketBulk.meta.locale && AimeosBasketBulk.meta.locale['locale.languageid'] || '';
 						relFilter['index.text:relevance("' + langid + '","' + text + '")'] = 0;
 
-						var filter = {
+						const filter = {
 							filter: {'||': [{'=~': {'product.code': text}}, {'>': relFilter}]},
 							include: 'attribute,text,price,product'
 						};
@@ -41,13 +40,13 @@ AimeosBasketBulk = {
 							params = filter;
 						}
 
-						var url = new URL(AimeosBasketBulk.meta.resources['product']);
+						const url = new URL(AimeosBasketBulk.meta.resources['product']);
 						url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
 						fetch(url).then(response => {
 							return response.json();
 						}).then(response => {
-							var data = [];
+							let data = [];
 							for(var key in (response.data || {})) {
 								data = data.concat(AimeosBasketBulk.get(response.data[key], response.included));
 							}
@@ -55,16 +54,16 @@ AimeosBasketBulk = {
 						});
 					}
 				},
-				onSelect: function(item) {
+				onSelect(item) {
 					if($(".aimeos.basket-bulk tbody .details .search").last().val() != '') {
-							AimeosBasketBulk.add();
+						AimeosBasketBulk.add();
 					}
 
-					var product = $(node).parent();
+					const product = $(node).parent();
 					product.find(".productid").val(item.id);
 					product.find(".search").val(item.label);
 
-					var row = product.parent();
+					const row = product.parent();
 					row.data('prices', item['prices'] || []);
 					row.data('vattributes', item['vattributes'] || []);
 					AimeosBasketBulk.update(product.parent());
@@ -77,17 +76,16 @@ AimeosBasketBulk = {
 	/**
 	 * Adds a new line to the bulk order form
 	 */
-	add: function() {
-
-		var line = $("tfoot .prototype").clone();
-		var len = $(".aimeos.basket-bulk tbody .details").length;
+	add() {
+		const line = $("tfoot .prototype").clone();
+		const len = $(".aimeos.basket-bulk tbody .details").length;
 
 		AimeosBasketBulk.autocomplete($(".search", line));
 		$('[disabled="disabled"]', line).removeAttr("disabled");
 		$(".aimeos.basket-bulk tbody").append(line.removeClass("prototype"));
 
-		$('[name]', line).each(function() {
-			$(this).attr("name", $(this).attr("name").replace('_idx_', len));
+		$('[name]', line).each((idx, el) => {
+			$(el).attr("name", $(el).attr("name").replace('_idx_', len));
 		});
 	},
 
@@ -95,9 +93,8 @@ AimeosBasketBulk = {
 	/**
 	 * Deletes lines if clicked on the delete icon
 	 */
-	delete: function() {
-
-		$(".aimeos.basket-bulk").on("click", ".buttons .delete", function(ev) {
+	onDelete() {
+		$(".aimeos.basket-bulk").on("click", ".buttons .delete", ev => {
 			$(ev.currentTarget).parents(".details").remove();
 		});
 	},
@@ -110,23 +107,22 @@ AimeosBasketBulk = {
 	 * @param {array} included JSON:API included data array
 	 * @param {object} Item with "id", "label" and "prices" property
 	 */
-	get: function(attr, included) {
+	get(attr, included) {
+		const map = {};
+		const rel = attr.relationships || {};
 
-		var map = {};
-		var rel = attr.relationships || {};
-
-		for(var idx in (included || [])) {
+		for(let idx in (included || [])) {
 			map[included[idx]['type']] = map[included[idx]['type']] || {};
 			map[included[idx]['type']][included[idx]['id']] = included[idx];
 		}
 
-		var name = attr['attributes']['product.label'];
-		var texts = this.getRef(map, rel, 'text', 'default', 'name');
-		var prices = this.getRef(map, rel, 'price', 'default', 'default').sort(function(a, b) {
+		let name = attr['attributes']['product.label'];
+		const texts = this.getRef(map, rel, 'text', 'default', 'name');
+		const prices = this.getRef(map, rel, 'price', 'default', 'default').sort((a, b) => {
 			return a['attributes']['price.quantity'] - b['attributes']['price.quantity'];
 		});
 
-		for(var idx in texts) {
+		for(let idx in texts) {
 			name = texts[idx]['attributes']['text.content'];
 		}
 
@@ -140,26 +136,26 @@ AimeosBasketBulk = {
 		}
 
 
-		var result = [];
-		var variants = this.getRef(map, rel, 'product', 'default');
+		const result = [];
+		const variants = this.getRef(map, rel, 'product', 'default');
 
-		for(var idx in variants) {
+		for(let idx in variants) {
 
-			var vrel = variants[idx]['relationships'] || {};
-			var vattr = this.getRef(map, vrel, 'attribute', 'variant');
-			var vprices = this.getRef(map, vrel, 'price', 'default', 'default');
-			var vtexts = this.getRef(map, vrel, 'text', 'default', 'name');
-			var vname = variants[idx]['attributes']['product.label'];
+			const vrel = variants[idx]['relationships'] || {};
+			const vattr = this.getRef(map, vrel, 'attribute', 'variant');
+			const vprices = this.getRef(map, vrel, 'price', 'default', 'default');
+			const vtexts = this.getRef(map, vrel, 'text', 'default', 'name');
+			let vname = variants[idx]['attributes']['product.label'];
 
-			for(var idx in vtexts) {
-				vname = vtexts[idx]['attributes']['text.content'];
+			for(let index in vtexts) {
+				vname = vtexts[index]['attributes']['text.content'];
 			}
 
 			result.push({
 				'category': name,
 				'id': attr.id,
 				'label': variants[idx]['attributes']['product.code'] + ': ' + vname,
-				'prices': !vprices.length ? prices : vprices.sort(function(a, b) {
+				'prices': !vprices.length ? prices : vprices.sort((a, b) => {
 					return a['attributes']['price.quantity'] - b['attributes']['price.quantity'];
 				}),
 				'vattributes': vattr
@@ -179,23 +175,19 @@ AimeosBasketBulk = {
 	 * @param {String} listtype
 	 * @param {String} type
 	 */
-	getRef: function(map, rel, domain, listtype, type) {
+	getRef(map, rel, domain, listtype, type) {
+		const list = [];
 
-		if(!rel[domain]) {
-			return [];
-		}
+		if(rel[domain]) {
+			for(let idx in (rel[domain]['data'] || [])) {
+				let entry = rel[domain]['data'][idx];
 
-		var list = [];
+				if(map[domain][entry['id']] && map[domain][entry['id']]['attributes']
+					&& entry['attributes']['product.lists.type'] === listtype
+					&& (!type || map[domain][entry['id']]['attributes'][domain + '.type'] === type)) {
 
-		for(var idx in (rel[domain]['data'] || [])) {
-
-			var entry = rel[domain]['data'][idx];
-
-			if(map[domain][entry['id']] && map[domain][entry['id']]['attributes']
-				&& entry['attributes']['product.lists.type'] === listtype
-				&& (!type || map[domain][entry['id']]['attributes'][domain + '.type'] === type)) {
-
-				list.push(map[domain][entry['id']]);
+					list.push(map[domain][entry['id']]);
+				}
 			}
 		}
 
@@ -206,28 +198,26 @@ AimeosBasketBulk = {
 	/**
 	 * Sets up autocompletion for bulk order form
 	 */
-	setup: function() {
-		var jsonurl = $(".aimeos.basket-bulk[data-jsonurl]").data("jsonurl");
+	setup() {
+		const jsonurl = $(".aimeos.basket-bulk[data-jsonurl]").data("jsonurl");
 
-		if(typeof jsonurl === 'undefined' || jsonurl == '') {
-			return;
+		if(jsonurl) {
+			fetch(jsonurl, {
+				method: "OPTIONS",
+				headers: {'Content-type': 'application/json'}
+			}).then(response => {
+				return response.json();
+			}).then(options => {
+				AimeosBasketBulk.meta = options.meta || {};
+			});
+
+			$(".aimeos.basket-bulk").on("click", ".buttons .add", this.add);
+			this.autocomplete($(".aimeos.basket-bulk .details .search"));
+
+			$(".aimeos.basket-bulk").on("change", ".details .quantity input", ev => {
+				AimeosBasketBulk.update($(ev.currentTarget).parents(".details").first());
+			});
 		}
-
-		fetch(jsonurl, {
-			method: "OPTIONS",
-			headers: {'Content-type': 'application/json'}
-		}).then(response => {
-			return response.json();
-		}).then(options => {
-			AimeosBasketBulk.meta = options.meta || {};
-		});
-
-		$(".aimeos.basket-bulk").on("click", ".buttons .add", this.add);
-		this.autocomplete($(".aimeos.basket-bulk .details .search"));
-
-		$(".aimeos.basket-bulk").on("change", ".details .quantity input", function(ev) {
-			AimeosBasketBulk.update($(ev.currentTarget).parents(".details").first());
-		});
 	},
 
 
@@ -236,24 +226,24 @@ AimeosBasketBulk = {
 	 *
 	 * @param {DomElement} row HTML DOM node of the table row to update the price for
 	 */
-	update: function(row) {
-		var qty = $(".quantity input", row).val();
-		var prices = $(row).data('prices') || [];
-		var vattr = $(row).data('vattributes') || [];
+	update(row) {
+		const qty = $(".quantity input", row).val();
+		const prices = $(row).data('prices') || [];
+		const vattr = $(row).data('vattributes') || [];
+		const input = $(".product > .attrvarid", row);
 
-		for(var idx in prices) {
+		for(let idx in prices) {
 			if(prices[idx]['attributes']['price.quantity'] <= qty) {
-				var style = {style: 'currency', currency: prices[idx]['attributes']['price.currencyid']};
-				var value = Number(prices[idx]['attributes']['price.value']) * qty;
+				let style = {style: 'currency', currency: prices[idx]['attributes']['price.currencyid']};
+				let value = Number(prices[idx]['attributes']['price.value']) * qty;
 				$(row).find(".price").html(value.toLocaleString(undefined, style));
 			}
 		}
 
-		var input = $(".product > .attrvarid", row);
 		$(".product .vattributes", row).empty();
 
-		for(var idx in vattr) {
-			var elem = input.clone();
+		for(let idx in vattr) {
+			let elem = input.clone();
 			elem.attr("name", input.attr("name").replace('_type_', vattr[idx]['attributes']['attribute.type']));
 			elem.val(vattr[idx]['attributes']['attribute.id']);
 			$(".product .vattributes", row).append(elem);
@@ -264,10 +254,9 @@ AimeosBasketBulk = {
 	/**
 	 * Initializes the basket bulk actions
 	 */
-	init: function() {
-
+	init() {
 		this.setup();
-		this.delete();
+		this.onDelete();
 	}
 }
 

@@ -6,16 +6,16 @@ AimeosAccountProfile = {
 	/**
 	 * Reset and close the new address form
 	 */
-	setupAddress: function() {
+	onAddress() {
 
-		document.querySelectorAll(".account-profile-address .panel").forEach((el) => {
-			el.addEventListener("show.bs.collapse", function(ev) {
+		document.querySelectorAll(".account-profile-address .panel").forEach(el => {
+			el.addEventListener("show.bs.collapse", ev => {
 				$(".act-show", ev.currentTarget).removeClass("act-show").addClass("act-hide");
 			});
 		});
 
-		document.querySelectorAll(".account-profile-address .panel").forEach((el) => {
-			el.addEventListener("hidden.bs.collapse", function(ev) {
+		document.querySelectorAll(".account-profile-address .panel").forEach(el => {
+			el.addEventListener("hidden.bs.collapse", ev => {
 				$(".act-hide", ev.currentTarget).removeClass("act-hide").addClass("act-show");
 			});
 		});
@@ -25,22 +25,22 @@ AimeosAccountProfile = {
 	/**
 	 * Adds a new delivery address form
 	 */
-	setupAddressNew: function() {
+	onAddressNew() {
 
-		document.querySelectorAll(".account-profile-address .address-delivery-new").forEach((el) => {
-			el.addEventListener("show.bs.collapse", function(ev) {
+		document.querySelectorAll(".account-profile-address .address-delivery-new").forEach(el => {
+			el.addEventListener("show.bs.collapse", ev => {
 				$("input,select", ev.currentTarget).prop("disabled", false);
 			});
 		});
 
-		document.querySelectorAll(".account-profile-address .address-delivery-new").forEach((el) => {
-			el.addEventListener("hidden.bs.collapse", function(ev) {
+		document.querySelectorAll(".account-profile-address .address-delivery-new").forEach(el => {
+			el.addEventListener("hidden.bs.collapse", ev => {
 				$("input,select", ev.currentTarget).prop("disabled", true);
 			});
 		});
 
-		document.querySelectorAll(".account-profile-address .address-delivery-new .btn-cancel").forEach((el) => {
-			el.addEventListener("click", function(ev) {
+		document.querySelectorAll(".account-profile-address .address-delivery-new .btn-cancel").forEach(el => {
+			el.addEventListener("click", ev => {
 				var node = $(".panel-body", $(ev.currentTarget).parents(".address-delivery-new")).get(0);
 				bootstrap.Collapse.getInstance(node).hide();
 			});
@@ -51,12 +51,12 @@ AimeosAccountProfile = {
 	/**
 	 * Checks address form for missing or wrong values
 	 */
-	setupMandatoryCheck: function() {
+	onCheckMandatory() {
 
-		$(".account-profile .form-item").on("blur", "input,select", function() {
-			var value = $(this).val();
-			var node = $(this).parents(".form-item");
-			var regex = new RegExp(node.data('regex') || '.*');
+		$(".account-profile .form-item").on("blur", "input,select",() => {
+			const value = $(this).val();
+			const node = $(this).parents(".form-item");
+			const regex = new RegExp(node.data('regex') || '.*');
 
 			if((value !== '' && value.match(regex)) || (value === '' && !node.hasClass("mandatory"))) {
 				node.removeClass("error").addClass("success");
@@ -65,25 +65,23 @@ AimeosAccountProfile = {
 			}
 		});
 
-		$(".account-profile form").on("submit", function() {
-			var retval = true;
-			var nodes = [];
+		$(".account-profile form").on("submit", () => {
+			let retval = true;
+			const nodes = [];
 
-			var testfn = function(idx, element) {
+			$(".form-list .mandatory", this).each((idx, el) => {
 
-				var elem = $(element);
-				var value = $("input,select", elem).val();
+				const elem = $(el);
+				const value = $("input,select", elem).val();
 
 				if(value === null || value.trim() === "") {
 					elem.addClass("error");
-					nodes.push(element);
+					nodes.push(el);
 					retval = false;
 				} else {
 					elem.removeClass("error");
 				}
-			};
-
-			$(".form-list .mandatory", this).each(testfn);
+			});
 
 			return retval;
 		});
@@ -93,11 +91,10 @@ AimeosAccountProfile = {
 	/**
 	 * Initializes the account watch actions
 	 */
-	init: function() {
-
-		this.setupAddress();
-		this.setupAddressNew();
-		this.setupMandatoryCheck();
+	init() {
+		this.onAddress();
+		this.onAddressNew();
+		this.onCheckMandatory();
 	}
 };
 
