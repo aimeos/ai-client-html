@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$ds = DIRECTORY_SEPARATOR;
 
-		$logo = '..' . $ds . 'themes' . $ds . 'default' . $ds . 'media' . $ds . 'logo.png';
+		$logo = '..' . $ds . 'themes' . $ds . 'default' . $ds . 'assets' . $ds . 'logo.png';
 		$this->context->config()->set( 'client/html/email/logo', $logo );
 
 		$theme = '..' . $ds . 'themes' . $ds . 'default';
