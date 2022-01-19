@@ -11,8 +11,8 @@
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url('./fonts/roboto-condensed-v19-latin-regular.woff2') format('woff2'),
-		url('./fonts/roboto-condensed-v19-latin-regular.woff') format('woff');
+	src: url('assets/roboto-condensed-v19-latin-regular.woff2') format('woff2'),
+		url('assets/roboto-condensed-v19-latin-regular.woff') format('woff');
 }
 
 @font-face {
@@ -20,15 +20,15 @@
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src: url('./fonts/roboto-condensed-v19-latin-700.woff2') format('woff2'),
-		url('./fonts/roboto-condensed-v19-latin-700.woff') format('woff');
+	src: url('assets/roboto-condensed-v19-latin-700.woff2') format('woff2'),
+		url('assets/roboto-condensed-v19-latin-700.woff') format('woff');
 }
 
 @font-face {
 	font-family: 'bootstrap-icons';
 	font-display: swap;
-	src: url('./fonts/bootstrap-icons.woff2') format('woff2'),
-		url('./fonts/bootstrap-icons.woff') format('woff');
+	src: url('assets/bootstrap-icons.woff2') format('woff2'),
+		url('assets/bootstrap-icons.woff') format('woff');
 }
 
 
@@ -328,7 +328,7 @@ img {
 }
 
 .aimeos .lazy-image {
-	background-image: url(media/spinner.svg);
+	background-image: url(assets/spinner.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
@@ -396,13 +396,13 @@ img {
 }
 
 .aimeos .loading {
-	background-image: url(media/spinner.svg);
+	background-image: url(assets/spinner.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .aimeos-spinner {
-	background-image: url(media/spinner.svg);
+	background-image: url(assets/spinner.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 	position: fixed;
@@ -613,7 +613,7 @@ footer .footer-right{
 /* Navbar background */
 
 body {
-	background-image: url(./media/header-bg.webp);
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1px" height="1px"><style>svg{background-color:#282828}</style></svg>');
 	background-repeat: no-repeat;
 	background-size: 100% 6rem;
 }
