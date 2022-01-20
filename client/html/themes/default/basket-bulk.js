@@ -55,7 +55,7 @@ AimeosBasketBulk = {
 					}
 				},
 				onSelect(item) {
-					if($(".aimeos.basket-bulk tbody .details .search").last().val() != '') {
+					if($(".aimeos.basket-bulk .bulk-content .details .search").last().val() != '') {
 						AimeosBasketBulk.add();
 					}
 
@@ -77,12 +77,12 @@ AimeosBasketBulk = {
 	 * Adds a new line to the bulk order form
 	 */
 	add() {
-		const line = $("tfoot .prototype").clone();
-		const len = $(".aimeos.basket-bulk tbody .details").length;
+		const line = $(".prototype").clone();
+		const len = $(".aimeos.basket-bulk .bulk-content .details").length;
 
 		AimeosBasketBulk.autocomplete($(".search", line));
 		$('[disabled="disabled"]', line).removeAttr("disabled");
-		$(".aimeos.basket-bulk tbody").append(line.removeClass("prototype"));
+		$(".aimeos.basket-bulk .bulk-content").append(line.removeClass("prototype"));
 
 		$('[name]', line).each((idx, el) => {
 			$(el).attr("name", $(el).attr("name").replace('_idx_', len));

@@ -1,48 +1,39 @@
 /* Basket bulk order */
 
-.basket-bulk thead>tr>th,
-.basket-bulk tbody>tr>td {
-	vertical-align: middle;
+.bulk-main{
+	border-bottom: 1px solid #555;
+	border-bottom-color: var(--ai-secondary, #555);
+	padding-bottom: 0.5rem;
 }
 
-.basket-bulk table th.quantity,
-.basket-bulk table th.price {
+.basket-bulk .headline {
+	font-weight: bold;
+	border-bottom: 1px solid #555;
+	border-bottom-color: var(--ai-secondary, #555);
+	color: #555;
+	color: var(--ai-secondary, #555);
+	font-weight: bold;
+	background-color: #CCCCCC;
+	background-color: var(--ai-bg-light, #CCCCCC);
+	padding: 0.25rem 0;
+	margin-bottom: 0.5rem;
+}
+
+.basket-bulk .quantity {
 	text-align: center;
 }
 
-.basket-bulk table th.product,
-.basket-bulk table td.product {
-	width: 50%;
+.basket-bulk .price {
+	text-align: right;
 }
 
-.basket-bulk table th.quantity {
-	text-align: center;
-	width: 15%;
+.basket-bulk .headline .product,
+.basket-bulk .quantity input {
+	padding-left: 1rem;
 }
 
-.basket-bulk table td.quantity {
-	width: 15%;
-}
-
-.basket-bulk table td.quantity input {
-	text-align: center;
-}
-
-.basket-bulk table th.price {
-	text-align: center;
-	width: 25%;
-}
-
-.basket-bulk table td.price {
-	text-align: end;
-	width: 25%;
-}
-
-.basket-bulk table th.buttons,
-.basket-bulk table td.buttons {
-	vertical-align: middle;
-	text-align: center;
-	width: 10%;
+.basket-bulk .buttons {
+	text-align: right;
 }
 
 .basket-bulk .minibutton {

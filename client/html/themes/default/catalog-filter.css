@@ -708,11 +708,11 @@
 	}
 
 	.megamenu > .submenu > .item-container > .list-container > .cat-item {
-		flex: 1 0 21%;
 		border-left: 1rem solid transparent;
 		border-right: 1rem solid transparent;
 		margin-inline-start: 0;
 		margin-inline-end: 0;
+		min-width: 8rem;
 	}
 
 	.catalog-filter-tree h2 {
