@@ -65,22 +65,13 @@ interface Iface
 	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface;
 
 	/**
-	 * Modifies the cached body content to replace content based on sessions or cookies.
+	 * Modifies the cached content to replace content based on sessions or cookies.
 	 *
 	 * @param string $content Cached content
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string Modified body content
+	 * @return string Modified content
 	 */
-	public function modifyBody( string $content, string $uid ) : string;
-
-	/**
-	 * Modifies the cached header content to replace content based on sessions or cookies.
-	 *
-	 * @param string $content Cached content
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string Modified header content
-	 */
-	public function modifyHeader( string $content, string $uid ) : string;
+	public function modify( string $content, string $uid ) : string;
 
 	/**
 	 * Returns the PSR-7 response object for the request

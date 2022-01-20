@@ -90,7 +90,7 @@ class Standard
 		 *
 		 * Disable caching for components can be useful if you would have too much
 		 * entries to cache or if the component contains non-cacheable parts that
-		 * can't be replaced using the modifyBody() and modifyHeader() methods.
+		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
 		 * @category Developer
@@ -183,7 +183,7 @@ class Standard
 		}
 		else
 		{
-			$html = $this->modifyBody( $html, $uid );
+			$html = $this->modify( $html, $uid );
 		}
 
 		return $html;
@@ -254,7 +254,7 @@ class Standard
 		}
 		else
 		{
-			$html = $this->modifyHeader( $html, $uid );
+			$html = $this->modify( $html, $uid );
 		}
 
 		return $html;

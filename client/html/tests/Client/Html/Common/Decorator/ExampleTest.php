@@ -83,13 +83,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testModifyBody()
 	{
-		$this->assertEquals( 'test', $this->object->modifyBody( 'test', 1 ) );
-	}
-
-
-	public function testModifyHeader()
-	{
-		$this->assertEquals( 'test', $this->object->modifyHeader( 'test', 1 ) );
+		$this->assertEquals( 'test', $this->object->modify( 'test', 1 ) );
 	}
 
 

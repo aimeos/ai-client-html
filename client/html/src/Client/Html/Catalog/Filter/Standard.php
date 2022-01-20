@@ -136,7 +136,7 @@ class Standard
 		 *
 		 * Disable caching for components can be useful if you would have too much
 		 * entries to cache or if the component contains non-cacheable parts that
-		 * can't be replaced using the modifyBody() and modifyHeader() methods.
+		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
 		 * @category Developer
@@ -234,7 +234,7 @@ class Standard
 		}
 		else
 		{
-			$html = $this->modifyBody( $html, $uid );
+			$html = $this->modify( $html, $uid );
 		}
 
 		return $html;
@@ -313,7 +313,7 @@ class Standard
 		}
 		else
 		{
-			$html = $this->modifyHeader( $html, $uid );
+			$html = $this->modify( $html, $uid );
 		}
 
 		self::$headerSingleton = true;
@@ -409,15 +409,15 @@ class Standard
 
 
 	/**
-	 * Modifies the cached body content to replace content based on sessions or cookies.
+	 * Modifies the cached content to replace content based on sessions or cookies.
 	 *
 	 * @param string $content Cached content
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string Modified body content
+	 * @return string Modified content
 	 */
-	public function modifyBody( string $content, string $uid ) : string
+	public function modify( string $content, string $uid ) : string
 	{
-		$content = parent::modifyBody( $content, $uid );
+		$content = parent::modify( $content, $uid );
 
 		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.filter.csrf' );
 	}

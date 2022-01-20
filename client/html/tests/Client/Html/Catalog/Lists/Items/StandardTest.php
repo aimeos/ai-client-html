@@ -90,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_new"', $output );
 
-		$output = $this->object->modifyBody( $output, 1 );
+		$output = $this->object->modify( $output, 1 );
 
 		$this->assertStringContainsString( '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_value"', $output );
 	}

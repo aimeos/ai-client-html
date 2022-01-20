@@ -148,7 +148,7 @@ class Standard
 		}
 		else
 		{
-			$html = $this->modifyBody( $html, $uid );
+			$html = $this->modify( $html, $uid );
 		}
 
 		return $html;
@@ -218,7 +218,7 @@ class Standard
 		}
 		else
 		{
-			$html = $this->modifyHeader( $html, $uid );
+			$html = $this->modify( $html, $uid );
 		}
 
 		return $html;

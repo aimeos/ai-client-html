@@ -170,15 +170,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testModifyBody()
+	public function testModify()
 	{
-		$this->assertEquals( 'test', $this->object->modifyBody( 'test', 1 ) );
-	}
-
-
-	public function testModifyHeader()
-	{
-		$this->assertEquals( 'test', $this->object->modifyHeader( 'test', 1 ) );
+		$this->assertEquals( 'test', $this->object->modify( 'test', 1 ) );
 	}
 
 

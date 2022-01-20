@@ -130,28 +130,15 @@ abstract class Base
 
 
 	/**
-	 * Modifies the cached body content to replace content based on sessions or cookies.
+	 * Modifies the cached content to replace content based on sessions or cookies.
 	 *
 	 * @param string $content Cached content
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string Modified body content
+	 * @return string Modified content
 	 */
-	public function modifyBody( string $content, string $uid ) : string
+	public function modify( string $content, string $uid ) : string
 	{
-		return $this->client->modifyBody( $content, $uid );
-	}
-
-
-	/**
-	 * Modifies the cached header content to replace content based on sessions or cookies.
-	 *
-	 * @param string $content Cached content
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string Modified header content
-	 */
-	public function modifyHeader( string $content, string $uid ) : string
-	{
-		return $this->client->modifyHeader( $content, $uid );
+		return $this->client->modify( $content, $uid );
 	}
 
 

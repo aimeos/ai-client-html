@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'param', $helper );
 
 		$content = '<!-- catalog.stage.navigator -->test<!-- catalog.stage.navigator -->';
-		$output = $this->object->modifyHeader( $content, 1 );
+		$output = $this->object->modify( $content, 1 );
 
 		$this->assertStringContainsString( '<!-- catalog.stage.navigator -->', $output );
 	}
@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'param', $helper );
 
 		$content = '<!-- catalog.stage.navigator -->test<!-- catalog.stage.navigator -->';
-		$output = $this->object->modifyBody( $content, 1 );
+		$output = $this->object->modify( $content, 1 );
 
 		$this->assertStringContainsString( '<div class="catalog-stage-navigator">', $output );
 	}
