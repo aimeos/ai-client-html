@@ -518,7 +518,7 @@ footer .bi{
 }
 
 [dir="rtl"] footer .bi {
-	margin-left: .5rem;
+	margin-inline-start: .5rem;
 	margin-right: 0;
 }
 
