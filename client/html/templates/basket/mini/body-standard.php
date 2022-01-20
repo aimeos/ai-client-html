@@ -139,67 +139,65 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 					<h1 class="col-10"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
 				</div>
 
-				<table class="basket">
-					<thead class="basket-header">
-						<tr>
-							<th class="name"><?= $enc->html( $this->translate( 'client', 'Product' ), $enc::TRUST ) ?></th>
-							<th class="quantity"><?= $enc->html( $this->translate( 'client', 'Qty' ), $enc::TRUST ) ?></th>
-							<th class="price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></th>
-							<th class="action"></th>
-						</tr>
-					</thead>
-					<tbody class="basket-body">
+				<div class="basket container">
+					<div class="row g-0 basket-header">
+							<div class="col-5 name"><?= $enc->html( $this->translate( 'client', 'Product' ), $enc::TRUST ) ?></div>
+							<div class="col-2 quantity"><?= $enc->html( $this->translate( 'client', 'Qty' ), $enc::TRUST ) ?></div>
+							<div class="col-3 price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
+							<div class="col-2 action"></div>
+					</div>
+					<div class="basket-body">
 						<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
 							<?php
 								$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
 								$param[$this->csrf()->name()] = $this->csrf()->value();
 								if( $basketSite ) { $param['site'] = $basketSite; }
 							?>
-							<tr class="product" data-url="<?= $enc->attr( $this->link( 'client/jsonapi/url', $param ) ) ?>">
-								<td class="name">
+							<div class="row g-0 product" data-url="<?= $enc->attr( $this->link( 'client/jsonapi/url', $param ) ) ?>">
+								<div class="col-5 name">
 									<?= $enc->html( $product->getName() ) ?>
-								</td>
-								<td class="quantity">
+								</div>
+								<div class="col-2 quantity">
 									<?= $enc->html( $product->getQuantity() ) ?>
-								</td>
-								<td class="price">
+								</div>
+								<div class="col-3 price">
 									<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ) ?>
-								</td>
-								<td class="action">
+								</div>
+								<div class="col-2 action">
 									<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 										<a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a>
 									<?php endif ?>
-								</td>
-							</tr>
+								</div>
+							</div>
 						<?php endforeach ?>
-						<tr class="product prototype">
-							<td class="name"></td>
-							<td class="quantity"></td>
-							<td class="price"></td>
-							<td class="action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a></td>
-						</tr>
-					</tbody>
-					<tfoot class="basket-footer">
-						<tr class="delivery">
-							<td class="name" colspan="2">
+						<div class="row g-0 product prototype">
+							<div class="col-5 name"></div>
+							<div class="col-2 quantity"></div>
+							<div class="col-3 price"></div>
+							<div class="col-2 action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a></div>
+						</div>
+					</div>
+					<div class="basket-footer">
+						<div class="row g-0 delivery">
+							<div class="col-7 name" colspan="2">
 								<?= $enc->html( $this->translate( 'client', 'Shipping' ), $enc::TRUST ) ?>
-							</td>
-							<td class="price">
+							</div>
+							<div class="col-3 price">
 								<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?>
-							</td>
-							<td class="action"></td>
-						</tr>
-						<tr class="total">
-							<td class="name" colspan="2">
+							</div>
+							<div class="col-2 action"></div>
+						</div>
+						<div class="row g-0 total">
+							<div class="col-7 name" colspan="2">
 								<?= $enc->html( $this->translate( 'client', 'Total' ), $enc::TRUST ) ?>
-							</td>
-							<td class="price">
+									</div>
+							<div class="col-3 price">
 								<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?>
-							</td>
-							<td class="action"></td>
-						</tr>
-					</tfoot>
-				</table>
+							</div>
+							<div class="col-2 action"></div>
+						</div>
+					</div>
+				</div>
 				<div class="to-basket">
 					<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?>
