@@ -629,18 +629,19 @@ abstract class Base
 	 */
 	protected function replaceSection( string $content, string $section, string $marker ) : string
 	{
-		$start = 0;
-		$len = strlen( $section );
-		$clen = strlen( $content );
 		$marker = '<!-- ' . $marker . ' -->';
+		$clen = strlen( $content );
+		$mlen = strlen( $marker );
+		$len = strlen( $section );
+		$start = 0;
 
-		while( $start < $clen && ( $start = @strpos( $content, $marker, $start ) ) !== false )
+		while( $start + $mlen < $clen && ( $start = @strpos( $content, $marker, $start ) ) !== false )
 		{
 			if( ( $end = strpos( $content, $marker, $start + 1 ) ) !== false ) {
-				$content = substr_replace( $content, $section, $start, $end - $start + strlen( $marker ) );
+				$content = substr_replace( $content, $section, $start, $end - $start + $mlen );
 			}
 
-			$start += 2 * strlen( $marker ) + $len;
+			$start += 2 * $mlen + $len;
 		}
 
 		return $content;
