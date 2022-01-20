@@ -90,6 +90,7 @@
 .slider-nav {
 	position: absolute;
 	top: 0;
+	left: 0;
 	bottom: 0;
 	border: 0;
 	background-color: transparent;
@@ -194,7 +195,8 @@
 }
 
 .slider-nav.slider-nav-next {
-	right: 0
+	right: 0;
+	left: unset
 }
 
 .slider-nav-visible .slider-nav {
@@ -303,19 +305,19 @@
 
 @media (min-width: 992px) {
 	.slider-nav-outside-expand .slider-nav {
-		margin-inline-start: -5rem
+		margin-left: -5rem
 	}
 
 	.slider-nav-outside-expand .slider-nav.slider-nav-next {
-		margin-inline-end: -5rem
+		margin-right: -5rem
 	}
 
 	.slider-nav-sm.slider-nav-outside-expand .slider-nav {
-		margin-inline-start: -4rem
+		margin-left: -4rem
 	}
 
 	.slider-nav-sm.slider-nav-outside-expand .slider-nav.slider-nav-next {
-		margin-inline-end: -4rem
+		margin-right: -4rem
 	}
 }
 
@@ -347,12 +349,12 @@
 
 	.slider-nav-outside-expand .slider-nav {
 		padding: 0;
-		margin-inline-start: -2rem
+		margin-left: -2rem
 	}
 
 	.slider-nav-outside-expand .slider-nav.slider-nav-next {
 		padding: 0;
-		margin-inline-end: -2rem
+		margin-right: -2rem
 	}
 }
 
