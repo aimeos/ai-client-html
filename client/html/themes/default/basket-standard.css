@@ -1,5 +1,8 @@
-
 /* Standard basket */
+
+.basket-standard {
+	margin: 2rem 0;
+}
 .basket-standard-main {
 	border: 1px solid #D0D0D0;
 	border-color: var(--ai-light, #D0D0D0);

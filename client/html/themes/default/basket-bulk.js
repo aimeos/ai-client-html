@@ -77,7 +77,7 @@ AimeosBasketBulk = {
 	 * Adds a new line to the bulk order form
 	 */
 	add() {
-		const line = $(".prototype").clone();
+		const line = $(".aimeos.basket-bulk .details.prototype").clone();
 		const len = $(".aimeos.basket-bulk .bulk-content .details").length;
 
 		AimeosBasketBulk.autocomplete($(".search", line));

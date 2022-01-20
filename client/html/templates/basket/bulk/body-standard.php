@@ -72,7 +72,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 							<input type="hidden" class="productid"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'prodid'] ) ) ?>"
 							>
-							<input id="bulk" type="text" class="form-control search" tabindex="1"
+							<input type="text" class="form-control search" tabindex="1"
 								placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
 							>
 							<div class="vattributes"></div>
@@ -84,7 +84,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 							>
 						</div>
 						<div class="col-2 price"></div>
-						<div class="col-2 buttons"><div class="btn minibutton delete"></div></div>
+						<div class="col-2 buttons"><div class="btn minibutton delete" tabindex="1"></div></div>
 					</div>
 				<?php endfor ?>
 				</div>

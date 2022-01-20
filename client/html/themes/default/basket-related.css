@@ -1,3 +1,8 @@
+/* Related products to basket */
+
+.basket-related {
+	margin: 2rem 0;
+}
 
 .basket-related .product .text-list {
 	margin: 0.5rem 0;

@@ -1,47 +1,50 @@
 /* Basket bulk order */
 
-.bulk-main{
+.basket-bulk {
+	margin: 2rem 0;
+}
+
+.basket-bulk .headline,
+.basket-bulk .bulk-content .details {
 	border-bottom: 1px solid #555;
 	border-bottom-color: var(--ai-secondary, #555);
-	padding-bottom: 0.5rem;
+	align-items: center;
 }
 
 .basket-bulk .headline {
-	font-weight: bold;
-	border-bottom: 1px solid #555;
-	border-bottom-color: var(--ai-secondary, #555);
-	color: #555;
-	color: var(--ai-secondary, #555);
-	font-weight: bold;
 	background-color: #CCCCCC;
 	background-color: var(--ai-bg-light, #CCCCCC);
-	padding: 0.25rem 0;
-	margin-bottom: 0.5rem;
+	font-weight: bold;
 }
 
-.basket-bulk .quantity {
+.basket-bulk .form-control {
+	border: none;
+}
+
+.basket-bulk .quantity,
+.basket-bulk .quantity input {
 	text-align: center;
 }
 
 .basket-bulk .price {
-	text-align: right;
+	text-align: end;
 }
 
-.basket-bulk .headline .product,
-.basket-bulk .quantity input {
-	padding-left: 1rem;
+.basket-bulk .product,
+.basket-bulk .price {
+	padding: 0 .75rem;
 }
 
 .basket-bulk .buttons {
-	text-align: right;
+	text-align: center;
 }
 
 .basket-bulk .minibutton {
 	color: #A00000;
 	color: var(--ai-primary, #A00000);
-	padding: 0 0.5rem;
 	line-height: 1;
-	width: 2rem;
+	width: 2.5rem;
+	padding: 0.75rem;
 }
 
 
