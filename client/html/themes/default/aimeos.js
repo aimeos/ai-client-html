@@ -199,7 +199,7 @@ AimeosBasket = {
 
 		const jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
 
-		if(AimeosBasketMini && jsonurl) {
+		if(jsonurl && typeof AimeosBasketMini !== 'undefined') {
 			fetch(jsonurl, {
 				method: "OPTIONS",
 				headers: {'Content-Type': 'application/json'}
