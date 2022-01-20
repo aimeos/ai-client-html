@@ -95,6 +95,21 @@ Aimeos = {
 			if(element.tagName === 'IMG') {
 				element.setAttribute("srcset", element.getAttribute("data-srcset"));
 				element.setAttribute("src", element.getAttribute("data-src"));
+			} else if(element.classList.contains('background')) {
+				var url = '';
+				var srcset = element.getAttribute("data-background");
+
+				srcset && srcset.split(',').every(function(str) {
+					var parts = str.trim().split(' ');
+
+					if(parseInt((parts[1] || '').replace('w', '')) < window.innerWidth) {
+						return true;
+					}
+					url = parts[0];
+					return false;
+				});
+
+				element.style.backgroundImage = "url('" + url + "')";
 			}
 
 			element.classList.remove("lazy-image");
