@@ -62,9 +62,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$miniBasket = $this->view->miniBasket;
 
 		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Base\Iface );
-		$this->assertStringContainsString( '<section class="aimeos basket-mini"', $output );
-		$this->assertStringContainsString( '<div class="basket-mini-main">', $output );
-		$this->assertStringContainsString( '<div class="basket-mini-product">', $output );
+		$this->assertStringContainsString( '<section class="aimeos basket-mini', $output );
+		$this->assertStringContainsString( '<div class="basket-mini-main', $output );
+		$this->assertStringContainsString( '<div class="basket-mini-product', $output );
 	}
 
 
@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$controller->clear();
 
-		$this->assertStringContainsString( '<div class="basket-mini-product">', $output );
+		$this->assertStringContainsString( '<div class="basket-mini-product', $output );
 		$this->assertRegExp( '#9#smU', $output );
 		$this->assertRegExp( '#171.00#smU', $output );
 	}
