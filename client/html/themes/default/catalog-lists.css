@@ -160,14 +160,9 @@
 	border: none 0;
 }
 
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
 .catalog-list-items {
 	text-align: center;
-	animation: fadein .3s;
+	animation: FadeIn .3s;
 }
 
 .catalog-list-items .slider-container {

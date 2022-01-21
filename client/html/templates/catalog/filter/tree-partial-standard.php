@@ -99,6 +99,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 ?>
 <div class="list-container level-<?= $enc->attr( $this->get( 'level', 0 ) ) ?>">
+
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
 
@@ -109,81 +110,84 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 				' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ) ?>"
 				data-id="<?= $item->getId() ?>">
 
-					<?php if( $item->hasChildren() ) : ?>
-							<div class="item-links row">
-								<a class="col-10 item-link" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
-									<?= $enc->html( $item->getName(), $enc::TRUST ) ?>
-								</a>
-								<a class="col-2 data-link" data-submenu="<?= $enc->attr( $item->getId() ) ?>" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Open submenu' ) ) ?>"></a>
-							</div>
-					<?php else : ?>
-							<div class="item-links">
-								<a class="item-link" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
-									<?= $enc->html( $item->getName(), $enc::TRUST ) ?>
-								</a>
-							</div>
-					<?php endif ?>
-
-					<a class="cat-item <?= ( $item->getLevel() == 1 ? 'top-cat-item' : '' ) .
-						( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) ?>"
-						href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>"><!--
-						--><div class="media-list"><!--
-								<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
-										<?= '-->' . $this->partial(
-												$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
-												array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-										) . '<!--' ?>
-								<?php endforeach ?>
-						--></div><!--
-						--><span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span>
+				<div class="item-links row">
+					<a class="col-10 name" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
+						<?= $enc->html( $item->getName(), $enc::TRUST ) ?>
 					</a>
+					<?php if( $item->hasChildren() ) : ?>
+						<div class="col-2 next" data-submenu="<?= $enc->attr( $item->getId() ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client', 'Open submenu' ) ) ?>">
+						</div>
+					<?php else : ?>
+						<div class="col-2"></div>
+					<?php endif ?>
+				</div>
 
-					<?php if( count( $item->getChildren() ) > 0 ) : ?>
+				<a class="cat-item <?= ( $item->getLevel() == 1 ? 'top-cat-item' : '' ) . ( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) ?>"
+					href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
+					<div class="media-list">
+						<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+							<?= $this->partial(
+								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+							) ?>
+						<?php endforeach ?>
+					</div>
+					<span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span>
+				</a>
 
-						<div id="<?= $enc->attr( $item->getId() ) ?>" class="submenu <?= $enc->attr(
-							( $this->get( 'path', map() )->has( $item->getId() ) ? ' active opened' : '' ) ) .
-							( $item->hasChildren() ? ' shadow-sm' : ' nochild' ) ?>"
-							data-id="<?= $item->getId() ?>">
+				<?php if( count( $item->getChildren() ) > 0 ) : ?>
 
-							<div class="submenu-header row">
-								<a class="col-2" href="#" data-submenu-close="<?= $enc->attr( $item->getId() ) ?>">
-									<span class="arrow-back"></span>
-								</a>
-								<a class="col-7" href="#" data-submenu-close="<?= $enc->attr( $item->getId() ) ?>">
-									<span><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span>
-								</a>
-								<div class="menu-close col-3"></div>
-							</div>
-							<?php if( $item->getLevel() == 1 ) : ?>
-								<div class="item-container">
-									<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), [
-										'nodes' => $item->getChildren(),
-										'path' => $this->get( 'path', map() ),
-										'level' => $this->get( 'level', 0 ) + 1,
-										'params' => $this->get( 'params', [] )
-									] ) ?>
-								</div>
-								<a class="cat-img <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
-									href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
-									<?php foreach( $item->getRefItems( 'media', 'menu', 'default' ) as $mediaItem ) : ?>
-										<img class="img-menu" loading="lazy"
-											src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-											srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
-											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
-											alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-										>
-									<?php endforeach ?>
-								</a>
-							<?php else : ?>
+					<div id="<?= $enc->attr( $item->getId() ) ?>" class="submenu <?= $enc->attr(
+						( $this->get( 'path', map() )->has( $item->getId() ) ? ' active opened' : '' ) ) .
+						( $item->hasChildren() ? ' shadow-sm' : ' nochild' ) ?>"
+						data-id="<?= $item->getId() ?>">
+
+						<div class="row header">
+							<div class="col-2 back" data-submenu-close="<?= $enc->attr( $item->getId() ) ?>"></div>
+							<div class="col-8 name"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></div>
+							<div class="col-2 close"></div>
+						</div>
+
+						<?php if( $item->getLevel() == 1 ) : ?>
+
+							<div class="item-container">
 								<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), [
 									'nodes' => $item->getChildren(),
 									'path' => $this->get( 'path', map() ),
 									'level' => $this->get( 'level', 0 ) + 1,
 									'params' => $this->get( 'params', [] )
 								] ) ?>
-							<?php endif ?>
-						</div>
-					<?php endif ?>
+							</div>
+
+							<a class="cat-img <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
+								href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
+
+								<?php foreach( $item->getRefItems( 'media', 'menu', 'default' ) as $mediaItem ) : ?>
+									<img class="img-menu" loading="lazy"
+										src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
+										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+									>
+								<?php endforeach ?>
+
+							</a>
+
+						<?php else : ?>
+
+							<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), [
+								'nodes' => $item->getChildren(),
+								'path' => $this->get( 'path', map() ),
+								'level' => $this->get( 'level', 0 ) + 1,
+								'params' => $this->get( 'params', [] )
+							] ) ?>
+
+						<?php endif ?>
+
+					</div>
+
+				<?php endif ?>
 
 			</div>
 		<?php endif ?>

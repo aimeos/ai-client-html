@@ -50,9 +50,10 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 	<section class="catalog-filter-tree <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
 		<div class="category-lists zeynep">
 
-			<div class="menu-head row">
-				<h2 class="col-10"><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ) ?></h2>
-				<div class="menu-close col-2"></div>
+			<div class="row header">
+				<div class="col-2"></div>
+				<div class="col-8 name"><?= $enc->html( $this->translate( 'client', 'Categories' ), $enc::TRUST ) ?></div>
+				<div class="col-2 close" data-submenu-close="<?= $enc->attr( $this->treeCatalogTree->getId() ) ?>"></div>
 			</div>
 
 			<?php if( $this->param( 'f_catid' ) ) : ?>

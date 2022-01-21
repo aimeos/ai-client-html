@@ -11,6 +11,91 @@ AimeosCatalogFilter = {
 
 
 	/**
+	 * Mega menu
+	 */
+	onMenuHover() {
+
+		const $dropdowns = $('.top-item');
+
+		$dropdowns.on('mouseover', ev => {
+			var $this = $(ev.currentTarget);
+			if ($this.prop('hoverTimeout')){
+				$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
+			}
+			$this.prop('hoverIntent', setTimeout(() => {
+				$this.addClass('hover');
+			}));
+		}).on('mouseleave', ev => {
+			var $this = $(ev.currentTarget);
+			if ($this.prop('hoverIntent')){
+				$this.prop('hoverIntent', clearTimeout($this.prop('hoverIntent')));
+			}
+			$this.prop('hoverTimeout', setTimeout(() => {
+				$this.removeClass('hover');
+			}));
+		});
+
+
+		// For touch devices
+		window.matchMedia('(min-width: 991px)').addEventListener('change', ev => {
+
+			if (ev.matches) {
+
+				$dropdowns.each((idx, el) => {
+					const $this = $(el);
+
+					el.addEventListener('touchstart', function(e) {
+
+						if (e.touches.length === 1){
+							e.stopPropagation();
+
+							if(!$this.hasClass('hover')) {
+								if(e.target === this || e.target.parentNode === this) {
+									e.preventDefault();
+								}
+
+								$dropdowns.removeClass('hover');
+								$this.addClass('hover');
+
+								document.addEventListener('touchstart', closeDropdown = function(ev) {
+									ev.stopPropagation();
+									$this.removeClass('hover');
+									document.removeEventListener('touchstart', closeDropdown);
+								});
+							}
+						}
+					}, false);
+				});
+			}
+		});
+	},
+
+
+	/**
+	 * Show category offscreen menu
+	 */
+	onShowCategories() {
+
+		$(".open-menu").on('click', () => {
+			$('.category-lists').addClass('opened');
+			$('.catalog-filter .aimeos-overlay-offscreen').addClass('show');
+		});
+	},
+
+
+	/**
+	 * Hide category offscreen menu
+	 */
+	onHideCategories() {
+
+		$(".zeynep .close").on('click', () => {
+			$('.category-lists').removeClass('opened');
+			$('.catalog-filter .aimeos-overlay-offscreen').removeClass('show');
+		});
+	},
+
+
+	/**
 	 * Autocompleter for quick search
 	 */
 	onLoadSearch() {
@@ -209,6 +294,11 @@ AimeosCatalogFilter = {
 	 * Initialize the catalog filter actions
 	 */
 	init() {
+		this.onMenuHover();
+
+		this.onShowCategories();
+		this.onHideCategories();
+
 		this.onSyncPrice();
 		this.onTogglePrice();
 
