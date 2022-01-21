@@ -1,6 +1,5 @@
 /* Catalog filter */
 .catalog-filter {
-	text-align: center;
 	margin-top: 0;
 	position: relative;
 }
@@ -9,7 +8,7 @@
 	display: none;
 }
 
-.catalog-filter-tree a.cat-item {
+.catalog-filter-tree .cat-link {
 	color: #A00000;
 	color: var(--ai-primary, #A00000);
 }
@@ -533,23 +532,6 @@
 
 /* Catalog filter, tree section */
 
-.catalog-filter-tree a.cat-item {
-	border-bottom: solid 1px #D0D0D0;
-	border-bottom-color: var(--ai-light, #D0D0D0);
-	white-space: nowrap;
-	padding: 0.5rem 0;
-	display: block;
-	color: #555;
-	color: var(--ai-secondary, #555);
-	letter-spacing: 1.5px;
-}
-
-.catalog-filter-tree a.cat-item:hover {
-	text-decoration: underline;
-	color: #555;
-	color: var(--ai-secondary, #555);
-}
-
 .catalog-filter-tree .category-selected {
 	display: block;
 	margin: auto;
@@ -572,158 +554,122 @@
 }
 
 @media (max-width:991px) {
-
 	.catalog-filter-tree .category-selected {
 		display: none;
 	}
 
-	.catalog-filter-tree a.cat-item.top-cat-item,
-	.catalog-filter-tree .has-submenu a.cat-item {
+	.catalog-filter-tree .withchild .cat-link {
 		display: none;
 	}
-
 }
 
 
-/* Megamenu */
+/* Catetory menu */
+
+.catalog-filter-tree .cat-img {
+	display: none;
+}
 
 .catalog-filter-tree .cat-img .img-menu {
 	width: var(--ai-product-image-width);
+	max-width: 12rem;
 	height: auto;
-	max-width: 12rem
 }
 
 @media (min-width:992px) {
 
-	.catalog-filter-tree .submenu .has-submenu > a.cat-item {
-		font-weight: 600;
+	.catalog-filter-tree .item-links,
+	.catalog-filter-tree .submenu-header {
+		display: none;
 	}
 
-	.catalog-filter-tree .item-links, .btn-open.first, .submenu-header {
-		display: none !important;
-	}
-
-	.catalog-filter-tree .list-container a.cat-item:link,
-	.catalog-filter-tree .list-container a.cat-item:visited {
+	.catalog-filter-tree a.cat-link,
+	.catalog-filter-tree a.cat-link:link,
+	.catalog-filter-tree a.cat-link:visited {
 		color: #FFFFFF;
 		color: var(--ai-primary-alt, #FFFFFF);
+		letter-spacing: 1.5px;
+		border: none;
 	}
 
-	.catalog-filter-tree .list-container a.cat-item:link:hover,
-	.catalog-filter-tree .list-container a.cat-item:visited:hover {
+	.catalog-filter-tree a.cat-link:hover,
+	.catalog-filter-tree a.cat-link:link:hover,
+	.catalog-filter-tree a.cat-link:visited:hover {
 		color: #CCCCCC;
 		color: var(--ai-light, #CCCCCC);
 	}
 
-	.catalog-filter-tree .submenu .item-container .list-container {
-		min-width: 10rem;
-	}
-
-	.catalog-filter-tree .submenu > .item-container > .list-container > .cat-item {
-		margin-inline-start: 1rem;
-		margin-inline-end: 1rem;
-	}
-
-	.catalog-filter-tree .submenu > .cat-img {
-		margin: .5rem 1rem .5rem 0;
-	}
-
-	.catalog-filter-tree .megamenu [class*="level-"]:not(.level-1) > .cat-item {
-		text-align: start;
-		margin: 0 0 .5rem;
-	}
-
-	.catalog-filter-tree .megamenu [class*="level-"]:not(.level-1) > .cat-item:first-child {
-		text-align: start;
-	}
-
-	.catalog-filter-tree .megamenu [class*="level-"]:not(.level-1) > .cat-item:last-child {
-		margin-bottom: .25rem;
-	}
-
-	.catalog-filter-tree .megamenu > .submenu > .item-container > .list-container {
-		display: flex !important;
-	}
-
-	.catalog-filter-tree .megamenu > .submenu > .item-container > .list-container > .cat-item {
-		border-left: 1rem solid transparent;
-		border-right: 1rem solid transparent;
-		margin-inline-start: 0;
-		margin-inline-end: 0;
-		min-width: 8rem;
-	}
-
-	.catalog-filter-tree h2 {
-		display: none;
-	}
-
-	.catalog-filter-tree a.cat-item {
-		border-bottom: none;
-		white-space: normal;
-		padding: 0;
-		font-size: 90%;
-		line-height: 1.2;
-		display: flex;
-		margin: .5rem 0;
-	}
-
-	.catalog-filter-tree .top-cat-item.cat-item {
-		padding: 1rem 1.5rem;
-		margin: 0;
-		letter-spacing: 1.5px;
-		font-size: 100%;
-	}
-
-	.catalog-filter-tree .list-container.level-1 {
+	.catalog-filter-tree .level-1 {
 		display: flex;
 	}
 
-	.catalog-filter-tree .list-container.level-1 > .withchild > a.cat-item::before {
+	.catalog-filter-tree .level-1 > .cat-item > .cat-link {
+		display: block;
+		padding: 1rem;
+	}
+
+	.catalog-filter-tree .level-1 > .withchild > .cat-link::before {
 		font: normal normal normal 14px/1 bootstrap-icons;
-		content: "\f282";
+		content: "\f285";
 		font-size: 80%;
-		margin: auto;
+		margin-inline-end: -0.25rem;
 	}
 
-	/* MEGAMENU level-2 */
-
-	.catalog-filter-tree .has-submenu > .submenu {
+	.catalog-filter-tree .level-1 > .withchild > .submenu {
 		position: absolute;
 		display: none;
 		padding: .5rem 0;
 	}
 
-	.catalog-filter-tree .has-submenu > .submenu .list-container > .has-submenu > .submenu {
-		position: relative;
-		display: block;
-		border-top: none;
-		padding: 0;
-	}
-
-	.catalog-filter-tree .top-item.hover > .submenu {
-		display: flex;
+	.catalog-filter-tree .level-1 > .cat-item.hover > .submenu {
 		background-color: #282828;
 		background-color: var(--ai-primary, #282828);
-		margin-top: 0;
 		animation: FadeIn .25s ease-in-out;
 		min-width: 12rem;
+		display: flex;
 		z-index: 1;
 	}
 
-	.catalog-filter-tree .top-item.hover.megamenu > .submenu {
-		background-color: #282828;
-		background-color: var(--ai-primary, #282828);
+	.catalog-filter-tree [class*="level-"]:not(.level-1) > .cat-item:last-child {
+		margin-bottom: 1rem;
+	}
+
+	.catalog-filter-tree .level-2 {
+		margin: 0 1rem;
+	}
+
+	.catalog-filter-tree .level-2 > .cat-item > .cat-link {
+		margin-bottom: .25rem;
+		font-weight: bold;
+		display: block;
+	}
+
+	/* MEGAMENU */
+
+	.catalog-filter-tree .megamenu .level-2 {
+		display: flex;
+		flex-flow: column wrap;
+		max-height: 15rem;
+		width: 100%;
+	}
+
+	.catalog-filter-tree .megamenu .level-2 > .cat-item {
+		margin: 0 1rem;
+		width: 15rem;
+	}
+
+	.catalog-filter-tree .megamenu .cat-item.hover > .submenu,
+	.catalog-filter-tree .megamenu.cat-item.hover > .submenu {
+		padding: 2rem 1rem;
 		position: fixed;
-		width:100vw;
 		right: 0;
+		left: 0;
 		display: flex;
 		justify-content: center;
 	}
 
-	.catalog-filter-tree .megamenu > .submenu .has-submenu > a.cat-item {
-		font-weight: bold;
-		font-size: 110%;
-		margin: .5rem 0;
+	.catalog-filter-tree .megamenu .cat-img {
+		display: block;
 	}
 
 }

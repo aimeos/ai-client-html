@@ -15,7 +15,7 @@ AimeosCatalogFilter = {
 	 */
 	onMenuHover() {
 
-		const $dropdowns = $('.top-item');
+		const $dropdowns = $('.level-1 > .cat-item');
 
 		$dropdowns.on('mouseover', ev => {
 			var $this = $(ev.currentTarget);
@@ -76,9 +76,9 @@ AimeosCatalogFilter = {
 	 */
 	onShowCategories() {
 
-		$(".open-menu").on('click', () => {
-			$('.category-lists').addClass('opened');
-			$('.catalog-filter .aimeos-overlay-offscreen').addClass('show');
+		$(".catalog-filter-tree .menu").on('click', () => {
+			$('.catalog-filter-tree .zeynep').addClass('opened');
+			$('.catalog-filter-tree .aimeos-overlay-offscreen').addClass('show');
 		});
 	},
 
@@ -88,9 +88,9 @@ AimeosCatalogFilter = {
 	 */
 	onHideCategories() {
 
-		$(".zeynep .close").on('click', () => {
-			$('.category-lists').removeClass('opened');
-			$('.catalog-filter .aimeos-overlay-offscreen').removeClass('show');
+		$(".catalog-filter-tree .close").on('click', () => {
+			$('.catalog-filter-tree .zeynep').removeClass('opened');
+			$('.catalog-filter-tree .aimeos-overlay-offscreen').removeClass('show');
 		});
 	},
 

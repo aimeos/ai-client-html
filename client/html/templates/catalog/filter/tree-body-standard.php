@@ -48,7 +48,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 		<div class="aimeos-overlay-offscreen"></div>
 		<div class="menu"></div>
-		<div class="zeynep">
+		<div class="zeynep list-container level-0 catcode-<?= $enc->attr( $this->treeCatalogTree->getCode() ) ?> <?= $enc->attr( $this->treeCatalogTree->getConfigValue( 'css-class' ) ) ?>">
 
 			<div class="row header">
 				<div class="col-2"></div>
@@ -74,15 +74,13 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 				>
 			<?php endif ?>
 
-			<fieldset>
-				<?= $this->partial(
-					$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), [
-						'nodes' => $this->treeCatalogTree->getChildren(),
-						'path' => $this->get( 'treeCatalogPath', map() ),
-						'params' => $this->get( 'treeFilterParams', [] ),
-						'level' => 1
-					] ) ?>
-			</fieldset>
+			<?= $this->partial(
+				$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-standard' ), [
+					'nodes' => $this->treeCatalogTree->getChildren(),
+					'path' => $this->get( 'treeCatalogPath', map() ),
+					'params' => $this->get( 'treeFilterParams', [] ),
+					'level' => 1
+				] ) ?>
 		</div>
 	</section>
 
