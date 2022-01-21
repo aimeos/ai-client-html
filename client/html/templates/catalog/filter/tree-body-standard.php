@@ -44,11 +44,11 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 <?php $this->block()->start( 'catalog/filter/tree' ) ?>
 <?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 && !$this->treeCatalogTree->getChildren()->isEmpty() ) : ?>
 
-	<div class="aimeos-overlay-offscreen"></div>
-	<div class="open-menu"></div>
-
 	<section class="catalog-filter-tree <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
-		<div class="category-lists zeynep">
+
+		<div class="aimeos-overlay-offscreen"></div>
+		<div class="menu"></div>
+		<div class="zeynep">
 
 			<div class="row header">
 				<div class="col-2"></div>
