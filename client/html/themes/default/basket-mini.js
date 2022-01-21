@@ -88,10 +88,36 @@ AimeosBasketMini = {
 
 
 	/**
+	 * Show basket offscreen menu
+	 */
+	onShowBasket() {
+
+		$('.basket-mini .menu').on('click', () => {
+			$('.basket-mini .aimeos-overlay-offscreen').addClass('show');
+			$('.basket-mini .zeynep').addClass('opened');
+		});
+	},
+
+
+	/**
+	 * Hide basket offscreen menu
+	 */
+	onHideBasket() {
+
+		$('.basket-mini .close').on('click', () => {
+			$('.basket-mini .aimeos-overlay-offscreen').removeClass('show');
+			$('.basket-mini .zeynep').removeClass('opened');
+		});
+	},
+
+
+	/**
 	 * Initializes the basket mini actions
 	 */
 	init() {
 		this.onDelete();
+		this.onShowBasket();
+		this.onHideBasket();
 	}
 };
 

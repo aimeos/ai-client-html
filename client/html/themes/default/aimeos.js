@@ -626,37 +626,11 @@ AimeosPage = {
 
 
 	/**
-	 * Show basket offscreen menu
-	 */
-	onShowBasket() {
-
-		$('.aimeos.basket-mini > a').on('click', () => {
-			$('.basket-mini-offscreen').addClass('opened');
-			$('.basket-mini .aimeos-overlay-offscreen').addClass('show');
-		});
-	},
-
-
-	/**
-	 * Hide basket offscreen menu
-	 */
-	onHideBasket() {
-
-		$('.mini-basket-close').on('click', () => {
-			$('.basket-mini-offscreen').removeClass('opened');
-			$('.basket-mini .aimeos-overlay-offscreen').removeClass('show');
-		});
-	},
-
-
-	/**
 	 * Initializes the menu actions
 	 */
 	init: function() {
 		this.onLinkTop();
 		this.onMenuScroll();
-		this.onShowBasket();
-		this.onHideBasket();
 		this.onHideOffscreen();
 		this.setupOffscreen();
 	}
