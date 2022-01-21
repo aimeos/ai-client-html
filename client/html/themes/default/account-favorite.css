@@ -16,8 +16,7 @@
 
 .account-favorite .favorite-items {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: center;
 }
 
 .account-favorite .favorite-item {

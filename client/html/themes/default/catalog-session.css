@@ -120,9 +120,16 @@ aside .catalog-session{
 	padding-top: 0;
 }
 
-aside .catalog-session-seen .seen-items,
+/* aside .catalog-session-seen .seen-items,
 aside .catalog-session-pinned .pinned-items {
 	display: none;
+} */
+
+aside .aimeos .price-item .rebatepercent {
+	position: absolute !important;
+	transform: translateX(100%);
+	right: 100% !important;
+	line-height: 1;
 }
 
 @media screen and (min-width: 992px) {
@@ -135,7 +142,6 @@ aside .catalog-session-pinned .pinned-items {
 	aside .catalog-session-seen .name,
 	aside .catalog-session-pinned .name {
 		margin: 0 0 .25rem;
-		font-size: 80%;
 		text-align: start;
 	}
 
@@ -147,7 +153,6 @@ aside .catalog-session-pinned .pinned-items {
 	aside .pinned-item .price-item.default .value,
 	aside .seen-item .price-item.default .value {
 		vertical-align: middle;
-		font-size: 110% !important;
 	}
 
 	/*last seen*/
@@ -185,12 +190,14 @@ aside .catalog-session-pinned .pinned-items {
 		margin: 0;
 	}
 
-	aside .aimeos .price-item .rebatepercent {
-		position: relative !important;
-		font-size: 80%;
-	}
-
 	.catalog-session-pinned .name {
 		margin-inline-end: 3rem;
+	}
+
+	aside .aimeos .price-item .rebatepercent {
+		position: relative !important;
+		transform: translateX(0);
+		right: auto !important;
+		line-height: 1;
 	}
 }

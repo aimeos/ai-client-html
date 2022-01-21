@@ -806,7 +806,6 @@ body > .content, body .main-section {
 	background-color: var(--ai-secondary, #555);
   }
 
-
 /* Product */
 
 .aimeos .product .swiffy-slider {
@@ -840,20 +839,24 @@ body > .content, body .main-section {
 }
 
 .aimeos .product .supplier {
-	margin: 0.5rem 0;
+	margin: 0.5rem 0 0;
+	text-align: end;
+	line-height: 1;
 }
 
 /* ratings */
 .aimeos .product .rating {
-	margin: 1.25rem 0;
-	height: 0.8px;
+	line-height: 1;
+	padding: 0.25rem 0;
+	text-align: end;
+	display: block;
 }
 
 .aimeos .product .stars {
 	color: #555;
 	color: var(--ai-secondary, #555);
 	position: relative;
-	top: -0.7rem;
+	display: inline-block;
 }
 
 /* price list */
@@ -886,11 +889,19 @@ body > .content, body .main-section {
 	position: relative;
 	display: inline-block;
 	background-color: #A00000;
-	padding: .1rem 0.25rem;
+	padding: 0.25rem;
 	color: #FFF;
 	z-index: 2;
 	right: 0;
 	top: 0;
+	line-height: 1;
+}
+
+.catalog-detail-suggest .product .price-item .rebatepercent,
+.catalog-detail-bought .product .price-item .rebatepercent,
+.catalog-detail-bundle .product .price-item .rebatepercent,
+.favorite-items .product .price-item .rebatepercent {
+	position: absolute;
 }
 
 [dir="rtl"] .aimeos .product .price-item .rebatepercent {
@@ -900,7 +911,7 @@ body > .content, body .main-section {
 
 .aimeos .product .price-item.default .value {
 	font-size: 140%;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 /* text list */
@@ -913,23 +924,23 @@ body > .content, body .main-section {
 	overflow: hidden;
 }
 
+.aimeos .product .text-list h2,
+.aimeos .product .text-list .text-item {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 1.25rem;
+}
+
 .aimeos .product .text-list h2 {
 	text-transform: uppercase;
 	font-weight: normal;
 	font-size: 100%;
-	overflow: hidden;
-	text-align: right;
-	height: 2.25rem;
+	text-align: end;
 	margin: 0;
 	margin-bottom: .5rem;
 	letter-spacing: 1.5px;
 }
-
-.aimeos .product .text-list .text-item {
-	overflow: hidden;
-	height: 2rem;
-}
-
 
 .aimeos .product .price-list {
 	display: inline-block;
