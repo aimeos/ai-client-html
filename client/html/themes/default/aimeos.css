@@ -668,9 +668,10 @@ body > .content, body .main-section {
 	background-color: var(--ai-primary, #282828) !important;
 }
 
-.navbar-collapse{
-	position: relative;
-	justify-content: flex-end;
+@media (max-width:767px) {
+	.navbar-collapse {
+		justify-content: flex-end;
+	}
 }
 
 .navbar-nav {
@@ -713,7 +714,7 @@ body > .content, body .main-section {
 	border: none;
 }
 
-@media (max-width:768px) {
+@media (max-width:767px) {
 	.navbar-brand img {
 		width: 120px;
 		height: auto;
