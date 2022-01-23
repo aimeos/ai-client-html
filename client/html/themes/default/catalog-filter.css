@@ -63,7 +63,7 @@ aside .catalog-filter {
 .catalog-filter-price.col,
 .catalog-filter-supplier.col {
 	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: var(--ai-bg, #FFF);
 	z-index: 1;
 }
 
@@ -80,7 +80,7 @@ aside .catalog-filter {
 
 	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col {
 		background-color: #FFF;
-		background-color: var(--ai-bg-alt, #FFF);
+		background-color: var(--ai-bg, #FFF);
 	}
 
 	.catalog-filter-attribute .attribute-lists,
@@ -223,7 +223,7 @@ aside .catalog-filter .catalog-filter-attribute {
 .catalog-filter-attribute input.attr-item,
 .catalog-filter-supplier input.attr-item {
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 }
 
 .catalog-filter-attribute input.attr-item[type=checkbox],
@@ -245,7 +245,7 @@ aside .catalog-filter .catalog-filter-attribute {
 
 .catalog-filter-attribute fieldset {
 	border-left: 1px solid #D0D0D0;
-	border-left-color: var(--ai-light, #D0D0D0);
+	border-left-color: var(--ai-tertiary, #CCC);
 	margin: 0;
 	width: 49%;
 	min-width: 8rem;
@@ -373,7 +373,7 @@ aside .catalog-filter .catalog-filter-attribute {
 
 .catalog-filter-price input[type=range]::-webkit-slider-runnable-track {
 	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
+	background-color: var(--ai-tertiary, #CCC);
 	border-radius: 0.1rem;
 	border: none;
 	cursor: ew-resize;
@@ -400,7 +400,7 @@ aside .catalog-filter .catalog-filter-attribute {
 
 .catalog-filter-price input[type=range]::-moz-range-track {
 	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
+	background-color: var(--ai-tertiary, #CCC);
 	cursor: pointer;
 	height: 0.2rem;
 	width: 100%;
@@ -440,7 +440,7 @@ aside .catalog-filter .catalog-filter-attribute {
 
 .catalog-filter-price input[type=range]::-ms-fill-upper {
 	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
+	background-color: var(--ai-tertiary, #CCC);
 	border-radius: 50%;
 	border: none;
 }
@@ -462,7 +462,7 @@ aside .catalog-filter .catalog-filter-attribute {
 
 .catalog-filter-price input[type=range]:focus::-ms-fill-upper {
 	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
+	background-color: var(--ai-tertiary, #CCC);
 }
 
 .catalog-filter-price .price-high, .catalog-filter-price .price-low {
@@ -491,7 +491,7 @@ aside .catalog-filter .catalog-filter-attribute {
 
 .catalog-filter-search .value {
 	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: var(--ai-bg, #FFF);
 	min-width: 5rem;
 	border: none;
 	width: 70%;
@@ -525,7 +525,7 @@ aside .catalog-filter .catalog-filter-attribute {
 	background: none;
 	border: none;
 	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
+	color: var(--ai-bg, #FFFFFF);
 	padding: 0.5rem;
 }
 
@@ -540,7 +540,7 @@ aside .catalog-filter .catalog-filter-attribute {
 	text-decoration: none;
 	font-size: 130%;
 	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
+	color: var(--ai-bg, #FFFFFF);
 	display: block;
 	position: relative;
 	text-align: center;
@@ -621,14 +621,14 @@ aside .catalog-filter .catalog-filter-attribute {
 .autocomplete > div.selected {
 	cursor: pointer;
 	background-color: #CCC;
-	background-color: var(--ai-primary-light, #CCC);
+	background-color: var(--ai-tertiary, #CCC);
 }
 
 /* Suggested products in autocomplete */
 
 .aimeos.catalog-suggest {
 	border-bottom: solid 1px #D0D0D0;
-	border-bottom-color: var(--ai-light, #D0D0D0);
+	border-bottom-color: var(--ai-tertiary, #CCC);
 }
 
 .aimeos.catalog-suggest:last-child {
@@ -704,7 +704,7 @@ aside .catalog-filter .catalog-filter-attribute {
 
 .catalog-filter-tree .category-selected .selected-category {
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 	display: inline-block;
 	margin: 0.5rem;
 	padding: 0 0.25rem;
@@ -756,7 +756,7 @@ aside .catalog-filter .catalog-filter-attribute {
 	.catalog-filter-tree a.cat-link:link,
 	.catalog-filter-tree a.cat-link:visited {
 		color: #FFFFFF;
-		color: var(--ai-primary-alt, #FFFFFF);
+		color: var(--ai-bg, #FFFFFF);
 		letter-spacing: 1.5px;
 		border: none;
 	}
@@ -765,7 +765,7 @@ aside .catalog-filter .catalog-filter-attribute {
 	.catalog-filter-tree a.cat-link:link:hover,
 	.catalog-filter-tree a.cat-link:visited:hover {
 		color: #CCCCCC;
-		color: var(--ai-light, #CCCCCC);
+		color: var(--ai-tertiary, #CCCCCC);
 	}
 
 	.catalog-filter-tree .level-1 {
@@ -857,7 +857,7 @@ aside .catalog-filter .catalog-filter-attribute {
 		display: block;
 		padding: 0.5rem;
 		color: #FFFFFF;
-		color: var(--ai-primary-alt, #FFFFFF);
+		color: var(--ai-bg, #FFFFFF);
 	}
 
 	.catalog-filter-tree .menu::before {
@@ -881,7 +881,7 @@ aside .catalog-filter .catalog-filter-attribute {
 		z-index: 1031;
 		pointer-events: none;
 		background-color: #FFF;
-		background-color: var(--ai-bg-alt, #FFF);
+		background-color: var(--ai-bg, #FFF);
 		-webkit-overflow-scrolling: touch;
 		transition: transform .25s;
 		overflow: hidden auto;
@@ -914,7 +914,7 @@ aside .catalog-filter .catalog-filter-attribute {
 	.catalog-filter-tree .zeynep .header {
 		display: flex;
 		color: #FFF;
-		color: var(--ai-bg-alt, #FFF);
+		color: var(--ai-bg, #FFF);
 		background-color: #555;
 		background-color: var(--ai-secondary, #555);
 	}
@@ -960,7 +960,7 @@ aside .catalog-filter .catalog-filter-attribute {
 
 	.catalog-filter-tree .zeynep .next:hover {
 		color: #CCCCCC;
-		color: var(--ai-light, #CCCCCC);
+		color: var(--ai-tertiary, #CCCCCC);
 	}
 
 	.catalog-filter-tree .zeynep .item-links .name {

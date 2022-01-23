@@ -19,15 +19,15 @@
 	font: normal normal normal 14px/1 bootstrap-icons;
 	content: "\f180";
 	font-size: 150%;
-	color: #FFF;
-	color: var(--ai-primary-alt, #FFF);
+	color: #FFFFFF;
+	color: var(--ai-bg, #FFFFFF);
 }
 
 .basket-mini-main .quantity {
 	background-color: #FFA500;
 	background-color: var(--ai-warning, #FFA500);
 	color: #FFF;
-	color: var(--ai-bg-alt, #FFF);
+	color: var(--ai-bg, #FFF);
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -52,7 +52,7 @@
 	z-index: 1032;
 	pointer-events: none;
 	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: var(--ai-bg, #FFF);
 	-webkit-overflow-scrolling: touch;
 	transition: transform .25s;
 	overflow: hidden auto;
@@ -76,7 +76,7 @@
 .basket-mini .zeynep .header {
 	display: flex;
 	color: #FFF;
-	color: var(--ai-bg-alt, #FFF);
+	color: var(--ai-bg, #FFF);
 	background-color: #555;
 	background-color: var(--ai-secondary, #555);
 }

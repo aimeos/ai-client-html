@@ -37,8 +37,8 @@
 }
 
 .basket-related-bought .media-list {
-	background-color: #F6f6F6;
-	background-color: var(--ai-bg-alt, #F6f6F6);
+	background-color: #FFF;
+	background-color: var(--ai-bg, #FFF);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;

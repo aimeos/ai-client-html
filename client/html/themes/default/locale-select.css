@@ -36,14 +36,14 @@
 .locale-select ul.select-menu .select-current > a:link,
 .locale-select ul.select-menu .select-current > a:visited {
 	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
+	color: var(--ai-bg, #FFFFFF);
 }
 
 .locale-select ul.select-menu .select-current > a:hover
 .locale-select ul.select-menu .select-current > a:link:hover,
 .locale-select ul.select-menu .select-current > a:visited:hover {
 	color: #CCCCCC;
-	color: var(--ai-light, #CCCCCC);
+	color: var(--ai-tertiary, #CCCCCC);
 }
 
 .locale-select ul.select-menu a:hover {
@@ -53,7 +53,7 @@
 .locale-select ul.select-menu li.select-dropdown:hover > ul,
 .locale-select ul.select-menu ul.active {
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 	visibility: visible;
 	opacity: 1;
 }

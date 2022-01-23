@@ -28,7 +28,7 @@
 
 .catalog-detail tbody tr {
 	border-bottom: 1px solid #D0D0D0;
-	border-bottom-color: var(--ai-light, #D0D0D0);
+	border-bottom-color: var(--ai-tertiary, #CCC);
 }
 
 .catalog-detail tbody tr:last-child {
@@ -394,7 +394,7 @@
 
 .catalog-detail-basket .color .select-label {
 	border: 1px solid #FFF;
-	border-color: var(--ai-bg-alt, #FFF);
+	border-color: var(--ai-bg, #FFF);
 	line-height: 0;
 }
 
@@ -405,7 +405,7 @@
 
 .catalog-detail-basket .radio .select-label {
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 	padding: 0.525rem;
 	text-align: center;
 	min-width: 2.5rem;
@@ -418,7 +418,7 @@
 	background-color: #555;
 	background-color: var(--ai-secondary, #555);
 	color: #FFF;
-	color: var(--ai-bg-alt, #FFF);
+	color: var(--ai-bg, #FFF);
 }
 
 .catalog-detail-basket .select-option:disabled + .select-label {
@@ -624,7 +624,7 @@
 
 .catalog-detail-additional .nav-tabs .nav-link.active:not(.btn) {
 	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
+	color: var(--ai-bg, #FFFFFF);
 	border: 1px solid transparent;
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
@@ -643,7 +643,7 @@
 	background-color: #FFA500;
 	background-color: var(--ai-warning, #FFA500);
 	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
+	color: var(--ai-bg, #FFFFFF);
 }
 
 
@@ -660,14 +660,14 @@
 	border: none;
 	height: 0.25rem;
 	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
+	background-color: var(--ai-tertiary, #CCC);
 	color: #A00000;
 	color: var(--ai-primary, #A00000);
 }
 
 .catalog-detail-additional progress[value]::-webkit-progress-bar {
 	background-color: #D0D0D0;
-	background-color: var(--ai-light, #D0D0D0);
+	background-color: var(--ai-tertiary, #CCC);
 }
 
 .catalog-detail-additional progress::-moz-progress-bar {
@@ -861,8 +861,8 @@
 .catalog-detail-bought .media-list,
 .catalog-detail-bundle .media-list,
 .catalog-detail-suggest .media-list {
-	background-color: #F6f6F6;
-	background-color: var(--ai-bg-alt, #F6f6F6);
+	background-color: #FFF;
+	background-color: var(--ai-bg, #FFF);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;

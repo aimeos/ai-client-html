@@ -11,7 +11,7 @@
 
 .catalog-home .stage-item {
 	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: var(--ai-bg, #FFF);
 	margin: 0;
 }
 

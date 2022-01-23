@@ -43,7 +43,7 @@
 	height: 8.5rem;
 	padding: 0.5rem;
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 }
 
 .account-review .btn {

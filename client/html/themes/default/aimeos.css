@@ -44,14 +44,14 @@
 
 /* Theme: Black&White */
 :root {
+	--ai-bg: #FFF;
+	--ai-bg-alt: #CCC;
 	--ai-primary: #282828;
-	--ai-primary-light: #CCCCCC;
-	--ai-primary-alt: #FFFFFF;
-	--ai-bg: #FFFFFF;
-	--ai-bg-light: #F6F6F6;
-	--ai-bg-alt: #FFFFFF;
+	--ai-primary-alt: #282828;
 	--ai-secondary: #555;
-	--ai-light: #CCCCCC;
+	--ai-secondary-alt: #555;
+	--ai-tertiary: #CCC;
+	--ai-tertiary-alt: #F6F6F6;
 	--ai-danger: #FF3300;
 	--ai-warning: #FFA500;
 	--ai-success: #006000;
@@ -69,7 +69,7 @@ body {
 	color: #000;
 	color: var(--ai-primary, #000);
 	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: var(--ai-bg, #FFF);
 }
 
 a {
@@ -124,8 +124,8 @@ img {
 	background-color: var(--ai-primary, #282828);
 	border: 1px solid #282828;
 	border-color: var(--ai-primary, #282828);
-	color: #fff;
-	color: var(--ai-primary-alt, #fff);
+	color: #FFFFFF;
+	color: var(--ai-bg, #FFFFFF);
 	letter-spacing: 1.5px;
 }
 
@@ -134,11 +134,11 @@ img {
 .aimeos .btn-primary:focus,
 .aimeos .btn-primary:not(:disabled):not(.disabled):active{
 	color: #CCC;
-	color: var(--ai-primary-light, #CCC);
-	background-color: #282828;
-	background-color: var(--ai-primary, #282828);
+	color: var(--ai-tertiary, #CCC);
 	border: 1px solid #282828;
 	border-color: var(--ai-primary, #282828);
+	background-color: #282828;
+	background-color: var(--ai-primary, #282828);
 }
 
 .aimeos .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -159,7 +159,7 @@ img {
 	border-bottom: 1px solid #555;
 	border-bottom-color: var(--ai-secondary, #555);
 	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: var(--ai-bg, #FFF);
 	color: #555;
 	color: var(--ai-secondary, #555);
 	box-shadow: none;
@@ -167,7 +167,7 @@ img {
 }
 
 .aimeos .form-control::placeholder {
-	color: var(--ai-light, #CCC);
+	color: var(--ai-tertiary, #CCC);
 }
 
 .aimeos .form-control[type='checkbox'] {
@@ -226,7 +226,7 @@ img {
 
 .aimeos input {
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
 	color: #555;
@@ -455,7 +455,7 @@ img {
 	z-index: 1501;
 	opacity: 1;
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 	background-color: #FFF;
 	background-color: var(--ai-bg, #FFF);
 	max-width: 65rem;
@@ -520,7 +520,7 @@ img {
 
 footer {
 	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
+	color: var(--ai-bg, #FFFFFF);
 	background-color: #282828;
 	background-color: var(--ai-primary, #282828);
 	padding: 3rem;
@@ -549,12 +549,12 @@ footer p {
 footer p a {
 	letter-spacing: 1.5px;
 	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
+	color: var(--ai-bg, #FFFFFF);
 }
 
 footer p a:hover {
 	color: #CCCCCC;
-	color: var(--ai-primary-light, #CCCCCC);
+	color: var(--ai-tertiary, #CCCCCC);
 	transition: color .3s;
 	text-decoration: none;
 }
@@ -697,7 +697,7 @@ body > .content, body .main-section {
 .navbar-default-transition .navbar-nav .nav-link,
 .navbar-default-transition.navbar-transition .navbar-nav .nav-link {
 	color: #FFFFFF;
-	color: var(--ai-primary-alt, #FFFFFF);
+	color: var(--ai-bg, #FFFFFF);
 	padding: .25rem .5rem;
 }
 
@@ -706,7 +706,7 @@ body > .content, body .main-section {
 .navbar-default-transition .navbar-nav .nav-link:hover,
 .navbar-default-transition.navbar-transition .navbar-nav .nav-link:hover {
 	color: #CCCCCC;
-	color: var(--ai-primary-light, #CCCCCC);
+	color: var(--ai-tertiary, #CCCCCC);
 }
 
 .navbar-nav .dropdown-menu button {
@@ -776,8 +776,8 @@ body > .content, body .main-section {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	text-decoration: none;
 	font-size: 165%;
-	color: #555;
-	color: var(--ai-primary-alt, #555);
+	color: #FFFFFF;
+	color: var(--ai-bg, #FFFFFF);
 	display: block;
 	position: relative;
 	text-align: center;
@@ -799,7 +799,7 @@ body > .content, body .main-section {
 }
 
 .navbar-nav .dropdown-menu {
-	color: var(--ai-bg-alt, #FFF);
+	color: var(--ai-bg, #FFF);
 }
 
 .navbar-nav .dropdown-item:focus, .dropdown-item:hover {

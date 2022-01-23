@@ -24,7 +24,7 @@
 
 .checkout-standard .steps .current {
 	color: #FFF;
-	color: var(--ai-bg-alt, #FFF);
+	color: var(--ai-bg, #FFF);
 	background-color: #555;
 	background-color: var(--ai-secondary, #555);
 	border-bottom: solid 1px #555;
@@ -42,7 +42,7 @@
 	overflow: hidden;
 	width: 19%;
 	color: #D0D0D0;
-	color: var(--ai-light, #D0D0D0);
+	color: var(--ai-tertiary, #CCC);
 	border-bottom: solid 1px #555;
 	border-bottom-color: var(--ai-secondary, #555);
 	vertical-align: baseline;
@@ -232,9 +232,9 @@
 
 .checkout-standard .item-service .form-item-value input:checked + label {
 	border-left-color: #CCCCCC;
-	border-left-color: var(--ai-light, #CCCCCC);
+	border-left-color: var(--ai-tertiary, #CCCCCC);
 	background-color: #F8F8F8;
-	background-color: var(--ai-bg-light, #CCCCCC);
+	background-color: var(--ai-bg-light, #F8F8F8);
 }
 
 
@@ -253,7 +253,7 @@
 .checkout-standard-delivery .item,
 .checkout-standard-payment .item {
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 	margin: 1rem 0.5rem;
 	text-align: start;
 }

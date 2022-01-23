@@ -73,5 +73,5 @@
 .autocomplete > div.selected {
 	cursor: pointer;
 	background-color: #CCC;
-	background-color: var(--ai-primary-light, #CCC);
+	background-color: var(--ai-tertiary, #CCC);
 }

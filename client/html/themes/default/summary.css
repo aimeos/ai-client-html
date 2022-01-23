@@ -242,9 +242,9 @@
 
 .aimeos .common-summary-additional textarea {
 	border: 1px solid #CCC;
-	border-color: var(--ai-light, #CCC);
+	border-color: var(--ai-tertiary-alt, #CCC);
 	background-color: #FFF;
-	background-color: var(--ai-bg-alt, #FFF);
+	background-color: var(--ai-bg, #FFF);
 	color: #555;
 	color: var(--ai-secondary, #555);
 	width: 100%;

@@ -325,7 +325,7 @@
 
 .catalog-list-items .basket .color .select-label {
 	border: 1px solid #FFF;
-	border-color: var(--ai-bg-alt, #FFF);
+	border-color: var(--ai-bg, #FFF);
 	line-height: 0;
 }
 
@@ -336,7 +336,7 @@
 
 .catalog-list-items .basket .radio .select-label {
 	border: 1px solid #D0D0D0;
-	border-color: var(--ai-light, #D0D0D0);
+	border-color: var(--ai-tertiary, #CCC);
 	padding: 0.525rem;
 	text-align: center;
 	min-width: 2.5rem;
@@ -349,7 +349,7 @@
 	background-color: #555;
 	background-color: var(--ai-secondary, #555);
 	color: #FFF;
-	color: var(--ai-bg-alt, #FFF);
+	color: var(--ai-bg, #FFF);
 }
 
 .catalog-list-items .basket .select-option:disabled + .select-label {
