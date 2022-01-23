@@ -15,11 +15,11 @@
 	display: none;
 }
 
-.catalog-detail .product .text-list {
+/* .catalog-detail .product .text-list {
 	margin: 0.5rem 0;
-}
+} */
 
-.catalog-detail table > tbody > tr > td,
+/* .catalog-detail table > tbody > tr > td,
 .catalog-detail table > tfoot > tr > td {
 	color: #555;
 	color: var(--ai-secondary, #555);
@@ -34,14 +34,13 @@
 .catalog-detail tbody tr:last-child {
 	border-bottom: 1px solid #555;
 	border-bottom-color: var(--ai-secondary, #555);
-}
+} */
 
 
 /* Product detail, social section / action buttons */
 .catalog-detail .catalog-social {
 	margin: .5rem 0;
 	float: right;
-
 }
 
 .catalog-detail .catalog-social .social-button,
@@ -113,7 +112,7 @@
 	}
 
 	.catalog-detail .catalog-social,
-	.catalog-detail .catalog-actions{
+	.catalog-detail .catalog-actions {
 		margin: .5rem 0;
 	}
 }
@@ -243,7 +242,6 @@
 	position: relative;
 	vertical-align: middle;
 	margin-bottom: .3rem;
-	line-height: 1;
 }
 
 .catalog-detail-basket .price-item:first-of-type .taxrate {
@@ -554,6 +552,7 @@
 
 
 /* Stock level */
+
 .catalog-detail-basket .stock-list {
 	text-align: center;
 	padding: 0.5rem 0;
@@ -588,6 +587,7 @@
 }
 
 /* Additional section */
+
 .catalog-detail-additional .nav-tabs {
 	border-bottom: 1px solid transparent;
 	border-bottom-color: #282828;
@@ -803,7 +803,7 @@
 
 .catalog-detail-suggest .product .rating,
 .catalog-detail-bought .product .rating {
-	margin: .25rem 0;
+	line-height: 1;
 }
 
 .catalog-detail-suggest .text-list h2,
@@ -839,13 +839,20 @@
 	margin: 1rem 0;
 }
 
+.catalog-detail-bundle .section,
+.catalog-detail-suggest .section,
+.catalog-detail-bought .section {
+	display: flex;
+	justify-content: space-between;
+	direction: ltr;
+}
+
 .catalog-detail-bought .product,
 .catalog-detail-bundle .product,
 .catalog-detail-suggest .product {
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
-	text-align: right;
 	width: 160px;
 	margin: 1%;
 	padding: 0;
@@ -903,7 +910,7 @@
 	margin: .75rem auto;
 }
 
-/*suggested, bought Items hover transition*/
+/* suggested, bought Items hover transition */
 
 .catalog-detail-suggest .media-list .media-item,
 .catalog-detail-bought .media-list .media-item {

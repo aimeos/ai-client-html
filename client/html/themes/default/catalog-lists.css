@@ -27,7 +27,6 @@
 }
 
 .catalog-list {
-	font-size: 90%;
 	padding: 0;
 }
 
@@ -43,7 +42,7 @@
 	white-space: normal;
 	position: relative;
 	overflow: hidden;
-	text-align: right;
+	text-align: e;
 	font-size: 100%;
 	margin: auto;
 }
