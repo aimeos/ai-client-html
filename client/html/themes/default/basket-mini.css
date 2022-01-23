@@ -9,37 +9,31 @@
 	position: relative;
 	white-space: nowrap;
 	text-decoration: none;
-	padding: 0;
 	display: block;
-	margin-top: .2rem;
-	margin-inline-end: .2rem;
-	text-decoration: none;
-	color: #FFF;
-	color: var(--ai-primary-alt, #FFF);
 	cursor: pointer;
 	padding: .5rem;
+	line-height: 1;
 }
 
 .basket-mini .menu:before {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	content: "\f180";
 	font-size: 150%;
-}
-
-.basket-mini-main {
 	color: #FFF;
-	color: var(--ai-bg-alt, #FFF);
+	color: var(--ai-primary-alt, #FFF);
 }
 
 .basket-mini-main .quantity {
 	background-color: #FFA500;
 	background-color: var(--ai-warning, #FFA500);
+	color: #FFF;
+	color: var(--ai-bg-alt, #FFF);
 	position: absolute;
-	top: -0.1rem;
-	right: -0.1rem;
+	top: 0;
+	right: 0;
 	font-size: 75%;
-	padding: 0 0.3rem;
 	border-radius: 1rem;
+	padding: 0.15rem 0.3rem;
 }
 
 .basket-mini-main .value {
