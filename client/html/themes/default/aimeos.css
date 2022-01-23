@@ -898,11 +898,16 @@ body > .content, body .main-section {
 	line-height: 1;
 }
 
-.catalog-detail-suggest .product .price-item .rebatepercent,
-.catalog-detail-bought .product .price-item .rebatepercent,
-.catalog-detail-bundle .product .price-item .rebatepercent,
-.favorite-items .product .price-item .rebatepercent {
-	position: absolute;
+.aimeos .product .catalog-detail-basket .price-item .rebatepercent {
+	position: relative;
+}
+
+@media screen and (min-width: 992px) {
+
+	.aimeos .product .price-item .rebatepercent {
+		position: absolute;
+	}
+
 }
 
 [dir="rtl"] .aimeos .product .price-item .rebatepercent {
@@ -950,6 +955,7 @@ body > .content, body .main-section {
 }
 
 /* Stock level */
+
 .aimeos .product .stock-list {
 	display: inline-block;
 }

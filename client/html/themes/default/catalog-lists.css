@@ -42,7 +42,7 @@
 	white-space: normal;
 	position: relative;
 	overflow: hidden;
-	text-align: e;
+	text-align: end;
 	font-size: 100%;
 	margin: auto;
 }
@@ -198,8 +198,8 @@
 	}
 }
 
-
 /* Product list type switcher */
+
 .catalog-list-type {
 	text-align: end;
 }
@@ -237,10 +237,6 @@
 	display: block;
 	font-size: 100%;
 	font-weight: bold;
-}
-
-.catalog-list-items .product .price-item .rebatepercent {
-	position: absolute;
 }
 
 /* product attributes */

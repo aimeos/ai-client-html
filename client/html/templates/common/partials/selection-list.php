@@ -15,40 +15,40 @@ $enc = $this->encoder();
 
 
 ?>
-<table class="selection">
+<div class="selection">
 
-	<tr>
-		<th class="select-media"></th>
-		<th class="select-name"><?= $enc->html( $this->translate( 'client', 'Name' ) ) ?></th>
-		<th class="select-attr"><?= $enc->html( $this->translate( 'client', 'Variant' ) ) ?></th>
-		<th class="select-stock"><?= $enc->html( $this->translate( 'client', 'Stock' ) ) ?></th>
-		<th class="select-quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></th>
-	</tr>
+	<div class="row">
+		<div class="col-3 select-media"></div>
+		<div class="col-2 select-name"><?= $enc->html( $this->translate( 'client', 'Name' ) ) ?></div>
+		<div class="col-3 select-attr"><?= $enc->html( $this->translate( 'client', 'Variant' ) ) ?></div>
+		<div class="col-1 select-stock"><?= $enc->html( $this->translate( 'client', 'Stock' ) ) ?></div>
+		<div class="col-3 select-quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
+	</div>
 
 	<?php foreach( $this->get( 'productItems', [] ) as $id => $product ) : ?>
 
-		<tr class="select-item">
+		<div class="row select-item">
 
-			<td class="select-media">
-				<?php if( ( $mediaItem = $product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
-					<img class="media-image"
-						src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
-						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-					>
-				<?php endif ?>
-			</td>
-
-			<td class="select-name">
-				<h2><?= $enc->html( $product->getName() ) ?></h2>
-
-				<input type="hidden"
-					name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ) ?>"
-					value="<?= $enc->attr( $id ) ?>"
+			<div class="col-3 select-media">
+			<?php if( ( $mediaItem = $product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
+				<img class="media-image"
+					src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+					srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+					alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 				>
-			</td>
+			<?php endif ?>
+			</div>
 
-			<td class="select-attr">
+			<div class="col-3 select-name">
+			<h2><?= $enc->html( $product->getName() ) ?></h2>
+
+			<input type="hidden"
+				name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ) ?>"
+				value="<?= $enc->attr( $id ) ?>"
+			>
+			</div>
+
+			<div class="col-3 select-attr">
 				<ul class="attr-list">
 					<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
 						<li class="attr-item">
@@ -61,17 +61,17 @@ $enc = $this->encoder();
 						</li>
 					<?php endforeach ?>
 				</ul>
-			</td>
+			</div>
 
-			<td class="select-stock" data-prodid="<?= $enc->attr( $id ) ?>"></td>
+			<div class="col-1 select-stock" data-prodid="<?= $enc->attr( $id ) ?>"></div>
 
-			<td class="select-quantity">
+			<div class="col-2 select-quantity">
 				<input type="number" class="form-control" placeholder="0"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
 					min="1" max="2147483647" step="1" value="">
-			</td>
+			</div>
 
-		</tr>
+		</div>
 
 	<?php endforeach ?>
 

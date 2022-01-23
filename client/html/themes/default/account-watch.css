@@ -45,11 +45,16 @@
 
 .account-watch .watch-basic {
 	margin: 1%;
+	position: relative;
 }
 
 .account-watch .media-item {
 	height: calc((var(--ai-product-image-height)) / 4 * 3);
 	width: calc((var(--ai-product-image-width)) / 4 * 3);
+}
+
+.aimeos .product.watch-item .price-item .rebatepercent {
+	position: absolute;
 }
 
 .account-watch .name {
@@ -62,10 +67,6 @@
 	text-transform: uppercase;
 	max-width: 15rem;
 	margin: .75rem auto;
-}
-
-.account-watch .price-list .rebatepercent {
-	display: none;
 }
 
 .account-watch .watch-details {
