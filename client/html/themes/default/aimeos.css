@@ -848,10 +848,9 @@ body > .content, body .main-section {
 /* ratings */
 
 .aimeos .product .rating {
-	line-height: 1.5;
-	padding: 0.25rem 0;
 	text-align: end;
 	display: block;
+	line-height: 1.5;
 }
 
 .aimeos .product .stars {
