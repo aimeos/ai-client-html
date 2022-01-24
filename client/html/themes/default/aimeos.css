@@ -858,6 +858,7 @@ body > .content, body .main-section {
 	color: var(--ai-secondary, #555);
 	position: relative;
 	display: inline-block;
+	line-height: 1.5;
 }
 
 /* price list */
@@ -915,6 +916,7 @@ body > .content, body .main-section {
 .aimeos .product .price-item.default .value {
 	font-size: 140%;
 	font-weight: 600;
+	line-height: 1;
 }
 
 /* text list */
@@ -929,23 +931,20 @@ body > .content, body .main-section {
 }
 
 .aimeos .product .text-list h2,
+.aimeos .product .text-list .text-item,
 .catalog-session-seen .name,
-.catalog-session-pinned .name {
+.catalog-session-pinned .name,
+.catalog-detail-bought .name,
+.catalog-detail-bundle .name,
+.catalog-detail-suggest .name {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	height: 1.25rem;
-	text-transform: uppercase;
-	font-size: 100%;
-	margin: 0 0 0.5rem 0;
-	letter-spacing: 1.5px;
+	line-height: 1;
 }
 
 .aimeos .product .text-list .text-item {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	height: 1.25rem;
+	margin: 0.5rem 0 0.5rem 0;
 }
 
 .aimeos .product .text-list h2 {
@@ -956,6 +955,13 @@ body > .content, body .main-section {
 	display: inline-block;
 	box-sizing: content-box;
 	margin-inline-start: auto;
+}
+
+.catalog-session-seen .name,
+.catalog-session-pinned .name
+aside .catalog-session-seen .name,
+aside .catalog-session-pinned .name {
+	margin-top: 0.75rem;
 }
 
 /* Stock level */
@@ -1013,4 +1019,13 @@ body > .content, body .main-section {
 
 .aimeos .product .addbasket button {
 	margin: 0;
+}
+
+@media screen and (min-width: 992px) {
+
+	aside .catalog-session-seen .name,
+	aside .catalog-session-pinned .name {
+		margin-top: 0rem;
+	}
+
 }

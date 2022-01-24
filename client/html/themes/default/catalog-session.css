@@ -2,9 +2,10 @@
 
 .catalog-session .minibutton.delete {
 	position: absolute;
-	right: 1%;
+	right: calc(100% - 160px);
 	top: 1%;
 	z-index: 5;
+	line-height: 1;
 }
 
 .catalog-session {
@@ -24,15 +25,15 @@
 .catalog-session-seen .seen-items,
 .catalog-session-pinned .pinned-items {
 	padding: 0;
-	margin-bottom: 0;
+	margin: 1rem 0;
 	padding-bottom: 0;
 }
 
 .catalog-session .header {
-	margin: 0.5rem 0 0 0;
-	border: 0;
+	cursor: pointer;
+	font-size: 120%;
 	padding: .5rem .75rem;
-	font-size: 130%;
+	margin: 0;
 }
 
 .catalog-session-seen .seen-item,
@@ -55,14 +56,6 @@
 	width: 160px;
 }
 
-/* .catalog-session-seen .name,
-.catalog-session-pinned .name {
-	font-size: 100%;
-	text-transform: uppercase;
-	margin: .75rem auto;
-	line-height: 1;
-} */
-
 .catalog-session-seen .count:before,
 .catalog-session-pinned .count:before {
 	content: " (";
@@ -78,15 +71,10 @@ aside .catalog-session {
 	margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 576px) and (max-width: 991px) {
-	aside .catalog-session {
-		display: flex;
-	}
-
-	aside .catalog-session-pinned,
-	aside .catalog-session-seen {
-		width: 50%;
-	}
+aside .catalog-session-seen .seen-items,
+aside .catalog-session-pinned .pinned-items {
+	display: block;
+	padding: 0.75rem;
 }
 
 aside .catalog-session-pinned > h2,
@@ -120,12 +108,25 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 	right: 100%;
 }
 
+@media screen and (min-width: 576px) and (max-width: 991px) {
+	aside .catalog-session {
+		display: flex;
+	}
+
+	aside .catalog-session-pinned,
+	aside .catalog-session-seen {
+		width: 50%;
+	}
+}
+
 @media screen and (min-width: 992px) {
 
-	aside .catalog-session-seen .seen-items,
-	aside .catalog-session-pinned .pinned-items {
-		display: block;
-		padding: 0 1rem 0 1rem;
+	.catalog-session .minibutton.delete {
+		position: absolute;
+		right: calc(100% - 60px);
+		top: 1%;
+		z-index: 5;
+		line-height: 1;
 	}
 
 	aside .catalog-session-seen .name,
@@ -133,11 +134,6 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 		margin: 0 0 .25rem;
 		text-align: start;
 	}
-
-	/* aside .catalog-session-pinned > h2,
-	aside .catalog-session-seen > h2 {
-		font-size: 130%;
-	} */
 
 	aside .pinned-item .price-item.default .value,
 	aside .seen-item .price-item.default .value {
