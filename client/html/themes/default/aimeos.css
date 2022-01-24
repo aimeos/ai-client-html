@@ -887,7 +887,7 @@ body > .content, body .main-section {
 }
 
 .aimeos .product .price-item .rebatepercent {
-	position: relative;
+	position: absolute;
 	display: inline-block;
 	background-color: #A00000;
 	padding: 0.25rem;
@@ -898,16 +898,13 @@ body > .content, body .main-section {
 	line-height: 1;
 }
 
-.aimeos .product .catalog-detail-basket .price-item .rebatepercent {
-	position: relative;
+.aimeos .list .product .price-item .rebatepercent {
+	right: 100%;
+	transform: translateX(100%);
 }
 
-@media screen and (min-width: 992px) {
-
-	.aimeos .product .price-item .rebatepercent {
-		position: absolute;
-	}
-
+.aimeos .product .catalog-detail-basket .price-item .rebatepercent {
+	position: relative;
 }
 
 [dir="rtl"] .aimeos .product .price-item .rebatepercent {
@@ -921,6 +918,7 @@ body > .content, body .main-section {
 }
 
 /* text list */
+
 .aimeos .product .text-list {
 	display: block;
 	color: #555;
@@ -931,6 +929,18 @@ body > .content, body .main-section {
 }
 
 .aimeos .product .text-list h2,
+.catalog-session-seen .name,
+.catalog-session-pinned .name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 1.25rem;
+	text-transform: uppercase;
+	font-size: 100%;
+	margin: 0 0 0.5rem 0;
+	letter-spacing: 1.5px;
+}
+
 .aimeos .product .text-list .text-item {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -939,13 +949,7 @@ body > .content, body .main-section {
 }
 
 .aimeos .product .text-list h2 {
-	text-transform: uppercase;
-	font-weight: normal;
-	font-size: 100%;
 	text-align: end;
-	margin: 0;
-	margin-bottom: .5rem;
-	letter-spacing: 1.5px;
 }
 
 .aimeos .product .price-list {

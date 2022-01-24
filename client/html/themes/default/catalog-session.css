@@ -17,22 +17,22 @@
 .catalog-session-pinned,
 .catalog-session-seen {
 	margin-bottom: 1rem;
-	border: 1px solid #efefef;
+	border: 1px solid #F6F6F6;
+	border-color: var(--ai-tertiary-alt, #F6F6F6);
 }
 
 .catalog-session-seen .seen-items,
 .catalog-session-pinned .pinned-items {
-	padding: 1.25rem;
+	padding: 0;
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
 
-.catalog-session .header{
-	color: #1f1f1f;
-	margin-bottom: 0;
+.catalog-session .header {
+	margin: 0.5rem 0 0 0;
 	border: 0;
 	padding: .5rem .75rem;
-
+	font-size: 130%;
 }
 
 .catalog-session-seen .seen-item,
@@ -55,18 +55,13 @@
 	width: 160px;
 }
 
-.catalog-session-seen .name,
+/* .catalog-session-seen .name,
 .catalog-session-pinned .name {
-	margin: 0;
-	padding: 0;
-	height: 1rem;
 	font-size: 100%;
-	font-weight: normal;
-	overflow: hidden;
 	text-transform: uppercase;
-	max-width: 15rem;
 	margin: .75rem auto;
-}
+	line-height: 1;
+} */
 
 .catalog-session-seen .count:before,
 .catalog-session-pinned .count:before {
@@ -108,16 +103,18 @@ aside .catalog-session-seen > h2 {
 	cursor: pointer;
 }
 
-aside:nth-child(1){
+aside:nth-child(1) {
 	margin-top: 1rem;
 }
 
-aside .catalog-session{
+aside .catalog-session {
 	padding-top: 0;
 }
 
 aside .aimeos .product.seen-item .price-item .rebatepercent,
-aside .aimeos .product.pinned-item .price-item .rebatepercent {
+aside .aimeos .product.pinned-item .price-item .rebatepercent,
+.aimeos .product.seen-item .price-item .rebatepercent,
+.aimeos .product.pinned-item .price-item .rebatepercent {
 	position: absolute;
 	transform: translateX(100%);
 	right: 100%;
@@ -128,6 +125,7 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent {
 	aside .catalog-session-seen .seen-items,
 	aside .catalog-session-pinned .pinned-items {
 		display: block;
+		padding: 0 1rem 0 1rem;
 	}
 
 	aside .catalog-session-seen .name,
@@ -136,10 +134,10 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent {
 		text-align: start;
 	}
 
-	aside .catalog-session-pinned > h2,
+	/* aside .catalog-session-pinned > h2,
 	aside .catalog-session-seen > h2 {
 		font-size: 130%;
-	}
+	} */
 
 	aside .pinned-item .price-item.default .value,
 	aside .seen-item .price-item.default .value {
@@ -186,6 +184,13 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent {
 		position: relative;
 		transform: translateX(0);
 		right: 0;
+	}
+
+	.aimeos .product.seen-item .price-item .rebatepercent,
+	.aimeos .product.pinned-item .price-item .rebatepercent {
+		position: absolute;
+		transform: translateX(100%);
+		right: 100%;
 	}
 
 }

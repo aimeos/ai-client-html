@@ -80,9 +80,9 @@
 	transition: opacity .3s linear;
 }
 
-.catalog-list .list-column:last-of-type {
+/* .catalog-list .list-column:last-of-type {
 	padding: 0 1rem;
-}
+} */
 
 /* product offer part */
 .catalog-list .offer .section {
@@ -185,6 +185,7 @@
 
 .catalog-list-items.list .list-column {
 	width: var(--ai-product-image-width);
+	padding-left: 1rem;
 }
 
 .catalog-list-items.list .media-list {

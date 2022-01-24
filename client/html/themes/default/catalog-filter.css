@@ -93,11 +93,11 @@ aside .catalog-filter {
 
 @media (min-width: 992px) {
 
-	.catalog-filter-attribute.col,
+	/* .catalog-filter-attribute.col,
 	.catalog-filter-supplier.col,
 	.catalog-filter-price.col {
 		margin-bottom: 1rem;
-	}
+	} */
 
 	.catalog-filter-attribute .attribute-lists,
 	.catalog-filter-supplier .supplier-lists,
