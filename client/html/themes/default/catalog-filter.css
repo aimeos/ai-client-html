@@ -1,17 +1,20 @@
 /* Catalog filter */
 
-aside .catalog-filter {
-	margin-bottom: 1rem;
-}
-
 @media screen and (min-width: 576px) and (max-width: 991px) {
 	aside .catalog-filter-group {
 		display: flex;
+		flex-wrap: wrap;
 	}
 
 	aside .catalog-filter {
-		width: 33.33%;
+		width: 50%;
 	}
+}
+
+aside .catalog-filter {
+	margin-bottom: 1rem;
+	border: 1px solid #F0F0F0;
+	border-color: var(--ai-light, #F0F0F0);
 }
 
 .catalog-filter h1 {
@@ -20,7 +23,7 @@ aside .catalog-filter {
 
 .catalog-filter h2 {
 	cursor: pointer;
-	font-size: 130%;
+	font-size: 120%;
 	padding: .5rem .75rem ;
 	margin: 0;
 }
@@ -51,74 +54,20 @@ aside .catalog-filter {
 
 .catalog-filter-attribute .attribute-lists,
 .catalog-filter-supplier .supplier-lists,
-.catalog-filter-tree .category-lists,
+.catalog-filter-search .search-lists,
 .catalog-filter-price .price-lists {
-	text-align: start;
-	display: block;
-}
-
-.catalog-filter-attribute.col,
-.catalog-filter-price.col,
-.catalog-filter-supplier.col {
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
-	z-index: 1;
-}
-
-.catalog-filter-attribute .attribute-lists,
-.catalog-filter-supplier .supplier-lists,
-.catalog-filter-price .price-lists {
-	text-align: start;
+	padding: 0.75rem;
 	display: none;
-	padding: 0.75rem 0;
 	z-index: 1;
-}
-
-@media (min-width:768px) {
-
-	.catalog-filter-attribute.col, .catalog-filter-price.col, .catalog-filter-supplier.col {
-		background-color: #FFF;
-		background-color: var(--ai-bg, #FFF);
-	}
-
-	.catalog-filter-attribute .attribute-lists,
-	.catalog-filter-supplier .supplier-lists,
-	.catalog-filter-price .price-lists {
-		text-align: start;
-		display: none;
-		padding: 0.75rem;
-	}
-
 }
 
 @media (min-width: 992px) {
-
-	/* .catalog-filter-attribute.col,
-	.catalog-filter-supplier.col,
-	.catalog-filter-price.col {
-		margin-bottom: 1rem;
-	} */
-
 	.catalog-filter-attribute .attribute-lists,
 	.catalog-filter-supplier .supplier-lists,
-	.catalog-filter-price .price-lists {
-		text-align: start;
-		display: none;
-		padding: .75rem 1.25rem;
-		z-index: 1;
-	}
-
-	.catalog-filter-attribute .attribute-lists,
-	.catalog-filter-supplier .supplier-lists,
+	.catalog-filter-search .search-lists,
 	.catalog-filter-price .price-lists {
 		display: block;
 	}
-
-}
-
-aside .catalog-filter {
-	border: 1px solid #F0F0F0;
-	border-color: var(--ai-light, #F0F0F0);
 }
 
 
@@ -133,28 +82,48 @@ aside .catalog-filter {
 
 .catalog-filter-attribute fieldset,
 .catalog-filter-supplier fieldset {
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
-	display: inline-block;
-	vertical-align: top;
-	font-weight: normal;
-	text-align: start;
-	width: 100%;
 	color: #555;
 	color: var(--ai-secondary, #555);
+	background-color: #FFF;
+	background-color: var(--ai-bg, #FFF);
+	font-weight: normal;
+	text-align: start;
+	display: block;
+	border: none;
+	width: 100%;
 	line-height: 1;
+	padding: 0.5rem 0;
 }
 
 .catalog-filter-attribute .attribute-lists .attr-item,
 .catalog-filter-supplier .supplier-lists .attr-item {
 	display: block;
 	padding: 0.25rem 0;
-	margin: 0;
+	margin-bottom: 1rem;
 }
 
 .catalog-filter-attribute .attribute-selected,
 .catalog-filter-supplier .supplier-selected {
 	display: block;
+	margin: 0.5rem 0;
+}
+
+.catalog-filter-attribute .supplier-selected .selected-intro:after,
+.catalog-filter-attribute .attribute-selected .selected-intro:after {
+	content: ":";
+}
+
+.catalog-filter-attribute .attribute-selected .minibutton.close,
+.catalog-filter-supplier .supplier-selected .minibutton.close {
+	border: 1px solid;
+	padding: 0.375rem;
+	margin: 0.25rem;
+}
+
+.catalog-filter-attribute .attribute-selected .minibutton.close:after,
+.catalog-filter-attribute .supplier-selected .minibutton.close:after {
+	margin-inline-start: .5rem;
+	content: "⨯";
 }
 
 .catalog-filter-attribute label:before,
@@ -199,15 +168,9 @@ aside .catalog-filter {
 	letter-spacing: 1.5px;
 }
 
-
-.catalog-filter-attribute .attr-name,
-.catalog-filter-supplier label {
-	margin-bottom: .5rem;
-}
-
 .catalog-filter-attribute .attr-count,
 .catalog-filter-supplier .attr-count {
-	vertical-align: text-top;
+	vertical-align: middle;
 }
 
 .catalog-filter-attribute input.attr-item,
@@ -233,66 +196,17 @@ aside .catalog-filter {
 	padding: 0.25rem 0;
 }
 
-.catalog-filter-attribute fieldset {
-	border-left: 1px solid #D0D0D0;
-	border-left-color: var(--ai-tertiary, #CCC);
-	margin: 0;
-	width: 49%;
-	min-width: 8rem;
-	border-left: none;
-}
-
-@media screen and (min-width: 992px) {
-	.catalog-filter-attribute fieldset {
-		width: 100%;
-		min-width: 0;
-	}
-}
-
 .catalog-filter-attribute legend {
-	border: none;
 	cursor: pointer;
-	font-size: 100%;
-	padding: 0;
-	width: auto;
+	border: none;
+	font-size: 110%;
 	margin-bottom: .75rem;
-	position: relative;
 	letter-spacing: 1.5px;
 }
 
 .catalog-filter-attribute legend:before {
-	content: "▼ ";
-	font-size: 80%;
-	display: inline-block;
-	vertical-align: middle;
-	margin-inline-end: .2rem;
-}
-
-.catalog-filter-attribute .attribute-selected {
-	clear: both;
-}
-
-.catalog-filter-attribute .attribute-selected .selected-intro:after {
-	content: ":";
-}
-
-.catalog-filter-attribute .attribute-selected .attr-list,
-.catalog-filter-attribute .attribute-selected .attr-item {
-	display: inline-block;
-	min-width: auto;
-}
-
-.catalog-filter-attribute .attribute-selected .selected-all,
-.catalog-filter-attribute .attribute-selected .attr-name {
-	border: 1px solid #D0D0D0;
-	display: inline-block;
-	margin: 0.5rem;
-	padding: 0 0.25rem;
-}
-
-.catalog-filter-attribute .attribute-selected .selected-all:after,
-.catalog-filter-attribute .attribute-selected .attr-name:after {
-	content: " ×";
+	font: normal normal normal 14px/1 bootstrap-icons;
+	content: "\f285";
 }
 
 /* Enabled by JS */
@@ -467,8 +381,6 @@ aside .catalog-filter {
 
 .catalog-filter-search .input-group {
 	border: 1px solid var(--ai-tertiary, #CCC);
-	width: calc(100% - 2rem);
-	margin: 1rem;
 }
 
 .catalog-filter-search .input-group .btn,
@@ -478,6 +390,7 @@ aside .catalog-filter {
 	margin: 0;
 	padding: 0.5rem;
 	line-height: 1;
+	min-width: 2.5rem;
 	width: 15%;
 }
 
@@ -740,7 +653,7 @@ aside .catalog-filter {
 		font: normal normal normal 14px/1 bootstrap-icons;
 		content: "\f285";
 		font-size: 80%;
-		margin-inline-end: -0.25rem;
+		margin-inline-end: -1rem;
 	}
 
 	.catalog-filter-tree .level-1 > .withchild > .submenu {

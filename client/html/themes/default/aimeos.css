@@ -249,6 +249,7 @@ img {
 	color: #555;
 	color: var(--ai-secondary, #555);
 	vertical-align: middle;
+	display: inline-block;
 	font-size: 100%;
 	min-width: 1rem;
 	padding: 0;
@@ -265,6 +266,7 @@ img {
 .aimeos .minibutton:after {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	font-size: 100%;
+	vertical-align: text-top;
 }
 
 .aimeos .minibutton.add:after {
@@ -668,10 +670,8 @@ body > .content, body .main-section {
 	background-color: var(--ai-primary, #282828) !important;
 }
 
-@media (max-width:767px) {
-	.navbar-collapse {
-		justify-content: flex-end;
-	}
+.navbar-collapse {
+	justify-content: flex-end;
 }
 
 .navbar-nav {

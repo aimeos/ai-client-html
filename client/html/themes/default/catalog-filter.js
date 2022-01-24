@@ -262,6 +262,19 @@ AimeosCatalogFilter = {
 
 
 	/**
+	 * Toggles the search filters if hover isn't available
+	 */
+	onToggleSearch() {
+
+		$('.catalog-filter-search').on("click", 'h2', ev => {
+			$(".search-lists", $(ev.currentTarget).closest(".catalog-filter-search")).each((idx, el) => {
+				slideToggle(el, 300);
+			});
+		});
+	},
+
+
+	/**
 	 * Toggles the supplier filters if hover isn't available
 	 */
 	onToggleSupplier() {
@@ -312,6 +325,7 @@ AimeosCatalogFilter = {
 
 		this.onLoadSearch();
 		this.onResetSearch();
+		this.onToggleSearch();
 
 		this.onCheckForm();
 	}

@@ -11,7 +11,7 @@ $enc = $this->encoder();
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ) ?>
 <?php if( !$this->get( 'supplierList', map() )->isEmpty() ) : ?>
-	<section class="catalog-filter-supplier col col-12 col-md-4">
+	<section class="catalog-filter-supplier">
 		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ) ?></h2>
 
 		<div class="supplier-lists">

@@ -115,19 +115,20 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 <section class="catalog-filter-search">
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ) ?></h2>
-	<div class="input-group">
-		<input class="form-control value" autocomplete="off"
-			name="<?= $enc->attr( $this->formparam( 'f_search' ) ) ?>"
-			title="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
-			placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
-			value="<?= $enc->attr( $enforce ? $this->param( 'f_search' ) : '' ) ?>"
-			data-url="<?= $enc->attr( $this->link( 'client/html/catalog/suggest/url', ['f_search' => '_term_'] ) ) ?>"
-			data-hint="<?= $enc->attr( $this->translate( 'client', 'Please enter at least three characters' ) ) ?>"
-		><!--
-		--><button class="btn reset" type="reset" title="<?= $enc->attr( $this->translate( 'client', 'Reset' ) ) ?>"><span class="symbol"></span></button><!--
-		--><button class="btn btn-search" type="submit" title="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"></button>
+	<div class="search-lists">
+		<div class="input-group">
+			<input class="form-control value" autocomplete="off"
+				name="<?= $enc->attr( $this->formparam( 'f_search' ) ) ?>"
+				title="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
+				placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
+				value="<?= $enc->attr( $enforce ? $this->param( 'f_search' ) : '' ) ?>"
+				data-url="<?= $enc->attr( $this->link( 'client/html/catalog/suggest/url', ['f_search' => '_term_'] ) ) ?>"
+				data-hint="<?= $enc->attr( $this->translate( 'client', 'Please enter at least three characters' ) ) ?>"
+			><!--
+			--><button class="btn reset" type="reset" title="<?= $enc->attr( $this->translate( 'client', 'Reset' ) ) ?>"><span class="symbol"></span></button><!--
+			--><button class="btn btn-search" type="submit" title="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"></button>
+		</div>
 	</div>
-
 </section>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/filter/search' ) ?>

@@ -91,7 +91,7 @@ aside .catalog-session {
 
 aside .catalog-session-pinned > h2,
 aside .catalog-session-seen > h2 {
-	font-size: 100%;
+	font-size: 120%;
 	margin-bottom: 0rem;
 	text-align: start;
 	padding: .5rem .75rem;

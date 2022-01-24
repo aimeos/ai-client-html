@@ -35,7 +35,7 @@ $params = $this->param();
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ) ?>
 <?php if( !empty( $attrMap ) ) : ?>
-	<section class="catalog-filter-attribute col col-12 col-md-4">
+	<section class="catalog-filter-attribute">
 		<h2 class="attr-header"><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></h2>
 
 		<div class="attribute-lists">
@@ -43,13 +43,13 @@ $params = $this->param();
 			<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
 
 				<div class="attribute-selected">
-					<a class="btn attribute-selected" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'attributeResetParams', [] ) ) ) ?>">
+					<a class="btn reset" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'attributeResetParams', [] ) ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 					</a>
 
-					<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
+					<div class="selected">
+						<div class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></div>
 
-					<ul class="attr-list">
 						<?php foreach( $attrMap as $attrType => $attributes ) : ?>
 							<?php foreach( $attributes as $id => $attribute ) : ?>
 								<?php if( ( $key = array_search( $id, $attrIds ) ) !== false ) : ?>
@@ -60,14 +60,13 @@ $params = $this->param();
 									<?php $current = $params; if( is_array( $current['f_oneid'][$attrType] ) ) { unset( $current['f_oneid'][$attrType][$key] ); } ?>
 								<?php else : continue; ?>
 								<?php endif; ?>
-								<li class="attr-item">
-									<a class="attr-name" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $attribute->get( 'params', [] ) ) ); ?>">
-										<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
-									</a>
-								</li>
+
+								<a class="minibutton close" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $attribute->get( 'params', [] ) ) ); ?>">
+									<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+								</a>
 							<?php endforeach; ?>
 						<?php endforeach; ?>
-					</ul>
+					</div>
 				</div>
 
 			<?php endif; ?>
