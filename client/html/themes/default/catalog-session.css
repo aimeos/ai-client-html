@@ -123,10 +123,14 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 
 	.catalog-session .minibutton.delete {
 		position: absolute;
-		right: calc(100% - 60px);
+		right: calc(100% - 160px);
 		top: 1%;
 		z-index: 5;
 		line-height: 1;
+	}
+
+	aside .catalog-session .minibutton.delete {
+		right: calc(100% - 60px);
 	}
 
 	aside .catalog-session-seen .name,
