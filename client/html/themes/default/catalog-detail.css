@@ -806,12 +806,6 @@
 	line-height: 1;
 }
 
-.catalog-detail-suggest .text-list h2,
-.catalog-detail-bought .text-list h2 {
-	height: 2.5rem;
-	text-align: start;
-}
-
 .catalog-detail-suggest .text-list,
 .catalog-detail-bought .text-list {
 	text-align: start;
@@ -894,20 +888,6 @@
 	height: auto;
 	top: 50%;
 	transform: translate(0, -50%);
-}
-
-.catalog-detail-bought .name,
-.catalog-detail-bundle .name,
-.catalog-detail-suggest .name {
-	margin: 0;
-	padding: 0;
-	height: 1rem;
-	font-size: 100%;
-	font-weight: normal;
-	overflow: hidden;
-	text-transform: uppercase;
-	max-width: 15rem;
-	margin: .75rem auto;
 }
 
 /* suggested, bought Items hover transition */

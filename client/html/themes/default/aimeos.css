@@ -846,8 +846,9 @@ body > .content, body .main-section {
 }
 
 /* ratings */
+
 .aimeos .product .rating {
-	line-height: 1;
+	line-height: 1.5;
 	padding: 0.25rem 0;
 	text-align: end;
 	display: block;
@@ -858,7 +859,6 @@ body > .content, body .main-section {
 	color: var(--ai-secondary, #555);
 	position: relative;
 	display: inline-block;
-	line-height: 1.5;
 }
 
 /* price list */
