@@ -813,7 +813,7 @@ body > .content, body .main-section {
 	--swiffy-slider-item-ratio: var(--ai-product-image-ratio);
 }
 
-/* suggested, bought Items hover transition */
+/* Product list, suggested, bought Items hover transition */
 
 .catalog-detail-suggest .media-list .media-item,
 .catalog-detail-bought .media-list .media-item,
@@ -880,12 +880,11 @@ body > .content, body .main-section {
 .aimeos .product .rating {
 	text-align: end;
 	display: block;
-	line-height: 2;
 }
 
 .aimeos .product .catalog-detail-basic .rating {
 	text-align: start;
-	line-height: 1.5;
+	line-height: 1;
 }
 
 .aimeos .product .stars {
@@ -917,7 +916,7 @@ body > .content, body .main-section {
 	position: absolute;
 	display: inline-block;
 	background-color: #A00000;
-	padding: 0.25rem;
+	padding: 0.2rem;
 	color: #FFF;
 	z-index: 2;
 	right: 0;
@@ -973,7 +972,7 @@ body > .content, body .main-section {
 	text-align: end;
 }
 
-.aimeos .product .text-list h2 {
+.aimeos .product .text-list .name {
 	text-align: end;
 }
 
