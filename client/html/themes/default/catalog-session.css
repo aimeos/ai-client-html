@@ -1,11 +1,7 @@
 /* Catalog Session */
 
-.catalog-session .minibutton.delete {
-	position: absolute;
-	right: calc(100% - 160px);
-	top: 1%;
-	z-index: 5;
-	line-height: 1;
+aside:nth-child(1) {
+	margin-top: 1rem;
 }
 
 .catalog-session {
@@ -13,6 +9,21 @@
 	padding: 0;
 	text-align: center;
 	margin: 1rem 0;
+}
+
+.catalog-session .header {
+	cursor: pointer;
+	font-size: 120%;
+	padding: .5rem .75rem;
+	margin: 0;
+}
+
+.catalog-session .minibutton.delete {
+	position: absolute;
+	right: calc(100% - 160px);
+	top: 1%;
+	z-index: 5;
+	line-height: 1;
 }
 
 .catalog-session-pinned,
@@ -27,13 +38,6 @@
 	padding: 0;
 	margin: 1rem 0;
 	padding-bottom: 0;
-}
-
-.catalog-session .header {
-	cursor: pointer;
-	font-size: 120%;
-	padding: .5rem .75rem;
-	margin: 0;
 }
 
 .catalog-session-seen .seen-item,
@@ -67,21 +71,21 @@
 }
 
 .catalog-session-seen .name,
-.catalog-session-pinned .name,
-aside .catalog-session-seen .name,
-aside .catalog-session-pinned .name {
+.catalog-session-pinned .name {
 	margin-top: 0.75rem;
+}
+
+.catalog-session-seen .rebatepercent,
+.catalog-session-pinned .rebatepercent {
+	position: absolute;
+	transform: translateX(100%);
+	right: 100%;
 }
 
 aside .catalog-session {
 	margin: 0;
 	margin-bottom: 1rem;
-}
-
-aside .catalog-session-seen .seen-items,
-aside .catalog-session-pinned .pinned-items {
-	display: block;
-	padding: 0.75rem;
+	padding-top: 0;
 }
 
 aside .catalog-session-pinned > h2,
@@ -94,25 +98,10 @@ aside .catalog-session-seen > h2 {
 	cursor: pointer;
 }
 
-aside .catalog-session-seen > h2 {
-	cursor: pointer;
-}
-
-aside:nth-child(1) {
-	margin-top: 1rem;
-}
-
-aside .catalog-session {
-	padding-top: 0;
-}
-
-aside .aimeos .product.seen-item .price-item .rebatepercent,
-aside .aimeos .product.pinned-item .price-item .rebatepercent,
-.aimeos .product.seen-item .price-item .rebatepercent,
-.aimeos .product.pinned-item .price-item .rebatepercent {
-	position: absolute;
-	transform: translateX(100%);
-	right: 100%;
+aside .catalog-session-seen .seen-items,
+aside .catalog-session-pinned .pinned-items {
+	display: block;
+	padding: 0.75rem;
 }
 
 @media screen and (min-width: 576px) and (max-width: 991px) {
@@ -128,16 +117,19 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 
 @media screen and (min-width: 992px) {
 
-	.catalog-session .minibutton.delete {
-		position: absolute;
-		right: calc(100% - 160px);
-		top: 1%;
-		z-index: 5;
-		line-height: 1;
+	.catalog-session-seen .rebatepercent,
+	.catalog-session-pinned .rebatepercent {
+		transform: translateX(100%);
+		right: 100%;
 	}
 
 	aside .catalog-session .minibutton.delete {
 		right: calc(100% - 60px);
+	}
+
+	aside .catalog-session-seen,
+	aside .catalog-session-pinned {
+		width: 100%;
 	}
 
 	aside .catalog-session-seen .name,
@@ -146,15 +138,9 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 		text-align: start;
 	}
 
-	aside .pinned-item .price-item.default .value,
-	aside .seen-item .price-item.default .value {
+	aside .catalog-session-pinned .price-item.default .value,
+	aside .catalog-session-seen .price-item.default .value {
 		vertical-align: middle;
-	}
-
-	/*last seen*/
-
-	aside .catalog-session-seen {
-		width: 100%;
 	}
 
 	aside .catalog-session-seen .seen-item,
@@ -162,8 +148,8 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 		width: 100%;
 	}
 
-	aside .catalog-session-seen .seen-item .media-item,
-	aside .catalog-session-pinned .pinned-item .media-item {
+	aside .catalog-session-seen .media-item,
+	aside .catalog-session-pinned .media-item {
 		float: left;
 		width: 60px;
 		height: 80px;
@@ -172,8 +158,8 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 		background-position: top left;
 	}
 
-	[dir="rtl"] aside .catalog-session-seen .seen-item .media-item,
-	[dir="rtl"] aside .catalog-session-pinned .pinned-item .media-item {
+	[dir="rtl"] aside .catalog-session-seen .media-item,
+	[dir="rtl"] aside .catalog-session-pinned .media-item {
 		float: right;
 	}
 
@@ -186,17 +172,11 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 		margin: 0;
 	}
 
-	aside .aimeos .product.seen-item .price-item .rebatepercent,
-	aside .aimeos .product.pinned-item .price-item .rebatepercent {
+	aside .catalog-session-seen .rebatepercent,
+	aside .catalog-session-pinned .rebatepercent {
 		position: relative;
 		transform: translateX(0);
 		right: 0;
-	}
-
-	.aimeos .product.seen-item .price-item .rebatepercent,
-	.aimeos .product.pinned-item .price-item .rebatepercent {
-		transform: translateX(100%);
-		right: 100%;
 	}
 
 }
