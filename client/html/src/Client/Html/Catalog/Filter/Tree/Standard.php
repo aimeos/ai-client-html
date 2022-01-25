@@ -254,16 +254,14 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'catalog' )
 			->uses( $domains )->root( $startid );
 
-		$catItems = map();
-		$catIds = [];
-
-		if( ( $currentid = $view->param( 'f_catid' ) ) !== null ) {
+		if( ( $currentid = $view->param( 'f_catid' ) ) === null ) {
+			$catItems = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE )->toList();
+		} else {
 			$catItems = $cntl->getPath( $currentid );
-			$catIds = $catItems->keys()->toArray();
 		}
 
 		$view->treeCatalogPath = $catItems;
-		$view->treeCatalogTree = $cntl->visible( $catIds )->getTree( $cntl::TREE );
+		$view->treeCatalogTree = $cntl->visible( $catItems->keys()->all() )->getTree( $cntl::TREE );
 		$view->treeFilterParams = $this->getClientParams( $view->param(), ['f_'] );
 
 		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );
