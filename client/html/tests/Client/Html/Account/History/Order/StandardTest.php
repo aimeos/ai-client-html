@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
 		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );
 		$this->assertStringContainsString( 'Unittest: Monetary rebate', $output );
-		$this->assertStringContainsString( '<td class="price">55.00 EUR</td>', $output );
+		$this->assertStringContainsString( '<td class="price">60.00 EUR</td>', $output );
 		$this->assertStringContainsString( '<td class="quantity">14 articles</td>', $output );
 	}
 
