@@ -1,17 +1,17 @@
 /* Catalog filter */
 
 @media screen and (min-width: 576px) and (max-width: 991px) {
-	aside .catalog-filter-group {
+	aside .catalog-filter form {
 		display: flex;
 		flex-wrap: wrap;
 	}
 
-	aside .catalog-filter {
+	aside .catalog-filter section {
 		width: 50%;
 	}
 }
 
-aside .catalog-filter {
+aside .catalog-filter section {
 	margin-bottom: 1rem;
 	border: 1px solid #F0F0F0;
 	border-color: var(--ai-light, #F0F0F0);
@@ -591,7 +591,7 @@ aside .catalog-filter {
 		display: none;
 	}
 
-	.catalog-filter-tree .withchild .cat-link {
+	.catalog-filter-tree .cat-link {
 		display: none;
 	}
 }

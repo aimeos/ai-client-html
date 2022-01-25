@@ -59,8 +59,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<section class="aimeos catalog-filter"', $output );
-		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertGreaterThan( 4, count( $tags ) );
+		$this->assertGreaterThanOrEqual( '2098-01-01 00:00:00', $expire );
+		$this->assertGreaterThanOrEqual( 4, count( $tags ) );
 	}
 
 

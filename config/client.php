@@ -13,6 +13,9 @@ return [
 					'filter' => ['d_prodid'] // Remove product ID from URLs, only use URL segment
 				]
 			],
+			'filter' => [
+				'subparts' => [/*'tree',*/ 'search', 'price', 'supplier', 'attribute']
+			],
 			'lists' => [
 				'items' => [
 					'template-body-list' => 'catalog/lists/items-body-list',
