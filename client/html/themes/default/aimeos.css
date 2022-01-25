@@ -845,11 +845,21 @@ body > .content, body .main-section {
 	line-height: 1;
 }
 
+.aimeos .product .catalog-detail-basic .supplier {
+	margin: 0rem 0 1rem;
+	text-align: start;
+}
+
 /* ratings */
 
 .aimeos .product .rating {
 	text-align: end;
 	display: block;
+	line-height: 2;
+}
+
+.aimeos .product .catalog-detail-basic .rating {
+	text-align: start;
 	line-height: 1.5;
 }
 
@@ -861,14 +871,6 @@ body > .content, body .main-section {
 }
 
 /* price list */
-
-.aimeos .product .price-list {
-	color: #282828;
-	color: var(--ai-primary, #282828);
-	font-weight: normal;
-	padding: 0;
-	margin: 0;
-}
 
 .aimeos .product .price-item {
 	display: none;
@@ -925,7 +927,6 @@ body > .content, body .main-section {
 	color: #555;
 	color: var(--ai-secondary, #555);
 	letter-spacing: 1.5px;
-	line-height: 1.1;
 	overflow: hidden;
 }
 
@@ -944,6 +945,7 @@ body > .content, body .main-section {
 
 .aimeos .product .text-list .text-item {
 	margin: 0.5rem 0 0.5rem 0;
+	text-align: end;
 }
 
 .aimeos .product .text-list h2 {
@@ -954,13 +956,6 @@ body > .content, body .main-section {
 	display: inline-block;
 	box-sizing: content-box;
 	margin-inline-start: auto;
-}
-
-.catalog-session-seen .name,
-.catalog-session-pinned .name,
-aside .catalog-session-seen .name,
-aside .catalog-session-pinned .name {
-	margin-top: 0.75rem;
 }
 
 /* Stock level */
@@ -980,7 +975,7 @@ aside .catalog-session-pinned .name {
 .aimeos .product .stocklevel {
 	display: inline-block;
 	border-radius: 0.5rem;
-	margin-top: 0.5rem;
+	margin-top: 0;
 	height: 1rem;
 	width: 1rem;
 }

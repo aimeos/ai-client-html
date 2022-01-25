@@ -39,7 +39,7 @@ $enc = $this->encoder();
 			<?php endif ?>
 			</div>
 
-			<div class="col-3 select-name">
+			<div class="col-2 select-name">
 			<h2><?= $enc->html( $product->getName() ) ?></h2>
 
 			<input type="hidden"
@@ -65,7 +65,7 @@ $enc = $this->encoder();
 
 			<div class="col-1 select-stock" data-prodid="<?= $enc->attr( $id ) ?>"></div>
 
-			<div class="col-2 select-quantity">
+			<div class="col-3 select-quantity">
 				<input type="number" class="form-control" placeholder="0"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
 					min="1" max="2147483647" step="1" value="">

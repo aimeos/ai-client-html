@@ -803,7 +803,7 @@
 
 .catalog-detail-suggest .product .rating,
 .catalog-detail-bought .product .rating {
-	line-height: 1;
+	line-height: 1.5;
 }
 
 .catalog-detail-suggest .text-list,

@@ -66,6 +66,13 @@
 	content: ") ";
 }
 
+.catalog-session-seen .name,
+.catalog-session-pinned .name,
+aside .catalog-session-seen .name,
+aside .catalog-session-pinned .name {
+	margin-top: 0.75rem;
+}
+
 aside .catalog-session {
 	margin: 0;
 	margin-bottom: 1rem;
