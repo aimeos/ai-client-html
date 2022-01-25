@@ -72,16 +72,16 @@
 	position: absolute;
 }
 
-.catalog-list .media-list div:first-of-type {
+/* .catalog-list .media-list div:first-of-type {
 	opacity: 1;
 	transition: opacity .3s linear;
 	z-index: 1;
-}
+} */
 
-.catalog-list .media-list.multiple:hover div:first-of-type {
+/* .catalog-list .media-list.multiple:hover div:first-of-type {
 	opacity: 0;
 	transition: opacity .3s linear;
-}
+} */
 
 /* product offer part */
 

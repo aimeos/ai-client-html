@@ -195,7 +195,6 @@ aside .aimeos .product.pinned-item .price-item .rebatepercent,
 
 	.aimeos .product.seen-item .price-item .rebatepercent,
 	.aimeos .product.pinned-item .price-item .rebatepercent {
-		position: absolute;
 		transform: translateX(100%);
 		right: 100%;
 	}
