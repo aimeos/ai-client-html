@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<h4>solucia</h4>', $output );
 		$this->assertStringContainsString( '<h4>ogone</h4>', $output );
 
-		$this->assertStringContainsString( '>5678<', $output );
+		$this->assertStringContainsString( '>1234<', $output );
 		$this->assertStringContainsString( 'This is a comment', $output );
 
 		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
