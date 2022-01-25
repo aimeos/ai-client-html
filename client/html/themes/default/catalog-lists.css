@@ -40,13 +40,9 @@
 
 .catalog-list .product-item {
 	width: var(--ai-product-image-width);
-	vertical-align: top;
-	white-space: normal;
 	position: relative;
-	overflow: hidden;
 	text-align: end;
-	font-size: 100%;
-	margin: auto;
+	margin: 0 auto;
 }
 
 .catalog-list .product-item a {
@@ -84,12 +80,6 @@
 
 .catalog-list .price-item:not(:first-of-type) {
 	display: none;
-}
-
-/* Product forms */
-
-.catalog-list .product .form-control {
-	font-size: 90%;
 }
 
 .catalog-list-head,

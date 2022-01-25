@@ -833,7 +833,7 @@ body > .content, body .main-section {
 .catalog-detail-suggest .media-list:hover div:first-of-type,
 .catalog-detail-bought .media-list:hover div:first-of-type,
 .catalog-detail-bundle .media-list:hover div:first-of-type,
-.catalog-list .media-list:hover div:first-of-type {
+.catalog-list .media-list.multiple:hover div:first-of-type {
 	opacity: 0;
 	transition: opacity .3s linear;
 }
@@ -954,13 +954,15 @@ body > .content, body .main-section {
 	overflow: hidden;
 }
 
-.aimeos .product .text-list h2,
+.aimeos .product .text-list .name,
 .aimeos .product .text-list .text-item,
 .catalog-session-seen .name,
 .catalog-session-pinned .name,
 .catalog-detail-bought .name,
 .catalog-detail-bundle .name,
-.catalog-detail-suggest .name {
+.catalog-detail-suggest .name,
+.account-favorite .name,
+.account-watch .name {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;

@@ -46,7 +46,9 @@
 .account-watch .watch-basic {
 	margin: 1%;
 	position: relative;
-}
+	display: inline-block;
+	max-width: 50%;
+  }
 
 .account-watch .media-item {
 	height: calc((var(--ai-product-image-height)) / 4 * 3);
@@ -58,15 +60,7 @@
 }
 
 .account-watch .name {
-	margin: 0;
-	padding: 0;
-	height: 1rem;
-	font-size: 100%;
-	font-weight: normal;
-	overflow: hidden;
-	text-transform: uppercase;
-	max-width: 15rem;
-	margin: .75rem auto;
+	margin-top: 0.75rem;
 }
 
 .account-watch .watch-details {
