@@ -15,11 +15,7 @@
 	display: none;
 }
 
-/* .catalog-detail .product .text-list {
-	margin: 0.5rem 0;
-} */
-
-/* .catalog-detail table > tbody > tr > td,
+.catalog-detail table > tbody > tr > td,
 .catalog-detail table > tfoot > tr > td {
 	color: #555;
 	color: var(--ai-secondary, #555);
@@ -34,10 +30,10 @@
 .catalog-detail tbody tr:last-child {
 	border-bottom: 1px solid #555;
 	border-bottom-color: var(--ai-secondary, #555);
-} */
-
+}
 
 /* Product detail, social section / action buttons */
+
 .catalog-detail .catalog-social {
 	margin: .5rem 0;
 	float: right;
@@ -87,6 +83,7 @@
 }
 
 /* action buttons */
+
 .catalog-detail .catalog-actions {
 	float: left;
 	margin: .5rem 0;
@@ -139,6 +136,7 @@
 }
 
 /* Product detail, basic section */
+
 .catalog-detail-basic h1.name {
 	text-transform: uppercase;
 	font-size: 125%;
@@ -167,6 +165,7 @@
 
 
 /* Image */
+
 .catalog-detail-image {
 	margin-bottom: 2rem;
 }
@@ -183,6 +182,7 @@
 }
 
 /* Product detail, basket section */
+
 .catalog-detail-basket {
 	margin: 1rem 0;
 }
@@ -260,6 +260,7 @@
 }
 
 /* add to basket */
+
 .catalog-detail-basket .addbasket {
 	margin-top: 1rem;
 }
@@ -269,6 +270,7 @@
 }
 
 /* services */
+
 .catalog-detail-basket .service-intro {
 	cursor: pointer;
 	color: #555;
@@ -478,6 +480,7 @@
 
 
 /* Product detail, additional section */
+
 .catalog-detail-additional .block {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
@@ -488,6 +491,7 @@
 }
 
 /* Hide attributes and properties from sub-products*/
+
 .catalog-detail-additional .subproduct {
 	display: none;
 }
@@ -496,6 +500,7 @@
 }
 
 /* Product detail, additional attributes/properties section */
+
 .catalog-detail-additional table.attributes,
 .catalog-detail-additional table.properties {
 	margin: 1%;
@@ -521,12 +526,14 @@
 }
 
 /* Product detail, additional download section */
+
 .catalog-detail-additional .downloads .media-image {
 	height: 3rem;
 }
 
 
 /* Supplier information */
+
 .catalog-detail-supplier .content .supplier-name {
 	text-transform: uppercase;
 	margin: 1rem 0;

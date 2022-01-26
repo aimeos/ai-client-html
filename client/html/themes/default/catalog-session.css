@@ -75,8 +75,8 @@ aside:nth-child(1) {
 	margin-top: 0.75rem;
 }
 
-.catalog-session-seen .rebatepercent,
-.catalog-session-pinned .rebatepercent {
+.catalog-session-seen .seen-items .price-item .rebatepercent,
+.catalog-session-pinned .pinned-items .price-item .rebatepercent {
 	position: absolute;
 	transform: translateX(100%);
 	right: 100%;
@@ -102,6 +102,13 @@ aside .catalog-session-seen .seen-items,
 aside .catalog-session-pinned .pinned-items {
 	display: block;
 	padding: 0.75rem;
+}
+
+aside .catalog-session-seen .seen-items .price-item .rebatepercent,
+aside .catalog-session-pinned .seen-items .price-item .rebatepercent {
+	position: absolute;
+	transform: translateX(100%);
+	right: 160px;
 }
 
 @media screen and (min-width: 576px) and (max-width: 991px) {
@@ -172,8 +179,8 @@ aside .catalog-session-pinned .pinned-items {
 		margin: 0;
 	}
 
-	aside .catalog-session-seen .rebatepercent,
-	aside .catalog-session-pinned .rebatepercent {
+	aside .catalog-session-seen .seen-items .price-item .rebatepercent,
+	aside .catalog-session-pinned .pinned-items .price-item .rebatepercent {
 		position: relative;
 		transform: translateX(0);
 		right: 0;
