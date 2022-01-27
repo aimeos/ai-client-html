@@ -140,10 +140,10 @@ class Standard
 		 *
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
+		 * named like the default one but suffixed by
 		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.09
@@ -151,7 +151,7 @@ class Standard
 		 * @see client/html/locale/select/template-header
 		 */
 		$tplconf = 'client/html/locale/select/template-body';
-		$default = 'locale/select/body-standard';
+		$default = 'locale/select/body';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -190,10 +190,10 @@ class Standard
 			 *
 			 * You can overwrite the template file configuration in extensions and
 			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but with the string "standard" replaced by
+			 * named like the default one but suffixed by
 			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, "standard"
-			 * should be replaced by the name of the new class.
+			 * you've implemented an alternative client class as well, it
+			 * should be suffixed by the name of the new class.
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2014.09
@@ -201,7 +201,7 @@ class Standard
 			 * @see client/html/locale/select/template-body
 			 */
 			$tplconf = 'client/html/locale/select/template-header';
-			$default = 'locale/select/header-standard';
+			$default = 'locale/select/header';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

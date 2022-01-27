@@ -124,7 +124,7 @@ $enc = $this->encoder();
 
 							<div class="price-list">
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+									$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 									array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
 								) ?>
 							</div>

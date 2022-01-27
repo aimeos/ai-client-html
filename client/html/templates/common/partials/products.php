@@ -265,13 +265,13 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 									 *
 									 * The partial template files are usually stored in the templates/partials/ folder
 									 * of the core or the extensions. The configured path to the partial file must
-									 * be relative to the templates/ folder, e.g. "partials/price-standard.php".
+									 * be relative to the templates/ folder, e.g. "partials/price.php".
 									 *
 									 * @param string Relative path to the template file
 									 * @since 2015.04
 									 * @category Developer
 									 */
-									$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+									$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 									['prices' => $productItem->getRefItems( 'price', null, 'default' )]
 								) ?>
 
@@ -283,7 +283,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 										<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
 											<?= $this->partial(
-												$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+												$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 												array( 'prices' => $prices )
 											) ?>
 										</div>
@@ -309,7 +309,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<?php if( $productItem->getType() === 'select' ) : ?>
 
 								<div class="items-selection">
-									<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ), [
+									<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection' ), [
 										'productItems' => $productItem->getRefItems( 'product', 'default', 'default' ),
 										'productItem' => $productItem
 									] ) ?>
@@ -320,7 +320,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<div class="items-attribute">
 
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
+									$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
 									['productItem' => $productItem]
 								) ?>
 

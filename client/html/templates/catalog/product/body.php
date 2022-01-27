@@ -47,7 +47,7 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 	<?php endif ?>
 
 	<div class="catalog-product-items">
-		<?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
+		<?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 			array(
 				'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
 				'basket-add' => $this->config( 'client/html/catalog/product/basket-add', false ),

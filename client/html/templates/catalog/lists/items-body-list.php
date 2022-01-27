@@ -113,7 +113,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 							<div class="price-list">
 								<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $id ) ?>">
 									<?= $this->partial(
-										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+										$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 										['prices' => $productItem->getRefItems( 'price', null, 'default' )]
 									) ?>
 								</div>
@@ -123,7 +123,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 										<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 											<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
 												<?= $this->partial(
-													$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+													$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 													['prices' => $prices]
 												) ?>
 											</div>
@@ -147,7 +147,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 							<?php if( $productItem->getType() === 'select' ) : ?>
 								<div class="items-selection">
-									<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ), [
+									<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection' ), [
 										'productItems' => $productItem->getRefItems( 'product', 'default', 'default' ),
 										'productItem' => $productItem
 									] ) ?>
@@ -156,7 +156,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 							<div class="items-attribute">
 								<?= $this->partial(
-									$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
+									$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
 									['productItem' => $productItem]
 								) ?>
 							</div>

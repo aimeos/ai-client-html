@@ -24,7 +24,7 @@
 			 * @since 2017.01
 			 * @category Developer
 			 */
-			$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
+			$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 			['products' => $this->get( 'promoItems', map() )]
 		) ?>
 	</section>

@@ -50,7 +50,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 						 * @see client/html/account/history/summary/detail
 						 * @see client/html/account/history/summary/service
 						 */
-						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-standard' ),
+						$this->config( 'client/html/account/history/summary/address', 'common/summary/address' ),
 						array( 'addresses' => $this->summaryBasket->getAddress( 'payment' ), 'type' => 'payment' )
 					) ?>
 				<?php endif ?>
@@ -65,7 +65,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 			<div class="content">
 				<?php if( !empty( $this->summaryBasket->getAddress( 'delivery' ) ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/account/history/summary/address', 'common/summary/address-standard' ),
+						$this->config( 'client/html/account/history/summary/address', 'common/summary/address' ),
 						array( 'addresses' => $this->summaryBasket->getAddress( 'delivery' ), 'type' => 'delivery' )
 					) ?>
 				<?php else : ?>
@@ -99,7 +99,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 						 * @see client/html/account/history/summary/address
 						 * @see client/html/account/history/summary/detail
 						 */
-						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-standard' ),
+						$this->config( 'client/html/account/history/summary/service', 'common/summary/service' ),
 						array( 'service' => $this->summaryBasket->getService( 'delivery' ), 'type' => 'delivery' )
 					) ?>
 				<?php endif ?>
@@ -114,7 +114,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 			<div class="content">
 				<?php if( !empty( $this->summaryBasket->getService( 'payment' ) ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/account/history/summary/service', 'common/summary/service-standard' ),
+						$this->config( 'client/html/account/history/summary/service', 'common/summary/service' ),
 						array( 'service' => $this->summaryBasket->getService( 'payment' ), 'type' => 'payment' )
 					) ?>
 				<?php endif ?>
@@ -174,7 +174,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 				 * @see client/html/account/history/summary/address
 				 * @see client/html/account/history/summary/service
 				 */
-				$this->config( 'client/html/account/history/summary/detail', 'common/summary/detail-standard' ),
+				$this->config( 'client/html/account/history/summary/detail', 'common/summary/detail' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),

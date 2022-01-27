@@ -40,7 +40,7 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 		 * @see client/html/email/common/summary/detail/text
 		 * @see client/html/email/common/summary/service/text
 		 */
-		$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
+		$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address' ),
 		['addresses' => $this->summaryBasket->getAddress( 'payment' ), 'separator' => "\n"]
 	)
 ?>
@@ -51,7 +51,7 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 
 <?php if( ( $addrItems = $this->summaryBasket->getAddress( 'delivery' ) ) !== [] ) : ?>
 <?=		$this->partial(
-			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address-standard' ),
+			$this->config( 'client/html/email/common/summary/address/text', 'common/summary/address' ),
 			array( 'addresses' => $addrItems, 'separator' => "\n" )
 		)
 ?>

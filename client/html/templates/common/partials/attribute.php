@@ -140,7 +140,7 @@ $enc = $this->encoder();
 										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
 
 											<?= '-->' . $this->partial( $this->config(
-												'client/html/common/partials/media', 'common/partials/media-standard' ),
+												'client/html/common/partials/media', 'common/partials/media' ),
 												['item' => $item, 'boxAttributes' => ['class' => 'media-item']]
 											) . '<!--' ?>
 

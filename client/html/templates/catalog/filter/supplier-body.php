@@ -39,7 +39,7 @@ $enc = $this->encoder();
 
 									<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 										<?= '-->' . $this->partial(
-											$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+											$this->config( 'client/html/common/partials/media', 'common/partials/media' ),
 											array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
 										) . '<!--' ?>
 									<?php endforeach ?>

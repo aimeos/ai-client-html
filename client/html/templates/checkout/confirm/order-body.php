@@ -37,7 +37,7 @@ $enc = $this->encoder();
 						 * @see client/html/checkout/confirm/summary/detail
 						 * @see client/html/checkout/confirm/summary/service
 						 */
-						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard' ),
+						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address' ),
 						['addresses' => $addresses, 'type' => 'payment']
 					) ?>
 				<?php endif ?>
@@ -52,7 +52,7 @@ $enc = $this->encoder();
 			<div class="content">
 				<?php if( ( $addresses = $this->summaryBasket->getAddress( 'delivery' ) ) !== [] ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address-standard' ),
+						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address' ),
 						['addresses' => $addresses, 'type' => 'delivery']
 					) ?>
 				<?php else : ?>
@@ -87,7 +87,7 @@ $enc = $this->encoder();
 						 * @see client/html/checkout/confirm/summary/address
 						 * @see client/html/checkout/confirm/summary/detail
 						 */
-						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard' ),
+						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service' ),
 						['service' => $services, 'type' => 'delivery']
 					) ?>
 				<?php endif ?>
@@ -102,7 +102,7 @@ $enc = $this->encoder();
 			<div class="content">
 				<?php if( ( $services = $this->summaryBasket->getService( 'payment' ) ) !== [] ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service-standard' ),
+						$this->config( 'client/html/checkout/confirm/summary/service', 'common/summary/service' ),
 						['service' => $services, 'type' => 'payment']
 					) ?>
 				<?php endif ?>
@@ -172,7 +172,7 @@ $enc = $this->encoder();
 				 * @see client/html/checkout/confirm/summary/address
 				 * @see client/html/checkout/confirm/summary/service
 				 */
-				$this->config( 'client/html/checkout/confirm/summary/detail', 'common/summary/detail-standard' ),
+				$this->config( 'client/html/checkout/confirm/summary/detail', 'common/summary/detail' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),

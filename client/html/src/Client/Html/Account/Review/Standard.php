@@ -123,10 +123,10 @@ class Standard
 		 *
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
+		 * named like the default one but suffixed by
 		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2020.10
@@ -134,7 +134,7 @@ class Standard
 		 * @see client/html/account/review/template-header
 		 */
 		$tplconf = 'client/html/account/review/template-body';
-		$default = 'account/review/body-standard';
+		$default = 'account/review/body';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -171,10 +171,10 @@ class Standard
 			 *
 			 * You can overwrite the template file configuration in extensions and
 			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but with the string "standard" replaced by
+			 * named like the default one but suffixed by
 			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, "standard"
-			 * should be replaced by the name of the new class.
+			 * you've implemented an alternative client class as well, it
+			 * should be suffixed by the name of the new class.
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2020.10
@@ -182,7 +182,7 @@ class Standard
 			 * @see client/html/account/review/template-body
 			 */
 			$tplconf = 'client/html/account/review/template-header';
-			$default = 'account/review/header-standard';
+			$default = 'account/review/header';
 
 			return $view->render( $view->config( $tplconf, $default ) );
 		}

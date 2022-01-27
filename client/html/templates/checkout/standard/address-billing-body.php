@@ -41,7 +41,7 @@ $enc = $this->encoder();
 					 * @category Developer
 					 * @category User
 					 */
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial' ),
 					array(
 						'id' => $this->addressPaymentItem->getAddressId(),
 						'address' => $this->addressPaymentItem->toArray(),
@@ -74,7 +74,7 @@ $enc = $this->encoder();
 			</div>
 			<div class="form-list">
 				<?= $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial-standard' ),
+					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial' ),
 					array(
 						'address' => $this->get( 'addressBillingValuesNew', [] ),
 						'error' => $this->get( 'addressBillingOption' ) == 'null' ? $this->get( 'addressBillingError', [] ) : [],

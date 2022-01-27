@@ -51,7 +51,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 						 * @see client/html/checkout/standard/summary/options
 						 * @see client/html/checkout/standard/summary/service
 						 */
-						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard' ),
+						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address' ),
 						['addresses' => $addresses, 'type' => 'payment']
 					) ?>
 				<?php endif ?>
@@ -69,7 +69,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 			<div class="content">
 				<?php if( $addresses = $this->standardBasket->getAddress( 'delivery' ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address-standard' ),
+						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address' ),
 						['addresses' => $addresses, 'type' => 'delivery']
 					) ?>
 				<?php else : ?>
@@ -108,7 +108,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 						 * @see client/html/checkout/standard/summary/detail
 						 * @see client/html/checkout/standard/summary/options
 						 */
-						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-standard' ),
+						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service' ),
 						['service' => $services, 'type' => 'delivery']
 					) ?>
 				<?php endif ?>
@@ -126,7 +126,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 			<div class="content">
 				<?php if( $services = $this->standardBasket->getService( 'payment' ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service-standard' ),
+						$this->config( 'client/html/checkout/standard/summary/service', 'common/summary/service' ),
 						['service' => $services, 'type' => 'payment']
 					) ?>
 				<?php endif ?>
@@ -195,7 +195,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 			 * @see client/html/checkout/standard/summary/detail
 			 * @see client/html/checkout/standard/summary/service
 			 */
-			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial-standard' ),
+			$this->config( 'client/html/checkout/standard/summary/options', 'checkout/standard/option-partial' ),
 			['standardBasket' => $this->standardBasket, 'errors' => $this->get( 'summaryErrorCodes', [] )]
 		) ?>
 	</div>
@@ -226,7 +226,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 				 * @see client/html/checkout/standard/summary/options
 				 * @see client/html/checkout/standard/summary/service
 				 */
-				$this->config( 'client/html/checkout/standard/summary/detail', 'common/summary/detail-standard' ),
+				$this->config( 'client/html/checkout/standard/summary/detail', 'common/summary/detail' ),
 				array(
 					'summaryBasket' => $this->standardBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),

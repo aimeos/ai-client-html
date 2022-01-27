@@ -81,7 +81,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 * @since 2017.01
 					 * @category Developer
 					 */
-					$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial-standard' ),
+					$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial' ),
 					['mediaItems' => $this->get( 'detailMediaItems', map() ), 'params' => $this->param()]
 				) ?>
 
@@ -128,7 +128,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+								$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 								['prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' )]
 							) ?>
 
@@ -141,7 +141,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
 
 										<?= $this->partial(
-											$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+											$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 											['prices' => $prices]
 										) ?>
 
@@ -177,14 +177,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									 *
 									 * The partial template files are usually stored in the templates/partials/ folder
 									 * of the core or the extensions. The configured path to the partial file must
-									 * be relative to the templates/ folder, e.g. "common/partials/selection-standard".
+									 * be relative to the templates/ folder, e.g. "common/partials/selection".
 									 *
 									 * @param string Relative path to the template file
 									 * @since 2015.04
 									 * @category Developer
 									 * @see client/html/common/partials/attribute
 									 */
-									$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
+									$this->config( 'client/html/common/partials/selection', 'common/partials/selection' ),
 									[
 										'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
 										'productItem' => $this->detailProductItem
@@ -239,14 +239,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								 *
 								 * The partial template files are usually stored in the templates/partials/ folder
 								 * of the core or the extensions. The configured path to the partial file must
-								 * be relative to the templates/ folder, e.g. "partials/attribute-standard.php".
+								 * be relative to the templates/ folder, e.g. "partials/attribute.php".
 								 *
 								 * @param string Relative path to the template file
 								 * @since 2016.01
 								 * @category Developer
 								 * @see client/html/common/partials/selection
 								 */
-								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
+								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
 								['productItem' => $this->detailProductItem]
 							) ?>
 
@@ -319,7 +319,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 * @since 2017.04
 					 * @category Developer
 					 */
-					$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial-standard' ),
+					$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial' ),
 					['productItem' => $this->detailProductItem]
 				) ?>
 
@@ -337,7 +337,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 * @since 2017.04
 					 * @category Developer
 					 */
-					$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial-standard' ),
+					$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial' ),
 					['productItem' => $this->detailProductItem]
 				) ?>
 
@@ -410,7 +410,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 																<?php foreach( $attrItem->getListItems( 'media', 'icon' ) as $listItem ) : ?>
 																	<?php if( ( $refitem = $listItem->getRefItem() ) !== null ) : ?>
 																		<?= $this->partial(
-																			$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+																			$this->config( 'client/html/common/partials/media', 'common/partials/media' ),
 																			['item' => $refitem, 'boxAttributes' => ['class' => 'media-item']]
 																		) ?>
 																	<?php endif ?>
@@ -552,7 +552,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ) ?></h2>
 
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
+							$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 							['products' => $products, 'itemprop' => 'isRelatedTo']
 						) ?>
 
@@ -567,7 +567,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ) ?></h2>
 
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
+							$this->config( 'client/html/common/partials/products', 'common/partials/products' ), [
 								'basket-add' => $this->config( 'client/html/catalog/detail/basket-add', false ),
 								'products' => $products, 'itemprop' => 'isRelatedTo'
 							] )
@@ -584,7 +584,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ) ?></h2>
 
 						<?= $this->partial(
-							$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ), [
+							$this->config( 'client/html/common/partials/products', 'common/partials/products' ), [
 								'basket-add' => $this->config( 'client/html/catalog/detail/basket-add', false ),
 								'products' => $products, 'itemprop' => 'isRelatedTo'
 							] )

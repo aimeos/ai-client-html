@@ -47,7 +47,7 @@ $enc = $this->encoder();
 						 * @see client/html/account/subscription/summary/detail
 						 * @see client/html/account/subscription/summary/service
 						 */
-						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
+						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
 						array( 'addresses' => $this->summaryBasket->getAddress( 'payment' ), 'type' => 'payment' )
 					) ?>
 				<?php endif ?>
@@ -62,7 +62,7 @@ $enc = $this->encoder();
 			<div class="content">
 				<?php if( !empty( $this->summaryBasket->getAddress( 'delivery' ) ) ) : ?>
 					<?= $this->partial(
-						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address-standard' ),
+						$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
 						array( 'addresses' => $this->summaryBasket->getAddress( 'delivery' ), 'type' => 'delivery' )
 					) ?>
 				<?php else : ?>
@@ -94,7 +94,7 @@ $enc = $this->encoder();
 				 * @see client/html/account/subscription/summary/address
 				 * @see client/html/account/subscription/summary/service
 				 */
-				$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail-standard' ),
+				$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
 				array(
 					'summaryBasket' => $this->summaryBasket,
 					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),

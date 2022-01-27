@@ -54,7 +54,7 @@ $enc = $this->encoder();
 					<div class="icons">
 						<?php foreach( $service->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 							<?= $this->partial(
-								$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+								$this->config( 'client/html/common/partials/media', 'common/partials/media' ),
 								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'icon' ) )
 							) ?>
 						<?php endforeach ?>
@@ -107,7 +107,7 @@ $enc = $this->encoder();
 						 * @since 2017.07
 						 * @category Developer
 						 */
-						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial-standard' ),
+						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial' ),
 						['attributes' => $attributes, 'type' => 'payment', 'id' => $id]
 					) ?>
 

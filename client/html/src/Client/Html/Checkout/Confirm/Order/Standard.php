@@ -84,10 +84,10 @@ class Standard
 		 *
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
+		 * named like the default one but suffixed by
 		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2015.02
@@ -95,7 +95,7 @@ class Standard
 		 * @see client/html/checkout/confirm/order/template-header
 		 */
 		$tplconf = 'client/html/checkout/confirm/order/template-body';
-		$default = 'checkout/confirm/order-body-standard';
+		$default = 'checkout/confirm/order-body';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

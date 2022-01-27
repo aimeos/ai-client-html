@@ -20,7 +20,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ) ?></h2>
 
 			<?= $this->partial(
-				$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
+				$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 				[
 					'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
 					'basket-add' => $this->config( 'client/html/basket/related/basket-add', false ),

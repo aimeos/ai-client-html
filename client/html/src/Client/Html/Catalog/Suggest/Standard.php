@@ -100,10 +100,10 @@ class Standard
 		 *
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
+		 * named like the default one but suffixed by
 		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
 		 *
 		 * Note: Up to 2015-02, this configuration option was available as
 		 * client/html/catalog/lists/simple/template-body
@@ -115,7 +115,7 @@ class Standard
 		 * @see client/html/catalog/suggest/domains
 		 */
 		$tplconf = 'client/html/catalog/suggest/template-body';
-		$default = 'catalog/suggest/body-standard';
+		$default = 'catalog/suggest/body';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}
@@ -159,10 +159,10 @@ class Standard
 		 *
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
+		 * named like the default one but suffixed by
 		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
 		 *
 		 * Note: Up to 2015-02, this configuration option was available as
 		 * client/html/catalog/lists/simple/template-header
@@ -174,7 +174,7 @@ class Standard
 		 * @see client/html/catalog/suggest/domains
 		 */
 		$tplconf = 'client/html/catalog/suggest/template-header';
-		$default = 'catalog/suggest/header-standard';
+		$default = 'catalog/suggest/header';
 
 		return $view->render( $view->config( $tplconf, $default ) );
 	}

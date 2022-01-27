@@ -56,7 +56,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 	data-pinned="<?= $enc->attr( $this->session( 'aimeos/catalog/session/pinned/list', [] ) ) ?>">
 
 	<?= $this->partial(
-		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
+		$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),

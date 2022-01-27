@@ -85,10 +85,10 @@ class Standard
 		 *
 		 * You can overwrite the template file configuration in extensions and
 		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but with the string "standard" replaced by
+		 * named like the default one but suffixed by
 		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, "standard"
-		 * should be replaced by the name of the new class.
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
 		 *
 		 * The product notification e-mail html client allows to use a different template for
 		 * each watch status value. You can create a template for each watch
@@ -104,7 +104,7 @@ class Standard
 		 */
 		$tplconf = 'client/html/email/watch/html/template-body';
 
-		$html = $view->render( $view->config( $tplconf, 'email/watch/html-body-standard' ) );
+		$html = $view->render( $view->config( $tplconf, 'email/watch/html-body' ) );
 		$view->mail()->html( $html );
 		return $html;
 	}
