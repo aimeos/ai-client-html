@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-30 16:30+0100\n"
-"PO-Revision-Date: 2021-12-30 15:35+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2022-01-25 14:13+0000\n"
+"Last-Translator: SangSun Go <ssgo@strastar.com>\n"
 "Language-Team: Korean (http://www.transifex.com/aimeos/aimeos-core/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,7 +123,7 @@ msgid "A non-recoverable error occured"
 msgstr ""
 
 msgid "Account"
-msgstr ""
+msgstr "계정"
 
 msgid "Add billing address"
 msgstr ""
@@ -179,13 +179,13 @@ msgid "At least one delivery address part is missing or invalid"
 msgstr ""
 
 msgid "Attributes"
-msgstr ""
+msgstr "속성"
 
 msgid "Back"
 msgstr ""
 
 msgid "Basket"
-msgstr ""
+msgstr "바구니"
 
 msgid "Billing address"
 msgstr "청구지"
@@ -199,7 +199,7 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Birthday"
-msgstr ""
+msgstr "생일"
 
 msgid "Bulk order"
 msgstr ""
@@ -214,7 +214,7 @@ msgid "Cancel"
 msgstr "취소"
 
 msgid "Categories"
-msgstr ""
+msgstr "범주"
 
 msgid "Change"
 msgstr ""
@@ -266,7 +266,7 @@ msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "닫기"
 
 msgid "Company"
 msgstr "회사"
@@ -275,7 +275,7 @@ msgid "Confirmation"
 msgstr ""
 
 msgid "Country"
-msgstr ""
+msgstr "국가"
 
 msgid "Coupon codes"
 msgstr ""
@@ -287,7 +287,7 @@ msgid "Create a customer account for me"
 msgstr ""
 
 msgid "Created"
-msgstr ""
+msgstr "생성됨"
 
 msgid "Customer account"
 msgstr ""
@@ -327,16 +327,16 @@ msgid "Dear customer"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "삭제"
 
 msgid "Delete item"
 msgstr ""
 
 msgid "Delivery"
-msgstr ""
+msgstr "배송"
 
 msgid "Delivery address"
-msgstr ""
+msgstr "배송 주소"
 
 #, php-format
 msgid "Delivery address deleted successfully"
@@ -392,7 +392,7 @@ msgid "Filter"
 msgstr ""
 
 msgid "First name"
-msgstr ""
+msgstr "이름"
 
 msgid "GB999999973"
 msgstr ""
@@ -449,7 +449,7 @@ msgid "Included rebates"
 msgstr ""
 
 msgid "Interval"
-msgstr ""
+msgstr "간격"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -480,10 +480,10 @@ msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "언어"
 
 msgid "Last name"
-msgstr ""
+msgstr "성"
 
 msgid "Last seen"
 msgstr ""
@@ -507,10 +507,10 @@ msgid "More reviews"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "이름"
 
 msgid "New"
-msgstr ""
+msgstr "신규"
 
 msgid "New delivery address"
 msgstr ""
@@ -764,10 +764,10 @@ msgid "Share"
 msgstr ""
 
 msgid "Shipping"
-msgstr ""
+msgstr "운송"
 
 msgid "Show"
-msgstr ""
+msgstr "보기"
 
 msgid "Show all quotes"
 msgstr ""
@@ -776,10 +776,10 @@ msgid "Sort by:"
 msgstr ""
 
 msgid "State"
-msgstr ""
+msgstr "상태"
 
 msgid "Status"
-msgstr ""
+msgstr "상태"
 
 msgid "Stock"
 msgstr ""
@@ -804,7 +804,7 @@ msgid "Street"
 msgstr ""
 
 msgid "Sub-total"
-msgstr ""
+msgstr "중간 합계"
 
 msgid "Submit"
 msgstr ""
@@ -832,7 +832,7 @@ msgid "Suggested products"
 msgstr ""
 
 msgid "Sum"
-msgstr ""
+msgstr "합"
 
 msgid "Supplier information"
 msgstr ""
@@ -844,7 +844,7 @@ msgid "Take a look"
 msgstr ""
 
 msgid "Telephone"
-msgstr ""
+msgstr "전화"
 
 #, php-format
 msgid "Template \"%1$s\" not available"
@@ -966,7 +966,7 @@ msgid "Top seller"
 msgstr ""
 
 msgid "Total"
-msgstr ""
+msgstr "총"
 
 msgid "Total quantity"
 msgstr ""
