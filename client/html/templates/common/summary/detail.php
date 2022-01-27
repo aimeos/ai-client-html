@@ -355,7 +355,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php if( ( $costs = $this->get( 'summaryCostsDelivery', 0 ) ) > 0 ) : ?>
 			<div class="delivery row g-0">
 				<div class="col-8 col-md-6 offset-4 offset-md-6">
-					<div class="row">
+					<div class="row g-0">
 						<div class="col-8"><?= $enc->html( $this->translate( 'client', 'Shipping' ) ) ?></div>
 						<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $precision ), $priceCurrency ) ) ?></div>
 						<?php if( $modify ) : ?>
@@ -398,9 +398,9 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $map ) : ?>
 			<?php foreach( $map as $taxRate => $priceItem ) : ?>
 				<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
-					<div class="tax row">
+					<div class="tax row g-0">
 						<div class="col-8 col-md-6 offset-4 offset-md-6">
-							<div class="row">
+							<div class="row g-0">
 							    <div class="col-8"><?= $enc->html( sprintf( $priceTaxflag ? $taxFormatIncl : $taxFormatExcl, $this->number( $taxRate ), $this->translate( 'client/code', $taxName ) ) ) ?></div>
 							    <div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $precision ), $priceCurrency ) ) ?></div>
 							    <?php if( $modify ) : ?>
