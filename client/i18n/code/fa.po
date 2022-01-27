@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
+# محمد مسعودزاده, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2021-10-04 16:35+0000\n"
-"Last-Translator: Aimeos\n"
+"PO-Revision-Date: 2021-12-09 17:18+0000\n"
+"Last-Translator: محمد مسعودزاده\n"
 "Language-Team: Persian (http://www.transifex.com/aimeos/aimeos-core/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,15 +24,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "مالیات"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "GST"
 
 #. Price type default
 msgid "price:default"
@@ -39,71 +40,71 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "مورد علاقه"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "سنجاق"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "تماشا کردن"
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "اندازه"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "طول"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "عرض"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "رنگ"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "گزینه"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "طول بسته"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "پهنای بسته"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "بسته-ارتفاع"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "وزن بسته"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "صاحب حساب"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "شماره حساب"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "کد بانک"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "نام بانک"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,40 +116,40 @@ msgstr "نام خانوادگی"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "شماره کارت اعتباری"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "شماره تایید"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "ماه انقضا"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "سال انقضا"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "انقضا (MMYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "تاریخ تحویل"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "زمان تحویل"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "محل تحویل"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "آدرس تحویل"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "نوع تحویل"

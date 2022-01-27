@@ -8,13 +8,14 @@
 # Irina Fedulova <istartlin@gmail.com>, 2020
 # nsendetzky, 2014
 # Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
+# Роман Андрейчук, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-12 12:52+0200\n"
-"PO-Revision-Date: 2021-10-04 16:35+0000\n"
-"Last-Translator: Aimeos\n"
+"POT-Creation-Date: 2021-12-30 16:30+0100\n"
+"PO-Revision-Date: 2022-01-21 13:44+0000\n"
+"Last-Translator: Роман Андрейчук\n"
 "Language-Team: Russian (http://www.transifex.com/aimeos/aimeos-core/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,10 +34,10 @@ msgstr[3] "%1$d товаров"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%1$d отзыв"
+msgstr[1] "%1$d отзывов"
+msgstr[2] "%1$d отзывов"
+msgstr[3] "%1$d отзывов"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -111,7 +112,7 @@ msgstr "+ %1$s%% %2$s"
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr ""
+msgstr " + %1$s%% НДС"
 
 msgid "+ Payment costs"
 msgstr "+ Издержки на оплату"
@@ -120,7 +121,7 @@ msgid "+ Shipping"
 msgstr "+ Перевозка"
 
 msgid "+ shipping costs"
-msgstr ""
+msgstr "+ стоимость доставки"
 
 msgid "+1 123 456 7890"
 msgstr "+1 123 456 7890"
@@ -137,7 +138,7 @@ msgid "Account"
 msgstr "Учётная запись"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Добавьте платежный адрес"
 
 msgid "Add to basket"
 msgstr "Добавить в корзину"
@@ -150,10 +151,10 @@ msgstr "Дополнительно 2"
 
 msgid "Address"
 msgid_plural "Addresses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Адрес"
+msgstr[1] "Адреса"
+msgstr[2] "Адреса"
+msgstr[3] "Адреса"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -540,6 +541,9 @@ msgid ""
 "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
 "try again with a different keyword."
 msgstr "Для <span class=\"searchstring\">\"%1$s\"</span> ничего не найдено. Попробуйте искать по другим словосочетаниям."
+
+msgid "No order ID available in session"
+msgstr ""
 
 #, php-format
 msgid "No product with ID \"%1$s\" found"
@@ -1119,16 +1123,16 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Отослан Ваш заказ %1$s от %2$s."
 
 msgid "Your rating"
-msgstr ""
+msgstr "Ваш рейтинг"
 
 msgid "Your reference"
-msgstr ""
+msgstr "Ваша рекомендация"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Номер вашей рекомендации"
 
 msgid "Your review"
-msgstr ""
+msgstr "Ваш отзыв"
 
 msgid "Your search result"
 msgstr "Результат поиска"
@@ -1137,23 +1141,23 @@ msgid "Your subscription"
 msgstr "Ваша подписка"
 
 msgid "Your subscription product"
-msgstr ""
+msgstr "Товар по подписке"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Ваш купон:"
 
 msgid "Your voucher: "
-msgstr ""
+msgstr "Ваш купон:"
 
 msgid "Your vouchers: "
-msgstr ""
+msgstr "Ваши купоны:"
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Вы смотрели товары"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Масштаб +/-"
 
 #, php-format
 msgid "address"
@@ -1184,7 +1188,7 @@ msgid "none"
 msgstr "нет"
 
 msgid "on request"
-msgstr ""
+msgstr "по запросу"
 
 #, php-format
 msgid "order"
@@ -1198,7 +1202,7 @@ msgid "pin"
 msgstr "отметить"
 
 msgid "price:default"
-msgstr ""
+msgstr "цена:по-умолчанию"
 
 #, php-format
 msgid "process"

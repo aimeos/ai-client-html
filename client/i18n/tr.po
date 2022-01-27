@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Gülsüm Akça <akcagulsum1@gmail.com>, 2021
-# Metal <meteoramic@yahoo.com>, 2015-2021
+# Metal <meteoramic@yahoo.com>, 2015-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-12 12:52+0200\n"
-"PO-Revision-Date: 2021-10-04 19:06+0000\n"
+"POT-Creation-Date: 2021-12-30 16:30+0100\n"
+"PO-Revision-Date: 2022-01-06 17:16+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -531,6 +531,9 @@ msgid ""
 "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
 "try again with a different keyword."
 msgstr "<span class=\"searchstring\">\"%1$s\"</span> için hiç bir ürün bulunamadı. Lütfen farklı bir anahtar kelime ile tekrar deneyin."
+
+msgid "No order ID available in session"
+msgstr "Oturumda hiçbir sipariş kimliği yok"
 
 #, php-format
 msgid "No product with ID \"%1$s\" found"
