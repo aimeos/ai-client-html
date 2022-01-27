@@ -36,7 +36,7 @@ aside:nth-child(1) {
 .catalog-session-seen .seen-items,
 .catalog-session-pinned .pinned-items {
 	padding: 0;
-	margin: 1rem 0;
+	margin: 0;
 	padding-bottom: 0;
 }
 
@@ -123,6 +123,11 @@ aside .catalog-session-pinned .seen-items .price-item .rebatepercent {
 }
 
 @media screen and (min-width: 992px) {
+
+	aside .catalog-session-seen .name,
+	aside .catalog-session-pinned .name {
+		margin-top: 0rem;
+	}
 
 	.catalog-session-seen .rebatepercent,
 	.catalog-session-pinned .rebatepercent {

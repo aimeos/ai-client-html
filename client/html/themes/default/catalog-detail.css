@@ -311,6 +311,13 @@
 	display: none;
 }
 
+/* Selection area */
+
+.catalog-detail-basket .selection .row {
+	--bs-gutter-x: 0;
+	--bs-gutter-y: 0;
+  }
+
 .catalog-detail-basket .selection,
 .catalog-detail-basket .attribute {
 	margin: 1.5rem 0;
@@ -329,18 +336,10 @@
 	padding: 0;
 }
 
-.catalog-detail-basket .select-attr {
-	width: 25%;
-}
-
-.catalog-detail-basket .select-stock {
-	text-align: center;
-	width: 10%;
-}
-
 .catalog-detail-basket .select-stock .stockitem,
 .catalog-detail-basket .select-stock .stocklevel {
-	display: block;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .catalog-detail-basket .select-stock .stocktext {
@@ -349,7 +348,6 @@
 
 .catalog-detail-basket .select-quantity {
 	text-align: center;
-	width: 15%;
 }
 
 .catalog-detail-basket .select-item {
@@ -357,9 +355,58 @@
 	list-style: none;
 }
 
-.catalog-detail-basket .select-name {
-	min-width: 5rem;
+.catalog-detail-basket .catalog-detail-basket-selection .selection div:first-of-type {
 	font-weight: bold;
+}
+
+.catalog-detail-basket .select-name {
+	padding-inline-start: 0;
+}
+
+.catalog-detail-basket .select-name h2 {
+	padding-top: 0rem;
+	margin-bottom: 0;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.catalog-detail-basket .select-attr {
+	padding: 0 0.5rem;
+  }
+
+.catalog-detail-basket .select-item .select-media {
+	margin-right: 66.6666666%;
+	margin-bottom: 1rem;
+}
+
+.aimeos .product .catalog-detail-basket-selection .addbasket button {
+	margin: 0;
+	width: 100%;
+}
+
+.aimeos .product .catalog-detail-basket-selection .stock-list,
+.aimeos .product .catalog-detail-basket-selection .catalog-detail-basket-attribute{
+	display: none;
+}
+
+@media (min-width:992px) {
+
+	.catalog-detail-basket .select-name {
+		padding-inline-start: 1rem;
+	}
+
+	.catalog-detail-basket .select-name h2 {
+		padding-top: 0rem;
+		margin-bottom: 0;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.catalog-detail-basket .select-item .select-media {
+		margin-right: 0;
+		margin-bottom: 0;
+	}
+
 }
 
 .catalog-detail-basket .select-hint {

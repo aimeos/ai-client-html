@@ -179,10 +179,6 @@ img {
 	margin: 0.5rem 0;
 }
 
-.aimeos .input-group .btn {
-	width: calc(100% - 4rem);
-}
-
 .aimeos .input-lg {
 	height: auto;
 }
@@ -1039,13 +1035,5 @@ body > .content, body .main-section {
 
 .aimeos .product .addbasket button {
 	margin: 0;
-}
-
-@media screen and (min-width: 992px) {
-
-	aside .catalog-session-seen .name,
-	aside .catalog-session-pinned .name {
-		margin-top: 0rem;
-	}
-
+	width: calc(100% - 4rem);
 }
