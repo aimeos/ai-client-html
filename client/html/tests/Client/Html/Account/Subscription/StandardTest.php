@@ -37,122 +37,65 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testHeader()
 	{
 		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
 
-
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEquals( null, $object->header() );
+		$this->assertStringContainsString( '<link rel="stylesheet"', $output );
+		$this->assertStringContainsString( '<script defer', $output );
 	}
 
 
 	public function testBody()
 	{
+		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
+		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
+
+		$this->object->setView( $this->object->data( \TestHelperHtml::view() ) );
+
 		$output = $this->object->body();
-		$this->assertStringStartsWith( '<section class="aimeos account-subscription"', $output );
-	}
 
+		$this->assertStringContainsString( '<section class="aimeos account-subscription"', $output );
+		$this->assertRegExp( '#<div class="subscription-item#', $output );
+		$this->assertRegExp( '#<h2 class="subscription-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
+		$this->assertRegExp( '#<div class="subscription-interval.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="subscription-datenext.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="subscription-dateend.*<span class="value.*</span>.*</div>#smU', $output );
 
-	public function testBodyHtmlException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Subscription\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
-	}
-
-
-	public function testGetSubClient()
-	{
-		$client = $this->object->getSubClient( 'lists', 'Standard' );
-		$this->assertInstanceOf( '\\Aimeos\\Client\\HTML\\Iface', $client );
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
+		$this->assertStringContainsString( 'Our Unittest', $output );
+		$this->assertStringContainsString( 'Example company', $output );
+		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
 	}
 
 
 	public function testInit()
 	{
-		$this->object->init();
+		$this->view = \TestHelperHtml::view();
+		$param = array(
+			'sub_action' => 'cancel',
+			'sub_id' => $this->getSubscription()->getId()
+		);
 
-		$this->assertEmpty( $this->view->get( 'subscriptionErrorList' ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+
+		$this->object->setView( $this->object->data( $this->view ) );
+
+		$cntlStub = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Subscription\\Standard' )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['cancel'] )
+			->getMock();
+
+		\Aimeos\Controller\Frontend\Subscription\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Subscription\\Standard', $cntlStub );
+
+		$cntlStub->expects( $this->once() )->method( 'cancel' );
+
+		$this->object->init();
+	}
+
+
+	protected function getSubscription()
+	{
+		$manager =  \Aimeos\MShop::create( $this->context, 'subscription' );
+		$filter = $manager->filter()->add( 'subscription.dateend', '==', '2010-01-01' );
+
+		return $manager->search( $filter )->first( new \Exception( 'No subscription item found' ) );
 	}
 }

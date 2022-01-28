@@ -13,31 +13,26 @@
 	margin: 0 auto;
 }
 
-.account-subscription-list .subscription-list {
-	list-style: none;
-	padding: 0;
-}
-
-.account-subscription-list .subscription-item {
+.account-subscription .subscription-item {
 	border: 1px solid #D0D0D0;
 	border-color: var(--ai-tertiary, #CCC);
 	padding: 1rem;
 	margin: 1rem;
 }
 
-.account-subscription-list .name:after {
+.account-subscription .name:after {
 	content: ": ";
 }
 
-.account-subscription-list .subscription-basic {
+.account-subscription .subscription-basic {
 	font-weight: bold;
 }
 
-.account-subscription-list .action {
+.account-subscription .action {
 	margin-top: 0.5rem;
 }
 
-.account-subscription-list .action .btn {
+.account-subscription .action .btn {
 	border: 1px solid #555;
 	border-color: var(--ai-secondary, #555);
 	display: block;
