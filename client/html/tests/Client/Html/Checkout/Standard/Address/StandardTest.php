@@ -36,33 +36,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeader()
-	{
-		$this->view->standardStepActive = 'address';
-		$this->object->setView( $this->object->data( $this->view ) );
-
-		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
-
-
-	public function testHeaderSkip()
-	{
-		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
-
-
-	public function testHeaderOtherStep()
-	{
-		$this->view->standardStepActive = 'xyz';
-		$this->object->setView( $this->object->data( $this->view ) );
-
-		$output = $this->object->header();
-		$this->assertEquals( '', $output );
-	}
-
-
 	public function testBody()
 	{
 		$item = $this->getCustomerItem();

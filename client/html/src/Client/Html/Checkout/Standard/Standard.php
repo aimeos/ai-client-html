@@ -199,12 +199,6 @@ class Standard
 		{
 			$view = $this->view = $this->view ?? $this->object()->data( $view );
 
-			$html = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->header( $uid );
-			}
-			$view->standardHeader = $html;
-
 			/** client/html/checkout/template-header
 			 * Relative path to the HTML header template of the checkout standard client.
 			 *

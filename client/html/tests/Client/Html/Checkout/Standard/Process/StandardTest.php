@@ -34,23 +34,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeader()
-	{
-		$this->view->standardStepActive = 'process';
-		$this->object->setView( $this->object->data( $this->view ) );
-
-		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
-
-
-	public function testHeaderSkip()
-	{
-		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testBody()
 	{
 		$this->view->standardStepActive = 'process';

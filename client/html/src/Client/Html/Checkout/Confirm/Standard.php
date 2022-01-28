@@ -166,12 +166,6 @@ class Standard
 		{
 			$view = $this->view = $this->view ?? $this->object()->data( $view );
 
-			$html = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->header( $uid );
-			}
-			$view->confirmHeader = $html;
-
 			/** client/html/checkout/confirm/template-header
 			 * Relative path to the HTML header template of the checkout confirm client.
 			 *

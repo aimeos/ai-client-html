@@ -132,24 +132,6 @@ class Standard
 
 
 	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function header( string $uid = '' ) : ?string
-	{
-		$view = $this->view();
-
-		if( $view->get( 'standardStepActive' ) !== 'process' ) {
-			return '';
-		}
-
-		return parent::header( $uid );
-	}
-
-
-	/**
 	 * Returns the sub-client given by its name.
 	 *
 	 * @param string $type Name of the client type

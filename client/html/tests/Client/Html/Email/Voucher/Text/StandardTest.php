@@ -59,13 +59,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeader()
-	{
-		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
-
-
 	public function testBody()
 	{
 		$this->object->setView( $this->object->data( $this->view ) );

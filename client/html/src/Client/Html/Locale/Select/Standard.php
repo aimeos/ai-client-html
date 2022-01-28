@@ -173,12 +173,6 @@ class Standard
 				$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
 			}
 
-			$html = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->header( $uid );
-			}
-			$view->selectHeader = $html;
-
 			/** client/html/locale/select/template-header
 			 * Relative path to the HTML header template of the locale select client.
 			 *

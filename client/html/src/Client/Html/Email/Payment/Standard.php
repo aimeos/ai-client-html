@@ -174,12 +174,6 @@ class Standard
 		$config = $this->context()->config();
 		$view = $this->object()->data( $this->view() );
 
-		$content = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$content .= $subclient->setView( $view )->header( $uid );
-		}
-		$view->paymentHeader = $content;
-
 
 		$addr = $view->extAddressItem;
 

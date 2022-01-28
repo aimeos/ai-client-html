@@ -173,12 +173,6 @@ class Standard
 				$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
 			}
 
-			$html = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->header( $uid );
-			}
-			$view->sessionHeader = $html;
-
 			/** client/html/catalog/session/template-header
 			 * Relative path to the HTML header template of the catalog session client.
 			 *

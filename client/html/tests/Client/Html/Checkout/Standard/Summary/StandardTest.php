@@ -36,27 +36,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeader()
-	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
-
-		$this->view = \TestHelperHtml::view();
-		$this->view->standardStepActive = 'summary';
-		$this->view->standardBasket = $controller->get();
-		$this->object->setView( $this->object->data( $this->view ) );
-
-		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
-
-
-	public function testHeaderOtherStep()
-	{
-		$output = $this->object->header();
-		$this->assertEquals( '', $output );
-	}
-
-
 	public function testBody()
 	{
 		$this->view = \TestHelperHtml::view();

@@ -165,12 +165,6 @@ class Standard
 		{
 			$view = $this->view = $this->view ?? $this->object()->data( $view );
 
-			$html = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->header( $uid );
-			}
-			$view->subscriptionHeader = $html;
-
 			/** client/html/account/subscription/template-header
 			 * Relative path to the HTML header template of the account subscription client.
 			 *
