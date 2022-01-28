@@ -20,9 +20,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::context();
-
 		$this->view = \TestHelperHtml::view();
-		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Account\History\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -38,122 +36,44 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testHeader()
 	{
 		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
 
-
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEquals( null, $object->header() );
+		$this->assertStringContainsString( '<link rel="stylesheet"', $output );
+		$this->assertStringContainsString( '<script defer', $output );
 	}
 
 
 	public function testBody()
 	{
+		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
+		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
+
 		$output = $this->object->body();
+
 		$this->assertStringStartsWith( '<section class="aimeos account-history"', $output );
-	}
 
+		$this->assertStringContainsString( '<div id="account-history" class="account-history-list', $output );
 
-	public function testBodyHtmlException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
+		$this->assertRegExp( '#<div class="history-item#', $output );
+		$this->assertRegExp( '#<h2 class="order-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
+		$this->assertRegExp( '#<div class="order-channel.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="order-payment.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="order-delivery.*<span class="value.*</span>.*</div>#smU', $output );
 
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
+		$this->assertStringContainsString( '<div class="account-history-detail common-summary', $output );
 
-		$object->setView( \TestHelperHtml::view() );
+		$this->assertStringContainsString( 'Our Unittest', $output );
+		$this->assertStringContainsString( 'Example company', $output );
 
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
+		$this->assertStringContainsString( '<h4>unitdeliverycode</h4>', $output );
+		$this->assertStringContainsString( '<h4>unitpaymentcode</h4>', $output );
 
+		$this->assertStringContainsString( '>1234<', $output );
+		$this->assertStringContainsString( 'This is a comment', $output );
 
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\History\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
-	}
-
-
-	public function testGetSubClient()
-	{
-		$client = $this->object->getSubClient( 'lists', 'Standard' );
-		$this->assertInstanceOf( '\\Aimeos\\Client\\HTML\\Iface', $client );
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
-	}
-
-
-	public function testInit()
-	{
-		$this->object->init();
-
-		$this->assertEmpty( $this->view->get( 'historyErrorList' ) );
+		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
+		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );
+		$this->assertStringContainsString( 'Unittest: Monetary rebate', $output );
+		$this->assertRegExp( '#<div class="price.+55.00 EUR</div>#', $output );
+		$this->assertRegExp( '#<div class="quantity.+14 articles</div>#', $output );
 	}
 }

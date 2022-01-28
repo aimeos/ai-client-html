@@ -12,5 +12,3 @@ $enc = $this->encoder();
 <link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/summary.css', 'fs-theme', true ) ) ?>">
 <link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-history.css', 'fs-theme', true ) ) ?>">
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-history.js', 'fs-theme', true ) ) ?>"></script>
-
-<?= $this->get( 'historyHeader' ) ?>
