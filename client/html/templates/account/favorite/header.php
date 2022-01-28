@@ -11,5 +11,3 @@ $enc = $this->encoder();
 ?>
 <link class="account-favorite" rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-favorite.css', 'fs-theme', true ) ) ?>">
 <script defer class="account-favorite" src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/account-favorite.js', 'fs-theme', true ) ) ?>"></script>
-
-<?= $this->get( 'favoriteHeader' ) ?>
