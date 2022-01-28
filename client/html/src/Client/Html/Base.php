@@ -29,6 +29,7 @@ abstract class Base
 	private $object;
 	private $context;
 	private $subclients;
+	private $cachedView;
 
 
 	/**
@@ -43,13 +44,35 @@ abstract class Base
 
 
 	/**
+	 * Returns the HTML code for insertion into the body.
+	 *
+	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
+	 * @return string HTML code
+	 */
+	public function body( string $uid = '' ) : string
+	{
+		$html = '';
+		$type = $this->clientType();
+		$context = $this->context();
+
+		$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
+
+		foreach( $this->getSubClients() as $subclient ) {
+			$html .= $subclient->setView( $view )->body( $uid );
+		}
+
+		return $view->set( 'body', $html )
+			->render( $view->config( 'client/html/${type}/template-body', $type . '/body' ) );
+	}
+
+
+	/**
 	 * Adds the data to the view object required by the templates
 	 *
 	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
-	 * @since 2018.01
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
@@ -62,6 +85,19 @@ abstract class Base
 
 
 	/**
+	 * Returns the sub-client given by its name.
+	 *
+	 * @param string $type Name of the client type
+	 * @param string|null $name Name of the sub-client (Default if null)
+	 * @return \Aimeos\Client\Html\Iface Sub-client object
+	 */
+	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
+	{
+		return $this->createSubClient( $this->clientType() . '/' . $type, $name );
+	}
+
+
+	/**
 	 * Returns the HTML string for insertion into the header.
 	 *
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
@@ -69,13 +105,10 @@ abstract class Base
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$html = '';
+		$type = $this->clientType();
+		$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
 
-		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $this->view )->header( $uid );
-		}
-
-		return $html;
+		return $view->render( $view->config( 'client/html/${type}/template-header', $type . '/header' ) );
 	}
 
 
@@ -375,6 +408,17 @@ abstract class Base
 
 
 	/**
+	 * Returns the client type of the class
+	 *
+	 * @return Client type, e.g. "catalog/detail"
+	 */
+	protected function clientType() : string
+	{
+		return strtolower( trim( dirname( str_replace( '\\', '/', substr( get_class( $this ), 19 ) ) ), '/' ) );
+	}
+
+
+	/**
 	 * Returns the sub-client given by its name.
 	 *
 	 * @param string $path Name of the sub-part in lower case (can contain a path like catalog/filter/tree)
@@ -473,7 +517,10 @@ abstract class Base
 	 *
 	 * @return array List of HTML client names
 	 */
-	abstract protected function getSubClientNames() : array;
+	protected function getSubClientNames() : array
+	{
+		return [];
+	}
 
 
 	/**
