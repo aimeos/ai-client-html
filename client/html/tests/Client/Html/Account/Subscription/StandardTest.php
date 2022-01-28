@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getSubscription()
 	{
-		$manager =  \Aimeos\MShop::create( $this->context, 'subscription' );
+		$manager = \Aimeos\MShop::create( $this->context, 'subscription' );
 		$filter = $manager->filter()->add( 'subscription.dateend', '==', '2010-01-01' );
 
 		return $manager->search( $filter )->first( new \Exception( 'No subscription item found' ) );

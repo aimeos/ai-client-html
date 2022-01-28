@@ -180,19 +180,19 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 							<?php if( !empty( $item->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
 								<?= $this->partial(
 									/** client/html/account/subscription/summary/address
-									* Location of the address partial template for the account subscription component
-									*
-									* To configure an alternative template for the address partial, you
-									* have to configure its path relative to the template directory
-									* (usually client/html/templates/). It's then used to display the
-									* payment or delivery address block in the account subscription component.
-									*
-									* @param string Relative path to the address partial
-									* @since 2018.04
-									* @category Developer
-									* @see client/html/account/subscription/summary/detail
-									* @see client/html/account/subscription/summary/service
-									*/
+									 * Location of the address partial template for the account subscription component
+									 *
+									 * To configure an alternative template for the address partial, you
+									 * have to configure its path relative to the template directory
+									 * (usually client/html/templates/). It's then used to display the
+									 * payment or delivery address block in the account subscription component.
+									 *
+									 * @param string Relative path to the address partial
+									 * @since 2018.04
+									 * @category Developer
+									 * @see client/html/account/subscription/summary/detail
+									 * @see client/html/account/subscription/summary/service
+									 */
 									$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
 									array( 'addresses' => $item->getBaseItem()->getAddress( 'payment' ), 'type' => 'payment' )
 								) ?>
@@ -227,19 +227,19 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 					<div class="basket">
 						<?= $this->partial(
 							/** client/html/account/subscription/summary/detail
-							* Location of the detail partial template for the account subscription component
-							*
-							* To configure an alternative template for the detail partial, you
-							* have to configure its path relative to the template directory
-							* (usually client/html/templates/). It's then used to display the
-							* product detail block in the account subscription component.
-							*
-							* @param string Relative path to the detail partial
-							* @since 2018.04
-							* @category Developer
-							* @see client/html/account/subscription/summary/address
-							* @see client/html/account/subscription/summary/service
-							*/
+							 * Location of the detail partial template for the account subscription component
+							 *
+							 * To configure an alternative template for the detail partial, you
+							 * have to configure its path relative to the template directory
+							 * (usually client/html/templates/). It's then used to display the
+							 * product detail block in the account subscription component.
+							 *
+							 * @param string Relative path to the detail partial
+							 * @since 2018.04
+							 * @category Developer
+							 * @see client/html/account/subscription/summary/address
+							 * @see client/html/account/subscription/summary/service
+							 */
 							$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
 							array(
 								'summaryBasket' => $item->getBaseItem(),

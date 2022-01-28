@@ -179,19 +179,19 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 								<?php if( !empty( $orderItem->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
 									<?= $this->partial(
 										/** client/html/account/history/summary/address
-											* Location of the address partial template for the account history component
-											*
-											* To configure an alternative template for the address partial, you
-											* have to configure its path relative to the template directory
-											* (usually client/html/templates/). It's then used to display the
-											* payment or delivery address block in the account history component.
-											*
-											* @param string Relative path to the address partial
-											* @since 2017.01
-											* @category Developer
-											* @see client/html/account/history/summary/detail
-											* @see client/html/account/history/summary/service
-											*/
+										 * Location of the address partial template for the account history component
+										 *
+										 * To configure an alternative template for the address partial, you
+										 * have to configure its path relative to the template directory
+										 * (usually client/html/templates/). It's then used to display the
+										 * payment or delivery address block in the account history component.
+										 *
+										 * @param string Relative path to the address partial
+										 * @since 2017.01
+										 * @category Developer
+										 * @see client/html/account/history/summary/detail
+										 * @see client/html/account/history/summary/service
+										 */
 										$this->config( 'client/html/account/history/summary/address', 'common/summary/address' ),
 										array( 'addresses' => $orderItem->getBaseItem()->getAddress( 'payment' ), 'type' => 'payment' )
 									) ?>
@@ -228,19 +228,19 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 								<?php if( !empty( $orderItem->getBaseItem()->getService( 'delivery' ) ) ) : ?>
 									<?= $this->partial(
 										/** client/html/account/history/summary/service
-											* Location of the service partial template for the account history component
-											*
-											* To configure an alternative template for the service partial, you
-											* have to configure its path relative to the template directory
-											* (usually client/html/templates/). It's then used to display the
-											* payment or delivery service block in the account history component
-											*
-											* @param string Relative path to the service partial
-											* @since 2017.01
-											* @category Developer
-											* @see client/html/account/history/summary/address
-											* @see client/html/account/history/summary/detail
-											*/
+										 * Location of the service partial template for the account history component
+										 *
+										 * To configure an alternative template for the service partial, you
+										 * have to configure its path relative to the template directory
+										 * (usually client/html/templates/). It's then used to display the
+										 * payment or delivery service block in the account history component
+										 *
+										 * @param string Relative path to the service partial
+										 * @since 2017.01
+										 * @category Developer
+										 * @see client/html/account/history/summary/address
+										 * @see client/html/account/history/summary/detail
+										 */
 										$this->config( 'client/html/account/history/summary/service', 'common/summary/service' ),
 										array( 'service' => $orderItem->getBaseItem()->getService( 'delivery' ), 'type' => 'delivery' )
 									) ?>
@@ -303,19 +303,19 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 						<div class="basket col-sm-12">
 							<?= $this->partial(
 								/** client/html/account/history/summary/detail
-									* Location of the detail partial template for the account history component
-									*
-									* To configure an alternative template for the detail partial, you
-									* have to configure its path relative to the template directory
-									* (usually client/html/templates/). It's then used to display the
-									* product detail block in the account history component.
-									*
-									* @param string Relative path to the detail partial
-									* @since 2017.01
-									* @category Developer
-									* @see client/html/account/history/summary/address
-									* @see client/html/account/history/summary/service
-									*/
+								 * Location of the detail partial template for the account history component
+								 *
+								 * To configure an alternative template for the detail partial, you
+								 * have to configure its path relative to the template directory
+								 * (usually client/html/templates/). It's then used to display the
+								 * product detail block in the account history component.
+								 *
+								 * @param string Relative path to the detail partial
+								 * @since 2017.01
+								 * @category Developer
+								 * @see client/html/account/history/summary/address
+								 * @see client/html/account/history/summary/service
+								 */
 								$this->config( 'client/html/account/history/summary/detail', 'common/summary/detail' ),
 								array(
 									'summaryBasket' => $orderItem->getBaseItem(),
