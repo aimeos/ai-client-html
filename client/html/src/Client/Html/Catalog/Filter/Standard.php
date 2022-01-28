@@ -289,16 +289,9 @@ class Standard
 
 			try
 			{
-				$html = ' ';
-
 				if( !isset( $this->view ) ) {
 					$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
 				}
-
-				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->header( $uid );
-				}
-				$view->filterHeader = $html;
 
 				$html = $view->render( $view->config( $tplconf, $default ) );
 
