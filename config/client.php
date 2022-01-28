@@ -4,7 +4,7 @@ return [
 	'html' => [
 		'common' => [
 			'decorators' => [
-				'default' => ['Context']
+				'default' => ['Exceptions', 'Context']
 			],
 		],
 		'catalog' => [
