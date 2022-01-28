@@ -53,7 +53,6 @@ abstract class Base
 	{
 		$html = '';
 		$type = $this->clientType();
-		$context = $this->context();
 
 		$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
 
@@ -410,7 +409,7 @@ abstract class Base
 	/**
 	 * Returns the client type of the class
 	 *
-	 * @return Client type, e.g. "catalog/detail"
+	 * @return string Client type, e.g. "catalog/detail"
 	 */
 	protected function clientType() : string
 	{

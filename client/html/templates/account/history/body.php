@@ -324,7 +324,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 										'summaryNamedTaxes' => $orderItem->getBaseItem()->get( 'summaryNamedTaxes', [] ),
 										'summaryCostsPayment' => $orderItem->getBaseItem()->get( 'summaryCostsPayment', [] ),
 										'summaryCostsDelivery' => $orderItem->getBaseItem()->get( 'summaryCostsDelivery', [] ),
-										'summaryShowDownloadAttributes' => $orderItem->getBaseItem()->get( 'summaryShowDownloadAttributes' ),
+										'summaryShowDownloadAttributes' => $orderItem->getBaseItem()->get( 'summaryDownload', false ),
 									)
 								) ?>
 							</div>
