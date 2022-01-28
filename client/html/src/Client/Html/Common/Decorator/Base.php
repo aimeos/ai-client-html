@@ -175,7 +175,7 @@ abstract class Base
 	 *
 	 * @return \Aimeos\Client\Html\Iface HTML client
 	 */
-	protected function getClient()
+	protected function client()
 	{
 		return $this->client;
 	}

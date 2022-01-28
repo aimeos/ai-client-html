@@ -45,6 +45,6 @@ class Context extends Base implements Iface
 		$view->contextUserId = $context->user();
 		$view->contextGroupIds = $context->groups();
 
-		return $this->getClient()->data( $view, $tags, $expire );
+		return $this->client()->data( $view, $tags, $expire );
 	}
 }
