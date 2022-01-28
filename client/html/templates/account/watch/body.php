@@ -80,15 +80,6 @@ $enc = $this->encoder();
 ?>
 <section class="aimeos account-watch" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( ( $errors = $this->get( 'watchErrorList', [] ) ) !== [] ) : ?>
-		<ul class="error-list">
-			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?= $enc->html( $error ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
-
 	<?php if( !$this->get( 'watchItems', map() )->isEmpty() ) : ?>
 		<h1 class="header"><?= $this->translate( 'client', 'Watched products' ) ?></h1>
 
