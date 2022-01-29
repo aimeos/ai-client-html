@@ -34,27 +34,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
-
 		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
 
-
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Review\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEquals( null, $object->header() );
+		$this->assertStringContainsString( '<link rel="stylesheet"', $output );
+		$this->assertStringContainsString( '<script defer', $output );
 	}
 
 
@@ -63,93 +46,34 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
 
+		$this->view = $this->object->data( $this->view );
+		$this->view->reviewProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
+
 		$output = $this->object->body();
-		$this->assertStringStartsWith( '<section class="aimeos account-review"', $output );
+
+		$this->assertStringContainsString( '<section class="aimeos account-review"', $output );
+		$this->assertStringContainsString( 'ABCD/16 discs', $output );
 	}
 
 
-	public function testBodyHtmlException()
+	public function getInit()
 	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Review\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
+		$param = ['review-todo' => [['review.rating' => 5]]];
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
+
+		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Review\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->setMethods( ['save'] )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
+		$stub->expects( $this->once() )->method( 'save' );
 
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Review\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Review\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Review\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
-	}
-
-
-	public function testInit()
-	{
+		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', $stub );
 		$this->object->init();
+		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', null );
 
-		$this->assertEmpty( $this->view->get( 'reviewErrorList' ) );
+		$this->assertCount( 1, $this->view->get( 'reviewInfoList' ) );
 	}
 }
