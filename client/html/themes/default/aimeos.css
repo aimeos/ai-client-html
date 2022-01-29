@@ -52,9 +52,9 @@
 	--ai-secondary-alt: #555;
 	--ai-tertiary: #CCC;
 	--ai-tertiary-alt: #F6F6F6;
-	--ai-danger: #FF3300;
-	--ai-warning: #FFA500;
+	--ai-danger: #A00000;
 	--ai-success: #006000;
+	--ai-warning: #FFA500;
 	--ai-radius: 0;
 	--ai-radius-round: 50%;
 	--ai-product-image-ratio: 3/4;
@@ -793,6 +793,10 @@ body > .content, body .main-section {
 	transition: opacity .3s linear;
 }
 
+.aimeos .product {
+	color: var(--ai-primary);
+}
+
 .aimeos .product-item .badges {
 	position: absolute;
 	text-align: start;
@@ -869,6 +873,7 @@ body > .content, body .main-section {
 	position: absolute;
 	display: inline-block;
 	background-color: var(--ai-danger);
+	color: var(--ai-bg);
 	padding: 0.2rem;
 	z-index: 2;
 	right: 0;
@@ -951,7 +956,7 @@ body > .content, body .main-section {
 
 .aimeos .product .stocklevel {
 	display: inline-block;
-	border-radius: --var(--ai-radius-round);
+	border-radius: var(--ai-radius-round);
 	margin-top: 0;
 	height: 1rem;
 	width: 1rem;
@@ -987,5 +992,4 @@ body > .content, body .main-section {
 
 .aimeos .product .addbasket button {
 	margin: 0;
-	width: calc(100% - 4rem);
 }

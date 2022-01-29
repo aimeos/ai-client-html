@@ -11,6 +11,7 @@
 
 .catalog-home .stage-item {
 	background-color: var(--ai-bg);
+	color: var(--ai-bg);
 	margin: 0;
 }
 
@@ -31,6 +32,7 @@
 .catalog-home .stage-text .btn {
 	background-color: transparent;
 	border-color: var(--ai-bg);
+	color: var(--ai-bg);
 	border-width: 2px;
 	font-weight: normal;
 	margin-top: 1rem;
