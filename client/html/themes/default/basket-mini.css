@@ -29,7 +29,7 @@
 	top: 0;
 	right: 0;
 	font-size: 75%;
-	border-radius: 1rem;
+	border-radius: --var(--ai-radius-round);
 	padding: 0.15rem 0.3rem;
 }
 

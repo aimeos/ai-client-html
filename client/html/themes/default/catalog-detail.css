@@ -628,8 +628,8 @@
 .catalog-detail-additional .nav-tabs .nav-link {
 	margin-bottom: -1px;
 	border: 1px solid transparent;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+	border-top-left-radius: var(--ai-radius);
+	border-top-right-radius: var(--ai-radius);
 	transition: all .3s linear;
 }
 
@@ -661,7 +661,7 @@
 	line-height: 1;
 	white-space: nowrap;
 	vertical-align: text-bottom;
-	border-radius: .25rem;
+	border-radius: var(--ai-radius);
 	background-color: var(--ai-warning);
 	color: var(--ai-bg);
 }

@@ -59,15 +59,15 @@
 
 .locale-select ul.select-menu ul {
 	list-style: none outside none;
-	background-color: var(--ai-primary);
 	position: absolute;
 	visibility: hidden;
 	z-index: 99999;
 	opacity: 0;
 	padding: 0.5rem 0;
 	z-index: 1000;
-	border-radius: .25rem;
+	border-radius: var(--ai-radius);
 	border: 1px solid var(--ai-tertiary);
+	background-color: var(--ai-primary);
 }
 
 .locale-select ul.select-menu ul li {
