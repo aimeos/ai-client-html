@@ -38,55 +38,55 @@ class Standard
 		$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
 
 		/** client/html/basket/related/bought/limit
-		* Number of items in the list of bought together products
-		*
-		* This option limits the number of suggested products in the
-		* list of bought together products. The suggested items are
-		* calculated using the products that are in the current basket
-		* of the customer.
-		*
-		* Note: You need to start the job controller for calculating
-		* the bought together products regularly to get up to date
-		* product suggestions.
-		*
-		* @param integer Number of products
-		* @since 2014.09
-		*/
+		 * Number of items in the list of bought together products
+		 *
+		 * This option limits the number of suggested products in the
+		 * list of bought together products. The suggested items are
+		 * calculated using the products that are in the current basket
+		 * of the customer.
+		 *
+		 * Note: You need to start the job controller for calculating
+		 * the bought together products regularly to get up to date
+		 * product suggestions.
+		 *
+		 * @param integer Number of products
+		 * @since 2014.09
+		 */
 		$size = $config->get( 'client/html/basket/related/bought/limit', 6 );
 
 		/** client/html/basket/related/bought/domains
-		* The list of domain names whose items should be available in the template for the products
-		*
-		* The templates rendering product details usually add the images,
-		* prices and texts, etc. associated to the product
-		* item. If you want to display additional or less content, you can
-		* configure your own list of domains (attribute, media, price, product,
-		* text, etc. are domains) whose items are fetched from the storage.
-		* Please keep in mind that the more domains you add to the configuration,
-		* the more time is required for fetching the content!
-		*
-		* @param array List of domain names
-		* @since 2014.09
-		* @category Developer
-		*/
+		 * The list of domain names whose items should be available in the template for the products
+		 *
+		 * The templates rendering product details usually add the images,
+		 * prices and texts, etc. associated to the product
+		 * item. If you want to display additional or less content, you can
+		 * configure your own list of domains (attribute, media, price, product,
+		 * text, etc. are domains) whose items are fetched from the storage.
+		 * Please keep in mind that the more domains you add to the configuration,
+		 * the more time is required for fetching the content!
+		 *
+		 * @param array List of domain names
+		 * @since 2014.09
+		 * @category Developer
+		 */
 		$domains = $config->get( 'client/html/basket/related/bought/domains', ['text', 'price', 'media'] );
 		$domains['product'] = ['bought-together'];
 
 		/** client/html/basket/related/basket-add
-		* Display the "add to basket" button for each product item
-		*
-		* Enables the button for adding products to the basket for the related products
-		* in the basket. This works for all type of products, even for selection products
-		* with product variants and product bundles. By default, also optional attributes
-		* are displayed if they have been associated to a product.
-		*
-		* @param boolean True to display the button, false to hide it
-		* @since 2020.10
-		* @see client/html/catalog/home/basket-add
-		* @see client/html/catalog/lists/basket-add
-		* @see client/html/catalog/detail/basket-add
-		* @see client/html/catalog/product/basket-add
-		*/
+		 * Display the "add to basket" button for each product item
+		 *
+		 * Enables the button for adding products to the basket for the related products
+		 * in the basket. This works for all type of products, even for selection products
+		 * with product variants and product bundles. By default, also optional attributes
+		 * are displayed if they have been associated to a product.
+		 *
+		 * @param boolean True to display the button, false to hide it
+		 * @since 2020.10
+		 * @see client/html/catalog/home/basket-add
+		 * @see client/html/catalog/lists/basket-add
+		 * @see client/html/catalog/detail/basket-add
+		 * @see client/html/catalog/product/basket-add
+		 */
 		if( $view->config( 'client/html/basket/related/basket-add', false ) ) {
 			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
 		}
