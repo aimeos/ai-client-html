@@ -11,17 +11,23 @@ $enc = $this->encoder();
 ?>
 <section class="aimeos basket-related" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( isset( $this->relatedErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->relatedErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
+	<?php if( !$this->get( 'boughtItems', map() )->isEmpty() ) : ?>
+
+		<section class="basket-related-bought">
+			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ) ?></h2>
+
+			<?= $this->partial(
+				$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
+				[
+					'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
+					'basket-add' => $this->config( 'client/html/basket/related/basket-add', false ),
+					'products' => $this->get( 'boughtItems', map() ),
+					'itemprop' => 'isRelatedTo'
+				]
+			) ?>
+
+		</section>
+
 	<?php endif ?>
-
-
-	<h1><?= $enc->html( $this->translate( 'client', 'Related' ), $enc::TRUST ) ?></h1>
-
-	<?= $this->block()->get( 'basket/related/bought' ) ?>
 
 </section>

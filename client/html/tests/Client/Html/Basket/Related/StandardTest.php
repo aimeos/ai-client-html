@@ -27,105 +27,50 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function tearDown() : void
 	{
 		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
 	public function testHeader()
 	{
 		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
 
-
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Related\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEquals( null, $object->header() );
+		$this->assertStringContainsString( '<link rel="stylesheet"', $output );
+		$this->assertStringContainsString( '<script defer', $output );
 	}
 
 
 	public function testBody()
 	{
+		$cntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$basket = $cntl->get()->addProduct( $this->getOrderProductItem( 'CNE' ) );
+		$cntl->save();
+
 		$output = $this->object->body();
-		$this->assertStringStartsWith( '<section class="aimeos basket-related"', $output );
+
+		$this->assertStringContainsString( '<section class="basket-related', $output );
+		$this->assertStringContainsString( '<section class="basket-related-bought', $output );
+		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );
 	}
 
 
-	public function testBodyHtmlException()
+	/**
+	 * @param string $code
+	 * @return \Aimeos\MShop\Order\Item\Base\Product\Iface
+	 */
+	protected function getOrderProductItem( $code )
 	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Related\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
+		$search = $manager->filter();
+		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
+		if( ( $item = $manager->search( $search )->first() ) === null ) {
+			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
+		}
 
-		$object->setView( \TestHelperHtml::view() );
+		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
+		$orderItem = $manager->create()->copyFrom( $item )->setStockType( 'default' );
 
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Related\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Related\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testGetSubClient()
-	{
-		$client = $this->object->getSubClient( 'bought', 'Standard' );
-		$this->assertInstanceOf( '\\Aimeos\\Client\\HTML\\Iface', $client );
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
+		return $orderItem;
 	}
 }

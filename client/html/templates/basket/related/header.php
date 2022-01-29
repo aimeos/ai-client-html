@@ -11,5 +11,3 @@ $enc = $this->encoder();
 ?>
 <link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/basket-related.css', 'fs-theme', true ) ) ?>">
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/basket-related.js', 'fs-theme', true ) ) ?>"></script>
-
-<?= $this->get( 'relatedHeader' ) ?>
