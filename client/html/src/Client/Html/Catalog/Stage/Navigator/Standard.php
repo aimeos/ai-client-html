@@ -69,12 +69,6 @@ class Standard
 	{
 		$view = $this->view();
 
-		$html = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->body( $uid );
-		}
-		$view->navigatorBody = $html;
-
 		/** client/html/catalog/stage/navigator/template-body
 		 * Relative path to the HTML body template of the catalog stage navigator client.
 		 *

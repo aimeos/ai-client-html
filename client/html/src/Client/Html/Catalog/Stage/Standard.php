@@ -237,11 +237,6 @@ class Standard
 					$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
 				}
 
-				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->header( $uid );
-				}
-				$view->stageHeader = $html;
-
 				$html = $view->render( $view->config( $tplconf, $default ) );
 				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 
