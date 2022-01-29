@@ -4,8 +4,7 @@
 	margin: 2rem 0;
 }
 .basket-standard-main {
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-tertiary, #CCC);
+	border: 1px solid var(--ai-tertiary);
 	padding: 1rem;
 	margin: 0;
 }
@@ -51,15 +50,13 @@
 .basket-standard-coupon .btn-primary:hover {
 	background: none;
 	border: none;
-	color: #A00000;
-	color: var(--ai-primary, #A00000);
+	color: var(--ai-primary);
 	font-weight: bold;
 	font-size: 125%;
 }
 
 .basket-standard-coupon .input-group {
-	border-bottom: 1px solid #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	border-bottom: 1px solid var(--ai-secondary);
 }
 
 .basket-standard-coupon .coupon-new .btn {

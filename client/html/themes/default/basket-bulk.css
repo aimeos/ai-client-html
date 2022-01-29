@@ -6,14 +6,12 @@
 
 .basket-bulk .headline,
 .basket-bulk .bulk-content .details {
-	border-bottom: 1px solid #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	border-bottom: 1px solid var(--ai-secondary);
 	align-items: center;
 }
 
 .basket-bulk .headline {
-	background-color: #CCCCCC;
-	background-color: var(--ai-bg-light, #CCCCCC);
+	background-color: var(--ai-bg-light);
 	font-weight: bold;
 }
 
@@ -40,8 +38,7 @@
 }
 
 .basket-bulk .minibutton {
-	color: #A00000;
-	color: var(--ai-primary, #A00000);
+	color: var(--ai-primary);
 	line-height: 1;
 	width: 2.5rem;
 	padding: 0.75rem;
@@ -54,10 +51,8 @@
 	z-index: 1050;
 	overflow: auto;
 	box-sizing: border-box;
-	border: 1px solid #555;
-	border-color: var(--ai-secondary, #555);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	border: 1px solid var(--ai-secondary);
+	background-color: var(--ai-bg);
 }
 
 .autocomplete > div {
@@ -65,13 +60,11 @@
 }
 
 .autocomplete .group {
-	background-color: #F6F6F6;
-	background-color: var(--ai-bg-light, #F6F6F6);
+	background-color: var(--ai-bg-light);
 }
 
 .autocomplete > div:hover:not(.group),
 .autocomplete > div.selected {
 	cursor: pointer;
-	background-color: #CCC;
-	background-color: var(--ai-tertiary, #CCC);
+	background-color: var(--ai-tertiary);
 }

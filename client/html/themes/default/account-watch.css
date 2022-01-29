@@ -8,10 +8,8 @@
 	text-align: start;
 	font-weight: normal;
 	padding: 0.5rem 1rem;
-	color: #555;
-	color: var(--ai-secondary, #555);
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
+	border-bottom: 1px solid var(--ai-secondary);
 }
 
 .account-watch form.delete {
@@ -22,8 +20,7 @@
 }
 
 .account-watch .minibutton.delete {
-	background-color: #fff;
-	background-color: var(--ai-bg, #fff);
+	background-color: var(--ai-bg);
 	padding: .5rem 0.75rem;
 	z-index: 5;
 }

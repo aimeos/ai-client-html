@@ -66,10 +66,8 @@ body {
 	font-weight: 400;
 	line-height: 1.5;
 	text-align: start;
-	color: #000;
-	color: var(--ai-primary, #000);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	color: var(--ai-primary);
+	background-color: var(--ai-bg);
 }
 
 a {
@@ -109,23 +107,17 @@ img {
 	vertical-align: top;
 	border-radius: 0;
 	margin: .5rem 0;
-	color: #282828;
-	color: var(--ai-primary, #282828);
-	border: 1px solid #555;
-	border-color: var(--ai-secondary, #555);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	color: var(--ai-primary);
+	border: 1px solid var(--ai-secondary);
+	background-color: var(--ai-bg);
 	letter-spacing: 1.5px;
 }
 
 .aimeos .btn-primary,
 .aimeos .btn-primary:visited {
-	background-color: #282828;
-	background-color: var(--ai-primary, #282828);
-	border: 1px solid #282828;
-	border-color: var(--ai-primary, #282828);
-	color: #FFFFFF;
-	color: var(--ai-bg, #FFFFFF);
+	background-color: var(--ai-primary);
+	border: 1px solid var(--ai-primary);
+	color: var(--ai-bg);
 	letter-spacing: 1.5px;
 }
 
@@ -133,12 +125,9 @@ img {
 .aimeos .btn-primary:active,
 .aimeos .btn-primary:focus,
 .aimeos .btn-primary:not(:disabled):not(.disabled):active{
-	color: #CCC;
-	color: var(--ai-tertiary, #CCC);
-	border: 1px solid #282828;
-	border-color: var(--ai-primary, #282828);
-	background-color: #282828;
-	background-color: var(--ai-primary, #282828);
+	color: var(--ai-tertiary);
+	border: 1px solid var(--ai-primary);
+	background-color: var(--ai-primary);
 }
 
 .aimeos .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -156,18 +145,15 @@ img {
 .aimeos .form-control {
 	border: none;
 	border-radius: 0;
-	border-bottom: 1px solid #555;
-	border-bottom-color: var(--ai-secondary, #555);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
-	color: #555;
-	color: var(--ai-secondary, #555);
+	border-bottom: 1px solid var(--ai-secondary);
+	background-color: var(--ai-bg);
+	color: var(--ai-secondary);
 	box-shadow: none;
 	letter-spacing: 1.5px;
 }
 
 .aimeos .form-control::placeholder {
-	color: var(--ai-tertiary, #CCC);
+	color: var(--ai-tertiary);
 }
 
 .aimeos .form-control[type='checkbox'] {
@@ -188,8 +174,7 @@ img {
 .aimeos h3, .aimeos h4 {
 	font-weight: normal;
 	font-size: 100%;
-	color: #282828;
-	color: var(--ai-primary, #282828);
+	color: var(--ai-primary);
 }
 
 .aimeos h1, .aimeos h2 {
@@ -208,42 +193,35 @@ img {
 
 .aimeos a:link:not(.btn),
 .aimeos a:visited:not(.btn) {
-	color: #282828;
-	color: var(--ai-primary, #282828);
+	color: var(--ai-primary);
 	text-decoration: none;
 }
 
 .aimeos a:link:not(.btn):hover,
 .aimeos a:visited:not(.btn):hover {
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 	text-decoration: none;
 }
 
 .aimeos input {
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-tertiary, #CCC);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
-	color: #555;
-	color: var(--ai-secondary, #555);
+	border: 1px solid var(--ai-tertiary);
+	background-color: var(--ai-bg);
+	color: var(--ai-secondary);
 }
 
 .aimeos input:focus {
-	border-color: var(--ai-primary, #A00000);
 	outline: none;
 }
 
 .aimeos input:disabled,
 .aimeos select:disabled
 .aimeos textarea:disabled {
-	border-color: #e9ecef;
-	background-color: #e9ecef;
+	border-color: var(--ai-bg-alt);
+	background-color: var(--ai-bg-alt);
 }
 
 .aimeos .minibutton {
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 	vertical-align: middle;
 	display: inline-block;
 	font-size: 100%;
@@ -291,8 +269,7 @@ img {
 }
 
 .aimeos .error-list {
-	color: #FF3300;
-	color: var(--ai-danger, #FF3300);
+	color: var(--ai-danger);
 	padding: 0.5rem;
 	margin-bottom: 2rem;
 	list-style: none;
@@ -305,8 +282,7 @@ img {
 }
 
 .aimeos .info-list {
-	color: #008000;
-	color: var(--ai-info, #008000);
+	color: var(--ai-success);
 	padding: 0.5rem;
 	margin-bottom: 2rem;
 	list-style: none;
@@ -350,8 +326,7 @@ img {
 	text-align: center;
 	display: block;
 	clear: left;
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 	margin: 0;
 }
 
@@ -378,8 +353,7 @@ img {
 	text-decoration: none;
 	white-space: nowrap;
 	padding: 0.75rem;
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 }
 
 .aimeos .sort a:hover {
@@ -401,8 +375,7 @@ img {
 .aimeos .browser a {
 	display: inline-block;
 	padding: 0.75rem 1rem;
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 	text-align: center;
 	text-decoration: none;
 }
@@ -452,10 +425,8 @@ img {
 	position: absolute;
 	z-index: 1501;
 	opacity: 1;
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-tertiary, #CCC);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	border: 1px solid var(--ai-tertiary);
+	background-color: var(--ai-bg);
 	max-width: 65rem;
 	width: 98%;
 	padding: 1%;
@@ -481,9 +452,8 @@ img {
 	bottom:2rem;
 	right:1.5rem;
 	border: none;
-	color:#eee;
-	background-color: #FFA500;
-	background-color: var(--ai-warning, #FFA500);
+	color: var(--ai-bg-alt);
+	background-color: var(--ai-warning);
 	text-decoration:none;
 	cursor: pointer;
 	padding:.25rem;
@@ -503,10 +473,8 @@ img {
 }
 
 .back-to-top:hover {
-	background-color: #FFA500;
-	background-color: var(--ai-warning, #FFA500);
-	color: #000;
-	color: var(--ai-primary, #000);
+	background-color: var(--ai-warning);
+	color: var(--ai-primary);
 }
 
 .back-to-top.show {
@@ -517,10 +485,8 @@ img {
 /*---------------------------------- Footer ----------------------------------*/
 
 footer {
-	color: #FFFFFF;
-	color: var(--ai-bg, #FFFFFF);
-	background-color: #282828;
-	background-color: var(--ai-primary, #282828);
+	color: var(--ai-bg);
+	background-color: var(--ai-primary);
 	padding: 3rem;
 }
 
@@ -546,13 +512,11 @@ footer p {
 
 footer p a {
 	letter-spacing: 1.5px;
-	color: #FFFFFF;
-	color: var(--ai-bg, #FFFFFF);
+	color: var(--ai-bg);
 }
 
 footer p a:hover {
-	color: #CCCCCC;
-	color: var(--ai-tertiary, #CCCCCC);
+	color: var(--ai-tertiary);
 	transition: color .3s;
 	text-decoration: none;
 }
@@ -648,8 +612,7 @@ body > .content, body .main-section {
 
 .navbar {
 	padding: 0 1rem;
-	color: #282828;
-	color: var(--ai-primary, #282828);
+	color: var(--ai-primary);
 	background-color: transparent;
 	position: fixed;
 	top: 0;
@@ -662,8 +625,7 @@ body > .content, body .main-section {
 .navbar.scroll {
 	padding: 0 1rem;
 	background-size: 100% 4rem;
-	background-color: #282828 !important;
-	background-color: var(--ai-primary, #282828) !important;
+	background-color: var(--ai-primary) !important;
 }
 
 .navbar-collapse {
@@ -675,14 +637,13 @@ body > .content, body .main-section {
 }
 
 .navbar-nav .active > .nav-link {
-	color: #FFFFFF !important;
+	color: var(--ai-bg) !important;
 }
 
 .navbar-nav .dropdown-menu {
 	text-align: start;
-	background-color: #282828;
-	background-color: var(--ai-primary, #282828);
-	border: 1px solid #FFFFFF;
+	background-color: var(--ai-primary);
+	border: 1px solid var(--ai-bg);
 	left: auto;
 	right: 0;
 	position: absolute;
@@ -692,8 +653,7 @@ body > .content, body .main-section {
 .navbar-default .navbar-nav .nav-link,
 .navbar-default-transition .navbar-nav .nav-link,
 .navbar-default-transition.navbar-transition .navbar-nav .nav-link {
-	color: #FFFFFF;
-	color: var(--ai-bg, #FFFFFF);
+	color: var(--ai-bg);
 	padding: .25rem .5rem;
 }
 
@@ -701,8 +661,7 @@ body > .content, body .main-section {
 .navbar-default .navbar-nav .nav-link:hover,
 .navbar-default-transition .navbar-nav .nav-link:hover,
 .navbar-default-transition.navbar-transition .navbar-nav .nav-link:hover {
-	color: #CCCCCC;
-	color: var(--ai-tertiary, #CCCCCC);
+	color: var(--ai-tertiary);
 }
 
 .navbar-nav .dropdown-menu button {
@@ -772,8 +731,7 @@ body > .content, body .main-section {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	text-decoration: none;
 	font-size: 165%;
-	color: #FFFFFF;
-	color: var(--ai-bg, #FFFFFF);
+	color: var(--ai-bg);
 	display: block;
 	position: relative;
 	text-align: center;
@@ -795,12 +753,11 @@ body > .content, body .main-section {
 }
 
 .navbar-nav .dropdown-menu {
-	color: var(--ai-bg, #FFF);
+	color: var(--ai-bg);
 }
 
 .navbar-nav .dropdown-item:focus, .dropdown-item:hover {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
+	background-color: var(--ai-secondary);
   }
 
 /* Product */
@@ -837,7 +794,6 @@ body > .content, body .main-section {
 .aimeos .product-item .badges {
 	position: absolute;
 	text-align: start;
-	color: #fff;
 	z-index: 2;
 }
 
@@ -849,12 +805,12 @@ body > .content, body .main-section {
 }
 
 .aimeos .product-item.new .badge-item.new {
-	background-color: #282828;
+	background-color: var(--ai-primary);
 	display: block;
 }
 
 .aimeos .product-item.sale .badge-item.sale {
-	background-color: #A00000;
+	background-color: var(--ai-danger);
 	display: inline-block;
 	padding: .1rem .5rem;
 	font-weight: bold;
@@ -884,8 +840,7 @@ body > .content, body .main-section {
 }
 
 .aimeos .product .stars {
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 	position: relative;
 	display: inline-block;
 }
@@ -911,9 +866,8 @@ body > .content, body .main-section {
 .aimeos .product .price-item .rebatepercent {
 	position: absolute;
 	display: inline-block;
-	background-color: #A00000;
+	background-color: var(--ai-danger);
 	padding: 0.2rem;
-	color: #FFF;
 	z-index: 2;
 	right: 0;
 	top: 0;
@@ -944,8 +898,7 @@ body > .content, body .main-section {
 
 .aimeos .product .text-list {
 	display: block;
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 	letter-spacing: 1.5px;
 	overflow: hidden;
 }
@@ -1008,17 +961,15 @@ body > .content, body .main-section {
 
 .aimeos .product .stock-unlimited .stocklevel,
 .aimeos .product .stock-high .stocklevel {
-	background-color: #006000;
-	background-color: var(--ai-success, #006000);
+	background-color: var(--ai-success);
 }
 
 .aimeos .product .stock-low .stocklevel {
-	background-color: #E08000;
-	background-color: var(--ai-warning, #E08000);
+	background-color: var(--ai-warning);
 }
 
 .aimeos .product .stock-out .stocklevel {
-	background-color: #A00000;
+	background-color: var(--ai-danger);
 }
 
 .aimeos .product .addbasket .input-group {
@@ -1026,8 +977,7 @@ body > .content, body .main-section {
 }
 
 .aimeos .product .addbasket input {
-	border: 1px solid #555;
-	border-color: var(--ai-secondary, #555);
+	border: 1px solid var(--ai-secondary);
 	text-align: center;
 	width: 4rem;
 	margin: 0;

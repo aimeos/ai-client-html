@@ -29,8 +29,7 @@ aside:nth-child(1) {
 .catalog-session-pinned,
 .catalog-session-seen {
 	margin-bottom: 1rem;
-	border: 1px solid #F6F6F6;
-	border-color: var(--ai-tertiary-alt, #F6F6F6);
+	border: 1px solid var(--ai-tertiary-alt);
 }
 
 .catalog-session-seen .seen-items,

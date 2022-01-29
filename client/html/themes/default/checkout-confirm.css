@@ -19,8 +19,7 @@
 }
 
 .checkout-confirm-basic h2 {
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	border-bottom: 1px solid var(--ai-secondary);
 	padding: 0.5rem 1rem;
 	margin: 0.5rem;
 	margin-top: 0;

@@ -16,14 +16,12 @@
 }
 
 .basket-related-bought .header {
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	border-bottom: 1px solid var(--ai-secondary);
 	text-transform: uppercase;
 	text-align: start;
 	font-weight: normal;
 	padding: 0.5rem 1rem;
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 }
 
 .basket-related-bought .product {
@@ -37,8 +35,7 @@
 }
 
 .basket-related-bought .media-list {
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	background-color: var(--ai-bg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;

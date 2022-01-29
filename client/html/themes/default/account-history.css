@@ -7,15 +7,12 @@
 	text-align: start;
 	font-weight: normal;
 	padding: 0.5rem 1rem;
-	color: #555;
-	color: var(--ai-secondary, #555);
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
+	border-bottom: 1px solid var(--ai-secondary);
 }
 
 .account-history .history-item {
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-tertiary, #CCC);
+	border: 1px solid var(--ai-tertiary);
 	padding: 1rem;
 	margin: 1rem;
 }
@@ -33,8 +30,7 @@
 }
 
 .account-history .action .btn {
-	border: 1px solid #555;
-	border-color: var(--ai-secondary, #555);
+	border: 1px solid var(--ai-secondary);
 	display: block;
 	width: 100%;
 	max-width: 6rem;

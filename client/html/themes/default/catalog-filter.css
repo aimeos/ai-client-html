@@ -13,8 +13,7 @@
 
 aside .catalog-filter section {
 	margin-bottom: 1rem;
-	border: 1px solid #F0F0F0;
-	border-color: var(--ai-light, #F0F0F0);
+	border: 1px solid var(--ai-bg-light);
 }
 
 .catalog-filter h1 {
@@ -37,7 +36,7 @@ aside .catalog-filter section {
 .catalog-filter-tree .disabled > .cat-item:visited,
 .catalog-filter-supplier .disabled .attr-name,
 .catalog-filter-attribute .disabled .attr-name {
-	color: #A0A0A0;
+	color: var(--ai-tertiary);
 }
 
 .catalog-filter-tree .cat-count:before,
@@ -82,10 +81,8 @@ aside .catalog-filter section {
 
 .catalog-filter-attribute fieldset,
 .catalog-filter-supplier fieldset {
-	color: #555;
-	color: var(--ai-secondary, #555);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	color: var(--ai-secondary);
+	background-color: var(--ai-bg);
 	font-weight: normal;
 	text-align: start;
 	display: block;
@@ -128,8 +125,7 @@ aside .catalog-filter section {
 
 .catalog-filter-attribute label:before,
 .catalog-filter-supplier label:before {
-	border: 1px solid #555;
-	border-color: var(--ai-secondary, #555);
+	border: 1px solid var(--ai-secondary);
 	display: inline-block;
 	vertical-align: top;
 	cursor: pointer;
@@ -175,8 +171,7 @@ aside .catalog-filter section {
 
 .catalog-filter-attribute input.attr-item,
 .catalog-filter-supplier input.attr-item {
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-tertiary, #CCC);
+	border: 1px solid var(--ai-tertiary);
 }
 
 .catalog-filter-attribute input.attr-item[type=checkbox],
@@ -276,8 +271,7 @@ aside .catalog-filter section {
 }
 
 .catalog-filter-price input[type=range]::-webkit-slider-runnable-track {
-	background-color: #D0D0D0;
-	background-color: var(--ai-tertiary, #CCC);
+	background-color: var(--ai-tertiary);
 	border-radius: 0.1rem;
 	border: none;
 	cursor: ew-resize;
@@ -287,14 +281,12 @@ aside .catalog-filter section {
 }
 
 .catalog-filter-price input[type=range]:focus::-webkit-slider-runnable-track {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
+	background-color: var(--ai-secondary);
 }
 
 .catalog-filter-price input[type=range]::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
+	background-color: var(--ai-secondary);
 	border-radius: 50%;
 	cursor: ew-resize;
 	height: 1.5rem;
@@ -303,8 +295,7 @@ aside .catalog-filter section {
 }
 
 .catalog-filter-price input[type=range]::-moz-range-track {
-	background-color: #D0D0D0;
-	background-color: var(--ai-tertiary, #CCC);
+	background-color: var(--ai-tertiary);
 	cursor: pointer;
 	height: 0.2rem;
 	width: 100%;
@@ -312,13 +303,11 @@ aside .catalog-filter section {
 }
 
 .catalog-filter-price input[type="range"]::-moz-range-progress {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
+	background-color: var(--ai-secondary);
 }
 
 .catalog-filter-price input[type=range]::-moz-range-thumb {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
+	background-color: var(--ai-secondary);
 	border-radius: 50%;
 	cursor: pointer;
 	height: 1.5rem;
@@ -336,22 +325,19 @@ aside .catalog-filter section {
 }
 
 .catalog-filter-price input[type=range]::-ms-fill-lower {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
+	background-color: var(--ai-secondary);
 	border-radius: 50%;
 	border: none;
 }
 
 .catalog-filter-price input[type=range]::-ms-fill-upper {
-	background-color: #D0D0D0;
-	background-color: var(--ai-tertiary, #CCC);
+	background-color: var(--ai-tertiary);
 	border-radius: 50%;
 	border: none;
 }
 
 .catalog-filter-price input[type=range]::-ms-thumb {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
+	background-color: var(--ai-secondary);
 	border-radius: 50%;
 	border: none;
 	cursor: pointer;
@@ -360,13 +346,11 @@ aside .catalog-filter section {
 }
 
 .catalog-filter-price input[type=range]:focus::-ms-fill-lower {
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
+	background-color: var(--ai-secondary);
 }
 
 .catalog-filter-price input[type=range]:focus::-ms-fill-upper {
-	background-color: #D0D0D0;
-	background-color: var(--ai-tertiary, #CCC);
+	background-color: var(--ai-tertiary);
 }
 
 .catalog-filter-price .price-high, .catalog-filter-price .price-low {
@@ -380,7 +364,7 @@ aside .catalog-filter section {
 /* Catalog search section */
 
 .catalog-filter-search .input-group {
-	border: 1px solid var(--ai-tertiary, #CCC);
+	border: 1px solid var(--ai-tertiary);
 }
 
 .catalog-filter-search .input-group .btn,
@@ -395,7 +379,7 @@ aside .catalog-filter section {
 }
 
 .catalog-filter-search .input-group .reset {
-	color: var(--ai-tertiary, #CCC);
+	color: var(--ai-tertiary);
 }
 
 .catalog-filter-search .input-group .reset .symbol:before {
@@ -420,8 +404,7 @@ aside .catalog-filter section {
 	position: absolute;
 	right: 100%;
 	height: 100%;
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	background-color: var(--ai-bg);
 	min-width: 5rem;
 	margin: 0;
 }
@@ -456,8 +439,7 @@ aside .catalog-filter section {
 }
 
 .navbar .catalog-filter-search .input-group .btn-search {
-	color: #FFFFFF;
-	color: var(--ai-bg, #FFFFFF);
+	color: var(--ai-bg);
 }
 
 @media (min-width:768px) {
@@ -474,10 +456,8 @@ aside .catalog-filter section {
 	z-index: 1050;
 	overflow: auto;
 	box-sizing: border-box;
-	border: 1px solid #555;
-	border-color: var(--ai-secondary, #555);
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	background-color: var(--ai-bg);
+	border: 1px solid var(--ai-secondary);
 }
 
 .autocomplete > div {
@@ -485,22 +465,19 @@ aside .catalog-filter section {
 }
 
 .autocomplete .group {
-	background-color: #F6F6F6;
-	background-color: var(--ai-bg-light, #F6F6F6);
+	background-color: var(--ai-bg-light);
 }
 
 .autocomplete > div:hover:not(.group),
 .autocomplete > div.selected {
 	cursor: pointer;
-	background-color: #CCC;
-	background-color: var(--ai-tertiary, #CCC);
+	background-color: var(--ai-tertiary);
 }
 
 /* Suggested products in autocomplete */
 
 .aimeos.catalog-suggest {
-	border-bottom: solid 1px #D0D0D0;
-	border-bottom-color: var(--ai-tertiary, #CCC);
+	border-bottom: 1px solid var(--ai-tertiary);
 }
 
 .aimeos.catalog-suggest:last-child {
@@ -548,16 +525,14 @@ aside .catalog-filter section {
 
 .aimeos a.suggest-item:link:not(.btn),
 .aimeos a.suggest-item:visited:not(.btn) {
-	color: #282828;
-	color: var(--ai-primary, #282828);
+	color: var(--ai-primary);
 	text-decoration: none;
 	transition: color .3s;
 }
 
 .aimeos a.suggest-item:link:not(.btn):hover,
 .aimeos a.suggest-item:visited:not(.btn):hover {
-	color: #555555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 	text-decoration: none;
 	transition: color .3s;
 }
@@ -575,8 +550,7 @@ aside .catalog-filter section {
 }
 
 .catalog-filter-tree .category-selected .selected-category {
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-tertiary, #CCC);
+	border: 1px solid var(--ai-tertiary);
 	display: inline-block;
 	margin: 0.5rem;
 	padding: 0 0.25rem;
@@ -627,8 +601,7 @@ aside .catalog-filter section {
 	.catalog-filter-tree a.cat-link,
 	.catalog-filter-tree a.cat-link:link,
 	.catalog-filter-tree a.cat-link:visited {
-		color: #FFFFFF;
-		color: var(--ai-bg, #FFFFFF);
+		color: var(--ai-bg);
 		letter-spacing: 1.5px;
 		border: none;
 	}
@@ -636,8 +609,7 @@ aside .catalog-filter section {
 	.catalog-filter-tree a.cat-link:hover,
 	.catalog-filter-tree a.cat-link:link:hover,
 	.catalog-filter-tree a.cat-link:visited:hover {
-		color: #CCCCCC;
-		color: var(--ai-tertiary, #CCCCCC);
+		color: var(--ai-tertiary);
 	}
 
 	.catalog-filter-tree .level-1 {
@@ -663,8 +635,7 @@ aside .catalog-filter section {
 	}
 
 	.catalog-filter-tree .level-1 > .cat-item.hover > .submenu {
-		background-color: #282828;
-		background-color: var(--ai-primary, #282828);
+		background-color: var(--ai-primary);
 		animation: FadeIn .25s ease-in-out;
 		min-width: 12rem;
 		display: flex;
@@ -728,8 +699,7 @@ aside .catalog-filter section {
 		cursor: pointer;
 		display: block;
 		padding: 0.5rem;
-		color: #FFFFFF;
-		color: var(--ai-bg, #FFFFFF);
+		color: var(--ai-bg);
 	}
 
 	.catalog-filter-tree .menu::before {
@@ -752,8 +722,7 @@ aside .catalog-filter section {
 		width: 20rem;
 		z-index: 1031;
 		pointer-events: none;
-		background-color: #FFF;
-		background-color: var(--ai-bg, #FFF);
+		background-color: var(--ai-bg);
 		-webkit-overflow-scrolling: touch;
 		transition: transform .25s;
 		overflow: hidden auto;
@@ -785,15 +754,12 @@ aside .catalog-filter section {
 
 	.catalog-filter-tree .zeynep .header {
 		display: flex;
-		color: #FFF;
-		color: var(--ai-bg, #FFF);
-		background-color: #555;
-		background-color: var(--ai-secondary, #555);
+		color: var(--ai-bg);
+		background-color: var(--ai-secondary);
 	}
 
 	.catalog-filter-tree .zeynep .next {
-		color: #282828;
-		color: var(--ai-primary, #282828);
+		color: var(--ai-primary);
 	}
 
 	.catalog-filter-tree .zeynep .back,
@@ -831,8 +797,7 @@ aside .catalog-filter section {
 	}
 
 	.catalog-filter-tree .zeynep .next:hover {
-		color: #CCCCCC;
-		color: var(--ai-tertiary, #CCCCCC);
+		color: var(--ai-tertiary);
 	}
 
 	.catalog-filter-tree .zeynep .item-links .name {

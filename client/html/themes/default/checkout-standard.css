@@ -16,19 +16,14 @@
 }
 
 .checkout-standard .steps .active {
-	color: #A00000;
-	color: var(--ai-primary, #A00000);
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	color: var(--ai-primary);
+	border-bottom: 1px solid var(--ai-secondary);
 }
 
 .checkout-standard .steps .current {
-	color: #FFF;
-	color: var(--ai-bg, #FFF);
-	background-color: #555;
-	background-color: var(--ai-secondary, #555);
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	color: var(--ai-bg);
+	background-color: var(--ai-secondary);
+	border-bottom: 1px solid var(--ai-secondary);
 }
 
 .checkout-standard .steps .order,
@@ -41,10 +36,8 @@
 	vertical-align: top;
 	overflow: hidden;
 	width: 19%;
-	color: #D0D0D0;
-	color: var(--ai-tertiary, #CCC);
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	color: var(--ai-tertiary);
+	border-bottom: 1px solid var(--ai-secondary);
 	vertical-align: baseline;
 }
 
@@ -66,14 +59,12 @@
 }
 
 .checkout-standard .form-list .error {
-	color: #FF3300;
-	color: var(--ai-danger, #FF3300);
+	color: var(--ai-danger);
 }
 
 .checkout-standard .form-list .error input,
 .checkout-standard .form-list .error select {
-	border-bottom: solid 1px #FF3300;
-	border-bottom-color: var(--ai-danger, #FF3300);
+	border-bottom: 1px solid var(--ai-danger);
 }
 
 .checkout-standard .button-group {
@@ -97,9 +88,7 @@
 }
 
 .checkout-standard-address .item-address .header {
-	border: 1px solid;
-	border-color: #F6F6F6;
-	border-color: var(--ai-bg-light, #F6F6F6);
+	border: 1px solid var(--ai-bg-light);
 	padding: 1rem;
 	position: relative;
 }
@@ -231,10 +220,8 @@
 }
 
 .checkout-standard .item-service .form-item-value input:checked + label {
-	border-left-color: #CCCCCC;
-	border-left-color: var(--ai-tertiary, #CCCCCC);
-	background-color: #F8F8F8;
-	background-color: var(--ai-bg-light, #F8F8F8);
+	border-left-color: var(--ai-tertiary);
+	background-color: var(--ai-bg-light);
 }
 
 
@@ -252,8 +239,7 @@
 
 .checkout-standard-delivery .item,
 .checkout-standard-payment .item {
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-tertiary, #CCC);
+	border: 1px solid var(--ai-tertiary);
 	margin: 1rem 0.5rem;
 	text-align: start;
 }
@@ -321,15 +307,13 @@
 
 .aimeos .checkout-standard-summary-option-terms a:link:not(.btn),
 .aimeos .checkout-standard-summary-option-terms a:visited:not(.btn) {
-	color: #282828;
-	color: var(--ai-primary, #282828);
+	color: var(--ai-primary);
 	text-decoration: underline;
 }
 
 .aimeos .checkout-standard-summary-option-terms a:link:not(.btn):hover,
 .aimeos .checkout-standard-summary-option-terms a:visited:not(.btn):hover {
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 	text-decoration: underline;
 }
 

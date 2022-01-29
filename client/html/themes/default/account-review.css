@@ -1,12 +1,10 @@
 .account-review h1.header {
-	border-bottom: solid 1px #555;
-	border-bottom-color: var(--ai-secondary, #555);
+	border-bottom: 1px solid var(--ai-secondary);
 	text-transform: uppercase;
 	text-align: start;
 	font-weight: normal;
 	padding: 0.5rem 1rem;
-	color: #555;
-	color: var(--ai-secondary, #555);
+	color: var(--ai-secondary);
 }
 
 .account-review h2 {
@@ -35,15 +33,14 @@
 }
 
 .account-review .todo-rating input:checked ~ label {
-	color: var(--ai-primary, #A00000);
+	color: var(--ai-primary);
 }
 
 .account-review .todo-comment {
 	width: 100%;
 	height: 8.5rem;
 	padding: 0.5rem;
-	border: 1px solid #D0D0D0;
-	border-color: var(--ai-tertiary, #CCC);
+	border: 1px solid var(--ai-tertiary);
 }
 
 .account-review .btn {

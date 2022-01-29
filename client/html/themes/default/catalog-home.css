@@ -10,8 +10,7 @@
 }
 
 .catalog-home .stage-item {
-	background-color: #FFF;
-	background-color: var(--ai-bg, #FFF);
+	background-color: var(--ai-bg);
 	margin: 0;
 }
 
@@ -25,17 +24,15 @@
 	position: absolute;
 	font-size: 200%;
 	margin: 0 5%;
-	color: #FFFFFF;
 	text-align: start;
 	top: 33%;
 }
 
 .catalog-home .stage-text .btn {
 	background-color: transparent;
-	border-color: #FFFFFF;
+	border-color: var(--ai-bg);
 	border-width: 2px;
 	font-weight: normal;
-	color: #FFFFFF;
 	margin-top: 1rem;
 	font-size: 50%;
 	width: 12rem;
