@@ -34,14 +34,6 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 ?>
 <section class="aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->url( $jsonTarget, $jsonController, $jsonAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $jsonConfig ) ) ?>">
 
-	<?php if( isset( $this->bulkErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->bulkErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
 	<h1><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ) ?></h1>
 
 	<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">

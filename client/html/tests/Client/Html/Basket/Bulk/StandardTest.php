@@ -26,97 +26,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 
 	public function testHeader()
 	{
 		$output = $this->object->header();
-		$this->assertNotNull( $output );
-	}
 
-
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Bulk\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEquals( null, $object->header() );
+		$this->assertStringContainsString( '<link rel="stylesheet"', $output );
+		$this->assertStringContainsString( '<script defer', $output );
 	}
 
 
 	public function testBody()
 	{
 		$this->assertStringContainsString( '<section class="aimeos basket-bulk"', $this->object->body() );
-	}
-
-
-	public function testBodyHtmlException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Bulk\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Bulk\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Bulk\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
 	}
 }
