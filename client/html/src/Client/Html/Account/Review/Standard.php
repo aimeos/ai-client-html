@@ -63,7 +63,7 @@ class Standard
 
 		$orders = \Aimeos\Controller\Frontend::create( $context, 'order' )
 			->compare( '>', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING )
-			->compare( '<', 'order.base.ctime', date( 'Y-m-d H:i:s', time() - $days * 86400 ) )
+			->compare( '<=', 'order.base.ctime', date( 'Y-m-d H:i:s', time() - $days * 86400 ) )
 			->uses( ['order/base', 'order/base/product'] )
 			->sort( '-order.base.ctime' )
 			->slice( 0, $size )
