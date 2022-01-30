@@ -13,5 +13,3 @@ foreach( $this->response()->getHeaders() as $key => $value )
 		@header( $key . ': ' . $val );
 	}
 }
-
-echo $this->get( 'updateHeader' );
