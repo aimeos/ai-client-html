@@ -79,8 +79,6 @@ $enc = $this->encoder();
 
 			<?php endif ?>
 
-			</div>
-
 		</article>
 
 	<?php endif ?>
