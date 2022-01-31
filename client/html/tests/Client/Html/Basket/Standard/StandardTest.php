@@ -25,6 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Basket\Standard\Standard( $this->context );
+		$this->object = new \Aimeos\Client\Html\Common\Decorator\Exceptions( $this->object, $this->context );
 		$this->object->setView( $this->view );
 	}
 
@@ -48,22 +49,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeaderException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$mock->header();
-	}
-
-
 	public function testBody()
 	{
 		$output = $this->object->body();
@@ -71,70 +56,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringStartsWith( '<section class="aimeos basket-standard"', $output );
 		$this->assertStringContainsString( '<div class="common-summary-detail', $output );
 		$this->assertStringContainsString( '<div class="basket-standard-coupon', $output );
-	}
-
-
-	public function testBodyClientHtmlException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyControllerFrontendException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Standard\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$mock->body();
 	}
 
 
@@ -410,7 +331,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$this->assertEquals( 1, count( $this->view->get( 'standardErrorList', [] ) ) );
+		$this->assertEquals( 1, count( $this->view->get( 'errors', [] ) ) );
 	}
 
 

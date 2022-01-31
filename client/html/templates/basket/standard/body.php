@@ -12,17 +12,8 @@ $enc = $this->encoder();
 ?>
 <section class="aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( isset( $this->standardErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->standardErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
-
-
 	<?php if( isset( $this->standardBasket ) ) : ?>
+
 		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
 
 		<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
