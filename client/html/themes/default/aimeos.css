@@ -795,25 +795,25 @@ body > .content, body .main-section {
 	color: var(--ai-primary);
 }
 
-.aimeos .product .product-item .badges {
+.aimeos .product-item .badges {
 	position: absolute;
 	text-align: start;
 	z-index: 2;
 }
 
-.aimeos .product .product-item .badge-item {
+.aimeos .product-item .badge-item {
 	letter-spacing: 1.5px;
 	padding: .1rem .5rem;
 	font-size: 100%;
 	display: none;
 }
 
-.aimeos .product .product-item.new .badge-item.new {
+.aimeos .product-item.new .badge-item.new {
 	background-color: var(--ai-primary);
 	display: block;
 }
 
-.aimeos .product .product-item.sale .badge-item.sale {
+.aimeos .product-item.sale .badge-item.sale {
 	background-color: var(--ai-danger);
 	display: inline-block;
 	padding: .1rem .5rem;
@@ -860,6 +860,30 @@ body > .content, body .main-section {
 	font-weight: bold;
 }
 
+.aimeos .product .price-item:first-of-type .quantity,
+.aimeos .product .price-item:first-of-type .rebate,
+.aimeos .product .price-item:first-of-type .costs,
+.aimeos .product .price-item:first-of-type .taxrate {
+	display: none;
+}
+
+.aimeos .product .price-item .rebatepercent {
+	position: absolute;
+	display: inline-block;
+	background-color: var(--ai-danger);
+	color: var(--ai-bg);
+	padding: 0.2rem;
+	z-index: 2;
+	right: 0;
+	top: 0;
+	line-height: 1;
+}
+
+.aimeos .list .product .price-item .rebatepercent {
+	right: 100%;
+	transform: translateX(100%);
+}
+
 .aimeos .product .catalog-detail-basket .price-item .rebatepercent {
 	position: relative;
 }
@@ -897,6 +921,11 @@ body > .content, body .main-section {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	line-height: 1;
+}
+
+.aimeos .product .text-list .text-item {
+	margin: 0.5rem 0 0.5rem 0;
+	text-align: end;
 }
 
 .aimeos .product .text-list .name {

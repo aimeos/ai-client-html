@@ -194,30 +194,6 @@
 	display: inline-block;
 }
 
-.aimeos .price-item:first-of-type .quantity,
-.aimeos .price-item:first-of-type .rebate,
-.aimeos .price-item:first-of-type .costs,
-.aimeos .price-item:first-of-type .taxrate {
-	display: none;
-}
-
-.aimeos .price-item .rebatepercent {
-	position: absolute;
-	display: inline-block;
-	background-color: var(--ai-danger);
-	color: var(--ai-bg);
-	padding: 0.2rem;
-	z-index: 2;
-	right: 0;
-	top: 0;
-	line-height: 1;
-}
-
-.aimeos .list .price-item .rebatepercent {
-	right: 100%;
-	transform: translateX(100%);
-}
-
 .catalog-detail-basket .price-item:first-of-type {
 	display: block;
 	font-size: 100%;
@@ -861,11 +837,6 @@
 	height: 5rem;
 	text-align: start;
 	display: none;
-}
-
-.aimeos .text-list .text-item {
-	margin: 0.5rem 0 0.5rem 0;
-	text-align: end;
 }
 
 .catalog-detail-suggest .offer,
