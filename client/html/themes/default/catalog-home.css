@@ -25,8 +25,9 @@
 	position: absolute;
 	font-size: 200%;
 	margin: 0 5%;
-	text-align: start;
 	top: 33%;
+	text-align: start;
+	color: var(--ai-bg);
 }
 
 .catalog-home .stage-text .btn {

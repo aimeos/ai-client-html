@@ -286,6 +286,10 @@
 	margin: auto;
 }
 
+.catalog-detail-basket .addbasket .btn-action {
+	width: calc(100% - 4rem);
+}
+
 /* services */
 
 .catalog-detail-basket .service-intro {
