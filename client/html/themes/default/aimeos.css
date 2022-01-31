@@ -450,27 +450,25 @@ img {
 /* content-list section */
 
 .back-to-top {
-	position:fixed;
-	bottom:2rem;
-	right:1.5rem;
-	border: none;
-	color: var(--ai-bg-alt);
-	background-color: var(--ai-warning);
-	text-decoration:none;
+	position: fixed;
+	bottom: 2rem;
+	right: 1.5rem;
+	padding: .25rem;
 	cursor: pointer;
-	padding:.25rem;
-	z-index: 999;
+	border: none;
 	opacity: 0;
+	z-index: 999;
+	color: var(--ai-bg);
+	background-color: var(--ai-warning);
 	transform: translateY(100px);
 	transition: all 0.5s ease;
+	text-decoration: none;
 }
 
 .back-to-top .top-icon:before {
-	content:"\f145";
-	position: relative;
 	font: normal normal normal 14px/1 bootstrap-icons;
 	font-size: 200%;
-	display: inline-block;
+	content: "\f145";
 	vertical-align: middle;
 }
 
