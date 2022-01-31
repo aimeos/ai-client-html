@@ -11,8 +11,8 @@ $enc = $this->encoder();
 ?>
 <title><?= $this->translate( 'client', 'Confirmation' ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/summary.css', 'fs-theme', true ) ) ?>">
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/checkout-confirm.css', 'fs-theme', true ) ) ?>">
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/checkout-confirm.js', 'fs-theme', true ) ) ?>"></script>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/summary.css', 'fs-theme', true ) ) ?>">
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/checkout-confirm.css', 'fs-theme', true ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/checkout-confirm.js', 'fs-theme', true ) ) ?>"></script>
 
 <?= $this->get( 'confirmHeader' ) ?>

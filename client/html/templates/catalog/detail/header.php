@@ -70,11 +70,11 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 <?php endif ?>
 
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/slider.css', 'fs-theme', true ) ) ?>">
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-detail.css', 'fs-theme', true ) ) ?>">
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/slider.css', 'fs-theme', true ) ) ?>">
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-detail.css', 'fs-theme', true ) ) ?>">
 
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/slider.js', 'fs-theme', true ) ) ?>"></script>
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-detail.js', 'fs-theme', true ) ) ?>"></script>
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/slider.js', 'fs-theme', true ) ) ?>"></script>
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-detail.js', 'fs-theme', true ) ) ?>"></script>
 
 <?php if( isset( $this->detailStockUrl ) ) : ?>
 	<?php foreach( $this->detailStockUrl as $url ) : ?>

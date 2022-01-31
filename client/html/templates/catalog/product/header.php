@@ -9,8 +9,8 @@ $enc = $this->encoder();
 
 
 ?>
-<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-product.css', 'fs-theme', true ) ) ?>">
-<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSite', 'default' ) . '/catalog-product.js', 'fs-theme', true ) ) ?>"></script>
+<link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-product.css', 'fs-theme', true ) ) ?>">
+<script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-product.js', 'fs-theme', true ) ) ?>"></script>
 
 <?php if( isset( $this->itemsStockUrl ) ) : ?>
 	<?php foreach( $this->itemsStockUrl as $url ) : ?>
