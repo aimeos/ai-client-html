@@ -162,7 +162,7 @@ class Standard
 			return !strncmp( $key, 'f_', 2 );
 		} );
 
-		if( !$args->isEmpty() || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		if( !$args->isEmpty() || ( $html = $this->cached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
 			/** client/html/catalog/filter/template-body
 			 * Relative path to the HTML body template of the catalog filter client.
@@ -203,7 +203,7 @@ class Standard
 				$html = $view->render( $view->config( $tplconf, $default ) );
 
 				if( $args->isEmpty() ) {
-					$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+					$this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 				}
 
 				return $html;
@@ -261,7 +261,7 @@ class Standard
 			return !strncmp( $key, 'f_', 2 );
 		} );
 
-		if( !$args->isEmpty() || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
+		if( !$args->isEmpty() || ( $html = $this->cached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
 			/** client/html/catalog/filter/template-header
 			 * Relative path to the HTML header template of the catalog filter client.
@@ -296,7 +296,7 @@ class Standard
 				$html = $view->render( $view->config( $tplconf, $default ) );
 
 				if( $args->isEmpty() ) {
-					$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+					$this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 				}
 			}
 			catch( \Exception $e )

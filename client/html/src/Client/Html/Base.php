@@ -320,18 +320,12 @@ abstract class Base
 		 */
 		$tagAll = $this->context->config()->get( 'client/html/common/cache/tag-all', false );
 
-		if( !is_array( $items ) && !is_map( $items ) ) {
-			$items = map( [$items] );
-		}
+		$expires = [];
 
-		$expires = $idMap = [];
-
-		foreach( $items as $item )
+		foreach( map( $items ) as $item )
 		{
-			if( $item instanceof \Aimeos\MShop\Common\Item\ListsRef\Iface )
-			{
+			if( $item instanceof \Aimeos\MShop\Common\Item\ListsRef\Iface ) {
 				$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
-				$idMap[$item->getResourceType()][] = $item->getId();
 			}
 
 			$this->addMetaItemSingle( $item, $expires, $tags, $tagAll );
@@ -346,6 +340,8 @@ abstract class Base
 		}
 
 		$tags = array_unique( array_merge( $tags, $custom ) );
+
+		return $items;
 	}
 
 
@@ -571,7 +567,7 @@ abstract class Base
 	 * @param string $confkey Configuration key prefix that matches all relevant settings for the component
 	 * @return string|null Cached entry or null if not available
 	 */
-	protected function getCached( string $type, string $uid, array $prefixes, string $confkey ) : ?string
+	protected function cached( string $type, string $uid, array $prefixes, string $confkey ) : ?string
 	{
 		$context = $this->context();
 		$config = $context->config();
@@ -627,7 +623,7 @@ abstract class Base
 	 * @param array $tags List of tag strings that should be assoicated to the given value in the cache
 	 * @param string|null $expire Date/time string in "YYYY-MM-DD HH:mm:ss"	format when the cache entry expires
 	 */
-	protected function setCached( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, string $expire = null )
+	protected function cache( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, string $expire = null ) : string
 	{
 		$context = $this->context();
 		$config = $context->config();
@@ -635,8 +631,8 @@ abstract class Base
 		$force = $config->get( 'client/html/common/cache/force', false );
 		$enable = $config->get( $confkey . '/cache', true );
 
-		if( $enable == false || $force == false && $context->user() !== null ) {
-			return;
+		if( !$enable || !$force && $context->user() !== null ) {
+			return $value;
 		}
 
 		try
@@ -648,9 +644,10 @@ abstract class Base
 		}
 		catch( \Exception $e )
 		{
-			$msg = sprintf( 'Unable to set cache entry: %1$s', $e->getMessage() );
-			$context->logger()->notice( $msg, 'client/html' );
+			$context->logger()->notice( sprintf( 'Unable to set cache entry: %1$s', $e->getMessage() ), 'client/html' );
 		}
+
+		return $value;
 	}
 
 

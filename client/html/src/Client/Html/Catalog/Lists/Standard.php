@@ -128,7 +128,7 @@ class Standard
 			return !strncmp( $key, 'f_', 2 ) || !strncmp( $key, 'l_', 2 );
 		} );
 
-		if( !$args->isEmpty() || ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		if( !$args->isEmpty() || ( $html = $this->cached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
 			/** client/html/catalog/lists/template-body
 			 * Relative path to the HTML body template of the catalog list client.
@@ -184,7 +184,7 @@ class Standard
 				$html = $view->render( $this->getTemplatePath( $tplconf, $default ) );
 
 				if( $args->isEmpty() ) {
-					$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+					$this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 				}
 
 				return $html;
@@ -238,7 +238,7 @@ class Standard
 			return !strncmp( $key, 'f_', 2 ) || !strncmp( $key, 'l_', 2 );
 		} );
 
-		if( !$args->isEmpty() || ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
+		if( !$args->isEmpty() || ( $html = $this->cached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
 			/** client/html/catalog/lists/template-header
 			 * Relative path to the HTML header template of the catalog list client.
@@ -295,7 +295,7 @@ class Standard
 				$html = $view->render( $this->getTemplatePath( $tplconf, $default ) );
 
 				if( $args->isEmpty() ) {
-					$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+					$this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 				}
 
 				return $html;

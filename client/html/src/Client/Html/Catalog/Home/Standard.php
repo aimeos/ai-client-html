@@ -98,7 +98,7 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/home';
 
-		if( ( $html = $this->getCached( 'body', $uid, [], $confkey ) ) === null )
+		if( ( $html = $this->cached( 'body', $uid, [], $confkey ) ) === null )
 		{
 			$view = $this->view();
 			$config = $this->context()->config();
@@ -140,7 +140,7 @@ class Standard
 				$view->listBody = $html;
 
 				$html = $view->render( $config->get( $tplconf, $default ) );
-				$this->setCached( 'body', $uid, [], $confkey, $html, $this->tags, $this->expire );
+				$this->cache( 'body', $uid, [], $confkey, $html, $this->tags, $this->expire );
 
 				return $html;
 			}
@@ -187,7 +187,7 @@ class Standard
 	{
 		$confkey = 'client/html/catalog/home';
 
-		if( ( $html = $this->getCached( 'header', $uid, [], $confkey ) ) === null )
+		if( ( $html = $this->cached( 'header', $uid, [], $confkey ) ) === null )
 		{
 			$view = $this->view();
 			$config = $this->context()->config();
@@ -230,7 +230,7 @@ class Standard
 				$view->listHeader = $html;
 
 				$html = $view->render( $config->get( $tplconf, $default ) );
-				$this->setCached( 'header', $uid, [], $confkey, $html, $this->tags, $this->expire );
+				$this->cache( 'header', $uid, [], $confkey, $html, $this->tags, $this->expire );
 
 				return $html;
 			}

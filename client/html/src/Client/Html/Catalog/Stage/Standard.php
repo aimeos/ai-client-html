@@ -112,7 +112,7 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/stage';
 
-		if( ( $html = $this->getCached( 'body', $uid, $prefixes, $confkey ) ) === null )
+		if( ( $html = $this->cached( 'body', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->view();
 
@@ -153,7 +153,7 @@ class Standard
 				$view->stageBody = $html;
 
 				$html = $view->render( $view->config( $tplconf, $default ) );
-				$this->setCached( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 
 				return $html;
 			}
@@ -201,7 +201,7 @@ class Standard
 		$prefixes = ['f_catid'];
 		$confkey = 'client/html/catalog/stage';
 
-		if( ( $html = $this->getCached( 'header', $uid, $prefixes, $confkey ) ) === null )
+		if( ( $html = $this->cached( 'header', $uid, $prefixes, $confkey ) ) === null )
 		{
 			$view = $this->view();
 
@@ -238,7 +238,7 @@ class Standard
 				}
 
 				$html = $view->render( $view->config( $tplconf, $default ) );
-				$this->setCached( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+				$this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 
 				return $html;
 			}
