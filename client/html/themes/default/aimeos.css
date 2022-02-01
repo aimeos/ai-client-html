@@ -502,7 +502,7 @@ footer .bi{
 footer h2 {
 	font-size: 1.5rem;
 	letter-spacing: 1.5px;
-	margin-bottom: 0;
+	margin-bottom: 1rem;
 }
 
 footer p {
@@ -930,6 +930,9 @@ body > .content, body .main-section {
 
 .aimeos .product .text-list .name {
 	text-align: end;
+	font-size: 110%;
+	margin: 0 0 0.5rem;
+	padding: 0;
 }
 
 .aimeos .product .price-list {
