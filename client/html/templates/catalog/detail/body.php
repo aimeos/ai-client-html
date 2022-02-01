@@ -54,15 +54,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 ?>
 <section class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( isset( $this->detailErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->detailErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
-
 	<?php if( isset( $this->detailProductItem ) ) : ?>
 
 		<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>"
@@ -154,7 +145,32 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</div>
 
 
-					<?= $this->block()->get( 'catalog/detail/service' ) ?>
+					<div class="catalog-detail-service">
+
+						<?php if( !$this->get( 'serviceItems', map() )->isEmpty() ) : ?>
+							<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ) ?></span>
+							<ul class="service-list">
+
+								<?php foreach( $this->get( 'serviceItems', [] ) as $item ) : ?>
+									<li class="service-item">
+										<span class="service-name"><?= $enc->html( $item->getName() ) ?></span>
+
+										<?= $this->partial(
+											$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
+											array( 'prices' => $item->getRefItems( 'price', null, 'default' ), 'costsItem' => false, 'all' => true )
+										) ?>
+
+										<?php foreach( $item->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+											<span class="service-short"><?= $enc->html( $textItem->getContent() ) ?></span>
+										<?php endforeach ?>
+									</li>
+
+								<?php endforeach ?>
+
+							</ul>
+						<?php endif ?>
+
+					</div>
 
 
 					<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">

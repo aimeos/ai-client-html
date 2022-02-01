@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_prodid' => $this->getProductItem()->getId() ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => $this->getProductItem()->getId()] );
 		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -47,30 +47,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<title>Cafe Noire Expresso | Aimeos</title>', $output );
 		$this->assertStringContainsString( '<script defer src="http://baseurl/catalog/stock/?st_pid', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 7, count( $tags ) );
-	}
-
-
-	public function testHeaderException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$mock->header();
+		$this->assertEquals( 6, count( $tags ) );
 	}
 
 
 	public function testBody()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_prodid' => $this->getProductItem()->getId() ) );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => $this->getProductItem()->getId()] );
 		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -82,6 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringStartsWith( '<section class="aimeos catalog-detail"', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-basic', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-image', $output );
+		$this->assertStringContainsString( '<div class="catalog-detail-service', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-social">', $output );
 		$this->assertRegExp( '/.*facebook.*/', $output );
@@ -110,7 +94,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="catalog-detail-supplier', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 7, count( $tags ) );
+		$this->assertEquals( 6, count( $tags ) );
+
+		$result = $this->context->session()->get( 'aimeos/catalog/session/seen/list' );
+		$this->assertIsArray( $result );
+		$this->assertEquals( 1, count( $result ) );
 	}
 
 
@@ -167,8 +155,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyCsrf()
 	{
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => -1] ) );
-		$this->view->detailProductItem = $this->getProductItem();
+		$item = $this->getProductItem();
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => $item->getId()] );
+		$this->view->addHelper( 'param', $helper );
+		$this->view->detailProductItem = $item;
 
 		$output = $this->object->body( 1 );
 		$output = str_replace( '_csrf_value', '_csrf_new', $output );
@@ -231,168 +221,27 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 
 		$this->assertEquals( null, $expire );
-		$this->assertEquals( 6, count( $tags ) );
-	}
-
-
-	public function testBodyClientHtmlException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyControllerFrontendException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$mock->body();
-	}
-
-
-	public function testGetSubClient()
-	{
-		$client = $this->object->getSubClient( 'service', 'Standard' );
-		$this->assertInstanceOf( '\\Aimeos\\Client\\HTML\\Iface', $client );
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
+		$this->assertEquals( 5, count( $tags ) );
 	}
 
 
 	public function testInit()
 	{
+		$prodid = $this->getProductItem()->getId();
+
+		$session = $this->context->session();
+		$session->set( 'aimeos/catalog/session/seen/list', array( $prodid => 'test' ) );
+		$session->set( 'aimeos/catalog/session/seen/cache', array( $prodid => 'test' ) );
+
+		$param = array( 'd_prodid' => $prodid );
+
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+
 		$this->object->init();
 
-		$this->assertEmpty( $this->view->get( 'detailErrorList' ) );
-	}
-
-
-	public function testInitClientHtmlException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'getClientParams' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'getClientParams' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
-
-		$mock->init();
-	}
-
-
-	public function testInitControllerFrontendException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'getClientParams' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'getClientParams' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
-
-		$mock->init();
-	}
-
-
-	public function testInitMShopException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'getClientParams' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'getClientParams' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
-
-		$mock->init();
-	}
-
-
-	public function testInitException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Detail\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'getClientParams' ) )
-			->getMock();
-
-		$mock->setView( \TestHelperHtml::view() );
-
-		$mock->expects( $this->once() )->method( 'getClientParams' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$mock->init();
+		$str = $session->get( 'aimeos/catalog/session/seen/list' );
+		$this->assertIsArray( $str );
 	}
 
 

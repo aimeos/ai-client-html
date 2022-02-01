@@ -10,25 +10,25 @@ $enc = $this->encoder();
 
 
 ?>
-<?php if( isset( $this->seenProductItem ) ) : $productItem = $this->seenProductItem ?>
+<?php if( isset( $this->product ) ) :  ?>
 
 	<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', [
-		'd_name' => $productItem->getName( 'url' ),
-		'd_prodid' => $productItem->getId(), 'd_pos' => ''
+		'd_name' => $this->product->getName( 'url' ),
+		'd_prodid' => $this->product->getId(), 'd_pos' => ''
 	] ) ) ?>">
 
-		<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
+		<?php if( ( $mediaItem = $this->product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 			<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>')"></div>
 		<?php else : ?>
 			<div class="media-item"></div>
 		<?php endif ?>
 
-		<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
+		<h2 class="name"><?= $enc->html( $this->product->getName(), $enc::TRUST ) ?></h2>
 
 		<div class="price-list">
 			<?= $this->partial(
 				$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
-				array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
+				array( 'prices' => $this->product->getRefItems( 'price', null, 'default' ) )
 			) ?>
 		</div>
 
