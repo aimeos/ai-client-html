@@ -7,11 +7,6 @@
 
 $enc = $this->encoder();
 
-$optTarget = $this->config( 'client/jsonapi/url/target' );
-$optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
-$optAction = $this->config( 'client/jsonapi/url/action', 'options' );
-$optConfig = $this->config( 'client/jsonapi/url/config', [] );
-
 /** client/html/catalog/product/basket-add
  * Display the "add to basket" button for each product item
  *
@@ -37,14 +32,6 @@ $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 ?>
 <section class="aimeos catalog-product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
-
-	<?php if( isset( $this->productErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->productErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
 
 	<div class="catalog-product-items">
 		<?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products' ),
