@@ -314,24 +314,24 @@ class Standard
 		foreach( $attributes as $id => $item )
 		{
 			$attrparams = $params;
+			$type = $item->getType();
 
 			if( ( $key = array_search( $id, $attrIds ) ) !== false )
 			{
 				$item = $item->set( 'checked', true );
 				unset( $attrparams['f_attrid'][$key] );
 			}
-			elseif( ( $key = array_search( $id, $oneIds ) ) !== false )
-			{
-				$item = $item->set( 'checked', true );
-				unset( $attrparams['f_oneid'][$key] );
-			}
 			elseif( ( $key = array_search( $id, $optIds ) ) !== false )
 			{
 				$item = $item->set( 'checked', true );
 				unset( $attrparams['f_optid'][$key] );
 			}
+			elseif( isset( $oneIds[$type] ) && ( $key = array_search( $id, (array) $oneIds[$type] ) ) !== false )
+			{
+				$item = $item->set( 'checked', true );
+				unset( $attrparams['f_oneid'][$key] );
+			}
 
-			$type = $item->getType();
 			$fparams = $this->getFormParams( $type, $oneof, $options );
 			$attrMap[$item->getType()][$id] = $item->set( 'params', $attrparams )->set( 'formparam', $fparams );
 		}
