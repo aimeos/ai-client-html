@@ -33,8 +33,6 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->context();
-
 		/** client/html/catalog/product/cache
 		 * Enables or disables caching only for the catalog product component
 		 *
@@ -123,9 +121,9 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
+		$productItems = map();
 		$context = $this->context();
 		$config = $context->config();
-		$productItems = map();
 
 		/** client/html/catalog/product/domains
 		 * A list of domain names whose items should be available in the catalog product view template

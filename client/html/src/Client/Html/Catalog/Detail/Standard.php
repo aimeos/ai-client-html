@@ -159,7 +159,6 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$session = $context->session();
 		$domains = [
 			'attribute', 'media', 'media/property', 'price', 'product',
 			'product/property', 'supplier', 'supplier/address', 'text'
