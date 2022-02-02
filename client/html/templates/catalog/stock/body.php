@@ -59,8 +59,7 @@ $textStock = array(
 
 $result = [];
 
-
-foreach( (array) $this->get( 'stockItemsByProducts', [] ) as $prodId => $list )
+foreach( $this->get( 'stockItemsByProducts', [] ) as $prodId => $list )
 {
 	$stocks = array( 'stock-unlimited' => '', 'stock-high' => '', 'stock-low' => '', 'stock-out' => '' );
 
