@@ -228,7 +228,7 @@ class Standard
 		$domains = $view->config( 'client/html/catalog/filter/supplier/domains', ['text', 'media'] );
 
 		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->getContext(), 'supplier' )
-			->uses( $domains )->order( 'supplier.label' )->slice( 0, 10000 )->search();
+			->uses( $domains )->sort( 'supplier.label' )->slice( 0, 10000 )->search();
 
 		// Delete cache when suppliers are added or deleted even in "tag-all" mode
 		$this->addMetaItems( $view->supplierList, $expire, $tags, ['supplier'] );
