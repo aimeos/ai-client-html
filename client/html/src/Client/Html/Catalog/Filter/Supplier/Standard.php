@@ -229,7 +229,7 @@ class Standard
 
 		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();
 		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->getContext(), 'supplier' )
-			->uses( $domains )->slice( 0, 10000 )->search();
+			->uses( $domains )->order( 'supplier.label' )->slice( 0, 10000 )->search();
 
 		// Delete cache when suppliers are added or deleted even in "tag-all" mode
 		$this->addMetaItems( $view->supplierList, $expire, $tags, ['supplier'] );
