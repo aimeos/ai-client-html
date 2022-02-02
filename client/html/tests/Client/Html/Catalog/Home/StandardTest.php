@@ -44,22 +44,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Home\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEmpty( $object->header() );
-	}
-
-
 	public function testBody()
 	{
 		$tags = [];
@@ -69,91 +53,5 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( 'root', $output );
-	}
-
-
-	public function testBodyHtmlException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Home\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Home\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Home\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Home\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
-	}
-
-
-	public function testInit()
-	{
-		$this->object->init();
-
-		$this->assertEmpty( $this->view->get( 'homeErrorList' ) );
 	}
 }

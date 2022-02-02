@@ -61,10 +61,4 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/slider.js', 'fs-theme', true ) ) ?>"></script>
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-home.js', 'fs-theme', true ) ) ?>"></script>
 
-<?php if( isset( $this->homeStockUrl ) ) : ?>
-	<?php foreach( $this->homeStockUrl as $url ) : ?>
-		<script defer src="<?= $enc->attr( $url ) ?>"></script>
-	<?php endforeach ?>
-<?php endif ?>
-
 <meta name="application-name" content="Aimeos">

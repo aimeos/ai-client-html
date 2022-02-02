@@ -54,14 +54,6 @@ $pos = 0;
 <section class="aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
 	data-slider-nav-autoplay-interval="4000" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( isset( $this->homeErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->homeErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
 	<?php if( isset( $this->homeTree ) ) : ?>
 
 		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
