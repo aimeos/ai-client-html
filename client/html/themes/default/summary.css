@@ -51,7 +51,7 @@
 .aimeos .common-summary .header,
 .aimeos .common-summary-detail .header {
 	border-bottom: 1px solid var(--ai-secondary);
-	/*padding: 0.5rem 1rem;*/
+	padding: 0.5rem 1rem;
 	margin-top: 0;
 	width: 100%;
 }
@@ -84,8 +84,7 @@
 
 .aimeos .common-summary-detail .headline {
 	border-bottom: 1px solid var(--ai-secondary);
-	background-color: var(--ai-bg-light);
-	color: var(--ai-secondary);
+	background-color: var(--ai-bg-alt);
 	font-weight: bold;
 	padding: 0.25rem 0;
 }
@@ -103,9 +102,7 @@
 }
 
 .aimeos .common-summary-detail .total {
-	color: var(--ai-secondary);
-	background-color: var(--ai-tertiary);
-	background-color: var(--ai-bg-light, var(--ai-tertiary));
+	background-color: var(--ai-bg-alt);
 	padding: .25rem 0;
 }
 

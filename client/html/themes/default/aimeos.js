@@ -272,7 +272,7 @@ AimeosBasket = {
 	 */
 	onSelectDependencies() {
 
-		$(document).on("change", ".product .selection .select-list", ev => {
+		$(document).on("change", ".product .selection[data-attrdeps] .select-list", ev => {
 
 			const node = ev.currentTarget;
 			const el = $(node);
@@ -356,7 +356,7 @@ AimeosBasket = {
 	 */
 	onSelectVariant() {
 
-		$(document).on("change", ".product .selection .select-list", ev => {
+		$(document).on("change", ".product .selection[data-attrdeps] .select-list", ev => {
 
 			let len = 0;
 			let stock = false;
