@@ -155,8 +155,7 @@ class Standard
 			 *
 			 * The argument is the relative path to the new template file. The type of
 			 * the view is determined by the "l_type" parameter (allowed characters for
-			 * the types are a-z and 0-9), which is also stored in the session so users
-			 * will keep the view during their visit. The catalog list type subpart
+			 * the types are a-z and 0-9). The catalog list type subpart
 			 * contains the template for switching between list types.
 			 *
 			 * @param string Relative path to the template creating code for the HTML page body
@@ -266,8 +265,7 @@ class Standard
 			 *
 			 * The argument is the relative path to the new template file. The type of
 			 * the view is determined by the "l_type" parameter (allowed characters for
-			 * the types are a-z and 0-9), which is also stored in the session so users
-			 * will keep the view during their visit. The catalog list type subpart
+			 * the types are a-z and 0-9). The catalog list type subpart
 			 * contains the template for switching between list types.
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
