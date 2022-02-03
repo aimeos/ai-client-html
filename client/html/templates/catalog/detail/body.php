@@ -54,6 +54,10 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 	<?php if( isset( $this->detailProductItem ) ) : ?>
 
+		<!-- catalog.detail.navigator -->
+		<!-- navigator template added by client -->
+		<!-- catalog.detail.navigator -->
+
 		<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>"
 			data-id="<?= $this->detailProductItem->getId() ?>" data-reqstock="<?= $reqstock ?>">
 

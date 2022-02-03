@@ -53,8 +53,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => $this->getProductItem()->getId()] );
+		$params = ['d_prodid' => $this->getProductItem()->getId(), 'd_pos' => 1];
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $params );
 		$this->view->addHelper( 'param', $helper );
+
+		$this->view->navigationPrev = '#';
+		$this->view->navigationNext = '#';
 
 		$tags = [];
 		$expire = null;
@@ -62,13 +66,17 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-detail"', $output );
+		$this->assertStringContainsString( '<!-- catalog.detail.navigator -->', $output );
+		$this->assertStringContainsString( '<a class="prev"', $output );
+		$this->assertStringContainsString( '<a class="next"', $output );
+
+		$this->assertStringContainsString( '<section class="aimeos catalog-detail"', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-basic', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-image', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-service', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-social">', $output );
-		$this->assertRegExp( '/.*facebook.*/', $output );
+		$this->assertStringContainsString( 'facebook', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-actions', $output );
 		$this->assertStringContainsString( 'actions-button-pin', $output );
@@ -85,10 +93,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<span class="media-name">Example image</span>', $output );
 
 		$this->assertStringContainsString( '<section class="catalog-detail-suggest', $output );
-		$this->assertRegExp( '/.*Cappuccino.*/', $output );
+		$this->assertStringContainsString( 'Cappuccino', $output );
 
 		$this->assertStringContainsString( '<section class="catalog-detail-bought', $output );
-		$this->assertRegExp( '/.*Cappuccino.*/', $output );
+		$this->assertStringContainsString( 'Cappuccino', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-detail-service', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-supplier', $output );
@@ -222,6 +230,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 5, count( $tags ) );
+	}
+
+
+	public function testModify()
+	{
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_pos' => 1 ) );
+		$this->view->addHelper( 'param', $helper );
+
+		$content = '<!-- catalog.detail.navigator -->test<!-- catalog.detail.navigator -->';
+		$output = $this->object->modify( $content, 1 );
+
+		$this->assertStringContainsString( '<div class="catalog-detail-navigator">', $output );
 	}
 
 

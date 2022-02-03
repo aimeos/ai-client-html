@@ -73,9 +73,30 @@ class Standard
 			return $this->modify( $html, $uid );
 		}
 
+		/** client/html/catalog/detail/template-body
+		 * Relative path to the HTML body template of the catalog detail client.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the result shown in the body of the frontend. The
+		 * configuration string is the path to the template file relative
+		 * to the templates directory (usually in client/html/templates).
+		 *
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates. These alternative templates should be
+		 * named like the default one but suffixed by
+		 * an unique name. You may use the name of your project for this. If
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
+		 *
+		 * @param string Relative path to the template creating code for the HTML page body
+		 * @since 2014.03
+		 * @see client/html/catalog/detail/template-header
+		 * @see client/html/catalog/detail/404
+		 */
 		$template = $config->get( 'client/html/catalog/detail/template-body', 'catalog/detail/body' );
+
 		$view = $this->view = $this->view ?? $this->object()->data( $view, $this->tags, $this->expire );
-		$html = $view->render( $template );
+		$html = $this->modify( $view->render( $template ), $uid );
 
 		return $this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 	}
@@ -105,7 +126,29 @@ class Standard
 			return $this->modify( $html, $uid );
 		}
 
+		/** client/html/catalog/detail/template-header
+		 * Relative path to the HTML header template of the catalog detail client.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the HTML code that is inserted into the HTML page header
+		 * of the rendered page in the frontend. The configuration string is the
+		 * path to the template file relative to the templates directory (usually
+		 * in client/html/templates).
+		 *
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates. These alternative templates should be
+		 * named like the default one but suffixed by
+		 * an unique name. You may use the name of your project for this. If
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
+		 *
+		 * @param string Relative path to the template creating code for the HTML page head
+		 * @since 2014.03
+		 * @see client/html/catalog/detail/template-body
+		 * @see client/html/catalog/detail/404
+		 */
 		$template = $config->get( 'client/html/catalog/detail/template-header', 'catalog/detail/header' );
+
 		$view = $this->view = $this->view ?? $this->object()->data( $this->view(), $this->tags, $this->expire );
 		$html = $view->render( $template );
 
@@ -122,6 +165,7 @@ class Standard
 	 */
 	public function modify( string $content, string $uid ) : string
 	{
+		$content = $this->replaceSection( $content, $this->navigator(), 'catalog.detail.navigator' );
 		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.detail.csrf' );
 	}
 
@@ -291,6 +335,70 @@ class Standard
 
 
 	/**
+	 * Sets the necessary parameter values in the view.
+	 *
+	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	public function navigator() : string
+	{
+		$view = $this->view();
+		$context = $this->context();
+
+		if( is_numeric( $pos = $view->param( 'd_pos' ) ) )
+		{
+			if( $pos < 1 ) {
+				$pos = $start = 0; $size = 2;
+			} else {
+				$start = $pos - 1; $size = 3;
+			}
+
+			$site = $context->locale()->getSiteItem()->getCode();
+			$params = $context->session()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+
+			$catids = $view->value( $params, 'f_catid', $view->config( 'client/html/catalog/lists/catid-default' ) );
+			$sort = $view->value( $params, 'f_sort', $view->config( 'client/html/catalog/lists/sort', 'relevance' ) );
+
+			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->sort( $sort ) // prioritize user sorting over the sorting through relevance and category
+				->allOf( $view->value( $params, 'f_attrid', [] ) )
+				->oneOf( $view->value( $params, 'f_optid', [] ) )
+				->oneOf( $view->value( $params, 'f_oneid', [] ) )
+				->text( $view->value( $params, 'f_search' ) )
+				->category( $catids, 'default', $level )
+				->slice( $start, $size )
+				->uses( ['text'] )
+				->search();
+
+			if( ( $count = count( $products ) ) > 1 )
+			{
+				if( $pos > 0 && ( $product = $products->first() ) !== null )
+				{
+					$param = ['d_pos' => $pos - 1, 'd_name' => $product->getName( 'url ' )];
+					$view->navigationPrev = $view->link( 'client/html/catalog/detail/url', $param );
+				}
+
+				if( ( $pos === 0 || $count === 3 ) && ( $product = $products->last() ) !== null )
+				{
+					$param = ['d_pos' => $pos + 1, 'd_name' => $product->getName( 'url ' )];
+					$view->navigationNext = $view->link( 'client/html/catalog/detail/url', $param );
+				}
+			}
+
+			$config = $context->config();
+			$template = $config->get( 'client/html/catalog/detail/template-navigator', 'catalog/detail/navigator' );
+
+			return $view->render( $template );
+		}
+
+		return '';
+	}
+
+
+	/**
 	 * Adds the product to the list of last seen products.
 	 *
 	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item
@@ -389,48 +497,4 @@ class Standard
 
 		return $this->addMetaItems( $items, $this->expire, $this->tags );
 	}
-
-
-	/** client/html/catalog/detail/template-body
-	 * Relative path to the HTML body template of the catalog detail client.
-	 *
-	 * The template file contains the HTML code and processing instructions
-	 * to generate the result shown in the body of the frontend. The
-	 * configuration string is the path to the template file relative
-	 * to the templates directory (usually in client/html/templates).
-	 *
-	 * You can overwrite the template file configuration in extensions and
-	 * provide alternative templates. These alternative templates should be
-	 * named like the default one but suffixed by
-	 * an unique name. You may use the name of your project for this. If
-	 * you've implemented an alternative client class as well, it
-	 * should be suffixed by the name of the new class.
-	 *
-	 * @param string Relative path to the template creating code for the HTML page body
-	 * @since 2014.03
-	 * @see client/html/catalog/detail/template-header
-	 * @see client/html/catalog/detail/404
-	 */
-
-	/** client/html/catalog/detail/template-header
-	 * Relative path to the HTML header template of the catalog detail client.
-	 *
-	 * The template file contains the HTML code and processing instructions
-	 * to generate the HTML code that is inserted into the HTML page header
-	 * of the rendered page in the frontend. The configuration string is the
-	 * path to the template file relative to the templates directory (usually
-	 * in client/html/templates).
-	 *
-	 * You can overwrite the template file configuration in extensions and
-	 * provide alternative templates. These alternative templates should be
-	 * named like the default one but suffixed by
-	 * an unique name. You may use the name of your project for this. If
-	 * you've implemented an alternative client class as well, it
-	 * should be suffixed by the name of the new class.
-	 *
-	 * @param string Relative path to the template creating code for the HTML page head
-	 * @since 2014.03
-	 * @see client/html/catalog/detail/template-body
-	 * @see client/html/catalog/detail/404
-	 */
 }
