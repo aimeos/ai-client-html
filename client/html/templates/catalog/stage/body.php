@@ -2,7 +2,6 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2012
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
@@ -13,16 +12,7 @@ $enc = $this->encoder();
 <section class="aimeos catalog-stage <?= $enc->attr( $this->get( 'stageCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>"
 	data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( isset( $this->stageErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->stageErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
-
-	<?php if( !$this->param( 'd_prodid', $this->param( 'd_name' ) ) && ( $catItem = $this->get( 'stageCurrentCatItem' ) ) && !( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
+	<?php if( ( $catItem = $this->get( 'stageCurrentCatItem' ) ) && !( $mediaItems = $catItem->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 		<div class="catalog-stage-image single-item">
 
 			<?php foreach( $mediaItems as $mediaItem ) : ?>
@@ -61,8 +51,5 @@ $enc = $this->encoder();
 			</ol>
 		</nav>
 	</div>
-
-
-	<?= $this->block()->get( 'catalog/stage/navigator' ) ?>
 
 </section>
