@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/stage/navigator/subparts';
 	private $subPartNames = [];
@@ -86,7 +85,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/stage/navigator/template-header
 		 */
 		$tplconf = 'client/html/catalog/stage/navigator/template-body';
@@ -125,7 +123,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/stage/navigator/decorators/global
 		 * @see client/html/catalog/stage/navigator/decorators/local
@@ -149,7 +146,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/stage/navigator/decorators/excludes
 		 * @see client/html/catalog/stage/navigator/decorators/local
@@ -173,7 +169,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/stage/navigator/decorators/excludes
 		 * @see client/html/catalog/stage/navigator/decorators/global

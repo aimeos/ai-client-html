@@ -17,7 +17,6 @@ $enc = $this->encoder();
  *
  * @param string Destination of the URL
  * @since 2019.07
- * @category Developer
  * @see client/html/account/index/url/controller
  * @see client/html/account/index/url/action
  * @see client/html/account/index/url/config
@@ -33,7 +32,6 @@ $target = $this->config( 'client/html/account/index/url/target' );
  *
  * @param string Name of the controller
  * @since 2019.07
- * @category Developer
  * @see client/html/account/index/url/target
  * @see client/html/account/index/url/action
  * @see client/html/account/index/url/config
@@ -49,7 +47,6 @@ $controller = $this->config( 'client/html/account/index/url/controller', 'accoun
  *
  * @param string Name of the action
  * @since 2019.07
- * @category Developer
  * @see client/html/account/index/url/target
  * @see client/html/account/index/url/controller
  * @see client/html/account/index/url/config
@@ -71,7 +68,6 @@ $action = $this->config( 'client/html/account/index/url/action', 'index' );
  *
  * @param string Associative list of configuration options
  * @since 2019.07
- * @category Developer
  * @see client/html/account/index/url/target
  * @see client/html/account/index/url/controller
  * @see client/html/account/index/url/action
@@ -87,8 +83,6 @@ $config = $this->config( 'client/html/account/index/url/config', ['absoluteUri' 
  *
  * @param array List of parameter names to remove
  * @since 2019.07
- * @category User
- * @category Developer
  * @see client/html/account/index/url/target
  * @see client/html/account/index/url/controller
  * @see client/html/account/index/url/action

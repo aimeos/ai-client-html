@@ -105,8 +105,6 @@ class Standard
 			 *
 			 * @param integer One of the allowed values (0, 1 or 2)
 			 * @since 2016.08
-			 * @category Developer
-			 * @category User
 			 */
 			$check = (int) $view->config( 'client/html/basket/standard/check', 1 );
 
@@ -149,8 +147,6 @@ class Standard
 			 *
 			 * @param boolean True to overwrite a previous coupon, false to keep them
 			 * @since 2020.04
-			 * @category Developer
-			 * @category User
 			 */
 			if( $code && $context->config()->get( 'client/html/basket/standard/coupon/overwrite', false ) ) {
 				$cntl->deleteCoupon( $code );
@@ -307,7 +303,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/basket/template-header
 	 */
 
@@ -329,7 +324,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/basket/template-body
 	 */
 }

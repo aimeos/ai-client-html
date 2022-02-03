@@ -38,8 +38,6 @@ $enc = $this->encoder();
 					 *
 					 * @param string Relative path to the template file
 					 * @since 2017.01
-					 * @category Developer
-					 * @category User
 					 */
 					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial' ),
 					array(

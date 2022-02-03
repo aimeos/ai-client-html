@@ -74,8 +74,6 @@ class Standard
 		 *
 		 * @param integer Number of products
 		 * @since 2014.09
-		 * @category User
-		 * @category Developer
 		 */
 		$max = $context->config()->get( 'client/html/account/watch/maxitems', 100 );
 
@@ -193,8 +191,6 @@ class Standard
 		 *
 		 * @param integer Number of products
 		 * @since 2014.09
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/lists/size
 		 */
 		$defaultSize = $this->context()->config()->get( 'client/html/account/watch/size', 48 );
@@ -229,7 +225,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2014.09
-		 * @category Developer
 		 * @see client/html/catalog/domains
 		 */
 		$domains = $context->config()->get( 'client/html/account/watch/domains', ['text', 'price', 'media'] );

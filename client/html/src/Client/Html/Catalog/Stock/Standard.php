@@ -53,7 +53,6 @@ class Standard
 		 *
 		 * @param array List of key/value pairs for sorting
 		 * @since 2017.01
-		 * @category Developer
 		 * @see client/html/catalog/stock/level/low
 		 */
 		$sort = $context->config()->get( 'client/html/catalog/stock/sort', 'stock.type' );
@@ -87,7 +86,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/catalog/stock/template-header
 	 */
 
@@ -109,7 +107,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/catalog/stock/template-body
 	 */
 }

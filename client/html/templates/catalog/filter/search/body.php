@@ -21,7 +21,6 @@ $enc = $this->encoder();
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/action
  * @see client/html/catalog/suggest/url/config
@@ -40,7 +39,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the controller
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/action
  * @see client/html/catalog/suggest/url/config
@@ -59,7 +57,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the action
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/config
@@ -84,7 +81,6 @@ $enc = $this->encoder();
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/action
@@ -104,8 +100,6 @@ $enc = $this->encoder();
  *
  * @param boolean True to reuse the search string, false to clear after each search
  * @since 2020.04
- * @category Developer
- * @category User
  */
 $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true );
 

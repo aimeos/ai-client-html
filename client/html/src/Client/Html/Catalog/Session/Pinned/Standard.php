@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/session/pinned/subparts';
 	private $subPartNames = [];
@@ -78,7 +77,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/catalog/session#pinned
 		 */
 		$config = $context->config()->get( 'client/html/catalog/session/pinned', [] );
@@ -109,7 +107,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page body
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/session/pinned/template-header
 			 */
 			$tplconf = 'client/html/catalog/session/pinned/template-body';
@@ -157,7 +154,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/pinned/decorators/global
 		 * @see client/html/catalog/session/pinned/decorators/local
@@ -181,7 +177,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/pinned/decorators/excludes
 		 * @see client/html/catalog/session/pinned/decorators/local
@@ -205,7 +200,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/pinned/decorators/excludes
 		 * @see client/html/catalog/session/pinned/decorators/global
@@ -253,8 +247,6 @@ class Standard
 					 *
 					 * @param integer Number of products
 					 * @since 2014.09
-					 * @category User
-					 * @category Developer
 					 */
 					$max = $context->config()->get( 'client/html/catalog/session/pinned/maxitems', 50 );
 
@@ -328,7 +320,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2015.04
-		 * @category Developer
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/detail/domains

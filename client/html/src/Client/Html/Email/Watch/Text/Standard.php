@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.09
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/watch/text/subparts';
 	private $subPartNames = [];
@@ -99,7 +98,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the e-mail body
 		 * @since 2014.09
-		 * @category Developer
 		 * @see client/html/email/watch/text/template-header
 		 */
 		$tplconf = 'client/html/email/watch/text/template-body';
@@ -139,7 +137,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/watch/text/decorators/global
 		 * @see client/html/email/watch/text/decorators/local
@@ -163,7 +160,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/watch/text/decorators/excludes
 		 * @see client/html/email/watch/text/decorators/local
@@ -187,7 +183,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/watch/text/decorators/excludes
 		 * @see client/html/email/watch/text/decorators/global

@@ -18,7 +18,6 @@ $enc = $this->encoder();
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @category Developer
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
@@ -34,7 +33,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the controller
  * @since 2014.03
- * @category Developer
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
@@ -50,7 +48,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the action
  * @since 2014.03
- * @category Developer
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/config
@@ -72,7 +69,6 @@ $enc = $this->encoder();
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @category Developer
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
@@ -90,7 +86,6 @@ $enc = $this->encoder();
  *
  * @param string Code of the locale site
  * @since 2018.04
- * @category Developer
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/config

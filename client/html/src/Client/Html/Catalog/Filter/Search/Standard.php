@@ -50,7 +50,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/catalog/filter/search/template-header
 	 */
 }

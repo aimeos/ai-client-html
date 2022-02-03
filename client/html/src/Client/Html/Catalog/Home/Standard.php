@@ -41,8 +41,6 @@ class Standard
 		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/stage/cache
@@ -55,7 +53,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/catalog#home
 		 */
 		$confkey = 'client/html/catalog/home';
@@ -126,7 +123,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2020.10
-		 * @category Developer
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/detail/domains
 		 * @see client/html/catalog/stage/domains
@@ -146,8 +142,6 @@ class Standard
 		 *
 		 * @param boolean True to display the button, false to hide it
 		 * @since 2020.10
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/lists/basket-add
 		 * @see client/html/catalog/detail/basket-add
 		 * @see client/html/basket/related/basket-add
@@ -191,8 +185,6 @@ class Standard
 		 *
 		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2020.10
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/detail/stock/enable
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -229,7 +221,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2020.10
-	 * @category Developer
 	 * @see client/html/catalog/home/template-header
 	 */
 
@@ -251,7 +242,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2020.10
-	 * @category Developer
 	 * @see client/html/catalog/home/template-body
 	 */
 }

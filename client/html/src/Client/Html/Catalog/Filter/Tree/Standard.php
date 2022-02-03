@@ -45,7 +45,6 @@ class Standard
 		 *
 		 * @param array List of domain item names
 		 * @since 2014.03
-		 * @category Developer
 		 * @see controller/frontend/catalog/levels-always
 		 * @see controller/frontend/catalog/levels-only
 		 * @see client/html/catalog/filter/tree/startid
@@ -65,8 +64,6 @@ class Standard
 		 *
 		 * @param string Category ID
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see controller/frontend/catalog/levels-always
 		 * @see controller/frontend/catalog/levels-only
 		 * @see client/html/catalog/filter/tree/domains
@@ -138,7 +135,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/catalog/filter/tree/template-header
 	 */
 }

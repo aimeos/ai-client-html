@@ -23,8 +23,6 @@ $key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html
  *
  * @param array List of text type names
  * @since 2014.03
- * @category User
- * @category Developer
  */
 $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 'long' ) );
 
@@ -39,8 +37,6 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
  *
  * @param boolean True for enabling, false for disabling pagination
  * @since 2019.04
- * @category User
- * @category Developer
  */
 
 /** client/html/catalog/lists/partials/pagination
@@ -53,7 +49,6 @@ $textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 
  *
  * @param string Relative path to the template file
  * @since 2017.01
- * @category Developer
  */
 
 

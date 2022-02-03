@@ -36,8 +36,6 @@ $enc = $this->encoder();
  *
  * @param array List of social network names
  * @since 2017.04
- * @category User
- * @category Developer
  * @see client/html/catalog/social/url/facebook
  * @see client/html/catalog/social/url/twitter
  * @see client/html/catalog/social/url/pinterest
@@ -61,8 +59,6 @@ $urls = array(
 	 *
 	 * @param string URL to share products on Facebook
 	 * @since 2020.01
-	 * @category User
-	 * @category Developer
 	 * @see client/html/catalog/social/list
 	 */
 	'whatsapp' => 'https://wa.me/?text=%2$s+%1$s',
@@ -83,8 +79,6 @@ $urls = array(
 	 *
 	 * @param string URL to share products on Facebook
 	 * @since 2017.04
-	 * @category User
-	 * @category Developer
 	 * @see client/html/catalog/social/list
 	 */
 	'facebook' => 'https://www.facebook.com/sharer.php?u=%1$s&t=%2$s',
@@ -105,8 +99,6 @@ $urls = array(
 	 *
 	 * @param string URL to share products on Twitter
 	 * @since 2017.04
-	 * @category User
-	 * @category Developer
 	 * @see client/html/catalog/social/list
 	 */
 	'twitter' => 'https://twitter.com/share?url=%1$s&text=%2$s',
@@ -127,8 +119,6 @@ $urls = array(
 	 *
 	 * @param string URL to share products on Pinterest
 	 * @since 2017.04
-	 * @category User
-	 * @category Developer
 	 * @see client/html/catalog/social/list
 	 */
 	'pinterest' => 'https://pinterest.com/pin/create/button/?url=%1$s&description=%2$s&media=%3$s',

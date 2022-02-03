@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/address/delivery/subparts';
 	private $subPartNames = [];
@@ -110,7 +109,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/delivery/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/address/delivery/template-body';
@@ -149,7 +147,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/delivery/decorators/global
 		 * @see client/html/checkout/standard/address/delivery/decorators/local
@@ -173,7 +170,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/delivery/decorators/excludes
 		 * @see client/html/checkout/standard/address/delivery/decorators/local
@@ -197,7 +193,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/delivery/decorators/excludes
 		 * @see client/html/checkout/standard/address/delivery/decorators/global
@@ -285,8 +280,6 @@ class Standard
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/delivery/disable-new
 		 * @see client/html/checkout/standard/address/delivery/salutations
 		 * @see client/html/checkout/standard/address/delivery/optional
@@ -328,8 +321,6 @@ class Standard
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/delivery/disable-new
 		 * @see client/html/checkout/standard/address/delivery/salutations
 		 * @see client/html/checkout/standard/address/delivery/mandatory
@@ -369,8 +360,6 @@ class Standard
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/delivery/disable-new
 		 * @see client/html/checkout/standard/address/delivery/salutations
 		 * @see client/html/checkout/standard/address/delivery/mandatory
@@ -512,8 +501,6 @@ class Standard
 		 *
 		 * @param boolean A value of "1" to disable, "0" enables the delivery address form
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/delivery/salutations
 		 * @see client/html/checkout/standard/address/delivery/mandatory
 		 * @see client/html/checkout/standard/address/delivery/optional
@@ -617,8 +604,6 @@ class Standard
 		 *
 		 * @param array List of available salutation codes
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/delivery/disable-new
 		 * @see client/html/checkout/standard/address/delivery/mandatory
 		 * @see client/html/checkout/standard/address/delivery/optional

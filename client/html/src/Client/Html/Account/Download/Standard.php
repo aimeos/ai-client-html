@@ -69,7 +69,6 @@ class Standard
 			 *
 			 * @param string Destination of the URL
 			 * @since 2019.04
-			 * @category Developer
 			 */
 			$target = $context->config()->get( 'client/html/account/download/error/url/target' );
 
@@ -191,8 +190,6 @@ class Standard
 		 *
 		 * @param integer Maximum number of downloads
 		 * @since 2016.02
-		 * @category Developer
-		 * @category User
 		 */
 		$maxcnt = $context->config()->get( 'client/html/account/download/maxcount' );
 

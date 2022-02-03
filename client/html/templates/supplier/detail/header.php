@@ -25,8 +25,6 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
  *
  * @param boolean True to display the meta tags, false to hide it
  * @since 2021.01
- * @category Developer
- * @category User
  * @see client/html/supplier/lists/metatags
  */
 

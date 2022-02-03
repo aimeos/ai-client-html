@@ -48,8 +48,6 @@ class Standard
 		 *
 		 * @param array List of attribute type codes
 		 * @since 2016.10
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/filter/attribute/types
 		 * @see client/html/catalog/filter/attribute/types-oneof
 		 */
@@ -68,8 +66,6 @@ class Standard
 		 *
 		 * @param array List of attribute type codes
 		 * @since 2016.10
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/filter/attribute/types
 		 * @see client/html/catalog/filter/attribute/types-option
 		 */
@@ -91,8 +87,6 @@ class Standard
 		 *
 		 * @param array List of attribute type codes
 		 * @since 2015.05
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/filter/attribute/domains
 		 * @see client/html/catalog/filter/attribute/types-oneof
 		 * @see client/html/catalog/filter/attribute/types-option
@@ -113,7 +107,6 @@ class Standard
 		 *
 		 * @param array List of domain item names
 		 * @since 2015.05
-		 * @category Developer
 		 * @see client/html/catalog/filter/attribute/types
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/attribute/domains', ['text', 'media', 'media/property'] );
@@ -251,7 +244,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/catalog/filter/attribute/template-header
 	 */
 }

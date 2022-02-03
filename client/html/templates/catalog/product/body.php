@@ -22,8 +22,6 @@ $enc = $this->encoder();
  *
  * @param boolean True to display the button, false to hide it
  * @since 2019.10
- * @category Developer
- * @category User
  * @see client/html/catalog/home/basket-add
  * @see client/html/catalog/lists/basket-add
  * @see client/html/catalog/detail/basket-add

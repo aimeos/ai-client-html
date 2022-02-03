@@ -23,7 +23,6 @@
  * in your own extension and must include the file name without the file extension.
  *
  * @param string Relative path to the partial file without file extension
- * @category Developer
  * @since 2019.10
  */
 

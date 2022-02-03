@@ -57,7 +57,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/payment/subparts';
 	private $subPartNames = [];
@@ -102,7 +101,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/payment/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/payment/template-body';
@@ -141,7 +139,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/payment/decorators/global
 		 * @see client/html/checkout/standard/payment/decorators/local
@@ -165,7 +162,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/payment/decorators/excludes
 		 * @see client/html/checkout/standard/payment/decorators/local
@@ -189,7 +185,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/payment/decorators/excludes
 		 * @see client/html/checkout/standard/payment/decorators/global
@@ -287,7 +282,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2019.04
-		 * @category Developer
 		 * @see client/html/checkout/standard/delivery/domains
 		 */
 		$domains = $context->config()->get( 'client/html/checkout/standard/payment/domains', $domains );

@@ -63,7 +63,6 @@ class Factory
 		 *
 		 * @param string Last part of the class name
 		 * @since 2015.02
-		 * @category Developer
 		 */
 		if( $name === null ) {
 			$name = $context->config()->get( 'client/html/catalog/suggest/name', 'Standard' );

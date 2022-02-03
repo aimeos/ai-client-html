@@ -53,8 +53,6 @@ class Standard
 		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/lists/cache
 		 * @see client/html/catalog/stage/cache
@@ -67,7 +65,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/catalog#detail
 		 */
 		$confkey = 'client/html/catalog/detail';
@@ -188,7 +185,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/lists/domains
 		 */
@@ -204,8 +200,6 @@ class Standard
 		 *
 		 * @param string Product ID
 		 * @since 2016.01
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/catid-default
 		 */
@@ -221,8 +215,6 @@ class Standard
 		 *
 		 * @param string Product code
 		 * @since 2019.10
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/catid-default
 		 */
@@ -272,8 +264,6 @@ class Standard
 		 *
 		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/lists/stock/enable
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -345,8 +335,6 @@ class Standard
 			 *
 			 * @param integer Number of products
 			 * @since 2014.03
-			 * @category User
-			 * @category Developer
 			 */
 			$max = $config->get( 'client/html/catalog/session/seen/maxitems', 6 );
 
@@ -376,7 +364,6 @@ class Standard
 		 *
 		 * @param array List of type codes
 		 * @since 2016.05
-		 * @category Developer
 		 * @see client/html/catalog/detail/service/domains
 		 */
 		$types = $config->get( 'client/html/catalog/detail/service/types', ['delivery'] );
@@ -393,7 +380,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2016.05
-		 * @category Developer
 		 * @see client/html/catalog/detail/service/types
 		 */
 		$domains = $config->get( 'client/html/catalog/detail/service/domains', ['text', 'price'] );
@@ -422,7 +408,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/catalog/detail/template-header
 	 * @see client/html/catalog/detail/404
 	 */
@@ -445,7 +430,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/catalog/detail/template-body
 	 * @see client/html/catalog/detail/404
 	 */

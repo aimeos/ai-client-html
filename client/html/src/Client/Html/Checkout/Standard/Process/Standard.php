@@ -56,7 +56,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/process/subparts';
 
@@ -68,7 +67,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2017.04
-	 * @category Developer
 	 */
 
 	/** client/html/checkout/standard/process/address/name
@@ -79,7 +77,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2017.04
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'account', 'address' );
 
@@ -121,7 +118,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/process/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/process/template-body';
@@ -160,7 +156,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/global
 		 * @see client/html/checkout/standard/process/decorators/local
@@ -184,7 +179,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/excludes
 		 * @see client/html/checkout/standard/process/decorators/local
@@ -208,7 +202,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/excludes
 		 * @see client/html/checkout/standard/process/decorators/global
@@ -425,7 +418,6 @@ class Standard
 		 *
 		 * @param string Destination of the URL
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/confirm/url/controller
 		 * @see client/html/checkout/confirm/url/action
 		 * @see client/html/checkout/confirm/url/config
@@ -441,7 +433,6 @@ class Standard
 		 *
 		 * @param string Name of the controller
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/action
 		 * @see client/html/checkout/confirm/url/config
@@ -457,7 +448,6 @@ class Standard
 		 *
 		 * @param string Name of the action
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/controller
 		 * @see client/html/checkout/confirm/url/config
@@ -479,7 +469,6 @@ class Standard
 		 *
 		 * @param string Associative list of configuration options
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/controller
 		 * @see client/html/checkout/confirm/url/action
@@ -510,7 +499,6 @@ class Standard
 		 *
 		 * @param string Destination of the URL
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
@@ -526,7 +514,6 @@ class Standard
 		 *
 		 * @param string Name of the controller
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
@@ -542,7 +529,6 @@ class Standard
 		 *
 		 * @param string Name of the action
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/config
@@ -564,7 +550,6 @@ class Standard
 		 *
 		 * @param string Associative list of configuration options
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
@@ -595,7 +580,6 @@ class Standard
 		 *
 		 * @param string Destination of the URL
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/update/url/controller
 		 * @see client/html/checkout/update/url/action
 		 * @see client/html/checkout/update/url/config
@@ -611,7 +595,6 @@ class Standard
 		 *
 		 * @param string Name of the controller
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/action
 		 * @see client/html/checkout/update/url/config
@@ -627,7 +610,6 @@ class Standard
 		 *
 		 * @param string Name of the action
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/controller
 		 * @see client/html/checkout/update/url/config
@@ -649,7 +631,6 @@ class Standard
 		 *
 		 * @param string Associative list of configuration options
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/controller
 		 * @see client/html/checkout/update/url/action

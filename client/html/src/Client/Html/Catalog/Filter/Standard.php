@@ -55,7 +55,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/filter/subparts';
 
@@ -67,7 +66,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/catalog/filter/tree/name
@@ -78,7 +76,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/catalog/filter/price/name
@@ -89,7 +86,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2020.10
-	 * @category Developer
 	 */
 
 	/** client/html/catalog/filter/attribute/name
@@ -100,7 +96,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/catalog/filter/supplier/name
@@ -111,7 +106,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2018.07
-	 * @category Developer
 	 */
 	private $subPartNames = ['tree', 'search', 'price', 'supplier', 'attribute'];
 	private $tags = [];
@@ -138,8 +132,6 @@ class Standard
 		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/lists/cache
 		 * @see client/html/catalog/stage/cache
@@ -152,7 +144,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/catalog#filter
 		 */
 		$confkey = 'client/html/catalog/filter';
@@ -187,7 +178,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/filter/template-header
 		 */
 
@@ -251,7 +241,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/filter/template-body
 		 */
 
@@ -296,7 +285,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/filter/decorators/global
 		 * @see client/html/catalog/filter/decorators/local
@@ -320,7 +308,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/filter/decorators/excludes
 		 * @see client/html/catalog/filter/decorators/local
@@ -344,7 +331,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/filter/decorators/excludes
 		 * @see client/html/catalog/filter/decorators/global
@@ -406,8 +392,6 @@ class Standard
 		 *
 		 * @param boolean Value of "1" to display product counts, "0" to disable them
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/count/url/target
 		 * @see client/html/catalog/count/url/controller
 		 * @see client/html/catalog/count/url/action
@@ -425,7 +409,6 @@ class Standard
 			 *
 			 * @param string Destination of the URL
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/catalog/count/url/config
@@ -441,7 +424,6 @@ class Standard
 			 *
 			 * @param string Name of the controller
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/catalog/count/url/config
@@ -457,7 +439,6 @@ class Standard
 			 *
 			 * @param string Name of the action
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/config
@@ -479,7 +460,6 @@ class Standard
 			 *
 			 * @param string Associative list of configuration options
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/action
@@ -504,8 +484,6 @@ class Standard
 			 * Downside: It will be impossible for customers to deselect the category!
 			 *
 			 * @param array List of parameter names
-			 * @category Developer
-			 * @category User
 			 * @since 2020.04
 			 */
 			foreach( $config->get( 'client/html/catalog/filter/remove-params', ['f_sort'] ) as $name ) {

@@ -215,8 +215,6 @@ abstract class Base
 		 *
 		 * @param integer Order payment constant value
 		 * @since 2016.3
-		 * @category User
-		 * @category Developer
 		 */
 		return $config->get( 'client/html/common/summary/detail/download/payment-status', $default );
 	}

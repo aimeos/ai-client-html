@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/process/address/subparts';
 	private $subPartNames = [];
@@ -107,7 +106,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/address/decorators/global
 		 * @see client/html/checkout/standard/process/address/decorators/local
@@ -131,7 +129,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/address/decorators/excludes
 		 * @see client/html/checkout/standard/process/address/decorators/local
@@ -155,7 +152,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/address/decorators/excludes
 		 * @see client/html/checkout/standard/process/address/decorators/global

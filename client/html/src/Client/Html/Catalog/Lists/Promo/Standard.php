@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/lists/promo/subparts';
 	private $subPartNames = [];
@@ -106,7 +105,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/lists/promo/template-header
 		 * @see client/html/catalog/lists/type/template-body
 		 */
@@ -165,7 +163,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/lists/promo/template-body
 		 * @see client/html/catalog/lists/type/template-body
 		 */
@@ -205,7 +202,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/promo/decorators/global
 		 * @see client/html/catalog/lists/promo/decorators/local
@@ -229,7 +225,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/promo/decorators/excludes
 		 * @see client/html/catalog/lists/promo/decorators/local
@@ -253,7 +248,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/promo/decorators/excludes
 		 * @see client/html/catalog/lists/promo/decorators/global
@@ -307,8 +301,6 @@ class Standard
 			 *
 			 * @param integer Number of promotion products
 			 * @since 2014.03
-			 * @category User
-			 * @category Developer
 			 */
 			$size = $config->get( 'client/html/catalog/lists/promo/size', 6 );
 			$domains = $config->get( 'client/html/catalog/lists/domains', ['media', 'price', 'text'] );

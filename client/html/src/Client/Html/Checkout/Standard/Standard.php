@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/subparts';
 
@@ -65,7 +64,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/checkout/standard/delivery/name
@@ -76,7 +74,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/checkout/standard/payment/name
@@ -87,7 +84,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/checkout/standard/summary/name
@@ -98,7 +94,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/checkout/standard/process/name
@@ -109,7 +104,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2015.07
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'address', 'delivery', 'payment', 'summary', 'process' );
 	private $view;
@@ -175,7 +169,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/template-header
 		 */
 		$tplconf = 'client/html/checkout/template-body';
@@ -217,7 +210,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/checkout/template-body
 			 */
 			$tplconf = 'client/html/checkout/template-header';
@@ -263,7 +255,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/decorators/global
 		 * @see client/html/checkout/standard/decorators/local
@@ -287,7 +278,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/decorators/excludes
 		 * @see client/html/checkout/standard/decorators/local
@@ -311,7 +301,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/decorators/excludes
 		 * @see client/html/checkout/standard/decorators/global
@@ -406,8 +395,6 @@ class Standard
 		 *
 		 * @param string Name of the confirm standard HTML client
 		 * @since 2014.07
-		 * @category Developer
-		 * @category User
 		 * @see client/html/checkout/subparts
 		 */
 		$default = $view->config( 'client/html/checkout/standard/url/step-active', 'summary' );
@@ -441,7 +428,6 @@ class Standard
 		 *
 		 * @param array List of checkout subparts name
 		 * @since 2015.05
-		 * @category Developer
 		 */
 		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 		$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
@@ -504,7 +490,6 @@ class Standard
 		 *
 		 * @param string Destination of the URL
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
@@ -520,7 +505,6 @@ class Standard
 		 *
 		 * @param string Name of the controller
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
@@ -536,7 +520,6 @@ class Standard
 		 *
 		 * @param string Name of the action
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/config
@@ -558,7 +541,6 @@ class Standard
 		 *
 		 * @param string Associative list of configuration options
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action

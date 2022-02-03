@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/payment/subparts';
 
@@ -65,7 +64,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/email/payment/html/name
@@ -76,7 +74,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/email/payment/pdf/name
@@ -87,7 +84,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2020.07
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'text', 'html', 'pdf' );
 
@@ -118,8 +114,6 @@ class Standard
 		 *
 		 * @param array List of absolute file paths
 		 * @since 2016.10
-		 * @category Developer
-		 * @category User
 		 * @see client/html/email/delivery/attachments
 		 */
 		$files = $view->config( 'client/html/email/payment/attachments', [] );
@@ -151,7 +145,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/email/payment/template-header
 		 */
 		$tplconf = 'client/html/email/payment/template-body';
@@ -198,7 +191,6 @@ class Standard
 		 *
 		 * @param string Name shown in the e-mail
 		 * @since 2014.03
-		 * @category User
 		 * @see client/html/email/from-name
 		 * @see client/html/email/from-email
 		 * @see client/html/email/reply-email
@@ -222,7 +214,6 @@ class Standard
 		 *
 		 * @param string E-mail address
 		 * @since 2014.03
-		 * @category User
 		 * @see client/html/email/payment/from-name
 		 * @see client/html/email/from-email
 		 * @see client/html/email/reply-email
@@ -248,7 +239,6 @@ class Standard
 		 *
 		 * @param string Name shown in the e-mail
 		 * @since 2014.03
-		 * @category User
 		 * @see client/html/email/payment/reply-email
 		 * @see client/html/email/reply-name
 		 * @see client/html/email/reply-email
@@ -272,7 +262,6 @@ class Standard
 		 *
 		 * @param string E-mail address
 		 * @since 2014.03
-		 * @category User
 		 * @see client/html/email/payment/reply-name
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
@@ -304,8 +293,6 @@ class Standard
 		 *
 		 * @param string|array E-mail address or list of e-mail addresses
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see client/html/email/bcc-email
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
@@ -343,7 +330,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/email/payment/template-body
 		 */
 		$tplconf = 'client/html/email/payment/template-header';
@@ -384,7 +370,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/payment/decorators/global
 		 * @see client/html/email/payment/decorators/local
@@ -408,7 +393,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/payment/decorators/excludes
 		 * @see client/html/email/payment/decorators/local
@@ -432,7 +416,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/payment/decorators/excludes
 		 * @see client/html/email/payment/decorators/global

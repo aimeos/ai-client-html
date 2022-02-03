@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2018.04
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/subscription/html/subparts';
 	private $subPartNames = [];
@@ -98,7 +97,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML e-mail body
 		 * @since 2018.04
-		 * @category Developer
 		 * @see client/html/email/subscription/html/template-header
 		 */
 		$tplconf = 'client/html/email/subscription/html/template-body';
@@ -138,7 +136,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.04
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/subscription/html/decorators/global
 		 * @see client/html/email/subscription/html/decorators/local
@@ -162,7 +159,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.04
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/subscription/html/decorators/excludes
 		 * @see client/html/email/subscription/html/decorators/local
@@ -186,7 +182,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.04
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/subscription/html/decorators/excludes
 		 * @see client/html/email/subscription/html/decorators/global
@@ -227,7 +222,6 @@ class Standard
 		 *
 		 * @param string Absolute file system path or remote URL to the logo image
 		 * @since 2018.04
-		 * @category User
 		 * @see client/html/email/from-email
 		 */
 		$file = $view->config( 'client/html/email/logo', 'client/html/themes/default/media/logo.png' );

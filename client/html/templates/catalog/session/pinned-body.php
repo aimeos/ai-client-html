@@ -18,7 +18,6 @@ $enc = $this->encoder();
  *
  * @param string Destination of the URL
  * @since 2014.09
- * @category Developer
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
@@ -33,7 +32,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the controller
  * @since 2014.09
- * @category Developer
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
@@ -48,7 +46,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the action
  * @since 2014.09
- * @category Developer
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/config
@@ -69,7 +66,6 @@ $enc = $this->encoder();
  *
  * @param string Associative list of configuration options
  * @since 2014.09
- * @category Developer
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/action
@@ -86,7 +82,6 @@ $enc = $this->encoder();
  *
  * @param integer Zero to disable the counter, one to enable it
  * @since 2014.09
- * @category Developer
  * @see client/html/catalog/session/seen/count/enable
  */
 

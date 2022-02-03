@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/session/subparts';
 
@@ -65,7 +64,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.09
-	 * @category Developer
 	 */
 
 	/** client/html/catalog/session/seen/name
@@ -76,7 +74,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'pinned', 'seen' );
 
@@ -147,7 +144,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/session/template-header
 		 */
 		$tplconf = 'client/html/catalog/session/template-body';
@@ -191,7 +187,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/session/template-body
 			 */
 			$tplconf = 'client/html/catalog/session/template-header';
@@ -237,7 +232,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/decorators/global
 		 * @see client/html/catalog/session/decorators/local
@@ -261,7 +255,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/decorators/excludes
 		 * @see client/html/catalog/session/decorators/local
@@ -285,7 +278,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/decorators/excludes
 		 * @see client/html/catalog/session/decorators/global

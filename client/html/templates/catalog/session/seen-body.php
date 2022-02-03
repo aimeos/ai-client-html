@@ -19,7 +19,6 @@ $enc = $this->encoder();
  *
  * @param integer Zero to disable the counter, one to enable it
  * @since 2014.09
- * @category Developer
  * @see client/html/catalog/session/pinned/count/enable
  */
 

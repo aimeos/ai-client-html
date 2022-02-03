@@ -27,8 +27,6 @@ $enc = $this->encoder();
  *
  * @param array List of user action names
  * @since 2017.04
- * @category User
- * @category Developer
  */
 $list = $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'favorite'] );
 

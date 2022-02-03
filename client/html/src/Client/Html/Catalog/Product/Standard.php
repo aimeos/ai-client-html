@@ -41,8 +41,6 @@ class Standard
 		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/stage/cache
@@ -55,7 +53,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/catalog#product
 		 */
 		$confkey = 'client/html/catalog/product';
@@ -142,7 +139,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2019.06
-		 * @category Developer
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/detail/domains
 		 * @see client/html/catalog/stage/domains
@@ -163,7 +159,6 @@ class Standard
 		 *
 		 * @param string List of codes of products to load for the current list
 		 * @since 2019.06
-		 * @category Developer
 		 */
 		$productCodes = $config->get( 'client/html/catalog/product/product-codes', [] );
 
@@ -202,8 +197,6 @@ class Standard
 		 *
 		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2019.06
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/detail/stock/enable
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -242,7 +235,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2019.06
-	 * @category Developer
 	 * @see client/html/catalog/product/template-header
 	 */
 
@@ -264,7 +256,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2019.06
-	 * @category Developer
 	 * @see client/html/catalog/product/template-body
 	 */
 }

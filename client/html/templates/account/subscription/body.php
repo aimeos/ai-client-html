@@ -17,7 +17,6 @@ $enc = $this->encoder();
  *
  * @param string Destination of the URL
  * @since 2018.04
- * @category Developer
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/action
  * @see client/html/account/subscription/url/config
@@ -32,7 +31,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the controller
  * @since 2018.04
- * @category Developer
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/action
  * @see client/html/account/subscription/url/config
@@ -47,7 +45,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the action
  * @since 2018.04
- * @category Developer
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/config
@@ -68,7 +65,6 @@ $enc = $this->encoder();
  *
  * @param string Associative list of configuration options
  * @since 2018.04
- * @category Developer
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/action
@@ -189,7 +185,6 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									 *
 									 * @param string Relative path to the address partial
 									 * @since 2018.04
-									 * @category Developer
 									 * @see client/html/account/subscription/summary/detail
 									 * @see client/html/account/subscription/summary/service
 									 */
@@ -236,7 +231,6 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 							 *
 							 * @param string Relative path to the detail partial
 							 * @since 2018.04
-							 * @category Developer
 							 * @see client/html/account/subscription/summary/address
 							 * @see client/html/account/subscription/summary/service
 							 */

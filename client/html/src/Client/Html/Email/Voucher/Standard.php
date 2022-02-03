@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2018.07
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/voucher/subparts';
 
@@ -64,7 +63,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2018.07
-	 * @category Developer
 	 */
 
 	/** client/html/email/voucher/html/name
@@ -75,7 +73,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2018.07
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'text', 'html' );
 
@@ -120,7 +117,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2018.07
-		 * @category Developer
 		 * @see client/html/email/voucher/template-header
 		 */
 		$tplconf = 'client/html/email/voucher/template-body';
@@ -164,7 +160,6 @@ class Standard
 		 *
 		 * @param string Name shown in the e-mail
 		 * @since 2018.07
-		 * @category User
 		 * @see client/html/email/from-name
 		 * @see client/html/email/from-email
 		 * @see client/html/email/reply-email
@@ -188,7 +183,6 @@ class Standard
 		 *
 		 * @param string E-mail address
 		 * @since 2018.07
-		 * @category User
 		 * @see client/html/email/voucher/from-name
 		 * @see client/html/email/from-email
 		 * @see client/html/email/reply-email
@@ -214,7 +208,6 @@ class Standard
 		 *
 		 * @param string Name shown in the e-mail
 		 * @since 2018.07
-		 * @category User
 		 * @see client/html/email/voucher/reply-email
 		 * @see client/html/email/reply-name
 		 * @see client/html/email/reply-email
@@ -238,7 +231,6 @@ class Standard
 		 *
 		 * @param string E-mail address
 		 * @since 2018.07
-		 * @category User
 		 * @see client/html/email/voucher/reply-name
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
@@ -270,8 +262,6 @@ class Standard
 		 *
 		 * @param string|array E-mail address or list of e-mail addresses
 		 * @since 2018.07
-		 * @category User
-		 * @category Developer
 		 * @see client/html/email/bcc-email
 		 * @see client/html/email/reply-email
 		 * @see client/html/email/from-email
@@ -309,7 +299,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2018.07
-		 * @category Developer
 		 * @see client/html/email/voucher/template-body
 		 */
 		$tplconf = 'client/html/email/voucher/template-header';
@@ -347,7 +336,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.07
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/voucher/decorators/global
 		 * @see client/html/email/voucher/decorators/local
@@ -371,7 +359,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.07
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/voucher/decorators/excludes
 		 * @see client/html/email/voucher/decorators/local
@@ -395,7 +382,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.07
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/voucher/decorators/excludes
 		 * @see client/html/email/voucher/decorators/global

@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/lists/items/subparts';
 	private $subPartNames = [];
@@ -106,7 +105,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/lists/items/template-header
 		 * @see client/html/catalog/lists/type/template-body
 		 */
@@ -165,7 +163,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/lists/items/template-body
 		 * @see client/html/catalog/lists/type/template-body
 		 */
@@ -205,7 +202,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/items/decorators/global
 		 * @see client/html/catalog/lists/items/decorators/local
@@ -229,7 +225,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/items/decorators/excludes
 		 * @see client/html/catalog/lists/items/decorators/local
@@ -253,7 +248,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/items/decorators/excludes
 		 * @see client/html/catalog/lists/items/decorators/global
@@ -332,8 +326,6 @@ class Standard
 		 *
 		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/detail/stock/enable
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller

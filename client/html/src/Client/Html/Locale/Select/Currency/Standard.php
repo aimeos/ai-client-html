@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.09
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/locale/select/currency/subparts';
 	private $subPartNames = [];
@@ -92,7 +91,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.09
-		 * @category Developer
 		 * @see client/html/locale/select/currency/template-header
 		 */
 		$tplconf = 'client/html/locale/select/currency/template-body';
@@ -131,7 +129,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/locale/select/currency/decorators/global
 		 * @see client/html/locale/select/currency/decorators/local
@@ -155,7 +152,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/locale/select/currency/decorators/excludes
 		 * @see client/html/locale/select/currency/decorators/local
@@ -179,7 +175,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/locale/select/currency/decorators/excludes
 		 * @see client/html/locale/select/currency/decorators/global

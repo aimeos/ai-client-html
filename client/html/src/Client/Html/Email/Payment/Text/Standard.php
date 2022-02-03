@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/payment/text/subparts';
 	private $subPartNames = [];
@@ -99,7 +98,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the e-mail body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/email/payment/text/template-header
 		 */
 		$tplconf = 'client/html/email/payment/text/template-body';
@@ -140,7 +138,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/payment/text/decorators/global
 		 * @see client/html/email/payment/text/decorators/local
@@ -164,7 +161,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/payment/text/decorators/excludes
 		 * @see client/html/email/payment/text/decorators/local
@@ -188,7 +184,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/payment/text/decorators/excludes
 		 * @see client/html/email/payment/text/decorators/global

@@ -24,7 +24,6 @@ $enc = $this->encoder();
  *
  * @param string Associative list of configuration options
  * @since 2014.09
- * @category Developer
  */
 $config = $this->config( 'client/html/locale/select/language/url/config', [] );
 

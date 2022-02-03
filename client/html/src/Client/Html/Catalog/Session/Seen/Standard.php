@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/session/seen/subparts';
 	private $subPartNames = [];
@@ -78,7 +77,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/catalog#session
 		 */
 		$config = $context->config()->get( 'client/html/catalog/session/seen', [] );
@@ -109,7 +107,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page body
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/session/seen/template-header
 			 */
 			$tplconf = 'client/html/catalog/session/seen/template-body';
@@ -157,7 +154,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/seen/decorators/global
 		 * @see client/html/catalog/session/seen/decorators/local
@@ -181,7 +177,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/seen/decorators/excludes
 		 * @see client/html/catalog/session/seen/decorators/local
@@ -205,7 +200,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/session/seen/decorators/excludes
 		 * @see client/html/catalog/session/seen/decorators/global

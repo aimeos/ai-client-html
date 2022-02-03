@@ -15,7 +15,6 @@
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @category Developer
  * @see client/html/account/history/url/controller
  * @see client/html/account/history/url/action
  * @see client/html/account/history/url/config
@@ -30,7 +29,6 @@
  *
  * @param string Name of the controller
  * @since 2014.03
- * @category Developer
  * @see client/html/account/history/url/target
  * @see client/html/account/history/url/action
  * @see client/html/account/history/url/config
@@ -45,7 +43,6 @@
  *
  * @param string Name of the action
  * @since 2014.03
- * @category Developer
  * @see client/html/account/history/url/target
  * @see client/html/account/history/url/controller
  * @see client/html/account/history/url/config
@@ -66,7 +63,6 @@
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @category Developer
  * @see client/html/account/history/url/target
  * @see client/html/account/history/url/controller
  * @see client/html/account/history/url/action
@@ -188,7 +184,6 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 										 *
 										 * @param string Relative path to the address partial
 										 * @since 2017.01
-										 * @category Developer
 										 * @see client/html/account/history/summary/detail
 										 * @see client/html/account/history/summary/service
 										 */
@@ -237,7 +232,6 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 										 *
 										 * @param string Relative path to the service partial
 										 * @since 2017.01
-										 * @category Developer
 										 * @see client/html/account/history/summary/address
 										 * @see client/html/account/history/summary/detail
 										 */
@@ -312,7 +306,6 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 								 *
 								 * @param string Relative path to the detail partial
 								 * @since 2017.01
-								 * @category Developer
 								 * @see client/html/account/history/summary/address
 								 * @see client/html/account/history/summary/service
 								 */

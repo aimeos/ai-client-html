@@ -62,7 +62,6 @@ class Factory
 		 *
 		 * @param string Last part of the class name
 		 * @since 2014.03
-		 * @category Developer
 		 */
 		if( $name === null ) {
 			$name = $context->config()->get( 'client/html/basket/related/name', 'Standard' );

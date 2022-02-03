@@ -33,8 +33,6 @@ $enc = $this->encoder();
  *
  * @param integer Number of products in stock
  * @since 2014.03
- * @category User
- * @category Developer
  * @see client/html/catalog/stock/sort
  */
 $stockLow = $this->config( 'client/html/catalog/stock/level/low', 5 );

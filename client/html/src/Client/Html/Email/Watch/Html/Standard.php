@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.09
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/email/watch/html/subparts';
 	private $subPartNames = [];
@@ -99,7 +98,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML e-mail body
 		 * @since 2014.09
-		 * @category Developer
 		 * @see client/html/email/watch/html/template-header
 		 */
 		$tplconf = 'client/html/email/watch/html/template-body';
@@ -139,7 +137,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/watch/html/decorators/global
 		 * @see client/html/email/watch/html/decorators/local
@@ -163,7 +160,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/watch/html/decorators/excludes
 		 * @see client/html/email/watch/html/decorators/local
@@ -187,7 +183,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/email/watch/html/decorators/excludes
 		 * @see client/html/email/watch/html/decorators/global
@@ -228,7 +223,6 @@ class Standard
 		 *
 		 * @param string Absolute file system path or remote URL to the logo image
 		 * @since 2014.03
-		 * @category User
 		 * @see client/html/email/from-email
 		 */
 		$file = $view->config( 'client/html/email/logo', 'client/html/themes/default/media/logo.png' );

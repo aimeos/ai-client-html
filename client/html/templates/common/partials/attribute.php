@@ -34,8 +34,6 @@
  *
  * @param boolean True to select the first option by default, false to display the select hint
  * @since 2017.04
- * @category Developer
- * @category User
  */
 
 /** client/html/catalog/attribute/type
@@ -65,8 +63,6 @@
  *
  * @param array List of attribute types as key and layout types as value, e.g. "select" or "radio"
  * @since 2015.10
- * @category Developer
- * @category User
  * @see client/html/catalog/selection/type
  */
 

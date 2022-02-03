@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/count/subparts';
 
@@ -65,7 +64,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/catalog/count/supplier/name
@@ -76,7 +74,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2018.07
-	 * @category Developer
 	 */
 
 	/** client/html/catalog/count/attribute/name
@@ -87,7 +84,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartNames = ['tree', 'supplier', 'attribute'];
 	private $view;
@@ -130,7 +126,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page body
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/count/template-header
 			 */
 			$tplconf = 'client/html/catalog/count/template-body';
@@ -180,7 +175,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/count/template-body
 			 */
 			$tplconf = 'client/html/catalog/count/template-header';
@@ -227,7 +221,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/count/decorators/global
 		 * @see client/html/catalog/count/decorators/local
@@ -251,7 +244,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/count/decorators/excludes
 		 * @see client/html/catalog/count/decorators/local
@@ -275,7 +267,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/count/decorators/excludes
 		 * @see client/html/catalog/count/decorators/global

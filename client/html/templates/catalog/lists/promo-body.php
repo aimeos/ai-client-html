@@ -22,7 +22,6 @@
 			 *
 			 * @param string Relative path to the template file
 			 * @since 2017.01
-			 * @category Developer
 			 */
 			$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 			['products' => $this->get( 'promoItems', map() )]

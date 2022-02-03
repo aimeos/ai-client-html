@@ -24,8 +24,6 @@ $enc = $this->encoder();
  *
  * @param boolean True to display the button, false to hide it
  * @since 2016.01
- * @category Developer
- * @category User
  * @see client/html/catalog/home/basket-add
  * @see client/html/catalog/detail/basket-add
  * @see client/html/catalog/product/basket-add
@@ -41,7 +39,6 @@ $enc = $this->encoder();
  *
  * @param boolean True to use infinite scrolling, false to disable it
  * @since 2019.10
- * @category Developer
  */
 $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
 

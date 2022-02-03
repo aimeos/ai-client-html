@@ -19,7 +19,6 @@ $enc = $this->encoder();
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/lists/url/controller
  * @see client/html/catalog/lists/url/action
  * @see client/html/catalog/lists/url/config
@@ -34,7 +33,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the controller
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/lists/url/target
  * @see client/html/catalog/lists/url/action
  * @see client/html/catalog/lists/url/config
@@ -49,7 +47,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the action
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/lists/url/target
  * @see client/html/catalog/lists/url/controller
  * @see client/html/catalog/lists/url/config
@@ -70,7 +67,6 @@ $enc = $this->encoder();
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/lists/url/target
  * @see client/html/catalog/lists/url/controller
  * @see client/html/catalog/lists/url/action

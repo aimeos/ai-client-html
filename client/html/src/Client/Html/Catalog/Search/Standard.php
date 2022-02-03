@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2018.04
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/search/subparts';
 	private $subPartNames = ['search'];
@@ -87,7 +86,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.04
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/search/decorators/global
 		 * @see client/html/catalog/search/decorators/local
@@ -111,7 +109,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.04
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/search/decorators/excludes
 		 * @see client/html/catalog/search/decorators/local
@@ -135,7 +132,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2018.04
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/search/decorators/excludes
 		 * @see client/html/catalog/search/decorators/global

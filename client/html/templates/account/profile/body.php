@@ -20,7 +20,6 @@ $selectfcn = function( $list, $key, $value ) {
  *
  * @param string Destination of the URL
  * @since 2019.10
- * @category Developer
  * @see client/html/account/profile/url/controller
  * @see client/html/account/profile/url/action
  * @see client/html/account/profile/url/config
@@ -35,7 +34,6 @@ $selectfcn = function( $list, $key, $value ) {
  *
  * @param string Name of the controller
  * @since 2019.10
- * @category Developer
  * @see client/html/account/profile/url/target
  * @see client/html/account/profile/url/action
  * @see client/html/account/profile/url/config
@@ -50,7 +48,6 @@ $selectfcn = function( $list, $key, $value ) {
  *
  * @param string Name of the action
  * @since 2019.10
- * @category Developer
  * @see client/html/account/profile/url/target
  * @see client/html/account/profile/url/controller
  * @see client/html/account/profile/url/config
@@ -71,7 +68,6 @@ $selectfcn = function( $list, $key, $value ) {
  *
  * @param string Associative list of configuration options
  * @since 2019.10
- * @category Developer
  * @see client/html/account/profile/url/target
  * @see client/html/account/profile/url/controller
  * @see client/html/account/profile/url/action
@@ -87,8 +83,6 @@ $selectfcn = function( $list, $key, $value ) {
  *
  * @param array List of parameter names to remove
  * @since 2019.10
- * @category User
- * @category Developer
  * @see client/html/account/profile/url/target
  * @see client/html/account/profile/url/controller
  * @see client/html/account/profile/url/action

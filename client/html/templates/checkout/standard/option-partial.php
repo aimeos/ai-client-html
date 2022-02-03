@@ -18,7 +18,6 @@
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/url/controller
  * @see client/html/checkout/standard/summary/option/terms/url/action
  * @see client/html/checkout/standard/summary/option/terms/url/config
@@ -33,7 +32,6 @@
  *
  * @param string Name of the controller
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/url/target
  * @see client/html/checkout/standard/summary/option/terms/url/action
  * @see client/html/checkout/standard/summary/option/terms/url/config
@@ -48,7 +46,6 @@
  *
  * @param string Name of the action
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/url/target
  * @see client/html/checkout/standard/summary/option/terms/url/controller
  * @see client/html/checkout/standard/summary/option/terms/url/config
@@ -69,7 +66,6 @@
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/url/target
  * @see client/html/checkout/standard/summary/option/terms/url/controller
  * @see client/html/checkout/standard/summary/option/terms/url/action
@@ -86,7 +82,6 @@
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
@@ -101,7 +96,6 @@
  *
  * @param string Name of the controller
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
@@ -116,7 +110,6 @@
  *
  * @param string Name of the action
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
@@ -137,7 +130,6 @@
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
@@ -154,7 +146,6 @@
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/controller
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
@@ -169,7 +160,6 @@
  *
  * @param string Name of the controller
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/target
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
@@ -184,7 +174,6 @@
  *
  * @param string Name of the action
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/target
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/controller
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
@@ -205,7 +194,6 @@
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @category Developer
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/target
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/controller
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action

@@ -17,7 +17,6 @@ $enc = $this->encoder();
  *
  * @param string Destination of the URL
  * @since 2019.01
- * @category Developer
  * @see client/html/catalog/tree/url/controller
  * @see client/html/catalog/tree/url/action
  * @see client/html/catalog/tree/url/config
@@ -33,7 +32,6 @@ $target = $this->config( 'client/html/catalog/tree/url/target' );
  *
  * @param string Name of the controller
  * @since 2019.01
- * @category Developer
  * @see client/html/catalog/tree/url/target
  * @see client/html/catalog/tree/url/action
  * @see client/html/catalog/tree/url/config
@@ -49,7 +47,6 @@ $controller = $this->config( 'client/html/catalog/tree/url/controller', 'catalog
  *
  * @param string Name of the action
  * @since 2019.01
- * @category Developer
  * @see client/html/catalog/tree/url/target
  * @see client/html/catalog/tree/url/controller
  * @see client/html/catalog/tree/url/config
@@ -71,7 +68,6 @@ $action = $this->config( 'client/html/catalog/tree/url/action', 'list' );
  *
  * @param string Associative list of configuration options
  * @since 2019.01
- * @category Developer
  * @see client/html/catalog/tree/url/target
  * @see client/html/catalog/tree/url/controller
  * @see client/html/catalog/tree/url/action
@@ -93,7 +89,6 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
  *
  * @param string Relative path to the template file
  * @since 2015.08
- * @category Developer
  */
 
 

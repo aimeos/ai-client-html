@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/basket/mini/subparts';
 	private $subPartNames = [];
@@ -79,7 +78,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/basket#mini
 		 */
 		$config = $context->config()->get( 'client/html/basket/mini', [] );
@@ -138,7 +136,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page body
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/basket/mini/template-header
 			 */
 			$tplconf = 'client/html/basket/mini/template-body';
@@ -203,7 +200,6 @@ class Standard
 				 *
 				 * @param string Relative path to the template creating code for the HTML page head
 				 * @since 2014.03
-				 * @category Developer
 				 * @see client/html/basket/mini/template-body
 				 */
 				$tplconf = 'client/html/basket/mini/template-header';
@@ -255,7 +251,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/basket/mini/decorators/global
 		 * @see client/html/basket/mini/decorators/local
@@ -279,7 +274,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/basket/mini/decorators/excludes
 		 * @see client/html/basket/mini/decorators/local
@@ -303,7 +297,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/basket/mini/decorators/excludes
 		 * @see client/html/basket/mini/decorators/global

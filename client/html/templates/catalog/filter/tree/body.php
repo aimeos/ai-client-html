@@ -22,8 +22,6 @@ $enc = $this->encoder();
  *
  * @param boolean True to enforce current category for search, false for full text search only
  * @since 2015.10
- * @category Developer
- * @category User
  */
 $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false );
 
@@ -36,7 +34,6 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
  *
  * @param string Relative path to the template file
  * @since 2022.04
- * @category Developer
  */
 
 

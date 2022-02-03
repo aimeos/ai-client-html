@@ -27,7 +27,6 @@ $position = $this->get( 'position' );
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/detail/url/controller
  * @see client/html/catalog/detail/url/action
  * @see client/html/catalog/detail/url/config
@@ -44,7 +43,6 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
  *
  * @param string Name of the controller
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/detail/url/target
  * @see client/html/catalog/detail/url/action
  * @see client/html/catalog/detail/url/config
@@ -61,7 +59,6 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
  *
  * @param string Name of the action
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/detail/url/target
  * @see client/html/catalog/detail/url/controller
  * @see client/html/catalog/detail/url/config
@@ -84,7 +81,6 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @category Developer
  * @see client/html/catalog/detail/url/target
  * @see client/html/catalog/detail/url/controller
  * @see client/html/catalog/detail/url/action
@@ -106,8 +102,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
  *
  * @param array List of parameter names to remove
  * @since 2019.04
- * @category User
- * @category Developer
  * @see client/html/catalog/detail/url/target
  * @see client/html/catalog/detail/url/controller
  * @see client/html/catalog/detail/url/action
@@ -269,7 +263,6 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 									 *
 									 * @param string Relative path to the template file
 									 * @since 2015.04
-									 * @category Developer
 									 */
 									$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 									['prices' => $productItem->getRefItems( 'price', null, 'default' )]

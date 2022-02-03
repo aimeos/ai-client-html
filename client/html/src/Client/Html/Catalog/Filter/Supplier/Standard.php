@@ -44,7 +44,6 @@ class Standard
 		 *
 		 * @param array List of domain item names
 		 * @since 2018.07
-		 * @category Developer
 		 * @see client/html/catalog/filter/supplier/types
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/supplier/domains', ['text', 'media', 'media/property'] );
@@ -89,7 +88,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2018.07
-	 * @category Developer
 	 * @see client/html/catalog/filter/supplier/template-header
 	 */
 }

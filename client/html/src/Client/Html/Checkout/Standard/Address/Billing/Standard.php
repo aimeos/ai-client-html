@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/standard/address/billing/subparts';
 	private $subPartNames = [];
@@ -111,7 +110,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/billing/template-header
 		 */
 		$tplconf = 'client/html/checkout/standard/address/billing/template-body';
@@ -150,7 +148,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/billing/decorators/global
 		 * @see client/html/checkout/standard/address/billing/decorators/local
@@ -174,7 +171,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/billing/decorators/excludes
 		 * @see client/html/checkout/standard/address/billing/decorators/local
@@ -198,7 +194,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/billing/decorators/excludes
 		 * @see client/html/checkout/standard/address/billing/decorators/global
@@ -278,8 +273,6 @@ class Standard
 		 *
 		 * @param array List of available salutation codes
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/billing/disable-new
 		 * @see client/html/checkout/standard/address/billing/mandatory
 		 * @see client/html/checkout/standard/address/billing/optional
@@ -357,8 +350,6 @@ class Standard
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/billing/disable-new
 		 * @see client/html/checkout/standard/address/billing/salutations
 		 * @see client/html/checkout/standard/address/billing/optional
@@ -399,8 +390,6 @@ class Standard
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/billing/disable-new
 		 * @see client/html/checkout/standard/address/billing/salutations
 		 * @see client/html/checkout/standard/address/billing/mandatory
@@ -443,8 +432,6 @@ class Standard
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/billing/disable-new
 		 * @see client/html/checkout/standard/address/billing/salutations
 		 * @see client/html/checkout/standard/address/billing/mandatory
@@ -508,7 +495,6 @@ class Standard
 		 *
 		 * @param array Associative list of field names and regular expressions
 		 * @since 2014.09
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/billing/mandatory
 		 * @see client/html/checkout/standard/address/billing/optional
 		 */
@@ -642,8 +628,6 @@ class Standard
 		 *
 		 * @param boolean A value of "1" to disable, "0" enables the billing address form
 		 * @since 2015.02
-		 * @category User
-		 * @category Developer
 		 * @see client/html/checkout/standard/address/billing/salutations
 		 * @see client/html/checkout/standard/address/billing/mandatory
 		 * @see client/html/checkout/standard/address/billing/optional

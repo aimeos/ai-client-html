@@ -312,8 +312,6 @@ abstract class Base
 		 *
 		 * @param boolean True to add tags for all items, false to use only a domain tag
 		 * @since 2014.07
-		 * @category Developer
-		 * @category User
 		 * @see client/html/common/cache/force
 		 * @see madmin/cache/manager/name
 		 * @see madmin/cache/name
@@ -586,8 +584,6 @@ abstract class Base
 		 *
 		 * @param boolean True to cache output regardless of login, false for no caching
 		 * @since 2015.08
-		 * @category Developer
-		 * @category User
 		 * @see client/html/common/cache/tag-all
 		 */
 		$force = $config->get( 'client/html/common/cache/force', false );

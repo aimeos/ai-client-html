@@ -15,7 +15,6 @@
  *
  * @param string Destination of the URL
  * @since 2020.10
- * @category Developer
  * @see client/html/account/review/url/controller
  * @see client/html/account/review/url/action
  * @see client/html/account/review/url/config
@@ -30,7 +29,6 @@
  *
  * @param string Name of the controller
  * @since 2020.10
- * @category Developer
  * @see client/html/account/review/url/target
  * @see client/html/account/review/url/action
  * @see client/html/account/review/url/config
@@ -45,7 +43,6 @@
  *
  * @param string Name of the action
  * @since 2020.10
- * @category Developer
  * @see client/html/account/review/url/target
  * @see client/html/account/review/url/controller
  * @see client/html/account/review/url/config
@@ -66,7 +63,6 @@
  *
  * @param string Associative list of configuration options
  * @since 2020.10
- * @category Developer
  * @see client/html/account/review/url/target
  * @see client/html/account/review/url/controller
  * @see client/html/account/review/url/action
@@ -82,8 +78,6 @@
  *
  * @param array List of parameter names to remove
  * @since 2020.10
- * @category User
- * @category Developer
  * @see client/html/account/review/url/target
  * @see client/html/account/review/url/controller
  * @see client/html/account/review/url/action

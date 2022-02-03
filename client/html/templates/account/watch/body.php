@@ -18,7 +18,6 @@ $enc = $this->encoder();
  *
  * @param string Destination of the URL
  * @since 2014.09
- * @category Developer
  * @see client/html/account/watch/url/controller
  * @see client/html/account/watch/url/action
  * @see client/html/account/watch/url/config
@@ -33,7 +32,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the controller
  * @since 2014.09
- * @category Developer
  * @see client/html/account/watch/url/target
  * @see client/html/account/watch/url/action
  * @see client/html/account/watch/url/config
@@ -48,7 +46,6 @@ $enc = $this->encoder();
  *
  * @param string Name of the action
  * @since 2014.09
- * @category Developer
  * @see client/html/account/watch/url/target
  * @see client/html/account/watch/url/controller
  * @see client/html/account/watch/url/config
@@ -69,7 +66,6 @@ $enc = $this->encoder();
  *
  * @param string Associative list of configuration options
  * @since 2014.09
- * @category Developer
  * @see client/html/account/watch/url/target
  * @see client/html/account/watch/url/controller
  * @see client/html/account/watch/url/action

@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/checkout/confirm/subparts';
 
@@ -65,7 +64,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.07
-	 * @category Developer
 	 */
 
 	/** client/html/checkout/confirm/order/name
@@ -76,7 +74,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2015.02
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'intro', 'order' );
 	private $view;
@@ -142,7 +139,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/checkout/confirm/template-header
 		 */
 		$tplconf = 'client/html/checkout/confirm/template-body';
@@ -184,7 +180,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/checkout/confirm/template-body
 			 */
 			$tplconf = 'client/html/checkout/confirm/template-header';
@@ -230,7 +225,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/confirm/decorators/global
 		 * @see client/html/checkout/confirm/decorators/local
@@ -254,7 +248,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/confirm/decorators/excludes
 		 * @see client/html/checkout/confirm/decorators/local
@@ -278,7 +271,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/confirm/decorators/excludes
 		 * @see client/html/checkout/confirm/decorators/global

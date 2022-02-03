@@ -110,7 +110,6 @@ class Base
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.03
-		 * @category Developer
 		 */
 		$decorators = $config->get( 'client/html/common/decorators/default', [] );
 		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );

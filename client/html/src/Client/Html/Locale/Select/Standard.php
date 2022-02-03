@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.09
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/locale/select/subparts';
 
@@ -65,7 +64,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.09
-	 * @category Developer
 	 */
 
 	/** client/html/locale/select/currency/name
@@ -76,7 +74,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.09
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'language', 'currency' );
 
@@ -147,7 +144,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.09
-		 * @category Developer
 		 * @see client/html/locale/select/template-header
 		 */
 		$tplconf = 'client/html/locale/select/template-body';
@@ -191,7 +187,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2014.09
-			 * @category Developer
 			 * @see client/html/locale/select/template-body
 			 */
 			$tplconf = 'client/html/locale/select/template-header';
@@ -237,7 +232,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/locale/select/decorators/global
 		 * @see client/html/locale/select/decorators/local
@@ -261,7 +255,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/locale/select/decorators/excludes
 		 * @see client/html/locale/select/decorators/local
@@ -285,7 +278,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/locale/select/decorators/excludes
 		 * @see client/html/locale/select/decorators/global

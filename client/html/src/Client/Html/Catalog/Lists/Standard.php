@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/lists/subparts';
 
@@ -65,7 +64,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 
 	/** client/html/catalog/lists/items/name
@@ -76,7 +74,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'items' );
 
@@ -105,8 +102,6 @@ class Standard
 		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/stage/cache
@@ -119,7 +114,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/catalog#list
 		 */
 		$confkey = 'client/html/catalog/lists';
@@ -161,7 +155,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page body
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/lists/template-header
 			 * @see client/html/catalog/lists/type/template-body
 			 */
@@ -272,7 +265,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/lists/template-body
 			 * @see client/html/catalog/lists/type/template-body
 			 */
@@ -343,7 +335,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/decorators/global
 		 * @see client/html/catalog/lists/decorators/local
@@ -367,7 +358,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/decorators/excludes
 		 * @see client/html/catalog/lists/decorators/local
@@ -391,7 +381,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/lists/decorators/excludes
 		 * @see client/html/catalog/lists/decorators/global
@@ -496,7 +485,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/levels
@@ -522,7 +510,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/detail/domains
 		 * @see client/html/catalog/stage/domains
@@ -572,8 +559,6 @@ class Standard
 		 *
 		 * @param integer Number of pages
 		 * @since 2019.04
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
@@ -600,8 +585,6 @@ class Standard
 		 *
 		 * @param integer Number of products
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
@@ -638,7 +621,6 @@ class Standard
 		 *
 		 * @param integer Tree level constant
 		 * @since 2015.11
-		 * @category Developer
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
@@ -661,8 +643,6 @@ class Standard
 		 *
 		 * @param array|string Attribute ID or IDs
 		 * @since 2021.10
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/domains
@@ -687,8 +667,6 @@ class Standard
 		 *
 		 * @param array|string Category ID or IDs
 		 * @since 2014.03
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/domains
@@ -712,8 +690,6 @@ class Standard
 		 *
 		 * @param array|string Supplier ID or IDs
 		 * @since 2021.01
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/domains
@@ -736,8 +712,6 @@ class Standard
 		 *
 		 * @param string Sort code "relevance", "name", "-name", "price", "-price", "ctime" or "-ctime"
 		 * @since 2018.07
-		 * @category User
-		 * @category Developer
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default

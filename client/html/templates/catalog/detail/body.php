@@ -24,8 +24,6 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
  *
  * @param boolean True if products must be in stock, false if products can be sold without stock
  * @since 2014.03
- * @category Developer
- * @category User
  */
 $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
@@ -70,7 +68,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 *
 					 * @param string Relative path to the template file
 					 * @since 2017.01
-					 * @category Developer
 					 */
 					$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial' ),
 					['mediaItems' => $this->get( 'detailMediaItems', map() ), 'params' => $this->param()]
@@ -197,7 +194,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									 *
 									 * @param string Relative path to the template file
 									 * @since 2015.04
-									 * @category Developer
 									 * @see client/html/common/partials/attribute
 									 */
 									$this->config( 'client/html/common/partials/selection', 'common/partials/selection' ),
@@ -228,7 +224,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									 *
 									 * @param string Relative path to the template file
 									 * @since 2021.07
-									 * @category Developer
 									 * @see client/html/common/partials/attribute
 									 */
 									$this->config( 'client/html/common/partials/group', 'common/partials/selection-list' ),
@@ -259,7 +254,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								 *
 								 * @param string Relative path to the template file
 								 * @since 2016.01
-								 * @category Developer
 								 * @see client/html/common/partials/selection
 								 */
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
@@ -333,7 +327,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 *
 					 * @param string Relative path to the template file
 					 * @since 2017.04
-					 * @category Developer
 					 */
 					$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial' ),
 					['productItem' => $this->detailProductItem]
@@ -351,7 +344,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					 *
 					 * @param string Relative path to the template file
 					 * @since 2017.04
-					 * @category Developer
 					 */
 					$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial' ),
 					['productItem' => $this->detailProductItem]

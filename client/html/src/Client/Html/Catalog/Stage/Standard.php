@@ -53,7 +53,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2014.03
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/stage/subparts';
 
@@ -65,7 +64,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.09
-	 * @category Developer
 	 */
 	private $subPartNames = array( 'navigator' );
 
@@ -93,8 +91,6 @@ class Standard
 		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/lists/cache
@@ -107,7 +103,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/catalog#stage
 		 */
 		$confkey = 'client/html/catalog/stage';
@@ -133,7 +128,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page body
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/stage/template-header
 			 */
 			$tplconf = 'client/html/catalog/stage/template-body';
@@ -223,7 +217,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/stage/template-body
 			 */
 			$tplconf = 'client/html/catalog/stage/template-header';
@@ -285,7 +278,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/stage/decorators/global
 		 * @see client/html/catalog/stage/decorators/local
@@ -309,7 +301,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/stage/decorators/excludes
 		 * @see client/html/catalog/stage/decorators/local
@@ -333,7 +324,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2014.05
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/stage/decorators/excludes
 		 * @see client/html/catalog/stage/decorators/global
@@ -454,7 +444,6 @@ class Standard
 			 *
 			 * @param array List of domain names
 			 * @since 2014.03
-			 * @category Developer
 			 * @see client/html/catalog/domains
 			 * @see client/html/catalog/detail/domains
 			 * @see client/html/catalog/lists/domains

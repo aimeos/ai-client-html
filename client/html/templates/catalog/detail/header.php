@@ -27,8 +27,6 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
  *
  * @param boolean True to display the meta tags, false to hide it
  * @since 2017.01
- * @category Developer
- * @category User
  * @see client/html/catalog/lists/metatags
  */
 

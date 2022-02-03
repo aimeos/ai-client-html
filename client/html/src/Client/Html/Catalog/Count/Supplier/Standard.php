@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2018.07
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/count/supplier/subparts';
 	private $subPartNames = [];
@@ -91,7 +90,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2018.07
-		 * @category Developer
 		 * @see client/html/catalog/count/supplier/template-header
 		 */
 		$tplconf = 'client/html/catalog/count/supplier/template-body';
@@ -130,7 +128,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/count/supplier/decorators/global
 		 * @see client/html/catalog/count/supplier/decorators/local
@@ -154,7 +151,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/count/supplier/decorators/excludes
 		 * @see client/html/catalog/count/supplier/decorators/local
@@ -178,7 +174,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.08
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/count/supplier/decorators/excludes
 		 * @see client/html/catalog/count/supplier/decorators/global
@@ -220,8 +215,6 @@ class Standard
 		 *
 		 * @param boolean Disabled if "0", enabled if "1"
 		 * @since 2018.07
-		 * @category Developer
-		 * @category User
 		 */
 		if( $config->get( 'client/html/catalog/count/supplier/aggregate', true ) == true )
 		{

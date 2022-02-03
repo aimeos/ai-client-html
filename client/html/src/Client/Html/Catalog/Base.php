@@ -39,7 +39,6 @@ abstract class Base
 		 *
 		 * @param string Destination of the URL
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
@@ -56,7 +55,6 @@ abstract class Base
 		 *
 		 * @param string Name of the controller
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
@@ -73,7 +71,6 @@ abstract class Base
 		 *
 		 * @param string Name of the action
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/config
@@ -96,7 +93,6 @@ abstract class Base
 		 *
 		 * @param string Associative list of configuration options
 		 * @since 2014.03
-		 * @category Developer
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
@@ -114,7 +110,6 @@ abstract class Base
 		 *
 		 * @param integer Maximum number of product codes per request
 		 * @since 2018.10
-		 * @category Developer
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action

@@ -105,7 +105,6 @@ $enc = $this->encoder();
 						 *
 						 * @param string Relative path to the template file
 						 * @since 2017.07
-						 * @category Developer
 						 */
 						$this->config( 'client/html/checkout/standard/partials/serviceattr', 'checkout/standard/serviceattr-partial' ),
 						['attributes' => $attributes, 'type' => 'payment', 'id' => $id]

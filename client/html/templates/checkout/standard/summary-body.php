@@ -46,7 +46,6 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 						 *
 						 * @param string Relative path to the address partial
 						 * @since 2017.01
-						 * @category Developer
 						 * @see client/html/checkout/standard/summary/detail
 						 * @see client/html/checkout/standard/summary/options
 						 * @see client/html/checkout/standard/summary/service
@@ -103,7 +102,6 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 						 *
 						 * @param string Relative path to the service partial
 						 * @since 2017.01
-						 * @category Developer
 						 * @see client/html/checkout/standard/summary/address
 						 * @see client/html/checkout/standard/summary/detail
 						 * @see client/html/checkout/standard/summary/options
@@ -190,7 +188,6 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 			 *
 			 * @param string Relative path to the options partial
 			 * @since 2017.01
-			 * @category Developer
 			 * @see client/html/checkout/standard/summary/address
 			 * @see client/html/checkout/standard/summary/detail
 			 * @see client/html/checkout/standard/summary/service
@@ -221,7 +218,6 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 				 *
 				 * @param string Relative path to the detail partial
 				 * @since 2017.01
-				 * @category Developer
 				 * @see client/html/checkout/standard/summary/address
 				 * @see client/html/checkout/standard/summary/options
 				 * @see client/html/checkout/standard/summary/service

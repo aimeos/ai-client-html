@@ -33,7 +33,6 @@ $enc = $this->encoder();
 						 *
 						 * @param string Relative path to the address partial
 						 * @since 2017.01
-						 * @category Developer
 						 * @see client/html/checkout/confirm/summary/detail
 						 * @see client/html/checkout/confirm/summary/service
 						 */
@@ -83,7 +82,6 @@ $enc = $this->encoder();
 						 *
 						 * @param string Relative path to the service partial
 						 * @since 2017.01
-						 * @category Developer
 						 * @see client/html/checkout/confirm/summary/address
 						 * @see client/html/checkout/confirm/summary/detail
 						 */
@@ -168,7 +166,6 @@ $enc = $this->encoder();
 				 *
 				 * @param string Relative path to the detail partial
 				 * @since 2017.01
-				 * @category Developer
 				 * @see client/html/checkout/confirm/summary/address
 				 * @see client/html/checkout/confirm/summary/service
 				 */

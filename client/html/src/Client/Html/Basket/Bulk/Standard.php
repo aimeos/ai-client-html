@@ -38,7 +38,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2019.10
-	 * @category Developer
 	 * @see client/html/basket/bulk/template-header
 	 */
 
@@ -60,7 +59,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2019.10
-	 * @category Developer
 	 * @see client/html/basket/bulk/template-body
 	 */
 }

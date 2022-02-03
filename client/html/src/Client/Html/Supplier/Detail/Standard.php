@@ -52,7 +52,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2020.10
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/supplier/detail/subparts';
 
@@ -64,7 +63,6 @@ class Standard
 	 *
 	 * @param string Last part of the client class name
 	 * @since 2014.09
-	 * @category Developer
 	 */
 	private $subPartNames = [];
 
@@ -92,8 +90,6 @@ class Standard
 		 * can't be replaced using the modify() method.
 		 *
 		 * @param boolean True to enable caching, false to disable
-		 * @category Developer
-		 * @category User
 		 * @see client/html/supplier/detail/cache
 		 * @see client/html/supplier/filter/cache
 		 * @see client/html/supplier/lists/cache
@@ -106,7 +102,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @category Developer
 		 * @see client/html/supplier#detail
 		 */
 		$confkey = 'client/html/supplier/detail';
@@ -132,7 +127,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page body
 			 * @since 2020.10
-			 * @category Developer
 			 * @see client/html/supplier/detail/template-header
 			 */
 			$tplconf = 'client/html/supplier/detail/template-body';
@@ -222,7 +216,6 @@ class Standard
 			 *
 			 * @param string Relative path to the template creating code for the HTML page head
 			 * @since 2020.10
-			 * @category Developer
 			 * @see client/html/supplier/detail/template-body
 			 */
 			$tplconf = 'client/html/supplier/detail/template-header';
@@ -289,7 +282,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2020.10
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/supplier/detail/decorators/global
 		 * @see client/html/supplier/detail/decorators/local
@@ -313,7 +305,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2020.10
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/supplier/detail/decorators/excludes
 		 * @see client/html/supplier/detail/decorators/local
@@ -337,7 +328,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2020.10
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/supplier/detail/decorators/excludes
 		 * @see client/html/supplier/detail/decorators/global

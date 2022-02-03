@@ -68,7 +68,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/checkout/update/template-header
 	 */
 
@@ -90,7 +89,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
-	 * @category Developer
 	 * @see client/html/checkout/update/template-body
 	 */
 }

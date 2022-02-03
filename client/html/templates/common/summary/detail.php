@@ -34,7 +34,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
  *
  * @param string Destination of the URL
  * @since 2016.02
- * @category Developer
  * @see client/html/account/download/url/controller
  * @see client/html/account/download/url/action
  * @see client/html/account/download/url/config
@@ -49,7 +48,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
  *
  * @param string Name of the controller
  * @since 2016.02
- * @category Developer
  * @see client/html/account/download/url/target
  * @see client/html/account/download/url/action
  * @see client/html/account/download/url/config
@@ -64,7 +62,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
  *
  * @param string Name of the action
  * @since 2016.02
- * @category Developer
  * @see client/html/account/download/url/target
  * @see client/html/account/download/url/controller
  * @see client/html/account/download/url/config
@@ -85,7 +82,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
  *
  * @param string Associative list of configuration options
  * @since 2016.02
- * @category Developer
  * @see client/html/account/download/url/target
  * @see client/html/account/download/url/controller
  * @see client/html/account/download/url/action
@@ -105,7 +101,6 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( '
  * to the configurable list.
  *
  * @param array List of attribute type codes
- * @category Developer
  * @since 2014.09
  */
 $attrTypes = $this->config( 'client/html/common/summary/detail/product/attribute/types', ['variant', 'config', 'custom'] );

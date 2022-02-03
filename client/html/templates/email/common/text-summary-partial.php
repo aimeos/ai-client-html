@@ -36,7 +36,6 @@ $dlConfig = $this->config( 'client/html/account/download/url/config', ['absolute
 		 *
 		 * @param string Relative path to the address partial
 		 * @since 2017.01
-		 * @category Developer
 		 * @see client/html/email/common/summary/detail/text
 		 * @see client/html/email/common/summary/service/text
 		 */

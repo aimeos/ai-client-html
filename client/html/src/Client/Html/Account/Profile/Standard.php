@@ -63,7 +63,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2016.10
-		 * @category Developer
 		 */
 		$domains = $config->get( 'client/html/account/profile/domains', ['customer/address'] );
 
@@ -218,7 +217,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2016.10
-	 * @category Developer
 	 * @see client/html/account/profile/template-header
 	 */
 
@@ -240,7 +238,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2016.10
-	 * @category Developer
 	 * @see client/html/account/profile/template-body
 	 */
 }

@@ -21,8 +21,6 @@ $enc = $this->encoder();
  *
  * @param boolean A value of "1" to enable the button, "0" to disable it
  * @since 2014.03
- * @category User
- * @category Developer
  */
 
 $attrIds = array_filter( $this->param( 'f_attrid', [] ) );

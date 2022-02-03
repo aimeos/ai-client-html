@@ -37,7 +37,6 @@ $enc = $this->encoder();
 						 *
 						 * @param string Relative path to the detail partial
 						 * @since 2017.01
-						 * @category Developer
 						 */
 						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail' ),
 						array(

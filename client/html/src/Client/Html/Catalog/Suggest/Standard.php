@@ -56,7 +56,6 @@ class Standard
 	 *
 	 * @param array List of sub-client names
 	 * @since 2015.02
-	 * @category Developer
 	 */
 	private $subPartPath = 'client/html/catalog/suggest/subparts';
 	private $subPartNames = [];
@@ -110,7 +109,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2015.02
-		 * @category Developer
 		 * @see client/html/catalog/suggest/template-header
 		 * @see client/html/catalog/suggest/domains
 		 */
@@ -169,7 +167,6 @@ class Standard
 		 *
 		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2015.02
-		 * @category Developer
 		 * @see client/html/catalog/suggest/template-body
 		 * @see client/html/catalog/suggest/domains
 		 */
@@ -209,7 +206,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.02
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/suggest/decorators/global
 		 * @see client/html/catalog/suggest/decorators/local
@@ -233,7 +229,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.02
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/suggest/decorators/excludes
 		 * @see client/html/catalog/suggest/decorators/local
@@ -257,7 +252,6 @@ class Standard
 		 *
 		 * @param array List of decorator names
 		 * @since 2015.02
-		 * @category Developer
 		 * @see client/html/common/decorators/default
 		 * @see client/html/catalog/suggest/decorators/excludes
 		 * @see client/html/catalog/suggest/decorators/global
@@ -328,7 +322,6 @@ class Standard
 		 *
 		 * @param array List of domain names
 		 * @since 2016.08
-		 * @category Developer
 		 * @see client/html/catalog/suggest/template-body
 		 * @see client/html/catalog/suggest/restrict
 		 * @see client/html/catalog/suggest/size
@@ -343,8 +336,6 @@ class Standard
 		 *
 		 * @param integer Number of products
 		 * @since 2018.10
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/suggest/domains
 		 * @see client/html/catalog/suggest/restrict
 		 */
@@ -359,8 +350,6 @@ class Standard
 		 *
 		 * @param boolean True to use category and facets, false for all results
 		 * @since 2019.07
-		 * @category Developer
-		 * @category User
 		 * @see client/html/catalog/suggest/domains
 		 * @see client/html/catalog/suggest/size
 		 */
