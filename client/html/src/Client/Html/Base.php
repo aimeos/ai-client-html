@@ -674,10 +674,10 @@ abstract class Base
 		$len = strlen( $section );
 		$start = 0;
 
-		while( $start + $mlen < $clen && ( $start = @strpos( $content, $marker, $start ) ) !== false )
+		while( $start + 2 * $mlen <= $clen && ( $start = strpos( $content, $marker, $start ) ) !== false )
 		{
-			if( ( $end = strpos( $content, $marker, $start + 1 ) ) !== false ) {
-				$content = substr_replace( $content, $section, $start, $end - $start + $mlen );
+			if( ( $end = strpos( $content, $marker, $start + $mlen ) ) !== false ) {
+				$content = substr_replace( $content, $section, $start + $mlen, $end - $start - $mlen );
 			}
 
 			$start += 2 * $mlen + $len;
