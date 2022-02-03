@@ -128,7 +128,6 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$view = $this->view();
-		$context = $this->context();
 		$prefixes = ['f_name', 'f_catid', 'f_supid'];
 
 		/** client/html/catalog/filter/cache
@@ -162,79 +161,42 @@ class Standard
 			return !strncmp( $key, 'f_', 2 );
 		} );
 
-		if( !$args->isEmpty() || ( $html = $this->cached( 'body', $uid, $prefixes, $confkey ) ) === null )
-		{
-			/** client/html/catalog/filter/template-body
-			 * Relative path to the HTML body template of the catalog filter client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the result shown in the body of the frontend. The
-			 * configuration string is the path to the template file relative
-			 * to the templates directory (usually in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but suffixed by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, it
-			 * should be suffixed by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page body
-			 * @since 2014.03
-			 * @category Developer
-			 * @see client/html/catalog/filter/template-header
-			 */
-			$tplconf = 'client/html/catalog/filter/template-body';
-			$default = 'catalog/filter/body';
-
-			try
-			{
-				$html = '';
-
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
-				}
-
-				foreach( $this->getSubClients() as $subclient ) {
-					$html .= $subclient->setView( $view )->body( $uid );
-				}
-				$view->filterBody = $html;
-
-				$html = $view->render( $view->config( $tplconf, $default ) );
-
-				if( $args->isEmpty() ) {
-					$this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
-				}
-
-				return $html;
-			}
-			catch( \Aimeos\Client\Html\Exception $e )
-			{
-				$error = array( $context->translate( 'client', $e->getMessage() ) );
-				$view->filterErrorList = array_merge( $view->get( 'filterErrorList', [] ), $error );
-			}
-			catch( \Aimeos\Controller\Frontend\Exception $e )
-			{
-				$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
-				$view->filterErrorList = array_merge( $view->get( 'filterErrorList', [] ), $error );
-			}
-			catch( \Aimeos\MShop\Exception $e )
-			{
-				$error = array( $context->translate( 'mshop', $e->getMessage() ) );
-				$view->filterErrorList = array_merge( $view->get( 'filterErrorList', [] ), $error );
-			}
-			catch( \Exception $e )
-			{
-				$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
-				$view->filterErrorList = array_merge( $view->get( 'filterErrorList', [] ), $error );
-				$this->logException( $e );
-			}
-
-			$html = $view->render( $view->config( $tplconf, $default ) );
+		if( $args->empty() && ( $html = $this->cached( 'body', $uid, $prefixes, $confkey ) ) !== null ) {
+			return $this->modify( $html, $uid );
 		}
-		else
-		{
-			$html = $this->modify( $html, $uid );
+
+		$html = '';
+		foreach( $this->getSubClients() as $subclient ) {
+			$html .= $subclient->setView( $view )->body( $uid );
+		}
+
+		/** client/html/catalog/filter/template-body
+		 * Relative path to the HTML body template of the catalog filter client.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the result shown in the body of the frontend. The
+		 * configuration string is the path to the template file relative
+		 * to the templates directory (usually in client/html/templates).
+		 *
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates. These alternative templates should be
+		 * named like the default one but suffixed by
+		 * an unique name. You may use the name of your project for this. If
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
+		 *
+		 * @param string Relative path to the template creating code for the HTML page body
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/filter/template-header
+		 */
+
+		$template = $this->context()->config()->get( 'client/html/catalog/filter/template-body', 'catalog/filter/body' );
+		$view = $this->view = $this->view ?? $this->object()->data( $view, $this->tags, $this->expire );
+		$html = $view->set( 'body', $html )->render( $template );
+
+		if( $args->empty() ) {
+			return $this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 		}
 
 		return $html;
@@ -252,6 +214,7 @@ class Standard
 		if( self::$headerSingleton !== null ) {
 			return '';
 		}
+		self::$headerSingleton = true;
 
 		$view = $this->view();
 		$confkey = 'client/html/catalog/filter';
@@ -261,55 +224,45 @@ class Standard
 			return !strncmp( $key, 'f_', 2 );
 		} );
 
-		if( !$args->isEmpty() || ( $html = $this->cached( 'header', $uid, $prefixes, $confkey ) ) === null )
-		{
-			/** client/html/catalog/filter/template-header
-			 * Relative path to the HTML header template of the catalog filter client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the HTML code that is inserted into the HTML page header
-			 * of the rendered page in the frontend. The configuration string is the
-			 * path to the template file relative to the templates directory (usually
-			 * in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but suffixed by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, it
-			 * should be suffixed by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page head
-			 * @since 2014.03
-			 * @category Developer
-			 * @see client/html/catalog/filter/template-body
-			 */
-			$tplconf = 'client/html/catalog/filter/template-header';
-			$default = 'catalog/filter/header';
-
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
-				}
-
-				$html = $view->render( $view->config( $tplconf, $default ) );
-
-				if( $args->isEmpty() ) {
-					$this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
-				}
-			}
-			catch( \Exception $e )
-			{
-				$this->logException( $e );
-			}
-		}
-		else
-		{
-			$html = $this->modify( $html, $uid );
+		if( $html = $this->cached( 'header', $uid, $prefixes, $confkey ) ) {
+			return $this->modify( $html, $uid );
 		}
 
-		self::$headerSingleton = true;
+		$html = '';
+		foreach( $this->getSubClients() as $subclient ) {
+			$html .= $subclient->setView( $view )->header( $uid );
+		}
+
+		/** client/html/catalog/filter/template-header
+		 * Relative path to the HTML header template of the catalog filter client.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the HTML code that is inserted into the HTML page header
+		 * of the rendered page in the frontend. The configuration string is the
+		 * path to the template file relative to the templates directory (usually
+		 * in client/html/templates).
+		 *
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates. These alternative templates should be
+		 * named like the default one but suffixed by
+		 * an unique name. You may use the name of your project for this. If
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
+		 *
+		 * @param string Relative path to the template creating code for the HTML page head
+		 * @since 2014.03
+		 * @category Developer
+		 * @see client/html/catalog/filter/template-body
+		 */
+
+		$template = $this->context()->config()->get( 'client/html/catalog/filter/template-header', 'catalog/filter/header' );
+		$view = $this->view = $this->view ?? $this->object()->data( $view, $this->tags, $this->expire );
+		$html = $view->set( 'header', $html )->render( $template );
+
+		if( $args->empty() ) {
+			return $this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+		}
+
 		return $html;
 	}
 
@@ -413,45 +366,6 @@ class Standard
 		$content = parent::modify( $content, $uid );
 
 		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.filter.csrf' );
-	}
-
-
-	/**
-	 * Processes the input, e.g. store given values.
-	 *
-	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables if necessary.
-	 */
-	public function init()
-	{
-		$context = $this->context();
-		$view = $this->view();
-
-		try
-		{
-			parent::init();
-		}
-		catch( \Aimeos\MShop\Exception $e )
-		{
-			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
-			$view->filterErrorList = array_merge( $view->get( 'filterErrorList', [] ), $error );
-		}
-		catch( \Aimeos\Controller\Frontend\Exception $e )
-		{
-			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
-			$view->filterErrorList = array_merge( $view->get( 'filterErrorList', [] ), $error );
-		}
-		catch( \Aimeos\Client\Html\Exception $e )
-		{
-			$error = array( $context->translate( 'client', $e->getMessage() ) );
-			$view->filterErrorList = array_merge( $view->get( 'filterErrorList', [] ), $error );
-		}
-		catch( \Exception $e )
-		{
-			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
-			$view->filterErrorList = array_merge( $view->get( 'filterErrorList', [] ), $error );
-			$this->logException( $e );
-		}
 	}
 
 

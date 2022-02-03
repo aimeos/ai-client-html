@@ -149,7 +149,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 							<div class="col-2 close"></div>
 						</div>
 
-						<?= $this->partial( $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial' ), [
+						<?= $this->partial( $this->config( 'client/html/catalog/filte/tree/partial', 'catalog/filter/tree/partial' ), [
 							'nodes' => $item->getChildren(),
 							'path' => $this->get( 'path', map() ),
 							'level' => $this->get( 'level', 0 ) + 1,

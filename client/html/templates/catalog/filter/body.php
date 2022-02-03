@@ -84,14 +84,6 @@ $url = $this->link( $key, $this->param() );
 ?>
 <section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( isset( $this->filterErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->filterErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
 	<nav>
 		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></h1>
 		<form method="GET" action="<?= $enc->attr( $url ) ?>">

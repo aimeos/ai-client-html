@@ -112,12 +112,4 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 3, count( $tags ) );
 	}
-
-
-	public function testGetSubClient()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
 }

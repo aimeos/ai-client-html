@@ -27,7 +27,7 @@ $enc = $this->encoder();
  */
 $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false );
 
-/** client/html/catalog/filter/partials/tree
+/** client/html/catalog/filter/tree/partial
  * Relative path to the category tree partial template file
  *
  * Partials are templates which are reused in other templates and generate
@@ -35,7 +35,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
  * partial creates an HTML block of nested lists for category trees.
  *
  * @param string Relative path to the template file
- * @since 2017.01
+ * @since 2022.04
  * @category Developer
  */
 
@@ -75,7 +75,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 			<?php endif ?>
 
 			<?= $this->partial(
-				$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial' ), [
+				$this->config( 'client/html/catalog/filter/tree/partial', 'catalog/filter/tree/partial' ), [
 					'nodes' => $this->treeCatalogTree->getChildren(),
 					'path' => $this->get( 'treeCatalogPath', map() ),
 					'params' => $this->get( 'treeFilterParams', [] ),

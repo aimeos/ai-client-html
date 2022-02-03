@@ -102,12 +102,4 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<section class="catalog-filter-attribute', $output );
 	}
-
-
-	public function testGetSubClient()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
 }

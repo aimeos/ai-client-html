@@ -33,11 +33,4 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<section class="catalog-filter-search', $output );
 	}
-
-
-	public function testGetSubClient()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
 }
