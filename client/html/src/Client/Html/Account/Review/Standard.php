@@ -164,5 +164,5 @@ class Standard
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2020.10
 	 * @see client/html/account/review/template-body
-	*/
+	 */
 }
