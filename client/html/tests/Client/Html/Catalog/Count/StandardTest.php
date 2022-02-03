@@ -31,6 +31,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testBody()
+	{
+		$output = $this->object->body();
+
+		$this->assertStringContainsString( 'var attributeCount', $output );
+		$this->assertStringContainsString( 'var catalogCounts', $output );
+		$this->assertStringContainsString( 'var supplierCount', $output );
+	}
+
+
 	public function testHeader()
 	{
 		$this->object->setView( $this->object->data( \TestHelperHtml::view() ) );
@@ -38,48 +48,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->header();
 
 		$this->assertNotNull( $output );
-	}
-
-
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Count\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEquals( null, $object->header() );
-	}
-
-
-	public function testBody()
-	{
-		$this->object->setView( $this->object->data( \TestHelperHtml::view() ) );
-
-		$output = $this->object->body();
-
-		$this->assertStringContainsString( 'var catalogCounts', $output );
-	}
-
-
-	public function testBodyException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Catalog\Count\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEquals( null, $object->body() );
 	}
 
 

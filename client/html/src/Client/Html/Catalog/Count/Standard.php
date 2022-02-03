@@ -2,7 +2,6 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2022
  * @package Client
  * @subpackage Html
@@ -86,110 +85,6 @@ class Standard
 	 * @since 2014.03
 	 */
 	private $subPartNames = ['tree', 'supplier', 'attribute'];
-	private $view;
-
-
-	/**
-	 * Returns the HTML code for insertion into the body.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string HTML code
-	 */
-	public function body( string $uid = '' ) : string
-	{
-		$view = $this->view();
-
-		try
-		{
-			$view = $this->view = $this->view ?? $this->object()->data( $view );
-
-			$html = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->body( $uid );
-			}
-			$view->countBody = $html;
-
-			/** client/html/catalog/count/template-body
-			 * Relative path to the HTML body template of the catalog count client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the result shown in the body of the frontend. The
-			 * configuration string is the path to the template file relative
-			 * to the templates directory (usually in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but suffixed by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, it
-			 * should be suffixed by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page body
-			 * @since 2014.03
-			 * @see client/html/catalog/count/template-header
-			 */
-			$tplconf = 'client/html/catalog/count/template-body';
-			$default = 'catalog/count/body';
-
-			return $view->render( $view->config( $tplconf, $default ) );
-		}
-		catch( \Exception $e )
-		{
-			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->context()->logger()->error( $msg, 'client/html' );
-		}
-
-		return '';
-	}
-
-
-	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function header( string $uid = '' ) : ?string
-	{
-		$view = $this->view();
-
-		try
-		{
-			$view = $this->view = $this->view ?? $this->object()->data( $view );
-
-			/** client/html/catalog/count/template-header
-			 * Relative path to the HTML header template of the catalog count client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the HTML code that is inserted into the HTML page header
-			 * of the rendered page in the frontend. The configuration string is the
-			 * path to the template file relative to the templates directory (usually
-			 * in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but suffixed by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, it
-			 * should be suffixed by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page head
-			 * @since 2014.03
-			 * @see client/html/catalog/count/template-body
-			 */
-			$tplconf = 'client/html/catalog/count/template-header';
-			$default = 'catalog/count/header';
-
-			return $view->render( $view->config( $tplconf, $default ) );
-		}
-		catch( \Exception $e )
-		{
-			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->context()->logger()->error( $msg, 'client/html' );
-		}
-
-		return null;
-	}
 
 
 	/**
@@ -277,26 +172,6 @@ class Standard
 
 
 	/**
-	 * Processes the input, e.g. store given values.
-	 *
-	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables if necessary.
-	 */
-	public function init()
-	{
-		try
-		{
-			parent::init();
-		}
-		catch( \Exception $e )
-		{
-			$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-			$this->context()->logger()->error( $msg, 'client/html' );
-		}
-	}
-
-
-	/**
 	 * Returns the list of sub-client names configured for the client.
 	 *
 	 * @return array List of HTML client names
@@ -305,4 +180,46 @@ class Standard
 	{
 		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
+
+
+	/** client/html/catalog/count/template-body
+	 * Relative path to the HTML body template of the catalog count client.
+	 *
+	 * The template file contains the HTML code and processing instructions
+	 * to generate the result shown in the body of the frontend. The
+	 * configuration string is the path to the template file relative
+	 * to the templates directory (usually in client/html/templates).
+	 *
+	 * You can overwrite the template file configuration in extensions and
+	 * provide alternative templates. These alternative templates should be
+	 * named like the default one but suffixed by
+	 * an unique name. You may use the name of your project for this. If
+	 * you've implemented an alternative client class as well, it
+	 * should be suffixed by the name of the new class.
+	 *
+	 * @param string Relative path to the template creating code for the HTML page body
+	 * @since 2014.03
+	 * @see client/html/catalog/count/template-header
+	 */
+
+	/** client/html/catalog/count/template-header
+	 * Relative path to the HTML header template of the catalog count client.
+	 *
+	 * The template file contains the HTML code and processing instructions
+	 * to generate the HTML code that is inserted into the HTML page header
+	 * of the rendered page in the frontend. The configuration string is the
+	 * path to the template file relative to the templates directory (usually
+	 * in client/html/templates).
+	 *
+	 * You can overwrite the template file configuration in extensions and
+	 * provide alternative templates. These alternative templates should be
+	 * named like the default one but suffixed by
+	 * an unique name. You may use the name of your project for this. If
+	 * you've implemented an alternative client class as well, it
+	 * should be suffixed by the name of the new class.
+	 *
+	 * @param string Relative path to the template creating code for the HTML page head
+	 * @since 2014.03
+	 * @see client/html/catalog/count/template-body
+	 */
 }
