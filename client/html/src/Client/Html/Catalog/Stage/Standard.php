@@ -23,6 +23,7 @@ class Standard
 {
 	private $tags = [];
 	private $expire;
+	private $view;
 
 
 	/**
