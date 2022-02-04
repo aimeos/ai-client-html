@@ -55,7 +55,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 
 			<?php if( $this->param( 'f_catid' ) ) : ?>
 				<a class="btn btn-secondary category-selected"
-					href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', map( $this->treeFilterParams )->remove( ['f_catid', 'f_name'] )->all() ) ) ?>">
+					href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', map( $this->get( 'filterParams' ), [] )->remove( ['f_catid', 'f_name'] )->all() ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 				</a>
 			<?php endif ?>
@@ -75,7 +75,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 				$this->config( 'client/html/catalog/filter/tree/partial', 'catalog/filter/tree/partial' ), [
 					'nodes' => $this->treeCatalogTree->getChildren(),
 					'path' => $this->get( 'treeCatalogPath', map() ),
-					'params' => $this->get( 'treeFilterParams', [] ),
+					'params' => $this->get( 'filterParams', [] ),
 					'level' => 1
 				] ) ?>
 		</div>
