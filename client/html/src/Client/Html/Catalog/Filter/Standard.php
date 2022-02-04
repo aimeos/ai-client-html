@@ -208,10 +208,10 @@ class Standard
 
 		$view = $this->view();
 		$confkey = 'client/html/catalog/filter';
-		$prefixes = ['f_name', 'f_catid', 'f_supid'];
+		$prefixes = ['f_name', 'f_catid', 'f_supid', 'l_type'];
 
 		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
-			return !strncmp( $key, 'f_', 2 );
+			return !strncmp( $key, 'f_', 2 ) || $key === 'l_type';
 		} );
 
 		if( $html = $this->cached( 'header', $uid, $prefixes, $confkey ) ) {
