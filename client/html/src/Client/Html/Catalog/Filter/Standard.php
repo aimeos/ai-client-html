@@ -208,10 +208,10 @@ class Standard
 
 		$view = $this->view();
 		$confkey = 'client/html/catalog/filter';
-		$prefixes = ['f_name', 'f_catid', 'f_supid', 'l_type'];
+		$prefixes = ['f_name', 'f_catid', 'f_supid'];
 
 		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
-			return !strncmp( $key, 'f_', 2 ) || $key === 'l_type';
+			return !strncmp( $key, 'f_', 2 );
 		} );
 
 		if( $html = $this->cached( 'header', $uid, $prefixes, $confkey ) ) {
@@ -467,7 +467,7 @@ class Standard
 			 */
 			$conf = $config->get( 'client/html/catalog/count/url/config', [] );
 
-			$params = $this->getClientParams( $view->param(), ['f_'] );
+			$params = $this->getClientParams( $view->param(), ['f_', 'l_type'] );
 
 			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
 				$params['f_catid'] = $startid;
