@@ -150,7 +150,7 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$params = map( $this->getClientParams( $view->param(), ['f_', 'l_type'] ) );
+		$params = map( $this->getClientParams( $view->param(), ['f_'] ) );
 
 		if( $catid = $params->get( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) ) )
 		{

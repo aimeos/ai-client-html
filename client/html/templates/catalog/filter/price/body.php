@@ -7,6 +7,8 @@
 
 $enc = $this->encoder();
 
+$linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+
 
 ?>
 <?php $this->block()->start( 'catalog/filter/price' ) ?>
@@ -32,7 +34,7 @@ $enc = $this->encoder();
 				</div>
 				<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Save' ) ) ?></button>
 				<?php if( $this->param( 'f_price' ) ) : ?>
-					<a class="btn" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'priceResetParams', [] ) ) ) ?>">
+					<a class="btn" href="<?= $enc->attr( $this->link( $linkKey, $this->get( 'priceResetParams', [] ) ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Reset' ) ) ?>
 					</a>
 				<?php endif ?>

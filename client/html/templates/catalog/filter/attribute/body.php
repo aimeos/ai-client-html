@@ -23,6 +23,8 @@ $enc = $this->encoder();
  * @since 2014.03
  */
 
+$linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+
 $attrIds = array_filter( $this->param( 'f_attrid', [] ) );
 $optIds = array_filter( $this->param( 'f_optid', [] ) );
 $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
@@ -41,7 +43,7 @@ $params = $this->param();
 			<?php if( array_merge( $attrIds, $optIds, $oneIds ) !== [] ) : ?>
 
 				<div class="attribute-selected">
-					<a class="btn reset" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'attributeResetParams', [] ) ) ) ?>">
+					<a class="btn reset" href="<?= $enc->attr( $this->link( $linkKey, $this->get( 'attributeResetParams', [] ) ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 					</a>
 
@@ -59,7 +61,7 @@ $params = $this->param();
 								<?php else : continue; ?>
 								<?php endif; ?>
 
-								<a class="minibutton close" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $attribute->get( 'params', [] ) ) ); ?>">
+								<a class="minibutton close" href="<?= $enc->attr( $this->link( $linkKey, $attribute->get( 'params', [] ) ) ); ?>">
 									<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
 								</a>
 							<?php endforeach; ?>

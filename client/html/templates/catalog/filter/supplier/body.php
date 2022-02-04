@@ -7,6 +7,8 @@
 
 $enc = $this->encoder();
 
+$linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+
 
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ) ?>
@@ -16,7 +18,7 @@ $enc = $this->encoder();
 
 		<div class="supplier-lists">
 			<?php if( $this->param( 'f_supid' ) ) : ?>
-				<a class="btn supplier-selected" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'supplierResetParams', [] ) ) ) ?>">
+				<a class="btn supplier-selected" href="<?= $enc->attr( $this->link( $linkKey, $this->get( 'supplierResetParams', [] ) ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
 				</a>
 			<?php endif ?>

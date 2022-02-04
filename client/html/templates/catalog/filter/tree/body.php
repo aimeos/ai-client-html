@@ -74,7 +74,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 				$this->config( 'client/html/catalog/filter/tree/partial', 'catalog/filter/tree/partial' ), [
 					'nodes' => $this->treeCatalogTree->getChildren(),
 					'path' => $this->get( 'treeCatalogPath', map() ),
-					'params' => $this->get( 'filterParams', [] ),
+					'params' => [],
 					'level' => 1
 				] ) ?>
 		</div>
