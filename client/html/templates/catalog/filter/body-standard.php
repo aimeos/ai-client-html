@@ -103,6 +103,11 @@ $url = $this->link( $key, $this->param() );
 
 	<nav>
 		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></h1>
+
+		<?php foreach( map( $this->param() )->only( ['f_sort', 'l_type'] ) as $name => $value ) : ?>
+			<input type="hidden" name="<?= $enc->attr( $this->formparam( $name ) ) ?>" value="<?= $enc->attr( $value ) ?>" />
+		<?php endforeach ?>
+
 		<form method="GET" action="<?= $enc->attr( $url ) ?>">
 			<?= $this->block()->get( 'catalog/filter/tree' ) ?>
 			<?= $this->block()->get( 'catalog/filter/search' ) ?>
