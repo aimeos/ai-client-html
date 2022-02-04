@@ -272,7 +272,7 @@ aside .catalog-filter section {
 
 .catalog-filter-price input[type=range]::-webkit-slider-runnable-track {
 	background-color: var(--ai-tertiary);
-	border-radius: var(--ai-radius-round);
+	border-radius: var(--ai-radius);
 	border: none;
 	cursor: ew-resize;
 	margin: 1rem 0;
@@ -287,7 +287,7 @@ aside .catalog-filter section {
 .catalog-filter-price input[type=range]::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	background-color: var(--ai-secondary);
-	border-radius: var(--ai-radius-round);
+	border-radius: var(--ai-radius);
 	cursor: ew-resize;
 	height: 1.5rem;
 	width: 1.5rem;
@@ -308,7 +308,7 @@ aside .catalog-filter section {
 
 .catalog-filter-price input[type=range]::-moz-range-thumb {
 	background-color: var(--ai-secondary);
-	border-radius: var(--ai-radius-round);
+	border-radius: var(--ai-radius);
 	cursor: pointer;
 	height: 1.5rem;
 	width: 1.5rem;
@@ -326,19 +326,19 @@ aside .catalog-filter section {
 
 .catalog-filter-price input[type=range]::-ms-fill-lower {
 	background-color: var(--ai-secondary);
-	border-radius: var(--ai-radius-round);
+	border-radius: var(--ai-radius);
 	border: none;
 }
 
 .catalog-filter-price input[type=range]::-ms-fill-upper {
 	background-color: var(--ai-tertiary);
-	border-radius: var(--ai-radius-round);
+	border-radius: var(--ai-radius);
 	border: none;
 }
 
 .catalog-filter-price input[type=range]::-ms-thumb {
 	background-color: var(--ai-secondary);
-	border-radius: var(--ai-radius-round);
+	border-radius: var(--ai-radius);
 	border: none;
 	cursor: pointer;
 	height: 1.5rem;
