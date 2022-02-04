@@ -484,6 +484,9 @@ class Standard
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$config = $this->getContext()->getConfig();
+		$params = $this->getClientParams( $view->param(), ['f_', 'l_type'] );
+
+		$view->filterParams = $params;
 
 		/** client/html/catalog/count/enable
 		 * Enables or disables displaying product counts in the catalog filter
@@ -580,8 +583,6 @@ class Standard
 			 */
 			$conf = $config->get( 'client/html/catalog/count/url/config', [] );
 
-			$params = $this->getClientParams( $view->param(), ['f_'] );
-
 			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
 				$params['f_catid'] = $startid;
 			}
@@ -605,7 +606,6 @@ class Standard
 				unset( $params[$name] );
 			}
 
-			$view->filterParams = $params;
 			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $conf );
 		}
 
