@@ -156,6 +156,8 @@ class Standard
 			return $this->modify( $html, $uid );
 		}
 
+		$view = $this->view = $this->view ?? $this->object()->data( $view, $this->tags, $this->expire );
+
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
 			$html .= $subclient->setView( $view )->body( $uid );
@@ -182,7 +184,6 @@ class Standard
 		 */
 
 		$template = $this->context()->config()->get( 'client/html/catalog/filter/template-body', 'catalog/filter/body' );
-		$view = $this->view = $this->view ?? $this->object()->data( $view, $this->tags, $this->expire );
 		$html = $view->set( 'body', $html )->render( $template );
 
 		if( $args->empty() ) {
@@ -377,6 +378,9 @@ class Standard
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$config = $this->context()->config();
+		$params = $this->getClientParams( $view->param(), ['f_', 'l_type'] );
+
+		$view->filterParams = $params;
 
 		/** client/html/catalog/count/enable
 		 * Enables or disables displaying product counts in the catalog filter
@@ -413,7 +417,6 @@ class Standard
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/catalog/count/url/config
 			 */
-			$target = $config->get( 'client/html/catalog/count/url/target' );
 
 			/** client/html/catalog/count/url/controller
 			 * Name of the controller whose action should be called
@@ -428,7 +431,6 @@ class Standard
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/catalog/count/url/config
 			 */
-			$controller = $config->get( 'client/html/catalog/count/url/controller', 'catalog' );
 
 			/** client/html/catalog/count/url/action
 			 * Name of the action that should create the output
@@ -443,7 +445,6 @@ class Standard
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/config
 			 */
-			$action = $config->get( 'client/html/catalog/count/url/action', 'count' );
 
 			/** client/html/catalog/count/url/config
 			 * Associative list of configuration options used for generating the URL
@@ -465,13 +466,6 @@ class Standard
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/url/config
 			 */
-			$conf = $config->get( 'client/html/catalog/count/url/config', [] );
-
-			$params = $this->getClientParams( $view->param(), ['f_', 'l_type'] );
-
-			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
-				$params['f_catid'] = $startid;
-			}
 
 			/** client/html/catalog/filter/remove-params
 			 * Removes the configured parameters before generating filter URLs for the list view
@@ -486,12 +480,16 @@ class Standard
 			 * @param array List of parameter names
 			 * @since 2020.04
 			 */
-			foreach( $config->get( 'client/html/catalog/filter/remove-params', ['f_sort'] ) as $name ) {
-				unset( $params[$name] );
+
+			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
+				$params['f_catid'] = $startid;
 			}
 
-			$view->filterParams = $params;
-			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $conf );
+			foreach( $config->get( 'client/html/catalog/filter/remove-params', ['f_sort'] ) as $name ) {
+				unset( $params['f_sort'] );
+			}
+
+			$view->filterCountUrl = $view->link( 'client/html/catalog/count/url', $params );
 		}
 
 		return parent::data( $view, $tags, $expire );
