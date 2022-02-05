@@ -11,5 +11,3 @@ $enc = $this->encoder();
 ?>
 <link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-session.css', 'fs-theme', true ) ) ?>">
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-session.js', 'fs-theme', true ) ) ?>"></script>
-
-<?= $this->get( 'sessionHeader' ) ?>

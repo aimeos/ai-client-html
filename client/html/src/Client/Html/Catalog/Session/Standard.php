@@ -77,131 +77,6 @@ class Standard
 	 */
 	private $subPartNames = array( 'pinned', 'seen' );
 
-	private $tags = [];
-	private $expire;
-	private $view;
-
-
-	/**
-	 * Returns the HTML code for insertion into the body.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string HTML code
-	 */
-	public function body( string $uid = '' ) : string
-	{
-		$context = $this->context();
-		$view = $this->view();
-
-		try
-		{
-			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
-			}
-
-			$html = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->body( $uid );
-			}
-			$view->sessionBody = $html;
-		}
-		catch( \Aimeos\Client\Html\Exception $e )
-		{
-			$error = array( $context->translate( 'client', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
-		}
-		catch( \Aimeos\Controller\Frontend\Exception $e )
-		{
-			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
-		}
-		catch( \Aimeos\MShop\Exception $e )
-		{
-			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
-		}
-		catch( \Exception $e )
-		{
-			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
-			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
-			$this->logException( $e );
-		}
-
-		/** client/html/catalog/session/template-body
-		 * Relative path to the HTML body template of the catalog session client.
-		 *
-		 * The template file contains the HTML code and processing instructions
-		 * to generate the result shown in the body of the frontend. The
-		 * configuration string is the path to the template file relative
-		 * to the templates directory (usually in client/html/templates).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but suffixed by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, it
-		 * should be suffixed by the name of the new class.
-		 *
-		 * @param string Relative path to the template creating code for the HTML page body
-		 * @since 2014.03
-		 * @see client/html/catalog/session/template-header
-		 */
-		$tplconf = 'client/html/catalog/session/template-body';
-		$default = 'catalog/session/body';
-
-		return $view->render( $view->config( $tplconf, $default ) );
-	}
-
-
-	/**
-	 * Returns the HTML string for insertion into the header.
-	 *
-	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @return string|null String including HTML tags for the header on error
-	 */
-	public function header( string $uid = '' ) : ?string
-	{
-		$view = $this->view();
-
-		try
-		{
-			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
-			}
-
-			/** client/html/catalog/session/template-header
-			 * Relative path to the HTML header template of the catalog session client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the HTML code that is inserted into the HTML page header
-			 * of the rendered page in the frontend. The configuration string is the
-			 * path to the template file relative to the templates directory (usually
-			 * in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but suffixed by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, it
-			 * should be suffixed by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page head
-			 * @since 2014.03
-			 * @see client/html/catalog/session/template-body
-			 */
-			$tplconf = 'client/html/catalog/session/template-header';
-			$default = 'catalog/session/header';
-
-			return $view->render( $view->config( $tplconf, $default ) );
-		}
-		catch( \Exception $e )
-		{
-			$this->logException( $e );
-		}
-
-		return null;
-	}
-
 
 	/**
 	 * Returns the sub-client given by its name.
@@ -288,45 +163,6 @@ class Standard
 
 
 	/**
-	 * Processes the input, e.g. store given values.
-	 *
-	 * A view must be available and this method doesn't generate any output
-	 * besides setting view variables if necessary.
-	 */
-	public function init()
-	{
-		$context = $this->context();
-		$view = $this->view();
-
-		try
-		{
-			parent::init();
-		}
-		catch( \Aimeos\Client\Html\Exception $e )
-		{
-			$error = array( $context->translate( 'client', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
-		}
-		catch( \Aimeos\Controller\Frontend\Exception $e )
-		{
-			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
-		}
-		catch( \Aimeos\MShop\Exception $e )
-		{
-			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
-			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
-		}
-		catch( \Exception $e )
-		{
-			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
-			$view->sessionErrorList = array_merge( $view->get( 'sessionErrorList', [] ), $error );
-			$this->logException( $e );
-		}
-	}
-
-
-	/**
 	 * Returns the list of sub-client names configured for the client.
 	 *
 	 * @return array List of HTML client names
@@ -335,4 +171,46 @@ class Standard
 	{
 		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
+
+
+	/** client/html/catalog/session/template-body
+	 * Relative path to the HTML body template of the catalog session client.
+	 *
+	 * The template file contains the HTML code and processing instructions
+	 * to generate the result shown in the body of the frontend. The
+	 * configuration string is the path to the template file relative
+	 * to the templates directory (usually in client/html/templates).
+	 *
+	 * You can overwrite the template file configuration in extensions and
+	 * provide alternative templates. These alternative templates should be
+	 * named like the default one but suffixed by
+	 * an unique name. You may use the name of your project for this. If
+	 * you've implemented an alternative client class as well, it
+	 * should be suffixed by the name of the new class.
+	 *
+	 * @param string Relative path to the template creating code for the HTML page body
+	 * @since 2014.03
+	 * @see client/html/catalog/session/template-header
+	 */
+
+	/** client/html/catalog/session/template-header
+	 * Relative path to the HTML header template of the catalog session client.
+	 *
+	 * The template file contains the HTML code and processing instructions
+	 * to generate the HTML code that is inserted into the HTML page header
+	 * of the rendered page in the frontend. The configuration string is the
+	 * path to the template file relative to the templates directory (usually
+	 * in client/html/templates).
+	 *
+	 * You can overwrite the template file configuration in extensions and
+	 * provide alternative templates. These alternative templates should be
+	 * named like the default one but suffixed by
+	 * an unique name. You may use the name of your project for this. If
+	 * you've implemented an alternative client class as well, it
+	 * should be suffixed by the name of the new class.
+	 *
+	 * @param string Relative path to the template creating code for the HTML page head
+	 * @since 2014.03
+	 * @see client/html/catalog/session/template-body
+	 */
 }

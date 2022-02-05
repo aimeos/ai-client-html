@@ -46,13 +46,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetSubClient()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
 	public function testInitAdd()
 	{
 		$prodId = $this->getProductItem( 'CNE' )->getId();
@@ -101,15 +94,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getProductItem( $code )
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'product' );
-
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
-
-		if( ( $item = $manager->search( $search )->first() ) === null ) {
-			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
-		}
-
-		return $item;
+		return \Aimeos\MShop::create( $this->context, 'product' )->find( $code );
 	}
 }
