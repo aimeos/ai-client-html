@@ -5,8 +5,4 @@
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
-$enc = $this->encoder();
-
-
 ?>
-<?= $this->get( 'suggestHeader' ) ?>
