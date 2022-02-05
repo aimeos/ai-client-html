@@ -140,5 +140,5 @@ class Standard
 	 * @since 2015.02
 	 * @see client/html/catalog/suggest/template-body
 	 * @see client/html/catalog/suggest/domains
-	*/
+	 */
 }
