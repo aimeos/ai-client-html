@@ -16,15 +16,6 @@ $enc = $this->encoder();
 ?>
 <section class="aimeos supplier-detail" itemscope itemtype="http://schema.org/Organization" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( isset( $this->detailErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->detailErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
-
 	<?php if( isset( $this->detailSupplierItem ) ) : ?>
 
 		<article class="supplier row">

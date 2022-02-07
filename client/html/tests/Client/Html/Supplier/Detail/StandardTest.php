@@ -49,23 +49,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeaderException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$mock->header();
-	}
-
-
 	public function testBody()
 	{
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
@@ -104,96 +87,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<h1 class="name" itemprop="name">Test supplier</h1>', $output );
-	}
-
-
-	public function testBodyClientHtmlException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyControllerFrontendException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
-
-		$mock->body();
-	}
-
-
-	public function testBodyException()
-	{
-		$mock = $this->getMockBuilder( \Aimeos\Client\Html\Supplier\Detail\Standard::class )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$this->view->addHelper( 'param', new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['f_supid' => -1] ) );
-		$mock->setView( $this->view );
-
-		$mock->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$mock->body();
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
-	}
-
-
-	public function testInit()
-	{
-		$this->object->init();
-
-		$this->assertEmpty( $this->view->get( 'detailErrorList' ) );
 	}
 
 
