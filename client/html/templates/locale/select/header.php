@@ -11,5 +11,3 @@ $enc = $this->encoder();
 ?>
 <link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/locale-select.css', 'fs-theme', true ) ) ?>">
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/locale-select.js', 'fs-theme', true ) ) ?>"></script>
-
-<?= $this->get( 'selectHeader' ) ?>

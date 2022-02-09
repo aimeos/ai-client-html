@@ -29,7 +29,6 @@ $config = $this->config( 'client/html/locale/select/currency/url/config', [] );
 
 
 ?>
-<?php $this->block()->start( 'locale/select/currency' ) ?>
 <div class="locale-select-currency">
 	<h2 class="header"><?= $this->translate( 'client', 'Select currency' ) ?></h2>
 
@@ -50,5 +49,3 @@ $config = $this->config( 'client/html/locale/select/currency/url/config', [] );
 	</ul>
 
 </div>
-<?php $this->block()->stop() ?>
-<?= $this->block()->get( 'locale/select/currency' ) ?>

@@ -2,7 +2,6 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2022
  * @package Client
  * @subpackage Html
@@ -90,41 +89,11 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$context = $this->context();
-		$view = $this->view();
+		$view = $this->view = $this->view ?? $this->object()->data( $this->view(), $this->tags, $this->expire );
 
-		try
-		{
-			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
-			}
-
-			$html = '';
-			foreach( $this->getSubClients() as $subclient ) {
-				$html .= $subclient->setView( $view )->body( $uid );
-			}
-			$view->selectBody = $html;
-		}
-		catch( \Aimeos\Client\Html\Exception $e )
-		{
-			$error = array( $context->translate( 'client', $e->getMessage() ) );
-			$view->selectErrorList = array_merge( $view->get( 'selectErrorList', [] ), $error );
-		}
-		catch( \Aimeos\Controller\Frontend\Exception $e )
-		{
-			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
-			$view->selectErrorList = array_merge( $view->get( 'selectErrorList', [] ), $error );
-		}
-		catch( \Aimeos\MShop\Exception $e )
-		{
-			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
-			$view->selectErrorList = array_merge( $view->get( 'selectErrorList', [] ), $error );
-		}
-		catch( \Exception $e )
-		{
-			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
-			$view->selectErrorList = array_merge( $view->get( 'selectErrorList', [] ), $error );
-			$this->logException( $e );
+		$html = '';
+		foreach( $this->getSubClients() as $subclient ) {
+			$html .= $subclient->setView( $view )->body( $uid );
 		}
 
 		/** client/html/locale/select/template-body
@@ -146,10 +115,9 @@ class Standard
 		 * @since 2014.09
 		 * @see client/html/locale/select/template-header
 		 */
-		$tplconf = 'client/html/locale/select/template-body';
-		$default = 'locale/select/body';
+		$template = $this->context()->config()->get( 'client/html/locale/select/template-body', 'locale/select/body' );
 
-		return $view->render( $view->config( $tplconf, $default ) );
+		return $view->set( 'body', $html )->render( $template );
 	}
 
 
@@ -161,45 +129,31 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$view = $this->view();
+		$view = $this->view = $this->view ?? $this->object()->data( $this->view(), $this->tags, $this->expire );
 
-		try
-		{
-			if( !isset( $this->view ) ) {
-				$view = $this->view = $this->object()->data( $view, $this->tags, $this->expire );
-			}
+		/** client/html/locale/select/template-header
+		 * Relative path to the HTML header template of the locale select client.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the HTML code that is inserted into the HTML page header
+		 * of the rendered page in the frontend. The configuration string is the
+		 * path to the template file relative to the templates directory (usually
+		 * in client/html/templates).
+		 *
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates. These alternative templates should be
+		 * named like the default one but suffixed by
+		 * an unique name. You may use the name of your project for this. If
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
+		 *
+		 * @param string Relative path to the template creating code for the HTML page head
+		 * @since 2014.09
+		 * @see client/html/locale/select/template-body
+		 */
+		$template = $this->context()->config()->get( 'client/html/locale/select/template-header', 'locale/select/header' );
 
-			/** client/html/locale/select/template-header
-			 * Relative path to the HTML header template of the locale select client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the HTML code that is inserted into the HTML page header
-			 * of the rendered page in the frontend. The configuration string is the
-			 * path to the template file relative to the templates directory (usually
-			 * in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but suffixed by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, it
-			 * should be suffixed by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page head
-			 * @since 2014.09
-			 * @see client/html/locale/select/template-body
-			 */
-			$tplconf = 'client/html/locale/select/template-header';
-			$default = 'locale/select/header';
-
-			return $view->render( $view->config( $tplconf, $default ) );
-		}
-		catch( \Exception $e )
-		{
-			$this->logException( $e );
-		}
-
-		return null;
+		return $view->render( $template );
 	}
 
 

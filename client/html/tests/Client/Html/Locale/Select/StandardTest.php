@@ -45,22 +45,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertEquals( null, $object->header() );
-	}
-
-
 	public function testBody()
 	{
 		$request = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
@@ -74,70 +58,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringStartsWith( '<section class="aimeos locale-select"', $output );
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 0, count( $tags ) );
-	}
-
-
-	public function testBodyHtmlException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Locale\Select\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelperHtml::view() );
-
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
 	}
 
 

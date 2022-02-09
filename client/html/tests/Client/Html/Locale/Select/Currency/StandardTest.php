@@ -62,13 +62,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testGetSubClient()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
 	public function testInit()
 	{
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['currency' => 'EUR'] );
