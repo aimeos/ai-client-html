@@ -460,7 +460,7 @@ AimeosBasket = {
 
 			elem.closest(".product").find(".image-single .item").each((idx, el) => {
 				if($(el).data("variant-" + type) == value) {
-					swiffyslider.slideTo(el, $(el).parent().data('slick-index'))
+					swiffyslider.slideTo($(el).closest(".swiffy-slider")[0], $(el).closest(".media-item").data('index'))
 				}
 			});
 		});

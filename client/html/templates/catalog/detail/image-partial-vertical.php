@@ -11,6 +11,7 @@
  */
 
 $enc = $this->encoder();
+$pos = 0;
 
 
 ?>
@@ -47,7 +48,7 @@ $enc = $this->encoder();
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
-					<div class="media-item">
+					<div class="media-item" data-index="<?= $enc->attr( $pos++ ) ?>">
 						<?= $this->image( $mediaItem, '(min-width: 1400px) 720px, 240px' ) ?>
 					</div>
 				<?php endforeach ?>

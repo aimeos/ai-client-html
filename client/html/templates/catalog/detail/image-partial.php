@@ -11,12 +11,7 @@
  */
 
 $enc = $this->encoder();
-
-
-$detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
-$detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-$detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
+$pos = 0;
 
 
 ?>
@@ -28,7 +23,7 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
-					<div class="media-item">
+					<div class="media-item" data-index="<?= $enc->attr( $pos++ ) ?>">
 						<?= $this->image( $mediaItem, '(min-width: 1400px) 720px, 240px' ) ?>
 					</div>
 				<?php endforeach ?>
