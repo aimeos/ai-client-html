@@ -8,7 +8,7 @@
 $enc = $this->encoder();
 
 ?>
-<!-- catalog.stage.navigator -->
+<!-- catalog.detail.navigator -->
 
 	<?php if( $this->param( 'd_pos' ) !== null ) : ?>
 		<div class="container">
@@ -32,4 +32,4 @@ $enc = $this->encoder();
 		</div>
 	<?php endif ?>
 
-<!-- catalog.stage.navigator -->
+<!-- catalog.detail.navigator -->
