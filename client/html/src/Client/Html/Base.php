@@ -468,7 +468,7 @@ abstract class Base
 	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_'] ) : array
 	{
 		return map( $params )->filter( function( $val, $key ) use ( $prefixes ) {
-			return \Aimeos\MW\Str::starts( $key, $prefixes );
+			return \Aimeos\Base\Str::starts( $key, $prefixes );
 		} )->toArray();
 	}
 
