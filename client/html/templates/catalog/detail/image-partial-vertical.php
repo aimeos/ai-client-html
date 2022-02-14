@@ -24,9 +24,11 @@ $pos = 0;
 
 					<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
 
-						<img class="item-thumb img-<?= $index ?>" src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-							alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
-						>
+						<div class="thumbnail">
+							<img class="item-thumb img-<?= $index ?>" src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+								alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
+							>
+						</div>
 
 						<?php  $class = 'item' ?>
 
