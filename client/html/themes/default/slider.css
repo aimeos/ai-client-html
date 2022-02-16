@@ -58,6 +58,10 @@
 .slider-container>* {
 	scroll-snap-align: var(--swiffy-slider-snap-align);
 	position: relative;
+	display: block;
+}
+
+.slider-item-ratio .slider-container>* {
 	display: flex;
 	align-items: center;
 	justify-content: center;

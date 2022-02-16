@@ -4,11 +4,6 @@
 	margin-top: calc(-1rem - 80px);
 }
 
-.aimeos.catalog-home .catalog-stage-image {
-	margin-top: 0;
-	height: auto;
-}
-
 .catalog-home .stage-item {
 	background-color: var(--ai-bg);
 	color: var(--ai-bg);
@@ -16,8 +11,6 @@
 }
 
 .catalog-home .stage-image {
-	object-fit: cover;
-	height: 600px;
 	padding: 0;
 }
 
