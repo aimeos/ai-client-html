@@ -57,7 +57,7 @@ $enc = $this->encoder();
 	<?php endif ?>
 
 
-	<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'listParams', [] ), [], ['absoluteUri' => true] ) ) ?>">
+	<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
 	<meta name="application-name" content="Aimeos">
 
 <?php endif ?>
