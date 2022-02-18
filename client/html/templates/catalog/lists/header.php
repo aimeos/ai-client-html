@@ -2,9 +2,10 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2012
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
+
+$enc = $this->encoder();
 
 /** client/html/catalog/lists/metatags
  * Adds the title, meta and link tags to the HTML header
@@ -20,15 +21,6 @@
  * @since 2017.01
  * @see client/html/catalog/detail/metatags
  */
-
-
-$enc = $this->encoder();
-
-
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 
 ?>
@@ -56,16 +48,16 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 
 	<?php if( $this->get( 'listPageCurr', 0 ) > 1 ) : ?>
-		<link rel="prev" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPagePrev', 0 ) ) + $this->get( 'listParams', [] ), [], $listConfig ) ) ?>">
+		<link rel="prev" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPagePrev', 0 )] + $this->get( 'listParams', [] ) ) ) ?>">
 	<?php endif ?>
 
 
 	<?php if( $this->get( 'listPageCurr', 0 ) > 1 && $this->get( 'listPageCurr', 0 ) < $this->get( 'listPageLast', 0 ) ) : // Optimization to avoid loading next page while the user is still filtering ?>
-		<link rel="next prefetch" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, array( 'l_page' => $this->get( 'listPageNext', 0 ) ) + $this->get( 'listParams', [] ), [], $listConfig ) ) ?>">
+		<link rel="next prefetch" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPageNext', 0 )] + $this->get( 'listParams', [] ) ) ) ?>">
 	<?php endif ?>
 
 
-	<link rel="canonical" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $this->get( 'listParams', [] ), [], $listConfig + ['absoluteUri' => true] ) ) ?>">
+	<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'listParams', [] ), [], ['absoluteUri' => true] ) ) ?>">
 	<meta name="application-name" content="Aimeos">
 
 <?php endif ?>
@@ -73,4 +65,6 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 <link rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-lists.css', 'fs-theme', true ) ) ?>">
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-lists.js', 'fs-theme', true ) ) ?>"></script>
 
-<?= $this->get( 'listHeader' ) ?>
+<?php foreach( $this->get( 'listStockUrl', [] ) as $url ) : ?>
+	<script class="items-stock" defer src="<?= $enc->attr( $url ) ?>"></script>
+<?php endforeach ?>

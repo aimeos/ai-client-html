@@ -6,7 +6,7 @@
  */
 
 $enc = $this->encoder();
-$position = $this->get( 'itemPosition' );
+$position = $this->get( 'position' );
 
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
@@ -14,12 +14,6 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
-
-$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
-$basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
 
@@ -30,11 +24,10 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 
 ?>
-<?php $this->block()->start( 'catalog/lists/items' ) ?>
 <div class="catalog-list-items list" data-infiniteurl="<?= $url ?>"
 	data-pinned="<?= $enc->attr( $this->session( 'aimeos/catalog/session/pinned/list', [] ) ) ?>"><!--
 
-	<?php foreach( $this->get( 'listProductItems', [] ) as $id => $productItem ) : $firstImage = true ?>
+	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true ?>
 		<?php
 			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 			$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
@@ -136,10 +129,10 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 
 					<?php if( $this->config( 'client/html/catalog/lists/basket-add', false ) ) : ?>
-						<form class="basket" method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, ( $basketSite ? ['site' => $basketSite] : [] ), [], $basketConfig ) ) ?>">
-							<!-- catalog.lists.items.csrf -->
+						<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
+							<!-- catalog.lists.csrf -->
 							<?= $this->csrf()->formfield() ?>
-							<!-- catalog.lists.items.csrf -->
+							<!-- catalog.lists.csrf -->
 
 							<?php if( $basketSite ) : ?>
 								<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
@@ -202,5 +195,3 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 	<?php endforeach ?>
 --></div>
-<?php $this->block()->stop() ?>
-<?= $this->block()->get( 'catalog/lists/items' ) ?>

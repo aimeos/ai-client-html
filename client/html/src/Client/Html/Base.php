@@ -537,26 +537,6 @@ abstract class Base
 
 
 	/**
-	 * Returns the template for the given configuration key
-	 *
-	 * If the "l_type" parameter is present, a specific template for this given
-	 * type is used if available.
-	 *
-	 * @param string $confkey Key to the configuration setting for the template
-	 * @param string $default Default template if none is configured or not found
-	 * @return string Relative template path
-	 */
-	protected function getTemplatePath( string $confkey, string $default ) : string
-	{
-		if( ( $type = $this->view->param( 'l_type' ) ) !== null && ctype_alnum( $type ) !== false ) {
-			return $this->view->config( $confkey . '-' . $type, $this->view->config( $confkey, $default ) );
-		}
-
-		return $this->view->config( $confkey, $default );
-	}
-
-
-	/**
 	 * Returns the cache entry for the given unique ID and type.
 	 *
 	 * @param string $type Type of the cache entry, i.e. "body" or "header"

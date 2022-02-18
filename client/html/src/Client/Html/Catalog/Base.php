@@ -2,7 +2,6 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2022
  * @package Client
  * @subpackage Html
@@ -44,7 +43,6 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/config
 		 * @see client/html/catalog/stock/url/max-items
 		 */
-		$target = $view->config( 'client/html/catalog/stock/url/target' );
 
 		/** client/html/catalog/stock/url/controller
 		 * Name of the controller whose action should be called
@@ -60,7 +58,6 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/config
 		 * @see client/html/catalog/stock/url/max-items
 		 */
-		$cntl = $view->config( 'client/html/catalog/stock/url/controller', 'catalog' );
 
 		/** client/html/catalog/stock/url/action
 		 * Name of the action that should create the output
@@ -76,7 +73,6 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/config
 		 * @see client/html/catalog/stock/url/max-items
 		 */
-		$action = $view->config( 'client/html/catalog/stock/url/action', 'stock' );
 
 		/** client/html/catalog/stock/url/config
 		 * Associative list of configuration options used for generating the URL
@@ -98,7 +94,6 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/max-items
 		 */
-		$config = $view->config( 'client/html/catalog/stock/url/config', [] );
 
 		/** client/html/catalog/stock/url/max-items
 		 * Maximum number of product stock levels per request
@@ -122,7 +117,7 @@ abstract class Base
 		$ids = $products->getId()->sort();
 
 		while( !( $list = $ids->splice( -$max ) )->isEmpty() ) {
-			$urls[] = $view->url( $target, $cntl, $action, ['st_pid' => $list->toArray()], [], $config );
+			$urls[] = $view->link( 'client/html/catalog/stock/url', ['st_pid' => $list->toArray()] );
 		}
 
 		return map( $urls )->reverse();

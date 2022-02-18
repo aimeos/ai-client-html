@@ -2,12 +2,22 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2012
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
 $enc = $this->encoder();
 
+
+/** client/html/common/partials/products
+ * Relative path to the products partial template file
+ *
+ * Partials are templates which are reused in other templates and generate
+ * reoccuring blocks filled with data from the assigned values. The products
+ * partial creates an HTML block for a product listing.
+ *
+ * @param string Relative path to the template file
+ * @since 2017.01
+ */
 
 /** client/html/catalog/lists/basket-add
  * Display the "add to basket" button for each product item
@@ -48,7 +58,6 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 }
 
 ?>
-<?php $this->block()->start( 'catalog/lists/items' ) ?>
 <div class="catalog-list-items" data-infiniteurl="<?= $url ?>"
 	data-pinned="<?= $enc->attr( $this->session( 'aimeos/catalog/session/pinned/list', [] ) ) ?>">
 
@@ -57,12 +66,9 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
-			'productItems' => $this->get( 'itemsProductItems', map() ),
-			'products' => $this->get( 'listProductItems', map() ),
-			'position' => $this->get( 'itemPosition' ),
+			'products' => $this->get( 'products', map() ),
+			'position' => $this->get( 'position' ),
 		)
 	) ?>
 
 </div>
-<?php $this->block()->stop() ?>
-<?= $this->block()->get( 'catalog/lists/items' ) ?>
