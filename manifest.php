@@ -24,6 +24,7 @@ return [
 			'client/html/templates',
 		],
 		'controller/jobs/templates' => [
+			'controller/jobs/templates',
 			'client/html/templates',
 		],
 	],

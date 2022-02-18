@@ -47,20 +47,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRun()
 	{
-		$mailStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\None' )
+		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )
+		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
+			->setMethods( ['send'] )
 			->getMock();
 
-		$mailStub->expects( $this->once() )
-			->method( 'create' )
-			->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
-		$mailStub->expects( $this->once() )->method( 'send' );
 		$this->context->setMail( $mailStub );
 
 
@@ -92,7 +91,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setMessageQueueManager( $managerStub );
 
 
-		$this->object->run();
+		$object = new \Aimeos\Controller\Jobs\Customer\Email\Account\Standard( $this->context, $this->aimeos );
+		$object->run();
 	}
 
 

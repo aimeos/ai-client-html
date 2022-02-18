@@ -21,6 +21,9 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
+	use \Aimeos\Controller\Jobs\Mail;
+
+
 	private $client;
 
 
@@ -67,10 +70,10 @@ class Standard
 					throw new \Aimeos\Controller\Jobs\Exception( $str );
 				}
 
-				$password = ( isset( $list['customer.password'] ) ? $list['customer.password'] : null );
+				$password = $list['customer.password'] ?? null;
 				$item = $custManager->create()->fromArray( $list, true );
 
-				$this->sendEmail( $context, $item, $password );
+				$this->send( $item, $password );
 
 				$str = sprintf( 'Sent customer account e-mail to "%1$s"', $item->getPaymentAddress()->getEmail() );
 				$context->logger()->debug( $str, 'email/customer/account' );
@@ -87,51 +90,27 @@ class Standard
 
 
 	/**
-	 * Returns the product notification e-mail client
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
-	 * @return \Aimeos\Client\Html\Iface Product notification e-mail client
-	 */
-	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context ) : \Aimeos\Client\Html\Iface
-	{
-		if( !isset( $this->client ) ) {
-			$this->client = \Aimeos\Client\Html\Email\Account\Factory::create( $context );
-		}
-
-		return $this->client;
-	}
-
-
-	/**
 	 * Sends the account creation e-mail to the e-mail address of the customer
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param \Aimeos\MShop\Customer\Item\Iface $item Customer item object
 	 * @param string|null $password Customer clear text password
 	 */
-	protected function sendEmail( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Customer\Item\Iface $item, string $password = null )
+	protected function send( \Aimeos\MShop\Customer\Item\Iface $item, string $password = null )
 	{
+		$context = $this->context();
+		$config = $context->config();
 		$address = $item->getPaymentAddress();
 
-		$view = $context->view();
-		$view->extAddressItem = $address;
-		$view->extAccountCode = $item->getCode();
-		$view->extAccountPassword = $password;
+		$view = $this->call( 'mailView', $address->getLanguageId() );
+		$view->intro = $this->call( 'mailIntro', $address );
+		$view->account = $item->getCode();
+		$view->password = $password;
+		$view->addressItem = $address;
 
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->i18n( $address->getLanguageId() ?: 'en' ) );
-		$view->addHelper( 'translate', $helper );
-
-		$mailer = $context->mail();
-		$message = $mailer->create();
-
-		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message );
-		$view->addHelper( 'mail', $helper );
-
-		$client = $this->getClient( $context );
-		$client->setView( $view );
-		$client->header();
-		$client->body();
-
-		$mailer->send( $message );
+		return $this->call( 'mailTo', $address )
+			->subject( $context->translate( 'client', 'Your new account' ) )
+			->html( $view->render( $config->get( 'controller/jobs/customer/email/account/template-html', 'customer/email/account/html' ) ) )
+			->text( $view->render( $config->get( 'controller/jobs/customer/email/account/template-text', 'customer/email/account/text' ) ) )
+			->send();
 	}
 }
