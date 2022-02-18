@@ -39,7 +39,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->context = \TestHelperHtml::context();
-		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )->getMock();
+		$this->emailMock = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )->getMock();
 
 		$this->view = \TestHelperHtml::view( 'unittest', $this->context->config() );
 		$this->view->extOrderItem = self::$orderItem;

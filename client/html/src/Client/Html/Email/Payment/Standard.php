@@ -428,10 +428,10 @@ class Standard
 	/**
 	 * Adds the given list of files as attachments to the mail message object
 	 *
-	 * @param \Aimeos\MW\Mail\Message\Iface $msg Mail message
+	 * @param \Aimeos\Base\Mail\Message\Iface $msg Mail message
 	 * @param array $files List of absolute file paths
 	 */
-	protected function attachs( \Aimeos\MW\Mail\Message\Iface $msg, array $files )
+	protected function attachs( \Aimeos\Base\Mail\Message\Iface $msg, array $files )
 	{
 		foreach( $files as $filename )
 		{

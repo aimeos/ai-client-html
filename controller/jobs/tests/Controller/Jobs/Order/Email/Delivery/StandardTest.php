@@ -98,11 +98,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetView()
 	{
-		$mailStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\None' )
+		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )
+		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
 			->getMock();
@@ -157,11 +157,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testProcessItem()
 	{
-		$mailStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\None' )
+		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\MW\\Mail\\Message\\None' )
+		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
 			->getMock();
