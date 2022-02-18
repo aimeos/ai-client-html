@@ -333,9 +333,6 @@ class Standard
 	 */
 	protected function categories() : array
 	{
-		$context = $this->context();
-		$config = $this->context()->config();
-
 		/** client/html/catalog/lists/catid-default
 		 * The default category ID used if none is given as parameter
 		 *
@@ -615,7 +612,7 @@ class Standard
 	/**
 	 * Returns the supplier IDs used for filtering products
 	 *
-	 * @return List of supplier IDs
+	 * @return array List of supplier IDs
 	 */
 	protected function suppliers() : array
 	{
@@ -646,6 +643,12 @@ class Standard
 	}
 
 
+	/**
+	 * Returns the URLs for fetching stock information
+	 *
+	 * @param \Aimeos\Map $products Products to fetch stock information for
+	 * @return \Aimeos\Map List of stock URLs
+	 */
 	protected function stockUrl( \Aimeos\Map $products ) : \Aimeos\Map
 	{
 		/** client/html/catalog/lists/stock
