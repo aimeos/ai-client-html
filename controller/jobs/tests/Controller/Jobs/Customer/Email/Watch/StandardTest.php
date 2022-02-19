@@ -2,7 +2,6 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2022
  */
 
@@ -12,7 +11,6 @@ namespace Aimeos\Controller\Jobs\Customer\Email\Watch;
 
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
-	private $object;
 	private $context;
 	private $aimeos;
 
@@ -21,27 +19,26 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context = \TestHelperJobs::context();
 		$this->aimeos = \TestHelperJobs::getAimeos();
-
-		$this->object = new \Aimeos\Controller\Jobs\Customer\Email\Watch\Standard( $this->context, $this->aimeos );
 	}
 
 
 	protected function tearDown() : void
 	{
-		$this->object = null;
+		unset( $this->context, $this->aimeos );
 	}
 
 
 	public function testGetName()
 	{
-		$this->assertEquals( 'Product notification e-mails', $this->object->getName() );
+		$object = new \Aimeos\Controller\Jobs\Customer\Email\Watch\Standard( $this->context, $this->aimeos );
+		$this->assertEquals( 'Product notification e-mails', $object->getName() );
 	}
 
 
 	public function testGetDescription()
 	{
-		$text = 'Sends e-mails for watched products';
-		$this->assertEquals( $text, $this->object->getDescription() );
+		$object = new \Aimeos\Controller\Jobs\Customer\Email\Watch\Standard( $this->context, $this->aimeos );
+		$this->assertEquals( 'Sends e-mails for watched products', $object->getDescription() );
 	}
 
 
@@ -54,27 +51,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mailMsgStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\Message\\None' )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
+			->setMethods( ['send'] )
 			->getMock();
 
-		$mailStub->expects( $this->once() )
-			->method( 'create' )
-			->will( $this->returnValue( $mailMsgStub ) );
-
-		$mailStub->expects( $this->once() )->method( 'send' );
+		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
+		$mailMsgStub->expects( $this->once() )->method( 'send' );
 
 		$this->context->setMail( $mailStub );
 
 
-		$product = $this->getProductItem();
-		$prices = $product->getRefItems( 'price', 'default', 'default' );
+		$product = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC', ['media', 'price', 'text'] );
+		$price = $product->getRefItems( 'price', 'default', 'default' )->first();
 
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Customer\\Email\\Watch\\Standard' )
 			->setConstructorArgs( array( $this->context, $this->aimeos ) )
-			->setMethods( array( 'getProductList' ) )
+			->setMethods( ['products'] )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'getProductList' )
-			->will( $this->returnValue( [-1 => ['item' => $product, 'price' => $prices->first(), 'currency' => 'EUR']] ) );
+		$object->expects( $this->once() )->method( 'products' )
+			->will( $this->returnValue( [$product->set( 'price', $price )] ) );
 
 
 		$object->run();
@@ -83,43 +78,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testRunException()
 	{
-		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$mailStub->expects( $this->once() )
-			->method( 'create' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$this->context->setMail( $mailStub );
-
-
-		$product = $this->getProductItem();
-		$prices = $product->getRefItems( 'price', 'default', 'default' );
-
 		$object = $this->getMockBuilder( '\\Aimeos\\Controller\\Jobs\\Customer\\Email\\Watch\\Standard' )
-			->setConstructorArgs( array( $this->context, $this->aimeos ) )
-			->setMethods( array( 'getProductList' ) )
+			->setConstructorArgs( [$this->context, $this->aimeos] )
+			->setMethods( ['products', 'send'] )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'getProductList' )
-			->will( $this->returnValue( [-1 => ['item' => $product, 'price' => $prices->first(), 'currency' => 'EUR']] ) );
-
+		$object->expects( $this->once() )->method( 'products' )->will( $this->returnValue( [new \stdClass()] ) );
+		$object->expects( $this->once() )->method( 'send' )->will( $this->throwException( new \RuntimeException() ) );
 
 		$object->run();
-	}
-
-
-	protected function getProductItem()
-	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'product.code', 'CNC' ) );
-
-		if( ( $item = $manager->search( $search, ['media', 'price', 'text'] )->first() ) === null ) {
-			throw new \RuntimeException( 'No product item with code "CNC" found' );
-		}
-
-		return $item;
 	}
 }

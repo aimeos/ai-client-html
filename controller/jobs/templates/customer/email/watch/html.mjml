@@ -17,7 +17,6 @@ $pricefmt = $this->translate( 'client/code', 'price:default' );
 $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 
 ?>
-<?php $this->block()->start( 'email/watch/html' ) ?>
 <mjml>
 	<mj-head>
 		<mj-title><?= $enc->html( $this->translate( 'client', 'Your watched products' ), $enc::TRUST ) ?></mj-title>
@@ -48,7 +47,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 						<th css-class="header" colspan="3"><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></th>
 					</thead>
 					<tbody class="details">
-						<?php foreach( $this->extProducts as $entry ) : $product = $entry['item'] ?>
+						<?php foreach( $this->get( 'products' ) as $product ) : $price = $product->get( 'price' ) ?>
 							<tr class="product">
 								<td class="image">
 									<?php $media = $product->getRefItems( 'media', 'default', 'default' ) ?>
@@ -57,13 +56,13 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 									<?php endif ?>
 								</td>
 								<td class="name">
-									<?php $params = array_merge( $this->param(), ['currency' => $entry['currency'], 'd_name' => $product->getName( 'url' ), 'd_prodid' => $product->getId(), 'd_pos' => ''] ) ?>
+									<?php $params = array_merge( $this->get( 'urlparams' ), ['currency' => $price->getCurrencyId(), 'd_name' => $product->getName( 'url' ), 'd_prodid' => $product->getId(), 'd_pos' => ''] ) ?>
 									<a class="product-name" href="<?= $enc->attr( $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
 										<?= $enc->html( $product->getName(), $enc::TRUST ) ?>
 									</a>
 								</td>
 								<td class="price">
-									<?= sprintf( $priceFormat, $this->number( $entry['price']->getValue(), $entry['price']->getPrecision() ), $this->translate( 'currency', $entry['price']->getCurrencyId() ) ) ?>
+									<?= sprintf( $priceFormat, $this->number( $price->getValue(), $price->getPrecision() ), $this->translate( 'currency', $price->getCurrencyId() ) ) ?>
 								</td>
 							</tr>
 						<?php endforeach ?>
@@ -80,5 +79,3 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 		</mj-section>
 	</mj-body>
 </mjml>
-<?php $this->block()->stop() ?>
-<?= $this->block()->get( 'email/watch/html' ) ?>

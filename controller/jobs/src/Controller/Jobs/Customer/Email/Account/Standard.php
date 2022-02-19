@@ -24,9 +24,6 @@ class Standard
 	use \Aimeos\Controller\Jobs\Mail;
 
 
-	private $client;
-
-
 	/**
 	 * Returns the localized name of the job.
 	 *
