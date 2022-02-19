@@ -21,6 +21,9 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
+	use \Aimeos\Controller\Jobs\Mail;
+
+
 	private $couponId;
 
 
@@ -92,75 +95,32 @@ class Standard
 		 * @category Developer
 		 * @see controller/jobs/order/email/voucher/limit-days
 		 */
-		$status = (array) $config->get( 'controller/jobs/order/email/voucher/status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
+		$status = $config->get( 'controller/jobs/order/email/voucher/status', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED );
 
 
-		$client = \Aimeos\Client\Html\Email\Voucher\Factory::create( $context );
-		$orderManager = \Aimeos\MShop::create( $context, 'order' );
+		$manager = \Aimeos\MShop::create( $context, 'order' );
 
-		$orderSearch = $orderManager->filter();
-
-		$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER, '1' );
-		$orderFunc = $orderSearch->make( 'order:status', $param );
-
-		$expr = array(
-			$orderSearch->compare( '>=', 'order.mtime', $limitDate ),
-			$orderSearch->compare( '==', 'order.statuspayment', $status ),
-			$orderSearch->compare( '==', 'order.base.product.type', 'voucher' ),
-			$orderSearch->compare( '==', $orderFunc, 0 ),
-		);
-		$orderSearch->setConditions( $orderSearch->and( $expr ) );
+		$filter = $manager->filter();
+		$func = $filter->make( 'order:status', [\Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER, '1'] );
+		$filter->add( [
+			$filter->compare( '>=', 'order.mtime', $limitDate ),
+			$filter->compare( '==', 'order.statuspayment', $status ),
+			$filter->compare( '==', 'order.base.product.type', 'voucher' ),
+			$filter->compare( '==', $func, 0 ),
+		] );
 
 		$start = 0;
 
 		do
 		{
-			$items = $orderManager->search( $orderSearch );
+			$items = $manager->search( $filter->slice( $start ), ['order/base', 'order/base/addres', 'order/base/product'] );
 
-			$this->process( $client, $items, 1 );
+			$this->notify( $items );
 
 			$count = count( $items );
 			$start += $count;
-			$orderSearch->slice( $start );
 		}
-		while( $count >= $orderSearch->getLimit() );
-	}
-
-
-	/**
-	 * Saves the given coupon codes
-	 *
-	 * @param array $map Associative list of coupon codes as keys and reference Ids as values
-	 */
-	protected function addCouponCodes( array $map )
-	{
-		$couponId = $this->getCouponId();
-		$manager = \Aimeos\MShop::create( $this->context(), 'coupon/code' );
-
-		foreach( $map as $code => $ref )
-		{
-			$item = $manager->create()->setParentId( $couponId )
-				->setCode( $code )->setRef( $ref )->setCount( null ); // unlimited
-
-			$manager->save( $item );
-		}
-	}
-
-
-	/**
-	 * Adds the status of the delivered e-mail for the given order ID
-	 *
-	 * @param string $orderId Unique order ID
-	 * @param int $value Status value
-	 */
-	protected function addOrderStatus( string $orderId, int $value )
-	{
-		$orderStatusManager = \Aimeos\MShop::create( $this->context(), 'order/status' );
-
-		$statusItem = $orderStatusManager->create()->setParentId( $orderId )->setValue( $value )
-			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER );
-
-		$orderStatusManager->save( $statusItem );
+		while( $count >= $filter->getLimit() );
 	}
 
 
@@ -171,7 +131,7 @@ class Standard
 	 * @return \Aimeos\MShop\Order\Item\Base\Address\Iface Delivery or voucher address item
 	 * @throws \Aimeos\Controller\Jobs\Exception If no address item is available
 	 */
-	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\MShop\Order\Item\Base\Address\Iface
+	protected function address( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\MShop\Order\Item\Base\Address\Iface
 	{
 		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
 		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false && $addr->getEmail() !== '' ) {
@@ -179,12 +139,47 @@ class Standard
 		}
 
 		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
-		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false ) {
+		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false && $addr->getEmail() !== '' ) {
 			return $addr;
 		}
 
-		$msg = sprintf( 'No address found in order base with ID "%1$s"', $orderBaseItem->getId() );
+		$msg = sprintf( 'No e-mail address found in order base with ID "%1$s"', $orderBaseItem->getId() );
 		throw new \Aimeos\Controller\Jobs\Exception( $msg );
+	}
+
+
+	/**
+	 * Creates coupon codes for the bought vouchers
+	 *
+	 * @param \Aimeos\Map $orderProdItems Complete order including addresses, products, services
+	 */
+	protected function createCoupons( \Aimeos\Map $orderProdItems )
+	{
+		$map = [];
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/base/product/attribute' );
+
+		foreach( $orderProdItems as $orderProductItem )
+		{
+			if( $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) ) {
+				continue;
+			}
+
+			$codes = [];
+
+			for( $i = 0; $i < $orderProductItem->getQuantity(); $i++ )
+			{
+				$str = $i . getmypid() . microtime( true ) . $orderProductItem->getId();
+				$code = substr( strtoupper( sha1( $str ) ), -8 );
+				$map[$code] = $orderProductItem->getId();
+				$codes[] = $code;
+			}
+
+			$item = $manager->create()->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( $codes );
+			$orderProductItem->setAttributeItem( $item );
+		}
+
+		$this->saveCoupons( $map );
+		return $orderProdItems;
 	}
 
 
@@ -193,16 +188,14 @@ class Standard
 	 *
 	 * @return string Unique ID of the coupon item
 	 */
-	protected function getCouponId() : string
+	protected function couponId() : string
 	{
 		if( !isset( $this->couponId ) )
 		{
 			$manager = \Aimeos\MShop::create( $this->context(), 'coupon' );
+			$filter = $manager->filter()->add( 'coupon.provider', '=~', 'Voucher' )->slice( 0, 1 );
 
-			$search = $manager->filter()->slice( 0, 1 );
-			$search->setConditions( $search->compare( '=~', 'coupon.provider', 'Voucher' ) );
-
-			if( ( $item = $manager->search( $search )->first() ) === null ) {
+			if( ( $item = $manager->search( $filter )->first() ) === null ) {
 				throw new \Aimeos\Controller\Jobs\Exception( 'No coupon provider "Voucher" available' );
 			}
 
@@ -214,12 +207,57 @@ class Standard
 
 
 	/**
+	 * Sends the voucher e-mail for the given orders
+	 *
+	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
+	 */
+	protected function notify( \Aimeos\Map $items )
+	{
+		$context = $this->context();
+		$siteItems = $this->sites( $items->getBaseItem()->getSiteCode()->unique() );
+
+		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );
+		$orderProdManager = \Aimeos\MShop::create( $context, 'order/base/product' );
+
+		foreach( $items as $id => $item )
+		{
+			$couponManager->begin();
+			$orderProdManager->begin();
+
+			try
+			{
+				$orderBaseItem = $item->getBaseItem();
+				$orderProdManager->save( $this->createCoupons( $this->products( $orderBaseItem ) ) );
+
+				$this->status( $id );
+				$this->send( $orderBaseItem, $siteItems->get( $orderBaseItem->getSiteCode() ) );
+
+				$orderProdManager->commit();
+				$couponManager->commit();
+
+				$str = sprintf( 'Sent voucher e-mails for order ID "%1$s"', $item->getId() );
+				$context->logger()->info( $str, 'email/order/voucher' );
+			}
+			catch( \Exception $e )
+			{
+				$orderProdManager->rollback();
+				$couponManager->rollback();
+
+				$str = 'Error while trying to send voucher e-mails for order ID "%1$s": %2$s';
+				$msg = sprintf( $str, $item->getId(), $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
+				$context->logger()->info( $msg, 'email/order/voucher' );
+			}
+		}
+	}
+
+
+	/**
 	 * Returns the ordered voucher products from the basket.
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Basket object
-	 * @return array List of order product items for the voucher products
+	 * @return \Aimeos\Map List of order product items for the voucher products
 	 */
-	protected function getOrderProducts( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
+	protected function products( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\Map
 	{
 		$list = [];
 
@@ -237,156 +275,127 @@ class Standard
 			}
 		}
 
-		return $list;
+		return map( $list );
 	}
 
 
 	/**
-	 * Returns an initialized view object
+	 * Saves the given coupon codes
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
-	 * @param string $site Site code
-	 * @param string|null $currencyId Three letter ISO currency code
-	 * @param string|null $langId ISO language code, maybe country specific
-	 * @return \Aimeos\MW\View\Iface Initialized view object
+	 * @param array $map Associative list of coupon codes as keys and reference Ids as values
 	 */
-	protected function view( \Aimeos\MShop\Context\Item\Iface $context, string $site, string $currencyId = null, string $langId = null ) : \Aimeos\MW\View\Iface
+	protected function saveCoupons( array $map )
 	{
-		$view = $context->view();
-		$params = ['locale' => $langId, 'site' => $site, 'currency' => $currencyId];
+		$couponId = $this->couponId();
+		$manager = \Aimeos\MShop::create( $this->context(), 'coupon/code' );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
-		$view->addHelper( 'param', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $langId );
-		$view->addHelper( 'number', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->config() );
-		$view->addHelper( 'config', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->i18n( $langId ) );
-		$view->addHelper( 'translate', $helper );
-
-		return $view;
-	}
-
-
-	/**
-	 * Sends the voucher e-mail for the given orders
-	 *
-	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the voucher e-mails
-	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
-	 * @param int $status Delivery status value
-	 */
-	protected function process( \Aimeos\Client\Html\Iface $client, \Aimeos\Map $items, int $status )
-	{
-		$context = $this->context();
-		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );
-		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );
-
-		foreach( $items as $id => $item )
+		foreach( $map as $code => $ref )
 		{
-			$couponManager->begin();
-			$orderBaseManager->begin();
+			$item = $manager->create()->setParentId( $couponId )
+				->setCode( $code )->setRef( $ref )->setCount( null ); // unlimited
 
-			try
-			{
-				$orderBaseItem = $orderBaseManager->load( $item->getBaseId() )->off();
-
-				$orderBaseItem = $this->createCoupons( $orderBaseItem );
-				$orderBaseManager->store( $orderBaseItem );
-
-				$this->addOrderStatus( $id, $status );
-				$this->sendEmails( $orderBaseItem, $client );
-
-				$orderBaseManager->commit();
-				$couponManager->commit();
-
-				$str = sprintf( 'Sent voucher e-mails for order ID "%1$s"', $item->getId() );
-				$context->logger()->info( $str, 'email/order/voucher' );
-			}
-			catch( \Exception $e )
-			{
-				$orderBaseManager->rollback();
-				$couponManager->rollback();
-
-				$str = 'Error while trying to send voucher e-mails for order ID "%1$s": %2$s';
-				$msg = sprintf( $str, $item->getId(), $e->getMessage() . PHP_EOL . $e->getTraceAsString() );
-				$context->logger()->info( $msg, 'email/order/voucher' );
-			}
+			$manager->save( $item );
 		}
-	}
-
-
-	/**
-	 * Creates coupon codes for the bought vouchers
-	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
-	 */
-	protected function createCoupons( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem )
-	{
-		$map = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'order/base/product/attribute' );
-
-		foreach( $this->getOrderProducts( $orderBaseItem ) as $orderProductItem )
-		{
-			if( $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) === null )
-			{
-				$codes = [];
-
-				for( $i = 0; $i < $orderProductItem->getQuantity(); $i++ )
-				{
-					$str = $i . getmypid() . microtime( true ) . $orderProductItem->getId();
-					$code = substr( strtoupper( sha1( $str ) ), -8 );
-					$map[$code] = $orderProductItem->getId();
-					$codes[] = $code;
-				}
-
-				$item = $manager->create()->setCode( 'coupon-code' )->setType( 'coupon' )->setValue( $codes );
-				$orderProductItem->setAttributeItem( $item );
-			}
-		}
-
-		$this->addCouponCodes( $map );
-		return $orderBaseItem;
 	}
 
 
 	/**
 	 * Sends the voucher related e-mail for a single order
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
-	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the voucher e-mails
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including addresses and products
+	 * @param \Aimeos\MShop\Locale\Item\Site\Iface $site Site item
 	 */
-	protected function sendEmails( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\Client\Html\Iface $client )
+	protected function send( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\MShop\Locale\Item\Site\Iface $site )
 	{
 		$context = $this->context();
-		$addrItem = $this->getAddressItem( $orderBaseItem );
-		$currencyId = $orderBaseItem->getPrice()->getCurrencyId();
-		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->locale()->getLanguageId() );
+		$config = $context->config();
+		$address = $this->address( $orderBaseItem );
+		$view = $this->view( $orderBaseItem, $address, $site->getTheme() );
 
-		$view = $this->view( $context, $orderBaseItem->getSiteCode(), $currencyId, $langId );
+		$logoPath = $site->getLogo();
+		$fs = $context->fs( 'fs-media' );
+		$logo = $fs->has( $logoPath ) ? $fs->read( $logoPath ) : '';
 
-		foreach( $this->getOrderProducts( $orderBaseItem ) as $orderProductItem )
+		foreach( $this->products( $orderBaseItem ) as $orderProductItem )
 		{
-			if( ( $codes = $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) ) !== null )
+			if( !empty( $codes = $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) ) )
 			{
 				foreach( (array) $codes as $code )
 				{
-					$message = $context->mail()->create();
-					$view->addHelper( 'mail', new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message ) );
+					$view->orderProductItem = $orderProductItem;
+					$view->voucher = $code;
 
-					$view->extOrderProductItem = $orderProductItem;
-					$view->extAddressItem = $addrItem;
-					$view->extVoucherCode = $code;
+					$msg = $this->call( 'mailTo', $address );
+					$view->logo = $msg->embed( $logo, '', basename( $logoPath ) );
 
-					$client->setView( $view );
-					$client->header();
-					$client->body();
-
-					$context->mail()->send( $view->mail() );
+					$msg->subject( $context->translate( 'client', 'Your voucher' ) )
+						->html( $view->render( $config->get( 'controller/jobs/order/email/voucher/template-html', 'order/email/voucher/html' ) ) )
+						->text( $view->render( $config->get( 'controller/jobs/order/email/voucher/template-text', 'order/email/voucher/text' ) ) )
+						->send();
 				}
 			}
 		}
+	}
+
+
+	/**
+	 * Returns the site items for the given site codes
+	 *
+	 * @param \Aimeos\Map $codes Unique site codes
+	 * @return \Aimeos\Map Site items with codes as keys
+	 */
+	protected function sites( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'locale/site' );
+
+		$filter = $manager->filter()
+			->add( ['locale.site.code' => $codes] )
+			->slice( 0, $codes->count() );
+
+		return $manager->search( $filter )->col( null, 'code' );
+	}
+
+
+	/**
+	 * Adds the status of the delivered e-mail for the given order ID
+	 *
+	 * @param string $orderId Unique order ID
+	 */
+	protected function status( string $orderId )
+	{
+		$orderStatusManager = \Aimeos\MShop::create( $this->context(), 'order/status' );
+
+		$statusItem = $orderStatusManager->create()->setParentId( $orderId )->setValue( 1 )
+			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_VOUCHER );
+
+		$orderStatusManager->save( $statusItem );
+	}
+
+
+	/**
+	 * Returns the view populated with common data
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including addresses and products
+	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
+	 * @return \Aimeos\MW\View\Iface View object
+	 */
+	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem,
+		\Aimeos\MShop\Common\Item\Address\Iface $address, string $theme = null ) : \Aimeos\MW\View\Iface
+	{
+		$theme = $theme ?: 'default';
+		$fs = $this->context()->fs( 'fs-theme' );
+		$css = $fs->has( $theme . '/email.css' ) ? $fs->read( $theme . '/email.css' ) : null;
+
+		$view = $this->call( 'mailView', $address->getLanguageId() );
+		$view->intro = $this->call( 'mailIntro', $address );
+		$view->addressItem = $address;
+		$view->css = $css;
+		$view->urlparams = [
+			'locale' => $address->getLanguageId() ?: $orderBaseItem->locale()->getLanguageId(),
+			'currency' => $orderBaseItem->getPrice()->getCurrencyId(),
+			'site' => $orderBaseItem->getSiteCode(),
+		];
+
+		return $view;
 	}
 }
