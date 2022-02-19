@@ -233,7 +233,7 @@ class Standard
 			$finfo = new \finfo( FILEINFO_MIME_TYPE );
 			$mimetype = $finfo->file( $file );
 
-			$view->htmlLogo = $view->mail()->embed( $content, $mimetype, basename( $file ) );
+			$view->htmlLogo = $view->mail()->embed( $content, basename( $file ), $mimetype );
 		}
 
 

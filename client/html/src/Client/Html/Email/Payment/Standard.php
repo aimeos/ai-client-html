@@ -460,7 +460,7 @@ class Standard
 				$mimetype = 'application/binary';
 			}
 
-			$msg->attach( $content, $mimetype, basename( $filename ) );
+			$msg->attach( $content, basename( $filename ), $mimetype );
 		}
 	}
 
