@@ -352,7 +352,9 @@ class Standard
 			->add( ['locale.site.code' => $codes] )
 			->slice( 0, $codes->count() );
 
-		return $manager->search( $filter )->col( null, 'code' );
+		return $manager->search( $filter )->rekey( function( $item ) {
+			return $item->getCode();
+		} );
 	}
 
 
