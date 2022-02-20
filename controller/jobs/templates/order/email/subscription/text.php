@@ -8,11 +8,11 @@
 $enc = $this->encoder();
 
 
-$detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
-$detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-$detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( 'absoluteUri' => 1 ) );
-$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
+$target = $this->config( 'client/html/catalog/detail/url/target' );
+$cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
+$action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
+$config = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+$filter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 
 $pricefmt = $this->translate( 'client/code', 'price:default' );
@@ -36,13 +36,12 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 
 
 ?>
-<?php $this->block()->start( 'email/subscription/text' ) ?>
-<?= wordwrap( strip_tags( $this->get( 'emailIntro', '' ) ) ) ?>
+<?= wordwrap( strip_tags( $this->get( 'intro', '' ) ) ) ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'The subscription for the product has ended' ) ) ) ?>:
 
-<?php switch( $this->extSubscriptionItem->getReason() ) : case -1: ?>
+<?php switch( $this->subscriptionItem->getReason() ) : case -1: ?>
 	<?= wordwrap( strip_tags( $this->translate( 'client', 'The payment couldn\'t be renewed' ) ) ) ?>
 <?php break; case 1: ?>
 	<?= wordwrap( strip_tags( $this->translate( 'client', 'You\'ve cancelled the subscription' ) ) ) ?>
@@ -51,18 +50,16 @@ $vatFormat = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 
 
 <?= strip_tags( $this->translate( 'client', 'Subscription product' ) ) ?>:
-<?= strip_tags( $this->extOrderProductItem->getName() ) ?>
+<?= strip_tags( $this->orderProductItem->getName() ) ?>
 
 
-<?php $price = $this->extOrderProductItem->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ) ?>
+<?php $price = $this->orderProductItem->getPrice(); $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() ) ?>
 <?php printf( $priceFormat, $this->number( $price->getValue(), $price->getPrecision() ), $priceCurrency ) ?> <?php ( $price->getRebate() > '0.00' ? printf( $rebatePercentFormat, $this->number( round( $price->getRebate() * 100 / ( $price->getValue() + $price->getRebate() ) ), 0 ) ) : '' ) ?>
 <?php if( $price->getCosts() > 0 ) { echo ' ' . strip_tags( sprintf( $costFormat, $this->number( $price->getCosts(), $price->getPrecision() ), $priceCurrency ) ); } ?>
 <?php if( $price->getTaxrate() > 0 ) { echo ', ' . strip_tags( sprintf( $vatFormat, $this->number( $price->getTaxrate() ) ) ); } ?>
 
-<?php $params = array_diff_key( array_merge( $this->param(), ['currency' => $this->extOrderProductItem->getPrice()->getCurrencyId(), 'd_name' => $this->extOrderProductItem->getName( 'url' ), 'd_prodid' => $this->extOrderProductItem->getParentProductId() ?: $this->extOrderProductItem->getProductId(), 'd_pos' => ''] ), $detailFilter ) ?>
-<?= $this->url( ( $this->extOrderProductItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ?>
+<?php $params = array_diff_key( array_merge( $this->get( 'urlparams' ), ['currency' => $this->orderProductItem->getPrice()->getCurrencyId(), 'd_name' => $this->orderProductItem->getName( 'url' ), 'd_prodid' => $this->orderProductItem->getParentProductId() ?: $this->orderProductItem->getProductId(), 'd_pos' => ''] ), $filter ) ?>
+<?= $this->url( ( $this->orderProductItem->getTarget() ?: $target ), $cntl, $action, $params, [], $config ) ?>
 
 
 <?= wordwrap( strip_tags( $this->translate( 'client', 'If you have any questions, please reply to this e-mail' ) ) ) ?>
-<?php $this->block()->stop() ?>
-<?= $this->block()->get( 'email/subscription/text' ) ?>

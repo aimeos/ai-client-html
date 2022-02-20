@@ -104,7 +104,7 @@ class Standard
 		$view->password = $password;
 		$view->addressItem = $address;
 
-		return $this->call( 'mailTo', $address )
+		$this->call( 'mailTo', $address )
 			->subject( $context->translate( 'client', 'Your new account' ) )
 			->html( $view->render( $config->get( 'controller/jobs/customer/email/account/template-html', 'customer/email/account/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/customer/email/account/template-text', 'customer/email/account/text' ) ) )

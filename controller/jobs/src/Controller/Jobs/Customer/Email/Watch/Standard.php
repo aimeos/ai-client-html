@@ -173,7 +173,7 @@ class Standard
 			'locale' => $address->getLanguageId(),
 		];
 
-		return $this->call( 'mailTo', $address )
+		$this->call( 'mailTo', $address )
 			->subject( $context->translate( 'client', 'Your watched products' ) )
 			->html( $view->render( $config->get( 'controller/jobs/customer/email/watch/template-html', 'customer/email/watch/html' ) ) )
 			->text( $view->render( $config->get( 'controller/jobs/customer/email/watch/template-text', 'customer/email/watch/text' ) ) )

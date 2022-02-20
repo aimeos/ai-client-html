@@ -21,16 +21,7 @@ class Standard
 	extends \Aimeos\Controller\Common\Subscription\Process\Processor\Base
 	implements \Aimeos\Controller\Common\Subscription\Process\Processor\Iface
 {
-	/** controller/common/subscription/export/csv/processor/email/name
-	 * Name of the customer group processor implementation
-	 *
-	 * Use "Myname" if your class is named "\Aimeos\Controller\Common\Subscription\Process\Processor\Email\Myname".
-	 * The name is case-sensitive and you should avoid camel case names like "MyName".
-	 *
-	 * @param string Last part of the processor class name
-	 * @since 2018.04
-	 * @category Developer
-	 */
+	use \Aimeos\Controller\Jobs\Mail;
 
 
 	/**
@@ -42,7 +33,7 @@ class Standard
 	public function renewAfter( \Aimeos\MShop\Subscription\Item\Iface $subscription, \Aimeos\MShop\Order\Item\Iface $order )
 	{
 		if( $subscription->getReason() === \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT ) {
-			$this->process( $subscription );
+			$this->notify( $subscription );
 		}
 	}
 
@@ -54,23 +45,7 @@ class Standard
 	 */
 	public function end( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
-		$this->process( $subscription );
-	}
-
-
-	/**
-	 * Returns the product notification e-mail client
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
-	 * @return \Aimeos\Client\Html\Iface Product notification e-mail client
-	 */
-	protected function getClient( \Aimeos\MShop\Context\Item\Iface $context )
-	{
-		if( !isset( $this->client ) ) {
-			$this->client = \Aimeos\Client\Html\Email\Subscription\Factory::create( $context );
-		}
-
-		return $this->client;
+		$this->notify( $subscription );
 	}
 
 
@@ -79,62 +54,72 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item object
 	 */
-	protected function process( \Aimeos\MShop\Subscription\Item\Iface $subscription )
+	protected function notify( \Aimeos\MShop\Subscription\Item\Iface $subscription )
 	{
 		$context = $this->context();
-
 		$manager = \Aimeos\MShop::create( $context, 'order/base' );
-		$baseItem = $manager->get( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
+		$base = $manager->get( $subscription->getOrderBaseId(), ['order/base/address', 'order/base/product'] );
 
-		$addrItem = $baseItem->getAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, 0 );
+		$address = current( $base->getAddress( 'payment' ) );
+		$siteIds = explode( '.', trim( $base->getSiteId(), '.' ) );
+		$sites = \Aimeos\MShop::create( $context, 'locale/site' )->getPath( end( $siteIds ) );
 
-		foreach( $baseItem->getProducts() as $orderProduct )
+		$view = $this->view( $base, $sites->getTheme()->filter()->last() );
+		$view->subscriptionItem = $subscription;
+		$view->addressItem = $address;
+
+		foreach( $base->getProducts() as $orderProduct )
 		{
 			if( $orderProduct->getId() == $subscription->getOrderProductId() ) {
-				$this->sendMail( $context, $subscription, $addrItem, $orderProduct );
+				$this->send( $view->set( 'orderProductItem', $orderProduct ), $address, $sites->getLogo()->filter()->last() );
 			}
 		}
 	}
 
 
 	/**
-	 * Sends the subscription e-mail for the given customer address and products
+	 * Sends the subscription e-mail to the customer
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
-	 * @param \Aimeos\MShop\Subscription\Item\Iface $subscription Subscription item
-	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Payment address of the customer
-	 * @param \Aimeos\MShop\Order\Item\Base\Product\Iface $product Subscription product the notification should be sent for
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $address Address item
+	 * @param string|null $logoPath Path to the logo
 	 */
-	protected function sendMail( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Subscription\Item\Iface $subscription,
-		\Aimeos\MShop\Common\Item\Address\Iface $address, \Aimeos\MShop\Order\Item\Base\Product\Iface $product )
+	protected function send( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Order\Item\Base\Address\Iface $address, string $logoPath = null )
 	{
-		$view = $context->view();
-		$view->extAddressItem = $address;
-		$view->extOrderProductItem = $product;
-		$view->extSubscriptionItem = $subscription;
+		$context = $this->context();
+		$config = $context->config();
 
-		$params = [
-			'locale' => $context->locale()->getLanguageId(),
-			'site' => $context->locale()->getSiteItem()->getCode(),
+		$msg = $this->call( 'mailTo', $address );
+		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( $logoPath ) );
+
+		$msg->subject( $context->translate( 'client', 'Your subscription' ) )
+			->html( $view->render( $config->get( 'controller/jobs/order/email/subscription/template-html', 'order/email/subscription/html' ) ) )
+			->text( $view->render( $config->get( 'controller/jobs/order/email/subscription/template-text', 'order/email/subscription/text' ) ) )
+			->send();
+	}
+
+
+	/**
+	 * Returns the view populated with common data
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
+	 * @param string|null $theme Theme name
+	 * @return \Aimeos\MW\View\Iface View object
+	 */
+	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\MW\View\Iface
+	{
+		$address = current( $base->getAddress( 'payment' ) );
+		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();
+
+		$view = $this->call( 'mailView', $langId );
+		$view->intro = $this->call( 'mailIntro', $address );
+		$view->css = $this->call( 'mailCss', $theme );
+		$view->urlparams = [
+			'currency' => $base->getPrice()->getCurrencyId(),
+			'site' => $base->getSiteCode(),
+			'locale' => $langId,
 		];
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
-		$view->addHelper( 'param', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->i18n( $address->getLanguageId() ) );
-		$view->addHelper( 'translate', $helper );
-
-		$mailer = $context->mail();
-		$message = $mailer->create();
-
-		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $message );
-		$view->addHelper( 'mail', $helper );
-
-		$client = $this->getClient( $context );
-		$client->setView( $view );
-		$client->header();
-		$client->body();
-
-		$mailer->send( $message );
+		return $view;
 	}
 }

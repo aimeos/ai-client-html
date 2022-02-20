@@ -7,10 +7,11 @@
 
 $enc = $this->encoder();
 
-$detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
-$detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-$detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+$target = $this->config( 'client/html/catalog/detail/url/target' );
+$cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
+$action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
+$config = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+$filter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 
 $pricefmt = $this->translate( 'client/code', 'price:default' );
@@ -19,18 +20,17 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 
 ?>
-<?php $this->block()->start( 'email/subscription/html' ) ?>
 <mjml>
 	<mj-head>
 		<mj-title><?= $enc->html( $this->translate( 'client', 'Your subscription' ), $enc::TRUST ) ?></mj-title>
 		<mj-style>
-			<?= $this->get( 'htmlCss' ) ?>
+			<?= $this->get( 'css' ) ?>
 		</mj-style>
 	</mj-head>
 	<mj-body css-class="aimeos">
 		<mj-section>
 			<mj-column>
-				<mj-image css-class="logo" src="<?= $this->get( 'htmlLogo' ) ?>" align="center"/>
+				<mj-image css-class="logo" src="<?= $this->get( 'logo' ) ?>" align="center"/>
 			</mj-column>
 		</mj-section>
 		<mj-section>
@@ -42,7 +42,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 					<?= nl2br( $enc->html( $this->translate( 'client', 'The subscription for the product has ended' ), $enc::TRUST ) ) ?>:
 				</mj-text>
 				<mj-text css-class="email-common-intro">
-					<?php switch( $this->extSubscriptionItem->getReason() ) : case -1: ?>
+					<?php switch( $this->subscriptionItem->getReason() ) : case -1: ?>
 						<?= nl2br( $enc->html( $this->translate( 'client', 'The payment couldn\'t be renewed' ), $enc::TRUST ) ) ?>
 					<?php break; case 1: ?>
 						<?= nl2br( $enc->html( $this->translate( 'client', 'You\'ve cancelled the subscription' ), $enc::TRUST ) ) ?>
@@ -59,18 +59,18 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 					<tbody class="details">
 						<tr class="product">
 							<td class="image">
-								<?php if( ( $url = $this->extOrderProductItem->getMediaUrl() ) !== '' ) : ?>
+								<?php if( ( $url = $this->orderProductItem->getMediaUrl() ) !== '' ) : ?>
 									<img class="product-image" src="<?= $enc->attr( $this->content( $url ) ) ?>" height="150" />
 								<?php endif ?>
 							</td>
 							<td class="name">
-								<?php $params = array_merge( $this->param(), ['currency' => $this->extOrderProductItem->getPrice()->getCurrencyId(), 'd_name' => $this->extOrderProductItem->getName( 'url' ), 'd_prodid' => $this->extOrderProductItem->getParentProductId() ?: $this->extOrderProductItem->getProductId(), 'd_pos' => ''] ) ?>
-								<a class="product-name" href="<?= $enc->attr( $this->url( ( $this->extOrderProductItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ) ?>">
-									<?= $enc->html( $this->extOrderProductItem->getName(), $enc::TRUST ) ?>
+								<?php $params = array_merge( $this->param(), ['currency' => $this->orderProductItem->getPrice()->getCurrencyId(), 'd_name' => $this->orderProductItem->getName( 'url' ), 'd_prodid' => $this->orderProductItem->getParentProductId() ?: $this->orderProductItem->getProductId(), 'd_pos' => ''] ) ?>
+								<a class="product-name" href="<?= $enc->attr( $this->url( ( $this->orderProductItem->getTarget() ?: $target ), $cntl, $action, $params, [], $config ) ) ?>">
+									<?= $enc->html( $this->orderProductItem->getName(), $enc::TRUST ) ?>
 								</a>
 							</td>
 							<td class="price">
-								<?= sprintf( $priceFormat, $this->number( $this->extOrderProductItem->getPrice()->getValue(), $this->extOrderProductItem->getPrice()->getPrecision() ), $this->translate( 'currency', $this->extOrderProductItem->getPrice()->getCurrencyId() ) ) ?>
+								<?= sprintf( $priceFormat, $this->number( $this->orderProductItem->getPrice()->getValue(), $this->orderProductItem->getPrice()->getPrecision() ), $this->translate( 'currency', $this->orderProductItem->getPrice()->getCurrencyId() ) ) ?>
 							</td>
 						</tr>
 					</tbody>
@@ -86,5 +86,3 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 		</mj-section>
 	</mj-body>
 </mjml>
-<?php $this->block()->stop() ?>
-<?= $this->block()->get( 'email/subscription/html' ) ?>

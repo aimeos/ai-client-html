@@ -67,6 +67,10 @@ class TestHelperCntl
 		$ctx->setDatabaseManager( $dbm );
 
 
+		$fs = new \Aimeos\Base\Filesystem\Manager\Standard( $conf->get( 'resource' ) );
+		$ctx->setFilesystemManager( $fs );
+
+
 		$logger = new \Aimeos\MW\Logger\File( 'unittest.log', \Aimeos\MW\Logger\Iface::DEBUG );
 		$ctx->setLogger( $logger );
 
@@ -96,7 +100,7 @@ class TestHelperCntl
 
 	protected static function createView( \Aimeos\MW\Config\Iface $config )
 	{
-		$view = new \Aimeos\MW\View\Standard( self::getAimeos()->getTemplatePaths( 'client/html/templates' ) );
+		$view = new \Aimeos\MW\View\Standard( self::getAimeos()->getTemplatePaths( 'controller/jobs/templates' ) );
 
 		$trans = new \Aimeos\MW\Translation\None( 'de_DE' );
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $trans );

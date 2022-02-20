@@ -35,13 +35,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalClone()
 			->getMock();
 
-		$mailStub->expects( $this->once() )
-			->method( 'create' )
-			->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
 
 		$context->setMail( $mailStub );
-		$subscription = $this->getSubscription( $context )->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
 		$order = \Aimeos\MShop::create( $context, 'order' )->create();
+		$subscription = $this->getSubscription()->setReason( \Aimeos\MShop\Subscription\Item\Iface::REASON_PAYMENT );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Email\Standard( $context );
 		$object->renewAfter( $subscription, $order );
@@ -61,28 +59,20 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->disableOriginalClone()
 			->getMock();
 
-		$mailStub->expects( $this->once() )
-			->method( 'create' )
-			->will( $this->returnValue( $mailMsgStub ) );
+		$mailStub->expects( $this->once() )->method( 'create' )->will( $this->returnValue( $mailMsgStub ) );
 
 		$context->setMail( $mailStub );
 
 		$object = new \Aimeos\Controller\Common\Subscription\Process\Processor\Email\Standard( $context );
-		$object->end( $this->getSubscription( $context ) );
+		$object->end( $this->getSubscription() );
 	}
 
 
-	protected function getSubscription( $context )
+	protected function getSubscription()
 	{
-		$manager = \Aimeos\MShop::create( $context, 'subscription' );
+		$manager = \Aimeos\MShop::create( \TestHelperCntl::context(), 'subscription' );
+		$search = $manager->filter()->add( ['subscription.dateend' => '2010-01-01'] );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'subscription.dateend', '2010-01-01' ) );
-
-		if( ( $item = $manager->search( $search )->first() ) === null ) {
-			throw new \Exception( 'No subscription item found' );
-		}
-
-		return $item;
+		return $manager->search( $search )->first( new \RuntimeException( 'No subscription item found' ) );
 	}
 }
