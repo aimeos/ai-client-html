@@ -214,7 +214,7 @@ class Standard
 	protected function notify( \Aimeos\Map $items )
 	{
 		$context = $this->context();
-		$siteItems = $this->sites( $items->getBaseItem()->getSiteCode()->unique() );
+		$sites = $this->sites( $items->getBaseItem()->getSiteId()->unique() );
 
 		$couponManager = \Aimeos\MShop::create( $context, 'coupon' );
 		$orderProdManager = \Aimeos\MShop::create( $context, 'order/base/product' );
@@ -226,11 +226,14 @@ class Standard
 
 			try
 			{
-				$orderBaseItem = $item->getBaseItem();
-				$orderProdManager->save( $this->createCoupons( $this->products( $orderBaseItem ) ) );
+				$base = $item->getBaseItem();
+				$orderProdManager->save( $this->createCoupons( $this->products( $base ) ) );
 
+				$list = $sites->get( $base->getSiteId(), map() );
+				$view = $this->view( $base, $list->getTheme()->filter()->last() );
+
+				$this->send( $view, $this->products( $base ), $this->address( $base ), $list->getLogo()->filter()->last() );
 				$this->status( $id );
-				$this->send( $orderBaseItem, $siteItems->get( $orderBaseItem->getSiteCode() ) );
 
 				$orderProdManager->commit();
 				$couponManager->commit();
@@ -302,21 +305,19 @@ class Standard
 	/**
 	 * Sends the voucher related e-mail for a single order
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including addresses and products
-	 * @param \Aimeos\MShop\Locale\Item\Site\Iface $site Site item
+	 * @param \Aimeos\MW\View\Iface $view Populated view object
+	 * @param \Aimeos\Map $orderProducts List of ordered voucher products
+	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
+	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
 	 */
-	protected function send( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\MShop\Locale\Item\Site\Iface $site )
+	protected function send( \Aimeos\MW\View\Iface $view, \Aimeos\Map $orderProducts,
+		\Aimeos\MShop\Common\Item\Address\Iface $address, string $logoPath = null )
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$address = $this->address( $orderBaseItem );
-		$view = $this->view( $orderBaseItem, $address, $site->getTheme() );
+		$logo = $this->call( 'mailLogo', $logoPath );
 
-		$logoPath = $site->getLogo();
-		$fs = $context->fs( 'fs-media' );
-		$logo = $fs->has( $logoPath ) ? $fs->read( $logoPath ) : '';
-
-		foreach( $this->products( $orderBaseItem ) as $orderProductItem )
+		foreach( $orderProducts as $orderProductItem )
 		{
 			if( !empty( $codes = $orderProductItem->getAttribute( 'coupon-code', 'coupon' ) ) )
 			{
@@ -326,7 +327,7 @@ class Standard
 					$view->voucher = $code;
 
 					$msg = $this->call( 'mailTo', $address );
-					$view->logo = $msg->embed( $logo, basename( $logoPath ) );
+					$view->logo = $msg->embed( $logo, basename( (string) $logoPath ) );
 
 					$msg->subject( $context->translate( 'client', 'Your voucher' ) )
 						->html( $view->render( $config->get( 'controller/jobs/order/email/voucher/template-html', 'order/email/voucher/html' ) ) )
@@ -341,20 +342,21 @@ class Standard
 	/**
 	 * Returns the site items for the given site codes
 	 *
-	 * @param \Aimeos\Map $codes Unique site codes
+	 * @param iterable $siteIds List of site IDs
 	 * @return \Aimeos\Map Site items with codes as keys
 	 */
-	protected function sites( \Aimeos\Map $codes ) : \Aimeos\Map
+	protected function sites( iterable $siteIds ) : \Aimeos\Map
 	{
+		$map = [];
 		$manager = \Aimeos\MShop::create( $this->context(), 'locale/site' );
 
-		$filter = $manager->filter()
-			->add( ['locale.site.code' => $codes] )
-			->slice( 0, $codes->count() );
+		foreach( $siteIds as $siteId )
+		{
+			$list = explode( '.', trim( $siteId, '.' ) );
+			$map[$siteId] = $manager->getPath( end( $list ) );
+		}
 
-		return $manager->search( $filter )->rekey( function( $item ) {
-			return $item->getCode();
-		} );
+		return map( $map );
 	}
 
 
@@ -377,25 +379,23 @@ class Standard
 	/**
 	 * Returns the view populated with common data
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including addresses and products
-	 * @param \Aimeos\MShop\Common\Item\Address\Iface $address Address item
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
+	 * @param string|null $theme Theme name
 	 * @return \Aimeos\MW\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem,
-		\Aimeos\MShop\Common\Item\Address\Iface $address, string $theme = null ) : \Aimeos\MW\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\MW\View\Iface
 	{
-		$theme = $theme ?: 'default';
-		$fs = $this->context()->fs( 'fs-theme' );
-		$css = $fs->has( $theme . '/email.css' ) ? $fs->read( $theme . '/email.css' ) : null;
+		$address = $this->address( $base );
+		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();
 
-		$view = $this->call( 'mailView', $address->getLanguageId() );
+		$view = $this->call( 'mailView', $langId );
 		$view->intro = $this->call( 'mailIntro', $address );
-		$view->addressItem = $address;
-		$view->css = $css;
+		$view->css = $this->call( 'mailCss', $theme );
+		$view->address = $address;
 		$view->urlparams = [
-			'locale' => $address->getLanguageId() ?: $orderBaseItem->locale()->getLanguageId(),
-			'currency' => $orderBaseItem->getPrice()->getCurrencyId(),
-			'site' => $orderBaseItem->getSiteCode(),
+			'currency' => $base->getPrice()->getCurrencyId(),
+			'site' => $base->getSiteCode(),
+			'locale' => $langId,
 		];
 
 		return $view;

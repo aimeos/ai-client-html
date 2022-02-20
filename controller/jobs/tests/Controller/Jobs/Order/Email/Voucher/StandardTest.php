@@ -130,7 +130,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testNotify()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'order' );
-		$order = $manager->search( $manager->filter()->slice( 0, 1 ), ['order/base', 'order/base/product'] )->first();
+		$domains = ['order/base', 'order/base/address', 'order/base/product'];
+
+		$order = $manager->search( $manager->filter()->slice( 0, 1 ), $domains )
+			->first( new \RuntimeException( 'No orders available' ) );
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
 			->setConstructorArgs( [$this->context, \TestHelperJobs::getAimeos()] )
@@ -178,12 +181,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testSend()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'order' );
-		$base = $manager->search( $manager->filter()->slice( 0, 1 ), ['order/base', 'order/base/address'] )
-			->first( new \RuntimeException( 'No orders available' ) )->getBaseItem();
-
-		$orderProductItem = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create();
-		$base->addProduct( $orderProductItem->setProductCode( 'voucher-test' ) );
+		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setEmail( 'a@b.com' );
+		$product = \Aimeos\MShop::create( $this->context, 'order/base/product' )->create()->setProductCode( 'voucher-test' );
 
 
 		$mailStub = $this->getMockBuilder( '\\Aimeos\\Base\\Mail\\None' )
@@ -203,14 +202,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$object = $this->getMockBuilder( \Aimeos\Controller\Jobs\Order\Email\Voucher\Standard::class )
-			->setConstructorArgs( array( $this->context, \TestHelperJobs::getAimeos() ) )
-			->setMethods( ['products'] )
+			->setConstructorArgs( [$this->context, \TestHelperJobs::getAimeos()] )
+			->setMethods( ['test'] )
 			->getMock();
 
-		$object->expects( $this->once() )->method( 'products' )->will( $this->returnValue( map( $orderProductItem ) ) );
-
-		$this->access( 'createCoupons' )->invokeArgs( $object, [map( $orderProductItem )] );
-		$this->access( 'send' )->invokeArgs( $object, [$base, $this->context->locale()->getSiteItem()] );
+		$this->access( 'createCoupons' )->invokeArgs( $object, [map( $product )] );
+		$this->access( 'send' )->invokeArgs( $object, [$this->context->view(), map( $product ), $address] );
 	}
 
 
@@ -232,9 +229,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testView()
 	{
 		$base = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create()->setLanguageId( 'de' );
+		$address = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
+		$base->addAddress( $address->setLanguageId( 'de' )->setEmail( 'a@b.com' ), 'delivery' );
 
-		$result = $this->access( 'view' )->invokeArgs( $this->object, [$base, $address] );
+		$result = $this->access( 'view' )->invokeArgs( $this->object, [$base] );
 		$this->assertInstanceof( \Aimeos\MW\View\Iface::class, $result );
 	}
 

@@ -90,7 +90,7 @@ class Standard
 		$config = $context->config();
 
 		$msg = $this->call( 'mailTo', $address );
-		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( $logoPath ) );
+		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
 
 		$msg->subject( $context->translate( 'client', 'Your subscription' ) )
 			->html( $view->render( $config->get( 'controller/jobs/order/email/subscription/template-html', 'order/email/subscription/html' ) ) )
