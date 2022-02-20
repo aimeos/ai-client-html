@@ -21,13 +21,13 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 	<mj-head>
 		<mj-title><?= $enc->html( $this->translate( 'client', 'Your watched products' ), $enc::TRUST ) ?></mj-title>
 		<mj-style>
-			<?= $this->get( 'htmlCss' ) ?>
+			<?= $this->get( 'css' ) ?>
 		</mj-style>
 	</mj-head>
 	<mj-body css-class="aimeos">
 		<mj-section>
 			<mj-column>
-				<mj-image css-class="logo" src="<?= $this->get( 'htmlLogo' ) ?>" align="center"/>
+				<mj-image css-class="logo" src="<?= $this->get( 'logo' ) ?>" align="center"/>
 			</mj-column>
 		</mj-section>
 		<mj-section>
