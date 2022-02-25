@@ -153,7 +153,7 @@ jobs:
       - run: echo "<?php return ['db' => ['adapter' => 'mysql', 'host' => '127.0.0.1', 'port' => 3306, 'database' => 'aimeos', 'username' => 'aimeos', 'password' => 'aimeos', 'limit' => 2, 'opt-persistent' => false, 'stmt' => [\"SET SESSIOn sort_buffer_size=2097144; SET NAMES 'utf8'; SET SESSION sql_mode='ANSI'\"]], 'email' => ['from-email' => 'root@localhost'], 'fs' => ['adapter' => 'Standard', 'basedir' => '.'], 'mq' => ['adapter' => 'Standard', 'db' => 'db']];" > config/resource.php
       - run: for i in `seq 1 10`; do nc -z 127.0.0.1 3306 && echo OK && exit 0; echo -n .; sleep 1; done
       - run: ./vendor/bin/phing -Ddir=ext/ai-client-html setup coverageext
-      - run: ./vendor/bin/php-coveralls -x ext/ai-client-html/controller/jobs/tests/coverage.xml -vvv
+      - run: ./vendor/bin/php-coveralls -x ext/ai-client-html/client/html/tests/coverage.xml -vvv
 
 workflows:
   version: 2
