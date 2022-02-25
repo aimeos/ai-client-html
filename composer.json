@@ -16,9 +16,7 @@
 	"require": {
 		"php": "~7.1||~8.0",
 		"aimeos/aimeos-core": "dev-master",
-		"aimeos/ai-controller-jobs": "dev-master",
-		"aimeos/ai-controller-frontend": "dev-master",
-		"tecnickcom/tcpdf": "^6.4.1"
+		"aimeos/ai-controller-frontend": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~7.0||~8.0||~9.0",
@@ -26,14 +24,10 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Aimeos\\Client\\Html\\": "client/html/src/Client/Html/",
-			"Aimeos\\Controller\\Jobs\\": "controller/jobs/src/Controller/Jobs/",
-			"Aimeos\\Controller\\Common\\": "controller/common/src/Controller/Common/"
+			"Aimeos\\Client\\Html\\": "client/html/src/Client/Html/"
 		},
 		"classmap": [
-			"client/html/src",
-			"controller/jobs/src",
-			"controller/common/src"
+			"client/html/src"
 		]
 	}
 }

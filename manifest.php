@@ -9,8 +9,6 @@ return [
 	'include' => [
 		'lib/custom/src',
 		'client/html/src',
-		'controller/jobs/src',
-		'controller/common/src',
 	],
 	'i18n' => [
 		'client' => 'client/i18n',
@@ -22,15 +20,6 @@ return [
 	'template' => [
 		'client/html/templates' => [
 			'client/html/templates',
-		],
-		'controller/jobs/templates' => [
-			'controller/jobs/templates',
-			'client/html/templates',
-		],
-	],
-	'custom' => [
-		'controller/jobs' => [
-			'controller/jobs/src',
 		],
 	],
 ];
