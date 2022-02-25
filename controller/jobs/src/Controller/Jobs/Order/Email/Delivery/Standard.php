@@ -2,7 +2,6 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2014
  * @copyright Aimeos (aimeos.org), 2015-2022
  * @package Controller
  * @subpackage Order
@@ -22,6 +21,9 @@ class Standard
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
+	use \Aimeos\Controller\Jobs\Mail;
+
+
 	/**
 	 * Returns the localized name of the job.
 	 *
@@ -54,8 +56,6 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 
-		$client = \Aimeos\Client\Html\Email\Delivery\Factory::create( $context );
-
 		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		/** controller/jobs/order/email/delivery/limit-days
@@ -77,12 +77,12 @@ class Standard
 		$limit = $config->get( 'controller/jobs/order/email/delivery/limit-days', 90 );
 		$limitDate = date( 'Y-m-d H:i:s', time() - $limit * 86400 );
 
-		$default = array(
+		$default = [
 			\Aimeos\MShop\Order\Item\Base::STAT_PROGRESS,
 			\Aimeos\MShop\Order\Item\Base::STAT_DISPATCHED,
 			\Aimeos\MShop\Order\Item\Base::STAT_REFUSED,
 			\Aimeos\MShop\Order\Item\Base::STAT_RETURNED,
-		);
+		];
 
 		/** controller/jobs/order/email/delivery/status
 		 * Only send order delivery notification e-mails for these delivery status values
@@ -111,31 +111,163 @@ class Standard
 		 */
 		foreach( (array) $config->get( 'controller/jobs/order/email/delivery/status', $default ) as $status )
 		{
-			$start = 0;
-			$orderSearch = $orderManager->filter();
-
 			$param = array( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY, (string) $status );
-			$orderFunc = $orderSearch->make( 'order:status', $param );
+			$filter = $orderManager->filter();
+			$filter->add( [
+				$filter->compare( '>=', 'order.mtime', $limitDate ),
+				$filter->compare( '==', 'order.statusdelivery', $status ),
+				$filter->compare( '==', $filter->make( 'order:status', $param ), 0 ),
+			] );
 
-			$expr = array(
-				$orderSearch->compare( '>=', 'order.mtime', $limitDate ),
-				$orderSearch->compare( '==', 'order.statusdelivery', $status ),
-				$orderSearch->compare( '==', $orderFunc, 0 ),
-			);
-			$orderSearch->setConditions( $orderSearch->and( $expr ) );
+			$start = 0;
+			$domains = ['order/base', 'order/base/address', 'order/base/product', 'order/base/service'];
 
 			do
 			{
-				$orderSearch->slice( $start );
-				$items = $orderManager->search( $orderSearch );
+				$items = $orderManager->search( $filter->slice( $start ) );
 
-				$this->process( $client, $items, $status );
+				$this->notify( $items, $status );
 
 				$count = count( $items );
 				$start += $count;
 			}
-			while( $count >= $orderSearch->getLimit() );
+			while( $count >= $filter->getLimit() );
 		}
+	}
+
+
+	/**
+	 * Returns the address item from the order
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Order including address items
+	 * @return \Aimeos\MShop\Common\Item\Address\Iface Address item
+	 * @throws \Aimeos\Controller\Jobs\Exception If no suitable address item is available
+	 */
+	protected function address( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Common\Item\Address\Iface
+	{
+		if( ( $addr = current( $basket->getAddress( 'delivery' ) ) ) !== false && $addr->getEmail() ) {
+			return $addr;
+		};
+
+		if( ( $addr = current( $basket->getAddress( 'payment' ) ) ) !== false && $addr->getEmail() ) {
+			return $addr;
+		};
+
+		$msg = sprintf( 'No address with e-mail found in order base with ID "%1$s"', $basket->getId() );
+		throw new \Aimeos\Controller\Jobs\Exception( $msg );
+	}
+
+
+	/**
+	 * Adds the given list of files as attachments to the mail message object
+	 *
+	 * @param \Aimeos\Base\Mail\Message\Iface $msg Mail message
+	 * @param array $files List of absolute file paths
+	 */
+	protected function attachments( \Aimeos\Base\Mail\Message\Iface $msg ) : \Aimeos\Base\Mail\Message\Iface
+	{
+		$context = $this->context();
+		$fs = $context->fs();
+
+		/** client/html/email/delivery/attachments
+		 * List of file paths whose content should be attached to all delivery e-mails
+		 *
+		 * This configuration option allows you to add files to the e-mails that are
+		 * sent to the customer when the delivery status changes, e.g. for the order
+		 * confirmation e-mail. These files can't be customer specific.
+		 *
+		 * @param array List of absolute file paths
+		 * @since 2016.10
+		 * @see client/html/email/delivery/attachments
+		 */
+		$files = $context->config()->get( 'client/html/email/delivery/attachments', [] );
+
+		foreach( $files as $filepath )
+		{
+			if( $fs->has( $filepath ) ) {
+				$msg->attach( $fs->read( $filepath ), basename( $filename ) );
+			}
+		}
+
+		return $msg;
+	}
+
+
+	/**
+	 * Sends the delivery e-mail for the given orders
+	 *
+	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
+	 * @param int $status Delivery status value
+	 */
+	protected function notify( \Aimeos\Map $items, int $status )
+	{
+		$context = $this->context();
+		$sites = $this->sites( $items->getBaseItem()->getSiteId()->unique() );
+
+		foreach( $items as $id => $item )
+		{
+			try
+			{
+				$basket = $item->getBaseItem();
+				$list = $sites->get( $basket->getSiteId(), map() );
+
+				$view = $this->view( $basket, $list->getTheme()->filter()->last() );
+				$view->summaryBasket = $basket;
+				$view->orderItem = $item;
+
+				$this->send( $view, $list->getLogo()->filter()->last() );
+				$this->status( $id, $status );
+
+				$email = $this->address( $basket )->getEmail();
+				$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $email );
+				$context->logger()->info( $str, 'email/order/delivery' );
+			}
+			catch( \Exception $e )
+			{
+				$str = 'Error while trying to send delivery e-mail for order ID "%1$s" and status "%2$s": %3$s';
+				$msg = sprintf( $str, $item->getId(), $item->getStatusPayment(), $e->getMessage() );
+				$context->logger()->error( $msg . PHP_EOL . $e->getTraceAsString(), 'email/order/delivery' );
+			}
+		}
+	}
+
+
+	/**
+	 * Sends the delivery related e-mail for a single order
+	 *
+	 * @param \Aimeos\MW\View\Iface $view Populated view object
+	 * @param string|null $logoPath Relative path to the logo in the fs-media file system
+	 */
+	protected function send( \Aimeos\MW\View\Iface $view, string $logoPath = null )
+	{
+		$context = $this->context();
+		$config = $context->config();
+		$filename = $context->translate( 'client', 'Order' ) . '-' . $view->orderItem->getOrderNumber() . '.pdf';
+
+		$msg = $this->call( 'mailTo', $view->addressItem );
+		$msg = $this->attachments( $msg );
+		$view->logo = $msg->embed( $this->call( 'mailLogo', $logoPath ), basename( (string) $logoPath ) );
+
+		/** client/html/email/delivery/bcc-email
+		 * E-Mail address all delivery e-mails should be also sent to
+		 *
+		 * Using this option you can send a copy of all delivery related e-mails
+		 * to a second e-mail account. This can be handy for testing and checking
+		 * the e-mails sent to customers.
+		 *
+		 * It also allows shop owners with a very small volume of orders to be
+		 * notified about delivery changes. Be aware that this isn't useful if the
+		 * order volumne is high or has peeks!
+		 *
+		 * @param string|array E-mail address or list of e-mail addresses
+		 * @since 2014.03
+		 */
+		$msg->bcc( $config->get( 'client/html/email/delivery/bcc-email', [] ) );
+
+		$msg->subject( sprintf( $context->translate( 'client', 'Your order %1$s' ), $view->orderItem->getOrderNumber() ) )
+			->html( $view->render( $config->get( 'controller/jobs/order/email/delivery/template-html', 'order/email/delivery/html' ) ) )
+			->text( $view->render( $config->get( 'controller/jobs/order/email/delivery/template-text', 'order/email/delivery/text' ) ) )
+			->send();
 	}
 
 
@@ -145,142 +277,62 @@ class Standard
 	 * @param string $orderId Unique order ID
 	 * @param int $value Status value
 	 */
-	protected function addOrderStatus( string $orderId, int $value )
+	protected function status( string $orderId, int $value )
 	{
-		$orderStatusManager = \Aimeos\MShop::create( $this->context(), 'order/status' );
+		$manager = \Aimeos\MShop::create( $this->context(), 'order/status' );
 
-		$statusItem = $orderStatusManager->create();
-		$statusItem->setParentId( $orderId );
-		$statusItem->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY );
-		$statusItem->setValue( $value );
+		$item = $manager->create()
+			->setParentId( $orderId )
+			->setType( \Aimeos\MShop\Order\Item\Status\Base::EMAIL_DELIVERY )
+			->setValue( $value );
 
-		$orderStatusManager->save( $statusItem );
+		$manager->save( $item );
 	}
 
 
 	/**
-	 * Returns the delivery address item of the order
+	 * Returns the site items for the given site codes
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Order including address items
-	 * @return \Aimeos\MShop\Order\Item\Base\Address\Iface Delivery or payment address item
-	 * @throws \Aimeos\Controller\Jobs\Exception If no address item is available
+	 * @param iterable $siteIds List of site IDs
+	 * @return \Aimeos\Map Site items with codes as keys
 	 */
-	protected function getAddressItem( \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem ) : \Aimeos\MShop\Order\Item\Base\Address\Iface
+	protected function sites( iterable $siteIds ) : \Aimeos\Map
 	{
-		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
-		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false && $addr->getEmail() !== '' ) {
-			return $addr;
+		$map = [];
+		$manager = \Aimeos\MShop::create( $this->context(), 'locale/site' );
+
+		foreach( $siteIds as $siteId )
+		{
+			$list = explode( '.', trim( $siteId, '.' ) );
+			$map[$siteId] = $manager->getPath( end( $list ) );
 		}
 
-		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
-		if( ( $addr = current( $orderBaseItem->getAddress( $type ) ) ) !== false ) {
-			return $addr;
-		}
-
-		$msg = sprintf( 'No address found in order base with ID "%1$s"', $orderBaseItem->getId() );
-		throw new \Aimeos\Controller\Jobs\Exception( $msg );
+		return map( $map );
 	}
 
 
 	/**
-	 * Returns an initialized view object
+	 * Returns the view populated with common data
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
-	 * @param string|null $langId ISO language code, maybe country specific
-	 * @return \Aimeos\MW\View\Iface Initialized view object
+	 * @param \Aimeos\MShop\Order\Item\Base\Iface $base Basket including addresses
+	 * @param string|null $theme Theme name
+	 * @return \Aimeos\MW\View\Iface View object
 	 */
-	protected function view( \Aimeos\MShop\Context\Item\Iface $context, \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, string $langId = null ) : \Aimeos\MW\View\Iface
+	protected function view( \Aimeos\MShop\Order\Item\Base\Iface $base, string $theme = null ) : \Aimeos\MW\View\Iface
 	{
-		$view = $context->view();
+		$address = $this->address( $base );
+		$langId = $address->getLanguageId() ?: $base->locale()->getLanguageId();
 
-		$params = [
+		$view = $this->call( 'mailView', $langId );
+		$view->intro = $this->call( 'mailIntro', $address );
+		$view->css = $this->call( 'mailCss', $theme );
+		$view->address = $address;
+		$view->urlparams = [
+			'currency' => $base->getPrice()->getCurrencyId(),
+			'site' => $base->getSiteCode(),
 			'locale' => $langId,
-			'site' => $orderBaseItem->getSiteCode(),
-			'currency' => $orderBaseItem->locale()->getCurrencyId()
 		];
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
-		$view->addHelper( 'param', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $langId );
-		$view->addHelper( 'number', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $context->config() );
-		$view->addHelper( 'config', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Mail\Standard( $view, $context->mail()->create() );
-		$view->addHelper( 'mail', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $context->i18n( $langId ) );
-		$view->addHelper( 'translate', $helper );
-
 		return $view;
-	}
-
-
-	/**
-	 * Sends the delivery e-mail for the given orders
-	 *
-	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the delivery e-mails
-	 * @param \Aimeos\Map $items List of order items implementing \Aimeos\MShop\Order\Item\Iface with their IDs as keys
-	 * @param int $status Delivery status value
-	 */
-	protected function process( \Aimeos\Client\Html\Iface $client, \Aimeos\Map $items, int $status )
-	{
-		$context = $this->context();
-		$orderBaseManager = \Aimeos\MShop::create( $context, 'order/base' );
-
-		foreach( $items as $id => $item )
-		{
-			try
-			{
-				$orderBaseItem = $orderBaseManager->load( $item->getBaseId() );
-				$addr = $this->getAddressItem( $orderBaseItem );
-
-				if( $addr->getEmail() )
-				{
-					$this->processItem( $client, $item, $orderBaseItem, $addr );
-
-					$str = sprintf( 'Sent order delivery e-mail for status "%1$s" to "%2$s"', $status, $addr->getEmail() );
-					$context->logger()->info( $str, 'email/order/delivery' );
-				}
-
-				$this->addOrderStatus( $id, $status );
-			}
-			catch( \Exception $e )
-			{
-				$str = 'Error while trying to send delivery e-mail for order ID "%1$s" and status "%2$s": %3$s';
-				$msg = sprintf( $str, $item->getId(), $item->getStatusDelivery(), $e->getMessage() );
-				$context->logger()->error( $msg . PHP_EOL . $e->getTraceAsString(), 'email/order/payment' );
-			}
-		}
-	}
-
-
-	/**
-	 * Sends the delivery related e-mail for a single order
-	 *
-	 * @param \Aimeos\Client\Html\Iface $client HTML client object for rendering the delivery e-mails
-	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Order item the delivery related e-mail should be sent for
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem Complete order including addresses, products, services
-	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $addrItem Address item to send the e-mail to
-	 */
-	protected function processItem( \Aimeos\Client\Html\Iface $client, \Aimeos\MShop\Order\Item\Iface $orderItem,
-		\Aimeos\MShop\Order\Item\Base\Iface $orderBaseItem, \Aimeos\MShop\Order\Item\Base\Address\Iface $addrItem )
-	{
-		$context = $this->context();
-		$langId = ( $addrItem->getLanguageId() ?: $orderBaseItem->locale()->getLanguageId() );
-
-		$view = $this->view( $context, $orderBaseItem, $langId );
-		$view->extAddressItem = $addrItem;
-		$view->extOrderBaseItem = $orderBaseItem;
-		$view->extOrderItem = $orderItem;
-
-		$client->setView( $view );
-		$client->header();
-		$client->body();
-
-		$context->mail()->send( $view->mail() );
 	}
 }
