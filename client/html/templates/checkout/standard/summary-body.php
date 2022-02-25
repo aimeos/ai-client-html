@@ -51,7 +51,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 						 * @see client/html/checkout/standard/summary/service
 						 */
 						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address' ),
-						['addresses' => $addresses, 'type' => 'payment']
+						['addresses' => $addresses]
 					) ?>
 				<?php endif ?>
 			</div>
@@ -69,7 +69,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 				<?php if( $addresses = $this->standardBasket->getAddress( 'delivery' ) ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/standard/summary/address', 'common/summary/address' ),
-						['addresses' => $addresses, 'type' => 'delivery']
+						['addresses' => $addresses]
 					) ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>

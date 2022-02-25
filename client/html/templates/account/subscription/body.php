@@ -189,7 +189,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									 * @see client/html/account/subscription/summary/service
 									 */
 									$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-									array( 'addresses' => $item->getBaseItem()->getAddress( 'payment' ), 'type' => 'payment' )
+									['addresses' => $item->getBaseItem()->getAddress( 'payment' )]
 								) ?>
 							<?php endif ?>
 						</div>
@@ -204,7 +204,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 							<?php if( !empty( $item->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
 								<?= $this->partial(
 									$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-									array( 'addresses' => $item->getBaseItem()->getAddress( 'delivery' ), 'type' => 'delivery' )
+									['addresses' => $item->getBaseItem()->getAddress( 'delivery' )]
 								) ?>
 							<?php else : ?>
 								<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>

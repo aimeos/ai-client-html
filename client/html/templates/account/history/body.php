@@ -188,7 +188,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 										 * @see client/html/account/history/summary/service
 										 */
 										$this->config( 'client/html/account/history/summary/address', 'common/summary/address' ),
-										array( 'addresses' => $orderItem->getBaseItem()->getAddress( 'payment' ), 'type' => 'payment' )
+										['addresses' => $orderItem->getBaseItem()->getAddress( 'payment' )]
 									) ?>
 								<?php endif ?>
 							</div>
@@ -203,7 +203,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 								<?php if( !empty( $orderItem->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
 									<?= $this->partial(
 										$this->config( 'client/html/account/history/summary/address', 'common/summary/address' ),
-										array( 'addresses' => $orderItem->getBaseItem()->getAddress( 'delivery' ), 'type' => 'delivery' )
+										['addresses' => $orderItem->getBaseItem()->getAddress( 'delivery' )]
 									) ?>
 								<?php else : ?>
 									<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>

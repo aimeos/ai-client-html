@@ -37,7 +37,7 @@ $enc = $this->encoder();
 						 * @see client/html/checkout/confirm/summary/service
 						 */
 						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address' ),
-						['addresses' => $addresses, 'type' => 'payment']
+						['addresses' => $addresses]
 					) ?>
 				<?php endif ?>
 			</div>
@@ -52,7 +52,7 @@ $enc = $this->encoder();
 				<?php if( ( $addresses = $this->summaryBasket->getAddress( 'delivery' ) ) !== [] ) : ?>
 					<?= $this->partial(
 						$this->config( 'client/html/checkout/confirm/summary/address', 'common/summary/address' ),
-						['addresses' => $addresses, 'type' => 'delivery']
+						['addresses' => $addresses]
 					) ?>
 				<?php else : ?>
 					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
