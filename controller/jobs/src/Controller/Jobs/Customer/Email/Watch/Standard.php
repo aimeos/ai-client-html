@@ -199,7 +199,7 @@ class Standard
 		if( !isset( $this->sites[(string) $siteId] ) )
 		{
 			$manager = \Aimeos\MShop::create( $this->context(), 'locale/site' );
-			$siteIds = explode( '.', trim( $siteId, '.' ) );
+			$siteIds = explode( '.', trim( (string) $siteId, '.' ) );
 
 			$this->sites[$siteId] = $manager->getPath( end( $siteIds ) );
 		}

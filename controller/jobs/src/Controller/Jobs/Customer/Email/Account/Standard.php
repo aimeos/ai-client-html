@@ -24,6 +24,9 @@ class Standard
 	use \Aimeos\Controller\Jobs\Mail;
 
 
+	private $sites = [];
+
+
 	/**
 	 * Returns the localized name of the job.
 	 *
@@ -128,7 +131,7 @@ class Standard
 		if( !isset( $this->sites[(string) $siteId] ) )
 		{
 			$manager = \Aimeos\MShop::create( $this->context(), 'locale/site' );
-			$siteIds = explode( '.', trim( $siteId, '.' ) );
+			$siteIds = explode( '.', trim( (string) $siteId, '.' ) );
 
 			$this->sites[$siteId] = $manager->getPath( end( $siteIds ) );
 		}
