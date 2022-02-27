@@ -103,7 +103,7 @@ Aimeos = {
 					const parts = str.trim().split(' ');
 					url = parts[0];
 
-					parseInt((parts[1] || '').replace('w', '')) > window.innerWidth ? false : true;
+					return parseInt((parts[1] || '').replace('w', '')) > window.innerWidth ? false : true;
 				});
 
 				element.style.backgroundImage = "url('" + url + "')";
