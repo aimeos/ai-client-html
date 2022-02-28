@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyAttributeOrder()
 	{
 
-		$conf = new \Aimeos\MW\Config\PHPArray();
+		$conf = new \Aimeos\Base\Config\PHPArray();
 		$conf->set( 'client/html/catalog/filter/attribute/types', array( 'color', 'width', 'length' ) );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $conf );
 		$this->view->addHelper( 'config', $helper );

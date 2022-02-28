@@ -29,7 +29,7 @@ class TestHelperHtml
 	}
 
 
-	public static function view( $site = 'unittest', \Aimeos\MW\Config\Iface $config = null )
+	public static function view( $site = 'unittest', \Aimeos\Base\Config\Iface $config = null )
 	{
 		if( $config === null ) {
 			$config = self::context( $site )->config();
@@ -54,7 +54,7 @@ class TestHelperHtml
 		$view->addHelper( 'date', $helper );
 
 		$paths = ['version', 'client', 'common', 'resource/fs/baseurl', 'resource/fs-media/baseurl', 'resource/fs-theme/baseurl'];
-		$config = new \Aimeos\MW\Config\Decorator\Protect( $config, $paths );
+		$config = new \Aimeos\Base\Config\Decorator\Protect( $config, $paths );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );
 
@@ -107,9 +107,9 @@ class TestHelperHtml
 		$file = __DIR__ . DIRECTORY_SEPARATOR . 'confdoc.ser';
 		$local = array( 'resource' => array( 'fs' => array( 'adapter' => 'Standard', 'basedir' => __DIR__ . '/tmp' ) ) );
 
-		$conf = new \Aimeos\MW\Config\PHPArray( $local, $paths );
-		$conf = new \Aimeos\MW\Config\Decorator\Memory( $conf );
-		$conf = new \Aimeos\MW\Config\Decorator\Documentor( $conf, $file );
+		$conf = new \Aimeos\Base\Config\PHPArray( $local, $paths );
+		$conf = new \Aimeos\Base\Config\Decorator\Memory( $conf );
+		$conf = new \Aimeos\Base\Config\Decorator\Documentor( $conf, $file );
 		$ctx->setConfig( $conf );
 
 
