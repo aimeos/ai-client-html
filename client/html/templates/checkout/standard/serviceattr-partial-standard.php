@@ -95,7 +95,7 @@ $enc = $this->encoder();
 					<div class="col-md-7">
 						<input class="form-control form-item-value" type="number" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
-							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 						>
 					</div>
 
@@ -105,7 +105,7 @@ $enc = $this->encoder();
 						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
-							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'YYYY-MM-DD' ) ) ?>"
 						>
 					</div>
@@ -116,7 +116,7 @@ $enc = $this->encoder();
 						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
-							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'YYYY-MM-DD HH:mm' ) ) ?>"
 						>
 					</div>
@@ -127,7 +127,7 @@ $enc = $this->encoder();
 						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
-							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'HH:mm' ) ) ?>"
 						>
 					</div>
@@ -138,7 +138,7 @@ $enc = $this->encoder();
 						<textarea class="form-control"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>" class="form-item-value"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
-						><?= $enc->html( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?></textarea>
+						><?= $enc->html( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?></textarea>
 					</div>
 
 				<?php break; default: ?>
@@ -146,7 +146,7 @@ $enc = $this->encoder();
 					<div class="col-md-7">
 						<input class="form-control form-item-value" type="text" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
-							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ) ?>"
+							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 						>
 					</div>
 
