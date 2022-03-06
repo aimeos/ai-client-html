@@ -1,5 +1,6 @@
-client/html/tests/tmp
+tests/tmp
 .phpunit.result.cache
-*.junit.xml
+coveralls.json
+coverage.xml
 *.log
 *.ser
