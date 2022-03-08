@@ -75,7 +75,6 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 $enc = $this->encoder();
-$basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 
 ?>
@@ -323,12 +322,8 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 					</div>
 
 
-					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
+					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 						<?= $this->csrf()->formfield() ?>
-
-						<?php if( $basketSite ) : ?>
-							<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
-						<?php endif ?>
 
 						<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 

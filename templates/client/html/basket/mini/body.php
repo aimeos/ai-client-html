@@ -21,7 +21,6 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
- * @see client/html/basket/standard/url/site
  */
 
 /** client/html/basket/standard/url/controller
@@ -36,7 +35,6 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
- * @see client/html/basket/standard/url/site
  */
 
 /** client/html/basket/standard/url/action
@@ -51,7 +49,6 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/config
- * @see client/html/basket/standard/url/site
  */
 
 /** client/html/basket/standard/url/config
@@ -72,25 +69,8 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
- * @see client/html/basket/standard/url/site
  * @see client/html/url/config
  */
-
-/** client/html/basket/standard/url/site
- * Locale site code where products will be added to the basket
- *
- * In more complex setups with several shop sites, this setting allows to to
- * define the shop site that will manage the basket of the customer. For example
- * in market place setups where all vendors have there own shop sites, the basket
- * site should be the site code of the market place ("default" by default).
- *
- * @param string Code of the locale site
- * @since 2018.04
- * @see client/html/basket/standard/url/target
- * @see client/html/basket/standard/url/controller
- * @see client/html/basket/standard/url/config
- */
-$basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
 $pricefmt = $this->translate( 'client/code', 'price:default' );
 /// Price format with price value (%1$s) and currency (%2$s)
@@ -99,7 +79,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 ?>
 
-<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
+<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
@@ -142,7 +122,6 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 						<?php
 							$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
 							$param[$this->csrf()->name()] = $this->csrf()->value();
-							if( $basketSite ) { $param['site'] = $basketSite; }
 						?>
 						<div class="product row" data-url="<?= $enc->attr( $this->link( 'client/jsonapi/url', $param ) ) ?>">
 							<div class="col-5 name">
@@ -190,7 +169,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 				</div>
 			</div>
 			<div class="to-basket">
-				<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
+				<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?>
 				</a>
 			</div>

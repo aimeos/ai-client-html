@@ -158,7 +158,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 		$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 
-		$mediaItems = $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' );
+		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 	?>
 
 	<div class="product" data-prodid="<?= $enc->attr( $id ) ?>" data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
@@ -294,10 +294,6 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<!-- catalog.lists.items.csrf -->
 							<?= $this->csrf()->formfield() ?>
 							<!-- catalog.lists.items.csrf -->
-
-							<?php if( $basketSite = $this->config( 'client/html/basket/standard/url/site' ) ) : ?>
-								<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
-							<?php endif ?>
 
 							<?php if( $productItem->getType() === 'select' ) : ?>
 

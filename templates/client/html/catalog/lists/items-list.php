@@ -129,14 +129,10 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 
 					<?php if( $this->config( 'client/html/catalog/lists/basket-add', false ) ) : ?>
-						<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
+						<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 							<!-- catalog.lists.csrf -->
 							<?= $this->csrf()->formfield() ?>
 							<!-- catalog.lists.csrf -->
-
-							<?php if( $basketSite ) : ?>
-								<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>">
-							<?php endif ?>
 
 							<?php if( $productItem->getType() === 'select' ) : ?>
 								<div class="items-selection">

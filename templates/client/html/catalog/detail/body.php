@@ -13,8 +13,6 @@
 
 $enc = $this->encoder();
 
-$basketSite = $this->config( 'client/html/basket/standard/url/site' );
-
 /** client/html/basket/require-stock
  * Customers can order products only if there are enough products in stock
  *
@@ -174,7 +172,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 					</div>
 
 
-					<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ( $basketSite ? ['site' => $basketSite] : [] ) ) ) ?>">
+					<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 						<!-- catalog.detail.csrf -->
 						<?= $this->csrf()->formfield() ?>
 						<!-- catalog.detail.csrf -->
@@ -289,16 +287,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ) ?>"
 										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
 									>
-									<input type="hidden"
-										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'supplier'] ) ) ?>"
-										value="<?= $enc->attr( $this->detailProductItem->getRefItems( 'supplier' )->getId()->first() ) ?>"
-									>
-									<?php if( $basketSite ) : ?>
-										<input type="hidden"
-											name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'siteid'] ) ) ?>"
-											value="<?= $enc->attr( $basketSite ) ?>"
-										>
-									<?php endif ?>
 									<?php if( $this->detailProductItem->getType() !== 'group' ) : ?>
 										<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
 											name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ) ?>"
