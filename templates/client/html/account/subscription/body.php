@@ -235,12 +235,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 							 * @see client/html/account/subscription/summary/service
 							 */
 							$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
-							array(
-								'summaryBasket' => $item->getBaseItem(),
-								'summaryTaxRates' => $item->getBaseItem()->get( 'summaryTaxRates', [] ),
-								'summaryNamedTaxes' => $item->getBaseItem()->get( 'summaryNamedTaxes', [] ),
-								'summaryShowDownloadAttributes' => false,
-							)
+							['summaryBasket' => $item->getBaseItem()]
 						) ?>
 					</div>
 				</div>

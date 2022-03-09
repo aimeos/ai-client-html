@@ -223,14 +223,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 				 * @see client/html/checkout/standard/summary/service
 				 */
 				$this->config( 'client/html/checkout/standard/summary/detail', 'common/summary/detail' ),
-				array(
-					'summaryBasket' => $this->standardBasket,
-					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
-					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
-					'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
-					'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
-					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' )
-				)
+				['summaryBasket' => $this->standardBasket]
 			) ?>
 		</div>
 	</div>

@@ -18,7 +18,7 @@ namespace Aimeos\Client\Html\Account\History;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Summary\Base
+	extends \Aimeos\Client\Html\Base
 	implements \Aimeos\Client\Html\Iface
 {
 	/**
@@ -31,20 +31,10 @@ class Standard
 	 */
 	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
-		$status = $this->getDownloadPaymentStatus();
-
 		$view->historyItems = \Aimeos\Controller\Frontend::create( $this->context(), 'order' )
 			->uses( ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'] )
 			->sort( '-order.id' )
-			->search()
-			->each( function( $item ) use ( $status ) {
-				$basket = $item->getBaseItem();
-				$basket->set( 'summaryTaxrates', $this->getTaxRates( $basket ) )
-					->set( 'summaryNamedTaxes', $this->getNamedTaxes( $basket ) )
-					->set( 'summaryCostsPayment', $this->getCostsPayment( $basket ) )
-					->set( 'summaryCostsDelivery', $this->getCostsDelivery( $basket ) )
-					->set( 'summaryDownload', $item->getStatusPayment() >= $status ? true : false );
-			} );
+			->search();
 
 		return parent::data( $view, $tags, $expire );
 	}

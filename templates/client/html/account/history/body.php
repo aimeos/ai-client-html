@@ -309,14 +309,7 @@ $enc = $this->encoder();
 								 * @see client/html/account/history/summary/service
 								 */
 								$this->config( 'client/html/account/history/summary/detail', 'common/summary/detail' ),
-								array(
-									'summaryBasket' => $orderItem->getBaseItem(),
-									'summaryTaxRates' => $orderItem->getBaseItem()->get( 'summaryTaxrates', [] ),
-									'summaryNamedTaxes' => $orderItem->getBaseItem()->get( 'summaryNamedTaxes', [] ),
-									'summaryCostsPayment' => $orderItem->getBaseItem()->get( 'summaryCostsPayment', [] ),
-									'summaryCostsDelivery' => $orderItem->getBaseItem()->get( 'summaryCostsDelivery', [] ),
-									'summaryShowDownloadAttributes' => $orderItem->getBaseItem()->get( 'summaryDownload', false ),
-								)
+								['orderItem' => $orderItem, 'summaryBasket' => $orderItem->getBaseItem()]
 							) ?>
 						</div>
 					</div>

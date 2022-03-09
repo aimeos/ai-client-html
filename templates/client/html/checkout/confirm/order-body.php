@@ -170,14 +170,7 @@ $enc = $this->encoder();
 				 * @see client/html/checkout/confirm/summary/service
 				 */
 				$this->config( 'client/html/checkout/confirm/summary/detail', 'common/summary/detail' ),
-				array(
-					'summaryBasket' => $this->summaryBasket,
-					'summaryTaxRates' => $this->get( 'summaryTaxRates', [] ),
-					'summaryNamedTaxes' => $this->get( 'summaryNamedTaxes', [] ),
-					'summaryCostsPayment' => $this->get( 'summaryCostsPayment', 0 ),
-					'summaryCostsDelivery' => $this->get( 'summaryCostsDelivery', 0 ),
-					'summaryShowDownloadAttributes' => $this->get( 'summaryShowDownloadAttributes' ),
-				)
+				['orderItem' => $this->confirmOrderItem, 'summaryBasket' => $this->summaryBasket]
 			) ?>
 		</div>
 	</div>

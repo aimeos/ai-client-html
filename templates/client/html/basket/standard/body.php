@@ -39,15 +39,11 @@ $enc = $this->encoder();
 						 * @since 2017.01
 						 */
 						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail' ),
-						array(
+						[
 							'summaryEnableModify' => true,
 							'summaryBasket' => $this->standardBasket,
-							'summaryTaxRates' => $this->get( 'standardTaxRates', [] ),
-							'summaryNamedTaxes' => $this->get( 'standardNamedTaxes', [] ),
-							'summaryErrorCodes' => $this->get( 'standardErrorCodes', [] ),
-							'summaryCostsPayment' => $this->get( 'standardCostsPayment', 0 ),
-							'summaryCostsDelivery' => $this->get( 'standardCostsDelivery', 0 ),
-						)
+							'summaryErrorCodes' => $this->get( 'standardErrorCodes', [] )
+						]
 					) ?>
 				</div>
 			</div>

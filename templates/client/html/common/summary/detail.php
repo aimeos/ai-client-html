@@ -7,10 +7,8 @@
  */
 
 /* Available data:
- * - summaryTaxRates : Calculated taxes grouped by the tax rates
- * - summaryNamedTaxes : Calculated taxes grouped by the tax names
+ * - orderItem : Order item (optional, only available after checkout)
  * - summaryBasket : Order base item (basket) including products, addresses, services, etc.
- * - summaryShowDownloadAttributes : True if links to downloads should be shown, false if not (optional)
  * - summaryEnableModify : True if users are allowed to change the basket content, false if not (optional)
  * - summaryErrorCodes : List of error codes including those for the products (optional)
  */
@@ -119,7 +117,6 @@ $taxFormatIncl = $this->translate( 'client', 'Incl. %1$s%% %2$s' );
 /// Tax format with tax rate (%1$s) and tax name (%2$s)
 $taxFormatExcl = $this->translate( 'client', '+ %1$s%% %2$s' );
 
-$unhide = $this->get( 'summaryShowDownloadAttributes', false );
 $modify = $this->get( 'summaryEnableModify', false );
 $errors = $this->get( 'summaryErrorCodes', [] );
 
@@ -196,7 +193,9 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									</ul>
 								<?php endif ?>
 							<?php endforeach ?>
-							<?php if( $unhide && ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) !== null ) : ?>
+							<?php if( isset( $this->orderItem ) && $this->orderItem->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED
+									&& ( $product->getStatusPayment() < 0 || $product->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
+									&& ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) ) : ?>
 								<ul class="attr-list attr-list-hidden">
 									<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
 										<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ) ?></span>
@@ -338,7 +337,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		</div>
 	<?php endif ?>
 
-	<?php if( ( $costs = $this->get( 'summaryCostsDelivery', 0 ) ) > 0 ) : ?>
+	<?php if( ( $costs = $this->summaryBasket->getCosts( 'delivery' ) ) > 0 ) : ?>
 		<div class="delivery row g-0">
 			<div class="col-8 col-md-6 offset-4 offset-md-6">
 				<div class="row g-0">
@@ -352,7 +351,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		</div>
 	<?php endif ?>
 
-	<?php if( ( $costs = $this->get( 'summaryCostsPayment', 0 ) ) > 0 ) : ?>
+	<?php if( ( $costs = $this->summaryBasket->getCosts( 'payment' ) ) > 0 ) : ?>
 		<div class="payment row g-0">
 			<div class="col-8 col-md-6 offset-4 offset-md-6">
 				<div class="row g-0">
@@ -381,7 +380,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		</div>
 	<?php endif ?>
 
-	<?php foreach( $this->get( 'summaryNamedTaxes', [] ) as $taxName => $map ) : ?>
+	<?php foreach( $this->summaryBasket->getTaxes() as $taxName => $map ) : ?>
 		<?php foreach( $map as $taxRate => $priceItem ) : ?>
 			<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 				<div class="tax row g-0">

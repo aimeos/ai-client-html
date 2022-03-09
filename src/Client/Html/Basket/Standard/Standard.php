@@ -40,13 +40,7 @@ class Standard
 			$view->standardBackUrl = $view->link( 'client/html/catalog/lists/url', array_filter( $params ) );
 		}
 
-		$basket = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->get();
-
-		$view->standardBasket = $basket;
-		$view->standardTaxRates = $this->getTaxRates( $basket );
-		$view->standardNamedTaxes = $this->getNamedTaxes( $basket );
-		$view->standardCostsDelivery = $this->getCostsDelivery( $basket );
-		$view->standardCostsPayment = $this->getCostsPayment( $basket );
+		$view->standardBasket = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->get();
 
 		return parent::data( $view, $tags, $expire );
 	}
@@ -166,7 +160,7 @@ class Standard
 	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
 		$context = $this->context();
-		$domains = ['attribute', 'catalog', 'media', 'price', 'product', 'text'];
+		$domains = ['attribute', 'catalog', 'media', 'price', 'product', 'text', 'locale/site'];
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );

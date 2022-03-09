@@ -23,7 +23,7 @@ sprintf( 'summary' );
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Summary\Base
+	extends \Aimeos\Client\Html\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/checkout/standard/summary/subparts
@@ -257,27 +257,5 @@ class Standard
 	protected function getSubClientNames() : array
 	{
 		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
-	}
-
-
-	/**
-	 * Sets the necessary parameter values in the view.
-	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
-	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
-	{
-		$context = $this->context();
-		$basket = $view->standardBasket;
-
-		$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
-		$view->summaryCostsPayment = $this->getCostsPayment( $basket );
-		$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
-		$view->summaryTaxRates = $this->getTaxRates( $basket );
-
-		return parent::data( $view, $tags, $expire );
 	}
 }

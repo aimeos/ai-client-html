@@ -18,7 +18,7 @@ namespace Aimeos\Client\Html\Account\Subscription;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Summary\Base
+	extends \Aimeos\Client\Html\Base
 	implements \Aimeos\Client\Html\Iface
 {
 	/**
@@ -36,14 +36,7 @@ class Standard
 		$view->subscriptionIntervals = $cntl->getIntervals();
 		$view->subscriptionItems = $cntl->uses( ['order/base', 'order/base/address', 'order/base/product'] )
 			->sort( '-subscription.id' )
-			->search()
-			->each( function( $item ) {
-				$basket = $item->getBaseItem();
-				$basket->set( 'summaryTaxrates', $this->getTaxRates( $basket ) )
-					->set( 'summaryNamedTaxes', $this->getNamedTaxes( $basket ) )
-					->set( 'summaryCostsPayment', $this->getCostsPayment( $basket ) )
-					->set( 'summaryCostsDelivery', $this->getCostsDelivery( $basket ) );
-			} );
+			->search();
 
 		return parent::data( $view, $tags, $expire );
 	}

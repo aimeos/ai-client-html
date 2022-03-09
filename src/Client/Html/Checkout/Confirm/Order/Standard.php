@@ -18,7 +18,7 @@ namespace Aimeos\Client\Html\Checkout\Confirm\Order;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Summary\Base
+	extends \Aimeos\Client\Html\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/checkout/confirm/order/subparts
@@ -206,19 +206,11 @@ class Standard
 	{
 		if( isset( $view->confirmOrderItem ) )
 		{
-			if( $view->confirmOrderItem->getStatusPayment() >= $this->getDownloadPaymentStatus() ) {
-				$view->summaryShowDownloadAttributes = true;
-			}
-
 			$parts = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 			$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
 			$basket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
 
 			$view->summaryBasket = $basket;
-			$view->summaryTaxRates = $this->getTaxRates( $basket );
-			$view->summaryNamedTaxes = $this->getNamedTaxes( $basket );
-			$view->summaryCostsDelivery = $this->getCostsDelivery( $basket );
-			$view->summaryCostsPayment = $this->getCostsPayment( $basket );
 		}
 
 		return parent::data( $view, $tags, $expire );
