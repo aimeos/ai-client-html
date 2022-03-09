@@ -459,7 +459,7 @@ class Standard
 	protected function addProducts( \Aimeos\MW\View\Iface $view )
 	{
 		$context = $this->getContext();
-		$domains = ['attribute', 'media', 'price', 'product', 'text'];
+		$domains = ['attribute', 'media', 'price', 'product', 'text', 'locale/site'];
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
