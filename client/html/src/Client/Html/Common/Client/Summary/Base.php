@@ -30,6 +30,10 @@ abstract class Base
 	{
 		$costs = 0;
 
+		foreach( $basket->getProducts() as $product ) {
+			$costs += $product->getPrice()->getCosts() * $product->getQuantity();
+		}
+
 		foreach( $basket->getService( 'delivery' ) as $service ) {
 			$costs += $service->getPrice()->getCosts();
 		}
