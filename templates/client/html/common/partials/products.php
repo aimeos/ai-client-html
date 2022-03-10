@@ -317,13 +317,13 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 							<?php if( !$productItem->getRefItems( 'price', 'default', 'default' )->empty() ) : ?>
 								<div class="addbasket">
+									<input type="hidden" value="add"
+										name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>"
+									>
+									<input type="hidden" value="<?= $id ?>"
+										name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ) ?>"
+									>
 									<div class="input-group">
-										<input type="hidden" value="add"
-											name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>"
-										>
-										<input type="hidden" value="<?= $id ?>"
-											name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ) ?>"
-										>
 										<input type="number" max="2147483647"
 											value="<?= $enc->attr( $productItem->getScale() ) ?>"
 											min="<?= $enc->attr( $productItem->getScale() ) ?>"
