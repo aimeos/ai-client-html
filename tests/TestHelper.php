@@ -117,7 +117,7 @@ class TestHelper
 		$ctx->setLogger( $logger );
 
 
-		$dbm = new \Aimeos\MW\DB\Manager\PDO( $conf );
+		$dbm = new \Aimeos\Base\DB\Manager\PDO( $conf );
 		$ctx->setDatabaseManager( $dbm );
 
 
