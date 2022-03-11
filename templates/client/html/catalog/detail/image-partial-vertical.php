@@ -51,7 +51,7 @@ $pos = 0;
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 					<div class="media-item" data-index="<?= $enc->attr( $pos++ ) ?>">
-						<?= $this->image( $mediaItem, '(min-width: 1400px) 720px, 240px' ) ?>
+						<?= $this->image( $mediaItem, '720px' ) ?>
 					</div>
 				<?php endforeach ?>
 
