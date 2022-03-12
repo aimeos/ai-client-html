@@ -52,10 +52,10 @@ class Standard
 	/**
 	 * Adds one or more list items to the given customer item
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
 	 */
-	protected function addItems( \Aimeos\MW\View\Iface $view, array $ids )
+	protected function addItems( \Aimeos\Base\View\Iface $view, array $ids )
 	{
 		$context = $this->context();
 
@@ -101,10 +101,10 @@ class Standard
 	/**
 	 * Removes the referencing list items from the given item
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
 	 */
-	protected function deleteItems( \Aimeos\MW\View\Iface $view, array $ids )
+	protected function deleteItems( \Aimeos\Base\View\Iface $view, array $ids )
 	{
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'customer' );
 		$item = $cntl->uses( ['product' => ['watch']] )->get();
@@ -123,10 +123,10 @@ class Standard
 	/**
 	 * Updates the item using the given reference IDs
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
 	 */
-	protected function editItems( \Aimeos\MW\View\Iface $view, array $ids )
+	protected function editItems( \Aimeos\Base\View\Iface $view, array $ids )
 	{
 		$context = $this->context();
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
@@ -158,10 +158,10 @@ class Standard
 	/**
 	 * Returns the sanitized page from the parameters for the product list.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View instance with helper for retrieving the required parameters
+	 * @param \Aimeos\Base\View\Iface $view View instance with helper for retrieving the required parameters
 	 * @return integer Page number starting from 1
 	 */
-	protected function getProductListPage( \Aimeos\MW\View\Iface $view ) : int
+	protected function getProductListPage( \Aimeos\Base\View\Iface $view ) : int
 	{
 		$page = (int) $view->param( 'wat_page', 1 );
 		return ( $page < 1 ? 1 : $page );
@@ -171,10 +171,10 @@ class Standard
 	/**
 	 * Returns the sanitized page size from the parameters for the product list.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View instance with helper for retrieving the required parameters
+	 * @param \Aimeos\Base\View\Iface $view View instance with helper for retrieving the required parameters
 	 * @return integer Page size
 	 */
-	protected function getProductListSize( \Aimeos\MW\View\Iface $view ) : int
+	protected function getProductListSize( \Aimeos\Base\View\Iface $view ) : int
 	{
 		/** client/html/account/watch/size
 		 * The number of products shown in a list page for watch products
@@ -203,12 +203,12 @@ class Standard
 	/**
 	 * Sets the necessary parameter values in the view.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
+	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 

@@ -5,11 +5,11 @@
  * @copyright Aimeos (aimeos.org), 2020-2022
  * @package MW
  * @subpackage View
- * @todo 2022.01 Rename namespace to Aimeos\MW\View\Helper\Media
+ * @todo 2022.01 Rename namespace to Aimeos\Base\View\Helper\Media
  */
 
 
-namespace Aimeos\MW\View\Helper\Image;
+namespace Aimeos\Base\View\Helper\Image;
 
 
 /**
@@ -18,7 +18,7 @@ namespace Aimeos\MW\View\Helper\Image;
  * @package MW
  * @subpackage View
  */
-interface Iface extends \Aimeos\MW\View\Helper\Iface
+interface Iface extends \Aimeos\Base\View\Helper\Iface
 {
 	/**
 	 * Returns the HTML image tag for the given media item

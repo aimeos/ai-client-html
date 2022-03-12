@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\MW\View\Helper\Image;
+namespace Aimeos\Base\View\Helper\Image;
 
 
 class StandardTest extends \PHPUnit\Framework\TestCase
@@ -17,13 +17,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$conf = new \Aimeos\Base\Config\PHPArray( ['resource' => ['fs-media' => ['baseurl' => '/path/to']]] );
-		$view = new \Aimeos\MW\View\Standard();
+		$view = new \Aimeos\Base\View\Standard();
 
-		$view->addHelper( 'config', new \Aimeos\MW\View\Helper\Config\Standard( $view, $conf ) );
-		$view->addHelper( 'content', new \Aimeos\MW\View\Helper\Content\Standard( $view ) );
-		$view->addHelper( 'encoder', new \Aimeos\MW\View\Helper\Encoder\Standard( $view ) );
+		$view->addHelper( 'config', new \Aimeos\Base\View\Helper\Config\Standard( $view, $conf ) );
+		$view->addHelper( 'content', new \Aimeos\Base\View\Helper\Content\Standard( $view ) );
+		$view->addHelper( 'encoder', new \Aimeos\Base\View\Helper\Encoder\Standard( $view ) );
 
-		$this->object = new \Aimeos\MW\View\Helper\Image\Standard( $view );
+		$this->object = new \Aimeos\Base\View\Helper\Image\Standard( $view );
 	}
 
 

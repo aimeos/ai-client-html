@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testInit()
 	{
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
@@ -111,7 +111,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testInitNoPayment()
 	{
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
@@ -152,7 +152,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testInitNoService()
 	{
 		$param = array( 'c_step' => 'process', 'cs_order' => 1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
@@ -204,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitHtmlException()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
 		$this->view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
@@ -225,7 +225,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitFrontendException()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
 		$this->view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
@@ -246,7 +246,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitMShopException()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
 		$this->view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
@@ -267,7 +267,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitException()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['c_step' => 'process', 'cs_order' => 1] );
 		$this->view->addHelper( 'param', $helper );
 
 		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )

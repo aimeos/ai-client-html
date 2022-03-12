@@ -68,12 +68,12 @@ abstract class Base
 	/**
 	 * Adds the data to the view object required by the templates
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
+	 * @return \Aimeos\Base\View\Iface The view object with the data required by the templates
 	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		foreach( $this->getSubClients() as $name => $subclient ) {
 			$view = $subclient->data( $view, $tags, $expire );
@@ -175,10 +175,10 @@ abstract class Base
 	/**
 	 * Sets the view object that will generate the HTML output.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @return \Aimeos\Client\Html\Iface Reference to this object for fluent calls
 	 */
-	public function setView( \Aimeos\MW\View\Iface $view ) : \Aimeos\Client\Html\Iface
+	public function setView( \Aimeos\Base\View\Iface $view ) : \Aimeos\Client\Html\Iface
 	{
 		$this->view = $view;
 		return $this;
@@ -203,9 +203,9 @@ abstract class Base
 	/**
 	 * Returns the view object that will generate the HTML output.
 	 *
-	 * @return \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @return \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 */
-	protected function view() : \Aimeos\MW\View\Iface
+	protected function view() : \Aimeos\Base\View\Iface
 	{
 		if( !isset( $this->view ) ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'No view available' ) );

@@ -42,7 +42,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'Unterpro' ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'Unterpro' ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->config()->set( 'client/html/catalog/suggest/usecode', true );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'CNC' ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'CNC' ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();

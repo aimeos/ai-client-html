@@ -34,7 +34,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_supid' => $this->getSupplierItem()->getId() ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\Client\Html\Supplier\Detail\Standard( $context );
 		$this->object->setView( \TestHelper::view() );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, [] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, [] );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );

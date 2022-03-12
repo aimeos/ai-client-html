@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
 
 		$this->view = \TestHelper::view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'cs_option_account' => 1 ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'cs_option_account' => 1 ) );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 

@@ -24,12 +24,12 @@ class Standard
 	/**
 	 * Sets the necessary parameter values in the view.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
+	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$config = $context->config();
@@ -152,11 +152,11 @@ class Standard
 	/**
 	 * Returns the address as string
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Order address item
 	 * @return string Address as string
 	 */
-	protected function getAddressString( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $addr )
+	protected function getAddressString( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $addr )
 	{
 		return preg_replace( "/\n+/m", "\n", trim( sprintf(
 			/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),

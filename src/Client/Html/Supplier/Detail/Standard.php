@@ -139,12 +139,12 @@ class Standard
 	/**
 	 * Sets the necessary parameter values in the view.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
+	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$config = $context->config();
@@ -193,11 +193,11 @@ class Standard
 	/**
 	 * Returns the addresses as list of strings
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param iterable $addresses List of address items implementing \Aimeos\MShop\Common\Item\Address\Iface
 	 * @return \Aimeos\Map List of address strings
 	 */
-	protected function getAddressStrings( \Aimeos\MW\View\Iface $view, iterable $addresses ) : \Aimeos\Map
+	protected function getAddressStrings( \Aimeos\Base\View\Iface $view, iterable $addresses ) : \Aimeos\Map
 	{
 		$list = [];
 

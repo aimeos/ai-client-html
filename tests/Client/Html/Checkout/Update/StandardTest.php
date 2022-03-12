@@ -52,11 +52,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'orderid' => $this->getOrder( '2011-09-17 16:14:32' )->getId(),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $params );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $params );
 		$this->view->addHelper( 'param', $helper );
 
 		$request = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
-		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
+		$helper = new \Aimeos\Base\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
 		$this->view->addHelper( 'request', $helper );
 
 		$this->object->init();

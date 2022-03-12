@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'pin_id' => $prodId,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'pin_id' => $prodId,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();

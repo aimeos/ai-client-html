@@ -38,7 +38,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( \TestHelper::context() );
 		$node = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $node->getChild( 1 )->getId() ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $node->getChild( 1 )->getId() ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -63,7 +63,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context->config()->set( 'controller/frontend/catalog/levels-always', 2 );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $node->getId() ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $node->getId() ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -85,7 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->context->config()->set( 'controller/frontend/catalog/levels-only', 1 );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $node->getChild( 0 )->getId() ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $node->getChild( 0 )->getId() ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];

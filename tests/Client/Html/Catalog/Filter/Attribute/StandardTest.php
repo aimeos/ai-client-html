@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$conf = new \Aimeos\Base\Config\PHPArray();
 		$conf->set( 'client/html/catalog/filter/attribute/types', array( 'color', 'width', 'length' ) );
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $conf );
+		$helper = new \Aimeos\Base\View\Helper\Config\Standard( $this->view, $conf );
 		$this->view->addHelper( 'config', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyCategory()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_catid' => -1 ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_catid' => -1 ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );
@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchText()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'test' ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_search' => 'test' ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodySearchAttribute()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'f_attrid' => array( -1, -2 ) ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_attrid' => array( -1, -2 ) ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );

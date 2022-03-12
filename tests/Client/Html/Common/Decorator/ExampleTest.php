@@ -68,13 +68,13 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetView()
 	{
-		$this->assertInstanceOf( '\\Aimeos\\MW\\View\\Iface', $this->view );
+		$this->assertInstanceOf( '\\Aimeos\\Base\\View\\Iface', $this->view );
 	}
 
 
 	public function testSetView()
 	{
-		$this->view = new \Aimeos\MW\View\Standard();
+		$this->view = new \Aimeos\Base\View\Standard();
 		$this->object->setView( $this->view );
 
 		$this->assertSame( $this->view, $this->view );

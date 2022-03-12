@@ -22,13 +22,13 @@ class Context extends Base implements Iface
 	/**
 	 * Adds the data to the view object required by the templates
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface The view object with the data required by the templates
+	 * @return \Aimeos\Base\View\Iface The view object with the data required by the templates
 	 * @since 2020.07
 	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$locale = $context->locale();

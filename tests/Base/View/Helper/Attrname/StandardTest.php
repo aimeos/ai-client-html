@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\MW\View\Helper\Attrname;
+namespace Aimeos\Base\View\Helper\Attrname;
 
 
 class StandardTest extends \PHPUnit\Framework\TestCase
@@ -18,11 +18,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$translate = new \Aimeos\Base\Translation\None( 'en_GB' );
 
-		$view = new \Aimeos\MW\View\Standard();
-		$view->addHelper( 'number', new \Aimeos\MW\View\Helper\Number\Standard( $view ) );
-		$view->addHelper( 'translate', new \Aimeos\MW\View\Helper\Translate\Standard( $view, $translate ) );
+		$view = new \Aimeos\Base\View\Standard();
+		$view->addHelper( 'number', new \Aimeos\Base\View\Helper\Number\Standard( $view ) );
+		$view->addHelper( 'translate', new \Aimeos\Base\View\Helper\Translate\Standard( $view, $translate ) );
 
-		$this->object = new \Aimeos\MW\View\Helper\Attrname\Standard( $view );
+		$this->object = new \Aimeos\Base\View\Helper\Attrname\Standard( $view );
 	}
 
 

@@ -90,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.languageid' => 'en',
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->view );
@@ -116,7 +116,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.city' => 'hamburg',
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->view );
@@ -152,7 +152,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.languageid' => 'en',
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->view );
@@ -169,7 +169,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$config = $this->context->config();
 		$config->set( 'client/html/checkout/standard/address/validate/postal', '^[0-9]{5}$' );
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
+		$helper = new \Aimeos\Base\View\Helper\Config\Standard( $this->view, $config );
 		$this->view->addHelper( 'config', $helper );
 
 		$param = array(
@@ -185,7 +185,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.languageid' => 'en',
 			),
 		);
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->view );
@@ -211,7 +211,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$id = $customer->getAddressItems()->first()->getId();
 
 		$this->view = \TestHelper::view();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['ca_delivery_delete' => $id] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['ca_delivery_delete' => $id] );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
@@ -236,7 +236,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->view = \TestHelper::view();
 		$param = array( 'ca_deliveryoption' => $customer->getAddressItems()->first()->getId() );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
@@ -262,7 +262,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 				'order.base.address.city' => 'test city',
 			]
 		];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
@@ -277,7 +277,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->view = \TestHelper::view();
 		$param = array( 'ca_delivery_delete' => -1 );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 

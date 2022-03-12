@@ -56,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
-		$helper = new \Aimeos\MW\View\Helper\Response\Standard( $this->view, $response );
+		$helper = new \Aimeos\Base\View\Helper\Response\Standard( $this->view, $response );
 		$this->view->addHelper( 'response', $helper );
 
 		$this->object->init();
@@ -65,7 +65,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitOK()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['dl_id' => '-1'] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['dl_id' => '-1'] );
 		$this->view->addHelper( 'param', $helper );
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Download\Standard::class )
@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->will( $this->returnSelf() );
 
-		$helper = $this->getMockBuilder( \Aimeos\MW\View\Helper\Response\Standard::class )
+		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
 			->setMethods( array( 'createStream' ) )
 			->getMock();
@@ -148,7 +148,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->will( $this->returnSelf() );
 
-		$helper = $this->getMockBuilder( \Aimeos\MW\View\Helper\Response\Standard::class )
+		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
 			->setMethods( array( 'createStream' ) )
 			->getMock();
@@ -170,7 +170,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
-		$helper = new \Aimeos\MW\View\Helper\Response\Standard( $this->view, $response );
+		$helper = new \Aimeos\Base\View\Helper\Response\Standard( $this->view, $response );
 		$this->view->addHelper( 'response', $helper );
 
 		$this->access( 'addDownload' )->invokeArgs( $this->object, [$item] );
@@ -188,7 +188,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$response->expects( $this->never() )->method( 'withHeader' )->will( $this->returnSelf() );
 		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
 
-		$helper = new \Aimeos\MW\View\Helper\Response\Standard( $this->view, $response );
+		$helper = new \Aimeos\Base\View\Helper\Response\Standard( $this->view, $response );
 		$this->view->addHelper( 'response', $helper );
 
 		$this->access( 'addDownload' )->invokeArgs( $this->object, [$item] );

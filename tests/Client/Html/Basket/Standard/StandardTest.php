@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_stocktype' => 'default',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -100,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -142,7 +142,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_attrvarid' => $attributes->keys()->toArray(),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -176,7 +176,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_stocktype' => 'default',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -210,7 +210,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_stocktype' => 'default',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -230,7 +230,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_quantity' => 1,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -262,7 +262,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -286,7 +286,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_position' => 1,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -309,7 +309,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_position' => array( 0, 1 ),
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -326,7 +326,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_position' => -1,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -342,7 +342,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$param = array( 'b_coupon' => '90AB' );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -362,7 +362,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$param = array( 'b_coupon' => '90AB' );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -370,7 +370,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$param = array( 'b_action' => 'coupon-delete', 'b_coupon' => '90AB' );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -391,12 +391,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['b_coupon' => '90AB'] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['b_coupon' => '90AB'] );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['b_coupon' => 'OPQR'] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['b_coupon' => 'OPQR'] );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -446,7 +446,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'b_stocktype' => $stockType,
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();

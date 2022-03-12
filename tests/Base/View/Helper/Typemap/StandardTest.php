@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\MW\View\Helper\Typemap;
+namespace Aimeos\Base\View\Helper\Typemap;
 
 
 class StandardTest extends \PHPUnit\Framework\TestCase
@@ -16,8 +16,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$view = new \Aimeos\MW\View\Standard();
-		$this->object = new \Aimeos\MW\View\Helper\Typemap\Standard( $view );
+		$view = new \Aimeos\Base\View\Standard();
+		$this->object = new \Aimeos\Base\View\Helper\Typemap\Standard( $view );
 	}
 
 

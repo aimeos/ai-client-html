@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		] );
 
 		$request = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
-		$helper = new \Aimeos\MW\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
+		$helper = new \Aimeos\Base\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
 		$this->view->addHelper( 'request', $helper );
 
 		$tags = [];
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['currency' => 'EUR'] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['currency' => 'EUR'] );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();

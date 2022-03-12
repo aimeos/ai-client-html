@@ -8,7 +8,7 @@
  */
 
 
-namespace Aimeos\MW\View\Helper\Attrname;
+namespace Aimeos\Base\View\Helper\Attrname;
 
 
 /**
@@ -17,7 +17,7 @@ namespace Aimeos\MW\View\Helper\Attrname;
  * @package MW
  * @subpackage View
  */
-interface Iface extends \Aimeos\MW\View\Helper\Iface
+interface Iface extends \Aimeos\Base\View\Helper\Iface
 {
 	/**
 	 * Returns the attribute name with price if available

@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->view->standardStepActive = 'address';
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'c_step' => 'payment' ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'c_step' => 'payment' ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->config();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'address', 'delivery', 'payment', 'summary' ) );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
+		$helper = new \Aimeos\Base\View\Helper\Config\Standard( $this->view, $config );
 		$this->view->addHelper( 'config', $helper );
 
 		$output = $this->object->body();
@@ -107,7 +107,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->config();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'delivery', 'payment' ) );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
+		$helper = new \Aimeos\Base\View\Helper\Config\Standard( $this->view, $config );
 		$this->view->addHelper( 'config', $helper );
 
 		$output = $this->object->body();
@@ -127,7 +127,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->config();
 		$config->set( 'client/html/checkout/standard/onepage', array( 'delivery', 'payment' ) );
 
-		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $this->view, $config );
+		$helper = new \Aimeos\Base\View\Helper\Config\Standard( $this->view, $config );
 		$this->view->addHelper( 'config', $helper );
 
 		$output = $this->object->body();

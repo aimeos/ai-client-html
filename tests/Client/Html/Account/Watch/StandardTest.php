@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( $item->getId() );
 
 		$param = ['wat_action' => 'add', 'wat_id' => $id];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( $item->getId() );
 
 		$param = ['wat_action' => 'delete', 'wat_id' => $id];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
@@ -121,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( $item->getId() );
 
 		$param = ['wat_action' => 'edit', 'wat_id' => $id];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 

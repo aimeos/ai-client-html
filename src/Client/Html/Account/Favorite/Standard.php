@@ -112,10 +112,10 @@ class Standard
 	/**
 	 * Returns the sanitized page from the parameters for the product list.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View instance with helper for retrieving the required parameters
+	 * @param \Aimeos\Base\View\Iface $view View instance with helper for retrieving the required parameters
 	 * @return int Page number starting from 1
 	 */
-	protected function getProductListPage( \Aimeos\MW\View\Iface $view ) : int
+	protected function getProductListPage( \Aimeos\Base\View\Iface $view ) : int
 	{
 		$page = (int) $view->param( 'fav_page', 1 );
 		return ( $page < 1 ? 1 : $page );
@@ -125,10 +125,10 @@ class Standard
 	/**
 	 * Returns the sanitized page size from the parameters for the product list.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View instance with helper for retrieving the required parameters
+	 * @param \Aimeos\Base\View\Iface $view View instance with helper for retrieving the required parameters
 	 * @return int Page size
 	 */
-	protected function getProductListSize( \Aimeos\MW\View\Iface $view ) : int
+	protected function getProductListSize( \Aimeos\Base\View\Iface $view ) : int
 	{
 		/** client/html/account/favorite/size
 		 * The number of products shown in a list page for favorite products
@@ -157,12 +157,12 @@ class Standard
 	/**
 	 * Sets the necessary parameter values in the view.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
+	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 

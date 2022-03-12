@@ -23,11 +23,11 @@ abstract class Base
 	/**
 	 * Returns the URL for retrieving the stock levels
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View instance with helper
+	 * @param \Aimeos\Base\View\Iface $view View instance with helper
 	 * @param \Aimeos\MShop\Product\Item\Iface[] List of products with their IDs as keys
 	 * @return \Aimeos\Map URLs to retrieve the stock levels for the given products
 	 */
-	protected function getStockUrl( \Aimeos\MW\View\Iface $view, \Aimeos\Map $products ) : \Aimeos\Map
+	protected function getStockUrl( \Aimeos\Base\View\Iface $view, \Aimeos\Map $products ) : \Aimeos\Map
 	{
 		/** client/html/catalog/stock/url/target
 		 * Destination of the URL where the controller specified in the URL is known

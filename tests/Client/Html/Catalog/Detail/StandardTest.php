@@ -35,7 +35,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => $this->getProductItem()->getId()] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['d_prodid' => $this->getProductItem()->getId()] );
 		$this->view->addHelper( 'param', $helper );
 
 		$tags = [];
@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBody()
 	{
 		$params = ['d_prodid' => $this->getProductItem()->getId(), 'd_pos' => 1];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $params );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $params );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->view->navigationPrev = '#';
@@ -115,7 +115,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $this->context );
 		$this->object->setView( \TestHelper::view() );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_name' => 'Cafe-Noire-Expresso' ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'd_name' => 'Cafe-Noire-Expresso' ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );
@@ -133,7 +133,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $context );
 		$this->object->setView( \TestHelper::view() );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, [] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, [] );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );
@@ -151,7 +151,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $context );
 		$this->object->setView( \TestHelper::view() );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, [] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, [] );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );
@@ -164,7 +164,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyCsrf()
 	{
 		$item = $this->getProductItem();
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, ['d_prodid' => $item->getId()] );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['d_prodid' => $item->getId()] );
 		$this->view->addHelper( 'param', $helper );
 		$this->view->detailProductItem = $item;
 
@@ -183,7 +183,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$product = $this->getProductItem( 'U:TESTP', array( 'attribute' ) );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_prodid' => $product->getId() ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'd_prodid' => $product->getId() ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$configAttr = $product->getRefItems( 'attribute', null, 'config' );
@@ -203,7 +203,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$prodId = $this->getProductItem( 'U:TEST' )->getId();
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_prodid' => $prodId ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'd_prodid' => $prodId ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$variantAttr1 = $this->getProductItem( 'U:TESTSUB02', array( 'attribute' ) )->getRefItems( 'attribute', null, 'variant' );
@@ -235,7 +235,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testModify()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'd_pos' => 1 ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'd_pos' => 1 ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$content = '<!-- catalog.detail.navigator -->test<!-- catalog.detail.navigator -->';
@@ -255,7 +255,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$param = array( 'd_prodid' => $prodid );
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();

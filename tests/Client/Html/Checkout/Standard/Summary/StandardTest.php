@@ -93,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, array( 'cs_order' => 1 ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'cs_order' => 1 ) );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
@@ -110,7 +110,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->standardBasket = $controller->get();
 
 		$param = array( 'cs_comment' => 'test comment' );
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'cs_option_terms_value' => '1',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
@@ -149,7 +149,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'cs_option_terms' => '1',
 		);
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();

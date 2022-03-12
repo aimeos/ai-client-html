@@ -8,7 +8,7 @@
  */
 
 
-namespace Aimeos\MW\View\Helper\Typemap;
+namespace Aimeos\Base\View\Helper\Typemap;
 
 
 /**
@@ -18,8 +18,8 @@ namespace Aimeos\MW\View\Helper\Typemap;
  * @subpackage View
  */
 class Standard
-	extends \Aimeos\MW\View\Helper\Base
-	implements \Aimeos\MW\View\Helper\Typemap\Iface
+	extends \Aimeos\Base\View\Helper\Base
+	implements \Aimeos\Base\View\Helper\Typemap\Iface
 {
 	/**
 	 * Returns a map with type/ID/item structure

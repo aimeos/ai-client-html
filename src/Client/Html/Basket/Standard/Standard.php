@@ -24,12 +24,12 @@ class Standard
 	/**
 	 * Sets the necessary parameter values in the view.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
+	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$site = $context->locale()->getSiteItem()->getCode();
@@ -122,9 +122,9 @@ class Standard
 	/**
 	 * Adds the coupon specified by the view parameters from the basket.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
-	protected function addCoupon( \Aimeos\MW\View\Iface $view )
+	protected function addCoupon( \Aimeos\Base\View\Iface $view )
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
@@ -155,9 +155,9 @@ class Standard
 	/**
 	 * Adds the products specified by the view parameters to the basket.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
-	protected function addProducts( \Aimeos\MW\View\Iface $view )
+	protected function addProducts( \Aimeos\Base\View\Iface $view )
 	{
 		$context = $this->context();
 		$domains = ['attribute', 'catalog', 'media', 'price', 'product', 'text', 'locale/site'];
@@ -200,9 +200,9 @@ class Standard
 	/**
 	 * Removes the coupon specified by the view parameters from the basket.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
-	protected function deleteCoupon( \Aimeos\MW\View\Iface $view )
+	protected function deleteCoupon( \Aimeos\Base\View\Iface $view )
 	{
 		if( ( $coupon = $view->param( 'b_coupon' ) ) != '' )
 		{
@@ -215,9 +215,9 @@ class Standard
 	/**
 	 * Removes the products specified by the view parameters from the basket.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
-	protected function deleteProducts( \Aimeos\MW\View\Iface $view )
+	protected function deleteProducts( \Aimeos\Base\View\Iface $view )
 	{
 		$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
 		$products = (array) $view->param( 'b_position', [] );
@@ -250,9 +250,9 @@ class Standard
 	/**
 	 * Edits the products specified by the view parameters to the basket.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
-	protected function updateProducts( \Aimeos\MW\View\Iface $view )
+	protected function updateProducts( \Aimeos\Base\View\Iface $view )
 	{
 		$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
 		$products = (array) $view->param( 'b_prod', [] );

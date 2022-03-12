@@ -296,11 +296,11 @@ class Standard
 	/**
 	 * Adds the required data for the payment form to the view
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object to assign the data to
+	 * @param \Aimeos\Base\View\Iface $view View object to assign the data to
 	 * @param \Aimeos\MShop\Common\Helper\Form\Iface $form Form helper object including the form data
-	 * @return \Aimeos\MW\View\Iface View object with assigned data
+	 * @return \Aimeos\Base\View\Iface View object with assigned data
 	 */
-	protected function addFormData( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Common\Helper\Form\Iface $form )
+	protected function addFormData( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Common\Helper\Form\Iface $form )
 	{
 		$url = $form->getUrl();
 
@@ -402,12 +402,12 @@ class Standard
 	/**
 	 * Returns the URL to the confirm page.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $params Parameters that should be part of the URL
 	 * @param array $config Default URL configuration
 	 * @return string URL string
 	 */
-	protected function getUrlConfirm( \Aimeos\MW\View\Iface $view, array $params, array $config ) : string
+	protected function getUrlConfirm( \Aimeos\Base\View\Iface $view, array $params, array $config ) : string
 	{
 		/** client/html/checkout/confirm/url/target
 		 * Destination of the URL where the controller specified in the URL is known
@@ -483,12 +483,12 @@ class Standard
 	/**
 	 * Returns the URL to the current page.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $params Parameters that should be part of the URL
 	 * @param array $config Default URL configuration
 	 * @return string URL string
 	 */
-	protected function getUrlSelf( \Aimeos\MW\View\Iface $view, array $params, array $config ) : string
+	protected function getUrlSelf( \Aimeos\Base\View\Iface $view, array $params, array $config ) : string
 	{
 		/** client/html/checkout/standard/url/target
 		 * Destination of the URL where the controller specified in the URL is known
@@ -564,12 +564,12 @@ class Standard
 	/**
 	 * Returns the URL to the update page.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $params Parameters that should be part of the URL
 	 * @param array $config Default URL configuration
 	 * @return string URL string
 	 */
-	protected function getUrlUpdate( \Aimeos\MW\View\Iface $view, array $params, array $config ) : string
+	protected function getUrlUpdate( \Aimeos\Base\View\Iface $view, array $params, array $config ) : string
 	{
 		/** client/html/checkout/update/url/target
 		 * Destination of the URL where the controller specified in the URL is known
@@ -664,12 +664,12 @@ class Standard
 	/**
 	 * Sets the necessary parameter values in the view.
 	 *
-	 * @param \Aimeos\MW\View\Iface $view The view object which generates the HTML output
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
 	 * @param array &$tags Result array for the list of tags that are associated to the output
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\MW\View\Iface Modified view object
+	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$view->standardUrlPayment = $this->getUrlSelf( $view, array( 'c_step' => 'payment' ), [] );
 

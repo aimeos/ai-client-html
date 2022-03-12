@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( $item->getId() );
 
 		$param = ['fav_action' => 'add', 'fav_id' => $id];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
@@ -94,7 +94,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->setUserId( $item->getId() );
 
 		$param = ['fav_action' => 'delete', 'fav_id' => $id];
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $this->view, $param );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
 		$this->view->addHelper( 'param', $helper );
 		$this->object->setView( $this->view );
 
