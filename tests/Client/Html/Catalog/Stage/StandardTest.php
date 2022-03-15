@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<section class="aimeos catalog-stage', $output );
-		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb">', $output );
+		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb', $output );
 		$this->assertRegExp( '#Your search result#smU', $output );
 
 		$this->assertEquals( null, $expire );
@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="catalog-stage-image', $output );
 		$this->assertStringContainsString( '/path/to/folder/cafe/stage.jpg', $output );
 
-		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb">', $output );
+		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb', $output );
 		$this->assertRegExp( '#Root.*.Categories.*.Kaffee.*#smU', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
