@@ -377,13 +377,13 @@ class Standard
 			{
 				if( $pos > 0 && ( $product = $products->first() ) !== null )
 				{
-					$param = ['d_pos' => $pos - 1, 'd_name' => $product->getName( 'url ' )];
+					$param = ['d_name' => $product->getName( 'url ' ), 'd_prodid' => $product->getId(), 'd_pos' => $pos - 1];
 					$view->navigationPrev = $view->link( 'client/html/catalog/detail/url', $param );
 				}
 
 				if( ( $pos === 0 || $count === 3 ) && ( $product = $products->last() ) !== null )
 				{
-					$param = ['d_pos' => $pos + 1, 'd_name' => $product->getName( 'url ' )];
+					$param = ['d_name' => $product->getName( 'url ' ), 'd_prodid' => $product->getId(), 'd_pos' => $pos + 1];
 					$view->navigationNext = $view->link( 'client/html/catalog/detail/url', $param );
 				}
 			}
