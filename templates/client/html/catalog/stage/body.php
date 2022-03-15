@@ -27,7 +27,7 @@ $enc = $this->encoder();
 		</div>
 	<?php endif ?>
 
-	<div class="catalog-stage-breadcrumb">
+	<div class="catalog-stage-breadcrumb container-xl">
 		<nav class="breadcrumb">
 			<span class="title"><?= $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ) ?></span>
 			<ol>

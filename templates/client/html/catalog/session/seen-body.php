@@ -26,22 +26,22 @@ $enc = $this->encoder();
 ?>
 <?php $this->block()->start( 'catalog/session/seen' ) ?>
 <section class="catalog-session-seen">
+	<div class="container-xl">
+		<h2 class="header">
+			<?= $this->translate( 'client', 'Last seen' ) ?>
+			<?php if( $this->config( 'client/html/catalog/session/seen/count/enable', true ) ) : ?>
+				<span class="count"><?= count( $this->get( 'seenItems', [] ) ) ?></span>
+			<?php endif ?>
+		</h2>
 
-	<h2 class="header">
-		<?= $this->translate( 'client', 'Last seen' ) ?>
-		<?php if( $this->config( 'client/html/catalog/session/seen/count/enable', true ) ) : ?>
-			<span class="count"><?= count( $this->get( 'seenItems', [] ) ) ?></span>
-		<?php endif ?>
-	</h2>
-
-	<ul class="seen-items">
-		<?php foreach( $this->get( 'seenItems', [] ) as $seen ) : ?>
-			<li class="seen-item product">
-				<?= $seen ?>
-			</li>
-		<?php endforeach ?>
-	</ul>
-
+		<ul class="seen-items">
+			<?php foreach( $this->get( 'seenItems', [] ) as $seen ) : ?>
+				<li class="seen-item product">
+					<?= $seen ?>
+				</li>
+			<?php endforeach ?>
+		</ul>
+	</div>
 </section>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/session/seen' ) ?>

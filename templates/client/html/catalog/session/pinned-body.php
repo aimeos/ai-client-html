@@ -89,48 +89,48 @@ $enc = $this->encoder();
 ?>
 <?php $this->block()->start( 'catalog/session/pinned' ) ?>
 <section class="catalog-session-pinned">
+	<div class="container-xl">
+		<h2 class="header pinned">
+			<?= $this->translate( 'client', 'Pinned products' ) ?>
+			<?php if( $this->config( 'client/html/catalog/session/pinned/count/enable', true ) ) : ?>
+				<span class="count"><?= count( $this->get( 'pinnedProductItems', [] ) ) ?></span>
+			<?php endif ?>
+		</h2>
 
-	<h2 class="header pinned">
-		<?= $this->translate( 'client', 'Pinned products' ) ?>
-		<?php if( $this->config( 'client/html/catalog/session/pinned/count/enable', true ) ) : ?>
-			<span class="count"><?= count( $this->get( 'pinnedProductItems', [] ) ) ?></span>
-		<?php endif ?>
-	</h2>
+		<ul class="pinned-items">
+			<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
+				<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $productItem->getName( 'url' )] + $this->get( 'pinnedParams', [] ) ?>
+				<?php $detailParams = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''] ?>
 
-	<ul class="pinned-items">
-		<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
-			<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $productItem->getName( 'url' )] + $this->get( 'pinnedParams', [] ) ?>
-			<?php $detailParams = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''] ?>
+				<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>">
+					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">
+						<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
+						<?= $this->csrf()->formfield() ?>
+					</form>
 
-			<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>">
-				<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">
-					<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
-					<?= $this->csrf()->formfield() ?>
-				</form>
+					<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $detailParams ) ) ?>">
 
-				<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $detailParams ) ) ?>">
+						<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
+						<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
+							<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>')"></div>
+						<?php else : ?>
+							<div class="media-item"></div>
+						<?php endif ?>
 
-					<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
-					<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
-						<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>')"></div>
-					<?php else : ?>
-						<div class="media-item"></div>
-					<?php endif ?>
+						<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
+						<div class="price-list">
+							<?= $this->partial(
+								$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
+								array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
+							) ?>
+						</div>
 
-					<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
-					<div class="price-list">
-						<?= $this->partial(
-							$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
-							array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
-						) ?>
-					</div>
+					</a>
+				</li>
 
-				</a>
-			</li>
-
-		<?php endforeach ?>
-	</ul>
-
+			<?php endforeach ?>
+		</ul>
+	</div>
 </section>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/session/pinned' ) ?>
