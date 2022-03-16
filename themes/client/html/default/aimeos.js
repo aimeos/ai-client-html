@@ -491,7 +491,7 @@ AimeosBasket = {
 					});
 					Aimeos.createContainer(content);
 				} else {
-					$("html").replaceWith(doc);
+					document.replaceChild(doc[0], document.documentElement);
 				}
 			});
 
@@ -528,7 +528,7 @@ AimeosBasket = {
 					});
 					Aimeos.createContainer(content);
 				} else {
-					$("html").replaceWith(doc);
+					document.replaceChild(doc[0], document.documentElement);
 				}
 			});
 

@@ -10,7 +10,7 @@ AimeosAccountWatch = {
 
 		$("body").on("click", ".account-watch .delete", ev => {
 
-			const form = $(ev.currentTarget).parents("form");
+			const form = $(ev.currentTarget).closest("form");
 			$(ev.currentTarget).closest("watch-item").addClass("loading");
 
 			fetch(form.attr("action"), {
@@ -40,7 +40,7 @@ AimeosAccountWatch = {
 
 		$("body").on("click", ".account-watch .btn-action", ev => {
 
-			const form = $(ev.currentTarget).closest("form.watch-details");
+			const form = $(ev.currentTarget).closest("form");
 			form.addClass("loading");
 
 			fetch(form.attr("action"), {
