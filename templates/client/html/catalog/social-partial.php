@@ -134,7 +134,7 @@ $params = ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this
 		<?php $mediaItem = $this->productItem->getRefItems( 'media', 'default', 'default' )->first() ?>
 		<a class="social-button social-button-<?= $enc->attr( $entry ) ?>" rel="noopener"
 			href="<?= $enc->attr( sprintf( $link,
-				$enc->url( $this->link( 'client/html/catalog/detail/url', $params, [], ['absoluteUri' => true] ) ),
+				$enc->url( $this->link( 'client/html/catalog/detail/url', $params, ['absoluteUri' => true] ) ),
 				$this->productItem->getName(),
 				$mediaItem ? $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) : ''
 			) ) ?>"
