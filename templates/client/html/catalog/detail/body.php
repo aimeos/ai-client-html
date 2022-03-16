@@ -603,7 +603,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 							<?php foreach( $supplierItems as $supplierItem ) : ?>
 
-								<div class="content supplier">
+								<div class="supplier-content">
 
 									<?php if( ( $mediaItem = $supplierItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 										<div class="media-item">

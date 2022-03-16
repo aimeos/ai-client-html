@@ -584,13 +584,13 @@
 
 /* Supplier information */
 
-.catalog-detail-supplier .content .supplier-name {
-	text-transform: uppercase;
-	margin: 1rem 0;
+.catalog-detail-supplier .supplier-content {
+	padding: 1%;
 }
 
-.catalog-detail-supplier .content {
-	padding: 1%;
+.catalog-detail-supplier .supplier-name {
+	text-transform: uppercase;
+	margin: 1rem 0;
 }
 
 .catalog-detail-supplier .media-item {
