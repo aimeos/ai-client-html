@@ -60,11 +60,15 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 		<div <?= $boxattr ?>><!--
 			--><img src="<?= $enc->attr( $this->content( $item->getPreview(), $item->getFileSystem() ) ) ?>"
 				srcset="<?= $item->getMimeType() !== 'image/svg+xml' ? $enc->attr( $this->imageset( $item->getPreviews(), $item->getFileSystem() ) ) : '' ?>"
-				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>><!--
+				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
+				sizes="1px"
+			><!--
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
 			--><img src="<?= $enc->attr( $this->content( $subItem->getPreview(), $subItem->getFileSystem() ) ) ?>"
 				srcset="<?= $item->getMimeType() !== 'image/svg+xml' ? $enc->attr( $this->imageset( $subItem->getPreviews(), $subItem->getFileSystem() ) ) : '' ?>"
-				title="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>><!--
+				title="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
+				sizes="1px"
+			><!--
 		<?php endforeach ?>
 		--></div>
 
@@ -72,8 +76,8 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 
 		<a href="<?= $enc->attr( $this->content( $item->getUrl(), $item->getFileSystem() ) ) ?>" <?= $boxattr ?>><!--
 			--><img src="<?= $enc->attr( $this->content( $item->getPreview(), $item->getFileSystem() ) ) ?>"
-				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>><!--
-			<?= $enc->html( $item->getName() ) ?>
+				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
+			><?= $enc->html( $item->getName() ) ?><!--
 		--></a>
 
 <?php endswitch ?>

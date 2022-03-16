@@ -35,45 +35,42 @@ $enc = $this->encoder();
 						src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+						sizes="160px"
 					>
 				<?php endif ?>
 			</div>
 
+			<div class="col-4 col-lg-3 select-name">
+				<h2><?= $enc->html( $product->getName() ) ?></h2>
 
+				<input type="hidden"
+					name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ) ?>"
+					value="<?= $enc->attr( $id ) ?>"
+				>
+			</div>
 
+			<div class="col-4 col-lg-3 select-attr">
+				<ul class="attr-list">
+					<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
+						<li class="attr-item">
+							<span class="name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ) ) ?></span>
+							<span class="value"><?= $enc->html( $attrItem->getName() ) ?></span>
 
-					<div class="col-4 col-lg-3 select-name">
-						<h2><?= $enc->html( $product->getName() ) ?></h2>
+							<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ) ?>"
+								name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ) ?>"
+							>
+						</li>
+					<?php endforeach ?>
+				</ul>
+			</div>
 
-						<input type="hidden"
-							name="<?= $enc->attr( $this->formparam( array( 'b_prod', $id, 'prodid' ) ) ) ?>"
-							value="<?= $enc->attr( $id ) ?>"
-						>
-					</div>
+			<div class="col-1 select-stock" data-prodid="<?= $enc->attr( $id ) ?>"></div>
 
-					<div class="col-4 col-lg-3 select-attr">
-						<ul class="attr-list">
-							<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
-								<li class="attr-item">
-									<span class="name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ) ) ?></span>
-									<span class="value"><?= $enc->html( $attrItem->getName() ) ?></span>
-
-									<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ) ?>"
-										name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'attrvarid', $attrItem->getType()] ) ) ?>"
-									>
-								</li>
-							<?php endforeach ?>
-						</ul>
-					</div>
-
-					<div class="col-1 select-stock" data-prodid="<?= $enc->attr( $id ) ?>"></div>
-
-					<div class="col-3 col-lg-2 select-quantity">
-						<input type="number" class="form-control" placeholder="0"
-							name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
-							min="1" max="2147483647" step="1" value="">
-					</div>
-
+			<div class="col-3 col-lg-2 select-quantity">
+				<input type="number" class="form-control" placeholder="0"
+					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
+					min="1" max="2147483647" step="1" value="">
+			</div>
 
 		</div>
 
