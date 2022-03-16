@@ -124,6 +124,8 @@ $urls = array(
 	'pinterest' => 'https://pinterest.com/pin/create/button/?url=%1$s&description=%2$s&media=%3$s',
 );
 
+$params = ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''];
+
 
 ?>
 <div class="catalog-social">
