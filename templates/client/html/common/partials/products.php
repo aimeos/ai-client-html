@@ -180,6 +180,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 								<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
+									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 								>
 								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>">
 							</div>
@@ -190,9 +192,9 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<div class="media-item">
 								<img class="lazy-image"
 									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
-									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+									sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 								>
 							</div>
