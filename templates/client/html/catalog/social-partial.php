@@ -40,7 +40,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/social/url/twitter
  * @see client/html/catalog/social/url/pinterest
  */
-$list = $this->config( 'client/html/catalog/social/list', array( 'facebook', 'twitter', 'pinterest' ) );
+$list = $this->config( 'client/html/catalog/social/list', ['facebook', 'twitter', 'pinterest'] );
 
 $urls = array(
 	/** client/html/catalog/social/url/whatsapp
@@ -124,15 +124,6 @@ $urls = array(
 	'pinterest' => 'https://pinterest.com/pin/create/button/?url=%1$s&description=%2$s&media=%3$s',
 );
 
-$detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
-$detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-$detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
-$detailConfig['absoluteUri'] = true;
-
-$params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => '0'], $detailFilter );
-
 
 ?>
 <div class="catalog-social">
@@ -141,7 +132,7 @@ $params = array_diff_key( ['d_name' => $this->productItem->getName( 'url' ), 'd_
 		<?php $mediaItem = $this->productItem->getRefItems( 'media', 'default', 'default' )->first() ?>
 		<a class="social-button social-button-<?= $enc->attr( $entry ) ?>" rel="noopener"
 			href="<?= $enc->attr( sprintf( $link,
-				$enc->url( $this->url( $detailTarget, $detailController, $detailAction, $params, [], $detailConfig ) ),
+				$enc->url( $this->link( 'client/html/catalog/detail/url', $params, [], ['absoluteUri' => true] ) ),
 				$this->productItem->getName(),
 				$mediaItem ? $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) : ''
 			) ) ?>"
