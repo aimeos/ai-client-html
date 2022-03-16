@@ -102,14 +102,12 @@
 	display: inline-block;
 }
 
-.catalog-detail .catalog-social .social-button-facebook:before,
-.catalog-detail .catalog-social .social-button-twitter:before,
-.catalog-detail .catalog-social .social-button-pinterest:before {
+.catalog-detail .catalog-social .social-button {
+	transform: translateY(-50%) translateX(-50%);
 	display: inline-block;
 	position: relative;
 	left: 50%;
 	top: 50%;
-	transform: translateY(-50%) translateX(-50%);
 }
 
 .catalog-detail .catalog-social .social-button-facebook:before {
