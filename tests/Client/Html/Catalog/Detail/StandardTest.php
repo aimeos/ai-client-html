@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
-		$this->assertStringContainsString( '<title>Cafe Noire Expresso | Aimeos</title>', $output );
+		$this->assertStringContainsString( '<title>Cafe Noire Expresso Test supplier | Aimeos</title>', $output );
 		$this->assertStringContainsString( '<script defer src="http://baseurl/Catalog/stock/?st_pid', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 6, count( $tags ) );
