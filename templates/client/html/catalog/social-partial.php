@@ -124,7 +124,7 @@ $urls = array(
 	'pinterest' => 'https://pinterest.com/pin/create/button/?url=%1$s&description=%2$s&media=%3$s',
 );
 
-$params = ['d_name' => urlencode( $this->productItem->getName() ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''];
+$params = ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''];
 
 
 ?>
@@ -135,7 +135,7 @@ $params = ['d_name' => urlencode( $this->productItem->getName() ), 'd_prodid' =>
 		<a class="social-button social-button-<?= $enc->attr( $entry ) ?>" rel="noopener"
 			href="<?= $enc->attr( sprintf( $link,
 				$enc->url( $this->link( 'client/html/catalog/detail/url', $params, ['absoluteUri' => true] ) ),
-				$this->productItem->getName(),
+				urlencode( $this->productItem->getName() ),
 				$mediaItem ? $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) : ''
 			) ) ?>"
 			title="<?= $enc->attr( $entry ) ?>"
