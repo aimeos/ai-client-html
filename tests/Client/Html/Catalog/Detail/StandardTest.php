@@ -73,7 +73,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<section class="aimeos catalog-detail"', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-basic', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-image', $output );
-		$this->assertStringContainsString( '<div class="catalog-detail-service', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-social">', $output );
 		$this->assertStringContainsString( 'facebook', $output );
@@ -98,7 +97,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<section class="catalog-detail-bought', $output );
 		$this->assertStringContainsString( 'Cappuccino', $output );
 
-		$this->assertStringContainsString( '<div class="catalog-detail-service', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-supplier', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );

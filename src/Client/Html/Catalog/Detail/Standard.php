@@ -326,7 +326,6 @@ class Standard
 		$view->detailProductItem = $productItem;
 		$view->detailAttributeMap = $attrItems->groupBy( 'attribute.type' );
 		$view->detailPropertyMap = $propItems->groupBy( 'product.property.type' );
-		$view->serviceItems = $this->call( 'services' );
 
 		$this->call( 'seen', $productItem );
 
@@ -451,50 +450,5 @@ class Standard
 		}
 
 		$session->set( 'aimeos/catalog/session/seen/list', $lastSeen->put( $id, $lastSeen->pull( $id ) )->all() );
-	}
-
-
-	/**
-	 * Returns the available service options
-	 *
-	 * @return \Aimeos\Map List of service items
-	 */
-	protected function services() : \Aimeos\Map
-	{
-		$context = $this->context();
-		$config = $context->config();
-
-		/** client/html/catalog/detail/service/types
-		 * The service types available in the service template
-		 *
-		 * By default, only delivery services will be available in the
-		 * template but you can extend the list to payment services too.
-		 *
-		 * @param array List of type codes
-		 * @since 2016.05
-		 * @see client/html/catalog/detail/service/domains
-		 */
-		$types = $config->get( 'client/html/catalog/detail/service/types', ['delivery'] );
-
-		/** client/html/catalog/detail/service/domains
-		 * A list of domain names whose items should be available for the services
-		 * in the services part of the catalog detail view templates
-		 *
-		 * Usually, service prices and texts are available in the templates
-		 * rendering services related data. If you want to
-		 * display additional content like the attributes, you can configure
-		 * your own list of domains (attribute, media, price, text,
-		 * etc. are domains) whose items are fetched from the storage.
-		 *
-		 * @param array List of domain names
-		 * @since 2016.05
-		 * @see client/html/catalog/detail/service/types
-		 */
-		$domains = $config->get( 'client/html/catalog/detail/service/domains', ['text', 'price'] );
-
-		$items = \Aimeos\Controller\Frontend::create( $context, 'service' )
-			->uses( $domains )->type( $types )->sort( 'type' )->search();
-
-		return $this->addMetaItems( $items, $this->expire, $this->tags );
 	}
 }

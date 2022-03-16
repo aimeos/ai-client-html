@@ -146,34 +146,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						</div>
 
 
-						<div class="catalog-detail-service">
-
-							<?php if( !$this->get( 'serviceItems', map() )->isEmpty() ) : ?>
-								<span class="service-intro"><?= $enc->html( $this->translate( 'client', '+ shipping costs' ) ) ?></span>
-								<ul class="service-list">
-
-									<?php foreach( $this->get( 'serviceItems', [] ) as $item ) : ?>
-										<li class="service-item">
-											<span class="service-name"><?= $enc->html( $item->getName() ) ?></span>
-
-											<?= $this->partial(
-												$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
-												array( 'prices' => $item->getRefItems( 'price', null, 'default' ), 'costsItem' => false, 'all' => true )
-											) ?>
-
-											<?php foreach( $item->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-												<span class="service-short"><?= $enc->html( $textItem->getContent() ) ?></span>
-											<?php endforeach ?>
-										</li>
-
-									<?php endforeach ?>
-
-								</ul>
-							<?php endif ?>
-
-						</div>
-
-
 						<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 							<!-- catalog.detail.csrf -->
 							<?= $this->csrf()->formfield() ?>
