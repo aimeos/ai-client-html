@@ -64,15 +64,15 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				<div class="col-sm-6">
 					<?= $this->partial(
 						/** client/html/catalog/detail/partials/image
-						* Relative path to the detail image partial template file
-						*
-						* Partials are templates which are reused in other templates and generate
-						* reoccuring blocks filled with data from the assigned values. The image
-						* partial creates an HTML block for the catalog detail images.
-						*
-						* @param string Relative path to the template file
-						* @since 2017.01
-						*/
+						 * Relative path to the detail image partial template file
+						 *
+						 * Partials are templates which are reused in other templates and generate
+						 * reoccuring blocks filled with data from the assigned values. The image
+						 * partial creates an HTML block for the catalog detail images.
+						 *
+						 * @param string Relative path to the template file
+						 * @since 2017.01
+						 */
 						$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial' ),
 						['mediaItems' => $this->get( 'detailMediaItems', map() ), 'params' => $this->param()]
 					) ?>
@@ -157,21 +157,21 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 									<?= $this->partial(
 										/** client/html/common/partials/selection
-										* Relative path to the variant attribute partial template file
-										*
-										* Partials are templates which are reused in other templates and generate
-										* reoccuring blocks filled with data from the assigned values. The selection
-										* partial creates an HTML block for a list of variant product attributes
-										* assigned to a selection product a customer must select from.
-										*
-										* The partial template files are usually stored in the templates/partials/ folder
-										* of the core or the extensions. The configured path to the partial file must
-										* be relative to the templates/ folder, e.g. "common/partials/selection".
-										*
-										* @param string Relative path to the template file
-										* @since 2015.04
-										* @see client/html/common/partials/attribute
-										*/
+										 * Relative path to the variant attribute partial template file
+										 *
+										 * Partials are templates which are reused in other templates and generate
+										 * reoccuring blocks filled with data from the assigned values. The selection
+										 * partial creates an HTML block for a list of variant product attributes
+										 * assigned to a selection product a customer must select from.
+										 *
+										 * The partial template files are usually stored in the templates/partials/ folder
+										 * of the core or the extensions. The configured path to the partial file must
+										 * be relative to the templates/ folder, e.g. "common/partials/selection".
+										 *
+										 * @param string Relative path to the template file
+										 * @since 2015.04
+										 * @see client/html/common/partials/attribute
+										 */
 										$this->config( 'client/html/common/partials/selection', 'common/partials/selection' ),
 										[
 											'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
@@ -187,21 +187,21 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 									<?= $this->partial(
 										/** client/html/common/partials/group
-										* Relative path to the group product partial template file
-										*
-										* Partials are templates which are reused in other templates and generate
-										* reoccuring blocks filled with data from the assigned values. The group
-										* partial creates an HTML block for a list of sub-products assigned to a
-										* group product a customer can select from.
-										*
-										* The partial template files are usually stored in the templates/partials/ folder
-										* of the core or the extensions. The configured path to the partial file must
-										* be relative to the templates/ folder, e.g. "common/partials/selection-list".
-										*
-										* @param string Relative path to the template file
-										* @since 2021.07
-										* @see client/html/common/partials/attribute
-										*/
+										 * Relative path to the group product partial template file
+										 *
+										 * Partials are templates which are reused in other templates and generate
+										 * reoccuring blocks filled with data from the assigned values. The group
+										 * partial creates an HTML block for a list of sub-products assigned to a
+										 * group product a customer can select from.
+										 *
+										 * The partial template files are usually stored in the templates/partials/ folder
+										 * of the core or the extensions. The configured path to the partial file must
+										 * be relative to the templates/ folder, e.g. "common/partials/selection-list".
+										 *
+										 * @param string Relative path to the template file
+										 * @since 2021.07
+										 * @see client/html/common/partials/attribute
+										 */
 										$this->config( 'client/html/common/partials/group', 'common/partials/selection-list' ),
 										[
 											'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
@@ -217,21 +217,21 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 								<?= $this->partial(
 									/** client/html/common/partials/attribute
-									* Relative path to the product attribute partial template file
-									*
-									* Partials are templates which are reused in other templates and generate
-									* reoccuring blocks filled with data from the assigned values. The attribute
-									* partial creates an HTML block for a list of optional product attributes a
-									* customer can select from.
-									*
-									* The partial template files are usually stored in the templates/partials/ folder
-									* of the core or the extensions. The configured path to the partial file must
-									* be relative to the templates/ folder, e.g. "partials/attribute.php".
-									*
-									* @param string Relative path to the template file
-									* @since 2016.01
-									* @see client/html/common/partials/selection
-									*/
+									 * Relative path to the product attribute partial template file
+									 *
+									 * Partials are templates which are reused in other templates and generate
+									 * reoccuring blocks filled with data from the assigned values. The attribute
+									 * partial creates an HTML block for a list of optional product attributes a
+									 * customer can select from.
+									 *
+									 * The partial template files are usually stored in the templates/partials/ folder
+									 * of the core or the extensions. The configured path to the partial file must
+									 * be relative to the templates/ folder, e.g. "partials/attribute.php".
+									 *
+									 * @param string Relative path to the template file
+									 * @since 2016.01
+									 * @see client/html/common/partials/selection
+									 */
 									$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
 									['productItem' => $this->detailProductItem]
 								) ?>
@@ -284,16 +284,16 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 					<?= $this->partial(
 						/** client/html/catalog/partials/actions
-						* Relative path to the catalog actions partial template file
-						*
-						* Partials are templates which are reused in other templates and generate
-						* reoccuring blocks filled with data from the assigned values. The actions
-						* partial creates an HTML block for the product actions (pin, like and watch
-						* products).
-						*
-						* @param string Relative path to the template file
-						* @since 2017.04
-						*/
+						 * Relative path to the catalog actions partial template file
+						 *
+						 * Partials are templates which are reused in other templates and generate
+						 * reoccuring blocks filled with data from the assigned values. The actions
+						 * partial creates an HTML block for the product actions (pin, like and watch
+						 * products).
+						 *
+						 * @param string Relative path to the template file
+						 * @since 2017.04
+						 */
 						$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial' ),
 						['productItem' => $this->detailProductItem]
 					) ?>
@@ -301,16 +301,16 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 					<?= $this->partial(
 						/** client/html/catalog/partials/social
-						* Relative path to the social partial template file
-						*
-						* Partials are templates which are reused in other templates and generate
-						* reoccuring blocks filled with data from the assigned values. The social
-						* partial creates an HTML block for links to social platforms in the
-						* catalog components.
-						*
-						* @param string Relative path to the template file
-						* @since 2017.04
-						*/
+						 * Relative path to the social partial template file
+						 *
+						 * Partials are templates which are reused in other templates and generate
+						 * reoccuring blocks filled with data from the assigned values. The social
+						 * partial creates an HTML block for links to social platforms in the
+						 * catalog components.
+						 *
+						 * @param string Relative path to the template file
+						 * @since 2017.04
+						 */
 						$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial' ),
 						['productItem' => $this->detailProductItem]
 					) ?>
