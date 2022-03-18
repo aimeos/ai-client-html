@@ -186,7 +186,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<div class="catalog-detail-basket-selection">
 
 									<?= $this->partial(
-										/** client/html/common/partials/group
+										/** client/html/catalog/detail/partials/group
 										 * Relative path to the group product partial template file
 										 *
 										 * Partials are templates which are reused in other templates and generate
@@ -194,15 +194,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 										 * partial creates an HTML block for a list of sub-products assigned to a
 										 * group product a customer can select from.
 										 *
-										 * The partial template files are usually stored in the templates/partials/ folder
-										 * of the core or the extensions. The configured path to the partial file must
-										 * be relative to the templates/ folder, e.g. "common/partials/selection-list".
-										 *
 										 * @param string Relative path to the template file
 										 * @since 2021.07
 										 * @see client/html/common/partials/attribute
 										 */
-										$this->config( 'client/html/common/partials/group', 'common/partials/selection-list' ),
+										$this->config( 'client/html/catalog/detail/partials/group', 'catalog/detail/group' ),
 										[
 											'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
 											'productItem' => $this->detailProductItem
