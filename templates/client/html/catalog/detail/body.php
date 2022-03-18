@@ -73,7 +73,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						 * @param string Relative path to the template file
 						 * @since 2017.01
 						 */
-						$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image-partial' ),
+						$this->config( 'client/html/catalog/detail/partials/image', 'catalog/detail/image' ),
 						['mediaItems' => $this->get( 'detailMediaItems', map() ), 'params' => $this->param()]
 					) ?>
 

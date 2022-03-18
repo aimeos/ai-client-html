@@ -413,7 +413,7 @@ class Standard
 		{
 			$config = $context->config();
 
-			/** client/html/catalog/detail/seen-partial
+			/** client/html/catalog/detail/partials/seen
 			 * Relative path to the HTML body template of the catalog detail seen client.
 			 *
 			 * The template file contains the HTML code and processing instructions
@@ -431,7 +431,7 @@ class Standard
 			 * @param string Relative path to the template creating the HTML fragment
 			 * @since 2014.03
 			 */
-			$template = $config->get( 'client/html/catalog/detail/seen-partial', 'catalog/detail/seen-partial' );
+			$template = $config->get( 'client/html/catalog/detail/partials/seen', 'catalog/detail/seen' );
 
 			/** client/html/catalog/session/seen/maxitems
 			 * Maximum number of products displayed in the "last seen" section
