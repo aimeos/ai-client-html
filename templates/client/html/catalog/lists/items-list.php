@@ -37,10 +37,8 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 			data-reqstock="<?= (int) $this->config( 'client/html/basket/require-stock', true ) ?>">
 
 			<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
-				<div class="badges">
-					<span class="badge-item new"><?= $enc->html( $this->translate( 'client', 'New' ) ) ?></span>
-					<span class="badge-item sale"><?= $enc->html( $this->translate( 'client', 'Sale' ) ) ?></span>
-				</div>
+
+				<?= $this->partial( $this->config( 'client/html/common/partials/badges', 'common/partials/badges' ) ) ?>
 
 				<a class="media-list" href="<?= $url ?>" title="<?= $enc->attr( $productItem->getName(), $enc::TRUST ) ?>">
 					<?php if( ( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>

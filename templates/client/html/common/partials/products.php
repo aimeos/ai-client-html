@@ -165,10 +165,25 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		itemprop="<?= $this->get( 'itemprop' ) ?>" itemscope itemtype="http://schema.org/Product">
 
 		<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
-			<div class="badges">
-				<span class="badge-item new"><?= $enc->html( $this->translate( 'client', 'New' ) ) ?></span>
-				<span class="badge-item sale"><?= $enc->html( $this->translate( 'client', 'Sale' ) ) ?></span>
-			</div>
+
+			<?= $this->partial(
+				/** client/html/common/partials/price
+				 * Relative path to the price partial template file
+				 *
+				 * Partials are templates which are reused in other templates and generate
+				 * reoccuring blocks filled with data from the assigned values. The price
+				 * partial creates an HTML block for a list of price items.
+				 *
+				 * The partial template files are usually stored in the templates/partials/ folder
+				 * of the core or the extensions. The configured path to the partial file must
+				 * be relative to the templates/ folder, e.g. "partials/price.php".
+				 *
+				 * @param string Relative path to the template file
+				 * @since 2015.04
+				 */
+				$this->config( 'client/html/common/partials/badges', 'common/partials/badges' )
+			) ?>
+
 			<div class="list-column">
 				<a class="media-list <?= $mediaItems->count() > 1 ? 'multiple' : '' ?>"
 					href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $productItem->getName(), $enc::TRUST ) ?>">
