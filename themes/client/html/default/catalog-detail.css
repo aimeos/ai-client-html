@@ -284,47 +284,6 @@
 	width: calc(100% - 4rem);
 }
 
-/* services */
-
-.catalog-detail-basket .service-intro {
-	cursor: pointer;
-	color: var(--ai-secondary);
-}
-
-.catalog-detail-service .service-list {
-	color: var(--ai-secondary);
-	list-style: none;
-	padding: 0;
-	max-width: 20rem;
-	max-height: 10rem;
-	overflow-y: auto;
-	display: none;
-}
-
-.catalog-detail-service .service-name {
-	display: inline-block;
-	min-width: 8rem;
-}
-
-.catalog-detail-service .service-item .price-item {
-	display: inline-block !important;
-	text-align: end;
-	min-width: 4rem;
-}
-
-.catalog-detail-service .service-item .price-item .costs {
-	display: block !important;
-}
-
-.catalog-detail-service .service-item .price-item .value,
-.catalog-detail-service .service-item .price-item .taxrate {
-	display: none;
-}
-
-.catalog-detail-service .service-item .service-short {
-	display: none;
-}
-
 /* Selection area */
 
 .catalog-detail-basket .selection .row {
