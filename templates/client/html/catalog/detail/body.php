@@ -290,7 +290,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						 * @param string Relative path to the template file
 						 * @since 2017.04
 						 */
-						$this->config( 'client/html/catalog/partials/actions', 'catalog/actions-partial' ),
+						$this->config( 'client/html/catalog/partials/actions', 'catalog/actions' ),
 						['productItem' => $this->detailProductItem]
 					) ?>
 
@@ -307,7 +307,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						 * @param string Relative path to the template file
 						 * @since 2017.04
 						 */
-						$this->config( 'client/html/catalog/partials/social', 'catalog/social-partial' ),
+						$this->config( 'client/html/catalog/partials/social', 'catalog/social' ),
 						['productItem' => $this->detailProductItem]
 					) ?>
 
