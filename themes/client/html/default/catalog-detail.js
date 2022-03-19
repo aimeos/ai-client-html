@@ -171,18 +171,8 @@ AimeosCatalogDetail = {
 			}
 
 			$(".image-single .item", gallery).each((idx, item) => {
-				const entries = $(item).data("sources");
-				let imgurl;
-
-				for(var width in entries) {
-					if(width <= vwidth) {
-						imgurl = entries[width];
-					}
-				}
-
 				list.push({
-					msrc: $(item).data("image"),
-					src: imgurl,
+					src: $(item).attr("src"),
 					pid: idx,
 					h: 0,
 					w: 0

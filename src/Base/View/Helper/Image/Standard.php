@@ -57,8 +57,6 @@ class Standard
 			itemscope itemprop="image" itemtype="http://schema.org/ImageObject"
 			src="' . $enc->attr( $view->content( $media->getPreview( true ) ) ) . '"
 			srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
-			data-image="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
-			data-sources="' . $enc->attr( json_encode( $sources, JSON_FORCE_OBJECT ) ) . '"
 			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
 			sizes="' . $sizes . '" ' . $variant . ' />';
 	}
