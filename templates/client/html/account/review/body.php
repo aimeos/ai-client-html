@@ -120,7 +120,7 @@ $productItems = $this->get( 'reviewProductItems', map() );
 								<div class="col-6">
 									<?php if( $image = $images->first() ) : ?>
 										<img class="review-image"
-											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
+											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
 											src="<?= $enc->attr( $this->content( $image->getPreview(), $image->getFileSystem() ) ) ?>"
 											srcset="<?= $enc->attr( $this->imageset( $image->getPreviews(), $image->getFileSystem() ) ) ?>"
 											alt="<?= $enc->attr( $image->getProperties( 'title' )->first() ) ?>"

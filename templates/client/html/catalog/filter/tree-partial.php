@@ -160,7 +160,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 									<img class="img-menu" loading="lazy"
 										src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
-										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '240px' ) ) ?>"
+										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 									>
 								<?php endforeach ?>
