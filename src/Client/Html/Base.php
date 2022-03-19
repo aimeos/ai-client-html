@@ -53,6 +53,8 @@ abstract class Base
 	{
 		$html = '';
 		$type = $this->clientType();
+		$parts = array_merge( explode( '/', $type ), ['body'] );
+		$template = join( '/', array_splice( $parts, 0, 2, [] ) ) . '/' . join( '-', $parts );
 
 		$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
 
@@ -61,7 +63,7 @@ abstract class Base
 		}
 
 		return $view->set( 'body', $html )
-			->render( $view->config( 'client/html/${type}/template-body', $type . '/body' ) );
+			->render( $view->config( 'client/html/${type}/template-body', $template ) );
 	}
 
 
