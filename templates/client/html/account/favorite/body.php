@@ -98,7 +98,7 @@ $enc = $this->encoder();
 							<?php if( $mediaItem = $mediaItems->first() ) : ?>
 								<div class="media-item">
 									<img loading="lazy"
-										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '180px' ) ) ?>"
+										sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
 										src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ?: $mediaItem->getLabel() ) ?>"

@@ -188,7 +188,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 				<a class="media-list <?= $mediaItems->count() > 1 ? 'multiple' : '' ?>"
 					href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $productItem->getName(), $enc::TRUST ) ?>">
 
-					<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
+					<?php if( $mediaItem = $mediaItems->first() ) : ?>
 
 						<noscript>
 							<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
