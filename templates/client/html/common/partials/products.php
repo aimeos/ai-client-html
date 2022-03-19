@@ -167,19 +167,19 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<div class="product-item <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>">
 
 			<?= $this->partial(
-				/** client/html/common/partials/price
-				 * Relative path to the price partial template file
+				/** client/html/common/partials/badges
+				 * Relative path to the badges partial template file
 				 *
 				 * Partials are templates which are reused in other templates and generate
-				 * reoccuring blocks filled with data from the assigned values. The price
-				 * partial creates an HTML block for a list of price items.
+				 * reoccuring blocks filled with data from the assigned values. The badges
+				 * partial creates an HTML block for the product badges.
 				 *
-				 * The partial template files are usually stored in the templates/partials/ folder
+				 * The partial template files are usually stored in the templates/common/partials/ folder
 				 * of the core or the extensions. The configured path to the partial file must
-				 * be relative to the templates/ folder, e.g. "partials/price.php".
+				 * be relative to the templates/ folder, e.g. "common/partials/badges.php".
 				 *
 				 * @param string Relative path to the template file
-				 * @since 2015.04
+				 * @since 2022.04
 				 */
 				$this->config( 'client/html/common/partials/badges', 'common/partials/badges' )
 			) ?>

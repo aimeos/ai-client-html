@@ -62,6 +62,9 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 				data-id="<?= $this->detailProductItem->getId() ?>" data-reqstock="<?= $reqstock ?>">
 
 				<div class="col-sm-6">
+
+					<?= $this->partial( $this->config( 'client/html/common/partials/badges', 'common/partials/badges' ) ) ?>
+
 					<?= $this->partial(
 						/** client/html/catalog/detail/partials/image
 						 * Relative path to the detail image partial template file
