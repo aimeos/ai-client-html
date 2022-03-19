@@ -55,8 +55,9 @@ class Standard
 
 		return '<img class="item" id="image-' . $media->getId() . '"
 			itemscope itemprop="image" itemtype="http://schema.org/ImageObject"
-			src="' . $enc->attr( $view->content( $media->getPreview( true ) ) ) . '"
+			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
 			srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
+			data-zoom="' . $enc->attr( $view->content( $media->getPreview( true ) ) ) . '"
 			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
 			sizes="' . $sizes . '" ' . $variant . ' />';
 	}

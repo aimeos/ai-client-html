@@ -172,7 +172,8 @@ AimeosCatalogDetail = {
 
 			$(".image-single .item", gallery).each((idx, item) => {
 				list.push({
-					src: $(item).attr("src"),
+					msrc: $(item).data("image"),
+					src: $(item).data("zoom"),
 					pid: idx,
 					h: 0,
 					w: 0
