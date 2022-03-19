@@ -91,9 +91,9 @@ $enc = $this->encoder();
 						 * If you want to adapt the output to your own project and you know you only have a specific
 						 * list of attributes, you can create the input and selections in a non-generic, straight
 						 * forward way. The $serviceAttributes[$id] array contains an associative list of codes as
-						 * keys (e.g. "directdebit.bankcode") and items implementing \Aimeos\MW\Criteria\Attribute\Iface
+						 * keys (e.g. "directdebit.bankcode") and items implementing \Aimeos\Base\Criteria\Attribute\Iface
 						 * as values, e.g.
-						 *   directdebit.bankcode => \Aimeos\MW\Criteria\Attribute\Iface (
+						 *   directdebit.bankcode => \Aimeos\Base\Criteria\Attribute\Iface (
 						 *	   code => 'directdebit.bankcode',
 						 *	   internalcode => 'bankcode',
 						 *	   label => 'Bank code',

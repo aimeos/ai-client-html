@@ -12,7 +12,7 @@ $enc = $this->encoder();
 ?>
 <section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<nav>
+	<nav class="container-xl">
 		<ol class="steps">
 
 			<li class="step active basket">
@@ -45,18 +45,9 @@ $enc = $this->encoder();
 	</nav>
 
 
-	<?php if( isset( $this->standardErrorList ) ) : ?>
-		<ul class="error-list">
-			<?php foreach( (array) $this->standardErrorList as $errmsg ) : ?>
-				<li class="error-item"><?= $enc->html( $errmsg ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
-
-	<form method="<?= $enc->attr( $this->get( 'standardMethod', 'POST' ) ) ?>" action="<?= $enc->attr( $this->get( 'standardUrlNext' ) ) ?>">
+	<form class="container-xl" method="<?= $enc->attr( $this->get( 'standardMethod', 'POST' ) ) ?>" action="<?= $enc->attr( $this->get( 'standardUrlNext' ) ) ?>">
 		<?= $this->csrf()->formfield() ?>
-		<?= $this->get( 'standardBody' ) ?>
+		<?= $this->get( 'body' ) ?>
 	</form>
 
 </section>

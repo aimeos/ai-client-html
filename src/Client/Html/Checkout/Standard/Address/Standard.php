@@ -98,35 +98,7 @@ class Standard
 			return '';
 		}
 
-		$html = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->body( $uid );
-		}
-		$view->addressBody = $html;
-
-		/** client/html/checkout/standard/address/template-body
-		 * Relative path to the HTML body template of the checkout standard address client.
-		 *
-		 * The template file contains the HTML code and processing instructions
-		 * to generate the result shown in the body of the frontend. The
-		 * configuration string is the path to the template file relative
-		 * to the templates directory (usually in client/html/templates).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but suffixed by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, it
-		 * should be suffixed by the name of the new class.
-		 *
-		 * @param string Relative path to the template creating code for the HTML page body
-		 * @since 2014.03
-		 * @see client/html/checkout/standard/address/template-header
-		 */
-		$tplconf = 'client/html/checkout/standard/address/template-body';
-		$default = 'checkout/standard/address-body';
-
-		return $view->render( $view->config( $tplconf, $default ) );
+		return parent::body( $uid );
 	}
 
 
@@ -305,9 +277,7 @@ class Standard
 		 * @param array List of two letter ISO country codes
 		 * @since 2021.10
 		 */
-		$default = $view->config( 'common/countries', [] );
-		/** @deprecated 2022.01 Use common/countries */
-		$view->addressCountries = map( $view->config( 'client/html/checkout/standard/address/countries', $default ) )
+		$view->addressCountries = map( $view->config( 'common/countries', [] ) )
 			->flip()->map( function( $v, $key ) use ( $view ) {
 				return $view->translate( 'country', $key );
 			} )->asort();
@@ -342,9 +312,7 @@ class Standard
 		 * @param array Multi-dimensional list ISO country codes and state codes/names
 		 * @since 2020.10
 		 */
-		$default = $view->config( 'common/states', [] );
-		/** @deprecated 2022.01 Use common/states */
-		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', $default );
+		$view->addressStates = $view->config( 'common/states', [] );
 
 		$view->addressExtra = $context->session()->get( 'client/html/checkout/standard/address/extra', [] );
 
@@ -362,4 +330,25 @@ class Standard
 	{
 		return !empty( $basket->getAddress( 'payment' ) );
 	}
+
+
+	/** client/html/checkout/standard/address/template-body
+	 * Relative path to the HTML body template of the checkout standard address client.
+	 *
+	 * The template file contains the HTML code and processing instructions
+	 * to generate the result shown in the body of the frontend. The
+	 * configuration string is the path to the template file relative
+	 * to the templates directory (usually in client/html/templates).
+	 *
+	 * You can overwrite the template file configuration in extensions and
+	 * provide alternative templates. These alternative templates should be
+	 * named like the default one but suffixed by
+	 * an unique name. You may use the name of your project for this. If
+	 * you've implemented an alternative client class as well, it
+	 * should be suffixed by the name of the new class.
+	 *
+	 * @param string Relative path to the template creating code for the HTML page body
+	 * @since 2014.03
+	 * @see client/html/checkout/standard/address/template-header
+	 */
 }

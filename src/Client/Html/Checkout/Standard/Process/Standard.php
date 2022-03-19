@@ -78,7 +78,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2017.04
 	 */
-	private $subPartNames = array( 'account', 'address' );
+	private $subPartNames = ['account', 'address'];
 
 
 	/**
@@ -89,41 +89,11 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$view = $this->view();
-
-		if( $view->get( 'standardStepActive' ) !== 'process' ) {
+		if( $this->view()->get( 'standardStepActive' ) !== 'process' ) {
 			return '';
 		}
 
-		$html = '';
-		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->body( $uid );
-		}
-		$view->processBody = $html;
-
-		/** client/html/checkout/standard/process/template-body
-		 * Relative path to the HTML body template of the checkout standard process client.
-		 *
-		 * The template file contains the HTML code and processing instructions
-		 * to generate the result shown in the body of the frontend. The
-		 * configuration string is the path to the template file relative
-		 * to the templates directory (usually in client/html/templates).
-		 *
-		 * You can overwrite the template file configuration in extensions and
-		 * provide alternative templates. These alternative templates should be
-		 * named like the default one but suffixed by
-		 * an unique name. You may use the name of your project for this. If
-		 * you've implemented an alternative client class as well, it
-		 * should be suffixed by the name of the new class.
-		 *
-		 * @param string Relative path to the template creating code for the HTML page body
-		 * @since 2014.03
-		 * @see client/html/checkout/standard/process/template-header
-		 */
-		$tplconf = 'client/html/checkout/standard/process/template-body';
-		$default = 'checkout/standard/process-body';
-
-		return $view->render( $view->config( $tplconf, $default ) );
+		return parent::body( $uid );
 	}
 
 
@@ -223,72 +193,48 @@ class Standard
 		$context = $this->context();
 
 		if( $view->param( 'c_step' ) !== 'process'
-			|| $view->get( 'standardErrorList', [] ) !== []
+			|| $view->get( 'errors', [] ) !== []
 			|| $view->get( 'standardStepActive' ) !== null
 		) {
 			return true;
 		}
 
-		try
+		$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+
+
+		if( $view->param( 'cs_order' ) !== null )
 		{
-			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
-			$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+			parent::init();
 
+			$basket = $basketCntl->store();
+			$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
 
-			if( $view->param( 'cs_order' ) !== null )
-			{
-				parent::init();
-
-				$basket = $basketCntl->store();
-				$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
-
-				$context->session()->set( 'aimeos/orderid', $orderItem->getId() );
-			}
-			elseif( ( $orderid = $context->session()->get( 'aimeos/orderid' ) ) !== null )
-			{
-				$parts = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-				$orderItem = $orderCntl->get( $orderid, false );
-				$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
-			}
-			else
-			{
-				return;
-			}
-
-			if( ( $form = $this->processPayment( $basket, $orderItem ) ) === null ) // no payment service available
-			{
-				$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
-				$args = ( $service = reset( $services ) ) ? ['code' => $service->getCode()] : [];
-
-				$orderCntl->save( $orderItem->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
-				$view->standardUrlNext = $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] );
-				$view->standardMethod = 'POST';
-			}
-			else
-			{
-				$view = $this->addFormData( $view, $form );
-			}
+			$context->session()->set( 'aimeos/orderid', $orderItem->getId() );
 		}
-		catch( \Aimeos\Client\Html\Exception $e )
+		elseif( ( $orderid = $context->session()->get( 'aimeos/orderid' ) ) !== null )
 		{
-			$error = array( $context->translate( 'client', $e->getMessage() ) );
-			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
+			$parts = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+			$orderItem = $orderCntl->get( $orderid, false );
+			$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
 		}
-		catch( \Aimeos\Controller\Frontend\Exception $e )
+		else
 		{
-			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
-			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
+			return;
 		}
-		catch( \Aimeos\MShop\Exception $e )
+
+		if( ( $form = $this->processPayment( $basket, $orderItem ) ) === null ) // no payment service available
 		{
-			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
-			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
+			$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
+			$args = ( $service = reset( $services ) ) ? ['code' => $service->getCode()] : [];
+
+			$orderCntl->save( $orderItem->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
+			$view->standardUrlNext = $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] );
+			$view->standardMethod = 'POST';
 		}
-		catch( \Exception $e )
+		else
 		{
-			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
-			$view->standardErrorList = array_merge( $view->get( 'standardErrorList', [] ), $error );
-			$this->logException( $e );
+			$view = $this->addFormData( $view, $form );
 		}
 	}
 
@@ -675,4 +621,25 @@ class Standard
 
 		return parent::data( $view, $tags, $expire );
 	}
+
+
+	/** client/html/checkout/standard/process/template-body
+	 * Relative path to the HTML body template of the checkout standard process client.
+	 *
+	 * The template file contains the HTML code and processing instructions
+	 * to generate the result shown in the body of the frontend. The
+	 * configuration string is the path to the template file relative
+	 * to the templates directory (usually in client/html/templates).
+	 *
+	 * You can overwrite the template file configuration in extensions and
+	 * provide alternative templates. These alternative templates should be
+	 * named like the default one but suffixed by
+	 * an unique name. You may use the name of your project for this. If
+	 * you've implemented an alternative client class as well, it
+	 * should be suffixed by the name of the new class.
+	 *
+	 * @param string Relative path to the template creating code for the HTML page body
+	 * @since 2014.03
+	 * @see client/html/checkout/standard/process/template-header
+	 */
 }

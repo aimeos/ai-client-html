@@ -8,7 +8,7 @@
 /* Available data:
  * - id : ID of the service option (required)
  * - type : Type of the service attributes ("delivery" or "payment", required)
- * - attributes : Associative list of codes as keys and \Aimeos\MW\Criteria\Attribute\Iface objects as values (required)
+ * - attributes : Associative list of codes as keys and \Aimeos\Base\Criteria\Attribute\Iface objects as values (required)
  */
 
 /*

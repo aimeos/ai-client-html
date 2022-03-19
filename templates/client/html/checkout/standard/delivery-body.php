@@ -95,9 +95,9 @@ $enc = $this->encoder();
 						 * If you want to adapt the output to your own project and you know you only have a specific
 						 * list of attributes, you can create the input and selections in a non-generic, straight
 						 * forward way. The $serviceAttributes[$id] array contains an associative list of codes as
-						 * keys (e.g. "time.hourminute") and items implementing \Aimeos\MW\Criteria\Attribute\Iface
+						 * keys (e.g. "time.hourminute") and items implementing \Aimeos\Base\Criteria\Attribute\Iface
 						 * as values, e.g.
-						 *   time.hourminute => \Aimeos\MW\Criteria\Attribute\Iface (
+						 *   time.hourminute => \Aimeos\Base\Criteria\Attribute\Iface (
 						 *	   code => 'time.hourminute',
 						 *	   internalcode => 'hourminute',
 						 *	   label => 'Delivery time',
