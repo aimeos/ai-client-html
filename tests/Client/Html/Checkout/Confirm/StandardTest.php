@@ -33,47 +33,35 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$tags = [];
-		$expire = null;
+		$order = $this->getOrder( '2011-09-17 16:14:32' );
+		$this->context->session()->set( 'aimeos/orderid', $order->getId() );
 
-		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
-		$this->context->session()->set( 'aimeos/orderid', $orderid );
+		$this->view->confirmOrderItem = $order;
+		$this->view->summaryBasket = $order->getBaseItem();
 
-		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<title>Confirmation | Aimeos</title>', $output );
 	}
 
 
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( $this->view );
-
-		$this->assertEquals( null, $object->header() );
-	}
-
-
 	public function testBody()
 	{
-		$orderid = $this->getOrder( '2011-09-17 16:14:32' )->getId();
-		$this->context->session()->set( 'aimeos/orderid', $orderid );
+		$order = $this->getOrder( '2011-09-17 16:14:32' );
+		$this->context->session()->set( 'aimeos/orderid', $order->getId() );
+
+		$this->view->confirmOrderItem = $order;
+		$this->view->summaryBasket = $order->getBaseItem();
 
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<section class="aimeos checkout-confirm"', $output );
+		$this->assertStringContainsString( '<div class="checkout-confirm-intro">', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-retry">', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-basic">', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-detail', $output );
-		$this->assertRegExp( '#<span class="value">.*' . $orderid . '.*</span>#smU', $output );
+		$this->assertStringContainsString( '<div class="checkout-confirm-detail common-summary">', $output );
+		$this->assertRegExp( '#<span class="value">.*' . $order->getId() . '.*</span>#smU', $output );
 
 		$this->assertStringContainsString( 'mr Our Unittest', $output );
 		$this->assertStringContainsString( 'Example company', $output );
@@ -82,84 +70,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'paypal', $output );
 
 		$this->assertStringContainsString( 'This is a comment', $output );
-	}
-
-
-	public function testBodyHtmlException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
-
-		$object->setView( $this->view );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( $this->view );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( $this->view );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Confirm\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( $this->view );
-
-		$this->assertStringContainsString( 'A non-recoverable error occured', $object->body() );
-	}
-
-
-	public function testGetSubClientInvalid()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( 'invalid', 'invalid' );
-	}
-
-
-	public function testGetSubClientInvalidName()
-	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
 
@@ -175,109 +85,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$helper = new \Aimeos\Base\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
 		$this->view->addHelper( 'request', $helper );
 
+		$this->expectException( \Aimeos\MShop\Exception::class );
 		$this->object->init();
-
-		$this->assertNotEmpty( $this->view->get( 'confirmErrorList' ) );
 	}
 
 
 	public function testInitNoCode()
 	{
+		$this->expectException( \Aimeos\Client\Html\Exception::class );
 		$this->object->init();
-
-		$this->assertNotEmpty( $this->view->get( 'confirmErrorList' ) );
-	}
-
-
-	public function testInitClientException()
-	{
-		$this->context->session()->set( 'aimeos/orderid', -1 );
-
-		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => -1] );
-		$this->view->addHelper( 'param', $helper );
-
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Service\Standard' )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( ['updateSync'] )
-			->getMock();
-
-		$mock->expects( $this->once() )->method( 'updateSync' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception() ) );
-
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->init();
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
-
-		$this->assertEquals( 1, count( $this->view->get( 'confirmErrorList', [] ) ) );
-	}
-
-
-	public function testInitControllerException()
-	{
-		$this->context->session()->set( 'aimeos/orderid', -1 );
-
-		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => -1] );
-		$this->view->addHelper( 'param', $helper );
-
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Service\Standard' )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( ['updateSync'] )
-			->getMock();
-
-		$mock->expects( $this->once() )->method( 'updateSync' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception() ) );
-
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->init();
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
-
-		$this->assertEquals( 1, count( $this->view->get( 'confirmErrorList', [] ) ) );
-	}
-
-
-	public function testInitMShopException()
-	{
-		$this->context->session()->set( 'aimeos/orderid', -1 );
-
-		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => -1] );
-		$this->view->addHelper( 'param', $helper );
-
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Service\Standard' )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( ['updateSync'] )
-			->getMock();
-
-		$mock->expects( $this->once() )->method( 'updateSync' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception() ) );
-
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->init();
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
-
-		$this->assertEquals( 1, count( $this->view->get( 'confirmErrorList', [] ) ) );
-	}
-
-
-	public function testInitException()
-	{
-		$this->context->session()->set( 'aimeos/orderid', -1 );
-
-		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => -1] );
-		$this->view->addHelper( 'param', $helper );
-
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Service\Standard' )
-			->setConstructorArgs( [$this->context] )
-			->setMethods( ['updateSync'] )
-			->getMock();
-
-		$mock->expects( $this->once() )->method( 'updateSync' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
-		$this->object->init();
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
-
-		$this->assertEquals( 1, count( $this->view->get( 'confirmErrorList', [] ) ) );
 	}
 
 
@@ -286,15 +102,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrder( $date )
 	{
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
+		$search = $manager->filter()->add( 'order.datepayment', '==', $date );
 
-		$search = $manager->filter();
-		$search->setConditions( $search->compare( '==', 'order.datepayment', $date ) );
-
-		if( ( $item = $manager->search( $search )->first() ) === null ) {
-			throw new \RuntimeException( 'No order found' );
-		}
-
-		return $item;
+		return $manager->search( $search, $domains )->first( new \RuntimeException( 'No order found' ) );
 	}
 }
