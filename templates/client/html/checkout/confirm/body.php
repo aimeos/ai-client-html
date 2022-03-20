@@ -16,19 +16,19 @@ $enc = $this->encoder();
 		<div class="checkout-confirm-intro">
 			<?php switch( $this->confirmOrderItem->getStatusPayment() ) : case \Aimeos\MShop\Order\Item\Base::PAY_CANCELED: ?>
 				<p class="note"><?= nl2br( $enc->html( $this->translate( 'client', "The order was canceled.
-Do you wish to retry your order?" ), $enc::TRUST ) ) ?></p>
+Do you wish to retry your order?" ), $enc::TRUST ) ); break ?></p>
 			<?php case \Aimeos\MShop\Order\Item\Base::PAY_REFUSED: ?>
 				<p class="note"><?= nl2br( $enc->html( $this->translate( 'client', "Unfortunately, the payment for your order was refused.
-Do you wish to retry?" ), $enc::TRUST ) ) ?></p>
+Do you wish to retry?" ), $enc::TRUST ) ); break ?></p>
 			<?php case \Aimeos\MShop\Order\Item\Base::PAY_PENDING: ?>
 				<p class="note"><?= nl2br( $enc->html( $this->translate( 'client', "The payment confirmation for your order is still pending.
-You will get an e-mail as soon as the payment is authorized." ), $enc::TRUST ) ) ?></p>
+You will get an e-mail as soon as the payment is authorized." ), $enc::TRUST ) ); break ?></p>
 			<?php case \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED: ?>
 				<p class="note"><?= nl2br( $enc->html( $this->translate( 'client', "Thank you for your order and authorizing the payment.
-An e-mail with the order details will be sent to you within the next few minutes." ), $enc::TRUST ) ) ?></p>
+An e-mail with the order details will be sent to you within the next few minutes." ), $enc::TRUST ) ); break ?></p>
 			<?php case \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED: ?>
 				<p class="note"><?= nl2br( $enc->html( $this->translate( 'client', "Thank you for your order.
-We received your payment and an e-mail with the order details will be sent to you within the next few minutes." ), $enc::TRUST ) ) ?></p>
+We received your payment and an e-mail with the order details will be sent to you within the next few minutes." ), $enc::TRUST ) ); break ?></p>
 			<?php endswitch ?>
 		</div>
 
