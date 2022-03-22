@@ -25,12 +25,12 @@ class Factory
 	/**
 	 * Creates a locale select client object.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Shop context instance with necessary objects
+	 * @param \Aimeos\MShop\ContextIface $context Shop context instance with necessary objects
 	 * @param string|null $name Client name (default: "Standard")
 	 * @return \Aimeos\Client\Html\Iface Select part implementing \Aimeos\Client\Html\Iface
 	 * @throws \Aimeos\Client\Html\Exception If requested client implementation couldn't be found or initialisation fails
 	 */
-	public static function create( \Aimeos\MShop\Context\Item\Iface $context, string $name = null ) : \Aimeos\Client\Html\Iface
+	public static function create( \Aimeos\MShop\ContextIface $context, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/locale/select/name
 		 * Class name of the used locale select client implementation

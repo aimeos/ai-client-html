@@ -29,9 +29,9 @@ abstract class Base
 	 * Initializes a new client decorator object.
 	 *
 	 * @param \Aimeos\Client\Html\Iface $client Client object
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object with required objects
+	 * @param \Aimeos\MShop\ContextIface $context Context object with required objects
 	 */
-	public function __construct( \Aimeos\Client\Html\Iface $client, \Aimeos\MShop\Context\Item\Iface $context )
+	public function __construct( \Aimeos\Client\Html\Iface $client, \Aimeos\MShop\ContextIface $context )
 	{
 		parent::__construct( $context );
 

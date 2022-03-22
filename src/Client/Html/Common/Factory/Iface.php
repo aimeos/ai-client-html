@@ -23,9 +23,9 @@ interface Iface
 	/**
 	 *	Creates a client object.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context instance with necessary objects
+	 * @param \Aimeos\MShop\ContextIface $context Context instance with necessary objects
 	 * @param string $name Client name (from configuration or "Standard" if null)
 	 * @return \Aimeos\Client\Html\Iface New client object
 	 */
-	public static function create( \Aimeos\MShop\Context\Item\Iface $context, string $name = null ) : \Aimeos\Client\Html\Iface;
+	public static function create( \Aimeos\MShop\ContextIface $context, string $name = null ) : \Aimeos\Client\Html\Iface;
 }

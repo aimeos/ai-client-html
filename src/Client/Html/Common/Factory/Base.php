@@ -40,13 +40,13 @@ class Base
 	/**
 	 * Adds the decorators to the client object.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context instance with necessary objects
+	 * @param \Aimeos\MShop\ContextIface $context Context instance with necessary objects
 	 * @param \Aimeos\Client\Html\Iface $client Client object
 	 * @param array $decorators List of decorator name that should be wrapped around the client
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected static function addDecorators( \Aimeos\MShop\Context\Item\Iface $context,
+	protected static function addDecorators( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\Client\Html\Iface $client, array $decorators, string $classprefix ) : \Aimeos\Client\Html\Iface
 	{
 		foreach( $decorators as $name )
@@ -75,12 +75,12 @@ class Base
 	/**
 	 * Adds the decorators to the client object.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context instance with necessary objects
+	 * @param \Aimeos\MShop\ContextIface $context Context instance with necessary objects
 	 * @param \Aimeos\Client\Html\Iface $client Client object
 	 * @param string $path Path of the client in lower case, e.g. "catalog/detail"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected static function addClientDecorators( \Aimeos\MShop\Context\Item\Iface $context,
+	protected static function addClientDecorators( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\Client\Html\Iface $client, string $path ) : \Aimeos\Client\Html\Iface
 	{
 		if( !is_string( $path ) || $path === '' ) {
@@ -139,13 +139,13 @@ class Base
 	/**
 	 * Creates a client object.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context instance with necessary objects
+	 * @param \Aimeos\MShop\ContextIface $context Context instance with necessary objects
 	 * @param string $classname Name of the client class
 	 * @param string $interface Name of the client interface
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 * @throws \Aimeos\Client\Html\Exception If client couldn't be found or doesn't implement the interface
 	 */
-	protected static function createClient( \Aimeos\MShop\Context\Item\Iface $context, string $classname, string $interface ) : \Aimeos\Client\Html\Iface
+	protected static function createClient( \Aimeos\MShop\ContextIface $context, string $classname, string $interface ) : \Aimeos\Client\Html\Iface
 	{
 		if( isset( self::$objects[$classname] ) ) {
 			return self::$objects[$classname];

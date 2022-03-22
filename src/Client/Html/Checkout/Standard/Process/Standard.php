@@ -234,7 +234,7 @@ class Standard
 		}
 		else
 		{
-			$view = $this->addFormData( $view, $form );
+			$this->addFormData( $view, $form );
 		}
 	}
 
