@@ -124,7 +124,11 @@ Aimeos = {
 			};
 
 			$(".aimeos .lazy-image").each((idx, el) => {
-				(new IntersectionObserver(callback, {rootMargin: '240px', threshold: 0})).observe(el);
+				(new IntersectionObserver(callback, {
+					root: $(el).closest('.product')[0],
+					rootMargin: '320px',
+					threshold: 0
+				})).observe(el);
 			});
 		} else {
 			$(".aimeos .lazy-image").each((idx, el) => {
