@@ -795,25 +795,25 @@ body > .content, body .main-section {
 	color: var(--ai-primary);
 }
 
-.aimeos .product-item .badges {
+.aimeos .product .badges {
 	position: absolute;
 	text-align: start;
 	z-index: 2;
 }
 
-.aimeos .product-item .badge-item {
+.aimeos .product .badge-item {
 	letter-spacing: 1.5px;
 	padding: .1rem .5rem;
 	font-size: 100%;
 	display: none;
 }
 
-.aimeos .product-item.new .badge-item.new {
+.aimeos .product.new .badge-item.new {
 	background-color: var(--ai-primary);
 	display: block;
 }
 
-.aimeos .product-item.sale .badge-item.sale {
+.aimeos .product.sale .badge-item.sale {
 	background-color: var(--ai-danger);
 	display: inline-block;
 	padding: .1rem .5rem;
