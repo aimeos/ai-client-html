@@ -12,24 +12,6 @@
  */
 
 
-$index = 0;
-$enc = $this->encoder();
-$attrTypeDeps = $attrDeps = $prodDeps = $attributeItems = [];
-
-foreach( $this->get( 'productItems', [] ) as $prodId => $product )
-{
-	foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
-	{
-		$attrTypeDeps[$attrItem->getType()][$attrId] = $attrItem->getPosition();
-		$attributeItems[$attrId] = $attrItem;
-		$attrDeps[$attrId][] = $prodId;
-		$prodDeps[$prodId][] = $attrId;
-	}
-}
-
-ksort( $attrTypeDeps );
-
-
 /** client/html/catalog/selection/preselect
  * Pre-select first item in selection list
  *
@@ -97,12 +79,34 @@ ksort( $attrTypeDeps );
  * @see client/html/catalog/selection/type
  */
 
+
+$enc = $this->encoder();
+$attrDeps = $prodDeps = [];
+$attrItems = map();
+$index = 0;
+
+foreach( $this->get( 'productItems', [] ) as $prodId => $product )
+{
+	$attrItems->replace( $product->getRefItems( 'attribute', null, ['default', 'variant'] ) );
+
+	foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
+	{
+		$attrDeps[$attrId][] = $prodId;
+		$prodDeps[$prodId][] = $attrId;
+	}
+}
+
+$sortfcn = function( $itemA, $itemB ) {
+	return $itemA->getPosition() <=> $itemB->getPosition() ?: $itemA->getName() <=> $itemB->getName();
+};
+
+
 ?>
 <ul class="selection"
 	data-proddeps="<?= $enc->attr( json_encode( $prodDeps ) ) ?>"
 	data-attrdeps="<?= $enc->attr( json_encode( $attrDeps ) ) ?>">
 
-	<?php foreach( $attrTypeDeps as $code => $positions ) : asort( $positions ) ?>
+	<?php foreach( $attrItems->uasort( $sortfcn )->groupBy( 'attribute.type' ) as $code => $list ) : ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ) ?>">
 			<label class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ) ?></label>
@@ -117,7 +121,7 @@ ksort( $attrTypeDeps );
 
 					<ul id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="select-list" data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>">
 
-						<?php foreach( $positions as $attrId => $position ) : ?>
+						<?php foreach( $list as $attrId => $attrItem ) : ?>
 
 							<li class="select-entry">
 								<input class="select-option" type="radio"
@@ -128,7 +132,7 @@ ksort( $attrTypeDeps );
 								>
 								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
 
-									<?php foreach( $attributeItems[$attrId]->getListItems( 'media', 'default', 'icon' ) as $listItem ) : ?>
+									<?php foreach( $attrItem->getListItems( 'media', 'default', 'icon' ) as $listItem ) : ?>
 										<?php if( ( $item = $listItem->getRefItem() ) !== null ) : ?>
 
 											<?= '-->' . $this->partial( $this->config(
@@ -139,7 +143,7 @@ ksort( $attrTypeDeps );
 										<?php endif ?>
 									<?php endforeach ?>
 
-									--><span><?= $enc->html( $attributeItems[$attrId]->getName() ) ?></span><!--
+									--><span><?= $enc->html( $attrItem->getName() ) ?></span><!--
 								--></label>
 							</li>
 
@@ -162,10 +166,10 @@ ksort( $attrTypeDeps );
 
 						<?php endif ?>
 
-						<?php foreach( $positions as $attrId => $position ) : ?>
+						<?php foreach( $list as $attrId => $attrItem ) : ?>
 
 							<option class="select-option" value="<?= $enc->attr( $attrId ) ?>">
-								<?= $enc->html( $attributeItems[$attrId]->getName() ) ?>
+								<?= $enc->html( $attrItem->getName() ) ?>
 							</option>
 
 						<?php endforeach ?>
