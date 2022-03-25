@@ -294,7 +294,6 @@ class Standard
 			}
 		}
 
-
 		/** client/html/catalog/detail/stock/enable
 		 * Enables or disables displaying product stock levels in product detail view
 		 *
@@ -324,8 +323,8 @@ class Standard
 
 		$view->detailMediaItems = $mediaItems;
 		$view->detailProductItem = $productItem;
-		$view->detailAttributeMap = $attrItems->groupBy( 'attribute.type' );
-		$view->detailPropertyMap = $propItems->groupBy( 'product.property.type' );
+		$view->detailAttributeMap = $attrItems->groupBy( 'attribute.type' )->ksort();
+		$view->detailPropertyMap = $propItems->groupBy( 'product.property.type' )->ksort();
 
 		$this->call( 'seen', $productItem );
 
