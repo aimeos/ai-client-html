@@ -106,7 +106,7 @@ $sortfcn = function( $itemA, $itemB ) {
 	data-proddeps="<?= $enc->attr( json_encode( $prodDeps ) ) ?>"
 	data-attrdeps="<?= $enc->attr( json_encode( $attrDeps ) ) ?>">
 
-	<?php foreach( $attrItems->uasort( $sortfcn )->groupBy( 'attribute.type' ) as $code => $list ) : ?>
+	<?php foreach( $attrItems->uasort( $sortfcn )->groupBy( 'attribute.type' )->ksort() as $code => $list ) : ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ) ?>">
 			<label class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ) ?></label>
