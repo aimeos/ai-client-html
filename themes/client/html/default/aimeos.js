@@ -387,32 +387,8 @@ AimeosBasket = {
 
 
 			for(let prodId in map) {
-
 				if(map.hasOwnProperty(prodId) && map[prodId] === len) {
-
-					let newStock = $('.stock-list [data-prodid="' + prodId + '"]', item);
-					let newPrice = $('.price-list [data-prodid="' + prodId + '"]', item);
-
-					if(newStock.length === 0) {
-						newStock = $(".stock-list .articleitem:first-child", item);
-					}
-
-					if(newPrice.length === 0) {
-						newPrice = $(".price-list .articleitem:first-child", item);
-					}
-
-					$(".articleitem", item).removeClass("stock-actual");
-					newStock.addClass("stock-actual");
-
-					$(".articleitem", item).removeClass("price-actual");
-					newPrice.addClass("price-actual");
-
-					if(!(item.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out"))) {
-						stock = true;
-					}
-
-					$(".catalog-detail-additional .subproduct-actual").removeClass("subproduct-actual");
-					$(".catalog-detail-additional .subproduct-" + prodId).addClass("subproduct-actual");
+					AimeosCatalog.toggleVariantData(item, prodId);
 				}
 			}
 
@@ -538,6 +514,40 @@ AimeosBasket = {
 
 			return false;
 		});
+	},
+
+
+	/**
+	 * Shows the variant data for the given product ID and hides the rest
+	 *
+	 * @param {DomNode} item Product node
+	 * @param {string} prodId Product ID
+	 */
+	toggleVariantData(item, prodId) {
+
+		let newStock = $('.stock-list [data-prodid="' + prodId + '"]', item);
+		let newPrice = $('.price-list [data-prodid="' + prodId + '"]', item);
+
+		if(newStock.length === 0) {
+			newStock = $(".stock-list .articleitem:first-child", item);
+		}
+
+		if(newPrice.length === 0) {
+			newPrice = $(".price-list .articleitem:first-child", item);
+		}
+
+		$(".articleitem", item).removeClass("stock-actual");
+		newStock.addClass("stock-actual");
+
+		$(".articleitem", item).removeClass("price-actual");
+		newPrice.addClass("price-actual");
+
+		if(!(item.data("reqstock") && $(".stockitem", newStock).hasClass("stock-out"))) {
+			stock = true;
+		}
+
+		$(".catalog-detail-additional .subproduct-actual").removeClass("subproduct-actual");
+		$(".catalog-detail-additional .subproduct-" + prodId).addClass("subproduct-actual");
 	},
 
 
