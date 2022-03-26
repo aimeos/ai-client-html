@@ -11,8 +11,7 @@ $enc = $this->encoder();
 
 ?>
 <section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
-
-	<nav class="container-xl">
+	<nav class="container-xxl">
 		<ol class="steps">
 
 			<li class="step active basket">
@@ -44,10 +43,8 @@ $enc = $this->encoder();
 		</ol>
 	</nav>
 
-
-	<form class="container-xl" method="<?= $enc->attr( $this->get( 'standardMethod', 'POST' ) ) ?>" action="<?= $enc->attr( $this->get( 'standardUrlNext' ) ) ?>">
+	<form class="container-xxl" method="<?= $enc->attr( $this->get( 'standardMethod', 'POST' ) ) ?>" action="<?= $enc->attr( $this->get( 'standardUrlNext' ) ) ?>">
 		<?= $this->csrf()->formfield() ?>
 		<?= $this->get( 'body' ) ?>
 	</form>
-
 </section>

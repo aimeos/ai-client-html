@@ -77,187 +77,188 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 
 ?>
-<section class="aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
-
 <?php if( !$this->get( 'subscriptionItems', map() )->isEmpty() ) : ?>
 
-	<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h1>
+	<section class="aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+		<div class="container-xxl">
 
-	<div class="subscription-list">
+			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h1>
 
-		<?php foreach( $this->get( 'subscriptionItems', [] ) as $id => $item ) : ?>
+			<div class="subscription-list">
 
-			<div class="subscription-item row"
-				data-url="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', ['sub_action' => 'detail', 'sub_id' => $id] ) ) ?>">
+				<?php foreach( $this->get( 'subscriptionItems', [] ) as $id => $item ) : ?>
 
-				<div class="col-12">
-					<h2 class="subscription-basic">
-						<span class="name">
-							<?= $enc->html( $this->translate( 'client', 'Subscription ID' ), $enc::TRUST ) ?>
-						</span>
-						<span class="value">
-							<?= $enc->html( $id ) ?>
-						</span>
-					</h2>
-				</div>
+					<div class="subscription-item row"
+						data-url="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', ['sub_action' => 'detail', 'sub_id' => $id] ) ) ?>">
 
-				<div class="col-10">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="subscription-created row">
-								<span class="name col-5">
-									<?= $enc->html( $this->translate( 'client', 'Created' ), $enc::TRUST ) ?>
+						<div class="col-12">
+							<h2 class="subscription-basic">
+								<span class="name">
+									<?= $enc->html( $this->translate( 'client', 'Subscription ID' ), $enc::TRUST ) ?>
 								</span>
-								<span class="value col-7">
-									<?= $enc->html( date_create( $item->getTimeCreated() )->format( $dateformat ) ) ?>
+								<span class="value">
+									<?= $enc->html( $id ) ?>
 								</span>
+							</h2>
+						</div>
+
+						<div class="col-10">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="subscription-created row">
+										<span class="name col-5">
+											<?= $enc->html( $this->translate( 'client', 'Created' ), $enc::TRUST ) ?>
+										</span>
+										<span class="value col-7">
+											<?= $enc->html( date_create( $item->getTimeCreated() )->format( $dateformat ) ) ?>
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="subscription-interval row">
+										<span class="name col-5">
+											<?= $enc->html( $this->translate( 'client', 'Interval' ), $enc::TRUST ) ?>
+										</span>
+										<span class="value col-7">
+											<?php if( $interval = $this->get( 'listsIntervalItems', map() )->get( $item->getInterval() ) ) : ?>
+												<?= $enc->html( $interval->getName(), $enc::TRUST ) ?>
+											<?php else : ?>
+												<?= $enc->html( $item->getInterval(), $enc::TRUST ) ?>
+											<?php endif ?>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="subscription-datenext row">
+										<span class="name col-5">
+											<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ) ?>
+										</span>
+										<span class="value col-7">
+											<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
+												<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ) ?>
+											<?php endif ?>
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="subscription-dateend row">
+										<span class="name col-5">
+											<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ) ?>
+										</span>
+										<span class="value col-7">
+											<?php if( ( $date = $item->getDateEnd() ) != null ) : ?>
+												<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ) ?>
+											<?php endif ?>
+										</span>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="subscription-interval row">
-								<span class="name col-5">
-									<?= $enc->html( $this->translate( 'client', 'Interval' ), $enc::TRUST ) ?>
-								</span>
-								<span class="value col-7">
-									<?php if( $interval = $this->get( 'listsIntervalItems', map() )->get( $item->getInterval() ) ) : ?>
-										<?= $enc->html( $interval->getName(), $enc::TRUST ) ?>
+
+						<div class="action col-md-2">
+							<a class="btn btn-secondary show" href="#"><?= $enc->html( $this->translate( 'client', 'Show' ) ) ?></a>
+							<a class="btn btn-secondary close hidden" href="#"><?= $enc->html( $this->translate( 'client', 'Close' ) ) ?></a>
+						</div>
+					</div>
+
+					<div class="account-subscription-detail common-summary col-12">
+
+						<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscription details' ), $enc::TRUST ) ?></h2>
+
+						<div class="common-summary-address row">
+							<div class="item payment col-sm-6">
+								<div class="header">
+									<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h3>
+								</div>
+
+								<div class="content">
+									<?php if( !empty( $item->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
+										<?= $this->partial(
+											/** client/html/account/subscription/summary/address
+											* Location of the address partial template for the account subscription component
+											*
+											* To configure an alternative template for the address partial, you
+											* have to configure its path relative to the template directory
+											* (usually client/html/templates/). It's then used to display the
+											* payment or delivery address block in the account subscription component.
+											*
+											* @param string Relative path to the address partial
+											* @since 2018.04
+											* @see client/html/account/subscription/summary/detail
+											* @see client/html/account/subscription/summary/service
+											*/
+											$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
+											['addresses' => $item->getBaseItem()->getAddress( 'payment' )]
+										) ?>
+									<?php endif ?>
+								</div>
+							</div><!--
+
+							--><div class="item delivery col-sm-6">
+								<div class="header">
+									<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
+								</div>
+
+								<div class="content">
+									<?php if( !empty( $item->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
+										<?= $this->partial(
+											$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
+											['addresses' => $item->getBaseItem()->getAddress( 'delivery' )]
+										) ?>
 									<?php else : ?>
-										<?= $enc->html( $item->getInterval(), $enc::TRUST ) ?>
+										<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
 									<?php endif ?>
-								</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="subscription-datenext row">
-								<span class="name col-5">
-									<?= $enc->html( $this->translate( 'client', 'Next order' ), $enc::TRUST ) ?>
-								</span>
-								<span class="value col-7">
-									<?php if( ( $date = $item->getDateNext() ) != null ) : ?>
-										<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ) ?>
-									<?php endif ?>
-								</span>
+
+
+						<div class="common-summary-detail row">
+							<div class="header">
+								<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="subscription-dateend row">
-								<span class="name col-5">
-									<?= $enc->html( $this->translate( 'client', 'End date' ), $enc::TRUST ) ?>
-								</span>
-								<span class="value col-7">
-									<?php if( ( $date = $item->getDateEnd() ) != null ) : ?>
-										<?= $enc->html( date_create( $date )->format( $dateformat ), $enc::TRUST ) ?>
-									<?php endif ?>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="action col-md-2">
-					<a class="btn btn-secondary show" href="#"><?= $enc->html( $this->translate( 'client', 'Show' ) ) ?></a>
-					<a class="btn btn-secondary close hidden" href="#"><?= $enc->html( $this->translate( 'client', 'Close' ) ) ?></a>
-				</div>
-			</div>
-
-			<div class="account-subscription-detail common-summary col-12">
-
-				<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscription details' ), $enc::TRUST ) ?></h2>
-
-				<div class="common-summary-address row">
-					<div class="item payment col-sm-6">
-						<div class="header">
-							<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h3>
-						</div>
-
-						<div class="content">
-							<?php if( !empty( $item->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
+							<div class="basket">
 								<?= $this->partial(
-									/** client/html/account/subscription/summary/address
-									 * Location of the address partial template for the account subscription component
-									 *
-									 * To configure an alternative template for the address partial, you
-									 * have to configure its path relative to the template directory
-									 * (usually client/html/templates/). It's then used to display the
-									 * payment or delivery address block in the account subscription component.
-									 *
-									 * @param string Relative path to the address partial
-									 * @since 2018.04
-									 * @see client/html/account/subscription/summary/detail
-									 * @see client/html/account/subscription/summary/service
-									 */
-									$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-									['addresses' => $item->getBaseItem()->getAddress( 'payment' )]
+									/** client/html/account/subscription/summary/detail
+									* Location of the detail partial template for the account subscription component
+									*
+									* To configure an alternative template for the detail partial, you
+									* have to configure its path relative to the template directory
+									* (usually client/html/templates/). It's then used to display the
+									* product detail block in the account subscription component.
+									*
+									* @param string Relative path to the detail partial
+									* @since 2018.04
+									* @see client/html/account/subscription/summary/address
+									* @see client/html/account/subscription/summary/service
+									*/
+									$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
+									['summaryBasket' => $item->getBaseItem()]
 								) ?>
-							<?php endif ?>
-						</div>
-					</div><!--
-
-					--><div class="item delivery col-sm-6">
-						<div class="header">
-							<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
+							</div>
 						</div>
 
-						<div class="content">
-							<?php if( !empty( $item->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
-								<?= $this->partial(
-									$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-									['addresses' => $item->getBaseItem()->getAddress( 'delivery' )]
-								) ?>
-							<?php else : ?>
-								<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
+
+						<div class="button-group">
+							<a class="btn btn-secondary close" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url' ) ) ?>">
+								<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
+							</a>
+							<?php if( $item->getDateEnd() == null ) : ?>
+								<?php $params = ['sub_action' => 'cancel', 'sub_id' => $item->getId()] ?>
+								<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params, ['account-subscription'] ) ) ?>">
+									<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
+								</a>
 							<?php endif ?>
 						</div>
 					</div>
-				</div>
 
+				<?php endforeach ?>
 
-				<div class="common-summary-detail row">
-					<div class="header">
-						<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
-					</div>
-
-					<div class="basket">
-						<?= $this->partial(
-							/** client/html/account/subscription/summary/detail
-							 * Location of the detail partial template for the account subscription component
-							 *
-							 * To configure an alternative template for the detail partial, you
-							 * have to configure its path relative to the template directory
-							 * (usually client/html/templates/). It's then used to display the
-							 * product detail block in the account subscription component.
-							 *
-							 * @param string Relative path to the detail partial
-							 * @since 2018.04
-							 * @see client/html/account/subscription/summary/address
-							 * @see client/html/account/subscription/summary/service
-							 */
-							$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
-							['summaryBasket' => $item->getBaseItem()]
-						) ?>
-					</div>
-				</div>
-
-
-				<div class="button-group">
-					<a class="btn btn-secondary close" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url' ) ) ?>">
-						<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
-					</a>
-					<?php if( $item->getDateEnd() == null ) : ?>
-						<?php $params = ['sub_action' => 'cancel', 'sub_id' => $item->getId()] ?>
-						<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params, ['account-subscription'] ) ) ?>">
-							<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
-						</a>
-					<?php endif ?>
-				</div>
 			</div>
-
-		<?php endforeach ?>
-
-	</div>
+		</div>
+	</section>
 
 <?php endif ?>
-
-</section>

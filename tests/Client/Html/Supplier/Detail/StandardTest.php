@@ -60,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos supplier-detail"', $output );
+		$this->assertStringContainsString( '<section class="aimeos supplier-detail"', $output );
 		$this->assertStringContainsString( '<div class="supplier-detail-basic', $output );
 		$this->assertStringContainsString( '<div class="supplier-detail-image', $output );
 

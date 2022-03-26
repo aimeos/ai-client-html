@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<a class="prev"', $output );
 		$this->assertStringContainsString( '<a class="next"', $output );
 
-		$this->assertStringContainsString( '<section class="aimeos catalog-detail"', $output );
+		$this->assertStringContainsString( '<div class="aimeos catalog-detail', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-basic', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-image', $output );
 

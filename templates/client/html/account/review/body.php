@@ -85,107 +85,108 @@
  */
 
 $enc = $this->encoder();
-$productItems = $this->get( 'reviewProductItems', map() );
+;
 
 
 ?>
-<section class="aimeos account-review" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<?php if( !( $productItems = $this->get( 'reviewProductItems', map() ) )->isEmpty() ) : ?>
 
-	<?php if( ( $infos = $this->get( 'reviewInfoList', [] ) ) !== [] ) : ?>
-		<ul class="info-list">
-			<?php foreach( $infos as $info ) : ?>
-				<li class="info-item"><?= $enc->html( $info ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
+	<section class="aimeos account-review" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+		<div class="container-xxl">
 
-	<?php if( !$productItems->isEmpty() ) : ?>
+			<?php if( ( $infos = $this->get( 'reviewInfoList', [] ) ) !== [] ) : ?>
+				<ul class="info-list">
+					<?php foreach( $infos as $info ) : ?>
+						<li class="info-item"><?= $enc->html( $info ) ?></li>
+					<?php endforeach ?>
+				</ul>
+			<?php endif ?>
 
-		<h1 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h1>
+			<h1 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h1>
 
-		<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/review/url' ) ) ?>">
-			<?= $this->csrf()->formfield() ?>
+			<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/review/url' ) ) ?>">
+				<?= $this->csrf()->formfield() ?>
 
-			<?php foreach( $productItems as $prodId => $productItem ) : ?>
-				<?php $images = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
+				<?php foreach( $productItems as $prodId => $productItem ) : ?>
+					<?php $images = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
-				<div class="review-item">
-					<h3 class="review-name"><?= $enc->html( $productItem->getName() ) ?></h3>
-					<input type="hidden" value="<?= $enc->attr( $productItem->get( 'orderProductId' ) ) ?>"
-						name="<?= $enc->attr( $this->formparam( ['review', $prodId, 'review.orderproductid'] ) ) ?>"
-					>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="row">
-								<div class="col-6">
-									<?php if( $image = $images->first() ) : ?>
-										<img class="review-image"
-											sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
-											src="<?= $enc->attr( $this->content( $image->getPreview(), $image->getFileSystem() ) ) ?>"
-											srcset="<?= $enc->attr( $this->imageset( $image->getPreviews(), $image->getFileSystem() ) ) ?>"
-											alt="<?= $enc->attr( $image->getProperties( 'title' )->first() ) ?>"
-										>
-									<?php endif ?>
-								</div>
-								<div class="col-6">
-									<h4><?= $enc->html( $this->translate( 'client', 'Your rating' ) ) ?></h4>
-									<div class="review-rating">
-										<div class="rating-line">
-											<input id="rating-<?= $enc->attr( $prodId ) ?>-5" class="rating rating-5"
-												type="radio" value="5" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 5 ? 'selected' : '' ?>
+					<div class="review-item">
+						<h3 class="review-name"><?= $enc->html( $productItem->getName() ) ?></h3>
+						<input type="hidden" value="<?= $enc->attr( $productItem->get( 'orderProductId' ) ) ?>"
+							name="<?= $enc->attr( $this->formparam( ['review', $prodId, 'review.orderproductid'] ) ) ?>"
+						>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-6">
+										<?php if( $image = $images->first() ) : ?>
+											<img class="review-image"
+												sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
+												src="<?= $enc->attr( $this->content( $image->getPreview(), $image->getFileSystem() ) ) ?>"
+												srcset="<?= $enc->attr( $this->imageset( $image->getPreviews(), $image->getFileSystem() ) ) ?>"
+												alt="<?= $enc->attr( $image->getProperties( 'title' )->first() ) ?>"
 											>
-											<label for="rating-<?= $enc->attr( $prodId ) ?>-5">★★★★★</label>
-										</div>
-										<div class="rating-line">
-											<input id="rating-<?= $enc->attr( $prodId ) ?>-4" class="rating rating-4"
-												type="radio" value="4" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 4 ? 'selected' : '' ?>
-											>
-											<label for="rating-<?= $enc->attr( $prodId ) ?>-4">★★★★</label>
+										<?php endif ?>
+									</div>
+									<div class="col-6">
+										<h4><?= $enc->html( $this->translate( 'client', 'Your rating' ) ) ?></h4>
+										<div class="review-rating">
+											<div class="rating-line">
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-5" class="rating rating-5"
+													type="radio" value="5" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
+													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 5 ? 'selected' : '' ?>
+												>
+												<label for="rating-<?= $enc->attr( $prodId ) ?>-5">★★★★★</label>
 											</div>
-										<div class="rating-line">
-											<input id="rating-<?= $enc->attr( $prodId ) ?>-3" class="rating rating-3"
-												type="radio" value="3" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 3 ? 'selected' : '' ?>
-											>
-											<label for="rating-<?= $enc->attr( $prodId ) ?>-3">★★★</label>
+											<div class="rating-line">
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-4" class="rating rating-4"
+													type="radio" value="4" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
+													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 4 ? 'selected' : '' ?>
+												>
+												<label for="rating-<?= $enc->attr( $prodId ) ?>-4">★★★★</label>
+												</div>
+											<div class="rating-line">
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-3" class="rating rating-3"
+													type="radio" value="3" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
+													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 3 ? 'selected' : '' ?>
+												>
+												<label for="rating-<?= $enc->attr( $prodId ) ?>-3">★★★</label>
+												</div>
+											<div class="rating-line">
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-2" class="rating rating-2"
+													type="radio" value="2" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
+													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 2 ? 'selected' : '' ?>
+												>
+												<label for="rating-<?= $enc->attr( $prodId ) ?>-2">★★</label>
+												</div>
+											<div class="rating-line">
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-1" class="rating rating-1"
+													type="radio" value="1" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
+													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 1 ? 'selected' : '' ?>
+												>
+												<label for="rating-<?= $enc->attr( $prodId ) ?>-1">★</label>
 											</div>
-										<div class="rating-line">
-											<input id="rating-<?= $enc->attr( $prodId ) ?>-2" class="rating rating-2"
-												type="radio" value="2" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 2 ? 'selected' : '' ?>
-											>
-											<label for="rating-<?= $enc->attr( $prodId ) ?>-2">★★</label>
-											</div>
-										<div class="rating-line">
-											<input id="rating-<?= $enc->attr( $prodId ) ?>-1" class="rating rating-1"
-												type="radio" value="1" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
-												<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 1 ? 'selected' : '' ?>
-											>
-											<label for="rating-<?= $enc->attr( $prodId ) ?>-1">★</label>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<h4><?= $enc->html( $this->translate( 'client', 'Your review' ) ) ?></h4>
-							<textarea class="review-comment" maxlength="1024"
-								name="<?= $this->formparam( ['review', $prodId, 'review.comment'] ) ?>"
-								placeholder="<?= $enc->attr( $this->translate( 'client', 'What do you think about the product' ) ) ?>">
-								<?= $enc->html( $this->param( 'review/' . $prodId . '/review.comment' ) ) ?>
-							</textarea>
+							<div class="col-md-6">
+								<h4><?= $enc->html( $this->translate( 'client', 'Your review' ) ) ?></h4>
+								<textarea class="review-comment" maxlength="1024"
+									name="<?= $this->formparam( ['review', $prodId, 'review.comment'] ) ?>"
+									placeholder="<?= $enc->attr( $this->translate( 'client', 'What do you think about the product' ) ) ?>">
+									<?= $enc->html( $this->param( 'review/' . $prodId . '/review.comment' ) ) ?>
+								</textarea>
+							</div>
 						</div>
 					</div>
-				</div>
 
-			<?php endforeach ?>
+				<?php endforeach ?>
 
-			<button class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Submit' ) ) ?></button>
+				<button class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Submit' ) ) ?></button>
 
-		</form>
+			</form>
+		</div>
+	</section>
 
-	<?php endif ?>
-
-</section>
+<?php endif ?>

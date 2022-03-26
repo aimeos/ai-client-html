@@ -30,8 +30,8 @@ $enc = $this->encoder();
 
 ?>
 <section class="aimeos catalog-product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="catalog-product-items container-xxl">
 
-	<div class="catalog-product-items container-xl">
 		<?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 			array(
 				'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
@@ -39,6 +39,6 @@ $enc = $this->encoder();
 				'products' => $this->get( 'productItems', [] ),
 			)
 		) ?>
-	</div>
 
+	</div>
 </section>

@@ -26,7 +26,7 @@ $key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html
 <section class="aimeos catalog-list <?= $enc->attr( $this->get( 'listCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>"
 	data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<div class="container-xl">
+	<div class="container-xxl">
 
 		<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
 
@@ -143,5 +143,4 @@ $key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html
 		<?php endif ?>
 
 	</div>
-
 </section>

@@ -10,99 +10,96 @@ $enc = $this->encoder();
 
 
 ?>
-<section class="aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<?php if( isset( $this->standardBasket ) ) : ?>
 
-	<?php if( isset( $this->standardBasket ) ) : ?>
+	<section class="aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+		<div class="container-xxl">
+			<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
 
-		<h1><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
+			<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
+				<?= $this->csrf()->formfield() ?>
 
-		<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
-			<?= $this->csrf()->formfield() ?>
-
-
-			<div class="common-summary-detail">
-				<div class="header">
-					<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
-				</div>
-
-				<div class="basket">
-					<?= $this->partial(
-						/** client/html/basket/standard/summary/detail
-						 * Location of the detail partial template for the basket standard component
-						 *
-						 * To configure an alternative template for the detail partial, you
-						 * have to configure its path relative to the template directory
-						 * (usually client/html/templates/). It's then used to display the
-						 * product detail block in the basket standard component.
-						 *
-						 * @param string Relative path to the detail partial
-						 * @since 2017.01
-						 */
-						$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail' ),
-						[
-							'summaryEnableModify' => true,
-							'summaryBasket' => $this->standardBasket,
-							'summaryErrorCodes' => $this->get( 'standardErrorCodes', [] )
-						]
-					) ?>
-				</div>
-			</div>
-
-
-			<div class="basket-standard-coupon">
-				<div class="header">
-					<h2><?= $enc->html( $this->translate( 'client', 'Coupon codes' ) ) ?></h2>
-				</div>
-
-				<div class="content">
-					<?php $coupons = $this->standardBasket->getCoupons() ?>
-
-					<div class="input-group coupon-new">
-						<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>" type="text" maxlength="255"><!--
-						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ) ?></button>
+				<div class="common-summary-detail">
+					<div class="header">
+						<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
 					</div>
 
-					<?php if( !$coupons->isEmpty() ) : ?>
-						<ul class="attr-list">
-							<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ) ?>
-							<li class="attr-item">
-								<span class="coupon-code"><?= $enc->html( $code ) ?></span>
-								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
-							</li>
-							<?php endforeach ?>
-						</ul>
-					<?php endif ?>
+					<div class="basket">
+						<?= $this->partial(
+							/** client/html/basket/standard/summary/detail
+							* Location of the detail partial template for the basket standard component
+							*
+							* To configure an alternative template for the detail partial, you
+							* have to configure its path relative to the template directory
+							* (usually client/html/templates/). It's then used to display the
+							* product detail block in the basket standard component.
+							*
+							* @param string Relative path to the detail partial
+							* @since 2017.01
+							*/
+							$this->config( 'client/html/basket/standard/summary/detail', 'common/summary/detail' ),
+							[
+								'summaryEnableModify' => true,
+								'summaryBasket' => $this->standardBasket,
+								'summaryErrorCodes' => $this->get( 'standardErrorCodes', [] )
+							]
+						) ?>
+					</div>
 				</div>
-			</div>
 
+				<div class="basket-standard-coupon">
+					<div class="header">
+						<h2><?= $enc->html( $this->translate( 'client', 'Coupon codes' ) ) ?></h2>
+					</div>
 
-			<div class="button-group">
+					<div class="content">
+						<?php $coupons = $this->standardBasket->getCoupons() ?>
 
-				<?php if( isset( $this->standardBackUrl ) ) : ?>
-					<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->standardBackUrl ) ?>">
-						<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ) ?>
-					</a>
-				<?php endif ?>
+						<div class="input-group coupon-new">
+							<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>" type="text" maxlength="255"><!--
+							--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ) ?></button>
+						</div>
 
-				<button class="btn btn-default btn-lg btn-update" type="submit">
-					<?= $enc->html( $this->translate( 'client', 'Update' ), $enc::TRUST ) ?>
-				</button>
+						<?php if( !$coupons->isEmpty() ) : ?>
+							<ul class="attr-list">
+								<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ) ?>
+								<li class="attr-item">
+									<span class="coupon-code"><?= $enc->html( $code ) ?></span>
+									<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
+								</li>
+								<?php endforeach ?>
+							</ul>
+						<?php endif ?>
+					</div>
+				</div>
 
-				<?php if( $this->get( 'standardCheckout', false ) === true ) : ?>
-					<a class="btn btn-primary btn-lg btn-action"
-						href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url' ) ) ?>">
-						<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ) ?>
-					</a>
-				<?php else : ?>
-					<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1">
-					<button class="btn btn-primary btn-lg btn-action" type="submit">
-						<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ) ?>
+				<div class="button-group">
+
+					<?php if( isset( $this->standardBackUrl ) ) : ?>
+						<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->standardBackUrl ) ?>">
+							<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ) ?>
+						</a>
+					<?php endif ?>
+
+					<button class="btn btn-default btn-lg btn-update" type="submit">
+						<?= $enc->html( $this->translate( 'client', 'Update' ), $enc::TRUST ) ?>
 					</button>
-				<?php endif ?>
 
-			</div>
-		</form>
+					<?php if( $this->get( 'standardCheckout', false ) === true ) : ?>
+						<a class="btn btn-primary btn-lg btn-action"
+							href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url' ) ) ?>">
+							<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ) ?>
+						</a>
+					<?php else : ?>
+						<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1">
+						<button class="btn btn-primary btn-lg btn-action" type="submit">
+							<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ) ?>
+						</button>
+					<?php endif ?>
 
-	<?php endif ?>
+				</div>
+			</form>
+		</div>
+	</section>
 
-</section>
+<?php endif ?>

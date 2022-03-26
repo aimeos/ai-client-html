@@ -9,11 +9,11 @@ $enc = $this->encoder();
 
 
 ?>
-<section class="aimeos basket-related" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<?php if( !$this->get( 'boughtItems', map() )->isEmpty() ) : ?>
 
-	<?php if( !$this->get( 'boughtItems', map() )->isEmpty() ) : ?>
+	<section class="aimeos basket-related" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+		<div class="basket-related-bought container-xxl">
 
-		<section class="basket-related-bought">
 			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ) ?></h2>
 
 			<?= $this->partial(
@@ -26,8 +26,7 @@ $enc = $this->encoder();
 				]
 			) ?>
 
-		</section>
+		</div>
+	</section>
 
-	<?php endif ?>
-
-</section>
+<?php endif ?>

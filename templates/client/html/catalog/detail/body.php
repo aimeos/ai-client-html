@@ -48,11 +48,10 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 ?>
-<section class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<?php if( isset( $this->detailProductItem ) ) : ?>
 
-	<?php if( isset( $this->detailProductItem ) ) : ?>
-
-		<div class="container-xl">
+	<div class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+		<div class="container-xxl">
 
 			<!-- catalog.detail.navigator -->
 			<!-- navigator template added by client -->
@@ -615,7 +614,6 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 			</div>
 
 		</article>
+	</div>
 
-	<?php endif ?>
-
-</section>
+<?php endif ?>

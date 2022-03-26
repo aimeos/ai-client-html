@@ -10,6 +10,7 @@ $enc = $this->encoder();
 
 ?>
 <section class="aimeos checkout-confirm" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="container-xxl">
 
 		<h1><?= $enc->html( $this->translate( 'client', 'Confirmation' ), $enc::TRUST ) ?></h1>
 
@@ -34,6 +35,7 @@ We received your payment and an e-mail with the order details will be sent to yo
 
 		<div class="checkout-confirm-basic">
 			<h2><?= $enc->html( $this->translate( 'client', 'Order status' ), $enc::TRUST ) ?></h2>
+
 			<?php if( isset( $this->confirmOrderItem ) ) : ?>
 				<ul class="attr-list">
 					<li class="form-item">
@@ -55,10 +57,11 @@ We received your payment and an e-mail with the order details will be sent to yo
 					</li>
 				</ul>
 			<?php endif ?>
+
 		</div>
 
-
 		<div class="checkout-confirm-retry">
+
 			<?php if( isset( $this->confirmOrderItem ) && $this->confirmOrderItem->getStatusPayment() < \Aimeos\MShop\Order\Item\Base::PAY_REFUND ) : ?>
 				<div class="button-group">
 					<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['c_step' => 'payment'] ) ) ?>">
@@ -69,6 +72,7 @@ We received your payment and an e-mail with the order details will be sent to yo
 					</a>
 				</div>
 			<?php endif ?>
+
 		</div>
 
 
@@ -168,9 +172,7 @@ We received your payment and an e-mail with the order details will be sent to yo
 						<?php endif ?>
 					</div>
 				</div>
-
 			</div>
-
 
 			<div class="common-summary-additional row">
 				<div class="item coupon col-sm-4">
@@ -238,6 +240,5 @@ We received your payment and an e-mail with the order details will be sent to yo
 			</div>
 
 		</div>
-
 	</div>
 </section>
