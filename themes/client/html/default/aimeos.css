@@ -487,7 +487,7 @@ img {
 footer {
 	color: var(--ai-bg);
 	background-color: var(--ai-primary);
-	padding: 3rem;
+	padding: 3rem 0;
 }
 
 footer .bi{
