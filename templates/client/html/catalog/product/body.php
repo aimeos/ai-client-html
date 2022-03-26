@@ -36,7 +36,6 @@ $enc = $this->encoder();
 			array(
 				'require-stock' => (bool) $this->config( 'client/html/basket/require-stock', true ),
 				'basket-add' => $this->config( 'client/html/catalog/product/basket-add', false ),
-				'productItems' => $this->get( 'productProductItems', [] ),
 				'products' => $this->get( 'productItems', [] ),
 			)
 		) ?>
