@@ -42,7 +42,7 @@
 	width: var(--ai-product-image-width);
 	position: relative;
 	text-align: end;
-	margin: 0 auto;
+	margin: 2rem auto;
 }
 
 .catalog-list .product a {

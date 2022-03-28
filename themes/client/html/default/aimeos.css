@@ -86,6 +86,7 @@ img {
 
 .content > .container:not(.cms-page),
 .content > .container-xl:not(.cms-page),
+.content > .container-xxl:not(.cms-page),
 .content > .container-fluid:not(.cms-page) {
 	padding-top: 1rem;
 	padding-bottom: 4rem;

@@ -289,9 +289,9 @@ aside .catalog-filter section {
 	background-color: var(--ai-secondary);
 	border-radius: var(--ai-radius);
 	cursor: ew-resize;
-	height: 1.5rem;
-	width: 1.5rem;
-	margin-top: -0.7rem;
+	height: 1rem;
+	width: 1rem;
+	margin-top: -0.4rem;
 }
 
 .catalog-filter-price input[type=range]::-moz-range-track {
@@ -310,8 +310,8 @@ aside .catalog-filter section {
 	background-color: var(--ai-secondary);
 	border-radius: var(--ai-radius);
 	cursor: pointer;
-	height: 1.5rem;
-	width: 1.5rem;
+	height: 1rem;
+	width: 1rem;
 }
 
 .catalog-filter-price input[type=range]::-ms-track {
@@ -341,8 +341,8 @@ aside .catalog-filter section {
 	border-radius: var(--ai-radius);
 	border: none;
 	cursor: pointer;
-	height: 1.5rem;
-	width: 1.5rem;
+	height: 1rem;
+	width: 1rem;
 }
 
 .catalog-filter-price input[type=range]:focus::-ms-fill-lower {
