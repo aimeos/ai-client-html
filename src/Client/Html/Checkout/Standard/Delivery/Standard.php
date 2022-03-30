@@ -150,6 +150,12 @@ class Standard
 						$item->value = $oservice->getAttribute( $key . '/hidden', 'delivery' ) ?: $value;
 					}
 				}
+				else
+				{
+					foreach( $attr as $key => $item ) {
+						$item->value = is_array( $item->getDefault() ) ? key( $item->getDefault() ) : $item->getDefault();
+					}
+				}
 
 				$services[$id] = $provider->getServiceItem()->set( 'attributes', $attr )
 					->set( 'price', $provider->calcPrice( $basket ) );
