@@ -91,7 +91,6 @@ $selectfcn = function( $list, $key, $value ) {
 
 $addr = $this->get( 'addressBilling', [] );
 $pos = 0;
-$url =htmlspecialchars($_SERVER['HTTP_REFERER']);
 
 
 ?>
@@ -99,19 +98,6 @@ $url =htmlspecialchars($_SERVER['HTTP_REFERER']);
 
 <section class="aimeos account-profile" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 	<div class="container-xxl">
-
-		<div class="account-salutation">
-
-			<span class="header profile"><?= $enc->html( $this->translate( 'client', 'Profile' ) ) ?></span>
-			<p class="profile-salutation">
-				<?= $enc->html( $this->translate( 'client', 'Welcome' ) ) ?>,
-				<?= $enc->attr( $this->value( $addr, 'customer.firstname' ) ) ?>
-			</p>
-
-			<a href="<?=$url?>" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Back' ) ) ?></a>
-
-		</div>
-
 		<div class="account-profile-address">
 
 			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'address' ) ) ?></h1>
