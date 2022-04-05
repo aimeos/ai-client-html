@@ -95,10 +95,9 @@ $url =htmlspecialchars($_SERVER['HTTP_REFERER']);
 
 
 ?>
+<?php if( isset( $this->profileItem ) ) : ?>
+
 <section class="aimeos account-profile" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
-
-	<?php if( isset( $this->profileItem ) ) : ?>
-
 	<div class="container-xxl">
 
 		<div class="account-salutation">
