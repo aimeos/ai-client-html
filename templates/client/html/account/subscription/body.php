@@ -77,10 +77,11 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 
 ?>
-<?php if( !$this->get( 'subscriptionItems', map() )->isEmpty() ) : ?>
+<section class="aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<section class="aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
-		<div class="container-xxl">
+	<div class="container-xxl">
+
+		<?php if( !$this->get( 'subscriptionItems', map() )->isEmpty() ) : ?>
 
 			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h1>
 
@@ -161,97 +162,98 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 							<a class="btn btn-secondary show" href="#"><?= $enc->html( $this->translate( 'client', 'Show' ) ) ?></a>
 							<a class="btn btn-secondary close hidden" href="#"><?= $enc->html( $this->translate( 'client', 'Close' ) ) ?></a>
 						</div>
-					</div>
 
-					<div class="account-subscription-detail common-summary col-12">
 
-						<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscription details' ), $enc::TRUST ) ?></h2>
+						<div class="account-subscription-detail common-summary col-12">
 
-						<div class="common-summary-address row">
-							<div class="item payment col-sm-6">
+							<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscription details' ), $enc::TRUST ) ?></h2>
+
+							<div class="common-summary-address row">
+								<div class="item payment col-sm-6">
+									<div class="header">
+										<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h3>
+									</div>
+
+									<div class="content">
+										<?php if( !empty( $item->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
+											<?= $this->partial(
+												/** client/html/account/subscription/summary/address
+												 * Location of the address partial template for the account subscription component
+												 *
+												 * To configure an alternative template for the address partial, you
+												 * have to configure its path relative to the template directory
+												 * (usually client/html/templates/). It's then used to display the
+												 * payment or delivery address block in the account subscription component.
+												 *
+												 * @param string Relative path to the address partial
+												 * @since 2018.04
+												 * @see client/html/account/subscription/summary/detail
+												 * @see client/html/account/subscription/summary/service
+												 */
+												$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
+												['addresses' => $item->getBaseItem()->getAddress( 'payment' )]
+											) ?>
+										<?php endif ?>
+									</div>
+								</div><!--
+
+								--><div class="item delivery col-sm-6">
+									<div class="header">
+										<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
+									</div>
+
+									<div class="content">
+										<?php if( !empty( $item->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
+											<?= $this->partial(
+												$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
+												['addresses' => $item->getBaseItem()->getAddress( 'delivery' )]
+											) ?>
+										<?php else : ?>
+											<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
+										<?php endif ?>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="common-summary-detail row">
 								<div class="header">
-									<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h3>
+									<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
 								</div>
 
-								<div class="content">
-									<?php if( !empty( $item->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
-										<?= $this->partial(
-											/** client/html/account/subscription/summary/address
-											 * Location of the address partial template for the account subscription component
-											 *
-											 * To configure an alternative template for the address partial, you
-											 * have to configure its path relative to the template directory
-											 * (usually client/html/templates/). It's then used to display the
-											 * payment or delivery address block in the account subscription component.
-											 *
-											 * @param string Relative path to the address partial
-											 * @since 2018.04
-											 * @see client/html/account/subscription/summary/detail
-											 * @see client/html/account/subscription/summary/service
-											 */
-											$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-											['addresses' => $item->getBaseItem()->getAddress( 'payment' )]
-										) ?>
-									<?php endif ?>
-								</div>
-							</div><!--
-
-							--><div class="item delivery col-sm-6">
-								<div class="header">
-									<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
-								</div>
-
-								<div class="content">
-									<?php if( !empty( $item->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
-										<?= $this->partial(
-											$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-											['addresses' => $item->getBaseItem()->getAddress( 'delivery' )]
-										) ?>
-									<?php else : ?>
-										<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
-									<?php endif ?>
+								<div class="basket">
+									<?= $this->partial(
+										/** client/html/account/subscription/summary/detail
+										 * Location of the detail partial template for the account subscription component
+										 *
+										 * To configure an alternative template for the detail partial, you
+										 * have to configure its path relative to the template directory
+										 * (usually client/html/templates/). It's then used to display the
+										 * product detail block in the account subscription component.
+										 *
+										 * @param string Relative path to the detail partial
+										 * @since 2018.04
+										 * @see client/html/account/subscription/summary/address
+										 * @see client/html/account/subscription/summary/service
+										 */
+										$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
+										['summaryBasket' => $item->getBaseItem()]
+									) ?>
 								</div>
 							</div>
-						</div>
 
 
-						<div class="common-summary-detail row">
-							<div class="header">
-								<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
-							</div>
-
-							<div class="basket">
-								<?= $this->partial(
-									/** client/html/account/subscription/summary/detail
-									 * Location of the detail partial template for the account subscription component
-									 *
-									 * To configure an alternative template for the detail partial, you
-									 * have to configure its path relative to the template directory
-									 * (usually client/html/templates/). It's then used to display the
-									 * product detail block in the account subscription component.
-									 *
-									 * @param string Relative path to the detail partial
-									 * @since 2018.04
-									 * @see client/html/account/subscription/summary/address
-									 * @see client/html/account/subscription/summary/service
-									 */
-									$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
-									['summaryBasket' => $item->getBaseItem()]
-								) ?>
-							</div>
-						</div>
-
-
-						<div class="button-group">
-							<a class="btn btn-secondary close" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url' ) ) ?>">
-								<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
-							</a>
-							<?php if( $item->getDateEnd() == null ) : ?>
-								<?php $params = ['sub_action' => 'cancel', 'sub_id' => $item->getId()] ?>
-								<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params, ['account-subscription'] ) ) ?>">
-									<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
+							<div class="button-group">
+								<a class="btn btn-secondary close" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url' ) ) ?>">
+									<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
 								</a>
-							<?php endif ?>
+								<?php if( $item->getDateEnd() == null ) : ?>
+									<?php $params = ['sub_action' => 'cancel', 'sub_id' => $item->getId()] ?>
+									<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params, ['account-subscription'] ) ) ?>">
+										<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
+									</a>
+								<?php endif ?>
+							</div>
 						</div>
 					</div>
 
