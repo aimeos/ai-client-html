@@ -81,13 +81,13 @@ class Standard
 			throw new \Aimeos\Client\Html\Exception( $context->translate( 'client', 'No order ID available in session' ) );
 		}
 
-		$parts = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-		$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
-		$basket = $controller->load( $view->confirmOrderItem->getBaseId(), $parts, false );
+		$ref = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 
+		$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $id, false );
+		$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $order->getBaseId(), $ref, false );
+
+		$view->confirmOrderItem = $order;
 		$view->summaryBasket = $basket;
-		$view->confirmOrderItem = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $id, false );
-
 
 		return parent::data( $view, $tags, $expire );
 	}
