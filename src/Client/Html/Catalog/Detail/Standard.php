@@ -198,41 +198,7 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$context = $this->context();
-		$config = $context->config();
-
-		/** client/html/catalog/detail/prodid-default
-		 * The default product ID used if none is given as parameter
-		 *
-		 * To display a product detail view or a part of it for a specific
-		 * product, you can configure its ID using this setting. This is
-		 * most useful in a CMS where the product ID can be configured
-		 * separately for each content node.
-		 *
-		 * @param string Product ID
-		 * @since 2016.01
-		 * @see client/html/catalog/detail/prodid-default
-		 * @see client/html/catalog/lists/catid-default
-		 */
-		$id = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
-
-		/** client/html/catalog/detail/prodcode-default
-		 * The default product code used if none is given as parameter
-		 *
-		 * To display a product detail view or a part of it for a specific
-		 * product, you can configure its code using this setting. This is
-		 * most useful in a CMS where the product code can be configured
-		 * separately for each content node.
-		 *
-		 * @param string Product code
-		 * @since 2019.10
-		 * @see client/html/catalog/detail/prodid-default
-		 * @see client/html/catalog/lists/catid-default
-		 */
-		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
-
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $this->domains() );
-		$productItem = ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $view->param( 'd_name' ) ) ) );
+		$productItem = $this->product( $view );
 
 		$propItems = $productItem->getPropertyItems();
 		$supItems = $productItem->getRefItems( 'supplier', null, 'default' );
@@ -261,37 +227,11 @@ class Standard
 			}
 		}
 
-		/** client/html/catalog/detail/stock/enable
-		 * Enables or disables displaying product stock levels in product detail view
-		 *
-		 * This configuration option allows shop owners to display product
-		 * stock levels for each product in the detail views or to disable
-		 * fetching product stock information.
-		 *
-		 * The stock information is fetched via AJAX and inserted via Javascript.
-		 * This allows to cache product items by leaving out such highly
-		 * dynamic content like stock levels which changes with each order.
-		 *
-		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
-		 * @since 2014.03
-		 * @see client/html/catalog/lists/stock/enable
-		 * @see client/html/catalog/stock/url/target
-		 * @see client/html/catalog/stock/url/controller
-		 * @see client/html/catalog/stock/url/action
-		 * @see client/html/catalog/stock/url/config
-		 */
-
-		if( (bool) $view->config( 'client/html/catalog/detail/stock/enable', true ) === true )
-		{
-			$products = $productItem->getRefItems( 'product', null, 'default' )->push( $productItem );
-			$view->detailStockUrl = $this->getStockUrl( $view, $products );
-		}
-
-
 		$view->detailMediaItems = $mediaItems;
 		$view->detailProductItem = $productItem;
 		$view->detailAttributeMap = $attrItems->groupBy( 'attribute.type' )->ksort();
 		$view->detailPropertyMap = $propItems->groupBy( 'product.property.type' )->ksort();
+		$view->detailStockUrl = $this->stockUrl( $productItem );
 
 		$this->call( 'seen', $productItem );
 
@@ -412,6 +352,52 @@ class Standard
 
 
 	/**
+	 * Returns the product item
+	 *
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
+	 * @return \Aimeos\MShop\Product\Item\Iface Product item
+	 */
+	protected function product( \Aimeos\Base\View\Iface $view ) : \Aimeos\MShop\Product\Item\Iface
+	{
+		$context = $this->context();
+		$config = $context->config();
+
+		/** client/html/catalog/detail/prodid-default
+		 * The default product ID used if none is given as parameter
+		 *
+		 * To display a product detail view or a part of it for a specific
+		 * product, you can configure its ID using this setting. This is
+		 * most useful in a CMS where the product ID can be configured
+		 * separately for each content node.
+		 *
+		 * @param string Product ID
+		 * @since 2016.01
+		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/lists/catid-default
+		 */
+		$id = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
+
+		/** client/html/catalog/detail/prodcode-default
+		 * The default product code used if none is given as parameter
+		 *
+		 * To display a product detail view or a part of it for a specific
+		 * product, you can configure its code using this setting. This is
+		 * most useful in a CMS where the product code can be configured
+		 * separately for each content node.
+		 *
+		 * @param string Product code
+		 * @since 2019.10
+		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/lists/catid-default
+		 */
+		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
+
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $this->domains() );
+		return ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $view->param( 'd_name' ) ) ) );
+	}
+
+
+	/**
 	 * Adds the product to the list of last seen products.
 	 *
 	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item
@@ -464,5 +450,42 @@ class Standard
 		}
 
 		$session->set( 'aimeos/catalog/session/seen/list', $lastSeen->put( $id, $lastSeen->pull( $id ) )->all() );
+	}
+
+
+	/**
+	 * Returns the URL for fetching stock levels
+	 *
+	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item
+	 * @return \Aimeos\Map List of stock URLs
+	 */
+	protected function stockUrl( \Aimeos\MShop\Product\Item\Iface $productItem ) : \Aimeos\Map
+	{
+		/** client/html/catalog/detail/stock/enable
+		 * Enables or disables displaying product stock levels in product detail view
+		 *
+		 * This configuration option allows shop owners to display product
+		 * stock levels for each product in the detail views or to disable
+		 * fetching product stock information.
+		 *
+		 * The stock information is fetched via AJAX and inserted via Javascript.
+		 * This allows to cache product items by leaving out such highly
+		 * dynamic content like stock levels which changes with each order.
+		 *
+		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
+		 * @since 2014.03
+		 * @see client/html/catalog/lists/stock/enable
+		 * @see client/html/catalog/stock/url/target
+		 * @see client/html/catalog/stock/url/controller
+		 * @see client/html/catalog/stock/url/action
+		 * @see client/html/catalog/stock/url/config
+		 */
+		if( !$this->context()->config()->get( 'client/html/catalog/detail/stock/enable', true ) ) {
+			return null;
+		}
+
+		$products = $productItem->getRefItems( 'product', null, 'default' )->push( $productItem );
+
+		return $this->getStockUrl( $this->view(), $products );
 	}
 }
