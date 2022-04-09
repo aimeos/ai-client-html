@@ -200,39 +200,6 @@ class Standard
 	{
 		$context = $this->context();
 		$config = $context->config();
-		$domains = [
-			'attribute', 'attribute/property', 'catalog', 'media', 'media/property', 'price',
-			'product', 'product/property', 'supplier', 'supplier/address', 'text'
-		];
-
-		/** client/html/catalog/domains
-		 * A list of domain names whose items should be available in the catalog view templates
-		 *
-		 * @see client/html/catalog/detail/domains
-		 */
-		$domains = $config->get( 'client/html/catalog/domains', $domains );
-
-		/** client/html/catalog/detail/domains
-		 * A list of domain names whose items should be available in the product detail view template
-		 *
-		 * The templates rendering product details usually add the images,
-		 * prices, texts, attributes, products, etc. associated to the product
-		 * item. If you want to display additional or less content, you can
-		 * configure your own list of domains (attribute, media, price, product,
-		 * text, etc. are domains) whose items are fetched from the storage.
-		 * Please keep in mind that the more domains you add to the configuration,
-		 * the more time is required for fetching the content!
-		 *
-		 * Since version 2014.05 this configuration option overwrites the
-		 * "client/html/catalog/domains" option that allows to configure the
-		 * domain names of the items fetched for all catalog related data.
-		 *
-		 * @param array List of domain names
-		 * @since 2014.03
-		 * @see client/html/catalog/domains
-		 * @see client/html/catalog/lists/domains
-		 */
-		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
 
 		/** client/html/catalog/detail/prodid-default
 		 * The default product ID used if none is given as parameter
@@ -264,7 +231,7 @@ class Standard
 		 */
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $this->domains() );
 		$productItem = ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $view->param( 'd_name' ) ) ) );
 
 		$propItems = $productItem->getPropertyItems();
@@ -329,6 +296,54 @@ class Standard
 		$this->call( 'seen', $productItem );
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the data domains fetched along with the products
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		$context = $this->context();
+		$config = $context->config();
+
+		$domains = [
+			'attribute', 'attribute/property', 'catalog', 'media', 'media/property', 'price',
+			'product', 'product/property', 'supplier', 'supplier/address', 'text'
+		];
+
+		/** client/html/catalog/domains
+		 * A list of domain names whose items should be available in the catalog view templates
+		 *
+		 * @see client/html/catalog/detail/domains
+		 */
+		$domains = $config->get( 'client/html/catalog/domains', $domains );
+
+		/** client/html/catalog/detail/domains
+		 * A list of domain names whose items should be available in the product detail view template
+		 *
+		 * The templates rendering product details usually add the images,
+		 * prices, texts, attributes, products, etc. associated to the product
+		 * item. If you want to display additional or less content, you can
+		 * configure your own list of domains (attribute, media, price, product,
+		 * text, etc. are domains) whose items are fetched from the storage.
+		 * Please keep in mind that the more domains you add to the configuration,
+		 * the more time is required for fetching the content!
+		 *
+		 * Since version 2014.05 this configuration option overwrites the
+		 * "client/html/catalog/domains" option that allows to configure the
+		 * domain names of the items fetched for all catalog related data.
+		 *
+		 * @param array List of domain names
+		 * @since 2014.03
+		 * @see client/html/catalog/domains
+		 * @see client/html/catalog/lists/domains
+		 */
+		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
+
+		return $domains;
 	}
 
 

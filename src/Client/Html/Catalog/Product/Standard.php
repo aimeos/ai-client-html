@@ -122,36 +122,6 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 
-		/** client/html/catalog/product/domains
-		 * A list of domain names whose items should be available in the catalog product view template
-		 *
-		 * The templates rendering product lists usually add the images, prices
-		 * and texts associated to each product item. If you want to display additional
-		 * content like the product attributes, you can configure your own list of
-		 * domains (attribute, media, price, product, text, etc. are domains)
-		 * whose items are fetched from the storage. Please keep in mind that
-		 * the more domains you add to the configuration, the more time is required
-		 * for fetching the content!
-		 *
-		 * This configuration option overwrites the "client/html/catalog/domains"
-		 * option that allows to configure the domain names of the items fetched
-		 * for all catalog related data.
-		 *
-		 * @param array List of domain names
-		 * @since 2019.06
-		 * @see client/html/catalog/domains
-		 * @see client/html/catalog/detail/domains
-		 * @see client/html/catalog/stage/domains
-		 * @see client/html/catalog/lists/domains
-		 */
-		$domains = ['catalog', 'media', 'media/property', 'price', 'supplier', 'text'];
-		$domains = $config->get( 'client/html/catalog/domains', $domains );
-		$domains = $config->get( 'client/html/catalog/product/domains', $domains );
-
-		if( $config->get( 'client/html/catalog/product/basket-add', false ) ) {
-			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
-		}
-
 		/** client/html/catalog/product/product-codes
 		 * List of codes of products to load for the current list.
 		 * Should be set dynamically through some integration plugin,
@@ -165,7 +135,7 @@ class Standard
 		$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
 			->compare( '==', 'product.code', $productCodes )
 			->slice( 0, count( $productCodes ) )
-			->uses( $domains )
+			->uses( $this->domains() )
 			->search();
 
 		// Sort products by the order given in the configuration "client/html/catalog/product/product-codes".
@@ -214,6 +184,50 @@ class Standard
 		$view->productTotal = count( $products );
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the data domains fetched along with the products
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		$context = $this->context();
+		$config = $context->config();
+
+		/** client/html/catalog/product/domains
+		 * A list of domain names whose items should be available in the catalog product view template
+		 *
+		 * The templates rendering product lists usually add the images, prices
+		 * and texts associated to each product item. If you want to display additional
+		 * content like the product attributes, you can configure your own list of
+		 * domains (attribute, media, price, product, text, etc. are domains)
+		 * whose items are fetched from the storage. Please keep in mind that
+		 * the more domains you add to the configuration, the more time is required
+		 * for fetching the content!
+		 *
+		 * This configuration option overwrites the "client/html/catalog/domains"
+		 * option that allows to configure the domain names of the items fetched
+		 * for all catalog related data.
+		 *
+		 * @param array List of domain names
+		 * @since 2019.06
+		 * @see client/html/catalog/domains
+		 * @see client/html/catalog/detail/domains
+		 * @see client/html/catalog/stage/domains
+		 * @see client/html/catalog/lists/domains
+		 */
+		$domains = ['catalog', 'media', 'media/property', 'price', 'supplier', 'text'];
+		$domains = $config->get( 'client/html/catalog/domains', $domains );
+		$domains = $config->get( 'client/html/catalog/product/domains', $domains );
+
+		if( $config->get( 'client/html/catalog/product/basket-add', false ) ) {
+			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
+		}
+
+		return $domains;
 	}
 
 

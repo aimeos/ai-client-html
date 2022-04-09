@@ -106,52 +106,7 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 
-		/** client/html/catalog/home/domains
-		 * A list of domain names whose items should be available in the catalog home view template
-		 *
-		 * The templates rendering home lists usually add the images, prices
-		 * and texts associated to each home item. If you want to display additional
-		 * content like the home attributes, you can configure your own list of
-		 * domains (attribute, media, price, home, text, etc. are domains)
-		 * whose items are fetched from the storage. Please keep in mind that
-		 * the more domains you add to the configuration, the more time is required
-		 * for fetching the content!
-		 *
-		 * This configuration option overwrites the "client/html/catalog/domains"
-		 * option that allows to configure the domain names of the items fetched
-		 * for all catalog related data.
-		 *
-		 * @param array List of domain names
-		 * @since 2020.10
-		 * @see client/html/catalog/domains
-		 * @see client/html/catalog/detail/domains
-		 * @see client/html/catalog/stage/domains
-		 * @see client/html/catalog/lists/domains
-		 */
-		$domains = ['catalog', 'media', 'media/property', 'price', 'supplier', 'text', 'product' => ['promotion']];
-		$domains = $config->get( 'client/html/catalog/domains', $domains );
-		$domains = $config->get( 'client/html/catalog/home/domains', $domains );
-
-		/** client/html/catalog/home/basket-add
-		 * Display the "add to basket" button for each product item in the catalog home component
-		 *
-		 * Enables the button for adding products to the basket for the listed products.
-		 * This works for all type of products, even for selection products with product
-		 * variants and product bundles. By default, also optional attributes are
-		 * displayed if they have been associated to a product.
-		 *
-		 * @param boolean True to display the button, false to hide it
-		 * @since 2020.10
-		 * @see client/html/catalog/lists/basket-add
-		 * @see client/html/catalog/detail/basket-add
-		 * @see client/html/basket/related/basket-add
-		 * @see client/html/catalog/product/basket-add
-		 */
-		if( $config->get( 'client/html/catalog/home/basket-add', false ) ) {
-			$domains = array_merge_recursive( $domains, ['attribute' => ['variant', 'custom', 'config']] );
-		}
-
-		$tree = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
+		$tree = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $this->domains() )
 			->getTree( \Aimeos\Controller\Frontend\Catalog\Iface::LIST );
 
 
@@ -201,6 +156,65 @@ class Standard
 		$view->homeTree = $tree;
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the data domains fetched along with the products
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		$context = $this->context();
+		$config = $context->config();
+
+		/** client/html/catalog/home/domains
+		 * A list of domain names whose items should be available in the catalog home view template
+		 *
+		 * The templates rendering home lists usually add the images, prices
+		 * and texts associated to each home item. If you want to display additional
+		 * content like the home attributes, you can configure your own list of
+		 * domains (attribute, media, price, home, text, etc. are domains)
+		 * whose items are fetched from the storage. Please keep in mind that
+		 * the more domains you add to the configuration, the more time is required
+		 * for fetching the content!
+		 *
+		 * This configuration option overwrites the "client/html/catalog/domains"
+		 * option that allows to configure the domain names of the items fetched
+		 * for all catalog related data.
+		 *
+		 * @param array List of domain names
+		 * @since 2020.10
+		 * @see client/html/catalog/domains
+		 * @see client/html/catalog/detail/domains
+		 * @see client/html/catalog/stage/domains
+		 * @see client/html/catalog/lists/domains
+		 */
+		$domains = ['catalog', 'media', 'media/property', 'price', 'supplier', 'text', 'product' => ['promotion']];
+		$domains = $config->get( 'client/html/catalog/domains', $domains );
+		$domains = $config->get( 'client/html/catalog/home/domains', $domains );
+
+		/** client/html/catalog/home/basket-add
+		 * Display the "add to basket" button for each product item in the catalog home component
+		 *
+		 * Enables the button for adding products to the basket for the listed products.
+		 * This works for all type of products, even for selection products with product
+		 * variants and product bundles. By default, also optional attributes are
+		 * displayed if they have been associated to a product.
+		 *
+		 * @param boolean True to display the button, false to hide it
+		 * @since 2020.10
+		 * @see client/html/catalog/lists/basket-add
+		 * @see client/html/catalog/detail/basket-add
+		 * @see client/html/basket/related/basket-add
+		 * @see client/html/catalog/product/basket-add
+		 */
+		if( $config->get( 'client/html/catalog/home/basket-add', false ) ) {
+			$domains = array_merge_recursive( $domains, ['attribute' => ['variant', 'custom', 'config']] );
+		}
+
+		return $domains;
 	}
 
 

@@ -54,6 +54,37 @@ class Standard
 		 */
 		$size = $config->get( 'client/html/basket/related/bought/limit', 6 );
 
+
+		$prodIds = $basket->getProducts()
+			->concat( $basket->getProducts()->getProducts() )
+			->col( 'order.base.product.parentproductid' )
+			->unique()->all();
+
+		$view->boughtItems = $cntl->uses( $this->domains() )->product( $prodIds )->search()
+			->getListItems( 'product', 'bought-together' )
+			->flat( 1 )
+			->usort( function( $a, $b ) {
+				return $a->getPosition() <=> $b->getPosition();
+			} )
+			->getRefItem()
+			->filter()
+			->slice( 0, $size )
+			->col( null, 'product.id' );
+
+		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the data domains fetched along with the products
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		$context = $this->context();
+		$config = $context->config();
+
 		/** client/html/basket/related/bought/domains
 		 * The list of domain names whose items should be available in the template for the products
 		 *
@@ -87,27 +118,11 @@ class Standard
 		 * @see client/html/catalog/detail/basket-add
 		 * @see client/html/catalog/product/basket-add
 		 */
-		if( $view->config( 'client/html/basket/related/basket-add', false ) ) {
+		if( $config->get( 'client/html/basket/related/basket-add', false ) ) {
 			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
 		}
 
-		$prodIds = $basket->getProducts()
-			->concat( $basket->getProducts()->getProducts() )
-			->col( 'order.base.product.parentproductid' )
-			->unique()->all();
-
-		$view->boughtItems = $cntl->uses( $domains )->product( $prodIds )->search()
-			->getListItems( 'product', 'bought-together' )
-			->flat( 1 )
-			->usort( function( $a, $b ) {
-				return $a->getPosition() <=> $b->getPosition();
-			} )
-			->getRefItem()
-			->filter()
-			->slice( 0, $size )
-			->col( null, 'product.id' );
-
-		return parent::data( $view, $tags, $expire );
+		return $domains;
 	}
 
 
