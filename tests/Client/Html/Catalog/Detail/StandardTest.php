@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<title>Cafe Noire Expresso Test supplier | Aimeos</title>', $output );
 		$this->assertStringContainsString( '<script defer src="http://baseurl/Catalog/stock/?st_pid', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 6, count( $tags ) );
+		$this->assertEquals( 7, count( $tags ) );
 	}
 
 
@@ -100,7 +100,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="catalog-detail-supplier', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 6, count( $tags ) );
+		$this->assertEquals( 7, count( $tags ) );
 
 		$result = $this->context->session()->get( 'aimeos/catalog/session/seen/list' );
 		$this->assertIsArray( $result );
@@ -226,8 +226,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
 		}
 
-		$this->assertEquals( null, $expire );
-		$this->assertEquals( 5, count( $tags ) );
+		$this->assertEquals( '2098-01-01 00:00:00', $expire );
+		$this->assertEquals( 6, count( $tags ) );
 	}
 
 

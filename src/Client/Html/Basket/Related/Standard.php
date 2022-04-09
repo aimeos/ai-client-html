@@ -68,7 +68,8 @@ class Standard
 		 * @param array List of domain names
 		 * @since 2014.09
 		 */
-		$domains = $config->get( 'client/html/basket/related/bought/domains', ['text', 'price', 'media'] );
+		$domains = ['catalog', 'media', 'media/property', 'price', 'supplier', 'text'];
+		$domains = $config->get( 'client/html/basket/related/bought/domains', $domains );
 		$domains['product'] = ['bought-together'];
 
 		/** client/html/basket/related/basket-add
