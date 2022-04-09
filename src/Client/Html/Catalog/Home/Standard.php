@@ -128,7 +128,7 @@ class Standard
 		 * @see client/html/catalog/stage/domains
 		 * @see client/html/catalog/lists/domains
 		 */
-		$domains = ['media', 'media/property', 'price', 'text', 'product' => ['promotion']];
+		$domains = ['catalog', 'media', 'media/property', 'price', 'supplier', 'text', 'product' => ['promotion']];
 		$domains = $config->get( 'client/html/catalog/domains', $domains );
 		$domains = $config->get( 'client/html/catalog/home/domains', $domains );
 

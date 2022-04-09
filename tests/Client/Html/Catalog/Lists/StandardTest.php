@@ -46,7 +46,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<title>Kaffee | Aimeos</title>', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 5, count( $tags ) );
+		$this->assertEquals( 6, count( $tags ) );
 	}
 
 
@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 5, count( $tags ) );
+		$this->assertEquals( 6, count( $tags ) );
 	}
 
 

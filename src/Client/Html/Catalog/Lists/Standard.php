@@ -369,6 +369,7 @@ class Standard
 	protected function domains() : array
 	{
 		$config = $this->context()->config();
+		$domains = ['catalog', 'media', 'media/property', 'price', 'supplier', 'text'];
 
 		/** client/html/catalog/domains
 		 * A list of domain names whose items should be available in the catalog view templates
@@ -393,7 +394,7 @@ class Standard
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
 		 */
-		$domains = $config->get( 'client/html/catalog/domains', ['media', 'media/property', 'price', 'text'] );
+		$domains = $config->get( 'client/html/catalog/domains', $domains );
 
 		/** client/html/catalog/lists/domains
 		 * A list of domain names whose items should be available in the product list view template

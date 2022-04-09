@@ -201,8 +201,8 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 		$domains = [
-			'attribute', 'media', 'media/property', 'price', 'product',
-			'product/property', 'supplier', 'supplier/address', 'text'
+			'attribute', 'attribute/property', 'catalog', 'media', 'media/property', 'price',
+			'product', 'product/property', 'supplier', 'supplier/address', 'text'
 		];
 
 		/** client/html/catalog/domains
