@@ -281,7 +281,7 @@ abstract class Base
 	/**
 	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given item.
 	 *
-	 * @param array|\Aimeos\MShop\Common\Item\Iface $items Item or list of items, maybe with associated list items
+	 * @param \Aimeos\MShop\Common\Item\Iface|iterable $items Item or list of items, maybe with associated list items
 	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
 	 * @param array &$tags List of tags the new tags will be added to
 	 * @param array $custom List of custom tags which are added too
