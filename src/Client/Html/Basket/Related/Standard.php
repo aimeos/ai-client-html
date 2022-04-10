@@ -31,36 +31,11 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$context = $this->context();
-		$config = $context->config();
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'product' );
 
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' );
-		$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get();
-
-		/** client/html/basket/related/bought/limit
-		 * Number of items in the list of bought together products
-		 *
-		 * This option limits the number of suggested products in the
-		 * list of bought together products. The suggested items are
-		 * calculated using the products that are in the current basket
-		 * of the customer.
-		 *
-		 * Note: You need to start the job controller for calculating
-		 * the bought together products regularly to get up to date
-		 * product suggestions.
-		 *
-		 * @param integer Number of products
-		 * @since 2014.09
-		 */
-		$size = $config->get( 'client/html/basket/related/bought/limit', 6 );
-
-
-		$prodIds = $basket->getProducts()
-			->concat( $basket->getProducts()->getProducts() )
-			->col( 'order.base.product.parentproductid' )
-			->unique()->all();
-
-		$view->boughtItems = $cntl->uses( $this->domains() )->product( $prodIds )->search()
+		$view->boughtItems = $cntl->uses( $this->domains() )
+			->product( $this->productIds()->all() )
+			->search()
 			->getListItems( 'product', 'bought-together' )
 			->flat( 1 )
 			->usort( function( $a, $b ) {
@@ -68,7 +43,7 @@ class Standard
 			} )
 			->getRefItem()
 			->filter()
-			->slice( 0, $size )
+			->slice( 0, $this->size() )
 			->col( null, 'product.id' );
 
 		return parent::data( $view, $tags, $expire );
@@ -82,8 +57,7 @@ class Standard
 	 */
 	protected function domains() : array
 	{
-		$context = $this->context();
-		$config = $context->config();
+		$config = $this->context()->config();
 
 		/** client/html/basket/related/bought/domains
 		 * The list of domain names whose items should be available in the template for the products
@@ -123,6 +97,48 @@ class Standard
 		}
 
 		return $domains;
+	}
+
+
+	/**
+	 * Returns the IDs of the products in the basket
+	 *
+	 * @return \Aimeos\Map List of product IDs
+	 */
+	protected function productIds() : \Aimeos\Map
+	{
+		$basket = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->get();
+
+		return $basket->getProducts()
+			->concat( $basket->getProducts()->getProducts() )
+			->col( 'order.base.product.parentproductid' )
+			->unique();
+	}
+
+
+	/**
+	 * Returns the number of products shown in the list
+	 *
+	 * @return int Number of products
+	 */
+	protected function size() : int
+	{
+		/** client/html/basket/related/bought/limit
+		 * Number of items in the list of bought together products
+		 *
+		 * This option limits the number of suggested products in the
+		 * list of bought together products. The suggested items are
+		 * calculated using the products that are in the current basket
+		 * of the customer.
+		 *
+		 * Note: You need to start the job controller for calculating
+		 * the bought together products regularly to get up to date
+		 * product suggestions.
+		 *
+		 * @param integer Number of products
+		 * @since 2014.09
+		 */
+		return $this->context()->config()->get( 'client/html/basket/related/bought/limit', 6 );
 	}
 
 
