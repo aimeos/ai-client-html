@@ -144,6 +144,8 @@ class Standard
 			return $productCodesOrder[$a->getCode()] - $productCodesOrder[$b->getCode()];
 		} );
 
+		$productItems = $products->copy();
+
 		if( $config->get( 'client/html/catalog/product/basket-add', false ) )
 		{
 			foreach( $products as $product )
@@ -154,34 +156,12 @@ class Standard
 			}
 		}
 
-		/** client/html/catalog/product/stock/enable
-		 * Enables or disables displaying product stock levels in product list views
-		 *
-		 * This configuration option allows shop owners to display product
-		 * stock levels for each product in list views or to disable
-		 * fetching product stock information.
-		 *
-		 * The stock information is fetched via AJAX and inserted via Javascript.
-		 * This allows to cache product items by leaving out such highly
-		 * dynamic content like stock levels which changes with each order.
-		 *
-		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
-		 * @since 2019.06
-		 * @see client/html/catalog/detail/stock/enable
-		 * @see client/html/catalog/stock/url/target
-		 * @see client/html/catalog/stock/url/controller
-		 * @see client/html/catalog/stock/url/action
-		 * @see client/html/catalog/stock/url/config
-		 */
-		if( !$products->isEmpty() && (bool) $config->get( 'client/html/catalog/product/stock/enable', true ) === true ) {
-			$view->itemsStockUrl = $this->getStockUrl( $view, $products->union( $productItems ) );
-		}
-
 		// Delete cache when products are added or deleted even when in "tag-all" mode
-		$this->addMetaItems( $products->union( $productItems ), $expire, $tags, ['product'] );
+		$this->addMetaItems( $productItems, $expire, $tags, ['product'] );
 
 		$view->productItems = $products;
 		$view->productTotal = count( $products );
+		$view->itemsStockUrl = $this->stockUrl( $productItems );
 
 		return parent::data( $view, $tags, $expire );
 	}
@@ -194,8 +174,7 @@ class Standard
 	 */
 	protected function domains() : array
 	{
-		$context = $this->context();
-		$config = $context->config();
+		$config = $this->context()->config();
 
 		/** client/html/catalog/product/domains
 		 * A list of domain names whose items should be available in the catalog product view template
@@ -228,6 +207,45 @@ class Standard
 		}
 
 		return $domains;
+	}
+
+
+	/**
+	 * Returns the list of stock URLs for the given products
+	 *
+	 * @param \Aimeos\Map $products List of products
+	 * @return \Aimeos\Map List of stock URLs
+	 */
+	protected function stockUrl( \Aimeos\Map $products ) : \Aimeos\Map
+	{
+		$config = $this->context()->config();
+
+		/** client/html/catalog/product/stock/enable
+		 * Enables or disables displaying product stock levels in product list views
+		 *
+		 * This configuration option allows shop owners to display product
+		 * stock levels for each product in list views or to disable
+		 * fetching product stock information.
+		 *
+		 * The stock information is fetched via AJAX and inserted via Javascript.
+		 * This allows to cache product items by leaving out such highly
+		 * dynamic content like stock levels which changes with each order.
+		 *
+		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
+		 * @since 2019.06
+		 * @see client/html/catalog/detail/stock/enable
+		 * @see client/html/catalog/stock/url/target
+		 * @see client/html/catalog/stock/url/controller
+		 * @see client/html/catalog/stock/url/action
+		 * @see client/html/catalog/stock/url/config
+		 */
+		$enabled = $config->get( 'client/html/catalog/product/stock/enable', true );
+
+		if( !$enabled || $products->isEmpty() ) {
+			return map();
+		}
+
+		return $this->getStockUrl( $this->view(), $products );
 	}
 
 
