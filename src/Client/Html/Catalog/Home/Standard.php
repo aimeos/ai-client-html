@@ -103,10 +103,7 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$context = $this->context();
-		$config = $context->config();
-
-		$tree = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $this->domains() )
+		$tree = \Aimeos\Controller\Frontend::create( $this->context(), 'catalog' )->uses( $this->domains() )
 			->getTree( \Aimeos\Controller\Frontend\Catalog\Iface::LIST );
 
 		// Delete cache when products are added or deleted even when in "tag-all" mode

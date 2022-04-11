@@ -118,7 +118,6 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$productItems = map();
 		$context = $this->context();
 		$config = $context->config();
 
