@@ -25,7 +25,8 @@ $pos = 0;
 					<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
 
 						<div class="thumbnail">
-							<img class="item-thumb img-<?= $index ?>" src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+							<img class="item-thumb img-<?= $index ?>"  data-index="<?= $enc->attr( $pos++ ) ?>"
+								src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 								alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
 							>
 						</div>
@@ -50,7 +51,7 @@ $pos = 0;
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
 				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
-					<div class="media-item" data-index="<?= $enc->attr( $pos++ ) ?>">
+					<div class="media-item">
 						<?= $this->image( $mediaItem, '(min-width: 2000px) 1920px, (min-width: 500px) 960px, 100vw' ) ?>
 					</div>
 				<?php endforeach ?>

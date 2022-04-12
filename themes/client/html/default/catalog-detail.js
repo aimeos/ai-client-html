@@ -207,9 +207,9 @@ AimeosCatalogDetail = {
 	onSelectThumbnail() {
 
 		$(".catalog-detail-image .thumbs img").on("click", (ev) => {
-		    const index = $(ev.currentTarget).index();
+		    const index = $(ev.currentTarget).data('index');
 		    const sliderElement = document.querySelector('.catalog-detail-image div:first-child');
-		    swiffyslider.slideTo(sliderElement, index)
+		    swiffyslider.slideTo(sliderElement, index);
 		});
 	},
 

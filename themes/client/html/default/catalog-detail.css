@@ -81,8 +81,9 @@
 
 /* Product detail, social section / action buttons */
 
-.catalog-detail .detail-social-tools {
+.catalog-detail .catalog-detail-actions {
 	justify-content: space-between;
+	flex-wrap: wrap;
 	display: flex;
 }
 
