@@ -11,7 +11,7 @@
 	margin: 8px 15px;
 }
 
-.account-review .todo-item {
+.account-review .review-item {
 	padding: 1rem;
 }
 
@@ -23,20 +23,20 @@
 	padding-top: 1rem;
 }
 
-.account-review .todo-image {
+.account-review .review-image {
 	max-width: 100%;
 	max-height: 10rem;
 }
 
-.account-review .todo-rating input {
+.account-review .review-rating input {
 	vertical-align: middle;
 }
 
-.account-review .todo-rating input:checked ~ label {
+.account-review .review-rating input:checked ~ label {
 	color: var(--ai-primary);
 }
 
-.account-review .todo-comment {
+.account-review .review-comment {
 	width: 100%;
 	height: 8.5rem;
 	padding: 0.5rem;
