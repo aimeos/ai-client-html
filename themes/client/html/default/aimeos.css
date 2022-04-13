@@ -821,21 +821,16 @@ body > .content, body .main-section {
 	font-weight: bold;
 }
 
-.aimeos .product .supplier {
-	margin: 0.5rem 0 0;
-	text-align: end;
-	line-height: 1;
-}
+/* ratings + supplier */
 
-.aimeos .product .catalog-detail-basic .supplier {
-	margin: 0rem 0 1rem;
-	text-align: start;
+.aimeos .product .product-info {
+	display: flex;
+	margin-top: 0.5rem;
+	justify-content: space-between;
 }
-
-/* ratings */
 
 .aimeos .product .rating {
-	text-align: end;
+	margin-inline-start: auto;
 	display: block;
 }
 
@@ -905,7 +900,7 @@ body > .content, body .main-section {
 .aimeos .product .text-list {
 	display: block;
 	color: var(--ai-secondary);
-	letter-spacing: 1.5px;
+	margin-top: 0.5rem;
 	overflow: hidden;
 }
 
@@ -946,6 +941,7 @@ body > .content, body .main-section {
 
 .aimeos .product .stock-list {
 	display: inline-block;
+	margin: 0 1rem;
 }
 
 .aimeos .product .stockitem {

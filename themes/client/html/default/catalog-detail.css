@@ -160,6 +160,11 @@
 	padding-bottom: 0.5rem;
 }
 
+.catalog-detail-basic .supplier {
+	margin: 0rem 0 1rem;
+	text-align: start;
+}
+
 .catalog-detail-basic .supplier,
 .catalog-detail-basic .site,
 .catalog-detail-basic .code {
