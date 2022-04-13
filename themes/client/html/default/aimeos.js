@@ -388,7 +388,7 @@ AimeosBasket = {
 
 			for(let prodId in map) {
 				if(map.hasOwnProperty(prodId) && map[prodId] === len) {
-					AimeosCatalog.toggleVariantData(item, prodId);
+					stock = AimeosCatalog.toggleVariantData(item, prodId);
 				}
 			}
 
@@ -437,7 +437,7 @@ AimeosBasket = {
 
 			elem.closest(".product").find(".image-single .item").each((idx, el) => {
 				if($(el).data("variant-" + type) == value) {
-					swiffyslider.slideTo($(el).closest(".swiffy-slider")[0], $(el).closest(".media-item").data('index'))
+					swiffyslider.slideTo($(el).closest(".swiffy-slider")[0], idx)
 				}
 			});
 		});
@@ -522,9 +522,11 @@ AimeosBasket = {
 	 *
 	 * @param {DomNode} item Product node
 	 * @param {string} prodId Product ID
+	 * @return {bool} TRUE if stock is available, FALSE for no stock
 	 */
 	toggleVariantData(item, prodId) {
 
+		let stock = false;
 		let newStock = $('.stock-list [data-prodid="' + prodId + '"]', item);
 		let newPrice = $('.price-list [data-prodid="' + prodId + '"]', item);
 
@@ -548,6 +550,8 @@ AimeosBasket = {
 
 		$(".catalog-detail-additional .subproduct-actual").removeClass("subproduct-actual");
 		$(".catalog-detail-additional .subproduct-" + prodId).addClass("subproduct-actual");
+
+		return stock;
 	},
 
 
