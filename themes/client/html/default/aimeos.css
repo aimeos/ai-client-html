@@ -744,16 +744,15 @@ body > .content, body .main-section {
 }
 
 .navbar-nav .login > .nav-link::after {
-	position: absolute;
-	top: 0.25rem;
-	right: 0;
+	display: none;
 }
 
 .navbar-nav .register > .nav-link::before {
 	content: "\f4dd";
 }
 
-.navbar-nav .dropdown-menu {
+.navbar-nav .dropdown-menu,
+.navbar-nav .nav-link {
 	color: var(--ai-bg);
 }
 
