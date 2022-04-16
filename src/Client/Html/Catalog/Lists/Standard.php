@@ -357,7 +357,7 @@ class Standard
 		$catids = $this->view()->param( 'f_catid', $this->context()->config()->get( 'client/html/catalog/lists/catid-default' ) );
 		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
 
-		return (array) $catids;
+		return array_filter( (array) $catids );
 	}
 
 
