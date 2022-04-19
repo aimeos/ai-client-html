@@ -310,7 +310,6 @@ class Standard
 			$html = $this->modifyHeader( $html, $uid );
 		}
 
-		self::$headerSingleton = true;
 		return $html;
 	}
 
