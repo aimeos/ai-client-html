@@ -43,13 +43,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeaderSingleton()
-	{
-		$this->object->header();
-		$this->assertEquals( '', $this->object->header() );
-	}
-
-
 	public function testBody()
 	{
 		$tags = [];
