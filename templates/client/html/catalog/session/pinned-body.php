@@ -89,7 +89,7 @@ $enc = $this->encoder();
 ?>
 <?php $this->block()->start( 'catalog/session/pinned' ) ?>
 <section class="catalog-session-pinned">
-	<div class="container-xl">
+	<div class="container-xxl">
 		<h2 class="header pinned">
 			<?= $this->translate( 'client', 'Pinned products' ) ?>
 			<?php if( $this->config( 'client/html/catalog/session/pinned/count/enable', true ) ) : ?>
