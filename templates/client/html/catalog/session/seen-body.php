@@ -26,7 +26,7 @@ $enc = $this->encoder();
 ?>
 <?php $this->block()->start( 'catalog/session/seen' ) ?>
 <section class="catalog-session-seen">
-	<div class="container-xl">
+	<div class="container-xxl">
 		<h2 class="header">
 			<?= $this->translate( 'client', 'Last seen' ) ?>
 			<?php if( $this->config( 'client/html/catalog/session/seen/count/enable', true ) ) : ?>
