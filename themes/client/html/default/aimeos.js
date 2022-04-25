@@ -605,7 +605,7 @@ AimeosPage = {
 	/**
 	 * Menu transition
 	 */
-	onMenuScroll: function() {
+	onMenuScroll() {
 
 		const height = parseFloat($(".navbar").outerHeight());
 		const relHeight = parseFloat(getComputedStyle(document.documentElement).fontSize) * 4; // 4rem in px
