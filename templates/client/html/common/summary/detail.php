@@ -145,7 +145,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php endif ?>
 
 		<?php foreach( $list as $position => $product ) : $totalQuantity += $product->getQuantity() ?>
-			<div class="row g-0 product <?= ( isset( $errors['product'][$position] ) ? 'error' : '' ) ?>">
+			<div class="row g-0 product-item <?= ( isset( $errors['product'][$position] ) ? 'error' : '' ) ?>">
 				<div class="col-4 col-md-6">
 					<div class="row g-0">
 						<div class="status col-1">
