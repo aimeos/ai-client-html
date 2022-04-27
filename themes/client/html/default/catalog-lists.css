@@ -178,11 +178,6 @@
 	font-weight: bold;
 }
 
-.catalog-list.list .price-item .rebatepercent {
-	transform: translateX(100%);
-	right: 100%;
-}
-
 /* product attributes */
 
 .catalog-list-items:not(.list) .items-selection,
