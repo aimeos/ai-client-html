@@ -161,7 +161,7 @@ $enc = $this->encoder();
 							<a class="btn btn-secondary close hidden" href="#"><?= $enc->html( $this->translate( 'client', 'Close' ) ) ?></a>
 						</div>
 
-						<div class="account-history-detail common-summary col-12">
+						<div class="account-history-detail common-summary col-12" style="display: none">
 
 							<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Order details' ), $enc::TRUST ) ?></h2>
 

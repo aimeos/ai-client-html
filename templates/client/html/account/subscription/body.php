@@ -163,7 +163,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 						</div>
 					</div>
 
-					<div class="account-subscription-detail common-summary col-12">
+					<div class="account-subscription-detail common-summary col-12" style="display: none">
 
 						<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscription details' ), $enc::TRUST ) ?></h2>
 
