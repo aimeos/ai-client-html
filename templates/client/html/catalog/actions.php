@@ -39,6 +39,7 @@ $list = $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'fav
 			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
 			<input type="hidden" name="<?= $this->formparam( 'pin_action' ) ?>" value="add" />
 			<input type="hidden" name="<?= $this->formparam( 'pin_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
+			<input type="hidden" name="<?= $this->formparam( 'd_prodid' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
 			<input type="hidden" name="<?= $this->formparam( 'd_name' ) ?>" value="<?= $this->productItem->getName( 'url' ) ?>" />
 			<button class="actions-button actions-button-pin" title="<?= $enc->attr( $this->translate( 'client/code', 'pin' ) ) ?>"></button>
 		</form>
@@ -49,6 +50,7 @@ $list = $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'fav
 			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
 			<input type="hidden" name="<?= $this->formparam( 'wat_action' ) ?>" value="add" />
 			<input type="hidden" name="<?= $this->formparam( 'wat_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
+			<input type="hidden" name="<?= $this->formparam( 'd_prodid' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
 			<input type="hidden" name="<?= $this->formparam( 'd_name' ) ?>" value="<?= $this->productItem->getName( 'url' ) ?>" />
 			<button class="actions-button actions-button-watch" title="<?= $enc->attr( $this->translate( 'client/code', 'watch' ) ) ?>"></button>
 		</form>
@@ -59,6 +61,7 @@ $list = $this->config( 'client/html/catalog/actions/list', ['pin', 'watch', 'fav
 			<!-- catalog.detail.csrf --><?= $this->csrf()->formfield() ?><!-- catalog.detail.csrf -->
 			<input type="hidden" name="<?= $this->formparam( 'fav_action' ) ?>" value="add" />
 			<input type="hidden" name="<?= $this->formparam( 'fav_id' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
+			<input type="hidden" name="<?= $this->formparam( 'd_prodid' ) ?>" value="<?= $enc->attr( $this->productItem->getId() ) ?>" />
 			<input type="hidden" name="<?= $this->formparam( 'd_name' ) ?>" value="<?= $this->productItem->getName( 'url' ) ?>" />
 			<button class="actions-button actions-button-favorite" title="<?= $enc->attr( $this->translate( 'client/code', 'favorite' ) ) ?>"></button>
 		</form>
