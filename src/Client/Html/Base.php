@@ -636,7 +636,8 @@ abstract class Base
 	 */
 	protected function logException( \Exception $e )
 	{
-		$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
+		$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString() . PHP_EOL;
+		$msg .= print_r( $this->view()->request()->getServerParams(), true );
 		$this->context->logger()->warning( $msg, 'client/html' );
 	}
 
