@@ -335,6 +335,7 @@
 .catalog-detail-basket .select-item {
 	margin-top: 1rem;
 	list-style: none;
+	padding: 0;
 }
 
 .catalog-detail-basket .catalog-detail-basket-selection .selection div:first-of-type {
