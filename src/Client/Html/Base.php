@@ -637,8 +637,8 @@ abstract class Base
 	 */
 	protected function logException( \Exception $e, int $level = \Aimeos\Base\Logger\Iface::WARN )
 	{
-		$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString() . PHP_EOL;
-		$msg .= print_r( $this->view()->request()->getServerParams(), true );
+		$uri = $this->view()->request()->getServerParams()['REQUEST_URI'] ?? '';
+		$msg = ( $uri ? $uri . PHP_EOL : '' ) . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
 		$this->context->logger()->log( $msg, $level, 'client/html' );
 	}
 
