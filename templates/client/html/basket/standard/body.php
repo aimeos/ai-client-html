@@ -57,18 +57,21 @@ $enc = $this->encoder();
 
 						<div class="input-group coupon-new">
 							<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>" type="text" maxlength="255"><!--
-							--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', '+' ) ) ?></button>
+							--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', 'Apply' ) ) ?></button>
 						</div>
 
 						<?php if( !$coupons->isEmpty() ) : ?>
-							<ul class="attr-list">
-								<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ) ?>
-								<li class="attr-item">
-									<span class="coupon-code"><?= $enc->html( $code ) ?></span>
-									<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
-								</li>
-								<?php endforeach ?>
-							</ul>
+							<div class="coupon-detail">
+								<p class="name"><?= $enc->html( $this->translate( 'client', 'Coupons' ) ) ?>:</p>
+								<ul class="attr-list">
+									<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ) ?>
+									<li class="attr-item">
+										<span class="coupon-code"><?= $enc->html( $code ) ?></span>
+										<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
+									</li>
+									<?php endforeach ?>
+								</ul>
+							</div>
 						<?php endif ?>
 					</div>
 				</div>

@@ -102,7 +102,7 @@ $enc = $this->encoder();
 							</h2>
 						</div>
 
-						<div class="col-10">
+						<div class="col-12 col-md-10">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="order-created row">
@@ -156,7 +156,7 @@ $enc = $this->encoder();
 							</div>
 						</div>
 
-						<div class="action col-2">
+						<div class="action col-12 col-md-2">
 							<a class="btn btn-secondary show" href="#"><?= $enc->html( $this->translate( 'client', 'Show' ) ) ?></a>
 							<a class="btn btn-secondary close hidden" href="#"><?= $enc->html( $this->translate( 'client', 'Close' ) ) ?></a>
 						</div>

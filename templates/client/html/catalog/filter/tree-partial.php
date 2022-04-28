@@ -154,6 +154,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 						<?php if( $item->getLevel() == 1 ) : ?>
 
 							<a class="cat-img <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
+								title="<?= $enc->attr( $item->getRefItems( 'media', 'menu', 'default' )->getProperties( 'title' )->first() ?: $item->getName() ) ?>"
 								href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
 
 								<?php foreach( $item->getRefItems( 'media', 'menu', 'default' ) as $mediaItem ) : ?>

@@ -29,7 +29,7 @@ $enc = $this->encoder();
 
 	<?php foreach( $this->get( 'addressDeliveryValues', [] ) as $id => $addr ) : ?>
 
-		<div class="item-address">
+		<div class="item-address item-default">
 			<div class="header">
 				<a class="modify minibutton delete"
 					href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">

@@ -12,11 +12,11 @@ $enc = $this->encoder();
 ?>
 <?php $this->block()->start( 'checkout/standard/address/billing' ) ?>
 <div class="checkout-standard-address-billing col-xs-12 col-xl">
+
 	<h2><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h2>
 
-
 	<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ) : ?>
-		<div class="item-address">
+		<div class="item-address item-default">
 			<div class="header">
 				<input id="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" type="radio"
 					name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ) ?>"
