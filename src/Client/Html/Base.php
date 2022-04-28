@@ -633,12 +633,13 @@ abstract class Base
 	 * Writes the exception details to the log
 	 *
 	 * @param \Exception $e Exception object
+	 * @param int $level Log level of the exception
 	 */
-	protected function logException( \Exception $e )
+	protected function logException( \Exception $e, int $level = \Aimeos\Base\Logger\Iface::WARN )
 	{
 		$msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString() . PHP_EOL;
 		$msg .= print_r( $this->view()->request()->getServerParams(), true );
-		$this->context->logger()->warning( $msg, 'client/html' );
+		$this->context->logger()->log( $msg, $level, 'client/html' );
 	}
 
 

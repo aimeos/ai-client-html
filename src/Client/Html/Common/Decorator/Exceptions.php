@@ -72,7 +72,7 @@ class Exceptions extends Base implements Iface
 		try {
 			return $this->client()->header( $uid );
 		} catch( \Exception $e ) {
-			$this->logException( $e );
+			$this->logException( $e, \Aimeos\Base\Logger\Iface::NOTICE );
 		}
 
 		return null;
