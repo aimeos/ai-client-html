@@ -111,7 +111,6 @@ $enc = $this->encoder();
 					<?php $images = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
 					<div class="review-item">
-						<h3 class="review-name"><?= $enc->html( $productItem->getName() ) ?></h3>
 						<input type="hidden" value="<?= $enc->attr( $productItem->get( 'orderProductId' ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( ['review', $prodId, 'review.orderproductid'] ) ) ?>"
 						>
@@ -129,6 +128,7 @@ $enc = $this->encoder();
 										<?php endif ?>
 									</div>
 									<div class="col-6">
+										<h3 class="review-name"><?= $enc->html( $productItem->getName() ) ?></h3>
 										<h4><?= $enc->html( $this->translate( 'client', 'Your rating' ) ) ?></h4>
 										<div class="review-rating">
 											<div class="rating-line">

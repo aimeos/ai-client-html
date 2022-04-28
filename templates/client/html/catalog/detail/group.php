@@ -18,29 +18,31 @@ $enc = $this->encoder();
 <div class="selection">
 
 	<div class="row">
-		<div class="select-media"></div>
-		<div class="col-4 col-lg-3 offset-lg-3 select-name"><?= $enc->html( $this->translate( 'client', 'Name' ) ) ?></div>
-		<div class="col-4 col-lg-3 select-attr"><?= $enc->html( $this->translate( 'client', 'Variant' ) ) ?></div>
+		<div class="col-2 select-media"></div>
+		<div class="col-3 select-name"><?= $enc->html( $this->translate( 'client', 'Name' ) ) ?></div>
+		<div class="col-4 select-attr"><?= $enc->html( $this->translate( 'client', 'Variant' ) ) ?></div>
 		<div class="col-1 select-stock"><?= $enc->html( $this->translate( 'client', 'Stock' ) ) ?></div>
-		<div class="col-3 col-lg-2 select-quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
+		<div class="col-2 select-quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
 	</div>
 
 	<?php foreach( $this->get( 'productItems', [] ) as $id => $product ) : ?>
 
 		<div class="row select-item">
 
-			<div class="col-4 col-lg-3 select-media">
+			<div class="col-2">
 				<?php if( ( $mediaItem = $product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
-					<img class="media-image"
-						src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
-						alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-						sizes="160px"
-					>
+					<div class="select-media">
+						<img class="media-image"
+							src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+							srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+							alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
+							sizes="160px"
+						>
+					</div>
 				<?php endif ?>
 			</div>
 
-			<div class="col-4 col-lg-3 select-name">
+			<div class="col-4 select-name">
 				<h2><?= $enc->html( $product->getName() ) ?></h2>
 
 				<input type="hidden"
@@ -49,7 +51,7 @@ $enc = $this->encoder();
 				>
 			</div>
 
-			<div class="col-4 col-lg-3 select-attr">
+			<div class="col-4 select-attr">
 				<ul class="attr-list">
 					<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
 						<li class="attr-item">
@@ -66,7 +68,7 @@ $enc = $this->encoder();
 
 			<div class="col-1 select-stock" data-prodid="<?= $enc->attr( $id ) ?>"></div>
 
-			<div class="col-3 col-lg-2 select-quantity">
+			<div class="col-2 select-quantity">
 				<input type="number" class="form-control" placeholder="0"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
 					min="1" max="2147483647" step="1" value="">
