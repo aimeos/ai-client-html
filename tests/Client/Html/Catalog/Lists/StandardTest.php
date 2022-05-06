@@ -244,6 +244,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testBodySearchPrice()
+	{
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_price' => 20 ) );
+		$this->view->addHelper( 'param', $helper );
+
+		$output = $this->object->body();
+
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+	}
+
+
+	public function testBodySearchRadius()
+	{
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_point' => [52.5, 10], 'f_dist' => 115 ) );
+		$this->view->addHelper( 'param', $helper );
+
+		$output = $this->object->body();
+
+		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+	}
+
+
 	public function testInit()
 	{
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'l_type' => 'list' ) );

@@ -239,6 +239,7 @@ class Standard
 			->text( $view->param( 'f_search' ) )
 			->price( $view->param( 'f_price' ) )
 			->category( $catIds, 'default', $this->level() )
+			->radius( $view->param( 'f_point', [] ), $view->param( 'f_dist' ) )
 			->supplier( $this->suppliers() )
 			->allOf( $this->attributes() )
 			->allOf( $view->param( 'f_attrid', [] ) )
