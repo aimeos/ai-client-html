@@ -68,7 +68,7 @@ $enc = $this->encoder();
 			<td class="select-quantity">
 				<input type="number" class="form-control" placeholder="0"
 					name="<?= $enc->attr( $this->formparam( ['b_prod', $id, 'quantity'] ) ) ?>"
-					min="1" max="2147483647" step="1" value="">
+					min="0" max="2147483647" step="1" value="">
 			</td>
 
 		</tr>
