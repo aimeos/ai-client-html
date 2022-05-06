@@ -50,6 +50,7 @@ class Standard
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
 				->category( $view->param( 'f_catid', $startid ), 'default', $level )
+				->radius( $view->param( 'f_point', [] ), $view->param( 'f_dist' ) )
 				->supplier( $view->param( 'f_supid', [] ) )
 				->allof( $view->param( 'f_attrid', [] ) )
 				->oneOf( $view->param( 'f_optid', [] ) )

@@ -59,6 +59,7 @@ class Standard
 
 			$tree = $cntl->getTree();
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				->radius( $view->param( 'f_point', [] ), $view->param( 'f_dist' ) )
 				->category( $tree->toList()->keys()->toArray() )
 				->supplier( $view->param( 'f_supid', [] ) )
 				->allof( $view->param( 'f_attrid', [] ) )
