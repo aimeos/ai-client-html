@@ -31,8 +31,8 @@ class Factory
 	 */
 	public static function create( \Aimeos\MShop\ContextIface $context, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
-		/** client/html/catalog/attribute/name
-		 * Class name of the used catalog attribute client implementation
+		/** client/html/catalog/price/name
+		 * Class name of the used catalog price client implementation
 		 *
 		 * Each default HTML client can be replace by an alternative imlementation.
 		 * To use this implementation, you have to set the last part of the class
@@ -45,11 +45,11 @@ class Factory
 		 *
 		 * and you want to replace it with your own version named
 		 *
-		 *  \Aimeos\Client\Html\Catalog\Price\Myattribute
+		 *  \Aimeos\Client\Html\Catalog\Price\Myprice
 		 *
 		 * then you have to set the this configuration option:
 		 *
-		 *  client/html/catalog/attribute/name = Myattribute
+		 *  client/html/catalog/price/name = Myprice
 		 *
 		 * The value is the last part of your own class name and it's case sensitive,
 		 * so take care that the configuration value is exactly named like the last
@@ -64,7 +64,7 @@ class Factory
 		 * @since 2018.04
 		 */
 		if( $name === null ) {
-			$name = $context->config()->get( 'client/html/catalog/attribute/name', 'Standard' );
+			$name = $context->config()->get( 'client/html/catalog/price/name', 'Standard' );
 		}
 
 		$iface = '\\Aimeos\\Client\\Html\\Iface';
@@ -75,7 +75,7 @@ class Factory
 		}
 
 		$client = self::createClient( $context, $classname, $iface );
-		$client = self::addClientDecorators( $context, $client, 'catalog/attribute' );
+		$client = self::addClientDecorators( $context, $client, 'catalog/price' );
 
 		return $client->setObject( $client );
 	}
