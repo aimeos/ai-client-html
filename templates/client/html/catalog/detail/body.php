@@ -262,9 +262,9 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 										<?php if( $this->detailProductItem->getType() !== 'group' ) : ?>
 											<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
 												name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ) ?>"
-												step="<?= $this->detailProductItem->getScale() ?>"
-												min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
-												value="<?= $this->detailProductItem->getScale() ?>" required="required"
+												step="<?= $enc->attr( $this->detailProductItem->getScale() ) ?>"
+												min="<?= $enc->attr( $this->detailProductItem->getScale() ) ?>" max="2147483647"
+												value="<?= $enc->attr( $this->detailProductItem->getScale() ) ?>" required="required"
 												title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
 											>
 										<?php endif ?>

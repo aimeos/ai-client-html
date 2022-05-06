@@ -229,9 +229,12 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									&nbsp;
 								<?php endif ?>
 
-								<input class="value" type="text"
+								<input class="value" type="number" required="required"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'quantity' ) ) ) ?>"
-									value="<?= $enc->attr( $product->getQuantity() ) ?>" maxlength="10" required="required" size="1"
+									value="<?= $enc->attr( $product->getQuantity() ) ?>"
+									step="<?= $enc->attr( $product->getScale() ) ?>"
+									min="<?= $enc->attr( $product->getScale() ) ?>"
+									max="2147483647"
 								>
 								<input type="hidden" type="text"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'position' ) ) ) ?>"
