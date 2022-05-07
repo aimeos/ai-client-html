@@ -337,7 +337,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 								<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 									<a class="nav-link nav-characteristics" id="nav-characteristics-tab" data-bs-toggle="tab" data-bs-target="#nav-characteristics" type="button" role="tab" aria-controls="nav-characteristics">
-										<h2 class="header downloads"><?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?></h2>
+										<?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?>
 									</a>
 								<?php endif ?>
 
