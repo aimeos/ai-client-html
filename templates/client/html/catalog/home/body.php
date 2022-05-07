@@ -58,7 +58,7 @@ $pos = 0;
 
 		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
 
-			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'default', 'default' ) )->isEmpty() ) : ?>
+			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 				<div class="home-item home-image <?= $enc->attr( $this->homeTree->getCode() ) ?>">
 					<div class="home-stage catalog-stage-image">
 						<?php foreach( $mediaItems as $mediaItem ) : ?>
@@ -83,7 +83,7 @@ $pos = 0;
 			<?php endif ?>
 
 			<?php foreach( $this->homeTree->getChildren() as $child ) : ?>
-				<?php if( !( $mediaItems = $child->getRefItems( 'media', 'default', 'default' ) )->isEmpty() ) : ?>
+				<?php if( !( $mediaItems = $child->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 
 					<div class="home-item cat-image <?= $enc->attr( $child->getCode() ) ?>">
 						<div class="home-stage catalog-stage-image">
