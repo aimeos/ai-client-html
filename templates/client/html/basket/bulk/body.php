@@ -50,13 +50,13 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 								<input type="hidden" class="productid"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'prodid'] ) ) ?>"
 								>
-								<input type="text" class="form-control search" tabindex="1"
+								<input type="text" class="value search" tabindex="1"
 									placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
 								>
 								<div class="vattributes"></div>
 							</div>
 							<div class="col-2 quantity">
-								<input type="number" class="form-control" tabindex="1"
+								<input type="number" class="value" tabindex="1"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'quantity'] ) ) ?>"
 									min="1" max="2147483647" step="1" required="required" value="1"
 								>
@@ -74,17 +74,19 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						<input type="hidden" class="productid" disabled="disabled"
 							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'prodid'] ) ) ?>"
 						>
-						<input type="text" class="form-control search" tabindex="1" disabled="disabled">
+						<input type="text" class="value search" tabindex="1" disabled="disabled"
+							placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
+						>
 						<div class="vattributes"></div>
 					</div>
 					<div class="col-2 quantity">
-						<input type="number" class="form-control" tabindex="1" disabled="disabled"
+						<input type="number" class="value" tabindex="1" disabled="disabled"
 							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'quantity'] ) ) ?>"
 							min="1" max="2147483647" step="1" required="required" value="1"
 						>
 					</div>
 					<div class="col-2 price"></div>
-					<div class="col-2 buttons"><div class="btn minibutton delete"></div></div>
+					<div class="col-2 buttons"><div class="minibutton delete"></div></div>
 				</div>
 			</div>
 
