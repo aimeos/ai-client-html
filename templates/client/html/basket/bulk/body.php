@@ -38,7 +38,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 					<div class="col-6 product"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></div>
 					<div class="col-2 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
 					<div class="col-2 price"><?= $enc->html( $this->translate( 'client', 'Price' ) ) ?></div>
-					<div class="col-2 buttons"><div class="btn minibutton add"></div></div>
+					<div class="col-2 buttons"><div class="minibutton add"></div></div>
 				</div>
 				<div class="bulk-content">
 					<?php for( $idx = 0; $idx < $rows; $idx++ ) : ?>
@@ -62,7 +62,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 								>
 							</div>
 							<div class="col-2 price"></div>
-							<div class="col-2 buttons"><div class="btn minibutton delete" tabindex="1"></div></div>
+							<div class="col-2 buttons"><div class="minibutton delete" tabindex="1"></div></div>
 						</div>
 					<?php endfor ?>
 				<div>
