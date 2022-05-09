@@ -53,14 +53,16 @@ $enc = $this->encoder();
 					</div>
 
 					<div class="content">
-						<?php $coupons = $this->standardBasket->getCoupons() ?>
 
 						<div class="input-group coupon-new">
-							<input class="form-control coupon-code" name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>" type="text" maxlength="255"><!--
+							<input class="form-control coupon-code" type="text" maxlength="255"
+								placeholder="<?= $enc->attr( $this->translate( 'client', 'Coupon codes' ) ) ?>"
+								name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>"
+							><!--
 							--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', 'Apply' ) ) ?></button>
 						</div>
 
-						<?php if( !$coupons->isEmpty() ) : ?>
+						<?php if( !( $coupons = $this->standardBasket->getCoupons() )->isEmpty() ) : ?>
 							<div class="coupon-detail">
 								<p class="name"><?= $enc->html( $this->translate( 'client', 'Coupons' ) ) ?>:</p>
 								<ul class="attr-list">
