@@ -31,7 +31,7 @@ $enc = $this->encoder();
 
 		<div class="item-address item-default">
 			<div class="header">
-				<a class="modify minibutton delete"
+				<a class="modify minibutton delete" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"
 					href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">
 				</a>
 				<input id="ca_deliveryoption-<?= $id ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
