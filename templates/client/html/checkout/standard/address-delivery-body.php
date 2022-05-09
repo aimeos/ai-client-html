@@ -13,7 +13,7 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'checkout/standard/address/delivery' ) ?>
 <div class="checkout-standard-address-delivery col-xs-12 col-xl">
 
-	<h2><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h2>
+	<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
 
 	<div class="item-address item-like">
 		<div class="header">
