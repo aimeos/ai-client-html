@@ -35,15 +35,19 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 			<div class="bulk-main">
 				<div class="row g-0 headline">
-					<div class="col-6 product"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></div>
-					<div class="col-2 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
-					<div class="col-2 price"><?= $enc->html( $this->translate( 'client', 'Price' ) ) ?></div>
-					<div class="col-2 buttons"><div class="minibutton add"></div></div>
+					<div class="col-sm-6 product"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></div>
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="col-4 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
+							<div class="col-4 price"><?= $enc->html( $this->translate( 'client', 'Price' ) ) ?></div>
+							<div class="col-4 buttons"><div class="minibutton add"></div></div>
+						</div>
+					</div>
 				</div>
 				<div class="bulk-content">
 					<?php for( $idx = 0; $idx < $rows; $idx++ ) : ?>
 						<div class="row g-0 details">
-							<div class="col-6 product">
+							<div class="col-sm-6 product">
 								<input type="hidden" class="attrvarid"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'attrvarid', '_type_'] ) ) ?>"
 								>
@@ -55,40 +59,49 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 								>
 								<div class="vattributes"></div>
 							</div>
-							<div class="col-2 quantity">
-								<input type="number" class="value" tabindex="1"
-									name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'quantity'] ) ) ?>"
-									min="1" max="2147483647" step="1" required="required" value="1"
-								>
+							<div class="col-sm-6">
+								<div class="row">
+									<div class="col-4 quantity">
+										<input type="number" class="value" tabindex="1"
+											name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'quantity'] ) ) ?>"
+											min="1" max="2147483647" step="1" required="required" value="1"
+										>
+									</div>
+									<div class="col-4 price"></div>
+									<div class="col-4 buttons"><div class="minibutton delete" tabindex="1"></div></div>
+								</div>
 							</div>
-							<div class="col-2 price"></div>
-							<div class="col-2 buttons"><div class="minibutton delete" tabindex="1"></div></div>
 						</div>
 					<?php endfor ?>
-				<div>
-				<div class="row g-0 details prototype">
-					<div class="col-6 product">
-						<input type="hidden" class="attrvarid" disabled="disabled"
-							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'attrvarid', '_type_'] ) ) ?>"
-						>
-						<input type="hidden" class="productid" disabled="disabled"
-							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'prodid'] ) ) ?>"
-						>
-						<input type="text" class="value search" tabindex="1" disabled="disabled"
-							placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
-						>
-						<div class="vattributes"></div>
+
+					<div class="row g-0 details prototype">
+						<div class="col-sm-6 product">
+							<input type="hidden" class="attrvarid" disabled="disabled"
+								name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'attrvarid', '_type_'] ) ) ?>"
+							>
+							<input type="hidden" class="productid" disabled="disabled"
+								name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'prodid'] ) ) ?>"
+							>
+							<input type="text" class="value search" tabindex="1" disabled="disabled"
+								placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
+							>
+							<div class="vattributes"></div>
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-4 quantity">
+									<input type="number" class="value" tabindex="1" disabled="disabled"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'quantity'] ) ) ?>"
+										min="1" max="2147483647" step="1" required="required" value="1"
+									>
+								</div>
+								<div class="col-4 price"></div>
+								<div class="col-4 buttons"><div class="minibutton delete"></div></div>
+							</div>
+						</div>
 					</div>
-					<div class="col-2 quantity">
-						<input type="number" class="value" tabindex="1" disabled="disabled"
-							name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'quantity'] ) ) ?>"
-							min="1" max="2147483647" step="1" required="required" value="1"
-						>
-					</div>
-					<div class="col-2 price"></div>
-					<div class="col-2 buttons"><div class="minibutton delete"></div></div>
 				</div>
-			</div>
+			<div>
 
 			<div class="button-group">
 				<button class="btn btn-primary btn-lg btn-action" type="submit" value="" tabindex="1">
