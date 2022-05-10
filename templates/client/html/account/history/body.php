@@ -261,7 +261,7 @@ $enc = $this->encoder();
 
 
 							<div class="common-summary-additional row">
-								<div class="item coupon col-sm-6">
+								<div class="item coupon col-sm-4">
 									<div class="header">
 										<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ) ?></h3>
 									</div>
@@ -277,7 +277,17 @@ $enc = $this->encoder();
 									</div>
 								</div><!--
 
-								--><div class="item comment col-sm-6">
+								--><div class="item customerref col-sm-4">
+									<div class="header">
+										<h3><?= $enc->html( $this->translate( 'client', 'Your reference number' ), $enc::TRUST ) ?></h3>
+									</div>
+
+									<div class="content">
+										<?= $enc->html( $orderItem->getBaseItem()->getCustomerReference() ) ?>
+									</div>
+								</div><!--
+
+								--><div class="item comment col-sm-4">
 									<div class="header">
 										<h3><?= $enc->html( $this->translate( 'client', 'Your comment' ), $enc::TRUST ) ?></h3>
 									</div>
