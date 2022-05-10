@@ -35,7 +35,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 			<div class="bulk-main">
 				<div class="row g-0 headline">
-					<div class="col-sm-6 product"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></div>
+					<div class="col-sm-6 product-item"><?= $enc->html( $this->translate( 'client', 'Article' ) ) ?></div>
 					<div class="col-sm-6">
 						<div class="row">
 							<div class="col-4 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
@@ -47,7 +47,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 				<div class="bulk-content">
 					<?php for( $idx = 0; $idx < $rows; $idx++ ) : ?>
 						<div class="row g-0 details">
-							<div class="col-sm-6 product">
+							<div class="col-sm-6 product-item">
 								<input type="hidden" class="attrvarid"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'attrvarid', '_type_'] ) ) ?>"
 								>
@@ -75,7 +75,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 					<?php endfor ?>
 
 					<div class="row g-0 details prototype">
-						<div class="col-sm-6 product">
+						<div class="col-sm-6 product-item">
 							<input type="hidden" class="attrvarid" disabled="disabled"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'attrvarid', '_type_'] ) ) ?>"
 							>
