@@ -40,7 +40,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/social/url/twitter
  * @see client/html/catalog/social/url/pinterest
  */
-$list = $this->config( 'client/html/catalog/social/list', ['facebook', 'twitter', 'pinterest'] );
+$list = $this->config( 'client/html/catalog/social/list', ['facebook', 'twitter', 'pinterest', 'whatsapp'] );
 
 $urls = array(
 	/** client/html/catalog/social/url/whatsapp
@@ -140,8 +140,7 @@ $params = ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this
 			) ) ?>"
 			title="<?= $enc->attr( $entry ) ?>"
 			target="_blank"
-		></a>
-
-	<?php endif ?>
+		></a><!--
+	--><?php endif ?>
 <?php endforeach ?>
 </div>
