@@ -123,7 +123,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 							$param = ['resource' => 'basket', 'id' => 'default', 'related' => 'product', 'relatedid' => $pos];
 							$param[$this->csrf()->name()] = $this->csrf()->value();
 						?>
-						<div class="product row" data-url="<?= $enc->attr( $this->link( 'client/jsonapi/url', $param ) ) ?>">
+						<div class="product-item row" data-url="<?= $enc->attr( $this->link( 'client/jsonapi/url', $param ) ) ?>">
 							<div class="col-5 name">
 								<?= $enc->html( $product->getName() ) ?>
 							</div>
@@ -140,7 +140,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 							</div>
 						</div>
 					<?php endforeach ?>
-					<div class="product row prototype">
+					<div class="product-item row prototype">
 						<div class="col-5 name"></div>
 						<div class="col-2 quantity"></div>
 						<div class="col-3 price"></div>
