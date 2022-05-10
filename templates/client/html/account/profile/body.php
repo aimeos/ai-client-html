@@ -105,7 +105,7 @@ $pos = 0;
 				<?= $this->csrf()->formfield() ?>
 
 				<div class="row">
-					<div class="billing col-lg-6">
+					<div class="billing col-md-6">
 						<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Billing address' ) ) ?></h2>
 
 						<div class="panel panel-default address-billing">
@@ -462,7 +462,7 @@ $pos = 0;
 					</div>
 
 
-					<div class="delivery col-lg-6">
+					<div class="delivery col-md-6">
 						<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Delivery address' ) ) ?></h2>
 
 						<?php foreach( $this->addressDelivery as $pos => $addr ) : ?>
