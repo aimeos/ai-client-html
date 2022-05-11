@@ -7,7 +7,7 @@
 
 /* Available data:
  * - prices : List of price items
- * - costsItems : Show "per item" for costs
+ * - costsItem : Show "per item" for costs
  * - all: Show all properties including costs
  */
 
