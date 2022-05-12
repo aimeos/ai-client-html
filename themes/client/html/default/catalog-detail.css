@@ -205,6 +205,10 @@
 
 /* Product detail, basket section */
 
+.catalog-detail-basket .select-stock {
+	text-align: center;
+}
+
 .catalog-detail-basket {
 	margin: 1rem 0;
 }

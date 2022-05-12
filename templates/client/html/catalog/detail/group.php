@@ -18,9 +18,9 @@ $enc = $this->encoder();
 <div class="selection">
 
 	<div class="row">
-		<div class="col-2 select-media"></div>
+		<div class="col-3 select-media"></div>
 		<div class="col-3 select-name"><?= $enc->html( $this->translate( 'client', 'Name' ) ) ?></div>
-		<div class="col-4 select-attr"><?= $enc->html( $this->translate( 'client', 'Variant' ) ) ?></div>
+		<div class="col-3 select-attr"><?= $enc->html( $this->translate( 'client', 'Variant' ) ) ?></div>
 		<div class="col-1 select-stock"><?= $enc->html( $this->translate( 'client', 'Stock' ) ) ?></div>
 		<div class="col-2 select-quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
 	</div>
@@ -29,7 +29,7 @@ $enc = $this->encoder();
 
 		<div class="row select-item">
 
-			<div class="col-2">
+			<div class="col-3">
 				<?php if( ( $mediaItem = $product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 					<div class="select-media">
 						<img class="media-image"
@@ -42,7 +42,7 @@ $enc = $this->encoder();
 				<?php endif ?>
 			</div>
 
-			<div class="col-4 select-name">
+			<div class="col-3 select-name">
 				<h2><?= $enc->html( $product->getName() ) ?></h2>
 
 				<input type="hidden"
@@ -51,7 +51,7 @@ $enc = $this->encoder();
 				>
 			</div>
 
-			<div class="col-4 select-attr">
+			<div class="col-3 select-attr">
 				<ul class="attr-list">
 					<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
 						<li class="attr-item">
