@@ -205,10 +205,6 @@
 
 /* Product detail, basket section */
 
-.catalog-detail-basket .select-stock {
-	text-align: center;
-}
-
 .catalog-detail-basket {
 	margin: 1rem 0;
 }
@@ -282,6 +278,25 @@
 
 .catalog-detail-basket .price-item .taxrate {
 	font-size: 80%;
+}
+
+/* product group section */
+
+.catalog-detail-basket-selection .selection .select-media,
+.catalog-detail-basket-selection .selection .select-name,
+.catalog-detail-basket-selection .selection .select-attr,
+.catalog-detail-basket-selection .selection .select-stock,
+.catalog-detail-basket-selection .selection .select-quantity {
+	overflow: hidden;
+}
+
+.catalog-detail-basket-selection .selection .select-stock {
+	text-align: center;
+}
+
+.catalog-detail-basket-selection .selection .select-quantity input[type=number] {
+	max-width: 4rem;
+	width: 100%;
 }
 
 /* add to basket */
