@@ -642,12 +642,9 @@ body > .content, body .main-section {
 }
 
 .navbar-nav .dropdown-menu {
-	text-align: start;
 	background-color: var(--ai-primary);
 	border: 1px solid var(--ai-bg);
-	left: auto;
-	right: 0;
-	position: absolute;
+	min-width: auto;
 }
 
 .navbar-light .navbar-nav .nav-link,
