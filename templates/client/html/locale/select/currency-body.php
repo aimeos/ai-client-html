@@ -39,7 +39,7 @@ $config = $this->config( 'client/html/locale/select/currency/url/config', [] );
 				<?php foreach( $this->get( 'selectMap', map() )->get( $this->get( 'selectLanguageId', 'en' ), [] ) as $currency => $locParam ) : ?>
 					<li class="select-item <?= ( $currency === $this->get( 'selectCurrencyId', 'EUR' ) ? 'active' : '' ) ?>">
 						<a href="<?= $enc->attr( $this->url( $this->request()->getTarget(), $this->param( 'controller' ), $this->param( 'action' ), array_merge( $this->get( 'selectParams', [] ), $locParam ), [], $config ) ) ?>">
-							<?= $enc->html( $this->translate( 'currency', $currency ), $enc::TRUST ) ?>
+							<?= $enc->html( $currency ) ?>
 						</a>
 					</li>
 				<?php endforeach ?>
