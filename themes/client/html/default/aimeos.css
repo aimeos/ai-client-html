@@ -229,6 +229,8 @@ img {
 	min-width: 1rem;
 	padding: 0;
 	margin: 0;
+	border: none;
+	background-color: var(--ai-bg);
 }
 
 .aimeos .minibutton::-moz-focus-inner {
@@ -756,7 +758,7 @@ body > .content, body .main-section {
 
 /* Product */
 
-.aimeos:not(.catalog-detail):not(.cms-page) .product {
+.aimeos:not(.cms-page) .product-list .product {
 	display: flex;
 	flex-direction: column;
 	color: var(--ai-primary);
@@ -766,20 +768,24 @@ body > .content, body .main-section {
 	margin: 2rem 1%;
 }
 
-.aimeos:not(.catalog-detail):not(.cms-page) .product {
+.aimeos:not(.cms-page) .product-list .product {
 	width: 48%;
 }
 
 @media (min-width: 576px) {
-	.aimeos:not(.catalog-detail):not(.cms-page) .product {
+	.aimeos:not(.cms-page) .product-list .product {
 		width: 31.333%;
 	}
 }
 
 @media (min-width: 1200px) {
-	.aimeos:not(.catalog-detail):not(.cms-page) .product {
+	.aimeos:not(.cms-page) .product-list .product {
 		width: 23%;
 	}
+}
+
+.aimeos .product {
+	color: var(--ai-primary);
 }
 
 .aimeos .product .badges {
@@ -809,28 +815,29 @@ body > .content, body .main-section {
 
 /* product media */
 
-.aimeos .product .swiffy-slider {
+.aimeos .product-list .swiffy-slider {
 	--swiffy-slider-item-ratio: var(--ai-product-image-ratio);
 }
 
-.aimeos:not(.catalog-detail) .product .media-list div:first-of-type {
+.aimeos .product-list .media-list div:first-of-type {
 	z-index: 1;
 	opacity: 1;
 	transition: opacity .3s linear;
 }
 
-.aimeos:not(.catalog-detail) .product .media-list.multiple:hover div:first-of-type {
+.aimeos .product-list .media-list.multiple:hover div:first-of-type {
 	transition: opacity .3s linear;
 	opacity: 0;
 }
 
-.aimeos:not(.catalog-detail) .product > div.list-column:first-of-type .media-list {
+.aimeos .product-list div.list-column:first-of-type .media-list {
 	padding-top: calc( 100% / (var(--ai-product-image-ratio)));
+	position: relative;
 	display: block;
 	content: "";
 }
 
-.aimeos:not(.catalog-detail) .product > div.list-column:first-of-type .media-item {
+.aimeos .product-list div.list-column:first-of-type .media-item {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -839,7 +846,7 @@ body > .content, body .main-section {
 	object-fit: contain;
 }
 
-.aimeos:not(.catalog-detail) .product > div.list-column:first-of-type .media-item > img {
+.aimeos .product-list div.list-column:first-of-type .media-item > img {
 	max-height: 100%;
 	width: 100%;
 }

@@ -30,7 +30,7 @@ $enc = $this->encoder();
 
 ?>
 <section class="aimeos catalog-product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
-	<div class="catalog-product-items container-xxl">
+	<div class="catalog-product-items product-list container-xxl">
 
 		<?= $this->partial( $this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 			array(
