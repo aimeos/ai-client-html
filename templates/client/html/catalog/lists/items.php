@@ -58,7 +58,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 }
 
 ?>
-<div class="catalog-list-items" data-infiniteurl="<?= $url ?>"
+<div class="catalog-list-items product-list" data-infiniteurl="<?= $url ?>"
 	data-pinned="<?= $enc->attr( $this->session( 'aimeos/catalog/session/pinned/list', [] ) ) ?>">
 
 	<?= $this->partial(
