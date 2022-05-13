@@ -80,7 +80,7 @@ $enc = $this->encoder();
 
 			<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ) ?></h1>
 
-			<div class="favorite-items">
+			<div class="favorite-items product-list">
 
 				<?php foreach( $this->get( 'favoriteItems', map() )->reverse() as $listItem ) : ?>
 					<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
