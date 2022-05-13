@@ -815,7 +815,7 @@ body > .content, body .main-section {
 
 /* product media */
 
-.aimeos .product-list .swiffy-slider {
+.aimeos .product .swiffy-slider {
 	--swiffy-slider-item-ratio: var(--ai-product-image-ratio);
 }
 
