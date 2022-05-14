@@ -49,6 +49,8 @@ $pos = 0;
  * @see client/html/common/imageset-sizes
  */
 
+$lazy = false;
+
 
 ?>
 <section class="aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
@@ -59,11 +61,14 @@ $pos = 0;
 		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
 
 			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
+
 				<div class="home-item home-image <?= $enc->attr( $this->homeTree->getCode() ) ?>">
 					<div class="home-stage catalog-stage-image">
+
 						<?php foreach( $mediaItems as $mediaItem ) : ?>
+
 							<a class="stage-item" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
-								<img class="stage-image"
+								<img class="stage-image" loading="<?= $lazy ? 'lazy' : '' ?>"
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 									alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
@@ -77,9 +82,13 @@ $pos = 0;
 									<div class="btn"><?= $enc->html( $this->translate( 'client', 'Take a look' ) ) ?></div>
 								</div>
 							</a>
+
+							<?php $lazy = true ?>
 						<?php endforeach ?>
+
 					</div>
 				</div>
+
 			<?php endif ?>
 
 			<?php foreach( $this->homeTree->getChildren() as $child ) : ?>
@@ -91,7 +100,7 @@ $pos = 0;
 							<?php foreach( $mediaItems as $mediaItem ) : ?>
 
 								<a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
-									<img loading="lazy" class="stage-image"
+									<img class="stage-image" loading="<?= $lazy ? 'lazy' : '' ?>"
 										src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
 										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
 										alt="<?= $enc->attr( $mediaItem->getProperties( 'name' )->first() ) ?>"
@@ -106,6 +115,7 @@ $pos = 0;
 									</div>
 								</a>
 
+								<?php $lazy = true ?>
 							<?php endforeach ?>
 
 						</div>
