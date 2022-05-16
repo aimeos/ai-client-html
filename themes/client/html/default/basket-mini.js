@@ -73,7 +73,7 @@ AimeosBasketMini = {
 
 		$(".aimeos .basket-mini-product").on("click", ".delete", ev => {
 
-			fetch($(ev.currentTarget).closest(".product").data("url"), {
+			fetch($(ev.currentTarget).closest(".product-item").data("url"), {
 				method: "DELETE",
 				headers: {'Content-Type': 'application/json'}
 			}).then(response => {
