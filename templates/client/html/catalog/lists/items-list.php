@@ -24,7 +24,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 
 ?>
-<div class="catalog-list-items list product-list" data-infiniteurl="<?= $url ?>"
+<div class="catalog-list-items list" data-infiniteurl="<?= $url ?>"
 	data-pinned="<?= $enc->attr( $this->session( 'aimeos/catalog/session/pinned/list', [] ) ) ?>"><!--
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true ?>

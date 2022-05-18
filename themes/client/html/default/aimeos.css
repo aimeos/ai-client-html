@@ -823,17 +823,20 @@ body > .content, body .main-section {
 	--swiffy-slider-item-ratio: var(--ai-product-image-ratio);
 }
 
+.aimeos .list .product .media-list div:first-of-type,
 .aimeos .product-list .media-list div:first-of-type {
 	z-index: 1;
 	opacity: 1;
 	transition: opacity .3s linear;
 }
 
+.aimeos .list .product .media-list.multiple:hover div:first-of-type,
 .aimeos .product-list .media-list.multiple:hover div:first-of-type {
 	transition: opacity .3s linear;
 	opacity: 0;
 }
 
+.aimeos .list .product div.list-column:first-of-type .media-list,
 .aimeos .product-list div.list-column:first-of-type .media-list {
 	padding-top: calc( 100% / (var(--ai-product-image-ratio)));
 	position: relative;
@@ -841,6 +844,7 @@ body > .content, body .main-section {
 	content: "";
 }
 
+.aimeos .list .product div.list-column:first-of-type .media-item,
 .aimeos .product-list div.list-column:first-of-type .media-item {
 	position: absolute;
 	top: 0;
@@ -850,6 +854,7 @@ body > .content, body .main-section {
 	object-fit: contain;
 }
 
+.aimeos .list .product div.list-column:first-of-type .media-item > img,
 .aimeos .product-list div.list-column:first-of-type .media-item > img {
 	max-height: 100%;
 	width: 100%;
