@@ -44,9 +44,9 @@ $key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html
 
 				<?php endforeach ?>
 
-			</div>
+				<h1><?= $enc->html( $catItem->getName() ) ?></h1>
 
-			<h1><?= $enc->html( $catItem->getName() ) ?></h1>
+			</div>
 
 		<?php endif ?>
 
