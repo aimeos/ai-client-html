@@ -134,6 +134,7 @@
 }
 
 .catalog-list-items.list .product {
+	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	text-align: start;
