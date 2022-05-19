@@ -279,5 +279,22 @@ return [
 				],
 			],
 		],
-	],
+		'theme-presets' => [
+			'default' => [
+				'--ai-bg' => '#FFFFFF',
+				'--ai-bg-alt' => '#F6F6F6',
+				'--ai-primary' => '#282828',
+				'--ai-primary-alt' => '#282828',
+				'--ai-secondary' => '#555555',
+				'--ai-secondary-alt' => '#555555',
+				'--ai-tertiary' => '#CCCCCC',
+				'--ai-tertiary-alt' => '#F6F6F6',
+				'--ai-danger' => '#A00000',
+				'--ai-success' => '#006000',
+				'--ai-warning' => '#FFA500',
+				'--ai-radius' => '0',
+				'--ai-product-image-ratio' => '0.75',
+			]
+		]
+	]
 ];
