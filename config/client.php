@@ -281,6 +281,7 @@ return [
 		],
 		'theme-presets' => [
 			'default' => [
+				'--ai-product-image-ratio' => '3/4',
 				'--ai-bg' => '#FFFFFF',
 				'--ai-bg-alt' => '#F6F6F6',
 				'--ai-primary' => '#282828',
@@ -293,7 +294,6 @@ return [
 				'--ai-success' => '#006000',
 				'--ai-warning' => '#FFA500',
 				'--ai-radius' => '0',
-				'--ai-product-image-ratio' => '0.75',
 			]
 		]
 	]
