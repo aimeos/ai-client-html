@@ -279,6 +279,9 @@ return [
 				],
 			],
 		],
+		'themes' => [
+			'default' => 'Default',
+		],
 		'theme-presets' => [
 			'default' => [
 				'--ai-product-image-ratio' => '3/4',
