@@ -146,6 +146,6 @@ class TestHelper
 		$ctx->setLocale( $locale );
 
 
-		return $ctx->setEditor( 'ai-client-html:client/html' );
+		return $ctx->setEditor( 'ai-client-html' );
 	}
 }
