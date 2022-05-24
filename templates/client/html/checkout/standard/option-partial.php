@@ -234,9 +234,9 @@
 			<label for="option-terms-accept">
 				<?= $enc->html( sprintf( $this->translate( 'client',
 					'I accept the <a href="%1$s" target="_blank" title="terms and conditions" alt="terms and conditions">terms and conditions</a>, <a href="%2$s" target="_blank" title="privacy policy" alt="privacy policy">privacy policy</a> and <a href="%3$s" target="_blank" title="cancellation policy" alt="cancellation policy">cancellation policy</a>' ),
-					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/url' ) ),
-					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/privacy/url' ) ),
-					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/cancel/url' ) )
+					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/url', ['path' => 'terms'] ) ),
+					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/privacy/url', ['path' => 'privacy'] ) ),
+					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/cancel/url', ['path' => 'cancel'] ) )
 				), $enc::TRUST ) ?>
 			</label>
 		</p>
