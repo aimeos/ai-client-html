@@ -25,7 +25,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->config();
 		$config->set( 'client/html/common/decorators/default', array( 'Example' ) );
 
-		$object = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
+		$object = \Aimeos\Client\Html::create( $this->context, 'catalog/filter' );
 
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface', $object );
 	}
@@ -36,7 +36,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->config();
 		$config->set( 'client/html/catalog/filter/decorators/global', array( 'Example' ) );
 
-		$object = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context );
+		$object = \Aimeos\Client\Html::create( $this->context, 'catalog/filter' );
 
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface', $object );
 	}
@@ -47,7 +47,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 		$config = $this->context->config();
 		$config->set( 'client/html/catalog/filter/tree/decorators/global', array( 'Example' ) );
 
-		$object = \Aimeos\Client\Html\Catalog\Filter\Factory::create( $this->context )->getSubClient( 'tree' );
+		$object = \Aimeos\Client\Html::create( $this->context, 'catalog/filter' )->getSubClient( 'tree' );
 
 		$this->assertInstanceOf( '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface', $object );
 	}

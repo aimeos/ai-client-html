@@ -17,6 +17,7 @@ namespace Aimeos\Client\Html\Common\Factory;
  *
  * @package Client
  * @subpackage Html
+ * @deprecated 2023.01
  */
 class Base
 {
