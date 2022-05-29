@@ -141,7 +141,7 @@ class Html
 	protected static function addClientDecorators( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\Client\Html\Iface $client, string $path ) : \Aimeos\Client\Html\Iface
 	{
-		if( !is_string( $path ) || $path === '' ) {
+		if( empty( $path ) ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
 		}
 
