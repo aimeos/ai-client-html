@@ -19,6 +19,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
 
@@ -29,13 +32,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context, $this->view );
 	}
 
 
 	public function testBody()
 	{
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( \TestHelper::context() );
+		$catalogManager = \Aimeos\MShop::create( \TestHelper::context(), 'catalog' );
 		$node = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
 
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'f_catid' => $node->getChild( 1 )->getId() ) );
@@ -58,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyLevelsAlways()
 	{
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( \TestHelper::context() );
+		$catalogManager = \Aimeos\MShop::create( \TestHelper::context(), 'catalog' );
 		$node = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
 		$this->context->config()->set( 'controller/frontend/catalog/levels-always', 2 );
@@ -80,7 +86,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyLevelsOnly()
 	{
-		$catalogManager = \Aimeos\MShop\Catalog\Manager\Factory::create( \TestHelper::context() );
+		$catalogManager = \Aimeos\MShop::create( \TestHelper::context(), 'catalog' );
 		$node = $catalogManager->getTree( null, [], \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE );
 
 		$this->context->config()->set( 'controller/frontend/catalog/levels-only', 1 );

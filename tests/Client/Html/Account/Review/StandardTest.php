@@ -18,6 +18,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
 
@@ -28,6 +31,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context, $this->view );
 	}
 
@@ -70,9 +76,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$stub->expects( $this->once() )->method( 'save' );
 
-		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', $stub );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Review\Standard::class, $stub );
 		$this->object->init();
-		\Aimeos\Controller\Frontend\Review\Factory::injectController( '\Aimeos\Controller\Frontend\Review\Standard', null );
 
 		$this->assertCount( 1, $this->view->get( 'reviewInfoList' ) );
 	}

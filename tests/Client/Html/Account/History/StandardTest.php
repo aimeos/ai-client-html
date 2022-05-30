@@ -19,6 +19,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->context = \TestHelper::context();
 		$this->view = \TestHelper::view();
 
@@ -29,6 +32,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context, $this->view );
 	}
 
@@ -44,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$manager = \Aimeos\MShop\Customer\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
 
 		$output = $this->object->body();

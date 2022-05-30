@@ -19,6 +19,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
 
@@ -29,7 +32,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::create( $this->context, 'basket' )->clear();
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context, $this->view );
 	}
 
@@ -71,12 +77,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 		$object->setView( $this->view );
 
-		$basketMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
+		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['store'] )
 			->getMock();
 
-		$orderMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
+		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['store'] )
 			->getMock();
@@ -92,13 +98,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get()->setId( '123' ) ) );
 		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
 
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $basketMock );
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $orderMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );
 
 		$object->init();
-
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
 		$this->assertEquals( 0, count( $this->view->get( 'standardErrorList', [] ) ) );
 		$this->assertEquals( 'url', $this->view->standardUrlNext );
@@ -120,12 +123,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 		$object->setView( $this->view );
 
-		$basketMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
+		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['store'] )
 			->getMock();
 
-		$orderMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
+		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['store', 'save'] )
 			->getMock();
@@ -136,13 +139,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
 		$orderMock->expects( $this->once() )->method( 'save' )->will( $this->returnValue( $orderItem ) );
 
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $basketMock );
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $orderMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );
 
 		$object->init();
-
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
 		$this->assertEquals( 0, count( $this->view->get( 'standardErrorList', [] ) ) );
 		$this->assertEquals( 'http://baseurl/checkout/confirm/', $this->view->standardUrlNext );
@@ -161,12 +161,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 		$object->setView( $this->view );
 
-		$basketMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Basket\Standard' )
+		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['store'] )
 			->getMock();
 
-		$orderMock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Order\Standard' )
+		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['save', 'store'] )
 			->getMock();
@@ -182,13 +182,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
 		$orderMock->expects( $this->once() )->method( 'save' )->will( $this->returnValue( $orderItem ) );
 
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', $basketMock );
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', $orderMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );
 
 		$object->init();
-
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Order\\Standard', null );
-		\Aimeos\Controller\Frontend\Basket\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Basket\\Standard', null );
 
 		$this->assertEquals( 0, count( $this->view->get( 'standardErrorList', [] ) ) );
 		$this->assertTrue( isset( $this->view->standardUrlNext ) );
@@ -207,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrder( $date )
 	{
-		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'order' );
 
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', $date ) );

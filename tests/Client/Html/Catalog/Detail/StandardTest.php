@@ -19,6 +19,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
 
@@ -29,6 +32,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context, $this->view );
 	}
 
@@ -265,7 +271,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function getProductItem( $code = 'CNE', $domains = [] )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 

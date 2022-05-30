@@ -16,6 +16,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
 		$this->context->setEditor( 'test@example.com' );
@@ -27,6 +30,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->context, $this->object, $this->view );
 	}
 
@@ -103,7 +109,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function getOrder( $date )
 	{
 		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'order' );
 		$search = $manager->filter()->add( 'order.datepayment', '==', $date );
 
 		return $manager->search( $search, $domains )->first( new \RuntimeException( 'No order found' ) );

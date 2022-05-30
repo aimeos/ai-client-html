@@ -18,6 +18,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->context = \TestHelper::context();
 
 		$this->view = \TestHelper::view();
@@ -30,6 +33,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context, $this->view );
 	}
 
@@ -78,12 +84,12 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->setView( $this->object->data( $this->view ) );
 
-		$cntlStub = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Subscription\\Standard' )
+		$cntlStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Subscription\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['cancel'] )
 			->getMock();
 
-		\Aimeos\Controller\Frontend\Subscription\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Subscription\\Standard', $cntlStub );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Subscription\Standard::class, $cntlStub );
 
 		$cntlStub->expects( $this->once() )->method( 'cancel' );
 

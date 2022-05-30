@@ -19,6 +19,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->context = \TestHelper::context();
 
 		$this->view = \TestHelper::view();
@@ -32,7 +35,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::create( $this->context, 'basket' )->clear();
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context, $this->view );
 	}
 
@@ -116,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAddVariantAttribute()
 	{
-		$attrManager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
+		$attrManager = \Aimeos\MShop::create( $this->context, 'attribute' );
 
 		$search = $attrManager->filter();
 		$expr = array(
@@ -154,7 +160,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAddConfigAttribute()
 	{
-		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'attribute' );
 
 		$search = $manager->filter();
 		$expr = array(
@@ -188,7 +194,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAddCustomAttribute()
 	{
-		$manager = \Aimeos\MShop\Attribute\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'attribute' );
 
 		$search = $manager->filter();
 		$expr = array(
@@ -337,7 +343,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyAddCoupon()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
 
@@ -347,7 +353,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$this->view->standardBasket = $controller->get();
 		$output = $this->object->body();
 
@@ -357,7 +363,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyDeleteCoupon()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
 
@@ -375,7 +381,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$this->view->standardBasket = $controller->get();
 		$output = $this->object->body();
 
@@ -387,7 +393,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->context->config()->set( 'client/html/basket/standard/coupon/overwrite', true );
 
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
 
 
@@ -401,7 +407,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$this->view->standardBasket = $controller->get();
 		$output = $this->object->body();
 
@@ -431,7 +437,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function addProduct( $code, $quantity, $stockType )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 
@@ -458,7 +464,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getProductItem( $code )
 	{
-		$manager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'product' );
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'product.code', $code ) );
 

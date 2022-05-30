@@ -19,10 +19,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		$this->view = \TestHelper::view();
-		$this->context = \TestHelper::context();
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
 
 		$this->view = \TestHelper::view();
+		$this->context = \TestHelper::context();
 		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Summary\Standard( $this->context );
@@ -32,6 +33,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context, $this->view );
 	}
 
@@ -104,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitComment()
 	{
-		$controller = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 
 		$this->view = \TestHelper::view();
 		$this->view->standardBasket = $controller->get();
@@ -176,7 +180,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
 		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
 
-		$productManager = \Aimeos\MShop\Product\Manager\Factory::create( $this->context );
+		$productManager = \Aimeos\MShop::create( $this->context, 'product' );
 		$controller->addProduct( $productManager->find( 'CNE', ['price'] ), 2 );
 
 		$domains = ['media', 'price', 'text'];

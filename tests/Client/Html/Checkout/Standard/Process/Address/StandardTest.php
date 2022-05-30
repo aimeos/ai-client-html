@@ -19,6 +19,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
 		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
@@ -30,7 +33,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::create( $this->context, 'basket' )->clear();
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
 
 		unset( $this->object, $this->context, $this->view );
 	}
@@ -51,7 +56,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
 		$address = $customerItem->getPaymentAddress()->setId( '-1' )->toArray();
 
-		$basketCntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$basketCntl = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
 
 		$this->context->setUserId( $customerItem->getId() );
@@ -64,8 +69,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customerStub->expects( $this->once() )->method( 'addAddressItem' )->will( $this->returnValue( $customerStub ) );
 		$customerStub->expects( $this->once() )->method( 'store' );
 
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 		$this->object->init();
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 }

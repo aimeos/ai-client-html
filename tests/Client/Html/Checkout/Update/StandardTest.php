@@ -18,6 +18,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
 
@@ -28,6 +31,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->context, $this->object, $this->view );
 	}
 
@@ -67,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitException()
 	{
-		$mock = $this->getMockBuilder( '\\Aimeos\\Controller\\Frontend\\Service\Standard' )
+		$mock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Service\Standard::class )
 			->setConstructorArgs( [$this->context] )
 			->setMethods( ['updatePush'] )
 			->getMock();
@@ -75,9 +81,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$mock->expects( $this->once() )->method( 'updatePush' )
 			->will( $this->throwException( new \RuntimeException() ) );
 
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', $mock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Service\Standard::class, $mock );
 		$this->object->init();
-		\Aimeos\Controller\Frontend\Service\Factory::injectController( '\\Aimeos\\Controller\\Frontend\\Service\\Standard', null );
 
 		$this->assertEquals( 500, $this->view->response()->getStatusCode() );
 	}
@@ -88,7 +93,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrder( $date )
 	{
-		$manager = \Aimeos\MShop\Order\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'order' );
 
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'order.datepayment', $date ) );

@@ -18,6 +18,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
 		\Aimeos\MShop::cache( true );
 
 		$this->view = \TestHelper::view();
@@ -31,8 +32,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::cache( false );
 		\Aimeos\MShop::cache( false );
-		unset( $this->object );
+
+		unset( $this->object, $this->view, $this->context );
 	}
 
 
@@ -120,9 +123,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customerStub->expects( $this->once() )->method( 'addListItem' )->will( $this->returnValue( $customerStub ) );
 		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
 
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', $customerStub );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 		$this->assertTrue( $this->access( 'checkDownload' )->invokeArgs( $this->object, [-1, -2] ) );
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
 	}
 
 

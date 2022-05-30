@@ -17,6 +17,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->context = \TestHelper::context();
 
 		$this->object = new \Aimeos\Client\Html\Basket\Related\Standard( $this->context );
@@ -26,7 +29,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::create( $this->context, 'basket' )->clear();
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
+
 		unset( $this->object, $this->context );
 	}
 
@@ -42,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$cntl = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context );
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$basket = $cntl->get()->addProduct( $this->getOrderProductItem( 'CNE' ) );
 		$cntl->save();
 

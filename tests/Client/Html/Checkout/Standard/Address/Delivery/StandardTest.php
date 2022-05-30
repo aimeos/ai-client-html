@@ -19,6 +19,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
 
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
@@ -31,9 +32,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\Controller\Frontend\Customer\Factory::injectController( '\Aimeos\Controller\Frontend\Customer\Standard', null );
-		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::create( $this->context, 'basket' )->clear();
 		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
 
 		unset( $this->object, $this->context, $this->view );
 	}
@@ -83,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend::create( $this->context, 'basket' )->get();
 		$this->assertEquals( 'hamburg', $basket->getAddress( 'delivery', 0 )->getCity() );
 	}
 
@@ -144,7 +145,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->view );
 		$this->object->init();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend::create( $this->context, 'basket' )->get();
 		$this->assertEquals( 'test', $basket->getAddress( 'delivery', 0 )->getFirstName() );
 	}
 
@@ -209,7 +210,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customerStub->expects( $this->once() )->method( 'deleteAddressItem' )->will( $this->returnValue( $customerStub ) );
 		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
 
-		\Aimeos\Controller\Frontend::inject( 'customer', $customerStub );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 
 		$this->expectException( \Aimeos\Client\Html\Exception::class );
 		$this->object->init();
@@ -228,7 +229,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend::create( $this->context, 'basket' )->get();
 		$this->assertEquals( 'Example company', $basket->getAddress( 'delivery', 0 )->getCompany() );
 	}
 
@@ -254,7 +255,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend::create( $this->context, 'basket' )->get();
 		$this->assertEquals( 'mr', $basket->getAddress( 'delivery', 0 )->getSalutation() );
 	}
 
@@ -269,7 +270,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend::create( $this->context, 'basket' )->get();
 		$this->assertCount( 0, $basket->getAddress( 'delivery' ) );
 	}
 }

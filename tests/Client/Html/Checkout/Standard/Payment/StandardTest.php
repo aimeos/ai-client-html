@@ -19,6 +19,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
+		\Aimeos\Controller\Frontend::cache( true );
+		\Aimeos\MShop::cache( true );
+
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
 
@@ -29,7 +32,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->clear();
+		\Aimeos\Controller\Frontend::create( $this->context, 'basket' )->clear();
+		\Aimeos\Controller\Frontend::cache( false );
+		\Aimeos\MShop::cache( false );
 
 		unset( $this->object, $this->context, $this->view );
 	}
@@ -74,7 +79,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitExistingId()
 	{
-		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'service' );
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitpaymentcode' ) );
 
@@ -94,7 +99,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->object->init();
 
-		$basket = \Aimeos\Controller\Frontend\Basket\Factory::create( $this->context )->get();
+		$basket = \Aimeos\Controller\Frontend::create( $this->context, 'basket' )->get();
 		$this->assertEquals( 'unitpaymentcode', $basket->getService( 'payment', 0 )->getCode() );
 	}
 
@@ -116,7 +121,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNotExistingAttributes()
 	{
-		$manager = \Aimeos\MShop\Service\Manager\Factory::create( $this->context );
+		$manager = \Aimeos\MShop::create( $this->context, 'service' );
 		$search = $manager->filter();
 		$search->setConditions( $search->compare( '==', 'service.code', 'unitpaymentcode' ) );
 
