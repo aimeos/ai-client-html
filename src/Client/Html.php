@@ -34,20 +34,7 @@ class Html
 	public static function create( \Aimeos\MShop\ContextIface $context, string $path, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		if( empty( $path ) ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Client path is empty' ) );
-		}
-
-		$parts = explode( '/', $path );
-
-		foreach( $parts as $key => $part )
-		{
-			if( ctype_alnum( $part ) === false )
-			{
-				$msg = sprintf( 'Invalid characters in client name "%1$s"', $path );
-				throw new \Aimeos\Client\Html\Exception( $msg, 400 );
-			}
-
-			$parts[$key] = ucfirst( $part );
+			throw new \Aimeos\Client\Html\Exception( 'Component path is empty', 400 );
 		}
 
 		if( empty( $name ) ) {
@@ -55,22 +42,14 @@ class Html
 		}
 
 		$interface = '\\Aimeos\\Client\Html\\Iface';
-		$classname = '\\Aimeos\\Client\\Html\\' . implode( '\\', $parts ) . '\\' . $name;
+		$classname = '\\Aimeos\\Client\\Html\\' . str_replace( '/', '\\', ucwords( $path, '/' ) ) . '\\' . $name;
 
-		if( ctype_alnum( $name ) === false )
-		{
-			$msg = $context->translate( 'client', 'Invalid characters in class name "%1$s"' );
-			throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $classname ) );
+		if( class_exists( $classname ) === false ) {
+			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname, 404 ) );
 		}
 
-		if( class_exists( $classname ) === false )
-		{
-			$msg = $context->translate( 'client', 'Class "%1$s" not available' );
-			throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $classname ) );
-		}
-
-		$client = self::createClient( $context, $classname, $interface );
-		$client = self::addClientDecorators( $context, $client, $path );
+		$client = self::createComponent( $context, $classname, $interface );
+		$client = self::addComponentDecorators( $context, $client, $path );
 
 		return $client->setObject( $client );
 	}
@@ -84,49 +63,9 @@ class Html
 	 * @param string $classname Full name of the class for which the object should be returned
 	 * @param \Aimeos\Client\Html\Iface|null $client ExtJS client object
 	 */
-	public static function injectClient( string $classname, \Aimeos\Client\Html\Iface $client = null )
+	public static function inject( string $classname, \Aimeos\Client\Html\Iface $client = null )
 	{
-		self::$objects[$classname] = $client;
-	}
-
-
-	/**
-	 * Adds the decorators to the client object.
-	 *
-	 * @param \Aimeos\MShop\ContextIface $context Context instance with necessary objects
-	 * @param \Aimeos\Client\Html\Iface $client Client object
-	 * @param array $decorators List of decorator name that should be wrapped around the client
-	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
-	 * @return \Aimeos\Client\Html\Iface Client object
-	 */
-	protected static function addDecorators( \Aimeos\MShop\ContextIface $context,
-		\Aimeos\Client\Html\Iface $client, array $decorators, string $classprefix ) : \Aimeos\Client\Html\Iface
-	{
-		foreach( $decorators as $name )
-		{
-			if( ctype_alnum( $name ) === false )
-			{
-				$classname = is_string( $name ) ? $classprefix . $name : '<not a string>';
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid class name "%1$s"', $classname ) );
-			}
-
-			$classname = $classprefix . $name;
-
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
-			}
-
-			$interface = '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface';
-			$client = new $classname( $client, $context );
-
-			if( !( $client instanceof $interface ) )
-			{
-				$msg = $context->translate( 'client', 'Class "%1$s" does not implement "%2$s"' );
-				throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $classname, $interface ) );
-			}
-		}
-
-		return $client;
+		self::$objects['\\' . ltrim( $classname, '\\' )] = $client;
 	}
 
 
@@ -138,13 +77,9 @@ class Html
 	 * @param string $path Path of the client in lower case, e.g. "catalog/detail"
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 */
-	protected static function addClientDecorators( \Aimeos\MShop\ContextIface $context,
+	protected static function addComponentDecorators( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\Client\Html\Iface $client, string $path ) : \Aimeos\Client\Html\Iface
 	{
-		if( empty( $path ) ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
-		}
-
 		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
 		$config = $context->config();
 
@@ -195,6 +130,46 @@ class Html
 
 
 	/**
+	 * Adds the decorators to the client object.
+	 *
+	 * @param \Aimeos\MShop\ContextIface $context Context instance with necessary objects
+	 * @param \Aimeos\Client\Html\Iface $client Client object
+	 * @param array $decorators List of decorator name that should be wrapped around the client
+	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
+	 * @return \Aimeos\Client\Html\Iface Client object
+	 */
+	protected static function addDecorators( \Aimeos\MShop\ContextIface $context,
+		\Aimeos\Client\Html\Iface $client, array $decorators, string $classprefix ) : \Aimeos\Client\Html\Iface
+	{
+		foreach( $decorators as $name )
+		{
+			if( ctype_alnum( $name ) === false )
+			{
+				$classname = is_string( $name ) ? $classprefix . $name : '<not a string>';
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid class name "%1$s"', $classname ), 400 );
+			}
+
+			$classname = $classprefix . $name;
+
+			if( class_exists( $classname ) === false ) {
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ), 404 );
+			}
+
+			$interface = '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface';
+			$client = new $classname( $client, $context );
+
+			if( !( $client instanceof $interface ) )
+			{
+				$msg = sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $interface );
+				throw new \Aimeos\Client\Html\Exception( $msg, 400 );
+			}
+		}
+
+		return $client;
+	}
+
+
+	/**
 	 * Creates a client object.
 	 *
 	 * @param \Aimeos\MShop\ContextIface $context Context instance with necessary objects
@@ -203,22 +178,22 @@ class Html
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 * @throws \Aimeos\Client\Html\Exception If client couldn't be found or doesn't implement the interface
 	 */
-	protected static function createClient( \Aimeos\MShop\ContextIface $context, string $classname, string $interface ) : \Aimeos\Client\Html\Iface
+	protected static function createComponent( \Aimeos\MShop\ContextIface $context, string $classname, string $interface ) : \Aimeos\Client\Html\Iface
 	{
 		if( isset( self::$objects[$classname] ) ) {
 			return self::$objects[$classname];
 		}
 
 		if( class_exists( $classname ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not available', $classname ) );
+			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not available', $classname ), 404 );
 		}
 
 		$client = new $classname( $context );
 
 		if( !( $client instanceof $interface ) )
 		{
-			$msg = $context->translate( 'client', 'Class "%1$s" does not implement "%2$s"' );
-			throw new \Aimeos\Client\Html\Exception( sprintf( $msg, $classname, $interface ) );
+			$msg = sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $interface );
+			throw new \Aimeos\Client\Html\Exception( $msg, 400 );
 		}
 
 		return $client;
