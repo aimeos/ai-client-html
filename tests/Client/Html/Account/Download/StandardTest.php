@@ -89,7 +89,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$attrManagerStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $attrManagerStub->create() ) );
 
-		\Aimeos\MShop::inject( 'order/base/product/attribute', $attrManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Attribute\\Standard', $attrManagerStub );
 
 
 		$stream = $this->getMockBuilder( \Psr\Http\Message\StreamInterface::class )->getMock();
