@@ -49,8 +49,7 @@ class Html
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname, 404 ) );
 		}
 
-		$client = self::createComponent( $context, $classname, $interface );
-		$client = self::addComponentDecorators( $context, $client, $path );
+		$client = self::createComponent( $context, $classname, $interface, $path );
 
 		return $client->setObject( $client );
 	}
@@ -176,10 +175,12 @@ class Html
 	 * @param \Aimeos\MShop\ContextIface $context Context instance with necessary objects
 	 * @param string $classname Name of the client class
 	 * @param string $interface Name of the client interface
+	 * @param string $path Type of the client, e.g 'account/favorite' for \Aimeos\Client\Html\Account\Favorite\Standard
 	 * @return \Aimeos\Client\Html\Iface Client object
 	 * @throws \Aimeos\Client\Html\Exception If client couldn't be found or doesn't implement the interface
 	 */
-	protected static function createComponent( \Aimeos\MShop\ContextIface $context, string $classname, string $interface ) : \Aimeos\Client\Html\Iface
+	protected static function createComponent( \Aimeos\MShop\ContextIface $context,
+		string $classname, string $interface, string $path ) : \Aimeos\Client\Html\Iface
 	{
 		if( isset( self::$objects[$classname] ) ) {
 			return self::$objects[$classname];
@@ -197,6 +198,6 @@ class Html
 			throw new \Aimeos\Client\Html\Exception( $msg, 400 );
 		}
 
-		return $client;
+		return self::addComponentDecorators( $context, $client, $path );
 	}
 }
