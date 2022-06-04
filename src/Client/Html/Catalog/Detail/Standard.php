@@ -515,7 +515,7 @@ class Standard
 		 * @see client/html/catalog/stock/url/config
 		 */
 		if( !$this->context()->config()->get( 'client/html/catalog/detail/stock/enable', true ) ) {
-			return null;
+			return map();
 		}
 
 		$products = $productItem->getRefItems( 'product', null, 'default' )->push( $productItem );
