@@ -247,6 +247,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 				</div>
 			</a>
+			<div class="code">
+				<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?>: </span>
+				<span class="value" itemprop="sku"><?= $enc->html( $productItem->getCode(), $enc::TRUST ) ?></span>
+			</div>
 
 			<div class="offer" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 
