@@ -45,7 +45,7 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
 		<?php $params = ['s_name' => $this->detailSupplierItem->getName( 'url' ), 'f_supid' => $this->detailSupplierItem->getId()] ?>
 		<link rel="canonical" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config + ['absoluteUri' => true] ) ) ?>">
 
-		<meta property="og:type" content="product">
+		<meta property="og:type" content="website">
 		<meta property="og:title" content="<?= $enc->html( $this->detailSupplierItem->getName() ) ?>">
 		<meta property="og:url" content="<?= $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config + ['absoluteUri' => true] ) ) ?>">
 

@@ -27,6 +27,7 @@ $enc = $this->encoder();
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
 	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
 		<title><?= $enc->html( strip_tags( $catItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
@@ -38,12 +39,9 @@ $enc = $this->encoder();
 
 	<?php elseif( ( $search = $this->param( 'f_search', null ) ) != null ) : /// Product search hint with user provided search string (%1$s) ?>
 		<title><?= $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
 		<meta name="keywords" content="<?= $enc->attr( strip_tags( $search ) ) ?>">
 		<meta name="description" content="<?= $enc->attr( strip_tags( $search ) ) ?>">
-	<?php else : ?>
-		<title><?= $enc->html( $this->translate( 'client', 'Our products' ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
-		<meta name="keywords" content="<?= $enc->attr( $this->translate( 'client', 'Our products' ) ) ?>">
-		<meta name="description" content="<?= $enc->attr( $this->translate( 'client', 'Our products' ) ) ?>">
 	<?php endif ?>
 
 
@@ -56,8 +54,6 @@ $enc = $this->encoder();
 		<link rel="next prefetch" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPageNext', 0 )] + $this->get( 'listParams', [] ) ) ) ?>">
 	<?php endif ?>
 
-
-	<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
 	<meta name="application-name" content="Aimeos">
 
 <?php endif ?>
