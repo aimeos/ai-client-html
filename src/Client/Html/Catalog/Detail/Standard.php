@@ -445,7 +445,7 @@ class Standard
 			$max = $config->get( 'client/html/catalog/session/seen/maxitems', 6 );
 
 			$html = $this->view()->set( 'product', $product )->render( $template );
-			$lastSeen->put( $id, $html )->slice( -$max );
+			$lastSeen = $lastSeen->put( $id, $html )->slice( -$max );
 		}
 
 		$session->set( 'aimeos/catalog/session/seen/list', $lastSeen->put( $id, $lastSeen->pull( $id ) )->all() );
