@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-05 09:19+0200\n"
+"POT-Creation-Date: 2022-07-05 11:56+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: R M <roberto@proprionoi.it>, 2019\n"
 "Language-Team: Italian (http://www.transifex.com/aimeos/aimeos-core/language/it/)\n"
@@ -21,19 +21,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
 msgstr[0] "%1$d prodotto"
 msgstr[1] "%1$d prodotti"
+msgstr[2] "%1$d prodotti"
 
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
 msgstr[0] "%1$d recensione"
 msgstr[1] "%1$d recensioni"
+msgstr[2] "%1$d recensioni"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -149,6 +151,7 @@ msgid "Address"
 msgid_plural "Addresses"
 msgstr[0] "Indirizzo"
 msgstr[1] "Indirizzi"
+msgstr[2] "Indirizzi"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -748,6 +751,7 @@ msgid_plural ""
 "articles)"
 msgstr[0] "Risultato di ricerca per <span class=\"searchstring\">\"%1$s\"</span> (%2$d prodotto)"
 msgstr[1] "Risultato di ricerca per <span class=\"searchstring\">\"%1$s\"</span> (%2$d articoli)"
+msgstr[2] "Risultato di ricerca per <span class=\"searchstring\">\"%1$s\"</span> (%2$d articoli)"
 
 msgid "Select country"
 msgstr "Seleziona Nazione"
@@ -963,6 +967,7 @@ msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
 msgstr[0] "Il valore del tuo buono è %1$s"
 msgstr[1] "Il valore dei tuoi buoni è %1$s"
+msgstr[2] "Il valore dei tuoi buoni è %1$s"
 
 msgid "Three month"
 msgstr "Tre mesi"

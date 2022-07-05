@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Babak Momeni, 2022
 # basi nonam <basi@ethersports.org>, 2017
 # Mohammad Hossein Kiani Zahrani <org.kiani@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-05 09:19+0200\n"
+"POT-Creation-Date: 2022-07-05 11:56+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Mohammad Hossein Kiani Zahrani <org.kiani@gmail.com>, 2017\n"
+"Last-Translator: Babak Momeni, 2022\n"
 "Language-Team: Persian (http://www.transifex.com/aimeos/aimeos-core/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,7 +105,7 @@ msgstr ""
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr ""
+msgstr " + %1$s%% ارزش افزوده"
 
 msgid "+ Payment costs"
 msgstr "+هزینه‌ی پرداخت"
@@ -124,13 +125,13 @@ msgid "-%1$s%%"
 msgstr ""
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "رخداد خطای غیر قابل بازیابی"
 
 msgid "Account"
 msgstr "حساب کاربری"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "افزودن آدرس صدور فاکتور"
 
 msgid "Add to basket"
 msgstr "افزودن به سبد خرید"
@@ -157,17 +158,17 @@ msgid ""
 "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
 "\n"
 "This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr ""
+msgstr "تمامی مرسولات بر اساس قوانین و مقررات این سایت، که قبلا در زمان ثبت سفارش توسط شما رویت و مورد قبول قرار گرفته است، ارسال می گردد.\nاین ایمیل حاوی اطلاعات محرمانه بوده و صرفا جهت استفاده شخصی است که مخاطب قرار گرفته است. در صورتی که شما شخص مورد اشاره نیستید، لطفا مراتب را طی پاسخ به همین ایمیل اطلاع رسانی نموده و سپس ایمیل و کلیه ضمائم آن را پاک نمایید."
 
 #. / Payment e-mail legal information
 msgid "All orders are subject to our terms and conditions."
-msgstr ""
+msgstr "تمامی سفارشات بر اساس قوانین و مقررات این سایت، که قبلا در زمان ثبت سفارش توسط شما رویت و مورد قبول قرار گرفته است، ثبت می گردد.\nاین ایمیل حاوی اطلاعات محرمانه بوده و صرفا جهت استفاده شخصی است که مخاطب قرار گرفته است. در صورتی که شما شخص مورد اشاره نیستید، لطفا مراتب را طی پاسخ به همین ایمیل اطلاع رسانی نموده و سپس ایمیل و کلیه ضمائم آن را پاک نمایید."
 
 msgid "An account has been created for you."
 msgstr "یک حساب کاربری برای شما ایجاد شد."
 
 msgid "Article"
-msgstr ""
+msgstr "کالا"
 
 msgid "Article no."
 msgstr ""
@@ -184,7 +185,7 @@ msgid "At least one delivery address part is missing or invalid"
 msgstr "حداقل قسمتی از آدرس تحویل مفقود یا نامعتبر می‌باشد"
 
 msgid "Attributes"
-msgstr "خصوصیت"
+msgstr "خصوصیات"
 
 msgid "Back"
 msgstr "عقب"
@@ -228,7 +229,7 @@ msgid "Change payment"
 msgstr "روش پرداخت را تغییر دهید"
 
 msgid "Channel"
-msgstr ""
+msgstr "کانال"
 
 msgid "Characteristics"
 msgstr "مشخصات"
@@ -303,7 +304,7 @@ msgstr "مشتری با شناسه‌ی \"%1$s\" پیدا نشد "
 
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s گرامی"
 
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
@@ -311,31 +312,31 @@ msgstr "%1$s %2$s %3$s گرامی"
 
 #, php-format
 msgid "Dear Miss %1$s %2$s"
-msgstr ""
+msgstr "سرکار خانم %1$s %2$s"
 
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "جناب آقای %1$s %2$s"
 
 #, php-format
 msgid "Dear Mrs %1$s %2$s"
-msgstr ""
+msgstr "سرکار خانم %1$s %2$s"
 
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "سرکار خانم %1$s %2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "خانم یا آقای عزیز"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "مشتری گرامی"
 
 msgid "Delete"
 msgstr "پاک کردن"
 
 msgid "Delete item"
-msgstr ""
+msgstr "حذف"
 
 msgid "Delivery"
 msgstr "تحویل"
@@ -345,7 +346,7 @@ msgstr "آدرس تحویل"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "نشانی ارسال حذف شد"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -365,7 +366,7 @@ msgid "Details"
 msgstr "جزئیات"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "نشانی ذخیره نشود"
 
 msgid "Downloads"
 msgstr "دانلود‌ها"
@@ -394,7 +395,7 @@ msgid "File \"%1$s\" doesn't exist"
 msgstr "فایل \"%1$s\" موجود نمی‌باشد"
 
 msgid "Filter"
-msgstr "غربال"
+msgstr "فیلتر"
 
 msgid "First name"
 msgstr "نام"
@@ -412,7 +413,7 @@ msgid "HH:mm"
 msgstr ""
 
 msgid "Highest price"
-msgstr ""
+msgstr "بیشترین قیمت"
 
 #, php-format
 msgid ""
@@ -420,7 +421,7 @@ msgid ""
 "conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
 "policy\">privacy policy</a>"
-msgstr ""
+msgstr "با تمامی <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">قوانین و مقررات سایت</a> و <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">سیاستهای حریم خصوصی</a> موافق هستم"
 
 #, php-format
 msgid ""
@@ -430,7 +431,7 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "با تمامی <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">قوانین و مقررات سایت</a> و <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">سیاستهای حریم خصوصی</a> و <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">شرایط بازگشت کالا و خدمات</a> موافق هستم"
 
 msgid "If back in stock"
 msgstr "اگر در انبار باشد"
@@ -443,12 +444,12 @@ msgstr "آگر هر سوالی دارید لطفا در قسمت پاسخ همی
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr " شامل %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr " شامل %1$s%% مالیات ارزش افزوده "
 
 msgid "Included rebates"
 msgstr "شامل تخفیف"
@@ -503,13 +504,13 @@ msgid "List view"
 msgstr ""
 
 msgid "Login"
-msgstr ""
+msgstr "ورود"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "کمترین قیمت"
 
 msgid "More reviews"
-msgstr ""
+msgstr "ادامه دیدگاهها"
 
 msgid "Name"
 msgstr "نام"
@@ -518,13 +519,13 @@ msgid "New"
 msgstr "جدید"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "آدرس جدید"
 
 msgid "Next"
 msgstr "بعدی"
 
 msgid "Next order"
-msgstr ""
+msgstr "سفارش بعدی"
 
 #, php-format
 msgid ""
@@ -569,7 +570,7 @@ msgid "One week"
 msgstr "یک هفته"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "باز کردن منوی فرعی"
 
 msgid "Options"
 msgstr "گزینه‌ها"
@@ -579,7 +580,7 @@ msgstr "سفارش"
 
 #, php-format
 msgid "Order %1$s"
-msgstr ""
+msgstr "سفارش %1$s"
 
 msgid "Order ID"
 msgstr "شناسه‌ی سفارش"
@@ -588,7 +589,7 @@ msgid "Order channel"
 msgstr "کانال سفارش"
 
 msgid "Order date"
-msgstr ""
+msgstr "تاریخ سفارش"
 
 msgid "Order details"
 msgstr "جزئیات سفارش"
@@ -673,7 +674,7 @@ msgid "Price"
 msgstr "قیمت"
 
 msgid "Price range"
-msgstr ""
+msgstr "بازه قیمت"
 
 msgid "Proceed"
 msgstr "ادامه"
@@ -685,7 +686,7 @@ msgid "Product"
 msgstr "محصول"
 
 msgid "Product image"
-msgstr ""
+msgstr "تصویر محصول"
 
 msgid "Products you might be also interested in"
 msgstr "محصولاتی که احتمالا شما به آنها علاقه‌مند هستید"
@@ -723,10 +724,10 @@ msgid "Reviews"
 msgstr "بررسی ها"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "کد SKU یا نام کالا"
 
 msgid "Sale"
-msgstr ""
+msgstr "فروش"
 
 msgid "Salutation"
 msgstr "پیشوند نام"
@@ -788,7 +789,7 @@ msgid "Status"
 msgstr "وضعیت"
 
 msgid "Stock"
-msgstr ""
+msgstr "موجودی"
 
 #. / Stock string composition with stock type (%1$s, normally left out)
 #. and stock level string (%2$s)
@@ -813,23 +814,23 @@ msgid "Sub-total"
 msgstr "زیر کل"
 
 msgid "Submit"
-msgstr ""
+msgstr "ارسال"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "شماره اشتراک"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "جزییات اشتراک"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "دوره اشتراک"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "اشتراک محصول"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
-msgstr ""
+msgstr "اشتراک با کد %1$s پیدا نشد"
 
 msgid "Subscriptions"
 msgstr "اشتراک ها"
@@ -841,13 +842,13 @@ msgid "Sum"
 msgstr "مجموع"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "اطلاعات تامین کننده"
 
 msgid "Suppliers"
 msgstr "تامین کنندگان"
 
 msgid "Take a look"
-msgstr ""
+msgstr "مرور"
 
 msgid "Telephone"
 msgstr "تلفن"
@@ -897,10 +898,10 @@ msgstr ""
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
+msgstr "با تشکر از خرید شما.\nپرداختی شما دریافت شده است و به زودی یک ایمیل حاوی جزییات خرید برای شما ارسال خواهد شد."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "از ارسال دیدگاه سپاسگزاریم!"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -910,19 +911,19 @@ msgstr ""
 msgid ""
 "The delivery status of your order %1$s from %2$s has been changed to "
 "\"%3$s\"."
-msgstr ""
+msgstr "وضعیت ارسال سفارش %1$s از (%2$s) به حالت (%3$s) تغییر یافت"
 
 #, php-format
 msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "سفارش تا زمان دریافت اطلاعات پرداخت به صورت معلق خواهد بود. اگر گزینه پرداخت از طریق حواله بانکی را انتخاب نموده اید، لطفا شماره سفارش %1$s را در توضیحات حواله انتقال بانک قید نمایید."
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
+msgstr "سفارش کنسل شد.\nمایل هستید این سفارش را تکرار کنید؟"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -930,15 +931,15 @@ msgstr ""
 #. delivery status (%3%s)
 #, php-format
 msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr ""
+msgstr "بسته سفارش شماره %1$s از %2$s قابل ارسال نیست."
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
+msgstr "تاییدیه پرداخت شما هنوز انجام نشده است.\nبه محض تایید پرداخت ایمیل اطلاع رسانی برای شما ارسال خواهد شد."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "بازپرداخت امکان پذیر نمی باشد"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -946,13 +947,13 @@ msgstr ""
 #. status (%3%s)
 #, php-format
 msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr ""
+msgstr "مبلغ پرداختی سفارش %1$s از طریق %2$s به حساب شما بازگشت داده شد."
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "اشتراک محصول شما به پایان رسیده است."
 
 msgid "The subscription for the product has ended."
-msgstr ""
+msgstr "اشتراک محصول شما به پایان رسیده است."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
