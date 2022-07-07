@@ -201,7 +201,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						</div>
 					</noscript>
 
-					<?php foreach( $mediaItems as $mediaItem ) : ?>
+					<?php foreach( $mediaItems->take( 2 ) as $mediaItem ) : ?>
 
 						<div class="media-item">
 							<img class="lazy-image"

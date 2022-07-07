@@ -54,7 +54,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 							</div>
 						</noscript>
 
-						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' )->take( 2 ) as $mediaItem ) : ?>
 							<div class="media-item">
 								<img class="lazy-image"
 									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
