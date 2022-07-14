@@ -106,7 +106,7 @@ msgstr "pin"
 
 #. Price type default
 msgid "price:default"
-msgstr "%1$s %2$s"
+msgstr "%2$s %1$s"
 
 #. Product attribute
 msgid "size"
