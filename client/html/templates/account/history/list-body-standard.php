@@ -168,7 +168,7 @@ $attrformat = $this->translate( 'client', '%1$s at %2$s' );
 
 					<div class="action col-md-2">
 						<?php $params = ['his_action' => 'order', 'his_id' => $id] ?>
-						<a class="btn btn-outline" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ) ?>">
+						<a class="btn btn-toggle" href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, $params, [], $accountConfig ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', 'Show' ) ) ?>
 						</a>
 					</div>

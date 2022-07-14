@@ -221,7 +221,7 @@ $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 		<?php endforeach ?>
 
 		<div class="button-group">
-			<a class="btn btn-default btn-close"
+			<a class="btn btn-close"
 				href="<?= $enc->attr( $this->url( $accountTarget, $accountController, $accountAction, [], [], $accountConfig ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
 			</a>

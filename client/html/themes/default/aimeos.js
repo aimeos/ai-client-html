@@ -255,7 +255,7 @@ AimeosAccountHistory = {
 	 */
 	setupOrderShow: function() {
 
-		$(".account-history .history-item").on("click", '.action .btn', function(ev) {
+		$(".account-history .history-item").on("click", '.action .btn-toggle', function(ev) {
 
 			var details = $(".account-history-order", ev.delegateTarget);
 
