@@ -288,7 +288,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 						</div>
 
-						<?php if( $productItem->getType() === 'select' ) : ?>
+						<?php if( $this->get( 'basket-add', false ) && $productItem->getType() === 'select' ) : ?>
 							<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
 								<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 
