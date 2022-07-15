@@ -100,7 +100,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 			<?php $params = array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ) ?>
 
 			<div class="cat-item catid-<?= $enc->attr( $item->getId() .
-				( $item->hasChildren() ? ' withchild' : ' nochild' ) .
+				( !$item->getChildren()->isEmpty() ? ' withchild' : ' nochild' ) .
 				( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) .
 				' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ) ?>"
 				data-id="<?= $item->getId() ?>">
@@ -109,7 +109,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 					<a class="col-10 name" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, $params, [], $config ) ) ?>">
 						<?= $enc->html( $item->getName(), $enc::TRUST ) ?>
 					</a>
-					<?php if( $item->hasChildren() ) : ?>
+					<?php if( !$item->getChildren()->isEmpty() ) : ?>
 						<div class="col-2 next" data-submenu="<?= $enc->attr( $item->getId() ) ?>"
 							title="<?= $enc->attr( $this->translate( 'client', 'Open submenu' ) ) ?>">
 						</div>
@@ -135,7 +135,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 					<div id="<?= $enc->attr( $item->getId() ) ?>" class="submenu <?= $enc->attr(
 						( $this->get( 'path', map() )->has( $item->getId() ) ? ' active opened' : '' ) ) .
-						( $item->hasChildren() ? ' withchild' : ' nochild' ) ?>"
+						( !$item->getChildren()->isEmpty() ? ' withchild' : ' nochild' ) ?>"
 						data-id="<?= $item->getId() ?>">
 
 						<div class="row header">
