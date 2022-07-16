@@ -666,15 +666,19 @@ aside .catalog-filter section {
 	/* MEGAMENU */
 
 	.catalog-filter-tree .megamenu .level-2 {
-		display: flex;
-		flex-flow: column wrap;
-		max-height: 15rem;
+		break-inside: avoid;
+		column-count: 4;
 		width: 100%;
 	}
 
 	.catalog-filter-tree .megamenu .level-2 > .cat-item {
-		margin: 0 1rem;
-		width: 15rem;
+		break-inside: avoid;
+		margin-bottom: 2rem;
+		max-width: 15rem;
+	}
+
+	.catalog-filter-tree .megamenu .level-3 {
+		break-inside: avoid;
 	}
 
 	.catalog-filter-tree .megamenu .cat-item.hover > .submenu,
@@ -693,6 +697,21 @@ aside .catalog-filter section {
 	}
 
 }
+
+@media (min-width:1200px) {
+
+	.catalog-filter-tree .megamenu .level-2 {
+		column-count: 5;
+	}
+}
+
+@media (min-width:1400px) {
+
+	.catalog-filter-tree .megamenu .level-2 {
+		column-count: 6;
+	}
+}
+
 
 /* Tree offscreen menu */
 
