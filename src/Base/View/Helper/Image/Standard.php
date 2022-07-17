@@ -45,7 +45,7 @@ class Standard
 
 		if( !strncmp( $media->getMimetype(), 'video/', 6 ) )
 		{
-			return '<video autoplay muted class="item" id="image-' . $media->getId() . '"
+			return '<video autoplay muted class="item" id="image-' . $media->getId() . '" loading="lazy"
 				itemscope itemtype="http://schema.org/VideoObject"
 				poster="' . $enc->attr( $view->content( $media->getPreview( 600 ) ) ) . '"
 				src="' . $enc->attr( $view->content( $media->getUrl() ) ) . '"
@@ -53,7 +53,7 @@ class Standard
 				' . $variant . '></video>';
 		}
 
-		return '<img class="item" id="image-' . $media->getId() . '"
+		return '<img class="item" id="image-' . $media->getId() . '" loading="lazy"
 			itemscope itemprop="image" itemtype="http://schema.org/ImageObject"
 			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
 			srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
