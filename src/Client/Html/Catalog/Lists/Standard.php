@@ -282,9 +282,7 @@ class Standard
 			->slice( ( $page - 1 ) * $size, $size )
 			->uses( $this->domains() );
 
-		if( $this->inStock() ) {
-			$cntl->compare( '>', 'product.instock', 0 );
-		}
+		$this->call( 'conditions', $cntl, $view );
 
 		$products = $cntl->search( $total );
 		$articles = $products->getRefItems( 'product', 'default', 'default' )->flat( 1 )->union( $products );
@@ -397,6 +395,41 @@ class Standard
 
 
 	/**
+	 * If all shown products must be in stock
+	 *
+	 * @return bool TRUE if all products must be in stock, FALSE if not
+	 */
+	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view )
+	{
+		/** client/html/catalog/lists/instock
+		 * Show only products which are in stock
+		 *
+		 * This configuration option overwrites the "client/html/catalog/domains"
+		 * option that allows to configure the domain names of the items fetched
+		 * for all catalog related data.
+		 *
+		 * @param int Zero to show all products, "1" to show only products with stock
+		 * @since 2021.10
+		 * @see client/html/catalog/domains
+		 * @see client/html/catalog/lists/domains
+		 * @see client/html/catalog/detail/domains
+		 * @see client/html/catalog/stage/domains
+		 * @see client/html/catalog/lists/attrid-default
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/lists/supid-default
+		 * @see client/html/catalog/lists/size
+		 * @see client/html/catalog/lists/levels
+		 * @see client/html/catalog/lists/sort
+		 * @see client/html/catalog/lists/pages
+		 */
+
+		if( $view->config( 'client/html/catalog/lists/instock', false ) ) {
+			$cntl->compare( '>', 'product.instock', 0 );
+		}
+	}
+
+
+	/**
 	 * Returns the data domains fetched along with the products
 	 *
 	 * @return array List of domain names
@@ -467,38 +500,6 @@ class Standard
 		}
 
 		return $domains;
-	}
-
-
-	/**
-	 * If all shown products must be in stock
-	 *
-	 * @return bool TRUE if all products must be in stock, FALSE if not
-	 */
-	protected function inStock() : bool
-	{
-		/** client/html/catalog/lists/instock
-		 * Show only products which are in stock
-		 *
-		 * This configuration option overwrites the "client/html/catalog/domains"
-		 * option that allows to configure the domain names of the items fetched
-		 * for all catalog related data.
-		 *
-		 * @param int Zero to show all products, "1" to show only products with stock
-		 * @since 2021.10
-		 * @see client/html/catalog/domains
-		 * @see client/html/catalog/lists/domains
-		 * @see client/html/catalog/detail/domains
-		 * @see client/html/catalog/stage/domains
-		 * @see client/html/catalog/lists/attrid-default
-		 * @see client/html/catalog/lists/catid-default
-		 * @see client/html/catalog/lists/supid-default
-		 * @see client/html/catalog/lists/size
-		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/sort
-		 * @see client/html/catalog/lists/pages
-		 */
-		return (bool) $this->context()->config()->get( 'client/html/catalog/lists/instock', false );
 	}
 
 
