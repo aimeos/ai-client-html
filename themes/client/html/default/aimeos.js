@@ -125,7 +125,7 @@ Aimeos = {
 
 			$(".aimeos .lazy-image").each((idx, el) => {
 				(new IntersectionObserver(callback, {
-					root: $(el).closest('.product')[0],
+					root: null,
 					rootMargin: '320px',
 					threshold: 0
 				})).observe(el);
