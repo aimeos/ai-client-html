@@ -19,7 +19,7 @@ $pos = 0;
 
 	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
 
-		<div class="thumbs thumbs-vertical swiffy-slider slider-nav-dark slider-nav-sm slider-nav-chevron slider-item-snapstart slider-nav-visible slider-nav-page slider-nav-outside-expand">
+		<div class="thumbs thumbs-vertical swiffy-slider slider-nav-dark slider-nav-sm slider-nav-outside slider-item-snapstart slider-nav-visible slider-nav-page slider-nav-outside-expand">
 			<div class="slider-container">
 
 					<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
