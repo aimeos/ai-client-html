@@ -17,23 +17,23 @@ $pos = 0;
 ?>
 <div class="catalog-detail-image">
 
-	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
+	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 1 ) : $class = 'item selected' ?>
 
 		<div class="thumbs thumbs-vertical swiffy-slider slider-nav-dark slider-nav-sm slider-nav-outside slider-item-snapstart slider-nav-visible slider-nav-page slider-nav-outside-expand">
 			<div class="slider-container">
 
-					<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
+				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
 
-						<div class="thumbnail">
-							<img class="item-thumb img-<?= $index ?>"  data-index="<?= $enc->attr( $pos++ ) ?>"
-								src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-								alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
-							>
-						</div>
+					<div class="thumbnail">
+						<img class="item-thumb img-<?= $index ?>"  data-index="<?= $enc->attr( $pos++ ) ?>"
+							src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+							alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
+						/>
+					</div>
 
-						<?php  $class = 'item' ?>
+					<?php  $class = 'item' ?>
 
-					<?php endforeach ?>
+				<?php endforeach ?>
 
 			</div>
 
@@ -42,7 +42,8 @@ $pos = 0;
 				<button type="button" class="slider-nav slider-nav-next" aria-label="Go next"></button>
 			<?php endif ?>
 
-	</div>
+		</div>
+
 	<?php endif ?>
 
 	<?php if( ( $imgNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
