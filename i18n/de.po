@@ -715,7 +715,7 @@ msgid "Relevance"
 msgstr "Relevanz"
 
 msgid "Reset"
-msgstr "Zurücksetzen"
+msgstr "Löschen"
 
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
