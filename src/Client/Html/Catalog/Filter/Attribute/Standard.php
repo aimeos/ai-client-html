@@ -119,6 +119,7 @@ class Standard
 		$this->addMetaItems( $attributes, $expire, $tags, ['attribute'] );
 
 
+		$active = [];
 		$params = $this->getClientParams( $view->param() );
 
 		$attrIds = array_filter( $view->param( 'f_attrid', [] ) );
@@ -147,13 +148,18 @@ class Standard
 			}
 
 			$fparams = $this->getFormParams( $type, $oneof, $options );
+			$active[$item->getType()] = (int) $item->get( 'checked', $active[$item->getType()] ?? false );
 			$attrMap[$item->getType()][$id] = $item->set( 'params', $attrparams )->set( 'formparam', $fparams );
 		}
 
+		arsort( $active );
 		unset( $params['f_attrid'], $params['f_oneid'], $params['f_optid'] );
 
 		$view->attributeResetParams = $params;
 		$view->attributeMap = $this->sort( $attrMap, $attrTypes );
+		$view->attributeMapActive = map( $view->attributeMap )->uksort( function( $a, $b ) use ( $active ) {
+			return $active[$b] <=> $active[$a];
+		} );
 
 		return parent::data( $view, $tags, $expire );
 	}
