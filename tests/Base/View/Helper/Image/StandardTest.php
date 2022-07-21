@@ -41,7 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$attrItem = \Aimeos\MShop::create( $context, 'attribute' )->create()->setType( 'color' )->setId( 123 );
 		$listItem = $manager->createListItem()->setType( 'variant' );
 
-		$mediaItem = $manager->create()->setLabel( 'testimage' )
+		$mediaItem = $manager->create()->setLabel( 'testimage' )->setUrl( 'image.jpg' )
 			->setPreviews( ['100' => 'image-1.jpg', '200' => 'image-2.jpg'] )
 			->addListItem( 'attribute', $listItem, $attrItem );
 
@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '/path/to/image-1.jpg 100w, /path/to/image-2.jpg 200w', $result );
 		$this->assertStringContainsString( 'src="/path/to/image-1.jpg"', $result );
-		$this->assertStringContainsString( 'data-zoom="/path/to/image-2.jpg"', $result );
+		$this->assertStringContainsString( 'data-zoom="/path/to/image.jpg"', $result );
 		$this->assertStringContainsString( 'data-variant-color="123"', $result );
 		$this->assertStringContainsString( 'sizes="240px"', $result );
 	}
