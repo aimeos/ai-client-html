@@ -47,7 +47,7 @@ $pos = 0;
 				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
 
 					<div class="thumbnail">
-						<img class="item-thumb img-<?= $index ?>" data-index="<?= $enc->attr( $pos++ ) ?>"
+						<img loading="lazy" class="item-thumb img-<?= $index ?>" data-index="<?= $enc->attr( $pos++ ) ?>"
 							src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 							alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
 						>
