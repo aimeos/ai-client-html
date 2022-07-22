@@ -30,11 +30,11 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 <?php switch( current( explode( '/', $item->getMimetype() ) ) ) : case 'audio': ?>
 
 	<audio <?= $boxattr ?>>
-		<source src="<?= $enc->attr( $this->content( $item->getUrl(), $item->getFileSystem() ) ) ?>"
+		<source src="<?= $enc->attr( $this->content( $item->getUrl( true ), $item->getFileSystem() ) ) ?>"
 			title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>"
 			type="<?= $enc->attr( $item->getMimetype() ) ?>" <?= $itemattr ?>>
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
-			<source src="<?= $enc->attr( $this->content( $subItem->getUrl(), $subItem->getFileSystem() ) ) ?>"
+			<source src="<?= $enc->attr( $this->content( $subItem->getUrl( true ), $subItem->getFileSystem() ) ) ?>"
 				title="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>"
 				type="<?= $enc->attr( $subItem->getMimetype() ) ?>" <?= $itemattr ?>>
 		<?php endforeach ?>
@@ -44,11 +44,11 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 	<?php break; case 'video': ?>
 
 		<video <?= $boxattr ?>>
-			<source src="<?= $enc->attr( $this->content( $item->getUrl(), $item->getFileSystem() ) ) ?>"
+			<source src="<?= $enc->attr( $this->content( $item->getUrl( true ), $item->getFileSystem() ) ) ?>"
 				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>"
 				type="<?= $enc->attr( $item->getMimetype() ) ?>" <?= $itemattr ?>>
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
-			<source src="<?= $enc->attr( $this->content( $subItem->getUrl(), $subItem->getFileSystem() ) ) ?>"
+			<source src="<?= $enc->attr( $this->content( $subItem->getUrl( true ), $subItem->getFileSystem() ) ) ?>"
 				title="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>"
 				type="<?= $enc->attr( $subItem->getMimetype() ) ?>" <?= $itemattr ?>>
 		<?php endforeach ?>
@@ -74,7 +74,7 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 
 	<?php break; default: ?>
 
-		<a href="<?= $enc->attr( $this->content( $item->getUrl(), $item->getFileSystem() ) ) ?>" <?= $boxattr ?>><!--
+		<a href="<?= $enc->attr( $this->content( $item->getUrl( true ), $item->getFileSystem() ) ) ?>" <?= $boxattr ?>><!--
 			--><img src="<?= $enc->attr( $this->content( $item->getPreview(), $item->getFileSystem() ) ) ?>"
 				title="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
 			><?= $enc->html( $item->getName() ) ?><!--

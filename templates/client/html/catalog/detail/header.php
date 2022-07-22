@@ -46,7 +46,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->detailProductItem->getName() ) ) ?>">
 		<meta property="og:url" content="<?= $enc->attr( $this->url( $this->detailProductItem->getTarget() ?: $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ) ?>">
 
-		<?php if( $mediaItem = $this->detailProductItem->getRefItems( 'media', 'default', 'default' )->first()  ) : ?>
+		<?php if( $mediaItem = $this->detailProductItem->getRefItems( 'media', 'default', 'default' )->first() ) : ?>
 			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>">
 			<meta name="twitter:card" content="summary_large_image">
 		<?php endif ?>

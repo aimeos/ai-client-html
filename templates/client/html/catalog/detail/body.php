@@ -434,7 +434,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 										<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 
 											<li class="item">
-												<a href="<?= $this->content( $mediaItem->getUrl(), $mediaItem->getFileSystem() ) ?>"
+												<a href="<?= $this->content( $mediaItem->getUrl( true ), $mediaItem->getFileSystem() ) ?>"
 													title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>">
 													<img class="media-image"
 														alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>"
