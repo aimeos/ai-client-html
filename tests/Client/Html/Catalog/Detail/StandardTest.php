@@ -119,7 +119,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\Client\Html\Catalog\Detail\Standard( $this->context );
 		$this->object->setView( \TestHelper::view() );
 
-		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'd_name' => 'Cafe-Noire-Expresso' ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'd_name' => 'cafe-noire-expresso' ) );
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->setView( $this->object->data( $this->view ) );
