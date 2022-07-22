@@ -194,7 +194,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<div class="media-item" itemscope itemtype="http://schema.org/ImageObject">
 							<img loading="lazy"
 								src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-								srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+								srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
 								sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
 								alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 							>
@@ -207,7 +207,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<div class="media-item">
 							<img loading="lazy"
 								src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-								srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+								srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
 								sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
 								alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 							>

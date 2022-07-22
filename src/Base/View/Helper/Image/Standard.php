@@ -47,17 +47,17 @@ class Standard
 		{
 			return '<video autoplay muted class="item" id="image-' . $media->getId() . '" loading="lazy"
 				itemscope itemtype="http://schema.org/VideoObject"
-				poster="' . $enc->attr( $view->content( $media->getPreview( 600 ) ) ) . '"
-				src="' . $enc->attr( $view->content( $media->getUrl() ) ) . '"
+				poster="' . $enc->attr( $view->content( $media->getPreview( 600 ), $media->getFileSystem() ) ) . '"
+				src="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 				alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
 				' . $variant . '></video>';
 		}
 
 		return '<img class="item" id="image-' . $media->getId() . '" loading="lazy"
 			itemscope itemprop="image" itemtype="http://schema.org/ImageObject"
-			src="' . $enc->attr( $view->content( $media->getPreview() ) ) . '"
-			srcset="' . $enc->attr( $view->imageset( $media->getPreviews() ) ) . '"
-			data-zoom="' . $enc->attr( $view->content( $media->getUrl() ) ) . '"
+			src="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
+			srcset="' . $enc->attr( $view->imageset( $media->getPreviews( true ), $media->getFileSystem() ) ) . '"
+			data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
 			sizes="' . $sizes . '" ' . $variant . ' />';
 	}

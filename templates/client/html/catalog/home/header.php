@@ -46,7 +46,7 @@ $config = $this->config( 'client/html/catalog/home/url/config', [] );
 	<?php if( $mediaItem = $media->flat()->first() ) : ?>
 		<link rel="preload" as="image"
 			href="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-			imagesrcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>">
+			imagesrcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>">
 	<?php endif ?>
 
 <?php else : ?>

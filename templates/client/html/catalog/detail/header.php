@@ -46,19 +46,19 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<meta property="og:title" content="<?= $enc->attr( strip_tags( $this->detailProductItem->getName() ) ) ?>">
 		<meta property="og:url" content="<?= $enc->attr( $this->url( $this->detailProductItem->getTarget() ?: $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ) ?>">
 
-		<?php foreach( $this->detailProductItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+		<?php if( $mediaItem = $this->detailProductItem->getRefItems( 'media', 'default', 'default' )->first()  ) : ?>
 			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>">
 			<meta name="twitter:card" content="summary_large_image">
-		<?php endforeach ?>
+		<?php endif ?>
 
-		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' ) as $textItem ) : ?>
+		<?php if( $textItem = $this->detailProductItem->getRefItems( 'text', 'meta-description', 'default' )->first() ) : ?>
 			<meta property="og:description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 			<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
-		<?php endforeach ?>
+		<?php endif ?>
 
-		<?php foreach( $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
+		<?php if( $textItem = $this->detailProductItem->getRefItems( 'text', 'meta-keyword', 'default' )->first() ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
-		<?php endforeach ?>
+		<?php endif ?>
 
 		<?php if( ( $priceItem = $this->detailProductItem->getRefItems( 'price', 'default', 'default' )->first() ) !== null ) : ?>
 			<meta property="product:price:amount" content="<?= $enc->attr( $priceItem->getValue() ) ?>">

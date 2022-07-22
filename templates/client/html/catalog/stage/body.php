@@ -19,7 +19,7 @@ $enc = $this->encoder();
 				<div class="stage-item">
 					<img alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 						src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
-						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+						srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
 					>
 				</div>
 			<?php endforeach ?>

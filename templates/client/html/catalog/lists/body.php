@@ -37,7 +37,7 @@ $key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html
 					<div class="head-image">
 						<img class="<?= $enc->attr( $mediaItem->getType() ) ?>"
 							src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
-							srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+							srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
 							alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 						>
 					</div>

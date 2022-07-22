@@ -34,7 +34,7 @@ $enc = $this->encoder();
 					<div class="select-media">
 						<img class="media-image"
 							src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-							srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews(), $mediaItem->getFileSystem() ) ) ?>"
+							srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
 							alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
 							sizes="160px"
 						>
