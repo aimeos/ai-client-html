@@ -314,7 +314,8 @@ AimeosBasket = {
 				}
 
 				if( index === 0 ) {
-					$(".select-option", select).removeAttr("disabled").data("disabled", 0).data("by", {});
+					$(".select-option", select).prop("checked", false).prop("selected", false)
+						.removeAttr("disabled").data("disabled", 0).data("by", {});
 				}
 
 				$(".select-option", select).each((idx, option) => {
