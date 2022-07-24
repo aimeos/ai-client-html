@@ -1131,6 +1131,8 @@ AimeosCatalog = {
 
 					var options = $(".select-option", this);
 
+					options.prop("checked", false);
+					options.prop("selected", false);
 					options.removeAttr("disabled");
 					options.data("disabled", 0);
 					options.data("by", {});
