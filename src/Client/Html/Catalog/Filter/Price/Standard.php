@@ -32,18 +32,24 @@ class Standard
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'index' );
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+			->text( $view->param( 'f_search' ) )
+			->category( $this->categories( $view ), 'default', $this->level() )
+			->radius( $view->param( 'f_point', [] ), $view->param( 'f_dist' ) )
+			->supplier( $this->suppliers( $view ) )
+			->allOf( $this->attributes() )
+			->allOf( $view->param( 'f_attrid', [] ) )
+			->oneOf( $view->param( 'f_optid', [] ) )
+			->oneOf( $view->param( 'f_oneid', [] ) );
 
-		$filter = $manager->filter( true )->slice( 0, 0x7fffffff );
-		$name = $filter->make( 'index.price:value', [$context->locale()->getCurrencyId()] );
-		$filter->add( $filter->is( $name, '!=', null ) );
+		$name = $cntl->function( 'index.price:value', [$context->locale()->getCurrencyId()] );
+		$cntl->compare( '!=', $name, null );
 
-		$params = $this->getClientParams( $view->param() );
-		unset( $params['f_price'] );
+		$this->call( 'conditions', $cntl, $view );
 
 		// We need a key but there's no one for the currency alone available, only price/currency combinations
-		$view->priceHigh = (int) $manager->aggregate( $filter, 'product.status', 'agg:' . $name, 'max' )->max();
-		$view->priceResetParams = $params;
+		$view->priceHigh = (int) $cntl->aggregate( 'product.status', 'agg:' . $name, 'max' )->max();
+		$view->priceResetParams = map( $this->getClientParams( $view->param() ) )->remove( 'f_price' );
 
 		return parent::data( $view, $tags, $expire );
 	}
@@ -58,6 +64,75 @@ class Standard
 	public function header( string $uid = '' ) : ?string
 	{
 		return null;
+	}
+
+
+	/**
+	 * Returns the attribute IDs used for filtering products
+	 *
+	 * @return array List of attribute IDs
+	 */
+	protected function attributes() : array
+	{
+		$attrids = $this->context()->config()->get( 'client/html/catalog/lists/attrid-default' );
+		$attrids = $attrids != null && is_scalar( $attrids ) ? explode( ',', $attrids ) : $attrids; // workaround for TYPO3
+
+		return (array) $attrids;
+	}
+
+
+	/**
+	 * Returns the category IDs used for filtering products
+	 *
+	 * @param \Aimeos\Base\View\Iface $view View object
+	 * @return array List of category IDs
+	 */
+	protected function categories( \Aimeos\Base\View\Iface $view ) : array
+	{
+		$catids = $view->param( 'f_catid', $this->context()->config()->get( 'client/html/catalog/lists/catid-default' ) );
+		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
+
+		return array_filter( (array) $catids );
+	}
+
+
+	/**
+	 * Adds additional conditions for filtering
+	 *
+	 * @param \Aimeos\Controller\Frontend\Product\Iface $cntl Product controller
+	 * @param \Aimeos\Base\View\Iface $view View object
+	 */
+	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view )
+	{
+		if( $view->config( 'client/html/catalog/instock', false ) ) {
+			$cntl->compare( '>', 'product.instock', 0 );
+		}
+	}
+
+
+	/**
+	 * Returns the category depth level
+	 *
+	 * @return int Category depth level
+	 */
+	protected function level() : int
+	{
+		return $this->context()->config()->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+	}
+
+
+	/**
+	 * Returns the supplier IDs used for filtering products
+	 *
+	 * @param \Aimeos\Base\View\Iface $view View object
+	 * @return array List of supplier IDs
+	 */
+	protected function suppliers( \Aimeos\Base\View\Iface $view ) : array
+	{
+		$supids = $view->param( 'f_supid', $this->context()->config()->get( 'client/html/catalog/lists/supid-default' ) );
+		$supids = $supids != null && is_scalar( $supids ) ? explode( ',', $supids ) : $supids; // workaround for TYPO3
+
+		return (array) $supids;
 	}
 
 
