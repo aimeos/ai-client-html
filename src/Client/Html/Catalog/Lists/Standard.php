@@ -347,10 +347,10 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
-		 * @see client/html/catalog/lists/instock
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/detail/prodid-default
+		 * @see client/html/catalog/instock
 		 */
 		$attrids = $this->context()->config()->get( 'client/html/catalog/lists/attrid-default' );
 		$attrids = $attrids != null && is_scalar( $attrids ) ? explode( ',', $attrids ) : $attrids; // workaround for TYPO3
@@ -385,7 +385,7 @@ class Standard
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/supid-default
-		 * @see client/html/catalog/lists/instock
+		 * @see client/html/catalog/instock
 		 */
 		$catids = $this->view()->param( 'f_catid', $this->context()->config()->get( 'client/html/catalog/lists/catid-default' ) );
 		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
@@ -395,13 +395,14 @@ class Standard
 
 
 	/**
-	 * If all shown products must be in stock
+	 * Adds additional conditions for filtering
 	 *
-	 * @return bool TRUE if all products must be in stock, FALSE if not
+	 * @param \Aimeos\Controller\Frontend\Product\Iface $cntl Product controller
+	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
 	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view )
 	{
-		/** client/html/catalog/lists/instock
+		/** client/html/catalog/instock
 		 * Show only products which are in stock
 		 *
 		 * This configuration option overwrites the "client/html/catalog/domains"
@@ -423,7 +424,7 @@ class Standard
 		 * @see client/html/catalog/lists/pages
 		 */
 
-		if( $view->config( 'client/html/catalog/lists/instock', false ) ) {
+		if( $view->config( 'client/html/catalog/instock', false ) ) {
 			$cntl->compare( '>', 'product.instock', 0 );
 		}
 	}
@@ -491,7 +492,7 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
-		 * @see client/html/catalog/lists/instock
+		 * @see client/html/catalog/instock
 		 */
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
@@ -542,7 +543,7 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
-		 * @see client/html/catalog/lists/instock
+		 * @see client/html/catalog/instock
 		 */
 		return $this->context()->config()->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 	}
@@ -574,7 +575,7 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
-		 * @see client/html/catalog/lists/instock
+		 * @see client/html/catalog/instock
 		 */
 		return $this->context()->config()->get( 'client/html/catalog/lists/pages', 100 );
 	}
@@ -609,7 +610,7 @@ class Standard
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/pages
-		 * @see client/html/catalog/lists/instock
+		 * @see client/html/catalog/instock
 		 */
 		$size = $this->context()->config()->get( 'client/html/catalog/lists/size', 48 );
 
@@ -640,7 +641,7 @@ class Standard
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/levels
 		 * @see client/html/catalog/lists/size
-		 * @see client/html/catalog/lists/instock
+		 * @see client/html/catalog/instock
 		 */
 		return $this->view()->param( 'f_sort', $this->context()->config()->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 	}
@@ -671,7 +672,7 @@ class Standard
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/detail/prodid-default
-		 * @see client/html/catalog/lists/instock
+		 * @see client/html/catalog/instock
 		 */
 		$supids = $this->view()->param( 'f_supid', $this->context()->config()->get( 'client/html/catalog/lists/supid-default' ) );
 		$supids = $supids != null && is_scalar( $supids ) ? explode( ',', $supids ) : $supids; // workaround for TYPO3
