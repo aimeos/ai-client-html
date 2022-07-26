@@ -49,7 +49,7 @@ class Standard
 
 		// We need a key but there's no one for the currency alone available, only price/currency combinations
 		$view->priceHigh = (int) $cntl->aggregate( 'product.status', 'agg:' . $name, 'max' )->max();
-		$view->priceResetParams = map( $this->getClientParams( $view->param() ) )->remove( 'f_price' );
+		$view->priceResetParams = map( $this->getClientParams( $view->param() ) )->remove( 'f_price' )->all();
 
 		return parent::data( $view, $tags, $expire );
 	}
