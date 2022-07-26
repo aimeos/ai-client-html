@@ -125,11 +125,27 @@ class Standard
 				->allOf( $view->param( 'f_attrid', [] ) )
 				->oneOf( $view->param( 'f_optid', [] ) )
 				->oneOf( $view->param( 'f_oneid', [] ) );
+
+			$this->call( 'conditions', $cntl, $view );
 		}
 
 		$view->suggestItems = $cntl->uses( $domains )->slice( 0, $size )->search();
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Adds additional conditions for filtering
+	 *
+	 * @param \Aimeos\Controller\Frontend\Product\Iface $cntl Product controller
+	 * @param \Aimeos\Base\View\Iface $view View object
+	 */
+	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view )
+	{
+		if( $view->config( 'client/html/catalog/instock', false ) ) {
+			$cntl->compare( '>', 'product.instock', 0 );
+		}
 	}
 
 
