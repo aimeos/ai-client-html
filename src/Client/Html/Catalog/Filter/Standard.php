@@ -56,8 +56,6 @@ class Standard
 	 */
 
 
-	private static $headerSingleton;
-
 	/** client/html/catalog/filter/subparts
 	 * List of HTML sub-clients rendered within the catalog filter section
 	 *
@@ -236,11 +234,6 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		if( self::$headerSingleton !== null ) {
-			return '';
-		}
-		self::$headerSingleton = true;
-
 		$view = $this->view();
 		$confkey = 'client/html/catalog/filter';
 		$prefixes = ['f_name', 'f_catid', 'f_supid'];
