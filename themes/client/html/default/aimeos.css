@@ -103,6 +103,10 @@ img {
 	margin: 4rem 0;
 }
 
+.aimeos .swiffy-slider .slider-container {
+	overflow-x: unset;
+}
+
 .aimeos .btn {
 	width: 12rem;
 	vertical-align: top;
