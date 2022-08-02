@@ -18,3 +18,12 @@ $enc = $this->encoder();
 		</ul>
 	</div>
 <?php endif ?>
+<?php if( !empty( $infos = $this->get( 'infos', [] ) ) ) : ?>
+	<div class="aimeos">
+		<ul class="info-list">
+			<?php foreach( $infos as $error ) : ?>
+				<li class="info-item"><?= $enc->html( $error ) ?></li>
+			<?php endforeach ?>
+		</ul>
+	</div>
+<?php endif ?>
