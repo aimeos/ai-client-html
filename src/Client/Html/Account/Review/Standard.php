@@ -148,8 +148,13 @@ class Standard
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'review' );
 			$addr = \Aimeos\Controller\Frontend::create( $context, 'customer' )->get()->getPaymentAddress();
 
-			foreach( $reviews as $values ) {
-				$cntl->save( $cntl->create( $values )->setDomain( 'product' )->setName( $addr->getFirstName() ) );
+			foreach( $reviews as $values )
+			{
+				$item = $cntl->create( $values )->setDomain( 'product' )->setName( $addr->getFirstName() );
+
+				if( $item->getRating() ) {
+					$cntl->save( $item ); // only if value is greater than 0
+				}
 			}
 
 			$view->infos = array_merge( $view->get( 'infos', [] ), [$view->translate( 'client', 'Thank you for your review!' )] );
