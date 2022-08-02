@@ -152,7 +152,7 @@ class Standard
 				$cntl->save( $cntl->create( $values )->setDomain( 'product' )->setName( $addr->getFirstName() ) );
 			}
 
-			$view->reviewInfoList = [$view->translate( 'client', 'Thank you for your review!' )];
+			$view->infos = array_merge( $view->get( 'infos', [] ), [$view->translate( 'client', 'Thank you for your review!' )] );
 		}
 
 		parent::init();

@@ -85,7 +85,6 @@
  */
 
 $enc = $this->encoder();
-;
 
 
 ?>
@@ -93,14 +92,6 @@ $enc = $this->encoder();
 
 	<section class="aimeos account-review" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
-
-			<?php if( ( $infos = $this->get( 'reviewInfoList', [] ) ) !== [] ) : ?>
-				<ul class="info-list">
-					<?php foreach( $infos as $info ) : ?>
-						<li class="info-item"><?= $enc->html( $info ) ?></li>
-					<?php endforeach ?>
-				</ul>
-			<?php endif ?>
 
 			<h1 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h1>
 
