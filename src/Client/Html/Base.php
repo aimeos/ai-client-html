@@ -53,10 +53,18 @@ abstract class Base
 	{
 		$html = '';
 		$type = $this->clientType();
-		$parts = array_merge( explode( '/', $type ), ['body'] );
-		$template = join( '/', array_splice( $parts, 0, 2, [] ) ) . '/' . join( '-', $parts );
 
-		$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
+		$parts = explode( '/', $type );
+		$list = array_merge( $parts, ['body'] );
+
+		$template = join( '/', array_splice( $list, 0, 2, [] ) ) . '/' . join( '-', $list );
+
+		// poplate view only for component, not for subparts
+		if( count( $parts ) === 2 ) {
+			$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
+		} else {
+			$view = $this->view();
+		}
 
 		foreach( $this->getSubClients() as $subclient ) {
 			$html .= $subclient->setView( $view )->body( $uid );
