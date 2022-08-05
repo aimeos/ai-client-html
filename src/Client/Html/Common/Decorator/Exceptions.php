@@ -42,11 +42,19 @@ class Exceptions extends Base implements Iface
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
+			if( $e->getCode() >= 400 ) {
+				throw $e;
+			}
+
 			$error = [$context->translate( 'controller/frontend', $e->getMessage() )];
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
+			if( $e->getCode() >= 400 ) {
+				throw $e;
+			}
+
 			$error = [$context->translate( 'mshop', $e->getMessage() )];
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
@@ -69,9 +77,16 @@ class Exceptions extends Base implements Iface
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		try {
+		try
+		{
 			return $this->client()->header( $uid );
-		} catch( \Exception $e ) {
+		}
+		catch( \Exception $e )
+		{
+			if( $e->getCode() >= 400 ) {
+				throw $e;
+			}
+
 			$this->logException( $e, \Aimeos\Base\Logger\Iface::NOTICE );
 		}
 
@@ -98,11 +113,19 @@ class Exceptions extends Base implements Iface
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
+			if( $e->getCode() >= 400 ) {
+				throw $e;
+			}
+
 			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
+			if( $e->getCode() >= 400 ) {
+				throw $e;
+			}
+
 			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
