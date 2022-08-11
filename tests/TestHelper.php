@@ -26,7 +26,7 @@ class TestHelper
 			self::$context[$site] = self::createContext( $site );
 		}
 
-		return clone self::$context[$site];
+		return ( clone self::$context[$site] )->setToken( md5( microtime( true ) ) );
 	}
 
 
