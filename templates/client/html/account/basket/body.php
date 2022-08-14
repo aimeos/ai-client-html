@@ -223,7 +223,7 @@ $enc = $this->encoder();
 									<div class="basket col-sm-12">
 										<?= $this->partial(
 											$this->config( 'client/html/account/basket/summary/detail', 'common/summary/detail' ),
-											['orderItem' => $basket, 'summaryBasket' => $basket]
+											['summaryBasket' => $basket]
 										) ?>
 									</div>
 								</div>
