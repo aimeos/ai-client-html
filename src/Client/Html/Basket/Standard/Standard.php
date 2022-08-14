@@ -105,6 +105,9 @@ class Standard
 				case 'delete':
 					$this->deleteProducts( $view );
 					break;
+				case 'save':
+					$this->saveBasket( $view );
+					break;
 				default:
 					$this->updateProducts( $view );
 					$this->addCoupon( $view );
@@ -278,6 +281,36 @@ class Standard
 		}
 
 		return $list;
+	}
+
+
+	/**
+	 * Saves the basket of the user permanently
+	 *
+	 * @param \Aimeos\Base\View\Iface $view View object
+	 */
+	protected function saveBasket( \Aimeos\Base\View\Iface $view )
+	{
+		$context = $this->context();
+
+		if( ( $userId = $context->user() ) === null )
+		{
+			$msg = $view->translate( 'client', 'You must log in first' );
+			$view->error = array_merge( $view->get( 'error', [] ), [$msg] );
+
+			return;
+		}
+
+		$manager = \Aimeos\MShop::create( $context, 'order/basket' );
+
+		$item = $manager->create()->setId( md5( microtime( true ) . getmypid() . rand() ) )
+			->setCustomerId( $userId )->setName( $view->get( 'b_name', date( 'Y-m-d H:i:s') ) )
+			->setItem( \Aimeos\Controller\Frontend::create( $context, 'basket' )->get() );
+
+		$manager->save( $item );
+
+		$msg = $view->translate( 'client', 'Basket saved sucessfully' );
+		$view->info = array_merge( $view->get( 'info', [] ), [$msg] );
 	}
 
 

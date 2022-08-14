@@ -19,6 +19,18 @@ $enc = $this->encoder();
 			<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 				<?= $this->csrf()->formfield() ?>
 
+				<?php if( $this->get( 'contextUserId' ) ) : ?>
+					<div class="input-group basket-save">
+						<input class="form-control basket-name" type="text" maxlength="255"
+							placeholder="<?= $enc->attr( $this->translate( 'client', 'Basket name' ) ) ?>"
+							name="<?= $enc->attr( $this->formparam( 'b_name' ) ) ?>"
+						>
+						<button class="btn btn-primary" type="submit" formaction="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ['b_action' => 'save'] ) ) ?>">
+							<?= $enc->html( $this->translate( 'client', 'Save' ) ) ?>
+						</button>
+					</div>
+				<?php endif ?>
+
 				<div class="common-summary-detail">
 					<div class="header">
 						<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
