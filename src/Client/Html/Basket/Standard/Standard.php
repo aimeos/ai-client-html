@@ -296,7 +296,7 @@ class Standard
 		if( ( $userId = $context->user() ) === null )
 		{
 			$msg = $view->translate( 'client', 'You must log in first' );
-			$view->error = array_merge( $view->get( 'error', [] ), [$msg] );
+			$view->errors = array_merge( $view->get( 'errors', [] ), [$msg] );
 
 			return;
 		}
@@ -304,13 +304,13 @@ class Standard
 		$manager = \Aimeos\MShop::create( $context, 'order/basket' );
 
 		$item = $manager->create()->setId( md5( microtime( true ) . getmypid() . rand() ) )
-			->setCustomerId( $userId )->setName( $view->get( 'b_name', date( 'Y-m-d H:i:s') ) )
+			->setCustomerId( $userId )->setName( $view->param( 'b_name', date( 'Y-m-d H:i:s') ) )
 			->setItem( \Aimeos\Controller\Frontend::create( $context, 'basket' )->get() );
 
 		$manager->save( $item );
 
 		$msg = $view->translate( 'client', 'Basket saved sucessfully' );
-		$view->info = array_merge( $view->get( 'info', [] ), [$msg] );
+		$view->infos = array_merge( $view->get( 'infos', [] ), [$msg] );
 	}
 
 

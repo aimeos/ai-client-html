@@ -67,7 +67,9 @@ class Standard
 	{
 		$context = $this->context();
 		$manager = \Aimeos\MShop::create( $context, 'order/basket' );
-		$filter = $manager->filter()->add( ['order.basket.customerid' => $context->user()] )->order( '-order.basket.mtime' );
+		$filter = $manager->filter()->order( '-order.basket.mtime' )
+			->add( 'order.basket.customerid', '==', $context->user() )
+			->add( 'order.basket.name', '!=', '' );
 
 		$view->basketItems = $manager->search( $filter );
 

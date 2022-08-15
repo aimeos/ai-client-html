@@ -87,7 +87,7 @@ $enc = $this->encoder();
 
 						<div class="basket-item row">
 
-							<div class="col-12">
+							<div class="col-12 col-md-5">
 								<h2 class="basket-basic">
 									<span class="name">
 										<?= $enc->html( $this->translate( 'client', 'Name' ), $enc::TRUST ) ?>
@@ -98,7 +98,13 @@ $enc = $this->encoder();
 								</h2>
 							</div>
 
-							<div class="action col-12 col-md-2">
+							<div class="col-6 col-md-5">
+								<a class="btn btn-primary delete" href="<?= $enc->attr( $this->link( 'client/html/account/basket/url', ['bas_action' => 'delete', 'bas_id' => $basketItem->getId()] ) ) ?>">
+									<?= $enc->html( $this->translate( 'client', 'Delete' ) ) ?>
+								</a>
+							</div>
+
+							<div class="action col-6 col-md-2">
 								<a class="btn btn-secondary show" href="#"><?= $enc->html( $this->translate( 'client', 'Show' ) ) ?></a>
 								<a class="btn btn-secondary close hidden" href="#"><?= $enc->html( $this->translate( 'client', 'Close' ) ) ?></a>
 							</div>
