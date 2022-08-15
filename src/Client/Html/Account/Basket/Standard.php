@@ -56,6 +56,28 @@ class Standard
 
 
 	/**
+	 * Processes the input, e.g. store given values.
+	 *
+	 * A view must be available and this method doesn't generate any output
+	 * besides setting view variables if necessary.
+	 */
+	public function init()
+	{
+		$view = $this->view();
+
+		if( ( $id = $view->param( 'bas_id' ) ) != null && $view->param( 'bas_action' ) === 'delete' )
+		{
+			$manager = \Aimeos\MShop::create( $this->context(), 'order/basket' );
+			$filter = $manager->filter( true )->add( 'order.basket.id', '==', $id );
+			$manager->delete( $manager->search( $filter ) );
+
+			$msg = $view->translate( 'client', 'Saved basket removed sucessfully' );
+			$view->infos = array_merge( $view->get( 'infos', [] ), [$msg] );
+		}
+	}
+
+
+	/**
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output

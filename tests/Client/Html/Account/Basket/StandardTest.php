@@ -60,4 +60,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<div class="account-basket-detail common-summary', $output );
 	}
+
+
+	public function testInit()
+	{
+		$this->view = \TestHelper::view();
+		$param = array(
+			'sub_action' => 'delete',
+			'sub_id' => 'abcd'
+		);
+
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+
+		$this->object->setView( $this->object->data( $this->view ) );
+
+		$this->object->init();
+	}
 }
