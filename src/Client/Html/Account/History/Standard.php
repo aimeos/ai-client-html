@@ -65,10 +65,25 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$view->historyItems = \Aimeos\Controller\Frontend::create( $this->context(), 'order' )
-			->uses( ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'] )
-			->sort( '-order.id' )
-			->search();
+		$context = $this->context();
+
+		/** client/html/account/history/domains
+		 * A list of domain names whose items should be available in the account history view template
+		 *
+		 * If you want to display additional or less content, you can configure
+		 * your own list of domains (product, locale/site, etc. are
+		 * domains) whose items are fetched from the storage. Please keep
+		 * in mind that the more domains you add to the configuration, the
+		 * more time is required for fetching the content!
+		 *
+		 * @param array List of domain names
+		 * @since 2022.10
+		 */
+		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = $context->config()->get( 'client/html/account/history/domains',  $domains );
+
+		$view->historyItems = \Aimeos\Controller\Frontend::create( $context, 'order' )
+			->uses( $domains )->sort( '-order.id' )->search();
 
 		return parent::data( $view, $tags, $expire );
 	}
