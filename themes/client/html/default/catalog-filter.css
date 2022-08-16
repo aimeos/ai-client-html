@@ -593,7 +593,6 @@ aside .catalog-filter section {
 
 @media (min-width:992px) {
 
-	.catalog-filter-tree .item-links,
 	.catalog-filter-tree .submenu-header {
 		display: none;
 	}
@@ -616,7 +615,7 @@ aside .catalog-filter section {
 		display: flex;
 	}
 
-	.catalog-filter-tree .level-1 > .cat-item > .cat-link {
+	.catalog-filter-tree .level-1 > .cat-item > .item-links > .cat-link {
 		display: block;
 		padding: 1rem;
 	}
@@ -657,7 +656,7 @@ aside .catalog-filter section {
 		margin: 0 1rem;
 	}
 
-	.catalog-filter-tree .level-2 > .cat-item > .cat-link {
+	.catalog-filter-tree .level-2 > .cat-item > .item-links > .cat-link {
 		margin-bottom: .25rem;
 		font-weight: bold;
 		display: block;

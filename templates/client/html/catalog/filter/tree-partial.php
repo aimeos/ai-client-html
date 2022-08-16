@@ -106,8 +106,17 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 				data-id="<?= $item->getId() ?>">
 
 				<div class="item-links row">
-					<a class="col-10 name" href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, $params, [], $config ) ) ?>">
-						<?= $enc->html( $item->getName(), $enc::TRUST ) ?>
+					<a class="col-10 cat-link name <?= ( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) ?>"
+						href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, $params, [], $config ) ) ?>">
+						<div class="media-list">
+							<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+								<?= $this->partial(
+									$this->config( 'client/html/common/partials/media', 'common/partials/media' ),
+									array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+								) ?>
+							<?php endforeach ?>
+						</div>
+						<span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span>
 					</a>
 					<?php if( !$item->getChildren()->isEmpty() ) : ?>
 						<div class="col-2 next" data-submenu="<?= $enc->attr( $item->getId() ) ?>"
@@ -117,19 +126,6 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 						<div class="col-2"></div>
 					<?php endif ?>
 				</div>
-
-				<a class="cat-link <?= ( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) ?>"
-					href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, $params, [], $config ) ) ?>">
-					<div class="media-list">
-						<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
-							<?= $this->partial(
-								$this->config( 'client/html/common/partials/media', 'common/partials/media' ),
-								array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-							) ?>
-						<?php endforeach ?>
-					</div><!--
-					--><span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span>
-				</a>
 
 				<?php if( count( $item->getChildren() ) > 0 ) : ?>
 
