@@ -20,16 +20,16 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 			<fieldset>
 				<div class="price-input">
 					<input type="number" class="price-low" name="<?= $this->formparam( ['f_price', 0] )?>"
-						min="0" max="<?= $enc->html( $this->get( 'priceHigh', 0 ) ) ?>" step="1"
-						value="<?= $enc->html( $this->param( 'f_price/0', 0 ) ) ?>"
+						min="0" max="<?= $enc->attr( $this->get( 'priceHigh', 0 ) ) ?>" step="1"
+						value="<?= $enc->attr( $this->param( 'f_price/0', 0 ) ) ?>"
 						title="<?= $enc->attr( $this->translate( 'client', 'Lowest price' ) ) ?>">
 					<input type="number" class="price-high" name="<?= $this->formparam( ['f_price', 1] )?>"
-						min="0" max="<?= $enc->html( $this->get( 'priceHigh', 0 ) ) ?>" step="1"
-						value="<?= $enc->html( $this->param( 'f_price/1', $this->get( 'priceHigh', 0 ) ) ) ?>"
+						min="0" max="<?= $enc->attr( $this->get( 'priceHigh', 0 ) ) ?>" step="1"
+						value="<?= $enc->attr( min( $this->param( 'f_price/1', $this->get( 'priceHigh', 0 ) ), $this->get( 'priceHigh', 0 ) ) ) ?>"
 						title="<?= $enc->attr( $this->translate( 'client', 'Highest price' ) ) ?>">
 					<input type="range" class="price-slider" name="<?= $this->formparam( ['f_price', 1] )?>"
-						min="0" max="<?= $enc->html( $this->get( 'priceHigh', $this->param( 'f_price/1', 0 ) ) ) ?>" step="1"
-						value="<?= $enc->html( $this->param( 'f_price/1', $this->get( 'priceHigh', 0 ) ) ) ?>"
+						min="0" max="<?= $enc->attr( $this->get( 'priceHigh', $this->param( 'f_price/1', 0 ) ) ) ?>" step="1"
+						value="<?= $enc->attr( min( $this->param( 'f_price/1', $this->get( 'priceHigh', 0 ) ), $this->get( 'priceHigh', 0 ) ) ) ?>"
 						title="<?= $enc->attr( $this->translate( 'client', 'Price range' ) ) ?>">
 				</div>
 				<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Save' ) ) ?></button>
