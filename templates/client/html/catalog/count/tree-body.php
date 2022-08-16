@@ -14,7 +14,7 @@ $(".catalog-filter-count .cat-item").each(function(index, item) {
 	var id = $(item).data("id");
 
 	if(catalogCounts[id]) {
-		$(":scope > a.cat-link, :scope > .item-links > a.name", item).append('&nbsp;' + '<span class="cat-count">' + catalogCounts[id] + '</span>');
+		$(":scope > a.cat-link, :scope > .item-links > a.name", item).append('<span class="cat-count">' + catalogCounts[id] + '</span>');
 	} else if( $(item).hasClass("nochild") ) {
 		$(item).addClass("disabled");
 	}

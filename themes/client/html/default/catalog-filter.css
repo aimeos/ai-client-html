@@ -564,10 +564,6 @@ aside .catalog-filter section {
 	.catalog-filter-tree .category-selected {
 		display: none;
 	}
-
-	.catalog-filter-tree .cat-link {
-		display: none;
-	}
 }
 
 .catalog-filter-tree .media-list {
@@ -618,6 +614,7 @@ aside .catalog-filter section {
 	.catalog-filter-tree .level-1 > .cat-item > .item-links > .cat-link {
 		display: block;
 		padding: 1rem;
+		width: 100%;
 	}
 
 	[dir="ltr"] .catalog-filter-tree .level-1 > .withchild > .cat-link::before {
