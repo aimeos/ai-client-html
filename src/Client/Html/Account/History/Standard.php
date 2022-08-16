@@ -80,7 +80,7 @@ class Standard
 		 * @since 2022.10
 		 */
 		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-		$domains = $context->config()->get( 'client/html/account/history/domains',  $domains );
+		$domains = $context->config()->get( 'client/html/account/history/domains', $domains );
 
 		$view->historyItems = \Aimeos\Controller\Frontend::create( $context, 'order' )
 			->uses( $domains )->sort( '-order.id' )->search();
