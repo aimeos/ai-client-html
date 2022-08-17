@@ -87,7 +87,7 @@ $index = 0;
 
 foreach( $this->get( 'productItems', [] ) as $prodId => $product )
 {
-	$attrItems->replace( $product->getRefItems( 'attribute', null, ['default', 'variant'] ) );
+	$attrItems->replace( $product->getRefItems( 'attribute', null, 'variant' ) );
 
 	foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrId => $attrItem )
 	{
