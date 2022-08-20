@@ -28,6 +28,25 @@ $enc = $this->encoder();
 	<?php endif ?>
 
 	<div class="catalog-stage-breadcrumb container-xxl">
+		<?php if( isset( $this->stageCatPath ) ) : ?>
+			<?php
+				$entries = []; $idx = 1;
+				foreach( $this->get( 'stageCatPath', map() ) as $cat )
+				{
+					$entries['@type'] = 'ListItem';
+					$entries['position'] = $idx++;
+					$entries['name'] = $cat->getName();
+					$entries['item'] = $this->link( 'client/html/catalog/tree/url', array_merge( $this->get( 'stageParams', [] ), ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] ) );
+				}
+			?>
+			<script type="application/ld+json">
+				{
+					"@context": "https://schema.org",
+					"@type": "BreadcrumbList",
+					"itemListElement": <?= json_encode( $entries ) ?>
+				}
+			</script>
+		<?php endif ?>
 		<nav class="breadcrumb">
 			<span class="title"><?= $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ) ?></span>
 			<ol>
