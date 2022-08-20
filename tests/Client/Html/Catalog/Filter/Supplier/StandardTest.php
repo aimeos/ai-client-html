@@ -46,11 +46,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
-		$regex = '#<div class="supplier-lists">.*<ul class="attr-list">.*<li.*<li.*</ul>.*</fieldset>#smu';
+		$regex = '#<div class="supplier-lists">.*<ul class="attr-list">.*</ul>.*</fieldset>#smu';
 		$this->assertRegexp( $regex, $output );
-
-		$this->assertGreaterThan( 2, count( $tags ) );
-		$this->assertEquals( '2100-01-01 00:00:00', $expire );
 	}
 
 
