@@ -12,7 +12,6 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ) ?>
-<?php if( !$this->get( 'supplierList', map() )->isEmpty() ) : ?>
 	<section class="catalog-filter-supplier">
 		<h2><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ) ?></h2>
 
@@ -78,6 +77,5 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 		<?php endif ?>
 
 	</section>
-<?php endif ?>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/filter/supplier' ) ?>
