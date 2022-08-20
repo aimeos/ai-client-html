@@ -313,7 +313,7 @@ img {
 }
 
 .aimeos .prototype {
-	display: none;
+	display: none !important;
 }
 
 .aimeos .lazy-image {

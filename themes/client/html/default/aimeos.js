@@ -62,6 +62,22 @@ Aimeos = {
 
 
 	/**
+	 * Delays the function by the given timeout
+	 *
+	 * @param {Function} fcn Function to delay
+	 * @param {int} timeout Timeout in milliseconds
+	 * @returns {Function} Function wrapped into timer function
+	 */
+	 debounce( fcn, timeout = 300) {
+		let timer;
+		return (...args) => {
+		  clearTimeout(timer);
+		  timer = setTimeout(() => { fcn.apply(this, args); }, timeout);
+		};
+	},
+
+
+	/**
 	 * Removes an existing overlay from the current page
 	 */
 	removeOverlay() {

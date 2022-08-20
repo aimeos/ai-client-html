@@ -23,11 +23,16 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 				</a>
 			<?php endif ?>
 
+			<input class="form-control search"
+				name="<?= $enc->attr( $this->formparam( ['supplier', 'search'] ) ) ?>"
+				placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
+			/>
+
 			<fieldset>
-				<ul class="attr-list"><!--
+				<ul class="attr-list">
 
 					<?php foreach( $this->get( 'supplierList', [] ) as $id => $supplier ) : ?>
-						--><li class="attr-item" data-id="<?= $enc->attr( $id ) ?>">
+						<li class="attr-item" data-id="<?= $enc->attr( $id ) ?>">
 
 							<input class="attr-item" type="checkbox"
 								id="sup-<?= $enc->attr( $id ) ?>"
@@ -36,23 +41,31 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 								<?= ( in_array( $id, (array) $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ) ?>
 							>
 
-							<label class="attr-name" for="sup-<?= $enc->attr( $id ) ?>"><!--
-								--><div class="media-list"><!--
+							<label class="attr-name" for="sup-<?= $enc->attr( $id ) ?>">
+								<div class="media-list">
 
 									<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
-										<?= '-->' . $this->partial(
+										<?= $this->partial(
 											$this->config( 'client/html/common/partials/media', 'common/partials/media' ),
 											array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-										) . '<!--' ?>
+										) ?>
 									<?php endforeach ?>
 
-								--></div>
-								<span><?= $enc->html( $supplier->getName(), $enc::TRUST ) ?></span><!--
-							--></label>
-						</li><!--
+								</div>
+								<span><?= $enc->html( $supplier->getName(), $enc::TRUST ) ?></span>
+							</label>
+						</li>
 					<?php endforeach ?>
 
-				--></ul>
+					<li class="attr-item prototype" data-id="">
+						<input class="attr-item" type="checkbox" id="" value="" name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>">
+						<label class="attr-name" for="">
+							<div class="media-list">img src="" title=""</div>
+							<span></span>
+						</label>
+					</li>
+
+				</ul>
 			</fieldset>
 		</div>
 

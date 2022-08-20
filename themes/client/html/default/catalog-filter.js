@@ -8,6 +8,7 @@
 AimeosCatalogFilter = {
 
 	MIN_INPUT_LEN: 3,
+	meta: null,
 
 
 	/**
@@ -275,14 +276,70 @@ AimeosCatalogFilter = {
 
 
 	/**
-	 * Toggles the supplier filters if hover isn't available
+	 * Search for suppliers
 	 */
-	onToggleSupplier() {
+	 onSearchSuppliers() {
 
-		$('.catalog-filter-supplier').on("click", 'h2', ev => {
-			$(".supplier-lists", $(ev.currentTarget).closest(".catalog-filter-supplier")).each((idx, el) => {
-				slideToggle(el, 300);
-			});
+		const self = this;
+
+		const update = (data, ev) => {
+			const list = $('.attr-list', $(ev.currentTarget).closest('.supplier-lists'));
+			const prototype = $('.prototype', list);
+
+			$('.result', list).remove();
+
+			for(let entry of data.data || []) {
+				let item = prototype.clone();
+
+				$('.attr-item', item).attr('id', 'sup-' + entry['id']).attr('value', entry['id']);
+				$('.attr-name', item).attr('for', 'sup-' + entry['id']);
+//				$('.attr-name img', item).attr('src', '#').attr('title', entry['attributes']['supplier.label']);
+				$('.attr-name span', item).text(entry['attributes']['supplier.label']);
+
+				list.append(item.data('id', entry['id']).addClass('result').removeClass('prototype'));
+			}
+		};
+
+		const search = Aimeos.debounce(ev => {
+
+			const val = $(ev.currentTarget).val();
+
+			if(typeof self.meta === 'object' && self.meta['resources'] && self.meta['resources']['supplier']
+				&& val.length >= AimeosCatalogFilter.MIN_INPUT_LEN) {
+
+				const url = new URL(self.meta['resources']['supplier']);
+
+				let params = {};
+				let args = {
+					filter: {
+						'~=': {'supplier.label': val}
+					},
+					sort: 'supplier.label',
+					include: 'media'
+				};
+
+				if(self.meta.prefix) { // returned from OPTIONS call
+					params[self.meta.prefix] = args;
+				} else {
+					params = args;
+				}
+				url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
+				console.log(url.search);
+
+				fetch(url).then(response => {
+					return response.json();
+				}).then(data => {
+					update(data, ev);
+				});
+			}
+		});
+
+		$(".catalog-filter-supplier .supplier-lists").on('input', '.search', ev => {
+
+			console.log('onSearchSuppliers');
+			this.setupMeta($(ev.currentTarget).closest('.catalog-filter').data('jsonurl'));
+
+			search(ev);
 		});
 	},
 
@@ -304,6 +361,39 @@ AimeosCatalogFilter = {
 
 
 	/**
+	 * Toggles the supplier filters if hover isn't available
+	 */
+	onToggleSupplier() {
+
+		$('.catalog-filter-supplier').on("click", 'h2', ev => {
+			$(".supplier-lists", $(ev.currentTarget).closest(".catalog-filter-supplier")).each((idx, el) => {
+				slideToggle(el, 300);
+			});
+		});
+	},
+
+
+	/**
+	 * Initializes the meta object from OPTIONS request
+	 *
+	 * @param {String} url
+	 */
+	setupMeta(url) {
+
+		if(url && !this.meta) {
+
+			this.meta = {};
+
+			fetch(url, {method: 'OPTIONS'}).then(response => {
+				return response.json();
+			}).then(data => {
+				this.meta = data['meta'] || null;
+			});
+		}
+	},
+
+
+	/**
 	 * Initialize the catalog filter actions
 	 */
 	init() {
@@ -320,6 +410,7 @@ AimeosCatalogFilter = {
 		this.onToggleAttribute();
 		this.onToggleAttributes();
 
+		this.onSearchSuppliers();
 		this.onSubmitSupplier();
 		this.onToggleSupplier();
 
