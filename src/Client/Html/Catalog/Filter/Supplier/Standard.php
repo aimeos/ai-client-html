@@ -50,7 +50,7 @@ class Standard
 
 		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();
 		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->context(), 'supplier' )
-			->uses( $domains )->compare( '==', 'supplier.id', $view->param( 'f_supid', [] )  )
+			->uses( $domains )->compare( '==', 'supplier.id', $view->param( 'f_supid', [] ) )
 			->sort( 'supplier.label' )->slice( 0, 10000 )->search();
 
 		// Delete cache when suppliers are added or deleted even in "tag-all" mode
