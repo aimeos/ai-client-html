@@ -57,9 +57,9 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 					<?php endforeach ?>
 
 					<li class="attr-item prototype" data-id="">
-						<input class="attr-item" type="checkbox" id="" value="" name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>">
+						<input class="attr-item" type="checkbox" id="" value="" name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>" disabled>
 						<label class="attr-name" for="">
-							<div class="media-list">img src="" title=""</div>
+							<div class="media-list"><!--img src="" title=""/--></div>
 							<span></span>
 						</label>
 					</li>

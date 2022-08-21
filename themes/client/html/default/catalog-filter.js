@@ -289,16 +289,17 @@ AimeosCatalogFilter = {
 			$('.result', list).remove();
 
 			for(let entry of data.data || []) {
-				let item = prototype.clone();
+				let item = prototype.clone().removeClass('disabled').addClass('result');
 
-				$('.attr-item', item).attr('id', 'sup-' + entry['id']).attr('value', entry['id']);
 				$('.attr-name', item).attr('for', 'sup-' + entry['id']);
-//				$('.attr-name img', item).attr('src', '#').attr('title', entry['attributes']['supplier.label']);
 				$('.attr-name span', item).text(entry['attributes']['supplier.label']);
+//				$('.attr-name img', item).attr('src', '#').attr('title', entry['attributes']['supplier.label']);
+				$('.attr-item', item).attr('id', 'sup-' + entry['id']).attr('value', entry['id']).removeAttr('disabled');
 
-				list.append(item.data('id', entry['id']).addClass('result').removeClass('prototype'));
+				list.append(item.data('id', entry['id']).removeClass('prototype'));
 			}
 		};
+
 
 		const search = Aimeos.debounce(ev => {
 
@@ -324,7 +325,6 @@ AimeosCatalogFilter = {
 					params = args;
 				}
 				url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
-				console.log(url.search);
 
 				fetch(url).then(response => {
 					return response.json();
@@ -334,11 +334,10 @@ AimeosCatalogFilter = {
 			}
 		});
 
+
 		$(".catalog-filter-supplier .supplier-lists").on('input', '.search', ev => {
 
-			console.log('onSearchSuppliers');
 			this.setupMeta($(ev.currentTarget).closest('.catalog-filter').data('jsonurl'));
-
 			search(ev);
 		});
 	},
@@ -349,7 +348,7 @@ AimeosCatalogFilter = {
 	 */
 	onSubmitSupplier() {
 
-		$(".catalog-filter-supplier li.attr-item").on("click", ev => {
+		$(".catalog-filter-supplier").on("click", 'li.attr-item', ev => {
 			const input = $("input", ev.currentTarget);
 
 			input.prop("checked", !input.prop("checked"));

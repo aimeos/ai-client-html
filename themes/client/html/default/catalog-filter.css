@@ -365,7 +365,6 @@ aside .catalog-filter section {
 
 .catalog-filter-search .input-group {
 	border: 1px solid var(--ai-tertiary);
-	background-color: var(--ai-bg);
 }
 
 .catalog-filter-search .input-group .btn,
