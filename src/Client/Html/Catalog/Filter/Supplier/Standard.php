@@ -48,10 +48,15 @@ class Standard
 		 */
 		$domains = $view->config( 'client/html/catalog/filter/supplier/domains', ['text', 'media', 'media/property'] );
 
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'supplier' )
+			->uses( $domains )->sort( 'supplier.label' );
+
+		$items = $cntl->slice( 0, 20 )->search();
+		$items = $cntl->compare( '==', 'supplier.id', $view->param( 'f_supid', [] ) )
+			->slice( 0, 100 )->search()->replace( $items );
+
+		$view->supplierList = $items;
 		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();
-		$view->supplierList = \Aimeos\Controller\Frontend::create( $this->context(), 'supplier' )
-			->uses( $domains )->compare( '==', 'supplier.id', $view->param( 'f_supid', [] ) )
-			->sort( 'supplier.label' )->slice( 0, 10000 )->search();
 
 		// Delete cache when suppliers are added or deleted even in "tag-all" mode
 		$this->addMetaItems( $view->supplierList, $expire, $tags, ['supplier'] );
