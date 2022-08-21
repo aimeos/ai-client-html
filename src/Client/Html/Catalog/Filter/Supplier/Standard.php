@@ -51,7 +51,7 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'supplier' )
 			->uses( $domains )->sort( 'supplier.label' );
 
-		$items = $cntl->slice( 0, 20 )->search();
+		$items = $cntl->slice( 0, 20 )->sort( 'supplier.position,supplier.label' )->search();
 		$items = $cntl->compare( '==', 'supplier.id', $view->param( 'f_supid', [] ) )
 			->slice( 0, 100 )->search()->replace( $items );
 
