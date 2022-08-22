@@ -288,15 +288,14 @@ AimeosCatalogFilter = {
 
 			$('.result', list).remove();
 
-			for(let entry of data.data || []) {
+			for(let entry of (data.data || []).reverse()) {
 				let item = prototype.clone().removeClass('disabled').addClass('result');
 
 				$('.attr-name', item).attr('for', 'sup-' + entry['id']);
 				$('.attr-name span', item).text(entry['attributes']['supplier.label']);
-//				$('.attr-name img', item).attr('src', '#').attr('title', entry['attributes']['supplier.label']);
 				$('.attr-item', item).attr('id', 'sup-' + entry['id']).attr('value', entry['id']).removeAttr('disabled');
 
-				list.append(item.data('id', entry['id']).removeClass('prototype'));
+				list.prepend(item.data('id', entry['id']).removeClass('prototype'));
 			}
 		};
 
@@ -315,8 +314,7 @@ AimeosCatalogFilter = {
 					filter: {
 						'~=': {'supplier.label': val}
 					},
-					sort: 'supplier.label',
-					include: 'media'
+					sort: 'supplier.position,supplier.label'
 				};
 
 				if(self.meta.prefix) { // returned from OPTIONS call
