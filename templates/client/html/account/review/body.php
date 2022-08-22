@@ -123,35 +123,35 @@ $enc = $this->encoder();
 										<h4><?= $enc->html( $this->translate( 'client', 'Your rating' ) ) ?></h4>
 										<div class="review-rating">
 											<div class="rating-line">
-												<input id="rating-<?= $enc->attr( $prodId ) ?>-5" class="rating rating-5"
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-5" class="rating rating-5" required
 													type="radio" value="5" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
 													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 5 ? 'selected' : '' ?>
 												>
 												<label for="rating-<?= $enc->attr( $prodId ) ?>-5">★★★★★</label>
 											</div>
 											<div class="rating-line">
-												<input id="rating-<?= $enc->attr( $prodId ) ?>-4" class="rating rating-4"
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-4" class="rating rating-4" required
 													type="radio" value="4" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
 													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 4 ? 'selected' : '' ?>
 												>
 												<label for="rating-<?= $enc->attr( $prodId ) ?>-4">★★★★</label>
 												</div>
 											<div class="rating-line">
-												<input id="rating-<?= $enc->attr( $prodId ) ?>-3" class="rating rating-3"
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-3" class="rating rating-3" required
 													type="radio" value="3" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
 													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 3 ? 'selected' : '' ?>
 												>
 												<label for="rating-<?= $enc->attr( $prodId ) ?>-3">★★★</label>
 												</div>
 											<div class="rating-line">
-												<input id="rating-<?= $enc->attr( $prodId ) ?>-2" class="rating rating-2"
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-2" class="rating rating-2" required
 													type="radio" value="2" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
 													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 2 ? 'selected' : '' ?>
 												>
 												<label for="rating-<?= $enc->attr( $prodId ) ?>-2">★★</label>
 												</div>
 											<div class="rating-line">
-												<input id="rating-<?= $enc->attr( $prodId ) ?>-1" class="rating rating-1"
+												<input id="rating-<?= $enc->attr( $prodId ) ?>-1" class="rating rating-1" required
 													type="radio" value="1" name="<?= $this->formparam( ['review', $prodId, 'review.rating'] ) ?>"
 													<?= $this->param( 'review/' . $prodId . '/review.rating' ) == 1 ? 'selected' : '' ?>
 												>

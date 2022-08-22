@@ -144,7 +144,9 @@ class Standard
 
 		if( ( $reviews = $view->param( 'review', [] ) ) !== [] )
 		{
+			$ratings = 0;
 			$context = $this->context();
+
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'review' );
 			$addr = \Aimeos\Controller\Frontend::create( $context, 'customer' )->get()->getPaymentAddress();
 
@@ -152,12 +154,16 @@ class Standard
 			{
 				$item = $cntl->create( $values )->setDomain( 'product' )->setName( $addr->getFirstName() );
 
-				if( $item->getRating() ) {
+				if( $item->getRating() )
+				{
 					$cntl->save( $item ); // only if value is greater than 0
+					$ratings++;
 				}
 			}
 
-			$view->infos = array_merge( $view->get( 'infos', [] ), [$view->translate( 'client', 'Thank you for your review!' )] );
+			if( $ratings ) {
+				$view->infos = array_merge( $view->get( 'infos', [] ), [$view->translate( 'client', 'Thank you for your review!' )] );
+			}
 		}
 
 		parent::init();
