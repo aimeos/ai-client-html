@@ -22,10 +22,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 				</a>
 			<?php endif ?>
 
-			<input class="form-control search"
-				name="<?= $enc->attr( $this->formparam( ['supplier', 'search'] ) ) ?>"
-				placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
-			/>
+			<input class="form-control search" placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>" />
 
 			<fieldset>
 				<ul class="attr-list">
