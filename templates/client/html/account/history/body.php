@@ -105,23 +105,22 @@ $enc = $this->encoder();
 						<div class="col-12 col-md-10">
 							<div class="row">
 								<div class="col-md-6">
+									<div class="order-invoiceno row">
+										<span class="name col-5">
+											<?= $enc->html( $this->translate( 'client', 'Invoice' ), $enc::TRUST ) ?>
+										</span>
+										<span class="value col-7">
+											<?= $enc->html( $orderItem->getInvoiceNumber() ) ?>
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
 									<div class="order-created row">
 										<span class="name col-5">
 											<?= $enc->html( $this->translate( 'client', 'Created' ), $enc::TRUST ) ?>
 										</span>
 										<span class="value col-7">
 											<?= $enc->html( date_create( $orderItem->getTimeCreated() )->format( $dateformat ) ) ?>
-										</span>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="order-channel row">
-										<span class="name col-5">
-											<?= $enc->html( $this->translate( 'client', 'Channel' ), $enc::TRUST ) ?>
-										</span>
-										<span class="value col-7">
-											<?php $code = 'order:' . $orderItem->getChannel() ?>
-											<?= $enc->html( $this->translate( 'mshop/code', $code ), $enc::TRUST ) ?>
 										</span>
 									</div>
 								</div>

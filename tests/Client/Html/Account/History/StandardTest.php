@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<section class="aimeos account-history', $output );
 		$this->assertRegExp( '#<div class="history-item#', $output );
 		$this->assertRegExp( '#<h2 class="order-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
-		$this->assertRegExp( '#<div class="order-channel.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertRegExp( '#<div class="order-invoiceno.*<span class="value[^<]+</span>.*</div>#smU', $output );
 		$this->assertRegExp( '#<div class="order-payment.*<span class="value[^<]+</span>.*</div>#smU', $output );
 		$this->assertRegExp( '#<div class="order-delivery.*<span class="value.*</span>.*</div>#smU', $output );
 
