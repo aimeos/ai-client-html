@@ -161,11 +161,11 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 	?>
 
-	<div class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
+	<div class="product row <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
 		data-prodid="<?= $enc->attr( $id ) ?>" data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
 		itemprop="<?= $this->get( 'itemprop' ) ?>" itemscope itemtype="http://schema.org/Product">
 
-		<div class="list-column">
+		<div class="list-column col-12">
 
 			<?= $this->partial(
 				/** client/html/common/partials/badges
@@ -219,7 +219,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			</a>
 		</div>
 
-		<div class="list-column">
+		<div class="list-column col-12">
 			<a href="<?= $enc->attr( $url ) ?>">
 
 				<div class="product-info">

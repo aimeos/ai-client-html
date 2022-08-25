@@ -33,11 +33,11 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 			$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 		?>
 
-		--><div class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
+		--><div class="product row <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
 			itemscope itemtype="http://schema.org/Product" data-prodid="<?= $enc->attr( $id ) ?>"
 			data-reqstock="<?= (int) $this->config( 'client/html/basket/require-stock', true ) ?>">
 
-			<div class="list-column">
+			<div class="list-column col-6">
 
 				<?= $this->partial( $this->config( 'client/html/common/partials/badges', 'common/partials/badges' ) ) ?>
 
@@ -70,7 +70,7 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 				</a>
 			</div><!--
 
-			--><div class="list-column">
+			--><div class="list-column col-6">
 				<div class="rating">
 					<?php if( $productItem->getRating() > 0 ) : ?>
 						<span class="stars"><?= str_repeat( '★', (int) round( $productItem->getRating() ) ) ?></span>
