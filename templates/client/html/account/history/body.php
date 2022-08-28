@@ -91,7 +91,7 @@ $enc = $this->encoder();
 
 					<div class="history-item row">
 
-						<div class="col-12">
+						<div class="col-6">
 							<h2 class="order-basic">
 								<span class="name">
 									<?= $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ) ?>
@@ -100,6 +100,19 @@ $enc = $this->encoder();
 									<?= $enc->html( $id ) ?>
 								</span>
 							</h2>
+						</div>
+
+						<div class="col-6">
+							<?php if( $ref = $orderItem->getBaseItem()->getCustomerReference() ) : ?>
+								<h2 class="order-customerref">
+									<span class="name">
+										<?= $enc->html( $this->translate( 'client', 'Reference' ), $enc::TRUST ) ?>
+									</span>
+									<span class="value">
+										<?= $enc->html( $ref ) ?>
+									</span>
+								</h2>
+							<?php endif ?>
 						</div>
 
 						<div class="col-12 col-md-10">
