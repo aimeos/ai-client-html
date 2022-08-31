@@ -64,7 +64,7 @@ $enc = $this->encoder();
 						<?php endforeach ?>
 					</div>
 
-					<h2><?= $enc->html( $service->getName() ) ?></h2>
+					<h2><?= $enc->html( $service->getName(), $enc::TRUST ) ?></h2>
 
 					<?php foreach( $service->getRefItems( 'text', null, 'default' ) as $textItem ) : ?>
 						<?php if( ( $type = $textItem->getType() ) !== 'name' ) : ?>
