@@ -33,6 +33,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
+		\Aimeos\Controller\Frontend::create( $this->context, 'basket' )->clear();
 		\Aimeos\Controller\Frontend::cache( false );
 		\Aimeos\MShop::cache( false );
 
