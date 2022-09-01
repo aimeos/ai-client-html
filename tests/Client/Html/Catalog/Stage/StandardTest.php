@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<section class="aimeos catalog-stage', $output );
 		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb', $output );
-		$this->assertRegExp( '#Your search result#smU', $output );
+		$this->assertRegExp( '#Back#smU', $output );
 
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 0, count( $tags ) );
