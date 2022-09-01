@@ -28,6 +28,7 @@ $enc = $this->encoder();
 	<?php endif ?>
 
 	<div class="catalog-stage-breadcrumb container-xxl">
+
 		<?php if( isset( $this->stageCatPath ) ) : ?>
 			<?php
 				$entries = []; $idx = 1;
@@ -49,6 +50,7 @@ $enc = $this->encoder();
 				}
 			</script>
 		<?php endif ?>
+
 		<nav class="breadcrumb">
 			<span class="title"><?= $enc->html( $this->translate( 'client', 'You are here:' ), $enc::TRUST ) ?></span>
 			<ol>
@@ -63,8 +65,8 @@ $enc = $this->encoder();
 					<?php endforeach ?>
 				<?php else : ?>
 					<li>
-						<a href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'stageParams', [] ) ) ) ?>">
-							<?= $enc->html( $this->translate( 'client', 'Your search result' ), $enc::TRUST ) ?>
+						<a class="back" href="#">
+							<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ) ?>
 						</a>
 					</li>
 				<?php endif ?>
