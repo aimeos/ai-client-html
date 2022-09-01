@@ -15,16 +15,10 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
-$infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
-
-$url = '';
-if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCurr', 0 ) ) {
-	$url = $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPageNext' )] + $this->get( 'listParams', [] ) );
-}
-
 
 ?>
-<div class="catalog-list-items list" data-infiniteurl="<?= $url ?>"
+<div class="catalog-list-items list"
+	data-infiniteurl="<?= $enc->attr( $this->get( 'infinite-url' ) ) ?>"
 	data-pinned="<?= $enc->attr( $this->session( 'aimeos/catalog/session/pinned/list', [] ) ) ?>"><!--
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true ?>
