@@ -48,7 +48,7 @@ class Standard
 		$this->call( 'conditions', $cntl, $view );
 
 		// We need a key but there's no one for the currency alone available, only price/currency combinations
-		$view->priceHigh = (int) $cntl->aggregate( 'product.status', 'agg:' . $name, 'max' )->max();
+		$view->priceHigh = (int) $cntl->aggregate( 'product.status', 'agg:' . $name, 'max' )->max() + 1;
 		$view->priceResetParams = map( $this->getClientParams( $view->param() ) )->remove( 'f_price' )->all();
 
 		return parent::data( $view, $tags, $expire );
