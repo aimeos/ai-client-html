@@ -11,7 +11,6 @@
  */
 
 $enc = $this->encoder();
-$pos = 0;
 
 
 ?>
@@ -22,10 +21,10 @@ $pos = 0;
 		<div class="thumbs thumbs-vertical swiffy-slider slider-nav-dark slider-nav-sm slider-nav-outside slider-item-snapstart slider-nav-visible slider-nav-page slider-nav-outside-expand">
 			<div class="slider-container">
 
-				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++; ?>
+				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++ ?>
 
 					<div class="thumbnail">
-						<img loading="lazy" class="item-thumb img-<?= $index ?>"  data-index="<?= $enc->attr( $pos++ ) ?>"
+						<img loading="lazy" class="item-thumb img-<?= $index ?>"  data-index="<?= $enc->attr( $index ) ?>"
 							src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 							alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
 						/>
@@ -51,9 +50,9 @@ $pos = 0;
 		<div class="swiffy-slider slider-item-ratio slider-item-ratio-contain slider-nav-round slider-nav-animation-fadein">
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
-				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
+				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++ ?>
 					<div class="media-item">
-						<?= $this->image( $mediaItem, $this->config( 'client/html/catalog/detail/imageset-sizes', '(min-width: 2000px) 1920px, (min-width: 500px) 960px, 100vw' ) ) ?>
+						<?= $this->image( $mediaItem, $this->config( 'client/html/catalog/detail/imageset-sizes', '(min-width: 2000px) 1920px, (min-width: 500px) 960px, 100vw' ), !$index ) ?>
 					</div>
 				<?php endforeach ?>
 

@@ -26,9 +26,10 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Media\Item\Iface $media Media item
 	 * @param string $sizes Preferred image srcset sizes
+	 * @param bool $main TRUE for main image, FALSE for secondary images
 	 * @return string HTML image tag
 	 */
-	public function transform( \Aimeos\MShop\Media\Item\Iface $media, string $sizes = '' ) : string
+	public function transform( \Aimeos\MShop\Media\Item\Iface $media, string $sizes = '', $main = true ) : string
 	{
 		$view = $this->view();
 		$enc = $view->encoder();
@@ -47,18 +48,20 @@ class Standard
 		{
 			return '<video autoplay muted class="item" id="image-' . $media->getId() . '" loading="lazy"
 				itemscope itemtype="http://schema.org/VideoObject"
+				thumbnail="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 				poster="' . $enc->attr( $view->content( $media->getPreview( 600 ), $media->getFileSystem() ) ) . '"
 				src="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 				alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-				' . $variant . '></video>';
+				' . $variant . ' representativeOfPage="' . ( $main ? 'true' : 'false' ) . '"></video>';
 		}
 
 		return '<img class="item" id="image-' . $media->getId() . '" loading="lazy"
 			itemscope itemprop="image" itemtype="http://schema.org/ImageObject"
+			thumbnail="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 			src="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 			srcset="' . $enc->attr( $view->imageset( $media->getPreviews( true ), $media->getFileSystem() ) ) . '"
 			data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-			sizes="' . $sizes . '" ' . $variant . ' />';
+			sizes="' . $sizes . '" ' . $variant . ' representativeOfPage="' . ( $main ? 'true' : 'false' ) . '" />';
 	}
 }
