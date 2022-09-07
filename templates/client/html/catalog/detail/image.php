@@ -21,13 +21,13 @@ $enc = $this->encoder();
 		<div class="swiffy-slider slider-item-ratio slider-item-ratio-contain slider-nav-round slider-nav-animation-fadein">
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
-				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
+				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 
-					<div class="media-item">
+					<div class="media-item" data-index="<?= $enc->attr( $index ) ?>">
 						<?= $this->image( $mediaItem, $this->config( 'client/html/catalog/detail/imageset-sizes', '(min-width: 2000px) 1920px, (min-width: 500px) 960px, 100vw' ), true ) ?>
 					</div>
 
-				<?php endforeach ?>
+				<?php $index++; endforeach ?>
 
 			</div>
 
