@@ -121,14 +121,14 @@ $sortfcn = function( $itemA, $itemB ) {
 
 					<ul id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="select-list" data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>">
 
-						<?php foreach( $list as $attrId => $attrItem ) : ?>
+						<?php $index = 0; foreach( $list as $attrId => $attrItem ) : ?>
 
 							<li class="select-entry">
 								<input class="select-option" type="radio"
 									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
-									<?= ( $first && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ); $first = false ?>
+									<?= ( !$index && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ) ?>
 								>
 								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
 
@@ -147,7 +147,7 @@ $sortfcn = function( $itemA, $itemB ) {
 								--></label>
 							</li>
 
-						<?php endforeach ?>
+						<?php $index++; endforeach ?>
 
 					</ul>
 
