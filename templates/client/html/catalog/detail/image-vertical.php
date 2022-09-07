@@ -16,12 +16,12 @@ $enc = $this->encoder();
 ?>
 <div class="catalog-detail-image">
 
-	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 1 ) : $class = 'item selected' ?>
+	<?php if( ( $thumbNum = count( $this->get( 'mediaItems', [] ) ) ) > 1 ) : ?>
 
 		<div class="thumbs thumbs-vertical swiffy-slider slider-nav-dark slider-nav-sm slider-nav-outside slider-item-snapstart slider-nav-visible slider-nav-page slider-nav-outside-expand">
 			<div class="slider-container">
 
-				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++ ?>
+				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
 
 					<div class="thumbnail">
 						<img loading="lazy" class="item-thumb img-<?= $index ?>"  data-index="<?= $enc->attr( $index ) ?>"
@@ -30,9 +30,7 @@ $enc = $this->encoder();
 						/>
 					</div>
 
-					<?php  $class = 'item' ?>
-
-				<?php endforeach ?>
+				<?php $index++; endforeach ?>
 
 			</div>
 
@@ -45,15 +43,17 @@ $enc = $this->encoder();
 
 	<?php endif ?>
 
-	<?php if( ( $imgNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : $class = 'item selected' ?>
+	<?php if( ( $imgNum = count( $this->get( 'mediaItems', [] ) ) ) > 0 ) : ?>
 
 		<div class="swiffy-slider slider-item-ratio slider-item-ratio-contain slider-nav-round slider-nav-animation-fadein">
 			<div class="image-single slider-container" data-pswp="{bgOpacity: 0.75, shareButtons: false}">
 
-				<?php $index = 0; foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : $index++ ?>
+				<?php foreach( $this->get( 'mediaItems', [] ) as $id => $mediaItem ) : ?>
+
 					<div class="media-item">
-						<?= $this->image( $mediaItem, $this->config( 'client/html/catalog/detail/imageset-sizes', '(min-width: 2000px) 1920px, (min-width: 500px) 960px, 100vw' ), !$index ) ?>
+						<?= $this->image( $mediaItem, $this->config( 'client/html/catalog/detail/imageset-sizes', '(min-width: 2000px) 1920px, (min-width: 500px) 960px, 100vw' ), true ) ?>
 					</div>
+
 				<?php endforeach ?>
 
 			</div>
