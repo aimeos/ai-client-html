@@ -117,18 +117,19 @@ $sortfcn = function( $itemA, $itemB ) {
 
 			<div class="select-value">
 
-				<?php if( $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) === 'radio' ) : $first = true ?>
+				<?php if( $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) === 'radio' ) : ?>
 
-					<ul id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="select-list" data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>">
+					<ul id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="select-list"
+						data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>">
 
-						<?php $index = 0; foreach( $list as $attrId => $attrItem ) : ?>
+						<?php $first = true; foreach( $list as $attrId => $attrItem ) : ?>
 
 							<li class="select-entry">
 								<input class="select-option" type="radio"
 									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
-									<?= ( !$index && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ) ?>
+									<?= ( $first && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ) ?>
 								>
 								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
 
@@ -147,7 +148,7 @@ $sortfcn = function( $itemA, $itemB ) {
 								--></label>
 							</li>
 
-						<?php $index++; endforeach ?>
+						<?php $first = false; endforeach ?>
 
 					</ul>
 
