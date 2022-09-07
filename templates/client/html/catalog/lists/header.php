@@ -26,8 +26,10 @@ $enc = $this->encoder();
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
 	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+
 		<title><?= $enc->html( strip_tags( $catItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
-		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
+
+		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', map( $this->get( 'listParams', [] ))->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
@@ -38,10 +40,12 @@ $enc = $this->encoder();
 		<?php endforeach ?>
 
 	<?php elseif( ( $search = $this->param( 'f_search', null ) ) != null ) : /// Product search hint with user provided search string (%1$s) ?>
+
 		<title><?= $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
-		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
+		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', map( $this->get( 'listParams', [] ))->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
 		<meta name="keywords" content="<?= $enc->attr( strip_tags( $search ) ) ?>">
 		<meta name="description" content="<?= $enc->attr( strip_tags( $search ) ) ?>">
+
 	<?php endif ?>
 
 
