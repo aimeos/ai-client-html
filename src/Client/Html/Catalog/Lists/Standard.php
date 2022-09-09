@@ -95,7 +95,7 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/lists';
 
-		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
+		$args = map( $view->param() )->except( ['f_catid', 'f_name', 'f_supid', 's_name'] )->filter( function( $val, $key ) {
 			return !strncmp( $key, 'f_', 2 ) || !strncmp( $key, 'l_', 2 );
 		} );
 
@@ -161,7 +161,7 @@ class Standard
 		$confkey = 'client/html/catalog/lists';
 		$prefixes = ['f_catid', 'f_supid', 'f_sort', 'l_page', 'l_type'];
 
-		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
+		$args = map( $view->param() )->except( ['f_catid', 'f_name', 'f_supid', 's_name'] )->filter( function( $val, $key ) {
 			return !strncmp( $key, 'f_', 2 ) || !strncmp( $key, 'l_', 2 );
 		} );
 
