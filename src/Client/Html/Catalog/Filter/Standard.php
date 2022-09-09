@@ -156,7 +156,7 @@ class Standard
 	public function body( string $uid = '' ) : string
 	{
 		$view = $this->view();
-		$prefixes = ['f_name', 'f_catid', 'f_supid'];
+		$prefixes = ['f_name', 'f_catid', 'f_supid', 's_name'];
 
 		/** client/html/catalog/filter/cache
 		 * Enables or disables caching only for the catalog filter component
@@ -182,7 +182,7 @@ class Standard
 		 */
 		$confkey = 'client/html/catalog/filter';
 
-		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
+		$args = map( $view->param() )->except( array_merge( $prefixes, ['f_sort'] ) )->filter( function( $val, $key ) {
 			return !strncmp( $key, 'f_', 2 );
 		} );
 
@@ -243,9 +243,9 @@ class Standard
 
 		$view = $this->view();
 		$confkey = 'client/html/catalog/filter';
-		$prefixes = ['f_name', 'f_catid', 'f_supid'];
+		$prefixes = ['f_name', 'f_catid', 'f_supid', 's_name'];
 
-		$args = map( $view->param() )->except( $prefixes )->filter( function( $val, $key ) {
+		$args = map( $view->param() )->except( array_merge( $prefixes, ['f_sort'] ) )->filter( function( $val, $key ) {
 			return !strncmp( $key, 'f_', 2 );
 		} );
 
