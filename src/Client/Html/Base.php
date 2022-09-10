@@ -617,7 +617,7 @@ abstract class Base
 		$force = $config->get( 'client/html/common/cache/force', false );
 		$enable = $config->get( $confkey . '/cache', true );
 
-		if( !$enable || !$force && $context->user() !== null ) {
+		if( !$value || !$enable || !$force && $context->user() ) {
 			return $value;
 		}
 
