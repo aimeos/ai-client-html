@@ -45,8 +45,6 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 
 
 ?>
-<meta itemprop="price" content="<?= $price ?>">
-
 <?php foreach( $prices as $priceItem ) : ?>
 	<?php
 		if( $priceItem->getValue() > $price ) {
@@ -62,6 +60,7 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 
 		<meta itemprop="valueAddedTaxIncluded" content="<?= ( $priceItem->getTaxFlag() ? 'true' : 'false' ) ?>">
 		<meta itemprop="priceCurrency" content="<?= $priceItem->getCurrencyId() ?>">
+		<meta itemprop="priceType" content="https://schema.org/SalePrice">
 		<meta itemprop="price" content="<?= $priceItem->getValue() ?>">
 
 		<span class="quantity" itemscope itemtype="http://schema.org/QuantitativeValue">
