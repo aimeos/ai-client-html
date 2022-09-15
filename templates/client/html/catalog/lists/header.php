@@ -29,7 +29,7 @@ $enc = $this->encoder();
 
 		<title><?= $enc->html( strip_tags( $catItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 
-		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', map( $this->get( 'listParams', [] ))->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
+		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', map( $this->get( 'listParams', [] ) )->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
