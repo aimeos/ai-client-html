@@ -42,9 +42,12 @@ $enc = $this->encoder();
 	<?php elseif( ( $search = $this->param( 'f_search', null ) ) != null ) : /// Product search hint with user provided search string (%1$s) ?>
 
 		<title><?= $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
-		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', map( $this->get( 'listParams', [] ))->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
-		<meta name="keywords" content="<?= $enc->attr( strip_tags( $search ) ) ?>">
-		<meta name="description" content="<?= $enc->attr( strip_tags( $search ) ) ?>">
+		<meta name="robots" content="noindex">
+
+	<?php else : ?>
+
+		<title><?= $enc->html( $this->translate( 'client', 'Found products' ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', [], ['absoluteUri' => true] ) ) ?>">
 
 	<?php endif ?>
 
