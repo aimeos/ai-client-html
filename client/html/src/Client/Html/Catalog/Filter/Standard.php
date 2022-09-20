@@ -22,6 +22,9 @@ class Standard
 	extends \Aimeos\Client\Html\Common\Client\Factory\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
+	private static $countUrl;
+
+
 	/** client/html/catalog/filter/subparts
 	 * List of HTML sub-clients rendered within the catalog filter section
 	 *
@@ -599,7 +602,10 @@ class Standard
 			}
 
 			$view->filterParams = $params;
-			$view->filterCountUrl = $view->url( $target, $controller, $action, $params, [], $conf );
+
+			if( self::$countUrl == null ) {
+				$view->filterCountUrl = self::$countUrl = $view->url( $target, $controller, $action, $params, [], $conf );
+			}
 		}
 
 		return parent::addData( $view, $tags, $expire );
