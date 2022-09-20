@@ -326,7 +326,7 @@ abstract class Base
 		 * @see madmin/cache/manager/name
 		 * @see madmin/cache/name
 		 */
-		$tagAll = $this->context->config()->get( 'client/html/common/cache/tag-all', false );
+		$tagAll = $this->context->config()->get( 'client/html/common/cache/tag-all', true );
 
 		$expires = [];
 
@@ -391,17 +391,19 @@ abstract class Base
 	 */
 	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListsRef\Iface $item, array &$expires, array &$tags, bool $tagAll )
 	{
-		foreach( $item->getListItems() as $listitem )
+		foreach( $item->getListItems() as $listItem )
 		{
-			if( ( $refItem = $listitem->getRefItem() ) === null ) {
+			if( !in_array( $listItem->getDomain(), ['catalog', 'product', 'supplier'] )
+				|| ( $refItem = $listItem->getRefItem() ) === null
+			) {
 				continue;
 			}
 
 			if( $tagAll === true ) {
-				$tags[] = str_replace( '/', '_', $listitem->getDomain() ) . '-' . $listitem->getRefId();
+				$tags[] = str_replace( '/', '_', $listItem->getDomain() ) . '-' . $listItem->getRefId();
 			}
 
-			if( ( $date = $listitem->getDateEnd() ) !== null ) {
+			if( ( $date = $listItem->getDateEnd() ) !== null ) {
 				$expires[] = $date;
 			}
 
