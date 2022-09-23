@@ -38,7 +38,7 @@ $enc = $this->encoder();
 						'@type' => 'ListItem',
 						'position' => $idx++,
 						'name' => $cat->getName(),
-						'item' => $this->link( 'client/html/catalog/tree/url', ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] )
+						'item' => $this->link( 'client/html/catalog/tree/url', ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()], ['absoluteUri' => true] )
 					];
 				}
 			?>
