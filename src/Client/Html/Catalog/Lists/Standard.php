@@ -287,8 +287,7 @@ class Standard
 		$products = $cntl->search( $total );
 		$articles = $products->getRefItems( 'product', 'default', 'default' )->flat( 1 )->union( $products );
 
-		// Delete cache when products are added or deleted even when in "tag-all" mode
-		$this->addMetaItems( $articles, $expire, $tags, ['product'] );
+		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
 
 		$view->listProductItems = $products;

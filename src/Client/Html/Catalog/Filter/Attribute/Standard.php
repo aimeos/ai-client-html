@@ -115,8 +115,7 @@ class Standard
 			->uses( $domains )->type( $attrTypes )->compare( '!=', 'attribute.type', ['date', 'price', 'text'] )
 			->sort( 'position' )->slice( 0, 10000 )->search();
 
-		// Delete cache when attributes are added or deleted even in "tag-all" mode
-		$this->addMetaItems( $attributes, $expire, $tags, ['attribute'] );
+		$this->addMetaItems( $attributes, $expire, $tags );
 
 
 		$active = [];

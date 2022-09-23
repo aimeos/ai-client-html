@@ -354,6 +354,24 @@ abstract class Base
 
 
 	/**
+	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given catalog tree.
+	 *
+	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Tree node, maybe with sub-nodes
+	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @param array &$tags List of tags the new tags will be added to
+	 * @param array $custom List of custom tags which are added too
+	 */
+	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, string &$expire = null, array &$tags = [], array $custom = [] )
+	{
+		$this->addMetaItems( $tree, $expire, $tags, $custom );
+
+		foreach( $tree->getChildren() as $child ) {
+			$this->addMetaItemCatalog( $child, $expire, $tags, $custom );
+		}
+	}
+
+
+	/**
 	 * Adds expire date and tags for a single item.
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item, maybe with associated list items
@@ -365,10 +383,8 @@ abstract class Base
 	{
 		$domain = str_replace( '/', '_', $item->getResourceType() ); // maximum compatiblity
 
-		if( $tagAll === true ) {
-			$tags[] = $domain . '-' . $item->getId();
-		} else {
-			$tags[] = $domain;
+		if( in_array( $item->getResourceType(), ['catalog', 'product', 'supplier'] ) ) {
+			$tags[] = $tagAll ? $domain . '-' . $item->getId() : $domain ;
 		}
 
 		if( $item instanceof \Aimeos\MShop\Common\Item\Time\Iface && ( $date = $item->getDateEnd() ) !== null ) {
@@ -393,13 +409,11 @@ abstract class Base
 	{
 		foreach( $item->getListItems() as $listItem )
 		{
-			if( !in_array( $listItem->getDomain(), ['catalog', 'product', 'supplier'] )
-				|| ( $refItem = $listItem->getRefItem() ) === null
-			) {
+			if( ( $refItem = $listItem->getRefItem() ) === null ) {
 				continue;
 			}
 
-			if( $tagAll === true ) {
+			if( $tagAll === true && in_array( $listItem->getDomain(), ['catalog', 'product', 'supplier'] ) ) {
 				$tags[] = str_replace( '/', '_', $listItem->getDomain() ) . '-' . $listItem->getRefId();
 			}
 

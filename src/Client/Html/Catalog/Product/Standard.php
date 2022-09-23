@@ -189,8 +189,7 @@ class Standard
 			}
 		}
 
-		// Delete cache when products are added or deleted even when in "tag-all" mode
-		$this->addMetaItems( $productItems, $expire, $tags, ['product'] );
+		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
 		$view->productItems = $products;
 		$view->productTotal = count( $products );

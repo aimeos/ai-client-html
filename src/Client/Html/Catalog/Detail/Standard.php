@@ -239,8 +239,7 @@ class Standard
 		$attrItems = $productItem->getRefItems( 'attribute', null, 'default' );
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 
-		$this->addMetaItems( $productItem, $expire, $tags );
-		$this->addMetaItems( $supItems, $expire, $tags );
+		$this->addMetaItems( $productItem, $expire, $tags, ['product'] );
 
 		if( in_array( $productItem->getType(), ['bundle', 'select'] ) )
 		{

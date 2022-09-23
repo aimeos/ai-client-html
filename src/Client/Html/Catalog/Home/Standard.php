@@ -140,10 +140,11 @@ class Standard
 		$tree = \Aimeos\Controller\Frontend::create( $this->context(), 'catalog' )->uses( $this->domains() )
 			->getTree( \Aimeos\Controller\Frontend\Catalog\Iface::LIST );
 
-		// Delete cache when products are added or deleted even when in "tag-all" mode
-		$this->addMetaItems( $tree, $expire, $tags, ['catalog', 'product'] );
+		$products = \Aimeos\Controller\Frontend::create( $this->context(), 'product' )->uses( $this->domains() )
+			->category( $tree->getChildren()->getId()->all(), 'promotion' )->search();
 
-		$products = map( $tree->getChildren() )->getRefItems( 'product', null, 'promotion' )->flat( 1 );
+		$this->addMetaItemCatalog( $tree, $expire, $tags );
+		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
 		$view->homeTree = $tree;
 		$view->homeStockUrl = $this->stockUrl( $products );

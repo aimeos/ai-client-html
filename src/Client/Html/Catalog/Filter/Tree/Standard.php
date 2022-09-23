@@ -79,10 +79,12 @@ class Standard
 			$catItems = $cntl->getPath( $currentid );
 		}
 
-		$view->treeCatalogPath = $catItems;
-		$view->treeCatalogTree = $cntl->visible( $catItems->keys()->all() )->getTree( $cntl::TREE );
+		$tree = $cntl->visible( $catItems->keys()->all() )->getTree( $cntl::TREE );
 
-		$this->addMetaItemCatalog( $view->treeCatalogTree, $expire, $tags );
+		$this->addMetaItemCatalog( $tree, $expire, $tags );
+
+		$view->treeCatalogPath = $catItems;
+		$view->treeCatalogTree = $tree;
 
 		return parent::data( $view, $tags, $expire );
 	}
@@ -97,23 +99,6 @@ class Standard
 	public function header( string $uid = '' ) : ?string
 	{
 		return null;
-	}
-
-
-	/**
-	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given catalog tree.
-	 *
-	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Tree node, maybe with sub-nodes
-	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
-	 * @param array &$tags List of tags the new tags will be added to
-	 */
-	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, string &$expire = null, array &$tags = [] )
-	{
-		$this->addMetaItems( $tree, $expire, $tags );
-
-		foreach( $tree->getChildren() as $child ) {
-			$this->addMetaItemCatalog( $child, $expire, $tags );
-		}
 	}
 
 

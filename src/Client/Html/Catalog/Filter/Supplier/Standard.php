@@ -55,11 +55,10 @@ class Standard
 		$items = $cntl->compare( '==', 'supplier.id', $view->param( 'f_supid', [] ) )
 			->slice( 0, 100 )->search()->replace( $items );
 
+		$this->addMetaItems( $items, $expire, $tags );
+
 		$view->supplierList = $items;
 		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();
-
-		// Delete cache when suppliers are added or deleted even in "tag-all" mode
-		$this->addMetaItems( $view->supplierList, $expire, $tags, ['supplier'] );
 
 		return parent::data( $view, $tags, $expire );
 	}

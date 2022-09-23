@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<title>Test supplier | Aimeos</title>', $output );
 		$this->assertEquals( '2100-01-01 00:00:00', $expire );
-		$this->assertEquals( 3, count( $tags ) );
+		$this->assertEquals( 1, count( $tags ) );
 	}
 
 
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="supplier-detail-image', $output );
 
 		$this->assertEquals( '2100-01-01 00:00:00', $expire );
-		$this->assertEquals( 3, count( $tags ) );
+		$this->assertEquals( 1, count( $tags ) );
 	}
 
 
