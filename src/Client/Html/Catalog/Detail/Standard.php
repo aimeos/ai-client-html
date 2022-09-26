@@ -235,7 +235,6 @@ class Standard
 		$productItem = $this->product( $view );
 
 		$propItems = $productItem->getPropertyItems();
-		$supItems = $productItem->getRefItems( 'supplier', null, 'default' );
 		$attrItems = $productItem->getRefItems( 'attribute', null, 'default' );
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 
