@@ -218,7 +218,7 @@ class Standard
 		$domains = $context->config()->get( 'client/html/account/favorite/domains', ['text', 'price', 'media'] );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$customer = $cntl->uses( ['product' => ['favorite']] )->get();
+		$customer = $cntl->uses( ['product' => ['favorite']] + $domains )->get();
 
 		$products = $customer->getRefItems( 'product', 'favorite' );
 		$products = \Aimeos\MShop::create( $context, 'rule' )->apply( $products, 'catalog' );

@@ -264,7 +264,7 @@ class Standard
 		$domains = $context->config()->get( 'client/html/account/watch/domains', ['text', 'price', 'media'] );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$customer = $cntl->uses( ['product' => ['watch']] )->get();
+		$customer = $cntl->uses( ['product' => ['watch']] + $domains )->get();
 
 		$products = $customer->getRefItems( 'product', 'watch' );
 		$products = \Aimeos\MShop::create( $context, 'rule' )->apply( $products, 'catalog' );
