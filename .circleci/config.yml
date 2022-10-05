@@ -16,8 +16,8 @@ jobs:
           MYSQL_PASSWORD: aimeos
     steps:
       - checkout
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/aimeos-core ../aimeos-core
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/aimeos-core ../aimeos-core
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
           keys:
@@ -41,8 +41,8 @@ jobs:
           MYSQL_PASSWORD: aimeos
     steps:
       - checkout
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/aimeos-core ../aimeos-core
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/aimeos-core ../aimeos-core
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
           keys:
@@ -65,8 +65,8 @@ jobs:
           POSTGRES_DB: aimeos
     steps:
       - checkout
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/aimeos-core ../aimeos-core
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/aimeos-core ../aimeos-core
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
           keys:
@@ -90,8 +90,8 @@ jobs:
           MYSQL_PASSWORD: aimeos
     steps:
       - checkout
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/aimeos-core ../aimeos-core
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/aimeos-core ../aimeos-core
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
           keys:
@@ -115,8 +115,8 @@ jobs:
           MYSQL_PASSWORD: aimeos
     steps:
       - checkout
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/aimeos-core ../aimeos-core
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/aimeos-core ../aimeos-core
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
           keys:
@@ -140,8 +140,8 @@ jobs:
           MYSQL_PASSWORD: aimeos
     steps:
       - checkout
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/aimeos-core ../aimeos-core
-      - run: git clone --depth=50 --branch=master https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/aimeos-core ../aimeos-core
+      - run: git clone --depth=50 --branch=2022.10 https://github.com/aimeos/ai-controller-frontend ../aimeos-core/ext/ai-controller-frontend
       - run: cd .. && mv project aimeos-core/ext/ai-client-html && mv aimeos-core project && cd project
       - restore_cache:
           keys:
