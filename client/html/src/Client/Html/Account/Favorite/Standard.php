@@ -473,10 +473,14 @@ class Standard
 		 * @see client/html/catalog/domains
 		 */
 		$domains = $context->getConfig()->get( 'client/html/account/favorite/domains', ['text', 'price', 'media'] );
-		$domains['product'] = ['favorite'];
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$listItems = $cntl->uses( $domains )->get()->getListItems( 'product', 'favorite' );
+		$customer = $cntl->uses( ['product' => ['favorite']] + $domains )->get();
+
+		$products = $customer->getRefItems( 'product', 'favorite' );
+		$products = \Aimeos\MShop::create( $context, 'rule' )->apply( $products, 'catalog' );
+
+		$listItems = $customer->getListItems( 'product', 'favorite' );
 		$total = count( $listItems );
 
 		$size = $this->getProductListSize( $view );

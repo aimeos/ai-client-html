@@ -520,10 +520,14 @@ class Standard
 		 * @see client/html/catalog/domains
 		 */
 		$domains = $context->getConfig()->get( 'client/html/account/watch/domains', ['text', 'price', 'media'] );
-		$domains['product'] = ['watch'];
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$listItems = $cntl->uses( $domains )->get()->getListItems( 'product', 'watch' );
+		$customer = $cntl->uses( ['product' => ['watch']] + $domains )->get();
+
+		$products = $customer->getRefItems( 'product', 'watch' );
+		$products = \Aimeos\MShop::create( $context, 'rule' )->apply( $products, 'catalog' );
+
+		$listItems = $customer->getListItems( 'product', 'watch' );
 		$total = count( $listItems );
 
 		$size = $this->getProductListSize( $view );
