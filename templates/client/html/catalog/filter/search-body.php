@@ -111,7 +111,7 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ) ?></h2>
 	<div class="search-lists">
 		<div class="input-group">
-			<input class="form-control value" autocomplete="off"
+			<input class="form-control value" autocomplete="off" autofocus
 				name="<?= $enc->attr( $this->formparam( 'f_search' ) ) ?>"
 				title="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
 				placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"
