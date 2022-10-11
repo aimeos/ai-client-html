@@ -53,7 +53,7 @@ class Standard
 				src="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 				alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
 				' . $variant . ' representativeOfPage="' . ( $main ? 'true' : 'false' ) . '">
-				<meta contentUrl="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
+				<meta contentUrl="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '" />
 			</video>';
 		}
 
@@ -65,7 +65,7 @@ class Standard
 			data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
 			sizes="' . $sizes . '" ' . $variant . ' representativeOfPage="' . ( $main ? 'true' : 'false' ) . '">
-			<meta contentUrl="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
+			<meta contentUrl="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '" />
 		</img>';
 	}
 }
