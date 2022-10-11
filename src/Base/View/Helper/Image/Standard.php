@@ -52,7 +52,9 @@ class Standard
 				poster="' . $enc->attr( $view->content( $media->getPreview( 600 ), $media->getFileSystem() ) ) . '"
 				src="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 				alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-				' . $variant . ' representativeOfPage="' . ( $main ? 'true' : 'false' ) . '"></video>';
+				' . $variant . ' representativeOfPage="' . ( $main ? 'true' : 'false' ) . '">
+				<meta contentUrl="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
+			</video>';
 		}
 
 		return '<img class="item" id="image-' . $media->getId() . '" loading="lazy"
@@ -62,6 +64,8 @@ class Standard
 			srcset="' . $enc->attr( $view->imageset( $media->getPreviews( true ), $media->getFileSystem() ) ) . '"
 			data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 			alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-			sizes="' . $sizes . '" ' . $variant . ' representativeOfPage="' . ( $main ? 'true' : 'false' ) . '" />';
+			sizes="' . $sizes . '" ' . $variant . ' representativeOfPage="' . ( $main ? 'true' : 'false' ) . '">
+			<meta contentUrl="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
+		</img>';
 	}
 }
