@@ -38,11 +38,11 @@ abstract class Base
 	 * Returns the basket cache entry from the cache if available.
 	 *
 	 * @param string $key Path to the requested cache entry
-	 * @param mixed $default Value returned if requested key isn't found
-	 * @return mixed Value associated to the requested key. If no value for the
+	 * @param string|null $default Value returned if requested key isn't found
+	 * @return string|null Value associated to the requested key. If no value for the
 	 *	key is found in the cache, the given default value is returned
 	 */
-	protected function getBasketCached( string $key, $default = null )
+	protected function getBasketCached( string $key, string $default = null ) : ?string
 	{
 		return $this->context()->session()->get( $key, $default );
 	}
@@ -52,9 +52,10 @@ abstract class Base
 	 * Adds or overwrite a cache entry for the given key and value.
 	 *
 	 * @param string $key Path the cache entry should be stored in
-	 * @param mixed $value Value stored in the cache for the path
+	 * @param string|null $value Value stored in the cache for the path
+	 * @return string|null Value
 	 */
-	protected function setBasketCached( string $key, $value )
+	protected function setBasketCached( string $key, string $value = null ) : ?string
 	{
 		$context = $this->context();
 
@@ -79,5 +80,7 @@ abstract class Base
 			$session->set( 'aimeos/basket/cache', $cached );
 			$session->set( $key, $value );
 		}
+
+		return $value;
 	}
 }

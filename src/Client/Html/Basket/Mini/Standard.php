@@ -103,7 +103,6 @@ class Standard
 	{
 		$context = $this->context();
 		$site = $context->locale()->getSiteId();
-		$view = $this->view();
 
 		/** client/html/basket/mini
 		 * All parameters defined for the small basket component and its subparts
@@ -117,73 +116,35 @@ class Standard
 		$config = $context->config()->get( 'client/html/basket/mini', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:mini-body', $config );
 
-		if( ( $html = $this->getBasketCached( $key ) ) === null )
-		{
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->object()->data( $view );
-				}
-
-				$output = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->body( $uid );
-				}
-				$view->miniBody = $output;
-			}
-			catch( \Aimeos\Client\Html\Exception $e )
-			{
-				$error = array( $context->translate( 'client', $e->getMessage() ) );
-				$view->miniErrorList = array_merge( $view->get( 'miniErrorList', [] ), $error );
-			}
-			catch( \Aimeos\Controller\Frontend\Exception $e )
-			{
-				$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
-				$view->miniErrorList = array_merge( $view->get( 'miniErrorList', [] ), $error );
-			}
-			catch( \Aimeos\MShop\Exception $e )
-			{
-				$error = array( $context->translate( 'mshop', $e->getMessage() ) );
-				$view->miniErrorList = array_merge( $view->get( 'miniErrorList', [] ), $error );
-			}
-			catch( \Exception $e )
-			{
-				$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
-				$view->miniErrorList = array_merge( $view->get( 'miniErrorList', [] ), $error );
-				$this->logException( $e );
-			}
-
-			/** client/html/basket/mini/template-body
-			 * Relative path to the HTML body template of the basket mini client.
-			 *
-			 * The template file contains the HTML code and processing instructions
-			 * to generate the result shown in the body of the frontend. The
-			 * configuration string is the path to the template file relative
-			 * to the templates directory (usually in client/html/templates).
-			 *
-			 * You can overwrite the template file configuration in extensions and
-			 * provide alternative templates. These alternative templates should be
-			 * named like the default one but suffixed by
-			 * an unique name. You may use the name of your project for this. If
-			 * you've implemented an alternative client class as well, it
-			 * should be suffixed by the name of the new class.
-			 *
-			 * @param string Relative path to the template creating code for the HTML page body
-			 * @since 2014.03
-			 * @see client/html/basket/mini/template-header
-			 */
-			$tplconf = 'client/html/basket/mini/template-body';
-			$default = 'basket/mini/body';
-
-			$html = $view->render( $view->config( $tplconf, $default ) );
-			$this->setBasketCached( $key, $html );
-		}
-		else
-		{
-			$html = $this->modify( $html, $uid );
+		if( $html = $this->getBasketCached( $key ) ) {
+			return $this->modify( $html, $uid );
 		}
 
-		return $html;
+		/** client/html/basket/mini/template-body
+		 * Relative path to the HTML body template of the basket mini client.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the result shown in the body of the frontend. The
+		 * configuration string is the path to the template file relative
+		 * to the templates directory (usually in client/html/templates).
+		 *
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates. These alternative templates should be
+		 * named like the default one but suffixed by
+		 * an unique name. You may use the name of your project for this. If
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
+		 *
+		 * @param string Relative path to the template creating code for the HTML page body
+		 * @since 2014.03
+		 * @see client/html/basket/mini/template-header
+		 */
+		$template = $this->context()->config()->get( 'client/html/basket/mini/template-body', 'basket/mini/body' );
+
+		$view = $this->view = $this->view ?? $this->object()->data( $this->view() );
+		$html = $this->modify( $view->render( $template ), $uid );
+
+		return (string) $this->setBasketCached( $key, $html );
 	}
 
 
@@ -202,57 +163,36 @@ class Standard
 		$config = $context->config()->get( 'client/html/basket/mini', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:mini-header', $config );
 
-		if( ( $html = $this->getBasketCached( $key ) ) === null )
-		{
-			try
-			{
-				if( !isset( $this->view ) ) {
-					$view = $this->view = $this->object()->data( $view );
-				}
-
-				$output = '';
-				foreach( $this->getSubClients() as $subclient ) {
-					$output .= $subclient->setView( $view )->header( $uid );
-				}
-				$view->miniHeader = $output;
-
-				/** client/html/basket/mini/template-header
-				 * Relative path to the HTML header template of the basket mini client.
-				 *
-				 * The template file contains the HTML code and processing instructions
-				 * to generate the HTML code that is inserted into the HTML page header
-				 * of the rendered page in the frontend. The configuration string is the
-				 * path to the template file relative to the templates directory (usually
-				 * in client/html/templates).
-				 *
-				 * You can overwrite the template file configuration in extensions and
-				 * provide alternative templates. These alternative templates should be
-				 * named like the default one but suffixed by
-				 * an unique name. You may use the name of your project for this. If
-				 * you've implemented an alternative client class as well, it
-				 * should be suffixed by the name of the new class.
-				 *
-				 * @param string Relative path to the template creating code for the HTML page head
-				 * @since 2014.03
-				 * @see client/html/basket/mini/template-body
-				 */
-				$tplconf = 'client/html/basket/mini/template-header';
-				$default = 'basket/mini/header';
-
-				$html = $view->render( $view->config( $tplconf, $default ) );
-				$this->setBasketCached( $key, $html );
-			}
-			catch( \Exception $e )
-			{
-				$this->logException( $e );
-			}
-		}
-		else
-		{
-			$html = $this->modify( $html, $uid );
+		if( $html = $this->getBasketCached( $key ) ) {
+			return $this->modify( $html, $uid );
 		}
 
-		return $html;
+		/** client/html/basket/mini/template-header
+		 * Relative path to the HTML header template of the basket mini client.
+		 *
+		 * The template file contains the HTML code and processing instructions
+		 * to generate the HTML code that is inserted into the HTML page header
+		 * of the rendered page in the frontend. The configuration string is the
+		 * path to the template file relative to the templates directory (usually
+		 * in client/html/templates).
+		 *
+		 * You can overwrite the template file configuration in extensions and
+		 * provide alternative templates. These alternative templates should be
+		 * named like the default one but suffixed by
+		 * an unique name. You may use the name of your project for this. If
+		 * you've implemented an alternative client class as well, it
+		 * should be suffixed by the name of the new class.
+		 *
+		 * @param string Relative path to the template creating code for the HTML page head
+		 * @since 2014.03
+		 * @see client/html/basket/mini/template-body
+		 */
+		$template = $this->context()->config()->get( 'client/html/basket/mini/template-header', 'basket/mini/header' );
+
+		$view = $this->view = $this->view ?? $this->object()->data( $this->view() );
+		$html = $this->modify( $view->render( $template ), $uid );
+
+		return $this->setBasketCached( $key, $html );
 	}
 
 

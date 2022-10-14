@@ -46,22 +46,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	public function testHeaderException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Mini\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \RuntimeException() ) );
-
-		$object->setView( \TestHelper::view() );
-
-		$this->assertEquals( null, $object->header() );
-	}
-
-
 	public function testBody()
 	{
 		$output = $this->object->body();
@@ -91,54 +75,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="basket-mini-product', $output );
 		$this->assertRegExp( '#9#smU', $output );
 		$this->assertRegExp( '#171.00#smU', $output );
-	}
-
-
-	public function testBodyHtmlException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Mini\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelper::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyFrontendException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Mini\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelper::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
-	}
-
-
-	public function testBodyMShopException()
-	{
-		$object = $this->getMockBuilder( \Aimeos\Client\Html\Basket\Mini\Standard::class )
-			->setConstructorArgs( array( $this->context, [] ) )
-			->setMethods( array( 'data' ) )
-			->getMock();
-
-		$object->expects( $this->once() )->method( 'data' )
-			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
-
-		$object->setView( \TestHelper::view() );
-
-		$this->assertStringContainsString( 'test exception', $object->body() );
 	}
 
 
