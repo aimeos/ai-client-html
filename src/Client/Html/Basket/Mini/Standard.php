@@ -158,7 +158,6 @@ class Standard
 	{
 		$context = $this->context();
 		$site = $context->locale()->getSiteId();
-		$view = $this->view();
 
 		$config = $context->config()->get( 'client/html/basket/mini', [] );
 		$key = $this->getParamHash( [], $uid . $site . ':basket:mini-header', $config );
