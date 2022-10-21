@@ -95,7 +95,6 @@ class Standard
 		$view->stockProductIds = $prodIds;
 		$view->stockItemsByProducts = \Aimeos\Controller\Frontend::create( $context, 'stock' )
 			->product( $prodIds )->type( $type )->sort( $sort )
-			->slice( 0, count( $prodIds ) )
 			->search()
 			->groupBy( 'stock.productid' );
 
