@@ -1221,7 +1221,7 @@ msgid "summary"
 msgstr "resumo"
 
 msgid "tax"
-msgstr ""
+msgstr "Imposto"
 
 msgid "watch"
 msgstr "acompanhar"
