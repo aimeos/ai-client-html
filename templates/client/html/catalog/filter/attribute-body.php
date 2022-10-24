@@ -36,7 +36,7 @@ $params = $this->param();
 <?php $this->block()->start( 'catalog/filter/attribute' ) ?>
 <?php if( !empty( $attrMap ) ) : ?>
 	<section class="catalog-filter-attribute">
-		<h2 class="attr-header"><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></h2>
+		<div class="attr-header name"><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></div>
 
 		<div class="attribute-lists">
 

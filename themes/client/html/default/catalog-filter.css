@@ -16,18 +16,14 @@ aside .catalog-filter section {
 	border: 1px solid var(--ai-bg-light);
 }
 
-.catalog-filter h1 {
-	display: none;
-}
-
-.catalog-filter h2 {
+.catalog-filter .name {
 	cursor: pointer;
 	font-size: 120%;
 	padding: .5rem .75rem ;
 	margin: 0;
 }
 
-.navbar .catalog-filter h2 {
+.navbar .catalog-filter .name {
 	display: none;
 }
 

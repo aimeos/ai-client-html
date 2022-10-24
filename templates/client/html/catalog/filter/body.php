@@ -80,8 +80,6 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 <section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<nav class="container-xxl">
-		<h1><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></h1>
-
 		<form method="GET" action="<?= $enc->attr( $this->link( $linkKey, map( $this->param() )->only( ['f_catid', 'f_name'] )->all() ) ) ?>">
 
 			<?php foreach( map( $this->param() )->only( ['f_sort', 'l_type'] ) as $name => $value ) : ?>
