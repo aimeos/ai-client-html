@@ -59,7 +59,7 @@ $enc = $this->encoder();
 					<?php foreach( $this->get( 'stageCatPath', map() ) as $cat ) : ?>
 						<li>
 							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', array_merge( $this->get( 'stageParams', [] ), ['f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] ) ) ) ?>">
-								<?= $enc->html( $cat->getName() ) ?>
+								<?= $enc->html( $cat->getName(), $enc::TRUST ) ?>
 							</a>
 						</li>
 					<?php endforeach ?>
