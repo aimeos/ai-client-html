@@ -13,7 +13,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ) ?>
 	<section class="catalog-filter-supplier">
-		<div class="name"><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ) ?></div>
+		<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ) ?></div>
 
 		<div class="supplier-lists">
 			<?php if( $this->param( 'f_supid' ) ) : ?>
