@@ -53,12 +53,12 @@ $enc = $this->encoder();
 
 
 	<?php if( $this->get( 'listPageCurr', 0 ) > 1 ) : ?>
-		<link rel="prev" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPagePrev', 0 )] + $this->get( 'listParams', [] ) ) ) ?>">
+		<link rel="prev" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPagePrev', 0 )] + $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
 	<?php endif ?>
 
 
 	<?php if( $this->get( 'listPageCurr', 0 ) > 1 && $this->get( 'listPageCurr', 0 ) < $this->get( 'listPageLast', 0 ) ) : // Optimization to avoid loading next page while the user is still filtering ?>
-		<link rel="next prefetch" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPageNext', 0 )] + $this->get( 'listParams', [] ) ) ) ?>">
+		<link rel="next prefetch" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPageNext', 0 )] + $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
 	<?php endif ?>
 
 	<meta name="application-name" content="Aimeos">
