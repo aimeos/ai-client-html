@@ -111,7 +111,7 @@ msgstr "Nome do Banco"
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr "Nome"
+msgstr "Primeiro Nome"
 
 #. Omnipay service provider
 msgid "payment.lastname"

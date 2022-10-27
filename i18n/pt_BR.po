@@ -5,6 +5,7 @@
 # Translators:
 # b5fdd37cec45d8078af7e530465bb050, 2016
 # Bruno Rodrigues <brunojti@gmail.com>, 2016
+# Keite Clembet, 2022
 # b5fdd37cec45d8078af7e530465bb050, 2016
 msgid ""
 msgstr ""
@@ -12,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-05 07:41+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
+"Last-Translator: Keite Clembet, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,9 +31,9 @@ msgstr[2] "%1$d itens"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%1$d review"
+msgstr[1] "%1$d reviews"
+msgstr[2] "%1$d reviews"
 
 #. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
 #. first name (%4$s), last name (%5$s),
@@ -102,7 +103,7 @@ msgstr "+ %2$s %1$s/item"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -119,7 +120,7 @@ msgid "+ shipping costs"
 msgstr "+ custos de envio"
 
 msgid "+1 123 456 7890"
-msgstr "+1 123 456 7890"
+msgstr "+55 81 99909-7890"
 
 #. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
@@ -127,13 +128,13 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Ocorreu um erro irrecuperável"
 
 msgid "Account"
 msgstr "Conta"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Adicionar endereço de cobrança"
 
 msgid "Add to basket"
 msgstr "Adicionar ao carrinho"
@@ -146,9 +147,9 @@ msgstr "Adicional 2"
 
 msgid "Address"
 msgid_plural "Addresses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Endereço"
+msgstr[1] "Endereços"
+msgstr[2] "Endereços"
 
 #, php-format
 msgid "Address with ID \"%1$s\" not found"
@@ -171,10 +172,10 @@ msgid "An account has been created for you."
 msgstr "Uma conta foi criada para você"
 
 msgid "Article"
-msgstr ""
+msgstr "Item"
 
 msgid "Article no."
-msgstr ""
+msgstr " Item nº"
 
 msgid "Article no.:"
 msgstr " Item nº"
@@ -211,7 +212,7 @@ msgid "Birthday"
 msgstr "Aniversário"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Pedido em massa"
 
 msgid "Bundled products"
 msgstr "Produtos em pacotes"
@@ -232,7 +233,7 @@ msgid "Change payment"
 msgstr "Alterar pagamento"
 
 msgid "Channel"
-msgstr ""
+msgstr "Canal"
 
 msgid "Characteristics"
 msgstr "Características"
@@ -268,7 +269,7 @@ msgstr "O cliente HTML está vazio"
 
 #, php-format
 msgid "Client path is empty"
-msgstr ""
+msgstr "Caminho do cliente está vazio"
 
 #, php-format
 msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
@@ -293,13 +294,13 @@ msgid "Coupons"
 msgstr "Cupons"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Criar uma conta de cliente para mim"
 
 msgid "Created"
 msgstr "Criado"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Conta do cliente"
 
 #, php-format
 msgid "Customer with ID \"%1$s\" not found"
@@ -307,7 +308,7 @@ msgstr "Cliente com ID %1$s não encontrado"
 
 #, php-format
 msgid "Dear %1$s %2$s"
-msgstr ""
+msgstr "Prezado %1$s %2$s"
 
 #, php-format
 msgid "Dear %1$s %2$s %3$s"
@@ -315,31 +316,31 @@ msgstr "Prezado %1$s %2$s %3$s"
 
 #, php-format
 msgid "Dear Miss %1$s %2$s"
-msgstr ""
+msgstr "Prezada %1$s %2$s"
 
 #, php-format
 msgid "Dear Mr %1$s %2$s"
-msgstr ""
+msgstr "Prezado(a) %1$s %2$s"
 
 #, php-format
 msgid "Dear Mrs %1$s %2$s"
-msgstr ""
+msgstr "Prezada %1$s %2$s"
 
 #, php-format
 msgid "Dear Ms %1$s %2$s"
-msgstr ""
+msgstr "Prezada %1$s %2$s"
 
 msgid "Dear Sir or Madam"
 msgstr "Prezado Senhor ou Senhora"
 
 msgid "Dear customer"
-msgstr ""
+msgstr "Prezado cliente"
 
 msgid "Delete"
 msgstr "Remover"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Remover item"
 
 msgid "Delivery"
 msgstr "Entrega"
@@ -349,7 +350,7 @@ msgstr "Endereço de entrega"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "Endereço de entrega excluído com sucesso"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -360,7 +361,7 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Parte \"%1$s\" do endereço de entrega está faltando"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Entrega dentro de"
 
 msgid "Description"
 msgstr "Descrição"
@@ -369,7 +370,7 @@ msgid "Details"
 msgstr "Detalhes"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Não armazene o endereço"
 
 msgid "Downloads"
 msgstr "Downloads"
@@ -395,13 +396,13 @@ msgstr "Os campos com * são obrigatórios"
 
 #, php-format
 msgid "File \"%1$s\" doesn't exist"
-msgstr ""
+msgstr "O arquivo \"%1$s\" não existe"
 
 msgid "Filter"
 msgstr "Filtro"
 
 msgid "First name"
-msgstr "Nome"
+msgstr "Primeiro Nome"
 
 msgid "GB999999973"
 msgstr "GB999999973"
@@ -410,13 +411,13 @@ msgid "Go"
 msgstr "Ir"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Visualização em Grade"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Preço mais alto"
 
 #, php-format
 msgid ""
@@ -434,10 +435,10 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "Eu aceito os <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">termos e condições</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">política de privacidade</a> e a <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">política de cancelamento</a>"
 
 msgid "If back in stock"
-msgstr "Se tiver em estoque"
+msgstr "Se voltar ao estoque"
 
 msgid "If price decreases"
 msgstr "Se o preço baixar"
@@ -447,7 +448,7 @@ msgstr "Se tiver alguma dúvida, por favor responda este e-mail"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Incl. %1$s%% %2$s"
 
 #. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
@@ -458,7 +459,7 @@ msgid "Included rebates"
 msgstr "Descontos incluídos"
 
 msgid "Interval"
-msgstr ""
+msgstr "Intervalo"
 
 #, php-format
 msgid "Invalid characters in class name \"%1$s\""
@@ -498,22 +499,22 @@ msgid "Last seen"
 msgstr "Vistos recentemente"
 
 msgid "Latest"
-msgstr ""
+msgstr "Último"
 
 msgid "Like entered by you"
-msgstr ""
+msgstr "Como inserido por você"
 
 msgid "List view"
-msgstr ""
+msgstr "Visualização em Lista"
 
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Preço mais baixo"
 
 msgid "More reviews"
-msgstr ""
+msgstr "Mais reviews"
 
 msgid "Name"
 msgstr "Nome"
@@ -522,13 +523,13 @@ msgid "New"
 msgstr "Novo"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "Novo endereço de entrega"
 
 msgid "Next"
 msgstr "Próximo"
 
 msgid "Next order"
-msgstr ""
+msgstr "Próximo pedido"
 
 #, php-format
 msgid ""
@@ -537,7 +538,7 @@ msgid ""
 msgstr "Nenhum item encontrado para <span class=\"searchstring\">\"%1$s\"</span>. Por favor, tente novamente com outra palavra-chave."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "O ID do pedido não está disponível na sessão"
 
 #, php-format
 msgid "No product with ID \"%1$s\" found"
@@ -573,7 +574,7 @@ msgid "One week"
 msgstr "Uma semana"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Abrir submenu"
 
 msgid "Options"
 msgstr "Opções"
@@ -583,7 +584,7 @@ msgstr "Pedido"
 
 #, php-format
 msgid "Order %1$s"
-msgstr ""
+msgstr "Pedido %1$s"
 
 msgid "Order ID"
 msgstr "ID do Pedido"
@@ -592,7 +593,7 @@ msgid "Order channel"
 msgstr "Canal do pedido"
 
 msgid "Order date"
-msgstr ""
+msgstr "Data do pedido"
 
 msgid "Order details"
 msgstr "Detalhes do pedido"
@@ -611,7 +612,7 @@ msgid "Other customers also bought"
 msgstr "Outros clientes também compraram"
 
 msgid "Our products"
-msgstr ""
+msgstr "Nossos produtos"
 
 #, php-format
 msgid "Page %1$d of %2$d"
@@ -633,10 +634,10 @@ msgid "Payment status"
 msgstr "Status de pagamento"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Fixar produto"
 
 msgid "Pinned products"
-msgstr "Produtos marcados"
+msgstr "Produtos fixados"
 
 msgid "Please accept the terms and conditions"
 msgstr "Por favor aceite os termos e condições"
@@ -658,11 +659,11 @@ msgstr "Por favor, insira os detalhes do pagamento"
 
 #, php-format
 msgid "Please recheck your delivery choice"
-msgstr ""
+msgstr "Por favor, verifique o método de entrega"
 
 #, php-format
 msgid "Please recheck your payment choice"
-msgstr ""
+msgstr "Por favor, verifique o método de pagamento"
 
 msgid "Please select"
 msgstr "Por favor selecione"
@@ -677,7 +678,7 @@ msgid "Price"
 msgstr "Preço"
 
 msgid "Price range"
-msgstr ""
+msgstr "Faixa de preço"
 
 msgid "Proceed"
 msgstr "Prosseguir"
@@ -689,7 +690,7 @@ msgid "Product"
 msgstr "Produto"
 
 msgid "Product image"
-msgstr ""
+msgstr "Imagem do produto"
 
 msgid "Products you might be also interested in"
 msgstr "Produtos que talvez lhe interesse"
@@ -704,10 +705,10 @@ msgid "Quantity"
 msgstr "Quantidade"
 
 msgid "Rating"
-msgstr ""
+msgstr "Avaliação"
 
 msgid "Reference"
-msgstr ""
+msgstr "Referência"
 
 msgid "Related"
 msgstr "Relacionado"
@@ -716,7 +717,7 @@ msgid "Relevance"
 msgstr "Relevância"
 
 msgid "Reset"
-msgstr ""
+msgstr "Redefinir"
 
 #. / Product search hint with user provided search string (%1$s)
 #, php-format
@@ -724,13 +725,13 @@ msgid "Result for \"%1$s\""
 msgstr "Resultados para \"%1$s\""
 
 msgid "Reviews"
-msgstr ""
+msgstr "Reviews"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU ou nome do item"
 
 msgid "Sale"
-msgstr ""
+msgstr "Venda"
 
 msgid "Salutation"
 msgstr "Saudação"
@@ -772,16 +773,16 @@ msgid "Services"
 msgstr "Serviços"
 
 msgid "Share"
-msgstr ""
+msgstr "Compartilhar"
 
 msgid "Shipping"
 msgstr "Envio"
 
 msgid "Show"
-msgstr "Mostrar"
+msgstr "Exibir"
 
 msgid "Show all quotes"
-msgstr "Mostar todas as cotações"
+msgstr "Exibir todas as cotações"
 
 msgid "Sort by:"
 msgstr "Ordenar por:"
@@ -818,26 +819,26 @@ msgid "Sub-total"
 msgstr "Sub-total"
 
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "ID da subscrição"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Detalhes da subscrição"
 
 msgid "Subscription interval"
-msgstr ""
+msgstr "Frequência da subscrição"
 
 msgid "Subscription product"
-msgstr ""
+msgstr "Produto da subscrição"
 
 #, php-format
 msgid "Subscription with ID \"%1$s\" not found"
-msgstr ""
+msgstr "A subscrição com ID \"%1$s\" não foi encontrado"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Subscrições"
 
 msgid "Suggested products"
 msgstr "Produtos sugeridos"
@@ -846,13 +847,13 @@ msgid "Sum"
 msgstr "Soma"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "Informação do fornecedor"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "Fornecedores"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Dê uma olhada"
 
 msgid "Telephone"
 msgstr "Fone"
@@ -905,7 +906,7 @@ msgid ""
 msgstr "Obrigado pelo seu pedido.\nRecebemos seu pagamento e em breve será enviado um e-mail com os detalhes do pedido."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "Obrigado por sua avaliação!"
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -922,7 +923,7 @@ msgid ""
 "The order is pending until we receive the final payment. If you've chosen to"
 " pay in advance, please transfer the money to our bank account with the "
 "order ID %1$s as reference."
-msgstr ""
+msgstr "O pedido está pendente até recebermos o pagamento final. Se você optou por pagar antecipadamente, transfira a quantia para nossa conta bancária com a referência ao ID do pedido %1$s."
 
 msgid ""
 "The order was canceled.\n"
@@ -943,7 +944,7 @@ msgid ""
 msgstr "A confirmação de pagamento do seu pedido ainda está pendente.\nVocê irá receber um e-mail assim que o pagamento for autorizado."
 
 msgid "The payment couldn't be renewed"
-msgstr ""
+msgstr "O pagamento não pôde ser renovado"
 
 #. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
 #. status (%3%s)
@@ -954,17 +955,17 @@ msgid "The payment for your order %1$s from %2$s has been refunded."
 msgstr "O pagamento do pedido %1$s de %2$s foi ressarcido"
 
 msgid "The subscription for the product has ended"
-msgstr ""
+msgstr "A subscrição do produto terminou"
 
 msgid "The subscription for the product has ended."
-msgstr ""
+msgstr "A subscrição do produto terminou."
 
 #, php-format
 msgid "The value of your voucher is %1$s"
 msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "O valor do seu vouche é de %1$s"
+msgstr[1] "O valor dos seus vouchers é de %1$s"
+msgstr[2] "O valor dos seus vouchers é de %1$s"
 
 msgid "Three month"
 msgstr "Três meses"
@@ -973,7 +974,7 @@ msgid "Time frame"
 msgstr "Prazo"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Alternar modo de tela cheia"
 
 msgid "Top seller"
 msgstr "Melhor vendedor"
@@ -1000,7 +1001,7 @@ msgstr "Incapaz de criar uma conta para \"%1$s\": %2$s"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Incapaz de criar uma conta: \"%1$s\""
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
@@ -1019,13 +1020,13 @@ msgid "Update"
 msgstr "Atualizar"
 
 msgid "Variant"
-msgstr ""
+msgstr "Variação"
 
 msgid "Vat ID"
-msgstr "CNPJ"
+msgstr "CNPJ / CPF"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Resposta do vendedor"
 
 msgid "Watch"
 msgstr "Acompanhar"
@@ -1035,7 +1036,7 @@ msgstr "Produtos acompanhados"
 
 msgid ""
 "We have received your payment, and will take care of your order immediately."
-msgstr ""
+msgstr "Recebemos o seu pagamento, vamos tratar do seu pedido imediatamente."
 
 #. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
 #. delivery status (%3%s)
@@ -1049,7 +1050,7 @@ msgid "Web site"
 msgstr "Site"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "O que você acha do produto"
 
 msgid "X"
 msgstr "X"
@@ -1057,36 +1058,36 @@ msgstr "X"
 #. / Date format with year (Y), month (m) and day (d). See
 #. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
-msgstr "Y-m-d"
+msgstr "A-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "YYYY-MM-DD HH:mm"
 
 msgid "You are here:"
 msgstr "Você está aqui:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Você só pode salvar até %1$s produtos como favoritos"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Você só pode ver até %1$s produtos"
 
 msgid "You can use your voucher any time in our online shop"
-msgstr ""
+msgstr "Pode usar o seu voucher quando quiser na nossa loja online"
 
 msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
+msgstr "Pode usar o seus vouchers quando quiser na nossa loja online"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Você será direcionado para o próximo passo"
 
 msgid "You've cancelled the subscription"
-msgstr ""
+msgstr "Você cancelou a subscrição"
 
 msgid "Your account"
 msgstr "Sua conta"
@@ -1095,7 +1096,7 @@ msgid "Your choice"
 msgstr "Sua escolha"
 
 msgid "Your comment"
-msgstr ""
+msgstr "O seu comentário"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
@@ -1115,41 +1116,41 @@ msgid "Your order %1$s from %2$s has been dispatched."
 msgstr "Seu pedido %1$s de %2$s foi despachado."
 
 msgid "Your rating"
-msgstr ""
+msgstr "Sua avaliação"
 
 msgid "Your reference"
-msgstr ""
+msgstr "Sua referência"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Seu número de referência"
 
 msgid "Your review"
-msgstr ""
+msgstr "Sua review"
 
 msgid "Your search result"
 msgstr "Resultados da pesquisa"
 
 msgid "Your subscription"
-msgstr ""
+msgstr "Sua subscrição"
 
 msgid "Your subscription product"
-msgstr ""
+msgstr "Seu produto da subscrição"
 
 msgid "Your voucher"
-msgstr ""
+msgstr "Seu voucher"
 
 msgid "Your voucher: "
-msgstr ""
+msgstr "Seu voucher: "
 
 msgid "Your vouchers: "
-msgstr ""
+msgstr "Seus vouchers: "
 
 #. / Product notification e-mail subject
 msgid "Your watched products"
 msgstr "Seus produtos observados"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Aumentar/diminuir zoom"
 
 #, php-format
 msgid "address"
@@ -1180,7 +1181,7 @@ msgid "none"
 msgstr "nenhum"
 
 msgid "on request"
-msgstr ""
+msgstr "a pedido"
 
 #, php-format
 msgid "order"
@@ -1194,7 +1195,7 @@ msgid "pin"
 msgstr "marcar"
 
 msgid "price:default"
-msgstr ""
+msgstr "preço:padrão"
 
 #, php-format
 msgid "process"
