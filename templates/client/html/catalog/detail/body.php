@@ -620,3 +620,30 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 	</div>
 
 <?php endif ?>
+
+<?php
+// preselection of a variant in a selection article
+if (isset($_GET['productId']) && is_numeric($_GET['productId'])):
+
+    foreach( $this->detailProductItem->getRefItems( 'product', null, 'default' ) as $prodid => $product ) :
+
+        if ($prodid == $_GET['productId']):
+
+            $attributes = $product->getRefItems('attribute',null,'variant');
+            $js = '';
+            foreach($attributes as $attribId => $attribute):
+                $js .= '"' .  $attribute->getType() . '": "' . $attribute->getId() . '",
+                ';
+            endforeach;
+
+            if (!empty($js)): ?>
+               <script>
+                   AimeosVariantSelectionProduct = {"prodId": "<?= $this->detailProductItem->getId() ?>", "attributes": {<?= $js ?>}};
+               </script>
+
+            <?php endif;
+        endif;
+    endforeach;
+endif;
+
+?>
