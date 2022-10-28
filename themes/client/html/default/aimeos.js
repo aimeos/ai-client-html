@@ -441,6 +441,23 @@ AimeosBasket = {
 		});
 	},
 
+	/**
+	 * Check for variants in URL (productId = variant-product-Id), set the variant attributes and trigger select-dropdown´s to show the variant product
+	 */
+	checkPreselectionVariant() {
+
+		if (typeof AimeosVariantSelectionProduct == 'object') {
+
+			$(AimeosVariantSelectionProduct).each(function() {
+				const prodId = this.prodId;
+				$.each(this.attributes, function(key,val){
+					$('#select-' + prodId + '-' + key).val(val).trigger('change');
+				});
+			});
+
+		}
+	},
+
 
 	/**
 	 * Shows the images associated to the variant attributes
@@ -684,4 +701,6 @@ $(function() {
 	AimeosCatalog.init();
 
 	Aimeos.loadImages();
+	
+	AimeosCatalog.checkPreselectionVariant();
 });
