@@ -80,14 +80,14 @@ if( $sort === 'price' ) {
 			</a>
 
 			<?php $url = $this->link( $key, ['l_page' => $this->prev] + $params ) ?>
-			<a class="prev" href="<?= $enc->attr( $url ) ?>" rel="prev" title="<?= $enc->attr( $this->translate( 'client', 'Previous' ) ) ?>">
+			<a class="prev" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Previous' ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ) ?>
 			</a>
 
 			<span><?= $enc->html( sprintf( $this->translate( 'client', 'Page %1$d of %2$d' ), $this->current, $this->last ) ) ?></span>
 
 			<?php $url = $this->link( $key, ['l_page' => $this->next] + $params ) ?>
-			<a class="next" href="<?= $enc->attr( $url ) ?>" rel="next" title="<?= $enc->attr( $this->translate( 'client', 'Next' ) ) ?>">
+			<a class="next" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Next' ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ) ?>
 			</a>
 
