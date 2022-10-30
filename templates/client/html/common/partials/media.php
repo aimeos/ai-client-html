@@ -57,7 +57,7 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 
 	<?php break; case 'image': ?>
 
-		<div <?= $boxattr ?>><!--
+		<span <?= $boxattr ?>><!--
 			--><img src="<?= $enc->attr( $this->content( $item->getPreview(), $item->getFileSystem() ) ) ?>"
 				srcset="<?= $item->getMimeType() !== 'image/svg+xml' ? $enc->attr( $this->imageset( $item->getPreviews( true ), $item->getFileSystem() ) ) : '' ?>"
 				alt="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
@@ -70,7 +70,7 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 				sizes="100vw"
 			><!--
 		<?php endforeach ?>
-		--></div>
+		--></span>
 
 	<?php break; default: ?>
 
