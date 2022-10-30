@@ -34,11 +34,6 @@ class Standard
 		$view = $this->view();
 		$enc = $view->encoder();
 
-		$sources = [];
-		foreach( $media->getPreviews() as $type => $path ) {
-			$sources[$type] = $view->content( $path, 'fs-media' );
-		}
-
 		$variant = '';
 		foreach( $media->getRefItems( 'attribute', null, 'variant' ) as $id => $item ) {
 			$variant .= ' data-variant-' . $item->getType() . '="' . $enc->attr( $id ) . '"';
@@ -57,15 +52,16 @@ class Standard
 			';
 		}
 
+		$srcset = !empty( $media->getPreviews() ) ? 'srcset="' . $enc->attr( $view->imageset( $media->getPreviews( true ), $media->getFileSystem() ) ) . '"' : '';
+
 		return '
 			<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject" representativeOfPage="' . ( $main ? 'true' : 'false' ) . '">
 				<img class="item" id="image-' . $media->getId() . '" loading="lazy" itemprop="contentUrl"
 					thumbnail="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 					src="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
-					srcset="' . $enc->attr( $view->imageset( $media->getPreviews( true ), $media->getFileSystem() ) ) . '"
 					data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 					alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-					sizes="' . $sizes . '" ' . $variant . ' />
+					sizes="' . $sizes . '" ' . $srcset . ' ' . $variant . ' />
 			</div>
 		';
 	}
