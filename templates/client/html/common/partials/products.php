@@ -164,7 +164,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 	<div class="product row <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
 		data-prodid="<?= $enc->attr( $id ) ?>" data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
-		<?= $itemProp ? 'itemprop="<?= $itemProp ?>"' : '' ?> itemscope itemtype="http://schema.org/Product">
+		<?= $itemProp ? 'itemprop="' . $itemProp . '"' : '' ?> itemscope itemtype="http://schema.org/Product">
 
 		<div class="list-column col-12">
 

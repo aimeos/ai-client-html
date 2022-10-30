@@ -92,7 +92,7 @@ $params = $this->param();
 										>
 
 										<label class="attr-name" for="attr-<?= $enc->attr( $id ) ?>"><!--
-											--><div class="media-list"><!--
+											--><span class="media-list"><!--
 
 												<?php foreach( $attribute->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 													<?= '-->' . $this->partial(
@@ -101,7 +101,7 @@ $params = $this->param();
 													) . '<!--' ?>
 												<?php endforeach ?>
 
-											--></div>
+											--></span>
 											<span><?= $enc->html( $attribute->getName(), $enc::TRUST ) ?></span><!--
 										--></label>
 									</li><!--

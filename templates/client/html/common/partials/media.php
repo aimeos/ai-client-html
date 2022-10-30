@@ -59,13 +59,13 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 
 		<span <?= $boxattr ?>><!--
 			--><img src="<?= $enc->attr( $this->content( $item->getPreview(), $item->getFileSystem() ) ) ?>"
-				srcset="<?= $item->getMimeType() !== 'image/svg+xml' ? $enc->attr( $this->imageset( $item->getPreviews( true ), $item->getFileSystem() ) ) : '' ?>"
+				<?= !empty( $item->getPreviews() ) ? 'srcset="' . $enc->attr( $this->imageset( $item->getPreviews( true ), $item->getFileSystem() ) ) . '"' : '' ?>
 				alt="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
 				sizes="100vw"
 			><!--
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
 			--><img src="<?= $enc->attr( $this->content( $subItem->getPreview(), $subItem->getFileSystem() ) ) ?>"
-				srcset="<?= $item->getMimeType() !== 'image/svg+xml' ? $enc->attr( $this->imageset( $subItem->getPreviews( true ), $subItem->getFileSystem() ) ) : '' ?>"
+				<?= !empty( $subItem->getPreviews() ) ? 'srcset="' . $enc->attr( $this->imageset( $subItem->getPreviews( true ), $subItem->getFileSystem() ) ) . '"' : '' ?>
 				alt="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
 				sizes="100vw"
 			><!--
