@@ -38,7 +38,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 							>
 
 							<label class="attr-name" for="sup-<?= $enc->attr( $id ) ?>">
-								<div class="media-list">
+								<span class="media-list">
 
 									<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 										<?= $this->partial(
@@ -47,7 +47,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 										) ?>
 									<?php endforeach ?>
 
-								</div>
+								</span>
 								<span><?= $enc->html( $supplier->getName(), $enc::TRUST ) ?></span>
 							</label>
 						</li>
