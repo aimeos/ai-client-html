@@ -58,16 +58,16 @@ foreach( $this->get( 'itemAttributes', [] ) as $name => $value ) {
 	<?php break; case 'image': ?>
 
 		<span <?= $boxattr ?>><!--
-			--><img src="<?= $enc->attr( $this->content( $item->getPreview(), $item->getFileSystem() ) ) ?>"
-				<?= !empty( $item->getPreviews() ) ? 'srcset="' . $enc->attr( $this->imageset( $item->getPreviews( true ), $item->getFileSystem() ) ) . '"' : '' ?>
+			--><img sizes="100vw"
 				alt="<?= $enc->attr( $item->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
-				sizes="100vw"
+				src="<?= $enc->attr( $this->content( $item->getPreview(), $item->getFileSystem() ) ) ?>"
+				<?= !empty( $item->getPreviews() ) ? 'srcset="' . $enc->attr( $this->imageset( $item->getPreviews( true ), $item->getFileSystem() ) ) . '"' : '' ?>
 			><!--
 		<?php foreach( $item->getRefItems( 'media' ) as $subItem ) : ?>
-			--><img src="<?= $enc->attr( $this->content( $subItem->getPreview(), $subItem->getFileSystem() ) ) ?>"
-				<?= !empty( $subItem->getPreviews() ) ? 'srcset="' . $enc->attr( $this->imageset( $subItem->getPreviews( true ), $subItem->getFileSystem() ) ) . '"' : '' ?>
+			--><img sizes="100vw"
 				alt="<?= $enc->attr( $subItem->getProperties( 'title' )->first( $item->getName() ) ) ?>" <?= $itemattr ?>
-				sizes="100vw"
+				src="<?= $enc->attr( $this->content( $subItem->getPreview(), $subItem->getFileSystem() ) ) ?>"
+				<?= !empty( $subItem->getPreviews() ) ? 'srcset="' . $enc->attr( $this->imageset( $subItem->getPreviews( true ), $subItem->getFileSystem() ) ) . '"' : '' ?>
 			><!--
 		<?php endforeach ?>
 		--></span>
