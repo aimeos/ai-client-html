@@ -159,11 +159,12 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
+		$itemProp = $this->get( 'itemprop' );
 	?>
 
 	<div class="product row <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ) ?>"
 		data-prodid="<?= $enc->attr( $id ) ?>" data-reqstock="<?= (int) $this->get( 'require-stock', true ) ?>"
-		itemprop="<?= $this->get( 'itemprop' ) ?>" itemscope itemtype="http://schema.org/Product">
+		<?= $itemProp ? 'itemprop="<?= $itemProp ?>"' : '' ?> itemscope itemtype="http://schema.org/Product">
 
 		<div class="list-column col-12">
 
