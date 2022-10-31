@@ -47,7 +47,7 @@ class Standard
 					poster="' . $enc->attr( $view->content( $media->getPreview( 600 ), $media->getFileSystem() ) ) . '"
 					src="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 					alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-					' . $variant . ' />
+					' . $variant . '>
 				</video>
 			';
 		}
@@ -61,7 +61,7 @@ class Standard
 					src="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 					data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 					alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-					sizes="' . $sizes . '" ' . $srcset . ' ' . $variant . ' />
+					sizes="' . $sizes . '" ' . $srcset . ' ' . $variant . '>
 			</div>
 		';
 	}
