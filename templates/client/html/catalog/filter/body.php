@@ -83,7 +83,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 		<form method="GET" action="<?= $enc->attr( $this->link( $linkKey, map( $this->param() )->only( ['f_catid', 'f_name'] )->all() ) ) ?>">
 
 			<?php foreach( map( $this->param() )->only( ['f_sort', 'l_type'] ) as $name => $value ) : ?>
-				<input type="hidden" name="<?= $enc->attr( $this->formparam( $name ) ) ?>" value="<?= $enc->attr( $value ) ?>" />
+				<input type="hidden" name="<?= $enc->attr( $this->formparam( $name ) ) ?>" value="<?= $enc->attr( $value ) ?>">
 			<?php endforeach ?>
 
 			<?= $this->block()->get( 'catalog/filter/tree' ) ?>

@@ -56,7 +56,7 @@ class Standard
 
 		return '
 			<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject">
-				<meta itemprop="representativeOfPage" content="' . ( $main ? 'true' : 'false' ) . '" />
+				<meta itemprop="representativeOfPage" content="' . ( $main ? 'true' : 'false' ) . '">
 				<img class="item" id="image-' . $media->getId() . '" loading="lazy" itemprop="contentUrl"
 					src="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 					data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"

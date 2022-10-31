@@ -27,7 +27,7 @@ $enc = $this->encoder();
 						<img loading="lazy" class="item-thumb img-<?= $index ?>"  data-index="<?= $enc->attr( $index ) ?>"
 							src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
 							alt="<?= $enc->attr( $this->translate( 'client', 'Product image' ) ) ?>"
-						/>
+						>
 					</div>
 
 				<?php $index++; endforeach ?>
