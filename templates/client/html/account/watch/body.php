@@ -76,7 +76,7 @@ $enc = $this->encoder();
 ?>
 <?php if( !$this->get( 'watchItems', map() )->isEmpty() ) : ?>
 
-	<section class="aimeos account-watch" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="section aimeos account-watch" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
 			<h1 class="header"><?= $this->translate( 'client', 'Watched products' ) ?></h1>
@@ -223,6 +223,6 @@ $enc = $this->encoder();
 			<?php endif ?>
 
 		</div>
-	</section>
+	</div>
 
 <?php endif ?>

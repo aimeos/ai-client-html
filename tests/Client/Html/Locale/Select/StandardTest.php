@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$expire = null;
 		$output = $this->object->body( 1, $tags, $expire );
 
-		$this->assertStringStartsWith( '<section class="aimeos locale-select"', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos locale-select"', $output );
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 0, count( $tags ) );
 	}

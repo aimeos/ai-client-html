@@ -25,7 +25,7 @@ $enc = $this->encoder();
 
 ?>
 <?php $this->block()->start( 'catalog/session/seen' ) ?>
-<section class="catalog-session-seen">
+<div class="section catalog-session-seen">
 	<div class="container-xxl">
 		<h2 class="header">
 			<?= $this->translate( 'client', 'Last seen' ) ?>
@@ -42,6 +42,6 @@ $enc = $this->encoder();
 			<?php endforeach ?>
 		</ul>
 	</div>
-</section>
+</div>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/session/seen' ) ?>

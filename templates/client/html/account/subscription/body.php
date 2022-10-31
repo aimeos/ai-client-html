@@ -79,7 +79,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 ?>
 <?php if( !$this->get( 'subscriptionItems', map() )->isEmpty() ) : ?>
 
-	<section class="aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="section aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
 			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h1>
@@ -258,6 +258,6 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 
 			</div>
 		</div>
-	</section>
+	</div>
 
 <?php endif ?>

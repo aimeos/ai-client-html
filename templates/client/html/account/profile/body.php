@@ -96,7 +96,7 @@ $pos = 0;
 ?>
 <?php if( isset( $this->profileItem ) ) : ?>
 
-<section class="aimeos account-profile" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<div class="section aimeos account-profile" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 	<div class="container-xxl">
 		<div class="account-profile-address">
 
@@ -1183,6 +1183,6 @@ $pos = 0;
 			</form>
 		</div>
 	</div>
-</section>
+</div>
 
 <?php endif ?>

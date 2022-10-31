@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="aimeos account-subscription"', $output );
+		$this->assertStringContainsString( '<div class="section aimeos account-subscription"', $output );
 		$this->assertRegExp( '#<div class="subscription-item#', $output );
 		$this->assertRegExp( '#<h2 class="subscription-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
 		$this->assertRegExp( '#<div class="subscription-interval.*<span class="value[^<]+</span>.*</div>#smU', $output );

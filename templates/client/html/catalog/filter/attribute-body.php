@@ -35,7 +35,7 @@ $params = $this->param();
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ) ?>
 <?php if( !empty( $attrMap ) ) : ?>
-	<section class="catalog-filter-attribute">
+	<div class="section catalog-filter-attribute">
 		<div class="attr-header header-name"><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></div>
 
 		<div class="attribute-lists">
@@ -124,7 +124,7 @@ $params = $this->param();
 			</noscript>
 		<?php endif ?>
 
-	</section>
+	</div>
 <?php endif ?>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/filter/attribute' ) ?>

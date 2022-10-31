@@ -523,7 +523,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 					<?php if( $this->detailProductItem->getType() === 'bundle' && !( $products = $this->detailProductItem->getRefItems( 'product', null, 'default' ) )->isEmpty() ) : ?>
 
-						<section class="catalog-detail-bundle content-block">
+						<div class="section catalog-detail-bundle content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ) ?></h2>
 
 							<?= $this->partial(
@@ -531,14 +531,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								['products' => $products, 'itemprop' => 'isRelatedTo']
 							) ?>
 
-						</section>
+						</div>
 
 					<?php endif ?>
 
 
 					<?php if( !( $products = $this->detailProductItem->getRefItems( 'product', null, 'suggestion' ) )->isEmpty() ) : ?>
 
-						<section class="catalog-detail-suggest content-block">
+						<div class="section catalog-detail-suggest content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ) ?></h2>
 
 							<?= $this->partial(
@@ -548,14 +548,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								] )
 							?>
 
-						</section>
+						</div>
 
 					<?php endif ?>
 
 
 					<?php if( !( $products = $this->detailProductItem->getRefItems( 'product', null, 'bought-together' ) )->isEmpty() ) : ?>
 
-						<section class="catalog-detail-bought content-block">
+						<div class="section catalog-detail-bought content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ) ?></h2>
 
 							<?= $this->partial(
@@ -565,7 +565,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								] )
 							?>
 
-						</section>
+						</div>
 
 					<?php endif ?>
 

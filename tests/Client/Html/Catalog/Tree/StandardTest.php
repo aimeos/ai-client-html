@@ -43,8 +43,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="aimeos catalog-filter"', $output );
-		$this->assertStringContainsString( '<section class="catalog-filter-tree', $output );
+		$this->assertStringContainsString( '<div class="section aimeos catalog-filter"', $output );
+		$this->assertStringContainsString( '<div class="section catalog-filter-tree', $output );
 	}
 
 

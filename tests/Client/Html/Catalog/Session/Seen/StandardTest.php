@@ -45,6 +45,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertRegExp( '#.*html product two.*html product one.*#smU', $output ); // list is reversed
-		$this->assertStringStartsWith( '<section class="catalog-session-seen">', $output );
+		$this->assertStringStartsWith( '<div class="section catalog-session-seen">', $output );
 	}
 }

@@ -13,7 +13,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 ?>
 <?php $this->block()->start( 'catalog/filter/price' ) ?>
 <?php if( $this->get( 'priceHigh', 0 ) ) : ?>
-	<section class="catalog-filter-price">
+	<div class="section catalog-filter-price">
 		<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
 
 		<div class="price-lists">
@@ -40,7 +40,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 				<?php endif ?>
 			</fieldset>
 		</div>
-	</section>
+	</div>
 <?php endif ?>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/filter/price' ) ?>

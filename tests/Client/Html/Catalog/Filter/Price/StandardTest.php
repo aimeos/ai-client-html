@@ -42,6 +42,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->view->priceHigh = 100;
 		$output = $this->object->body();
-		$this->assertStringStartsWith( '<section class="catalog-filter-price', $output );
+		$this->assertStringStartsWith( '<div class="section catalog-filter-price', $output );
 	}
 }

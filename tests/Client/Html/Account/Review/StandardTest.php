@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="aimeos account-review"', $output );
+		$this->assertStringContainsString( '<div class="section aimeos account-review"', $output );
 		$this->assertStringContainsString( 'ABCD/16 discs', $output );
 	}
 

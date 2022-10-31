@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$miniBasket = $this->view->miniBasket;
 
 		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Base\Iface );
-		$this->assertStringContainsString( '<section class="aimeos basket-mini', $output );
+		$this->assertStringContainsString( '<div class="section aimeos basket-mini', $output );
 		$this->assertStringContainsString( '<div class="basket-mini-main', $output );
 		$this->assertStringContainsString( '<div class="basket-mini-product', $output );
 	}

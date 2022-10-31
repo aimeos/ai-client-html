@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
-		$this->assertStringStartsWith( '<section class="checkout-standard-delivery">', $output );
+		$this->assertStringStartsWith( '<div class="section checkout-standard-delivery">', $output );
 
 		$this->assertGreaterThan( 0, count( $this->view->deliveryServices ) );
 	}

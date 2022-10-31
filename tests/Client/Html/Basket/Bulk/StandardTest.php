@@ -47,6 +47,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->assertStringContainsString( '<section class="aimeos basket-bulk"', $this->object->body() );
+		$this->assertStringContainsString( '<div class="section aimeos basket-bulk"', $this->object->body() );
 	}
 }

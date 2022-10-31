@@ -21,7 +21,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 
 ?>
-<section class="aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<div class="section aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 	<div class="container-xxl">
 
 		<h1><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ) ?></h1>
@@ -111,4 +111,4 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 
 		</form>
 	</div>
-</section>
+</div>

@@ -10,7 +10,7 @@ $enc = $this->encoder();
 
 
 ?>
-<section class="aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<div class="section aimeos checkout-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 	<nav class="container-xxl">
 		<ol class="steps">
 
@@ -47,4 +47,4 @@ $enc = $this->encoder();
 		<?= $this->csrf()->formfield() ?>
 		<?= $this->get( 'body' ) ?>
 	</form>
-</section>
+</div>

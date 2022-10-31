@@ -106,7 +106,7 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 
 ?>
 <?php $this->block()->start( 'catalog/filter/search' ) ?>
-<section class="catalog-filter-search">
+<div class="section catalog-filter-search">
 
 	<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ) ?></div>
 	<div class="search-lists">
@@ -123,6 +123,6 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 			--><button class="btn btn-search" type="submit" title="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>"></button>
 		</div>
 	</div>
-</section>
+</div>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/filter/search' ) ?>

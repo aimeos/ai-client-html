@@ -12,7 +12,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ) ?>
-	<section class="catalog-filter-supplier">
+	<div class="section catalog-filter-supplier">
 		<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ) ?></div>
 
 		<div class="supplier-lists">
@@ -70,6 +70,6 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 			</noscript>
 		<?php endif ?>
 
-	</section>
+	</div>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/filter/supplier' ) ?>

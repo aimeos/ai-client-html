@@ -97,10 +97,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<span class="media-name">Example image</span>', $output );
 
-		$this->assertStringContainsString( '<section class="catalog-detail-suggest', $output );
+		$this->assertStringContainsString( '<div class="section catalog-detail-suggest', $output );
 		$this->assertStringContainsString( 'Cappuccino', $output );
 
-		$this->assertStringContainsString( '<section class="catalog-detail-bought', $output );
+		$this->assertStringContainsString( '<div class="section catalog-detail-bought', $output );
 		$this->assertStringContainsString( 'Cappuccino', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-detail-supplier', $output );

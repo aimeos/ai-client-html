@@ -53,7 +53,7 @@ $lazy = false;
 
 
 ?>
-<section class="aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
+<div class="section aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
 	data-slider-nav-autoplay-interval="4000" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( isset( $this->homeTree ) ) : ?>
@@ -131,4 +131,4 @@ $lazy = false;
 
 	<?php endif ?>
 
-</section>
+</div>

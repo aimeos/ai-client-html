@@ -10,7 +10,7 @@ $enc = $this->encoder();
 
 ?>
 <?php $this->block()->start( 'checkout/standard/address' ) ?>
-<section class="checkout-standard-address">
+<div class="section checkout-standard-address">
 
 	<h2><?= $enc->html( $this->translate( 'client', 'address' ), $enc::TRUST ) ?></h2>
 	<p class="note">
@@ -34,6 +34,6 @@ $enc = $this->encoder();
 		</button>
 	</div>
 
-</section>
+</div>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'checkout/standard/address' ) ?>

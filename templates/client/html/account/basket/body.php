@@ -75,7 +75,7 @@ $enc = $this->encoder();
 ?>
 <?php if( !$this->get( 'basketItems', map() )->isEmpty() ) : ?>
 
-	<section class="aimeos account-basket" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="section aimeos account-basket" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
 			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Saved baskets' ), $enc::TRUST ) ?></h1>
@@ -284,6 +284,6 @@ $enc = $this->encoder();
 
 			</div>
 		</div>
-	</section>
+	</div>
 
 <?php endif ?>

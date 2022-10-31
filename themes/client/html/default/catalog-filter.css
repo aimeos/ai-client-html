@@ -6,12 +6,12 @@
 		flex-wrap: wrap;
 	}
 
-	aside .catalog-filter section {
+	aside .catalog-filter .section {
 		width: 50%;
 	}
 }
 
-aside .catalog-filter section {
+aside .catalog-filter .section {
 	margin-bottom: 1rem;
 	border: 1px solid var(--ai-bg-light);
 }

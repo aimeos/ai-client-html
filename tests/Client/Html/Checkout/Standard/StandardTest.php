@@ -61,13 +61,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos checkout-standard"', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos checkout-standard"', $output );
 		$this->assertRegExp( '#<ol class="steps">.*<li class="step.*>.*</li>.*</ol>#smU', $output );
-		$this->assertStringContainsString( '<section class="checkout-standard-address', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-delivery', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-payment', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-summary', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-order', $output );
+		$this->assertStringContainsString( '<div class="section checkout-standard-address', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-delivery', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-payment', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-summary', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-order', $output );
 	}
 
 
@@ -82,11 +82,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="checkout-standard-address', $output );
-		$this->assertStringContainsString( '<section class="checkout-standard-delivery', $output );
-		$this->assertStringContainsString( '<section class="checkout-standard-payment', $output );
-		$this->assertStringContainsString( '<section class="checkout-standard-summary', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-order', $output );
+		$this->assertStringContainsString( '<div class="section checkout-standard-address', $output );
+		$this->assertStringContainsString( '<div class="section checkout-standard-delivery', $output );
+		$this->assertStringContainsString( '<div class="section checkout-standard-payment', $output );
+		$this->assertStringContainsString( '<div class="section checkout-standard-summary', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-order', $output );
 	}
 
 
@@ -102,11 +102,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="checkout-standard-delivery', $output );
-		$this->assertStringContainsString( '<section class="checkout-standard-payment', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-address', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-summary', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-order', $output );
+		$this->assertStringContainsString( '<div class="section checkout-standard-delivery', $output );
+		$this->assertStringContainsString( '<div class="section checkout-standard-payment', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-address', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-summary', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-order', $output );
 	}
 
 
@@ -122,11 +122,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="checkout-standard-address', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-delivery', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-payment', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-summary', $output );
-		$this->assertStringNotContainsString( '<section class="checkout-standard-order', $output );
+		$this->assertStringContainsString( '<div class="section checkout-standard-address', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-delivery', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-payment', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-summary', $output );
+		$this->assertStringNotContainsString( '<div class="section checkout-standard-order', $output );
 	}
 
 

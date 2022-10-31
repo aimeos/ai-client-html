@@ -75,7 +75,7 @@ $enc = $this->encoder();
 ?>
 <?php if( !$this->get( 'favoriteItems', map() )->isEmpty() ) : ?>
 
-	<section class="aimeos account-favorite" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="section aimeos account-favorite" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
 			<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ) ?></h1>
@@ -166,7 +166,7 @@ $enc = $this->encoder();
 			<?php endif ?>
 
 		<div>
-	</section>
+	</div>
 
 <?php endif ?>
 

@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
-		$this->assertStringStartsWith( '<section class="checkout-standard-address">', $output );
+		$this->assertStringStartsWith( '<div class="section checkout-standard-address">', $output );
 
 		$this->assertGreaterThanOrEqual( 0, count( $this->view->addressLanguages ) );
 		$this->assertGreaterThanOrEqual( 0, count( $this->view->addressCountries ) );

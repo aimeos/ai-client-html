@@ -11,7 +11,7 @@ $enc = $this->encoder();
 ?>
 <?php if( !$this->get( 'boughtItems', map() )->isEmpty() ) : ?>
 
-	<section class="aimeos basket-related" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="section aimeos basket-related" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="basket-related-bought product-list container-xxl">
 
 			<h2 class="header"><?= $this->translate( 'client', 'Products you might be also interested in' ) ?></h2>
@@ -27,6 +27,6 @@ $enc = $this->encoder();
 			) ?>
 
 		</div>
-	</section>
+	</div>
 
 <?php endif ?>

@@ -61,7 +61,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="aimeos checkout-confirm"', $output );
+		$this->assertStringContainsString( '<div class="section aimeos checkout-confirm"', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-intro">', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-retry">', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-basic">', $output );

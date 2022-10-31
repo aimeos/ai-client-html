@@ -52,7 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-session"', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-session"', $output );
 	}
 
 

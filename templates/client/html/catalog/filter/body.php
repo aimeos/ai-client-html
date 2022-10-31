@@ -77,7 +77,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 
 
 ?>
-<section class="aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<div class="section aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<nav class="container-xxl">
 		<form method="GET" action="<?= $enc->attr( $this->link( $linkKey, map( $this->param() )->only( ['f_catid', 'f_name'] )->all() ) ) ?>">
@@ -95,4 +95,4 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 		</form>
 	</nav>
 
-</section>
+</div>

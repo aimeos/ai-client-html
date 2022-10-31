@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="checkout-standard-summary common-summary">', $output );
+		$this->assertStringStartsWith( '<div class="section checkout-standard-summary common-summary">', $output );
 		$this->assertStringContainsString( '<div class="checkout-standard-summary-option', $output );
 		$this->assertStringContainsString( '<div class="checkout-standard-summary-option-account', $output );
 		$this->assertStringContainsString( '<div class="checkout-standard-summary-option-terms', $output );

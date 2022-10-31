@@ -79,7 +79,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 ?>
 
-<section class="aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<div class="section aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
 		<ul class="error-list">
@@ -175,4 +175,4 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 			</div>
 		</div>
 	<?php endif ?>
-</section>
+</div>

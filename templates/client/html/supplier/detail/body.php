@@ -16,7 +16,7 @@ $enc = $this->encoder();
 ?>
 <?php if( isset( $this->detailSupplierItem ) ) : ?>
 
-	<section class="aimeos supplier-detail" itemscope itemtype="http://schema.org/Organization" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="section aimeos supplier-detail" itemscope itemtype="http://schema.org/Organization" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="supplier container-xxl">
 			<div class="row">
 				<div class="supplier-detail-basic col-sm-6 col-md-7 col-lg-8">
@@ -41,6 +41,6 @@ $enc = $this->encoder();
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 
 <?php endif ?>

@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="aimeos catalog-stage', $output );
+		$this->assertStringContainsString( '<div class="section aimeos catalog-stage', $output );
 		$this->assertStringContainsString( '<div class="catalog-stage-breadcrumb', $output );
 		$this->assertRegExp( '#Back#smU', $output );
 
@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( '<section class="aimeos catalog-stage home categories coffee"', $output );
+		$this->assertStringContainsString( '<div class="section aimeos catalog-stage home categories coffee"', $output );
 		$this->assertStringContainsString( '<div class="catalog-stage-image', $output );
 		$this->assertStringContainsString( '/path/to/folder/cafe/stage.jpg', $output );
 

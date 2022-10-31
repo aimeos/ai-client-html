@@ -11,7 +11,7 @@ $enc = $this->encoder();
 
 ?>
 <?php $this->block()->start( 'checkout/standard/delivery' ) ?>
-<section class="checkout-standard-delivery">
+<div class="section checkout-standard-delivery">
 
 	<h1><?= $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ) ?></h1>
 	<p class="note"><?= $enc->html( $this->translate( 'client', 'Please choose your delivery method' ), $enc::TRUST ) ?></p>
@@ -130,6 +130,6 @@ $enc = $this->encoder();
 		</button>
 	</div>
 
-</section>
+</div>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'checkout/standard/delivery' ) ?>

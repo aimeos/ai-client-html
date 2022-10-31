@@ -40,7 +40,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 <?php $this->block()->start( 'catalog/filter/tree' ) ?>
 <?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 && !$this->treeCatalogTree->getChildren()->isEmpty() ) : ?>
 
-	<section class="catalog-filter-tree <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
+	<div class="section catalog-filter-tree <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
 
 		<div class="aimeos-overlay-offscreen"></div>
 		<a class="menu" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Categories' ) ) ?>"><span class="icon"></span></a>
@@ -78,7 +78,7 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 					'level' => 1
 				] ) ?>
 		</div>
-	</section>
+	</div>
 
 <?php endif ?>
 <?php $this->block()->stop() ?>

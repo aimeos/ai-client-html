@@ -9,7 +9,7 @@ $enc = $this->encoder();
 
 
 ?>
-<section class="aimeos checkout-confirm" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<div class="section aimeos checkout-confirm" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 	<div class="container-xxl">
 
 		<h1><?= $enc->html( $this->translate( 'client', 'Confirmation' ), $enc::TRUST ) ?></h1>
@@ -241,4 +241,4 @@ We received your payment and an e-mail with the order details will be sent to yo
 
 		</div>
 	</div>
-</section>
+</div>

@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
+		$this->assertStringStartsWith( '<div class="section catalog-filter-supplier', $output );
 	}
 
 
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
+		$this->assertStringStartsWith( '<div class="section catalog-filter-supplier', $output );
 	}
 
 
@@ -83,6 +83,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="catalog-filter-supplier', $output );
+		$this->assertStringStartsWith( '<div class="section catalog-filter-supplier', $output );
 	}
 }

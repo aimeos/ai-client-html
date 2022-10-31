@@ -16,7 +16,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 
 ?>
 <?php $this->block()->start( 'checkout/standard/summary' ) ?>
-<section class="checkout-standard-summary common-summary">
+<div class="section checkout-standard-summary common-summary">
 	<input type="hidden" name="<?= $enc->attr( $this->formparam( ['cs_order'] ) ) ?>" value="1">
 
 	<h1><?= $enc->html( $this->translate( 'client', 'summary' ), $enc::TRUST ) ?></h1>
@@ -238,6 +238,6 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 		</button>
 	</div>
 
-</section>
+</div>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'checkout/standard/summary' ) ?>

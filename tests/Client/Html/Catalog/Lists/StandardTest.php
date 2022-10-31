@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list home categories coffee"', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-list-head">', $output );
 		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
@@ -101,7 +101,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
 		$this->assertStringContainsString( '<nav class="pagination">', $output );
 	}
 
@@ -122,7 +122,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
 		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smu', $output );
 		$this->assertRegExp( '#.*Cafe Noire Expresso.*#smu', $output );
 	}
@@ -135,7 +135,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
 		$this->assertNotRegExp( '#.*U:TESTPSUB01.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB03.*#smu', $output );
 		$this->assertNotRegExp( '#.*U:TESTSUB04.*#smu', $output );
@@ -156,7 +156,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list home categories coffee"', $output );
 	}
 
 
@@ -174,7 +174,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list home categories coffee"', $output );
 	}
 
 
@@ -192,7 +192,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list home categories coffee"', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list home categories coffee"', $output );
 	}
 
 
@@ -223,7 +223,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
 		$this->assertStringContainsString( '&lt;b&gt;Search result&lt;/b&gt;', $output );
 	}
 
@@ -235,7 +235,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
 	}
 
 
@@ -246,7 +246,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
 	}
 
 
@@ -257,7 +257,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
 	}
 
 
@@ -268,7 +268,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertStringStartsWith( '<section class="aimeos catalog-list', $output );
+		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
 	}
 
 

@@ -49,7 +49,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
-		$this->assertStringStartsWith( '<section class="checkout-standard-payment">', $output );
+		$this->assertStringStartsWith( '<div class="section checkout-standard-payment">', $output );
 		$this->assertRegExp( '#<li class="row form-item form-group directdebit.accountowner mandatory">#smU', $output );
 		$this->assertRegExp( '#<li class="row form-item form-group directdebit.accountno mandatory">#smU', $output );
 		$this->assertRegExp( '#<li class="row form-item form-group directdebit.bankcode mandatory">#smU', $output );

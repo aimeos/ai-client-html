@@ -88,7 +88,7 @@ $enc = $this->encoder();
 
 ?>
 <?php $this->block()->start( 'catalog/session/pinned' ) ?>
-<section class="catalog-session-pinned">
+<div class="section catalog-session-pinned">
 	<div class="container-xxl">
 		<h2 class="header pinned">
 			<?= $this->translate( 'client', 'Pinned products' ) ?>
@@ -131,6 +131,6 @@ $enc = $this->encoder();
 			<?php endforeach ?>
 		</ul>
 	</div>
-</section>
+</div>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'catalog/session/pinned' ) ?>

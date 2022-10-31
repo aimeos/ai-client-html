@@ -12,7 +12,7 @@ $enc = $this->encoder();
 ?>
 <?php if( isset( $this->standardBasket ) ) : ?>
 
-	<section class="aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="section aimeos basket-standard" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
 			<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
@@ -123,6 +123,6 @@ $enc = $this->encoder();
 				</div>
 			</form>
 		</div>
-	</section>
+	</div>
 
 <?php endif ?>

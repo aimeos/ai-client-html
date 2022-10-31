@@ -90,7 +90,7 @@ $enc = $this->encoder();
 ?>
 <?php if( !( $productItems = $this->get( 'reviewProductItems', map() ) )->isEmpty() ) : ?>
 
-	<section class="aimeos account-review" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+	<div class="section aimeos account-review" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
 			<h1 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h1>
@@ -178,6 +178,6 @@ $enc = $this->encoder();
 
 			</form>
 		</div>
-	</section>
+	</div>
 
 <?php endif ?>
