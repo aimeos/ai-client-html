@@ -55,9 +55,9 @@ class Standard
 		$srcset = !empty( $media->getPreviews() ) ? 'srcset="' . $enc->attr( $view->imageset( $media->getPreviews( true ), $media->getFileSystem() ) ) . '"' : '';
 
 		return '
-			<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject" representativeOfPage="' . ( $main ? 'true' : 'false' ) . '">
-				<img class="item" id="image-' . $media->getId() . '" loading="lazy" itemprop="contentUrl"
-					thumbnail="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
+			<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject">
+				<img class="item" id="image-' . $media->getId() . '" loading="lazy"
+					itemprop="contentUrl" representativeOfPage="' . ( $main ? 'true' : 'false' ) . '"
 					src="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 					data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 					alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"

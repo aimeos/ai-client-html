@@ -580,11 +580,13 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 									<?php if( ( $mediaItem = $supplierItem->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 										<div class="media-item">
-											<img class="lazy-image"
+											<img loading="lazy" class="supplier-image"
 												alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first() ) ?>"
-												data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-												data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
-												sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
+												src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+												<?php if( !empty( $mediaItem->getPreviews() ) ) : ?>
+													srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
+													sizes="<?= $enc->attr( $this->config( 'client/html/common/imageset-sizes', '(min-width: 260px) 240px, 100vw' ) ) ?>"
+												<?php endif ?>
 											>
 										</div>
 									<?php endif ?>
