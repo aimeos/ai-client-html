@@ -48,7 +48,27 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 
 ?>
-<?php if( isset( $this->detailProductItem ) ) : ?>
+<?php if( isset( $this->detailProductItem ) ) : 
+
+        // preselection of a variant product in a selection article
+        $preSelectVariantAttributes = [];
+        if ($_GET['productId'] && is_numeric($_GET['productId'])):
+
+            if(($listItem = $this->detailProductItem->getListItem( 'product', 'default', (int) $_GET['productId'] ) ) && ( $product = $listItem->getRefItem() ) )
+
+                    $attributes = $product->getRefItems('attribute',null,'variant');
+
+                    foreach($attributes as $attribId => $attribute):
+                        $preSelectVariantAttributes[$attribute->getType()] =  $attribute->getId();
+                    endforeach;
+
+                    if (!empty($preSelectVariantAttributes)):
+                        $preSelectVariantAttributes = htmlspecialchars(json_encode(['attributes' => $preSelectVariantAttributes, 'prodId' => $this->detailProductItem->getId()]), ENT_QUOTES, 'UTF-8');
+                    endif;
+
+        endif;
+
+?>
 
 	<div class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
@@ -58,7 +78,8 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 			<!-- catalog.detail.navigator -->
 
 			<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>"
-				data-id="<?= $this->detailProductItem->getId() ?>" data-reqstock="<?= $reqstock ?>">
+				data-id="<?= $this->detailProductItem->getId() ?>" data-reqstock="<?= $reqstock ?>"
+				<?= !empty($preSelectVariantAttributes) ? 'data-preselectvariant="' . $preSelectVariantAttributes . '"' : '' ?>>
 
 				<div class="col-sm-6">
 
@@ -620,30 +641,3 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 	</div>
 
 <?php endif ?>
-
-<?php
-// preselection of a variant in a selection article
-if (isset($_GET['productId']) && is_numeric($_GET['productId'])):
-
-    foreach( $this->detailProductItem->getRefItems( 'product', null, 'default' ) as $prodid => $product ) :
-
-        if ($prodid == $_GET['productId']):
-
-            $attributes = $product->getRefItems('attribute',null,'variant');
-            $js = '';
-            foreach($attributes as $attribId => $attribute):
-                $js .= '"' .  $attribute->getType() . '": "' . $attribute->getId() . '",
-                ';
-            endforeach;
-
-            if (!empty($js)): ?>
-               <script>
-                   AimeosVariantSelectionProduct = {"prodId": "<?= $this->detailProductItem->getId() ?>", "attributes": {<?= $js ?>}};
-               </script>
-
-            <?php endif;
-        endif;
-    endforeach;
-endif;
-
-?>
