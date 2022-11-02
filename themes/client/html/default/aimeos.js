@@ -446,15 +446,11 @@ AimeosBasket = {
 	 */
 	checkPreselectionVariant() {
 
-		if (typeof AimeosVariantSelectionProduct == 'object') {
-
-			$(AimeosVariantSelectionProduct).each(function() {
-				const prodId = this.prodId;
-				$.each(this.attributes, function(key,val){
-					$('#select-' + prodId + '-' + key).val(val).trigger('change');
-				});
-			});
-
+		if ($('article.product.row').data('preselectvariant')) {
+		       let preSelected = $('article.product.row').data('preselectvariant');
+		       $.each(preSelected.attributes, function (key, val) {
+			   $('#select-' + preSelected.prodId + '-' + key).val(val).trigger('change');
+		       });
 		}
 	},
 
