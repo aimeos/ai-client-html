@@ -446,10 +446,10 @@ AimeosBasket = {
 	 */
 	checkPreselectionVariant() {
 
-		if ($('article.product.row').data('preselectvariant')) {
-		       let preSelected = $('article.product.row').data('preselectvariant');
-		       $.each(preSelected.attributes, function (key, val) {
-			   $('#select-' + preSelected.prodId + '-' + key).val(val).trigger('change');
+		const product = $('article.product');
+		if (product && product.data('preselectvariant')) {
+		       $.each(product.data('preselectvariant'), function (key, val) {
+			   $('#select-' + product.data('id') + '-' + key).val(val).trigger('change');
 		       });
 		}
 	},
