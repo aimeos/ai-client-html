@@ -51,20 +51,16 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 <?php if( isset( $this->detailProductItem ) ) : 
 
         // preselection of a variant product in a selection article
-        $preSelectVariantAttributes = [];
-        if ($_GET['productId'] && is_numeric($_GET['productId'])):
+        $preSelectVariantAttributes = '';
+        if ($this->param( 'productId' ) && is_numeric($this->param( 'productId' ))):
 
-            if(($listItem = $this->detailProductItem->getListItem( 'product', 'default', (int) $_GET['productId'] ) ) && ( $product = $listItem->getRefItem() ) )
+            if(($listItem = $this->detailProductItem->getListItem( 'product', 'default', (int) $this->param( 'productId' ))) && ( $product = $listItem->getRefItem() ) )
 
                     $attributes = $product->getRefItems('attribute',null,'variant');
 
                     foreach($attributes as $attribId => $attribute):
                         $preSelectVariantAttributes[$attribute->getType()] =  $attribute->getId();
                     endforeach;
-
-                    if (!empty($preSelectVariantAttributes)):
-                        $preSelectVariantAttributes = htmlspecialchars(json_encode(['attributes' => $preSelectVariantAttributes, 'prodId' => $this->detailProductItem->getId()]), ENT_QUOTES, 'UTF-8');
-                    endif;
 
         endif;
 
@@ -79,7 +75,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 			<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>"
 				data-id="<?= $this->detailProductItem->getId() ?>" data-reqstock="<?= $reqstock ?>"
-				<?= !empty($preSelectVariantAttributes) ? 'data-preselectvariant="' . $preSelectVariantAttributes . '"' : '' ?>>
+				data-preselectvariant="<?= $enc->attr($preSelectVariantAttributes)?>"
 
 				<div class="col-sm-6">
 
