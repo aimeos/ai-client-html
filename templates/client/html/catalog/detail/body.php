@@ -51,7 +51,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 <?php if( isset( $this->detailProductItem ) ) : 
 
         // preselection of a variant product in a selection article
-        $preSelectVariantAttributes = '';
+        $preSelectVariantAttributes = [];
         if ($this->param( 'productId' ) && is_numeric($this->param( 'productId' ))):
 
             if(($listItem = $this->detailProductItem->getListItem( 'product', 'default', (int) $this->param( 'productId' ))) && ( $product = $listItem->getRefItem() ) )
