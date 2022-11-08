@@ -46,21 +46,18 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
  * @see client/html/basket/related/basket-add
  */
 
+$varAttr = [];
+if( isset( $this->detailProductItem )
+	&& ( $articleId = $this->param( 'd_articleid' ) )
+	&& ( $listItem = $this->detailProductItem->getListItem( 'product', 'default', $articleId ) )
+	&& ( $article = $listItem->getRefItem() )
+) {
+	$varAttr = $article->getRefItems( 'attribute', null, 'variant' )->col( 'attribute.id', 'attribute.type' );
+}
+
 
 ?>
-<?php if( isset( $this->detailProductItem ) ) : 
-
-        // preselection of a variant product in a selection article
-        $preSelectVariantAttributes = [];
-        if ($this->param( 'productId' )):
-
-            if(($listItem = $this->detailProductItem->getListItem( 'product', 'default', $this->param( 'productId' ))) && ( $product = $listItem->getRefItem() ) ):
-                 $preSelectVariantAttributes = $product->getRefItems( 'attribute', null, 'variant' )->col( 'attribute.id', 'attribute.type' );
-            endif;
-
-        endif;
-
-?>
+<?php if( isset( $this->detailProductItem ) ) : ?>
 
 	<div class="aimeos catalog-detail" itemscope itemtype="http://schema.org/Product" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
@@ -71,7 +68,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 
 			<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>"
 				data-id="<?= $this->detailProductItem->getId() ?>" data-reqstock="<?= $reqstock ?>"
-				data-preselectvariant="<?= $enc->attr($preSelectVariantAttributes)?>"
+				data-varattributes="<?= $enc->attr( $varAttr ) ?>">
 
 				<div class="col-sm-6">
 
