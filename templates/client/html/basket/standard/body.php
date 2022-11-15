@@ -49,7 +49,7 @@ $enc = $this->encoder();
 							 *
 							 * To configure an alternative template for the detail partial, you
 							 * have to configure its path relative to the template directory
-							 * (usually client/html/templates/). It's then used to display the
+							 * (usually templates/client/html/). It's then used to display the
 							 * product detail block in the basket standard component.
 							 *
 							 * @param string Relative path to the detail partial

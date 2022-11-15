@@ -40,7 +40,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 						 *
 						 * To configure an alternative template for the address partial, you
 						 * have to configure its path relative to the template directory
-						 * (usually client/html/templates/). It's then used to display the
+						 * (usually templates/client/html/). It's then used to display the
 						 * payment or delivery address block on the summary page during the
 						 * checkout process.
 						 *
@@ -96,7 +96,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 						 *
 						 * To configure an alternative template for the service partial, you
 						 * have to configure its path relative to the template directory
-						 * (usually client/html/templates/). It's then used to display the
+						 * (usually templates/client/html/). It's then used to display the
 						 * payment or delivery service block on the summary page during the
 						 * checkout process.
 						 *
@@ -183,7 +183,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 			 *
 			 * To configure an alternative template for the options partial, you
 			 * have to configure its path relative to the template directory
-			 * (usually client/html/templates/). It's then used to display the
+			 * (usually templates/client/html/). It's then used to display the
 			 * options block on the summary page during the checkout process.
 			 *
 			 * @param string Relative path to the options partial
@@ -213,7 +213,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 				 *
 				 * To configure an alternative template for the detail partial, you
 				 * have to configure its path relative to the template directory
-				 * (usually client/html/templates/). It's then used to display the
+				 * (usually templates/client/html/). It's then used to display the
 				 * product detail block on the summary page during the checkout process.
 				 *
 				 * @param string Relative path to the detail partial
