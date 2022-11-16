@@ -57,14 +57,14 @@ class HtmlTest extends \PHPUnit\Framework\TestCase
 	public function testCreateNameInvalid()
 	{
 		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html::create( $this->context, '%account/favorite' );
+		\Aimeos\Client\Html::create( $this->context, '%^unknown' );
 	}
 
 
 	public function testCreateNameNotFound()
 	{
 		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html::create( $this->context, 'account/fav' );
+		\Aimeos\Client\Html::create( $this->context, 'unknown' );
 	}
 
 }
