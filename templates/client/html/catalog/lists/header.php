@@ -39,10 +39,9 @@ $enc = $this->encoder();
 			<meta name="description" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
 		<?php endforeach ?>
 
-	<?php elseif( ( $search = $this->param( 'f_search', null ) ) != null ) : /// Product search hint with user provided search string (%1$s) ?>
+	<?php elseif( $search = $this->param( 'f_search', null ) ) : /// Product search hint with user provided search string (%1$s) ?>
 
 		<title><?= $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
-		<meta name="robots" content="noindex">
 
 	<?php else : ?>
 
@@ -51,6 +50,9 @@ $enc = $this->encoder();
 
 	<?php endif ?>
 
+	<?php if( $this->param( 'f_search' ) || $this->param( 'f_sort' ) ) : ?>
+		<meta name="robots" content="noindex">
+	<?php endif ?>
 
 	<?php if( $this->get( 'listPageCurr', 0 ) > 1 ) : ?>
 		<link rel="prev" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['l_page' => $this->get( 'listPagePrev', 0 )] + $this->get( 'listParams', [] ), ['absoluteUri' => true] ) ) ?>">
