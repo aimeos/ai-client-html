@@ -223,7 +223,7 @@ class Standard
 			return;
 		}
 
-		if( ( $form = $this->processPayment( $basket, $orderItem ) ) === null ) // no payment service available
+		if( ( $form = $this->processPayment( $orderItem->setBaseItem( $basket ) ) ) === null ) // no payment service available
 		{
 			$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
 			$args = ( $service = reset( $services ) ) ? ['code' => $service->getCode()] : [];
@@ -236,6 +236,8 @@ class Standard
 		{
 			$this->addFormData( $view, $form );
 		}
+
+		$orderCntl->save( $orderItem );
 	}
 
 
@@ -290,13 +292,13 @@ class Standard
 	/**
 	 * Returns the form helper object for building the payment form in the frontend
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Saved basket object including payment service object
-	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Saved order item created for the basket object
-	 * @return \Aimeos\MShop\Common\Helper\Form\Iface|null Form object with URL, parameters, etc.
-	 * 	or null if no form data is required
+	 * @param \Aimeos\MShop\Order\Item\Iface $orderItem Saved order item with basket object
+	 * @return \Aimeos\MShop\Common\Helper\Form\Iface|null Form object with URL, parameters, etc. or null if no form data is required
 	 */
-	protected function processPayment( \Aimeos\MShop\Order\Item\Base\Iface $basket, \Aimeos\MShop\Order\Item\Iface $orderItem ) : ?\Aimeos\MShop\Common\Helper\Form\Iface
+	protected function processPayment( \Aimeos\MShop\Order\Item\Iface $orderItem ) : ?\Aimeos\MShop\Common\Helper\Form\Iface
 	{
+		$basket = $orderItem->getBaseItem();
+
 		if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= 0
 			&& $this->isSubscription( $basket->getProducts() ) === false
 		) {
