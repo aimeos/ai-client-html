@@ -70,7 +70,7 @@ class Standard
 	{
 		$view = $this->view();
 		$config = $this->context()->config();
-		$prefixes = ['d_prodid', 'd_name'];
+		$prefixes = ['d_prodid', 'd_name', 'productId'];
 
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 		$id = $config->get( 'client/html/catalog/detail/prodid-default', $code );
