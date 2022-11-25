@@ -49,13 +49,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 $varAttr = [];
 if( isset( $this->detailProductItem )
 	&& ( $articleId = $this->param( 'd_articleid' ) )
-	&& ( $listItem = $this->detailProductItem->getListItem( 'product', 'default', $articleId ) )
-	&& ( $article = $listItem->getRefItem() )
 ) {
-	$varAttr = $article->getRefItems( 'attribute', null, 'variant' )->col( 'attribute.id', 'attribute.type' );
+	foreach($this->detailProductItem->getListItems( 'product', 'default' ) as $listItem) :
+           if($product = $listItem->getRefItem()) :
+             $varAttr[$product->getId()] = $product->getRefItems( 'attribute', null, 'variant' )->col( 'attribute.id', 'attribute.type' );
+           endif;
+        endforeach;
+
 }
-
-
 ?>
 <?php if( isset( $this->detailProductItem ) ) : ?>
 
