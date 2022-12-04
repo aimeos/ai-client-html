@@ -97,14 +97,14 @@ class Standard
 
 		$orders = \Aimeos\Controller\Frontend::create( $context, 'order' )
 			->compare( '>', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING )
-			->compare( '<=', 'order.base.ctime', date( 'Y-m-d H:i:s', time() - $days * 86400 ) )
-			->uses( ['order/base', 'order/base/product'] )
-			->sort( '-order.base.ctime' )
+			->compare( '<=', 'order.ctime', date( 'Y-m-d H:i:s', time() - $days * 86400 ) )
+			->uses( ['order', 'order/product'] )
+			->sort( '-order.ctime' )
 			->slice( 0, $size )
 			->search();
 
-		$prodMap = $orders->getBaseItem()->getProducts()->flat()
-			->col( 'order.base.product.id', 'order.base.product.productid' );
+		$prodMap = $orders->getProducts()->flat()
+			->col( 'order.product.id', 'order.product.productid' );
 
 		$exclude = \Aimeos\Controller\Frontend::create( $context, 'review' )
 			->for( 'product', $prodMap->keys()->toArray() )

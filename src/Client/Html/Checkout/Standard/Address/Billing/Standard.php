@@ -23,22 +23,22 @@ class Standard
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	private $mandatory = array(
-		'order.base.address.firstname',
-		'order.base.address.lastname',
-		'order.base.address.address1',
-		'order.base.address.postal',
-		'order.base.address.city',
-		'order.base.address.languageid',
-		'order.base.address.email'
+		'order.address.firstname',
+		'order.address.lastname',
+		'order.address.address1',
+		'order.address.postal',
+		'order.address.city',
+		'order.address.languageid',
+		'order.address.email'
 	);
 
 	private $optional = array(
-		'order.base.address.salutation',
-		'order.base.address.company',
-		'order.base.address.vatid',
-		'order.base.address.address2',
-		'order.base.address.countryid',
-		'order.base.address.state',
+		'order.address.salutation',
+		'order.address.company',
+		'order.address.vatid',
+		'order.address.address2',
+		'order.address.countryid',
+		'order.address.state',
 	);
 
 
@@ -88,7 +88,7 @@ class Standard
 
 		$values = $addr ? $addr->toArray() : [];
 		$id = $view->get( 'addressCustomerItem' ) && $view->addressCustomerItem->getId() ? $view->addressCustomerItem->getId() : 'null';
-		$id = ( $values['order.base.address.addressid'] ?? null ) ?: $id;
+		$id = ( $values['order.address.addressid'] ?? null ) ?: $id;
 
 		$view->addressBillingString = $this->getAddressString( $view, $view->addressPaymentItem );
 		$view->addressBillingValuesNew = array_merge( $values, $view->param( 'ca_billing', [] ) );
@@ -152,7 +152,7 @@ class Standard
 	/**
 	 * Checks the address fields for missing data and sanitizes the given parameter list.
 	 *
-	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
+	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
 	 * @return array List of missing field names
 	 */
 	protected function checkFields( array &$params ) : array
@@ -166,23 +166,23 @@ class Standard
 		 * necessary and must be filled by the customer before he can
 		 * continue the checkout process. Available field keys are:
 		 *
-		 * * order.base.address.company
-		 * * order.base.address.vatid
-		 * * order.base.address.salutation
-		 * * order.base.address.firstname
-		 * * order.base.address.lastname
-		 * * order.base.address.address1
-		 * * order.base.address.address2
-		 * * order.base.address.address3
-		 * * order.base.address.postal
-		 * * order.base.address.city
-		 * * order.base.address.state
-		 * * order.base.address.languageid
-		 * * order.base.address.countryid
-		 * * order.base.address.telephone
-		 * * order.base.address.telefax
-		 * * order.base.address.email
-		 * * order.base.address.website
+		 * * order.address.company
+		 * * order.address.vatid
+		 * * order.address.salutation
+		 * * order.address.firstname
+		 * * order.address.lastname
+		 * * order.address.address1
+		 * * order.address.address2
+		 * * order.address.address3
+		 * * order.address.postal
+		 * * order.address.city
+		 * * order.address.state
+		 * * order.address.languageid
+		 * * order.address.countryid
+		 * * order.address.telephone
+		 * * order.address.telefax
+		 * * order.address.email
+		 * * order.address.website
 		 *
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/billing/mandatory" starting from 2014-03.
@@ -206,23 +206,23 @@ class Standard
 		 * customers can fill but don't have to before they can
 		 * continue the checkout process. Available field keys are:
 		 *
-		 * * order.base.address.company
-		 * * order.base.address.vatid
-		 * * order.base.address.salutation
-		 * * order.base.address.firstname
-		 * * order.base.address.lastname
-		 * * order.base.address.address1
-		 * * order.base.address.address2
-		 * * order.base.address.address3
-		 * * order.base.address.postal
-		 * * order.base.address.city
-		 * * order.base.address.state
-		 * * order.base.address.languageid
-		 * * order.base.address.countryid
-		 * * order.base.address.telephone
-		 * * order.base.address.telefax
-		 * * order.base.address.email
-		 * * order.base.address.website
+		 * * order.address.company
+		 * * order.address.vatid
+		 * * order.address.salutation
+		 * * order.address.firstname
+		 * * order.address.lastname
+		 * * order.address.address1
+		 * * order.address.address2
+		 * * order.address.address3
+		 * * order.address.postal
+		 * * order.address.city
+		 * * order.address.state
+		 * * order.address.languageid
+		 * * order.address.countryid
+		 * * order.address.telephone
+		 * * order.address.telefax
+		 * * order.address.email
+		 * * order.address.website
 		 *
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/billing/optional" starting from 2014-03.
@@ -246,23 +246,23 @@ class Standard
 		 * are hidden when a customer enters his new billing address.
 		 * Available field keys are:
 		 *
-		 * * order.base.address.company
-		 * * order.base.address.vatid
-		 * * order.base.address.salutation
-		 * * order.base.address.firstname
-		 * * order.base.address.lastname
-		 * * order.base.address.address1
-		 * * order.base.address.address2
-		 * * order.base.address.address3
-		 * * order.base.address.postal
-		 * * order.base.address.city
-		 * * order.base.address.state
-		 * * order.base.address.languageid
-		 * * order.base.address.countryid
-		 * * order.base.address.telephone
-		 * * order.base.address.telefax
-		 * * order.base.address.email
-		 * * order.base.address.website
+		 * * order.address.company
+		 * * order.address.vatid
+		 * * order.address.salutation
+		 * * order.address.firstname
+		 * * order.address.lastname
+		 * * order.address.address1
+		 * * order.address.address2
+		 * * order.address.address3
+		 * * order.address.postal
+		 * * order.address.city
+		 * * order.address.state
+		 * * order.address.languageid
+		 * * order.address.countryid
+		 * * order.address.telephone
+		 * * order.address.telefax
+		 * * order.address.email
+		 * * order.address.website
 		 *
 		 * Caution: Only hide fields that don't require any input
 		 *
@@ -287,41 +287,41 @@ class Standard
 		 * {@link http://php.net/manual/en/pcre.pattern.php Perl compatible regular expression}
 		 * can be applied to each field. Available fields are:
 		 *
-		 * * order.base.address.company
-		 * * order.base.address.vatid
-		 * * order.base.address.salutation
-		 * * order.base.address.firstname
-		 * * order.base.address.lastname
-		 * * order.base.address.address1
-		 * * order.base.address.address2
-		 * * order.base.address.address3
-		 * * order.base.address.postal
-		 * * order.base.address.city
-		 * * order.base.address.state
-		 * * order.base.address.languageid
-		 * * order.base.address.countryid
-		 * * order.base.address.telephone
-		 * * order.base.address.telefax
-		 * * order.base.address.email
-		 * * order.base.address.website
+		 * * order.address.company
+		 * * order.address.vatid
+		 * * order.address.salutation
+		 * * order.address.firstname
+		 * * order.address.lastname
+		 * * order.address.address1
+		 * * order.address.address2
+		 * * order.address.address3
+		 * * order.address.postal
+		 * * order.address.city
+		 * * order.address.state
+		 * * order.address.languageid
+		 * * order.address.countryid
+		 * * order.address.telephone
+		 * * order.address.telefax
+		 * * order.address.email
+		 * * order.address.website
 		 *
 		 * Some fields are validated automatically because they are not
 		 * dependent on a country specific rule. These fields are:
 		 *
-		 * * order.base.address.salutation
-		 * * order.base.address.email
-		 * * order.base.address.website
+		 * * order.address.salutation
+		 * * order.address.email
+		 * * order.address.website
 		 *
 		 * To validate e.g the postal/zip code, you can define a regular
 		 * expression like this if you want to allow only digits:
 		 *
-		 *  client/html/checkout/standard/address/validate/order.base.address.postal = '^[0-9]+$'
+		 *  client/html/checkout/standard/address/validate/order.address.postal = '^[0-9]+$'
 		 *
 		 * Several regular expressions can be defined line this:
 		 *
 		 *  client/html/checkout/standard/address/validate = array(
-		 *      'order.base.address.postal' = '^[0-9]+$',
-		 *      'order.base.address.vatid' = '^[A-Z]{2}[0-9]{8}$',
+		 *      'order.address.postal' = '^[0-9]+$',
+		 *      'order.address.vatid' = '^[A-Z]{2}[0-9]{8}$',
 		 *  )
 		 *
 		 * Don't add any delimiting characters like slashes (/) to the beginning
@@ -365,17 +365,17 @@ class Standard
 	/**
 	 * Additional checks for the salutation
 	 *
-	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
+	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
 	 * @param array &$mandatory List of mandatory field names
 	 * @since 2016.05
 	 */
 	protected function checkSalutation( array &$params, array &$mandatory )
 	{
-		if( isset( $params['order.base.address.salutation'] )
-			&& $params['order.base.address.salutation'] === \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_COMPANY
-			&& in_array( 'order.base.address.company', $mandatory ) === false
+		if( isset( $params['order.address.salutation'] )
+			&& $params['order.address.salutation'] === \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_COMPANY
+			&& in_array( 'order.address.company', $mandatory ) === false
 		) {
-			$mandatory[] = 'order.base.address.company';
+			$mandatory[] = 'order.address.company';
 		}
 	}
 
@@ -384,10 +384,10 @@ class Standard
 	 * Returns the address as string
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $addr Order address item
+	 * @param \Aimeos\MShop\Order\Item\Address\Iface $addr Order address item
 	 * @return string Address as string
 	 */
-	protected function getAddressString( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Base\Address\Iface $addr )
+	protected function getAddressString( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Address\Iface $addr )
 	{
 		return preg_replace( "/\n+/m", "\n", trim( sprintf(
 			/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
@@ -462,7 +462,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/billing/hidden
 		 */
 		$disable = $view->config( 'client/html/checkout/standard/address/billing/disable-new', false );
-		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
+		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
 
 		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
@@ -491,7 +491,7 @@ class Standard
 	/**
 	 * Validate the address key/value pairs using regular expressions
 	 *
-	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
+	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
 	 * @param array $fields List of field names to validate
 	 * @return array List of invalid address keys
 	 * @since 2016.05

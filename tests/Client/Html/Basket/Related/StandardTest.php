@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	/**
 	 * @param string $code
-	 * @return \Aimeos\MShop\Order\Item\Base\Product\Iface
+	 * @return \Aimeos\MShop\Order\Item\Product\Iface
 	 */
 	protected function getOrderProductItem( $code )
 	{
@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			throw new \RuntimeException( sprintf( 'No product item with code "%1$s" found', $code ) );
 		}
 
-		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product' );
+		$manager = \Aimeos\MShop::create( $this->context, 'order/product' );
 		$orderItem = $manager->create()->copyFrom( $item )->setStockType( 'default' );
 
 		return $orderItem;

@@ -68,7 +68,7 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'subscription' );
 
 		$view->subscriptionIntervals = $cntl->getIntervals();
-		$view->subscriptionItems = $cntl->uses( ['order/base', 'order/base/address', 'order/base/product'] )
+		$view->subscriptionItems = $cntl->uses( ['order', 'order/address', 'order/product'] )
 			->sort( '-subscription.id' )
 			->search();
 

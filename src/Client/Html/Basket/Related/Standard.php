@@ -145,7 +145,7 @@ class Standard
 
 		return $basket->getProducts()
 			->concat( $basket->getProducts()->getProducts() )
-			->col( 'order.base.product.parentproductid' )
+			->col( 'order.product.parentproductid' )
 			->unique();
 	}
 

@@ -45,7 +45,7 @@ class Standard
 
 		try
 		{
-			$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT;
+			$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
 			$addresses = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get()->getAddress( $type );
 
 			if( $context->user() === null && ( $address = current( $addresses ) ) !== false )

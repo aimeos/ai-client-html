@@ -110,7 +110,7 @@ class Standard
 				return $view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
 			}
 
-			$manager = \Aimeos\MShop::create( $context, 'order/base/product/attribute' );
+			$manager = \Aimeos\MShop::create( $context, 'order/product/attribute' );
 			$item = $manager->get( $id );
 
 			if( $this->checkDownload( $id ) === false ) {
@@ -131,9 +131,9 @@ class Standard
 	/**
 	 * Adds the necessary headers and the download content to the reponse object
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface $item Order product attribute item with file reference
+	 * @param \Aimeos\MShop\Order\Item\Product\Attribute\Iface $item Order product attribute item with file reference
 	 */
-	protected function addDownload( \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface $item )
+	protected function addDownload( \Aimeos\MShop\Order\Item\Product\Attribute\Iface $item )
 	{
 		$fs = $this->context()->fs( 'fs-secure' );
 		$response = $this->view()->response();
@@ -183,12 +183,12 @@ class Standard
 
 		if( ( $customerId = $context->user() ) !== null && $id !== null )
 		{
-			$manager = \Aimeos\MShop::create( $context, 'order/base' );
+			$manager = \Aimeos\MShop::create( $context, 'order' );
 
 			$search = $manager->filter();
 			$expr = array(
-				$search->compare( '==', 'order.base.customerid', $customerId ),
-				$search->compare( '==', 'order.base.product.attribute.id', $id ),
+				$search->compare( '==', 'order.customerid', $customerId ),
+				$search->compare( '==', 'order.product.attribute.id', $id ),
 			);
 			$search->setConditions( $search->and( $expr ) );
 			$search->slice( 0, 1 );

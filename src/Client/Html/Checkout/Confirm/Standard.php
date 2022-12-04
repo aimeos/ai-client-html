@@ -115,13 +115,11 @@ class Standard
 			throw new \Aimeos\Client\Html\Exception( $context->translate( 'client', 'No order ID available in session' ) );
 		}
 
-		$ref = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-
-		$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $id, false );
-		$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $order->getBaseId(), $ref, false );
+		$ref = ['order/address', 'order/coupon', 'order/product', 'order/service'];
+		$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref )->get( $id, false );
 
 		$view->confirmOrderItem = $order;
-		$view->summaryBasket = $basket;
+		$view->summaryBasket = $order;
 
 		return parent::data( $view, $tags, $expire );
 	}

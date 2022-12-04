@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$address = $customerItem->getPaymentAddress()->setId( '-1' )->toArray();
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
-		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
+		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY, $address );
 
 		$this->context->setUserId( $customerItem->getId() );
 

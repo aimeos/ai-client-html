@@ -43,7 +43,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->session()->set( 'aimeos/orderid', $order->getId() );
 
 		$this->view->confirmOrderItem = $order;
-		$this->view->summaryBasket = $order->getBaseItem();
+		$this->view->summaryBasket = $order;
 
 		$output = $this->object->header();
 
@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->session()->set( 'aimeos/orderid', $order->getId() );
 
 		$this->view->confirmOrderItem = $order;
-		$this->view->summaryBasket = $order->getBaseItem();
+		$this->view->summaryBasket = $order;
 
 		$output = $this->object->body();
 
@@ -108,7 +108,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrder( $date )
 	{
-		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 		$manager = \Aimeos\MShop::create( $this->context, 'order' );
 		$search = $manager->filter()->add( 'order.datepayment', '==', $date );
 

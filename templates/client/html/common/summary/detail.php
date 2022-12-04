@@ -136,7 +136,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		</div>
 	</div>
 
-	<?php foreach( $this->summaryBasket->getProducts()->groupBy( 'order.base.product.vendor' )->ksort() as $vendor => $list ) : ?>
+	<?php foreach( $this->summaryBasket->getProducts()->groupBy( 'order.product.vendor' )->ksort() as $vendor => $list ) : ?>
 
 		<?php if( $vendor ) : ?>
 			<div class="supplier">
@@ -162,7 +162,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 							<?php
 								$url = '#';
 
-								if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 )
+								if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 )
 								{
 									$params = ['d_name' => $product->getName( 'url' ), 'd_prodid' => $product->getParentProductId() ?: $product->getProductId(), 'd_pos' => ''];
 									$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
@@ -220,7 +220,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					<div class="row g-0">
 						<div class="quantity col-4 quantity col-4">
 
-							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 
 								<?php if( $product->getQuantity() > 1 ) : ?>
 									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) ?>
@@ -252,7 +252,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></div>
 						<?php if( $modify ) : ?>
 						<div class="action col-1">
-							<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+							<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 								<?php $basketParams = array( 'b_action' => 'delete', 'b_position' => $position ) ?>
 								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>"></a>
 							<?php endif ?>

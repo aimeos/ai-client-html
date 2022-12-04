@@ -142,7 +142,7 @@ class Standard
 			switch( $check )
 			{
 				case 2: if( $view->param( 'b_check', 0 ) == 0 ) { break; }
-				case 1: $controller->get()->check( ['order/base/product'] );
+				case 1: $controller->get()->check( ['order/product'] );
 				default: $view->standardCheckout = true;
 			}
 		}

@@ -44,8 +44,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBody()
 	{
 		$this->view = \TestHelper::view();
-		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
-		$this->view->addressPaymentItem = \Aimeos\MShop::create( $this->context, 'order/base/address' )->create();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order' )->create();
+		$this->view->addressPaymentItem = \Aimeos\MShop::create( $this->context, 'order/address' )->create();
 		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();
@@ -72,14 +72,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$param = array(
 			'ca_billingoption' => 'null',
 			'ca_billing' => array(
-				'order.base.address.salutation' => 'mr',
-				'order.base.address.firstname' => 'test',
-				'order.base.address.lastname' => 'user',
-				'order.base.address.address1' => 'mystreet 1',
-				'order.base.address.postal' => '20000',
-				'order.base.address.city' => 'hamburg',
-				'order.base.address.email' => 'me@example.com',
-				'order.base.address.languageid' => 'en',
+				'order.address.salutation' => 'mr',
+				'order.address.firstname' => 'test',
+				'order.address.lastname' => 'user',
+				'order.address.address1' => 'mystreet 1',
+				'order.address.postal' => '20000',
+				'order.address.city' => 'hamburg',
+				'order.address.email' => 'me@example.com',
+				'order.address.languageid' => 'en',
 			),
 		);
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
@@ -101,11 +101,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$param = array(
 			'ca_billingoption' => 'null',
 			'ca_billing' => array(
-				'order.base.address.firstname' => 'test',
-				'order.base.address.lastname' => 'user',
-				'order.base.address.address1' => 'mystreet 1',
-				'order.base.address.postal' => '20000',
-				'order.base.address.city' => 'hamburg',
+				'order.address.firstname' => 'test',
+				'order.address.lastname' => 'user',
+				'order.address.address1' => 'mystreet 1',
+				'order.address.postal' => '20000',
+				'order.address.city' => 'hamburg',
 			),
 		);
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
@@ -120,8 +120,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$this->assertEquals( 2, count( $this->view->addressBillingError ) );
-			$this->assertArrayHasKey( 'order.base.address.email', $this->view->addressBillingError );
-			$this->assertArrayHasKey( 'order.base.address.languageid', $this->view->addressBillingError );
+			$this->assertArrayHasKey( 'order.address.email', $this->view->addressBillingError );
+			$this->assertArrayHasKey( 'order.address.languageid', $this->view->addressBillingError );
 			return;
 		}
 
@@ -136,14 +136,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$param = array(
 			'ca_billingoption' => 'null',
 			'ca_billing' => array(
-				'order.base.address.salutation' => 'mr',
-				'order.base.address.firstname' => 'test',
-				'order.base.address.lastname' => 'user',
-				'order.base.address.address1' => 'mystreet 1',
-				'order.base.address.postal' => '20000',
-				'order.base.address.city' => 'hamburg',
-				'order.base.address.email' => 'me@example.com',
-				'order.base.address.languageid' => 'en',
+				'order.address.salutation' => 'mr',
+				'order.address.firstname' => 'test',
+				'order.address.lastname' => 'user',
+				'order.address.address1' => 'mystreet 1',
+				'order.address.postal' => '20000',
+				'order.address.city' => 'hamburg',
+				'order.address.email' => 'me@example.com',
+				'order.address.languageid' => 'en',
 			),
 		);
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
@@ -169,14 +169,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$param = array(
 			'ca_billingoption' => 'null',
 			'ca_billing' => array(
-				'order.base.address.salutation' => 'mr',
-				'order.base.address.firstname' => 'test',
-				'order.base.address.lastname' => 'user',
-				'order.base.address.address1' => 'mystreet 1',
-				'order.base.address.postal' => '20AB',
-				'order.base.address.city' => 'hamburg',
-				'order.base.address.email' => 'me@example.com',
-				'order.base.address.languageid' => 'en',
+				'order.address.salutation' => 'mr',
+				'order.address.firstname' => 'test',
+				'order.address.lastname' => 'user',
+				'order.address.address1' => 'mystreet 1',
+				'order.address.postal' => '20AB',
+				'order.address.city' => 'hamburg',
+				'order.address.email' => 'me@example.com',
+				'order.address.languageid' => 'en',
 			),
 		);
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
@@ -191,7 +191,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$this->assertEquals( 1, count( $this->view->addressBillingError ) );
-			$this->assertArrayHasKey( 'order.base.address.postal', $this->view->addressBillingError );
+			$this->assertArrayHasKey( 'order.address.postal', $this->view->addressBillingError );
 			return;
 		}
 

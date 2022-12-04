@@ -243,7 +243,7 @@ class Standard
 		$context = $this->context();
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/base/address' );
+		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/address' );
 
 		$deliveryAddressItems = [];
 		$item = $controller->uses( ['customer/address'] )->get();
@@ -323,10 +323,10 @@ class Standard
 	/**
 	 * Tests if an item is available and the step can be skipped
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object
+	 * @param \Aimeos\MShop\Order\Item\Iface $basket Basket object
 	 * @return bool TRUE if step can be skipped, FALSE if not
 	 */
-	protected function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
+	protected function isAvailable( \Aimeos\MShop\Order\Item\Iface $basket ) : bool
 	{
 		return !empty( $basket->getAddress( 'payment' ) );
 	}

@@ -172,7 +172,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									</div>
 
 									<div class="content">
-										<?php if( !empty( $item->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
+										<?php if( !empty( $item->getOrderItem()->getAddress( 'payment' ) ) ) : ?>
 											<?= $this->partial(
 												/** client/html/account/subscription/summary/address
 												 * Location of the address partial template for the account subscription component
@@ -188,7 +188,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 												 * @see client/html/account/subscription/summary/service
 												 */
 												$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-												['addresses' => $item->getBaseItem()->getAddress( 'payment' )]
+												['addresses' => $item->getOrderItem()->getAddress( 'payment' )]
 											) ?>
 										<?php endif ?>
 									</div>
@@ -200,10 +200,10 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									</div>
 
 									<div class="content">
-										<?php if( !empty( $item->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
+										<?php if( !empty( $item->getOrderItem()->getAddress( 'delivery' ) ) ) : ?>
 											<?= $this->partial(
 												$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-												['addresses' => $item->getBaseItem()->getAddress( 'delivery' )]
+												['addresses' => $item->getOrderItem()->getAddress( 'delivery' )]
 											) ?>
 										<?php else : ?>
 											<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
@@ -234,7 +234,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 										 * @see client/html/account/subscription/summary/service
 										 */
 										$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
-										['summaryBasket' => $item->getBaseItem()]
+										['summaryBasket' => $item->getOrderItem()]
 									) ?>
 								</div>
 							</div>

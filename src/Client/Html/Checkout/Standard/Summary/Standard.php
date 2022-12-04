@@ -91,7 +91,7 @@ class Standard
 
 			parent::init();
 
-			$controller->get()->check( ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'] );
+			$controller->get()->check( ['order/address', 'order/coupon', 'order/product', 'order/service'] );
 		}
 		catch( \Exception $e )
 		{

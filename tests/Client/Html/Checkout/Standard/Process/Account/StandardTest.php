@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$address = $customerItem->getPaymentAddress()->setEmail( 'unittest@aimeos.org' )->toArray();
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
-		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
+		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT, $address );
 
 		$this->view = \TestHelper::view();
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'cs_option_account' => 1 ) );

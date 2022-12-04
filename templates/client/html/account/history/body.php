@@ -103,7 +103,7 @@ $enc = $this->encoder();
 						</div>
 
 						<div class="col-6">
-							<?php if( $ref = $orderItem->getBaseItem()->getCustomerReference() ) : ?>
+							<?php if( $ref = $orderItem->getCustomerReference() ) : ?>
 								<h2 class="order-customerref">
 									<span class="name">
 										<?= $enc->html( $this->translate( 'client', 'Reference' ), $enc::TRUST ) ?>
@@ -184,7 +184,7 @@ $enc = $this->encoder();
 									</div>
 
 									<div class="content">
-										<?php if( !empty( $orderItem->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
+										<?php if( !empty( $orderItem->getAddress( 'payment' ) ) ) : ?>
 											<?= $this->partial(
 												/** client/html/account/history/summary/address
 												 * Location of the address partial template for the account history component
@@ -200,7 +200,7 @@ $enc = $this->encoder();
 												 * @see client/html/account/history/summary/service
 												 */
 												$this->config( 'client/html/account/history/summary/address', 'common/summary/address' ),
-												['addresses' => $orderItem->getBaseItem()->getAddress( 'payment' )]
+												['addresses' => $orderItem->getAddress( 'payment' )]
 											) ?>
 										<?php endif ?>
 									</div>
@@ -212,10 +212,10 @@ $enc = $this->encoder();
 									</div>
 
 									<div class="content">
-										<?php if( !empty( $orderItem->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
+										<?php if( !empty( $orderItem->getAddress( 'delivery' ) ) ) : ?>
 											<?= $this->partial(
 												$this->config( 'client/html/account/history/summary/address', 'common/summary/address' ),
-												['addresses' => $orderItem->getBaseItem()->getAddress( 'delivery' )]
+												['addresses' => $orderItem->getAddress( 'delivery' )]
 											) ?>
 										<?php else : ?>
 											<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
@@ -232,7 +232,7 @@ $enc = $this->encoder();
 									</div>
 
 									<div class="content">
-										<?php if( !empty( $orderItem->getBaseItem()->getService( 'delivery' ) ) ) : ?>
+										<?php if( !empty( $orderItem->getService( 'delivery' ) ) ) : ?>
 											<?= $this->partial(
 												/** client/html/account/history/summary/service
 												 * Location of the service partial template for the account history component
@@ -248,7 +248,7 @@ $enc = $this->encoder();
 												 * @see client/html/account/history/summary/detail
 												 */
 												$this->config( 'client/html/account/history/summary/service', 'common/summary/service' ),
-												array( 'service' => $orderItem->getBaseItem()->getService( 'delivery' ), 'type' => 'delivery' )
+												array( 'service' => $orderItem->getService( 'delivery' ), 'type' => 'delivery' )
 											) ?>
 										<?php endif ?>
 									</div>
@@ -260,10 +260,10 @@ $enc = $this->encoder();
 									</div>
 
 									<div class="content">
-										<?php if( !empty( $orderItem->getBaseItem()->getService( 'payment' ) ) ) : ?>
+										<?php if( !empty( $orderItem->getService( 'payment' ) ) ) : ?>
 											<?= $this->partial(
 												$this->config( 'client/html/account/history/summary/service', 'common/summary/service' ),
-												array( 'service' => $orderItem->getBaseItem()->getService( 'payment' ), 'type' => 'payment' )
+												array( 'service' => $orderItem->getService( 'payment' ), 'type' => 'payment' )
 											) ?>
 										<?php endif ?>
 									</div>
@@ -279,7 +279,7 @@ $enc = $this->encoder();
 									</div>
 
 									<div class="content">
-										<?php if( !( $coupons = $orderItem->getBaseItem()->getCoupons() )->isEmpty() ) : ?>
+										<?php if( !( $coupons = $orderItem->getCoupons() )->isEmpty() ) : ?>
 											<ul class="attr-list">
 												<?php foreach( $coupons as $code => $products ) : ?>
 													<li class="attr-item"><?= $enc->html( $code ) ?></li>
@@ -295,7 +295,7 @@ $enc = $this->encoder();
 									</div>
 
 									<div class="content">
-										<?= $enc->html( $orderItem->getBaseItem()->getCustomerReference() ) ?>
+										<?= $enc->html( $orderItem->getCustomerReference() ) ?>
 									</div>
 								</div><!--
 
@@ -305,7 +305,7 @@ $enc = $this->encoder();
 									</div>
 
 									<div class="content">
-										<?= $enc->html( $orderItem->getBaseItem()->getComment() ) ?>
+										<?= $enc->html( $orderItem->getComment() ) ?>
 									</div>
 								</div>
 							</div>
@@ -332,7 +332,7 @@ $enc = $this->encoder();
 										 * @see client/html/account/history/summary/service
 										 */
 										$this->config( 'client/html/account/history/summary/detail', 'common/summary/detail' ),
-										['orderItem' => $orderItem, 'summaryBasket' => $orderItem->getBaseItem()]
+										['orderItem' => $orderItem, 'summaryBasket' => $orderItem]
 									) ?>
 								</div>
 							</div>
@@ -343,7 +343,7 @@ $enc = $this->encoder();
 
 								<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 
-								<?php foreach( $orderItem->getBaseItem()->getProducts() as $pos => $orderProduct ) : ?>
+								<?php foreach( $orderItem->getProducts() as $pos => $orderProduct ) : ?>
 									<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'prodid'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getParentProductId() ?: $orderProduct->getProductId() ) ?>">
 									<input type="hidden" name="<?= $enc->attr( $this->formparam( ['b_prod', $pos, 'quantity'] ) ) ?>" value="<?= $enc->attr( $orderProduct->getQuantity() ) ?>">
 

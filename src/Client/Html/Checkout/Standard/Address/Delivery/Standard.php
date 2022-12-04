@@ -23,21 +23,21 @@ class Standard
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	private $mandatory = array(
-		'order.base.address.firstname',
-		'order.base.address.lastname',
-		'order.base.address.address1',
-		'order.base.address.postal',
-		'order.base.address.city',
-		'order.base.address.languageid',
+		'order.address.firstname',
+		'order.address.lastname',
+		'order.address.address1',
+		'order.address.postal',
+		'order.address.city',
+		'order.address.languageid',
 	);
 
 	private $optional = array(
-		'order.base.address.salutation',
-		'order.base.address.company',
-		'order.base.address.vatid',
-		'order.base.address.address2',
-		'order.base.address.countryid',
-		'order.base.address.state',
+		'order.address.salutation',
+		'order.address.company',
+		'order.address.vatid',
+		'order.address.address2',
+		'order.address.countryid',
+		'order.address.state',
 	);
 
 
@@ -85,7 +85,7 @@ class Standard
 	/**
 	 * Checks the address fields for missing data and sanitizes the given parameter list.
 	 *
-	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
+	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
 	 * @return array List of missing field names
 	 */
 	protected function checkFields( array &$params ) : array
@@ -99,23 +99,23 @@ class Standard
 		 * necessary and must be filled by the customer before he can
 		 * continue the checkout process. Available field keys are:
 		 *
-		 * * order.base.address.company
-		 * * order.base.address.vatid
-		 * * order.base.address.salutation
-		 * * order.base.address.firstname
-		 * * order.base.address.lastname
-		 * * order.base.address.address1
-		 * * order.base.address.address2
-		 * * order.base.address.address3
-		 * * order.base.address.postal
-		 * * order.base.address.city
-		 * * order.base.address.state
-		 * * order.base.address.languageid
-		 * * order.base.address.countryid
-		 * * order.base.address.telephone
-		 * * order.base.address.telefax
-		 * * order.base.address.email
-		 * * order.base.address.website
+		 * * order.address.company
+		 * * order.address.vatid
+		 * * order.address.salutation
+		 * * order.address.firstname
+		 * * order.address.lastname
+		 * * order.address.address1
+		 * * order.address.address2
+		 * * order.address.address3
+		 * * order.address.postal
+		 * * order.address.city
+		 * * order.address.state
+		 * * order.address.languageid
+		 * * order.address.countryid
+		 * * order.address.telephone
+		 * * order.address.telefax
+		 * * order.address.email
+		 * * order.address.website
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
@@ -136,23 +136,23 @@ class Standard
 		 * customers can fill but don't have to before they can
 		 * continue the checkout process. Available field keys are:
 		 *
-		 * * order.base.address.company
-		 * * order.base.address.vatid
-		 * * order.base.address.salutation
-		 * * order.base.address.firstname
-		 * * order.base.address.lastname
-		 * * order.base.address.address1
-		 * * order.base.address.address2
-		 * * order.base.address.address3
-		 * * order.base.address.postal
-		 * * order.base.address.city
-		 * * order.base.address.state
-		 * * order.base.address.languageid
-		 * * order.base.address.countryid
-		 * * order.base.address.telephone
-		 * * order.base.address.telefax
-		 * * order.base.address.email
-		 * * order.base.address.website
+		 * * order.address.company
+		 * * order.address.vatid
+		 * * order.address.salutation
+		 * * order.address.firstname
+		 * * order.address.lastname
+		 * * order.address.address1
+		 * * order.address.address2
+		 * * order.address.address3
+		 * * order.address.postal
+		 * * order.address.city
+		 * * order.address.state
+		 * * order.address.languageid
+		 * * order.address.countryid
+		 * * order.address.telephone
+		 * * order.address.telefax
+		 * * order.address.email
+		 * * order.address.website
 		 * * nostore
 		 *
 		 * Using the "nostore" field displays the option to avoid storing the
@@ -177,23 +177,23 @@ class Standard
 		 * are hidden when a customer enters his delivery address.
 		 * Available field keys are:
 		 *
-		 * * order.base.address.company
-		 * * order.base.address.vatid
-		 * * order.base.address.salutation
-		 * * order.base.address.firstname
-		 * * order.base.address.lastname
-		 * * order.base.address.address1
-		 * * order.base.address.address2
-		 * * order.base.address.address3
-		 * * order.base.address.postal
-		 * * order.base.address.city
-		 * * order.base.address.state
-		 * * order.base.address.languageid
-		 * * order.base.address.countryid
-		 * * order.base.address.telephone
-		 * * order.base.address.telefax
-		 * * order.base.address.email
-		 * * order.base.address.website
+		 * * order.address.company
+		 * * order.address.vatid
+		 * * order.address.salutation
+		 * * order.address.firstname
+		 * * order.address.lastname
+		 * * order.address.address1
+		 * * order.address.address2
+		 * * order.address.address3
+		 * * order.address.postal
+		 * * order.address.city
+		 * * order.address.state
+		 * * order.address.languageid
+		 * * order.address.countryid
+		 * * order.address.telephone
+		 * * order.address.telefax
+		 * * order.address.email
+		 * * order.address.website
 		 *
 		 * Caution: Only hide fields that don't require any input
 		 *
@@ -241,17 +241,17 @@ class Standard
 	/**
 	 * Additional checks for the salutation
 	 *
-	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
+	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
 	 * @param array &$mandatory List of mandatory field names
 	 * @since 2016.05
 	 */
 	protected function checkSalutation( array &$params, array &$mandatory )
 	{
-		if( isset( $params['order.base.address.salutation'] )
-				&& $params['order.base.address.salutation'] === \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_COMPANY
-				&& in_array( 'order.base.address.company', $mandatory ) === false
+		if( isset( $params['order.address.salutation'] )
+				&& $params['order.address.salutation'] === \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_COMPANY
+				&& in_array( 'order.address.company', $mandatory ) === false
 		) {
-			$mandatory[] = 'order.base.address.company';
+			$mandatory[] = 'order.address.company';
 		}
 	}
 
@@ -260,10 +260,10 @@ class Standard
 	 * Returns the address as string
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param \Aimeos\MShop\Order\Item\Base\Address\Iface $addr Order address item
+	 * @param \Aimeos\MShop\Order\Item\Address\Iface $addr Order address item
 	 * @return string Address as string
 	 */
-	protected function getAddressString( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Base\Address\Iface $addr )
+	protected function getAddressString( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Address\Iface $addr )
 	{
 		return preg_replace( "/\n+/m", "\n", trim( sprintf(
 			/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
@@ -335,7 +335,7 @@ class Standard
 		 * @see client/html/checkout/standard/address/delivery/hidden
 		 */
 		$disable = $view->config( 'client/html/checkout/standard/address/delivery/disable-new', false );
-		$type = \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY;
+		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY;
 
 		if( ( $option = $view->param( 'ca_deliveryoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
@@ -359,7 +359,7 @@ class Standard
 
 			if( ( $address = $custCntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null )
 			{
-				$params = array_replace( $address->toArray(), $params + ['order.base.address.addressid' => $option] );
+				$params = array_replace( $address->toArray(), $params + ['order.address.addressid' => $option] );
 				$addr = $ctrl->addAddress( $type, $params, 0 )->get()->getAddress( $type, 0 ); // sanitize address first
 				$custCntl->addAddressItem( $address->copyFrom( $addr ), $option )->store(); // update existing address
 			}
@@ -386,7 +386,7 @@ class Standard
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'order/base/address' );
+		$manager = \Aimeos\MShop::create( $context, 'order/address' );
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		$addrStrings = $addrValues = [];
@@ -472,7 +472,7 @@ class Standard
 	/**
 	 * Validate the address key/value pairs using regular expressions
 	 *
-	 * @param array &$params Associative list of address keys (order.base.address.* or customer.address.*) and their values
+	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
 	 * @param array $fields List of field names to validate
 	 * @return array List of invalid address keys
 	 * @since 2016.05

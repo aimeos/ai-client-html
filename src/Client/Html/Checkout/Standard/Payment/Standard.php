@@ -133,7 +133,7 @@ class Standard
 		$services = [];
 		$basket = $basketCntl->get();
 		$providers = $serviceCntl->uses( $domains )->type( 'payment' )->getProviders();
-		$orderServices = map( $basket->getService( 'payment' ) )->col( null, 'order.base.service.serviceid' );
+		$orderServices = map( $basket->getService( 'payment' ) )->col( null, 'order.service.serviceid' );
 
 		foreach( $providers as $id => $provider )
 		{
@@ -172,10 +172,10 @@ class Standard
 	/**
 	 * Tests if an item is available and the step can be skipped
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object
+	 * @param \Aimeos\MShop\Order\Item\Iface $basket Basket object
 	 * @return bool TRUE if step can be skipped, FALSE if not
 	 */
-	protected function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
+	protected function isAvailable( \Aimeos\MShop\Order\Item\Iface $basket ) : bool
 	{
 		return !empty( $basket->getService( 'payment' ) );
 	}

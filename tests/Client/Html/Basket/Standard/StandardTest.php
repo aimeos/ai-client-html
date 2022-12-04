@@ -25,7 +25,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelper::context();
 
 		$this->view = \TestHelper::view();
-		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Basket\Standard\Standard( $this->context );
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Exceptions( $this->object, $this->context );
