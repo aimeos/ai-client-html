@@ -214,8 +214,8 @@ class Standard
 		}
 		elseif( ( $orderid = $context->session()->get( 'aimeos/orderid' ) ) !== null )
 		{
-			$parts = ['order/address', 'order/coupon', 'order/product', 'order/service'];
-			$order = $orderCntl->uses( $parts )->get( $orderid, false );
+			$ref = $context->config()->get( 'mshop/order/manager/subdomains', [] );
+			$order = $orderCntl->uses( $refs )->get( $orderid, false );
 		}
 		else
 		{

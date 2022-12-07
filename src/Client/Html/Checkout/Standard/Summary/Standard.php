@@ -64,7 +64,8 @@ class Standard
 			}
 
 
-			$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
+			$context = $this->context();
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 			$customerref = strip_tags( $view->param( 'cs_customerref', '', false ) );
 			$comment = strip_tags( $view->param( 'cs_comment', '', false ) );
 
@@ -91,7 +92,7 @@ class Standard
 
 			parent::init();
 
-			$controller->get()->check( ['order/address', 'order/coupon', 'order/product', 'order/service'] );
+			$controller->get()->check( $context->config()->get( 'mshop/order/manager/subdomains', [] ) );
 		}
 		catch( \Exception $e )
 		{

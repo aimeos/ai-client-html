@@ -79,7 +79,7 @@ class Standard
 		 * @param array List of domain names
 		 * @since 2022.10
 		 */
-		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
+		$domains = ['order'] + $context->config()->get( 'mshop/order/manager/subdomains', [] );
 		$domains = $context->config()->get( 'client/html/account/history/domains', $domains );
 
 		$view->historyItems = \Aimeos\Controller\Frontend::create( $context, 'order' )
