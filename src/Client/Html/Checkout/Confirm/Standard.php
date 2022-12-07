@@ -72,6 +72,8 @@ class Standard
 			throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 		}
 
+		$ref = $context->config()->get( 'mshop/order/manager/subdomains', [] );
+		$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref );
 
 		if( ( $code = $view->param( 'code' ) ) !== null )
 		{
@@ -80,7 +82,6 @@ class Standard
 		}
 		else
 		{
-			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
 			$orderItem = $orderCntl->get( $orderid, false );
 		}
 
@@ -94,6 +95,8 @@ class Standard
 			\Aimeos\Controller\Frontend::create( $context, 'basket' )->clear();
 			$session->remove( array_keys( $session->get( 'aimeos/basket/cache', [] ) ) );
 		}
+
+		$orderCntl->save( $orderItem );
 	}
 
 
@@ -115,7 +118,7 @@ class Standard
 			throw new \Aimeos\Client\Html\Exception( $context->translate( 'client', 'No order ID available in session' ) );
 		}
 
-		$ref = ['order/address', 'order/coupon', 'order/product', 'order/service'];
+		$ref = $context->config()->get( 'mshop/order/manager/subdomains', [] );
 		$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref )->get( $id, false );
 
 		$view->confirmOrderItem = $order;
