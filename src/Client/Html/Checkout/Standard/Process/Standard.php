@@ -207,14 +207,14 @@ class Standard
 		{
 			parent::init();
 
-			$order = $basketCntl->get()->setChannel( 'web' );
+			$basketCntl->get()->setChannel( 'web' );
 			$order = $basketCntl->store();
 
 			$context->session()->set( 'aimeos/orderid', $order->getId() );
 		}
 		elseif( ( $orderid = $context->session()->get( 'aimeos/orderid' ) ) !== null )
 		{
-			$ref = $context->config()->get( 'mshop/order/manager/subdomains', [] );
+			$refs = $context->config()->get( 'mshop/order/manager/subdomains', [] );
 			$order = $orderCntl->uses( $refs )->get( $orderid, false );
 		}
 		else
