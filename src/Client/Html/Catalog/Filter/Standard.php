@@ -516,7 +516,8 @@ class Standard
 			 */
 
 			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
-				$params['f_catid'] = $startid;
+				$params['f_catid'] = $this->param( 'f_catid', $startid );
+				$params['f_name'] = $this->param( 'f_name', '' );
 			}
 
 			foreach( $config->get( 'client/html/catalog/filter/remove-params', ['f_sort'] ) as $name ) {
