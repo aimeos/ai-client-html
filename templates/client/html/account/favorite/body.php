@@ -165,7 +165,7 @@ $enc = $this->encoder();
 
 			<?php endif ?>
 
-		<div>
+		</div>
 	</div>
 
 <?php endif ?>
