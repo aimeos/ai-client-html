@@ -215,12 +215,12 @@ class Standard
 		 * @since 2014.09
 		 * @see client/html/catalog/domains
 		 */
-		$domains = $context->config()->get( 'client/html/account/favorite/domains', ['text', 'price', 'media'] );
+		$domains = $context->config()->get( 'client/html/account/favorite/domains', ['catalog', 'text', 'price', 'media'] );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$customer = $cntl->uses( ['product' => ['favorite']] + $domains )->get();
 
-		$products = $customer->getRefItems( 'product', 'favorite' );
+		$products = $customer->getRefItems( 'product', null, 'favorite' );
 		$products = \Aimeos\MShop::create( $context, 'rule' )->apply( $products, 'catalog' );
 
 		$listItems = $customer->getListItems( 'product', 'favorite' );

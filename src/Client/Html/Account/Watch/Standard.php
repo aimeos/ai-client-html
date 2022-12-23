@@ -261,12 +261,12 @@ class Standard
 		 * @since 2014.09
 		 * @see client/html/catalog/domains
 		 */
-		$domains = $context->config()->get( 'client/html/account/watch/domains', ['text', 'price', 'media'] );
+		$domains = $context->config()->get( 'client/html/account/watch/domains', ['catalog', 'text', 'price', 'media'] );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$customer = $cntl->uses( ['product' => ['watch']] + $domains )->get();
 
-		$products = $customer->getRefItems( 'product', 'watch' );
+		$products = $customer->getRefItems( 'product', null, 'watch' );
 		$products = \Aimeos\MShop::create( $context, 'rule' )->apply( $products, 'catalog' );
 
 		$listItems = $customer->getListItems( 'product', 'watch' );
