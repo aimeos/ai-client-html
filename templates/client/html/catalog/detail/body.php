@@ -100,7 +100,7 @@ if( isset( $this->detailProductItem )
 									<?= $enc->html( $name, $enc::TRUST ) ?>
 								</a>
 							</p>
-						<?php elseif( $siteItem = $productItem->getSiteItem() ) : ?>
+						<?php elseif( $siteItem = $this->detailProductItem->getSiteItem() ) : ?>
 							<p class="site"><?= $enc->html( $siteItem->getLabel() ) ?></p>
 						<?php endif ?>
 
