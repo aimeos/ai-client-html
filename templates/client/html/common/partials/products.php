@@ -225,8 +225,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 				<div class="product-info">
 					<?php if( $supplier = $productItem->getRefItems( 'supplier' )->getName()->first() ) : ?>
 						<div class="supplier"><?= $enc->html( $supplier ) ?></div>
-					<?php elseif( ( $site = $this->get( 'contextSite' ) ) && $site !== 'default' ) : ?>
-						<div class="supplier"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></div>
+					<?php elseif( $siteItem = $productItem->getSiteItem() ) : ?>
+						<div class="supplier"><?= $enc->html( $siteItem->getLabel() ) ?></div>
 					<?php endif ?>
 
 					<div class="rating"><!--

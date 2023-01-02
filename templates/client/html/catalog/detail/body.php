@@ -100,8 +100,8 @@ if( isset( $this->detailProductItem )
 									<?= $enc->html( $name, $enc::TRUST ) ?>
 								</a>
 							</p>
-						<?php elseif( $this->get( 'contextSite' ) !== 'default' ) : ?>
-							<p class="site"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></p>
+						<?php elseif( $siteItem = $productItem->getSiteItem() ) : ?>
+							<p class="site"><?= $enc->html( $siteItem->getLabel() ) ?></p>
 						<?php endif ?>
 
 						<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ) ?></h1>
