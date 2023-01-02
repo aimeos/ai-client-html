@@ -130,12 +130,10 @@ if( isset( $this->detailProductItem )
 
 						<div class="price-list">
 							<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
-
 								<?= $this->partial(
 									$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 									['prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' )]
 								) ?>
-
 							</div>
 
 							<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
@@ -143,12 +141,10 @@ if( isset( $this->detailProductItem )
 									<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 
 										<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
-
 											<?= $this->partial(
 												$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 												['prices' => $prices]
 											) ?>
-
 										</div>
 
 									<?php endif ?>
@@ -253,9 +249,7 @@ if( isset( $this->detailProductItem )
 								</div>
 
 								<?php foreach( $this->detailProductItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
-
 									<div class="articleitem" data-prodid="<?= $enc->attr( $articleId ) ?>"></div>
-
 								<?php endforeach ?>
 
 							</div>
@@ -359,11 +353,9 @@ if( isset( $this->detailProductItem )
 						</nav>
 
 						<div class="tab-content" id="nav-tabContent">
-
 							<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
 
 								<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
-
 									<div class="block description">
 
 										<?php foreach( $textItems as $textItem ) : ?>
@@ -371,7 +363,6 @@ if( isset( $this->detailProductItem )
 										<?php endforeach ?>
 
 									</div>
-
 								<?php endif ?>
 
 							</div>
@@ -535,12 +526,10 @@ if( isset( $this->detailProductItem )
 
 						<div class="section catalog-detail-bundle content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ) ?></h2>
-
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
 								['products' => $products, 'itemprop' => 'isRelatedTo']
 							) ?>
-
 						</div>
 
 					<?php endif ?>
@@ -550,14 +539,12 @@ if( isset( $this->detailProductItem )
 
 						<div class="section catalog-detail-suggest content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ) ?></h2>
-
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/products', 'common/partials/products' ), [
 									'basket-add' => $this->config( 'client/html/catalog/detail/basket-add', false ),
 									'products' => $products, 'itemprop' => 'isRelatedTo'
 								] )
 							?>
-
 						</div>
 
 					<?php endif ?>
@@ -567,21 +554,18 @@ if( isset( $this->detailProductItem )
 
 						<div class="section catalog-detail-bought content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ) ?></h2>
-
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/products', 'common/partials/products' ), [
 									'basket-add' => $this->config( 'client/html/catalog/detail/basket-add', false ),
 									'products' => $products, 'itemprop' => 'isRelatedTo'
 								] )
 							?>
-
 						</div>
 
 					<?php endif ?>
 
 					<?php if( !( $supplierItems = $this->detailProductItem->getRefItems( 'supplier', null, 'default' ) )->isEmpty() ) : ?>
 						<div class="catalog-detail-supplier content-block">
-
 							<h2 class="header"><?= $this->translate( 'client', 'Supplier information' ) ?></h2>
 
 							<?php foreach( $supplierItems as $supplierItem ) : ?>
