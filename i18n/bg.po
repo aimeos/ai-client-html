@@ -1188,7 +1188,7 @@ msgid "pin"
 msgstr "отбележи"
 
 msgid "price:default"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #, php-format
 msgid "process"
