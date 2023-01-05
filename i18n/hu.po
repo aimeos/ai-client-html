@@ -1193,7 +1193,7 @@ msgid "pin"
 msgstr "kitűzés"
 
 msgid "price:default"
-msgstr "ár:alapértelmezett"
+msgstr ""
 
 #, php-format
 msgid "process"
