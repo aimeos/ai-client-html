@@ -64,7 +64,7 @@ if( $sort === 'price' ) {
 			</li>
 			<li>
 				<?php $url = $this->link( $key, ['f_sort' => '-rating'] + $params ) ?>
-				<a class="option-price <?= ( $sortname === '-rating' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
+				<a class="option-rating <?= ( $sort === '-rating' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Rating' ), $enc::TRUST ) ?>
 				</a>
 			</li>
