@@ -263,6 +263,7 @@ class Standard
 		$view->detailProductItem = $productItem;
 		$view->detailAttributeMap = $attrItems->groupBy( 'attribute.type' )->ksort();
 		$view->detailPropertyMap = $propItems->groupBy( 'product.property.type' )->ksort();
+		$view->detailStockTypes = $productItem->getStockItems()->getType();
 		$view->detailStockUrl = $this->stockUrl( $productItem );
 
 		$this->call( 'seen', $productItem );
@@ -283,7 +284,7 @@ class Standard
 
 		$domains = [
 			'attribute', 'attribute/property', 'catalog', 'media', 'media/property', 'price',
-			'product', 'product/property', 'supplier', 'supplier/address', 'text'
+			'product', 'product/property', 'supplier', 'supplier/address', 'text', 'stock'
 		];
 
 		/** client/html/catalog/domains

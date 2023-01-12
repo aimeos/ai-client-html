@@ -255,9 +255,11 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 								<div class="addbasket">
 									<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 									<input type="hidden"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'stocktype'] ) ) ?>"
+										value="<?= $enc->attr( $this->get( 'detailStockTypes', map() )->first() ) ?>">
+									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ) ?>"
-										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
-									>
+										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 									<div class="input-group">
 										<?php if( $this->detailProductItem->getType() !== 'group' ) : ?>
 											<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
