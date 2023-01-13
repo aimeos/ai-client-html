@@ -204,6 +204,10 @@ AimeosBasket = {
 		const doc = $("<html/>").html(data);
 		const basket = $(".aimeos.basket-standard", doc);
 
+		$('.aimeos .error-list, .aimeos .info-list', doc).each((idx, el) => {
+			basket.prepend(el);
+		});
+
 		$('link.basket-standard', doc).each((idx, el) => {
 			basket.append(el);
 		});
@@ -481,6 +485,9 @@ AimeosBasket = {
 				const content = $(".aimeos.account-favorite", doc);
 
 				if(content.length > 0) {
+					$('.aimeos .error-list, .aimeos .info-list', doc).each((idx, el) => {
+						content.prepend(el);
+					});
 					$('link.account-favorite', doc).each((idx, el) => {
 						document.head.append(el);
 					});
@@ -518,6 +525,9 @@ AimeosBasket = {
 				const content = $(".aimeos.account-watch", doc);
 
 				if(content.length > 0) {
+					$('.aimeos .error-list, .aimeos .info-list', doc).each((idx, el) => {
+						content.prepend(el);
+					});
 					$('link.account-watch', doc).each((idx, el) => {
 						document.head.append(el);
 					});
