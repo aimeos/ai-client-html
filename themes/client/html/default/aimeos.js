@@ -163,6 +163,10 @@ Aimeos = {
 			return Aimeos.removeOverlay();
 		});
 
+		$(document).on("click", ".aimeos-container .btn-back", () => {
+			return Aimeos.removeOverlay();
+		});
+
 		$(document).on("keydown", ev => {
 			if(ev.key == "Escape") {
 				return Aimeos.removeOverlay();
