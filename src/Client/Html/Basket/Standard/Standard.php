@@ -267,6 +267,12 @@ class Standard
 	}
 
 
+	/**
+	 * Returns the configurable attribute values as ID/quantity pairs
+	 *
+	 * @param array $values Associative list which "id" and "qty" keys
+	 * @return array Pairs of config attribute ID/quantity pairs
+	 */
 	protected function getAttributeMap( array $values )
 	{
 		$list = [];
