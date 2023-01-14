@@ -212,14 +212,14 @@ class Standard
 	 */
 	public function init()
 	{
+		$view = $this->view();
 		$context = $this->context();
 		$session = $context->session();
 
+		$params = $view->param();
 		$site = $context->locale()->getSiteItem()->getCode();
-		$params = $this->getClientParams( $this->view()->param() );
 
-		$session->set( 'aimeos/catalog/detail/params/last/' . $site, $params );
-		$session->set( 'aimeos/catalog/last/' . $site, 'detail' );
+		$session->set( 'aimeos/catalog/last/' . $site, $view->link( 'client/html/catalog/detail/url', $params ) );
 	}
 
 

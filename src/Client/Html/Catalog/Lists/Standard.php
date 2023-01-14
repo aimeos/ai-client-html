@@ -228,19 +228,11 @@ class Standard
 		$context = $this->context();
 		$session = $context->session();
 
+		$params = $view->param();
 		$site = $context->locale()->getSiteItem()->getCode();
-		$params = $this->getClientParams( $view->param() );
+		$key = $view->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
-		$catId = $context->config()->get( 'client/html/catalog/lists/catid-default' );
-
-		if( ( $catId = $view->param( 'f_catid', $catId ) ) )
-		{
-			$params['f_name'] = $view->param( 'f_name' );
-			$params['f_catid'] = $catId;
-		}
-
-		$session->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
-		$session->set( 'aimeos/catalog/last/' . $site, 'lists' );
+		$session->set( 'aimeos/catalog/last/' . $site, $view->link( $key, $params ) );
 	}
 
 
