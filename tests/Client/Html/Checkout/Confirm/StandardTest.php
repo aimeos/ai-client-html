@@ -10,8 +10,9 @@ namespace Aimeos\Client\Html\Checkout\Confirm;
  */
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
-	private $object;
 	private $context;
+	private $object;
+	private $view;
 
 
 	protected function setUp() : void
