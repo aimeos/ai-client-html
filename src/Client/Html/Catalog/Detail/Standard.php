@@ -219,6 +219,7 @@ class Standard
 		$params = $this->getClientParams( $this->view()->param() );
 
 		$session->set( 'aimeos/catalog/detail/params/last/' . $site, $params );
+		$session->set( 'aimeos/catalog/last/' . $site, 'detail' );
 	}
 
 

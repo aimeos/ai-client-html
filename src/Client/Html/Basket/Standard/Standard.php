@@ -67,10 +67,11 @@ class Standard
 	{
 		$context = $this->context();
 		$site = $context->locale()->getSiteItem()->getCode();
+		$last = $context->session()->get( 'aimeos/catalog/last/' . $site );
 
-		if( !empty( $params = $context->session()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) ) {
+		if( $last === 'detail' && !empty( $params = $context->session()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) ) {
 			$view->standardBackUrl = $view->link( 'client/html/catalog/detail/url', array_filter( $params ) );
-		} elseif( !empty( $params = $context->session()->get( 'aimeos/catalog/lists/params/last/' . $site, [] ) ) ) {
+		} elseif( $last === 'lists' && !empty( $params = $context->session()->get( 'aimeos/catalog/lists/params/last/' . $site, [] ) ) ) {
 			$view->standardBackUrl = $view->link( 'client/html/catalog/lists/url', array_filter( $params ) );
 		}
 

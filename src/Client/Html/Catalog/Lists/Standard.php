@@ -226,6 +226,7 @@ class Standard
 	{
 		$view = $this->view();
 		$context = $this->context();
+		$session = $context->session();
 
 		$site = $context->locale()->getSiteItem()->getCode();
 		$params = $this->getClientParams( $view->param() );
@@ -238,7 +239,8 @@ class Standard
 			$params['f_catid'] = $catId;
 		}
 
-		$context->session()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
+		$session->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
+		$session->set( 'aimeos/catalog/last/' . $site, 'lists' );
 	}
 
 
