@@ -78,4 +78,4 @@ $enc = $this->encoder();
 
 	<?php endforeach ?>
 
-</table>
+</div>
