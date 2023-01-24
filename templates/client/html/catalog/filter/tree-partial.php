@@ -132,6 +132,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 					<div id="<?= $enc->attr( $item->getId() ) ?>" class="submenu <?= $enc->attr(
 						( $this->get( 'path', map() )->has( $item->getId() ) ? ' active opened' : '' ) ) .
 						( !$item->getChildren()->isEmpty() ? ' withchild' : ' nochild' ) ?>"
+						<?= $this->get( 'path', map() )->getId()->last() == $item->getId() ? 'aria-current="page"' : '' ?>
 						data-id="<?= $item->getId() ?>">
 
 						<div class="row header">

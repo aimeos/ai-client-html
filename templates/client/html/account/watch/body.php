@@ -79,7 +79,7 @@ $enc = $this->encoder();
 	<div class="section aimeos account-watch" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
-			<h1 class="header"><?= $this->translate( 'client', 'Watched products' ) ?></h1>
+			<h2 class="header"><?= $this->translate( 'client', 'Watched products' ) ?></h2>
 
 			<div class="watch-items">
 				<?php foreach( $this->get( 'watchItems', map() )->reverse() as $listItem ) : ?>

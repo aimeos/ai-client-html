@@ -78,7 +78,7 @@ $enc = $this->encoder();
 	<div class="section aimeos account-basket" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
-			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Saved baskets' ), $enc::TRUST ) ?></h1>
+			<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Saved baskets' ), $enc::TRUST ) ?></h2>
 
 			<div class="basket-list">
 

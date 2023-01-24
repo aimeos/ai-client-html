@@ -106,7 +106,7 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 
 ?>
 <?php $this->block()->start( 'catalog/filter/search' ) ?>
-<div class="section catalog-filter-search">
+<div class="section catalog-filter-search" aria-label="<?= $enc->attr( $this->translate( 'client', 'Product search' ) ) ?>">
 
 	<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ) ?></div>
 	<div class="search-lists">

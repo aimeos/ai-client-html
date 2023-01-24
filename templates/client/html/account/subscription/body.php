@@ -82,7 +82,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 	<div class="section aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
-			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h1>
+			<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h2>
 
 			<div class="subscription-list">
 

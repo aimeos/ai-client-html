@@ -29,7 +29,7 @@ $enc = $this->encoder();
 			<?php endforeach ?>
 
 			<?php if( $this->get( 'standardStepActive', false ) ) : ?>
-				<li class="step current <?= $this->get( 'standardStepActive', false ) ?>">
+				<li class="step current <?= $this->get( 'standardStepActive', false ) ?>" aria-current="page">
 					<?= $enc->html( $this->translate( 'client', $this->get( 'standardStepActive', false ) ) ) ?>
 				</li>
 			<?php endif ?>

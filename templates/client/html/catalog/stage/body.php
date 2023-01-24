@@ -27,7 +27,7 @@ $enc = $this->encoder();
 		</div>
 	<?php endif ?>
 
-	<div class="catalog-stage-breadcrumb container-xxl">
+	<div class="catalog-stage-breadcrumb container-xxl" aria-label="<?= $enc->attr( $this->translate( 'client', 'Breadcrumb navigation' ) ) ?>">
 
 		<?php if( isset( $this->stageCatPath ) ) : ?>
 			<?php

@@ -35,8 +35,8 @@ if( $sort === 'price' ) {
 ?>
 <nav class="pagination">
 
-	<div class="sort">
-		<span><?= $enc->html( $this->translate( 'client', 'Sort by:' ), $enc::TRUST ) ?></span>
+	<div class="sort" aria-label="<?= $enc->attr( $this->translate( 'client', 'Sort by' ) ) ?>">
+		<span><?= $enc->html( $this->translate( 'client', 'Sort by' ), $enc::TRUST ) ?>:</span>
 		<ul>
 			<li>
 				<?php $url = $this->link( $key, ['f_sort' => 'relevance'] + $params ) ?>
@@ -72,7 +72,7 @@ if( $sort === 'price' ) {
 	</div>
 
 	<?php if( !$infiniteScroll && $this->last > 1 ) : ?>
-		<div class="browser">
+		<div class="browser" aria-label="<?= $enc->attr( $this->translate( 'client', 'Go to page' ) ) ?>">
 
 			<?php $url = $this->link( $key, ['l_page' => 1] + $params ) ?>
 			<a class="first" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'First' ) ) ?>">

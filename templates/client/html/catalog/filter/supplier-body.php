@@ -12,7 +12,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ) ?>
-	<div class="section catalog-filter-supplier">
+	<div class="section catalog-filter-supplier" aria-label="<?= $enc->attr( $this->translate( 'client', 'Supplier list' ) ) ?>">
 		<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ) ?></div>
 
 		<div class="supplier-lists">

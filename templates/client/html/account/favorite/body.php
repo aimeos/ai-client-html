@@ -78,7 +78,7 @@ $enc = $this->encoder();
 	<div class="section aimeos account-favorite" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
-			<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ) ?></h1>
+			<h2 class="header"><?= $this->translate( 'client', 'Favorite products' ) ?></h2>
 
 			<div class="favorite-items product-list">
 

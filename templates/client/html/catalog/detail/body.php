@@ -93,7 +93,7 @@ if( isset( $this->detailProductItem )
 
 				<div class="col-sm-6">
 
-					<div class="catalog-detail-basic">
+					<div class="catalog-detail-basic" aria-label="<?= $enc->attr( $this->translate( 'client', 'Product information' ) ) ?>">
 						<?php if( !( $suppliers = $this->detailProductItem->getRefItems( 'supplier' ) )->isEmpty() ) : $name = $suppliers->getName()->first() ?>
 							<p class="supplier">
 								<a href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $suppliers->firstKey(), 's_name' => $name] ) ) ?>">
@@ -126,7 +126,8 @@ if( isset( $this->detailProductItem )
 					</div>
 
 
-					<div class="catalog-detail-basket" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
+					<div class="catalog-detail-basket" itemscope itemprop="offers" itemtype="http://schema.org/Offer"
+						aria-label="<?= $enc->attr( $this->translate( 'client', 'Product price' ) ) ?>">
 
 						<div class="price-list">
 							<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
@@ -286,7 +287,7 @@ if( isset( $this->detailProductItem )
 					</div>
 
 
-					<div class="catalog-detail-actions">
+					<div class="catalog-detail-actions" aria-label="<?= $enc->attr( $this->translate( 'client', 'Product actions' ) ) ?>">
 
 						<?= $this->partial(
 							/** client/html/catalog/partials/actions
@@ -355,7 +356,8 @@ if( isset( $this->detailProductItem )
 						</nav>
 
 						<div class="tab-content" id="nav-tabContent">
-							<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+							<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab"
+								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product description' ) ) ?>">
 
 								<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
 									<div class="block description">
@@ -369,7 +371,8 @@ if( isset( $this->detailProductItem )
 
 							</div>
 
-							<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab">
+							<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab"
+								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product attributes' ) ) ?>">
 
 								<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
@@ -429,7 +432,9 @@ if( isset( $this->detailProductItem )
 								<?php endif ?>
 							</div>
 
-							<div class="tab-pane fade" id="nav-characteristics" role="tabpanel" aria-labelledby="nav-characteristics-tab">
+							<div class="tab-pane fade" id="nav-characteristics" role="tabpanel" aria-labelledby="nav-characteristics-tab"
+								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product characteristics' ) ) ?>">
+
 								<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 
 									<ul class="block downloads">
@@ -455,7 +460,9 @@ if( isset( $this->detailProductItem )
 								<?php endif ?>
 							</div>
 
-							<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
+							<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab"
+								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product reviews' ) ) ?>">
+
 								<div class="reviews container-fluid block" data-productid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 									<div class="row">
 										<div class="col-md-4 rating-list">

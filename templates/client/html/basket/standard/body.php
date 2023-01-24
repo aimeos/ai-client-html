@@ -19,7 +19,7 @@ $enc = $this->encoder();
 				<?= $this->csrf()->formfield() ?>
 
 				<div class="row header">
-					<h1 class="col-12 col-sm-6"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
+					<h2 class="col-12 col-sm-6"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h2>
 
 					<?php if( $this->get( 'contextUserId' ) ) : ?>
 						<div class="col-12 col-sm-6">

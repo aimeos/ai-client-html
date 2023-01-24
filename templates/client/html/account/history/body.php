@@ -83,7 +83,7 @@ $enc = $this->encoder();
 	<div class="section aimeos account-history" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
-			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Order history' ), $enc::TRUST ) ?></h1>
+			<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Order history' ), $enc::TRUST ) ?></h2>
 
 			<div class="history-list">
 

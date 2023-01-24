@@ -24,7 +24,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 <div class="section aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 	<div class="container-xxl">
 
-		<h1><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ) ?></h1>
+		<h2><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ) ?></h2>
 
 		<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 			<!-- basket.bulk.csrf -->

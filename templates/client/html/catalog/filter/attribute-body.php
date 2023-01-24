@@ -35,7 +35,7 @@ $params = $this->param();
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ) ?>
 <?php if( !empty( $attrMap ) ) : ?>
-	<div class="section catalog-filter-attribute">
+	<div class="section catalog-filter-attribute" aria-label="<?= $enc->attr( $this->translate( 'client', 'Product filters' ) ) ?>">
 		<div class="attr-header header-name"><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></div>
 
 		<div class="attribute-lists">

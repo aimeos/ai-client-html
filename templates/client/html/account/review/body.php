@@ -93,7 +93,7 @@ $enc = $this->encoder();
 	<div class="section aimeos account-review" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
-			<h1 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h1>
+			<h2 class="header"><?= $this->translate( 'client', 'Reviews' ) ?></h2>
 
 			<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/review/url' ) ) ?>">
 				<?= $this->csrf()->formfield() ?>
