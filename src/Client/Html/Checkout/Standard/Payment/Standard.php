@@ -147,7 +147,7 @@ class Standard
 					{
 						$value = is_array( $item->getDefault() ) ? key( $item->getDefault() ) : $item->getDefault();
 						$value = $oservice->getAttribute( $key, 'payment' ) ?: $value;
-						$item->value = $oservice->getAttribute( $key . '/hidden', 'payment' ) ?: $value;
+						$item->value = $oservice->getAttribute( $key, 'payment/hidden' ) ?: $value;
 					}
 				}
 				else
