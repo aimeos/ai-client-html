@@ -315,7 +315,7 @@ class Standard
 	 */
 	public function modify( string $content, string $uid ) : string
 	{
-		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.lists.csrf' );
+		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.lists.items.csrf' );
 	}
 
 

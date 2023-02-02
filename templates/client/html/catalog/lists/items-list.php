@@ -124,9 +124,9 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 				<?php if( $this->config( 'client/html/catalog/lists/basket-add', false ) ) : ?>
 					<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
-						<!-- catalog.lists.csrf -->
+						<!-- catalog.lists.items.csrf -->
 						<?= $this->csrf()->formfield() ?>
-						<!-- catalog.lists.csrf -->
+						<!-- catalog.lists.items.csrf -->
 
 						<?php if( $productItem->getType() === 'select' ) : ?>
 							<div class="items-selection">
