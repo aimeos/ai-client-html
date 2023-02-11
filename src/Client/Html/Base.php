@@ -624,6 +624,7 @@ abstract class Base
 	 * @param string $value Value string that should be stored for the given key
 	 * @param array $tags List of tag strings that should be assoicated to the given value in the cache
 	 * @param string|null $expire Date/time string in "YYYY-MM-DD HH:mm:ss"	format when the cache entry expires
+	 * @return string Cached value
 	 */
 	protected function cache( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, string $expire = null ) : string
 	{
@@ -637,17 +638,10 @@ abstract class Base
 			return $value;
 		}
 
-		try
-		{
-			$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
-			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
+		$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
+		$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
-			$context->cache()->set( $key, $value, $expire, array_unique( $tags ) );
-		}
-		catch( \Exception $e )
-		{
-			$context->logger()->notice( sprintf( 'Unable to set cache entry: %1$s', $e->getMessage() ), 'client/html' );
-		}
+		$context->cache()->set( $key, $value, $expire, array_unique( $tags ) );
 
 		return $value;
 	}
