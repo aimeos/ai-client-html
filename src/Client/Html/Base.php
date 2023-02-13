@@ -232,9 +232,12 @@ abstract class Base
 	 * @param array $decorators List of decorator name that should be wrapped around the client
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
 	 * @return \Aimeos\Client\Html\Iface Client object
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function addDecorators( \Aimeos\Client\Html\Iface $client, array $decorators, string $classprefix ) : \Aimeos\Client\Html\Iface
 	{
+		$interface = \Aimeos\Client\Html\Common\Decorator\Iface::class;
+
 		foreach( $decorators as $name )
 		{
 			if( ctype_alnum( $name ) === false )
@@ -244,14 +247,7 @@ abstract class Base
 			}
 
 			$classname = $classprefix . $name;
-
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
-			}
-
-			$client = new $classname( $client, $this->context );
-
-			\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface', $client );
+			$client = \Aimeos\Utils::create( $classname, [$client, $this->context], $interface );
 		}
 
 		return $client;
@@ -443,28 +439,22 @@ abstract class Base
 	 * @param string $path Name of the sub-part in lower case (can contain a path like catalog/filter/tree)
 	 * @param string|null $name Name of the implementation, will be from configuration (or Default) if null
 	 * @return \Aimeos\Client\Html\Iface Sub-part object
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function createSubClient( string $path, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		$path = strtolower( $path );
-
-		if( $name === null ) {
-			$name = $this->context->config()->get( 'client/html/' . $path . '/name', 'Standard' );
-		}
+		$name = $name ?: $this->context->config()->get( 'client/html/' . $path . '/name', 'Standard' );
 
 		if( empty( $name ) || ctype_alnum( $name ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid characters in client name "%1$s"', $name ) );
+			throw new \LogicException( sprintf( 'Invalid characters in client name "%1$s"', $name ), 400 );
 		}
 
 		$subnames = str_replace( '/', '\\', ucwords( $path, '/' ) );
 		$classname = '\\Aimeos\\Client\\Html\\' . $subnames . '\\' . $name;
+		$interface = \Aimeos\Client\Html\Iface::class;
 
-		if( class_exists( $classname ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not available', $classname ) );
-		}
-
-		$object = new $classname( $this->context );
-		$object = \Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Client\\Html\\Iface', $object );
+		$object = \Aimeos\Utils::create( $classname, [$this->context], $interface );
 		$object = $this->addClientDecorators( $object, $path );
 
 		return $object->setObject( $object );

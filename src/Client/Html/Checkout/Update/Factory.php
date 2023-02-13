@@ -28,7 +28,7 @@ class Factory
 	 * @param \Aimeos\MShop\ContextIface $context Shop context instance with necessary objects
 	 * @param string|null $name Client name (default: "Standard")
 	 * @return \Aimeos\Client\Html\Iface Update part implementing \Aimeos\Client\Html\Iface
-	 * @throws \Aimeos\Client\Html\Exception If requested client implementation couldn't be found or initialisation fails
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	public static function create( \Aimeos\MShop\ContextIface $context, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
@@ -72,7 +72,7 @@ class Factory
 		$classname = '\\Aimeos\\Client\\Html\\Checkout\\Update\\' . $name;
 
 		if( ctype_alnum( $name ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid characters in class name "%1$s"', $classname ) );
+			throw new \LogicException( sprintf( 'Invalid characters in class name "%1$s"', $name ), 400 );
 		}
 
 		$client = self::createClient( $context, $classname, $iface );

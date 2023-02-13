@@ -137,32 +137,20 @@ class Html
 	 * @param array $decorators List of decorator name that should be wrapped around the client
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
 	 * @return \Aimeos\Client\Html\Iface Client object
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected static function addDecorators( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\Client\Html\Iface $client, array $decorators, string $classprefix ) : \Aimeos\Client\Html\Iface
 	{
+		$interface = \Aimeos\Client\Html\Common\Decorator\Iface::class;
+
 		foreach( $decorators as $name )
 		{
-			if( ctype_alnum( $name ) === false )
-			{
-				$classname = is_string( $name ) ? $classprefix . $name : '<not a string>';
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid class name "%1$s"', $classname ), 400 );
+			if( ctype_alnum( $name ) === false ) {
+				throw new \LogicException( sprintf( 'Invalid class name "%1$s"', $name ), 400 );
 			}
 
-			$classname = $classprefix . $name;
-
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ), 404 );
-			}
-
-			$interface = '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface';
-			$client = new $classname( $client, $context );
-
-			if( !( $client instanceof $interface ) )
-			{
-				$msg = sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $interface );
-				throw new \Aimeos\Client\Html\Exception( $msg, 400 );
-			}
+			$client = \Aimeos\Utils::create( $classprefix . $name, [$client, $context], $interface );
 		}
 
 		return $client;
@@ -186,17 +174,7 @@ class Html
 			return self::$objects[$classname];
 		}
 
-		if( class_exists( $classname ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not available', $classname ), 404 );
-		}
-
-		$client = new $classname( $context );
-
-		if( !( $client instanceof $interface ) )
-		{
-			$msg = sprintf( 'Class "%1$s" does not implement "%2$s"', $classname, $interface );
-			throw new \Aimeos\Client\Html\Exception( $msg, 400 );
-		}
+		$client = \Aimeos\Utils::create( $classname, [$context], $interface );
 
 		return self::addComponentDecorators( $context, $client, $path );
 	}
