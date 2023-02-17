@@ -79,7 +79,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
-			->setMethods( array( 'addListItem', 'store' ) )
+			->onlyMethods( array( 'addListItem', 'store' ) )
 			->setConstructorArgs( [$this->context] )
 			->getMock();
 
@@ -105,7 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
-			->setMethods( array( 'deleteListItem', 'store' ) )
+			->onlyMethods( array( 'deleteListItem', 'store' ) )
 			->setConstructorArgs( [$this->context] )
 			->getMock();
 
@@ -131,7 +131,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
-			->setMethods( array( 'addListItem', 'store' ) )
+			->onlyMethods( array( 'addListItem', 'store' ) )
 			->setConstructorArgs( [$this->context] )
 			->getMock();
 

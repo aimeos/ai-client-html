@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Download\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'checkAccess', 'checkDownload' ) )
+			->onlyMethods( array( 'checkAccess', 'checkDownload' ) )
 			->getMock();
 		$object->setView( $this->view );
 
@@ -83,7 +83,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$attrManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Attribute\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( ['get'] )
+			->onlyMethods( ['get'] )
 			->getMock();
 
 		$attrManagerStub->expects( $this->once() )->method( 'get' )
@@ -98,7 +98,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
-			->setMethods( array( 'createStream' ) )
+			->onlyMethods( array( 'createStream' ) )
 			->getMock();
 		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
 		$this->view->addHelper( 'response', $helper );
@@ -117,7 +117,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'addListItem', 'store' ) )
+			->onlyMethods( array( 'addListItem', 'store' ) )
 			->getMock();
 
 		$customerStub->expects( $this->once() )->method( 'addListItem' )->will( $this->returnValue( $customerStub ) );
@@ -152,7 +152,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
-			->setMethods( array( 'createStream' ) )
+			->onlyMethods( array( 'createStream' ) )
 			->getMock();
 		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
 		$this->view->addHelper( 'response', $helper );

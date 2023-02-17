@@ -75,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Service\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['updatePush'] )
+			->onlyMethods( ['updatePush'] )
 			->getMock();
 
 		$mock->expects( $this->once() )->method( 'updatePush' )

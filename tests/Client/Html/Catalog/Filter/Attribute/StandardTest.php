@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$regex = '/<fieldset class="attr-sets attr-color">.*<fieldset class="attr-sets attr-width">.*<fieldset class="attr-sets attr-length">/smu';
 		$this->assertStringNotContainsString( '<fieldset class="attr-sets attr-size">', $output );
-		$this->assertRegexp( $regex, $output );
+		$this->assertMatchesRegularExpression( $regex, $output );
 	}
 
 

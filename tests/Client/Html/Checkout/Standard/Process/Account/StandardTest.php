@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'add', 'get', 'store' ) )
+			->onlyMethods( array( 'add', 'get', 'store' ) )
 			->getMock();
 
 		$customerStub->expects( $this->once() )->method( 'add' )->will( $this->returnValue( $customerStub ) );

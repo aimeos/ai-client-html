@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing', $output );
-		$this->assertRegexp( '/form-item form-group city.*form-item form-group postal/smU', $output );
+		$this->assertMatchesRegularExpression( '/form-item form-group city.*form-item form-group postal/smU', $output );
 
 		$this->assertGreaterThan( 0, count( $this->view->addressBillingMandatory ) );
 		$this->assertGreaterThan( 0, count( $this->view->addressBillingOptional ) );
@@ -211,7 +211,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( ['store'] )
+			->onlyMethods( ['store'] )
 			->getMock();
 
 		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnSelf() );

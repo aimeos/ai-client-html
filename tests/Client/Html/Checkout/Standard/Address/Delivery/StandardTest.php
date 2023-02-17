@@ -204,7 +204,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'deleteAddressItem', 'store' ) )
+			->onlyMethods( array( 'deleteAddressItem', 'store' ) )
 			->getMock();
 
 		$customerStub->expects( $this->once() )->method( 'deleteAddressItem' )->will( $this->returnValue( $customerStub ) );

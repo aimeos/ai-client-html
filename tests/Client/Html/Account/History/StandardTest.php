@@ -56,11 +56,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<div class="section aimeos account-history', $output );
-		$this->assertRegExp( '#<div class="history-item#', $output );
-		$this->assertRegExp( '#<h2 class="order-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
-		$this->assertRegExp( '#<div class="order-invoiceno.*<span class="value[^<]+</span>.*</div>#smU', $output );
-		$this->assertRegExp( '#<div class="order-payment.*<span class="value[^<]+</span>.*</div>#smU', $output );
-		$this->assertRegExp( '#<div class="order-delivery.*<span class="value.*</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="history-item#', $output );
+		$this->assertMatchesRegularExpression( '#<h2 class="order-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="order-invoiceno.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="order-payment.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="order-delivery.*<span class="value.*</span>.*</div>#smU', $output );
 
 		$this->assertStringContainsString( '<div class="account-history-detail common-summary', $output );
 
@@ -76,7 +76,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
 		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );
 		$this->assertStringContainsString( 'Unittest: Monetary rebate', $output );
-		$this->assertRegExp( '#<div class="price.+55.00 EUR</div>#', $output );
-		$this->assertRegExp( '#<div class="quantity.+14 articles</div>#', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+55.00 EUR</div>#', $output );
+		$this->assertMatchesRegularExpression( '#<div class="quantity.+14 articles</div>#', $output );
 	}
 }

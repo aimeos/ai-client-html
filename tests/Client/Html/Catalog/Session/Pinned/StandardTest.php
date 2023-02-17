@@ -48,7 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smU', $output );
+		$this->assertMatchesRegularExpression( '#.*Cafe Noire Cappuccino.*#smU', $output );
 		$this->assertStringStartsWith( '<div class="section catalog-session-pinned">', $output );
 	}
 

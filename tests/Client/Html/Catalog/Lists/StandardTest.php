@@ -67,7 +67,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view, $tags, $expire ) );
 		$output = $this->object->header();
 
-		$this->assertRegexp( '#<title>[^>]*Search result[^<]* | Aimeos</title>#', $output );
+		$this->assertMatchesRegularExpression( '#<title>[^>]*Search result[^<]* | Aimeos</title>#', $output );
 		$this->assertEquals( null, $expire );
 		$this->assertEquals( 1, count( $tags ) );
 	}
@@ -87,7 +87,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringStartsWith( '<div class="section aimeos catalog-list home categories coffee"', $output );
 
 		$this->assertStringContainsString( '<div class="catalog-list-head">', $output );
-		$this->assertRegExp( '#<h1>Kaffee</h1>#', $output );
+		$this->assertMatchesRegularExpression( '#<h1>Kaffee</h1>#', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 		$this->assertEquals( 8, count( $tags ) );
@@ -123,8 +123,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
-		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smu', $output );
-		$this->assertRegExp( '#.*Cafe Noire Expresso.*#smu', $output );
+		$this->assertMatchesRegularExpression( '#.*Cafe Noire Cappuccino.*#smu', $output );
+		$this->assertMatchesRegularExpression( '#.*Cafe Noire Expresso.*#smu', $output );
 	}
 
 
@@ -136,10 +136,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<div class="section aimeos catalog-list', $output );
-		$this->assertNotRegExp( '#.*U:TESTPSUB01.*#smu', $output );
-		$this->assertNotRegExp( '#.*U:TESTSUB03.*#smu', $output );
-		$this->assertNotRegExp( '#.*U:TESTSUB04.*#smu', $output );
-		$this->assertNotRegExp( '#.*U:TESTSUB05.*#smu', $output );
+		$this->assertDoesNotMatchRegularExpression( '#.*U:TESTPSUB01.*#smu', $output );
+		$this->assertDoesNotMatchRegularExpression( '#.*U:TESTSUB03.*#smu', $output );
+		$this->assertDoesNotMatchRegularExpression( '#.*U:TESTSUB04.*#smu', $output );
+		$this->assertDoesNotMatchRegularExpression( '#.*U:TESTSUB05.*#smu', $output );
 	}
 
 
@@ -209,10 +209,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#.*Cafe Noire Cappuccino.*#smu', $output );
-		$this->assertRegExp( '#.*Cafe Noire Expresso.*#smu', $output );
-		$this->assertRegExp( '#.*Unittest: Bundle.*#smu', $output );
-		$this->assertRegExp( '#.*Unittest: Test priced Selection.*#smu', $output );
+		$this->assertMatchesRegularExpression( '#.*Cafe Noire Cappuccino.*#smu', $output );
+		$this->assertMatchesRegularExpression( '#.*Cafe Noire Expresso.*#smu', $output );
+		$this->assertMatchesRegularExpression( '#.*Unittest: Bundle.*#smu', $output );
+		$this->assertMatchesRegularExpression( '#.*Unittest: Test priced Selection.*#smu', $output );
 	}
 
 

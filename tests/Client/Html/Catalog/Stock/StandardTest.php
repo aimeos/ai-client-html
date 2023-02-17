@@ -51,6 +51,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
-		$this->assertRegExp( '/"' . $prodid . '".*stock-high/', $output );
+		$this->assertMatchesRegularExpression( '/"' . $prodid . '".*stock-high/', $output );
 	}
 }

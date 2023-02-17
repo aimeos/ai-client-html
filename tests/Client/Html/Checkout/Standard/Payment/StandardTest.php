@@ -50,10 +50,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<div class="section checkout-standard-payment">', $output );
-		$this->assertRegExp( '#<li class="row form-item form-group directdebit.accountowner mandatory">#smU', $output );
-		$this->assertRegExp( '#<li class="row form-item form-group directdebit.accountno mandatory">#smU', $output );
-		$this->assertRegExp( '#<li class="row form-item form-group directdebit.bankcode mandatory">#smU', $output );
-		$this->assertRegExp( '#<li class="row form-item form-group directdebit.bankname mandatory">#smU', $output );
+		$this->assertMatchesRegularExpression( '#<li class="row form-item form-group directdebit.accountowner mandatory">#smU', $output );
+		$this->assertMatchesRegularExpression( '#<li class="row form-item form-group directdebit.accountno mandatory">#smU', $output );
+		$this->assertMatchesRegularExpression( '#<li class="row form-item form-group directdebit.bankcode mandatory">#smU', $output );
+		$this->assertMatchesRegularExpression( '#<li class="row form-item form-group directdebit.bankname mandatory">#smU', $output );
 
 		$this->assertGreaterThan( 0, count( $this->view->paymentServices ) );
 	}

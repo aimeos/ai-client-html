@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Review\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$stub->expects( $this->once() )->method( 'save' );

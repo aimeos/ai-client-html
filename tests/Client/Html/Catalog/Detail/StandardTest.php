@@ -198,7 +198,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="catalog-detail-basket-attribute', $output );
 
 		foreach( $configAttr as $id => $item ) {
-			$this->assertRegexp( '#<option class="select-option".*value="' . $id . '">#smU', $output );
+			$this->assertMatchesRegularExpression( '#<option class="select-option".*value="' . $id . '">#smU', $output );
 		}
 	}
 
@@ -225,11 +225,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="catalog-detail-basket-selection', $output );
 
 		foreach( $variantAttr1 as $id => $item ) {
-			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
+			$this->assertMatchesRegularExpression( '#<option class="select-option" value="' . $id . '">#', $output );
 		}
 
 		foreach( $variantAttr2 as $id => $item ) {
-			$this->assertRegexp( '#<option class="select-option" value="' . $id . '">#', $output );
+			$this->assertMatchesRegularExpression( '#<option class="select-option" value="' . $id . '">#', $output );
 		}
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );

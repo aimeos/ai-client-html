@@ -73,18 +73,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['processPayment'] )
+			->onlyMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store'] )
+			->onlyMethods( ['store'] )
 			->getMock();
 
 		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
@@ -119,18 +119,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['processPayment'] )
+			->onlyMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store'] )
+			->onlyMethods( ['store'] )
 			->getMock();
 
 		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
@@ -156,18 +156,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['processPayment'] )
+			->onlyMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store'] )
+			->onlyMethods( ['store'] )
 			->getMock();
 
 		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();

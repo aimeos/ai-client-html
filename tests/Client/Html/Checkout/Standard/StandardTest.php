@@ -62,7 +62,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '<div class="section aimeos checkout-standard"', $output );
-		$this->assertRegExp( '#<ol class="steps">.*<li class="step.*>.*</li>.*</ol>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<ol class="steps">.*<li class="step.*>.*</li>.*</ol>#smU', $output );
 		$this->assertStringContainsString( '<div class="section checkout-standard-address', $output );
 		$this->assertStringNotContainsString( '<div class="section checkout-standard-delivery', $output );
 		$this->assertStringNotContainsString( '<div class="section checkout-standard-payment', $output );

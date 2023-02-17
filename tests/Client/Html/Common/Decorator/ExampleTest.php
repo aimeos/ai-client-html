@@ -24,7 +24,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelper::context();
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
-			->setMethods( array( 'header', 'body', 'testMethod' ) )
+			->onlyMethods( ['header', 'body'] )->addMethods( ['testMethod'] )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->getMock();
 

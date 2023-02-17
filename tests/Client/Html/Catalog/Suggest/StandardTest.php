@@ -54,7 +54,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 		$suggestItems = $this->view->suggestItems;
 
-		$this->assertRegExp( '#\[\{"label":"Unterpro.*","html":".*Unterpro.*"\}\]#smU', $output );
+		$this->assertMatchesRegularExpression( '#\[\{"label":"Unterpro.*","html":".*Unterpro.*"\}\]#smU', $output );
 		$this->assertNotEquals( [], $suggestItems );
 
 		foreach( $suggestItems as $item ) {
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 		$suggestItems = $this->view->suggestItems;
 
-		$this->assertRegExp( '#\[.*\{"label":"Cafe.*","html":".*Cafe.*"\}.*\]#smU', $output );
+		$this->assertMatchesRegularExpression( '#\[.*\{"label":"Cafe.*","html":".*Cafe.*"\}.*\]#smU', $output );
 		$this->assertNotEquals( [], $suggestItems );
 
 		foreach( $suggestItems as $item ) {

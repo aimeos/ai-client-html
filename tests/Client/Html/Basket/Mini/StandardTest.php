@@ -73,8 +73,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller->clear();
 
 		$this->assertStringContainsString( '<div class="basket-mini-product', $output );
-		$this->assertRegExp( '#9#smU', $output );
-		$this->assertRegExp( '#171.00#smU', $output );
+		$this->assertMatchesRegularExpression( '#9#smU', $output );
+		$this->assertMatchesRegularExpression( '#171.00#smU', $output );
 	}
 
 

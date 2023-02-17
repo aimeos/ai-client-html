@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 		$this->assertStringContainsString( '<div class="common-summary-detail', $output );
-		$this->assertRegExp( '#<div class="tax.*<div class="price.*10.84 EUR</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="tax.*<div class="price.*10.84 EUR</div>#smU', $output );
 	}
 
 

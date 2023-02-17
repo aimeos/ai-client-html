@@ -59,11 +59,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<div class="section aimeos account-subscription"', $output );
-		$this->assertRegExp( '#<div class="subscription-item#', $output );
-		$this->assertRegExp( '#<h2 class="subscription-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
-		$this->assertRegExp( '#<div class="subscription-interval.*<span class="value[^<]+</span>.*</div>#smU', $output );
-		$this->assertRegExp( '#<div class="subscription-datenext.*<span class="value[^<]+</span>.*</div>#smU', $output );
-		$this->assertRegExp( '#<div class="subscription-dateend.*<span class="value.*</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="subscription-item#', $output );
+		$this->assertMatchesRegularExpression( '#<h2 class="subscription-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="subscription-interval.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="subscription-datenext.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="subscription-dateend.*<span class="value.*</span>.*</div>#smU', $output );
 
 		$this->assertStringContainsString( 'Our Unittest', $output );
 		$this->assertStringContainsString( 'Example company', $output );
@@ -86,7 +86,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$cntlStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Subscription\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['cancel'] )
+			->onlyMethods( ['cancel'] )
 			->getMock();
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Subscription\Standard::class, $cntlStub );

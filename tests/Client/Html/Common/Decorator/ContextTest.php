@@ -21,7 +21,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
 			->setConstructorArgs( [$context] )
-			->setMethods( ['data'] )
+			->onlyMethods( ['data'] )
 			->getMock();
 
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Context( $this->client, $context );

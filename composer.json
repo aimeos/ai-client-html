@@ -19,7 +19,7 @@
 		"aimeos/ai-controller-frontend": "dev-master"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "~9.0",
+		"phpunit/phpunit": "~9.0||~10.0",
 		"nyholm/psr7-server": "~1.0"
 	},
 	"autoload": {

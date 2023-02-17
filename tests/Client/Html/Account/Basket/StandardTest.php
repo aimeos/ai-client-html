@@ -55,8 +55,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<div class="section aimeos account-basket', $output );
-		$this->assertRegExp( '#<div class="basket-item#', $output );
-		$this->assertRegExp( '#<h2 class="basket-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="basket-item#', $output );
+		$this->assertMatchesRegularExpression( '#<h2 class="basket-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
 
 		$this->assertStringContainsString( '<div class="account-basket-detail common-summary', $output );
 	}

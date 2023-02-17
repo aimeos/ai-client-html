@@ -47,7 +47,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$regex = '#<div class="supplier-lists">.*<ul class="attr-list">.*</ul>.*</fieldset>#smu';
-		$this->assertRegexp( $regex, $output );
+		$this->assertMatchesRegularExpression( $regex, $output );
 	}
 
 
