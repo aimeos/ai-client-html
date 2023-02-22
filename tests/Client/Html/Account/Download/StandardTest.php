@@ -98,9 +98,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
-			->onlyMethods( array( 'createStream' ) )
+			->onlyMethods( ['createStream', 'withBody'] )
 			->getMock();
 		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
+		$helper->expects( $this->once() )->method( 'withBody' )->will( $this->returnSelf() );
 		$this->view->addHelper( 'response', $helper );
 
 		$object->init();
@@ -152,9 +153,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
-			->onlyMethods( array( 'createStream' ) )
+			->onlyMethods( ['createStream', 'withBody'] )
 			->getMock();
 		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
+		$helper->expects( $this->once() )->method( 'withBody' )->will( $this->returnSelf() );
 		$this->view->addHelper( 'response', $helper );
 
 		$this->access( 'addDownload' )->invokeArgs( $this->object, [$item] );
