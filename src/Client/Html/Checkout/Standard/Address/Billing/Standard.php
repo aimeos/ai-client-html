@@ -469,7 +469,7 @@ class Standard
 			$params = $view->param( 'ca_billing', [] );
 
 			if( ( $view->addressBillingError = $this->checkFields( $params ) ) !== [] ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
+				return false;
 			}
 		}
 		else // existing address
@@ -477,7 +477,7 @@ class Standard
 			$params = $view->param( 'ca_billing_' . $option, [] ) + $view->param( 'ca_extra', [] );
 
 			if( !empty( $params ) && ( $view->addressBillingError = $this->checkFields( $params ) ) !== [] ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
+				return false;
 			}
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( [] );
