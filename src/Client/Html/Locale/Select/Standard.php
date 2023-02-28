@@ -87,7 +87,7 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.09
 	 */
-	private $subPartPath = 'client/html/locale/select/subparts';
+	private string $subPartPath = 'client/html/locale/select/subparts';
 
 	/** client/html/locale/select/language/name
 	 * Name of the language part used by the locale selector client implementation
@@ -108,11 +108,11 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2014.09
 	 */
-	private $subPartNames = array( 'language', 'currency' );
+	private array $subPartNames = array( 'language', 'currency' );
 
-	private $tags = [];
-	private $expire;
-	private $view;
+	private array $tags = [];
+	private ?string $expire = null;
+	private ?\Aimeos\Base\View\Iface $view = null;
 
 
 	/**

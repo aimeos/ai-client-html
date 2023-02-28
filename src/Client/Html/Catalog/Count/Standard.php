@@ -87,7 +87,7 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
-	private $subPartPath = 'client/html/catalog/count/subparts';
+	private string $subPartPath = 'client/html/catalog/count/subparts';
 
 	/** client/html/catalog/count/tree/name
 	 * Name of the tree part used by the catalog count client implementation
@@ -118,7 +118,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
-	private $subPartNames = ['tree', 'supplier', 'attribute'];
+	private array $subPartNames = ['tree', 'supplier', 'attribute'];
 
 
 	/**

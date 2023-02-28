@@ -22,7 +22,7 @@ abstract class Base
 	extends \Aimeos\Client\Html\Base
 	implements \Aimeos\Client\Html\Common\Decorator\Iface
 {
-	private $client;
+	private \Aimeos\Client\Html\Iface $client;
 
 
 	/**

@@ -90,7 +90,7 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
-	private $subPartPath = 'client/html/catalog/filter/subparts';
+	private string $subPartPath = 'client/html/catalog/filter/subparts';
 
 	/** client/html/catalog/filter/search/name
 	 * Name of the search part used by the catalog filter client implementation
@@ -141,10 +141,11 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2018.07
 	 */
-	private $subPartNames = ['tree', 'search', 'price', 'supplier', 'attribute'];
-	private $tags = [];
-	private $expire;
-	private $view;
+	private array $subPartNames = ['tree', 'search', 'price', 'supplier', 'attribute'];
+
+	private array $tags = [];
+	private ?string $expire = null;
+	private ?\Aimeos\Base\View\Iface $view = null;
 
 
 	/**

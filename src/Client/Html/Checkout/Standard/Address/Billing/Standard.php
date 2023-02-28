@@ -22,7 +22,7 @@ class Standard
 	extends \Aimeos\Client\Html\Common\Client\Factory\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
-	private $mandatory = array(
+	private array $mandatory = array(
 		'order.address.firstname',
 		'order.address.lastname',
 		'order.address.address1',
@@ -32,7 +32,7 @@ class Standard
 		'order.address.email'
 	);
 
-	private $optional = array(
+	private array $optional = array(
 		'order.address.salutation',
 		'order.address.company',
 		'order.address.vatid',

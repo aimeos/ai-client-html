@@ -88,7 +88,7 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
-	private $subPartPath = 'client/html/catalog/session/subparts';
+	private string $subPartPath = 'client/html/catalog/session/subparts';
 
 	/** client/html/catalog/session/pinned/name
 	 * Name of the pinned part used by the catalog session client implementation
@@ -109,7 +109,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
-	private $subPartNames = array( 'pinned', 'seen' );
+	private array $subPartNames = array( 'pinned', 'seen' );
 
 
 	/**

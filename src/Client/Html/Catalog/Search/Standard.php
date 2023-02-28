@@ -87,8 +87,8 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2018.04
 	 */
-	private $subPartPath = 'client/html/catalog/search/subparts';
-	private $subPartNames = ['search'];
+	private string $subPartPath = 'client/html/catalog/search/subparts';
+	private array $subPartNames = ['search'];
 
 
 	/**

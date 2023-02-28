@@ -57,7 +57,7 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
-	private $subPartPath = 'client/html/checkout/standard/process/subparts';
+	private string $subPartPath = 'client/html/checkout/standard/process/subparts';
 
 	/** client/html/checkout/standard/process/account/name
 	 * Name of the account part used by the checkout standard process client implementation
@@ -78,7 +78,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2017.04
 	 */
-	private $subPartNames = ['account', 'address'];
+	private array $subPartNames = ['account', 'address'];
 
 
 	/**

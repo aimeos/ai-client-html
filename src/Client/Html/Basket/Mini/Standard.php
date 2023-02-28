@@ -88,9 +88,10 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
-	private $subPartPath = 'client/html/basket/mini/subparts';
-	private $subPartNames = [];
-	private $view;
+	private string $subPartPath = 'client/html/basket/mini/subparts';
+
+	private ?\Aimeos\Base\View\Iface $view = null;
+	private array $subPartNames = [];
 
 
 	/**

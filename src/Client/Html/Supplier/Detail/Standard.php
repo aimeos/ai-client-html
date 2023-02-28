@@ -55,9 +55,9 @@ class Standard
 	 */
 
 
-	private $tags = [];
-	private $expire;
-	private $view;
+	private array $tags = [];
+	private ?string $expire = null;
+	private ?\Aimeos\Base\View\Iface $view = null;
 
 
 	/**

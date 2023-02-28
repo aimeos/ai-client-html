@@ -24,12 +24,12 @@ abstract class Base
 	use \Aimeos\Macro\Macroable;
 
 
-	private $view;
-	private $cache;
-	private $object;
-	private $context;
-	private $subclients;
-	private $cachedView;
+	private \Aimeos\MShop\ContextIface $context;
+	private ?\Aimeos\Base\View\Iface $view = null;
+	private ?\Aimeos\Client\Html\Iface $object = null;
+	private ?\Aimeos\Base\View\Iface $cachedView = null;
+	private ?array $subclients = null;
+	private array $cache = [];
 
 
 	/**
