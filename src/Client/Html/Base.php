@@ -63,7 +63,7 @@ abstract class Base
 		if( count( $parts ) === 2 ) {
 			$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
 		} else {
-			$view = $this->view();
+			$view = $this->object()->data( $this->view() );
 		}
 
 		foreach( $this->getSubClients() as $subclient ) {
