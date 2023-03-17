@@ -18,9 +18,9 @@ AimeosCatalogFilter = {
 
 		const nodes = $('.catalog-filter-attribute[data-counturl]');
 
-		for(node of nodes) {
+		for(const node of nodes) {
 
-			fetch(node.data('counturl')).then(response => {
+			fetch($(node).data('counturl')).then(response => {
 				return response.json();
 			}).then(data => {
 
@@ -32,6 +32,10 @@ AimeosCatalogFilter = {
 					} else {
 						$(item).addClass("disabled");
 					}
+				});
+
+				$('.attribute-lists .attr-count', node).each((idx, el) => {
+					$(el).closest("fieldset.attr-sets").show();
 				});
 			});
 		}
@@ -45,16 +49,16 @@ AimeosCatalogFilter = {
 
 		const nodes = $('.catalog-filter-supplier[data-counturl]');
 
-		for(node of nodes) {
+		for(const node of nodes) {
 
-			fetch(node.data('counturl')).then(response => {
+			fetch($(node).data('counturl')).then(response => {
 				return response.json();
 			}).then(data => {
 
 				$('.supplier-lists li.attr-item', node).each(function(idx, item) {
 					const itemId = $(item).data( "id" );
 
-					if( data[itemId] ) {
+					if(data[itemId]) {
 						$(".attr-name", item).append('&nbsp;' + '<span class="attr-count">' + data[itemId] + '</span>');
 					} else {
 						$(item).addClass( 'disabled' );
@@ -72,9 +76,9 @@ AimeosCatalogFilter = {
 
 		const nodes = $('.catalog-filter-tree[data-counturl]');
 
-		for(node of nodes) {
+		for(const node of nodes) {
 
-			fetch(node.data('counturl')).then(response => {
+			fetch($(node).data('counturl')).then(response => {
 				return response.json();
 			}).then(data => {
 
@@ -289,17 +293,6 @@ AimeosCatalogFilter = {
 
 
 	/**
-	 * Shows the attribute filter if products are available for
-	 */
-	onShowAttributes() {
-
-		$(".catalog-filter-attribute .attribute-lists .attr-count").each((idx, el) => {
-			$(el).closest("fieldset.attr-sets").show();
-		});
-	},
-
-
-	/**
 	 * Submits the form when clicking on filter attribute names or counts
 	 */
 	onSubmitAttribute() {
@@ -483,7 +476,6 @@ AimeosCatalogFilter = {
 		this.onSyncPrice();
 		this.onTogglePrice();
 
-		this.onShowAttributes();
 		this.onSubmitAttribute();
 		this.onToggleAttribute();
 		this.onToggleAttributes();
