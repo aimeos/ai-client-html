@@ -212,7 +212,13 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
+		if( !empty( $count = $this->view()->params( 'count' ) ) ) {
+			$parts = array_intersect( $this->view()->params( 'count' ), $this->subPartNames );
+		} else {
+			$parts = $this->subPartNames;
+		}
+
+		return $this->context()->config()->get( $this->subPartPath, $parts );
 	}
 
 

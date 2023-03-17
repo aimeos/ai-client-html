@@ -12,6 +12,87 @@ AimeosCatalogFilter = {
 
 
 	/**
+	 * Attribute filter counts
+	 */
+	loadAttributeCounts() {
+
+		const nodes = $('.catalog-filter-attribute[data-counturl]');
+
+		for(node of nodes) {
+
+			fetch(node.data('counturl')).then(response => {
+				return response.json();
+			}).then(data => {
+
+				$('.attribute-lists li.attr-item', node).each(function(idx, item) {
+					const itemId = $(item).data( "id" );
+
+					if(data[itemId]) {
+						$(".attr-name", item).append('&nbsp;' + '<span class="attr-count">' + data[itemId] + '</span>');
+					} else {
+						$(item).addClass("disabled");
+					}
+				});
+			});
+		}
+	},
+
+
+	/**
+	 * Supplier filter counts
+	 */
+	loadSupplierCounts() {
+
+		const nodes = $('.catalog-filter-supplier[data-counturl]');
+
+		for(node of nodes) {
+
+			fetch(node.data('counturl')).then(response => {
+				return response.json();
+			}).then(data => {
+
+				$('.supplier-lists li.attr-item', node).each(function(idx, item) {
+					const itemId = $(item).data( "id" );
+
+					if( data[itemId] ) {
+						$(".attr-name", item).append('&nbsp;' + '<span class="attr-count">' + data[itemId] + '</span>');
+					} else {
+						$(item).addClass( 'disabled' );
+					}
+				});
+			});
+		}
+	},
+
+
+	/**
+	 * Tree filter counts
+	 */
+	loadTreeCounts() {
+
+		const nodes = $('.catalog-filter-tree[data-counturl]');
+
+		for(node of nodes) {
+
+			fetch(node.data('counturl')).then(response => {
+				return response.json();
+			}).then(data => {
+
+				$('.cat-item', node).each(function(idx, item) {
+					const id = $(item).data("id");
+
+					if(data[id]) {
+						$(":scope > a.cat-link, :scope > .item-links > a.name", item).append('<span class="cat-count">' + data[id] + '</span>');
+					} else if( $(item).hasClass("nochild") ) {
+						$(item).addClass("disabled");
+					}
+				});
+			});
+		}
+	},
+
+
+	/**
 	 * Mega menu
 	 */
 	onMenuHover() {
@@ -416,6 +497,10 @@ AimeosCatalogFilter = {
 		this.onToggleSearch();
 
 		this.onCheckForm();
+
+		this.loadAttributeCounts();
+		this.loadSupplierCounts();
+		this.loadTreeCounts();
 	}
 };
 

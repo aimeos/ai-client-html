@@ -415,8 +415,6 @@ class Standard
 		$config = $this->context()->config();
 		$params = $this->getClientParams( $view->param(), ['f_', 'l_type'] );
 
-		$view->filterParams = $params;
-
 		/** client/html/catalog/count/enable
 		 * Enables or disables displaying product counts in the catalog filter
 		 *
@@ -525,7 +523,7 @@ class Standard
 				unset( $params['f_sort'] );
 			}
 
-			$view->filterCountUrl = $view->link( 'client/html/catalog/count/url', $params );
+			$view->filterParams = $params;
 		}
 
 		return parent::data( $view, $tags, $expire );
