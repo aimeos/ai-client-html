@@ -16,9 +16,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp() : void
 	{
-		\Aimeos\Controller\Frontend::cache( true );
-		\Aimeos\MShop::cache( true );
-
 		$this->object = new \Aimeos\Client\Html\Catalog\Count\Supplier\Standard( \TestHelper::context() );
 		$this->object->setView( \TestHelper::view() );
 	}
@@ -26,9 +23,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	protected function tearDown() : void
 	{
-		\Aimeos\Controller\Frontend::cache( false );
-		\Aimeos\MShop::cache( false );
-
 		unset( $this->object );
 	}
 
@@ -37,6 +31,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( 'var supplierCount', $output );
+		$this->assertStringStartsWith( '{"', $output );
 	}
 }

@@ -212,8 +212,8 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		if( !empty( $count = $this->view()->params( 'count' ) ) ) {
-			$parts = array_intersect( $this->view()->params( 'count' ), $this->subPartNames );
+		if( !empty( $count = $this->view()->param( 'count' ) ) ) {
+			$parts = array_intersect( $count, $this->subPartNames );
 		} else {
 			$parts = $this->subPartNames;
 		}

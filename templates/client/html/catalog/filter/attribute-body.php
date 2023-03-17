@@ -37,7 +37,7 @@ $params = $this->param();
 <?php if( !empty( $attrMap ) ) : ?>
 	<div class="section catalog-filter-attribute"
 		aria-label="<?= $enc->attr( $this->translate( 'client', 'Product filters' ) ) ?>"
-		data-counturl="<?= enc->attr( $this->link( 'client/html/catalog/count/url', ['count' => 'attribute'] + $this->get( 'filterParams', [] ) ) ) ?>">
+		data-counturl="<?= $enc->attr( $this->link( 'client/html/catalog/count/url', ['count' => 'attribute'] + $this->get( 'filterParams', [] ) ) ) ?>">
 
 		<div class="attr-header header-name"><?= $enc->html( $this->translate( 'client', 'Filter' ), $enc::TRUST ) ?></div>
 

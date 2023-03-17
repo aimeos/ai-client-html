@@ -41,9 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( 'var attributeCount', $output );
-		$this->assertStringContainsString( 'var catalogCounts', $output );
-		$this->assertStringContainsString( 'var supplierCount', $output );
+		$this->assertStringStartsWith( '{"', $output );
 	}
 
 
