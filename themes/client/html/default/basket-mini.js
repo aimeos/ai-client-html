@@ -71,9 +71,9 @@ AimeosBasketMini = {
 	 */
 	onDelete() {
 
-		$(".aimeos .basket-mini-product").on("click", ".delete", ev => {
+		$(".aimeos .basket-mini-product").on("click", ".delete", async ev => {
 
-			fetch($(ev.currentTarget).closest(".product-item").data("url"), {
+			await fetch($(ev.currentTarget).closest(".product-item").data("url"), {
 				method: "DELETE",
 				headers: {'Content-Type': 'application/json'}
 			}).then(response => {

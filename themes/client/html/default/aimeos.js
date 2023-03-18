@@ -204,7 +204,7 @@ AimeosBasket = {
 	/**
 	 * Updates the basket without page reload
 	 */
-	updateBasket(data) {
+	async updateBasket(data) {
 		const doc = $("<html/>").html(data);
 		const basket = $(".aimeos.basket-standard", doc);
 
@@ -226,13 +226,13 @@ AimeosBasket = {
 		const jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
 
 		if(jsonurl && typeof AimeosBasketMini !== 'undefined') {
-			fetch(jsonurl, {
+			await fetch(jsonurl, {
 				method: "OPTIONS",
 				headers: {'Content-Type': 'application/json'}
 			}).then(response => {
 				return response.json();
-			}).then(options => {
-				fetch(options.meta.resources['basket'], {
+			}).then(async options => {
+				await fetch(options.meta.resources['basket'], {
 					headers: {'Content-Type': 'application/json'}
 				}).then(response => {
 					return response.json();
@@ -475,11 +475,11 @@ AimeosBasket = {
 	 */
 	onFavoriteAction() {
 
-		$(document).on("submit", ".catalog-actions .actions-favorite", ev => {
+		$(document).on("submit", ".catalog-actions .actions-favorite", async ev => {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
-			fetch($(ev.currentTarget).attr("action"), {
+			await fetch($(ev.currentTarget).attr("action"), {
 				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(response => {
@@ -515,11 +515,11 @@ AimeosBasket = {
 	 */
 	onWatchAction() {
 
-		$(document).on("submit", ".catalog-actions .actions-watch", ev => {
+		$(document).on("submit", ".catalog-actions .actions-watch", async ev => {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
-			fetch($(ev.currentTarget).attr("action"), {
+			await fetch($(ev.currentTarget).attr("action"), {
 				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(response => {

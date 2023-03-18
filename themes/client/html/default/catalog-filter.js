@@ -14,13 +14,13 @@ AimeosCatalogFilter = {
 	/**
 	 * Attribute filter counts
 	 */
-	loadAttributeCounts() {
+	async loadAttributeCounts() {
 
 		const nodes = $('.catalog-filter-attribute[data-counturl]');
 
 		for(const node of nodes) {
 
-			fetch($(node).data('counturl')).then(response => {
+			await fetch($(node).data('counturl')).then(response => {
 				return response.json();
 			}).then(data => {
 
@@ -45,13 +45,13 @@ AimeosCatalogFilter = {
 	/**
 	 * Supplier filter counts
 	 */
-	loadSupplierCounts() {
+	async loadSupplierCounts() {
 
 		const nodes = $('.catalog-filter-supplier[data-counturl]');
 
 		for(const node of nodes) {
 
-			fetch($(node).data('counturl')).then(response => {
+			await fetch($(node).data('counturl')).then(response => {
 				return response.json();
 			}).then(data => {
 
@@ -72,13 +72,13 @@ AimeosCatalogFilter = {
 	/**
 	 * Tree filter counts
 	 */
-	loadTreeCounts() {
+	async loadTreeCounts() {
 
 		const nodes = $('.catalog-filter-tree[data-counturl]');
 
 		for(const node of nodes) {
 
-			fetch($(node).data('counturl')).then(response => {
+			await fetch($(node).data('counturl')).then(response => {
 				return response.json();
 			}).then(data => {
 
@@ -193,8 +193,8 @@ AimeosCatalogFilter = {
 				input: el,
 				debounceWaitMs: 200,
 				minLength: AimeosCatalogFilter.MIN_INPUT_LEN,
-				fetch: function(text, update) {
-					fetch(url.replace('_term_', encodeURIComponent(text))).then(response => {
+				fetch: async function(text, update) {
+					await fetch(url.replace('_term_', encodeURIComponent(text))).then(response => {
 						return response.json();
 					}).then(data => {
 						update(data);
@@ -374,7 +374,7 @@ AimeosCatalogFilter = {
 		};
 
 
-		const search = Aimeos.debounce(ev => {
+		const search = Aimeos.debounce(async ev => {
 
 			const val = $(ev.currentTarget).val();
 
@@ -398,7 +398,7 @@ AimeosCatalogFilter = {
 				}
 				url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
-				fetch(url).then(response => {
+				await fetch(url).then(response => {
 					return response.json();
 				}).then(data => {
 					update(data, ev);
@@ -449,13 +449,13 @@ AimeosCatalogFilter = {
 	 *
 	 * @param {String} url
 	 */
-	setupMeta(url) {
+	async setupMeta(url) {
 
 		if(url && !this.meta) {
 
 			this.meta = {};
 
-			fetch(url, {method: 'OPTIONS'}).then(response => {
+			await fetch(url, {method: 'OPTIONS'}).then(response => {
 				return response.json();
 			}).then(data => {
 				this.meta = data['meta'] || null;
