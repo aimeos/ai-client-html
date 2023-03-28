@@ -71,7 +71,7 @@ abstract class Base
 		}
 
 		return $view->set( 'body', $html )
-			->render( $view->config( 'client/html/${type}/template-body', $template ) );
+			->render( $view->config( "client/html/${type}/template-body", $template ) );
 	}
 
 
@@ -117,7 +117,7 @@ abstract class Base
 		$type = $this->clientType();
 		$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
 
-		return $view->render( $view->config( 'client/html/${type}/template-header', $type . '/header' ) );
+		return $view->render( $view->config( "client/html/${type}/template-header", $type . '/header' ) );
 	}
 
 
