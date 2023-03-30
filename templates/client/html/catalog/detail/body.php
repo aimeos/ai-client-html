@@ -535,10 +535,12 @@ if( isset( $this->detailProductItem )
 
 						<div class="section catalog-detail-bundle content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ) ?></h2>
-							<?= $this->partial(
-								$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
-								['products' => $products, 'itemprop' => 'isRelatedTo']
-							) ?>
+							<div class="section">
+								<?= $this->partial(
+									$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
+									['products' => $products, 'itemprop' => 'isRelatedTo']
+								) ?>
+							</div>
 						</div>
 
 					<?php endif ?>
