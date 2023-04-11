@@ -204,7 +204,7 @@ AimeosBasket = {
 	/**
 	 * Updates the basket without page reload
 	 */
-	async updateBasket(data) {
+	updateBasket(data) {
 		const doc = $("<html/>").html(data);
 		const basket = $(".aimeos.basket-standard", doc);
 
@@ -226,7 +226,7 @@ AimeosBasket = {
 		const jsonurl = $(".aimeos.basket-mini[data-jsonurl]").data("jsonurl");
 
 		if(jsonurl && typeof AimeosBasketMini !== 'undefined') {
-			await fetch(jsonurl, {
+			fetch(jsonurl, {
 				method: "OPTIONS",
 				headers: {'Content-Type': 'application/json'}
 			}).then(response => {
