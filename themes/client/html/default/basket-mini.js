@@ -40,7 +40,7 @@ AimeosBasketMini = {
 			for(let i=0; i<basket.included.length; i++) {
 				let entry = basket.included[i];
 
-				if(entry.type === 'basket/product') {
+				if(entry.type === 'basket.product') {
 					let product = prototype.clone().removeClass("prototype");
 
 					if(entry.links && entry.links.self && entry.links.self.href) {
