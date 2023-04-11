@@ -232,7 +232,18 @@ AimeosBasket = {
 			}).then(response => {
 				return response.json();
 			}).then(async options => {
-				await fetch(options.meta.resources['basket'], {
+				const url = options.meta.resources['basket']
+				const args = {'include': 'basket.product'}
+				let params = {}
+
+				if( options.meta.prefix ) {
+					params[options.meta.prefix] = args
+				} else {
+					params = args
+				}
+				const query = window.param(params)
+
+				await fetch(url + (url.indexOf('?') === -1 ? '?' + query : '&' + query), {
 					headers: {'Content-Type': 'application/json'}
 				}).then(response => {
 					return response.json();
