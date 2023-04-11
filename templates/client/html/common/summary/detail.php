@@ -218,7 +218,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					</div>
 				<div class="col-8 col-md-6">
 					<div class="row g-0">
-						<div class="quantity col-4 quantity col-4">
+						<div class="quantity col-4">
 
 							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 
