@@ -9,7 +9,7 @@
  $enc = $this->encoder();
 
 
-/** client/html/checkout/standard/summary/option/terms/privacy/url/target
+/** client/html/checkout/standard/summary/option/terms/url/target
  * Destination of the URL where the controller specified in the URL is known
  *
  * The destination can be a page ID like in a content management system or the
@@ -18,13 +18,13 @@
  *
  * @param string Destination of the URL
  * @since 2014.03
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/filter
+ * @see client/html/checkout/standard/summary/option/terms/url/controller
+ * @see client/html/checkout/standard/summary/option/terms/url/action
+ * @see client/html/checkout/standard/summary/option/terms/url/config
+ * @see client/html/checkout/standard/summary/option/terms/url/filter
  */
 
-/** client/html/checkout/standard/summary/option/terms/privacy/url/controller
+/** client/html/checkout/standard/summary/option/terms/url/controller
  * Name of the controller whose action should be called
  *
  * In Model-View-Controller (MVC) applications, the controller contains the methods
@@ -33,13 +33,13 @@
  *
  * @param string Name of the controller
  * @since 2014.03
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/filter
+ * @see client/html/checkout/standard/summary/option/terms/url/target
+ * @see client/html/checkout/standard/summary/option/terms/url/action
+ * @see client/html/checkout/standard/summary/option/terms/url/config
+ * @see client/html/checkout/standard/summary/option/terms/url/filter
  */
 
-/** client/html/checkout/standard/summary/option/terms/privacy/url/action
+/** client/html/checkout/standard/summary/option/terms/url/action
  * Name of the action that should create the output
  *
  * In Model-View-Controller (MVC) applications, actions are the methods of a
@@ -48,13 +48,13 @@
  *
  * @param string Name of the action
  * @since 2014.03
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/filter
+ * @see client/html/checkout/standard/summary/option/terms/url/target
+ * @see client/html/checkout/standard/summary/option/terms/url/controller
+ * @see client/html/checkout/standard/summary/option/terms/url/config
+ * @see client/html/checkout/standard/summary/option/terms/url/filter
  */
 
-/** client/html/checkout/standard/summary/option/terms/privacy/url/config
+/** client/html/checkout/standard/summary/option/terms/url/config
  * Associative list of configuration options used for generating the URL
  *
  * You can specify additional options as key/value pairs used when generating
@@ -69,13 +69,13 @@
  *
  * @param string Associative list of configuration options
  * @since 2014.03
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/filter
+ * @see client/html/checkout/standard/summary/option/terms/url/target
+ * @see client/html/checkout/standard/summary/option/terms/url/controller
+ * @see client/html/checkout/standard/summary/option/terms/url/action
+ * @see client/html/checkout/standard/summary/option/terms/url/filter
  */
 
-/** client/html/checkout/standard/summary/option/terms/privacy/url/filter
+/** client/html/checkout/standard/summary/option/terms/url/filter
  * Removes parameters for the detail page before generating the URL
  *
  * This setting removes the listed parameters from the URLs. Keep care to
@@ -83,10 +83,10 @@
  *
  * @param array List of parameter names to remove
  * @since 2022.10
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
- * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
+ * @see client/html/checkout/standard/summary/option/terms/url/target
+ * @see client/html/checkout/standard/summary/option/terms/url/controller
+ * @see client/html/checkout/standard/summary/option/terms/url/action
+ * @see client/html/checkout/standard/summary/option/terms/url/config
  */
 
 
