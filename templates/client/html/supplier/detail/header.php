@@ -7,10 +7,85 @@
 
 $enc = $this->encoder();
 
-$target = $this->config( 'client/html/supplier/detail/url/target' );
-$cntl = $this->config( 'client/html/supplier/detail/url/controller', 'supplier' );
-$action = $this->config( 'client/html/supplier/detail/url/action', 'detail' );
-$config = $this->config( 'client/html/supplier/detail/url/config', [] );
+/** client/html/supplier/detail/url/target
+ * Destination of the URL where the controller specified in the URL is known
+ *
+ * The destination can be a page ID like in a content management system or the
+ * module of a software development framework. This "target" must contain or know
+ * the controller that should be called by the generated URL.
+ *
+ * @param string Destination of the URL
+ * @since 2020.10
+ * @see client/html/supplier/detail/url/controller
+ * @see client/html/supplier/detail/url/action
+ * @see client/html/supplier/detail/url/config
+ * @see client/html/supplier/detail/url/filter
+ */
+
+/** client/html/supplier/detail/url/controller
+ * Name of the controller whose action should be called
+ *
+ * In Model-View-Controller (MVC) applications, the controller contains the methods
+ * that create parts of the output displayed in the generated HTML page. Controller
+ * names are usually alpha-numeric.
+ *
+ * @param string Name of the controller
+ * @since 2020.10
+ * @see client/html/supplier/detail/url/target
+ * @see client/html/supplier/detail/url/action
+ * @see client/html/supplier/detail/url/config
+ * @see client/html/supplier/detail/url/filter
+ */
+
+/** client/html/supplier/detail/url/action
+ * Name of the action that should create the output
+ *
+ * In Model-View-Controller (MVC) applications, actions are the methods of a
+ * controller that create parts of the output displayed in the generated HTML page.
+ * Action names are usually alpha-numeric.
+ *
+ * @param string Name of the action
+ * @since 2020.10
+ * @see client/html/supplier/detail/url/target
+ * @see client/html/supplier/detail/url/controller
+ * @see client/html/supplier/detail/url/config
+ * @see client/html/supplier/detail/url/filter
+ */
+
+/** client/html/supplier/detail/url/config
+ * Associative list of configuration options used for generating the URL
+ *
+ * You can specify additional options as key/value pairs used when generating
+ * the URLs, like
+ *
+ *  client/html/<clientname>/url/config = array( 'absoluteUri' => true )
+ *
+ * The available key/value pairs depend on the application that embeds the e-commerce
+ * framework. This is because the infrastructure of the application is used for
+ * generating the URLs. The full list of available config options is referenced
+ * in the "see also" section of this page.
+ *
+ * @param string Associative list of configuration options
+ * @since 2020.10
+ * @see client/html/supplier/detail/url/target
+ * @see client/html/supplier/detail/url/controller
+ * @see client/html/supplier/detail/url/action
+ * @see client/html/supplier/detail/url/filter
+ */
+
+/** client/html/supplier/detail/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/supplier/detail/url/target
+ * @see client/html/supplier/detail/url/controller
+ * @see client/html/supplier/detail/url/action
+ * @see client/html/supplier/detail/url/config
+ */
 
 
 /** client/html/supplier/detail/metatags
@@ -43,11 +118,11 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
 		<?php endforeach ?>
 
 		<?php $params = ['s_name' => $this->detailSupplierItem->getName( 'url' ), 'f_supid' => $this->detailSupplierItem->getId()] ?>
-		<link rel="canonical" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config + ['absoluteUri' => true] ) ) ?>">
+		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', $params, ['absoluteUri' => true] ) ) ?>">
 
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="<?= $enc->html( $this->detailSupplierItem->getName() ) ?>">
-		<meta property="og:url" content="<?= $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config + ['absoluteUri' => true] ) ) ?>">
+		<meta property="og:url" content="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', $params, ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $this->detailSupplierItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
 			<meta property="og:image" content="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>">

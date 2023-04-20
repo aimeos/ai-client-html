@@ -24,7 +24,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/action
  * @see client/html/catalog/suggest/url/config
- * @see client/html/catalog/listsimple/url/target
+ * @see client/html/catalog/suggest/url/filter
  */
 
 /** client/html/catalog/suggest/url/controller
@@ -42,7 +42,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/action
  * @see client/html/catalog/suggest/url/config
- * @see client/html/catalog/listsimple/url/controller
+ * @see client/html/catalog/suggest/url/filter
  */
 
 /** client/html/catalog/suggest/url/action
@@ -60,7 +60,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/config
- * @see client/html/catalog/listsimple/url/action
+ * @see client/html/catalog/suggest/url/filter
  */
 
 /** client/html/catalog/suggest/url/config
@@ -84,8 +84,21 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/action
- * @see client/html/url/config
- * @see client/html/catalog/listsimple/url/config
+ * @see client/html/catalog/suggest/url/filter
+ */
+
+/** client/html/catalog/suggest/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/catalog/suggest/url/target
+ * @see client/html/catalog/suggest/url/controller
+ * @see client/html/catalog/suggest/url/action
+ * @see client/html/catalog/suggest/url/config
  */
 
 /** client/html/catalog/filter/search/force-search

@@ -18,6 +18,7 @@
  * @see client/html/account/history/url/controller
  * @see client/html/account/history/url/action
  * @see client/html/account/history/url/config
+ * @see client/html/account/history/url/filter
  */
 
 /** client/html/account/history/url/controller
@@ -32,6 +33,7 @@
  * @see client/html/account/history/url/target
  * @see client/html/account/history/url/action
  * @see client/html/account/history/url/config
+ * @see client/html/account/history/url/filter
  */
 
 /** client/html/account/history/url/action
@@ -46,6 +48,7 @@
  * @see client/html/account/history/url/target
  * @see client/html/account/history/url/controller
  * @see client/html/account/history/url/config
+ * @see client/html/account/history/url/filter
  */
 
 /** client/html/account/history/url/config
@@ -66,7 +69,21 @@
  * @see client/html/account/history/url/target
  * @see client/html/account/history/url/controller
  * @see client/html/account/history/url/action
- * @see client/html/url/config
+ * @see client/html/account/history/url/filter
+ */
+
+/** client/html/account/history/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/account/history/url/target
+ * @see client/html/account/history/url/controller
+ * @see client/html/account/history/url/action
+ * @see client/html/account/history/url/config
  */
 
 /// Date format with year (Y), month (m) and day (d). See http://php.net/manual/en/function.date.php

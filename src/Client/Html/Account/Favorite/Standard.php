@@ -239,4 +239,45 @@ class Standard
 
 		return parent::data( $view, $tags, $expire );
 	}
+
+	/** client/html/account/favorite/template-body
+	 * Relative path to the HTML body template of the account favorite client.
+	 *
+	 * The template file contains the HTML code and processing instructions
+	 * to generate the result shown in the body of the frontend. The
+	 * configuration string is the path to the template file relative
+	 * to the templates directory (usually in templates/client/html).
+	 *
+	 * You can overwrite the template file configuration in extensions and
+	 * provide alternative templates. These alternative templates should be
+	 * named like the default one but suffixed by
+	 * an unique name. You may use the name of your project for this. If
+	 * you've implemented an alternative client class as well, it
+	 * should be suffixed by the name of the new class.
+	 *
+	 * @param string Relative path to the template creating code for the HTML page body
+	 * @since 2015.10
+	 * @see client/html/account/favorite/template-header
+	 */
+
+	/** client/html/account/favorite/template-header
+	 * Relative path to the HTML header template of the account favorite client.
+	 *
+	 * The template file contains the HTML code and processing instructions
+	 * to generate the HTML code that is inserted into the HTML page header
+	 * of the rendered page in the frontend. The configuration string is the
+	 * path to the template file relative to the templates directory (usually
+	 * in templates/client/html).
+	 *
+	 * You can overwrite the template file configuration in extensions and
+	 * provide alternative templates. These alternative templates should be
+	 * named like the default one but suffixed by
+	 * an unique name. You may use the name of your project for this. If
+	 * you've implemented an alternative client class as well, it
+	 * should be suffixed by the name of the new class.
+	 *
+	 * @param string Relative path to the template creating code for the HTML page head
+	 * @since 2015.10
+	 * @see client/html/account/favorite/template-body
+	 */
 }

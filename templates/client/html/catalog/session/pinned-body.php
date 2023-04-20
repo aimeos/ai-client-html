@@ -21,6 +21,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
+ * @see client/html/catalog/session/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/controller
@@ -35,6 +36,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
+ * @see client/html/catalog/session/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/action
@@ -49,6 +51,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/config
+ * @see client/html/catalog/session/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/config
@@ -69,7 +72,21 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/action
- * @see client/html/url/config
+ * @see client/html/catalog/session/url/filter
+ */
+
+/** client/html/catalog/session/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/catalog/session/url/target
+ * @see client/html/catalog/session/url/controller
+ * @see client/html/catalog/session/url/action
+ * @see client/html/catalog/session/url/config
  */
 
 /** client/html/catalog/session/pinned/count/enable

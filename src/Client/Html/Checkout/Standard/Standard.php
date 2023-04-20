@@ -370,6 +370,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
+		 * @see client/html/checkout/standard/url/filter
 		 */
 
 		/** client/html/checkout/standard/url/controller
@@ -384,6 +385,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
+		 * @see client/html/checkout/standard/url/filter
 		 */
 
 		/** client/html/checkout/standard/url/action
@@ -398,6 +400,7 @@ class Standard
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/config
+		 * @see client/html/checkout/standard/url/filter
 		 */
 
 		/** client/html/checkout/standard/url/config
@@ -418,7 +421,21 @@ class Standard
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
-		 * @see client/html/url/config
+		 * @see client/html/checkout/standard/url/filter
+		 */
+
+		/** client/html/checkout/standard/url/filter
+		 * Removes parameters for the detail page before generating the URL
+		 *
+		 * This setting removes the listed parameters from the URLs. Keep care to
+		 * remove no required parameters!
+		 *
+		 * @param array List of parameter names to remove
+		 * @since 2022.10
+		 * @see client/html/checkout/standard/url/target
+		 * @see client/html/checkout/standard/url/controller
+		 * @see client/html/checkout/standard/url/action
+		 * @see client/html/checkout/standard/url/config
 		 */
 
 		$step = null;

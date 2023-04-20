@@ -433,6 +433,7 @@ class Standard
 		 * @see client/html/catalog/count/url/controller
 		 * @see client/html/catalog/count/url/action
 		 * @see client/html/catalog/count/url/config
+		 * @see client/html/catalog/count/url/filter
 		 */
 		if( $config->get( 'client/html/catalog/count/enable', true ) == true
 			&& array_intersect( $this->getSubClientNames(), ['tree', 'supplier', 'attribute'] ) !== []
@@ -449,6 +450,7 @@ class Standard
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/catalog/count/url/config
+			 * @see client/html/catalog/count/url/filter
 			 */
 
 			/** client/html/catalog/count/url/controller
@@ -463,6 +465,7 @@ class Standard
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/action
 			 * @see client/html/catalog/count/url/config
+			 * @see client/html/catalog/count/url/filter
 			 */
 
 			/** client/html/catalog/count/url/action
@@ -477,6 +480,7 @@ class Standard
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/config
+			 * @see client/html/catalog/count/url/filter
 			 */
 
 			/** client/html/catalog/count/url/config
@@ -497,7 +501,21 @@ class Standard
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/action
-			 * @see client/html/url/config
+			 * @see client/html/catalog/count/url/filter
+			 */
+
+			/** client/html/catalog/count/url/filter
+			 * Removes parameters for the detail page before generating the URL
+			 *
+			 * This setting removes the listed parameters from the URLs. Keep care to
+			 * remove no required parameters!
+			 *
+			 * @param array List of parameter names to remove
+			 * @since 2022.10
+			 * @see client/html/catalog/count/url/target
+			 * @see client/html/catalog/count/url/controller
+			 * @see client/html/catalog/count/url/action
+			 * @see client/html/catalog/count/url/config
 			 */
 
 			/** client/html/catalog/filter/remove-params

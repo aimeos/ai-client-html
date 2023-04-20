@@ -18,6 +18,7 @@
  * @see client/html/account/basket/url/controller
  * @see client/html/account/basket/url/action
  * @see client/html/account/basket/url/config
+ * @see client/html/account/basket/url/filter
  */
 
 /** client/html/account/basket/url/controller
@@ -32,6 +33,7 @@
  * @see client/html/account/basket/url/target
  * @see client/html/account/basket/url/action
  * @see client/html/account/basket/url/config
+ * @see client/html/account/basket/url/filter
  */
 
 /** client/html/account/basket/url/action
@@ -46,6 +48,7 @@
  * @see client/html/account/basket/url/target
  * @see client/html/account/basket/url/controller
  * @see client/html/account/basket/url/config
+ * @see client/html/account/basket/url/filter
  */
 
 /** client/html/account/basket/url/config
@@ -66,7 +69,79 @@
  * @see client/html/account/basket/url/target
  * @see client/html/account/basket/url/controller
  * @see client/html/account/basket/url/action
- * @see client/html/url/config
+ * @see client/html/account/basket/url/filter
+ */
+
+/** client/html/account/basket/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/account/basket/url/target
+ * @see client/html/account/basket/url/controller
+ * @see client/html/account/basket/url/action
+ * @see client/html/account/basket/url/config
+ */
+
+
+/** client/html/account/basket/summary/address
+ * Relative path to the HTML template of the account basket address partial.
+ *
+ * The template file contains the HTML code and processing instructions
+ * to generate the result shown in the body of the frontend. The
+ * configuration string is the path to the template file relative
+ * to the templates directory (usually in templates/client/html).
+ *
+ * You can overwrite the template file configuration in extensions and
+ * provide alternative templates. These alternative templates should be
+ * named like the default one but suffixed by
+ * an unique name. You may use the name of your project for this. If
+ * you've implemented an alternative client class as well, it
+ * should be suffixed by the name of the new class.
+ *
+ * @param string Relative path to the template creating the HTML fragment
+ * @since 2022.10
+ */
+
+/** client/html/account/basket/summary/service
+ * Relative path to the HTML template of the account basket service partial.
+ *
+ * The template file contains the HTML code and processing instructions
+ * to generate the result shown in the body of the frontend. The
+ * configuration string is the path to the template file relative
+ * to the templates directory (usually in templates/client/html).
+ *
+ * You can overwrite the template file configuration in extensions and
+ * provide alternative templates. These alternative templates should be
+ * named like the default one but suffixed by
+ * an unique name. You may use the name of your project for this. If
+ * you've implemented an alternative client class as well, it
+ * should be suffixed by the name of the new class.
+ *
+ * @param string Relative path to the template creating the HTML fragment
+ * @since 2022.10
+ */
+
+/** client/html/account/basket/summary/detail
+ * Relative path to the HTML template of the account basket details partial.
+ *
+ * The template file contains the HTML code and processing instructions
+ * to generate the result shown in the body of the frontend. The
+ * configuration string is the path to the template file relative
+ * to the templates directory (usually in templates/client/html).
+ *
+ * You can overwrite the template file configuration in extensions and
+ * provide alternative templates. These alternative templates should be
+ * named like the default one but suffixed by
+ * an unique name. You may use the name of your project for this. If
+ * you've implemented an alternative client class as well, it
+ * should be suffixed by the name of the new class.
+ *
+ * @param string Relative path to the template creating the HTML fragment
+ * @since 2022.10
  */
 
 $enc = $this->encoder();

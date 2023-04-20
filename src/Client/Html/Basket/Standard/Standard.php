@@ -346,7 +346,7 @@ class Standard
 		$this->clearCached();
 	}
 
-	/** client/html/basket/template-body
+	/** client/html/basket/standard/template-body
 	 * Relative path to the HTML body template of the basket standard client.
 	 *
 	 * The template file contains the HTML code and processing instructions
@@ -363,10 +363,10 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @see client/html/basket/template-header
+	 * @see client/html/basket/standard/template-header
 	 */
 
-	/** client/html/basket/template-header
+	/** client/html/basket/standard/template-header
 	 * Relative path to the HTML header template of the basket standard client.
 	 *
 	 * The template file contains the HTML code and processing instructions
@@ -384,6 +384,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
-	 * @see client/html/basket/template-body
+	 * @see client/html/basket/standard/template-body
 	 */
 }

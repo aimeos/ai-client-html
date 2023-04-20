@@ -41,6 +41,7 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
+		 * @see client/html/catalog/stock/url/filter
 		 * @see client/html/catalog/stock/url/max-items
 		 */
 
@@ -56,6 +57,7 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
+		 * @see client/html/catalog/stock/url/filter
 		 * @see client/html/catalog/stock/url/max-items
 		 */
 
@@ -71,6 +73,7 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/config
+		 * @see client/html/catalog/stock/url/filter
 		 * @see client/html/catalog/stock/url/max-items
 		 */
 
@@ -92,6 +95,22 @@ abstract class Base
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
+		 * @see client/html/catalog/stock/url/filter
+		 * @see client/html/catalog/stock/url/max-items
+		 */
+
+		/** client/html/catalog/stock/url/filter
+		 * Removes parameters for the detail page before generating the URL
+		 *
+		 * This setting removes the listed parameters from the URLs. Keep care to
+		 * remove no required parameters!
+		 *
+		 * @param array List of parameter names to remove
+		 * @since 2022.10
+		 * @see client/html/catalog/stock/url/target
+		 * @see client/html/catalog/stock/url/controller
+		 * @see client/html/catalog/stock/url/action
+		 * @see client/html/catalog/stock/url/config
 		 * @see client/html/catalog/stock/url/max-items
 		 */
 

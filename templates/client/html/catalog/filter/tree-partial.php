@@ -20,6 +20,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/tree/url/controller
  * @see client/html/catalog/tree/url/action
  * @see client/html/catalog/tree/url/config
+ * @see client/html/catalog/tree/url/filter
  */
 $target = $this->config( 'client/html/catalog/tree/url/target' );
 
@@ -35,6 +36,7 @@ $target = $this->config( 'client/html/catalog/tree/url/target' );
  * @see client/html/catalog/tree/url/target
  * @see client/html/catalog/tree/url/action
  * @see client/html/catalog/tree/url/config
+ * @see client/html/catalog/tree/url/filter
  */
 $controller = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
 
@@ -50,6 +52,7 @@ $controller = $this->config( 'client/html/catalog/tree/url/controller', 'catalog
  * @see client/html/catalog/tree/url/target
  * @see client/html/catalog/tree/url/controller
  * @see client/html/catalog/tree/url/config
+ * @see client/html/catalog/tree/url/filter
  */
 $action = $this->config( 'client/html/catalog/tree/url/action', 'list' );
 
@@ -71,9 +74,23 @@ $action = $this->config( 'client/html/catalog/tree/url/action', 'list' );
  * @see client/html/catalog/tree/url/target
  * @see client/html/catalog/tree/url/controller
  * @see client/html/catalog/tree/url/action
- * @see client/html/url/config
+ * @see client/html/catalog/tree/url/filter
  */
 $config = $this->config( 'client/html/catalog/tree/url/config', [] );
+
+/** client/html/catalog/tree/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/catalog/tree/url/target
+ * @see client/html/catalog/tree/url/controller
+ * @see client/html/catalog/tree/url/action
+ * @see client/html/catalog/tree/url/config
+ */
 
 
 /** client/html/common/partials/media

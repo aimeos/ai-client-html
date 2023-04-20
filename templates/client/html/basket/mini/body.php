@@ -21,6 +21,7 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/filter
  */
 
 /** client/html/basket/standard/url/controller
@@ -35,6 +36,7 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/filter
  */
 
 /** client/html/basket/standard/url/action
@@ -49,6 +51,7 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/filter
  */
 
 /** client/html/basket/standard/url/config
@@ -69,7 +72,21 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
- * @see client/html/url/config
+ * @see client/html/basket/standard/url/filter
+ */
+
+/** client/html/basket/standard/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/basket/standard/url/target
+ * @see client/html/basket/standard/url/controller
+ * @see client/html/basket/standard/url/action
+ * @see client/html/basket/standard/url/config
  */
 
 $pricefmt = $this->translate( 'client/code', 'price:default' );

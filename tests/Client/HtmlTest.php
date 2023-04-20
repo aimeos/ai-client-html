@@ -50,7 +50,7 @@ class HtmlTest extends \PHPUnit\Framework\TestCase
 	public function testCreateNameParts()
 	{
 		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html::create( $this->context, 'account_favorite' );
+		\Aimeos\Client\Html::create( $this->context, 'account_unknown' );
 	}
 
 

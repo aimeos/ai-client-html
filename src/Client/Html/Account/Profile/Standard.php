@@ -100,6 +100,44 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/account/profile/domains', ['customer/address'] );
 
+		/** client/html/checkout/standard/address/countries
+		 * A list of ISO country codes which should be available in the checkout address step.
+		 *
+		 * If you want to ship your products to several countries or you need
+		 * to know from which countries your customers are, you have to enable
+		 * the country selection in the address page of the checkout process.
+		 *
+		 * @param array List of two letter ISO country codes
+		 * @since 2021.04
+		 */
+		$countries = $view->config( 'client/html/checkout/standard/address/countries', [] );
+
+		/** client/html/checkout/standard/address/states
+		 * A list of ISO country codes which should be available in the checkout address step.
+		 *
+		 * For each country you can freely define a list of states or regions
+		 * that can be used afterwards to calculate the final price for each
+		 * delivery option.
+		 *
+		 * To define states or regions use something like this:
+		 *
+		 *  [
+		 *		'US' => [
+		 *			'CA' => 'California',
+		 *			'NY' => 'New York',
+		 *			// ...
+		 *		'EU' => [
+		 *			'W' => 'Western Europe',
+		 *			'C' => 'Central Europe',
+		 *			// ...
+		 *		],
+		 *	],
+		 *
+		 * @param array List of two letter ISO country codes
+		 * @since 2021.04
+		 */
+		$states = $view->config( 'client/html/checkout/standard/address/states', [] );
+
 		$item = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( $domains )->get();
 
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
@@ -126,10 +164,10 @@ class Standard
 		$view->profileItem = $item;
 		$view->addressBilling = $billing;
 		$view->addressDelivery = $deliveries;
-		$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
-		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
 		$view->addressSalutations = $salutations;
 		$view->addressLanguages = $languages;
+		$view->addressCountries = $countries;
+		$view->addressStates = $states;
 
 		return parent::data( $view, $tags, $expire );
 	}

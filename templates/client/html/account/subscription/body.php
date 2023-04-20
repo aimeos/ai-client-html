@@ -20,6 +20,7 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/action
  * @see client/html/account/subscription/url/config
+ * @see client/html/account/subscription/url/filter
  */
 
 /** client/html/account/subscription/url/controller
@@ -34,6 +35,7 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/action
  * @see client/html/account/subscription/url/config
+ * @see client/html/account/subscription/url/filter
  */
 
 /** client/html/account/subscription/url/action
@@ -48,6 +50,7 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/config
+ * @see client/html/account/subscription/url/filter
  */
 
 /** client/html/account/subscription/url/config
@@ -68,7 +71,21 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/action
- * @see client/html/url/config
+ * @see client/html/account/subscription/url/filter
+ */
+
+/** client/html/account/subscription/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/account/subscription/url/target
+ * @see client/html/account/subscription/url/controller
+ * @see client/html/account/subscription/url/action
+ * @see client/html/account/subscription/url/config
  */
 
 
