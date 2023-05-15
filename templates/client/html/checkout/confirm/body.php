@@ -43,7 +43,7 @@ We received your payment and an e-mail with the order details will be sent to yo
 							<?= $enc->html( $this->translate( 'client', 'Order ID' ), $enc::TRUST ) ?>
 						</span>
 						<span class="value">
-							<?= $enc->html( $this->confirmOrderItem->getOrderNumber() ) ?>
+							<?= $enc->html( $this->confirmOrderItem->getInvoiceNumber() ) ?>
 						</span>
 					</li>
 					<li class="form-item">

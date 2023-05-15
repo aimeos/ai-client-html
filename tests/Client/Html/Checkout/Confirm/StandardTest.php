@@ -68,7 +68,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="checkout-confirm-basic">', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-detail', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-detail common-summary">', $output );
-		$this->assertMatchesRegularExpression( '#<span class="value">.*' . $order->getId() . '.*</span>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<span class="value">.*' . $order->getInvoiceNumber() . '.*</span>#smU', $output );
 
 		$this->assertStringContainsString( 'mr Our Unittest', $output );
 		$this->assertStringContainsString( 'Example company', $output );
