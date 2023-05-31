@@ -66,13 +66,15 @@ class Standard
 		$view = $this->view();
 		$context = $this->context();
 
+		$config = $context->config();
 		$session = $context->session();
 
 		if( ( $orderid = $session->get( 'aimeos/orderid' ) ) === null ) {
 			throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 		}
 
-		$ref = $context->config()->get( 'mshop/order/manager/subdomains', [] );
+		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
+		$ref = $config->get( 'client/html/checkout/confirm/domains', $ref );
 		$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref );
 
 		if( ( $code = $view->param( 'code' ) ) !== null )
@@ -111,6 +113,7 @@ class Standard
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
+		$config = $context->config();
 
 		if( ( $id = $context->session()->get( 'aimeos/orderid' ) ) === null )
 		{
@@ -118,7 +121,22 @@ class Standard
 			throw new \Aimeos\Client\Html\Exception( $context->translate( 'client', 'No order ID available in session' ) );
 		}
 
-		$ref = $context->config()->get( 'mshop/order/manager/subdomains', [] );
+		/** client/html/checkout/confirm/domains
+		 * List of domains to fetch items related to the order
+		 *
+		 * To adapt the order data loaded for displaying at the checkout confirmation
+		 * page, add or remove the names of the domains using this setting. By default,
+		 * all order sub-domains are included (order/address, order/coupon, order/product
+		 * and order/service) and you can remove unused domains or add additional ones
+		 * like "product" to get the original product items for the bought order products.
+		 * You can also add domains related to e.g. products like "catalog" for the
+		 * categories the products are assigned to.
+		 *
+		 * @param array List of domain names
+		 * @since 2023.07
+		 */
+		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
+		$ref = $config->get( 'client/html/checkout/confirm/domains', $ref );
 		$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref )->get( $id, false );
 
 		$view->confirmOrderItem = $order;
