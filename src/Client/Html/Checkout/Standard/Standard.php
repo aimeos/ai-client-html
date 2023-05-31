@@ -52,7 +52,6 @@ class Standard
 	 * or numbers. Avoid chamel case names like "MyCheckout"!
 	 *
 	 * @param string Last part of the class name
-	 * @since 2014.03
 	 */
 
 
@@ -86,7 +85,6 @@ class Standard
 	 * design.
 	 *
 	 * @param array List of sub-client names
-	 * @since 2014.03
 	 */
 	private string $subPartPath = 'client/html/checkout/standard/subparts';
 
@@ -97,7 +95,6 @@ class Standard
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the client class name
-	 * @since 2014.03
 	 */
 
 	/** client/html/checkout/standard/delivery/name
@@ -107,7 +104,6 @@ class Standard
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the client class name
-	 * @since 2014.03
 	 */
 
 	/** client/html/checkout/standard/payment/name
@@ -117,7 +113,6 @@ class Standard
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the client class name
-	 * @since 2014.03
 	 */
 
 	/** client/html/checkout/standard/summary/name
@@ -127,7 +122,6 @@ class Standard
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the client class name
-	 * @since 2014.03
 	 */
 
 	/** client/html/checkout/standard/process/name
@@ -137,7 +131,6 @@ class Standard
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
 	 * @param string Last part of the client class name
-	 * @since 2015.07
 	 */
 	private array $subPartNames = ['address', 'delivery', 'payment', 'summary', 'process'];
 
@@ -151,77 +144,6 @@ class Standard
 	 */
 	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
-		/** client/html/checkout/standard/decorators/excludes
-		 * Excludes decorators added by the "common" option from the checkout standard html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to remove a decorator added via
-		 * "client/html/common/decorators/default" before they are wrapped
-		 * around the html client.
-		 *
-		 *  client/html/checkout/standard/decorators/excludes = array( 'decorator1' )
-		 *
-		 * This would remove the decorator named "decorator1" from the list of
-		 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
-		 * "client/html/common/decorators/default" to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/checkout/standard/decorators/global
-		 * @see client/html/checkout/standard/decorators/local
-		 */
-
-		/** client/html/checkout/standard/decorators/global
-		 * Adds a list of globally available decorators only to the checkout standard html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to wrap global decorators
-		 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
-		 *
-		 *  client/html/checkout/standard/decorators/global = array( 'decorator1' )
-		 *
-		 * This would add the decorator named "decorator1" defined by
-		 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/checkout/standard/decorators/excludes
-		 * @see client/html/checkout/standard/decorators/local
-		 */
-
-		/** client/html/checkout/standard/decorators/local
-		 * Adds a list of local decorators only to the checkout standard html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to wrap local decorators
-		 * ("\Aimeos\Client\Html\Checkout\Decorator\*") around the html client.
-		 *
-		 *  client/html/checkout/standard/decorators/local = array( 'decorator2' )
-		 *
-		 * This would add the decorator named "decorator2" defined by
-		 * "\Aimeos\Client\Html\Checkout\Decorator\Decorator2" only to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/checkout/standard/decorators/excludes
-		 * @see client/html/checkout/standard/decorators/global
-		 */
-
 		return $this->createSubClient( 'checkout/standard/' . $type, $name );
 	}
 
@@ -271,7 +193,6 @@ class Standard
 		 * that are configured for the checkout client.
 		 *
 		 * @param string Name of the confirm standard HTML client
-		 * @since 2014.07
 		 * @see client/html/checkout/subparts
 		 */
 		$default = $view->config( 'client/html/checkout/standard/url/step-active', 'summary' );
@@ -304,7 +225,6 @@ class Standard
 		 * * summary
 		 *
 		 * @param array List of checkout subparts name
-		 * @since 2015.05
 		 */
 		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 		$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
@@ -354,7 +274,6 @@ class Standard
 	 * @param array $steps List of checkout step names
 	 * @param string $activeStep Name of the active step
 	 * @return \Aimeos\Base\View\Iface Enhanced view object
-	 * @since 2016.05
 	 */
 	protected function navigation( \Aimeos\Base\View\Iface $view, array $steps, string $activeStep ) : \Aimeos\Base\View\Iface
 	{
@@ -366,7 +285,6 @@ class Standard
 		 * the controller that should be called by the generated URL.
 		 *
 		 * @param string Destination of the URL
-		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
@@ -381,7 +299,6 @@ class Standard
 		 * names are usually alpha-numeric.
 		 *
 		 * @param string Name of the controller
-		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
@@ -396,7 +313,6 @@ class Standard
 		 * Action names are usually alpha-numeric.
 		 *
 		 * @param string Name of the action
-		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/config
@@ -417,7 +333,6 @@ class Standard
 		 * in the "see also" section of this page.
 		 *
 		 * @param string Associative list of configuration options
-		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
@@ -478,7 +393,6 @@ class Standard
 	 * should be suffixed by the name of the new class.
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
-	 * @since 2014.03
 	 * @see client/html/checkout/template-header
 	 */
 
@@ -499,7 +413,74 @@ class Standard
 	 * should be suffixed by the name of the new class.
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
-	 * @since 2014.03
 	 * @see client/html/checkout/template-body
+	 */
+
+	/** client/html/checkout/standard/decorators/excludes
+	 * Excludes decorators added by the "common" option from the checkout standard html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/checkout/standard/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/checkout/standard/decorators/global
+	 * @see client/html/checkout/standard/decorators/local
+	 */
+
+	/** client/html/checkout/standard/decorators/global
+	 * Adds a list of globally available decorators only to the checkout standard html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/checkout/standard/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/checkout/standard/decorators/excludes
+	 * @see client/html/checkout/standard/decorators/local
+	 */
+
+	/** client/html/checkout/standard/decorators/local
+	 * Adds a list of local decorators only to the checkout standard html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Checkout\Decorator\*") around the html client.
+	 *
+	 *  client/html/checkout/standard/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Checkout\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/checkout/standard/decorators/excludes
+	 * @see client/html/checkout/standard/decorators/global
 	 */
 }

@@ -121,77 +121,6 @@ class Standard
 	 */
 	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
-		/** client/html/catalog/session/decorators/excludes
-		 * Excludes decorators added by the "common" option from the catalog session html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to remove a decorator added via
-		 * "client/html/common/decorators/default" before they are wrapped
-		 * around the html client.
-		 *
-		 *  client/html/catalog/session/decorators/excludes = array( 'decorator1' )
-		 *
-		 * This would remove the decorator named "decorator1" from the list of
-		 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
-		 * "client/html/common/decorators/default" to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/catalog/session/decorators/global
-		 * @see client/html/catalog/session/decorators/local
-		 */
-
-		/** client/html/catalog/session/decorators/global
-		 * Adds a list of globally available decorators only to the catalog session html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to wrap global decorators
-		 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
-		 *
-		 *  client/html/catalog/session/decorators/global = array( 'decorator1' )
-		 *
-		 * This would add the decorator named "decorator1" defined by
-		 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/catalog/session/decorators/excludes
-		 * @see client/html/catalog/session/decorators/local
-		 */
-
-		/** client/html/catalog/session/decorators/local
-		 * Adds a list of local decorators only to the catalog session html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to wrap local decorators
-		 * ("\Aimeos\Client\Html\Catalog\Decorator\*") around the html client.
-		 *
-		 *  client/html/catalog/session/decorators/local = array( 'decorator2' )
-		 *
-		 * This would add the decorator named "decorator2" defined by
-		 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/catalog/session/decorators/excludes
-		 * @see client/html/catalog/session/decorators/global
-		 */
-
 		return $this->createSubClient( 'catalog/session/' . $type, $name );
 	}
 
@@ -246,5 +175,76 @@ class Standard
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
 	 * @see client/html/catalog/session/template-body
+	 */
+
+	/** client/html/catalog/session/decorators/excludes
+	 * Excludes decorators added by the "common" option from the catalog session html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/catalog/session/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/session/decorators/global
+	 * @see client/html/catalog/session/decorators/local
+	 */
+
+	/** client/html/catalog/session/decorators/global
+	 * Adds a list of globally available decorators only to the catalog session html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/session/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/session/decorators/excludes
+	 * @see client/html/catalog/session/decorators/local
+	 */
+
+	/** client/html/catalog/session/decorators/local
+	 * Adds a list of local decorators only to the catalog session html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Catalog\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/session/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/session/decorators/excludes
+	 * @see client/html/catalog/session/decorators/global
 	 */
 }
