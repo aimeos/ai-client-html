@@ -23,7 +23,7 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "salgyt"
 
 #. PST tax name
 msgid "taxpst"
@@ -43,15 +43,15 @@ msgstr " "
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "iň halanýan"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "bellemek"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "gözegçilik etmek"
 
 #. Product attribute
 msgid "size"
@@ -107,11 +107,11 @@ msgstr ""
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr ""
+msgstr "Ady"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr ""
+msgstr "Familýasy"
 
 #. Omnipay service provider
 msgid "payment.cardno"
