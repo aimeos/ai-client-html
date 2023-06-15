@@ -91,13 +91,18 @@ $enc = $this->encoder();
  */
 
 $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$params = map( $this->param() )->only( ['f_catid', 'f_name'] );
+
+if( $catid = $this->config( 'client/html/catalog/filter/tree/startid' ) ) {
+	$params = $params->union( ['f_catid' => $catid] );
+}
 
 
 ?>
 <div class="section aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<nav class="container-xxl">
-		<form method="GET" action="<?= $enc->attr( $this->link( $linkKey, map( $this->param() )->only( ['f_catid', 'f_name'] )->all() ) ) ?>">
+		<form method="GET" action="<?= $enc->attr( $this->link( $linkKey, $params->all() ) ) ?>">
 
 			<?php foreach( map( $this->param() )->only( ['f_sort', 'l_type'] ) as $name => $value ) : ?>
 				<input type="hidden" name="<?= $enc->attr( $this->formparam( $name ) ) ?>" value="<?= $enc->attr( $value ) ?>">
