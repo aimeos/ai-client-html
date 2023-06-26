@@ -86,7 +86,7 @@ AimeosCatalogFilter = {
 					const id = $(item).data("id");
 
 					if(data[id]) {
-						$(":scope > a.cat-link, :scope > .item-links > a.name", item).append('<span class="cat-count">' + data[id] + '</span>');
+						$("> a.cat-link, > .item-links > a.name", item).append('<span class="cat-count">' + data[id] + '</span>');
 					} else if( $(item).hasClass("nochild") ) {
 						$(item).addClass("disabled");
 					}
