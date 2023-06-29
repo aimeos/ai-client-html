@@ -1188,7 +1188,7 @@ msgid "pin"
 msgstr ""
 
 msgid "price:default"
-msgstr "hinta:oletusarvo"
+msgstr ""
 
 #, php-format
 msgid "process"
