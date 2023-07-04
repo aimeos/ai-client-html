@@ -15,8 +15,8 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php": "^8.0.11",
-		"aimeos/aimeos-core": "dev-master",
-		"aimeos/ai-controller-frontend": "dev-master"
+		"aimeos/aimeos-core": "2023.07.*",
+		"aimeos/ai-controller-frontend": "2023.07.*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~9.0||~10.0",
