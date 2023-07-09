@@ -379,7 +379,7 @@ abstract class Base
 	{
 		$domain = str_replace( '/', '_', $item->getResourceType() ); // maximum compatiblity
 
-		if( in_array( $item->getResourceType(), ['catalog', 'product', 'supplier'] ) ) {
+		if( in_array( $item->getResourceType(), ['catalog', 'product', 'supplier', 'cms'] ) ) {
 			$tags[] = $tagAll ? $domain . '-' . $item->getId() : $domain ;
 		}
 
