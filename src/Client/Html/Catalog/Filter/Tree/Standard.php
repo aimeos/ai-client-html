@@ -81,7 +81,7 @@ class Standard
 
 		$tree = $cntl->visible( $catItems->keys()->all() )->getTree( $cntl::TREE );
 
-		$this->addMetaItemCatalog( $tree, $expire, $tags );
+		$this->addMetaItemCatalog( $tree, $expire, $tags, ['catalog'] );
 
 		$view->treeCatalogPath = $catItems;
 		$view->treeCatalogTree = $tree;

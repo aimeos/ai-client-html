@@ -55,7 +55,7 @@ class Standard
 		$items = $cntl->compare( '==', 'supplier.id', $view->param( 'f_supid', [] ) )
 			->slice( 0, 100 )->search()->replace( $items );
 
-		$this->addMetaItems( $items, $expire, $tags );
+		$this->addMetaItems( $items, $expire, $tags, ['supplier'] );
 
 		$view->supplierList = $items;
 		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();
