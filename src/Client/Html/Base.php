@@ -380,7 +380,7 @@ abstract class Base
 		$domain = str_replace( '/', '_', $item->getResourceType() ); // maximum compatiblity
 
 		if( in_array( $item->getResourceType(), ['catalog', 'product', 'supplier', 'cms'] ) ) {
-			$tags[] = $tagAll ? $domain . '-' . $item->getId() : $domain ;
+			$tags[] = $tagAll ? $domain . '-' . $item->getId() : $domain;
 		}
 
 		if( $item instanceof \Aimeos\MShop\Common\Item\Time\Iface && ( $date = $item->getDateEnd() ) !== null ) {
