@@ -275,7 +275,7 @@ class Standard
 		 *  array( 'DE', 'GB', ... )
 		 *
 		 * @param array List of two letter ISO country codes
-		 * @since 2021.10
+		 * @since 2023.04
 		 */
 		$view->addressCountries = map( $view->config( 'common/countries', [] ) )
 			->flip()->map( function( $v, $key ) use ( $view ) {
@@ -310,7 +310,7 @@ class Standard
 		 * the state codes are later used for per state tax calculation.
 		 *
 		 * @param array Multi-dimensional list ISO country codes and state codes/names
-		 * @since 2020.10
+		 * @since 2023.04
 		 */
 		$view->addressStates = $view->config( 'common/states', [] );
 

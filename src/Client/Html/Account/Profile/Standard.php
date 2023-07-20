@@ -100,7 +100,7 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/account/profile/domains', ['customer/address'] );
 
-		/** client/html/checkout/standard/address/countries
+		/** common/countries
 		 * A list of ISO country codes which should be available in the checkout address step.
 		 *
 		 * If you want to ship your products to several countries or you need
@@ -108,11 +108,11 @@ class Standard
 		 * the country selection in the address page of the checkout process.
 		 *
 		 * @param array List of two letter ISO country codes
-		 * @since 2021.04
+		 * @since 2023.04
 		 */
-		$countries = $view->config( 'client/html/checkout/standard/address/countries', [] );
+		$countries = $view->config( 'common/countries', [] );
 
-		/** client/html/checkout/standard/address/states
+		/** common/states
 		 * A list of ISO country codes which should be available in the checkout address step.
 		 *
 		 * For each country you can freely define a list of states or regions
@@ -134,9 +134,9 @@ class Standard
 		 *	],
 		 *
 		 * @param array List of two letter ISO country codes
-		 * @since 2021.04
+		 * @since 2023.04
 		 */
-		$states = $view->config( 'client/html/checkout/standard/address/states', [] );
+		$states = $view->config( 'common/states', [] );
 
 		$item = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( $domains )->get();
 
