@@ -226,7 +226,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) ?>
 									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">−</a>
 								<?php else : ?>
-									&nbsp;
+									&nbsp;&nbsp;&nbsp;
 								<?php endif ?>
 
 								<input class="value" type="number" required="required"
