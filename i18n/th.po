@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Peem Phimcha, 2023
 # weeradach chinpimai <weeradach.ch@gmail.com>, 2020
 msgid ""
 msgstr ""
@@ -10,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-04 11:12+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: weeradach chinpimai <weeradach.ch@gmail.com>, 2020\n"
+"Last-Translator: Peem Phimcha, 2023\n"
 "Language-Team: Thai (http://app.transifex.com/aimeos/aimeos-core/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +125,7 @@ msgid "A non-recoverable error occured"
 msgstr ""
 
 msgid "Account"
-msgstr ""
+msgstr "เข้าสู่ระบบ"
 
 msgid "Add billing address"
 msgstr ""
@@ -186,7 +187,7 @@ msgid "Back"
 msgstr ""
 
 msgid "Basket"
-msgstr ""
+msgstr "ตะกร้า"
 
 msgid "Billing address"
 msgstr ""
@@ -270,7 +271,7 @@ msgid "Close"
 msgstr ""
 
 msgid "Company"
-msgstr ""
+msgstr "บริษัท"
 
 msgid "Confirmation"
 msgstr ""
@@ -358,7 +359,7 @@ msgid "Description"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "รายละเอียด"
 
 msgid "Don't store address"
 msgstr ""
@@ -481,13 +482,13 @@ msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "ภาษา"
 
 msgid "Last name"
 msgstr ""
 
 msgid "Last seen"
-msgstr ""
+msgstr "ล่าสุด"
 
 msgid "Latest"
 msgstr ""
@@ -1077,13 +1078,13 @@ msgid "You've cancelled the subscription"
 msgstr ""
 
 msgid "Your account"
-msgstr ""
+msgstr "บัญชีของคุณ"
 
 msgid "Your choice"
 msgstr ""
 
 msgid "Your comment"
-msgstr ""
+msgstr "ความคิดเห็นของคุณ"
 
 #. / Account creation e-mail subject
 msgid "Your new account"
@@ -1148,7 +1149,7 @@ msgstr ""
 
 #, php-format
 msgid "delivery"
-msgstr ""
+msgstr "ขนส่ง"
 
 msgid "favorite"
 msgstr ""
@@ -1176,7 +1177,7 @@ msgstr ""
 
 #, php-format
 msgid "payment"
-msgstr ""
+msgstr "ชำระเงิน"
 
 msgid "pin"
 msgstr ""
