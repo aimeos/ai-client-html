@@ -19,7 +19,7 @@ foreach( $this->addresses as $addr )
 		/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
 		/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
 		/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-		/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+		/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), mobile number (%17$s), web site (%18$s), vatid (%19$s)
 		$this->translate( 'client', '%1$s
 %2$s %3$s %4$s %5$s
 %6$s %7$s
@@ -33,6 +33,7 @@ foreach( $this->addresses as $addr )
 %16$s
 %17$s
 %18$s
+%19$s
 '
 		),
 		$addr->getCompany(),
@@ -51,6 +52,7 @@ foreach( $this->addresses as $addr )
 		$addr->getEmail(),
 		$addr->getTelephone(),
 		$addr->getTelefax(),
+		$addr->getMobile(),
 		$addr->getWebsite(),
 		$addr->getVatID()
 	) ) ) );

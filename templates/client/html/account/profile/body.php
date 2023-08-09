@@ -404,6 +404,23 @@ $pos = 0;
 									</div>
 
 
+									<div class="form-item form-group row mobile">
+
+										<label class="col-md-4" for="address-payment-mobile">
+											<?= $enc->html( $this->translate( 'client', 'Mobile number' ), $enc::TRUST ) ?>
+										</label>
+										<div class="col-md-8">
+											<input class="form-control" type="tel"
+												id="address-payment-mobile"
+												name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.mobile' ) ) ) ?>"
+												value="<?= $enc->attr( $this->value( $addr, 'customer.mobile' ) ) ?>"
+												placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
+											>
+										</div>
+
+									</div>
+
+
 									<div class="form-item form-group row telefax">
 
 										<label class="col-md-4" for="address-payment-telefax">
@@ -759,6 +776,23 @@ $pos = 0;
 													id="address-delivery-telephone-<?= $pos ?>"
 													name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.telephone', $pos ) ) ) ?>"
 													value="<?= $enc->attr( $this->value( $addr, 'customer.address.telephone' ) ) ?>"
+													placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
+												>
+											</div>
+
+										</div>
+
+
+										<div class="form-item form-group row mobile">
+
+											<label class="col-md-4" for="address-delivery-mobile-<?= $pos ?>">
+												<?= $enc->html( $this->translate( 'client', 'Mobile number' ), $enc::TRUST ) ?>
+											</label>
+											<div class="col-md-8">
+												<input class="form-control" type="tel"
+													id="address-delivery-mobile-<?= $pos ?>"
+													name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.mobile', $pos ) ) ) ?>"
+													value="<?= $enc->attr( $this->value( $addr, 'customer.address.mobile' ) ) ?>"
 													placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
 												>
 											</div>

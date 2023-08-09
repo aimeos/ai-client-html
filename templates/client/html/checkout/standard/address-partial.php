@@ -349,6 +349,26 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 </div>
 
 
+<div class="row form-item form-group mobile <?= $enc->attr( ( $this->value( 'error', 'order.address.mobile' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.address.telephone', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/mobile' ) ) ?>">
+
+	<div class="col-md-5">
+		<label for="address-<?= $this->get( 'type', 'billing' ) ?>-mobile-<?= $this->get( 'id' ) ?>">
+			<?= $enc->html( $this->translate( 'client', 'Telephone' ), $enc::TRUST ) ?>
+		</label>
+	</div>
+	<div class="col-md-7">
+		<input class="form-control" type="tel"
+			id="address-<?= $this->get( 'type', 'billing' ) ?>-mobile-<?= $this->get( 'id' ) ?>"
+			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.mobile' ) ) ) ?>"
+			value="<?= $enc->attr( $this->value( 'address', 'order.address.mobile' ) ) ?>"
+			placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
+			<?= $this->value( 'css', 'order.address.mobile' ) ? '' : 'disabled' ?>
+		>
+	</div>
+</div>
+
+
 <div class="row form-item form-group telefax <?= $enc->attr( ( $this->value( 'error', 'order.address.telefax' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.address.telefax', [] ) ) ) ?>"
 	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/telefax' ) ) ?>">
 
