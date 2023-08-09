@@ -349,12 +349,12 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 </div>
 
 
-<div class="row form-item form-group mobile <?= $enc->attr( ( $this->value( 'error', 'order.address.mobile' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.address.telephone', [] ) ) ) ?>"
+<div class="row form-item form-group mobile <?= $enc->attr( ( $this->value( 'error', 'order.address.mobile' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.address.mobile', [] ) ) ) ?>"
 	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/mobile' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'billing' ) ?>-mobile-<?= $this->get( 'id' ) ?>">
-			<?= $enc->html( $this->translate( 'client', 'Telephone' ), $enc::TRUST ) ?>
+			<?= $enc->html( $this->translate( 'client', 'Mobile' ), $enc::TRUST ) ?>
 		</label>
 	</div>
 	<div class="col-md-7">
