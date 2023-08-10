@@ -111,8 +111,8 @@ $pos = 0;
 
 						<div class="panel panel-default address-billing">
 							<div class="panel-heading" role="button" data-bs-toggle="collapse" href="#address-payment" aria-expanded="false" aria-controls="address-payment">
-								<?= nl2br( $enc->html( $addr['string'] ?: $this->translate( 'client', 'Add billing address' ) ) ) ?>
 								<span class="act-show"></span>
+								<?= nl2br( $enc->html( $addr['string'] ?: $this->translate( 'client', 'Add billing address' ) ) ) ?>
 							</div>
 							<div class="panel-body collapse" id="address-payment">
 
@@ -486,7 +486,8 @@ $pos = 0;
 						<?php foreach( $this->addressDelivery as $pos => $addr ) : ?>
 							<div class="panel panel-default address-delivery">
 								<div class="panel-heading" role="button" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>" aria-expanded="false" aria-controls="address-delivery-<?= $enc->attr( $pos ) ?>">
-									<?= nl2br( $enc->html( $addr['string'] ?? '' ) ) ?><span class="act-show"></span>
+									<span class="act-show"></span>
+									<?= nl2br( $enc->html( $addr['string'] ?? '' ) ) ?>
 								</div>
 								<div class="panel-body collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>">
 
@@ -865,7 +866,8 @@ $pos = 0;
 						<?php $pos++ ?>
 						<div class="panel panel-default address-delivery-new">
 							<div class="panel-heading" role="button" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>" aria-expanded="false" aria-controls="address-delivery-<?= $enc->attr( $pos ) ?>">
-								<?= $enc->html( $this->translate( 'client', 'New delivery address' ) ) ?><span class="act-show"></span>
+								<span class="act-show"></span>
+								<?= $enc->html( $this->translate( 'client', 'New delivery address' ) ) ?>
 							</div>
 							<div class="panel-body collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>">
 
