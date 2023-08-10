@@ -156,13 +156,13 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row lastname">
+									<div class="form-item form-group row lastname mandatory">
 
 										<label class="col-md-4" for="address-payment-lastname">
 											<?= $enc->html( $this->translate( 'client', 'Last name' ), $enc::TRUST ) ?>
 										</label>
 										<div class="col-md-8">
-											<input class="form-control" type="text"
+											<input class="form-control" type="text" required
 												id="address-payment-lastname"
 												name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.lastname' ) ) ) ?>"
 												value="<?= $enc->attr( $this->value( $addr, 'customer.lastname' ) ) ?>"
@@ -190,13 +190,13 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row address1">
+									<div class="form-item form-group row address1 mandatory">
 
 										<label class="col-md-4" for="address-payment-address1">
 											<?= $enc->html( $this->translate( 'client', 'Street' ), $enc::TRUST ) ?>
 										</label>
 										<div class="col-md-8">
-											<input class="form-control" type="text"
+											<input class="form-control" type="text" required
 												id="address-payment-address1"
 												name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.address1' ) ) ) ?>"
 												value="<?= $enc->attr( $this->value( $addr, 'customer.address1' ) ) ?>"
@@ -241,13 +241,13 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row city">
+									<div class="form-item form-group row city mandatory">
 
 										<label class="col-md-4" for="address-payment-city">
 											<?= $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ) ?>
 										</label>
 										<div class="col-md-8">
-											<input class="form-control" type="text"
+											<input class="form-control" type="text" required
 												id="address-payment-city"
 												name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.city' ) ) ) ?>"
 												value="<?= $enc->attr( $this->value( $addr, 'customer.city' ) ) ?>"
@@ -304,13 +304,13 @@ $pos = 0;
 
 
 									<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
-										<div class="form-item form-group row countryid">
+										<div class="form-item form-group row countryid mandatory">
 
 											<label class="col-md-4" for="address-payment-countryid">
 												<?= $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ) ?>
 											</label>
 											<div class="col-md-8">
-												<select class="form-control" id="address-payment-countryid"
+												<select class="form-control" id="address-payment-countryid" required
 													name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.countryid' ) ) ) ?>">
 
 													<?php if( count( $this->get( 'addressCountries', [] ) ) > 1 ) : ?>
@@ -328,13 +328,13 @@ $pos = 0;
 									<?php endif ?>
 
 
-									<div class="form-item form-group row languageid">
+									<div class="form-item form-group row languageid mandatory">
 
 										<label class="col-md-4" for="address-payment-languageid">
 											<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ) ?>
 										</label>
 										<div class="col-md-8">
-											<select class="form-control" id="address-payment-languageid"
+											<select class="form-control" id="address-payment-languageid" required
 												name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.languageid' ) ) ) ?>">
 
 												<?php if( count( $this->get( 'addressLanguages', [] ) ) > 1 ) : ?>
@@ -370,13 +370,13 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row email">
+									<div class="form-item form-group row email mandatory">
 
 										<label class="col-md-4" for="address-payment-email">
 											<?= $enc->html( $this->translate( 'client', 'E-Mail' ), $enc::TRUST ) ?>
 										</label>
 										<div class="col-md-8">
-											<input class="form-control" type="email"
+											<input class="form-control" type="email" required
 												id="address-payment-email"
 												name="<?= $enc->attr( $this->formparam( array( 'address', 'payment', 'customer.email' ) ) ) ?>"
 												value="<?= $enc->attr( $this->value( $addr, 'customer.email' ) ) ?>"
@@ -536,13 +536,13 @@ $pos = 0;
 										</div>
 
 
-										<div class="form-item form-group row lastname">
+										<div class="form-item form-group row lastname mandatory">
 
 											<label class="col-md-4" for="address-delivery-lastname-<?= $pos ?>">
 												<?= $enc->html( $this->translate( 'client', 'Last name' ), $enc::TRUST ) ?>
 											</label>
 											<div class="col-md-8">
-												<input class="form-control" type="text"
+												<input class="form-control" type="text" required
 													id="address-delivery-lastname-<?= $pos ?>"
 													name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.lastname', $pos ) ) ) ?>"
 													value="<?= $enc->attr( $this->value( $addr, 'customer.address.lastname' ) ) ?>"
@@ -570,13 +570,13 @@ $pos = 0;
 										</div>
 
 
-										<div class="form-item form-group row address1">
+										<div class="form-item form-group row address1 mandatory">
 
 											<label class="col-md-4" for="address-delivery-address1-<?= $pos ?>">
 												<?= $enc->html( $this->translate( 'client', 'Street' ), $enc::TRUST ) ?>
 											</label>
 											<div class="col-md-8">
-												<input class="form-control" type="text"
+												<input class="form-control" type="text" required
 													id="address-delivery-address1-<?= $pos ?>"
 													name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.address1', $pos ) ) ) ?>"
 													value="<?= $enc->attr( $this->value( $addr, 'customer.address.address1' ) ) ?>"
@@ -621,13 +621,13 @@ $pos = 0;
 										</div>
 
 
-										<div class="form-item form-group row city">
+										<div class="form-item form-group row city mandatory">
 
 											<label class="col-md-4" for="address-delivery-city-<?= $pos ?>">
 												<?= $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ) ?>
 											</label>
 											<div class="col-md-8">
-												<input class="form-control" type="text"
+												<input class="form-control" type="text" required
 													id="address-delivery-city-<?= $pos ?>"
 													name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.city', $pos ) ) ) ?>"
 													value="<?= $enc->attr( $this->value( $addr, 'customer.address.city' ) ) ?>"
@@ -684,13 +684,13 @@ $pos = 0;
 
 
 										<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
-											<div class="form-item form-group row countryid">
+											<div class="form-item form-group row countryid mandatory">
 
 												<label class="col-md-4" for="address-delivery-countryid-<?= $pos ?>">
 													<?= $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ) ?>
 												</label>
 												<div class="col-md-8">
-													<select class="form-control" id="address-delivery-countryid-<?= $pos ?>"
+													<select class="form-control" id="address-delivery-countryid-<?= $pos ?>" required
 														name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.countryid', $pos ) ) ) ?>">
 
 														<?php if( count( $this->get( 'addressCountries', [] ) ) > 1 ) : ?>
@@ -708,13 +708,13 @@ $pos = 0;
 										<?php endif ?>
 
 
-										<div class="form-item form-group row languageid">
+										<div class="form-item form-group row languageid mandatory">
 
 											<label class="col-md-4" for="address-delivery-languageid-<?= $pos ?>">
 												<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ) ?>
 											</label>
 											<div class="col-md-8">
-												<select class="form-control" id="address-delivery-languageid-<?= $pos ?>"
+												<select class="form-control" id="address-delivery-languageid-<?= $pos ?>" required
 													name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.languageid', $pos ) ) ) ?>">
 
 													<?php if( count( $this->get( 'addressLanguages', [] ) ) > 1 ) : ?>
@@ -750,13 +750,13 @@ $pos = 0;
 										</div>
 
 
-										<div class="form-item form-group row email">
+										<div class="form-item form-group row email mandatory">
 
 											<label class="col-md-4" for="address-delivery-email-<?= $pos ?>">
 												<?= $enc->html( $this->translate( 'client', 'E-Mail' ), $enc::TRUST ) ?>
 											</label>
 											<div class="col-md-8">
-												<input class="form-control" type="email"
+												<input class="form-control" type="email" required
 													id="address-delivery-email-<?= $pos ?>"
 													name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.email', $pos ) ) ) ?>"
 													value="<?= $enc->attr( $this->value( $addr, 'customer.address.email' ) ) ?>"
@@ -915,7 +915,7 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row lastname">
+									<div class="form-item form-group row lastname mandatory">
 
 										<label class="col-md-4" for="address-delivery-lastname-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'Last name' ), $enc::TRUST ) ?>
@@ -947,7 +947,7 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row address1">
+									<div class="form-item form-group row address1 mandatory">
 
 										<label class="col-md-4" for="address-delivery-address1-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'Street' ), $enc::TRUST ) ?>
@@ -995,7 +995,7 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row city">
+									<div class="form-item form-group row city mandatory">
 
 										<label class="col-md-4" for="address-delivery-city-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'City' ), $enc::TRUST ) ?>
@@ -1057,7 +1057,7 @@ $pos = 0;
 
 
 									<?php if( !empty( $this->get( 'addressCountries', [] ) ) ) : ?>
-										<div class="form-item form-group row countryid">
+										<div class="form-item form-group row countryid mandatory">
 
 											<label class="col-md-4" for="address-delivery-countryid-<?= $pos ?>">
 												<?= $enc->html( $this->translate( 'client', 'Country' ), $enc::TRUST ) ?>
@@ -1082,7 +1082,7 @@ $pos = 0;
 									<?php endif ?>
 
 
-									<div class="form-item form-group row languageid">
+									<div class="form-item form-group row languageid mandatory">
 
 										<label class="col-md-4" for="address-delivery-languageid-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'Language' ), $enc::TRUST ) ?>
@@ -1124,8 +1124,7 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row email"
-										data-regex="^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$">
+									<div class="form-item form-group row email mandatory">
 
 										<label class="col-md-4" for="address-delivery-email-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'E-Mail' ), $enc::TRUST ) ?>
@@ -1157,6 +1156,22 @@ $pos = 0;
 									</div>
 
 
+									<div class="form-item form-group row mobile">
+
+										<label class="col-md-4" for="address-delivery-mobile-<?= $pos ?>">
+											<?= $enc->html( $this->translate( 'client', 'Mobile number' ), $enc::TRUST ) ?>
+										</label>
+										<div class="col-md-8">
+											<input class="form-control" type="tel" id="address-delivery-mobile-<?= $pos ?>" disabled
+												name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', 'customer.address.mobile', $pos ) ) ) ?>"
+												value="<?= $enc->attr( $this->param( 'address/delivery/customer.address.mobile/' . $pos ) ) ?>"
+												placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
+											>
+										</div>
+
+									</div>
+
+
 									<div class="form-item form-group row telefax">
 
 										<label class="col-md-4" for="address-delivery-telefax-<?= $pos ?>">
@@ -1173,8 +1188,7 @@ $pos = 0;
 									</div>
 
 
-									<div class="form-item form-group row website"
-										data-regex="^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$">
+									<div class="form-item form-group row website">
 
 										<label class="col-md-4" for="address-delivery-website-<?= $pos ?>">
 											<?= $enc->html( $this->translate( 'client', 'Web site' ), $enc::TRUST ) ?>
