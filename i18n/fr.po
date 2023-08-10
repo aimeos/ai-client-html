@@ -1203,7 +1203,7 @@ msgid "pin"
 msgstr "épingler"
 
 msgid "price:default"
-msgstr "prix : défaut"
+msgstr ""
 
 #, php-format
 msgid "process"
