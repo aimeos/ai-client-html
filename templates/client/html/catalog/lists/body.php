@@ -89,6 +89,17 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 		<?php endif ?>
 
 
+		<?php if( $this->get( 'listPageCurr', 0 ) <= 1 && ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+			<div class="catalog-list-head">
+				<?php foreach( $catItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+					<div class="header-text">
+						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
+					</div>
+				<?php endforeach ?>
+			</div>
+		<?php endif ?>
+
+
 		<?php if( $this->get( 'listProductTotal', 0 ) > 0 ) : ?>
 
 			<div class="catalog-list-type">
