@@ -146,8 +146,8 @@ class Standard
 					foreach( $attr as $key => $item )
 					{
 						$value = is_array( $item->getDefault() ) ? key( $item->getDefault() ) : $item->getDefault();
-						$value = $oservice->getAttribute( $key, 'payment' ) ?: $value;
-						$item->value = $oservice->getAttribute( $key, 'payment/hidden' ) ?: $value;
+						$value = $oservice->getAttribute( $key ) ?: $value;
+						$item->value = $oservice->getAttribute( $key, 'hidden' ) ?: $value;
 					}
 				}
 				else
