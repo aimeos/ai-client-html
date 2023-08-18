@@ -31,7 +31,7 @@ $type = $this->get( 'type' );
 		<ul class="attr-list">
 
 			<?php foreach( $attributes as $attribute ) : ?>
-				<?php if( strpos( $attribute->getType(), 'hidden' ) === false ) : ?>
+				<?php if( in_array( $attribute->getType(), ['', 'hidden', 'tx'] ) ) : ?>
 					<li class="<?= $enc->attr( $type . '-' . $attribute->getCode() ) ?>">
 
 						<span class="name">
