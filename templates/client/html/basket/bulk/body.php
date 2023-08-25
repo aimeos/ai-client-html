@@ -101,7 +101,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						</div>
 					</div>
 				</div>
-			<div>
+			</div>
 
 			<div class="button-group">
 				<button class="btn btn-primary btn-lg btn-action" type="submit" value="" tabindex="1">
