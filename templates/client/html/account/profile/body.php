@@ -1217,7 +1217,7 @@ $pos = 0;
 								</div>
 
 								<div class="button-group">
-									<button class="btn btn-cancel" value="1" type="reset">
+									<button class="btn btn-cancel" value="1" type="reset" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>">
 										<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
 									</button>
 									<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
