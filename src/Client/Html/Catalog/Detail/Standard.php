@@ -262,8 +262,8 @@ class Standard
 
 		$view->detailMediaItems = $mediaItems;
 		$view->detailProductItem = $productItem;
-		$view->detailAttributeMap = $attrItems->groupBy( 'attribute.type' )->ksort();
-		$view->detailPropertyMap = $propItems->groupBy( 'product.property.type' )->ksort();
+		$view->detailAttributeMap = $this->sortAttributes( $attrItems->groupBy( 'attribute.type' ) );
+		$view->detailPropertyMap = $this->sortProperties( $propItems->groupBy( 'product.property.type' ) );
 		$view->detailStockTypes = $productItem->getStockItems()->getType();
 		$view->detailStockUrl = $this->stockUrl( $productItem );
 
@@ -501,6 +501,60 @@ class Standard
 		}
 
 		$session->set( 'aimeos/catalog/session/seen/list', $lastSeen->put( $id, $lastSeen->pull( $id ) )->all() );
+	}
+
+
+	/**
+	 * Sorts the attribute map by type
+	 *
+	 * @param \Aimeos\Map $map Attribute item map with types as keys
+	 * @return \Aimeos\Map Sorted attribute map
+	 */
+	protected function sortAttributes( \Aimeos\Map $map ) : \Aimeos\Map
+	{
+		$sorted = [];
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->add( 'attribute.type.code', '==', $map->keys() )
+			->order( 'attribute.type.position' );
+
+		foreach( $manager->search( $filter->slice( 0, 10000 ) ) as $typeItem )
+		{
+			$list = $map[$typeItem->getCode()];
+
+			uasort( $list, function( $a, $b ) {
+				return $a->getPosition() <=> $b->getPosition();
+			} );
+
+			$sorted[$typeItem->getCode()] = $list;
+		}
+
+		return map( $sorted );
+	}
+
+
+	/**
+	 * Sorts the property map by type
+	 *
+	 * @param \Aimeos\Map $map Property item map with types as keys
+	 * @return \Aimeos\Map Sorted property map
+	 */
+	protected function sortProperties( \Aimeos\Map $map ) : \Aimeos\Map
+	{
+		$sorted = [];
+		$manager = \Aimeos\MShop::create( $this->context(), 'product/property/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'product.property.type.code', '==', $map->keys() )
+			->order( 'product.property.type.position' );;
+
+		foreach( $manager->search( $filter->slice( 0, 10000 ) ) as $typeItem ) {
+			$sorted[$typeItem->getCode()] = $map[$typeItem->getCode()];
+		}
+
+		return map( $sorted );
 	}
 
 

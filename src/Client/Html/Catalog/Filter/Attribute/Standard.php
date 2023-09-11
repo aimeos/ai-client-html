@@ -207,28 +207,32 @@ class Standard
 	 */
 	protected function sort( array $attrMap, array $attrTypes ) : array
 	{
+		$map = [];
+
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->order( 'attribute.type.position' );
+
 		if( !empty( $attrTypes ) )
 		{
-			$map = [];
-
-			foreach( $attrTypes as $type )
-			{
-				if( isset( $attrMap[$type] ) ) {
-					$map[$type] = $attrMap[$type];
-				}
-			}
-
-			return $map;
+			$filter->add( 'attribute.type.code', '==', $attrTypes );
+			$attrMap = map( $attrMap )->only( $attrTypes );
 		}
 
-		foreach( $attrMap as $type => &$map )
+		foreach( $manager->search( $filter->slice( 0, 10000 ) ) as $typeItem )
 		{
-			uasort( $map, function( $a, $b ) {
-				return $a->getPosition() <=> $b->getPosition();
-			} );
+			if( $list = $attrMap[$typeItem->getCode()] ?? null )
+			{
+				uasort( $list, function( $a, $b ) {
+					return $a->getPosition() <=> $b->getPosition();
+				} );
+
+				$map[$typeItem->getCode()] = $list;
+			}
 		}
 
-		return $attrMap;
+		return $map;
 	}
 
 
