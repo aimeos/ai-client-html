@@ -513,8 +513,8 @@ class Standard
 	protected function sortAttributes( \Aimeos\Map $map ) : \Aimeos\Map
 	{
 		$sorted = [];
-
 		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+
 		$filter = $manager->filter( true )
 			->add( 'attribute.type.domain', '==', 'product' )
 			->add( 'attribute.type.code', '==', $map->keys() )
@@ -544,9 +544,11 @@ class Standard
 	protected function sortProperties( \Aimeos\Map $map ) : \Aimeos\Map
 	{
 		$sorted = [];
-
 		$manager = \Aimeos\MShop::create( $this->context(), 'product/property/type' );
-		$filter = $manager->filter( true )->add( 'product.property.type.code', '==', $map->keys() );
+
+		$filter = $manager->filter( true )
+			->add( 'product.property.type.code', '==', $map->keys() )
+			->order( 'product.property.type.position' );;
 
 		foreach( $manager->search( $filter->slice( 0, 10000 ) ) as $typeItem ) {
 			$sorted[$typeItem->getCode()] = $map[$typeItem->getCode()];
