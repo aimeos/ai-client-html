@@ -113,11 +113,6 @@ $enc = $this->encoder();
 							href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url' ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ) ?>
 						</a>
-					<?php else : ?>
-						<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1">
-						<button class="btn btn-primary btn-lg btn-action" type="submit">
-							<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ) ?>
-						</button>
 					<?php endif ?>
 
 				</div>
