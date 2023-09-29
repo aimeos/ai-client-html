@@ -31,8 +31,6 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$attrMap = [];
-
 		/** client/html/catalog/filter/attribute/types-option
 		 * List of attribute types whose IDs should be used in a global "OR" condition
 		 *
