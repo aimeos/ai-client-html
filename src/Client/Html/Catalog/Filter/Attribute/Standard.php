@@ -148,14 +148,22 @@ class Standard
 
 			$fparams = $this->getFormParams( $type, $oneof, $options );
 			$active[$item->getType()] = (int) $item->get( 'checked', $active[$item->getType()] ?? false );
-			$attrMap[$item->getType()][$id] = $item->set( 'params', $attrparams )->set( 'formparam', $fparams );
+			$item->set( 'params', $attrparams )->set( 'formparam', $fparams );
 		}
 
 		arsort( $active );
 		unset( $params['f_attrid'], $params['f_oneid'], $params['f_optid'] );
 
+		$attributes->uasort( function( $a, $b ) {
+			return $a->getPosition() <=> $b->getPosition();
+		} );
+
+		$attrMap = $attributes->groupBy( 'attribute.type' );
+		$attrTypes = $this->attributeTypes( $attrMap->keys() );
+
 		$view->attributeResetParams = $params;
-		$view->attributeMap = $this->sort( $attrMap, $attrTypes );
+		$view->attributeMap = $attrMap->order( $attrTypes->getCode() );
+		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
 		$view->attributeMapActive = map( $view->attributeMap )->uksort( function( $a, $b ) use ( $active ) {
 			return $active[$b] <=> $active[$a];
 		} );
@@ -173,6 +181,28 @@ class Standard
 	public function header( string $uid = '' ) : ?string
 	{
 		return null;
+	}
+
+
+	/**
+	 * Returns the attribute type items for the given codes
+	 *
+	 * @param \Aimeos\Map $codes List of attribute type codes
+	 * @return \Aimeos\Map List of attribute type items
+	 */
+	protected function attributeTypes( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->order( 'attribute.type.position' );
+
+		if( !$codes->isEmpty() ) {
+			$filter->add( 'attribute.type.code', '==', $codes );
+		}
+
+		return $manager->search( $filter->slice( 0, count( $codes ) ?: 10000 ) );
 	}
 
 
@@ -214,10 +244,8 @@ class Standard
 			->add( 'attribute.type.domain', '==', 'product' )
 			->order( 'attribute.type.position' );
 
-		if( !empty( $attrTypes ) )
-		{
+		if( !empty( $attrTypes ) ) {
 			$filter->add( 'attribute.type.code', '==', $attrTypes );
-			$attrMap = map( $attrMap )->only( $attrTypes );
 		}
 
 		foreach( $manager->search( $filter->slice( 0, 10000 ) ) as $typeItem )

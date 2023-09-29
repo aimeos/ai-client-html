@@ -260,16 +260,47 @@ class Standard
 			}
 		}
 
+		$attrItems->uasort( function( $a, $b ) {
+			return $a->getPosition() <=> $b->getPosition();
+		} );
+
+		$attrMap = $attrItems->groupBy( 'attribute.type' );
+		$propMap = $propItems->groupBy( 'product.property.type' );
+
+		$attrTypes = $this->attributeTypes( $attrMap->keys() );
+		$propTypes = $this->propertyTypes( $propMap->keys() );
+
 		$view->detailMediaItems = $mediaItems;
 		$view->detailProductItem = $productItem;
-		$view->detailAttributeMap = $this->sortAttributes( $attrItems->groupBy( 'attribute.type' ) );
-		$view->detailPropertyMap = $this->sortProperties( $propItems->groupBy( 'product.property.type' ) );
+		$view->detailPropertyTypes = $propTypes->col( null, 'product.property.type.code' );
+		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
+		$view->detailAttributeMap = $attrMap->order( $attrTypes->getCode() );
+		$view->detailPropertyMap = $propMap->order( $propTypes->getCode() );
 		$view->detailStockTypes = $productItem->getStockItems()->getType();
 		$view->detailStockUrl = $this->stockUrl( $productItem );
 
 		$this->call( 'seen', $productItem );
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the attribute type items for the given codes
+	 *
+	 * @param \Aimeos\Map $codes List of attribute type codes
+	 * @return \Aimeos\Map List of attribute type items
+	 */
+	protected function attributeTypes( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->add( 'attribute.type.code', '==', $codes )
+			->order( 'attribute.type.position' );
+
+		return $manager->search( $filter->slice( 0, count( $codes ) ) );
 	}
 
 
@@ -329,7 +360,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function navigator() : string
+	protected function navigator() : string
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -449,6 +480,24 @@ class Standard
 
 
 	/**
+	 * Returns the property type items for the given codes
+	 *
+	 * @param \Aimeos\Map $codes List of property type codes
+	 * @return \Aimeos\Map List of property type items
+	 */
+	protected function propertyTypes( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'product/property/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'product.property.type.code', '==', $codes )
+			->order( 'product.property.type.position' );
+
+		return $manager->search( $filter->slice( 0, count( $codes ) ) );
+	}
+
+
+	/**
 	 * Adds the product to the list of last seen products.
 	 *
 	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item
@@ -501,60 +550,6 @@ class Standard
 		}
 
 		$session->set( 'aimeos/catalog/session/seen/list', $lastSeen->put( $id, $lastSeen->pull( $id ) )->all() );
-	}
-
-
-	/**
-	 * Sorts the attribute map by type
-	 *
-	 * @param \Aimeos\Map $map Attribute item map with types as keys
-	 * @return \Aimeos\Map Sorted attribute map
-	 */
-	protected function sortAttributes( \Aimeos\Map $map ) : \Aimeos\Map
-	{
-		$sorted = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
-
-		$filter = $manager->filter( true )
-			->add( 'attribute.type.domain', '==', 'product' )
-			->add( 'attribute.type.code', '==', $map->keys() )
-			->order( 'attribute.type.position' );
-
-		foreach( $manager->search( $filter->slice( 0, 10000 ) ) as $typeItem )
-		{
-			$list = $map[$typeItem->getCode()];
-
-			uasort( $list, function( $a, $b ) {
-				return $a->getPosition() <=> $b->getPosition();
-			} );
-
-			$sorted[$typeItem->getCode()] = $list;
-		}
-
-		return map( $sorted );
-	}
-
-
-	/**
-	 * Sorts the property map by type
-	 *
-	 * @param \Aimeos\Map $map Property item map with types as keys
-	 * @return \Aimeos\Map Sorted property map
-	 */
-	protected function sortProperties( \Aimeos\Map $map ) : \Aimeos\Map
-	{
-		$sorted = [];
-		$manager = \Aimeos\MShop::create( $this->context(), 'product/property/type' );
-
-		$filter = $manager->filter( true )
-			->add( 'product.property.type.code', '==', $map->keys() )
-			->order( 'product.property.type.position' );;
-
-		foreach( $manager->search( $filter->slice( 0, 10000 ) ) as $typeItem ) {
-			$sorted[$typeItem->getCode()] = $map[$typeItem->getCode()];
-		}
-
-		return map( $sorted );
 	}
 
 

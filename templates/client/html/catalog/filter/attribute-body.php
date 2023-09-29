@@ -28,8 +28,13 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 $attrIds = array_filter( $this->param( 'f_attrid', [] ) );
 $optIds = array_filter( $this->param( 'f_optid', [] ) );
 $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
+$attrTypes = $this->get( 'detailAttributeTypes', [] );
 $attrMap = $this->get( 'attributeMap', [] );
 $params = $this->param();
+
+$attrTypeName = function( string $code ) use ( $attrTypes ) {
+	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
+};
 
 
 ?>
@@ -81,7 +86,7 @@ $params = $this->param();
 					<?php if( !empty( $attributes ) ) : ?>
 
 						<fieldset class="attr-sets attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ) ?>">
-							<legend class="attr-type"><?= $enc->html( $this->translate( 'client/code', $attrType ), $enc::TRUST ) ?></legend>
+							<legend class="attr-type"><?= $enc->html( $attrTypeName( $attrType ) ) ?></legend>
 							<ul class="attr-list"><!--
 
 								<?php foreach( $attributes as $id => $attribute ) : ?>
