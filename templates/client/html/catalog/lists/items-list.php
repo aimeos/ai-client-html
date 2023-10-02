@@ -7,6 +7,7 @@
 
 $enc = $this->encoder();
 $position = $this->get( 'position' );
+$attrTypes = $this->get( 'attributeTypes', map() );
 
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
@@ -132,7 +133,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<div class="items-selection">
 								<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection' ), [
 									'productItems' => $productItem->getRefItems( 'product', 'default', 'default' ),
-									'productItem' => $productItem
+									'productItem' => $productItem,
+									'attributeTypes' => $attrTypes
 								] ) ?>
 							</div>
 						<?php endif ?>
@@ -140,7 +142,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<div class="items-attribute">
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
-								['productItem' => $productItem]
+								[
+									'productItem' => $productItem,
+									'attributeTypes' => $attrTypes
+								]
 							) ?>
 						</div>
 

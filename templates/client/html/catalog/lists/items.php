@@ -30,6 +30,7 @@ $enc = $this->encoder();
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
+			'attributeTypes' => $this->get( 'attributeTypes', map() ),
 			'products' => $this->get( 'products', map() ),
 			'position' => $this->get( 'position' ),
 		)

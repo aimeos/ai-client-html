@@ -281,6 +281,9 @@ class Standard
 		$products = $cntl->search( $total );
 		$articles = $products->getRefItems( 'product', 'default', 'default' )->flat( 1 )->union( $products );
 
+		$attrMap = $articles->getRefItems( 'attribute' )->flat( 1 )->groupBy( 'attribute.type' );
+		$attrTypes = $this->attributeTypes( $attrMap->keys() );
+
 		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
 
@@ -294,6 +297,7 @@ class Standard
 		$view->listPageLast = ( $total != 0 ? min( ceil( $total / $size ), $pages ) : 1 );
 		$view->listPageNext = ( $page < $view->listPageLast ? $page + 1 : $view->listPageLast );
 
+		$view->listAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
 		$view->listParams = $this->getClientParams( map( $view->param() )->toArray() );
 		$view->listStockUrl = $this->stockUrl( $articles );
 		$view->listPosition = ( $page - 1 ) * $size;
@@ -349,6 +353,25 @@ class Standard
 		$attrids = $attrids != null && is_scalar( $attrids ) ? explode( ',', $attrids ) : $attrids; // workaround for TYPO3
 
 		return (array) $attrids;
+	}
+
+
+	/**
+	 * Returns the attribute type items for the given codes
+	 *
+	 * @param \Aimeos\Map $codes List of attribute type codes
+	 * @return \Aimeos\Map List of attribute type items
+	 */
+	protected function attributeTypes( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->add( 'attribute.type.code', '==', $codes )
+			->order( 'attribute.type.position' );
+
+		return $manager->search( $filter->slice( 0, count( $codes ) ) );
 	}
 
 
