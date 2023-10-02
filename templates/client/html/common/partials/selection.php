@@ -9,6 +9,7 @@
 /* Available data:
  * - productItem : Selection product for the variant products
  * - productItems : List of product items including the referenced items like texts, attributes, etc.
+ * - attributeTypes : List of attribute type items
  */
 
 
@@ -100,6 +101,12 @@ $sortfcn = function( $itemA, $itemB ) {
 	return $itemA->getPosition() <=> $itemB->getPosition() ?: $itemA->getName() <=> $itemB->getName();
 };
 
+$attrTypes = $this->get( 'attributeTypes', [] );
+
+$attrTypeName = function( string $code ) use ( $attrTypes ) {
+	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
+};
+
 
 ?>
 <ul class="selection"
@@ -109,7 +116,7 @@ $sortfcn = function( $itemA, $itemB ) {
 	<?php foreach( $attrItems->uasort( $sortfcn )->groupBy( 'attribute.type' )->ksort() as $code => $list ) : ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ) ?>">
-			<label class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ) ?></label>
+			<label class="select-name"><?= $enc->html( $attrTypeName( $code ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>

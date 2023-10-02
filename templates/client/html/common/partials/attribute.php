@@ -8,6 +8,7 @@
 
 /* Available data:
  * - productItem : Product item the attributes are associated to
+ * - attributeTypes : List of attribute type items
  */
 
 
@@ -84,6 +85,12 @@ $sortfcn = function( $itemA, $itemB ) {
 	return $itemA->getPosition() <=> $itemB->getPosition() ?: $itemA->getName() <=> $itemB->getName();
 };
 
+$attrTypes = $this->get( 'attributeTypes', [] );
+
+$attrTypeName = function( string $code ) use ( $attrTypes ) {
+	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
+};
+
 
 ?>
 <ul class="selection">
@@ -92,7 +99,7 @@ $sortfcn = function( $itemA, $itemB ) {
 		<?php $key = $this->productItem->getId() . '-' . $code . '_' . rand( 1, 1000 ) ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) ) ?>">
-			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ) ?></label>
+			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $attrTypeName( $code ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>

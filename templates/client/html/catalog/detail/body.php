@@ -195,7 +195,8 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 										$this->config( 'client/html/common/partials/selection', 'common/partials/selection' ),
 										[
 											'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
-											'productItem' => $this->detailProductItem
+											'productItem' => $this->detailProductItem,
+											'attributeTypes' => $attrTypes
 										]
 									) ?>
 
@@ -221,7 +222,8 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 										$this->config( 'client/html/catalog/detail/partials/group', 'catalog/detail/group' ),
 										[
 											'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
-											'productItem' => $this->detailProductItem
+											'productItem' => $this->detailProductItem,
+											'attributeTypes' => $attrTypes
 										]
 									) ?>
 
@@ -249,7 +251,10 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 									 * @see client/html/common/partials/selection
 									 */
 									$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
-									['productItem' => $this->detailProductItem]
+									[
+										'productItem' => $this->detailProductItem,
+										'attributeTypes' => $attrTypes
+									]
 								) ?>
 
 							</div>
