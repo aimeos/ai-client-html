@@ -98,35 +98,19 @@ class Standard
 		$orders = \Aimeos\Controller\Frontend::create( $context, 'order' )
 			->compare( '>', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING )
 			->compare( '<=', 'order.ctime', date( 'Y-m-d H:i:s', time() - $days * 86400 ) )
-			->uses( ['order', 'order/product'] )
+			->uses( ['order', 'order/product', 'product' => [], 'text' => ['name'], 'media' => ['default']] )
 			->sort( '-order.ctime' )
 			->slice( 0, $size )
 			->search();
 
-		$prodMap = $orders->getProducts()->flat()
-			->col( 'order.product.id', 'order.product.productid' );
+		$orderProducts = $orders->getProducts()->flat()->col( null, 'order.product.productid' );
 
 		$exclude = \Aimeos\Controller\Frontend::create( $context, 'review' )
-			->for( 'product', $prodMap->keys()->toArray() )
-			->slice( 0, $prodMap->count() )
+			->for( 'product', $orderProducts->keys()->toArray() )
+			->slice( 0, $orderProducts->count() )
 			->list()->getRefId();
 
-		if( ( $prodIds = $prodMap->keys()->diff( $exclude )->toArray() ) !== [] )
-		{
-			$productItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
-				->uses( ['text' => ['name'], 'media' => ['default']] )
-				->product( $prodIds )
-				->search();
-
-			foreach( $prodMap as $prodId => $ordProdId )
-			{
-				if( $item = $productItems->get( $prodId ) ) {
-					$products[$prodId] = $item->set( 'orderProductId', $ordProdId );
-				}
-			}
-		}
-
-		$view->reviewProductItems = map( $products )->filter()->take( $size );
+		$view->reviewProductItems = $orderProducts->except( $exclude )->take( $size );
 
 		return parent::data( $view, $tags, $expire );
 	}
