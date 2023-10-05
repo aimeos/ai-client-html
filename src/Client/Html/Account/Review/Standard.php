@@ -65,7 +65,6 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$products = [];
 		$context = $this->context();
 		$config = $context->config();
 
