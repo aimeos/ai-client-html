@@ -27,7 +27,11 @@ $enc = $this->encoder();
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
 	<?php if( ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
 
-		<title><?= $enc->html( strip_tags( $catItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+		<?php if( $title = $catItem->getRefItems( 'text', 'meta-title', 'default' )->getContent()->first() ) : ?>
+			<title><?= $enc->html( $title ) ?></title>
+		<?php else : ?>
+			<title><?= $enc->html( strip_tags( $catItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+		<?php endif ?>
 
 		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', map( $this->get( 'listParams', [] ) )->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
 
