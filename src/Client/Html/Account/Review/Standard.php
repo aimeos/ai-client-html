@@ -102,10 +102,12 @@ class Standard
 			->slice( 0, $size )
 			->search();
 
-		$orderProducts = $orders->getProducts()->flat()->col( null, 'order.product.productid' );
+		$orderProducts = $orders->getProducts()->collapse( 1 )->rekey( function( $item ) {
+			return $item->getType() === 'select' ? $item->getParentProductId() : $item->getProductId();
+		} );
 
 		$exclude = \Aimeos\Controller\Frontend::create( $context, 'review' )
-			->for( 'product', $orderProducts->keys()->toArray() )
+			->for( 'product', $orderProducts->keys()->all() )
 			->slice( 0, $orderProducts->count() )
 			->list()->getRefId();
 
