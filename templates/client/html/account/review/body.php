@@ -98,10 +98,9 @@ $enc = $this->encoder();
 			<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/review/url' ) ) ?>">
 				<?= $this->csrf()->formfield() ?>
 
-				<?php foreach( $orderProducts as $orderProduct ) : ?>
+				<?php foreach( $orderProducts as $prodId => $orderProduct ) : ?>
 					<?php if( $productItem = $orderProduct->getProductItem() ) : ?>
 						<?php
-							$prodId = $orderProduct->getProductId();
 							$images = $productItem?->getRefItems( 'media', 'default', 'default' );
 
 							if( $images?->isEmpty() ) {
