@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Роман Андрейчук, 2022\n"
 "Language-Team: Russian (http://app.transifex.com/aimeos/aimeos-core/language/ru/)\n"
@@ -64,6 +64,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%12$s\n%11$s\n%9$s %10$s\n%8$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -79,6 +97,10 @@ msgstr "скидка %1$s %2$s"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -98,6 +120,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -176,6 +202,9 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr "Для Вас была создана учётная запись."
 
+msgid "Apply"
+msgstr "Применить"
+
 msgid "Article"
 msgstr ""
 
@@ -202,6 +231,15 @@ msgstr "Назад"
 msgid "Basket"
 msgstr "Корзина"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Платёжный адрес"
 
@@ -215,6 +253,9 @@ msgstr "Ошибка в части\"%1$s\" платёжного адреса"
 
 msgid "Birthday"
 msgstr "День рождения"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr ""
@@ -406,14 +447,23 @@ msgstr "Файл \"%1$s\" не существует"
 msgid "Filter"
 msgstr "Фильтр"
 
+msgid "First"
+msgstr "Первый"
+
 msgid "First name"
 msgstr "Имя"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go"
 msgstr "Далее"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr "Вид Сетка"
@@ -494,8 +544,14 @@ msgstr "Недопустимая фабрика \"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "Недопустимый ответ процесса от поставщика услуг с кодом \"%1$s\""
 
+msgid "Invoice"
+msgstr "Счёт"
+
 msgid "Language"
 msgstr "Язык"
+
+msgid "Last"
+msgstr "Последний"
 
 msgid "Last name"
 msgstr "Фамилия"
@@ -516,6 +572,12 @@ msgid "Login"
 msgstr "Вход"
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -682,6 +744,9 @@ msgstr "Назад"
 msgid "Price"
 msgstr "цене"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr ""
 
@@ -694,7 +759,37 @@ msgstr "Ошибка при обработке платежа"
 msgid "Product"
 msgstr "Товар"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
+msgstr ""
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "Цена товара"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
 msgstr ""
 
 msgid "Products you might be also interested in"
@@ -744,6 +839,12 @@ msgstr "Приветствие"
 msgid "Save"
 msgstr "Сохранить"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "Поиск"
 
@@ -789,6 +890,9 @@ msgstr "Показать"
 
 msgid "Show all quotes"
 msgstr "Показать все отзывы"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Упорядочить по:"
@@ -853,6 +957,9 @@ msgid "Sum"
 msgstr "Сумма"
 
 msgid "Supplier information"
+msgstr ""
+
+msgid "Supplier list"
 msgstr ""
 
 msgid "Suppliers"
@@ -1089,6 +1196,9 @@ msgstr "Вы можете использовать свой ваучер в лю
 
 msgid "You can use your vouchers at any time in our online shop"
 msgstr "Вы можете использовать свои ваучеры в любое время в нашем интернет-магазине"
+
+msgid "You must log in first"
+msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Переход к следующему шагу"

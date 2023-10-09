@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Hans He, 2022\n"
 "Language-Team: Chinese (http://app.transifex.com/aimeos/aimeos-core/language/zh/)\n"
@@ -58,6 +58,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -73,6 +91,10 @@ msgstr "%1$s %2$s 折扣"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -92,6 +114,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -167,6 +193,9 @@ msgstr "所有的訂單都適用於我們的條款與協議，你可以在我們
 msgid "An account has been created for you."
 msgstr "已為您創建帳戶。"
 
+msgid "Apply"
+msgstr "应用"
+
 msgid "Article"
 msgstr "產品"
 
@@ -193,6 +222,15 @@ msgstr "返回"
 msgid "Basket"
 msgstr "購物車"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "帳單地址"
 
@@ -206,6 +244,9 @@ msgstr "帳單地址 \"%1$s\" 遺漏"
 
 msgid "Birthday"
 msgstr "生日"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr "批量訂購"
@@ -397,14 +438,23 @@ msgstr "檔案 \"%1$s\" 不存在"
 msgid "Filter"
 msgstr "篩選"
 
+msgid "First"
+msgstr "第一筆"
+
 msgid "First name"
 msgstr "名"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go"
 msgstr "前往"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr "網格顯示"
@@ -485,8 +535,14 @@ msgstr "無效的factory \"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "服務供應者傳回無效處理代碼 \"%1$s\""
 
+msgid "Invoice"
+msgstr "發票"
+
 msgid "Language"
 msgstr "語言"
+
+msgid "Last"
+msgstr "最後一筆"
 
 msgid "Last name"
 msgstr "姓"
@@ -508,6 +564,12 @@ msgstr "登錄"
 
 msgid "Lowest price"
 msgstr "最低价"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
+msgstr ""
 
 msgid "More reviews"
 msgstr "更多評論"
@@ -673,6 +735,9 @@ msgstr "前一筆"
 msgid "Price"
 msgstr "價格"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr "价格范围"
 
@@ -685,8 +750,38 @@ msgstr "處理支付失敗"
 msgid "Product"
 msgstr "商品"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "商品圖片"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "商品價格"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "您可能會有興趣的商品"
@@ -735,6 +830,12 @@ msgstr "稱呼"
 msgid "Save"
 msgstr "保存"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "搜尋"
 
@@ -777,6 +878,9 @@ msgstr "顯示"
 
 msgid "Show all quotes"
 msgstr "顯示所有報價"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "排序方式："
@@ -842,6 +946,9 @@ msgstr "合計"
 
 msgid "Supplier information"
 msgstr "供應商資訊"
+
+msgid "Supplier list"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "供應商"
@@ -1074,6 +1181,9 @@ msgstr "您可以在我們的網上商店隨時使用您的優惠券"
 
 msgid "You can use your vouchers at any time in our online shop"
 msgstr "您可随时在我们的线上店使用您的代金券"
+
+msgid "You must log in first"
+msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "正在转到下一步"

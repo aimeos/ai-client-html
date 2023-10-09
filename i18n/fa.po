@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Babak Momeni, 2022\n"
 "Language-Team: Persian (http://app.transifex.com/aimeos/aimeos-core/language/fa/)\n"
@@ -57,6 +57,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -71,6 +89,10 @@ msgstr ""
 #. value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
+msgstr ""
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
@@ -91,6 +113,10 @@ msgstr ""
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -167,6 +193,9 @@ msgstr "تمامی سفارشات بر اساس قوانین و مقررات ا�
 msgid "An account has been created for you."
 msgstr "یک حساب کاربری برای شما ایجاد شد."
 
+msgid "Apply"
+msgstr "اعمال کردن"
+
 msgid "Article"
 msgstr "کالا"
 
@@ -193,6 +222,15 @@ msgstr "عقب"
 msgid "Basket"
 msgstr "سبد خرید"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "آدرس صورتحساب"
 
@@ -206,6 +244,9 @@ msgstr "قسمت \"%1$s\" از آدرس صورتحساب مقود می‌باش�
 
 msgid "Birthday"
 msgstr "تاریخ تولد"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr ""
@@ -397,14 +438,23 @@ msgstr "فایل \"%1$s\" موجود نمی‌باشد"
 msgid "Filter"
 msgstr "فیلتر"
 
+msgid "First"
+msgstr "اولین"
+
 msgid "First name"
 msgstr "نام"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go"
 msgstr "برو"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr ""
@@ -485,8 +535,14 @@ msgstr "کارخانه‌ی \"%1$s\" معتبر نمی‌باشد"
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "پاسخ سرویس دهنده‌ به همراه کد \"%1$s\" معتبر نمی‌باشد"
 
+msgid "Invoice"
+msgstr "صورتحساب"
+
 msgid "Language"
 msgstr "زبان"
+
+msgid "Last"
+msgstr "آخرین"
 
 msgid "Last name"
 msgstr "نام خانوادگی"
@@ -508,6 +564,12 @@ msgstr "ورود"
 
 msgid "Lowest price"
 msgstr "کمترین قیمت"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
+msgstr ""
 
 msgid "More reviews"
 msgstr "ادامه دیدگاهها"
@@ -673,6 +735,9 @@ msgstr "قبلی"
 msgid "Price"
 msgstr "قیمت"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr "بازه قیمت"
 
@@ -685,8 +750,38 @@ msgstr "مراحل پردازش پرداخت با شکست روبرو شد."
 msgid "Product"
 msgstr "محصول"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "تصویر محصول"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "قیمت کالا"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "محصولاتی که احتمالا شما به آنها علاقه‌مند هستید"
@@ -735,6 +830,12 @@ msgstr "پیشوند نام"
 msgid "Save"
 msgstr "ذخیره"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "جستجو"
 
@@ -778,6 +879,9 @@ msgstr "نمایش بده"
 
 msgid "Show all quotes"
 msgstr "نمایش همه‌ی نقل قول‌ها"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "مرتب سازی بر اساس:"
@@ -843,6 +947,9 @@ msgstr "مجموع"
 
 msgid "Supplier information"
 msgstr "اطلاعات تامین کننده"
+
+msgid "Supplier list"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "تامین کنندگان"
@@ -1075,6 +1182,9 @@ msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
 msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"

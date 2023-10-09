@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-30 16:30+0100\n"
+"POT-Creation-Date: 2023-10-09 19:37+0200\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -62,6 +62,36 @@ msgstr ""
 "%17$s\n"
 "%18$s\n"
 
+#, fuzzy, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+"%2$s %3$s %4$s %5$s\n"
+"%1$s\n"
+"%7$s %6$s\n"
+"%8$s\n"
+"%10$s %11$s %9$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -75,6 +105,10 @@ msgstr "%2$s %1$s off"
 #. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
+msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, fuzzy, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
@@ -94,6 +128,10 @@ msgstr "%3$s%1$s + %3$s%2$s"
 
 msgid "+"
 msgstr ""
+
+#, fuzzy, php-format
+msgid "+ %1$s %2$s"
+msgstr "%2$s %1$s"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
@@ -169,6 +207,9 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr ""
 
+msgid "Apply"
+msgstr ""
+
 msgid "Article"
 msgstr ""
 
@@ -195,6 +236,15 @@ msgstr ""
 msgid "Basket"
 msgstr ""
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr ""
 
@@ -207,6 +257,9 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Birthday"
+msgstr ""
+
+msgid "Breadcrumb navigation"
 msgstr ""
 
 msgid "Bulk order"
@@ -399,13 +452,22 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
+msgid "First"
+msgstr ""
+
 msgid "First name"
+msgstr ""
+
+msgid "Found products"
 msgstr ""
 
 msgid "GB999999973"
 msgstr ""
 
 msgid "Go"
+msgstr ""
+
+msgid "Go to page"
 msgstr ""
 
 msgid "Grid view"
@@ -477,7 +539,13 @@ msgstr ""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
+msgid "Invoice"
+msgstr ""
+
 msgid "Language"
+msgstr ""
+
+msgid "Last"
 msgstr ""
 
 msgid "Last name"
@@ -499,6 +567,12 @@ msgid "Login"
 msgstr ""
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -663,6 +737,9 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr ""
 
@@ -675,7 +752,37 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
+msgstr ""
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr ""
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
 msgstr ""
 
 msgid "Products you might be also interested in"
@@ -725,6 +832,12 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr ""
 
@@ -765,6 +878,9 @@ msgid "Show"
 msgstr ""
 
 msgid "Show all quotes"
+msgstr ""
+
+msgid "Sort by"
 msgstr ""
 
 msgid "Sort by:"
@@ -828,6 +944,9 @@ msgid "Sum"
 msgstr ""
 
 msgid "Supplier information"
+msgstr ""
+
+msgid "Supplier list"
 msgstr ""
 
 msgid "Suppliers"
@@ -1047,6 +1166,9 @@ msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
 msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"

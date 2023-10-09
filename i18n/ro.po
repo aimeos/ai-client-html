@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: iulian iulian <iulian.abc@gmail.com>, 2020\n"
 "Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
@@ -57,6 +57,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -72,6 +90,10 @@ msgstr "%1$s %2$s off"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -91,6 +113,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -168,6 +194,9 @@ msgstr "Toate comenzile sunt supuse termenilor si conditiilor noastre."
 msgid "An account has been created for you."
 msgstr "Contul tau a fost creat."
 
+msgid "Apply"
+msgstr "Aplică"
+
 msgid "Article"
 msgstr "Produs"
 
@@ -194,6 +223,15 @@ msgstr "Inapoi"
 msgid "Basket"
 msgstr "Cos de cumparaturi"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Adresa de facturare"
 
@@ -207,6 +245,9 @@ msgstr "Partea \"%1$s\" a adresei de facturare lipseste"
 
 msgid "Birthday"
 msgstr "Zi de nastere"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr ""
@@ -398,14 +439,23 @@ msgstr "Fișierul \"%1$s\" nu există"
 msgid "Filter"
 msgstr "Filtru"
 
+msgid "First"
+msgstr "Primul"
+
 msgid "First name"
 msgstr "Prenume"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr ""
 
 msgid "Go"
 msgstr "Ok"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr ""
@@ -486,8 +536,14 @@ msgstr "Factory incorect \"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
+msgid "Invoice"
+msgstr "Factura"
+
 msgid "Language"
 msgstr "Limba"
+
+msgid "Last"
+msgstr "Ultimul"
 
 msgid "Last name"
 msgstr "Nume"
@@ -508,6 +564,12 @@ msgid "Login"
 msgstr "Autentificare"
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -674,6 +736,9 @@ msgstr "Anterior"
 msgid "Price"
 msgstr "Pret"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr ""
 
@@ -686,7 +751,37 @@ msgstr "Procesarea platii a esuat"
 msgid "Product"
 msgstr "Produs"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
+msgstr ""
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "Prețul produsului"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
 msgstr ""
 
 msgid "Products you might be also interested in"
@@ -736,6 +831,12 @@ msgstr "Salutare"
 msgid "Save"
 msgstr "Salvare"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "Cauta"
 
@@ -780,6 +881,9 @@ msgstr "Arata"
 
 msgid "Show all quotes"
 msgstr "Arata toate citatele"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Ordoneaza dupa:"
@@ -845,6 +949,9 @@ msgstr "Suma"
 
 msgid "Supplier information"
 msgstr "Informatii despre furnizor"
+
+msgid "Supplier list"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Furnizori"
@@ -1078,6 +1185,9 @@ msgid "You can use your voucher any time in our online shop"
 msgstr "Iti poti folosi voucherul oricand in magazinul nostru online"
 
 msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
