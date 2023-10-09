@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Gülsüm Akça <akcagulsum1@gmail.com>, 2021
-# Metal <meteoramic@yahoo.com>, 2015-2022
+# Metal <meteoramic@yahoo.com>, 2015-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2022\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,6 +56,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -71,6 +89,10 @@ msgstr "%1$s %2$s indirim"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -90,6 +112,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -166,6 +192,9 @@ msgstr "Tüm siparişler web sitemizde yer alan ve siparişinizi verdiğinizde k
 msgid "An account has been created for you."
 msgstr "Sizin için bir hesap oluşturuldu."
 
+msgid "Apply"
+msgstr "Uygula"
+
 msgid "Article"
 msgstr "Ürün"
 
@@ -192,6 +221,15 @@ msgstr "Geri"
 msgid "Basket"
 msgstr "Ürün Sepetiniz"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Fatura adresi"
 
@@ -205,6 +243,9 @@ msgstr "Fatura adresinin \"%1$s\" bölümü eksik"
 
 msgid "Birthday"
 msgstr "Doğum günü"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr "Toplu sipariş"
@@ -396,14 +437,23 @@ msgstr "\"%1$s\" dosyası mevcut değil"
 msgid "Filter"
 msgstr "Filtre"
 
+msgid "First"
+msgstr "Birinci"
+
 msgid "First name"
 msgstr "Ad"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "Ör: Bornova / 123 456 789 11"
 
 msgid "Go"
 msgstr "Ara"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr "Izgara görünümü"
@@ -484,8 +534,14 @@ msgstr "Geçersiz üretici \"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "\"%1$s\" kodlu hizmet sağlayıcısından geçersiz işlem yanıtı"
 
+msgid "Invoice"
+msgstr "Fatura"
+
 msgid "Language"
 msgstr "Dil"
+
+msgid "Last"
+msgstr "Sonuncu"
 
 msgid "Last name"
 msgstr "Soyad"
@@ -507,6 +563,12 @@ msgstr "Oturum aç"
 
 msgid "Lowest price"
 msgstr "En düşük fiyat"
+
+msgid "Mobile"
+msgstr "Cep telefonu"
+
+msgid "Mobile number"
+msgstr "Cep telefonu numarası"
 
 msgid "More reviews"
 msgstr "Daha fazla yorum"
@@ -672,6 +734,9 @@ msgstr "Önceki"
 msgid "Price"
 msgstr "Fiyat"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr "Fiyat aralığı"
 
@@ -684,8 +749,38 @@ msgstr "Ödeme işleme başarısız oldu"
 msgid "Product"
 msgstr "Ürün"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "Ürün resmi"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "Ürün fiyatı"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "İlgilenebileceğiniz diğer ürünler"
@@ -734,6 +829,12 @@ msgstr "Selamlama"
 msgid "Save"
 msgstr "Kaydet"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "Aranacak kelimeyi girin"
 
@@ -778,8 +879,11 @@ msgstr "Göster"
 msgid "Show all quotes"
 msgstr "Tüm değerlendirmeleri göster"
 
+msgid "Sort by"
+msgstr ""
+
 msgid "Sort by:"
-msgstr "Sıralama ölçütü"
+msgstr "Sırala"
 
 msgid "State"
 msgstr "İl"
@@ -842,6 +946,9 @@ msgstr "Toplam"
 
 msgid "Supplier information"
 msgstr "Tedarikçi bilgileri"
+
+msgid "Supplier list"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Tedarikçiler"
@@ -1075,6 +1182,9 @@ msgstr "Kuponunuzu istediğiniz zaman online alışveriş mağazamızda kullanab
 
 msgid "You can use your vouchers at any time in our online shop"
 msgstr "Kuponlarınızı istediğiniz zaman online alışveriş mağazamızda kullanabilirsiniz"
+
+msgid "You must log in first"
+msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Şimdi bir sonraki adıma yönlendirileceksiniz"

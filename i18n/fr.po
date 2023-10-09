@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Six byNine <wwinx@hotmail.com>, 2018\n"
 "Language-Team: French (http://app.transifex.com/aimeos/aimeos-core/language/fr/)\n"
@@ -68,6 +68,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -83,6 +101,10 @@ msgstr "remise de %1$s %2$s"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -102,6 +124,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -179,6 +205,9 @@ msgstr "Toutes les commandes sont sujettes à nos termes et conditions consultab
 msgid "An account has been created for you."
 msgstr "Un compte a été créé pour vous"
 
+msgid "Apply"
+msgstr "Appliquer"
+
 msgid "Article"
 msgstr "Article"
 
@@ -205,6 +234,15 @@ msgstr "Précédent"
 msgid "Basket"
 msgstr "Panier"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Adresse de facturation"
 
@@ -218,6 +256,9 @@ msgstr "La partie \"%1$s\" de l'adresse de facturation est manquante"
 
 msgid "Birthday"
 msgstr "Date de naissance"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr "Commande en gros"
@@ -409,14 +450,23 @@ msgstr "Le fichier \"%1$s\" n'existe pas"
 msgid "Filter"
 msgstr "Filtre"
 
+msgid "First"
+msgstr "Premier"
+
 msgid "First name"
 msgstr "Prénom"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "FR999999973"
 
 msgid "Go"
 msgstr "Chercher"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr ""
@@ -497,8 +547,14 @@ msgstr "Usine invalide \"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "Réponse de processus invalide du fournisseur de service de code \"%1$s\""
 
+msgid "Invoice"
+msgstr "Facture"
+
 msgid "Language"
 msgstr "Langue"
+
+msgid "Last"
+msgstr "Dernier"
 
 msgid "Last name"
 msgstr "Nom"
@@ -519,6 +575,12 @@ msgid "Login"
 msgstr "Se connecter"
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -685,6 +747,9 @@ msgstr "Précédent"
 msgid "Price"
 msgstr "Prix"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr ""
 
@@ -697,8 +762,38 @@ msgstr "Le traitement du paiement a échoué"
 msgid "Product"
 msgstr "Produit"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "Image du produit"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "Prix du produit"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "Ces produits pourraient également vous intéresser"
@@ -747,6 +842,12 @@ msgstr "Titre"
 msgid "Save"
 msgstr "Sauvegarder"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "Recherche"
 
@@ -791,6 +892,9 @@ msgstr "Voir"
 
 msgid "Show all quotes"
 msgstr "Voir tous les tarifs"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Trier par :"
@@ -856,6 +960,9 @@ msgstr "Montant"
 
 msgid "Supplier information"
 msgstr "Détail du fournisseur"
+
+msgid "Supplier list"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Fournisseurs"
@@ -1089,6 +1196,9 @@ msgid "You can use your voucher any time in our online shop"
 msgstr "Vous pouvez utiliser votre bon d'échange à tout moment dans notre boutique en ligne"
 
 msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Kamil Kośmider, 2023\n"
 "Language-Team: Polish (http://app.transifex.com/aimeos/aimeos-core/language/pl/)\n"
@@ -61,6 +61,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -76,6 +94,10 @@ msgstr "%1$s %2$s"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -95,6 +117,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -173,6 +199,9 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr ""
 
+msgid "Apply"
+msgstr "Zaaplikuj"
+
 msgid "Article"
 msgstr "Produkt"
 
@@ -199,6 +228,15 @@ msgstr "Z powrotem"
 msgid "Basket"
 msgstr "Koszyk"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Adres płatnika"
 
@@ -212,6 +250,9 @@ msgstr "Brakuje części adresu płatnika \"%1$s\""
 
 msgid "Birthday"
 msgstr "Data urodzenia"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr ""
@@ -403,14 +444,23 @@ msgstr "Plik \"%1$s\" nie istnieje"
 msgid "Filter"
 msgstr "Filtr"
 
+msgid "First"
+msgstr ""
+
 msgid "First name"
 msgstr "Imię"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr ""
 
 msgid "Go"
 msgstr "Idź"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr ""
@@ -491,8 +541,14 @@ msgstr "Niepoprawna fabryka \"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "Niepoprawna odpowiedź o kodzie \"%1$s\" z serwisu providera"
 
+msgid "Invoice"
+msgstr ""
+
 msgid "Language"
 msgstr "Język"
+
+msgid "Last"
+msgstr ""
 
 msgid "Last name"
 msgstr "Nazwisko"
@@ -514,6 +570,12 @@ msgstr "Login"
 
 msgid "Lowest price"
 msgstr "Najniższa cena"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
+msgstr ""
 
 msgid "More reviews"
 msgstr "Więcej opinii"
@@ -679,6 +741,9 @@ msgstr "Poprzedni"
 msgid "Price"
 msgstr "Cena"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr "Zakres cen"
 
@@ -691,8 +756,38 @@ msgstr "Przetwarzanie płatności zakończone niepowodzeniem"
 msgid "Product"
 msgstr "Produkt"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "Obraz produktu"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "Cena produktu"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "Produkty, które mogą Cię również zainteresować"
@@ -741,6 +836,12 @@ msgstr "Pozdrowienie"
 msgid "Save"
 msgstr "Zapisz"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "Szukaj"
 
@@ -786,6 +887,9 @@ msgstr "Pokaż"
 
 msgid "Show all quotes"
 msgstr "Pokaż wszystkie cytaty"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Sortuj według:"
@@ -851,6 +955,9 @@ msgstr "Suma"
 
 msgid "Supplier information"
 msgstr "Informacje o dostawcy"
+
+msgid "Supplier list"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Dostawcy"
@@ -1085,6 +1192,9 @@ msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
 msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"

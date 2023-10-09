@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Martins Nav <mveisis1@gmail.com>, 2021\n"
 "Language-Team: Latvian (http://app.transifex.com/aimeos/aimeos-core/language/lv/)\n"
@@ -57,6 +57,24 @@ msgid ""
 "%18$s\n"
 msgstr ""
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -72,6 +90,10 @@ msgstr ""
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -91,6 +113,10 @@ msgstr ""
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -168,6 +194,9 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr "Jums tika izveidots lietotāja konts."
 
+msgid "Apply"
+msgstr ""
+
 msgid "Article"
 msgstr ""
 
@@ -194,6 +223,15 @@ msgstr "Atpakļ"
 msgid "Basket"
 msgstr "Grozs"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Norēķinu adrese"
 
@@ -207,6 +245,9 @@ msgstr ""
 
 msgid "Birthday"
 msgstr "Dzimšanas diena"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr "Lielapjoma pasūtījums"
@@ -398,13 +439,22 @@ msgstr ""
 msgid "Filter"
 msgstr "Filtrs"
 
+msgid "First"
+msgstr ""
+
 msgid "First name"
 msgstr "Vārds"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr ""
 
 msgid "Go"
+msgstr ""
+
+msgid "Go to page"
 msgstr ""
 
 msgid "Grid view"
@@ -486,8 +536,14 @@ msgstr ""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
+msgid "Invoice"
+msgstr "Rēķins"
+
 msgid "Language"
 msgstr "Valoda"
+
+msgid "Last"
+msgstr ""
 
 msgid "Last name"
 msgstr "Uzvārds"
@@ -508,6 +564,12 @@ msgid "Login"
 msgstr "Pieslēgties"
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -674,6 +736,9 @@ msgstr ""
 msgid "Price"
 msgstr "Cena"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr ""
 
@@ -686,8 +751,38 @@ msgstr ""
 msgid "Product"
 msgstr "Produkts"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "Produkta attēls"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "Produkta cena"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr ""
@@ -736,6 +831,12 @@ msgstr ""
 msgid "Save"
 msgstr "Saglabāt"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "Meklēt"
 
@@ -779,6 +880,9 @@ msgid "Show"
 msgstr "Parādīt"
 
 msgid "Show all quotes"
+msgstr ""
+
+msgid "Sort by"
 msgstr ""
 
 msgid "Sort by:"
@@ -844,6 +948,9 @@ msgid "Sum"
 msgstr ""
 
 msgid "Supplier information"
+msgstr ""
+
+msgid "Supplier list"
 msgstr ""
 
 msgid "Suppliers"
@@ -1078,6 +1185,9 @@ msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
 msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"

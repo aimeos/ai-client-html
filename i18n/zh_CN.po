@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 11:54+0200\n"
+"POT-Creation-Date: 2023-10-09 19:37+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: shihua16165 <shihua16165@163.com>, 2014\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
@@ -64,6 +64,37 @@ msgstr ""
 "%17$s\n"
 "%18$s\n"
 
+#, fuzzy, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -77,6 +108,10 @@ msgstr "%1$s %2$s 扣减"
 #. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price value (%2$s) and currency (%3$s)
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
+msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, fuzzy, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
@@ -96,6 +131,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, fuzzy, php-format
+msgid "+ %1$s %2$s"
+msgstr "%1$s %2$s"
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
 #, php-format
@@ -174,6 +213,9 @@ msgstr ""
 msgid "An account has been created for you."
 msgstr "已经为您生成一个账户。"
 
+msgid "Apply"
+msgstr ""
+
 msgid "Article"
 msgstr ""
 
@@ -200,6 +242,17 @@ msgstr "返回"
 msgid "Basket"
 msgstr "购物车"
 
+#, fuzzy
+msgid "Basket details"
+msgstr "订单明细"
+
+#, fuzzy
+msgid "Basket name"
+msgstr "姓名"
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "账单地址"
 
@@ -213,6 +266,9 @@ msgstr "账单地址 \"%1$s\" 有误"
 
 msgid "Birthday"
 msgstr "生日"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr ""
@@ -404,8 +460,16 @@ msgstr "文件“1%1$s”不存在"
 msgid "Filter"
 msgstr "筛选"
 
+#, fuzzy
+msgid "First"
+msgstr "名"
+
 msgid "First name"
 msgstr "名"
+
+#, fuzzy
+msgid "Found products"
+msgstr "打包产品"
 
 msgid "GB999999973"
 msgstr "GB999999973"
@@ -414,6 +478,9 @@ msgid "Go"
 msgstr ""
 "前往\n"
 " "
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr ""
@@ -484,8 +551,15 @@ msgstr "无效的工厂\"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "服务提供商反馈无效回答编码 \"%1$s\""
 
+msgid "Invoice"
+msgstr ""
+
 msgid "Language"
 msgstr "语言"
+
+#, fuzzy
+msgid "Last"
+msgstr "姓名"
 
 msgid "Last name"
 msgstr "姓名"
@@ -506,6 +580,12 @@ msgid "Login"
 msgstr ""
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -670,6 +750,10 @@ msgstr "前面一个"
 msgid "Price"
 msgstr "价格"
 
+#, fuzzy
+msgid "Price filter"
+msgstr "价格"
+
 msgid "Price range"
 msgstr "价格"
 
@@ -682,8 +766,48 @@ msgstr "处理支付失败"
 msgid "Product"
 msgstr "商品"
 
+#, fuzzy
+msgid "Product actions"
+msgstr "商品"
+
+#, fuzzy
+msgid "Product attributes"
+msgstr "属性"
+
+#, fuzzy
+msgid "Product categories"
+msgstr "类目"
+
+#, fuzzy
+msgid "Product characteristics"
+msgstr "特色"
+
+#, fuzzy
+msgid "Product description"
+msgstr "描述"
+
+#, fuzzy
+msgid "Product filters"
+msgstr "商品"
+
 msgid "Product image"
 msgstr ""
+
+#, fuzzy
+msgid "Product information"
+msgstr "确认"
+
+#, fuzzy
+msgid "Product price"
+msgstr "商品"
+
+#, fuzzy
+msgid "Product reviews"
+msgstr "商品"
+
+#, fuzzy
+msgid "Product search"
+msgstr "商品"
 
 msgid "Products you might be also interested in"
 msgstr "你可能感兴趣的商品"
@@ -732,6 +856,13 @@ msgstr "称呼"
 msgid "Save"
 msgstr ""
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+#, fuzzy
+msgid "Saved baskets"
+msgstr "加入购物车"
+
 msgid "Search"
 msgstr "搜索"
 
@@ -772,6 +903,10 @@ msgstr "显示"
 
 msgid "Show all quotes"
 msgstr "显示所有报价"
+
+#, fuzzy
+msgid "Sort by"
+msgstr "排序方式："
 
 msgid "Sort by:"
 msgstr "排序方式："
@@ -834,6 +969,9 @@ msgid "Sum"
 msgstr "合计"
 
 msgid "Supplier information"
+msgstr ""
+
+msgid "Supplier list"
 msgstr ""
 
 msgid "Suppliers"
@@ -1068,6 +1206,9 @@ msgid "You can use your voucher any time in our online shop"
 msgstr ""
 
 msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"

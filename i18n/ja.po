@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Darshan Sampat <darshan@usindia.com>, 2018\n"
 "Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
@@ -53,6 +53,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%10$s%11$s%12$s%13$s%14$s%15$s%16$s%17$s%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -68,6 +86,10 @@ msgstr "%1$s%2$sオフ　"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s（%4$s%2$s%3$s）"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -87,6 +109,10 @@ msgstr "%1$s%3$s+%2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -162,6 +188,9 @@ msgstr "すべての注文は、当社のウェブサイトで利用可能な利
 msgid "An account has been created for you."
 msgstr "アカウントが作成されました。"
 
+msgid "Apply"
+msgstr ""
+
 msgid "Article"
 msgstr ""
 
@@ -188,6 +217,15 @@ msgstr "戻り"
 msgid "Basket"
 msgstr "バスケット"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "請求先住所"
 
@@ -201,6 +239,9 @@ msgstr "請求先住所の部分\"%1$s\"が欠落しています"
 
 msgid "Birthday"
 msgstr "お誕生日"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr ""
@@ -392,14 +433,23 @@ msgstr "ファイル\"%1$s\"は存在しません"
 msgid "Filter"
 msgstr "フィルタ"
 
+msgid "First"
+msgstr "最初"
+
 msgid "First name"
 msgstr "ファーストネーム"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go"
 msgstr "行こう"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr ""
@@ -480,8 +530,14 @@ msgstr "無効なファクトリ \"1%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "コード\"%1$s\"を持つサービスプロバイダからの無効なプロセス応答"
 
+msgid "Invoice"
+msgstr "請求書"
+
 msgid "Language"
 msgstr "言語"
+
+msgid "Last"
+msgstr "最終"
 
 msgid "Last name"
 msgstr "名字"
@@ -502,6 +558,12 @@ msgid "Login"
 msgstr ""
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -668,6 +730,9 @@ msgstr "前"
 msgid "Price"
 msgstr "価格"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr ""
 
@@ -680,7 +745,37 @@ msgstr "支払いの処理に失敗しました"
 msgid "Product"
 msgstr "商品"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
+msgstr ""
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "商品価格"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
 msgstr ""
 
 msgid "Products you might be also interested in"
@@ -730,6 +825,12 @@ msgstr "挨拶"
 msgid "Save"
 msgstr "保存"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "検索"
 
@@ -772,6 +873,9 @@ msgstr "示し"
 
 msgid "Show all quotes"
 msgstr "引用をすべてに見せてください"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "並び替え"
@@ -836,6 +940,9 @@ msgid "Sum"
 msgstr "合計"
 
 msgid "Supplier information"
+msgstr ""
+
+msgid "Supplier list"
 msgstr ""
 
 msgid "Suppliers"
@@ -1068,6 +1175,9 @@ msgid "You can use your voucher any time in our online shop"
 msgstr "オンラインショップでいつでもバウチャーを使用できます"
 
 msgid "You can use your vouchers at any time in our online shop"
+msgstr ""
+
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"

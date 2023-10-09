@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Edvin Brobeck <edvin@brobeck.se>, 2020\n"
 "Language-Team: Swedish (http://app.transifex.com/aimeos/aimeos-core/language/sv/)\n"
@@ -55,6 +55,24 @@ msgid ""
 "%18$s\n"
 msgstr "%2$s %3$s %4$s %5$s\n%1$s\n%7$s %6$s\n%8$s\n%10$s %11$s %9$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -70,6 +88,10 @@ msgstr "%2$s %1$s off"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -88,6 +110,10 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%3$s%1$s + %3$s%2$s"
 
 msgid "+"
+msgstr ""
+
+#, php-format
+msgid "+ %1$s %2$s"
 msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
@@ -165,6 +191,9 @@ msgstr "Alla ordrar täcks av våra Terms & Conditions"
 msgid "An account has been created for you."
 msgstr "Ett konto har skapats åt dig"
 
+msgid "Apply"
+msgstr ""
+
 msgid "Article"
 msgstr "Artikel"
 
@@ -191,6 +220,15 @@ msgstr "Bakåt"
 msgid "Basket"
 msgstr "Varukorg"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Faktureringsadress"
 
@@ -204,6 +242,9 @@ msgstr "Faktureringsadress, del \"%1$s\" saknas."
 
 msgid "Birthday"
 msgstr "Födelsedag"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr ""
@@ -395,14 +436,23 @@ msgstr "Fil \"%1$s\" finns ej"
 msgid "Filter"
 msgstr "Filtersökning"
 
+msgid "First"
+msgstr ""
+
 msgid "First name"
 msgstr "Förnamn"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "moms-id"
 
 msgid "Go"
 msgstr "Ok"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr "Rutnät"
@@ -483,8 +533,14 @@ msgstr ""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr ""
 
+msgid "Invoice"
+msgstr ""
+
 msgid "Language"
 msgstr "Språk"
+
+msgid "Last"
+msgstr ""
 
 msgid "Last name"
 msgstr "Efternamn"
@@ -505,6 +561,12 @@ msgid "Login"
 msgstr ""
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -671,6 +733,9 @@ msgstr "Tidigare"
 msgid "Price"
 msgstr "Pris"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr ""
 
@@ -683,8 +748,38 @@ msgstr "Betalningen kunde inte genomföras"
 msgid "Product"
 msgstr "Produkt"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "Produktbild"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr ""
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "Du kanske är intresserad av följande produkter"
@@ -733,6 +828,12 @@ msgstr "Tilltal"
 msgid "Save"
 msgstr "Spara"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "Sök"
 
@@ -776,6 +877,9 @@ msgstr "Visa"
 
 msgid "Show all quotes"
 msgstr "Visa alla omnämningar"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Sortera efter"
@@ -841,6 +945,9 @@ msgstr "Summa"
 
 msgid "Supplier information"
 msgstr "Butiksinformation"
+
+msgid "Supplier list"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Butiker"
@@ -1074,6 +1181,9 @@ msgstr "Du kan använda din rabattkupong när du vill i shoppen"
 
 msgid "You can use your vouchers at any time in our online shop"
 msgstr "Du kan använda dina rabattkuponter när du vill i shoppen"
+
+msgid "You must log in first"
+msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Du tas nu till nästa steg"

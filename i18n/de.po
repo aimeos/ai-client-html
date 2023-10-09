@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aimeos, 2015-2022
+# Aimeos, 2015-2023
 # cmann <c.mann@metaways.de>, 2013
 # Janosch Ott <janosch.ott@bluewin.ch>, 2015
 # Stephan Kellermayr <stephan.kellermayr@gmail.com>, 2021
@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Aimeos, 2015-2022\n"
+"Last-Translator: Aimeos, 2015-2023\n"
 "Language-Team: German (http://app.transifex.com/aimeos/aimeos-core/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,6 +59,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -74,6 +92,10 @@ msgstr "%1$s %2$s Rabatt"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -93,6 +115,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -169,6 +195,9 @@ msgstr "Alle Bestellungen erfolgen gemäß unseren AGB, die Sie auf unserer Webs
 msgid "An account has been created for you."
 msgstr "Es wurde ein Benutzerkonto für Sie angelegt."
 
+msgid "Apply"
+msgstr "Anwenden"
+
 msgid "Article"
 msgstr "Artikel"
 
@@ -195,6 +224,15 @@ msgstr "Zurück"
 msgid "Basket"
 msgstr "Warenkorb"
 
+msgid "Basket details"
+msgstr "Warenkorbdetails"
+
+msgid "Basket name"
+msgstr "Name des Warenkorbs"
+
+msgid "Basket saved sucessfully"
+msgstr "Warenkorb erfolgreich gespeichert"
+
 msgid "Billing address"
 msgstr "Rechnungsadresse"
 
@@ -208,6 +246,9 @@ msgstr "Bitte tragen Sie in der Rechnungsadresse Ihre Daten in das Feld \"%1$s\"
 
 msgid "Birthday"
 msgstr "Geburtstag"
+
+msgid "Breadcrumb navigation"
+msgstr "Brotkrumen-Navigation"
 
 msgid "Bulk order"
 msgstr "Bestellformular"
@@ -399,14 +440,23 @@ msgstr "Datei \"%1$s\" existiert nicht"
 msgid "Filter"
 msgstr "Filter"
 
+msgid "First"
+msgstr "Erste"
+
 msgid "First name"
 msgstr "Vorname"
+
+msgid "Found products"
+msgstr "Gefundene Produkte"
 
 msgid "GB999999973"
 msgstr "DE999999999"
 
 msgid "Go"
 msgstr "Los"
+
+msgid "Go to page"
+msgstr "Gehe zur Seite"
 
 msgid "Grid view"
 msgstr "Kachelansicht"
@@ -487,8 +537,14 @@ msgstr "Ungültige Factory \"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "Ungültige Antwort auf die Prozessanfrage vom Serviceanbieter mit dem Code \"%1$s\""
 
+msgid "Invoice"
+msgstr "Rechnung"
+
 msgid "Language"
 msgstr "Sprache"
+
+msgid "Last"
+msgstr "Letzte"
 
 msgid "Last name"
 msgstr "Nachname"
@@ -510,6 +566,12 @@ msgstr "Benutzerkonto"
 
 msgid "Lowest price"
 msgstr "Niedrigster Preis"
+
+msgid "Mobile"
+msgstr "Handy"
+
+msgid "Mobile number"
+msgstr "Handynummer"
 
 msgid "More reviews"
 msgstr "Weitere Rezensionen"
@@ -675,6 +737,9 @@ msgstr "Zurück"
 msgid "Price"
 msgstr "Preis"
 
+msgid "Price filter"
+msgstr "Preisfilter"
+
 msgid "Price range"
 msgstr "Preisbereich"
 
@@ -687,8 +752,38 @@ msgstr "Die Verarbeitung der Zahlung schlug fehl"
 msgid "Product"
 msgstr "Produkt"
 
+msgid "Product actions"
+msgstr "Produktaktionen"
+
+msgid "Product attributes"
+msgstr "Produktattribute"
+
+msgid "Product categories"
+msgstr "Produktkategorien"
+
+msgid "Product characteristics"
+msgstr "Produkteigenschaften"
+
+msgid "Product description"
+msgstr "Produktbeschreibung"
+
+msgid "Product filters"
+msgstr "Produktfilter"
+
 msgid "Product image"
 msgstr "Produktbild"
+
+msgid "Product information"
+msgstr "Produktinformation"
+
+msgid "Product price"
+msgstr "Productpreis"
+
+msgid "Product reviews"
+msgstr "Produktbewertungen"
+
+msgid "Product search"
+msgstr "Produktsuche"
 
 msgid "Products you might be also interested in"
 msgstr "Produkte, die sie auch interessieren könnten"
@@ -737,6 +832,12 @@ msgstr "Anrede"
 msgid "Save"
 msgstr "Speichern"
 
+msgid "Saved basket removed sucessfully"
+msgstr "Gespeicherter Warenkorb wurde gelöscht"
+
+msgid "Saved baskets"
+msgstr "Gespeicherte Warenkörbe"
+
 msgid "Search"
 msgstr "Suche"
 
@@ -780,6 +881,9 @@ msgstr "Anzeigen"
 
 msgid "Show all quotes"
 msgstr "Alle Bewertungen zeigen"
+
+msgid "Sort by"
+msgstr "Sortierung"
 
 msgid "Sort by:"
 msgstr "Sortierung:"
@@ -845,6 +949,9 @@ msgstr "Summe"
 
 msgid "Supplier information"
 msgstr "Lieferanteninformationen"
+
+msgid "Supplier list"
+msgstr "Lieferantenliste"
 
 msgid "Suppliers"
 msgstr "Lieferanten"
@@ -1078,6 +1185,9 @@ msgstr "Sie können Ihren Gutschein jederzeit in unserem Onlineshop einlösen"
 
 msgid "You can use your vouchers at any time in our online shop"
 msgstr "Sie können Ihren Gutschein jederzeit in unserem Onlineshop einlösen"
+
+msgid "You must log in first"
+msgstr "Sie müssen sich zuerst anmelden"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Sie werden jetzt zu unserem Zahlungsanbieter weiter geleitet"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 11:12+0200\n"
+"POT-Creation-Date: 2023-10-09 19:20+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Aimeos, 2021\n"
 "Language-Team: Finnish (http://app.transifex.com/aimeos/aimeos-core/language/fi/)\n"
@@ -56,6 +56,24 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
@@ -71,6 +89,10 @@ msgstr "%1$s %2$s off"
 #, php-format
 msgid "%1$s ( %4$s%2$s%3$s )"
 msgstr "%1$s ( %4$s%2$s%3$s )"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
@@ -90,6 +112,10 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "+"
 msgstr "+"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #. / Price shipping format with shipping / payment cost value (%1$s) and
 #. currency (%2$s)
@@ -166,6 +192,9 @@ msgstr "Käyttöehtomme pätevä kaikkiin tilauksiin"
 msgid "An account has been created for you."
 msgstr "Sinulle on luotu käyttäjätili"
 
+msgid "Apply"
+msgstr ""
+
 msgid "Article"
 msgstr "Esine"
 
@@ -192,6 +221,15 @@ msgstr "Takaisin"
 msgid "Basket"
 msgstr "Ostoskori"
 
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
 msgid "Billing address"
 msgstr "Laskutusosoite"
 
@@ -205,6 +243,9 @@ msgstr "Laskutusosoitteen osa \"%1$s” puuttuu"
 
 msgid "Birthday"
 msgstr "Syntymäpäivä"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr "Tukkutilaus"
@@ -396,14 +437,23 @@ msgstr "Tiedostoa ”%1$s” ei ole"
 msgid "Filter"
 msgstr "Suodatin"
 
+msgid "First"
+msgstr ""
+
 msgid "First name"
 msgstr "Etunimi"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go"
 msgstr "Mene"
+
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr "Ruudukkonäkymä"
@@ -484,8 +534,14 @@ msgstr "Virheellinen tehdas \"%1$s\""
 msgid "Invalid process response from service provider with code \"%1$s\""
 msgstr "Virheellinen prosessivastaus palveluntarjoajalta koodilla \"%1$s\""
 
+msgid "Invoice"
+msgstr ""
+
 msgid "Language"
 msgstr "Kieli"
+
+msgid "Last"
+msgstr ""
 
 msgid "Last name"
 msgstr "Sukunimi"
@@ -506,6 +562,12 @@ msgid "Login"
 msgstr "Kirjaudu sisään"
 
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -672,6 +734,9 @@ msgstr "Edellinen"
 msgid "Price"
 msgstr "Hinta"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr ""
 
@@ -684,8 +749,38 @@ msgstr "Maksun käsittely epäonnistui"
 msgid "Product"
 msgstr "Tuote"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "Tuotekuva"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr ""
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "Tuotteita, joista saatat olla kiinnostunut"
@@ -734,6 +829,12 @@ msgstr "Tervehdys"
 msgid "Save"
 msgstr "Tallenna"
 
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "Hae"
 
@@ -777,6 +878,9 @@ msgstr "Näytä"
 
 msgid "Show all quotes"
 msgstr "Näytä kaikki hinnat"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Järjestä:"
@@ -842,6 +946,9 @@ msgstr "Summa"
 
 msgid "Supplier information"
 msgstr "Toimittajan tiedot"
+
+msgid "Supplier list"
+msgstr ""
 
 msgid "Suppliers"
 msgstr "Toimittajat"
@@ -1075,6 +1182,9 @@ msgstr "Voit kauttaa etuseteliäsi nettikaupassamme milloin vain"
 
 msgid "You can use your vouchers at any time in our online shop"
 msgstr "Voit kauttaa etuseteleitäsi nettikaupassamme milloin vain"
+
+msgid "You must log in first"
+msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Sinut ohjataan nyt seuraavaan vaiheeseen"
