@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-09 19:20+0200\n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Darshan Sampat <darshan@usindia.com>, 2018\n"
 "Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
@@ -28,14 +28,6 @@ msgid "%1$d review"
 msgid_plural "%1$d reviews"
 msgstr[0] ""
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -71,86 +63,47 @@ msgid ""
 "%19$s\n"
 msgstr ""
 
-#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s%2$s"
 
-#. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s%2$sオフ　"
-
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
-#, php-format
-msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s（%4$s%2$s%3$s）"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
-#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%2$sにおける%1$s"
 
-#. / Percent format with value (%1$s) and % sign
-#, php-format
-msgid "%1$s%%"
-msgstr "%1$s%%"
-
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s+%2$s%3$s"
-
-msgid "+"
-msgstr "+"
 
 #, php-format
 msgid "+ %1$s %2$s"
 msgstr ""
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
-#, php-format
-msgid "+ %1$s %2$s/item"
-msgstr "+%1$s%2$s/項目"
-
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
 msgstr "+%1$s%%VAT"
 
-msgid "+ Payment costs"
-msgstr "+支払費用"
-
-msgid "+ Shipping"
-msgstr "+出荷"
-
-msgid "+ shipping costs"
-msgstr "+出荷費用"
-
 msgid "+1 123 456 7890"
 msgstr "+1123 456 7890"
 
-#. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
 msgstr ""
-
-msgid "Account"
-msgstr "アカウント"
 
 msgid "Add billing address"
 msgstr ""
@@ -164,30 +117,6 @@ msgstr "追加の"
 msgid "Additional 2"
 msgstr "追加の2"
 
-msgid "Address"
-msgid_plural "Addresses"
-msgstr[0] ""
-
-#, php-format
-msgid "Address with ID \"%1$s\" not found"
-msgstr "ID\"%1$s\"の住所が見つかりません"
-
-msgid "Addresses"
-msgstr "住所"
-
-msgid ""
-"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
-"\n"
-"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "出荷されるすべての出荷は、当社のウェブサイトで利用可能な利用規約に従うし、ご注文の際に受け入れたことです。\n\nこのメールには機密情報が含まれています。そして、専ら対処された人の使用のためであります。あなたがその人でない場合は、このメールに返信し、後でメールと添付を削除してください。"
-
-#. / Payment e-mail legal information
-msgid "All orders are subject to our terms and conditions."
-msgstr "すべての注文は、当社のウェブサイトで利用可能な利用規約に従うし、ご注文の際に受け入れたことです。\n\nこのメールには機密情報が含まれています。そして、専ら対処された人の使用のためであります。あなたがその人でない場合は、このメールに返信し、後でメールと添付を削除してください。"
-
-msgid "An account has been created for you."
-msgstr "アカウントが作成されました。"
-
 msgid "Apply"
 msgstr ""
 
@@ -197,9 +126,6 @@ msgstr ""
 msgid "Article no."
 msgstr ""
 
-msgid "Article no.:"
-msgstr "品物番号："
-
 #, php-format
 msgid "At least one billing address part is missing or invalid"
 msgstr "少なくとも1つの請求先住所の一部が欠落しているか無効です"
@@ -207,9 +133,6 @@ msgstr "少なくとも1つの請求先住所の一部が欠落しているか�
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "少なくとも1つの配信先住所の一部が欠落しているか無効です"
-
-msgid "Attributes"
-msgstr "属性"
 
 msgid "Back"
 msgstr "戻り"
@@ -264,14 +187,8 @@ msgstr "変更"
 msgid "Change payment"
 msgstr "支払の変更"
 
-msgid "Channel"
-msgstr ""
-
 msgid "Characteristics"
 msgstr "特性"
-
-msgid "Check"
-msgstr "チェック"
 
 msgid "Checkout"
 msgstr "チェックアウト"
@@ -280,32 +197,8 @@ msgid "City"
 msgstr "都市"
 
 #, php-format
-msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "クラス\"%1$s\"は、\"%2$s\"を実行しません"
-
-#, php-format
-msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "クラス \"%1$s\"はインターフェイス \"2 %2$s\"を実行しません"
-
-#, php-format
-msgid "Class \"%1$s\" not available"
-msgstr "\"1 %1$s\"クラスは利用できません"
-
-#, php-format
 msgid "Class \"%1$s\" not found"
 msgstr "クラス \"1 %1$s\"が見つかりません"
-
-#, php-format
-msgid "Client HTML type is empty"
-msgstr "クライアントのHTMLタイプが空です"
-
-#, php-format
-msgid "Client path is empty"
-msgstr ""
-
-#, php-format
-msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr "クライアントタイプ \"%1$s\"は、「/」で区切られた2つの部分で構成されていなければなりません。"
 
 msgid "Close"
 msgstr "閉じる"
@@ -333,40 +226,6 @@ msgstr "作成した"
 
 msgid "Customer account"
 msgstr "顧客アカウント"
-
-#, php-format
-msgid "Customer with ID \"%1$s\" not found"
-msgstr "ID\"%1$s\"の顧客が見つかりません"
-
-#, php-format
-msgid "Dear %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear %1$s %2$s %3$s"
-msgstr "親愛なる%1$s%2$s%3$s"
-
-#, php-format
-msgid "Dear Miss %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Mr %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Mrs %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Ms %1$s %2$s"
-msgstr ""
-
-msgid "Dear Sir or Madam"
-msgstr "親愛なるサー/奥様"
-
-msgid "Dear customer"
-msgstr ""
 
 msgid "Delete"
 msgstr "削除"
@@ -410,10 +269,6 @@ msgstr "ダウンロード"
 msgid "E-Mail"
 msgstr "メール"
 
-#. / E-mail HTML title
-msgid "E-mail notification"
-msgstr "メール通知"
-
 msgid "End date"
 msgstr "終了日"
 
@@ -425,10 +280,6 @@ msgstr "ファックス"
 
 msgid "Fields with an * are mandatory"
 msgstr "*付きのフィールドは必須です"
-
-#, php-format
-msgid "File \"%1$s\" doesn't exist"
-msgstr "ファイル\"%1$s\"は存在しません"
 
 msgid "Filter"
 msgstr "フィルタ"
@@ -445,9 +296,6 @@ msgstr ""
 msgid "GB999999973"
 msgstr "GB999999973"
 
-msgid "Go"
-msgstr "行こう"
-
 msgid "Go to page"
 msgstr ""
 
@@ -459,14 +307,6 @@ msgstr ""
 
 msgid "Highest price"
 msgstr ""
-
-#, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
-msgstr "私は<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">利用規約</a>と<a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">プライバシーポリシー</a>に同意します"
 
 #, php-format
 msgid ""
@@ -484,14 +324,10 @@ msgstr "在庫に戻った場合"
 msgid "If price decreases"
 msgstr "価格が下がった場合"
 
-msgid "If you have any questions, please reply to this e-mail"
-msgstr "ご不明な点がございましたら、このメールに返信してください"
-
 #, php-format
 msgid "Incl. %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr "%1$s%%VATを含む"
@@ -503,16 +339,8 @@ msgid "Interval"
 msgstr "間隔"
 
 #, php-format
-msgid "Invalid characters in class name \"%1$s\""
-msgstr "クラス名\"%1$s\"に無効な文字があります"
-
-#, php-format
 msgid "Invalid characters in client name \"%1$s\""
 msgstr "クライアント名 \"%1$s\"に無効な文字があります"
-
-#, php-format
-msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr "\"%2$s\"のクライアント名\"%1$s\"に無効な文字があります"
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -521,14 +349,6 @@ msgstr "無効なクラス名 \"1%1$s\""
 #, php-format
 msgid "Invalid domain \"%1$s\""
 msgstr "無効なドメイン \"1%1$s\""
-
-#, php-format
-msgid "Invalid factory \"%1$s\""
-msgstr "無効なファクトリ \"1%1$s\""
-
-#, php-format
-msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "コード\"%1$s\"を持つサービスプロバイダからの無効なプロセス応答"
 
 msgid "Invoice"
 msgstr "請求書"
@@ -548,13 +368,7 @@ msgstr "最後に見たのは"
 msgid "Latest"
 msgstr "最新"
 
-msgid "Like entered by you"
-msgstr "あなたが入力したLike"
-
 msgid "List view"
-msgstr ""
-
-msgid "Login"
 msgstr ""
 
 msgid "Lowest price"
@@ -594,34 +408,11 @@ msgid "No order ID available in session"
 msgstr ""
 
 #, php-format
-msgid "No product with ID \"%1$s\" found"
-msgstr "ID\"%1$s\"の商品が見つかりませんでした"
-
-#, php-format
-msgid "No service for code \"%1$s\" found"
-msgstr "コード\"%1$s\"のサービスが見つかりませんでした"
-
-#, php-format
-msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "\"%3$s\"の\"%1$s/%2$s\"のタイプ項目が見つかりませんでした"
-
-#, php-format
 msgid "No view available"
 msgstr "利用可能なビューがありません"
 
-#, php-format
-msgid "Number of coupon codes exceeds the limit"
-msgstr "クーポンコードの数が上限を超えています"
-
-#, php-format
-msgid "Object doesn't implement \"%1$s\""
-msgstr "オブジェクトは \"%1$s\"を実装しません"
-
 msgid "One month"
 msgstr "1ヶ月"
-
-msgid "One or more products you are watching have been updated."
-msgstr "あなたが見ている1つ以上の商品が更新されました。"
 
 msgid "One week"
 msgstr "一週間"
@@ -629,24 +420,8 @@ msgstr "一週間"
 msgid "Open submenu"
 msgstr ""
 
-msgid "Options"
-msgstr "オプション"
-
-msgid "Order"
-msgstr "注文"
-
-#, php-format
-msgid "Order %1$s"
-msgstr ""
-
 msgid "Order ID"
 msgstr "注文ID"
-
-msgid "Order channel"
-msgstr "注文チャンネル"
-
-msgid "Order date"
-msgstr ""
 
 msgid "Order details"
 msgstr "注文詳細"
@@ -657,22 +432,12 @@ msgstr "注文履歴"
 msgid "Order status"
 msgstr "注文状況"
 
-#, php-format
-msgid "Order with ID \"%1$s\" not found"
-msgstr "ID\"%1$s\"の注文が見つかりませんでした"
-
 msgid "Other customers also bought"
 msgstr "他の顧客も買った"
-
-msgid "Our products"
-msgstr "当社の商品"
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "2%2$d のページ1%1$d"
-
-msgid "Password"
-msgstr "パスワード"
 
 msgid "Pay now"
 msgstr "今払う"
@@ -709,14 +474,6 @@ msgstr "3文字以上を入力してください"
 
 msgid "Please enter your payment details"
 msgstr "支払い詳細を入力してください"
-
-#, php-format
-msgid "Please recheck your delivery choice"
-msgstr "配達の選択を再確認してください"
-
-#, php-format
-msgid "Please recheck your payment choice"
-msgstr "支払いの選択を再確認してください"
 
 msgid "Please select"
 msgstr "選んでください"
@@ -781,9 +538,6 @@ msgstr ""
 msgid "Products you might be also interested in"
 msgstr "興味があるかもしれない商品"
 
-msgid "Properties"
-msgstr "プロパティ"
-
 msgid "Qty"
 msgstr "数量"
 
@@ -796,16 +550,12 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-msgid "Related"
-msgstr "関連の"
-
 msgid "Relevance"
 msgstr "関連性"
 
 msgid "Reset"
 msgstr "リセット"
 
-#. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "\"%1$s\"の結果"
@@ -856,12 +606,6 @@ msgstr "挨拶の選択"
 msgid "Select state"
 msgstr "州を選択"
 
-msgid "Service fees"
-msgstr "サービス料"
-
-msgid "Services"
-msgstr "サービス"
-
 msgid "Share"
 msgstr "共有する"
 
@@ -870,9 +614,6 @@ msgstr "出荷"
 
 msgid "Show"
 msgstr "示し"
-
-msgid "Show all quotes"
-msgstr "引用をすべてに見せてください"
 
 msgid "Sort by"
 msgstr ""
@@ -883,24 +624,13 @@ msgstr "並び替え"
 msgid "State"
 msgstr "状態"
 
-msgid "Status"
-msgstr "状態"
-
 msgid "Stock"
 msgstr "在庫"
 
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out) and
-#. stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "在庫:%1$s,%2$s"
 
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out), stock
-#. level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "在庫:%1$s,%2$s,戻って%3$s"
@@ -919,16 +649,6 @@ msgstr "サブスクリプションID"
 
 msgid "Subscription details"
 msgstr "サブスクリプションの詳細"
-
-msgid "Subscription interval"
-msgstr "サブスクリプション間隔"
-
-msgid "Subscription product"
-msgstr "サブスクリプション商品"
-
-#, php-format
-msgid "Subscription with ID \"%1$s\" not found"
-msgstr "\"%1$s\" IDのサブスクリプションが見つかりません"
 
 msgid "Subscriptions"
 msgstr "サブスクリプション"
@@ -954,42 +674,8 @@ msgstr ""
 msgid "Telephone"
 msgstr "電話"
 
-#, php-format
-msgid "Template \"%1$s\" not available"
-msgstr "テンプレート \"%1$s\"は利用できません"
-
 msgid "Terms and conditions"
 msgstr "規約と条件"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "Thank you for your order %1$s from %2$s."
-msgstr "ご注文ありがとうございます%1$sから%2$s"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "ご注文ありがとうございます%1$sから%2$s\n\n最終支払いを受け取るまで、注文は保留中です。事前にお支払いを選択された場合は、ご注文ID%1$sを参考にして当行の銀行口座にお振込みください。"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"We received the payment and will care about your order immediately."
-msgstr "ご注文ありがとうございます%1$sから%2$s\n\n私たちは支払いを受け取りましたそしてすぐにあなたの注文を気にします。"
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -1004,62 +690,15 @@ msgstr "ご注文ありがとうございます.\nお支払いを受け取りま
 msgid "Thank you for your review!"
 msgstr ""
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr "注文%1$sの配達状況は %2$sから%3$sに変更されました。"
-
-#, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr "最終支払いを受け取るまで、注文は保留中です。事前にお支払いを選択された場合は、ご注文ID%1$sを参考にして当行の銀行口座にお振込みください。"
-
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr "注文はキャンセルされました。\n注文をやり直しますか？"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "%2$sの注文%1$s sのパーセルを配送できませんでした。"
-
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "注文の支払い確認は依然として保留中です。\n支払いが承認されるとすぐに電子メールが届きます。"
-
-msgid "The payment couldn't be renewed"
-msgstr ""
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "%2$s sから注文%1$sの支払いが払い戻されました。"
-
-msgid "The subscription for the product has ended"
-msgstr ""
-
-msgid "The subscription for the product has ended."
-msgstr "商品のサブスクリプションが終了しました。"
-
-#, php-format
-msgid "The value of your voucher is %1$s"
-msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
 
 msgid "Three month"
 msgstr "3ヶ月"
@@ -1070,14 +709,8 @@ msgstr "時間枠"
 msgid "Toggle fullscreen"
 msgstr "フルスクリーン切り替え"
 
-msgid "Top seller"
-msgstr "トップセラー"
-
 msgid "Total"
 msgstr "合計"
-
-msgid "Total quantity"
-msgstr "総量"
 
 msgid "Try again"
 msgstr "再試行する"
@@ -1086,24 +719,12 @@ msgid "Two weeks"
 msgstr "二週間"
 
 #, php-format
-msgid "Unable to call method \"%1$s\""
-msgstr "メソッド \"1%1$s\"を呼び出すことができません"
-
-#, php-format
-msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr "\"%1$s\":%2$sのアカウントを作成できません"
-
-#, php-format
 msgid "Unable to create an account: %1$s"
 msgstr "%1$sのアカウントを作成できません"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr "顧客 \"%1$s\":%2$sの住所を保存できません"
-
-#, php-format
-msgid "Unable to set cache entry: %1$s"
-msgstr "キャッシュエントリを設定できません：%1$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -1128,29 +749,12 @@ msgstr "見る"
 msgid "Watched products"
 msgstr "見られた商品"
 
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr "私たちはあなたのお支払いを受け取り、あなたの注文を直ちに世話します。"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "%2$sから注文%1$sの返品小包を受け取りました。"
-
 msgid "Web site"
 msgstr "ウェブサイト"
 
 msgid "What do you think about the product"
 msgstr ""
 
-msgid "X"
-msgstr "X"
-
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
@@ -1171,46 +775,17 @@ msgstr ""
 msgid "You can only watch up to %1$s products"
 msgstr ""
 
-msgid "You can use your voucher any time in our online shop"
-msgstr "オンラインショップでいつでもバウチャーを使用できます"
-
-msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
-
 msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "次のステップに進む"
 
-msgid "You've cancelled the subscription"
-msgstr ""
-
-msgid "Your account"
-msgstr "あなたのアカウント"
-
 msgid "Your choice"
 msgstr "あなたの選択"
 
 msgid "Your comment"
 msgstr "あなたのコメント"
-
-#. / Account creation e-mail subject
-msgid "Your new account"
-msgstr "あなたの新しいアカウント"
-
-#. / Payment e-mail subject with order ID
-#, php-format
-msgid "Your order %1$s"
-msgstr "ご注文%1$s"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "%2$sの注文%1$sが発送されました。"
 
 msgid "Your rating"
 msgstr ""
@@ -1224,37 +799,12 @@ msgstr ""
 msgid "Your review"
 msgstr ""
 
-msgid "Your search result"
-msgstr "あなたの検索結果"
-
-msgid "Your subscription"
-msgstr ""
-
-msgid "Your subscription product"
-msgstr "あなたのサブスクリプション商品"
-
-msgid "Your voucher"
-msgstr "あなたのバウチャー"
-
-msgid "Your voucher: "
-msgstr "あなたのバウチャー:"
-
-msgid "Your vouchers: "
-msgstr ""
-
-#. / Product notification e-mail subject
-msgid "Your watched products"
-msgstr "あなたの見た商品"
-
 msgid "Zoom in/out"
 msgstr "ズームイン/ズームアウト"
 
 #, php-format
 msgid "address"
 msgstr "住所"
-
-msgid "clear all"
-msgstr "すべてクリア"
 
 #, php-format
 msgid "delivery"
@@ -1263,7 +813,6 @@ msgstr "配達"
 msgid "favorite"
 msgstr ""
 
-#. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
 msgstr "%1$sから"
@@ -1281,10 +830,6 @@ msgid "on request"
 msgstr ""
 
 #, php-format
-msgid "order"
-msgstr "注文"
-
-#, php-format
 msgid "payment"
 msgstr "支払い"
 
@@ -1298,28 +843,21 @@ msgstr ""
 msgid "process"
 msgstr "プロセス"
 
-#. / code for "product is in stock"
 msgid "stock-high"
 msgstr "高在庫"
 
-#. / code for "only a few products are available"
 msgid "stock-low"
 msgstr "在庫が低い"
 
-#. / code for "product is out of stock"
 msgid "stock-out"
 msgstr "在庫切れ"
 
-#. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
 msgstr "在庫無制限"
 
 #, php-format
 msgid "summary"
 msgstr "概要"
-
-msgid "tax"
-msgstr ""
 
 msgid "watch"
 msgstr ""
@@ -1335,9 +873,6 @@ msgstr "▶"
 
 msgid "▶▶"
 msgstr "▶▶"
-
-msgid "▼"
-msgstr "▼"
 
 msgid "▼ Name"
 msgstr "▼名前"

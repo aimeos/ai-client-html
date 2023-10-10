@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-09 19:20+0200\n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: iulian iulian <iulian.abc@gmail.com>, 2020\n"
 "Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
@@ -32,14 +32,6 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -75,86 +67,47 @@ msgid ""
 "%19$s\n"
 msgstr ""
 
-#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s off"
-
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
-#, php-format
-msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
-#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s la %2$s"
 
-#. / Percent format with value (%1$s) and % sign
-#, php-format
-msgid "%1$s%%"
-msgstr "%1$s%%"
-
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
-
-msgid "+"
-msgstr "+"
 
 #, php-format
 msgid "+ %1$s %2$s"
 msgstr ""
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
-#, php-format
-msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/item"
-
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
 msgstr "+ %1$s%% TVA"
 
-msgid "+ Payment costs"
-msgstr "+ Costuri de plata"
-
-msgid "+ Shipping"
-msgstr "+ Livrare"
-
-msgid "+ shipping costs"
-msgstr "+ cost livrare"
-
 msgid "+1 123 456 7890"
 msgstr "+1 123 456 7890"
 
-#. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
 msgstr ""
-
-msgid "Account"
-msgstr "Contul meu"
 
 msgid "Add billing address"
 msgstr ""
@@ -168,32 +121,6 @@ msgstr "Aditional"
 msgid "Additional 2"
 msgstr "Aditional 2"
 
-msgid "Address"
-msgid_plural "Addresses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#, php-format
-msgid "Address with ID \"%1$s\" not found"
-msgstr "Adresa cu ID-ul “%1$s” nu a fost gasita"
-
-msgid "Addresses"
-msgstr "Adrese"
-
-msgid ""
-"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
-"\n"
-"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Toate livrarile expediate fac obiectul termenilor si conditiilor noastre, care sunt disponibile pe site-ul nostru si pe care l-ati acceptat la plasarea comenzii.\n\nAcest e-mail contine informatii confidentiale si este destinat exclusiv utilizarii persoanei vizate. Daca nu sunteti persoana respectiva, va rugam sa raspundeti la acest e-mail si apoi sa stergeti e-mailul si atasamentele."
-
-#. / Payment e-mail legal information
-msgid "All orders are subject to our terms and conditions."
-msgstr "Toate comenzile sunt supuse termenilor si conditiilor noastre."
-
-msgid "An account has been created for you."
-msgstr "Contul tau a fost creat."
-
 msgid "Apply"
 msgstr "Aplică"
 
@@ -203,9 +130,6 @@ msgstr "Produs"
 msgid "Article no."
 msgstr "Produs nr."
 
-msgid "Article no.:"
-msgstr "Produsul nr.:"
-
 #, php-format
 msgid "At least one billing address part is missing or invalid"
 msgstr "O parte din adresa de facturare lipseste sau este invalida"
@@ -213,9 +137,6 @@ msgstr "O parte din adresa de facturare lipseste sau este invalida"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "O parte din adresa de livrare lipseste sau este invalida"
-
-msgid "Attributes"
-msgstr "Atribute"
 
 msgid "Back"
 msgstr "Inapoi"
@@ -270,14 +191,8 @@ msgstr "Modifica"
 msgid "Change payment"
 msgstr "Modifica plata"
 
-msgid "Channel"
-msgstr "Canal"
-
 msgid "Characteristics"
 msgstr "Specificatii"
-
-msgid "Check"
-msgstr "Bifeaza"
 
 msgid "Checkout"
 msgstr "Finalizare comanda"
@@ -286,32 +201,8 @@ msgid "City"
 msgstr "Oras"
 
 #, php-format
-msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "Clasa \"%1$s\" nu implementeaza \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "Clasa \"%1$s\" nu implementează interfața \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" not available"
-msgstr "Clasa \"%1$s\" nu este disponibila"
-
-#, php-format
 msgid "Class \"%1$s\" not found"
 msgstr "Clasa \"%1$s\" nu a fost gasita"
-
-#, php-format
-msgid "Client HTML type is empty"
-msgstr ""
-
-#, php-format
-msgid "Client path is empty"
-msgstr ""
-
-#, php-format
-msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr ""
 
 msgid "Close"
 msgstr "Inchide"
@@ -339,40 +230,6 @@ msgstr "Creat"
 
 msgid "Customer account"
 msgstr "Cont client"
-
-#, php-format
-msgid "Customer with ID \"%1$s\" not found"
-msgstr "Clientul cu ID-ul “%1$s” nu a fost gasit"
-
-#, php-format
-msgid "Dear %1$s %2$s"
-msgstr "Dragă %1$s %2$s"
-
-#, php-format
-msgid "Dear %1$s %2$s %3$s"
-msgstr "Draga %1$s %2$s %3$s"
-
-#, php-format
-msgid "Dear Miss %1$s %2$s"
-msgstr "Dragă domnisoara %1$s %2$s"
-
-#, php-format
-msgid "Dear Mr %1$s %2$s"
-msgstr "Stimate domn %1$s %2$s"
-
-#, php-format
-msgid "Dear Mrs %1$s %2$s"
-msgstr "Stimată doamnă %1$s %2$s"
-
-#, php-format
-msgid "Dear Ms %1$s %2$s"
-msgstr ""
-
-msgid "Dear Sir or Madam"
-msgstr "Draga Dl sau Dna"
-
-msgid "Dear customer"
-msgstr ""
 
 msgid "Delete"
 msgstr "Sterge"
@@ -416,10 +273,6 @@ msgstr "Descarcari"
 msgid "E-Mail"
 msgstr "E-mail"
 
-#. / E-mail HTML title
-msgid "E-mail notification"
-msgstr "Notificare E-mail"
-
 msgid "End date"
 msgstr "Data sfarsit"
 
@@ -431,10 +284,6 @@ msgstr "Fax"
 
 msgid "Fields with an * are mandatory"
 msgstr "Campurile cu * sunt obligatorii"
-
-#, php-format
-msgid "File \"%1$s\" doesn't exist"
-msgstr "Fișierul \"%1$s\" nu există"
 
 msgid "Filter"
 msgstr "Filtru"
@@ -451,9 +300,6 @@ msgstr ""
 msgid "GB999999973"
 msgstr ""
 
-msgid "Go"
-msgstr "Ok"
-
 msgid "Go to page"
 msgstr ""
 
@@ -465,14 +311,6 @@ msgstr ""
 
 msgid "Highest price"
 msgstr ""
-
-#, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
-msgstr "Accept <a href=“%1$s” target=“_blank” title=“termeni si conditii” alt=“termeni si conditii”>termenii si conditiile</a> si <a href=“%2$s” target=“_blank” title=“politica de confidentialitate” alt=“politica de confidentialitate”>politica de confidentialitate</a>"
 
 #, php-format
 msgid ""
@@ -490,14 +328,10 @@ msgstr "Dacă revine înapoi în stoc"
 msgid "If price decreases"
 msgstr "Daca pretul scade"
 
-msgid "If you have any questions, please reply to this e-mail"
-msgstr "Daca aveti intrebari, respundeti la acest e-mail"
-
 #, php-format
 msgid "Incl. %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr "TVA %1$s%% inclus"
@@ -509,16 +343,8 @@ msgid "Interval"
 msgstr "Interval"
 
 #, php-format
-msgid "Invalid characters in class name \"%1$s\""
-msgstr "Caracter invalid in numele clasei \"%1$s\""
-
-#, php-format
 msgid "Invalid characters in client name \"%1$s\""
 msgstr "Caractere incorecte în numele clientului \"%1$s\""
-
-#, php-format
-msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr ""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -527,14 +353,6 @@ msgstr "Nume clasa nevalid \"%1$s\""
 #, php-format
 msgid "Invalid domain \"%1$s\""
 msgstr "Domeniu nevalid \"%1$s\""
-
-#, php-format
-msgid "Invalid factory \"%1$s\""
-msgstr "Factory incorect \"%1$s\""
-
-#, php-format
-msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr ""
 
 msgid "Invoice"
 msgstr "Factura"
@@ -554,14 +372,8 @@ msgstr "Ultima vizualizare"
 msgid "Latest"
 msgstr "Cele mai noi"
 
-msgid "Like entered by you"
-msgstr ""
-
 msgid "List view"
 msgstr ""
-
-msgid "Login"
-msgstr "Autentificare"
 
 msgid "Lowest price"
 msgstr ""
@@ -600,34 +412,11 @@ msgid "No order ID available in session"
 msgstr ""
 
 #, php-format
-msgid "No product with ID \"%1$s\" found"
-msgstr ""
-
-#, php-format
-msgid "No service for code \"%1$s\" found"
-msgstr ""
-
-#, php-format
-msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "Nici un tip de articol \"%1$s/%2$s\" găsit în \"%3$s\""
-
-#, php-format
 msgid "No view available"
 msgstr "Nicio vizualizare disponibilă"
 
-#, php-format
-msgid "Number of coupon codes exceeds the limit"
-msgstr ""
-
-#, php-format
-msgid "Object doesn't implement \"%1$s\""
-msgstr ""
-
 msgid "One month"
 msgstr "O luna"
-
-msgid "One or more products you are watching have been updated."
-msgstr "Unul mai mai multe produse pe care le urmaresti a fost actualizat."
 
 msgid "One week"
 msgstr "O saptamana"
@@ -635,24 +424,8 @@ msgstr "O saptamana"
 msgid "Open submenu"
 msgstr ""
 
-msgid "Options"
-msgstr "Optiuni"
-
-msgid "Order"
-msgstr "Comanda"
-
-#, php-format
-msgid "Order %1$s"
-msgstr ""
-
 msgid "Order ID"
 msgstr "ID comanda"
-
-msgid "Order channel"
-msgstr "Canal comanda"
-
-msgid "Order date"
-msgstr "Dată comandă"
 
 msgid "Order details"
 msgstr "Detalii comanda"
@@ -663,22 +436,12 @@ msgstr "Istoric comenzi"
 msgid "Order status"
 msgstr "Status comanda"
 
-#, php-format
-msgid "Order with ID \"%1$s\" not found"
-msgstr "Comanda cu ID-ul “%1$s” nu a fost gasita"
-
 msgid "Other customers also bought"
 msgstr "Alti clienti au cumparat si"
-
-msgid "Our products"
-msgstr "Produsele noastre"
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "Pagina %1$d din %2$d"
-
-msgid "Password"
-msgstr "Parola"
 
 msgid "Pay now"
 msgstr "Plateste acum"
@@ -715,14 +478,6 @@ msgstr "Va rugam sa introduceti cel putin trei caractere"
 
 msgid "Please enter your payment details"
 msgstr "Va rugam sa introduceti detaliile de plata"
-
-#, php-format
-msgid "Please recheck your delivery choice"
-msgstr "Va rugam sa reverificati alegerea metodei de livrare"
-
-#, php-format
-msgid "Please recheck your payment choice"
-msgstr "Va rugam sa reverificati alegerea metodei de plata"
 
 msgid "Please select"
 msgstr "Alegeti"
@@ -787,9 +542,6 @@ msgstr ""
 msgid "Products you might be also interested in"
 msgstr "Produse de care ati putea fi interesat"
 
-msgid "Properties"
-msgstr "Atribute"
-
 msgid "Qty"
 msgstr "Cant"
 
@@ -802,16 +554,12 @@ msgstr ""
 msgid "Reference"
 msgstr "Referinta"
 
-msgid "Related"
-msgstr "Similare"
-
 msgid "Relevance"
 msgstr "Relevanţă"
 
 msgid "Reset"
 msgstr "Resetați"
 
-#. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Rezultatul pentru “%1$s”"
@@ -864,12 +612,6 @@ msgstr "Alege salutul"
 msgid "Select state"
 msgstr "Alege judetul"
 
-msgid "Service fees"
-msgstr "Taxe servicii"
-
-msgid "Services"
-msgstr "Servicii"
-
 msgid "Share"
 msgstr "Distribuie"
 
@@ -878,9 +620,6 @@ msgstr "Livrare"
 
 msgid "Show"
 msgstr "Arata"
-
-msgid "Show all quotes"
-msgstr "Arata toate citatele"
 
 msgid "Sort by"
 msgstr ""
@@ -891,24 +630,13 @@ msgstr "Ordoneaza dupa:"
 msgid "State"
 msgstr "Judet"
 
-msgid "Status"
-msgstr "Stare"
-
 msgid "Stock"
 msgstr "Stoc"
 
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out) and
-#. stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Stoc: %1$s, %2$s"
 
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out), stock
-#. level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Stoc: %1$s, %2$s, revine la %3$s"
@@ -927,16 +655,6 @@ msgstr "ID-ul subscriptiei"
 
 msgid "Subscription details"
 msgstr "Detaliile subcriptiei"
-
-msgid "Subscription interval"
-msgstr "Intervalul subscriptiei"
-
-msgid "Subscription product"
-msgstr ""
-
-#, php-format
-msgid "Subscription with ID \"%1$s\" not found"
-msgstr ""
 
 msgid "Subscriptions"
 msgstr "Subscriptii"
@@ -962,42 +680,8 @@ msgstr ""
 msgid "Telephone"
 msgstr "Telefon"
 
-#, php-format
-msgid "Template \"%1$s\" not available"
-msgstr ""
-
 msgid "Terms and conditions"
 msgstr "Termeni si conditii"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "Thank you for your order %1$s from %2$s."
-msgstr "Iti multumim pentru comanda %1$s de la %2$s."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Iti multumim pentru comanda %1$s de la %2$s.\n\nComanda este in asteptare pana cand primim plata finala. Daca ati ales sa plătiți in avans, va rugam sa transferati banii in contul nostru bancar cu ID-ul comenzii %1$s ca referinta."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"We received the payment and will care about your order immediately."
-msgstr "Iti multumim pentru comanda %1$s de la %2$s.\n\nAm receptionat plata si ne vom ocupa de comanda ta in cel mai scurt timp."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -1012,64 +696,15 @@ msgstr "Iti multumim pentru comanda.\nAm primit plata si un e-mail cu detaliile 
 msgid "Thank you for your review!"
 msgstr ""
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr "Starea livrarii comenzii %1$s de la %2$s a fost modificata la “%3$s”."
-
-#, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr "Comanda este in asteptare pana cand primim plata finala. Daca ati ales sa platiti in avans, va rugam sa transferati banii in contul nostru bancar cu ID-ul comenzii %1$s ca referinta."
-
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr "Comanda a fost anulata.\nDoriti sa refaceti comanda?"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "Coletul pentru comanda %1$s de la %2$s nu a putut fi livrat."
-
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "Confirmarea platii pentru comanda dvs. este in asteptare.\nVeti primi un e-mail de indata ce plata este autorizata."
-
-msgid "The payment couldn't be renewed"
-msgstr ""
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "Plata pentru comanda %1$s de la %2$s a fost rambursata."
-
-msgid "The subscription for the product has ended"
-msgstr ""
-
-msgid "The subscription for the product has ended."
-msgstr ""
-
-#, php-format
-msgid "The value of your voucher is %1$s"
-msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 msgid "Three month"
 msgstr "Trei luni"
@@ -1080,14 +715,8 @@ msgstr "Interval de timp"
 msgid "Toggle fullscreen"
 msgstr ""
 
-msgid "Top seller"
-msgstr "Vanzator de top"
-
 msgid "Total"
 msgstr "Total"
-
-msgid "Total quantity"
-msgstr "Total cantitate"
 
 msgid "Try again"
 msgstr "Incercati din nou"
@@ -1096,23 +725,11 @@ msgid "Two weeks"
 msgstr "Doua saptamani"
 
 #, php-format
-msgid "Unable to call method \"%1$s\""
-msgstr "Imposibil de apelat metoda \"%1$s\""
-
-#, php-format
-msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr ""
-
-#, php-format
 msgid "Unable to create an account: %1$s"
 msgstr ""
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
-
-#, php-format
-msgid "Unable to set cache entry: %1$s"
 msgstr ""
 
 msgid ""
@@ -1138,29 +755,12 @@ msgstr "Urmareste"
 msgid "Watched products"
 msgstr "Produse urmarite"
 
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr ""
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr ""
-
 msgid "Web site"
 msgstr "website"
 
 msgid "What do you think about the product"
 msgstr ""
 
-msgid "X"
-msgstr "X"
-
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "d.m.Y"
 
@@ -1181,46 +781,17 @@ msgstr ""
 msgid "You can only watch up to %1$s products"
 msgstr ""
 
-msgid "You can use your voucher any time in our online shop"
-msgstr "Iti poti folosi voucherul oricand in magazinul nostru online"
-
-msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
-
 msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Vei fi redirectionat catre pasul urmator"
 
-msgid "You've cancelled the subscription"
-msgstr ""
-
-msgid "Your account"
-msgstr "Contul tau"
-
 msgid "Your choice"
 msgstr "Alegerea ta"
 
 msgid "Your comment"
 msgstr "Comentariul tau"
-
-#. / Account creation e-mail subject
-msgid "Your new account"
-msgstr "Noul tau cont"
-
-#. / Payment e-mail subject with order ID
-#, php-format
-msgid "Your order %1$s"
-msgstr "Comanda ta %1$s"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "Your order %1$s from %2$s has been dispatched."
-msgstr ""
 
 msgid "Your rating"
 msgstr ""
@@ -1234,37 +805,12 @@ msgstr ""
 msgid "Your review"
 msgstr ""
 
-msgid "Your search result"
-msgstr "Rezultatul tau de cautare"
-
-msgid "Your subscription"
-msgstr ""
-
-msgid "Your subscription product"
-msgstr ""
-
-msgid "Your voucher"
-msgstr "Voucherul tau"
-
-msgid "Your voucher: "
-msgstr "Voucherul tauȘ"
-
-msgid "Your vouchers: "
-msgstr ""
-
-#. / Product notification e-mail subject
-msgid "Your watched products"
-msgstr ""
-
 msgid "Zoom in/out"
 msgstr "Mareste/Micsoreaza"
 
 #, php-format
 msgid "address"
 msgstr "adresa"
-
-msgid "clear all"
-msgstr "sterge tot"
 
 #, php-format
 msgid "delivery"
@@ -1273,7 +819,6 @@ msgstr "livrare"
 msgid "favorite"
 msgstr "favorite"
 
-#. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
 msgstr "de la %1$s"
@@ -1291,10 +836,6 @@ msgid "on request"
 msgstr ""
 
 #, php-format
-msgid "order"
-msgstr "comanda"
-
-#, php-format
 msgid "payment"
 msgstr "plata"
 
@@ -1308,28 +849,21 @@ msgstr ""
 msgid "process"
 msgstr "proces"
 
-#. / code for "product is in stock"
 msgid "stock-high"
 msgstr "stoc mare"
 
-#. / code for "only a few products are available"
 msgid "stock-low"
 msgstr "stoc mic"
 
-#. / code for "product is out of stock"
 msgid "stock-out"
 msgstr "stoc 0"
 
-#. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
 msgstr "stoc nelimitat"
 
 #, php-format
 msgid "summary"
 msgstr "sumar"
-
-msgid "tax"
-msgstr ""
 
 msgid "watch"
 msgstr "ceas"
@@ -1345,9 +879,6 @@ msgstr "▶"
 
 msgid "▶▶"
 msgstr "▶ ▶"
-
-msgid "▼"
-msgstr "▼"
 
 msgid "▼ Name"
 msgstr "▼ Nume"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-09 19:20+0200\n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Włodz Mur <wm@iwpress.eu>, 2023\n"
 "Language-Team: Ukrainian (http://app.transifex.com/aimeos/aimeos-core/language/uk/)\n"
@@ -38,14 +38,6 @@ msgstr[1] "%1$dвідгуків"
 msgstr[2] "%1$dвідгуки"
 msgstr[3] "%1$dвідгуки"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -81,86 +73,47 @@ msgid ""
 "%19$s\n"
 msgstr ""
 
-#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "знижка %1$s %2$s"
-
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
-#, php-format
-msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
-#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s в %2$s"
 
-#. / Percent format with value (%1$s) and % sign
-#, php-format
-msgid "%1$s%%"
-msgstr "%1$s%%"
-
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
-
-msgid "+"
-msgstr "+"
 
 #, php-format
 msgid "+ %1$s %2$s"
 msgstr ""
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
-#, php-format
-msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/штука"
-
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr "+ %1$s%% %2$s"
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
 msgstr "+ %1$s%% ПДВ"
 
-msgid "+ Payment costs"
-msgstr "+ Вартість оплати"
-
-msgid "+ Shipping"
-msgstr "+ Доставка"
-
-msgid "+ shipping costs"
-msgstr "+ вартість доставки"
-
 msgid "+1 123 456 7890"
 msgstr "+1 123 456 7890"
 
-#. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
 msgstr "Сталася невиправна помилка"
-
-msgid "Account"
-msgstr "Обліковий запис"
 
 msgid "Add billing address"
 msgstr "Додати платіжну адресу"
@@ -174,33 +127,6 @@ msgstr "Номер будинку"
 msgid "Additional 2"
 msgstr "Поверх / Квартира"
 
-msgid "Address"
-msgid_plural "Addresses"
-msgstr[0] "Адреса"
-msgstr[1] "Адрес"
-msgstr[2] "Адреси"
-msgstr[3] "Адреси"
-
-#, php-format
-msgid "Address with ID \"%1$s\" not found"
-msgstr "Адресу з ID \"%1$s\" не знайдено"
-
-msgid "Addresses"
-msgstr "Адреси"
-
-msgid ""
-"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
-"\n"
-"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Усі доставки регулюються нашими положеннями та умовам, які доступні на нашому сайті та які ви прийняли при оформленні замовлення.\n\n Цей електронний лист містить конфіденційну інформацію та призначений виключно для використання адресованою особою. Якщо ви не є цією особою, дайте відповідь на цей електронний лист, а потім видаліть електронний лист і вкладення."
-
-#. / Payment e-mail legal information
-msgid "All orders are subject to our terms and conditions."
-msgstr ""
-
-msgid "An account has been created for you."
-msgstr "Акаунт було створено для вас."
-
 msgid "Apply"
 msgstr "Застосувати"
 
@@ -210,9 +136,6 @@ msgstr "Артикул"
 msgid "Article no."
 msgstr "Артикул"
 
-msgid "Article no.:"
-msgstr "Артикул:"
-
 #, php-format
 msgid "At least one billing address part is missing or invalid"
 msgstr "Принаймні одна частина платіжної адреси відсутня або недійсна"
@@ -220,9 +143,6 @@ msgstr "Принаймні одна частина платіжної адрес
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Принаймні одна частина адреси доставки відсутня або недійсна"
-
-msgid "Attributes"
-msgstr "Атрибути"
 
 msgid "Back"
 msgstr "Назад"
@@ -277,14 +197,8 @@ msgstr "Змінити"
 msgid "Change payment"
 msgstr "Смінити оплату"
 
-msgid "Channel"
-msgstr "Канал"
-
 msgid "Characteristics"
 msgstr "Характеристики"
-
-msgid "Check"
-msgstr "Перевірити"
 
 msgid "Checkout"
 msgstr "Перейти до оформлення"
@@ -293,32 +207,8 @@ msgid "City"
 msgstr "Місто"
 
 #, php-format
-msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "Клас \"%1$s\" не реализуе \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "Клас \"%1$s\" не реализуе інтерфейс \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" not available"
-msgstr "Клас \"%1$s\" не доступний"
-
-#, php-format
 msgid "Class \"%1$s\" not found"
 msgstr "Клас \"%1$s\" не знайдено"
-
-#, php-format
-msgid "Client HTML type is empty"
-msgstr ""
-
-#, php-format
-msgid "Client path is empty"
-msgstr ""
-
-#, php-format
-msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr ""
 
 msgid "Close"
 msgstr "Закрити"
@@ -346,40 +236,6 @@ msgstr "Створено"
 
 msgid "Customer account"
 msgstr "Акаунт користувача"
-
-#, php-format
-msgid "Customer with ID \"%1$s\" not found"
-msgstr "Кліента з ID \"%1$s\" не знайдено"
-
-#, php-format
-msgid "Dear %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear %1$s %2$s %3$s"
-msgstr "Вельмишановний %1$s %2$s %3$s"
-
-#, php-format
-msgid "Dear Miss %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Mr %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Mrs %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Ms %1$s %2$s"
-msgstr ""
-
-msgid "Dear Sir or Madam"
-msgstr "Вельмишановний Пан чи Пані"
-
-msgid "Dear customer"
-msgstr ""
 
 msgid "Delete"
 msgstr "Видалити"
@@ -423,10 +279,6 @@ msgstr "Зкачувані матеріали"
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#. / E-mail HTML title
-msgid "E-mail notification"
-msgstr "Повідомлення E-mail"
-
 msgid "End date"
 msgstr "Кінцева дата"
 
@@ -438,10 +290,6 @@ msgstr "Факс"
 
 msgid "Fields with an * are mandatory"
 msgstr "Позначені * поля є обов'язковими"
-
-#, php-format
-msgid "File \"%1$s\" doesn't exist"
-msgstr ""
 
 msgid "Filter"
 msgstr ""
@@ -458,9 +306,6 @@ msgstr ""
 msgid "GB999999973"
 msgstr ""
 
-msgid "Go"
-msgstr "Далі"
-
 msgid "Go to page"
 msgstr ""
 
@@ -472,14 +317,6 @@ msgstr ""
 
 msgid "Highest price"
 msgstr ""
-
-#, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
-msgstr "Я приймаю <a href=\"%1$s\" target=\"_blank\" title=\"Умови\" alt=\"Умови\">умови</a> та згоден з <a href=\"%2$s\" target=\"_blank\" title=\"Политика конфіденційності\" alt=\"Политика конфіденційності\">политикою конфіденційності</a>"
 
 #, php-format
 msgid ""
@@ -497,14 +334,10 @@ msgstr "Якщо з'явиться в наявності"
 msgid "If price decreases"
 msgstr "Якщо знизиться ціна"
 
-msgid "If you have any questions, please reply to this e-mail"
-msgstr "Якщо у вас виникли запитання, будь ласка, дайте відповідь на цей e-mail"
-
 #, php-format
 msgid "Incl. %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr "вкл. %1$s%% ПДВ"
@@ -516,16 +349,8 @@ msgid "Interval"
 msgstr "Інтервал"
 
 #, php-format
-msgid "Invalid characters in class name \"%1$s\""
-msgstr "Недопустимі символы в назві класу \"%1$s\""
-
-#, php-format
 msgid "Invalid characters in client name \"%1$s\""
 msgstr "Недопустимі символы в імені кліента \"%1$s\""
-
-#, php-format
-msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr ""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -534,14 +359,6 @@ msgstr "Невірна назва класу \"%1$s\""
 #, php-format
 msgid "Invalid domain \"%1$s\""
 msgstr "Невірний домен \"%1$s\""
-
-#, php-format
-msgid "Invalid factory \"%1$s\""
-msgstr "Неприпустиме підприємство \"%1$s\""
-
-#, php-format
-msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "Недійсна відповідь процесу від постачальника послуг з кодом \"%1$s\""
 
 msgid "Invoice"
 msgstr "Рахунок"
@@ -561,14 +378,8 @@ msgstr "Недавно дивились"
 msgid "Latest"
 msgstr "По новизні"
 
-msgid "Like entered by you"
-msgstr ""
-
 msgid "List view"
 msgstr "Список"
-
-msgid "Login"
-msgstr "Логін"
 
 msgid "Lowest price"
 msgstr ""
@@ -607,34 +418,11 @@ msgid "No order ID available in session"
 msgstr ""
 
 #, php-format
-msgid "No product with ID \"%1$s\" found"
-msgstr ""
-
-#, php-format
-msgid "No service for code \"%1$s\" found"
-msgstr ""
-
-#, php-format
-msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "Не знайдено типу елементу для \"%1$s/%2$s\" в \"%3$s\""
-
-#, php-format
 msgid "No view available"
 msgstr "Немає доступних режимів виводу"
 
-#, php-format
-msgid "Number of coupon codes exceeds the limit"
-msgstr "Кількість кодів купонів перевищила встановлений ліміт"
-
-#, php-format
-msgid "Object doesn't implement \"%1$s\""
-msgstr "Об'єкт не реалізує \"%1$s\""
-
 msgid "One month"
 msgstr "Один місяць"
-
-msgid "One or more products you are watching have been updated."
-msgstr "Один або кілька продуктів, які ви переглядаєте, оновлено."
 
 msgid "One week"
 msgstr "Один тиджень"
@@ -642,24 +430,8 @@ msgstr "Один тиджень"
 msgid "Open submenu"
 msgstr ""
 
-msgid "Options"
-msgstr "Параметри"
-
-msgid "Order"
-msgstr "Замовлення"
-
-#, php-format
-msgid "Order %1$s"
-msgstr ""
-
 msgid "Order ID"
 msgstr "ID замовлення"
-
-msgid "Order channel"
-msgstr "Порядок замовлень"
-
-msgid "Order date"
-msgstr "Дата замовлення"
 
 msgid "Order details"
 msgstr "Деталі замовлення"
@@ -670,22 +442,12 @@ msgstr "Історія замовлення"
 msgid "Order status"
 msgstr "Статус замовлення"
 
-#, php-format
-msgid "Order with ID \"%1$s\" not found"
-msgstr "Замовлення з ID \"%1$s\" не знайдено"
-
 msgid "Other customers also bought"
 msgstr "Доповнити образ"
-
-msgid "Our products"
-msgstr ""
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "Сторінка %1$d з %2$d"
-
-msgid "Password"
-msgstr "Пароль"
 
 msgid "Pay now"
 msgstr ""
@@ -721,14 +483,6 @@ msgid "Please enter at least three characters"
 msgstr "Будь ласка, введіть мінімім три символи"
 
 msgid "Please enter your payment details"
-msgstr ""
-
-#, php-format
-msgid "Please recheck your delivery choice"
-msgstr ""
-
-#, php-format
-msgid "Please recheck your payment choice"
 msgstr ""
 
 msgid "Please select"
@@ -794,9 +548,6 @@ msgstr ""
 msgid "Products you might be also interested in"
 msgstr "Продукти, які можуть вас зацікавити"
 
-msgid "Properties"
-msgstr "Властивості"
-
 msgid "Qty"
 msgstr ""
 
@@ -809,16 +560,12 @@ msgstr "Рейтинг"
 msgid "Reference"
 msgstr "Посилання"
 
-msgid "Related"
-msgstr "Пов'язаний"
-
 msgid "Relevance"
 msgstr "Відповідність"
 
 msgid "Reset"
 msgstr "Скинути"
 
-#. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Результат для \"%1$s\""
@@ -872,12 +619,6 @@ msgstr "Виберіть вітання"
 msgid "Select state"
 msgstr "Виберіть область"
 
-msgid "Service fees"
-msgstr "Вартість послуги"
-
-msgid "Services"
-msgstr "Послуги"
-
 msgid "Share"
 msgstr ""
 
@@ -886,9 +627,6 @@ msgstr "Доставка"
 
 msgid "Show"
 msgstr "Показати"
-
-msgid "Show all quotes"
-msgstr "Показати всі відгуки"
 
 msgid "Sort by"
 msgstr ""
@@ -899,24 +637,13 @@ msgstr "Сортувати по:"
 msgid "State"
 msgstr "Область"
 
-msgid "Status"
-msgstr "Статус"
-
 msgid "Stock"
 msgstr "Запаси"
 
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out) and
-#. stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Запаси: %1$s, %2$s"
 
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out), stock
-#. level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Запаси: %1$s, %2$s, оновлення запасів %3$s"
@@ -934,16 +661,6 @@ msgid "Subscription ID"
 msgstr ""
 
 msgid "Subscription details"
-msgstr ""
-
-msgid "Subscription interval"
-msgstr ""
-
-msgid "Subscription product"
-msgstr ""
-
-#, php-format
-msgid "Subscription with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Subscriptions"
@@ -970,42 +687,8 @@ msgstr ""
 msgid "Telephone"
 msgstr "Телефон"
 
-#, php-format
-msgid "Template \"%1$s\" not available"
-msgstr "Шаблон \"%1$s\" не доступний"
-
 msgid "Terms and conditions"
 msgstr "Правила та умови"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "Thank you for your order %1$s from %2$s."
-msgstr "Дякуємо за ваше замовлення %1$s від %2$s."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Дякуємо за ваше замовлення %1$s від %2$s.\n\nЗамовлення очікує, поки ми не отримаємо остаточний платіж. Якщо ви вирішили сплатити заздалегідь, будь ласка, перерахуйте гроші на наш банківський рахунок з ID замовлення %1$s в примітці переказу."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"We received the payment and will care about your order immediately."
-msgstr "Дякуємо за ваше замовлення %1$s від %2$s.\n\nМи отримали оплату і негайно потурбуємося про доставку."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -1020,65 +703,15 @@ msgstr "Дякуємо за ваше замовлення.\nМи отримал�
 msgid "Thank you for your review!"
 msgstr ""
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr "Статус доставки замовлення %1$s від %2$s було змінено на \"%3$s\"."
-
-#, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr ""
-
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr "Замовлення зкасовано.\nБажаєте повторити ваше замовлення?"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "Неможливо надіслати ваше замовлення %1$s від %2$s."
-
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "Підтвердження оплати вашого заповлення поки-що не отримано.\nВи отримаєте e-mail щойно оплата буде підтверджена."
-
-msgid "The payment couldn't be renewed"
-msgstr ""
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "Оплата за ваше замовлення %1$s від %2$s була повернута."
-
-msgid "The subscription for the product has ended"
-msgstr ""
-
-msgid "The subscription for the product has ended."
-msgstr ""
-
-#, php-format
-msgid "The value of your voucher is %1$s"
-msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 msgid "Three month"
 msgstr "Три місяці"
@@ -1089,14 +722,8 @@ msgstr "Часові рамки"
 msgid "Toggle fullscreen"
 msgstr ""
 
-msgid "Top seller"
-msgstr "Лідери продажу"
-
 msgid "Total"
 msgstr "Разом"
-
-msgid "Total quantity"
-msgstr "Загальна кількість"
 
 msgid "Try again"
 msgstr "Спробуйте ще раз"
@@ -1105,24 +732,12 @@ msgid "Two weeks"
 msgstr "Два тиждні"
 
 #, php-format
-msgid "Unable to call method \"%1$s\""
-msgstr "Неможливо викликати метод \"%1$s\""
-
-#, php-format
-msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr ""
-
-#, php-format
 msgid "Unable to create an account: %1$s"
 msgstr ""
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr "Неможливо зберегти адресу для клієнта \"%1$s\": %2$s"
-
-#, php-format
-msgid "Unable to set cache entry: %1$s"
-msgstr "Неможливо встановити кеш для запису: %1$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -1147,29 +762,12 @@ msgstr "Слідкувати"
 msgid "Watched products"
 msgstr "Відслідковувані товари"
 
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr ""
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "Ми отримали повернення доставки для вашого замовлення %1$s від %2$s."
-
 msgid "Web site"
 msgstr "Сайт"
 
 msgid "What do you think about the product"
 msgstr ""
 
-msgid "X"
-msgstr "X"
-
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
@@ -1190,46 +788,17 @@ msgstr ""
 msgid "You can only watch up to %1$s products"
 msgstr ""
 
-msgid "You can use your voucher any time in our online shop"
-msgstr ""
-
-msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
-
 msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Перехід до наступного кроку"
 
-msgid "You've cancelled the subscription"
-msgstr ""
-
-msgid "Your account"
-msgstr "Ваш акаунт"
-
 msgid "Your choice"
 msgstr "Ваш вибір"
 
 msgid "Your comment"
 msgstr "Ваш коментар до замовлення"
-
-#. / Account creation e-mail subject
-msgid "Your new account"
-msgstr "Ваш новий акаунт"
-
-#. / Payment e-mail subject with order ID
-#, php-format
-msgid "Your order %1$s"
-msgstr "Ваше замовлення %1$s"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Ваше замовлення %1$s від %2$s оброблено"
 
 msgid "Your rating"
 msgstr "Ваш рейтинг"
@@ -1243,37 +812,12 @@ msgstr ""
 msgid "Your review"
 msgstr "Ваш відгук"
 
-msgid "Your search result"
-msgstr "Ваш результат пошуку"
-
-msgid "Your subscription"
-msgstr "Ваша підписка"
-
-msgid "Your subscription product"
-msgstr ""
-
-msgid "Your voucher"
-msgstr "Ваш ваучер"
-
-msgid "Your voucher: "
-msgstr "Ваш ваучер:"
-
-msgid "Your vouchers: "
-msgstr ""
-
-#. / Product notification e-mail subject
-msgid "Your watched products"
-msgstr "Ваші відслідковувані товари"
-
 msgid "Zoom in/out"
 msgstr ""
 
 #, php-format
 msgid "address"
 msgstr "Адреса"
-
-msgid "clear all"
-msgstr "очистити все"
 
 #, php-format
 msgid "delivery"
@@ -1282,7 +826,6 @@ msgstr "Доставка"
 msgid "favorite"
 msgstr ""
 
-#. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
 msgstr "від %1$s"
@@ -1300,10 +843,6 @@ msgid "on request"
 msgstr ""
 
 #, php-format
-msgid "order"
-msgstr "замовлення"
-
-#, php-format
 msgid "payment"
 msgstr "оплата"
 
@@ -1317,28 +856,21 @@ msgstr "ціна:початкова"
 msgid "process"
 msgstr ""
 
-#. / code for "product is in stock"
 msgid "stock-high"
 msgstr "великі запаси"
 
-#. / code for "only a few products are available"
 msgid "stock-low"
 msgstr "малі запаси"
 
-#. / code for "product is out of stock"
 msgid "stock-out"
 msgstr "немає на складі"
 
-#. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
 msgstr "запаси не обмежені"
 
 #, php-format
 msgid "summary"
 msgstr "Резюме"
-
-msgid "tax"
-msgstr "податок"
 
 msgid "watch"
 msgstr ""
@@ -1354,9 +886,6 @@ msgstr "▶"
 
 msgid "▶▶"
 msgstr "▶▶"
-
-msgid "▼"
-msgstr "▼"
 
 msgid "▼ Name"
 msgstr "▼ Назва"

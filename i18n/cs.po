@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-09 19:20+0200\n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>, 2016\n"
 "Language-Team: Czech (http://app.transifex.com/aimeos/aimeos-core/language/cs/)\n"
@@ -35,14 +35,6 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -78,86 +70,47 @@ msgid ""
 "%19$s\n"
 msgstr ""
 
-#. / Price format with price value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s vypnuto"
-
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
-#, php-format
-msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
-#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s v %2$s"
 
-#. / Percent format with value (%1$s) and % sign
-#, php-format
-msgid "%1$s%%"
-msgstr "%1$s%%"
-
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
-
-msgid "+"
-msgstr "+"
 
 #, php-format
 msgid "+ %1$s %2$s"
 msgstr ""
 
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
-#, php-format
-msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/položka"
-
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
 msgstr "+ %1$s%% DPH"
 
-msgid "+ Payment costs"
-msgstr "+ platební náklady"
-
-msgid "+ Shipping"
-msgstr "+ doprava"
-
-msgid "+ shipping costs"
-msgstr "+ náklady na dopravu"
-
 msgid "+1 123 456 7890"
 msgstr "+1 123 456 7890"
 
-#. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
 msgstr ""
-
-msgid "Account"
-msgstr "Účet"
 
 msgid "Add billing address"
 msgstr ""
@@ -171,33 +124,6 @@ msgstr "Další"
 msgid "Additional 2"
 msgstr "Dodatečné 2"
 
-msgid "Address"
-msgid_plural "Addresses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-
-#, php-format
-msgid "Address with ID \"%1$s\" not found"
-msgstr "Adresa s ID %1$s\" nebyla nalezena"
-
-msgid "Addresses"
-msgstr "Adresy"
-
-msgid ""
-"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
-"\n"
-"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Všechny odeslané objednávky podléhají našim pravidlům a podmínkám, které jsou dostupné na našem webu a které jste přijali při zadání vaší objednávky.\n\nTento e-mail obsahuje důvěrné informace a je výhradně určen pro použití adresovanou osobou. Pokud nejste touto osobou, odpovězte prosím na tento e-mail a následně jej odstraňte i s jeho přílohami."
-
-#. / Payment e-mail legal information
-msgid "All orders are subject to our terms and conditions."
-msgstr "Všechny objednávky podléhají našim pravidlům a podmínkám, které jsou dostupné na našem webu a které jste přijali při zadání vaší objednávky.\n\nTento e-mail obsahuje důvěrné informace a je výhradně určen pro použití adresovanou osobou. Pokud nejste touto osobou, odpovězte prosím na tento e-mail a následně jej odstraňte i s jeho přílohami."
-
-msgid "An account has been created for you."
-msgstr "Byl pro vás vytvořen účet."
-
 msgid "Apply"
 msgstr "Použít"
 
@@ -207,9 +133,6 @@ msgstr ""
 msgid "Article no."
 msgstr ""
 
-msgid "Article no.:"
-msgstr "Produkt č.:"
-
 #, php-format
 msgid "At least one billing address part is missing or invalid"
 msgstr "Minimálně jedna část fakturační adresy chybí nebo je neplatná"
@@ -217,9 +140,6 @@ msgstr "Minimálně jedna část fakturační adresy chybí nebo je neplatná"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Minimálně jedna část doručovací adresy chybí nebo je neplatná"
-
-msgid "Attributes"
-msgstr "Atributy"
 
 msgid "Back"
 msgstr "Zpět"
@@ -274,14 +194,8 @@ msgstr "Změnit"
 msgid "Change payment"
 msgstr "Změna platby"
 
-msgid "Channel"
-msgstr ""
-
 msgid "Characteristics"
 msgstr "Vlastnosti"
-
-msgid "Check"
-msgstr "Zkontrolovat"
 
 msgid "Checkout"
 msgstr "Pokladna"
@@ -290,32 +204,8 @@ msgid "City"
 msgstr "Město"
 
 #, php-format
-msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "Třída \"%1$s\" neimplementuje rozhraní \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "Třída \"%1$s\" does not implement interface \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" not available"
-msgstr "Třída \"%1$s\" není k dispozici"
-
-#, php-format
 msgid "Class \"%1$s\" not found"
 msgstr "Třída \"%1$s\" nenalezena"
-
-#, php-format
-msgid "Client HTML type is empty"
-msgstr "HTML typ zákazníka je prázdný"
-
-#, php-format
-msgid "Client path is empty"
-msgstr ""
-
-#, php-format
-msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr "Typ zákazníka \"%1$s\" musí obsahovat dvě části oddělené „/“"
 
 msgid "Close"
 msgstr "Zavřít"
@@ -342,40 +232,6 @@ msgid "Created"
 msgstr "Vytvořeno"
 
 msgid "Customer account"
-msgstr ""
-
-#, php-format
-msgid "Customer with ID \"%1$s\" not found"
-msgstr "Zákazník s ID \"%1$s\" nenalezen"
-
-#, php-format
-msgid "Dear %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear %1$s %2$s %3$s"
-msgstr "Vážený/á  %1$s %2$s %3$s"
-
-#, php-format
-msgid "Dear Miss %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Mr %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Mrs %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Ms %1$s %2$s"
-msgstr ""
-
-msgid "Dear Sir or Madam"
-msgstr "Vážený pane či paní"
-
-msgid "Dear customer"
 msgstr ""
 
 msgid "Delete"
@@ -420,10 +276,6 @@ msgstr "Ke stažení"
 msgid "E-Mail"
 msgstr "E-mail"
 
-#. / E-mail HTML title
-msgid "E-mail notification"
-msgstr "Oznámení e-mailem"
-
 msgid "End date"
 msgstr ""
 
@@ -435,10 +287,6 @@ msgstr "Fax"
 
 msgid "Fields with an * are mandatory"
 msgstr "Pole označená * jsou povinná"
-
-#, php-format
-msgid "File \"%1$s\" doesn't exist"
-msgstr ""
 
 msgid "Filter"
 msgstr "Filtr"
@@ -455,9 +303,6 @@ msgstr ""
 msgid "GB999999973"
 msgstr "GB999999973"
 
-msgid "Go"
-msgstr "Najít"
-
 msgid "Go to page"
 msgstr ""
 
@@ -469,14 +314,6 @@ msgstr ""
 
 msgid "Highest price"
 msgstr ""
-
-#, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
-msgstr "Souhlasím s <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">pravidly a podmínkami</a> a <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">zásadami ochrany soukromí</a>"
 
 #, php-format
 msgid ""
@@ -494,14 +331,10 @@ msgstr "Pokud bude skladem"
 msgid "If price decreases"
 msgstr "Pokud cena klesne"
 
-msgid "If you have any questions, please reply to this e-mail"
-msgstr "Pokud máte jakékoliv dotazy, kontaktujte nás prosím na tomto e-mailu"
-
 #, php-format
 msgid "Incl. %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr "Vč. %1$s%% DPH"
@@ -513,16 +346,8 @@ msgid "Interval"
 msgstr ""
 
 #, php-format
-msgid "Invalid characters in class name \"%1$s\""
-msgstr "Zakázané znaky ve jméně třídy \"%1$s\""
-
-#, php-format
 msgid "Invalid characters in client name \"%1$s\""
 msgstr "Neplatné znaky ve jménu zákazníka \"%1$s\""
-
-#, php-format
-msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr "Neplatné znaky ve jménu zákazníka \"%1$s\" v \"%2$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -531,14 +356,6 @@ msgstr "Chybné jméno třídy \"%1$s\""
 #, php-format
 msgid "Invalid domain \"%1$s\""
 msgstr "Neplatná doména \"%1$s\""
-
-#, php-format
-msgid "Invalid factory \"%1$s\""
-msgstr "Neplatná továrna \"%1$s\""
-
-#, php-format
-msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "Neplatná odezva procesu od poskytovatele služeb s kódem \"%1$s\""
 
 msgid "Invoice"
 msgstr ""
@@ -558,13 +375,7 @@ msgstr "Naposledy zobrazeno"
 msgid "Latest"
 msgstr ""
 
-msgid "Like entered by you"
-msgstr ""
-
 msgid "List view"
-msgstr ""
-
-msgid "Login"
 msgstr ""
 
 msgid "Lowest price"
@@ -604,34 +415,11 @@ msgid "No order ID available in session"
 msgstr ""
 
 #, php-format
-msgid "No product with ID \"%1$s\" found"
-msgstr "Nenalezen žádný produkt s ID \"%1$s\""
-
-#, php-format
-msgid "No service for code \"%1$s\" found"
-msgstr "Nenalezena žádná služba pro kód \"%1$s\""
-
-#, php-format
-msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "Nenalezen žádný typ položky pro \"%1$s/%2$s\" v \"%3$s\""
-
-#, php-format
 msgid "No view available"
 msgstr "Žádný náhled k dispozici"
 
-#, php-format
-msgid "Number of coupon codes exceeds the limit"
-msgstr "Počet kupónových kódů překročil limit"
-
-#, php-format
-msgid "Object doesn't implement \"%1$s\""
-msgstr "Objekt neimplementuje \"%1$s\""
-
 msgid "One month"
 msgstr "Jeden měsíc"
-
-msgid "One or more products you are watching have been updated."
-msgstr "Jeden či více produktů, které sledujete, byly aktualizovány."
 
 msgid "One week"
 msgstr "Jeden týden"
@@ -639,24 +427,8 @@ msgstr "Jeden týden"
 msgid "Open submenu"
 msgstr ""
 
-msgid "Options"
-msgstr "Možnosti"
-
-msgid "Order"
-msgstr ""
-
-#, php-format
-msgid "Order %1$s"
-msgstr ""
-
 msgid "Order ID"
 msgstr "ID objednávky"
-
-msgid "Order channel"
-msgstr "Směrování objednávky"
-
-msgid "Order date"
-msgstr ""
 
 msgid "Order details"
 msgstr "Podrobnosti objednávky"
@@ -667,22 +439,12 @@ msgstr "Historie objednávek"
 msgid "Order status"
 msgstr "Stav objednávky"
 
-#, php-format
-msgid "Order with ID \"%1$s\" not found"
-msgstr "Objednávka s ID \"%1$s\" nenalezena"
-
 msgid "Other customers also bought"
 msgstr "Ostatní zákazníci také koupili"
-
-msgid "Our products"
-msgstr ""
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "Strana %1$d z %2$d"
-
-msgid "Password"
-msgstr "Heslo"
 
 msgid "Pay now"
 msgstr "Zaplatit nyní"
@@ -719,14 +481,6 @@ msgstr "Zadejte prosím alespoň tři znaky"
 
 msgid "Please enter your payment details"
 msgstr "Zadejte prosím své platební údaje"
-
-#, php-format
-msgid "Please recheck your delivery choice"
-msgstr ""
-
-#, php-format
-msgid "Please recheck your payment choice"
-msgstr ""
 
 msgid "Please select"
 msgstr "Vyberte prosím"
@@ -791,9 +545,6 @@ msgstr ""
 msgid "Products you might be also interested in"
 msgstr "Produkty, které by vás také mohly zajímat"
 
-msgid "Properties"
-msgstr "Vlastnosti"
-
 msgid "Qty"
 msgstr "Množství"
 
@@ -806,16 +557,12 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-msgid "Related"
-msgstr "Příbuzné"
-
 msgid "Relevance"
 msgstr "Relevantnost"
 
 msgid "Reset"
 msgstr ""
 
-#. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Výsledek pro \"%1$s\" "
@@ -869,12 +616,6 @@ msgstr "Vybrat oslovení"
 msgid "Select state"
 msgstr "Vybrat zemi"
 
-msgid "Service fees"
-msgstr "Poplatky za služby"
-
-msgid "Services"
-msgstr "Služby"
-
 msgid "Share"
 msgstr ""
 
@@ -883,9 +624,6 @@ msgstr "Doprava"
 
 msgid "Show"
 msgstr "Zobrazit"
-
-msgid "Show all quotes"
-msgstr "Zobrazit všechny citace"
 
 msgid "Sort by"
 msgstr ""
@@ -896,24 +634,13 @@ msgstr "Uspořádat dle:"
 msgid "State"
 msgstr "Země"
 
-msgid "Status"
-msgstr ""
-
 msgid "Stock"
 msgstr ""
 
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out) and
-#. stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Sklad: %1$s, %2$s"
 
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out), stock
-#. level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Sklad: %1$s, %2$s, znova skladem %3$s "
@@ -931,16 +658,6 @@ msgid "Subscription ID"
 msgstr ""
 
 msgid "Subscription details"
-msgstr ""
-
-msgid "Subscription interval"
-msgstr ""
-
-msgid "Subscription product"
-msgstr ""
-
-#, php-format
-msgid "Subscription with ID \"%1$s\" not found"
 msgstr ""
 
 msgid "Subscriptions"
@@ -967,42 +684,8 @@ msgstr ""
 msgid "Telephone"
 msgstr "Telefon"
 
-#, php-format
-msgid "Template \"%1$s\" not available"
-msgstr "Šablona \"%1$s\" není dostupná"
-
 msgid "Terms and conditions"
 msgstr "Pravidla a podmínky"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "Thank you for your order %1$s from %2$s."
-msgstr "Děkujeme za vaši objednávku %1$s z %2$s."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Děkujeme za vaši objednávku %1$s z %2$s.\n\nObjednávka čeká na vyřízení, dokud neobdržíme konečnou platbu. Pokud jste se rozhodli pro platbu předem, odešlete prosím na náš bankovní účet peníze s ID objednávky %1$s ve zprávě pro příjemce."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"We received the payment and will care about your order immediately."
-msgstr "Děkujeme za vaši objednávku %1$s z %2$s.\n\nObdrželi jsme platbu a ihned začneme vyřizovat vaši objednávku."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -1017,65 +700,15 @@ msgstr "Děkujeme za vaši objednávku.\nObdrželi jsme vaši platbu a e-mail s 
 msgid "Thank you for your review!"
 msgstr ""
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr "Stav doručení vaší objednávky %1$s z %2$s byl změněn na \"%3$s\"."
-
-#, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr ""
-
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr "Objednávka byla zrušena.\nPřejete si opakovat svou objednávku?"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "Balík vaší objednávky %1$s z %2$s nemohl být doručen."
-
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "Potvrzení platby vaší objednávky stále čeká na vyřízení.\nJakmile bude platba autorizována, obdržíte e-mail."
-
-msgid "The payment couldn't be renewed"
-msgstr ""
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "Platba vaší objednávky %1$s z %2$s byla vrácena."
-
-msgid "The subscription for the product has ended"
-msgstr ""
-
-msgid "The subscription for the product has ended."
-msgstr ""
-
-#, php-format
-msgid "The value of your voucher is %1$s"
-msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 msgid "Three month"
 msgstr "Tříměsíční"
@@ -1086,14 +719,8 @@ msgstr "Časový rámec"
 msgid "Toggle fullscreen"
 msgstr ""
 
-msgid "Top seller"
-msgstr "Nejlepší prodejce"
-
 msgid "Total"
 msgstr "Celkem"
-
-msgid "Total quantity"
-msgstr "Celkem množství"
 
 msgid "Try again"
 msgstr "Zkusit znovu"
@@ -1102,24 +729,12 @@ msgid "Two weeks"
 msgstr "Dva týdny"
 
 #, php-format
-msgid "Unable to call method \"%1$s\""
-msgstr "Nelze nazvat metodu \"%1$s\""
-
-#, php-format
-msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr "Nelze vytvořit účet pro \"%1$s\": %2$s"
-
-#, php-format
 msgid "Unable to create an account: %1$s"
 msgstr ""
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr "Nelze uložit adresu pro zákazníka \"%1$s\": %2$s"
-
-#, php-format
-msgid "Unable to set cache entry: %1$s"
-msgstr "Nelze nastavit zápis mezipaměti: %1$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -1144,29 +759,12 @@ msgstr "Sledovat"
 msgid "Watched products"
 msgstr "Sledované produkty"
 
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr ""
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "Obdrželi jsme vrácenou zásilku vaší objednávky %1$s z %2$s."
-
 msgid "Web site"
 msgstr "Webová stránka"
 
 msgid "What do you think about the product"
 msgstr ""
 
-msgid "X"
-msgstr "X"
-
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
@@ -1187,46 +785,17 @@ msgstr ""
 msgid "You can only watch up to %1$s products"
 msgstr ""
 
-msgid "You can use your voucher any time in our online shop"
-msgstr ""
-
-msgid "You can use your vouchers at any time in our online shop"
-msgstr ""
-
 msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Nyní budete přesměrováni k dalšímu kroku"
 
-msgid "You've cancelled the subscription"
-msgstr ""
-
-msgid "Your account"
-msgstr "Váš účet"
-
 msgid "Your choice"
 msgstr "Vaše volba"
 
 msgid "Your comment"
 msgstr ""
-
-#. / Account creation e-mail subject
-msgid "Your new account"
-msgstr "Váš nový účet"
-
-#. / Payment e-mail subject with order ID
-#, php-format
-msgid "Your order %1$s"
-msgstr "Vaše objednávka %1$s"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Vaše objednávka %1$s z %2$s byla odeslána."
 
 msgid "Your rating"
 msgstr ""
@@ -1240,37 +809,12 @@ msgstr ""
 msgid "Your review"
 msgstr ""
 
-msgid "Your search result"
-msgstr "Váš výsledek hledání"
-
-msgid "Your subscription"
-msgstr ""
-
-msgid "Your subscription product"
-msgstr ""
-
-msgid "Your voucher"
-msgstr ""
-
-msgid "Your voucher: "
-msgstr ""
-
-msgid "Your vouchers: "
-msgstr ""
-
-#. / Product notification e-mail subject
-msgid "Your watched products"
-msgstr "Vámi sledované produkty"
-
 msgid "Zoom in/out"
 msgstr ""
 
 #, php-format
 msgid "address"
 msgstr "adresa"
-
-msgid "clear all"
-msgstr "vyčistit vše"
 
 #, php-format
 msgid "delivery"
@@ -1279,7 +823,6 @@ msgstr "doručení"
 msgid "favorite"
 msgstr "oblíbené"
 
-#. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
 msgstr "z %1$s"
@@ -1297,10 +840,6 @@ msgid "on request"
 msgstr ""
 
 #, php-format
-msgid "order"
-msgstr "objednat"
-
-#, php-format
 msgid "payment"
 msgstr "platba"
 
@@ -1314,28 +853,21 @@ msgstr ""
 msgid "process"
 msgstr "průběh"
 
-#. / code for "product is in stock"
 msgid "stock-high"
 msgstr "skladem-hodně"
 
-#. / code for "only a few products are available"
 msgid "stock-low"
 msgstr "skladem-málo"
 
-#. / code for "product is out of stock"
 msgid "stock-out"
 msgstr "skladem-vyprodáno"
 
-#. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
 msgstr "skladem-neomezeno"
 
 #, php-format
 msgid "summary"
 msgstr "shrnutí"
-
-msgid "tax"
-msgstr ""
 
 msgid "watch"
 msgstr "sledovat"
@@ -1351,9 +883,6 @@ msgstr "▶"
 
 msgid "▶▶"
 msgstr "▶▶"
-
-msgid "▼"
-msgstr "▼"
 
 msgid "▼ Name"
 msgstr "▼ Název"
