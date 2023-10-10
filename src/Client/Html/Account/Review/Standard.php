@@ -102,7 +102,7 @@ class Standard
 			->slice( 0, $size )
 			->search();
 
-		$orderProducts = $orders->getProducts()->collapse( 1 )->rekey( function( $item ) {
+		$orderProducts = $orders->getProducts()->flat( 1 )->rekey( function( $item ) {
 			return $item->getType() === 'select' ? $item->getParentProductId() : $item->getProductId();
 		} );
 
