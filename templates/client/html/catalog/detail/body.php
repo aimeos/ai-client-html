@@ -67,6 +67,37 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 };
 
 
+//Get reviews amount of the Product Item and all its variants, if any
+$reviewsAmount = 0;
+$starsAmount = 0;
+$IDs = [];
+if (isset( $this->detailProductItem )) {
+    $IDs[] = $this->detailProductItem->getId();
+    $amountOfStarred = 0;
+    if ($this->detailProductItem->getRatings()) {
+        $reviewsAmount += $this->detailProductItem->getRatings();
+        if($this->detailProductItem->getRating() > 0) {
+            $amountOfStarred++;
+            $starsAmount += $this->detailProductItem->getRating();
+        }
+    }
+    $refs = $this->detailProductItem->getRefItems();
+    if(isset($refs['product'])) {
+
+        foreach ($refs['product'] as $variant_id => $variant){
+            $IDs[] = $variant_id;
+            if($variant->getRatings()){
+                $reviewsAmount += $variant->getRatings();
+                if ($variant->getRating() > 0) {
+                    $amountOfStarred++;
+                    $starsAmount += $variant->getRating();
+                }
+            }
+        }
+        $starsAmount = $starsAmount / $amountOfStarred;
+    }
+}
+
 ?>
 <?php if( isset( $this->detailProductItem ) ) : ?>
 
@@ -124,9 +155,9 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 
 						<?php if( $this->detailProductItem->getRating() > 0 ) : ?>
 							<div class="rating" itemscope itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating">
-								<span class="stars"><?= str_repeat( '★', (int) round( $this->detailProductItem->getRating() ) ) ?></span>
-								<span class="rating-value" itemprop="ratingValue"><?= $enc->html( $this->detailProductItem->getRating() ) ?></span>
-								<span class="ratings" itemprop="reviewCount"><?= (int) $this->detailProductItem->getRatings() ?></span>
+								<span class="stars"><?= str_repeat( '★', (int) round( $starsAmount) ?></span>
+								<span class="rating-value" itemprop="ratingValue"><?= $enc->html( (int) round( $starsAmount) ) ?></span>
+								<span class="ratings" itemprop="reviewCount"><?= $reviewsAmount ?></span>
 							</div>
 						<?php endif ?>
 
@@ -366,7 +397,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 
 								<a class="nav-link nav-review" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review">
 									<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
-									<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
+									<span class="ratings"><?= $enc->html( $reviewsAmount ) ?></span>
 								</a>
 							</div>
 						</nav>
@@ -479,7 +510,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 							<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab"
 								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product reviews' ) ) ?>">
 
-								<div class="reviews container-fluid block" data-productid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
+								<div class="reviews container-fluid block" data-productid="<?= $enc->attr( implode(',', $IDs) ) ?>">
 									<div class="row">
 										<div class="col-md-4 rating-list">
 											<div class="rating-numbers">
