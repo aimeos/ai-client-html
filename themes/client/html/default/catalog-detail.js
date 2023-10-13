@@ -26,73 +26,87 @@ AimeosCatalogDetail = {
 
 	async fetchReviews(container) {
 
-		const jsonUrl = $(".catalog-detail").data("jsonurl");
-		const prodid = $(container).data("productid");
+	const jsonUrl = $(".catalog-detail").data("jsonurl");
+	let prodid = $(container).data("productid");
+        let prodidArray = [];
 
-		if(prodid && jsonUrl) {
+        if (typeof prodid === "string") {
+            // If prodid is a comma-separated list ("Select product")
+            prodidArray = prodid.split(",");
 
-			await fetch(jsonUrl, {
-				method: "OPTIONS",
-				headers: {'Content-type': 'application/json'}
-			}).then(response => {
-				return response.json();
-			}).then(async options => {
+        } else {
+            prodidArray[0] = prodid;
+        }
+        Aimeos.createSpinner();
+        for (let i = 0; i < prodidArray.length; i++) {
+            prodid = prodidArray[i];
+            // prodid = prodidArray[0];
+            if (prodid && jsonUrl) {
 
-				if(options && options.meta && options.meta.resources && options.meta.resources.review) {
+                await fetch(jsonUrl, {
+                    method: "OPTIONS",
+                    headers: {'Content-type': 'application/json'}
+                }).then(response => {
+                    return response.json();
+                }).then(async options => {
 
-					const args = {
-						filter: {f_refid: prodid},
-						sort: "-ctime"
-					};
-					let params = {};
-					let url;
+                    if (options && options.meta && options.meta.resources && options.meta.resources.review) {
 
-					if(options.meta.prefix) {
-						params[options.meta.prefix] = args;
-					} else {
-						params = args;
-					}
+                        const args = {
+                            filter: {f_refid: prodid},
+                            sort: "-ctime"
+                        };
+                        let params = {};
+                        let url;
 
-					url = new URL(options.meta.resources.review);
-					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
+                        if (options.meta.prefix) {
+                            params[options.meta.prefix] = args;
+                        } else {
+                            params = args;
+                        }
 
-					await fetch(url, {
-						headers: {'Content-type': 'application/json'}
-					}).then(response => {
-						return response.json();
-					}).then(response => {
-						AimeosCatalogDetail.addReviews(response, container);
-					});
+                        url = new URL(options.meta.resources.review);
+                        url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
+
+                        await fetch(url, {
+                            headers: {'Content-type': 'application/json'}
+                        }).then(response => {
+                            return response.json();
+                        }).then(response => {
+                            AimeosCatalogDetail.addReviews(response, container);
+                        });
 
 
-					args['aggregate'] = 'review.rating';
+                        args['aggregate'] = 'review.rating';
 
-					if(options.meta.prefix) {
-						params[options.meta.prefix] = args;
-					} else {
-						params = args;
-					}
+                        if (options.meta.prefix) {
+                            params[options.meta.prefix] = args;
+                        } else {
+                            params = args;
+                        }
 
-					url = new URL(options.meta.resources.review);
-					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
+                        url = new URL(options.meta.resources.review);
+                        url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
-					await fetch(url, {
-						headers: {'Content-type': 'application/json'}
-					}).then(response => {
-						return response.json();
-					}).then(response => {
-						if(response && response.data) {
-							const ratings = $(".rating-dist", container).data("ratings") || 1;
+                        await fetch(url, {
+                            headers: {'Content-type': 'application/json'}
+                        }).then(response => {
+                            return response.json();
+                        }).then(response => {
+                            if (response && response.data) {
+                                const ratings = $(".rating-dist", container).data("ratings") || 1;
 
-							response.data.forEach(function(entry) {
-								const percent = (entry.attributes || 0) * 100 / ratings;
-								$("#rating-" + (entry.id || 0)).val(percent).text(percent);
-							});
-						}
-					});
-				}
-			});
-		}
+                                response.data.forEach(function (entry) {
+                                    const percent = (entry.attributes || 0) * 100 / ratings;
+                                    $("#rating-" + (entry.id || 0)).val(percent).text(percent);
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+        Aimeos.removeSpinner();
 	},
 
 
