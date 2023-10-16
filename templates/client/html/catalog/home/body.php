@@ -53,10 +53,10 @@ $lazy = false;
 
 
 ?>
-<div class="section aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
-	data-slider-nav-autoplay-interval="4000" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<?php if( isset( $this->homeTree ) ) : ?>
 
-	<?php if( isset( $this->homeTree ) ) : ?>
+	<div class="section aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
+		data-slider-nav-autoplay-interval="4000" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
 
@@ -125,6 +125,6 @@ $lazy = false;
 		<button type="button" class="slider-nav" aria-label="Go to previous"></button>
 		<button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
 
-	<?php endif ?>
+	</div>
 
-</div>
+<?php endif ?>
