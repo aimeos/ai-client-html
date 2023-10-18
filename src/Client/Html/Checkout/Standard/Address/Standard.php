@@ -277,10 +277,15 @@ class Standard
 		 * @param array List of two letter ISO country codes
 		 * @since 2023.04
 		 */
-		$view->addressCountries = map( $view->config( 'common/countries', [] ) )
-			->flip()->map( function( $v, $key ) use ( $view ) {
-				return $view->translate( 'country', $key );
-			} )->asort();
+		$countries = map( $view->config( 'common/countries', [] ) );
+		$view->addressCountries = $countries->flip()->map( function( $v, $key ) use ( $view ) {
+			return $view->translate( 'country', $key );
+		} );
+
+		// Don't destroy custom order of countries, only sort if order is strictly alphabetical
+		if( $countries->is( $countries->clone()->sort(), true ) ) {
+			$view->addressCountries->asort();
+		}
 
 		/** common/states
 		 * List of available states for frontend and backend
