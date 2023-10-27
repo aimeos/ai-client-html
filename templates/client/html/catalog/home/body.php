@@ -53,7 +53,10 @@ $lazy = false;
 
 
 ?>
-<?php if( isset( $this->homeTree ) ) : ?>
+<?php if( isset( $this->homeTree ) && !(
+	$this->homeTree->getRefItems( 'media', 'stage', 'default' )->isEmpty()
+	&& $this->homeTree->getChildren()->getRefItems( 'media', 'stage', 'default' )->collapse( 1 )->isEmpty()
+) ) : ?>
 
 	<div class="section aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
 		data-slider-nav-autoplay-interval="4000" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
