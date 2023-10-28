@@ -29,6 +29,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
+		$this->object->setView( $this->object->data( \TestHelper::view() ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '{"', $output );
