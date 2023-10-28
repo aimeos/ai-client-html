@@ -17,7 +17,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	protected function setUp() : void
 	{
 		$this->object = new \Aimeos\Client\Html\Catalog\Count\Attribute\Standard( \TestHelper::context() );
-		$this->object->setView( \TestHelper::view() );
 	}
 
 
@@ -29,6 +28,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
+		$this->object->setView( $this->object->data( \TestHelper::view() ) );
 		$output = $this->object->body();
 
 		$this->assertStringStartsWith( '{"', $output );
