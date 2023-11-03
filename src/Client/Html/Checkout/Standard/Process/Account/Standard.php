@@ -51,8 +51,7 @@ class Standard
 			if( $context->user() === null && ( $address = current( $addresses ) ) !== false )
 			{
 				$create = (bool) $this->view()->param( 'cs_option_account' );
-				$userId = $this->getCustomerId( $address, $create );
-				$context->setUserId( $userId );
+				$context->setUser( $this->getCustomer( $address, $create ) );
 			}
 		}
 		catch( \Exception $e )
@@ -70,19 +69,19 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
 	 * @param bool $new True to create the customer if it doesn't exist, false if not
-	 * @return string|null Unique customer ID or null if no customer is available
+	 * @return \Aimeos\MShop\Customer\Item\\Iface|null Unique customer ID or null if no customer is available
 	 */
-	protected function getCustomerId( \Aimeos\MShop\Common\Item\Address\Iface $addr, bool $new ) : ?string
+	protected function getCustomer( \Aimeos\MShop\Common\Item\Address\Iface $addr, bool $new ) : ?\Aimeos\MShop\Customer\Item\Iface
 	{
 		$context = $this->context();
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 
 		try {
-			$id = $cntl->find( $addr->getEmail() )->getId();
+			$customer = $cntl->find( $addr->getEmail() );
 		} catch( \Exception $e ) {
-			$id = $new ? $cntl->add( $addr->toArray() )->store()->get()->getId() : null;
+			$customer = $new ? $cntl->add( $addr->toArray() )->store()->get() : null;
 		}
 
-		return $id;
+		return $customer;
 	}
 }

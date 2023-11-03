@@ -40,6 +40,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
+
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<link rel="stylesheet"', $output );
@@ -49,8 +51,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->context->setUserId( -1 );
-		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )
+			->find( 'test@example.com' )->setId( -1 ) );
 
 		$output = $this->object->body();
 
@@ -64,6 +66,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
+
 		$this->view = \TestHelper::view();
 		$param = array(
 			'sub_action' => 'delete',

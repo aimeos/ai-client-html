@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
-		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
 
 		$this->object = new \Aimeos\Client\Html\Account\Favorite\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$item = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
 		$id = \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNC' )->getId();
-		$this->context->setUserId( $item->getId() );
+		$this->context->setUser( $item );
 
 		$param = ['fav_action' => 'add', 'fav_id' => $id];
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
@@ -96,7 +96,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$item = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com', ['product' => ['favorite']] );
 		$id = $item->getListItems( 'product', 'favorite' )->first()->getRefId();
-		$this->context->setUserId( $item->getId() );
+		$this->context->setUser( $item );
 
 		$param = ['fav_action' => 'delete', 'fav_id' => $id];
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );

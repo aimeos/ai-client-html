@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
-		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Address\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketCntl = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
 		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY, $address );
 
-		$this->context->setUserId( $customerItem->getId() );
+		$this->context->setUser( $customerItem );
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )

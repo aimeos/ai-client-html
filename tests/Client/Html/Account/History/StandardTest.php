@@ -50,8 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
 
 		$output = $this->object->body();
 
