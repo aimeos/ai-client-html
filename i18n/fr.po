@@ -9,6 +9,7 @@
 # Doryan R, 2019
 # a270031086f2a0d3514bc0cb507b48f6, 2019
 # Jean-Baptiste Joulé <joule_jb@yahoo.fr>, 2019
+# Jean-Marc Kutyla, 2023
 # kevin teguia <teguiakevin@gmail.com>, 2018
 # Laurent Georget <laurent@lgeorget.eu>, 2020-2021
 # Medzo Zeng <medzozeng@hotmail.fr>, 2019
@@ -21,7 +22,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Aimeos, 2017,2023\n"
+"Last-Translator: Jean-Marc Kutyla, 2023\n"
 "Language-Team: French (http://app.transifex.com/aimeos/aimeos-core/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -88,7 +89,7 @@ msgstr "remise de %1$s %2$s"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -100,7 +101,7 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -118,7 +119,7 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Une erreur irrécupérable s'est produite"
 
 msgid "Add billing address"
 msgstr "Ajouter une adresse de facturation"
@@ -156,13 +157,13 @@ msgid "Basket"
 msgstr "Panier"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Détails panier"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Nom panier"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Panier enregistré correctement"
 
 msgid "Billing address"
 msgstr "Adresse de facturation"
@@ -179,7 +180,7 @@ msgid "Birthday"
 msgstr "Date de naissance"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Fil d'Ariane"
 
 msgid "Bulk order"
 msgstr "Commande en gros"
@@ -246,7 +247,7 @@ msgid "Delete"
 msgstr "Supprimer"
 
 msgid "Delete item"
-msgstr ""
+msgstr "efface l'objet"
 
 msgid "Delivery"
 msgstr "Livraison"
@@ -276,7 +277,7 @@ msgid "Details"
 msgstr "Détails"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Ne pas enregistrer l'adresse"
 
 msgid "Downloads"
 msgstr "Téléchargements"
@@ -306,22 +307,22 @@ msgid "First name"
 msgstr "Prénom"
 
 msgid "Found products"
-msgstr ""
+msgstr "Produits trouvés"
 
 msgid "GB999999973"
 msgstr "FR999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Aller à la page"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Vue grille"
 
 msgid "HH:mm"
 msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Prix le plus élevé"
 
 #, php-format
 msgid ""
@@ -387,13 +388,13 @@ msgid "List view"
 msgstr "Vue en liste"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Le prix le plus bas"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Numéro de portable"
 
 msgid "More reviews"
 msgstr "Autres avis"
@@ -420,7 +421,7 @@ msgid ""
 msgstr "Pas d'article trouvé pour <span class=\"searchstring\">\"%1$s\"</span>. Merci d'essayer à nouveau avec un autre mot-clé."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "Aucun identifiant de commande disponible en session"
 
 #, php-format
 msgid "No view available"
@@ -433,7 +434,7 @@ msgid "One week"
 msgstr "Une semaine"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Ouvrir le sous-menu"
 
 msgid "Order ID"
 msgstr "Numéro de commande"
@@ -467,7 +468,7 @@ msgid "Payment status"
 msgstr "Statut du paiement"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Epingler un produit"
 
 msgid "Pinned products"
 msgstr "Produits épinglés"
@@ -503,10 +504,10 @@ msgid "Price"
 msgstr "Prix"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Filtre prix"
 
 msgid "Price range"
-msgstr ""
+msgstr "échelle de prix"
 
 msgid "Proceed"
 msgstr "Continuer"
@@ -518,37 +519,37 @@ msgid "Product"
 msgstr "Produit"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Actions produit"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "attributs produit"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Catégories produit"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "caractéristiques produits"
 
 msgid "Product description"
-msgstr ""
+msgstr "Description produit"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtres produit"
 
 msgid "Product image"
 msgstr "Image du produit"
 
 msgid "Product information"
-msgstr ""
+msgstr "Information produit"
 
 msgid "Product price"
 msgstr "Prix du produit"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Avis produit"
 
 msgid "Product search"
-msgstr ""
+msgstr "Recherche produit"
 
 msgid "Products you might be also interested in"
 msgstr "Ces produits pourraient également vous intéresser"
@@ -582,7 +583,7 @@ msgid "SKU or article name"
 msgstr "Nom d'article ou SKU"
 
 msgid "Sale"
-msgstr ""
+msgstr "Vente"
 
 msgid "Salutation"
 msgstr "Titre"
@@ -591,10 +592,10 @@ msgid "Save"
 msgstr "Sauvegarder"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Le panier enregistré a été supprimé avec succès"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Panier enregistré"
 
 msgid "Search"
 msgstr "Recherche"
@@ -633,7 +634,7 @@ msgid "Show"
 msgstr "Voir"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Trier par"
 
 msgid "Sort by:"
 msgstr "Trier par :"
@@ -659,7 +660,7 @@ msgid "Sub-total"
 msgstr "Sous-total"
 
 msgid "Submit"
-msgstr ""
+msgstr "Envoyer"
 
 msgid "Subscription ID"
 msgstr "Abonnement ID"
@@ -680,13 +681,13 @@ msgid "Supplier information"
 msgstr "Détail du fournisseur"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Liste fournisseur"
 
 msgid "Suppliers"
 msgstr "Fournisseurs"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Regarder"
 
 msgid "Telephone"
 msgstr "Téléphone"
@@ -710,12 +711,12 @@ msgstr "Merci d'avoir partagé votre avis !"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr "Votre commande a été annulée. Souhaitez-vous réessayer?"
+msgstr "Votre commande a été annulée.\nSouhaitez-vous réessayer?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "La confirmation du paiement de votre commande est toujours en attente. Vous recevrez un e-mail dès que le paiement aura été autorisé."
+msgstr "La confirmation du paiement de votre commande est toujours en attente.\n Vous recevrez un e-mail dès que le paiement aura été autorisé."
 
 msgid "Three month"
 msgstr "Trois mois"
@@ -786,14 +787,14 @@ msgstr "Vous êtes ici :"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Vous ne pouvez enregistrer que %1$s produits maximum comme favoris"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Vous ne pouvez visualiser que jusqu'à %1$s produits"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Vous devez d'abord vous connecter"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Vous allez maintenant être redirigé vers l'étape suivante"
@@ -844,7 +845,7 @@ msgid "none"
 msgstr "aucun"
 
 msgid "on request"
-msgstr ""
+msgstr "à la demande"
 
 #, php-format
 msgid "payment"
