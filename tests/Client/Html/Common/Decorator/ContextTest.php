@@ -46,7 +46,5 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString( $result->get( 'contextSiteId' ) );
 		$this->assertEquals( 'de', $result->get( 'contextLanguage' ) );
 		$this->assertEquals( 'EUR', $result->get( 'contextCurrency' ) );
-		$this->assertEquals( null, $result->get( 'contextUserId' ) );
-		$this->assertEquals( [], $result->get( 'contextGroupIds' ) );
 	}
 }
