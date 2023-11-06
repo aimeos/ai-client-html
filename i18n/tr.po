@@ -141,7 +141,7 @@ msgid "Back"
 msgstr "Geri"
 
 msgid "Basket"
-msgstr "Ürün Sepetiniz"
+msgstr "Sepet"
 
 msgid "Basket details"
 msgstr "Sepet detayları"
@@ -164,7 +164,7 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr "Fatura adresinin \"%1$s\" bölümü eksik"
 
 msgid "Birthday"
-msgstr "Doğum günü"
+msgstr "Doğum tarihi"
 
 msgid "Breadcrumb navigation"
 msgstr "İçerik haritası navigasyonu"
@@ -185,7 +185,7 @@ msgid "Categories"
 msgstr "Kategoriler"
 
 msgid "Change"
-msgstr "Değiştir"
+msgstr "Düzenle"
 
 msgid "Change payment"
 msgstr "Ödemeyi değiştir"
@@ -294,7 +294,7 @@ msgid "First name"
 msgstr "Ad"
 
 msgid "Found products"
-msgstr "Bulunan ürünler"
+msgstr "Bulunan Ürünler"
 
 msgid "GB999999973"
 msgstr "Ör: Bornova / 123 456 789 11"
@@ -329,7 +329,7 @@ msgstr "Fiyat düştüğünde"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "%1$s %%%2$s dahil"
+msgstr "%%%1$s %2$s dahil "
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -561,7 +561,7 @@ msgstr "Sıfırla"
 
 #, php-format
 msgid "Result for \"%1$s\""
-msgstr "\"%1$s\" için sonuç"
+msgstr "\"%1$s\" İçin Sonuçlar"
 
 msgid "Reviews"
 msgstr "Değerlendirmeler"
@@ -742,7 +742,7 @@ msgid "Variant"
 msgstr "Değişken"
 
 msgid "Vat ID"
-msgstr "Vergi Dairesi/Numarası"
+msgstr "Vergi Dairesi ve Numarası"
 
 msgid "Vendor response"
 msgstr "Satıcı yanıtı"
