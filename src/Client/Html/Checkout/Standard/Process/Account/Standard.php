@@ -69,7 +69,7 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
 	 * @param bool $new True to create the customer if it doesn't exist, false if not
-	 * @return \Aimeos\MShop\Customer\Item\\Iface|null Unique customer ID or null if no customer is available
+	 * @return \Aimeos\MShop\Customer\Item\Iface|null Unique customer ID or null if no customer is available
 	 */
 	protected function getCustomer( \Aimeos\MShop\Common\Item\Address\Iface $addr, bool $new ) : ?\Aimeos\MShop\Customer\Item\Iface
 	{
