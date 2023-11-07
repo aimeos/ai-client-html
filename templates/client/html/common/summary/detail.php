@@ -372,7 +372,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<div class="total row g-0">
 			<div class="col-8 col-md-6 offset-4 offset-md-6">
 				<div class="row g-0 price-total">
-					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></div>
+					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$s article', '%1$s articles', ceil( $totalQuantity ) ), round( $totalQuantity, 3 ) ) ) ?></div>
 					<div class="col-4 total-text"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
