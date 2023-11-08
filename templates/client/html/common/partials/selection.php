@@ -113,7 +113,8 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 	data-proddeps="<?= $enc->attr( json_encode( $prodDeps ) ) ?>"
 	data-attrdeps="<?= $enc->attr( json_encode( $attrDeps ) ) ?>">
 
-	<?php foreach( $attrItems->uasort( $sortfcn )->groupBy( 'attribute.type' )->ksort() as $code => $list ) : ?>
+	<?php foreach( $attrItems->groupBy( 'attribute.type' ) as $code => $list ) : ?>
+		<?php $list = map( $list )->uasort( $sortfcn ) ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ) ?>">
 			<label class="select-name"><?= $enc->html( $attrTypeName( $code ) ) ?></label>
