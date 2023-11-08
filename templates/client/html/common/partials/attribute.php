@@ -95,8 +95,9 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 ?>
 <ul class="selection">
 
-	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'config' )->uasort( $sortfcn )->groupBy( 'attribute.type' )->ksort() as $code => $attributes ) : ?>
+	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'config' )->groupBy( 'attribute.type' ) as $code => $attributes ) : ?>
 		<?php $key = $this->productItem->getId() . '-' . $code . '_' . rand( 1, 1000 ) ?>
+		<?php $attributes = map( $attributes )->uasort( $sortfcn ) ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) ) ?>">
 			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $attrTypeName( $code ) ) ?></label>
