@@ -137,6 +137,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
+									data-code="<?= $enc->attr( $attrItem->getCode() ) ?>"
 									<?= ( $first && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ) ?>
 								>
 								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
@@ -177,7 +178,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 
 						<?php foreach( $list as $attrId => $attrItem ) : ?>
 
-							<option class="select-option" value="<?= $enc->attr( $attrId ) ?>">
+							<option class="select-option" value="<?= $enc->attr( $attrId ) ?>" data-code="<?= $enc->attr( $attrItem->getCode() ) ?>">
 								<?= $enc->html( $attrItem->getName() ) ?>
 							</option>
 

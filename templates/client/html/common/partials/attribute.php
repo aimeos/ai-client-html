@@ -115,10 +115,13 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
 
 							<li class="input-group select-entry">
-								<input type="hidden" value="<?= $enc->attr( $attrId ) ?>"
+								<input type="hidden"
+									value="<?= $enc->attr( $attrId ) ?>"
+									data-code="<?= $enc->attr( $attribute->getCode() ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
 								>
-								<input class="form-control select-option" id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>" type="number" value="0" step="1" min="0"
+								<input class="form-control select-option" type="number" value="0" step="1" min="0"
+									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>"
 								><!--
 								--><label class="form-control select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>">
@@ -141,6 +144,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
+									data-code="<?= $enc->attr( $attribute->getCode() ) ?>"
 								>
 								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
 
@@ -175,7 +179,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 
 						<?php foreach( $attributes as $id => $attribute ) : ?>
 
-							<option class="select-option" value="<?= $enc->attr( $id ) ?>">
+							<option class="select-option" value="<?= $enc->attr( $id ) ?>" data-code="<?= $enc->attr( $attribute->getCode() ) ?>">
 								<?= $enc->html( $this->attrname( $attribute ) ) ?>
 							</option>
 
