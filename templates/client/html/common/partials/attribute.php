@@ -159,7 +159,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 										<?php endif ?>
 									<?php endforeach ?>
 
-									--><span><?= $enc->html( $attribute->getName() ) ?></span><!--
+									--><span><?= $enc->html( $this->attrname( $attribute ) ) ?></span><!--
 								--></label>
 							</li>
 
