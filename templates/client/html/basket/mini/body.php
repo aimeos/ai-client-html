@@ -131,8 +131,8 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 				<div class="basket-header row">
 						<div class="col-5 name"><?= $enc->html( $this->translate( 'client', 'Product' ), $enc::TRUST ) ?></div>
 						<div class="col-2 quantity"><?= $enc->html( $this->translate( 'client', 'Qty' ), $enc::TRUST ) ?></div>
-						<div class="col-3 price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
-						<div class="col-2 action"></div>
+						<div class="col-4 price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
+						<div class="col-1 action"></div>
 				</div>
 				<div class="basket-body">
 					<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
@@ -147,10 +147,10 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 							<div class="col-2 quantity">
 								<?= $enc->html( $product->getQuantity() ) ?>
 							</div>
-							<div class="col-3 price">
+							<div class="col-4 price">
 								<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ) ?>
 							</div>
-							<div class="col-2 action">
+							<div class="col-1 action">
 								<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 									<a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a>
 								<?php endif ?>
@@ -160,8 +160,8 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 					<div class="product-item row prototype">
 						<div class="col-5 name"></div>
 						<div class="col-2 quantity"></div>
-						<div class="col-3 price"></div>
-						<div class="col-2 action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a></div>
+						<div class="col-4 price"></div>
+						<div class="col-1 action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a></div>
 					</div>
 				</div>
 				<div class="basket-footer">
