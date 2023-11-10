@@ -267,6 +267,8 @@ class Standard
 		$attrMap = $attrItems->groupBy( 'attribute.type' );
 		$propMap = $propItems->groupBy( 'product.property.type' );
 
+		$attrTypes = $attrMap->keys()->concat( $productItem->getRefItems( 'attribute' )->getType() )->unique();
+		$attrTypes = $this->attributeTypes( $attrTypes );
 		$attrTypes = $this->attributeTypes( $attrMap->keys() );
 		$propTypes = $this->propertyTypes( $propMap->keys() );
 
