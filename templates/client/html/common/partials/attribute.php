@@ -85,12 +85,6 @@ $sortfcn = function( $itemA, $itemB ) {
 	return $itemA->getPosition() <=> $itemB->getPosition() ?: $itemA->getName() <=> $itemB->getName();
 };
 
-$attrTypes = $this->get( 'attributeTypes', [] );
-
-$attrTypeName = function( string $code ) use ( $attrTypes ) {
-	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
-};
-
 
 ?>
 <ul class="selection">
@@ -100,7 +94,9 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 		<?php $attributes = map( $attributes )->uasort( $sortfcn ) ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) ) ?>">
-			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $attrTypeName( $code ) ) ?></label>
+			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name">
+				<?= $enc->html( $this->get( 'attributeTypes/' . $code )?->getName() ?: $this->translate( 'client/code', $code ) ) ?>
+			</label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
