@@ -269,7 +269,6 @@ class Standard
 
 		$attrTypes = $attrMap->keys()->concat( $productItem->getRefItems( 'attribute' )->getType() )->unique();
 		$attrTypes = $this->attributeTypes( $attrTypes );
-		$attrTypes = $this->attributeTypes( $attrMap->keys() );
 		$propTypes = $this->propertyTypes( $propMap->keys() );
 
 		$view->detailMediaItems = $mediaItems;
