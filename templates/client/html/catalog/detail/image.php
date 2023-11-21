@@ -67,61 +67,61 @@ $enc = $this->encoder();
 
 	<?php endif ?>
 
+</div>
 
-	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="pswp__bg"></div>
-		<div class="pswp__scroll-wrap">
 
-			<!-- Container that holds slides. Don't modify these 3 pswp__item elements, data is added later on. -->
-			<div class="pswp__container">
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-			</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="pswp__bg"></div>
+	<div class="pswp__scroll-wrap">
 
-			<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-			<div class="pswp__ui pswp__ui--hidden">
-				<div class="pswp__top-bar">
+		<!-- Container that holds slides. Don't modify these 3 pswp__item elements, data is added later on. -->
+		<div class="pswp__container">
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+		</div>
 
-					<div class="pswp__counter"></div>
+		<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+		<div class="pswp__ui pswp__ui--hidden">
+			<div class="pswp__top-bar">
 
-					<button class="pswp__button pswp__button--close"
-						title="<?= $enc->attr( $this->translate( 'client', 'Close' ) ) ?>">
-					</button>
-					<!-- button class="pswp__button pswp__button--share"
-						title="<?= $enc->attr( $this->translate( 'client', 'Share' ) ) ?>">
-					</button -->
-					<button class="pswp__button pswp__button--fs"
-						title="<?= $enc->attr( $this->translate( 'client', 'Toggle fullscreen' ) ) ?>">
-					</button>
-					<button class="pswp__button pswp__button--zoom"
-						title="<?= $enc->attr( $this->translate( 'client', 'Zoom in/out' ) ) ?>">
-					</button>
+				<div class="pswp__counter"></div>
 
-					<div class="pswp__preloader">
-						<div class="pswp__preloader__icn">
-							<div class="pswp__preloader__cut">
-							<div class="pswp__preloader__donut"></div>
-							</div>
+				<button class="pswp__button pswp__button--close"
+					title="<?= $enc->attr( $this->translate( 'client', 'Close' ) ) ?>">
+				</button>
+				<!-- button class="pswp__button pswp__button--share"
+					title="<?= $enc->attr( $this->translate( 'client', 'Share' ) ) ?>">
+				</button -->
+				<button class="pswp__button pswp__button--fs"
+					title="<?= $enc->attr( $this->translate( 'client', 'Toggle fullscreen' ) ) ?>">
+				</button>
+				<button class="pswp__button pswp__button--zoom"
+					title="<?= $enc->attr( $this->translate( 'client', 'Zoom in/out' ) ) ?>">
+				</button>
+
+				<div class="pswp__preloader">
+					<div class="pswp__preloader__icn">
+						<div class="pswp__preloader__cut">
+						<div class="pswp__preloader__donut"></div>
 						</div>
 					</div>
 				</div>
-
-				<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-					<div class="pswp__share-tooltip"></div>
-				</div>
-
-				<button class="pswp__button pswp__button--arrow--left"
-					title="<?= $enc->attr( $this->translate( 'client', 'Previous' ) ) ?>">
-				</button>
-				<button class="pswp__button pswp__button--arrow--right"
-					title="<?= $enc->attr( $this->translate( 'client', 'Next' ) ) ?>">
-				</button>
-
-				<div class="pswp__caption"><div class="pswp__caption__center"></div></div>
-
 			</div>
+
+			<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+				<div class="pswp__share-tooltip"></div>
+			</div>
+
+			<button class="pswp__button pswp__button--arrow--left"
+				title="<?= $enc->attr( $this->translate( 'client', 'Previous' ) ) ?>">
+			</button>
+			<button class="pswp__button pswp__button--arrow--right"
+				title="<?= $enc->attr( $this->translate( 'client', 'Next' ) ) ?>">
+			</button>
+
+			<div class="pswp__caption"><div class="pswp__caption__center"></div></div>
+
 		</div>
 	</div>
-
 </div>
