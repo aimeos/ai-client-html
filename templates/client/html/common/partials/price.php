@@ -67,6 +67,12 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 			<?= $enc->html( sprintf( $format['quantity'], $priceItem->getQuantity() ), $enc::TRUST ) ?>
 		</span>
 
+		<?php if( $priceItem->getValue() > 0 && $priceItem->getRebate() > 0 ) : ?>
+			<span class="original">
+				<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue() + $priceItem->getRebate(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ) ?>
+			</span>
+		<?php endif ?>
+
 		<span class="value" itemscope itemprop="priceType" itemtype="http://schema.org/SalePrice">
 			<?php if( $priceItem->getValue() !== null ) : ?>
 				<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ) ?>
@@ -76,9 +82,6 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 		</span>
 
 		<?php if( $priceItem->getValue() > 0 && $priceItem->getRebate() > 0 ) : ?>
-			<span class="original">
-				<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue() + $priceItem->getRebate(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ) ?>
-			</span>
 			<span class="rebate">
 				<?= $enc->html( sprintf( $format['rebate'], $this->number( $priceItem->getRebate() ), $currency ), $enc::TRUST ) ?>
 			</span>
