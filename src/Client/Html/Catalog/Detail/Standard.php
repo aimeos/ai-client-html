@@ -270,6 +270,7 @@ class Standard
 		$attrTypes = $this->attributeTypes( $attrMap->keys()->concat( $productItem->getRefItems( 'attribute' )->getType() )->unique() );
 		$propTypes = $this->propertyTypes( $propMap->keys() );
 
+		$attrMap->keys()->dump();
 		$attrTypes->getCode()->dump();
 		$attrMap->order( $attrTypes->getCode() )->dump();
 
@@ -277,8 +278,8 @@ class Standard
 		$view->detailProductItem = $productItem;
 		$view->detailPropertyTypes = $propTypes->col( null, 'product.property.type.code' );
 		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
-		$view->detailAttributeMap = $attrMap->order( $attrTypes->getCode() );
-		$view->detailPropertyMap = $propMap->order( $propTypes->getCode() );
+		$view->detailAttributeMap = $attrMap->order( $attrTypes->getCode() )->filter();
+		$view->detailPropertyMap = $propMap->order( $propTypes->getCode() )->filter();
 		$view->detailStockTypes = $productItem->getStockItems()->getType();
 		$view->detailStockUrl = $this->stockUrl( $productItem );
 
