@@ -274,8 +274,8 @@ class Standard
 		$view->detailProductItem = $productItem;
 		$view->detailPropertyTypes = $propTypes->col( null, 'product.property.type.code' );
 		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
-		$view->detailAttributeMap = $attrMap->order( $attrTypes->getCode() );
-		$view->detailPropertyMap = $propMap->order( $propTypes->getCode() );
+		$view->detailAttributeMap = $attrMap->order( $attrTypes->getCode() )->filter();
+		$view->detailPropertyMap = $propMap->order( $propTypes->getCode() )->filter();
 		$view->detailStockTypes = $productItem->getStockItems()->getType();
 		$view->detailStockUrl = $this->stockUrl( $productItem );
 
