@@ -91,6 +91,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
  * @see client/html/catalog/tree/url/action
  * @see client/html/catalog/tree/url/config
  */
+$filter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', [] ) );
 
 
 /** client/html/common/partials/media
@@ -114,7 +115,8 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
-			<?php $params = array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ) ?>
+			<?php $params = array_diff_key( array_merge( $this->get( 'params', [] ), ['path' => $item->getName( 'url' ), 'f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ) ) ?>
+			<?php $url = $this->url( $item->getTarget() ?: $target, $controller, $action, $params, [], $config ) ?>
 
 			<div class="cat-item catid-<?= $enc->attr( $item->getId() .
 				( !$item->getChildren()->isEmpty() ? ' withchild' : ' nochild' ) .
@@ -124,7 +126,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 				<div class="item-links row">
 					<a class="col-10 cat-link name <?= ( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) ?>"
-						href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, $params, [], $config ) ) ?>">
+						href="<?= $enc->attr( $url ) ?>">
 						<div class="media-list">
 							<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 								<?= $this->partial(
@@ -169,7 +171,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 							<a class="cat-img <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
 								title="<?= $enc->attr( $item->getRefItems( 'media', 'menu', 'default' )->getProperties( 'title' )->first() ?: $item->getName() ) ?>"
-								href="<?= $enc->attr( $this->url( $item->getTarget() ?: $target, $controller, $action, array_merge( $this->get( 'params', [] ), ['f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ), [], $config ) ) ?>">
+								href="<?= $enc->attr( $url ) ?>">
 
 								<?php foreach( $item->getRefItems( 'media', 'menu', 'default' ) as $mediaItem ) : ?>
 									<img class="img-menu" loading="lazy"
