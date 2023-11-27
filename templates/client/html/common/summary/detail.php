@@ -20,8 +20,8 @@ $enc = $this->encoder();
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( 'absoluteUri' => 1 ) );
-$detailFilter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 
 /** client/html/account/download/url/target
@@ -224,8 +224,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 
-								<?php if( $product->getQuantity() > $product->getScale() ) : ?>
-									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - $product->getScale() ) ?>
+								<?php if( $product->getQuantity() > 1 ) : ?>
+									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) ?>
 									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">−</a>
 								<?php else : ?>
 									&nbsp;&nbsp;&nbsp;
@@ -243,7 +243,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									value="<?= $enc->attr( $position ) ?>"
 								>
 
-								<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() + $product->getScale() ) ?>
+								<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() + 1 ) ?>
 								<a class="minibutton change up" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">+</a>
 
 							<?php else : ?>
