@@ -21,6 +21,7 @@ $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( 'absoluteUri' => 1 ) );
+$detailFilter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
 
 
 /** client/html/account/download/url/target
@@ -164,7 +165,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 								if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 )
 								{
-									$params = ['d_name' => $product->getName( 'url' ), 'd_prodid' => $product->getParentProductId() ?: $product->getProductId(), 'd_pos' => ''];
+									$name = $product->getName( 'url' );
+									$params = array_diff_key( ['path' => $name, 'd_name' => $name, 'd_prodid' => $product->getParentProductId() ?: $product->getProductId(), 'd_pos' => ''], $detailFilter );
 									$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 								}
 							?>

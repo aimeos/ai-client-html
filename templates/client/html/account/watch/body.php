@@ -109,7 +109,8 @@ $enc = $this->encoder();
 								<?= $this->csrf()->formfield() ?>
 							</form>
 
-							<?php $params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ?>
+							<?php $name = $productItem->getName( 'url' ) ?>
+							<?php $params = ['path' => $name, 'd_name' => $name, 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ?>
 							<a class="watch-basic" href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) ?>">
 								<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
