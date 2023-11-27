@@ -20,8 +20,8 @@ $enc = $this->encoder();
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( 'absoluteUri' => 1 ) );
-$detailFilter = $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 
 /** client/html/account/download/url/target

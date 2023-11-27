@@ -115,7 +115,8 @@ $filter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', [] )
 
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
-			<?php $params = array_diff_key( array_merge( $this->get( 'params', [] ), ['path' => $item->getName( 'url' ), 'f_name' => $item->getName( 'url' ), 'f_catid' => $item->getId()] ) ) ?>
+			<?php $name = $item->getName( 'url' ) ?>
+			<?php $params = array_diff_key( array_merge( $this->get( 'params', [] ), ['path' => $name, 'f_name' => $name, 'f_catid' => $item->getId()] ), $filter ) ?>
 			<?php $url = $this->url( $item->getTarget() ?: $target, $controller, $action, $params, [], $config ) ?>
 
 			<div class="cat-item catid-<?= $enc->attr( $item->getId() .
