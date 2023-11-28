@@ -192,10 +192,8 @@ class Standard
 	protected function addProducts( \Aimeos\Base\View\Iface $view )
 	{
 		$context = $this->context();
-		$domains = ['attribute', 'catalog', 'media', 'price', 'product', 'text', 'locale/site'];
-
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
-		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
+		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $this->call( 'domains' ) );
 
 		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' && $view->param( 'b_quantity', 0 ) > 0 )
 		{
@@ -261,6 +259,17 @@ class Standard
 		}
 
 		$this->clearCached();
+	}
+
+
+	/**
+	 * Returns the name of the domains that should be fetched together with the product
+	 *
+	 * @return array Domain names
+	 */
+	protected function domains() : array
+	{
+		return ['attribute', 'catalog', 'media', 'price', 'product', 'text', 'locale/site'];
 	}
 
 
