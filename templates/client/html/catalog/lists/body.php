@@ -182,9 +182,9 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 		<?php endif ?>
 
 
-		<?php if( $this->get( 'listPageCurr', 0 ) <= 1 && ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+		<?php if( $this->get( 'listPageCurr', 0 ) <= 1 && ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null && !( $textItems = $catItem->getRefItems( 'text', 'long', 'default' ) )->isEmpty() ) : ?>
 			<div class="catalog-list-footer">
-				<?php foreach( $catItem->getRefItems( 'text', 'long', 'default' ) as $textItem ) : ?>
+				<?php foreach( $textItems as $textItem ) : ?>
 					<div class="footer-text">
 						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
 					</div>
