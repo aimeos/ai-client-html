@@ -637,9 +637,9 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 					<?php endif ?>
 
 				</div>
-			</div>
+			</article>
 
-		</article>
+		</div>
 	</div>
 
 <?php endif ?>
