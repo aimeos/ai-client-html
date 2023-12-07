@@ -88,7 +88,7 @@ class Standard
 		}
 
 		// update stock, coupons, etc.
-		\Aimeos\Controller\Common\Order\Factory::create( $context )->update( $orderItem );
+		$orderCntl->update( $orderItem );
 
 		parent::init();
 
