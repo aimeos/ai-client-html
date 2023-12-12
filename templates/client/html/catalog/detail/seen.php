@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -13,8 +13,10 @@ $enc = $this->encoder();
 <?php if( isset( $this->product ) ) :  ?>
 
 	<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', [
+		'path' => $this->product->getName( 'url' ),
 		'd_name' => $this->product->getName( 'url' ),
-		'd_prodid' => $this->product->getId(), 'd_pos' => ''
+		'd_prodid' => $this->product->getId(),
+		'd_pos' => ''
 	] ) ) ?>">
 
 		<?php if( ( $mediaItem = $this->product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>

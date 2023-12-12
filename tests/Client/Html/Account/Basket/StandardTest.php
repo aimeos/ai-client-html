@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2022
+ * @copyright Aimeos (aimeos.org), 2022-2023
  */
 
 
@@ -40,6 +40,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
+
 		$output = $this->object->header();
 
 		$this->assertStringContainsString( '<link rel="stylesheet"', $output );
@@ -49,14 +51,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->context->setUserId( -1 );
-		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )
+			->find( 'test@example.com' )->setId( -1 ) );
 
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<div class="section aimeos account-basket', $output );
-		$this->assertRegExp( '#<div class="basket-item#', $output );
-		$this->assertRegExp( '#<h2 class="basket-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="basket-item#', $output );
+		$this->assertMatchesRegularExpression( '#<h2 class="basket-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
 
 		$this->assertStringContainsString( '<div class="account-basket-detail common-summary', $output );
 	}
@@ -64,6 +66,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
+
 		$this->view = \TestHelper::view();
 		$param = array(
 			'sub_action' => 'delete',

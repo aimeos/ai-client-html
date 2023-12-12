@@ -21,6 +21,7 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/filter
  */
 
 /** client/html/basket/standard/url/controller
@@ -35,6 +36,7 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/action
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/filter
  */
 
 /** client/html/basket/standard/url/action
@@ -49,6 +51,7 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/config
+ * @see client/html/basket/standard/url/filter
  */
 
 /** client/html/basket/standard/url/config
@@ -69,7 +72,21 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/target
  * @see client/html/basket/standard/url/controller
  * @see client/html/basket/standard/url/action
- * @see client/html/url/config
+ * @see client/html/basket/standard/url/filter
+ */
+
+/** client/html/basket/standard/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/basket/standard/url/target
+ * @see client/html/basket/standard/url/controller
+ * @see client/html/basket/standard/url/action
+ * @see client/html/basket/standard/url/config
  */
 
 $pricefmt = $this->translate( 'client/code', 'price:default' );
@@ -93,7 +110,7 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 		<?php
 			$priceItem = $this->miniBasket->getPrice();
 			$priceCurrency = $this->translate( 'currency', $priceItem->getCurrencyId() );
-			$quantity = $this->miniBasket->getProducts()->sum( 'order.base.product.quantity' );
+			$quantity = $this->miniBasket->getProducts()->sum( 'order.product.quantity' );
 		?>
 
 		<div class="aimeos-overlay-offscreen"></div>
@@ -114,8 +131,8 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 				<div class="basket-header row">
 						<div class="col-5 name"><?= $enc->html( $this->translate( 'client', 'Product' ), $enc::TRUST ) ?></div>
 						<div class="col-2 quantity"><?= $enc->html( $this->translate( 'client', 'Qty' ), $enc::TRUST ) ?></div>
-						<div class="col-3 price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
-						<div class="col-2 action"></div>
+						<div class="col-4 price"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
+						<div class="col-1 action"></div>
 				</div>
 				<div class="basket-body">
 					<?php foreach( $this->miniBasket->getProducts() as $pos => $product ) : ?>
@@ -130,11 +147,11 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 							<div class="col-2 quantity">
 								<?= $enc->html( $product->getQuantity() ) ?>
 							</div>
-							<div class="col-3 price">
+							<div class="col-4 price">
 								<?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $product->getPrice()->getPrecision() ), $priceCurrency ) ) ?>
 							</div>
-							<div class="col-2 action">
-								<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+							<div class="col-1 action">
+								<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 									<a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a>
 								<?php endif ?>
 							</div>
@@ -143,8 +160,8 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 					<div class="product-item row prototype">
 						<div class="col-5 name"></div>
 						<div class="col-2 quantity"></div>
-						<div class="col-3 price"></div>
-						<div class="col-2 action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a></div>
+						<div class="col-4 price"></div>
+						<div class="col-1 action"><a class="delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"></a></div>
 					</div>
 				</div>
 				<div class="basket-footer">

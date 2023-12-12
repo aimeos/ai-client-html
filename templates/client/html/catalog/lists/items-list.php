@@ -2,11 +2,12 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2022
+ * @copyright Aimeos (aimeos.org), 2016-2023
  */
 
 $enc = $this->encoder();
 $position = $this->get( 'position' );
+$attrTypes = $this->get( 'attributeTypes', map() );
 
 
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
@@ -23,7 +24,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : $firstImage = true ?>
 		<?php
-			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
+			$name = $productItem->getName( 'url' );
+			$params = array_diff_key( ['path' => $name, 'd_name' => $name, 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 			$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 		?>
 
@@ -124,15 +126,16 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 				<?php if( $this->config( 'client/html/catalog/lists/basket-add', false ) ) : ?>
 					<form class="basket" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
-						<!-- catalog.lists.csrf -->
+						<!-- catalog.lists.items.csrf -->
 						<?= $this->csrf()->formfield() ?>
-						<!-- catalog.lists.csrf -->
+						<!-- catalog.lists.items.csrf -->
 
 						<?php if( $productItem->getType() === 'select' ) : ?>
 							<div class="items-selection">
 								<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection' ), [
 									'productItems' => $productItem->getRefItems( 'product', 'default', 'default' ),
-									'productItem' => $productItem
+									'productItem' => $productItem,
+									'attributeTypes' => $attrTypes
 								] ) ?>
 							</div>
 						<?php endif ?>
@@ -140,7 +143,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<div class="items-attribute">
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
-								['productItem' => $productItem]
+								[
+									'productItem' => $productItem,
+									'attributeTypes' => $attrTypes
+								]
 							) ?>
 						</div>
 

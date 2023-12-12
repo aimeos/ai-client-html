@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -166,7 +166,7 @@ class Standard
 		$config = $context->config();
 		$session = $context->session();
 
-		$domains = $config->get( 'client/html/catalog/domains', ['media', 'price', 'text'] );
+		$domains = $config->get( 'client/html/catalog/domains', ['catalog', 'media', 'price', 'text'] );
 
 		/** client/html/catalog/session/pinned/domains
 		 * A list of domain names whose items should be available in the pinned view template for the product

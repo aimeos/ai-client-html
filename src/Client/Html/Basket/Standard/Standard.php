@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -68,12 +68,7 @@ class Standard
 		$context = $this->context();
 		$site = $context->locale()->getSiteItem()->getCode();
 
-		if( !empty( $params = $context->session()->get( 'aimeos/catalog/detail/params/last/' . $site ) ) ) {
-			$view->standardBackUrl = $view->link( 'client/html/catalog/detail/url', array_filter( $params ) );
-		} elseif( !empty( $params = $context->session()->get( 'aimeos/catalog/lists/params/last/' . $site, [] ) ) ) {
-			$view->standardBackUrl = $view->link( 'client/html/catalog/lists/url', array_filter( $params ) );
-		}
-
+		$view->standardBackUrl = $context->session()->get( 'aimeos/catalog/last/' . $site );
 		$view->standardBasket = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->get();
 
 		return parent::data( $view, $tags, $expire );
@@ -142,7 +137,7 @@ class Standard
 			switch( $check )
 			{
 				case 2: if( $view->param( 'b_check', 0 ) == 0 ) { break; }
-				case 1: $controller->get()->check( ['order/base/product'] );
+				case 1: $controller->get()->check( ['order/product'] );
 				default: $view->standardCheckout = true;
 			}
 		}
@@ -197,10 +192,8 @@ class Standard
 	protected function addProducts( \Aimeos\Base\View\Iface $view )
 	{
 		$context = $this->context();
-		$domains = ['attribute', 'catalog', 'media', 'price', 'product', 'text', 'locale/site'];
-
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
-		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $domains );
+		$productCntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $this->call( 'domains' ) );
 
 		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' && $view->param( 'b_quantity', 0 ) > 0 )
 		{
@@ -210,7 +203,8 @@ class Standard
 				(array) $view->param( 'b_attrvarid', [] ),
 				$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
 				array_filter( (array) $view->param( 'b_attrcustid', [] ) ),
-				(string) $view->param( 'b_stocktype', 'default' )
+				(string) $view->param( 'b_stocktype', 'default' ),
+				$view->param( 'b_siteid' )
 			);
 		}
 		else
@@ -224,7 +218,8 @@ class Standard
 						array_filter( (array) ( $values['attrvarid'] ?? [] ) ),
 						$this->getAttributeMap( (array) ( $values['attrconfid'] ?? [] ) ),
 						array_filter( (array) ( $values['attrcustid'] ?? [] ) ),
-						(string) ( $values['stocktype'] ?? 'default' )
+						(string) ( $values['stocktype'] ?? 'default' ),
+						$values['siteid'] ?? null
 					);
 				}
 			}
@@ -267,6 +262,23 @@ class Standard
 	}
 
 
+	/**
+	 * Returns the name of the domains that should be fetched together with the product
+	 *
+	 * @return array Domain names
+	 */
+	protected function domains() : array
+	{
+		return ['attribute', 'catalog', 'media', 'price', 'product', 'text', 'locale/site'];
+	}
+
+
+	/**
+	 * Returns the configurable attribute values as ID/quantity pairs
+	 *
+	 * @param array $values Associative list which "id" and "qty" keys
+	 * @return array Pairs of config attribute ID/quantity pairs
+	 */
 	protected function getAttributeMap( array $values )
 	{
 		$list = [];
@@ -343,7 +355,7 @@ class Standard
 		$this->clearCached();
 	}
 
-	/** client/html/basket/template-body
+	/** client/html/basket/standard/template-body
 	 * Relative path to the HTML body template of the basket standard client.
 	 *
 	 * The template file contains the HTML code and processing instructions
@@ -360,10 +372,10 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @see client/html/basket/template-header
+	 * @see client/html/basket/standard/template-header
 	 */
 
-	/** client/html/basket/template-header
+	/** client/html/basket/standard/template-header
 	 * Relative path to the HTML header template of the basket standard client.
 	 *
 	 * The template file contains the HTML code and processing instructions
@@ -381,6 +393,77 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
-	 * @see client/html/basket/template-body
+	 * @see client/html/basket/standard/template-body
+	 */
+
+	/** client/html/basket/standard/decorators/excludes
+	 * Excludes decorators added by the "common" option from the basket standard html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/basket/standard/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/basket/standard/decorators/global
+	 * @see client/html/basket/standard/decorators/local
+	 */
+
+	/** client/html/basket/standard/decorators/global
+	 * Adds a list of globally available decorators only to the basket standard html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/basket/standard/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/basket/standard/decorators/excludes
+	 * @see client/html/basket/standard/decorators/local
+	 */
+
+	/** client/html/basket/standard/decorators/local
+	 * Adds a list of local decorators only to the basket standard html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Basket\Decorator\*") around the html client.
+	 *
+	 *  client/html/basket/standard/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Basket\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/basket/standard/decorators/excludes
+	 * @see client/html/basket/standard/decorators/global
 	 */
 }

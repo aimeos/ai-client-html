@@ -3,11 +3,12 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 /* Available data:
  * - productItem : Product item the attributes are associated to
+ * - attributeTypes : List of attribute type items
  */
 
 
@@ -84,15 +85,18 @@ $sortfcn = function( $itemA, $itemB ) {
 	return $itemA->getPosition() <=> $itemB->getPosition() ?: $itemA->getName() <=> $itemB->getName();
 };
 
+$attrTypes = $this->get( 'attributeTypes', [] );
+
 
 ?>
 <ul class="selection">
 
-	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'config' )->uasort( $sortfcn )->groupBy( 'attribute.type' )->ksort() as $code => $attributes ) : ?>
+	<?php foreach( $this->productItem->getRefItems( 'attribute', null, 'config' )->groupBy( 'attribute.type' ) as $code => $attributes ) : ?>
 		<?php $key = $this->productItem->getId() . '-' . $code . '_' . rand( 1, 1000 ) ?>
+		<?php $attributes = map( $attributes )->uasort( $sortfcn ) ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/attribute/type/' . $code, 'select' ) ) ?>">
-			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ) ?></label>
+			<label for="select-<?= $enc->attr( $key ) ?>" class="select-name"><?= $enc->html( $attrTypes[$code]?->getName() ?: $this->translate( 'client/code', $code ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
@@ -107,10 +111,13 @@ $sortfcn = function( $itemA, $itemB ) {
 						<?php foreach( $attributes as $attrId => $attribute ) : ?>
 
 							<li class="input-group select-entry">
-								<input type="hidden" value="<?= $enc->attr( $attrId ) ?>"
+								<input type="hidden"
+									value="<?= $enc->attr( $attrId ) ?>"
+									data-code="<?= $enc->attr( $attribute->getCode() ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
 								>
-								<input class="form-control select-option" id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>" type="number" value="0" step="1" min="0"
+								<input class="form-control select-option" type="number" value="0" step="1" min="0"
+									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>"
 								><!--
 								--><label class="form-control select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>">
@@ -133,6 +140,7 @@ $sortfcn = function( $itemA, $itemB ) {
 									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
+									data-code="<?= $enc->attr( $attribute->getCode() ) ?>"
 								>
 								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
 
@@ -147,7 +155,7 @@ $sortfcn = function( $itemA, $itemB ) {
 										<?php endif ?>
 									<?php endforeach ?>
 
-									--><span><?= $enc->html( $attribute->getName() ) ?></span><!--
+									--><span><?= $enc->html( $this->attrname( $attribute ) ) ?></span><!--
 								--></label>
 							</li>
 
@@ -167,7 +175,7 @@ $sortfcn = function( $itemA, $itemB ) {
 
 						<?php foreach( $attributes as $id => $attribute ) : ?>
 
-							<option class="select-option" value="<?= $enc->attr( $id ) ?>">
+							<option class="select-option" value="<?= $enc->attr( $id ) ?>" data-code="<?= $enc->attr( $attribute->getCode() ) ?>">
 								<?= $enc->html( $this->attrname( $attribute ) ) ?>
 							</option>
 

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -41,9 +41,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$output = $this->object->body();
 
-		$this->assertStringContainsString( 'var attributeCount', $output );
-		$this->assertStringContainsString( 'var catalogCounts', $output );
-		$this->assertStringContainsString( 'var supplierCount', $output );
+		$this->assertStringStartsWith( '{"', $output );
 	}
 
 
@@ -66,14 +64,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -20,6 +20,7 @@ $enc = $this->encoder();
  * @see client/html/account/favorite/url/controller
  * @see client/html/account/favorite/url/action
  * @see client/html/account/favorite/url/config
+ * @see client/html/account/favorite/url/filter
  */
 
 /** client/html/account/favorite/url/controller
@@ -34,6 +35,7 @@ $enc = $this->encoder();
  * @see client/html/account/favorite/url/target
  * @see client/html/account/favorite/url/action
  * @see client/html/account/favorite/url/config
+ * @see client/html/account/favorite/url/filter
  */
 
 /** client/html/account/favorite/url/action
@@ -48,6 +50,7 @@ $enc = $this->encoder();
  * @see client/html/account/favorite/url/target
  * @see client/html/account/favorite/url/controller
  * @see client/html/account/favorite/url/config
+ * @see client/html/account/favorite/url/filter
  */
 
 /** client/html/account/favorite/url/config
@@ -68,7 +71,21 @@ $enc = $this->encoder();
  * @see client/html/account/favorite/url/target
  * @see client/html/account/favorite/url/controller
  * @see client/html/account/favorite/url/action
- * @see client/html/url/config
+ * @see client/html/account/favorite/url/filter
+ */
+
+/** client/html/account/favorite/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/account/favorite/url/target
+ * @see client/html/account/favorite/url/controller
+ * @see client/html/account/favorite/url/action
+ * @see client/html/account/favorite/url/config
  */
 
 
@@ -78,7 +95,7 @@ $enc = $this->encoder();
 	<div class="section aimeos account-favorite" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
-			<h1 class="header"><?= $this->translate( 'client', 'Favorite products' ) ?></h1>
+			<h2 class="header"><?= $this->translate( 'client', 'Favorite products' ) ?></h2>
 
 			<div class="favorite-items product-list">
 
@@ -92,7 +109,8 @@ $enc = $this->encoder();
 								<?= $this->csrf()->formfield() ?>
 							</form>
 
-							<?php $params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ?>
+							<?php $name = $productItem->getName( 'url' ) ?>
+							<?php $params = ['path' => $name, 'd_name' => $name, 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ?>
 							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) ?>">
 								<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
@@ -165,7 +183,7 @@ $enc = $this->encoder();
 
 			<?php endif ?>
 
-		<div>
+		</div>
 	</div>
 
 <?php endif ?>

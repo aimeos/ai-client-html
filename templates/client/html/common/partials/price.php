@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 /* Available data:
@@ -31,7 +31,7 @@ $format = array(
 	/// Price quantity format with quantity (%1$s)
 	'quantity' => $this->translate( 'client', 'from %1$s' ),
 	/// Price shipping format with shipping / payment cost value (%1$s) and currency (%2$s)
-	'costs' => ( $this->get( 'costsItem', true ) ? $this->translate( 'client', '+ %1$s %2$s/item' ) : $this->translate( 'client', '%1$s %2$s' ) ),
+	'costs' => ( $this->get( 'costsItem', true ) ? $this->translate( 'client', '+ %1$s %2$s' ) : $this->translate( 'client', '%1$s %2$s' ) ),
 	/// Rebate format with rebate value (%1$s) and currency (%2$s)
 	'rebate' => $this->translate( 'client', '%1$s %2$s off' ),
 	/// Rebate percent format with rebate percent value (%1$s)
@@ -66,6 +66,12 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 			<meta itemprop="minValue" content="<?= $priceItem->getQuantity() ?>">
 			<?= $enc->html( sprintf( $format['quantity'], $priceItem->getQuantity() ), $enc::TRUST ) ?>
 		</span>
+
+		<?php if( $priceItem->getValue() > 0 && $priceItem->getRebate() > 0 ) : ?>
+			<span class="original">
+				<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue() + $priceItem->getRebate(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ) ?>
+			</span>
+		<?php endif ?>
 
 		<span class="value" itemscope itemprop="priceType" itemtype="http://schema.org/SalePrice">
 			<?php if( $priceItem->getValue() !== null ) : ?>

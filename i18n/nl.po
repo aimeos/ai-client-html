@@ -16,10 +16,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-05 07:41+0200\n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Yves Vermeulen <tmastar@gmail.com>, 2015\n"
-"Language-Team: Dutch (http://www.transifex.com/aimeos/aimeos-core/language/nl/)\n"
+"Language-Team: Dutch (http://app.transifex.com/aimeos/aimeos-core/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,14 +38,6 @@ msgid_plural "%1$d reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -63,78 +55,65 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
-#. / Price format with price value (%1$s) and currency (%2$s)
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s off"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
 #, php-format
-msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s ( %4$s%2$s%3$s )"
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
-#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s at %2$s"
 
-#. / Percent format with value (%1$s) and % sign
-#, php-format
-msgid "%1$s%%"
-msgstr "%1$s%%"
-
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
-msgid "+"
-msgstr "+"
-
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
 #, php-format
-msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/item"
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
 msgstr "+ %1$s%% BTW"
 
-msgid "+ Payment costs"
-msgstr "+ Betaalkosten"
-
-msgid "+ Shipping"
-msgstr "+ Verzendkosten"
-
-msgid "+ shipping costs"
-msgstr "+ verzendkosten"
-
 msgid "+1 123 456 7890"
 msgstr "+1 123 456 7890"
 
-#. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
 msgstr ""
-
-msgid "Account"
-msgstr "Account"
 
 msgid "Add billing address"
 msgstr ""
@@ -148,39 +127,14 @@ msgstr "Meer"
 msgid "Additional 2"
 msgstr "Meer 2"
 
-msgid "Address"
-msgid_plural "Addresses"
-msgstr[0] ""
-msgstr[1] ""
-
-#, php-format
-msgid "Address with ID \"%1$s\" not found"
-msgstr "Adres met ID \"%1$s\" niet gevonden"
-
-msgid "Addresses"
-msgstr "Adressen"
-
-msgid ""
-"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
-"\n"
-"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Alle leveringen zijn onderhevig aan onze voorwaarden en condities die u kunt vinden op onze website. U gaat automatisch akkoord met onze voorwaarden en condities wanneer u een order plaatst.\n\nDeze email bevat vertrouwelijke informatie en is exclusief bedoeld voor de persoon aan wie het is geadresseerd. Wanneer u deze persoon niet bent verzoeken wij u ons hierover te informeren en deze email en eventuele bijlagen te verwijderen."
-
-#. / Payment e-mail legal information
-msgid "All orders are subject to our terms and conditions."
-msgstr "Alle leveringen zijn onderhevig aan onze voorwaarden en condities die u kunt vinden op onze website. U gaat automatisch akkoord met onze voorwaarden en condities wanneer u een order plaatst. \n\nDeze email bevat vertrouwelijke informatie en is exclusief bedoeld voor de persoon aan wie het is geadresseerd. Wanneer u deze persoon niet bent verzoeken wij u ons hierover te informeren en deze email en eventuele bijlagen te verwijderen."
-
-msgid "An account has been created for you."
-msgstr "We hebben een account voor u aangemaakt."
+msgid "Apply"
+msgstr "Toepassen"
 
 msgid "Article"
 msgstr ""
 
 msgid "Article no."
 msgstr ""
-
-msgid "Article no.:"
-msgstr "Artikel nr.:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -190,14 +144,20 @@ msgstr "Tenminste één factuuradres is niet beschikbaar of niet juist ingevuld.
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Tenminste één leveringsadres is niet beschikbaar of niet juist ingevuld."
 
-msgid "Attributes"
-msgstr "Attributen"
-
 msgid "Back"
 msgstr "Terug"
 
 msgid "Basket"
 msgstr "Mandje"
+
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
 
 msgid "Billing address"
 msgstr "Factuur adres"
@@ -212,6 +172,9 @@ msgstr "Factuuradres deel \"%1$s\" ontbreekt"
 
 msgid "Birthday"
 msgstr "Geboortedatum"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr ""
@@ -234,14 +197,8 @@ msgstr "Aanpassen"
 msgid "Change payment"
 msgstr "Pas betaling aan"
 
-msgid "Channel"
-msgstr ""
-
 msgid "Characteristics"
 msgstr "Karakteristieken"
-
-msgid "Check"
-msgstr "Aanvinken"
 
 msgid "Checkout"
 msgstr "Afrekenen"
@@ -250,32 +207,8 @@ msgid "City"
 msgstr "Stad"
 
 #, php-format
-msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "\"%2$s\" wordt niet geïmplementeerd door Class \"%1$s\" "
-
-#, php-format
-msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "Interface \"%2$s\" voor klasse \"%1$s\" kon niet worden geimplementeerd"
-
-#, php-format
-msgid "Class \"%1$s\" not available"
-msgstr "Class \"%1$s\" is niet beschikbaar"
-
-#, php-format
 msgid "Class \"%1$s\" not found"
 msgstr "Class \"%1$s\" niet gevonden"
-
-#, php-format
-msgid "Client HTML type is empty"
-msgstr "Client HTML type is leeg"
-
-#, php-format
-msgid "Client path is empty"
-msgstr ""
-
-#, php-format
-msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr "Client type \"%1$s\" moet bestaan uit twee delen gescheiden door \"/\""
 
 msgid "Close"
 msgstr "Sluiten"
@@ -303,40 +236,6 @@ msgstr "Aangemaakt"
 
 msgid "Customer account"
 msgstr "Klanten account"
-
-#, php-format
-msgid "Customer with ID \"%1$s\" not found"
-msgstr "Klant met ID \"%1$s\" niet gevonden"
-
-#, php-format
-msgid "Dear %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear %1$s %2$s %3$s"
-msgstr "Geachte  %1$s %2$s %3$s"
-
-#, php-format
-msgid "Dear Miss %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Mr %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Mrs %1$s %2$s"
-msgstr ""
-
-#, php-format
-msgid "Dear Ms %1$s %2$s"
-msgstr ""
-
-msgid "Dear Sir or Madam"
-msgstr "Geachte heer of mevrouw"
-
-msgid "Dear customer"
-msgstr ""
 
 msgid "Delete"
 msgstr "Verwijderen"
@@ -380,10 +279,6 @@ msgstr "Downloads"
 msgid "E-Mail"
 msgstr "E-mail"
 
-#. / E-mail HTML title
-msgid "E-mail notification"
-msgstr "E-mail notificatie"
-
 msgid "End date"
 msgstr "Eind datum"
 
@@ -396,21 +291,23 @@ msgstr "Fax"
 msgid "Fields with an * are mandatory"
 msgstr "Velden met een * zijn verplicht"
 
-#, php-format
-msgid "File \"%1$s\" doesn't exist"
-msgstr "Bestand \"%1$s\" bestaat niet"
-
 msgid "Filter"
 msgstr "Filter"
+
+msgid "First"
+msgstr "Eerste"
 
 msgid "First name"
 msgstr "Voornaam"
 
+msgid "Found products"
+msgstr ""
+
 msgid "GB999999973"
 msgstr "NL999999973"
 
-msgid "Go"
-msgstr "Ga"
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr ""
@@ -420,14 +317,6 @@ msgstr ""
 
 msgid "Highest price"
 msgstr ""
-
-#, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
-msgstr "Ik accepteer <a href=\"%1$s\" target=\"_blank\" title=\"voorwaarden en condities\" alt=\"voorwaarden en condities\">voorwaarden en condities</a> en <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 
 #, php-format
 msgid ""
@@ -445,14 +334,10 @@ msgstr "Wanneer weer op voorraad"
 msgid "If price decreases"
 msgstr "Als de prijs daalt"
 
-msgid "If you have any questions, please reply to this e-mail"
-msgstr "Als u een vraag heeft, reageer dan op deze mail"
-
 #, php-format
 msgid "Incl. %1$s%% %2$s"
 msgstr ""
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr "Incl. %1$s%% BTW"
@@ -464,16 +349,8 @@ msgid "Interval"
 msgstr "Interval"
 
 #, php-format
-msgid "Invalid characters in class name \"%1$s\""
-msgstr "Ongeldige karakters in class naam \"%1$s\""
-
-#, php-format
 msgid "Invalid characters in client name \"%1$s\""
 msgstr "Niet- toegestane karakters in klant naam  \"%1$s\""
-
-#, php-format
-msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr "Niet toegestane karakters in klant naam \"%1$s\" in \"%2$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -483,16 +360,14 @@ msgstr "Niet toegestane class naam \"%1$s\""
 msgid "Invalid domain \"%1$s\""
 msgstr "Ongeldig domein \"%1$s\""
 
-#, php-format
-msgid "Invalid factory \"%1$s\""
-msgstr "Ongeldige Factory \"%1$s\""
-
-#, php-format
-msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "Invalid process response from service provider with code \"%1$s\""
+msgid "Invoice"
+msgstr "Factuur"
 
 msgid "Language"
 msgstr "Taal"
+
+msgid "Last"
+msgstr "Laatste"
 
 msgid "Last name"
 msgstr "Achternaam"
@@ -503,16 +378,16 @@ msgstr "Laatst gezien"
 msgid "Latest"
 msgstr "Laatste"
 
-msgid "Like entered by you"
-msgstr "Zoals door u ingegeven"
-
 msgid "List view"
 msgstr ""
 
-msgid "Login"
+msgid "Lowest price"
 msgstr ""
 
-msgid "Lowest price"
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -543,34 +418,11 @@ msgid "No order ID available in session"
 msgstr ""
 
 #, php-format
-msgid "No product with ID \"%1$s\" found"
-msgstr "Geen product met ID \"%1$s\" gevonden"
-
-#, php-format
-msgid "No service for code \"%1$s\" found"
-msgstr "geen service voor code \"%1$s\" gevonden"
-
-#, php-format
-msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "Geen type item voor  \"%1$s/%2$s\" in \"%3$s\" gevonden"
-
-#, php-format
 msgid "No view available"
 msgstr "Geen weergave beschikbaar"
 
-#, php-format
-msgid "Number of coupon codes exceeds the limit"
-msgstr "Aantal coupons overschrijdt de limiet"
-
-#, php-format
-msgid "Object doesn't implement \"%1$s\""
-msgstr "\"%1$s\" niet geïmplementeerd door Object"
-
 msgid "One month"
 msgstr "Een maand"
-
-msgid "One or more products you are watching have been updated."
-msgstr "Een of meerder producten die u bekijkt zijn gewijzigd"
 
 msgid "One week"
 msgstr "Een week"
@@ -578,24 +430,8 @@ msgstr "Een week"
 msgid "Open submenu"
 msgstr ""
 
-msgid "Options"
-msgstr "Opties"
-
-msgid "Order"
-msgstr "Aankoop"
-
-#, php-format
-msgid "Order %1$s"
-msgstr ""
-
 msgid "Order ID"
 msgstr "Aankoop ID"
-
-msgid "Order channel"
-msgstr "Order kanaal"
-
-msgid "Order date"
-msgstr ""
 
 msgid "Order details"
 msgstr "Aankoop details"
@@ -606,22 +442,12 @@ msgstr "Aankoop geschiedenis "
 msgid "Order status"
 msgstr "Order status"
 
-#, php-format
-msgid "Order with ID \"%1$s\" not found"
-msgstr "Order met ID \"%1$s\" niet gevonden"
-
 msgid "Other customers also bought"
 msgstr "Andere klanten kochten ook"
-
-msgid "Our products"
-msgstr "Onze producten"
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "Pagina %1$d van %2$d"
-
-msgid "Password"
-msgstr "Wachtwoord"
 
 msgid "Pay now"
 msgstr "Nu afrekenen"
@@ -659,14 +485,6 @@ msgstr "Voer minimaal 3 karakters in"
 msgid "Please enter your payment details"
 msgstr "Voer uw betalingsgegevens in"
 
-#, php-format
-msgid "Please recheck your delivery choice"
-msgstr "Controleer uw keuze van aflevermethode alstublieft"
-
-#, php-format
-msgid "Please recheck your payment choice"
-msgstr "Controleer de keuze van uw betaalwijze alstublieft"
-
 msgid "Please select"
 msgstr "Selecteer"
 
@@ -678,6 +496,9 @@ msgstr "Vorige"
 
 msgid "Price"
 msgstr "Prijs"
+
+msgid "Price filter"
+msgstr ""
 
 msgid "Price range"
 msgstr ""
@@ -691,14 +512,41 @@ msgstr "Het verwerken van uw betaling is mislukt"
 msgid "Product"
 msgstr "Product"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
+msgstr ""
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "Product prijs"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
 msgstr ""
 
 msgid "Products you might be also interested in"
 msgstr "Producten waar u wellicht ook in bent geïnteresseerd"
-
-msgid "Properties"
-msgstr "Eigenschappen"
 
 msgid "Qty"
 msgstr "Aantal"
@@ -712,16 +560,12 @@ msgstr ""
 msgid "Reference"
 msgstr "Referentie"
 
-msgid "Related"
-msgstr "Gerelateerde"
-
 msgid "Relevance"
 msgstr "Relevantie"
 
 msgid "Reset"
 msgstr "Reset"
 
-#. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Resultaat voor \"%1$s\""
@@ -740,6 +584,12 @@ msgstr "Aanhef"
 
 msgid "Save"
 msgstr "Opslaan"
+
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
 
 msgid "Search"
 msgstr "Zoeken"
@@ -767,12 +617,6 @@ msgstr "Selecteer aanhef"
 msgid "Select state"
 msgstr "Selecteer staat"
 
-msgid "Service fees"
-msgstr "Service kosten"
-
-msgid "Services"
-msgstr "Services"
-
 msgid "Share"
 msgstr "Delen"
 
@@ -782,8 +626,8 @@ msgstr "Bezorging"
 msgid "Show"
 msgstr "Toon"
 
-msgid "Show all quotes"
-msgstr "Toon alle aanbiedingen"
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Sortering"
@@ -791,24 +635,13 @@ msgstr "Sortering"
 msgid "State"
 msgstr "Provincie / Staat"
 
-msgid "Status"
-msgstr "Status"
-
 msgid "Stock"
 msgstr "Voorraad"
 
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out) and
-#. stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Voorraad: %1$s, %2$s"
 
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out), stock
-#. level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Voorraad: %1$s, %2$s, terug op %3$s"
@@ -828,16 +661,6 @@ msgstr "Inschrijving ID"
 msgid "Subscription details"
 msgstr "Inschrijvingsdetails"
 
-msgid "Subscription interval"
-msgstr "Inschrijvingsinterval"
-
-msgid "Subscription product"
-msgstr "Inschrijving product"
-
-#, php-format
-msgid "Subscription with ID \"%1$s\" not found"
-msgstr "Inschrijving met ID \"%1$s\" niet gevonden"
-
 msgid "Subscriptions"
 msgstr "Inschrijvingen"
 
@@ -850,6 +673,9 @@ msgstr "Totaal"
 msgid "Supplier information"
 msgstr ""
 
+msgid "Supplier list"
+msgstr ""
+
 msgid "Suppliers"
 msgstr "Leveranciers"
 
@@ -859,42 +685,8 @@ msgstr ""
 msgid "Telephone"
 msgstr "Telefoon"
 
-#, php-format
-msgid "Template \"%1$s\" not available"
-msgstr "Template \"%1$s\" niet beschikbaar"
-
 msgid "Terms and conditions"
 msgstr "Voorwaarden en condities"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "Thank you for your order %1$s from %2$s."
-msgstr "Bedankt voor uw order %1$s van %2$s."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Bedankt voor uw order %1$s van %2$s.\n\nDe order wordt uitgevoerd zodra wij uw betaling hebben ontvangen. Wanneer u hebt gekozen voor vooraf betalen maak dan het totaalbedrag van de factuur over naar onze bankrekening en vermeld daar bij het order nummer %1$s als referentie."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"We received the payment and will care about your order immediately."
-msgstr "Bedankt voor uw order %1$s van %2$s.\n\nWe hebben uw betaling ontvangen en zullen uw order zo spoedig mogelijk verwerken."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -909,63 +701,15 @@ msgstr "Bedankt voor uw order.\nWe hebben uw betaling ontvangen en sturen u binn
 msgid "Thank you for your review!"
 msgstr ""
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr "De status van uw order %1$s van %2$s is gewijzigd in \"%3$s\"."
-
-#, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr "De bestelling blijft nog in verwerking totdat wij de volledige betaling hebben kunnen verwerken. Als je ervoor hebt gekozen om vooraf te betalen via overschrijving, maak het geld a.u.b. over naar ons rekeningnummer met als referentie het bestelnummer: %1$s."
-
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr "U hebt uw order geannuleerd. Wilt u uw order opnieuw plaatsen?"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "Het pakket met uw order %1$s van %2$s kan niet aan u worden geleverd."
-
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "De betaling voor uw bestelling staat nog in wacht. U ontvangt een e-mail zodra de betaling is ontvangen."
-
-msgid "The payment couldn't be renewed"
-msgstr "De betaling kon niet hernieuwd worden"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "De betaling van uw bestelling %1$s van %2$s is terug gestort."
-
-msgid "The subscription for the product has ended"
-msgstr "De inschrijving voor dit product is verlopen"
-
-msgid "The subscription for the product has ended."
-msgstr "De inschrijving voor dit product is verlopen"
-
-#, php-format
-msgid "The value of your voucher is %1$s"
-msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Three month"
 msgstr "Drie maanden"
@@ -976,14 +720,8 @@ msgstr "Tijdslot"
 msgid "Toggle fullscreen"
 msgstr "Full screen activeren"
 
-msgid "Top seller"
-msgstr "Top verkoper"
-
 msgid "Total"
 msgstr "Totaal"
-
-msgid "Total quantity"
-msgstr "Totaal aantal"
 
 msgid "Try again"
 msgstr "Probeer opnieuw"
@@ -992,24 +730,12 @@ msgid "Two weeks"
 msgstr "Twee weken"
 
 #, php-format
-msgid "Unable to call method \"%1$s\""
-msgstr "Call method \"%1$s\" kon niet worden aangeroepen"
-
-#, php-format
-msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr "Wij kunnen geen account aanmaken voor \"%1$s\": %2$s"
-
-#, php-format
 msgid "Unable to create an account: %1$s"
 msgstr "Account %1$s aanmaken niet mogelijk"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr "Kon het adres van de klant niet opslaan  \"%1$s\": %2$s"
-
-#, php-format
-msgid "Unable to set cache entry: %1$s"
-msgstr "Kon dit niet aan de cache toevoegen: %1$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -1034,29 +760,12 @@ msgstr "Bekijk"
 msgid "Watched products"
 msgstr "Bekeken producten"
 
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr "We hebben je betaling ontvangen en zullen direct verder gaan met de verwerking van je bestelling."
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "We hebben het teruggestuurde pakket van uw bestelling %1$s van %2$s ontvangen."
-
 msgid "Web site"
 msgstr "Website"
 
 msgid "What do you think about the product"
 msgstr ""
 
-msgid "X"
-msgstr "X"
-
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
@@ -1077,43 +786,17 @@ msgstr ""
 msgid "You can only watch up to %1$s products"
 msgstr ""
 
-msgid "You can use your voucher any time in our online shop"
-msgstr "Je kan je voucher op eender welk moment gebruiken in onze online shop"
-
-msgid "You can use your vouchers at any time in our online shop"
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Je zal nu doorgestuurd worden naar de volgende stap"
-
-msgid "You've cancelled the subscription"
-msgstr "Je hebt je inschrijving beëindigd"
-
-msgid "Your account"
-msgstr "Uw account"
 
 msgid "Your choice"
 msgstr "Uw keuze"
 
 msgid "Your comment"
 msgstr "Jouw reactie"
-
-#. / Account creation e-mail subject
-msgid "Your new account"
-msgstr "Uw nieuwe account"
-
-#. / Payment e-mail subject with order ID
-#, php-format
-msgid "Your order %1$s"
-msgstr "Uw order %1$s"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Uw bestelling %1$s van %2$s is verstuurd."
 
 msgid "Your rating"
 msgstr ""
@@ -1127,37 +810,12 @@ msgstr ""
 msgid "Your review"
 msgstr ""
 
-msgid "Your search result"
-msgstr "Uw zoekresultaten"
-
-msgid "Your subscription"
-msgstr ""
-
-msgid "Your subscription product"
-msgstr "Uw product op inschrijving"
-
-msgid "Your voucher"
-msgstr "Uw waardebon"
-
-msgid "Your voucher: "
-msgstr "Uw waardebon:"
-
-msgid "Your vouchers: "
-msgstr ""
-
-#. / Product notification e-mail subject
-msgid "Your watched products"
-msgstr "Uw bekeken producten"
-
 msgid "Zoom in/out"
 msgstr "In-/uitzoomen"
 
 #, php-format
 msgid "address"
 msgstr "adres"
-
-msgid "clear all"
-msgstr "Alles wissen"
 
 #, php-format
 msgid "delivery"
@@ -1166,7 +824,6 @@ msgstr "Bezorging"
 msgid "favorite"
 msgstr "favoriet"
 
-#. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
 msgstr "van %1$s"
@@ -1184,10 +841,6 @@ msgid "on request"
 msgstr ""
 
 #, php-format
-msgid "order"
-msgstr "Bestelling"
-
-#, php-format
 msgid "payment"
 msgstr "Betaling"
 
@@ -1201,28 +854,21 @@ msgstr ""
 msgid "process"
 msgstr "proces"
 
-#. / code for "product is in stock"
 msgid "stock-high"
 msgstr "Grote voorraad"
 
-#. / code for "only a few products are available"
 msgid "stock-low"
 msgstr "Lage voorraad"
 
-#. / code for "product is out of stock"
 msgid "stock-out"
 msgstr "Geen voorraad"
 
-#. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
 msgstr "Onbeperkte voorraad"
 
 #, php-format
 msgid "summary"
 msgstr "samenvatting"
-
-msgid "tax"
-msgstr ""
 
 msgid "watch"
 msgstr "Bekijken"
@@ -1238,9 +884,6 @@ msgstr "▶"
 
 msgid "▶▶"
 msgstr "▶▶"
-
-msgid "▼"
-msgstr "▼"
 
 msgid "▼ Name"
 msgstr "▼ Naam"

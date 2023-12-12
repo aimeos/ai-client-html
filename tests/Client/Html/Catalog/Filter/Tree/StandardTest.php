@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -58,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'level-2', $output );
 
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 8, count( $tags ) );
+		$this->assertEquals( 9, count( $tags ) );
 	}
 
 
@@ -80,7 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( 'level-2', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 8, count( $tags ) );
+		$this->assertEquals( 9, count( $tags ) );
 	}
 
 
@@ -102,7 +102,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringNotContainsString( 'level-2', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 3, count( $tags ) );
+		$this->assertEquals( 4, count( $tags ) );
 	}
 
 
@@ -116,6 +116,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( 'level-2', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
-		$this->assertEquals( 8, count( $tags ) );
+		$this->assertEquals( 9, count( $tags ) );
 	}
 }

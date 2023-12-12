@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -24,7 +24,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/action
  * @see client/html/catalog/suggest/url/config
- * @see client/html/catalog/listsimple/url/target
+ * @see client/html/catalog/suggest/url/filter
  */
 
 /** client/html/catalog/suggest/url/controller
@@ -42,7 +42,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/action
  * @see client/html/catalog/suggest/url/config
- * @see client/html/catalog/listsimple/url/controller
+ * @see client/html/catalog/suggest/url/filter
  */
 
 /** client/html/catalog/suggest/url/action
@@ -60,7 +60,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/config
- * @see client/html/catalog/listsimple/url/action
+ * @see client/html/catalog/suggest/url/filter
  */
 
 /** client/html/catalog/suggest/url/config
@@ -84,8 +84,21 @@ $enc = $this->encoder();
  * @see client/html/catalog/suggest/url/target
  * @see client/html/catalog/suggest/url/controller
  * @see client/html/catalog/suggest/url/action
- * @see client/html/url/config
- * @see client/html/catalog/listsimple/url/config
+ * @see client/html/catalog/suggest/url/filter
+ */
+
+/** client/html/catalog/suggest/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/catalog/suggest/url/target
+ * @see client/html/catalog/suggest/url/controller
+ * @see client/html/catalog/suggest/url/action
+ * @see client/html/catalog/suggest/url/config
  */
 
 /** client/html/catalog/filter/search/force-search
@@ -106,7 +119,7 @@ $enforce = $this->config( 'client/html/catalog/filter/search/force-search', true
 
 ?>
 <?php $this->block()->start( 'catalog/filter/search' ) ?>
-<div class="section catalog-filter-search">
+<div class="section catalog-filter-search" aria-label="<?= $enc->attr( $this->translate( 'client', 'Product search' ) ) ?>">
 
 	<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ) ?></div>
 	<div class="search-lists">

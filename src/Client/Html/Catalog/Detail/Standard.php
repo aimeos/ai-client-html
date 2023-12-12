@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -55,9 +55,9 @@ class Standard
 	 */
 
 
-	private $tags = [];
-	private $expire;
-	private $view;
+	private array $tags = [];
+	private ?string $expire = null;
+	private ?\Aimeos\Base\View\Iface $view = null;
 
 
 	/**
@@ -212,13 +212,14 @@ class Standard
 	 */
 	public function init()
 	{
+		$view = $this->view();
 		$context = $this->context();
 		$session = $context->session();
 
+		$params = $view->param();
 		$site = $context->locale()->getSiteItem()->getCode();
-		$params = $this->getClientParams( $this->view()->param() );
 
-		$session->set( 'aimeos/catalog/detail/params/last/' . $site, $params );
+		$session->set( 'aimeos/catalog/last/' . $site, $view->link( 'client/html/catalog/detail/url', $params ) );
 	}
 
 
@@ -259,15 +260,47 @@ class Standard
 			}
 		}
 
+		$attrItems->uasort( function( $a, $b ) {
+			return $a->getPosition() <=> $b->getPosition();
+		} );
+
+		$attrMap = $attrItems->groupBy( 'attribute.type' );
+		$propMap = $propItems->groupBy( 'product.property.type' );
+
+		$attrTypes = $this->attributeTypes( $attrMap->keys()->concat( $productItem->getRefItems( 'attribute' )->getType() )->unique() );
+		$propTypes = $this->propertyTypes( $propMap->keys() );
+
 		$view->detailMediaItems = $mediaItems;
 		$view->detailProductItem = $productItem;
-		$view->detailAttributeMap = $attrItems->groupBy( 'attribute.type' )->ksort();
-		$view->detailPropertyMap = $propItems->groupBy( 'product.property.type' )->ksort();
+		$view->detailPropertyTypes = $propTypes->col( null, 'product.property.type.code' );
+		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
+		$view->detailAttributeMap = $attrMap->order( $attrTypes->getCode() )->filter();
+		$view->detailPropertyMap = $propMap->order( $propTypes->getCode() )->filter();
+		$view->detailStockTypes = $productItem->getStockItems()->getType();
 		$view->detailStockUrl = $this->stockUrl( $productItem );
 
 		$this->call( 'seen', $productItem );
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the attribute type items for the given codes
+	 *
+	 * @param \Aimeos\Map $codes List of attribute type codes
+	 * @return \Aimeos\Map List of attribute type items
+	 */
+	protected function attributeTypes( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->add( 'attribute.type.code', '==', $codes )
+			->order( 'attribute.type.position' );
+
+		return $manager->search( $filter->slice( 0, count( $codes ) ) );
 	}
 
 
@@ -283,7 +316,7 @@ class Standard
 
 		$domains = [
 			'attribute', 'attribute/property', 'catalog', 'media', 'media/property', 'price',
-			'product', 'product/property', 'supplier', 'supplier/address', 'text'
+			'product', 'product/property', 'supplier', 'supplier/address', 'text', 'stock'
 		];
 
 		/** client/html/catalog/domains
@@ -327,7 +360,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function navigator() : string
+	protected function navigator() : string
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -362,19 +395,38 @@ class Standard
 			{
 				if( $pos > 0 && ( $product = $products->first() ) !== null )
 				{
-					$param = ['d_name' => $product->getName( 'url ' ), 'd_prodid' => $product->getId(), 'd_pos' => $pos - 1];
+					$url = $product->getName( 'url' );
+					$param = ['path' => $url, 'd_name' => $url, 'd_prodid' => $product->getId(), 'd_pos' => $pos - 1];
 					$view->navigationPrev = $view->link( 'client/html/catalog/detail/url', $param );
 				}
 
 				if( ( $pos === 0 || $count === 3 ) && ( $product = $products->last() ) !== null )
 				{
-					$param = ['d_name' => $product->getName( 'url ' ), 'd_prodid' => $product->getId(), 'd_pos' => $pos + 1];
+					$url = $product->getName( 'url' );
+					$param = ['path' => $url, 'd_name' => $url, 'd_prodid' => $product->getId(), 'd_pos' => $pos + 1];
 					$view->navigationNext = $view->link( 'client/html/catalog/detail/url', $param );
 				}
 			}
 
-			$config = $context->config();
-			$template = $config->get( 'client/html/catalog/detail/template-navigator', 'catalog/detail/navigator' );
+			/** client/html/catalog/detail/template-navigator
+			 * Relative path to the HTML template of the catalog detail navigator partial.
+			 *
+			 * The template file contains the HTML code and processing instructions
+			 * to generate the result shown in the body of the frontend. The
+			 * configuration string is the path to the template file relative
+			 * to the templates directory (usually in templates/client/html).
+			 *
+			 * You can overwrite the template file configuration in extensions and
+			 * provide alternative templates. These alternative templates should be
+			 * named like the default one but suffixed by
+			 * an unique name. You may use the name of your project for this. If
+			 * you've implemented an alternative client class as well, it
+			 * should be suffixed by the name of the new class.
+			 *
+			 * @param string Relative path to the template creating the HTML fragment
+			 * @since 2022.10
+			 */
+			$template = $context->config()->get( 'client/html/catalog/detail/template-navigator', 'catalog/detail/navigator' );
 
 			return $view->render( $template );
 		}
@@ -430,6 +482,24 @@ class Standard
 
 
 	/**
+	 * Returns the property type items for the given codes
+	 *
+	 * @param \Aimeos\Map $codes List of property type codes
+	 * @return \Aimeos\Map List of property type items
+	 */
+	protected function propertyTypes( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'product/property/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'product.property.type.code', '==', $codes )
+			->order( 'product.property.type.position' );
+
+		return $manager->search( $filter->slice( 0, count( $codes ) ) );
+	}
+
+
+	/**
 	 * Adds the product to the list of last seen products.
 	 *
 	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item
@@ -446,7 +516,7 @@ class Standard
 			$config = $context->config();
 
 			/** client/html/catalog/detail/partials/seen
-			 * Relative path to the HTML body template of the catalog detail seen client.
+			 * Relative path to the HTML template of the catalog detail seen partial.
 			 *
 			 * The template file contains the HTML code and processing instructions
 			 * to generate the result shown in the body of the frontend. The
@@ -520,4 +590,73 @@ class Standard
 
 		return $this->getStockUrl( $this->view(), $products );
 	}
+
+
+	/** client/html/catalog/detail/decorators/excludes
+	 * Excludes decorators added by the "common" option from the catalog detail html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/catalog/detail/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/detail/decorators/global
+	 * @see client/html/catalog/detail/decorators/local
+	 */
+
+	/** client/html/catalog/detail/decorators/global
+	 * Adds a list of globally available decorators only to the catalog detail html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/detail/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/detail/decorators/excludes
+	 * @see client/html/catalog/detail/decorators/local
+	 */
+
+	/** client/html/catalog/detail/decorators/local
+	 * Adds a list of local decorators only to the catalog detail html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Catalog\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/detail/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/detail/decorators/excludes
+	 * @see client/html/catalog/detail/decorators/global
+	 */
 }

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -53,14 +53,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -73,18 +73,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['processPayment'] )
+			->onlyMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store'] )
+			->onlyMethods( ['store'] )
 			->getMock();
 
 		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store', 'save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
@@ -96,7 +96,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketMock->addService( $service );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( $form ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get()->setId( '123' ) ) );
-		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
 		$orderMock->expects( $this->once() )->method( 'save' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
@@ -120,24 +119,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['processPayment'] )
+			->onlyMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store'] )
+			->onlyMethods( ['store'] )
 			->getMock();
 
 		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store', 'save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
 
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get()->setId( '123' ) ) );
-		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
 		$orderMock->expects( $this->exactly( 2 ) )->method( 'save' )->will( $this->returnValue( $orderItem ) );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
@@ -158,18 +156,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['processPayment'] )
+			->onlyMethods( ['processPayment'] )
 			->getMock();
 		$object->setView( $this->view );
 
 		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['store'] )
+			->onlyMethods( ['store'] )
 			->getMock();
 
 		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save', 'store'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
@@ -180,7 +178,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$basketMock->addService( $service );
 		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( null ) );
 		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get()->setId( '123' ) ) );
-		$orderMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
 		$orderMock->expects( $this->exactly( 2 ) )->method( 'save' )->will( $this->returnValue( $orderItem ) );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );

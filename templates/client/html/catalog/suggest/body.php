@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -30,7 +30,8 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 		$price = sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) );
 	}
 
-	$params = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''];
+	$url = $productItem->getName( 'url' );
+	$params = ['path' => $url, 'd_name' => $url, 'd_prodid' => $productItem->getId(), 'd_pos' => ''];
 	$items[] = array(
 		'label' => $name,
 		'html' => '

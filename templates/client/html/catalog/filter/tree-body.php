@@ -40,7 +40,9 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 <?php $this->block()->start( 'catalog/filter/tree' ) ?>
 <?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 && !$this->treeCatalogTree->getChildren()->isEmpty() ) : ?>
 
-	<div class="section catalog-filter-tree <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>">
+	<div class="section catalog-filter-tree <?= ( $this->config( 'client/html/catalog/count/enable', true ) ? 'catalog-filter-count' : '' ); ?>"
+		aria-label="<?= $enc->attr( $this->translate( 'client', 'Product categories' ) ) ?>"
+		data-counturl="<?= $enc->attr( $this->link( 'client/html/catalog/count/url', ['count' => 'tree'] + $this->get( 'filterParams', [] ) ) ) ?>">
 
 		<div class="aimeos-overlay-offscreen"></div>
 		<a class="menu" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Categories' ) ) ?>"><span class="icon"></span></a>

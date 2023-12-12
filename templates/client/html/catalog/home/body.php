@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2022
+ * @copyright Aimeos (aimeos.org), 2020-2023
  */
 
 $enc = $this->encoder();
@@ -53,21 +53,25 @@ $lazy = false;
 
 
 ?>
-<div class="section aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
-	data-slider-nav-autoplay-interval="4000" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
+<?php if( isset( $this->homeTree ) && !(
+	$this->homeTree->getRefItems( 'media', 'stage', 'default' )->isEmpty()
+	&& $this->homeTree->getChildren()->getRefItems( 'media', 'stage', 'default' )->collapse( 1 )->isEmpty()
+) ) : ?>
 
-	<?php if( isset( $this->homeTree ) ) : ?>
+	<div class="section aimeos catalog-home swiffy-slider slider-item-nogap slider-nav-animation slider-nav-autoplay slider-nav-autopause"
+		data-slider-nav-autoplay-interval="4000" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
 
 			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
+				<?php $params = ['path' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' ), 'f_catid' => $this->homeTree->getId()] ?>
+				<?php $url = $this->link( 'client/html/catalog/tree/url', $params ) ?>
 
-				<div class="home-item home-image <?= $enc->attr( $this->homeTree->getCode() ) ?>">
-					<div class="home-stage catalog-stage-image">
+				<?php foreach( $mediaItems as $mediaItem ) : ?>
 
-						<?php foreach( $mediaItems as $mediaItem ) : ?>
-
-							<a class="stage-item" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' )] ) ) ?>">
+					<div class="home-item home-image <?= $enc->attr( $this->homeTree->getCode() ) ?>">
+						<div class="home-stage catalog-stage-image">
+							<a class="stage-item" href="<?= $enc->attr( $url ) ?>">
 								<img class="stage-image" loading="<?= $lazy ? 'lazy' : '' ?>"
 									src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
 									srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
@@ -82,23 +86,21 @@ $lazy = false;
 									<div class="btn"><?= $enc->html( $this->translate( 'client', 'Take a look' ) ) ?></div>
 								</div>
 							</a>
-
-							<?php $lazy = true ?>
-						<?php endforeach ?>
-
+						</div>
 					</div>
-				</div>
+
+					<?php $lazy = true ?>
+				<?php endforeach ?>
 
 			<?php endif ?>
 
 			<?php foreach( $this->homeTree->getChildren() as $child ) : ?>
 				<?php if( !( $mediaItems = $child->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
 
-					<div class="home-item cat-image <?= $enc->attr( $child->getCode() ) ?>">
-						<div class="home-stage catalog-stage-image">
+					<?php foreach( $mediaItems as $mediaItem ) : ?>
 
-							<?php foreach( $mediaItems as $mediaItem ) : ?>
-
+						<div class="home-item cat-image <?= $enc->attr( $child->getCode() ) ?>">
+							<div class="home-stage catalog-stage-image">
 								<a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
 									<img class="stage-image" loading="<?= $lazy ? 'lazy' : '' ?>"
 										src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
@@ -114,12 +116,11 @@ $lazy = false;
 										<div class="btn"><?= $enc->html( $this->translate( 'client', 'Take a look' ) ) ?></div>
 									</div>
 								</a>
-
-								<?php $lazy = true ?>
-							<?php endforeach ?>
-
+							</div>
 						</div>
-					</div>
+
+						<?php $lazy = true ?>
+					<?php endforeach ?>
 
 				<?php endif ?>
 			<?php endforeach ?>
@@ -129,6 +130,6 @@ $lazy = false;
 		<button type="button" class="slider-nav" aria-label="Go to previous"></button>
 		<button type="button" class="slider-nav slider-nav-next" aria-label="Go to next"></button>
 
-	<?php endif ?>
+	</div>
 
-</div>
+<?php endif ?>

@@ -5,7 +5,7 @@ namespace Aimeos\Client\Html\Catalog\Session\Seen;
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
@@ -44,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->setView( $this->object->data( $this->view ) );
 		$output = $this->object->body();
 
-		$this->assertRegExp( '#.*html product two.*html product one.*#smU', $output ); // list is reversed
+		$this->assertMatchesRegularExpression( '#.*html product two.*html product one.*#smU', $output ); // list is reversed
 		$this->assertStringStartsWith( '<div class="section catalog-session-seen">', $output );
 	}
 }

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -45,7 +45,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view = \TestHelper::view();
 		$this->view->standardStepActive = 'delivery';
 		$this->view->standardSteps = array( 'before', 'delivery', 'after' );
-		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order' )->create();
 		$this->object->setView( $this->object->data( $this->view ) );
 
 		$output = $this->object->body();

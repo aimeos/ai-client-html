@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -81,7 +81,7 @@ class Standard
 
 		$tree = $cntl->visible( $catItems->keys()->all() )->getTree( $cntl::TREE );
 
-		$this->addMetaItemCatalog( $tree, $expire, $tags );
+		$this->addMetaItemCatalog( $tree, $expire, $tags, ['catalog'] );
 
 		$view->treeCatalogPath = $catItems;
 		$view->treeCatalogTree = $tree;

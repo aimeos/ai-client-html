@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -57,7 +57,7 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
-	private $subPartPath = 'client/html/checkout/standard/process/subparts';
+	private string $subPartPath = 'client/html/checkout/standard/process/subparts';
 
 	/** client/html/checkout/standard/process/account/name
 	 * Name of the account part used by the checkout standard process client implementation
@@ -78,7 +78,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2017.04
 	 */
-	private $subPartNames = ['account', 'address'];
+	private array $subPartNames = ['account', 'address'];
 
 
 	/**
@@ -207,28 +207,27 @@ class Standard
 		{
 			parent::init();
 
-			$basket = $basketCntl->store();
-			$orderItem = $orderCntl->add( $basket->getId(), ['order.type' => 'web'] )->store();
+			$basketCntl->get()->setChannel( 'web' );
+			$order = $basketCntl->store();
 
-			$context->session()->set( 'aimeos/orderid', $orderItem->getId() );
+			$context->session()->set( 'aimeos/orderid', $order->getId() );
 		}
 		elseif( ( $orderid = $context->session()->get( 'aimeos/orderid' ) ) !== null )
 		{
-			$parts = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-			$orderItem = $orderCntl->get( $orderid, false );
-			$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
+			$refs = $context->config()->get( 'mshop/order/manager/subdomains', [] );
+			$order = $orderCntl->uses( $refs )->get( $orderid, false );
 		}
 		else
 		{
 			return;
 		}
 
-		if( ( $form = $this->processPayment( $orderItem->setBaseItem( $basket ) ) ) === null ) // no payment service available
+		if( ( $form = $this->processPayment( $order ) ) === null ) // no payment service available
 		{
-			$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
+			$services = $order->getService( \Aimeos\MShop\Order\Item\Service\Base::TYPE_PAYMENT );
 			$args = ( $service = reset( $services ) ) ? ['code' => $service->getCode()] : [];
 
-			$orderCntl->save( $orderItem->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
+			$orderCntl->save( $order->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
 			$view->standardUrlNext = $this->getUrlConfirm( $view, $args, ['absoluteUri' => true] );
 			$view->standardMethod = 'POST';
 		}
@@ -237,7 +236,7 @@ class Standard
 			$this->addFormData( $view, $form );
 		}
 
-		$orderCntl->save( $orderItem );
+		$orderCntl->save( $order );
 	}
 
 
@@ -297,15 +296,13 @@ class Standard
 	 */
 	protected function processPayment( \Aimeos\MShop\Order\Item\Iface $orderItem ) : ?\Aimeos\MShop\Common\Helper\Form\Iface
 	{
-		$basket = $orderItem->getBaseItem();
-
-		if( $basket->getPrice()->getValue() + $basket->getPrice()->getCosts() <= 0
-			&& $this->isSubscription( $basket->getProducts() ) === false
+		if( $orderItem->getPrice()->getValue() + $orderItem->getPrice()->getCosts() <= 0
+			&& $this->isSubscription( $orderItem->getProducts() ) === false
 		) {
 			return null;
 		}
 
-		$services = $basket->getService( \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_PAYMENT );
+		$services = $orderItem->getService( \Aimeos\MShop\Order\Item\Service\Base::TYPE_PAYMENT );
 
 		if( ( $service = reset( $services ) ) === false ) {
 			return null;
@@ -593,7 +590,7 @@ class Standard
 	/**
 	 * Tests if one of the products is a subscription
 	 *
-	 * @param \Aimeos\Map $products Ordered products implementing \Aimeos\MShop\Order\Item\Base\Product\Iface
+	 * @param \Aimeos\Map $products Ordered products implementing \Aimeos\MShop\Order\Item\Product\Iface
 	 * @return bool True if at least one product is a subscription, false if not
 	 */
 	protected function isSubscription( \Aimeos\Map $products ) : bool

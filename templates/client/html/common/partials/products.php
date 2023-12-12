@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2022
+ * @copyright Aimeos (aimeos.org), 2016-2023
  */
 
 /* Expected data:
@@ -16,6 +16,7 @@
 
 $enc = $this->encoder();
 $position = $this->get( 'position' );
+$attrTypes = $this->get( 'attributeTypes', map() );
 
 
 /** client/html/catalog/detail/url/target
@@ -155,7 +156,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 ?>
 <?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
 	<?php
-		$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
+		$name = $productItem->getName( 'url' );
+		$params = array_diff_key( ['path' => $name, 'd_name' => $name, 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 		$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
@@ -225,8 +227,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 				<div class="product-info">
 					<?php if( $supplier = $productItem->getRefItems( 'supplier' )->getName()->first() ) : ?>
 						<div class="supplier"><?= $enc->html( $supplier ) ?></div>
-					<?php elseif( ( $site = $this->get( 'contextSite' ) ) && $site !== 'default' ) : ?>
-						<div class="supplier"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></div>
+					<?php elseif( $siteItem = $productItem->getSiteItem() ) : ?>
+						<div class="supplier"><?= $enc->html( $siteItem->getLabel() ) ?></div>
 					<?php endif ?>
 
 					<div class="rating"><!--
@@ -318,7 +320,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 							<div class="items-selection">
 								<?= $this->partial( $this->config( 'client/html/common/partials/selection', 'common/partials/selection' ), [
 									'productItems' => $productItem->getRefItems( 'product', 'default', 'default' ),
-									'productItem' => $productItem
+									'productItem' => $productItem,
+									'attributeTypes' => $attrTypes
 								] ) ?>
 							</div>
 
@@ -328,7 +331,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
-								['productItem' => $productItem]
+								[
+									'productItem' => $productItem,
+									'attributeTypes' => $attrTypes
+								]
 							) ?>
 
 						</div>

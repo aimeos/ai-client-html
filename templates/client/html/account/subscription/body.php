@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2018-2022
+ * @copyright Aimeos (aimeos.org), 2018-2023
  */
 
 $enc = $this->encoder();
@@ -20,6 +20,7 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/action
  * @see client/html/account/subscription/url/config
+ * @see client/html/account/subscription/url/filter
  */
 
 /** client/html/account/subscription/url/controller
@@ -34,6 +35,7 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/action
  * @see client/html/account/subscription/url/config
+ * @see client/html/account/subscription/url/filter
  */
 
 /** client/html/account/subscription/url/action
@@ -48,6 +50,7 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/config
+ * @see client/html/account/subscription/url/filter
  */
 
 /** client/html/account/subscription/url/config
@@ -68,7 +71,21 @@ $enc = $this->encoder();
  * @see client/html/account/subscription/url/target
  * @see client/html/account/subscription/url/controller
  * @see client/html/account/subscription/url/action
- * @see client/html/url/config
+ * @see client/html/account/subscription/url/filter
+ */
+
+/** client/html/account/subscription/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/account/subscription/url/target
+ * @see client/html/account/subscription/url/controller
+ * @see client/html/account/subscription/url/action
+ * @see client/html/account/subscription/url/config
  */
 
 
@@ -82,7 +99,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 	<div class="section aimeos account-subscription" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 		<div class="container-xxl">
 
-			<h1 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h1>
+			<h2 class="header"><?= $enc->html( $this->translate( 'client', 'Subscriptions' ), $enc::TRUST ) ?></h2>
 
 			<div class="subscription-list">
 
@@ -172,7 +189,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									</div>
 
 									<div class="content">
-										<?php if( !empty( $item->getBaseItem()->getAddress( 'payment' ) ) ) : ?>
+										<?php if( !empty( $item->getOrderItem()->getAddress( 'payment' ) ) ) : ?>
 											<?= $this->partial(
 												/** client/html/account/subscription/summary/address
 												 * Location of the address partial template for the account subscription component
@@ -188,7 +205,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 												 * @see client/html/account/subscription/summary/service
 												 */
 												$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-												['addresses' => $item->getBaseItem()->getAddress( 'payment' )]
+												['addresses' => $item->getOrderItem()->getAddress( 'payment' )]
 											) ?>
 										<?php endif ?>
 									</div>
@@ -200,10 +217,10 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									</div>
 
 									<div class="content">
-										<?php if( !empty( $item->getBaseItem()->getAddress( 'delivery' ) ) ) : ?>
+										<?php if( !empty( $item->getOrderItem()->getAddress( 'delivery' ) ) ) : ?>
 											<?= $this->partial(
 												$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
-												['addresses' => $item->getBaseItem()->getAddress( 'delivery' )]
+												['addresses' => $item->getOrderItem()->getAddress( 'delivery' )]
 											) ?>
 										<?php else : ?>
 											<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
@@ -234,7 +251,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 										 * @see client/html/account/subscription/summary/service
 										 */
 										$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
-										['summaryBasket' => $item->getBaseItem()]
+										['summaryBasket' => $item->getOrderItem()]
 									) ?>
 								</div>
 							</div>

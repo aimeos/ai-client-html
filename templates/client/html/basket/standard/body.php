@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -19,22 +19,20 @@ $enc = $this->encoder();
 				<?= $this->csrf()->formfield() ?>
 
 				<div class="row header">
-					<h1 class="col-12 col-sm-6"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h1>
+					<h2 class="col-12 col-sm-6"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h2>
 
-					<?php if( $this->get( 'contextUserId' ) ) : ?>
-						<div class="col-12 col-sm-6">
-							<div class="input-group basket-save">
-								<input class="form-control basket-name" type="text" maxlength="255"
-									placeholder="<?= $enc->attr( $this->translate( 'client', 'Basket name' ) ) ?>"
-									name="<?= $enc->attr( $this->formparam( 'b_name' ) ) ?>"
-								>
-								<button class="btn" type="submit"
-									formaction="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ['b_action' => 'save'] ) ) ?>">
-									<?= $enc->attr( $this->translate( 'client', 'Save' ) ) ?>
-								</button>
-							</div>
+					<div class="col-12 col-sm-6">
+						<div class="input-group basket-save">
+							<input class="form-control basket-name" type="text" maxlength="255"
+								placeholder="<?= $enc->attr( $this->translate( 'client', 'Basket name' ) ) ?>"
+								name="<?= $enc->attr( $this->formparam( 'b_name' ) ) ?>"
+							>
+							<button class="btn" type="submit"
+								formaction="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ['b_action' => 'save'] ) ) ?>">
+								<?= $enc->attr( $this->translate( 'client', 'Save' ) ) ?>
+							</button>
 						</div>
-					<?php endif ?>
+					</div>
 				</div>
 
 				<div class="common-summary-detail">
@@ -113,11 +111,6 @@ $enc = $this->encoder();
 							href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url' ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', 'Checkout' ), $enc::TRUST ) ?>
 						</a>
-					<?php else : ?>
-						<input type="hidden" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>" value="1">
-						<button class="btn btn-primary btn-lg btn-action" type="submit">
-							<?= $enc->html( $this->translate( 'client', 'Check' ), $enc::TRUST ) ?>
-						</button>
 					<?php endif ?>
 
 				</div>

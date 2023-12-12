@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -24,7 +24,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 		$this->context = \TestHelper::context();
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
-			->setMethods( array( 'header', 'body', 'testMethod' ) )
+			->onlyMethods( ['header', 'body'] )->addMethods( ['testMethod'] )
 			->setConstructorArgs( array( $this->context, [] ) )
 			->getMock();
 

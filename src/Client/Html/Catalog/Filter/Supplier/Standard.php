@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2018-2022
+ * @copyright Aimeos (aimeos.org), 2018-2023
  * @package Client
  * @subpackage Html
  */
@@ -55,7 +55,7 @@ class Standard
 		$items = $cntl->compare( '==', 'supplier.id', $view->param( 'f_supid', [] ) )
 			->slice( 0, 100 )->search()->replace( $items );
 
-		$this->addMetaItems( $items, $expire, $tags );
+		$this->addMetaItems( $items, $expire, $tags, ['supplier'] );
 
 		$view->supplierList = $items;
 		$view->supplierResetParams = map( $view->param() )->except( 'f_supid' )->toArray();

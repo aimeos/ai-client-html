@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 /* Available data:
@@ -50,13 +50,26 @@ $varAttr = [];
 if( isset( $this->detailProductItem )
 	&& ( $articleId = $this->param( 'd_articleid' ) )
 ) {
-	foreach($this->detailProductItem->getListItems( 'product', 'default' ) as $listItem) :
-           if($product = $listItem->getRefItem()) :
-             $varAttr[$product->getId()] = $product->getRefItems( 'attribute', null, 'variant' )->col( 'attribute.id', 'attribute.type' );
-           endif;
-        endforeach;
-
+	foreach( $this->detailProductItem->getListItems( 'product', 'default' ) as $listItem )
+	{
+		if( $product = $listItem->getRefItem() ) {
+			$varAttr[$product->getId()] = $product->getRefItems( 'attribute', null, 'variant' )->col( 'attribute.id', 'attribute.type' );
+    }
+  }
 }
+
+$attrTypes = $this->get( 'detailAttributeTypes', [] );
+$propTypes = $this->get( 'detailPropertyTypes', [] );
+
+$attrTypeName = function( string $code ) use ( $attrTypes ) {
+	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
+};
+
+$propTypeName = function( string $code ) use ( $propTypes ) {
+	return isset( $propTypes[$code] ) && $propTypes[$code]->getName() !== $propTypes[$code]->getLabel() ? $propTypes[$code]->getName() : $this->translate( 'client/code', $code );
+};
+
+
 ?>
 <?php if( isset( $this->detailProductItem ) ) : ?>
 
@@ -94,15 +107,15 @@ if( isset( $this->detailProductItem )
 
 				<div class="col-sm-6">
 
-					<div class="catalog-detail-basic">
+					<div class="catalog-detail-basic" aria-label="<?= $enc->attr( $this->translate( 'client', 'Product information' ) ) ?>">
 						<?php if( !( $suppliers = $this->detailProductItem->getRefItems( 'supplier' ) )->isEmpty() ) : $name = $suppliers->getName()->first() ?>
 							<p class="supplier">
 								<a href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $suppliers->firstKey(), 's_name' => $name] ) ) ?>">
 									<?= $enc->html( $name, $enc::TRUST ) ?>
 								</a>
 							</p>
-						<?php elseif( $this->get( 'contextSite' ) !== 'default' ) : ?>
-							<p class="site"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></p>
+						<?php elseif( $siteItem = $this->detailProductItem->getSiteItem() ) : ?>
+							<p class="site"><?= $enc->html( $siteItem->getLabel() ) ?></p>
 						<?php endif ?>
 
 						<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ) ?></h1>
@@ -127,16 +140,15 @@ if( isset( $this->detailProductItem )
 					</div>
 
 
-					<div class="catalog-detail-basket" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
+					<div class="catalog-detail-basket" itemscope itemprop="offers" itemtype="http://schema.org/Offer"
+						aria-label="<?= $enc->attr( $this->translate( 'client', 'Product price' ) ) ?>">
 
 						<div class="price-list">
 							<div class="articleitem price price-actual" data-prodid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
-
 								<?= $this->partial(
 									$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 									['prices' => $this->detailProductItem->getRefItems( 'price', null, 'default' )]
 								) ?>
-
 							</div>
 
 							<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
@@ -144,12 +156,10 @@ if( isset( $this->detailProductItem )
 									<?php if( !( $prices = $product->getRefItems( 'price', null, 'default' ) )->isEmpty() ) : ?>
 
 										<div class="articleitem price" data-prodid="<?= $enc->attr( $prodid ) ?>">
-
 											<?= $this->partial(
 												$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 												['prices' => $prices]
 											) ?>
-
 										</div>
 
 									<?php endif ?>
@@ -188,7 +198,8 @@ if( isset( $this->detailProductItem )
 										$this->config( 'client/html/common/partials/selection', 'common/partials/selection' ),
 										[
 											'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
-											'productItem' => $this->detailProductItem
+											'productItem' => $this->detailProductItem,
+											'attributeTypes' => $attrTypes
 										]
 									) ?>
 
@@ -214,7 +225,8 @@ if( isset( $this->detailProductItem )
 										$this->config( 'client/html/catalog/detail/partials/group', 'catalog/detail/group' ),
 										[
 											'productItems' => $this->detailProductItem->getRefItems( 'product', null, 'default' ),
-											'productItem' => $this->detailProductItem
+											'productItem' => $this->detailProductItem,
+											'attributeTypes' => $attrTypes
 										]
 									) ?>
 
@@ -242,7 +254,10 @@ if( isset( $this->detailProductItem )
 									 * @see client/html/common/partials/selection
 									 */
 									$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute' ),
-									['productItem' => $this->detailProductItem]
+									[
+										'productItem' => $this->detailProductItem,
+										'attributeTypes' => $attrTypes
+									]
 								) ?>
 
 							</div>
@@ -254,9 +269,7 @@ if( isset( $this->detailProductItem )
 								</div>
 
 								<?php foreach( $this->detailProductItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
-
 									<div class="articleitem" data-prodid="<?= $enc->attr( $articleId ) ?>"></div>
-
 								<?php endforeach ?>
 
 							</div>
@@ -266,9 +279,11 @@ if( isset( $this->detailProductItem )
 								<div class="addbasket">
 									<input type="hidden" value="add" name="<?= $enc->attr( $this->formparam( 'b_action' ) ) ?>">
 									<input type="hidden"
+										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'stocktype'] ) ) ?>"
+										value="<?= $enc->attr( $this->get( 'detailStockTypes', map() )->first() ) ?>">
+									<input type="hidden"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'prodid'] ) ) ?>"
-										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>"
-									>
+										value="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 									<div class="input-group">
 										<?php if( $this->detailProductItem->getType() !== 'group' ) : ?>
 											<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
@@ -291,7 +306,7 @@ if( isset( $this->detailProductItem )
 					</div>
 
 
-					<div class="catalog-detail-actions">
+					<div class="catalog-detail-actions" aria-label="<?= $enc->attr( $this->translate( 'client', 'Product actions' ) ) ?>">
 
 						<?= $this->partial(
 							/** client/html/catalog/partials/actions
@@ -360,11 +375,10 @@ if( isset( $this->detailProductItem )
 						</nav>
 
 						<div class="tab-content" id="nav-tabContent">
-
-							<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+							<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab"
+								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product description' ) ) ?>">
 
 								<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
-
 									<div class="block description">
 
 										<?php foreach( $textItems as $textItem ) : ?>
@@ -372,12 +386,12 @@ if( isset( $this->detailProductItem )
 										<?php endforeach ?>
 
 									</div>
-
 								<?php endif ?>
 
 							</div>
 
-							<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab">
+							<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab"
+								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product attributes' ) ) ?>">
 
 								<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
@@ -389,7 +403,7 @@ if( isset( $this->detailProductItem )
 													<?php foreach( $attrItems as $attrItem ) : ?>
 
 														<tr class="item <?= ( $ids = $attrItem->get( 'parent' ) ) ? 'subproduct ' . map( $ids )->prefix( 'subproduct-' )->join( ' ' ) : '' ?>">
-															<td class="name"><?= $enc->html( $this->translate( 'client/code', $type ), $enc::TRUST ) ?></td>
+															<td class="name"><?= $enc->html( $attrTypeName( $type ) ) ?></td>
 															<td class="value">
 																<div class="media-list">
 
@@ -423,7 +437,7 @@ if( isset( $this->detailProductItem )
 													<?php foreach( $propItems as $propItem ) : ?>
 
 														<tr class="item <?= ( $id = $propItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
-															<td class="name"><?= $enc->html( $this->translate( 'client/code', $propItem->getType() ), $enc::TRUST ) ?></td>
+															<td class="name"><?= $enc->html( $propTypeName( $propItem->getType() ), $enc::TRUST ) ?></td>
 															<td class="value"><?= $enc->html( $propItem->getValue() ) ?></td>
 														</tr>
 
@@ -437,7 +451,9 @@ if( isset( $this->detailProductItem )
 								<?php endif ?>
 							</div>
 
-							<div class="tab-pane fade" id="nav-characteristics" role="tabpanel" aria-labelledby="nav-characteristics-tab">
+							<div class="tab-pane fade" id="nav-characteristics" role="tabpanel" aria-labelledby="nav-characteristics-tab"
+								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product characteristics' ) ) ?>">
+
 								<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 
 									<ul class="block downloads">
@@ -463,7 +479,9 @@ if( isset( $this->detailProductItem )
 								<?php endif ?>
 							</div>
 
-							<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
+							<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab"
+								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product reviews' ) ) ?>">
+
 								<div class="reviews container-fluid block" data-productid="<?= $enc->attr( $this->detailProductItem->getId() ) ?>">
 									<div class="row">
 										<div class="col-md-4 rating-list">
@@ -536,12 +554,12 @@ if( isset( $this->detailProductItem )
 
 						<div class="section catalog-detail-bundle content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Bundled products' ) ?></h2>
-
-							<?= $this->partial(
-								$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
-								['products' => $products, 'itemprop' => 'isRelatedTo']
-							) ?>
-
+							<div class="section">
+								<?= $this->partial(
+									$this->config( 'client/html/common/partials/products', 'common/partials/products' ),
+									['products' => $products, 'itemprop' => 'isRelatedTo']
+								) ?>
+							</div>
 						</div>
 
 					<?php endif ?>
@@ -551,14 +569,12 @@ if( isset( $this->detailProductItem )
 
 						<div class="section catalog-detail-suggest content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Suggested products' ) ?></h2>
-
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/products', 'common/partials/products' ), [
 									'basket-add' => $this->config( 'client/html/catalog/detail/basket-add', false ),
 									'products' => $products, 'itemprop' => 'isRelatedTo'
 								] )
 							?>
-
 						</div>
 
 					<?php endif ?>
@@ -568,21 +584,18 @@ if( isset( $this->detailProductItem )
 
 						<div class="section catalog-detail-bought content-block">
 							<h2 class="header"><?= $this->translate( 'client', 'Other customers also bought' ) ?></h2>
-
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/products', 'common/partials/products' ), [
 									'basket-add' => $this->config( 'client/html/catalog/detail/basket-add', false ),
 									'products' => $products, 'itemprop' => 'isRelatedTo'
 								] )
 							?>
-
 						</div>
 
 					<?php endif ?>
 
 					<?php if( !( $supplierItems = $this->detailProductItem->getRefItems( 'supplier', null, 'default' ) )->isEmpty() ) : ?>
 						<div class="catalog-detail-supplier content-block">
-
 							<h2 class="header"><?= $this->translate( 'client', 'Supplier information' ) ?></h2>
 
 							<?php foreach( $supplierItems as $supplierItem ) : ?>
@@ -627,9 +640,9 @@ if( isset( $this->detailProductItem )
 					<?php endif ?>
 
 				</div>
-			</div>
+			</article>
 
-		</article>
+		</div>
 	</div>
 
 <?php endif ?>

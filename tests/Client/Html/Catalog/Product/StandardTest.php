@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2019-2022
+ * @copyright Aimeos (aimeos.org), 2019-2023
  */
 
 
@@ -54,9 +54,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<script', $output );
 		$prodCodeParam = '/st_pid%5B[0-9]%5D=';
-		$this->assertRegExp( $prodCodeParam . $map['CNE'] . '/', $output );
-		$this->assertRegExp( $prodCodeParam . $map['ABCD'] . '/', $output );
-		$this->assertRegExp( $prodCodeParam . $map['CNC'] . '/', $output );
+		$this->assertMatchesRegularExpression( $prodCodeParam . $map['CNE'] . '/', $output );
+		$this->assertMatchesRegularExpression( $prodCodeParam . $map['ABCD'] . '/', $output );
+		$this->assertMatchesRegularExpression( $prodCodeParam . $map['CNC'] . '/', $output );
 		$this->assertEquals( '2098-01-01 00:00:00', $expire );
 	}
 

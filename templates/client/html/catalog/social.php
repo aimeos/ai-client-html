@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 /* Available data:
@@ -124,7 +124,8 @@ $urls = array(
 	'pinterest' => 'https://pinterest.com/pin/create/button/?url=%1$s&description=%2$s&media=%3$s',
 );
 
-$params = ['d_name' => $this->productItem->getName( 'url' ), 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''];
+$name = $this->productItem->getName( 'url' );
+$params = ['path' => $name, 'd_name' => $name, 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''];
 
 
 ?>

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2022
+ * @copyright Aimeos (aimeos.org), 2020-2023
  */
 
 
@@ -41,6 +41,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$result = $this->object->transform( $item );
 
-		$this->assertRegexp( '/[^ ]+ \(\+[0-9]+\.[0-9]+EUR\)/', $result );
+		$this->assertMatchesRegularExpression( '/[^ ]+ \(\+[0-9]+\.[0-9]+EUR\)/', $result );
 	}
 }

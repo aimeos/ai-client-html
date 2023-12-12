@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2022
+ * @copyright Aimeos (aimeos.org), 2020-2023
  * @package Client
  * @subpackage Html
  */
@@ -64,4 +64,72 @@ class Standard
 	{
 		return ['price'];
 	}
+
+	/** client/html/catalog/price/decorators/excludes
+	 * Excludes decorators added by the "common" option from the catalog price html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/catalog/price/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/price/decorators/global
+	 * @see client/html/catalog/price/decorators/local
+	 */
+
+	/** client/html/catalog/price/decorators/global
+	 * Adds a list of globally available decorators only to the catalog price html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/price/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/price/decorators/excludes
+	 * @see client/html/catalog/price/decorators/local
+	 */
+
+	/** client/html/catalog/price/decorators/local
+	 * Adds a list of local decorators only to the catalog price html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Catalog\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/price/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/price/decorators/excludes
+	 * @see client/html/catalog/price/decorators/global
+	 */
 }

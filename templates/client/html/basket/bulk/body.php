@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2019-2022
+ * @copyright Aimeos (aimeos.org), 2019-2023
  */
 
 $enc = $this->encoder();
@@ -24,7 +24,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 <div class="section aimeos basket-bulk" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 	<div class="container-xxl">
 
-		<h1><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ) ?></h1>
+		<h2><?= $enc->html( $this->translate( 'client', 'Bulk order' ), $enc::TRUST ) ?></h2>
 
 		<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
 			<!-- basket.bulk.csrf -->
@@ -101,7 +101,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						</div>
 					</div>
 				</div>
-			<div>
+			</div>
 
 			<div class="button-group">
 				<button class="btn btn-primary btn-lg btn-action" type="submit" value="" tabindex="1">

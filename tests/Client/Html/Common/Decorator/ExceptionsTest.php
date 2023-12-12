@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2022
+ * @copyright Aimeos (aimeos.org), 2022-2023
  */
 
 
@@ -23,7 +23,7 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
 			->setConstructorArgs( [$context] )
-			->setMethods( ['body', 'header', 'init'] )
+			->onlyMethods( ['body', 'header', 'init'] )
 			->getMock();
 
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Exceptions( $this->client, $context );

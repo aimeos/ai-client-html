@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -31,8 +31,6 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$attrMap = [];
-
 		/** client/html/catalog/filter/attribute/types-option
 		 * List of attribute types whose IDs should be used in a global "OR" condition
 		 *
@@ -148,14 +146,22 @@ class Standard
 
 			$fparams = $this->getFormParams( $type, $oneof, $options );
 			$active[$item->getType()] = (int) $item->get( 'checked', $active[$item->getType()] ?? false );
-			$attrMap[$item->getType()][$id] = $item->set( 'params', $attrparams )->set( 'formparam', $fparams );
+			$item->set( 'params', $attrparams )->set( 'formparam', $fparams );
 		}
 
 		arsort( $active );
 		unset( $params['f_attrid'], $params['f_oneid'], $params['f_optid'] );
 
+		$attributes->uasort( function( $a, $b ) {
+			return $a->getPosition() <=> $b->getPosition();
+		} );
+
+		$attrMap = $attributes->groupBy( 'attribute.type' );
+		$attrTypes = $this->attributeTypes( $attrMap->keys() );
+
 		$view->attributeResetParams = $params;
-		$view->attributeMap = $this->sort( $attrMap, $attrTypes );
+		$view->attributeMap = $attrMap->order( $attrTypes->getCode() );
+		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
 		$view->attributeMapActive = map( $view->attributeMap )->uksort( function( $a, $b ) use ( $active ) {
 			return $active[$b] <=> $active[$a];
 		} );
@@ -173,6 +179,28 @@ class Standard
 	public function header( string $uid = '' ) : ?string
 	{
 		return null;
+	}
+
+
+	/**
+	 * Returns the attribute type items for the given codes
+	 *
+	 * @param \Aimeos\Map $codes List of attribute type codes
+	 * @return \Aimeos\Map List of attribute type items
+	 */
+	protected function attributeTypes( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->order( 'attribute.type.position' );
+
+		if( !$codes->isEmpty() ) {
+			$filter->add( 'attribute.type.code', '==', $codes );
+		}
+
+		return $manager->search( $filter->slice( 0, count( $codes ) ?: 10000 ) );
 	}
 
 
@@ -207,28 +235,30 @@ class Standard
 	 */
 	protected function sort( array $attrMap, array $attrTypes ) : array
 	{
-		if( !empty( $attrTypes ) )
-		{
-			$map = [];
+		$map = [];
 
-			foreach( $attrTypes as $type )
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->order( 'attribute.type.position' );
+
+		if( !empty( $attrTypes ) ) {
+			$filter->add( 'attribute.type.code', '==', $attrTypes );
+		}
+
+		foreach( $manager->search( $filter->slice( 0, 10000 ) ) as $typeItem )
+		{
+			if( $list = $attrMap[$typeItem->getCode()] ?? null )
 			{
-				if( isset( $attrMap[$type] ) ) {
-					$map[$type] = $attrMap[$type];
-				}
+				uasort( $list, function( $a, $b ) {
+					return $a->getPosition() <=> $b->getPosition();
+				} );
+
+				$map[$typeItem->getCode()] = $list;
 			}
-
-			return $map;
 		}
 
-		foreach( $attrMap as $type => &$map )
-		{
-			uasort( $map, function( $a, $b ) {
-				return $a->getPosition() <=> $b->getPosition();
-			} );
-		}
-
-		return $attrMap;
+		return $map;
 	}
 
 

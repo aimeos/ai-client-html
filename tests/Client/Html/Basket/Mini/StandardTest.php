@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -51,7 +51,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 		$miniBasket = $this->view->miniBasket;
 
-		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Base\Iface );
+		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Iface );
 		$this->assertStringContainsString( '<div class="section aimeos basket-mini', $output );
 		$this->assertStringContainsString( '<div class="basket-mini-main', $output );
 		$this->assertStringContainsString( '<div class="basket-mini-product', $output );
@@ -73,21 +73,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$controller->clear();
 
 		$this->assertStringContainsString( '<div class="basket-mini-product', $output );
-		$this->assertRegExp( '#9#smU', $output );
-		$this->assertRegExp( '#171.00#smU', $output );
+		$this->assertMatchesRegularExpression( '#9#smU', $output );
+		$this->assertMatchesRegularExpression( '#171.00#smU', $output );
 	}
 
 
 	public function testGetSubClientInvalid()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 

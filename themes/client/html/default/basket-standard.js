@@ -10,7 +10,7 @@ AimeosBasketStandard = {
 
 		$(".basket-standard .btn-update").hide();
 
-		$(document).on("focusin", ".basket-standard .basket .product .quantity .value", {}, ev => {
+		$(document).on("focusin", ".basket-standard .basket .product-item .quantity .value", {}, ev => {
 			const target = $(ev.currentTarget).closest('.basket-standard');
 
 			$(".btn-update", target).show();
@@ -27,7 +27,7 @@ AimeosBasketStandard = {
 		$(document).on("submit", ".basket-standard form", ev => {
 			Aimeos.createSpinner();
 
-			fetch(product.data("url"), {
+			fetch($(ev.submitter).attr("formaction") || $(ev.currentTarget).attr("action"), {
 				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(response => {

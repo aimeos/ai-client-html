@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -34,12 +34,17 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/detail/metatags', true ) === true ) : ?>
 	<?php if( isset( $this->detailProductItem ) ) : ?>
-		<title><?= $enc->html( strip_tags( $this->detailProductItem->getName() ) ) ?>
-			<?= $enc->html( strip_tags( ' ' . $this->detailProductItem->getRefItems( 'supplier' )->getName()->first() ) ) ?>
-			<?= $enc->html( ' | ' . $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?>
-		</title>
+		<?php if( $title = $this->detailProductItem->getRefItems( 'text', 'meta-title', 'default' )->getContent()->first() ) : ?>
+			<title><?= $enc->html( $title ) ?></title>
+		<?php else : ?>
+			<title><?= $enc->html( strip_tags( $this->detailProductItem->getName() ) ) ?>
+				<?= $enc->html( strip_tags( ' ' . $this->detailProductItem->getRefItems( 'supplier' )->getName()->first() ) ) ?>
+				<?= $enc->html( ' | ' . $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?>
+			</title>
+		<?php endif ?>
 
-		<?php $params = array_diff_key( ['d_name' => $this->detailProductItem->getName( 'url' ), 'd_prodid' => $this->detailProductItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
+		<?php $name = $this->detailProductItem->getName( 'url' ) ?>
+		<?php $params = array_diff_key( ['path' => $name, 'd_name' => $name, 'd_prodid' => $this->detailProductItem->getId(), 'd_pos' => ''], $detailFilter ) ?>
 		<link rel="canonical" href="<?= $enc->attr( $this->url( $this->detailProductItem->getTarget() ?: $detailTarget, $detailController, $detailAction, $params, [], $detailConfig + ['absoluteUri' => true] ) ) ?>">
 
 		<meta property="og:type" content="product">

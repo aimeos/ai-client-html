@@ -2,16 +2,23 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2019-2022
+ * @copyright Aimeos (aimeos.org), 2019-2023
  */
 
 /* Available data:
  * - productItem : Selection product for the variant products
  * - productItems : List of variant product items with referenced items
+ * - attributeTypes : List of attribute type items
  */
 
 
 $enc = $this->encoder();
+
+$attrTypes = $this->get( 'attributeTypes', [] );
+
+$attrTypeName = function( string $code ) use ( $attrTypes ) {
+	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
+};
 
 
 ?>
@@ -55,7 +62,7 @@ $enc = $this->encoder();
 				<ul class="attr-list">
 					<?php foreach( $product->getRefItems( 'attribute', null, 'variant' ) as $attrItem ) : ?>
 						<li class="attr-item">
-							<span class="name"><?= $enc->html( $this->translate( 'client/code', $attrItem->getType() ) ) ?></span>
+							<span class="name"><?= $enc->html( $attrTypeName( $code ) ) ?></span>
 							<span class="value"><?= $enc->html( $attrItem->getName() ) ?></span>
 
 							<input type="hidden" value="<?= $enc->attr( $attrItem->getId() ) ?>"
@@ -78,4 +85,4 @@ $enc = $this->encoder();
 
 	<?php endforeach ?>
 
-</table>
+</div>

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2022
+ * @copyright Aimeos (aimeos.org), 2016-2023
  */
 
 
@@ -55,15 +55,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view = \TestHelper::view();
 		$this->view->profileCustomerItem = $customer;
 		$this->object->setView( $this->object->data( $this->view ) );
-		$this->context->setUserId( $customer->getId() );
+		$this->context->setUser( $customer );
 
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<div class="account-profile-address', $output );
-		$this->assertRegExp( '#id="address-payment-salutation"#', $output );
+		$this->assertMatchesRegularExpression( '#id="address-payment-salutation"#', $output );
 
 		foreach( $customer->getAddressItems() as $idx => $item ) {
-			$this->assertRegExp( '#id="address-delivery-salutation-' . $idx . '"#', $output );
+			$this->assertMatchesRegularExpression( '#id="address-delivery-salutation-' . $idx . '"#', $output );
 		}
 	}
 

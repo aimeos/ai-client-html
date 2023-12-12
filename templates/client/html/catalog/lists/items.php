@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -30,6 +30,7 @@ $enc = $this->encoder();
 		array(
 			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
 			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
+			'attributeTypes' => $this->get( 'attributeTypes', map() ),
 			'products' => $this->get( 'products', map() ),
 			'position' => $this->get( 'position' ),
 		)

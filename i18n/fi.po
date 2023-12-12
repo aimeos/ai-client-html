@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-05 07:41+0200\n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Aimeos, 2021\n"
-"Language-Team: Finnish (http://www.transifex.com/aimeos/aimeos-core/language/fi/)\n"
+"Language-Team: Finnish (http://app.transifex.com/aimeos/aimeos-core/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,14 +31,6 @@ msgid_plural "%1$d reviews"
 msgstr[0] "%1$d arviointi"
 msgstr[1] "%1$d arviointia"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -56,78 +48,65 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
-#. / Price format with price value (%1$s) and currency (%2$s)
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s off"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
 #, php-format
-msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s ( %4$s%2$s%3$s )"
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
-#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s at %2$s"
 
-#. / Percent format with value (%1$s) and % sign
-#, php-format
-msgid "%1$s%%"
-msgstr "%1$s%%"
-
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
-msgid "+"
-msgstr "+"
-
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
 #, php-format
-msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/item"
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr "+ %1$s%% %2$s"
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
 msgstr "+ %1$s%% Alv."
 
-msgid "+ Payment costs"
-msgstr "+ Maksukustannukset"
-
-msgid "+ Shipping"
-msgstr "+ Toimitus"
-
-msgid "+ shipping costs"
-msgstr "+ toimitusmaksut"
-
 msgid "+1 123 456 7890"
 msgstr "+1 123 456 7890"
 
-#. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
 msgstr ""
-
-msgid "Account"
-msgstr "Käyttäjätili"
 
 msgid "Add billing address"
 msgstr "Lisää laskutusosoite"
@@ -141,39 +120,14 @@ msgstr "Lisä"
 msgid "Additional 2"
 msgstr "Lisä 2"
 
-msgid "Address"
-msgid_plural "Addresses"
-msgstr[0] "Osoite"
-msgstr[1] "Osoitteet"
-
-#, php-format
-msgid "Address with ID \"%1$s\" not found"
-msgstr "Osoitteita ID:llä \"%1$s” ei löytynyt"
-
-msgid "Addresses"
-msgstr "Osoitteet"
-
-msgid ""
-"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
-"\n"
-"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Käyttöehtomme, jotka ovat saatavilla verkkosivuillamme ja jotka hyväksyit tehdessäsi tilauksen, pätevät kaikkiin toimitettuihin lähetyksiin.\n\nTämä sähköpostiviesti sisältää luottamuksellista tietoa, ja on tarkoitettu vain vastaanottajan käyttöön. Jos et ole kyseinen henkilö, ole hyvä ja vastaa tähän sähköpostiviestiin, ja poista viesti sekä sen liitteet tämän jälkeen."
-
-#. / Payment e-mail legal information
-msgid "All orders are subject to our terms and conditions."
-msgstr "Käyttöehtomme pätevä kaikkiin tilauksiin"
-
-msgid "An account has been created for you."
-msgstr "Sinulle on luotu käyttäjätili"
+msgid "Apply"
+msgstr ""
 
 msgid "Article"
 msgstr "Esine"
 
 msgid "Article no."
 msgstr "Esine nro."
-
-msgid "Article no.:"
-msgstr "Esine nro.:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -183,14 +137,20 @@ msgstr "Ainakin yksi laskutusosoitteen osa puuttuu tai on virheellinen"
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Ainakin yksi toimitusosoitteen osa puuttuu tai on virheellinen"
 
-msgid "Attributes"
-msgstr "Ominaisuudet"
-
 msgid "Back"
 msgstr "Takaisin"
 
 msgid "Basket"
 msgstr "Ostoskori"
+
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
 
 msgid "Billing address"
 msgstr "Laskutusosoite"
@@ -205,6 +165,9 @@ msgstr "Laskutusosoitteen osa \"%1$s” puuttuu"
 
 msgid "Birthday"
 msgstr "Syntymäpäivä"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr "Tukkutilaus"
@@ -227,14 +190,8 @@ msgstr "Muuta"
 msgid "Change payment"
 msgstr "Muuta maksua"
 
-msgid "Channel"
-msgstr "Kanava"
-
 msgid "Characteristics"
 msgstr "Ominaisuudet"
-
-msgid "Check"
-msgstr "Tarkista"
 
 msgid "Checkout"
 msgstr "Maksamaan"
@@ -243,32 +200,8 @@ msgid "City"
 msgstr "Kaupunki"
 
 #, php-format
-msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "Luokka \"%1$s\" ei toteuta \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "Luokka \"%1$s\" ei toteuta liitäntää \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" not available"
-msgstr "Luokka \"%1$s\" ei saatavilla"
-
-#, php-format
 msgid "Class \"%1$s\" not found"
 msgstr "Luokka \"%1$s\" ei löydy"
-
-#, php-format
-msgid "Client HTML type is empty"
-msgstr "Asiakkaan HTML -tyyppi oh tyhjä"
-
-#, php-format
-msgid "Client path is empty"
-msgstr "Asiakkaan polku on tyhjä"
-
-#, php-format
-msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr "Asiakkaan tyypin \"%1$s” tulee sisältää kaksi ”/” -merkillä jaettua osaa"
 
 msgid "Close"
 msgstr "Sulje"
@@ -296,40 +229,6 @@ msgstr "Luotu"
 
 msgid "Customer account"
 msgstr "Asiakaskäyttäjätili"
-
-#, php-format
-msgid "Customer with ID \"%1$s\" not found"
-msgstr "Asiakasta ID:llä \"%1$s” ei löytynyt"
-
-#, php-format
-msgid "Dear %1$s %2$s"
-msgstr "Hei %1$s %2$s"
-
-#, php-format
-msgid "Dear %1$s %2$s %3$s"
-msgstr "Hei %1$s %2$s %3$s"
-
-#, php-format
-msgid "Dear Miss %1$s %2$s"
-msgstr "Hei %1$s %2$s"
-
-#, php-format
-msgid "Dear Mr %1$s %2$s"
-msgstr "Hei herra %1$s %2$s"
-
-#, php-format
-msgid "Dear Mrs %1$s %2$s"
-msgstr "Hei rouva %1$s %2$s"
-
-#, php-format
-msgid "Dear Ms %1$s %2$s"
-msgstr "Hei %1$s %2$s"
-
-msgid "Dear Sir or Madam"
-msgstr "Hei herra tai rouva"
-
-msgid "Dear customer"
-msgstr "Arvoisa asiakas"
 
 msgid "Delete"
 msgstr "Poista"
@@ -373,10 +272,6 @@ msgstr "Lataukset"
 msgid "E-Mail"
 msgstr "Sähköposti"
 
-#. / E-mail HTML title
-msgid "E-mail notification"
-msgstr "Sähköposti-ilmoitus"
-
 msgid "End date"
 msgstr "Loppupäivämäärä"
 
@@ -389,21 +284,23 @@ msgstr "Faksi"
 msgid "Fields with an * are mandatory"
 msgstr "* -merkityt kentät ovat pakollisia"
 
-#, php-format
-msgid "File \"%1$s\" doesn't exist"
-msgstr "Tiedostoa ”%1$s” ei ole"
-
 msgid "Filter"
 msgstr "Suodatin"
+
+msgid "First"
+msgstr ""
 
 msgid "First name"
 msgstr "Etunimi"
 
+msgid "Found products"
+msgstr ""
+
 msgid "GB999999973"
 msgstr "GB999999973"
 
-msgid "Go"
-msgstr "Mene"
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr "Ruudukkonäkymä"
@@ -413,14 +310,6 @@ msgstr "HH:mm"
 
 msgid "Highest price"
 msgstr ""
-
-#, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
-msgstr "Hyväksyn <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> ja <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
 
 #, php-format
 msgid ""
@@ -438,14 +327,10 @@ msgstr "Jos taas varastossa"
 msgid "If price decreases"
 msgstr "Jos hinta laskee"
 
-msgid "If you have any questions, please reply to this e-mail"
-msgstr "Mikäli sinulla on kysymyksiä, ole hyvä ja vastaa tähän sähköpostiin"
-
 #, php-format
 msgid "Incl. %1$s%% %2$s"
 msgstr "Sis. %1$s%% %2$s"
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr "Sis. %1$s%% Alv."
@@ -457,16 +342,8 @@ msgid "Interval"
 msgstr "Väli"
 
 #, php-format
-msgid "Invalid characters in class name \"%1$s\""
-msgstr "Virheellisiä merkkejä luokkanimessä \"%1$s\""
-
-#, php-format
 msgid "Invalid characters in client name \"%1$s\""
 msgstr "Virheellisiä merkkejä asiakasnimessä \"%1$s\""
-
-#, php-format
-msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr "Virheellisiä merkkejä asiakasnimessä \"%1$s” \"%2$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -476,16 +353,14 @@ msgstr "Virheellinen luokkanimi \"%1$s\""
 msgid "Invalid domain \"%1$s\""
 msgstr "Virheellinen verkkotunnus \"%1$s\""
 
-#, php-format
-msgid "Invalid factory \"%1$s\""
-msgstr "Virheellinen tehdas \"%1$s\""
-
-#, php-format
-msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "Virheellinen prosessivastaus palveluntarjoajalta koodilla \"%1$s\""
+msgid "Invoice"
+msgstr ""
 
 msgid "Language"
 msgstr "Kieli"
+
+msgid "Last"
+msgstr ""
 
 msgid "Last name"
 msgstr "Sukunimi"
@@ -496,16 +371,16 @@ msgstr "Nähty viimeksi"
 msgid "Latest"
 msgstr "Viimeisin"
 
-msgid "Like entered by you"
-msgstr "Antamasi tykkäys"
-
 msgid "List view"
 msgstr "Listanäkymä"
 
-msgid "Login"
-msgstr "Kirjaudu sisään"
-
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -536,34 +411,11 @@ msgid "No order ID available in session"
 msgstr ""
 
 #, php-format
-msgid "No product with ID \"%1$s\" found"
-msgstr "ID:llä \"%1$s” ei löytynyt tuotetta"
-
-#, php-format
-msgid "No service for code \"%1$s\" found"
-msgstr "Koodilla \"%1$s” ei löytynyt palvelua"
-
-#, php-format
-msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "Minkään tyyppistä tavaraa ei löytynyt osiosta \"%3$s” haulla \"%1$s/%2$s\""
-
-#, php-format
 msgid "No view available"
 msgstr "Katsastelu ei mahdollista"
 
-#, php-format
-msgid "Number of coupon codes exceeds the limit"
-msgstr "Alennuskoodien määrä ylittää sallitun rajan"
-
-#, php-format
-msgid "Object doesn't implement \"%1$s\""
-msgstr "Olio ei toimeenpane \"%1$s\""
-
 msgid "One month"
 msgstr "Yksi kuukausi"
-
-msgid "One or more products you are watching have been updated."
-msgstr "Yksi tai useampi seuraamasi tuote on päivitetty."
 
 msgid "One week"
 msgstr "Yksi viikko"
@@ -571,24 +423,8 @@ msgstr "Yksi viikko"
 msgid "Open submenu"
 msgstr ""
 
-msgid "Options"
-msgstr "Vaihtoehdot"
-
-msgid "Order"
-msgstr "Tilaus"
-
-#, php-format
-msgid "Order %1$s"
-msgstr "Tilaus %1$s"
-
 msgid "Order ID"
 msgstr "Tilaus ID"
-
-msgid "Order channel"
-msgstr "Tilauskanava"
-
-msgid "Order date"
-msgstr "Tilauspäivämäärä"
 
 msgid "Order details"
 msgstr "Tilauksen lisätiedot"
@@ -599,22 +435,12 @@ msgstr "Tilaushistoria"
 msgid "Order status"
 msgstr "Tilauksen tila"
 
-#, php-format
-msgid "Order with ID \"%1$s\" not found"
-msgstr "Tilausta ID:llä \"%1$s” ei löytynyt"
-
 msgid "Other customers also bought"
 msgstr "Muut asiakkaat ostivat myös"
-
-msgid "Our products"
-msgstr "Tuotteemme"
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "Sivu %1$d / %2$d"
-
-msgid "Password"
-msgstr "Salasana"
 
 msgid "Pay now"
 msgstr "Maksa nyt"
@@ -652,14 +478,6 @@ msgstr "Kirjoita vähintään kolme merkkiä"
 msgid "Please enter your payment details"
 msgstr "Kirjoita maksutietosi"
 
-#, php-format
-msgid "Please recheck your delivery choice"
-msgstr "Tarkista toimitustapa"
-
-#, php-format
-msgid "Please recheck your payment choice"
-msgstr "Tarkista maksutapa"
-
 msgid "Please select"
 msgstr "Valitse"
 
@@ -671,6 +489,9 @@ msgstr "Edellinen"
 
 msgid "Price"
 msgstr "Hinta"
+
+msgid "Price filter"
+msgstr ""
 
 msgid "Price range"
 msgstr ""
@@ -684,14 +505,41 @@ msgstr "Maksun käsittely epäonnistui"
 msgid "Product"
 msgstr "Tuote"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "Tuotekuva"
 
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr ""
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
+
 msgid "Products you might be also interested in"
 msgstr "Tuotteita, joista saatat olla kiinnostunut"
-
-msgid "Properties"
-msgstr "Ominaisuudet"
 
 msgid "Qty"
 msgstr "Kpl"
@@ -705,16 +553,12 @@ msgstr "Arvostelu"
 msgid "Reference"
 msgstr "Viittaus"
 
-msgid "Related"
-msgstr "Liittyy"
-
 msgid "Relevance"
 msgstr "Relevanssi"
 
 msgid "Reset"
 msgstr "Nollaa"
 
-#. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Tulokset haulle \"%1$s\""
@@ -733,6 +577,12 @@ msgstr "Tervehdys"
 
 msgid "Save"
 msgstr "Tallenna"
+
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
 
 msgid "Search"
 msgstr "Hae"
@@ -760,12 +610,6 @@ msgstr "Valitse tervehdys"
 msgid "Select state"
 msgstr "Valitse alue/osavaltio"
 
-msgid "Service fees"
-msgstr "Palvelumaksut"
-
-msgid "Services"
-msgstr "Palvelut"
-
 msgid "Share"
 msgstr "Jaa"
 
@@ -775,8 +619,8 @@ msgstr "Toimitus"
 msgid "Show"
 msgstr "Näytä"
 
-msgid "Show all quotes"
-msgstr "Näytä kaikki hinnat"
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Järjestä:"
@@ -784,24 +628,13 @@ msgstr "Järjestä:"
 msgid "State"
 msgstr "Alue/osavaltio"
 
-msgid "Status"
-msgstr "Tila"
-
 msgid "Stock"
 msgstr "Varastossa"
 
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out) and
-#. stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Varastossa: %1$s, %2$s"
 
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out), stock
-#. level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Varastossa: %1$s, %2$s, uudestaan %3$s"
@@ -821,16 +654,6 @@ msgstr "Tilauksen ID"
 msgid "Subscription details"
 msgstr "Tilauksen tiedot"
 
-msgid "Subscription interval"
-msgstr "Tilauksen aikaväli"
-
-msgid "Subscription product"
-msgstr "Tilaustuote"
-
-#, php-format
-msgid "Subscription with ID \"%1$s\" not found"
-msgstr "Tilausta ID:llä \"%1$s” ei löytynyt"
-
 msgid "Subscriptions"
 msgstr "Tilaukset"
 
@@ -843,6 +666,9 @@ msgstr "Summa"
 msgid "Supplier information"
 msgstr "Toimittajan tiedot"
 
+msgid "Supplier list"
+msgstr ""
+
 msgid "Suppliers"
 msgstr "Toimittajat"
 
@@ -852,42 +678,8 @@ msgstr ""
 msgid "Telephone"
 msgstr "Puhelin"
 
-#, php-format
-msgid "Template \"%1$s\" not available"
-msgstr "Sapluuna \"%1$s\" ei saatavilla"
-
 msgid "Terms and conditions"
 msgstr "Käyttöehdot"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "Thank you for your order %1$s from %2$s."
-msgstr "Kiitos tilauksestasi %1$s sivulta %2$s."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Kiitos tilauksestasi %1$s sivulta %2$s.\n\nTilaus on vireillä kunnes vastaanotamme täyden maksun. Jos olet päättänyt maksaa etukäteen, ole hyvä ja siirrä rahat pankkitilillemme käyttäen tilaus-ID:tä %1$s viitteenä."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"We received the payment and will care about your order immediately."
-msgstr "Kiitos tilauksestasi %1$s sivulta %2$s.\n\nVastaanotimme maksun ja hoidamme tilauksesi saman tien."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -902,63 +694,15 @@ msgstr "Kiitos tilauksestasi.\nVastaanotimme maksusi. Sinulle lähetetään muut
 msgid "Thank you for your review!"
 msgstr "Kiitos arvioinnistasi!"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr "Sivulta %2$s tekemäsi tilauksen %1$s toimituksen tila on muutettu tilaan \"%3$s\"."
-
-#, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr "Tilaus on vireillä kunnes vastaanotamme koko maksun. Jos olet päättänyt maksaa etukäteen, ole hyvä ja siirrä rahat pankkitilillemme käyttäen tilaus-ID:tä %1$s viitteenä."
-
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr "Tilaus peruttiin.\nHaluatko yrittää tilausta uudelleen?"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "Sivulta %2$s tilaamasi tilauksen %1$s pakettia ei voitu toimittaa."
-
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "Tilauksesi maksua ei ole vielä vahvistettu.\nSaat sähköpostiviestin heti, kun maksu on hyväksytty."
-
-msgid "The payment couldn't be renewed"
-msgstr "Maksua ei voitu uusia"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "%2$s tilaamasi tilauksen %1$s maksu on hyvitetty."
-
-msgid "The subscription for the product has ended"
-msgstr "Tuotteen tilausaika on päättynyt"
-
-msgid "The subscription for the product has ended."
-msgstr "Tuotteen tilausaika on päättynyt."
-
-#, php-format
-msgid "The value of your voucher is %1$s"
-msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] "Etusetelisi arvo on %1$s"
-msgstr[1] "Etuseteleidesi arvo on %1$s"
 
 msgid "Three month"
 msgstr "Kolme kuukautta"
@@ -969,14 +713,8 @@ msgstr "Aikaväli"
 msgid "Toggle fullscreen"
 msgstr "Ota kokonäyttötila käyttöön"
 
-msgid "Top seller"
-msgstr "Paras myyjä"
-
 msgid "Total"
 msgstr "Kokonaisuudessaan"
-
-msgid "Total quantity"
-msgstr "Kokonaismäärä"
 
 msgid "Try again"
 msgstr "Yritä uudelleen"
@@ -985,24 +723,12 @@ msgid "Two weeks"
 msgstr "Kaksi viikkoa"
 
 #, php-format
-msgid "Unable to call method \"%1$s\""
-msgstr "Toimintoa \"%1$s” ei voitu suorittaa"
-
-#, php-format
-msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr "Käyttäjätilin luominen \"%1$s\": %2$s ei onnistunut"
-
-#, php-format
 msgid "Unable to create an account: %1$s"
 msgstr "Käyttäjätilin %1$s luominen ei onnistunut"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr "Osoitteen tallentaminen asiakkaalle \"%1$s\": %2$s ei onnistunut"
-
-#, php-format
-msgid "Unable to set cache entry: %1$s"
-msgstr "Välimuistin merkintä %1$s ei onnistunut"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -1027,29 +753,12 @@ msgstr "Katso"
 msgid "Watched products"
 msgstr "Katsotut tuotteet"
 
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr "Olemme vastaanottaneet maksusi ja käsittelemme tilauksesi välittömästi."
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "Vastaanotimme sivulta %2$s tilaamasi tilauksen %1$s palautetun paketin "
-
 msgid "Web site"
 msgstr "Verkkosivu"
 
 msgid "What do you think about the product"
 msgstr "Mitä mieltä olet tuotteesta"
 
-msgid "X"
-msgstr "X"
-
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "V-kk-pvä"
 
@@ -1070,43 +779,17 @@ msgstr ""
 msgid "You can only watch up to %1$s products"
 msgstr ""
 
-msgid "You can use your voucher any time in our online shop"
-msgstr "Voit kauttaa etuseteliäsi nettikaupassamme milloin vain"
-
-msgid "You can use your vouchers at any time in our online shop"
-msgstr "Voit kauttaa etuseteleitäsi nettikaupassamme milloin vain"
+msgid "You must log in first"
+msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Sinut ohjataan nyt seuraavaan vaiheeseen"
-
-msgid "You've cancelled the subscription"
-msgstr "Olet perunut tilauksen"
-
-msgid "Your account"
-msgstr "Käyttäjätilisi"
 
 msgid "Your choice"
 msgstr "Valintasi"
 
 msgid "Your comment"
 msgstr "Kommenttisi"
-
-#. / Account creation e-mail subject
-msgid "Your new account"
-msgstr "Uusi käyttäjätilisi"
-
-#. / Payment e-mail subject with order ID
-#, php-format
-msgid "Your order %1$s"
-msgstr "Tilauksesi %1$s"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Tilauksesi %1$s sivulta %2$s on lähetetty."
 
 msgid "Your rating"
 msgstr "Arvostelusi"
@@ -1120,37 +803,12 @@ msgstr "Viitenumerosi"
 msgid "Your review"
 msgstr "Arviointisi"
 
-msgid "Your search result"
-msgstr "Hakutuloksesi"
-
-msgid "Your subscription"
-msgstr "Tilauksesi"
-
-msgid "Your subscription product"
-msgstr "Tilaustuotteesi"
-
-msgid "Your voucher"
-msgstr "Etusetelisi"
-
-msgid "Your voucher: "
-msgstr "Etusetelisi: "
-
-msgid "Your vouchers: "
-msgstr "Etusetelisi: "
-
-#. / Product notification e-mail subject
-msgid "Your watched products"
-msgstr "Katsomasi tuotteet"
-
 msgid "Zoom in/out"
 msgstr "Zoomaa sisään / ulos"
 
 #, php-format
 msgid "address"
 msgstr "osoite"
-
-msgid "clear all"
-msgstr "tyhjennä"
 
 #, php-format
 msgid "delivery"
@@ -1159,7 +817,6 @@ msgstr "toimitus"
 msgid "favorite"
 msgstr ""
 
-#. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
 msgstr "sivulta %1$s"
@@ -1177,10 +834,6 @@ msgid "on request"
 msgstr ""
 
 #, php-format
-msgid "order"
-msgstr "tilaus"
-
-#, php-format
 msgid "payment"
 msgstr "maksu"
 
@@ -1188,34 +841,27 @@ msgid "pin"
 msgstr ""
 
 msgid "price:default"
-msgstr "hinta:oletusarvo"
+msgstr ""
 
 #, php-format
 msgid "process"
 msgstr "prosessi"
 
-#. / code for "product is in stock"
 msgid "stock-high"
 msgstr "tuotteita-paljon"
 
-#. / code for "only a few products are available"
 msgid "stock-low"
 msgstr "tuotteita-vähän"
 
-#. / code for "product is out of stock"
 msgid "stock-out"
 msgstr "tuotteita-loppu"
 
-#. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
 msgstr "tuotteita-rajattomasti"
 
 #, php-format
 msgid "summary"
 msgstr "yhteenveto"
-
-msgid "tax"
-msgstr "vero"
 
 msgid "watch"
 msgstr ""
@@ -1231,9 +877,6 @@ msgstr "▶"
 
 msgid "▶▶"
 msgstr "▶▶"
-
-msgid "▼"
-msgstr "▼"
 
 msgid "▼ Name"
 msgstr "▼ Nimi"

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -59,7 +59,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringStartsWith( '<div class="section aimeos catalog-filter"', $output );
 		$this->assertEquals( '2100-01-01 00:00:00', $expire );
-		$this->assertEquals( 2, count( $tags ) );
+		$this->assertEquals( 3, count( $tags ) );
 	}
 
 
@@ -72,14 +72,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 

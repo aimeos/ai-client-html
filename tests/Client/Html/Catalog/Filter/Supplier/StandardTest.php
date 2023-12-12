@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2018-2022
+ * @copyright Aimeos (aimeos.org), 2018-2023
  */
 
 
@@ -47,7 +47,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 
 		$regex = '#<div class="supplier-lists">.*<ul class="attr-list">.*</ul>.*</fieldset>#smu';
-		$this->assertRegexp( $regex, $output );
+
+		$this->assertMatchesRegularExpression( $regex, $output );
+		$this->assertEquals( '2100-01-01 00:00:00', $expire );
+		$this->assertEquals( 3, count( $tags ) );
 	}
 
 

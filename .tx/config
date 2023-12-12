@@ -1,13 +1,13 @@
 [main]
 host = https://www.transifex.com
 
-[aimeos-core.client]
+[o:aimeos:p:aimeos-core:r:client]
 file_filter = i18n/<lang>.po
 source_file = i18n/core-client.pot
 source_lang = en
 type = PO
 
-[aimeos-core.client-code]
+[o:aimeos:p:aimeos-core:r:client-code]
 file_filter = i18n/code/<lang>.po
 source_file = i18n/code/core-client-code.pot
 source_lang = en

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$regex = '/<fieldset class="attr-sets attr-color">.*<fieldset class="attr-sets attr-width">.*<fieldset class="attr-sets attr-length">/smu';
 		$this->assertStringNotContainsString( '<fieldset class="attr-sets attr-size">', $output );
-		$this->assertRegexp( $regex, $output );
+		$this->assertMatchesRegularExpression( $regex, $output );
 	}
 
 

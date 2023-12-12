@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2022
+ * @copyright Aimeos (aimeos.org), 2020-2023
  */
 
 $enc = $this->encoder();
@@ -13,7 +13,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 ?>
 <?php $this->block()->start( 'catalog/filter/price' ) ?>
 <?php if( $this->get( 'priceHigh', 0 ) ) : ?>
-	<div class="section catalog-filter-price">
+	<div class="section catalog-filter-price" aria-label="<?= $enc->attr( $this->translate( 'client', 'Price filter' ) ) ?>">
 		<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
 
 		<div class="price-lists">

@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Gülsüm Akça <akcagulsum1@gmail.com>, 2021
-# Metal <meteoramic@yahoo.com>, 2015-2022
+# Metal <meteoramic@yahoo.com>, 2015-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-05 07:41+0200\n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2022\n"
-"Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2023\n"
+"Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,14 +31,6 @@ msgid_plural "%1$d reviews"
 msgstr[0] "%1$d yorum"
 msgstr[1] "%1$d değerlendirme"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -56,78 +48,65 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
-#. / Price format with price value (%1$s) and currency (%2$s)
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
+
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s indirim"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
 #, php-format
-msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s ( %4$s%2$s%3$s )"
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr "%1$s (%4$s%2$s%3$s)"
 
-#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s, %2$s tarihinde"
 
-#. / Percent format with value (%1$s) and % sign
-#, php-format
-msgid "%1$s%%"
-msgstr "%1$s%%"
-
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
-msgid "+"
-msgstr "+"
-
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
 #, php-format
-msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/ürün"
+msgid "+ %1$s %2$s"
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr "+ %1$s%% %2$s"
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
 msgstr "+ %%%1$s KDV"
 
-msgid "+ Payment costs"
-msgstr "+ Ödeme maliyetleri"
-
-msgid "+ Shipping"
-msgstr "+ Nakliye"
-
-msgid "+ shipping costs"
-msgstr "+ Nakliye masrafları"
-
 msgid "+1 123 456 7890"
 msgstr "+90 232 222 2222"
 
-#. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
 msgstr "Kurtarılamaz bir hata oluştu"
-
-msgid "Account"
-msgstr "Hesap"
 
 msgid "Add billing address"
 msgstr "Fatura adresi ekleyin"
@@ -141,39 +120,14 @@ msgstr "Devam"
 msgid "Additional 2"
 msgstr "Devam 2"
 
-msgid "Address"
-msgid_plural "Addresses"
-msgstr[0] "Adres"
-msgstr[1] "Adresler"
-
-#, php-format
-msgid "Address with ID \"%1$s\" not found"
-msgstr "\"%1$s\" kimlik numaralı adres bulunamadı"
-
-msgid "Addresses"
-msgstr "Adresler"
-
-msgid ""
-"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
-"\n"
-"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "Sevk edilen tüm gönderiler web sitemizde yer alan ve siparişinizi verdiğinizde kabul etmiş sayıldığınız hüküm ve koşullara tabidir.\n\nBu e-mail gizli bilgi içermektedir ve sadece hitap edilen kişinin kullanımı içindir. Eğer bu kişi siz değilseniz lütfen bu maile cevap verin ve daha sonra ekleriyle beraber bu e-maili silin."
-
-#. / Payment e-mail legal information
-msgid "All orders are subject to our terms and conditions."
-msgstr "Tüm siparişler web sitemizde yer alan ve siparişinizi verdiğinizde kabul etmiş sayıldığınız hüküm ve koşullara tabidir.\n\nBu e-mail gizli bilgi içermektedir ve sadece hitap edilen kişinin kullanımı içindir. Eğer bu kişi siz değilseniz lütfen bu maile cevap verin ve daha sonra ekleri de dahil bu maili sisteminizden silin."
-
-msgid "An account has been created for you."
-msgstr "Sizin için bir hesap oluşturuldu."
+msgid "Apply"
+msgstr "Uygula"
 
 msgid "Article"
 msgstr "Ürün"
 
 msgid "Article no."
 msgstr "Ürün Kodu"
-
-msgid "Article no.:"
-msgstr "Ürün Kodu:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -183,14 +137,20 @@ msgstr "En az bir fatura adresi bölümü eksik veya geçersiz"
 msgid "At least one delivery address part is missing or invalid"
 msgstr "En az bir teslimat adresi bölümü eksik veya geçersiz"
 
-msgid "Attributes"
-msgstr "Seçimi Daralt"
-
 msgid "Back"
 msgstr "Geri"
 
 msgid "Basket"
-msgstr "Ürün Sepetiniz"
+msgstr "Sepet"
+
+msgid "Basket details"
+msgstr "Sepet detayları"
+
+msgid "Basket name"
+msgstr "Sepet adı"
+
+msgid "Basket saved sucessfully"
+msgstr "Sepet başarıyla kaydedildi"
 
 msgid "Billing address"
 msgstr "Fatura adresi"
@@ -204,7 +164,10 @@ msgid "Billing address part \"%1$s\" is missing"
 msgstr "Fatura adresinin \"%1$s\" bölümü eksik"
 
 msgid "Birthday"
-msgstr "Doğum günü"
+msgstr "Doğum tarihi"
+
+msgid "Breadcrumb navigation"
+msgstr "İçerik haritası navigasyonu"
 
 msgid "Bulk order"
 msgstr "Toplu sipariş"
@@ -222,19 +185,13 @@ msgid "Categories"
 msgstr "Kategoriler"
 
 msgid "Change"
-msgstr "Değiştir"
+msgstr "Düzenle"
 
 msgid "Change payment"
 msgstr "Ödemeyi değiştir"
 
-msgid "Channel"
-msgstr "Kanal"
-
 msgid "Characteristics"
 msgstr "Teknik özellikler"
-
-msgid "Check"
-msgstr "Kontrol et"
 
 msgid "Checkout"
 msgstr "Ödemeye Geç"
@@ -243,32 +200,8 @@ msgid "City"
 msgstr "İlçe"
 
 #, php-format
-msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "Class \"%1$s\" \"%2$s\" uygulamıyor"
-
-#, php-format
-msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "Class \"%1$s\" arayüz \"%2$s\" uygulamıyor"
-
-#, php-format
-msgid "Class \"%1$s\" not available"
-msgstr "Class \"%1$s\" mevcut değil"
-
-#, php-format
 msgid "Class \"%1$s\" not found"
 msgstr "Class \"%1$s\" bulunamadı"
-
-#, php-format
-msgid "Client HTML type is empty"
-msgstr "İstemci HTML türü boş"
-
-#, php-format
-msgid "Client path is empty"
-msgstr "İstemci yolu boş"
-
-#, php-format
-msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr "\"%1$s\" istemci türü \"/\" ile ayrılmış şekilde iki parçadan oluşmalıdır"
 
 msgid "Close"
 msgstr "Kapat"
@@ -296,40 +229,6 @@ msgstr "Oluşturulma Tarihi"
 
 msgid "Customer account"
 msgstr "Müşteri hesabı"
-
-#, php-format
-msgid "Customer with ID \"%1$s\" not found"
-msgstr " \"%1$s\" kimlik numaralı müşteri bulunamadı"
-
-#, php-format
-msgid "Dear %1$s %2$s"
-msgstr "Sayın %1$s %2$s"
-
-#, php-format
-msgid "Dear %1$s %2$s %3$s"
-msgstr "Sayın %1$s %2$s %3$s"
-
-#, php-format
-msgid "Dear Miss %1$s %2$s"
-msgstr "Sayın %1$s %2$s Hanım"
-
-#, php-format
-msgid "Dear Mr %1$s %2$s"
-msgstr "Sayın %1$s %2$s Bey"
-
-#, php-format
-msgid "Dear Mrs %1$s %2$s"
-msgstr "Sayın %1$s %2$s Hanım"
-
-#, php-format
-msgid "Dear Ms %1$s %2$s"
-msgstr "Sayın %1$s%2$s Hanım"
-
-msgid "Dear Sir or Madam"
-msgstr "Sayın Müşterimiz"
-
-msgid "Dear customer"
-msgstr "Değerli müşterimiz"
 
 msgid "Delete"
 msgstr "Sil"
@@ -373,10 +272,6 @@ msgstr "İndirilebilir Dökümanlar"
 msgid "E-Mail"
 msgstr "E-Posta"
 
-#. / E-mail HTML title
-msgid "E-mail notification"
-msgstr "E-posta bildirimi"
-
 msgid "End date"
 msgstr "Bitiş tarihi"
 
@@ -389,21 +284,23 @@ msgstr "Faks"
 msgid "Fields with an * are mandatory"
 msgstr "* ile işaretlenmiş alanların doldurulması zorunludur"
 
-#, php-format
-msgid "File \"%1$s\" doesn't exist"
-msgstr "\"%1$s\" dosyası mevcut değil"
-
 msgid "Filter"
 msgstr "Filtre"
+
+msgid "First"
+msgstr "Birinci"
 
 msgid "First name"
 msgstr "Ad"
 
+msgid "Found products"
+msgstr "Bulunan Ürünler"
+
 msgid "GB999999973"
 msgstr "Ör: Bornova / 123 456 789 11"
 
-msgid "Go"
-msgstr "Ara"
+msgid "Go to page"
+msgstr "Sayfaya git"
 
 msgid "Grid view"
 msgstr "Izgara görünümü"
@@ -413,14 +310,6 @@ msgstr "SS:dd"
 
 msgid "Highest price"
 msgstr "En yüksek fiyat"
-
-#, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
-msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">Hükümler ve koşullar</a> ve<a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">gizlilik politikası</a> şartlarını kabul ediyorum."
 
 #, php-format
 msgid ""
@@ -438,14 +327,10 @@ msgstr "Stoğa girdiğinde"
 msgid "If price decreases"
 msgstr "Fiyat düştüğünde"
 
-msgid "If you have any questions, please reply to this e-mail"
-msgstr "Herhangi bir sorunuz varsa lütfen bu maili cevaplayın."
-
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "%1$s%%%2$s dahil"
+msgstr "%%%1$s %2$s dahil "
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr "%%%1$s KDV dahil"
@@ -457,16 +342,8 @@ msgid "Interval"
 msgstr "Aralık"
 
 #, php-format
-msgid "Invalid characters in class name \"%1$s\""
-msgstr "%1$s\" class adında geçersiz karakterler"
-
-#, php-format
 msgid "Invalid characters in client name \"%1$s\""
 msgstr "\"%1$s\" istemci adında geçersiz karakterler"
-
-#, php-format
-msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr "\"%2$s\" içinde \"%1$s\" istemci adında geçersiz karakterler"
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -476,16 +353,14 @@ msgstr "Geçersiz class adı \"%1$s\""
 msgid "Invalid domain \"%1$s\""
 msgstr "Geçersiz domain \"%1$s\""
 
-#, php-format
-msgid "Invalid factory \"%1$s\""
-msgstr "Geçersiz üretici \"%1$s\""
-
-#, php-format
-msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "\"%1$s\" kodlu hizmet sağlayıcısından geçersiz işlem yanıtı"
+msgid "Invoice"
+msgstr "Fatura"
 
 msgid "Language"
 msgstr "Dil"
+
+msgid "Last"
+msgstr "Sonuncu"
 
 msgid "Last name"
 msgstr "Soyad"
@@ -496,17 +371,17 @@ msgstr "Son görüntülenenler"
 msgid "Latest"
 msgstr "En yeni"
 
-msgid "Like entered by you"
-msgstr "Tarafınızdan girildiği gibi"
-
 msgid "List view"
 msgstr "Liste görünümü"
 
-msgid "Login"
-msgstr "Oturum aç"
-
 msgid "Lowest price"
 msgstr "En düşük fiyat"
+
+msgid "Mobile"
+msgstr "Cep telefonu"
+
+msgid "Mobile number"
+msgstr "Cep telefonu numarası"
 
 msgid "More reviews"
 msgstr "Daha fazla yorum"
@@ -536,34 +411,11 @@ msgid "No order ID available in session"
 msgstr "Oturumda hiçbir sipariş kimliği yok"
 
 #, php-format
-msgid "No product with ID \"%1$s\" found"
-msgstr "\"%1$s\" kimlik numaralı ürün bulunamadı"
-
-#, php-format
-msgid "No service for code \"%1$s\" found"
-msgstr "\"%1$s\" kodu için hiçbir hizmet bulunamadı"
-
-#, php-format
-msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "\"%3$s\" içinde \"%1$s/%2$s\" için hiçbir tür öğesi bulunamadı"
-
-#, php-format
 msgid "No view available"
 msgstr "Hiçbir görünüm mevcut değil"
 
-#, php-format
-msgid "Number of coupon codes exceeds the limit"
-msgstr "Kupon kodu sayısı limiti aşıyor"
-
-#, php-format
-msgid "Object doesn't implement \"%1$s\""
-msgstr "Nesne \"%1$s\" uygulamıyor"
-
 msgid "One month"
 msgstr "Bir ay"
-
-msgid "One or more products you are watching have been updated."
-msgstr "İzleme listenizde yer alan bir veya daha fazla ürün güncellendi."
 
 msgid "One week"
 msgstr "Bir hafta"
@@ -571,24 +423,8 @@ msgstr "Bir hafta"
 msgid "Open submenu"
 msgstr "Alt Kategoriyi Aç"
 
-msgid "Options"
-msgstr "Seçenekler"
-
-msgid "Order"
-msgstr "Sipariş"
-
-#, php-format
-msgid "Order %1$s"
-msgstr "Sipariş %1$s"
-
 msgid "Order ID"
 msgstr "Sipariş kimlik numarası"
-
-msgid "Order channel"
-msgstr "Sipariş kanalı"
-
-msgid "Order date"
-msgstr "Sipariş tarihi"
 
 msgid "Order details"
 msgstr "Sipariş detayları"
@@ -599,22 +435,12 @@ msgstr "Sipariş geçmişi"
 msgid "Order status"
 msgstr "Sipariş durumu"
 
-#, php-format
-msgid "Order with ID \"%1$s\" not found"
-msgstr "\"%1$s\" kimlik numaralı sipariş bulunamadı"
-
 msgid "Other customers also bought"
 msgstr "Diğer müşteriler şunları da aldı"
-
-msgid "Our products"
-msgstr "Ürünlerimiz"
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "%2$d sayfadan %1$d."
-
-msgid "Password"
-msgstr "Şifre"
 
 msgid "Pay now"
 msgstr "Şimdi öde"
@@ -652,14 +478,6 @@ msgstr "Lütfen en az üç karakter girin"
 msgid "Please enter your payment details"
 msgstr "Lütfen ödeme detaylarını giriniz"
 
-#, php-format
-msgid "Please recheck your delivery choice"
-msgstr "Lütfen teslimat seçiminizi tekrar kontrol edin"
-
-#, php-format
-msgid "Please recheck your payment choice"
-msgstr "Lütfen ödeme seçiminizi tekrar kontrol edin"
-
 msgid "Please select"
 msgstr "Lütfen seçiniz"
 
@@ -671,6 +489,9 @@ msgstr "Önceki"
 
 msgid "Price"
 msgstr "Fiyat"
+
+msgid "Price filter"
+msgstr "Fiyat filtresi"
 
 msgid "Price range"
 msgstr "Fiyat aralığı"
@@ -684,14 +505,41 @@ msgstr "Ödeme işleme başarısız oldu"
 msgid "Product"
 msgstr "Ürün"
 
+msgid "Product actions"
+msgstr "Ürün hareketleri"
+
+msgid "Product attributes"
+msgstr "Ürün nitelikleri"
+
+msgid "Product categories"
+msgstr "Ürün kategorileri"
+
+msgid "Product characteristics"
+msgstr "Ürün özellikleri"
+
+msgid "Product description"
+msgstr "Ürün açıklaması"
+
+msgid "Product filters"
+msgstr "Ürün filtreleri"
+
 msgid "Product image"
 msgstr "Ürün resmi"
 
+msgid "Product information"
+msgstr "Ürün bilgisi"
+
+msgid "Product price"
+msgstr "Ürün fiyatı"
+
+msgid "Product reviews"
+msgstr "Ürün değerlendirmeleri"
+
+msgid "Product search"
+msgstr "Ürün arama"
+
 msgid "Products you might be also interested in"
 msgstr "İlgilenebileceğiniz diğer ürünler"
-
-msgid "Properties"
-msgstr "Özellikler"
 
 msgid "Qty"
 msgstr "Miktar"
@@ -705,19 +553,15 @@ msgstr "Puanlama"
 msgid "Reference"
 msgstr "Referans"
 
-msgid "Related"
-msgstr "İlgili"
-
 msgid "Relevance"
 msgstr "İlgi"
 
 msgid "Reset"
 msgstr "Sıfırla"
 
-#. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
-msgstr "\"%1$s\" için sonuç"
+msgstr "\"%1$s\" İçin Sonuçlar"
 
 msgid "Reviews"
 msgstr "Değerlendirmeler"
@@ -733,6 +577,12 @@ msgstr "Selamlama"
 
 msgid "Save"
 msgstr "Kaydet"
+
+msgid "Saved basket removed sucessfully"
+msgstr "Kayıtlı sepet başarıyla kaldırıldı"
+
+msgid "Saved baskets"
+msgstr "Kayıtlı sepetler"
 
 msgid "Search"
 msgstr "Aranacak kelimeyi girin"
@@ -760,12 +610,6 @@ msgstr "Selamlama seç"
 msgid "Select state"
 msgstr "Bir il seçin"
 
-msgid "Service fees"
-msgstr "Hizmet ücretleri"
-
-msgid "Services"
-msgstr "Hizmetler"
-
 msgid "Share"
 msgstr "Paylaş"
 
@@ -775,33 +619,22 @@ msgstr "Nakliye"
 msgid "Show"
 msgstr "Göster"
 
-msgid "Show all quotes"
-msgstr "Tüm değerlendirmeleri göster"
+msgid "Sort by"
+msgstr "Sırala"
 
 msgid "Sort by:"
-msgstr "Sıralama ölçütü"
+msgstr "Sırala"
 
 msgid "State"
 msgstr "İl"
 
-msgid "Status"
-msgstr "Durum"
-
 msgid "Stock"
 msgstr "Stok"
 
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out) and
-#. stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Stok: %1$s, %2$s"
 
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out), stock
-#. level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Stok: %1$s, %2$s, tekrar mevcut %3$s"
@@ -821,16 +654,6 @@ msgstr "Abonelik kimlik numarası"
 msgid "Subscription details"
 msgstr "Abonelik detayları"
 
-msgid "Subscription interval"
-msgstr "Abonelik aralığı"
-
-msgid "Subscription product"
-msgstr "Abonelik ürünü"
-
-#, php-format
-msgid "Subscription with ID \"%1$s\" not found"
-msgstr "\"%1$s\" kimlik numaralı abonelik bulunamadı"
-
 msgid "Subscriptions"
 msgstr "Abonelikler"
 
@@ -843,6 +666,9 @@ msgstr "Toplam"
 msgid "Supplier information"
 msgstr "Tedarikçi bilgileri"
 
+msgid "Supplier list"
+msgstr "Tedarikçi listesi"
+
 msgid "Suppliers"
 msgstr "Tedarikçiler"
 
@@ -852,42 +678,8 @@ msgstr "Gözat"
 msgid "Telephone"
 msgstr "Telefon"
 
-#, php-format
-msgid "Template \"%1$s\" not available"
-msgstr "Şablon \"%1$s\" mevcut değil"
-
 msgid "Terms and conditions"
 msgstr "Hükümler ve koşullar"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "Thank you for your order %1$s from %2$s."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz için teşekkür ederiz."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz için teşekkür ederiz.\n\nNihai ödeme tarafımızdan tahsil edilene kadar sipariş beklemede. Eğer peşin ödemeyi seçtiyseniz, lütfen ücreti %1$s sipariş kimlik numaranızı referans olarak ekleyerek banka hesabımıza transfer edin."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"We received the payment and will care about your order immediately."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz için teşekkür ederiz.\n\nÖdemeyi aldık ve derhal siparişinizle alakalı işlemlerle ilgileneceğiz."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -902,63 +694,15 @@ msgstr "Siparişiniz için teşekkür ederiz.\nÖdemenizi aldık ve önümüzdek
 msgid "Thank you for your review!"
 msgstr "Değerlendirmeniz için teşekkürler!"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişinizin teslimat durumu \"%3$s\" olarak güncellendi."
-
-#, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr "Nihai ödeme tarafımızca tahsil edilene kadar sipariş beklemede. Eğer peşin ödemeyi seçtiyseniz, lütfen ücreti %1$s sipariş kimlik numaranızı referans olarak ekleyerek banka hesabımıza transfer edin."
-
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr "Sipariş iptal edildi.\nSiparişinizi tekrar denemek ister misiniz?"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "%2$s 'den %1$s siparişiniz için parsel teslim edilemedi."
-
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "Siparişiniz için ödeme onayı hala bekliyor.\nÖdeme yetkilendirildiğinde bir e-mail alacaksınız."
-
-msgid "The payment couldn't be renewed"
-msgstr "Ödeme yenilenemedi"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişinizin ödemesi iade edilmiştir."
-
-msgid "The subscription for the product has ended"
-msgstr "Ürün için abonelik sona erdi"
-
-msgid "The subscription for the product has ended."
-msgstr "Ürün için abonelik sona erdi."
-
-#, php-format
-msgid "The value of your voucher is %1$s"
-msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] "Kuponunuzun değeri: %1$s"
-msgstr[1] "Kuponlarınızın değeri: %1$s"
 
 msgid "Three month"
 msgstr "Üç ay"
@@ -969,14 +713,8 @@ msgstr "Zaman aralığı"
 msgid "Toggle fullscreen"
 msgstr "Tam ekrana geç"
 
-msgid "Top seller"
-msgstr "Popüler ürünler"
-
 msgid "Total"
 msgstr "Toplam"
-
-msgid "Total quantity"
-msgstr "Toplam miktar"
 
 msgid "Try again"
 msgstr "Tekrar deneyin"
@@ -985,24 +723,12 @@ msgid "Two weeks"
 msgstr "İki hafta"
 
 #, php-format
-msgid "Unable to call method \"%1$s\""
-msgstr "Metot \"%1$s\" çağrılamıyor"
-
-#, php-format
-msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr "\"%1$s\" için bir hesap oluşturulamıyor: %2$s"
-
-#, php-format
 msgid "Unable to create an account: %1$s"
 msgstr "Bir hesap oluşturulamadı: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr "Müşteri \"%1$s\" için adresler kaydedilemiyor: %2$s"
-
-#, php-format
-msgid "Unable to set cache entry: %1$s"
-msgstr "önbellek girdisi ayarlanamadı: %1$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -1016,7 +742,7 @@ msgid "Variant"
 msgstr "Değişken"
 
 msgid "Vat ID"
-msgstr "Vergi Dairesi/Numarası"
+msgstr "Vergi Dairesi ve Numarası"
 
 msgid "Vendor response"
 msgstr "Satıcı yanıtı"
@@ -1027,29 +753,12 @@ msgstr "İzle"
 msgid "Watched products"
 msgstr "İzlenen ürünler"
 
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr "Ödemenizi aldık, derhal siparişinizle alakalı işlemlerle ilgileneceğiz."
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz için iade edilen paketi teslim aldık."
-
 msgid "Web site"
 msgstr "Web sitesi"
 
 msgid "What do you think about the product"
 msgstr "Ürün hakkında ne düşünüyorsun?"
 
-msgid "X"
-msgstr "X"
-
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
@@ -1070,43 +779,17 @@ msgstr "En fazla %1$s ürünü favori olarak kaydedebilirsiniz"
 msgid "You can only watch up to %1$s products"
 msgstr "En fazla %1$s ürünü izleyebilirsiniz"
 
-msgid "You can use your voucher any time in our online shop"
-msgstr "Kuponunuzu istediğiniz zaman online alışveriş mağazamızda kullanabilirsiniz"
-
-msgid "You can use your vouchers at any time in our online shop"
-msgstr "Kuponlarınızı istediğiniz zaman online alışveriş mağazamızda kullanabilirsiniz"
+msgid "You must log in first"
+msgstr "Öncelikle giriş yapmalısınız"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Şimdi bir sonraki adıma yönlendirileceksiniz"
-
-msgid "You've cancelled the subscription"
-msgstr "Aboneliği iptal ettiniz"
-
-msgid "Your account"
-msgstr "Hesabınız"
 
 msgid "Your choice"
 msgstr "Seçiminiz"
 
 msgid "Your comment"
 msgstr "Yorumunuz"
-
-#. / Account creation e-mail subject
-msgid "Your new account"
-msgstr "Yeni hesabınız"
-
-#. / Payment e-mail subject with order ID
-#, php-format
-msgid "Your order %1$s"
-msgstr "%1$s sıra numaralı siparişiniz"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "%2$s tarihinde vermiş olduğunuz %1$s sıra numaralı siparişiniz sevk edildi."
 
 msgid "Your rating"
 msgstr "Ürüne puan verin"
@@ -1120,37 +803,12 @@ msgstr "Referans numaranız"
 msgid "Your review"
 msgstr "Yorum yazazabilirsiniz"
 
-msgid "Your search result"
-msgstr "Arama sonucunuz"
-
-msgid "Your subscription"
-msgstr "Aboneliğiniz"
-
-msgid "Your subscription product"
-msgstr "Abonelik ürününüz"
-
-msgid "Your voucher"
-msgstr "Kuponunuz"
-
-msgid "Your voucher: "
-msgstr "Kuponunuz:"
-
-msgid "Your vouchers: "
-msgstr "Kuponlarınız:"
-
-#. / Product notification e-mail subject
-msgid "Your watched products"
-msgstr "İzlediğiniz ürünler"
-
 msgid "Zoom in/out"
 msgstr "Yakınlaştır/Uzaklaştır"
 
 #, php-format
 msgid "address"
 msgstr "Adres"
-
-msgid "clear all"
-msgstr "Hepsini temizle"
 
 #, php-format
 msgid "delivery"
@@ -1159,7 +817,6 @@ msgstr "Teslimat"
 msgid "favorite"
 msgstr "Favorilere Ekle"
 
-#. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
 msgstr "%1$s adet için"
@@ -1177,10 +834,6 @@ msgid "on request"
 msgstr "Talep üzerine"
 
 #, php-format
-msgid "order"
-msgstr "Sipariş"
-
-#, php-format
 msgid "payment"
 msgstr "Ödeme"
 
@@ -1194,28 +847,21 @@ msgstr "fiyat:varsayılan"
 msgid "process"
 msgstr "İşlem"
 
-#. / code for "product is in stock"
 msgid "stock-high"
 msgstr "Ürün çok sayıda mevcut"
 
-#. / code for "only a few products are available"
 msgid "stock-low"
 msgstr "Yalnızca birkaç adet mevcut"
 
-#. / code for "product is out of stock"
 msgid "stock-out"
 msgstr "Ürün tükendi"
 
-#. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
 msgstr "Ürün sınırsız sayıda mevcut"
 
 #, php-format
 msgid "summary"
 msgstr "Özet"
-
-msgid "tax"
-msgstr "vergi"
 
 msgid "watch"
 msgstr "İzlemeye Al"
@@ -1231,9 +877,6 @@ msgstr "▶"
 
 msgid "▶▶"
 msgstr "▶▶"
-
-msgid "▼"
-msgstr "▼"
 
 msgid "▼ Name"
 msgstr "▼ Ad"

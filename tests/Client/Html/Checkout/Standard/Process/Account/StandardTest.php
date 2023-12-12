@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -55,7 +55,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$address = $customerItem->getPaymentAddress()->setEmail( 'unittest@aimeos.org' )->toArray();
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
-		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
+		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT, $address );
 
 		$this->view = \TestHelper::view();
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, array( 'cs_option_account' => 1 ) );
@@ -64,7 +64,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'add', 'get', 'store' ) )
+			->onlyMethods( array( 'add', 'get', 'store' ) )
 			->getMock();
 
 		$customerStub->expects( $this->once() )->method( 'add' )->will( $this->returnValue( $customerStub ) );

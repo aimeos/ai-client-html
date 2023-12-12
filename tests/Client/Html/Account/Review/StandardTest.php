@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2022
+ * @copyright Aimeos (aimeos.org), 2020-2023
  */
 
 
@@ -50,7 +50,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBody()
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
+		$this->context->setUser( $manager->find( 'test@example.com' ) );
 
 		$this->view = $this->object->data( $this->view );
 		$this->view->reviewProductItems = map( \Aimeos\MShop::create( $this->context, 'product' )->find( 'CNE' ) );
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$stub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Review\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['save'] )
+			->onlyMethods( ['save'] )
 			->getMock();
 
 		$stub->expects( $this->once() )->method( 'save' );

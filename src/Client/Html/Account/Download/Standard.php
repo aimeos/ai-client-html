@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2022
+ * @copyright Aimeos (aimeos.org), 2016-2023
  * @package Client
  * @subpackage Html
  */
@@ -110,7 +110,7 @@ class Standard
 				return $view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
 			}
 
-			$manager = \Aimeos\MShop::create( $context, 'order/base/product/attribute' );
+			$manager = \Aimeos\MShop::create( $context, 'order/product/attribute' );
 			$item = $manager->get( $id );
 
 			if( $this->checkDownload( $id ) === false ) {
@@ -131,9 +131,9 @@ class Standard
 	/**
 	 * Adds the necessary headers and the download content to the reponse object
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface $item Order product attribute item with file reference
+	 * @param \Aimeos\MShop\Order\Item\Product\Attribute\Iface $item Order product attribute item with file reference
 	 */
-	protected function addDownload( \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface $item )
+	protected function addDownload( \Aimeos\MShop\Order\Item\Product\Attribute\Iface $item )
 	{
 		$fs = $this->context()->fs( 'fs-secure' );
 		$response = $this->view()->response();
@@ -183,12 +183,12 @@ class Standard
 
 		if( ( $customerId = $context->user() ) !== null && $id !== null )
 		{
-			$manager = \Aimeos\MShop::create( $context, 'order/base' );
+			$manager = \Aimeos\MShop::create( $context, 'order' );
 
 			$search = $manager->filter();
 			$expr = array(
-				$search->compare( '==', 'order.base.customerid', $customerId ),
-				$search->compare( '==', 'order.base.product.attribute.id', $id ),
+				$search->compare( '==', 'order.customerid', $customerId ),
+				$search->compare( '==', 'order.product.attribute.id', $id ),
 			);
 			$search->setConditions( $search->and( $expr ) );
 			$search->slice( 0, 1 );
@@ -247,4 +247,73 @@ class Standard
 
 		return false;
 	}
+
+
+	/** client/html/account/download/decorators/excludes
+	 * Excludes decorators added by the "common" option from the account download html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/account/download/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/download/decorators/global
+	 * @see client/html/account/download/decorators/local
+	 */
+
+	/** client/html/account/download/decorators/global
+	 * Adds a list of globally available decorators only to the account download html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/account/download/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/download/decorators/excludes
+	 * @see client/html/account/download/decorators/local
+	 */
+
+	/** client/html/account/download/decorators/local
+	 * Adds a list of local decorators only to the account download html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Account\Decorator\*") around the html client.
+	 *
+	 *  client/html/account/download/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/download/decorators/excludes
+	 * @see client/html/account/download/decorators/global
+	 */
 }

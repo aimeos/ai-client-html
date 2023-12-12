@@ -13,11 +13,11 @@ AimeosBasketMini = {
 		}
 
 		const attr = basket.data.attributes;
-		const price = Number.parseFloat(attr['order.base.price']);
-		const delivery = Number.parseFloat(attr['order.base.costs']);
+		const price = Number.parseFloat(attr['order.price']);
+		const delivery = Number.parseFloat(attr['order.costs']);
 
-		const formatter = new Intl.NumberFormat(attr['order.base.languageid'], {
-			currency: attr['order.base.currencyid'],
+		const formatter = new Intl.NumberFormat(attr['order.languageid'], {
+			currency: attr['order.currencyid'],
 			style: "currency"
 		});
 
@@ -40,7 +40,7 @@ AimeosBasketMini = {
 			for(let i=0; i<basket.included.length; i++) {
 				let entry = basket.included[i];
 
-				if(entry.type === 'basket/product') {
+				if(entry.type === 'basket.product') {
 					let product = prototype.clone().removeClass("prototype");
 
 					if(entry.links && entry.links.self && entry.links.self.href) {
@@ -48,20 +48,25 @@ AimeosBasketMini = {
 						product.data("url", entry.links.self.href + urldata);
 					}
 
-					$(".name", product).html(entry.attributes['order.base.product.name']);
-					$(".quantity", product).html(entry.attributes['order.base.product.quantity']);
-					$(".price", product).html(formatter.format(entry.attributes['order.base.product.price']));
+					$(".name", product).html(entry.attributes['order.product.name']);
+					$(".quantity", product).html(entry.attributes['order.product.quantity']);
+					$(".price", product).html(formatter.format(entry.attributes['order.product.price']));
 
-					if(entry.attributes['order.base.product.flags']) {
+					if(entry.attributes['order.product.flags']) {
 						$(".action .delete", product).addClass("hidden");
 					}
 
 					body.append(product);
-					count += Number.parseInt(entry.attributes["order.base.product.quantity"]);
+					count += Number.parseInt(entry.attributes["order.product.quantity"]);
 				}
 			}
 
 			$(".aimeos .basket-mini-main .quantity").html(count);
+
+			$(".aimeos .basket-mini-main").addClass("highlight");
+			setTimeout(() => {
+					$(".aimeos .basket-mini-main").removeClass("highlight");
+			}, 250);
 		}
 	},
 
@@ -71,9 +76,9 @@ AimeosBasketMini = {
 	 */
 	onDelete() {
 
-		$(".aimeos .basket-mini-product").on("click", ".delete", ev => {
+		$(".aimeos .basket-mini-product").on("click", ".delete", async ev => {
 
-			fetch($(ev.currentTarget).closest(".product-item").data("url"), {
+			await fetch($(ev.currentTarget).closest(".product-item").data("url"), {
 				method: "DELETE",
 				headers: {'Content-Type': 'application/json'}
 			}).then(response => {

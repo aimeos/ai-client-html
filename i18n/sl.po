@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-05 07:41+0200\n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Goran Sabo <info@noaset.pro>, 2020-2021\n"
-"Language-Team: Slovenian (http://www.transifex.com/aimeos/aimeos-core/language/sl/)\n"
+"Language-Team: Slovenian (http://app.transifex.com/aimeos/aimeos-core/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,14 +37,6 @@ msgstr[1] "%1$d reviews"
 msgstr[2] "%1$d reviews"
 msgstr[3] "%1$d mnenja"
 
-#. / Address format with company (%1$s), salutation (%2$s), title (%3$s),
-#. first name (%4$s), last name (%5$s),
-#. / address part one (%6$s, e.g street), address part two (%7$s, e.g house
-#. number), address part three (%8$s, e.g additional information),
-#. / postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s),
-#. language (%13$s),
-#. / e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site
-#. (%17$s), vatid (%18$s)
 #, php-format
 msgid ""
 "%1$s\n"
@@ -62,78 +54,65 @@ msgid ""
 "%18$s\n"
 msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
-#. / Price format with price value (%1$s) and currency (%2$s)
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#. / Rebate format with rebate value (%1$s) and currency (%2$s)
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s popust"
 
-#. / Configurable product attribute name (%1$s) with sign (%4$s, +/-), price
-#. value (%2$s) and currency (%3$s)
 #, php-format
-msgid "%1$s ( %4$s%2$s%3$s )"
-msgstr "%1$s ( %4$s%2$s%3$s )"
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
-#. / Order status (%1$s) and date (%2$s), e.g. "received at 2000-01-01"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s at %2$s"
 
-#. / Percent format with value (%1$s) and % sign
-#, php-format
-msgid "%1$s%%"
-msgstr "%1$s%%"
-
-#. / Service fee value (%1$s) and shipping cost value (%2$s) with currency
-#. (%3$s)
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
-msgid "+"
-msgstr "+"
-
-#. / Price shipping format with shipping / payment cost value (%1$s) and
-#. currency (%2$s)
 #, php-format
-msgid "+ %1$s %2$s/item"
-msgstr "+ %1$s %2$s/izdelek"
+msgid "+ %1$s %2$s"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s%% %2$s"
 msgstr "+ %1$s%% %2$s"
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "+ %1$s%% VAT"
 msgstr "+ %1$s%% DDV"
 
-msgid "+ Payment costs"
-msgstr "+ Provizija plačil"
-
-msgid "+ Shipping"
-msgstr "+ Dostava"
-
-msgid "+ shipping costs"
-msgstr "+ Cenik dostave"
-
 msgid "+1 123 456 7890"
 msgstr "+386 70 000 000"
 
-#. / Rebate percent format with rebate percent value (%1$s)
 #, php-format
 msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
 msgstr ""
-
-msgid "Account"
-msgstr "Moj račun"
 
 msgid "Add billing address"
 msgstr "Dodaj naslov za plačilo"
@@ -147,41 +126,14 @@ msgstr "Nadomestni"
 msgid "Additional 2"
 msgstr "Nadomestni (2)"
 
-msgid "Address"
-msgid_plural "Addresses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-
-#, php-format
-msgid "Address with ID \"%1$s\" not found"
-msgstr "Ne najdem naslova - ID \"%1$s\""
-
-msgid "Addresses"
-msgstr "Naslovi"
-
-msgid ""
-"All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
-"\n"
-"This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-msgstr "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n\nThis email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
-
-#. / Payment e-mail legal information
-msgid "All orders are subject to our terms and conditions."
-msgstr "Za vsa naročila veljajo naši Splošni pogoji poslovanja, ki so na voljo na naši spletni strani in ste jih sprejeli pri oddaji naročila.\n\nTa elektronska pošta vsebuje informacije, ki so lahko zaupne narave in so namenjene samo naslovniku. Če je bilo zaradi napake v naslovu ali pri prenosu sporočilo poslano drugam, prosimo, da nam odgovorite s povratno e-pošto. Če sporočilo ni bilo namenjeno vam, ne smete uporabljati, razkriti, širiti, kopirati, tiskati ali kakorkoli uporabiti informacije v sporočilu."
-
-msgid "An account has been created for you."
-msgstr "Naročniški račun je ustvarjen"
+msgid "Apply"
+msgstr ""
 
 msgid "Article"
 msgstr "Izdelek"
 
 msgid "Article no."
 msgstr "Šifra"
-
-msgid "Article no.:"
-msgstr "Šifra:"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -191,14 +143,20 @@ msgstr "Vsaj en del naslova za plačilo manjka ali je napačen"
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Vsaj en del naslova za dostavo manjka ali je napačen"
 
-msgid "Attributes"
-msgstr "Lastnosti"
-
 msgid "Back"
 msgstr "Nazaj"
 
 msgid "Basket"
 msgstr "Košarica"
+
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
 
 msgid "Billing address"
 msgstr "Naslov za plačilo"
@@ -213,6 +171,9 @@ msgstr "Del \"%1$s\" naslova za plačilo manjka"
 
 msgid "Birthday"
 msgstr "Datum rojstva"
+
+msgid "Breadcrumb navigation"
+msgstr ""
 
 msgid "Bulk order"
 msgstr "Množično naročilo"
@@ -235,14 +196,8 @@ msgstr "Spremeni"
 msgid "Change payment"
 msgstr "Spremeni način plačila"
 
-msgid "Channel"
-msgstr "Kanal"
-
 msgid "Characteristics"
 msgstr "Lastnosti"
-
-msgid "Check"
-msgstr "Preveri"
 
 msgid "Checkout"
 msgstr "Blagajna"
@@ -251,32 +206,8 @@ msgid "City"
 msgstr "Mesto"
 
 #, php-format
-msgid "Class \"%1$s\" does not implement \"%2$s\""
-msgstr "Class \"%1$s\" does not implement \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" does not implement interface \"%2$s\""
-msgstr "Class \"%1$s\" does not implement interface \"%2$s\""
-
-#, php-format
-msgid "Class \"%1$s\" not available"
-msgstr "Class \"%1$s\" not available"
-
-#, php-format
 msgid "Class \"%1$s\" not found"
 msgstr "Class \"%1$s\" not found"
-
-#, php-format
-msgid "Client HTML type is empty"
-msgstr "Client HTML type is empty"
-
-#, php-format
-msgid "Client path is empty"
-msgstr "Client path is empty"
-
-#, php-format
-msgid "Client type \"%1$s\" must consist of two parts separated by \"/\""
-msgstr "Client type \"%1$s\" must consist of two parts separated by \"/\""
 
 msgid "Close"
 msgstr "Zapri"
@@ -304,40 +235,6 @@ msgstr "Ustvarjeno"
 
 msgid "Customer account"
 msgstr "Naročniški račun"
-
-#, php-format
-msgid "Customer with ID \"%1$s\" not found"
-msgstr "Naročnik \"%1$s\" ne obstaja"
-
-#, php-format
-msgid "Dear %1$s %2$s"
-msgstr "Spoštovani %1$s %2$s"
-
-#, php-format
-msgid "Dear %1$s %2$s %3$s"
-msgstr "Spoštovani %1$s %2$s %3$s"
-
-#, php-format
-msgid "Dear Miss %1$s %2$s"
-msgstr "Spoštovana gospodična %1$s %2$s"
-
-#, php-format
-msgid "Dear Mr %1$s %2$s"
-msgstr "Spoštovani gospod %1$s %2$s"
-
-#, php-format
-msgid "Dear Mrs %1$s %2$s"
-msgstr "Spoštovana gospa %1$s %2$s"
-
-#, php-format
-msgid "Dear Ms %1$s %2$s"
-msgstr ""
-
-msgid "Dear Sir or Madam"
-msgstr "Spoštovani Gospod/Gospa"
-
-msgid "Dear customer"
-msgstr "Spoštovani naročnik"
 
 msgid "Delete"
 msgstr "Izbriši"
@@ -381,10 +278,6 @@ msgstr "Za prenos"
 msgid "E-Mail"
 msgstr "E-Naslov"
 
-#. / E-mail HTML title
-msgid "E-mail notification"
-msgstr "E-Naslov za obvestila"
-
 msgid "End date"
 msgstr "Datum poteka"
 
@@ -397,21 +290,23 @@ msgstr "Faks"
 msgid "Fields with an * are mandatory"
 msgstr "Polja označena z * so obvezna"
 
-#, php-format
-msgid "File \"%1$s\" doesn't exist"
-msgstr "Zahtevana datoteka \"%1$s\" ne obstaja več"
-
 msgid "Filter"
 msgstr "Filter"
+
+msgid "First"
+msgstr "First"
 
 msgid "First name"
 msgstr "Ime"
 
+msgid "Found products"
+msgstr ""
+
 msgid "GB999999973"
 msgstr "SI12345678"
 
-msgid "Go"
-msgstr "Začni"
+msgid "Go to page"
+msgstr ""
 
 msgid "Grid view"
 msgstr "Stolpci"
@@ -421,14 +316,6 @@ msgstr "HH:mm"
 
 msgid "Highest price"
 msgstr ""
-
-#, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a>"
-msgstr "Sprejmem <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">pravila in pogoje poslovanje</a> pravtako <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">pravilnik varovanja osebnih podatkov</a>"
 
 #, php-format
 msgid ""
@@ -446,14 +333,10 @@ msgstr "Ali je spet na zalogi"
 msgid "If price decreases"
 msgstr "Ali je cena spremenjena"
 
-msgid "If you have any questions, please reply to this e-mail"
-msgstr "V primeru dodatnih vprašanj, le odgovorite na to sporočilo"
-
 #, php-format
 msgid "Incl. %1$s%% %2$s"
 msgstr "Vključno z %1$s%% %2$s"
 
-#. / Tax rate format with tax rate in percent (%1$s)
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr "Vključno z %1$s%% DDV"
@@ -465,16 +348,8 @@ msgid "Interval"
 msgstr "Obdobje"
 
 #, php-format
-msgid "Invalid characters in class name \"%1$s\""
-msgstr "Invalid characters in class name \"%1$s\""
-
-#, php-format
 msgid "Invalid characters in client name \"%1$s\""
 msgstr "Invalid characters in client name \"%1$s\""
-
-#, php-format
-msgid "Invalid characters in client name \"%1$s\" in \"%2$s\""
-msgstr "Invalid characters in client name \"%1$s\" in \"%2$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -484,16 +359,14 @@ msgstr "Invalid class name \"%1$s\""
 msgid "Invalid domain \"%1$s\""
 msgstr "Invalid domain \"%1$s\""
 
-#, php-format
-msgid "Invalid factory \"%1$s\""
-msgstr "Invalid factory \"%1$s\""
-
-#, php-format
-msgid "Invalid process response from service provider with code \"%1$s\""
-msgstr "Invalid process response from service provider with code \"%1$s\""
+msgid "Invoice"
+msgstr "Invoice"
 
 msgid "Language"
 msgstr "Jezik"
+
+msgid "Last"
+msgstr "Last"
 
 msgid "Last name"
 msgstr "Priimek"
@@ -504,16 +377,16 @@ msgstr "Zadnjič ogledano"
 msgid "Latest"
 msgstr "Zadnji dodani"
 
-msgid "Like entered by you"
-msgstr "Vi ste všečkali"
-
 msgid "List view"
 msgstr "Seznam"
 
-msgid "Login"
-msgstr "Prijava"
-
 msgid "Lowest price"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
 msgstr ""
 
 msgid "More reviews"
@@ -544,34 +417,11 @@ msgid "No order ID available in session"
 msgstr ""
 
 #, php-format
-msgid "No product with ID \"%1$s\" found"
-msgstr "No product with ID \"%1$s\" found"
-
-#, php-format
-msgid "No service for code \"%1$s\" found"
-msgstr "No service for code \"%1$s\" found"
-
-#, php-format
-msgid "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-msgstr "No type item for \"%1$s/%2$s\" in \"%3$s\" found"
-
-#, php-format
 msgid "No view available"
 msgstr "No view available"
 
-#, php-format
-msgid "Number of coupon codes exceeds the limit"
-msgstr "Number of coupon codes exceeds the limit"
-
-#, php-format
-msgid "Object doesn't implement \"%1$s\""
-msgstr "Object doesn't implement \"%1$s\""
-
 msgid "One month"
 msgstr "Mesečno"
-
-msgid "One or more products you are watching have been updated."
-msgstr "Eden ali več izdelkov, ki jih opazujete, so spremenjeni."
 
 msgid "One week"
 msgstr "Tedensko"
@@ -579,24 +429,8 @@ msgstr "Tedensko"
 msgid "Open submenu"
 msgstr ""
 
-msgid "Options"
-msgstr "Možnosti"
-
-msgid "Order"
-msgstr "Naročilo"
-
-#, php-format
-msgid "Order %1$s"
-msgstr "Naročilo %1$s"
-
 msgid "Order ID"
 msgstr "ŠT. Naročila"
-
-msgid "Order channel"
-msgstr "Order channel"
-
-msgid "Order date"
-msgstr "Datum naročila"
 
 msgid "Order details"
 msgstr "Podrobnosti naročila"
@@ -607,22 +441,12 @@ msgstr "Zgodovina naročil"
 msgid "Order status"
 msgstr "Status naročila"
 
-#, php-format
-msgid "Order with ID \"%1$s\" not found"
-msgstr "Naročilo ID \"%1$s\" ne obstaja"
-
 msgid "Other customers also bought"
 msgstr "Določeni naročniki so izbrali še te izdelke"
-
-msgid "Our products"
-msgstr "Naši izdelki"
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "Stran %1$d od %2$d"
-
-msgid "Password"
-msgstr "Geslo"
 
 msgid "Pay now"
 msgstr "Takojšnje plačilo"
@@ -660,14 +484,6 @@ msgstr "Vnesite vsaj 3 znake"
 msgid "Please enter your payment details"
 msgstr "Vnesite podrobnosti plačila"
 
-#, php-format
-msgid "Please recheck your delivery choice"
-msgstr "Preverite izbiro dostave"
-
-#, php-format
-msgid "Please recheck your payment choice"
-msgstr "Preverite izbiro plačila"
-
 msgid "Please select"
 msgstr "Izberite"
 
@@ -679,6 +495,9 @@ msgstr "Nazaj"
 
 msgid "Price"
 msgstr "Cena"
+
+msgid "Price filter"
+msgstr ""
 
 msgid "Price range"
 msgstr ""
@@ -692,14 +511,41 @@ msgstr "Procesiranje plačila ni uspelo"
 msgid "Product"
 msgstr "Izdelek"
 
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
 msgstr "Slika izdelka"
 
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr "Product price"
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
+
 msgid "Products you might be also interested in"
 msgstr "Izdelki, ki ti lahko pride prav"
-
-msgid "Properties"
-msgstr "Lastnosti"
 
 msgid "Qty"
 msgstr "Kol."
@@ -713,16 +559,12 @@ msgstr "Priljubljenost"
 msgid "Reference"
 msgstr "Referenca"
 
-msgid "Related"
-msgstr "Povezani"
-
 msgid "Relevance"
 msgstr "Ustrezni"
 
 msgid "Reset"
 msgstr "Ponastavi"
 
-#. / Product search hint with user provided search string (%1$s)
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Zadetki \"%1$s\""
@@ -741,6 +583,12 @@ msgstr "Vi ste:"
 
 msgid "Save"
 msgstr "Shrani"
+
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
 
 msgid "Search"
 msgstr "Išči"
@@ -770,12 +618,6 @@ msgstr "Izberite"
 msgid "Select state"
 msgstr "Izberite pokrajino"
 
-msgid "Service fees"
-msgstr "Service fees"
-
-msgid "Services"
-msgstr "Services"
-
 msgid "Share"
 msgstr "Deli"
 
@@ -785,8 +627,8 @@ msgstr "Dostava"
 msgid "Show"
 msgstr "Prikaži"
 
-msgid "Show all quotes"
-msgstr "Prikaži vse"
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "Uredi po:"
@@ -794,24 +636,13 @@ msgstr "Uredi po:"
 msgid "State"
 msgstr "Pokrajina"
 
-msgid "Status"
-msgstr "Status"
-
 msgid "Stock"
 msgstr "Zaloga"
 
-#. / Stock string composition with stock type (%1$s, normally left out)
-#. and stock level string (%2$s)
-#. / Stock string composition with stock type (%1$s, normally left out) and
-#. stock level string (%2$s)
 #, php-format
 msgid "Stock: %1$s, %2$s"
 msgstr "Zaloga: %1$s, %2$s"
 
-#. / Stock string composition with stock type (%1$s, normally left out),
-#. stock level string (%2$s) and back in stock date (%3$s)
-#. / Stock string composition with stock type (%1$s, normally left out), stock
-#. level string (%2$s) and back in stock date (%3$s)
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
 msgstr "Zaloga: %1$s, %2$s, ponovno na zalogi %3$s"
@@ -831,16 +662,6 @@ msgstr "ID Naročnine"
 msgid "Subscription details"
 msgstr "Podrobnosti naročnine"
 
-msgid "Subscription interval"
-msgstr "Obdobje naročnine"
-
-msgid "Subscription product"
-msgstr "Izdelek v naročnini"
-
-#, php-format
-msgid "Subscription with ID \"%1$s\" not found"
-msgstr "ID  Naročnine izdelka \"%1$s\" ni najden"
-
 msgid "Subscriptions"
 msgstr "Naročnine"
 
@@ -853,6 +674,9 @@ msgstr "Skupaj"
 msgid "Supplier information"
 msgstr "Podrobnost dobavitelja"
 
+msgid "Supplier list"
+msgstr ""
+
 msgid "Suppliers"
 msgstr "Dobavitelji"
 
@@ -862,42 +686,8 @@ msgstr ""
 msgid "Telephone"
 msgstr "Telefon"
 
-#, php-format
-msgid "Template \"%1$s\" not available"
-msgstr "Template \"%1$s\" not available"
-
 msgid "Terms and conditions"
 msgstr "Pravila in pogoji poslovanja"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "Thank you for your order %1$s from %2$s."
-msgstr "Zahvaljujemo se za naročilo  opravljeno %2$s.\nPri plačilu se sklicujte na SI00 00%1$s"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-msgstr "Thank you for your order %1$s from %2$s.\n\nThe order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid ""
-"Thank you for your order %1$s from %2$s.\n"
-"\n"
-"We received the payment and will care about your order immediately."
-msgstr "Hvala za vaše naročilo %1$s dne %2$s.\n\nPrejeli smo plačilo! Kmalu boste obveščeni o spremembah."
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -912,65 +702,15 @@ msgstr "Hvala za vaše plačilo.\nPrejeli smo avtorizirano plačilo, potrditveno
 msgid "Thank you for your review!"
 msgstr "Hvala za prispevano mnenje"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid ""
-"The delivery status of your order %1$s from %2$s has been changed to "
-"\"%3$s\"."
-msgstr "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
-
-#, php-format
-msgid ""
-"The order is pending until we receive the final payment. If you've chosen to"
-" pay in advance, please transfer the money to our bank account with the "
-"order ID %1$s as reference."
-msgstr "Vaše naročilo bo zadržano do nadaljnjega oziroma dokler ne prejmemo vašega plačila. Če želite plačate preko neposredne bančne transakcije ne pozabite vpisati številko naročila, ki je %1$s."
-
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr "Naročilo je preklicano\nŽelite poskusiti ponovno?"
 
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "The parcel for your order %1$s from %2$s could not be delivered."
-msgstr "The parcel for your order %1$s from %2$s could not be delivered."
-
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr "Potrditev plačila je še vedno na čakanju.\nTakoj ko prejmemo potrdilo o plačilu, boste prejeli e-sporočilo."
-
-msgid "The payment couldn't be renewed"
-msgstr "Plačila ni možno obnoviti"
-
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#. / Payment e-mail intro with order ID (%1$s), order date (%2$s) and payment
-#. status (%3%s)
-#, php-format
-msgid "The payment for your order %1$s from %2$s has been refunded."
-msgstr "The payment for your order %1$s from %2$s has been refunded."
-
-msgid "The subscription for the product has ended"
-msgstr "Vaša naročnina je potekla"
-
-msgid "The subscription for the product has ended."
-msgstr "Vaša naročnina je potekla."
-
-#, php-format
-msgid "The value of your voucher is %1$s"
-msgid_plural "The value of your vouchers are %1$s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 msgid "Three month"
 msgstr "Trimesečno"
@@ -981,14 +721,8 @@ msgstr "Časovno obdobje"
 msgid "Toggle fullscreen"
 msgstr "Toggle fullscreen"
 
-msgid "Top seller"
-msgstr "Prodajne uspešnice"
-
 msgid "Total"
 msgstr "Skupaj"
-
-msgid "Total quantity"
-msgstr "Skupaj količina"
 
 msgid "Try again"
 msgstr "Poskusi ponovno"
@@ -997,24 +731,12 @@ msgid "Two weeks"
 msgstr "Dvomesečno"
 
 #, php-format
-msgid "Unable to call method \"%1$s\""
-msgstr "Unable to call method \"%1$s\""
-
-#, php-format
-msgid "Unable to create an account for \"%1$s\": %2$s"
-msgstr "Računa \"%1$s\": %2$s ni možno ustvariti"
-
-#, php-format
 msgid "Unable to create an account: %1$s"
 msgstr "Vaš račun ni možno ustvariti: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
 msgstr "Shranjevanje naslova ni bilo uspešno \"%1$s\": %2$s"
-
-#, php-format
-msgid "Unable to set cache entry: %1$s"
-msgstr "Unable to set cache entry: %1$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -1039,29 +761,12 @@ msgstr "Spremljaj"
 msgid "Watched products"
 msgstr "Spremljaj izdelke"
 
-msgid ""
-"We have received your payment, and will take care of your order immediately."
-msgstr "Prejeli smo vaše plačilo. Za vaše naročilo bomo poskrbeli v najkrajšem možnem času!"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "We received the returned parcel for your order %1$s from %2$s."
-msgstr "We received the returned parcel for your order %1$s from %2$s."
-
 msgid "Web site"
 msgstr "Spletna stran"
 
 msgid "What do you think about the product"
 msgstr "Vaše mnenje o izdelku"
 
-msgid "X"
-msgstr "X"
-
-#. / Date format with year (Y), month (m) and day (d). See
-#. http://php.net/manual/en/function.date.php
 msgid "Y-m-d"
 msgstr "d.m.Y"
 
@@ -1082,43 +787,17 @@ msgstr ""
 msgid "You can only watch up to %1$s products"
 msgstr ""
 
-msgid "You can use your voucher any time in our online shop"
-msgstr "Vaš darilni bon lahko uporabite kadarkoli"
-
-msgid "You can use your vouchers at any time in our online shop"
+msgid "You must log in first"
 msgstr ""
 
 msgid "You will now be forwarded to the next step"
 msgstr "Preusmerjeni boste na naslednji korak"
-
-msgid "You've cancelled the subscription"
-msgstr "Preklicali ste naročnino"
-
-msgid "Your account"
-msgstr "Vaš račun"
 
 msgid "Your choice"
 msgstr "Vaša izbira"
 
 msgid "Your comment"
 msgstr "Vaše mnenje"
-
-#. / Account creation e-mail subject
-msgid "Your new account"
-msgstr "Vaš nov račun"
-
-#. / Payment e-mail subject with order ID
-#, php-format
-msgid "Your order %1$s"
-msgstr "Vaše naročilo %1$s"
-
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#. / Delivery e-mail intro with order ID (%1$s), order date (%2$s) and
-#. delivery status (%3%s)
-#, php-format
-msgid "Your order %1$s from %2$s has been dispatched."
-msgstr "Vaše naročilo %1$s od %2$s je odposlano."
 
 msgid "Your rating"
 msgstr "Vaša ocena"
@@ -1132,37 +811,12 @@ msgstr "Vaša referenčna številka"
 msgid "Your review"
 msgstr "Vaše mnenje"
 
-msgid "Your search result"
-msgstr "Vsi zadetki"
-
-msgid "Your subscription"
-msgstr "Vaša naročnina"
-
-msgid "Your subscription product"
-msgstr "Izbrane naročnine"
-
-msgid "Your voucher"
-msgstr "Vaš darilni bon"
-
-msgid "Your voucher: "
-msgstr "Vaš darilni bon:"
-
-msgid "Your vouchers: "
-msgstr "Vaši darilni boni"
-
-#. / Product notification e-mail subject
-msgid "Your watched products"
-msgstr "Izdelki, ki jih opazujete"
-
 msgid "Zoom in/out"
 msgstr "Povečanje/Pomanjšanje"
 
 #, php-format
 msgid "address"
 msgstr "naslov"
-
-msgid "clear all"
-msgstr "pobriši vse"
 
 #, php-format
 msgid "delivery"
@@ -1171,7 +825,6 @@ msgstr "dostava"
 msgid "favorite"
 msgstr "priljubljen"
 
-#. / Price quantity format with quantity (%1$s)
 #, php-format
 msgid "from %1$s"
 msgstr "od %1$s"
@@ -1189,10 +842,6 @@ msgid "on request"
 msgstr ""
 
 #, php-format
-msgid "order"
-msgstr "naročilo"
-
-#, php-format
 msgid "payment"
 msgstr "plačilo"
 
@@ -1206,28 +855,21 @@ msgstr "cena:privzeto"
 msgid "process"
 msgstr "nadaljuj"
 
-#. / code for "product is in stock"
 msgid "stock-high"
 msgstr "visoka-zaloga"
 
-#. / code for "only a few products are available"
 msgid "stock-low"
 msgstr "nizka-zaloga"
 
-#. / code for "product is out of stock"
 msgid "stock-out"
 msgstr "ni-zaloge"
 
-#. / code for "product is available (without stock limit)"
 msgid "stock-unlimited"
 msgstr "neomejena-zaloga"
 
 #, php-format
 msgid "summary"
 msgstr "povzetek"
-
-msgid "tax"
-msgstr "davek"
 
 msgid "watch"
 msgstr "sledi"
@@ -1243,9 +885,6 @@ msgstr "▶"
 
 msgid "▶▶"
 msgstr "▶▶"
-
-msgid "▼"
-msgstr "▼"
 
 msgid "▼ Name"
 msgstr "▼ Ime"

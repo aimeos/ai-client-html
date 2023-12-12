@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
-		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Process\Address\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -57,13 +57,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$address = $customerItem->getPaymentAddress()->setId( '-1' )->toArray();
 
 		$basketCntl = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
-		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
+		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY, $address );
 
-		$this->context->setUserId( $customerItem->getId() );
+		$this->context->setUser( $customerItem );
 
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'addAddressItem', 'store' ) )
+			->onlyMethods( array( 'addAddressItem', 'store' ) )
 			->getMock();
 
 		$customerStub->expects( $this->once() )->method( 'addAddressItem' )->will( $this->returnValue( $customerStub ) );

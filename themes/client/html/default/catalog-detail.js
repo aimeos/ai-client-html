@@ -24,19 +24,19 @@
  */
 AimeosCatalogDetail = {
 
-	fetchReviews(container) {
+	async fetchReviews(container) {
 
 		const jsonUrl = $(".catalog-detail").data("jsonurl");
 		const prodid = $(container).data("productid");
 
 		if(prodid && jsonUrl) {
 
-			fetch(jsonUrl, {
+			await fetch(jsonUrl, {
 				method: "OPTIONS",
 				headers: {'Content-type': 'application/json'}
 			}).then(response => {
 				return response.json();
-			}).then(options => {
+			}).then(async options => {
 
 				if(options && options.meta && options.meta.resources && options.meta.resources.review) {
 
@@ -56,7 +56,7 @@ AimeosCatalogDetail = {
 					url = new URL(options.meta.resources.review);
 					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
-					fetch(url, {
+					await fetch(url, {
 						headers: {'Content-type': 'application/json'}
 					}).then(response => {
 						return response.json();
@@ -76,7 +76,7 @@ AimeosCatalogDetail = {
 					url = new URL(options.meta.resources.review);
 					url.search = url.search ? url.search + '&' + window.param(params) : '?' + window.param(params);
 
-					fetch(url, {
+					await fetch(url, {
 						headers: {'Content-type': 'application/json'}
 					}).then(response => {
 						return response.json();
@@ -158,14 +158,15 @@ AimeosCatalogDetail = {
 	 */
 	selectVariant() {
 		const product = $('article.product');
-                const urlProductId = window.location.pathname.split('/').pop();
+		const urlProductId = window.location.pathname.split('/').pop();
+    
 		if(product && product.data('varattributes')) {
 			$.each(product.data('varattributes'), function (productId, varAttrs) {
-				if (productId == urlProductId) {
-		               		$.each(product.data('varattributes'), function (key, val) {
-			          		$('#select-' + product.data('id') + '-' + key).val(val).trigger('change');
-			       		});
-			    	}
+				if(productId == urlProductId) {
+					$.each(product.data('varattributes'), function (key, val) {
+						$('#select-' + product.data('id') + '-' + key).val(val).trigger('change');
+					});
+				}
 			});
 		}
 	},
@@ -176,7 +177,7 @@ AimeosCatalogDetail = {
 	 */
 	onOpenLightbox() {
 
-		$(".catalog-detail-image").on("click", ".image-single .item", ev => {
+		$(".catalog-detail").on("click", ".catalog-detail-image .image-single .item", ev => {
 
 			const list = [];
 			const vwidth = $(window).width();
@@ -232,6 +233,21 @@ AimeosCatalogDetail = {
 		    const sliderElement = document.querySelector('.catalog-detail-image div:first-child');
 		    swiffyslider.slideTo(sliderElement, index);
 		});
+	},
+
+
+	/**
+	 * Check for variants in URL
+	 * Set the variant attributes and trigger select-dropdown´s to show the variant article
+	 */
+	onSelectVariant() {
+		const product = $('article.product');
+
+		if(product && product.data('varattributes')) {
+			$.each(product.data('varattributes'), function (key, val) {
+				$('#select-' + product.data('id') + '-' + key).val(val).trigger('change');
+			});
+		}
 	},
 
 
@@ -300,10 +316,10 @@ AimeosCatalogDetail = {
 	 */
 	onMoreReviews() {
 
-		$(".catalog-detail-additional .reviews").on("click", ".more", ev => {
+		$(".catalog-detail-additional .reviews").on("click", ".more", async ev => {
 			ev.preventDefault();
 
-			fetch($(ev.currentTarget).attr("href"), {
+			await fetch($(ev.currentTarget).attr("href"), {
 				headers: {'Content-type': 'application/json'}
 			}).then(response => {
 				return response.json();
@@ -321,10 +337,10 @@ AimeosCatalogDetail = {
 	 */
 	onSortReviews() {
 
-		$(".catalog-detail-additional .reviews").on("click", ".sort .sort-option", ev => {
+		$(".catalog-detail-additional .reviews").on("click", ".sort .sort-option", async ev => {
 			ev.preventDefault();
 
-			fetch($(ev.currentTarget).attr("href"), {
+			await fetch($(ev.currentTarget).attr("href"), {
 				headers: {'Content-type': 'application/json'}
 			}).then(response => {
 				return response.json();
@@ -399,7 +415,7 @@ AimeosCatalogDetail = {
 
 		this.onAddBasket();
 
-		this.selectVariant();
+		this.onSelectVariant();
 	}
 };
 

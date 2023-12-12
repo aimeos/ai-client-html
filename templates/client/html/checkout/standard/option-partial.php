@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -21,6 +21,7 @@
  * @see client/html/checkout/standard/summary/option/terms/url/controller
  * @see client/html/checkout/standard/summary/option/terms/url/action
  * @see client/html/checkout/standard/summary/option/terms/url/config
+ * @see client/html/checkout/standard/summary/option/terms/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/url/controller
@@ -35,6 +36,7 @@
  * @see client/html/checkout/standard/summary/option/terms/url/target
  * @see client/html/checkout/standard/summary/option/terms/url/action
  * @see client/html/checkout/standard/summary/option/terms/url/config
+ * @see client/html/checkout/standard/summary/option/terms/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/url/action
@@ -49,6 +51,7 @@
  * @see client/html/checkout/standard/summary/option/terms/url/target
  * @see client/html/checkout/standard/summary/option/terms/url/controller
  * @see client/html/checkout/standard/summary/option/terms/url/config
+ * @see client/html/checkout/standard/summary/option/terms/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/url/config
@@ -69,7 +72,21 @@
  * @see client/html/checkout/standard/summary/option/terms/url/target
  * @see client/html/checkout/standard/summary/option/terms/url/controller
  * @see client/html/checkout/standard/summary/option/terms/url/action
- * @see client/html/url/config
+ * @see client/html/checkout/standard/summary/option/terms/url/filter
+ */
+
+/** client/html/checkout/standard/summary/option/terms/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/checkout/standard/summary/option/terms/url/target
+ * @see client/html/checkout/standard/summary/option/terms/url/controller
+ * @see client/html/checkout/standard/summary/option/terms/url/action
+ * @see client/html/checkout/standard/summary/option/terms/url/config
  */
 
 
@@ -85,6 +102,7 @@
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
+ * @see client/html/checkout/standard/summary/option/terms/privacy/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/controller
@@ -99,6 +117,7 @@
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
+ * @see client/html/checkout/standard/summary/option/terms/privacy/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/action
@@ -113,6 +132,7 @@
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
+ * @see client/html/checkout/standard/summary/option/terms/privacy/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/privacy/url/config
@@ -133,7 +153,21 @@
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
  * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
- * @see client/html/url/config
+ * @see client/html/checkout/standard/summary/option/terms/privacy/url/filter
+ */
+
+/** client/html/checkout/standard/summary/option/terms/privacy/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/checkout/standard/summary/option/terms/privacy/url/target
+ * @see client/html/checkout/standard/summary/option/terms/privacy/url/controller
+ * @see client/html/checkout/standard/summary/option/terms/privacy/url/action
+ * @see client/html/checkout/standard/summary/option/terms/privacy/url/config
  */
 
 
@@ -149,6 +183,7 @@
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/controller
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
+ * @see client/html/checkout/standard/summary/option/terms/cancel/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/cancel/url/controller
@@ -163,6 +198,7 @@
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/target
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
+ * @see client/html/checkout/standard/summary/option/terms/cancel/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/cancel/url/action
@@ -177,6 +213,7 @@
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/target
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/controller
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
+ * @see client/html/checkout/standard/summary/option/terms/cancel/url/filter
  */
 
 /** client/html/checkout/standard/summary/option/terms/cancel/url/config
@@ -197,7 +234,21 @@
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/target
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/controller
  * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
- * @see client/html/url/config
+ * @see client/html/checkout/standard/summary/option/terms/cancel/url/filter
+ */
+
+/** client/html/checkout/standard/summary/option/terms/cancel/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/checkout/standard/summary/option/terms/cancel/url/target
+ * @see client/html/checkout/standard/summary/option/terms/cancel/url/controller
+ * @see client/html/checkout/standard/summary/option/terms/cancel/url/action
+ * @see client/html/checkout/standard/summary/option/terms/cancel/url/config
  */
 
 

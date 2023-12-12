@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -24,7 +24,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
-		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order/base' )->create();
+		$this->view->standardBasket = \Aimeos\MShop::create( $this->context, 'order' )->create();
 
 		$this->object = new \Aimeos\Client\Html\Checkout\Standard\Summary\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -71,7 +71,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 		$this->assertStringContainsString( '<div class="common-summary-detail', $output );
-		$this->assertRegExp( '#<div class="tax.*<div class="price.*10.84 EUR</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="tax.*<div class="price.*10.84 EUR</div>#smU', $output );
 	}
 
 
@@ -84,14 +84,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetSubClientInvalid()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( 'invalid', 'invalid' );
 	}
 
 
 	public function testGetSubClientInvalidName()
 	{
-		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
+		$this->expectException( \LogicException::class );
 		$this->object->getSubClient( '$$$', '$$$' );
 	}
 
@@ -178,8 +178,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$customerManager = \Aimeos\MShop::create( $this->context, 'customer' );
 		$address = $customerManager->find( 'test@example.com' )->getPaymentAddress()->toArray();
 
-		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_PAYMENT, $address );
-		$controller->addAddress( \Aimeos\MShop\Order\Item\Base\Address\Base::TYPE_DELIVERY, $address );
+		$controller->addAddress( \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT, $address );
+		$controller->addAddress( \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY, $address );
 
 		$productManager = \Aimeos\MShop::create( $this->context, 'product' );
 		$controller->addProduct( $productManager->find( 'CNE', ['price'] ), 2 );

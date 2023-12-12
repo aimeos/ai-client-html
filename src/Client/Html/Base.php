@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -24,12 +24,12 @@ abstract class Base
 	use \Aimeos\Macro\Macroable;
 
 
-	private $view;
-	private $cache;
-	private $object;
-	private $context;
-	private $subclients;
-	private $cachedView;
+	private \Aimeos\MShop\ContextIface $context;
+	private ?\Aimeos\Base\View\Iface $view = null;
+	private ?\Aimeos\Client\Html\Iface $object = null;
+	private ?\Aimeos\Base\View\Iface $cachedView = null;
+	private ?array $subclients = null;
+	private array $cache = [];
 
 
 	/**
@@ -59,7 +59,7 @@ abstract class Base
 
 		$template = join( '/', array_splice( $list, 0, 2, [] ) ) . '/' . join( '-', $list );
 
-		// poplate view only for component, not for subparts
+		// populate view only once
 		if( count( $parts ) === 2 ) {
 			$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
 		} else {
@@ -71,7 +71,7 @@ abstract class Base
 		}
 
 		return $view->set( 'body', $html )
-			->render( $view->config( 'client/html/${type}/template-body', $template ) );
+			->render( $view->config( "client/html/{$type}/template-body", $template ) );
 	}
 
 
@@ -117,7 +117,7 @@ abstract class Base
 		$type = $this->clientType();
 		$view = $this->cachedView = $this->cachedView ?? $this->object()->data( $this->view() );
 
-		return $view->render( $view->config( 'client/html/${type}/template-header', $type . '/header' ) );
+		return $view->render( $view->config( "client/html/{$type}/template-header", $type . '/header' ) );
 	}
 
 
@@ -232,9 +232,12 @@ abstract class Base
 	 * @param array $decorators List of decorator name that should be wrapped around the client
 	 * @param string $classprefix Decorator class prefix, e.g. "\Aimeos\Client\Html\Catalog\Decorator\"
 	 * @return \Aimeos\Client\Html\Iface Client object
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function addDecorators( \Aimeos\Client\Html\Iface $client, array $decorators, string $classprefix ) : \Aimeos\Client\Html\Iface
 	{
+		$interface = \Aimeos\Client\Html\Common\Decorator\Iface::class;
+
 		foreach( $decorators as $name )
 		{
 			if( ctype_alnum( $name ) === false )
@@ -244,14 +247,7 @@ abstract class Base
 			}
 
 			$classname = $classprefix . $name;
-
-			if( class_exists( $classname ) === false ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
-			}
-
-			$client = new $classname( $client, $this->context );
-
-			\Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Client\\Html\\Common\\Decorator\\Iface', $client );
+			$client = \Aimeos\Utils::create( $classname, [$client, $this->context], $interface );
 		}
 
 		return $client;
@@ -383,8 +379,8 @@ abstract class Base
 	{
 		$domain = str_replace( '/', '_', $item->getResourceType() ); // maximum compatiblity
 
-		if( in_array( $item->getResourceType(), ['catalog', 'product', 'supplier'] ) ) {
-			$tags[] = $tagAll ? $domain . '-' . $item->getId() : $domain ;
+		if( in_array( $item->getResourceType(), ['catalog', 'product', 'supplier', 'cms'] ) ) {
+			$tags[] = $tagAll ? $domain . '-' . $item->getId() : $domain;
 		}
 
 		if( $item instanceof \Aimeos\MShop\Common\Item\Time\Iface && ( $date = $item->getDateEnd() ) !== null ) {
@@ -443,28 +439,22 @@ abstract class Base
 	 * @param string $path Name of the sub-part in lower case (can contain a path like catalog/filter/tree)
 	 * @param string|null $name Name of the implementation, will be from configuration (or Default) if null
 	 * @return \Aimeos\Client\Html\Iface Sub-part object
+	 * @throws \LogicException If class can't be instantiated
 	 */
 	protected function createSubClient( string $path, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		$path = strtolower( $path );
-
-		if( $name === null ) {
-			$name = $this->context->config()->get( 'client/html/' . $path . '/name', 'Standard' );
-		}
+		$name = $name ?: $this->context->config()->get( 'client/html/' . $path . '/name', 'Standard' );
 
 		if( empty( $name ) || ctype_alnum( $name ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid characters in client name "%1$s"', $name ) );
+			throw new \LogicException( sprintf( 'Invalid characters in client name "%1$s"', $name ), 400 );
 		}
 
 		$subnames = str_replace( '/', '\\', ucwords( $path, '/' ) );
 		$classname = '\\Aimeos\\Client\\Html\\' . $subnames . '\\' . $name;
+		$interface = \Aimeos\Client\Html\Iface::class;
 
-		if( class_exists( $classname ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not available', $classname ) );
-		}
-
-		$object = new $classname( $this->context );
-		$object = \Aimeos\MW\Common\Base::checkClass( '\\Aimeos\\Client\\Html\\Iface', $object );
+		$object = \Aimeos\Utils::create( $classname, [$this->context], $interface );
 		$object = $this->addClientDecorators( $object, $path );
 
 		return $object->setObject( $object );
@@ -624,6 +614,7 @@ abstract class Base
 	 * @param string $value Value string that should be stored for the given key
 	 * @param array $tags List of tag strings that should be assoicated to the given value in the cache
 	 * @param string|null $expire Date/time string in "YYYY-MM-DD HH:mm:ss"	format when the cache entry expires
+	 * @return string Cached value
 	 */
 	protected function cache( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, string $expire = null ) : string
 	{
@@ -637,17 +628,10 @@ abstract class Base
 			return $value;
 		}
 
-		try
-		{
-			$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
-			$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
+		$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
+		$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
-			$context->cache()->set( $key, $value, $expire, array_unique( $tags ) );
-		}
-		catch( \Exception $e )
-		{
-			$context->logger()->notice( sprintf( 'Unable to set cache entry: %1$s', $e->getMessage() ), 'client/html' );
-		}
+		$context->cache()->set( $key, $value, $expire, array_unique( $tags ) );
 
 		return $value;
 	}

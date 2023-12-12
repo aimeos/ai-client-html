@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -21,6 +21,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
+ * @see client/html/catalog/session/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/controller
@@ -35,6 +36,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
+ * @see client/html/catalog/session/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/action
@@ -49,6 +51,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/config
+ * @see client/html/catalog/session/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/config
@@ -69,7 +72,21 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/action
- * @see client/html/url/config
+ * @see client/html/catalog/session/url/filter
+ */
+
+/** client/html/catalog/session/pinned/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/catalog/session/pinned/url/target
+ * @see client/html/catalog/session/pinned/url/controller
+ * @see client/html/catalog/session/pinned/url/action
+ * @see client/html/catalog/session/pinned/url/config
  */
 
 /** client/html/catalog/session/pinned/count/enable
@@ -99,8 +116,9 @@ $enc = $this->encoder();
 
 		<ul class="pinned-items">
 			<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
-				<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $productItem->getName( 'url' )] + $this->get( 'pinnedParams', [] ) ?>
-				<?php $detailParams = ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $id, 'd_pos' => ''] ?>
+				<?php $name = $productItem->getName( 'url' ) ?>
+				<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $name] + $this->get( 'pinnedParams', [] ) ?>
+				<?php $detailParams = ['path' => $name, 'd_name' => $name, 'd_prodid' => $id, 'd_pos' => ''] ?>
 
 				<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>">
 					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">

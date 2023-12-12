@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -50,7 +50,7 @@ class HtmlTest extends \PHPUnit\Framework\TestCase
 	public function testCreateNameParts()
 	{
 		$this->expectException( '\\Aimeos\\Client\\Html\\Exception' );
-		\Aimeos\Client\Html::create( $this->context, 'account_favorite' );
+		\Aimeos\Client\Html::create( $this->context, 'account_unknown' );
 	}
 
 

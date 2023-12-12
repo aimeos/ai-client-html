@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2022
+ * @copyright Aimeos (aimeos.org), 2020-2023
  */
 
 
@@ -21,7 +21,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 
 		$this->client = $this->getMockBuilder( '\\Aimeos\\Client\\Html\\Catalog\\Filter\\Standard' )
 			->setConstructorArgs( [$context] )
-			->setMethods( ['data'] )
+			->onlyMethods( ['data'] )
 			->getMock();
 
 		$this->object = new \Aimeos\Client\Html\Common\Decorator\Context( $this->client, $context );
@@ -46,7 +46,5 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 		$this->assertIsString( $result->get( 'contextSiteId' ) );
 		$this->assertEquals( 'de', $result->get( 'contextLanguage' ) );
 		$this->assertEquals( 'EUR', $result->get( 'contextCurrency' ) );
-		$this->assertEquals( null, $result->get( 'contextUserId' ) );
-		$this->assertEquals( [], $result->get( 'contextGroupIds' ) );
 	}
 }

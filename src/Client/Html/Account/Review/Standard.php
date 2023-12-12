@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2022
+ * @copyright Aimeos (aimeos.org), 2016-2023
  * @package Client
  * @subpackage Html
  */
@@ -65,7 +65,6 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$products = [];
 		$context = $this->context();
 		$config = $context->config();
 
@@ -97,36 +96,22 @@ class Standard
 
 		$orders = \Aimeos\Controller\Frontend::create( $context, 'order' )
 			->compare( '>', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_PENDING )
-			->compare( '<=', 'order.base.ctime', date( 'Y-m-d H:i:s', time() - $days * 86400 ) )
-			->uses( ['order/base', 'order/base/product'] )
-			->sort( '-order.base.ctime' )
+			->compare( '<=', 'order.ctime', date( 'Y-m-d H:i:s', time() - $days * 86400 ) )
+			->uses( ['order', 'order/product', 'product' => [], 'text' => ['name'], 'media' => ['default']] )
+			->sort( '-order.ctime' )
 			->slice( 0, $size )
 			->search();
 
-		$prodMap = $orders->getBaseItem()->getProducts()->flat()
-			->col( 'order.base.product.id', 'order.base.product.productid' );
+		$orderProducts = $orders->getProducts()->flat( 1 )->rekey( function( $item ) {
+			return $item->getType() === 'select' ? $item->getParentProductId() : $item->getProductId();
+		} );
 
 		$exclude = \Aimeos\Controller\Frontend::create( $context, 'review' )
-			->for( 'product', $prodMap->keys()->toArray() )
-			->slice( 0, $prodMap->count() )
+			->for( 'product', $orderProducts->keys()->all() )
+			->slice( 0, $orderProducts->count() )
 			->list()->getRefId();
 
-		if( ( $prodIds = $prodMap->keys()->diff( $exclude )->toArray() ) !== [] )
-		{
-			$productItems = \Aimeos\Controller\Frontend::create( $context, 'product' )
-				->uses( ['text' => ['name'], 'media' => ['default']] )
-				->product( $prodIds )
-				->search();
-
-			foreach( $prodMap as $prodId => $ordProdId )
-			{
-				if( $item = $productItems->get( $prodId ) ) {
-					$products[$prodId] = $item->set( 'orderProductId', $ordProdId );
-				}
-			}
-		}
-
-		$view->reviewProductItems = map( $products )->filter()->take( $size );
+		$view->reviewProductItems = $orderProducts->except( $exclude )->take( $size );
 
 		return parent::data( $view, $tags, $expire );
 	}
@@ -209,5 +194,76 @@ class Standard
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2020.10
 	 * @see client/html/account/review/template-body
+	 */
+
+	/** client/html/account/review/decorators/excludes
+	 * Excludes decorators added by the "common" option from the account review html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/account/review/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2020.10
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/review/decorators/global
+	 * @see client/html/account/review/decorators/local
+	 */
+
+	/** client/html/account/review/decorators/global
+	 * Adds a list of globally available decorators only to the account review html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/account/review/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2020.10
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/review/decorators/excludes
+	 * @see client/html/account/review/decorators/local
+	 */
+
+	/** client/html/account/review/decorators/local
+	 * Adds a list of local decorators only to the account review html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Account\Decorator\*") around the html client.
+	 *
+	 *  client/html/account/review/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2020.10
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/review/decorators/excludes
+	 * @see client/html/account/review/decorators/global
 	 */
 }

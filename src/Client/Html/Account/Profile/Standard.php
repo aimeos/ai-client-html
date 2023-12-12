@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2022
+ * @copyright Aimeos (aimeos.org), 2016-2023
  * @package Client
  * @subpackage Html
  */
@@ -100,6 +100,44 @@ class Standard
 		 */
 		$domains = $config->get( 'client/html/account/profile/domains', ['customer/address'] );
 
+		/** common/countries
+		 * A list of ISO country codes which should be available in the checkout address step.
+		 *
+		 * If you want to ship your products to several countries or you need
+		 * to know from which countries your customers are, you have to enable
+		 * the country selection in the address page of the checkout process.
+		 *
+		 * @param array List of two letter ISO country codes
+		 * @since 2023.04
+		 */
+		$countries = $view->config( 'common/countries', [] );
+
+		/** common/states
+		 * A list of ISO country codes which should be available in the checkout address step.
+		 *
+		 * For each country you can freely define a list of states or regions
+		 * that can be used afterwards to calculate the final price for each
+		 * delivery option.
+		 *
+		 * To define states or regions use something like this:
+		 *
+		 *  [
+		 *		'US' => [
+		 *			'CA' => 'California',
+		 *			'NY' => 'New York',
+		 *			// ...
+		 *		'EU' => [
+		 *			'W' => 'Western Europe',
+		 *			'C' => 'Central Europe',
+		 *			// ...
+		 *		],
+		 *	],
+		 *
+		 * @param array List of two letter ISO country codes
+		 * @since 2023.04
+		 */
+		$states = $view->config( 'common/states', [] );
+
 		$item = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( $domains )->get();
 
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
@@ -126,10 +164,10 @@ class Standard
 		$view->profileItem = $item;
 		$view->addressBilling = $billing;
 		$view->addressDelivery = $deliveries;
-		$view->addressCountries = $view->config( 'client/html/checkout/standard/address/countries', [] );
-		$view->addressStates = $view->config( 'client/html/checkout/standard/address/states', [] );
 		$view->addressSalutations = $salutations;
 		$view->addressLanguages = $languages;
+		$view->addressCountries = $countries;
+		$view->addressStates = $states;
 
 		return parent::data( $view, $tags, $expire );
 	}
@@ -196,7 +234,7 @@ class Standard
 			/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
 			/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
 			/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
-			/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
+			/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), mobile (%17$s), web site (%18$s), vatid (%19$s)
 			$view->translate( 'client', '%1$s
 %2$s %3$s %4$s %5$s
 %6$s %7$s
@@ -210,6 +248,7 @@ class Standard
 %16$s
 %17$s
 %18$s
+%19$s
 '
 			),
 			$addr->getCompany(),
@@ -228,6 +267,7 @@ class Standard
 			$addr->getEmail(),
 			$addr->getTelephone(),
 			$addr->getTelefax(),
+			$addr->getMobile(),
 			$addr->getWebsite(),
 			$addr->getVatID()
 		) ) );
@@ -273,5 +313,73 @@ class Standard
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2016.10
 	 * @see client/html/account/profile/template-body
+	 */
+
+	/** client/html/account/profile/decorators/excludes
+	 * Excludes decorators added by the "common" option from the account profile html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/account/profile/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/profile/decorators/global
+	 * @see client/html/account/profile/decorators/local
+	 */
+
+	/** client/html/account/profile/decorators/global
+	 * Adds a list of globally available decorators only to the account profile html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/account/profile/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/profile/decorators/excludes
+	 * @see client/html/account/profile/decorators/local
+	 */
+
+	/** client/html/account/profile/decorators/local
+	 * Adds a list of local decorators only to the account profile html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Account\Decorator\*") around the html client.
+	 *
+	 *  client/html/account/profile/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/profile/decorators/excludes
+	 * @see client/html/account/profile/decorators/global
 	 */
 }

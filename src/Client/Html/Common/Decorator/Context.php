@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2022
+ * @copyright Aimeos (aimeos.org), 2020-2023
  * @package Client
  * @subpackage Html
  */
@@ -42,8 +42,6 @@ class Context extends Base implements Iface
 		$view->contextSiteLabel = $locale->getSiteItem()->getLabel();
 		$view->contextSiteTheme = $locale->getSiteItem()->getTheme();
 		$view->contextSiteId = $locale->getSiteId();
-		$view->contextUserId = $context->user();
-		$view->contextGroupIds = $context->groups();
 
 		return $this->client()->data( $view, $tags, $expire );
 	}

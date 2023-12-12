@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2018-2022
+ * @copyright Aimeos (aimeos.org), 2018-2023
  */
 
 $enc = $this->encoder();
@@ -12,7 +12,10 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 
 ?>
 <?php $this->block()->start( 'catalog/filter/supplier' ) ?>
-	<div class="section catalog-filter-supplier">
+	<div class="section catalog-filter-supplier"
+		aria-label="<?= $enc->attr( $this->translate( 'client', 'Supplier list' ) ) ?>"
+		data-counturl="<?= $enc->attr( $this->link( 'client/html/catalog/count/url', ['count' => 'supplier'] + $this->get( 'filterParams', [] ) ) ) ?>">
+
 		<div class="header-name"><?= $enc->html( $this->translate( 'client', 'Suppliers' ), $enc::TRUST ) ?></div>
 
 		<div class="supplier-lists">

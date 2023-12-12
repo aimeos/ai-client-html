@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -66,12 +66,16 @@ class Standard
 		$view = $this->view();
 		$context = $this->context();
 
+		$config = $context->config();
 		$session = $context->session();
 
 		if( ( $orderid = $session->get( 'aimeos/orderid' ) ) === null ) {
 			throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
 		}
 
+		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
+		$ref = $config->get( 'client/html/checkout/confirm/domains', $ref );
+		$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref );
 
 		if( ( $code = $view->param( 'code' ) ) !== null )
 		{
@@ -80,12 +84,11 @@ class Standard
 		}
 		else
 		{
-			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
 			$orderItem = $orderCntl->get( $orderid, false );
 		}
 
 		// update stock, coupons, etc.
-		\Aimeos\Controller\Common\Order\Factory::create( $context )->update( $orderItem );
+		$orderCntl->update( $orderItem );
 
 		parent::init();
 
@@ -94,6 +97,8 @@ class Standard
 			\Aimeos\Controller\Frontend::create( $context, 'basket' )->clear();
 			$session->remove( array_keys( $session->get( 'aimeos/basket/cache', [] ) ) );
 		}
+
+		$orderCntl->save( $orderItem );
 	}
 
 
@@ -108,6 +113,7 @@ class Standard
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
+		$config = $context->config();
 
 		if( ( $id = $context->session()->get( 'aimeos/orderid' ) ) === null )
 		{
@@ -115,13 +121,26 @@ class Standard
 			throw new \Aimeos\Client\Html\Exception( $context->translate( 'client', 'No order ID available in session' ) );
 		}
 
-		$ref = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
-
-		$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->get( $id, false );
-		$basket = \Aimeos\Controller\Frontend::create( $context, 'basket' )->load( $order->getBaseId(), $ref, false );
+		/** client/html/checkout/confirm/domains
+		 * List of domains to fetch items related to the order
+		 *
+		 * To adapt the order data loaded for displaying at the checkout confirmation
+		 * page, add or remove the names of the domains using this setting. By default,
+		 * all order sub-domains are included (order/address, order/coupon, order/product
+		 * and order/service) and you can remove unused domains or add additional ones
+		 * like "product" to get the original product items for the bought order products.
+		 * You can also add domains related to e.g. products like "catalog" for the
+		 * categories the products are assigned to.
+		 *
+		 * @param array List of domain names
+		 * @since 2023.07
+		 */
+		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
+		$ref = $config->get( 'client/html/checkout/confirm/domains', $ref );
+		$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref )->get( $id, false );
 
 		$view->confirmOrderItem = $order;
-		$view->summaryBasket = $basket;
+		$view->summaryBasket = $order;
 
 		return parent::data( $view, $tags, $expire );
 	}
@@ -166,5 +185,76 @@ class Standard
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
 	 * @see client/html/checkout/confirm/template-body
+	 */
+
+	/** client/html/checkout/confirm/decorators/excludes
+	 * Excludes decorators added by the "common" option from the checkout confirm html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/checkout/confirm/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/checkout/confirm/decorators/global
+	 * @see client/html/checkout/confirm/decorators/local
+	 */
+
+	/** client/html/checkout/confirm/decorators/global
+	 * Adds a list of globally available decorators only to the checkout confirm html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/checkout/confirm/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/checkout/confirm/decorators/excludes
+	 * @see client/html/checkout/confirm/decorators/local
+	 */
+
+	/** client/html/checkout/confirm/decorators/local
+	 * Adds a list of local decorators only to the checkout confirm html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Checkout\Decorator\*") around the html client.
+	 *
+	 *  client/html/checkout/confirm/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Checkout\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/checkout/confirm/decorators/excludes
+	 * @see client/html/checkout/confirm/decorators/global
 	 */
 }

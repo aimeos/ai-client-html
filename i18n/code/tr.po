@@ -9,15 +9,15 @@
 # Translators:
 # Aimeos, 2018
 # Aimeos, 2018
-# Metal <meteoramic@yahoo.com>, 2015-2019,2021
+# Metal <meteoramic@yahoo.com>, 2015-2019,2021,2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2019,2021\n"
-"Language-Team: Turkish (http://www.transifex.com/aimeos/aimeos-core/language/tr/)\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2019,2021,2023\n"
+"Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "vergi"
+msgstr "kdv"
 
 #. PST tax name
 msgid "taxpst"
@@ -142,15 +142,15 @@ msgstr "Toplama tarihi"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "Yerinden alma zamanı"
+msgstr "Şu saatte teslim alacağım"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "Yerinden alma konumu"
+msgstr "Şuradan teslim alacağım"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "Yerinden alma adresi"
+msgstr "Şu adresten teslim alacağım"
 
 #. Delivery type
 msgid "delivery.type"

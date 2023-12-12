@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -35,8 +35,8 @@ if( $sort === 'price' ) {
 ?>
 <nav class="pagination">
 
-	<div class="sort">
-		<span><?= $enc->html( $this->translate( 'client', 'Sort by:' ), $enc::TRUST ) ?></span>
+	<div class="sort" aria-label="<?= $enc->attr( $this->translate( 'client', 'Sort by' ) ) ?>">
+		<span><?= $enc->html( $this->translate( 'client', 'Sort by' ), $enc::TRUST ) ?>:</span>
 		<ul>
 			<li>
 				<?php $url = $this->link( $key, ['f_sort' => 'relevance'] + $params ) ?>
@@ -64,7 +64,7 @@ if( $sort === 'price' ) {
 			</li>
 			<li>
 				<?php $url = $this->link( $key, ['f_sort' => '-rating'] + $params ) ?>
-				<a class="option-price <?= ( $sortname === '-rating' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
+				<a class="option-rating <?= ( $sort === '-rating' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Rating' ), $enc::TRUST ) ?>
 				</a>
 			</li>
@@ -72,7 +72,7 @@ if( $sort === 'price' ) {
 	</div>
 
 	<?php if( !$infiniteScroll && $this->last > 1 ) : ?>
-		<div class="browser">
+		<div class="browser" aria-label="<?= $enc->attr( $this->translate( 'client', 'Go to page' ) ) ?>">
 
 			<?php $url = $this->link( $key, ['l_page' => 1] + $params ) ?>
 			<a class="first" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'First' ) ) ?>">

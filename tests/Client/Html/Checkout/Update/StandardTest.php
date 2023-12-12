@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -62,6 +62,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'param', $helper );
 
 		$request = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
+		$request->expects( $this->any() )->method( 'getQueryParams' )->willReturn( [] );
+
 		$helper = new \Aimeos\Base\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
 		$this->view->addHelper( 'request', $helper );
 
@@ -75,7 +77,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$mock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Service\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( ['updatePush'] )
+			->onlyMethods( ['updatePush'] )
 			->getMock();
 
 		$mock->expects( $this->once() )->method( 'updatePush' )

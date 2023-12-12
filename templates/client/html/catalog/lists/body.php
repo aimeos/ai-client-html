@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 $enc = $this->encoder();
@@ -89,6 +89,17 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 		<?php endif ?>
 
 
+		<?php if( $this->get( 'listPageCurr', 0 ) <= 1 && ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+			<div class="catalog-list-head">
+				<?php foreach( $catItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+					<div class="header-text">
+						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
+					</div>
+				<?php endforeach ?>
+			</div>
+		<?php endif ?>
+
+
 		<?php if( $this->get( 'listProductTotal', 0 ) > 0 ) : ?>
 
 			<div class="catalog-list-type">
@@ -171,9 +182,9 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 		<?php endif ?>
 
 
-		<?php if( $this->get( 'listPageCurr', 0 ) <= 1 && ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null ) : ?>
+		<?php if( $this->get( 'listPageCurr', 0 ) <= 1 && ( $catItem = $this->get( 'listCatPath', map() )->last() ) !== null && !( $textItems = $catItem->getRefItems( 'text', 'long', 'default' ) )->isEmpty() ) : ?>
 			<div class="catalog-list-footer">
-				<?php foreach( $catItem->getRefItems( 'text', 'long', 'default' ) as $textItem ) : ?>
+				<?php foreach( $textItems as $textItem ) : ?>
 					<div class="footer-text">
 						<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
 					</div>

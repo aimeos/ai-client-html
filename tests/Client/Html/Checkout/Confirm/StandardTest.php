@@ -6,12 +6,13 @@ namespace Aimeos\Client\Html\Checkout\Confirm;
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
-	private $object;
 	private $context;
+	private $object;
+	private $view;
 
 
 	protected function setUp() : void
@@ -43,7 +44,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->session()->set( 'aimeos/orderid', $order->getId() );
 
 		$this->view->confirmOrderItem = $order;
-		$this->view->summaryBasket = $order->getBaseItem();
+		$this->view->summaryBasket = $order;
 
 		$output = $this->object->header();
 
@@ -57,7 +58,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->context->session()->set( 'aimeos/orderid', $order->getId() );
 
 		$this->view->confirmOrderItem = $order;
-		$this->view->summaryBasket = $order->getBaseItem();
+		$this->view->summaryBasket = $order;
 
 		$output = $this->object->body();
 
@@ -67,13 +68,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="checkout-confirm-basic">', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-detail', $output );
 		$this->assertStringContainsString( '<div class="checkout-confirm-detail common-summary">', $output );
-		$this->assertRegExp( '#<span class="value">.*' . $order->getId() . '.*</span>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<span class="value">.*' . $order->getInvoiceNumber() . '.*</span>#smU', $output );
 
 		$this->assertStringContainsString( 'mr Our Unittest', $output );
 		$this->assertStringContainsString( 'Example company', $output );
 
 		$this->assertStringContainsString( 'unitdeliverycode', $output );
-		$this->assertStringContainsString( 'paypal', $output );
+		$this->assertStringContainsString( 'DirectDebit', $output );
 
 		$this->assertStringContainsString( 'This is a comment', $output );
 	}
@@ -88,6 +89,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'param', $helper );
 
 		$request = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
+		$request->expects( $this->any() )->method( 'getQueryParams' )->willReturn( [] );
+		$request->expects( $this->any() )->method( 'getAttributes' )->willReturn( [] );
+
 		$helper = new \Aimeos\Base\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
 		$this->view->addHelper( 'request', $helper );
 
@@ -108,7 +112,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function getOrder( $date )
 	{
-		$domains = ['order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
+		$domains = ['order', 'order/address', 'order/coupon', 'order/product', 'order/service'];
 		$manager = \Aimeos\MShop::create( $this->context, 'order' );
 		$search = $manager->filter()->add( 'order.datepayment', '==', $date );
 

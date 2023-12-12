@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -50,17 +50,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$manager = \Aimeos\MShop::create( $this->context, 'customer' );
-		$this->context->setUserId( $manager->find( 'test@example.com' )->getId() );
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
 
 		$output = $this->object->body();
 
 		$this->assertStringContainsString( '<div class="section aimeos account-history', $output );
-		$this->assertRegExp( '#<div class="history-item#', $output );
-		$this->assertRegExp( '#<h2 class="order-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
-		$this->assertRegExp( '#<div class="order-invoiceno.*<span class="value[^<]+</span>.*</div>#smU', $output );
-		$this->assertRegExp( '#<div class="order-payment.*<span class="value[^<]+</span>.*</div>#smU', $output );
-		$this->assertRegExp( '#<div class="order-delivery.*<span class="value.*</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="history-item#', $output );
+		$this->assertMatchesRegularExpression( '#<h2 class="order-basic.*<span class="value[^<]+</span>.*</h2>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="order-invoiceno.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="order-payment.*<span class="value[^<]+</span>.*</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="order-delivery.*<span class="value.*</span>.*</div>#smU', $output );
 
 		$this->assertStringContainsString( '<div class="account-history-detail common-summary', $output );
 
@@ -76,7 +75,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
 		$this->assertStringContainsString( 'Cafe Noire Cappuccino', $output );
 		$this->assertStringContainsString( 'Unittest: Monetary rebate', $output );
-		$this->assertRegExp( '#<div class="price.+55.00 EUR</div>#', $output );
-		$this->assertRegExp( '#<div class="quantity.+14 articles</div>#', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+55.00 EUR</div>#', $output );
+		$this->assertMatchesRegularExpression( '#<div class="quantity.+14 articles</div>#', $output );
 	}
 }

@@ -5,7 +5,7 @@ namespace Aimeos\Client\Html\Catalog\Stock;
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 class StandardTest extends \PHPUnit\Framework\TestCase
 {
@@ -51,6 +51,6 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'param', $helper );
 
 		$output = $this->object->body();
-		$this->assertRegExp( '/"' . $prodid . '".*stock-high/', $output );
+		$this->assertMatchesRegularExpression( '/"' . $prodid . '".*stock-high/', $output );
 	}
 }

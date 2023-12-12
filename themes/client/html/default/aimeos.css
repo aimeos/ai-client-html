@@ -2,7 +2,7 @@
  * Aimeos elegance template CSS
  *
  * @license LGPLv3, https://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2014-2022
+ * @copyright Aimeos (aimeos.org), 2014-2023
  */
 
 
@@ -104,7 +104,7 @@ img {
 }
 
 .aimeos .btn {
-	width: 12rem;
+	width: 15rem;
 	vertical-align: top;
 	border-radius: var(--ai-radius);
 	margin: .5rem 0;
@@ -159,6 +159,10 @@ img {
 
 .aimeos .form-control[type='checkbox'] {
 	width: auto;
+}
+
+.aimeos .form-control:invalid {
+	border: 1px solid var(--ai-danger);
 }
 
 .aimeos .form-item label {
@@ -316,7 +320,7 @@ img {
 	display: none !important;
 }
 
-.aimeos .lazy-image {
+.aimeos img.lazy-image {
 	background-image: url(assets/spinner.svg);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -819,15 +823,15 @@ body > .content, body .main-section {
 	--swiffy-slider-item-ratio: var(--ai-product-image-ratio);
 }
 
-.aimeos .list .product .media-list span:first-of-type,
-.aimeos .product-list .media-list span:first-of-type {
+.aimeos .list .product .media-list .media-item:first-of-type,
+.aimeos .product-list .media-list .media-item:first-of-type {
 	z-index: 1;
 	opacity: 1;
 	transition: opacity .3s linear;
 }
 
-.aimeos .list .product .media-list.multiple:hover span:first-of-type,
-.aimeos .product-list .media-list.multiple:hover span:first-of-type {
+.aimeos .list .product .media-list.multiple:hover .media-item:first-of-type,
+.aimeos .product-list .media-list.multiple:hover .media-item:first-of-type {
 	transition: opacity .3s linear;
 	opacity: 0;
 }
@@ -892,7 +896,14 @@ body > .content, body .main-section {
 	font-weight: bold;
 }
 
+.aimeos .product .price-item:first-of-type .original {
+	text-decoration: line-through;
+	color: var(--ai-danger);
+	font-size: 75%;
+}
+
 .aimeos .product .price-item:first-of-type .quantity,
+.aimeos .product .price-item:first-of-type .original,
 .aimeos .product .price-item:first-of-type .rebate,
 .aimeos .product .price-item:first-of-type .costs,
 .aimeos .product .price-item:first-of-type .taxrate {

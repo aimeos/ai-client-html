@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2018-2022
+ * @copyright Aimeos (aimeos.org), 2018-2023
  * @package Client
  * @subpackage Html
  */
@@ -68,7 +68,7 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'subscription' );
 
 		$view->subscriptionIntervals = $cntl->getIntervals();
-		$view->subscriptionItems = $cntl->uses( ['order/base', 'order/base/address', 'order/base/product'] )
+		$view->subscriptionItems = $cntl->uses( ['order', 'order/address', 'order/product'] )
 			->sort( '-subscription.id' )
 			->search();
 
@@ -131,5 +131,76 @@ class Standard
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2018.04
 	 * @see client/html/account/subscription/template-body
+	 */
+
+	/** client/html/account/subscription/decorators/excludes
+	 * Excludes decorators added by the "common" option from the account subscription html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/account/subscription/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2018.04
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/subscription/decorators/global
+	 * @see client/html/account/subscription/decorators/local
+	 */
+
+	/** client/html/account/subscription/decorators/global
+	 * Adds a list of globally available decorators only to the account subscription html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/account/subscription/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2018.04
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/subscription/decorators/excludes
+	 * @see client/html/account/subscription/decorators/local
+	 */
+
+	/** client/html/account/subscription/decorators/local
+	 * Adds a list of local decorators only to the account subscription html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Account\Decorator\*") around the html client.
+	 *
+	 *  client/html/account/subscription/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2018.04
+	 * @see client/html/common/decorators/default
+	 * @see client/html/account/subscription/decorators/excludes
+	 * @see client/html/account/subscription/decorators/global
 	 */
 }

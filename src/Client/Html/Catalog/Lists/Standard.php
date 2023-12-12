@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -55,9 +55,9 @@ class Standard
 	 */
 
 
-	private $tags = [];
-	private $expire;
-	private $view;
+	private array $tags = [];
+	private ?string $expire = null;
+	private ?\Aimeos\Base\View\Iface $view = null;
 
 
 	/**
@@ -226,19 +226,13 @@ class Standard
 	{
 		$view = $this->view();
 		$context = $this->context();
+		$session = $context->session();
 
+		$params = $view->param();
 		$site = $context->locale()->getSiteItem()->getCode();
-		$params = $this->getClientParams( $view->param() );
+		$key = $view->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
-		$catId = $context->config()->get( 'client/html/catalog/lists/catid-default' );
-
-		if( ( $catId = $view->param( 'f_catid', $catId ) ) )
-		{
-			$params['f_name'] = $view->param( 'f_name' );
-			$params['f_catid'] = $catId;
-		}
-
-		$context->session()->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
+		$session->set( 'aimeos/catalog/last/' . $site, $view->link( $key, $params ) );
 	}
 
 
@@ -287,6 +281,9 @@ class Standard
 		$products = $cntl->search( $total );
 		$articles = $products->getRefItems( 'product', 'default', 'default' )->flat( 1 )->union( $products );
 
+		$attrMap = $articles->getRefItems( 'attribute' )->flat( 1 )->groupBy( 'attribute.type' );
+		$attrTypes = $this->attributeTypes( $attrMap->keys() );
+
 		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
 
@@ -300,6 +297,7 @@ class Standard
 		$view->listPageLast = ( $total != 0 ? min( ceil( $total / $size ), $pages ) : 1 );
 		$view->listPageNext = ( $page < $view->listPageLast ? $page + 1 : $view->listPageLast );
 
+		$view->listAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
 		$view->listParams = $this->getClientParams( map( $view->param() )->toArray() );
 		$view->listStockUrl = $this->stockUrl( $articles );
 		$view->listPosition = ( $page - 1 ) * $size;
@@ -321,7 +319,7 @@ class Standard
 	 */
 	public function modify( string $content, string $uid ) : string
 	{
-		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.lists.csrf' );
+		return $this->replaceSection( $content, $this->view()->csrf()->formfield(), 'catalog.lists.items.csrf' );
 	}
 
 
@@ -355,6 +353,25 @@ class Standard
 		$attrids = $attrids != null && is_scalar( $attrids ) ? explode( ',', $attrids ) : $attrids; // workaround for TYPO3
 
 		return (array) $attrids;
+	}
+
+
+	/**
+	 * Returns the attribute type items for the given codes
+	 *
+	 * @param \Aimeos\Map $codes List of attribute type codes
+	 * @return \Aimeos\Map List of attribute type items
+	 */
+	protected function attributeTypes( \Aimeos\Map $codes ) : \Aimeos\Map
+	{
+		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
+
+		$filter = $manager->filter( true )
+			->add( 'attribute.type.domain', '==', 'product' )
+			->add( 'attribute.type.code', '==', $codes )
+			->order( 'attribute.type.position' );
+
+		return $manager->search( $filter->slice( 0, count( $codes ) ) );
 	}
 
 
@@ -713,4 +730,73 @@ class Standard
 
 		return map();
 	}
+
+
+	/** client/html/catalog/lists/decorators/excludes
+	 * Excludes decorators added by the "common" option from the catalog lists html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/catalog/lists/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/lists/decorators/global
+	 * @see client/html/catalog/lists/decorators/local
+	 */
+
+	/** client/html/catalog/lists/decorators/global
+	 * Adds a list of globally available decorators only to the catalog lists html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/lists/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/lists/decorators/excludes
+	 * @see client/html/catalog/lists/decorators/local
+	 */
+
+	/** client/html/catalog/lists/decorators/local
+	 * Adds a list of local decorators only to the catalog lists html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Catalog\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/lists/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/lists/decorators/excludes
+	 * @see client/html/catalog/lists/decorators/global
+	 */
 }

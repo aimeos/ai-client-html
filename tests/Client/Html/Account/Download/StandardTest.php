@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2022
+ * @copyright Aimeos (aimeos.org), 2016-2023
  */
 
 
@@ -23,7 +23,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->view = \TestHelper::view();
 		$this->context = \TestHelper::context();
-		$this->context->setUserId( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' )->getId() );
+		$this->context->setUser( \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' ) );
 
 		$this->object = new \Aimeos\Client\Html\Account\Download\Standard( $this->context );
 		$this->object->setView( $this->view );
@@ -73,7 +73,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$object = $this->getMockBuilder( \Aimeos\Client\Html\Account\Download\Standard::class )
 			->setConstructorArgs( [$this->context] )
-			->setMethods( array( 'checkAccess', 'checkDownload' ) )
+			->onlyMethods( array( 'checkAccess', 'checkDownload' ) )
 			->getMock();
 		$object->setView( $this->view );
 
@@ -81,15 +81,15 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$object->expects( $this->once() )->method( 'checkDownload' )->will( $this->returnValue( true ) );
 
 
-		$attrManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Attribute\\Standard' )
+		$attrManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Attribute\\Standard' )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( ['get'] )
+			->onlyMethods( ['get'] )
 			->getMock();
 
 		$attrManagerStub->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $attrManagerStub->create() ) );
 
-		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Base\\Product\\Attribute\\Standard', $attrManagerStub );
+		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Attribute\\Standard', $attrManagerStub );
 
 
 		$stream = $this->getMockBuilder( \Psr\Http\Message\StreamInterface::class )->getMock();
@@ -98,9 +98,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
-			->setMethods( array( 'createStream' ) )
+			->onlyMethods( ['createStream', 'withBody'] )
 			->getMock();
 		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
+		$helper->expects( $this->once() )->method( 'withBody' )->will( $this->returnSelf() );
 		$this->view->addHelper( 'response', $helper );
 
 		$object->init();
@@ -117,7 +118,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
 			->setConstructorArgs( array( $this->context ) )
-			->setMethods( array( 'addListItem', 'store' ) )
+			->onlyMethods( array( 'addListItem', 'store' ) )
 			->getMock();
 
 		$customerStub->expects( $this->once() )->method( 'addListItem' )->will( $this->returnValue( $customerStub ) );
@@ -141,7 +142,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$fs = $this->context->fs( 'fs-secure' );
 		$fs->write( 'tmp/download/test.txt', 'test' );
 
-		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
+		$item = \Aimeos\MShop::create( $this->context, 'order/product/attribute' )->create();
 		$item->setValue( 'tmp/download/test.txt' );
 		$item->setName( 'test download' );
 
@@ -152,9 +153,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
-			->setMethods( array( 'createStream' ) )
+			->onlyMethods( ['createStream', 'withBody'] )
 			->getMock();
 		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
+		$helper->expects( $this->once() )->method( 'withBody' )->will( $this->returnSelf() );
 		$this->view->addHelper( 'response', $helper );
 
 		$this->access( 'addDownload' )->invokeArgs( $this->object, [$item] );
@@ -163,7 +165,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddDownloadRedirect()
 	{
-		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
+		$item = \Aimeos\MShop::create( $this->context, 'order/product/attribute' )->create();
 		$item->setValue( 'http://localhost/dl/test.txt' );
 		$item->setName( 'test download' );
 
@@ -181,7 +183,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testAddDownloadNotFound()
 	{
-		$item = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' )->create();
+		$item = \Aimeos\MShop::create( $this->context, 'order/product/attribute' )->create();
 		$item->setValue( 'test.txt' );
 		$item->setName( 'test download' );
 

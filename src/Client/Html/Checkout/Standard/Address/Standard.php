@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -58,7 +58,7 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
-	private $subPartPath = 'client/html/checkout/standard/address/subparts';
+	private string $subPartPath = 'client/html/checkout/standard/address/subparts';
 
 	/** client/html/checkout/standard/address/billing/name
 	 * Name of the billing part used by the checkout standard address client implementation
@@ -79,7 +79,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
-	private $subPartNames = array( 'billing', 'delivery' );
+	private array $subPartNames = array( 'billing', 'delivery' );
 
 
 	/**
@@ -243,7 +243,7 @@ class Standard
 		$context = $this->context();
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/base/address' );
+		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/address' );
 
 		$deliveryAddressItems = [];
 		$item = $controller->uses( ['customer/address'] )->get();
@@ -275,12 +275,17 @@ class Standard
 		 *  array( 'DE', 'GB', ... )
 		 *
 		 * @param array List of two letter ISO country codes
-		 * @since 2021.10
+		 * @since 2023.04
 		 */
-		$view->addressCountries = map( $view->config( 'common/countries', [] ) )
-			->flip()->map( function( $v, $key ) use ( $view ) {
-				return $view->translate( 'country', $key );
-			} )->asort();
+		$countries = map( $view->config( 'common/countries', [] ) );
+		$view->addressCountries = $countries->flip()->map( function( $v, $key ) use ( $view ) {
+			return $view->translate( 'country', $key );
+		} );
+
+		// Don't destroy custom order of countries, only sort if order is strictly alphabetical
+		if( $countries->is( $countries->clone()->sort(), true ) ) {
+			$view->addressCountries->asort();
+		}
 
 		/** common/states
 		 * List of available states for frontend and backend
@@ -310,7 +315,7 @@ class Standard
 		 * the state codes are later used for per state tax calculation.
 		 *
 		 * @param array Multi-dimensional list ISO country codes and state codes/names
-		 * @since 2020.10
+		 * @since 2023.04
 		 */
 		$view->addressStates = $view->config( 'common/states', [] );
 
@@ -323,10 +328,10 @@ class Standard
 	/**
 	 * Tests if an item is available and the step can be skipped
 	 *
-	 * @param \Aimeos\MShop\Order\Item\Base\Iface $basket Basket object
+	 * @param \Aimeos\MShop\Order\Item\Iface $basket Basket object
 	 * @return bool TRUE if step can be skipped, FALSE if not
 	 */
-	protected function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
+	protected function isAvailable( \Aimeos\MShop\Order\Item\Iface $basket ) : bool
 	{
 		return !empty( $basket->getAddress( 'payment' ) );
 	}

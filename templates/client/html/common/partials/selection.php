@@ -3,12 +3,13 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2014-2022
+ * @copyright Aimeos (aimeos.org), 2014-2023
  */
 
 /* Available data:
  * - productItem : Selection product for the variant products
  * - productItems : List of product items including the referenced items like texts, attributes, etc.
+ * - attributeTypes : List of attribute type items
  */
 
 
@@ -100,16 +101,19 @@ $sortfcn = function( $itemA, $itemB ) {
 	return $itemA->getPosition() <=> $itemB->getPosition() ?: $itemA->getName() <=> $itemB->getName();
 };
 
+$attrTypes = $this->get( 'attributeTypes', [] );
+
 
 ?>
 <ul class="selection"
 	data-proddeps="<?= $enc->attr( json_encode( $prodDeps ) ) ?>"
 	data-attrdeps="<?= $enc->attr( json_encode( $attrDeps ) ) ?>">
 
-	<?php foreach( $attrItems->uasort( $sortfcn )->groupBy( 'attribute.type' )->ksort() as $code => $list ) : ?>
+	<?php foreach( $attrItems->groupBy( 'attribute.type' ) as $code => $list ) : ?>
+		<?php $list = map( $list )->uasort( $sortfcn ) ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ) ?>">
-			<label class="select-name"><?= $enc->html( $this->translate( 'client/code', $code ) ) ?></label>
+			<label class="select-name"><?= $enc->html( $attrTypes[$code]?->getName() ?: $this->translate( 'client/code', $code ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
@@ -129,6 +133,7 @@ $sortfcn = function( $itemA, $itemB ) {
 									id="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 									value="<?= $enc->attr( $attrId ) ?>"
+									data-code="<?= $enc->attr( $attrItem->getCode() ) ?>"
 									<?= ( $first && $this->config( 'client/html/catalog/selection/preselect/' . $code, false ) ? 'checked="checked"' : '' ) ?>
 								>
 								<label class="select-label" for="option-<?= $enc->attr( $this->productItem->getId() . '-' . $attrId ) ?>"><!--
@@ -169,7 +174,7 @@ $sortfcn = function( $itemA, $itemB ) {
 
 						<?php foreach( $list as $attrId => $attrItem ) : ?>
 
-							<option class="select-option" value="<?= $enc->attr( $attrId ) ?>">
+							<option class="select-option" value="<?= $enc->attr( $attrId ) ?>" data-code="<?= $enc->attr( $attrItem->getCode() ) ?>">
 								<?= $enc->html( $attrItem->getName() ) ?>
 							</option>
 

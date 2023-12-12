@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -66,6 +66,7 @@ class Standard
 				->oneOf( $view->param( 'f_optid', [] ) )
 				->oneOf( $view->param( 'f_oneid', [] ) )
 				->text( $view->param( 'f_search' ) )
+				->price( $view->param( 'f_price' ) )
 				->slice( 0, 0x7fffffff ) // restricted by mshop/common/manager/aggregate/limit
 				->sort();
 

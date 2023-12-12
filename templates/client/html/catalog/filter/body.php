@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 
@@ -22,6 +22,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/lists/url/controller
  * @see client/html/catalog/lists/url/action
  * @see client/html/catalog/lists/url/config
+ * @see client/html/catalog/lists/url/filter
  */
 
 /** client/html/catalog/lists/url/controller
@@ -36,6 +37,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/lists/url/target
  * @see client/html/catalog/lists/url/action
  * @see client/html/catalog/lists/url/config
+ * @see client/html/catalog/lists/url/filter
  */
 
 /** client/html/catalog/lists/url/action
@@ -50,6 +52,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/lists/url/target
  * @see client/html/catalog/lists/url/controller
  * @see client/html/catalog/lists/url/config
+ * @see client/html/catalog/lists/url/filter
  */
 
 /** client/html/catalog/lists/url/config
@@ -70,17 +73,36 @@ $enc = $this->encoder();
  * @see client/html/catalog/lists/url/target
  * @see client/html/catalog/lists/url/controller
  * @see client/html/catalog/lists/url/action
- * @see client/html/url/config
+ * @see client/html/catalog/lists/url/filter
  */
 
-$linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+/** client/html/catalog/lists/url/filter
+ * Removes parameters for the detail page before generating the URL
+ *
+ * This setting removes the listed parameters from the URLs. Keep care to
+ * remove no required parameters!
+ *
+ * @param array List of parameter names to remove
+ * @since 2022.10
+ * @see client/html/catalog/lists/url/target
+ * @see client/html/catalog/lists/url/controller
+ * @see client/html/catalog/lists/url/action
+ * @see client/html/catalog/lists/url/config
+ */
+
+$linkKey = $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$params = map( $this->param() )->only( ['path', 'f_catid', 'f_name'] );
+
+if( $catid = $this->config( 'client/html/catalog/filter/tree/startid' ) ) {
+	$params = $params->union( ['f_catid' => $catid] );
+}
 
 
 ?>
 <div class="section aimeos catalog-filter" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
 	<nav class="container-xxl">
-		<form method="GET" action="<?= $enc->attr( $this->link( $linkKey, map( $this->param() )->only( ['f_catid', 'f_name'] )->all() ) ) ?>">
+		<form method="GET" action="<?= $enc->attr( $this->link( $linkKey, $params->all() ) ) ?>">
 
 			<?php foreach( map( $this->param() )->only( ['f_sort', 'l_type'] ) as $name => $value ) : ?>
 				<input type="hidden" name="<?= $enc->attr( $this->formparam( $name ) ) ?>" value="<?= $enc->attr( $value ) ?>">

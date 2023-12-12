@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -87,7 +87,7 @@ class Standard
 	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
-	private $subPartPath = 'client/html/catalog/count/subparts';
+	private string $subPartPath = 'client/html/catalog/count/subparts';
 
 	/** client/html/catalog/count/tree/name
 	 * Name of the tree part used by the catalog count client implementation
@@ -118,7 +118,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
-	private $subPartNames = ['tree', 'supplier', 'attribute'];
+	private array $subPartNames = ['tree', 'supplier', 'attribute'];
 
 
 	/**
@@ -130,77 +130,6 @@ class Standard
 	 */
 	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
 	{
-		/** client/html/catalog/count/decorators/excludes
-		 * Excludes decorators added by the "common" option from the catalog count html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to remove a decorator added via
-		 * "client/html/common/decorators/default" before they are wrapped
-		 * around the html client.
-		 *
-		 *  client/html/catalog/count/decorators/excludes = array( 'decorator1' )
-		 *
-		 * This would remove the decorator named "decorator1" from the list of
-		 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
-		 * "client/html/common/decorators/default" to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/catalog/count/decorators/global
-		 * @see client/html/catalog/count/decorators/local
-		 */
-
-		/** client/html/catalog/count/decorators/global
-		 * Adds a list of globally available decorators only to the catalog count html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to wrap global decorators
-		 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
-		 *
-		 *  client/html/catalog/count/decorators/global = array( 'decorator1' )
-		 *
-		 * This would add the decorator named "decorator1" defined by
-		 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/catalog/count/decorators/excludes
-		 * @see client/html/catalog/count/decorators/local
-		 */
-
-		/** client/html/catalog/count/decorators/local
-		 * Adds a list of local decorators only to the catalog count html client
-		 *
-		 * Decorators extend the functionality of a class by adding new aspects
-		 * (e.g. log what is currently done), executing the methods of the underlying
-		 * class only in certain conditions (e.g. only for logged in users) or
-		 * modify what is returned to the caller.
-		 *
-		 * This option allows you to wrap local decorators
-		 * ("\Aimeos\Client\Html\Catalog\Decorator\*") around the html client.
-		 *
-		 *  client/html/catalog/count/decorators/local = array( 'decorator2' )
-		 *
-		 * This would add the decorator named "decorator2" defined by
-		 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
-		 *
-		 * @param array List of decorator names
-		 * @since 2014.05
-		 * @see client/html/common/decorators/default
-		 * @see client/html/catalog/count/decorators/excludes
-		 * @see client/html/catalog/count/decorators/global
-		 */
-
 		return $this->createSubClient( 'catalog/count/' . $type, $name );
 	}
 
@@ -212,7 +141,13 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
+		if( !empty( $count = $this->view()->param( 'count' ) ) ) {
+			$parts = array_intersect( (array) $count, $this->subPartNames );
+		} else {
+			$parts = $this->subPartNames;
+		}
+
+		return $this->context()->config()->get( $this->subPartPath, $parts );
 	}
 
 
@@ -255,5 +190,76 @@ class Standard
 	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
 	 * @see client/html/catalog/count/template-body
+	 */
+
+	/** client/html/catalog/count/decorators/excludes
+	 * Excludes decorators added by the "common" option from the catalog count html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to remove a decorator added via
+	 * "client/html/common/decorators/default" before they are wrapped
+	 * around the html client.
+	 *
+	 *  client/html/catalog/count/decorators/excludes = array( 'decorator1' )
+	 *
+	 * This would remove the decorator named "decorator1" from the list of
+	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
+	 * "client/html/common/decorators/default" to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/count/decorators/global
+	 * @see client/html/catalog/count/decorators/local
+	 */
+
+	/** client/html/catalog/count/decorators/global
+	 * Adds a list of globally available decorators only to the catalog count html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap global decorators
+	 * ("\Aimeos\Client\Html\Common\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/count/decorators/global = array( 'decorator1' )
+	 *
+	 * This would add the decorator named "decorator1" defined by
+	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/count/decorators/excludes
+	 * @see client/html/catalog/count/decorators/local
+	 */
+
+	/** client/html/catalog/count/decorators/local
+	 * Adds a list of local decorators only to the catalog count html client
+	 *
+	 * Decorators extend the functionality of a class by adding new aspects
+	 * (e.g. log what is currently done), executing the methods of the underlying
+	 * class only in certain conditions (e.g. only for logged in users) or
+	 * modify what is returned to the caller.
+	 *
+	 * This option allows you to wrap local decorators
+	 * ("\Aimeos\Client\Html\Catalog\Decorator\*") around the html client.
+	 *
+	 *  client/html/catalog/count/decorators/local = array( 'decorator2' )
+	 *
+	 * This would add the decorator named "decorator2" defined by
+	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
+	 *
+	 * @param array List of decorator names
+	 * @since 2014.05
+	 * @see client/html/common/decorators/default
+	 * @see client/html/catalog/count/decorators/excludes
+	 * @see client/html/catalog/count/decorators/global
 	 */
 }

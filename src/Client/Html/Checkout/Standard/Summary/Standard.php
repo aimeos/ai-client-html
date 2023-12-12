@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  * @package Client
  * @subpackage Html
  */
@@ -64,7 +64,8 @@ class Standard
 			}
 
 
-			$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' );
+			$context = $this->context();
+			$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 			$customerref = strip_tags( $view->param( 'cs_customerref', '', false ) );
 			$comment = strip_tags( $view->param( 'cs_comment', '', false ) );
 
@@ -91,7 +92,7 @@ class Standard
 
 			parent::init();
 
-			$controller->get()->check( ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'] );
+			$controller->get()->check( $context->config()->get( 'mshop/order/manager/subdomains', [] ) );
 		}
 		catch( \Exception $e )
 		{

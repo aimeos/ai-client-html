@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2022
+ * @copyright Aimeos (aimeos.org), 2015-2023
  */
 
 /* Available data:
@@ -20,7 +20,8 @@ $enc = $this->encoder();
 $detailTarget = $this->config( 'client/html/catalog/detail/url/target' );
 $detailController = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$detailConfig = $this->config( 'client/html/catalog/detail/url/config', array( 'absoluteUri' => 1 ) );
+$detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
+$detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 
 /** client/html/account/download/url/target
@@ -136,7 +137,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		</div>
 	</div>
 
-	<?php foreach( $this->summaryBasket->getProducts()->groupBy( 'order.base.product.vendor' )->ksort() as $vendor => $list ) : ?>
+	<?php foreach( $this->summaryBasket->getProducts()->groupBy( 'order.product.vendor' )->ksort() as $vendor => $list ) : ?>
 
 		<?php if( $vendor ) : ?>
 			<div class="supplier">
@@ -162,9 +163,10 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 							<?php
 								$url = '#';
 
-								if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 )
+								if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 )
 								{
-									$params = ['d_name' => $product->getName( 'url' ), 'd_prodid' => $product->getParentProductId() ?: $product->getProductId(), 'd_pos' => ''];
+									$name = $product->getName( 'url' );
+									$params = array_diff_key( ['path' => $name, 'd_name' => $name, 'd_prodid' => $product->getParentProductId() ?: $product->getProductId(), 'd_pos' => ''], $detailFilter );
 									$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 								}
 							?>
@@ -218,15 +220,15 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					</div>
 				<div class="col-8 col-md-6">
 					<div class="row g-0">
-						<div class="quantity col-4 quantity col-4">
+						<div class="quantity col-4">
 
-							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 
 								<?php if( $product->getQuantity() > 1 ) : ?>
 									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) ?>
 									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">−</a>
 								<?php else : ?>
-									&nbsp;
+									&nbsp;&nbsp;&nbsp;
 								<?php endif ?>
 
 								<input class="value" type="number" required="required"
@@ -252,7 +254,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></div>
 						<?php if( $modify ) : ?>
 						<div class="action col-1">
-							<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Base\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
+							<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 								<?php $basketParams = array( 'b_action' => 'delete', 'b_position' => $position ) ?>
 								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>"></a>
 							<?php endif ?>
@@ -372,7 +374,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<div class="total row g-0">
 			<div class="col-8 col-md-6 offset-4 offset-md-6">
 				<div class="row g-0 price-total">
-					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></div>
+					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$s article', '%1$s articles', ceil( $totalQuantity ) ), round( $totalQuantity, 3 ) ) ) ?></div>
 					<div class="col-4 total-text"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
@@ -406,8 +408,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 			<div class="col-8 col-md-6 offset-4 offset-md-6">
 				<div class="row g-0">
 					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></div>
-					<div><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
-					<div class="price col-4 offset-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $precision ), $priceCurrency ) ) ?></div>
+					<div class="price col-4"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
+					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
 						<div class="action col-1"></div>
 					<?php endif ?>
@@ -420,8 +422,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<div class="rebate row g-0">
 			<div class="col-8 col-md-6 offset-4 offset-md-6">
 				<div class="row g-0">
-					<div class="quantity col-4"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ) ?></div>
-					<div class="price col-4 offset-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getRebate(), $precision ), $priceCurrency ) ) ?></div>
+					<div class="quantity col-8"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ) ?></div>
+					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getRebate(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
 						<div class="action col-1"></div>
 					<?php endif ?>

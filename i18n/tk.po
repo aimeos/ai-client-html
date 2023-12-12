@@ -1,0 +1,890 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ayshe Sammiyeva, 2023
+msgid ""
+msgstr ""
+"Project-Id-Version: aimeos-core\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"Last-Translator: Ayshe Sammiyeva, 2023\n"
+"Language-Team: Turkmen (http://app.transifex.com/aimeos/aimeos-core/language/tk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tk\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, php-format
+msgid "%1$d article"
+msgid_plural "%1$d articles"
+msgstr[0] "%1$d haryt"
+msgstr[1] "%1$d harytlar"
+
+#, php-format
+msgid "%1$d review"
+msgid_plural "%1$d reviews"
+msgstr[0] "%1$d syn"
+msgstr[1] "%1$d synlar"
+
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+
+#, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
+#, php-format
+msgid "%1$s %2$s"
+msgstr "%1$s%2$s"
+
+#, php-format
+msgid "%1$s %2$s off"
+msgstr "%1$s %2$s arzanladyş"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
+
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%2$s -njide %1$s"
+
+#, php-format
+msgid "%1$s%3$s + %2$s%3$s"
+msgstr "%1$s%3$s + %2$s%3$s"
+
+#, php-format
+msgid "+ %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "+ %1$s%% %2$s"
+msgstr "+ %1$s%% %2$s"
+
+#, php-format
+msgid "+ %1$s%% VAT"
+msgstr "+ %1$s%% VAT"
+
+msgid "+1 123 456 7890"
+msgstr "+993 61 234567"
+
+#, php-format
+msgid "-%1$s%%"
+msgstr "-%1$s%%"
+
+msgid "A non-recoverable error occured"
+msgstr "Düzedip bolmaýan ýalňyşlyk ýüze çykdy"
+
+msgid "Add billing address"
+msgstr "Hasaplaşyk salgysyny goşmak"
+
+msgid "Add to basket"
+msgstr "Sebede goş"
+
+msgid "Additional"
+msgstr "Goşmaça"
+
+msgid "Additional 2"
+msgstr "Goşmaça 2"
+
+msgid "Apply"
+msgstr "Giriş"
+
+msgid "Article"
+msgstr "Haryt"
+
+msgid "Article no."
+msgstr "Haryt no."
+
+#, php-format
+msgid "At least one billing address part is missing or invalid"
+msgstr "Iň bolmanda bir töleg salgysynyň bölegi ýok ýa-da nädogry"
+
+#, php-format
+msgid "At least one delivery address part is missing or invalid"
+msgstr "Iň bolmanda bir gowşuryş salgysynyň bölegi ýok ýa-da nädogry"
+
+msgid "Back"
+msgstr "Yza"
+
+msgid "Basket"
+msgstr "Sebet"
+
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
+
+msgid "Basket saved sucessfully"
+msgstr ""
+
+msgid "Billing address"
+msgstr "Hasaplaşyk salgysy"
+
+#, php-format
+msgid "Billing address part \"%1$s\" is invalid"
+msgstr "Hasaplaşyk salgysynyň bölegi \"%1$s\" nädogry"
+
+#, php-format
+msgid "Billing address part \"%1$s\" is missing"
+msgstr "Hasaplaşyk salgysynyň bölegi \"%1$s\" ýok"
+
+msgid "Birthday"
+msgstr "Doglan gün"
+
+msgid "Breadcrumb navigation"
+msgstr ""
+
+msgid "Bulk order"
+msgstr "Köpçülikleýin sargyt"
+
+msgid "Bundled products"
+msgstr "Birleşdirilen önümler"
+
+msgid "Buy now"
+msgstr "Häzir satyn alyň"
+
+msgid "Cancel"
+msgstr "Ýatyrmak"
+
+msgid "Categories"
+msgstr "Kategoriýalar"
+
+msgid "Change"
+msgstr "Üýtgediň"
+
+msgid "Change payment"
+msgstr "Tölegini üýtgediň"
+
+msgid "Characteristics"
+msgstr "Häsiýetleri"
+
+msgid "Checkout"
+msgstr "Töleg"
+
+msgid "City"
+msgstr "Şäher"
+
+#, php-format
+msgid "Class \"%1$s\" not found"
+msgstr "Klas \"%1$s\" tapylmady"
+
+msgid "Close"
+msgstr "Ýapmak"
+
+msgid "Company"
+msgstr "Kompanýa"
+
+msgid "Confirmation"
+msgstr "Tassyklamak"
+
+msgid "Country"
+msgstr "Ýurt"
+
+msgid "Coupon codes"
+msgstr "Talon kodlary"
+
+msgid "Coupons"
+msgstr "Talonlar"
+
+msgid "Create a customer account for me"
+msgstr "Meniň üçin müşderi hasaby dörediň"
+
+msgid "Created"
+msgstr "Döredildi"
+
+msgid "Customer account"
+msgstr "Müşderi hasaby"
+
+msgid "Delete"
+msgstr "Pozuň"
+
+msgid "Delete item"
+msgstr "Harydy pozuň"
+
+msgid "Delivery"
+msgstr "Eltip bermek"
+
+msgid "Delivery address"
+msgstr "Eltip beriş salgysy"
+
+#, php-format
+msgid "Delivery address deleted successfully"
+msgstr "Eltip beriş salgysy üstünlikli pozuldy"
+
+#, php-format
+msgid "Delivery address part \"%1$s\" is invalid"
+msgstr "Eltip bermek salgysynyň \"%1$s\" bölegi nädogry"
+
+#, php-format
+msgid "Delivery address part \"%1$s\" is missing"
+msgstr "Eltip beriş salgysynyň \"%1$s\" bölegi ýok"
+
+msgid "Delivery within"
+msgstr "Içinde eltip bermek"
+
+msgid "Description"
+msgstr "Düşündiriş"
+
+msgid "Details"
+msgstr "Jikme-jiklikler"
+
+msgid "Don't store address"
+msgstr "Salgyny saklamaň"
+
+msgid "Downloads"
+msgstr "Ýüklemeler"
+
+msgid "E-Mail"
+msgstr "E-poçta"
+
+msgid "End date"
+msgstr "Ahyrky senesi"
+
+msgid "Favorite products"
+msgstr "Iň halanýan önümler"
+
+msgid "Fax"
+msgstr "Faks"
+
+msgid "Fields with an * are mandatory"
+msgstr "* Bilen bellenen meýdanlar hökmanydyr"
+
+msgid "Filter"
+msgstr "Filtr"
+
+msgid "First"
+msgstr ""
+
+msgid "First name"
+msgstr "Ady"
+
+msgid "Found products"
+msgstr ""
+
+msgid "GB999999973"
+msgstr "GB999999973"
+
+msgid "Go to page"
+msgstr ""
+
+msgid "Grid view"
+msgstr "Grid görnüşi"
+
+msgid "HH:mm"
+msgstr "HH:mm"
+
+msgid "Highest price"
+msgstr "Iň ýokary baha"
+
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
+msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">Şertleri</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">gizlinlik ýörelgelerini</a> we <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">ýatyryş syýasatyny</a> kabul edýärin"
+
+msgid "If back in stock"
+msgstr "Eger ätiýaja dolansa"
+
+msgid "If price decreases"
+msgstr "Eger bahasy arzanlasa"
+
+#, php-format
+msgid "Incl. %1$s%% %2$s"
+msgstr "Incl. %1$s%% %2$s"
+
+#, php-format
+msgid "Incl. %1$s%% VAT"
+msgstr "Incl. %1$s%% VAT"
+
+msgid "Included rebates"
+msgstr "Arzanladyşy goşulan"
+
+msgid "Interval"
+msgstr "Aralyk"
+
+#, php-format
+msgid "Invalid characters in client name \"%1$s\""
+msgstr "\"%1$s\" müşderiniň adynda nädogry nyşanlar bar"
+
+#, php-format
+msgid "Invalid class name \"%1$s\""
+msgstr "\"%1$s\" nädogry klass ady"
+
+#, php-format
+msgid "Invalid domain \"%1$s\""
+msgstr "Nädogry domen \"%1$s\""
+
+msgid "Invoice"
+msgstr ""
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "Last"
+msgstr ""
+
+msgid "Last name"
+msgstr "Familýasy"
+
+msgid "Last seen"
+msgstr "Soňky gezek"
+
+msgid "Latest"
+msgstr "Iň soňky"
+
+msgid "List view"
+msgstr "Sanaw görnüşi"
+
+msgid "Lowest price"
+msgstr "Iň arzan baha"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mobile number"
+msgstr ""
+
+msgid "More reviews"
+msgstr "Has köp syn"
+
+msgid "Name"
+msgstr "Ady"
+
+msgid "New"
+msgstr "Täze"
+
+msgid "New delivery address"
+msgstr "Täze gowşuryş salgysy"
+
+msgid "Next"
+msgstr "Indiki"
+
+msgid "Next order"
+msgstr "Indiki sargyt"
+
+#, php-format
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
+msgstr "<span class=\"searchstring\">\"%1$s\"</span> üçin haryt tapylmady Başga bir açar söz bilen gaýtadan synanyşmagyňyzy haýyş edýäris."
+
+msgid "No order ID available in session"
+msgstr "Sessiýada sargyt belgisi ýok"
+
+#, php-format
+msgid "No view available"
+msgstr "Görnüş ýok"
+
+msgid "One month"
+msgstr "Bir aý"
+
+msgid "One week"
+msgstr "Bir hepde"
+
+msgid "Open submenu"
+msgstr "Aşakdaky menýu açyň"
+
+msgid "Order ID"
+msgstr "Sargyt ID"
+
+msgid "Order details"
+msgstr "Sargyt maglumatlary"
+
+msgid "Order history"
+msgstr "Sargyt taryhy"
+
+msgid "Order status"
+msgstr "Sargyt ýagdaýy"
+
+msgid "Other customers also bought"
+msgstr "Beýleki müşderiler hem satyn aldylar"
+
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr "%2$dyň %1$d-nji sahypasy"
+
+msgid "Pay now"
+msgstr "Şu wagt töle"
+
+msgid "Payment"
+msgstr "Töleg"
+
+msgid "Payment costs"
+msgstr "Töleg çykdajylary"
+
+msgid "Payment status"
+msgstr "Töleg ýagdaýy"
+
+msgid "Pin product"
+msgstr "Harydy belläň"
+
+msgid "Pinned products"
+msgstr "Bellenen harytlar"
+
+msgid "Please accept the terms and conditions"
+msgstr "Şertleri kabul etmegiňizi haýyş edýäris"
+
+msgid "Please check your order"
+msgstr "Sargydyňyzy barlaň"
+
+msgid "Please choose your delivery method"
+msgstr "Eltip bermegiň usulyny saýlaň"
+
+msgid "Please choose your payment method"
+msgstr "Töleg usulyňyzy saýlaň"
+
+msgid "Please enter at least three characters"
+msgstr "Iň azyndan üç simwol giriziň"
+
+msgid "Please enter your payment details"
+msgstr "Töleg maglumatlaryňyzy ýazmagyňyzy haýyş edýäris"
+
+msgid "Please select"
+msgstr "Saýlaň"
+
+msgid "Postal code"
+msgstr "Poçta kody"
+
+msgid "Previous"
+msgstr "Öňki"
+
+msgid "Price"
+msgstr "Bahasy"
+
+msgid "Price filter"
+msgstr ""
+
+msgid "Price range"
+msgstr "Bahalar aralygy"
+
+msgid "Proceed"
+msgstr "Dowam et"
+
+msgid "Processing the payment failed"
+msgstr "Tölegiň gaýtadan işlenmegi şowsuz tamamlandy"
+
+msgid "Product"
+msgstr "Haryt"
+
+msgid "Product actions"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
+msgid "Product image"
+msgstr "Harydyň surady"
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr ""
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
+msgstr ""
+
+msgid "Products you might be also interested in"
+msgstr "Sizi hem gyzyklandyryp biljek önümler"
+
+msgid "Qty"
+msgstr "Muk"
+
+msgid "Quantity"
+msgstr "Mukdar"
+
+msgid "Rating"
+msgstr "Bahalandyrma"
+
+msgid "Reference"
+msgstr "Salgylanma"
+
+msgid "Relevance"
+msgstr "Baglanyşygy"
+
+msgid "Reset"
+msgstr "Täzeden düzmek"
+
+#, php-format
+msgid "Result for \"%1$s\""
+msgstr "\"%1$s\"-yň netijesi"
+
+msgid "Reviews"
+msgstr "Synlar"
+
+msgid "SKU or article name"
+msgstr "SKU ýa-da harydyň ady"
+
+msgid "Sale"
+msgstr "Satlyk"
+
+msgid "Salutation"
+msgstr "Gutlag"
+
+msgid "Save"
+msgstr "Ýatda sakla"
+
+msgid "Saved basket removed sucessfully"
+msgstr ""
+
+msgid "Saved baskets"
+msgstr ""
+
+msgid "Search"
+msgstr "Gözlemek"
+
+#, php-format
+msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
+msgstr[0] "<span class=\"searchstring\">\"%1$s\"</span> üçin gözleg netijesi (%2$d harytlar)"
+msgstr[1] "<span class=\"searchstring\">\"%1$s\"</span> üçin gözlegiň netijesi (%2$d harytlar)"
+
+msgid "Select country"
+msgstr "Ýurt saýlaň"
+
+msgid "Select currency"
+msgstr "Walýuta saýlaň"
+
+msgid "Select language"
+msgstr "Dil saýlaň"
+
+msgid "Select salutation"
+msgstr "Gutlag saýlaň"
+
+msgid "Select state"
+msgstr "Ýagdaýy saýlaň"
+
+msgid "Share"
+msgstr "Paýlaş"
+
+msgid "Shipping"
+msgstr "Eltip bermek"
+
+msgid "Show"
+msgstr "Görkez"
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Sort by:"
+msgstr "Tertipleşdiriň:"
+
+msgid "State"
+msgstr "Şäher"
+
+msgid "Stock"
+msgstr "Stok"
+
+#, php-format
+msgid "Stock: %1$s, %2$s"
+msgstr "Stok: %1$s, %2$s"
+
+#, php-format
+msgid "Stock: %1$s, %2$s, back on %3$s"
+msgstr "Stok: %1$s, %2$s, gaýdyp geler %3$s"
+
+msgid "Street"
+msgstr "Köçe"
+
+msgid "Sub-total"
+msgstr "Jemi"
+
+msgid "Submit"
+msgstr "Iberiň"
+
+msgid "Subscription ID"
+msgstr "Abunalyk belgisi"
+
+msgid "Subscription details"
+msgstr "Abunalyk maglumatlary"
+
+msgid "Subscriptions"
+msgstr "Abunalar"
+
+msgid "Suggested products"
+msgstr "Teklip edilýän önümler"
+
+msgid "Sum"
+msgstr "Jemi"
+
+msgid "Supplier information"
+msgstr "Üpjün ediji barada maglumat"
+
+msgid "Supplier list"
+msgstr ""
+
+msgid "Suppliers"
+msgstr "Üpjün edijiler"
+
+msgid "Take a look"
+msgstr "Göz aýlaň"
+
+msgid "Telephone"
+msgstr "Telefon"
+
+msgid "Terms and conditions"
+msgstr "Şertler"
+
+msgid ""
+"Thank you for your order and authorizing the payment.\n"
+"An e-mail with the order details will be sent to you within the next few minutes."
+msgstr "Sargydyňyz we tölegiňize rugsat bereniňiz üçin sag boluň.\nSargyt jikme-jiklikleri bolan e-poçta ýakyn birnäçe minutyň içinde size iberiler."
+
+msgid ""
+"Thank you for your order.\n"
+"We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
+msgstr "Sargyt üçin sag boluň.\nTölegiňizi aldyk we sargyt jikme-jiklikleri bilen e-poçta ýakyn birnäçe minutda size iberiler."
+
+msgid "Thank you for your review!"
+msgstr "Syn edeniňiz üçin sag boluň!"
+
+msgid ""
+"The order was canceled.\n"
+"Do you wish to retry your order?"
+msgstr "Sargyt ýatyryldy.\nSargydyňyzy täzeden synap görmek isleýärsiňizmi?"
+
+msgid ""
+"The payment confirmation for your order is still pending.\n"
+"You will get an e-mail as soon as the payment is authorized."
+msgstr "Sargydyňyz üçin töleg tassyklamasy henizem garaşylýar.\nTöleg ygtyýar berlen badyna e-poçta alarsyňyz."
+
+msgid "Three month"
+msgstr "Üç aý"
+
+msgid "Time frame"
+msgstr "Wagt çäkleri"
+
+msgid "Toggle fullscreen"
+msgstr "Doly ekrany açmak"
+
+msgid "Total"
+msgstr "Jemi"
+
+msgid "Try again"
+msgstr "Täzeden synanş"
+
+msgid "Two weeks"
+msgstr "Iki hepde"
+
+#, php-format
+msgid "Unable to create an account: %1$s"
+msgstr "Hasap açyp bolmaýar: %1$s"
+
+#, php-format
+msgid "Unable to save address for customer \"%1$s\": %2$s"
+msgstr "Müşderi \"%1$s\" üçin salgy ýazdyryp bolmaýar: %2$s"
+
+msgid ""
+"Unfortunately, the payment for your order was refused.\n"
+"Do you wish to retry?"
+msgstr "Gynansagam, sargydyňyz üçin töleg ret edildi.\nGaýtadan synanyşmak isleýärsiňizmi?"
+
+msgid "Update"
+msgstr "Täzelemek"
+
+msgid "Variant"
+msgstr "Görnüş"
+
+msgid "Vat ID"
+msgstr "Salgyt belgisi"
+
+msgid "Vendor response"
+msgstr "Satyjynyň jogaby"
+
+msgid "Watch"
+msgstr "Gözegçilik etmek"
+
+msgid "Watched products"
+msgstr "Gözegçilik edilýän önümler"
+
+msgid "Web site"
+msgstr "Web sahypa"
+
+msgid "What do you think about the product"
+msgstr "Önüm hakda näme pikir edýärsiňiz"
+
+msgid "Y-m-d"
+msgstr "Y-m-d"
+
+msgid "YYYY-MM-DD"
+msgstr "YYYY-MM-DD"
+
+msgid "YYYY-MM-DD HH:mm"
+msgstr "YYYY-MM-DD HH:mm"
+
+msgid "You are here:"
+msgstr "Siz şu ýerde:"
+
+#, php-format
+msgid "You can only save up to %1$s products as favorites"
+msgstr "Diňe %1$s önümi halanýan görnüşde tygşytlap bilersiňiz"
+
+#, php-format
+msgid "You can only watch up to %1$s products"
+msgstr "Diňe %1$s harydy gözegçilik edilýän haryt görnüşinde saklap bilersiňiz"
+
+msgid "You must log in first"
+msgstr ""
+
+msgid "You will now be forwarded to the next step"
+msgstr "Indi indiki ädime ugradylarsyňyz"
+
+msgid "Your choice"
+msgstr "Siziň saýlawyňyz"
+
+msgid "Your comment"
+msgstr "Siziň teswiriňiz"
+
+msgid "Your rating"
+msgstr "Siziň baha bermegiňiz"
+
+msgid "Your reference"
+msgstr "Siziň salgylanmaňyz"
+
+msgid "Your reference number"
+msgstr "Maglumat belgiňiz"
+
+msgid "Your review"
+msgstr "Siziň synyňyz"
+
+msgid "Zoom in/out"
+msgstr "Ýakynlaşdyrmak / uzaklaşdyrmak"
+
+#, php-format
+msgid "address"
+msgstr "salgy"
+
+#, php-format
+msgid "delivery"
+msgstr "eltip bermek"
+
+msgid "favorite"
+msgstr "iň halanýan"
+
+#, php-format
+msgid "from %1$s"
+msgstr "%1$s-dan"
+
+msgid "like billing address"
+msgstr "töleg salgysy ýaly"
+
+msgid "new address"
+msgstr "täze salgy"
+
+msgid "none"
+msgstr "hijisi"
+
+msgid "on request"
+msgstr "islege görä"
+
+#, php-format
+msgid "payment"
+msgstr "töleg"
+
+msgid "pin"
+msgstr "bellemek"
+
+msgid "price:default"
+msgstr "bahasy:default"
+
+#, php-format
+msgid "process"
+msgstr "prosesi"
+
+msgid "stock-high"
+msgstr "ýokary-stok"
+
+msgid "stock-low"
+msgstr "pes-stok"
+
+msgid "stock-out"
+msgstr "stok-ýok"
+
+msgid "stock-unlimited"
+msgstr "stok-çäklendirilmedik"
+
+#, php-format
+msgid "summary"
+msgstr "mazmun"
+
+msgid "watch"
+msgstr "gözegçilik etmek"
+
+msgid "▲ Name"
+msgstr "▲ Ady"
+
+msgid "▲ Price"
+msgstr "▲ Bahasy"
+
+msgid "▶"
+msgstr "▶"
+
+msgid "▶▶"
+msgstr "▶▶"
+
+msgid "▼ Name"
+msgstr "▼ Ady"
+
+msgid "▼ Price"
+msgstr "▼ Bahasy"
+
+msgid "◀"
+msgstr "◀"
+
+msgid "◀◀"
+msgstr "◀◀"

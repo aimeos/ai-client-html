@@ -13,7 +13,7 @@ function slideToggle(t,e,o){0===t.clientHeight?j(t,e,o,!0):j(t,e,o)}function sli
  *
  * @license LGPLv3, https://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2014-2022
+ * @copyright Aimeos (aimeos.org), 2014-2023
  */
 
 
@@ -111,7 +111,7 @@ Aimeos = {
 			if(element.tagName === 'IMG') {
 				element.setAttribute("srcset", element.getAttribute("data-srcset"));
 				element.setAttribute("src", element.getAttribute("data-src"));
-			} else if(element.classList.contains('background')) {
+			} else if(element.getAttribute("data-background")) {
 				const srcset = element.getAttribute("data-background");
 				let url = '';
 
@@ -163,6 +163,10 @@ Aimeos = {
 			return Aimeos.removeOverlay();
 		});
 
+		$(document).on("click", ".aimeos-container .btn-back", () => {
+			return Aimeos.removeOverlay();
+		});
+
 		$(document).on("keydown", ev => {
 			if(ev.key == "Escape") {
 				return Aimeos.removeOverlay();
@@ -204,6 +208,10 @@ AimeosBasket = {
 		const doc = $("<html/>").html(data);
 		const basket = $(".aimeos.basket-standard", doc);
 
+		$('.aimeos .error-list, .aimeos .info-list', doc).each((idx, el) => {
+			basket.prepend(el);
+		});
+
 		$('link.basket-standard', doc).each((idx, el) => {
 			basket.append(el);
 		});
@@ -223,8 +231,19 @@ AimeosBasket = {
 				headers: {'Content-Type': 'application/json'}
 			}).then(response => {
 				return response.json();
-			}).then(options => {
-				fetch(options.meta.resources['basket'], {
+			}).then(async options => {
+				const url = options.meta.resources['basket']
+				const args = {'include': 'basket.product'}
+				let params = {}
+
+				if( options.meta.prefix ) {
+					params[options.meta.prefix] = args
+				} else {
+					params = args
+				}
+				const query = window.param(params)
+
+				await fetch(url + (url.indexOf('?') === -1 ? '?' + query : '&' + query), {
 					headers: {'Content-Type': 'application/json'}
 				}).then(response => {
 					return response.json();
@@ -467,11 +486,11 @@ AimeosBasket = {
 	 */
 	onFavoriteAction() {
 
-		$(document).on("submit", ".catalog-actions .actions-favorite", ev => {
+		$(document).on("submit", ".catalog-actions .actions-favorite", async ev => {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
-			fetch($(ev.currentTarget).attr("action"), {
+			await fetch($(ev.currentTarget).attr("action"), {
 				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(response => {
@@ -481,6 +500,9 @@ AimeosBasket = {
 				const content = $(".aimeos.account-favorite", doc);
 
 				if(content.length > 0) {
+					$('.aimeos .error-list, .aimeos .info-list', doc).each((idx, el) => {
+						content.prepend(el);
+					});
 					$('link.account-favorite', doc).each((idx, el) => {
 						document.head.append(el);
 					});
@@ -504,11 +526,11 @@ AimeosBasket = {
 	 */
 	onWatchAction() {
 
-		$(document).on("submit", ".catalog-actions .actions-watch", ev => {
+		$(document).on("submit", ".catalog-actions .actions-watch", async ev => {
 			ev.preventDefault();
 			Aimeos.createOverlay();
 
-			fetch($(ev.currentTarget).attr("action"), {
+			await fetch($(ev.currentTarget).attr("action"), {
 				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(response => {
@@ -518,6 +540,9 @@ AimeosBasket = {
 				const content = $(".aimeos.account-watch", doc);
 
 				if(content.length > 0) {
+					$('.aimeos .error-list, .aimeos .info-list', doc).each((idx, el) => {
+						content.prepend(el);
+					});
 					$('link.account-watch', doc).each((idx, el) => {
 						document.head.append(el);
 					});
