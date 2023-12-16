@@ -396,14 +396,14 @@ class Standard
 				if( $pos > 0 && ( $product = $products->first() ) !== null )
 				{
 					$url = $product->getName( 'url' );
-					$param = ['path' => $url, 'd_name' => $url, 'd_prodid' => $product->getId(), 'd_pos' => $pos - 1];
+					$param = ['xpath' => $url, 'd_name' => $url, 'd_prodid' => $product->getId(), 'd_pos' => $pos - 1];
 					$view->navigationPrev = $view->link( 'client/html/catalog/detail/url', $param );
 				}
 
 				if( ( $pos === 0 || $count === 3 ) && ( $product = $products->last() ) !== null )
 				{
 					$url = $product->getName( 'url' );
-					$param = ['path' => $url, 'd_name' => $url, 'd_prodid' => $product->getId(), 'd_pos' => $pos + 1];
+					$param = ['xpath' => $url, 'd_name' => $url, 'd_prodid' => $product->getId(), 'd_pos' => $pos + 1];
 					$view->navigationNext = $view->link( 'client/html/catalog/detail/url', $param );
 				}
 			}
