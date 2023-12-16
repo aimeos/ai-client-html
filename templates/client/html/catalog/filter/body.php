@@ -90,8 +90,8 @@ $enc = $this->encoder();
  * @see client/html/catalog/lists/url/config
  */
 
-$linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
-$params = map( $this->param() )->only( ['f_catid', 'f_name'] );
+$linkKey = $this->param( 'xpath' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$params = map( $this->param() )->only( ['xpath', 'f_catid', 'f_name'] );
 
 if( $catid = $this->config( 'client/html/catalog/filter/tree/startid' ) ) {
 	$params = $params->union( ['f_catid' => $catid] );

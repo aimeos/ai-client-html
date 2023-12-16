@@ -6,7 +6,8 @@
  */
 
 $enc = $this->encoder();
-$key = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+
+$linkKey = $this->param( 'xpath' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
 
 /** client/html/catalog/lists/pagination
@@ -104,9 +105,9 @@ if( $infiniteScroll && $this->get( 'listPageNext', 0 ) > $this->get( 'listPageCu
 
 			<div class="catalog-list-type">
 				<a class="type-item type-grid" title="<?= $enc->attr( $this->translate( 'client', 'Grid view' ) ) ?>"
-					href="<?= $enc->attr( $this->link( $key, map( $this->get( 'listParams', [] ) )->remove( 'l_type' )->all() ) ) ?>"></a>
+					href="<?= $enc->attr( $this->link( $linkKey, map( $this->get( 'listParams', [] ) )->remove( 'l_type' )->all() ) ) ?>"></a>
 				<a class="type-item type-list" title="<?= $enc->attr( $this->translate( 'client', 'List view' ) ) ?>"
-					href="<?= $enc->attr( $this->link( $key, ['l_type' => 'list'] + $this->get( 'listParams', [] ) ) ) ?>"></a>
+					href="<?= $enc->attr( $this->link( $linkKey, ['l_type' => 'list'] + $this->get( 'listParams', [] ) ) ) ?>"></a>
 			</div>
 
 		<?php endif ?>

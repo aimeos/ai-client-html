@@ -9,9 +9,10 @@
 $enc = $this->encoder();
 
 $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
-$key = $this->get( 'params/f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
-$sort = $this->get( 'params/f_sort', $this->config( 'client/html/catalog/lists/sort', 'relevance' ) );
+$linkKey = $this->param( 'xpath' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$sort = $this->param( 'f_sort', $this->config( 'client/html/catalog/lists/sort', 'relevance' ) );
 $params = $this->get( 'params', [] );
+
 $sortname = ltrim( $sort, '-' );
 $nameDir = $priceDir = '';
 
@@ -39,31 +40,31 @@ if( $sort === 'price' ) {
 		<span><?= $enc->html( $this->translate( 'client', 'Sort by' ), $enc::TRUST ) ?>:</span>
 		<ul>
 			<li>
-				<?php $url = $this->link( $key, ['f_sort' => 'relevance'] + $params ) ?>
+				<?php $url = $this->link( $linkKey, ['f_sort' => 'relevance'] + $params ) ?>
 				<a class="option-relevance <?= ( $sort === 'relevance' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Relevance' ), $enc::TRUST ) ?>
 				</a>
 			</li>
 			<li>
-				<?php $url = $this->link( $key, ['f_sort' => '-ctime'] + $params ) ?>
+				<?php $url = $this->link( $linkKey, ['f_sort' => '-ctime'] + $params ) ?>
 				<a class="option-ctime <?= ( $sort === '-ctime' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Latest' ), $enc::TRUST ) ?>
 				</a>
 			</li>
 			<li>
-				<?php $url = $this->link( $key, ['f_sort' => $nameDir . 'name'] + $params ) ?>
+				<?php $url = $this->link( $linkKey, ['f_sort' => $nameDir . 'name'] + $params ) ?>
 				<a class="option-name <?= ( $sortname === 'name' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $nameSort, $enc::TRUST ) ?>
 				</a>
 			</li>
 			<li>
-				<?php $url = $this->link( $key, ['f_sort' => $priceDir . 'price'] + $params ) ?>
+				<?php $url = $this->link( $linkKey, ['f_sort' => $priceDir . 'price'] + $params ) ?>
 				<a class="option-price <?= ( $sortname === 'price' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $priceSort, $enc::TRUST ) ?>
 				</a>
 			</li>
 			<li>
-				<?php $url = $this->link( $key, ['f_sort' => '-rating'] + $params ) ?>
+				<?php $url = $this->link( $linkKey, ['f_sort' => '-rating'] + $params ) ?>
 				<a class="option-rating <?= ( $sort === '-rating' ? 'active' : '' ) ?>" href="<?= $enc->attr( $url ) ?>">
 					<?= $enc->html( $this->translate( 'client', 'Rating' ), $enc::TRUST ) ?>
 				</a>
@@ -74,24 +75,24 @@ if( $sort === 'price' ) {
 	<?php if( !$infiniteScroll && $this->last > 1 ) : ?>
 		<div class="browser" aria-label="<?= $enc->attr( $this->translate( 'client', 'Go to page' ) ) ?>">
 
-			<?php $url = $this->link( $key, ['l_page' => 1] + $params ) ?>
+			<?php $url = $this->link( $linkKey, ['l_page' => 1] + $params ) ?>
 			<a class="first" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'First' ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ) ?>
 			</a>
 
-			<?php $url = $this->link( $key, ['l_page' => $this->prev] + $params ) ?>
+			<?php $url = $this->link( $linkKey, ['l_page' => $this->prev] + $params ) ?>
 			<a class="prev" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Previous' ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ) ?>
 			</a>
 
 			<span><?= $enc->html( sprintf( $this->translate( 'client', 'Page %1$d of %2$d' ), $this->current, $this->last ) ) ?></span>
 
-			<?php $url = $this->link( $key, ['l_page' => $this->next] + $params ) ?>
+			<?php $url = $this->link( $linkKey, ['l_page' => $this->next] + $params ) ?>
 			<a class="next" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Next' ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ) ?>
 			</a>
 
-			<?php $url = $this->link( $key, ['l_page' => $this->last] + $params ) ?>
+			<?php $url = $this->link( $linkKey, ['l_page' => $this->last] + $params ) ?>
 			<a class="last" href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Last' ) ) ?>">
 				<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ) ?>
 			</a>

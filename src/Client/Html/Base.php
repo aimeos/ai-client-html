@@ -481,7 +481,7 @@ abstract class Base
 	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_'] ) : array
+	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_', 'xpath'] ) : array
 	{
 		return map( $params )->filter( function( $val, $key ) use ( $prefixes ) {
 			return \Aimeos\Base\Str::starts( $key, $prefixes );
