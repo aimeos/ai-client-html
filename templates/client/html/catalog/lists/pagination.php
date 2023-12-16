@@ -9,7 +9,7 @@
 $enc = $this->encoder();
 
 $infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
-$linkKey = $this->param( 'xpath' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$linkKey = $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 $sort = $this->param( 'f_sort', $this->config( 'client/html/catalog/lists/sort', 'relevance' ) );
 $params = $this->get( 'params', [] );
 

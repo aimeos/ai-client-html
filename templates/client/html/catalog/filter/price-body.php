@@ -7,7 +7,7 @@
 
 $enc = $this->encoder();
 
-$linkKey = $this->param( 'xpath' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$linkKey = $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
 
 ?>
