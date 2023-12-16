@@ -157,7 +157,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 <?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
 	<?php
 		$name = $productItem->getName( 'url' );
-		$params = array_diff_key( ['xpath' => $name, 'd_name' => $name, 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
+		$params = array_diff_key( ['path' => $name, 'd_name' => $name, 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 		$url = $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 
 		$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );

@@ -10,7 +10,7 @@ return [
 		'catalog' => [
 			'detail' => [
 				'url' => [
-					'filter' => ['xpath', 'd_prodid'] // Remove path and product ID from URLs, only use URL segment
+					'filter' => ['path', 'd_prodid'] // Remove path and product ID from URLs, only use URL segment
 				]
 			],
 			'filter' => [
@@ -23,7 +23,7 @@ return [
 			],
 			'tree' => [
 				'url' => [
-					'filter' => ['xpath'] // Remove path from URLs by default
+					'filter' => ['path'] // Remove path from URLs by default
 				]
 			],
 		],

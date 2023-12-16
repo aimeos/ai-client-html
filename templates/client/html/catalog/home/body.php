@@ -64,7 +64,7 @@ $lazy = false;
 		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
 
 			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
-				<?php $params = ['xpath' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' ), 'f_catid' => $this->homeTree->getId()] ?>
+				<?php $params = ['path' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' ), 'f_catid' => $this->homeTree->getId()] ?>
 				<?php $url = $this->link( 'client/html/catalog/tree/url', $params ) ?>
 
 				<?php foreach( $mediaItems as $mediaItem ) : ?>

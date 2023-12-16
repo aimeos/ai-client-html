@@ -116,17 +116,17 @@ $filter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', [] )
 	<?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
 		<?php if( $item->getStatus() > 0 ) : ?>
 			<?php $name = $item->getName( 'url' ) ?>
-			<?php $params = array_diff_key( array_merge( $this->get( 'params', [] ), ['xpath' => $name, 'f_name' => $name, 'f_catid' => $item->getId()] ), $filter ) ?>
+			<?php $params = array_diff_key( array_merge( $this->get( 'params', [] ), ['path' => $name, 'f_name' => $name, 'f_catid' => $item->getId()] ), $filter ) ?>
 			<?php $url = $this->url( $item->getTarget() ?: $target, $controller, $action, $params, [], $config ) ?>
 
 			<div class="cat-item catid-<?= $enc->attr( $item->getId() .
 				( !$item->getChildren()->isEmpty() ? ' withchild' : ' nochild' ) .
-				( $this->get( 'xpath', map() )->has( $item->getId() ) ? ' active' : '' ) .
+				( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) .
 				' catcode-' . $item->getCode() . ' ' . $item->getConfigValue( 'css-class' ) ) ?>"
 				data-id="<?= $item->getId() ?>">
 
 				<div class="item-links row">
-					<a class="col-10 cat-link name <?= ( $this->get( 'xpath', map() )->has( $item->getId() ) ? ' active' : '' ) ?>"
+					<a class="col-10 cat-link name <?= ( $this->get( 'path', map() )->has( $item->getId() ) ? ' active' : '' ) ?>"
 						href="<?= $enc->attr( $url ) ?>">
 						<div class="media-list">
 							<?php foreach( $item->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
@@ -150,9 +150,9 @@ $filter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', [] )
 				<?php if( count( $item->getChildren() ) > 0 ) : ?>
 
 					<div id="<?= $enc->attr( $item->getId() ) ?>" class="submenu <?= $enc->attr(
-						( $this->get( 'xpath', map() )->has( $item->getId() ) ? ' active opened' : '' ) ) .
+						( $this->get( 'path', map() )->has( $item->getId() ) ? ' active opened' : '' ) ) .
 						( !$item->getChildren()->isEmpty() ? ' withchild' : ' nochild' ) ?>"
-						<?= $this->get( 'xpath', map() )->getId()->last() == $item->getId() ? 'aria-current="page"' : '' ?>
+						<?= $this->get( 'path', map() )->getId()->last() == $item->getId() ? 'aria-current="page"' : '' ?>
 						data-id="<?= $item->getId() ?>">
 
 						<div class="row header">
@@ -163,14 +163,14 @@ $filter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', [] )
 
 						<?= $this->partial( $this->config( 'client/html/catalog/filter/tree/partial', 'catalog/filter/tree-partial' ), [
 							'nodes' => $item->getChildren(),
-							'xpath' => $this->get( 'xpath', map() ),
+							'path' => $this->get( 'path', map() ),
 							'level' => $this->get( 'level', 0 ) + 1,
 							'params' => $this->get( 'params', [] )
 						] ) ?>
 
 						<?php if( $item->getLevel() == 1 ) : ?>
 
-							<a class="cat-img <?= $enc->attr( ( $this->get( 'xpath', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
+							<a class="cat-img <?= $enc->attr( ( $this->get( 'path', map() )->getId()->last() == $item->getId() ? ' active' : '' ) ) ?>"
 								title="<?= $enc->attr( $item->getRefItems( 'media', 'menu', 'default' )->getProperties( 'title' )->first() ?: $item->getName() ) ?>"
 								href="<?= $enc->attr( $url ) ?>">
 
