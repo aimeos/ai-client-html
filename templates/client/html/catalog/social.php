@@ -125,7 +125,7 @@ $urls = array(
 );
 
 $name = $this->productItem->getName( 'url' );
-$params = ['path' => $name, 'd_name' => $name, 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''];
+$params = ['xpath' => $name, 'd_name' => $name, 'd_prodid' => $this->productItem->getId(), 'd_pos' => ''];
 
 
 ?>

@@ -166,7 +166,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 )
 								{
 									$name = $product->getName( 'url' );
-									$params = array_diff_key( ['path' => $name, 'd_name' => $name, 'd_prodid' => $product->getParentProductId() ?: $product->getProductId(), 'd_pos' => ''], $detailFilter );
+									$params = array_diff_key( ['xpath' => $name, 'd_name' => $name, 'd_prodid' => $product->getParentProductId() ?: $product->getProductId(), 'd_pos' => ''], $detailFilter );
 									$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 								}
 							?>
