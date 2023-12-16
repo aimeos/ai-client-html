@@ -13,7 +13,7 @@ $enc = $this->encoder();
 <?php if( isset( $this->product ) ) :  ?>
 
 	<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', [
-		'xpath' => $this->product->getName( 'url' ),
+		'path' => $this->product->getName( 'url' ),
 		'd_name' => $this->product->getName( 'url' ),
 		'd_prodid' => $this->product->getId(),
 		'd_pos' => ''

@@ -118,7 +118,7 @@ $enc = $this->encoder();
 			<?php foreach( $this->get( 'pinnedProductItems', [] ) as $id => $productItem ) : ?>
 				<?php $name = $productItem->getName( 'url' ) ?>
 				<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $name] + $this->get( 'pinnedParams', [] ) ?>
-				<?php $detailParams = ['xpath' => $name, 'd_name' => $name, 'd_prodid' => $id, 'd_pos' => ''] ?>
+				<?php $detailParams = ['path' => $name, 'd_name' => $name, 'd_prodid' => $id, 'd_pos' => ''] ?>
 
 				<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>">
 					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">

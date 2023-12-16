@@ -31,7 +31,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	}
 
 	$url = $productItem->getName( 'url' );
-	$params = ['xpath' => $url, 'd_name' => $url, 'd_prodid' => $productItem->getId(), 'd_pos' => ''];
+	$params = ['path' => $url, 'd_name' => $url, 'd_prodid' => $productItem->getId(), 'd_pos' => ''];
 	$items[] = array(
 		'label' => $name,
 		'html' => '
