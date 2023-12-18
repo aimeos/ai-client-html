@@ -8,9 +8,10 @@
 
 $enc = $this->encoder();
 
-$infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
-$linkKey = $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$multi = $this->config( 'client/html/catalog/multiroute', false );
+$linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 $sort = $this->param( 'f_sort', $this->config( 'client/html/catalog/lists/sort', 'relevance' ) );
+$infiniteScroll = $this->config( 'client/html/catalog/lists/infinite-scroll', false );
 $params = $this->get( 'params', [] );
 
 $sortname = ltrim( $sort, '-' );
