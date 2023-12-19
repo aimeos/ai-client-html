@@ -233,6 +233,7 @@ class Standard
 		$key = $view->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
 		$session->set( 'aimeos/catalog/last/' . $site, $view->link( $key, $params ) );
+		$session->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
 	}
 
 
