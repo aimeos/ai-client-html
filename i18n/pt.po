@@ -6,6 +6,8 @@
 # António Almeida <promatik@gmail.com>, 2019
 # Antonio Sequeira <antonio.sequeira@adanora.pt>, 2022
 # b5fdd37cec45d8078af7e530465bb050, 2016
+# Rui Gomes, 2023
+# Rui Gomes, 2023
 # b5fdd37cec45d8078af7e530465bb050, 2016
 msgid ""
 msgstr ""
@@ -13,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Antonio Sequeira <antonio.sequeira@adanora.pt>, 2022\n"
+"Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
 "Language-Team: Portuguese (http://app.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +112,7 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr "Ocooreu um erro não recuperável"
+msgstr "Ocorreu um erro não recuperável"
 
 msgid "Add billing address"
 msgstr "Inclua um endereço de faturação"
@@ -125,7 +127,7 @@ msgid "Additional 2"
 msgstr "Adicional 2"
 
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 msgid "Article"
 msgstr " Artigo"
@@ -135,11 +137,11 @@ msgstr " Artigo nº"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr "Pelo menos uma parte do endereço de cobrança está faltando ou inválida"
+msgstr "Pelo menos uma parte do endereço de faturação está em falta ou inválida"
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
-msgstr "Pelo menos uma parte do endereço de entrega está faltando ou inválida"
+msgstr "Pelo menos uma parte do endereço de entrega está em falta ou inválida"
 
 msgid "Back"
 msgstr "Voltar"
@@ -148,30 +150,30 @@ msgid "Basket"
 msgstr "Carrinho"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Detalhes carrinho"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Nome carrinho"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Carrinho gravado com sucesso"
 
 msgid "Billing address"
 msgstr "Endereço de faturação"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr "Parte \"%1$s\" do endereço de cobrança é inválida"
+msgstr "Parte \"%1$s\" do endereço de faturação é inválida"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr "Parte \"%1$s\" do endereço de cobrança está faltando"
+msgstr "Parte \"%1$s\" do endereço de faturação está em falta"
 
 msgid "Birthday"
 msgstr "Aniversário"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Navegação"
 
 msgid "Bulk order"
 msgstr "Pedido em massa"
@@ -198,7 +200,7 @@ msgid "Characteristics"
 msgstr "Características"
 
 msgid "Checkout"
-msgstr "Continuar"
+msgstr "Finalizar compra"
 
 msgid "City"
 msgstr "Cidade"
@@ -298,13 +300,13 @@ msgid "First name"
 msgstr "Nome"
 
 msgid "Found products"
-msgstr ""
+msgstr "Produtos encontrados"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Ir para página"
 
 msgid "Grid view"
 msgstr "Vista de grelha"
@@ -382,10 +384,10 @@ msgid "Lowest price"
 msgstr "Preço mais baixo"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Telemóvel"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Numero telemóvel"
 
 msgid "More reviews"
 msgstr "Mais avaliações"
@@ -495,7 +497,7 @@ msgid "Price"
 msgstr "Preço"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Filtro preço"
 
 msgid "Price range"
 msgstr "Intervalo de preços"
@@ -510,37 +512,37 @@ msgid "Product"
 msgstr "Produto"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Acções produto"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Atributos do produto"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Categorias do produto"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Caracteristicas do produto"
 
 msgid "Product description"
-msgstr ""
+msgstr "Descrição do produto"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtro produto"
 
 msgid "Product image"
 msgstr "Imagem do produto"
 
 msgid "Product information"
-msgstr ""
+msgstr "Informação do produto"
 
 msgid "Product price"
 msgstr "Preço do produto"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Review do produto"
 
 msgid "Product search"
-msgstr ""
+msgstr "Procurar produto"
 
 msgid "Products you might be also interested in"
 msgstr "Produtos que talvez lhe interesse"
@@ -583,10 +585,10 @@ msgid "Save"
 msgstr "Salvar"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Carrinho guardado eliminado com sucesso"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Guardar carrinho"
 
 msgid "Search"
 msgstr "Pesquisar"
@@ -625,7 +627,7 @@ msgid "Show"
 msgstr "Mostrar"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Ordenar por"
 
 msgid "Sort by:"
 msgstr "Ordenar por:"
@@ -634,15 +636,15 @@ msgid "State"
 msgstr "Estado"
 
 msgid "Stock"
-msgstr "Estoque"
+msgstr "Stock"
 
 #, php-format
 msgid "Stock: %1$s, %2$s"
-msgstr "Estoque: %1$s, %2$s"
+msgstr "Stock: %1$s, %2$s"
 
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
-msgstr "Estoque: %1$s, %2$s, de volta em %3$s"
+msgstr "Stock: %1$s, %2$s, de volta em %3$s"
 
 msgid "Street"
 msgstr "Rua"
@@ -672,7 +674,7 @@ msgid "Supplier information"
 msgstr "Informação do fornecedor"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Lista fornecedores"
 
 msgid "Suppliers"
 msgstr "Fornecedores"
@@ -681,7 +683,7 @@ msgid "Take a look"
 msgstr "Veja"
 
 msgid "Telephone"
-msgstr "Fone"
+msgstr "Telefone"
 
 msgid "Terms and conditions"
 msgstr "Termos e condições"
@@ -785,7 +787,7 @@ msgid "You can only watch up to %1$s products"
 msgstr "Apenas pode acompanhar até %1$s produtos"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Tem de fazer login primeiro"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Você será direcionado para o próximo passo"
@@ -853,16 +855,16 @@ msgid "process"
 msgstr "processo"
 
 msgid "stock-high"
-msgstr "estoque-alto"
+msgstr "stock-alto"
 
 msgid "stock-low"
-msgstr "estoque-baixo"
+msgstr "stock-baixo"
 
 msgid "stock-out"
-msgstr "fora de estoque"
+msgstr "fora de stock"
 
 msgid "stock-unlimited"
-msgstr "estoque-ilimitado"
+msgstr "stock-ilimitado"
 
 #, php-format
 msgid "summary"

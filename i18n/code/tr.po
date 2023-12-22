@@ -138,7 +138,7 @@ msgstr "Son kullanma tarihi (AAYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "Toplama tarihi"
+msgstr "Şu tarihte teslim alacağım"
 
 #. Pick-up time
 msgid "time.hourminute"
