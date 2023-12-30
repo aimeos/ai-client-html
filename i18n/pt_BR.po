@@ -7,13 +7,14 @@
 # Bruno Rodrigues <brunojti@gmail.com>, 2016
 # Keite Clembet, 2022
 # b5fdd37cec45d8078af7e530465bb050, 2016
+# Webert Max, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Keite Clembet, 2022\n"
+"Last-Translator: Webert Max, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +69,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -80,7 +81,7 @@ msgstr "%2$s %1$s de desconto"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s(%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -92,7 +93,7 @@ msgstr "%3$s%1$s + %3$s%2$s"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "1%1$s 2%2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -148,13 +149,13 @@ msgid "Basket"
 msgstr "Carrinho"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Detalhes da cesta"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Nome da Cesta"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Cesta salva com sucesso"
 
 msgid "Billing address"
 msgstr "Endereço de cobrança"
@@ -171,7 +172,7 @@ msgid "Birthday"
 msgstr "Aniversário"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Navegação estrutural"
 
 msgid "Bulk order"
 msgstr "Pedido em massa"
@@ -298,13 +299,13 @@ msgid "First name"
 msgstr "Primeiro Nome"
 
 msgid "Found products"
-msgstr ""
+msgstr "Produtos encontrados"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Vá para página"
 
 msgid "Grid view"
 msgstr "Visualização em Grade"
@@ -382,10 +383,10 @@ msgid "Lowest price"
 msgstr "Preço mais baixo"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Móvel"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Número de telemóvel"
 
 msgid "More reviews"
 msgstr "Mais reviews"
@@ -495,7 +496,7 @@ msgid "Price"
 msgstr "Preço"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Filtro de preço"
 
 msgid "Price range"
 msgstr "Faixa de preço"
@@ -510,37 +511,37 @@ msgid "Product"
 msgstr "Produto"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Ações do produto"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Atributos do produto"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Categorias de Produtos"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Características do produto"
 
 msgid "Product description"
-msgstr ""
+msgstr "Descrição do produto"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtros de produto"
 
 msgid "Product image"
 msgstr "Imagem do produto"
 
 msgid "Product information"
-msgstr ""
+msgstr "Informação do produto"
 
 msgid "Product price"
 msgstr "Preço do produto"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Revisão de produtos"
 
 msgid "Product search"
-msgstr ""
+msgstr "Pesquisa de produtos"
 
 msgid "Products you might be also interested in"
 msgstr "Produtos que talvez lhe interesse"
@@ -583,10 +584,10 @@ msgid "Save"
 msgstr "Salvar"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Cesta salva removida com sucesso"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Cestas salvas"
 
 msgid "Search"
 msgstr "Pesquisar"
@@ -625,7 +626,7 @@ msgid "Show"
 msgstr "Exibir"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Ordenar por"
 
 msgid "Sort by:"
 msgstr "Ordenar por:"
@@ -672,7 +673,7 @@ msgid "Supplier information"
 msgstr "Informação do fornecedor"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Lista de fornecedores"
 
 msgid "Suppliers"
 msgstr "Fornecedores"
@@ -785,7 +786,7 @@ msgid "You can only watch up to %1$s products"
 msgstr "Você só pode ver até %1$s produtos"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Você deve fazer login primeiro"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Você será direcionado para o próximo passo"
