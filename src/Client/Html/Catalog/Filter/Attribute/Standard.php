@@ -163,7 +163,7 @@ class Standard
 		$view->attributeMap = $attrMap->order( $attrTypes->getCode() );
 		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
 		$view->attributeMapActive = map( $view->attributeMap )->uksort( function( $a, $b ) use ( $active ) {
-			return $active[$b] <=> $active[$a];
+			return ( $active[$b] ?? null ) <=> ( $active[$a] ?? null );
 		} );
 
 		return parent::data( $view, $tags, $expire );
