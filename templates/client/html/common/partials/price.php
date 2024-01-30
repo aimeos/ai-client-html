@@ -19,7 +19,11 @@ $priceItems = map( $this->get( 'prices', [] ) );
 foreach( $priceItems as $priceItem )
 {
 	$qty = (string) $priceItem->getQuantity();
-	if( !( $p = $prices->get( $qty ) ) || $p->getValue() > $priceItem->getValue() ) {
+
+	if( !( $p = $prices->get( $qty ) )
+		|| $p->getValue() === null
+		|| $priceItem->getValue() !== null && $p->getValue() > $priceItem->getValue()
+	) {
 		$prices[$qty] = $priceItem;
 	}
 }
