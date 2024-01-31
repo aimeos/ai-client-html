@@ -80,7 +80,7 @@ msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
-msgstr "%1$s, %2$s tarihinde"
+msgstr "%2$s tarihinde %1$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
@@ -801,7 +801,7 @@ msgid "Your reference number"
 msgstr "Referans numaranız"
 
 msgid "Your review"
-msgstr "Yorum yazazabilirsiniz"
+msgstr "Yorum yazabilirsiniz"
 
 msgid "Zoom in/out"
 msgstr "Yakınlaştır/Uzaklaştır"
@@ -831,7 +831,7 @@ msgid "none"
 msgstr "Hiçbiri"
 
 msgid "on request"
-msgstr "Talep üzerine"
+msgstr "Talep Üzerine Fiyat"
 
 #, php-format
 msgid "payment"

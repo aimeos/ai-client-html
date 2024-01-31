@@ -42,7 +42,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr "Aplicar"
 
 #. Favorite action
 msgid "favorite"

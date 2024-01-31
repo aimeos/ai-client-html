@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2024
  */
 
 $enc = $this->encoder();
@@ -23,7 +23,8 @@ $enc = $this->encoder();
  * @since 2014.03
  */
 
-$linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$multi = $this->config( 'client/html/catalog/multiroute', false );
+$linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
 $attrIds = array_filter( $this->param( 'f_attrid', [] ) );
 $optIds = array_filter( $this->param( 'f_optid', [] ) );

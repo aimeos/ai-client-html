@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2024
  * @package Client
  * @subpackage Html
  */
@@ -233,6 +233,7 @@ class Standard
 		$key = $view->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
 		$session->set( 'aimeos/catalog/last/' . $site, $view->link( $key, $params ) );
+		$session->set( 'aimeos/catalog/lists/params/last/' . $site, $params );
 	}
 
 

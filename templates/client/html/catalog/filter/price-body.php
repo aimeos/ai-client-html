@@ -2,12 +2,13 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2023
+ * @copyright Aimeos (aimeos.org), 2020-2024
  */
 
 $enc = $this->encoder();
 
-$linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$multi = $this->config( 'client/html/catalog/multiroute', false );
+$linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
 
 ?>

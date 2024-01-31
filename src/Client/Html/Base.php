@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2024
  * @package Client
  * @subpackage Html
  */
@@ -481,7 +481,7 @@ abstract class Base
 	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_'] ) : array
+	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_', 'path'] ) : array
 	{
 		return map( $params )->filter( function( $val, $key ) use ( $prefixes ) {
 			return \Aimeos\Base\Str::starts( $key, $prefixes );

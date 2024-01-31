@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2024
  * @package Client
  * @subpackage Html
  */
@@ -163,7 +163,7 @@ class Standard
 		$view->attributeMap = $attrMap->order( $attrTypes->getCode() );
 		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
 		$view->attributeMapActive = map( $view->attributeMap )->uksort( function( $a, $b ) use ( $active ) {
-			return $active[$b] <=> $active[$a];
+			return ( $active[$b] ?? null ) <=> ( $active[$a] ?? null );
 		} );
 
 		return parent::data( $view, $tags, $expire );
