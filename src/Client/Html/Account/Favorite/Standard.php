@@ -230,6 +230,8 @@ class Standard
 		$current = $this->getProductListPage( $view );
 		$last = ( $total != 0 ? ceil( $total / $size ) : 1 );
 
+		$listItems = $listItems->slice( ($current - 1 ) * $size , $size );
+
 		$view->favoriteItems = $listItems;
 		$view->favoritePageFirst = 1;
 		$view->favoritePagePrev = ( $current > 1 ? $current - 1 : 1 );
