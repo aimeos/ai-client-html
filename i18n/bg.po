@@ -121,7 +121,7 @@ msgid "Additional 2"
 msgstr "Допълнително 2"
 
 msgid "Apply"
-msgstr ""
+msgstr "Приложи"
 
 msgid "Article"
 msgstr ""
