@@ -151,12 +151,12 @@ $enc = $this->encoder();
 					<div class="browser">
 
 						<?php $params = array( 'fav_page' => $this->favoritePageFirst ) + $this->get( 'favoriteParams', [] ) ?>
-						<a class="first" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>">
+						<a class="first" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url', $params ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', '◀◀' ), $enc::TRUST ) ?>
 						</a>
 
 						<?php $params = array( 'fav_page' => $this->favoritePagePrev ) + $this->get( 'favoriteParams', [] ) ?>
-						<a class="prev" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>" rel="prev">
+						<a class="prev" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url', $params ) ) ?>" rel="prev">
 							<?= $enc->html( $this->translate( 'client', '◀' ), $enc::TRUST ) ?>
 						</a>
 
@@ -169,12 +169,12 @@ $enc = $this->encoder();
 						</span>
 
 						<?php $params = array( 'fav_page' => $this->favoritePageNext ) + $this->get( 'favoriteParams', [] ) ?>
-						<a class="next" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>" rel="next">
+						<a class="next" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url', $params ) ) ?>" rel="next">
 							<?= $enc->html( $this->translate( 'client', '▶' ), $enc::TRUST ) ?>
 						</a>
 
 						<?php $params = array( 'fav_page' => $this->favoritePageLast ) + $this->get( 'favoriteParams', [] ) ?>
-						<a class="last" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url' ) ) ?>">
+						<a class="last" href="<?= $enc->attr( $this->link( 'client/html/account/favorite/url', $params ) ) ?>">
 							<?= $enc->html( $this->translate( 'client', '▶▶' ), $enc::TRUST ) ?>
 						</a>
 
