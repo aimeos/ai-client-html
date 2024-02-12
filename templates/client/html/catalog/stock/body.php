@@ -114,32 +114,30 @@ foreach( $this->get( 'stockItemsByProducts', [] ) as $prodId => $list )
 // <!--
 var aimeosStockHtml = <?= json_encode( $result, JSON_FORCE_OBJECT ) ?>;
 
-$(".aimeos .product .stock-list .articleitem").each(function() {
-
-	var elem = $(this);
-	var prodid = elem.data("prodid");
+document.querySelectorAll(".aimeos .product .stock-list .articleitem").forEach(function(elem) {
+	var prodid = elem.dataset.prodid;
 
 	if( aimeosStockHtml.hasOwnProperty( prodid ) ) {
-		elem.html( aimeosStockHtml[prodid] );
+		elem.innerHTML = aimeosStockHtml[prodid];
 	}
 });
 
-$(".aimeos .product .selection .select-stock").each(function() {
-
-	var elem = $(this);
-	var prodid = elem.data("prodid");
+document.querySelectorAll(".aimeos .product .selection .select-stock").forEach(function(elem) {
+	var prodid = elem.dataset.prodid;
 
 	if( aimeosStockHtml.hasOwnProperty( prodid ) ) {
-		elem.html( aimeosStockHtml[prodid] );
+		elem.innerHTML = aimeosStockHtml[prodid];
 	}
 });
 
-$(".aimeos .catalog-detail-basket").each(function() {
+document.querySelectorAll(".aimeos .catalog-detail-basket").forEach(function(elem) {
 
-	var elem = $(this);
-
-	if( elem.data("reqstock") && $(".articleitem:first-child .stockitem:first-child", elem).hasClass("stock-out") ) {
-		$(".addbasket .btn-action", elem).addClass("btn-disabled").attr("disabled", "disabled");
+	if( elem.dataset.reqstock && elem.querySelector(".articleitem:first-child .stockitem:first-child .stock-out") ) {
+		var action = elem.querySelector(".addbasket .btn-action")
+		if(action) {
+			action.classList.add("btn-disabled");
+			action.disabled = true;
+		}
 	}
 });
 // -->
