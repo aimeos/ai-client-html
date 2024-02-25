@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Gülsüm Akça <akcagulsum1@gmail.com>, 2021
-# Metal <meteoramic@yahoo.com>, 2015-2023
+# Metal <meteoramic@yahoo.com>, 2015-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2023\n"
+"Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2024\n"
 "Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -841,7 +841,7 @@ msgid "pin"
 msgstr "Sayfaya Sabitle"
 
 msgid "price:default"
-msgstr "fiyat:varsayılan"
+msgstr "price:default"
 
 #, php-format
 msgid "process"
