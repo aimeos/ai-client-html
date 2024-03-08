@@ -28,42 +28,40 @@ $linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'clie
 
 			<input class="form-control search" placeholder="<?= $enc->attr( $this->translate( 'client', 'Search' ) ) ?>">
 
-			<fieldset>
-				<ul class="attr-list">
+			<ul class="attr-list">
 
-					<?php foreach( $this->get( 'supplierList', [] ) as $id => $supplier ) : ?>
-						<li class="attr-item" data-id="<?= $enc->attr( $id ) ?>">
+				<?php foreach( $this->get( 'supplierList', [] ) as $id => $supplier ) : ?>
+					<li class="attr-item" data-id="<?= $enc->attr( $id ) ?>">
 
-							<input class="attr-item" type="checkbox"
-								id="sup-<?= $enc->attr( $id ) ?>"
-								name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>"
-								value="<?= $enc->attr( $id ) ?>"
-								<?= ( in_array( $id, (array) $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ) ?>
-							>
+						<input class="attr-item" type="checkbox"
+							id="sup-<?= $enc->attr( $id ) ?>"
+							name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>"
+							value="<?= $enc->attr( $id ) ?>"
+							<?= ( in_array( $id, (array) $this->param( 'f_supid', [] ) ) ? 'checked="checked"' : '' ) ?>
+						>
 
-							<label class="attr-name" for="sup-<?= $enc->attr( $id ) ?>">
-								<span class="media-list">
+						<label class="attr-name" for="sup-<?= $enc->attr( $id ) ?>">
+							<span class="media-list">
 
-									<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
-										<?= $this->partial(
-											$this->config( 'client/html/common/partials/media', 'common/partials/media' ),
-											array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-										) ?>
-									<?php endforeach ?>
+								<?php foreach( $supplier->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
+									<?= $this->partial(
+										$this->config( 'client/html/common/partials/media', 'common/partials/media' ),
+										array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+									) ?>
+								<?php endforeach ?>
 
-								</span>
-								<span><?= $enc->html( $supplier->getName(), $enc::TRUST ) ?></span>
-							</label>
-						</li>
-					<?php endforeach ?>
-
-					<li class="attr-item prototype" data-id="">
-						<input class="attr-item" type="checkbox" id="_supproto" value="" name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>" disabled>
-						<label class="attr-name" for="_supproto"><span></span></label>
+							</span>
+							<span><?= $enc->html( $supplier->getName(), $enc::TRUST ) ?></span>
+						</label>
 					</li>
+				<?php endforeach ?>
 
-				</ul>
-			</fieldset>
+				<li class="attr-item prototype" data-id="">
+					<input class="attr-item" type="checkbox" id="_supproto" value="" name="<?= $enc->attr( $this->formparam( ['f_supid', ''] ) ) ?>" disabled>
+					<label class="attr-name" for="_supproto"><span></span></label>
+				</li>
+
+			</ul>
 		</div>
 
 		<?php if( $this->config( 'client/html/catalog/filter/button', true ) ) : ?>
