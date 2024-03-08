@@ -48,8 +48,8 @@
 	--ai-bg-alt: #F6F6F6;
 	--ai-primary: #282828;
 	--ai-primary-alt: #282828;
-	--ai-secondary: #555;
-	--ai-secondary-alt: #555;
+	--ai-secondary: #505050;
+	--ai-secondary-alt: #505050;
 	--ai-tertiary: #CCC;
 	--ai-tertiary-alt: #F6F6F6;
 	--ai-danger: #A00000;
@@ -514,8 +514,10 @@ footer p {
 }
 
 footer p a {
+	display: inline-block;
 	letter-spacing: 1.5px;
 	color: var(--ai-bg);
+	padding: 0.75rem 0;
 }
 
 footer p a:hover {
