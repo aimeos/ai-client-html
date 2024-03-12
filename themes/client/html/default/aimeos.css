@@ -724,7 +724,7 @@ body > .content, body .main-section {
 .navbar-nav .login > .nav-link,
 .navbar-nav .register > .nav-link,
 .navbar-nav .profile > .nav-link {
-	padding: 0.25rem;
+	padding: 0.75rem;
 }
 
 .navbar-nav .login > .nav-link::before,

@@ -49,9 +49,14 @@ aside .catalog-filter .section {
 
 .catalog-filter-attribute .attribute-lists,
 .catalog-filter-supplier .supplier-lists,
-.catalog-filter-search .search-lists,
 .catalog-filter-price .price-lists {
 	padding: 0.75rem;
+}
+
+.catalog-filter-attribute .attribute-lists,
+.catalog-filter-supplier .supplier-lists,
+.catalog-filter-search .search-lists,
+.catalog-filter-price .price-lists {
 	display: none;
 	z-index: 1;
 }
