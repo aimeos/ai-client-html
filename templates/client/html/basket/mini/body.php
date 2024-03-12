@@ -114,9 +114,9 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 		<div class="basket-mini-product zeynep">
 			<div class="header row">
-				<a class="col-2 close" href="#"></a>
-				<div class="col-8 name"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></div>
 				<div class="col-2"></div>
+				<div class="col-8 name"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></div>
+				<a class="col-2 close" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Close' ) ) ?>"></a>
 			</div>
 
 			<div class="basket">
