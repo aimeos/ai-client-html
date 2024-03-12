@@ -98,14 +98,6 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 <div class="section aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 
-	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
-		<ul class="error-list">
-			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?= $enc->html( $error ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
-
 	<?php if( isset( $this->miniBasket ) ) : ?>
 		<?php
 			$priceItem = $this->miniBasket->getPrice();
@@ -115,14 +107,14 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 		<div class="aimeos-overlay-offscreen"></div>
 
-		<div class="basket-mini-main menu">
+		<a class="basket-mini-main menu" href="#">
 			<span class="quantity"><?= $enc->html( $quantity ) ?></span>
 			<span class="value"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?></span>
-		</div>
+		</a>
 
 		<div class="basket-mini-product zeynep">
 			<div class="header row">
-				<div class="col-2 close"></div>
+				<a class="col-2 close" href="#"></a>
 				<div class="col-8 name"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></div>
 				<div class="col-2"></div>
 			</div>
