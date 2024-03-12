@@ -263,6 +263,7 @@ aside .catalog-filter .section {
 .catalog-filter-price input[type=range] {
 	-webkit-appearance: none;
 	margin: 1.5rem 0 .5rem;
+	padding: 0.33rem;
 	width: 100%;
 	border: none;
 }
@@ -357,7 +358,7 @@ aside .catalog-filter .section {
 .catalog-filter-price .price-high, .catalog-filter-price .price-low {
 	font-size: 80%;
 	width: 3.75rem;
-	padding: .5rem;
+	padding: .75rem;
 	margin-bottom: 0;
 }
 

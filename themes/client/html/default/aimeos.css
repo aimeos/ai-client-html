@@ -104,6 +104,7 @@ img {
 }
 
 .aimeos .btn {
+	--bs-btn-padding-y: 0.6rem;
 	width: 15rem;
 	vertical-align: top;
 	border-radius: var(--ai-radius);
@@ -151,6 +152,7 @@ img {
 	color: var(--ai-secondary);
 	box-shadow: none;
 	letter-spacing: 1.5px;
+	padding: 0.6rem 0.75rem;
 }
 
 .aimeos .form-control::placeholder {
