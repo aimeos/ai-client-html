@@ -66,7 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( array( 'addAddressItem', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'addAddressItem' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'addAddressItem' )->willReturn( $customerStub );
 		$customerStub->expects( $this->once() )->method( 'store' );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );

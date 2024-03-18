@@ -214,7 +214,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( ['store'] )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnSelf() );
+		$customerStub->expects( $this->once() )->method( 'store' )->willReturnSelf();
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 

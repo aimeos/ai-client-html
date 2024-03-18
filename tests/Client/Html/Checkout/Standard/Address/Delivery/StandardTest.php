@@ -207,8 +207,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( array( 'deleteAddressItem', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'deleteAddressItem' )->will( $this->returnValue( $customerStub ) );
-		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'deleteAddressItem' )->willReturn( $customerStub );
+		$customerStub->expects( $this->once() )->method( 'store' )->willReturn( $customerStub );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 

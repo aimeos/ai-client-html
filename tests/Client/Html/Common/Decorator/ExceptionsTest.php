@@ -39,7 +39,7 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 
 	public function testBody()
 	{
-		$this->client->expects( $this->once() )->method( 'body' )->will( $this->returnValue( 'test' ) );
+		$this->client->expects( $this->once() )->method( 'body' )->willReturn( 'test' );
 
 		$this->assertEquals( 'test', $this->object->body() );
 	}
@@ -83,7 +83,7 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$this->client->expects( $this->once() )->method( 'header' )->will( $this->returnValue( 'test' ) );
+		$this->client->expects( $this->once() )->method( 'header' )->willReturn( 'test' );
 
 		$this->assertEquals( 'test', $this->object->header() );
 	}

@@ -41,7 +41,7 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testCall()
 	{
-		$this->client->expects( $this->once() )->method( 'testMethod' ) ->will( $this->returnValue( true ) );
+		$this->client->expects( $this->once() )->method( 'testMethod' ) ->willReturn( true );
 		$this->assertTrue( $this->object->testMethod() );
 	}
 
@@ -54,14 +54,14 @@ class ExampleTest extends \PHPUnit\Framework\TestCase
 
 	public function testHeader()
 	{
-		$this->client->expects( $this->once() )->method( 'header' )->will( $this->returnValue( 'header' ) );
+		$this->client->expects( $this->once() )->method( 'header' )->willReturn( 'header' );
 		$this->assertEquals( 'header', $this->object->header() );
 	}
 
 
 	public function testBody()
 	{
-		$this->client->expects( $this->once() )->method( 'body' )->will( $this->returnValue( 'body' ) );
+		$this->client->expects( $this->once() )->method( 'body' )->willReturn( 'body' );
 		$this->assertEquals( 'body', $this->object->body() );
 	}
 
