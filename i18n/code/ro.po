@@ -7,6 +7,7 @@
 # Translators:
 # Translators:
 # Translators:
+# George Cojocaru, 2024
 # iulian iulian <iulian.abc@gmail.com>, 2020
 msgid ""
 msgstr ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: iulian iulian <iulian.abc@gmail.com>, 2020\n"
+"Last-Translator: George Cojocaru, 2024\n"
 "Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,15 +25,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "tva"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "GST"
 
 #. Price type default
 msgid "price:default"
@@ -120,7 +121,7 @@ msgstr "Numarul cardului"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Numar de verificare"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -132,24 +133,24 @@ msgstr "Anul de expirare"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "Expirare (LLAA)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "Data ridicării"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Ora ridicării"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "Locația de ridicare"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "Adresa de ridicare"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "Tipul livrării"
