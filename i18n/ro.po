@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# George Cojocaru, 2024
 # iulian iulian <iulian.abc@gmail.com>, 2020
 msgid ""
 msgstr ""
@@ -10,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: iulian iulian <iulian.abc@gmail.com>, 2020\n"
+"Last-Translator: George Cojocaru, 2024\n"
 "Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,9 +29,9 @@ msgstr[2] "%1$d produse"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%1$d recenzie"
+msgstr[1] "%1$d recenzii"
+msgstr[2] "%1$d recenzii"
 
 #, php-format
 msgid ""
@@ -65,7 +66,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -77,7 +78,7 @@ msgstr "%1$s %2$s off"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -89,11 +90,11 @@ msgstr "%1$s%3$s + %2$s%3$s"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -107,10 +108,10 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "A intervenit o eroare irecuperabilă."
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Adaugă adresa de facturare"
 
 msgid "Add to basket"
 msgstr "Adauga in cos"
@@ -145,13 +146,13 @@ msgid "Basket"
 msgstr "Cos de cumparaturi"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Detalii coș"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Numele coșului"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Coșul a fost salvat cu succes"
 
 msgid "Billing address"
 msgstr "Adresa de facturare"
@@ -168,10 +169,10 @@ msgid "Birthday"
 msgstr "Zi de nastere"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Navigare prin breadcrumb"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Comandă în vrac"
 
 msgid "Bundled products"
 msgstr "Pachete"
@@ -235,7 +236,7 @@ msgid "Delete"
 msgstr "Sterge"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Sterge articolul"
 
 msgid "Delivery"
 msgstr "LIvrare"
@@ -265,7 +266,7 @@ msgid "Details"
 msgstr "Detalii"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Nu stocați adresa"
 
 msgid "Downloads"
 msgstr "Descarcari"
@@ -295,22 +296,22 @@ msgid "First name"
 msgstr "Prenume"
 
 msgid "Found products"
-msgstr ""
+msgstr "Produse găsite"
 
 msgid "GB999999973"
-msgstr ""
+msgstr "RO999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Mergi la pagina"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Vizualizare grilă"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Cel mai mare preț"
 
 #, php-format
 msgid ""
@@ -320,7 +321,7 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "Accept <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">termenii și condițiile</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">politica de confidențialitate</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">Politica de anulare</a>"
 
 msgid "If back in stock"
 msgstr "Dacă revine înapoi în stoc"
@@ -330,7 +331,7 @@ msgstr "Daca pretul scade"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Incl. %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -373,19 +374,19 @@ msgid "Latest"
 msgstr "Cele mai noi"
 
 msgid "List view"
-msgstr ""
+msgstr "Vizualizare listă"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Cel mai mic preț"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Număr mobil"
 
 msgid "More reviews"
-msgstr ""
+msgstr "Mai multe recenzii"
 
 msgid "Name"
 msgstr "Nume"
@@ -409,7 +410,7 @@ msgid ""
 msgstr "Nu au fost gasite articole cu <span class=“searchstring”>”%1$s”</span>. Incercati din nou cu alte cuvinte cheie."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "Nu există un ID de comandă disponibil în sesiune"
 
 #, php-format
 msgid "No view available"
@@ -422,7 +423,7 @@ msgid "One week"
 msgstr "O saptamana"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Deschide submeniul"
 
 msgid "Order ID"
 msgstr "ID comanda"
@@ -456,7 +457,7 @@ msgid "Payment status"
 msgstr "Status plata"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Fixează produsul"
 
 msgid "Pinned products"
 msgstr "Produse marcate"
@@ -492,10 +493,10 @@ msgid "Price"
 msgstr "Pret"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Filtru de preț"
 
 msgid "Price range"
-msgstr ""
+msgstr "Interval de preț"
 
 msgid "Proceed"
 msgstr "Inainte"
@@ -507,37 +508,37 @@ msgid "Product"
 msgstr "Produs"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Acțiuni produs"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Atribute produs"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Categorii produs"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Caracteristici produs"
 
 msgid "Product description"
-msgstr ""
+msgstr "Descriere produs"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtre produs"
 
 msgid "Product image"
-msgstr ""
+msgstr "Imagine produs"
 
 msgid "Product information"
-msgstr ""
+msgstr "Informații produs"
 
 msgid "Product price"
 msgstr "Prețul produsului"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Recenzii produs"
 
 msgid "Product search"
-msgstr ""
+msgstr "Cautare produs"
 
 msgid "Products you might be also interested in"
 msgstr "Produse de care ati putea fi interesat"
@@ -549,7 +550,7 @@ msgid "Quantity"
 msgstr "Cantitate"
 
 msgid "Rating"
-msgstr ""
+msgstr "Evaluare"
 
 msgid "Reference"
 msgstr "Referinta"
@@ -565,13 +566,13 @@ msgid "Result for \"%1$s\""
 msgstr "Rezultatul pentru “%1$s”"
 
 msgid "Reviews"
-msgstr ""
+msgstr "Recenzii"
 
 msgid "SKU or article name"
 msgstr "SKU sau numele articolului"
 
 msgid "Sale"
-msgstr ""
+msgstr "Promoție"
 
 msgid "Salutation"
 msgstr "Salutare"
@@ -580,10 +581,10 @@ msgid "Save"
 msgstr "Salvare"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Coșul salvat a fost eliminat cu succes"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Coșuri salvate"
 
 msgid "Search"
 msgstr "Cauta"
@@ -622,7 +623,7 @@ msgid "Show"
 msgstr "Arata"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Sortează după"
 
 msgid "Sort by:"
 msgstr "Ordoneaza dupa:"
@@ -648,7 +649,7 @@ msgid "Sub-total"
 msgstr "Subtotal"
 
 msgid "Submit"
-msgstr ""
+msgstr "Trimite"
 
 msgid "Subscription ID"
 msgstr "ID-ul subscriptiei"
@@ -669,13 +670,13 @@ msgid "Supplier information"
 msgstr "Informatii despre furnizor"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Listă furnizori"
 
 msgid "Suppliers"
 msgstr "Furnizori"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Aruncă o privire"
 
 msgid "Telephone"
 msgstr "Telefon"
@@ -694,7 +695,7 @@ msgid ""
 msgstr "Iti multumim pentru comanda.\nAm primit plata si un e-mail cu detaliile comenzii va fi trimis in urmatoarele minute."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "Îți mulțumim pentru recenzie!"
 
 msgid ""
 "The order was canceled.\n"
@@ -713,7 +714,7 @@ msgid "Time frame"
 msgstr "Interval de timp"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Comutare la ecran complet"
 
 msgid "Total"
 msgstr "Total"
@@ -726,28 +727,28 @@ msgstr "Doua saptamani"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Imposibil de creat un cont: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
+msgstr "Imposibil de salvat adresa pentru client. \"%1$s\": %2$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
+msgstr "Regretăm, plata pentru comanda dvs. a fost refuzată.\nDoriți să încercați din nou?"
 
 msgid "Update"
 msgstr "Actualizeaza"
 
 msgid "Variant"
-msgstr ""
+msgstr "Variantă"
 
 msgid "Vat ID"
 msgstr "ID TVA"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Răspuns furnizor"
 
 msgid "Watch"
 msgstr "Urmareste"
@@ -759,30 +760,30 @@ msgid "Web site"
 msgstr "website"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "Ce părere ai despre produs?"
 
 msgid "Y-m-d"
 msgstr "d.m.Y"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "AAAA-LL-ZZ"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "AAAA-LL-ZZ HH:mm"
 
 msgid "You are here:"
 msgstr "Sunteti aici:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Puteți salva doar până la %1$s produse ca favorite"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Puteți viziona doar până la %1$s produse"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Trebuie să vă autentificați mai întâi."
 
 msgid "You will now be forwarded to the next step"
 msgstr "Vei fi redirectionat catre pasul urmator"
@@ -794,16 +795,16 @@ msgid "Your comment"
 msgstr "Comentariul tau"
 
 msgid "Your rating"
-msgstr ""
+msgstr "Calificarea ta"
 
 msgid "Your reference"
-msgstr ""
+msgstr "Referința ta"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Numărul tău de referință"
 
 msgid "Your review"
-msgstr ""
+msgstr "Recenzia ta"
 
 msgid "Zoom in/out"
 msgstr "Mareste/Micsoreaza"
@@ -833,7 +834,7 @@ msgid "none"
 msgstr "nimic"
 
 msgid "on request"
-msgstr ""
+msgstr "la cerere"
 
 #, php-format
 msgid "payment"
@@ -843,7 +844,7 @@ msgid "pin"
 msgstr "PIN"
 
 msgid "price:default"
-msgstr ""
+msgstr "price:default"
 
 #, php-format
 msgid "process"

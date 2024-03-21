@@ -7,25 +7,24 @@
 # Translators:
 # Translators:
 # Translators:
-# George Cojocaru, 2024
-# iulian iulian <iulian.abc@gmail.com>, 2020
+# shmuel adler, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: George Cojocaru, 2024\n"
-"Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
+"Last-Translator: shmuel adler, 2024\n"
+"Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Language: he\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
 #. Tax name
 msgid "tax"
-msgstr "tva"
+msgstr "מס"
 
 #. PST tax name
 msgid "taxpst"
@@ -33,124 +32,124 @@ msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "GST"
+msgstr ""
 
 #. Price type default
 msgid "price:default"
-msgstr "%1$s %2$s"
+msgstr "מחיר:ברירת מחדל"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr " "
+msgstr ""
 
 #. Favorite action
 msgid "favorite"
-msgstr "favorite"
+msgstr "מועדף"
 
 #. Pin action
 msgid "pin"
-msgstr "PIN"
+msgstr "פין"
 
 #. Watch action
 msgid "watch"
-msgstr "ceas"
+msgstr "שעון"
 
 #. Product attribute
 msgid "size"
-msgstr "Marime"
+msgstr "גודל"
 
 #. Product attribute
 msgid "length"
-msgstr "Lungime"
+msgstr "אורך"
 
 #. Product attribute
 msgid "width"
-msgstr "Latime"
+msgstr "רוחב"
 
 #. Product attribute
 msgid "color"
-msgstr "Culoare"
+msgstr "צבע"
 
 #. Product attribute
 msgid "option"
-msgstr "Optiune"
+msgstr "אופציה"
 
 #. Product property package-length
 msgid "package-length"
-msgstr "lungime pachet"
+msgstr "אורך חבילה"
 
 #. Product property package-width
 msgid "package-width"
-msgstr "latime pachet"
+msgstr "רוחב חבילה"
 
 #. Product property package-height
 msgid "package-height"
-msgstr "inaltime pachet"
+msgstr "גובה חבילה"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "greutate pachet"
+msgstr "משקל חבילה"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "Proprietarul contului"
+msgstr "בעל החשבון"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "Numar de cont"
+msgstr "מספר חשבון"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "Cod bancar"
+msgstr "קוד בנק"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "Numele bancii"
+msgstr "שם הבנק"
 
 #. Omnipay service provider
 msgid "payment.firstname"
-msgstr "Prenume"
+msgstr "שם פרטי"
 
 #. Omnipay service provider
 msgid "payment.lastname"
-msgstr "Nume"
+msgstr "שם משפחה"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "Numarul cardului"
+msgstr "מספר כרטיס אשראי"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "Numar de verificare"
+msgstr "מספר אימות"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "Luna de expirare"
+msgstr "תקף עד חודש"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "Anul de expirare"
+msgstr "תקף עד שנת"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "Expirare (LLAA)"
+msgstr "תוקף (MMYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "Data ridicării"
+msgstr "תאריך איסוף"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "Ora ridicării"
+msgstr "שעת מסירה"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "Locația de ridicare"
+msgstr "מיקום המסירה"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "Adresa de ridicare"
+msgstr "כתובת המסירה"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr "Tipul livrării"
+msgstr "סוג משלוח"

@@ -4,7 +4,7 @@
 # 
 # Translators:
 # António Almeida <promatik@gmail.com>, 2019
-# Antonio Sequeira <antonio.sequeira@adanora.pt>, 2022
+# Antonio Sequeira <antonio.sequeira@adanora.pt>, 2022,2024
 # b5fdd37cec45d8078af7e530465bb050, 2016
 # Rui Gomes, 2023
 # Rui Gomes, 2023
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-10 08:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
+"Last-Translator: Antonio Sequeira <antonio.sequeira@adanora.pt>, 2022,2024\n"
 "Language-Team: Portuguese (http://app.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,11 +137,11 @@ msgstr " Artigo nº"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr "Pelo menos uma parte do endereço de faturação está em falta ou inválida"
+msgstr "Pelo menos uma parte do endereço de faturação está em falta ou é inválida"
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
-msgstr "Pelo menos uma parte do endereço de entrega está em falta ou inválida"
+msgstr "Pelo menos uma parte do endereço de entrega está em falta ou é inválida"
 
 msgid "Back"
 msgstr "Voltar"
@@ -150,10 +150,10 @@ msgid "Basket"
 msgstr "Carrinho"
 
 msgid "Basket details"
-msgstr "Detalhes carrinho"
+msgstr "Detalhes do carrinho"
 
 msgid "Basket name"
-msgstr "Nome carrinho"
+msgstr "Nome do carrinho"
 
 msgid "Basket saved sucessfully"
 msgstr "Carrinho gravado com sucesso"
@@ -306,7 +306,7 @@ msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr "Ir para página"
+msgstr "Ir para a página"
 
 msgid "Grid view"
 msgstr "Vista de grelha"
@@ -674,7 +674,7 @@ msgid "Supplier information"
 msgstr "Informação do fornecedor"
 
 msgid "Supplier list"
-msgstr "Lista fornecedores"
+msgstr "Lista de fornecedores"
 
 msgid "Suppliers"
 msgstr "Fornecedores"
@@ -787,7 +787,7 @@ msgid "You can only watch up to %1$s products"
 msgstr "Apenas pode acompanhar até %1$s produtos"
 
 msgid "You must log in first"
-msgstr "Tem de fazer login primeiro"
+msgstr "Tem de se autenticar primeiro"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Você será direcionado para o próximo passo"
@@ -855,16 +855,16 @@ msgid "process"
 msgstr "processo"
 
 msgid "stock-high"
-msgstr "stock-alto"
+msgstr "stock alto"
 
 msgid "stock-low"
-msgstr "stock-baixo"
+msgstr "stock baixo"
 
 msgid "stock-out"
 msgstr "fora de stock"
 
 msgid "stock-unlimited"
-msgstr "stock-ilimitado"
+msgstr "stock ilimitado"
 
 #, php-format
 msgid "summary"
