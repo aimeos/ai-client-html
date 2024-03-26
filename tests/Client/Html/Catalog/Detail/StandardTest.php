@@ -80,10 +80,10 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="catalog-detail-basic', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-image', $output );
 
-		$this->assertStringContainsString( '<div class="catalog-social">', $output );
+		$this->assertStringContainsString( '<ul class="catalog-social">', $output );
 		$this->assertStringContainsString( 'facebook', $output );
 
-		$this->assertStringContainsString( '<div class="catalog-actions', $output );
+		$this->assertStringContainsString( '<ul class="catalog-actions', $output );
 		$this->assertStringContainsString( 'actions-button-pin', $output );
 		$this->assertStringContainsString( 'actions-button-watch', $output );
 		$this->assertStringContainsString( 'actions-button-favorite', $output );
