@@ -89,6 +89,10 @@
 	padding: 0.25rem 0;
 }
 
+.aimeos .common-summary-detail .order {
+	align-items: center;
+}
+
 .aimeos .common-summary-detail .status {
 	display: none;
 }

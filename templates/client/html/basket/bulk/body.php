@@ -64,7 +64,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 									<div class="col-4 quantity">
 										<input type="number" class="value" tabindex="1"
 											name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'quantity'] ) ) ?>"
-											min="1" max="2147483647" step="1" required="required" value="1"
+											min="1" max="2147483647" step="1" required="required" value="1" autocomplete="off"
 										>
 									</div>
 									<div class="col-4 price"></div>
@@ -92,7 +92,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 								<div class="col-4 quantity">
 									<input type="number" class="value" tabindex="1" disabled="disabled"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'quantity'] ) ) ?>"
-										min="1" max="2147483647" step="1" required="required" value="1"
+										min="1" max="2147483647" step="1" required="required" value="1" autocomplete="off"
 									>
 								</div>
 								<div class="col-4 price"></div>

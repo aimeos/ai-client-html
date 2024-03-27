@@ -170,31 +170,33 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 								}
 							?>
-							<a class="product-name" href="<?= $enc->attr( $url ) ?>"><?= $enc->html( $product->getName(), $enc::TRUST ) ?></a>
-							<p class="code">
-								<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?></span>
-								<span class="value"><?= $product->getProductCode() ?></span>
-							</p>
-							<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>
-								<p class="product-description"><?= $enc->html( $desc ) ?></p>
-							<?php endif ?>
-							<?php foreach( $attrTypes as $attrType ) : ?>
-								<?php if( !( $attributes = $product->getAttributeItems( $attrType ) )->isEmpty() ) : ?>
-									<ul class="attr-list attr-type-<?= $enc->attr( $attrType ) ?>">
-										<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
-											<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
-												<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ) ?></span>
-												<span class="value">
-													<?php if( $attribute->getQuantity() > 1 ) : ?>
-														<?= $enc->html( $attribute->getQuantity() ) ?>×
-													<?php endif ?>
-													<?= $enc->html( $attrType !== 'custom' && $attribute->getName() ? $attribute->getName() : $attribute->getValue() ) ?>
-												</span>
-											</li>
-										<?php endforeach ?>
-									</ul>
+							<a href="<?= $enc->attr( $url ) ?>">
+								<p class="product-name"><?= $enc->html( $product->getName(), $enc::TRUST ) ?></p>
+								<p class="code">
+									<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?></span>
+									<span class="value"><?= $product->getProductCode() ?></span>
+								</p>
+								<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>
+									<p class="product-description"><?= $enc->html( $desc ) ?></p>
 								<?php endif ?>
-							<?php endforeach ?>
+								<?php foreach( $attrTypes as $attrType ) : ?>
+									<?php if( !( $attributes = $product->getAttributeItems( $attrType ) )->isEmpty() ) : ?>
+										<ul class="attr-list attr-type-<?= $enc->attr( $attrType ) ?>">
+											<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
+												<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
+													<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ) ?></span>
+													<span class="value">
+														<?php if( $attribute->getQuantity() > 1 ) : ?>
+															<?= $enc->html( $attribute->getQuantity() ) ?>×
+														<?php endif ?>
+														<?= $enc->html( $attrType !== 'custom' && $attribute->getName() ? $attribute->getName() : $attribute->getValue() ) ?>
+													</span>
+												</li>
+											<?php endforeach ?>
+										</ul>
+									<?php endif ?>
+								<?php endforeach ?>
+							</a>
 							<?php if( isset( $this->orderItem ) && $this->orderItem->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED
 									&& ( $product->getStatusPayment() < 0 || $product->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
 									&& ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) ) : ?>
@@ -216,17 +218,17 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								</p>
 							<?php endif ?>
 						</div>
-						</div>
 					</div>
+				</div>
 				<div class="col-8 col-md-6">
-					<div class="row g-0">
+					<div class="row g-0 order">
 						<div class="quantity col-4">
 
 							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 
 								<?php if( $product->getQuantity() > 1 ) : ?>
 									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) ?>
-									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">−</a>
+									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Less' ) ) ?>">−</a>
 								<?php else : ?>
 									&nbsp;&nbsp;&nbsp;
 								<?php endif ?>
@@ -236,7 +238,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									value="<?= $enc->attr( $product->getQuantity() ) ?>"
 									step="<?= $enc->attr( $product->getScale() ) ?>"
 									min="<?= $enc->attr( $product->getScale() ) ?>"
-									max="2147483647"
+									max="2147483647" autocomplete="off"
 								>
 								<input type="hidden" type="text"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'position' ) ) ) ?>"
@@ -244,7 +246,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								>
 
 								<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() + 1 ) ?>
-								<a class="minibutton change up" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">+</a>
+								<a class="minibutton change up" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'More' ) ) ?>">+</a>
 
 							<?php else : ?>
 								<?= $enc->html( $product->getQuantity() ) ?>
@@ -256,7 +258,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						<div class="action col-1">
 							<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 								<?php $basketParams = array( 'b_action' => 'delete', 'b_position' => $position ) ?>
-								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>"></a>
+								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"></a>
 							<?php endif ?>
 						</div>
 						<?php endif ?>
