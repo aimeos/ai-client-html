@@ -19,7 +19,8 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 	<div class="col-md-7">
 		<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-salutation-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.salutation' ) ) ) ?>"
-			<?= $this->value( 'css', 'order.address.salutation' ) ? '' : 'disabled' ?>>
+			<?= $this->value( 'css', 'order.address.salutation' ) ? '' : 'disabled' ?>
+			autocomplete="honorific-prefix">
 
 			<?php if( count( $this->get( 'salutations', [] ) ) > 1 ) : ?>
 				<option value=""><?= $enc->html( $this->translate( 'client', 'Select salutation' ), $enc::TRUST ) ?></option>
@@ -45,7 +46,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="text"
+		<input class="form-control" type="text" autocomplete="given-name"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-firstname-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.firstname' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.firstname' ) ) ?>"
@@ -65,7 +66,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="text"
+		<input class="form-control" type="text" autocomplete="family-name"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-lastname-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.lastname' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.lastname' ) ) ?>"
@@ -85,7 +86,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="text"
+		<input class="form-control" type="text" autocomplete="organization"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-company-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.company' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.company' ) ) ?>"
@@ -105,7 +106,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="text"
+		<input class="form-control" type="text" autocomplete="address-line1"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-address1-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.address1' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.address1' ) ) ?>"
@@ -125,7 +126,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="text"
+		<input class="form-control" type="text" autocomplete="address-line2"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-address2-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.address2' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.address2' ) ) ?>"
@@ -145,7 +146,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="text"
+		<input class="form-control" type="text" autocomplete="address-line3"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-address3-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.address3' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.address3' ) ) ?>"
@@ -165,7 +166,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="text"
+		<input class="form-control" type="text" autocomplete="address-level2"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-city-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.city' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.city' ) ) ?>"
@@ -185,7 +186,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="text"
+		<input class="form-control" type="text" autocomplete="postal-code"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-postal-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.postal' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.postal' ) ) ?>"
@@ -207,7 +208,8 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		<div class="col-md-7">
 			<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-state-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.state' ) ) ) ?>"
-				<?= $this->value( 'css', 'order.address.state' ) ? '' : 'disabled' ?>>
+				<?= $this->value( 'css', 'order.address.state' ) ? '' : 'disabled' ?>
+				autocomplete="address-level1">
 
 				<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ) ?></option>
 
@@ -242,7 +244,8 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		<div class="col-md-7">
 			<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-countryid-<?= $this->get( 'id' ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.countryid' ) ) ) ?>"
-				<?= $this->value( 'css', 'order.address.countryid' ) ? '' : 'disabled' ?>>
+				<?= $this->value( 'css', 'order.address.countryid' ) ? '' : 'disabled' ?>
+				autocomplete="country">
 
 				<?php if( count( $this->get( 'countries', [] ) ) > 1 ) : ?>
 					<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ) ?></option>
@@ -271,7 +274,8 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</div>
 		<div class="col-md-7">
 			<select class="form-control" id="address-<?= $this->get( 'type', 'billing' ) ?>-languageid-<?= $this->get( 'id' ) ?>"
-				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.languageid' ) ) ) ?>">
+				name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.languageid' ) ) ) ?>"
+				autocomplete="language">
 
 				<?php if( count( $this->get( 'languages', [] ) ) > 1 ) : ?>
 					<option value=""><?= $enc->html( $this->translate( 'client', 'Select language' ), $enc::TRUST ) ?></option>
@@ -318,7 +322,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="email"
+		<input class="form-control" type="email" autocomplete="email"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-email-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.email' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.email' ) ) ?>"
@@ -338,7 +342,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="tel"
+		<input class="form-control" type="tel" autocomplete="tel"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-telephone-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.telephone' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.telephone' ) ) ?>"
@@ -358,7 +362,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="tel"
+		<input class="form-control" type="tel" autocomplete="tel"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-mobile-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.mobile' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.mobile' ) ) ?>"
@@ -378,7 +382,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="tel"
+		<input class="form-control" type="tel" autocomplete="tel"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-telefax-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.telefax' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.telefax' ) ) ?>"
@@ -398,7 +402,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="url"
+		<input class="form-control" type="url" autocomplete="url"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-website-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.website' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.website' ) ) ?>"
@@ -417,7 +421,7 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 		</label>
 	</div>
 	<div class="col-md-7">
-		<input class="form-control" type="date"
+		<input class="form-control" type="date" autocomplete="bday"
 			id="address-<?= $this->get( 'type', 'billing' ) ?>-birthday-<?= $this->get( 'id' ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.birthday' ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( 'address', 'order.address.birthday' ) ) ?>"
