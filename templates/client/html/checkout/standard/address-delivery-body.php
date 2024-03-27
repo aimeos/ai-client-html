@@ -13,98 +13,100 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'checkout/standard/address/delivery' ) ?>
 <div class="checkout-standard-address-delivery col-xs-12 col-xl">
 
-	<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
+	<fieldset class="address">
+		<legend><?= $enc->html( $this->translate( 'client', 'Delivery address', $enc::TRUST ) ) ?></legend>
 
-	<div class="item-address item-like">
-		<div class="header">
-			<input id="ca_deliveryoption-like" type="radio" value="like"
-				name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
-				<?= $this->get( 'addressDeliveryOption', 'like' ) == 'like' ? 'checked="checked"' : '' ?>>
-			<label for="ca_deliveryoption-like" class="values value-like">
-				<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
-			</label>
-		</div>
-	</div>
-
-
-	<?php foreach( $this->get( 'addressDeliveryValues', [] ) as $id => $addr ) : ?>
-
-		<div class="item-address item-default">
+		<div class="item-address item-like">
 			<div class="header">
-				<a class="modify minibutton delete" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"
-					href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">
-				</a>
-				<input id="ca_deliveryoption-<?= $id ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
+				<input id="ca_deliveryoption-like" type="radio" value="like"
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
-					<?= $this->get( 'addressDeliveryOption' ) == $id ? 'checked="checked"' : '' ?>>
-				<label for="ca_deliveryoption-<?= $id ?>" class="values">
-					<?= nl2br( $enc->html( $this->value( 'addressDeliveryStrings', $id, '' ) ) ) ?>
+					<?= $this->get( 'addressDeliveryOption', 'like' ) == 'like' ? 'checked="checked"' : '' ?>>
+				<label for="ca_deliveryoption-like" class="values value-like">
+					<?= $enc->html( $this->translate( 'client', 'like billing address' ), $enc::TRUST ) ?>
 				</label>
-			</div>
-
-			<div class="form-list">
-				<?= $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial' ),
-					array(
-						'address' => $addr,
-						'error' => $this->get( 'addressDeliveryOption' ) == $id ? $this->get( 'addressDeliveryError', [] ) : [],
-						'salutations' => $this->get( 'addressDeliverySalutations', [] ),
-						'countries' => $this->get( 'addressCountries', [] ),
-						'languages' => $this->get( 'addressLanguages', [] ),
-						'languageid' => $this->get( 'contextLanguage' ),
-						'states' => $this->get( 'addressStates', [] ),
-						'css' => $this->get( 'addressDeliveryCss', [] ),
-						'type' => 'delivery',
-						'id' => $id,
-					)
-				) ?>
 			</div>
 		</div>
 
-	<?php endforeach ?>
 
+		<?php foreach( $this->get( 'addressDeliveryValues', [] ) as $id => $addr ) : ?>
 
-	<?php if( !$this->config( 'client/html/checkout/standard/address/delivery/disable-new', false ) ) : ?>
-
-		<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressDeliveryOption' ) ) ?>">
-			<div class="header">
-				<input id="ca_deliveryoption-null" type="radio" value="null"
-					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
-					<?= $this->get( 'addressDeliveryOption' ) == 'null' ? 'checked="checked"' : '' ?>>
-				<label for="ca_deliveryoption-null" class="values value-new">
-					<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
-				</label>
-			</div>
-
-			<div class="form-list">
-				<?= $this->partial(
-					$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial' ),
-					array(
-						'address' => $this->get( 'addressDeliveryValuesNew', [] ),
-						'error' => $this->get( 'addressDeliveryOption' ) == 'null' ? $this->get( 'addressDeliveryError', [] ) : [],
-						'salutations' => $this->get( 'addressDeliverySalutations', [] ),
-						'countries' => $this->get( 'addressCountries', [] ),
-						'languages' => $this->get( 'addressLanguages', [] ),
-						'languageid' => $this->get( 'contextLanguage' ),
-						'states' => $this->get( 'addressStates', [] ),
-						'css' => $this->get( 'addressDeliveryCss', [] ),
-						'type' => 'delivery'
-					)
-				) ?>
-
-				<div class="row form-item form-group store <?= join( ' ', $this->value( 'addressDeliveryCss', 'nostore', [] ) ) ?>">
-					<label class="col-md-5" for="address-delivery-store">
-						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ) ?>
+			<div class="item-address item-default">
+				<div class="header">
+					<a class="modify minibutton delete" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"
+						href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">
+					</a>
+					<input id="ca_deliveryoption-<?= $id ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
+						name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
+						<?= $this->get( 'addressDeliveryOption' ) == $id ? 'checked="checked"' : '' ?>>
+					<label for="ca_deliveryoption-<?= $id ?>" class="values">
+						<?= nl2br( $enc->html( $this->value( 'addressDeliveryStrings', $id, '' ) ) ) ?>
 					</label>
-					<div class="col-md-7">
-						<input class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ) ?>">
+				</div>
+
+				<div class="form-list">
+					<?= $this->partial(
+						$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial' ),
+						array(
+							'address' => $addr,
+							'error' => $this->get( 'addressDeliveryOption' ) == $id ? $this->get( 'addressDeliveryError', [] ) : [],
+							'salutations' => $this->get( 'addressDeliverySalutations', [] ),
+							'countries' => $this->get( 'addressCountries', [] ),
+							'languages' => $this->get( 'addressLanguages', [] ),
+							'languageid' => $this->get( 'contextLanguage' ),
+							'states' => $this->get( 'addressStates', [] ),
+							'css' => $this->get( 'addressDeliveryCss', [] ),
+							'type' => 'delivery',
+							'id' => $id,
+						)
+					) ?>
+				</div>
+			</div>
+
+		<?php endforeach ?>
+
+
+		<?php if( !$this->config( 'client/html/checkout/standard/address/delivery/disable-new', false ) ) : ?>
+
+			<div class="item-address item-new" data-option="<?= $enc->attr( $this->get( 'addressDeliveryOption' ) ) ?>">
+				<div class="header">
+					<input id="ca_deliveryoption-null" type="radio" value="null"
+						name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
+						<?= $this->get( 'addressDeliveryOption' ) == 'null' ? 'checked="checked"' : '' ?>>
+					<label for="ca_deliveryoption-null" class="values value-new">
+						<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
+					</label>
+				</div>
+
+				<div class="form-list">
+					<?= $this->partial(
+						$this->config( 'client/html/checkout/standard/partials/address', 'checkout/standard/address-partial' ),
+						array(
+							'address' => $this->get( 'addressDeliveryValuesNew', [] ),
+							'error' => $this->get( 'addressDeliveryOption' ) == 'null' ? $this->get( 'addressDeliveryError', [] ) : [],
+							'salutations' => $this->get( 'addressDeliverySalutations', [] ),
+							'countries' => $this->get( 'addressCountries', [] ),
+							'languages' => $this->get( 'addressLanguages', [] ),
+							'languageid' => $this->get( 'contextLanguage' ),
+							'states' => $this->get( 'addressStates', [] ),
+							'css' => $this->get( 'addressDeliveryCss', [] ),
+							'type' => 'delivery'
+						)
+					) ?>
+
+					<div class="row form-item form-group store <?= join( ' ', $this->value( 'addressDeliveryCss', 'nostore', [] ) ) ?>">
+						<label class="col-md-5" for="address-delivery-store">
+							<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ) ?>
+						</label>
+						<div class="col-md-7">
+							<input id="address-delivery-store" class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ) ?>">
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-	<?php endif ?>
+		<?php endif ?>
 
+	</fieldset>
 </div>
 <?php $this->block()->stop() ?>
 <?= $this->block()->get( 'checkout/standard/address/delivery' ) ?>

@@ -78,6 +78,10 @@ img {
 	max-width: 100%;
 }
 
+.aimeos legend {
+    font-size: 100%;
+}
+
 .section {
 	overflow: unset !important;
 }
