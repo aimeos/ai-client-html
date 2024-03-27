@@ -77,6 +77,26 @@ $fname = 'ca_' . $this->get( 'type', 'billing' ) . ( $this->get( 'id' ) ? '_' : 
 </div>
 
 
+<div class="row form-item form-group title <?= $enc->attr( ( $this->value( 'error', 'order.address.title' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.address.title', [] ) ) ) ?>"
+	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/title' ) ) ?>">
+
+	<div class="col-md-5">
+		<label for="address-<?= $this->get( 'type', 'billing' ) ?>-title-<?= $this->get( 'id' ) ?>">
+			<?= $enc->html( $this->translate( 'client', 'Title' ), $enc::TRUST ) ?>
+		</label>
+	</div>
+	<div class="col-md-7">
+		<input class="form-control" type="text" autocomplete="given-name"
+			id="address-<?= $this->get( 'type', 'billing' ) ?>-title-<?= $this->get( 'id' ) ?>"
+			name="<?= $enc->attr( $this->formparam( array( $fname, 'order.address.title' ) ) ) ?>"
+			value="<?= $enc->attr( $this->value( 'address', 'order.address.title' ) ) ?>"
+			placeholder="<?= $enc->attr( $this->translate( 'client', 'Title' ) ) ?>"
+			<?= $this->value( 'css', 'order.address.title' ) ? '' : 'disabled' ?>
+		>
+	</div>
+</div>
+
+
 <div class="row form-item form-group company <?= $enc->attr( ( $this->value( 'error', 'order.address.company' ) ? 'error ' : '' ) . join( ' ', $this->value( 'css', 'order.address.company', [] ) ) ) ?>"
 	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/company' ) ) ?>">
 

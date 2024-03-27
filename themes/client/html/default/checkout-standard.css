@@ -132,6 +132,7 @@
 
 .checkout-standard-address .form-list .mandatory,
 .checkout-standard-address .form-list .optional {
+	align-items: center;
 	display: flex;
 }
 
