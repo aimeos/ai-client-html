@@ -40,7 +40,9 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						<div class="row">
 							<div class="col-4 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
 							<div class="col-4 price"><?= $enc->html( $this->translate( 'client', 'Price' ) ) ?></div>
-							<div class="col-4 buttons"><a class="minibutton add" href="#"></a></div>
+							<div class="col-4 buttons">
+								<a class="minibutton add" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Add' ) ) ?>"></a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -56,6 +58,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 								>
 								<input type="text" class="value search"
 									placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
+									title="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
 								>
 								<div class="vattributes"></div>
 							</div>
@@ -65,10 +68,13 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 										<input type="number" class="value"
 											name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'quantity'] ) ) ?>"
 											min="1" max="2147483647" step="1" required="required" value="1" autocomplete="off"
+											title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
 										>
 									</div>
 									<div class="col-4 price"></div>
-									<div class="col-4 buttons"><a class="minibutton delete" href="#"></a></div>
+									<div class="col-4 buttons">
+										<a class="minibutton delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"></a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -84,6 +90,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 							>
 							<input type="text" class="value search" disabled="disabled"
 								placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
+								title="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
 							>
 							<div class="vattributes"></div>
 						</div>
@@ -93,10 +100,13 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 									<input type="number" class="value" disabled="disabled"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'quantity'] ) ) ?>"
 										min="1" max="2147483647" step="1" required="required" value="1" autocomplete="off"
+										title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
 									>
 								</div>
 								<div class="col-4 price"></div>
-								<div class="col-4 buttons"><a class="minibutton delete" href="#"></a></div>
+								<div class="col-4 buttons">
+									<a class="minibutton delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"></a>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -239,6 +239,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									step="<?= $enc->attr( $product->getScale() ) ?>"
 									min="<?= $enc->attr( $product->getScale() ) ?>"
 									max="2147483647" autocomplete="off"
+									title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
 								>
 								<input type="hidden" type="text"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'position' ) ) ) ?>"
