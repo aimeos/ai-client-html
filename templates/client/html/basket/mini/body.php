@@ -161,19 +161,19 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 						<div class="col-7 name">
 							<?= $enc->html( $this->translate( 'client', 'Shipping' ), $enc::TRUST ) ?>
 						</div>
-						<div class="col-3 price">
+						<div class="col-4 price">
 							<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?>
 						</div>
-						<div class="col-2 action"></div>
+						<div class="col-1 action"></div>
 					</div>
 					<div class="total row">
 						<div class="col-7 name">
 							<?= $enc->html( $this->translate( 'client', 'Total' ), $enc::TRUST ) ?>
 								</div>
-						<div class="col-3 price">
+						<div class="col-4 price">
 							<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?>
 						</div>
-						<div class="col-2 action"></div>
+						<div class="col-1 action"></div>
 					</div>
 				</div>
 			</div>
