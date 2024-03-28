@@ -57,7 +57,8 @@ $enc = $this->encoder();
 
 					<div class="col-md-7">
 						<select class="form-control" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
-							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>">
+							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>">
 
 							<?php foreach( (array) $item->getDefault() as $option ) : $code = $key . ':' . $option ?>
 								<option value="<?= $enc->attr( $option ) ?>">
@@ -71,8 +72,10 @@ $enc = $this->encoder();
 
 					<div class="col-md-7 form-item-value">
 						<?php foreach( (array) $item->getDefault() as $code => $val ) : ?>
-							<input class="form-control" type="radio" id="<?= $enc->attr( $this->type . '-' . $key . '-' . $code ) ?>"
-								name="<?= $enc->attr( $this->formparam( ['c_' . $this->type, $this->id, $key] ) ) ?>" value="<?= $enc->attr( $code ) ?>"
+							<input class="form-control" type="radio"
+								id="<?= $enc->attr( $this->type . '-' . $key . '-' . $code ) ?>"
+								name="<?= $enc->attr( $this->formparam( ['c_' . $this->type, $this->id, $key] ) ) ?>"
+								value="<?= $enc->attr( $code ) ?>"
 								<?= $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) == $code ? 'checked="checked"' : '' ?>
 							>
 							<label for="<?= $enc->attr( $this->type . '-' . $key . '-' . $code ) ?>" class="attr-list-item">
@@ -84,7 +87,9 @@ $enc = $this->encoder();
 				<?php break; case 'boolean': ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="checkbox" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+						<input class="form-control" type="checkbox"
+							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( ['c_' . $this->type, $this->id, $key] ) ) ?>" value="1"
 							<?= $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? null ) ? 'checked="checked"' : '' ?>
 						>
@@ -93,7 +98,9 @@ $enc = $this->encoder();
 				<?php break; case 'integer': case 'number': ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="number" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+						<input class="form-control" type="number"
+							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 						>
@@ -104,6 +111,7 @@ $enc = $this->encoder();
 					<div class="col-md-7">
 						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'YYYY-MM-DD' ) ) ?>"
@@ -115,6 +123,7 @@ $enc = $this->encoder();
 					<div class="col-md-7">
 						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'YYYY-MM-DD HH:mm' ) ) ?>"
@@ -126,6 +135,7 @@ $enc = $this->encoder();
 					<div class="col-md-7">
 						<input class="form-control" type="<?= $item->getType() ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'HH:mm' ) ) ?>"
@@ -137,6 +147,7 @@ $enc = $this->encoder();
 					<div class="col-md-7">
 						<textarea class="form-control"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 						><?= $enc->html( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?></textarea>
 					</div>
@@ -144,7 +155,9 @@ $enc = $this->encoder();
 				<?php break; default: ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="text" id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+						<input class="form-control" type="text"
+							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
+							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
 						>
