@@ -12,7 +12,7 @@ $enc = $this->encoder();
 <?php $this->block()->start( 'checkout/standard/address' ) ?>
 <div class="section checkout-standard-address">
 
-	<h2><?= $enc->html( $this->translate( 'client', 'address' ), $enc::TRUST ) ?></h2>
+	<h1><?= $enc->html( $this->translate( 'client', 'address' ), $enc::TRUST ) ?></h1>
 	<p class="note">
 		<?= $enc->html( $this->translate( 'client', 'Fields with an * are mandatory' ), $enc::TRUST ) ?>
 	</p>
