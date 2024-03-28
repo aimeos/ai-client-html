@@ -125,7 +125,7 @@ $enc = $this->encoder();
 		<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Previous' ), $enc::TRUST ) ?>
 		</a>
-		<button class="btn btn-primary btn-lg btn-action">
+		<button type="submit" class="btn btn-primary btn-lg btn-action">
 			<?= $enc->html( $this->translate( 'client', 'Next' ), $enc::TRUST ) ?>
 		</button>
 	</div>

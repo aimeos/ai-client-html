@@ -48,7 +48,7 @@ $enc = $this->encoder();
 		<li class="row form-item form-group <?= $enc->attr( $key ) . ( $item->isRequired() ? ' mandatory' : '' ) ?>">
 
 			<div class="col-md-5">
-				<label class="form-item-label" for="<?= $enc->attr( $this->type . '-' . $key ) ?>">
+				<label class="form-item-label">
 					<?= $enc->html( $this->translate( 'client/code', $key ) ) ?>
 				</label>
 			</div>
