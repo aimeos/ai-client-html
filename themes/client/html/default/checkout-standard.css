@@ -156,8 +156,9 @@
 /* Common for delivery/payment */
 
 .checkout-standard .item-service .description {
-	display: inline-block;
-	vertical-align: top;
+    display: flex;
+	flex-wrap: wrap;
+    align-items: center;
 	min-width: 240px;
 	max-width: 480px;
 	padding: 0.5rem 0;
@@ -183,23 +184,29 @@
 }
 
 .checkout-standard .item-service .description h2,
-.checkout-standard .item-service .icons {
+.checkout-standard .item-service .description .icons,
+.checkout-standard .item-service .description .price-value {
 	display: inline-block;
 }
 
-.checkout-standard .item-service .icons img {
+.checkout-standard .item-service .description .price-value {
+	text-align: end;
+	flex-grow: 3;
+}
+
+.checkout-standard .item-service .description .icons img {
 	max-height: 4rem;
 	margin: 0 1rem;
 }
 
-.checkout-standard .item-service .option {
-	margin: 1rem;
+.checkout-standard .item-service .description .text {
+	width: 100%;
 }
 
-.checkout-standard .item-service .price-value {
-	float: right;
+.checkout-standard .item-service .option {
+	height: 1.5rem;
+	width: 1.5rem;
 	margin: 1rem;
-	font-size: 100%;
 }
 
 [dir="rtl"] .checkout-standard .item-service .price-value {
@@ -244,11 +251,6 @@
 	border: 1px solid var(--ai-tertiary);
 	margin: 1rem 0.5rem;
 	text-align: start;
-}
-
-.checkout-standard-delivery .item-service .price-value,
-.checkout-standard-payment .item-service .price-value {
-	margin: 1.25rem;
 }
 
 /* Checkout summary */

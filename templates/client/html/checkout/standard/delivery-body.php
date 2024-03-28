@@ -29,32 +29,6 @@ $enc = $this->encoder();
 						<?= $id != $this->get( 'deliveryOption' ) ?: 'checked="checked"' ?>
 					>
 
-
-					<?php if( $price = $service->price ) : ?>
-
-						<?php if( $price->getValue() > 0 ) : ?>
-							<span class="price-value">
-								<?= $enc->html( sprintf( /// Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
-									$this->translate( 'client', '%1$s%3$s + %2$s%3$s' ),
-									$this->number( $price->getValue(), $price->getPrecision() ),
-									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
-									$this->translate( 'currency', $price->getCurrencyId() )
-								) ) ?>
-							</span>
-						<?php else : ?>
-							<span class="price-value">
-								<?= $enc->html( sprintf(
-									/// Price format with price value (%1$s) and currency (%2$s)
-									$this->translate( 'client/code', 'price:default', null, 0, false ) ?: $this->translate( 'client', '%1$s %2$s' ),
-									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
-									$this->translate( 'currency', $price->getCurrencyId() )
-								) ) ?>
-							</span>
-						<?php endif ?>
-
-					<?php endif ?>
-
-
 					<div class="icons">
 						<?php foreach( $service->getRefItems( 'media', 'icon', 'default' ) as $mediaItem ) : ?>
 							<?= $this->partial(
@@ -66,11 +40,37 @@ $enc = $this->encoder();
 
 					<h2><?= $enc->html( $service->getName(), $enc::TRUST ) ?></h2>
 
-					<?php foreach( $service->getRefItems( 'text', null, 'default' ) as $textItem ) : ?>
-						<?php if( ( $type = $textItem->getType() ) !== 'name' ) : ?>
-							<p class="<?= $enc->attr( $type ) ?>"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></p>
+					<?php if( $price = $service->price ) : ?>
+
+						<?php if( $price->getValue() > 0 ) : ?>
+							<div class="price-value">
+								<?= $enc->html( sprintf( /// Service fee value (%1$s) and shipping cost value (%2$s) with currency (%3$s)
+									$this->translate( 'client', '%1$s%3$s + %2$s%3$s' ),
+									$this->number( $price->getValue(), $price->getPrecision() ),
+									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
+									$this->translate( 'currency', $price->getCurrencyId() )
+								) ) ?>
+							</div>
+						<?php else : ?>
+							<div class="price-value">
+								<?= $enc->html( sprintf(
+									/// Price format with price value (%1$s) and currency (%2$s)
+									$this->translate( 'client/code', 'price:default', null, 0, false ) ?: $this->translate( 'client', '%1$s %2$s' ),
+									$this->number( $price->getCosts() > 0 ? $price->getCosts() : 0, $price->getPrecision() ),
+									$this->translate( 'currency', $price->getCurrencyId() )
+								) ) ?>
+							</div>
 						<?php endif ?>
-					<?php endforeach ?>
+
+					<?php endif ?>
+
+					<div class="text">
+						<?php foreach( $service->getRefItems( 'text', null, 'default' ) as $textItem ) : ?>
+							<?php if( ( $type = $textItem->getType() ) !== 'name' ) : ?>
+								<p class="<?= $enc->attr( $type ) ?>"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></p>
+							<?php endif ?>
+						<?php endforeach ?>
+					</div>
 
 				</label>
 			</div>
