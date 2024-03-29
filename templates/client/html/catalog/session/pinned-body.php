@@ -122,7 +122,7 @@ $enc = $this->encoder();
 
 				<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>">
 					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">
-						<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
+						<button type="submit" class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 						<?= $this->csrf()->formfield() ?>
 					</form>
 
