@@ -259,6 +259,7 @@
 
 		<div class="single <?= !$this->value( $this->get( 'errors', [] ), 'option/account' ) ?: 'error' ?>">
 			<input id="option-account" type="checkbox" value="1"
+				title="<?= $enc->attr( $this->translate( 'client', 'Customer account' ), $enc::TRUST ) ?>"
 				name="<?= $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ) ?>"
 				<?= ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ) ?>
 			>
@@ -277,6 +278,7 @@
 	<div class="single <?= !$this->value( $this->get( 'errors', [] ), 'option/terms' ) ?: 'error' ?>">
 		<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms' ) ) ) ?>" value="1">
 		<input id="option-terms-accept" type="checkbox" value="1"
+			title="<?= $enc->attr( $this->translate( 'client', 'Terms and conditions' ), $enc::TRUST ) ?>"
 			name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms_value' ) ) ) ?>"
 			<?= ( $this->param( 'cs_option_terms_value', null ) == 1 ? 'checked="checked"' : '' ) ?>
 		>
@@ -284,7 +286,7 @@
 		<p>
 			<label for="option-terms-accept">
 				<?= $enc->html( sprintf( $this->translate( 'client',
-					'I accept the <a href="%1$s" target="_blank" title="terms and conditions" alt="terms and conditions">terms and conditions</a>, <a href="%2$s" target="_blank" title="privacy policy" alt="privacy policy">privacy policy</a> and <a href="%3$s" target="_blank" title="cancellation policy" alt="cancellation policy">cancellation policy</a>' ),
+					'I accept the <a href="%1$s" target="_blank" title="terms and conditions (opens in new tab)">terms and conditions</a>, <a href="%2$s" target="_blank" title="privacy policy (opens in new tab)">privacy policy</a> and <a href="%3$s" target="_blank" title="cancellation policy (opens in new tab)">cancellation policy</a>' ),
 					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/url', ['path' => 'terms'] ) ),
 					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/privacy/url', ['path' => 'privacy'] ) ),
 					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/cancel/url', ['path' => 'cancel'] ) )

@@ -50,10 +50,14 @@
 
 .aimeos .common-summary .header,
 .aimeos .common-summary-detail .header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	border-bottom: 1px solid var(--ai-secondary);
 	padding: 0.5rem 1rem;
 	margin-top: 0;
 	width: 100%;
+	min-height: 4rem;
 }
 
 .aimeos .common-summary-address h2,
@@ -226,15 +230,7 @@
 	height: 8rem;
 }
 
-.aimeos .common-summary-additional .customerref-value {
+.aimeos .common-summary-additional .customerref-value,
+.aimeos .common-summary-additional .comment-value {
 	width: 100%;
-}
-
-.aimeos .common-summary-additional textarea {
-	border: 1px solid var(--ai-tertiary);
-	border-color: var(--ai-tertiary-alt, var(--ai-tertiary));
-	background-color: var(--ai-bg);
-	color: var(--ai-secondary);
-	width: 100%;
-	height: 4rem;
 }

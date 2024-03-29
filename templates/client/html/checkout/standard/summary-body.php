@@ -26,10 +26,9 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 	<div class="common-summary-address row">
 		<div class="item payment <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'address/payment' ) ?: 'error' ?> col-sm-6">
 			<div class="header">
-				<a class="modify" href="<?= $enc->attr( $checkoutAddressUrl ) ?>">
-					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ) ?>
-				</a>
 				<h3><?= $enc->html( $this->translate( 'client', 'Billing address' ), $enc::TRUST ) ?></h3>
+				<a class="minibutton modify" href="<?= $enc->attr( $checkoutAddressUrl ) ?>"
+					title="<?= $enc->attr( $this->translate( 'client', 'Change address' ), $enc::TRUST ) ?>"></a>
 			</div>
 
 			<div class="content">
@@ -59,10 +58,9 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 
 		--><div class="item delivery <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'address/delivery' ) ?: 'error' ?> col-sm-6">
 			<div class="header">
-				<a class="modify" href="<?= $enc->attr( $checkoutAddressUrl ) ?>">
-					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ) ?>
-				</a>
 				<h3><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></h3>
+				<a class="minibutton modify" href="<?= $enc->attr( $checkoutAddressUrl ) ?>"
+					title="<?= $enc->attr( $this->translate( 'client', 'Change address' ), $enc::TRUST ) ?>"></a>
 			</div>
 
 			<div class="content">
@@ -82,10 +80,9 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 	<div class="common-summary-service row">
 		<div class="item delivery <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'service/delivery' ) ?: 'error' ?> col-sm-6">
 			<div class="header">
-				<a class="modify" href="<?= $enc->attr( $checkoutDeliveryUrl ) ?>">
-					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ) ?>
-				</a>
 				<h3><?= $enc->html( $this->translate( 'client', 'delivery' ), $enc::TRUST ) ?></h3>
+				<a class="minibutton modify" href="<?= $enc->attr( $checkoutDeliveryUrl ) ?>"
+					title="<?= $enc->attr( $this->translate( 'client', 'Change delivery' ), $enc::TRUST ) ?>"></a>
 			</div>
 
 			<div class="content">
@@ -115,10 +112,9 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 
 		--><div class="item payment <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'service/payment' ) ?: 'error' ?> col-sm-6">
 			<div class="header">
-				<a class="modify" href="<?= $enc->attr( $checkoutPaymentUrl ) ?>">
-					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ) ?>
-				</a>
 				<h3><?= $enc->html( $this->translate( 'client', 'payment' ), $enc::TRUST ) ?></h3>
+				<a class="minibutton modify" href="<?= $enc->attr( $checkoutPaymentUrl ) ?>"
+					title="<?= $enc->attr( $this->translate( 'client', 'Change payment' ), $enc::TRUST ) ?>"></a>
 			</div>
 
 			<div class="content">
@@ -137,10 +133,9 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 	<div class="common-summary-additional row">
 		<div class="item coupon <?= !$this->value( $this->get( 'summaryErrorCodes', [] ), 'coupon' ) ?: 'error' ?> col-sm-4">
 			<div class="header">
-				<a class="modify" href="<?= $enc->attr( $basketUrl ) ?>">
-					<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ) ?>
-				</a>
 				<h3><?= $enc->html( $this->translate( 'client', 'Coupon codes' ), $enc::TRUST ) ?></h3>
+				<a class="minibutton modify" href="<?= $enc->attr( $basketUrl ) ?>"
+					title="<?= $enc->attr( $this->translate( 'client', 'Change coupons' ), $enc::TRUST ) ?>"></a>
 			</div>
 
 			<div class="content">
@@ -155,12 +150,15 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 		</div><!--
 
 		--><div class="item customerref col-sm-4">
-		<div class="header">
+			<div class="header">
 				<h3><?= $enc->html( $this->translate( 'client', 'Your reference' ), $enc::TRUST ) ?></h3>
 			</div>
 
 			<div class="content">
-				<input class="customerref-value" name="<?= $this->formparam( array( 'cs_customerref' ) ) ?>" value="<?= $enc->attr( $this->standardBasket->getCustomerReference() ) ?>">
+				<input class="customerref-value"
+					title="<?= $enc->attr( $this->translate( 'client', 'Your reference' ), $enc::TRUST ) ?>"
+					name="<?= $this->formparam( array( 'cs_customerref' ) ) ?>"
+					value="<?= $enc->attr( $this->standardBasket->getCustomerReference() ) ?>">
 			</div>
 		</div><!--
 
@@ -170,7 +168,10 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 			</div>
 
 			<div class="content">
-				<textarea class="comment-value" name="<?= $this->formparam( array( 'cs_comment' ) ) ?>"><?= $enc->html( $this->standardBasket->getComment() ) ?></textarea>
+				<textarea class="comment-value" name="<?= $this->formparam( array( 'cs_comment' ) ) ?>"
+					title="<?= $enc->attr( $this->translate( 'client', 'Your comment' ), $enc::TRUST ) ?>">
+					<?= $enc->html( $this->standardBasket->getComment() ) ?>
+				</textarea>
 			</div>
 		</div>
 	</div>
@@ -200,10 +201,9 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 
 	<div class="common-summary-detail row">
 		<div class="header">
-			<a class="modify" href="<?= $enc->attr( $basketUrl ) ?>">
-				<?= $enc->html( $this->translate( 'client', 'Change' ), $enc::TRUST ) ?>
-			</a>
 			<h2><?= $enc->html( $this->translate( 'client', 'Details' ), $enc::TRUST ) ?></h2>
+			<a class="minibutton modify" href="<?= $enc->attr( $basketUrl ) ?>"
+				title="<?= $enc->attr( $this->translate( 'client', 'Change products' ), $enc::TRUST ) ?>"></a>
 		</div>
 
 		<div class="basket table-responsive">
@@ -233,7 +233,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 		<a class="btn btn-default btn-lg btn-back" href="<?= $enc->attr( $this->get( 'standardUrlBack' ) ) ?>">
 			<?= $enc->html( $this->translate( 'client', 'Back' ), $enc::TRUST ) ?>
 		</a>
-		<button class="btn btn-primary btn-lg btn-action">
+		<button type="submit" class="btn btn-primary btn-lg btn-action">
 			<?= $enc->html( $this->translate( 'client', 'Buy now' ), $enc::TRUST ) ?>
 		</button>
 	</div>
