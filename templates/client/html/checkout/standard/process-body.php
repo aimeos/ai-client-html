@@ -151,7 +151,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ) ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ) ?>
 			</a>
-			<button class="btn btn-primary btn-lg btn-action">
+			<button type="submit" class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ) ?>
 			</button>
 
@@ -160,7 +160,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ) ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ) ?>
 			</a>
-			<button class="btn btn-primary btn-lg btn-action" id="payment-button">
+			<button type="submit" class="btn btn-primary btn-lg btn-action" id="payment-button">
 				<?= $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ) ?>
 			</button>
 
@@ -178,7 +178,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 		<?php else : ?>
 
-			<button class="btn btn-primary btn-lg btn-action">
+			<button type="submit" class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ) ?>
 			</button>
 
