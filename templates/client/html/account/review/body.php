@@ -182,7 +182,7 @@ $enc = $this->encoder();
 					<?php endif ?>
 				<?php endforeach ?>
 
-				<button class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Submit' ) ) ?></button>
+				<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Submit' ) ) ?></button>
 
 			</form>
 		</div>
