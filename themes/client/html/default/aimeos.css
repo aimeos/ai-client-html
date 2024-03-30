@@ -193,12 +193,13 @@ img {
 }
 
 .aimeos h1 {
-	font-size: 125%;
+	font-size: 150%;
 	letter-spacing: 1.5px;
+	padding-top: 2rem;
 }
 
 .aimeos h2 {
-	font-size: 110%;
+	font-size: 125%;
 	letter-spacing: 1.5px;
 }
 
@@ -229,7 +230,9 @@ img {
 
 .aimeos input:disabled,
 .aimeos select:disabled
-.aimeos textarea:disabled {
+.aimeos textarea:disabled,
+.aimeos .form-control:disabled,
+.aimeos .form-select:disabled {
 	border-color: var(--ai-bg-alt);
 	background-color: var(--ai-bg-alt);
 }
@@ -307,8 +310,8 @@ img {
 
 .aimeos .attr-list,
 .aimeos .form-list {
+	margin: 1rem;
 	padding: 0;
-	margin: 0;
 }
 
 .aimeos .attr-list .custom-checkbox,
