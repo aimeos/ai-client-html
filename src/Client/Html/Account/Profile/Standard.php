@@ -151,8 +151,8 @@ class Standard
 			$addr->setLanguageId( $context->locale()->getLanguageId() );
 		}
 
-		$billing = $addr->toArray();
-		$billing['string'] = $this->call( 'getAddressString', $view, $addr );
+		$payment = $addr->toArray();
+		$payment['string'] = $this->call( 'getAddressString', $view, $addr );
 
 		foreach( $item->getAddressItems() as $pos => $address )
 		{
@@ -162,11 +162,13 @@ class Standard
 		}
 
 		$view->profileItem = $item;
-		$view->addressBilling = $billing;
+		$view->addressPayment = $payment;
 		$view->addressDelivery = $deliveries;
-		$view->addressSalutations = $salutations;
-		$view->addressLanguages = $languages;
+		$view->addressPaymentCss = $this->cssPayment();
+		$view->addressDeliveryCss = $this->cssDelivery();
 		$view->addressCountries = $countries;
+		$view->addressLanguages = $languages;
+		$view->addressSalutations = $salutations;
 		$view->addressStates = $states;
 
 		return parent::data( $view, $tags, $expire );
@@ -190,17 +192,8 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'customer' );
 		$addrItems = $cntl->uses( ['customer/address'] )->get()->getAddressItems();
 		$cntl->add( $view->param( 'address/payment', [] ) );
-		$map = [];
 
-		foreach( $view->param( 'address/delivery/customer.address.id', [] ) as $pos => $id )
-		{
-			foreach( $view->param( 'address/delivery', [] ) as $key => $list )
-			{
-				if( array_key_exists( $pos, $list ) ) {
-					$map[$pos][$key] = $list[$pos];
-				}
-			}
-		}
+		$map = $view->param( 'address/delivery', [] );
 
 		if( $pos = $view->param( 'address/delete' ) ) {
 			unset( $map[$pos] );
@@ -218,6 +211,68 @@ class Standard
 		}
 
 		$cntl->store();
+	}
+
+
+	/**
+	 * Returns the CSS classes for the delivery address fields
+	 *
+	 * @return array Associative list of CSS classes for the delivery address fields
+	 */
+	protected function cssDelivery() : array
+	{
+		$config = $this->context()->config();
+
+		$mandatory = $config->get( 'client/html/common/address/delivery/mandatory', [] );
+		$optional = $config->get( 'client/html/common/address/delivery/optional', [] );
+		$hidden = $config->get( 'client/html/common/address/delivery/hidden', [] );
+
+		$css = [];
+
+		foreach( $mandatory as $name ) {
+			$css[$name][] = 'mandatory';
+		}
+
+		foreach( $optional as $name ) {
+			$css[$name][] = 'optional';
+		}
+
+		foreach( $hidden as $name ) {
+			$css[$name][] = 'hidden';
+		}
+
+		return $css;
+	}
+
+
+	/**
+	 * Returns the CSS classes for the payment address fields
+	 *
+	 * @return array Associative list of CSS classes for the payment address fields
+	 */
+	protected function cssPayment() : array
+	{
+		$config = $this->context()->config();
+
+		$mandatory = $config->get( 'client/html/common/address/payment/mandatory', [] );
+		$optional = $config->get( 'client/html/common/address/payment/optional', [] );
+		$hidden = $config->get( 'client/html/common/address/payment/hidden', [] );
+
+		$css = [];
+
+		foreach( $mandatory as $name ) {
+			$css[$name][] = 'mandatory';
+		}
+
+		foreach( $optional as $name ) {
+			$css[$name][] = 'optional';
+		}
+
+		foreach( $hidden as $name ) {
+			$css[$name][] = 'hidden';
+		}
+
+		return $css;
 	}
 
 

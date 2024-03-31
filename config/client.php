@@ -3,6 +3,45 @@
 return [
 	'html' => [
 		'common' => [
+			'address' => [
+				'delivery' => [
+					'mandatory' => [
+						'customer.address.firstname',
+						'customer.address.lastname',
+						'customer.address.address1',
+						'customer.address.postal',
+						'customer.address.city',
+						'customer.address.languageid',
+					],
+					'optional' => [
+						'customer.address.salutation',
+						'customer.address.company',
+						'customer.address.vatid',
+						'customer.address.address2',
+						'customer.address.countryid',
+						'customer.address.state',
+					]
+				],
+				'payment' => [
+					'mandatory' => [
+						'customer.firstname',
+						'customer.lastname',
+						'customer.address1',
+						'customer.postal',
+						'customer.city',
+						'customer.languageid',
+						'customer.email'
+					],
+					'optional' => [
+						'customer.salutation',
+						'customer.company',
+						'customer.vatid',
+						'customer.address2',
+						'customer.countryid',
+						'customer.state',
+					]
+				],
+			],
 			'decorators' => [
 				'default' => ['Exceptions', 'Context']
 			],

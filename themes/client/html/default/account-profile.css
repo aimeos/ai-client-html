@@ -69,8 +69,8 @@
 }
 
 .account-profile-address .panel-heading {
-	display: flex;
 	justify-content: space-between;
+	display: flex;
 	padding: 1rem;
 }
 

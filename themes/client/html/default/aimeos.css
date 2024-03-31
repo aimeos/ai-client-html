@@ -331,6 +331,20 @@ img {
 	content: ": ";
 }
 
+.aimeos .address.form-list .form-item {
+	display: none;
+}
+
+.aimeos .address.form-list .mandatory,
+.aimeos .address.form-list .optional {
+	align-items: center;
+	display: flex;
+}
+
+.aimeos .address.form-list .mandatory label:after {
+	content: "*";
+}
+
 .aimeos .prototype {
 	display: none !important;
 }
