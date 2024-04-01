@@ -376,7 +376,7 @@ class Standard
 	protected function checkSalutation( array &$params, array &$mandatory )
 	{
 		if( isset( $params['order.address.salutation'] )
-			&& $params['order.address.salutation'] === \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_COMPANY
+			&& $params['order.address.salutation'] === 'company'
 			&& in_array( 'order.address.company', $mandatory ) === false
 		) {
 			$mandatory[] = 'order.address.company';
