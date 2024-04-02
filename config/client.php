@@ -41,6 +41,7 @@ return [
 						'customer.state',
 					]
 				],
+				'salutations' => ['', 'mr', 'ms']
 			],
 			'decorators' => [
 				'default' => ['Exceptions', 'Context']

@@ -256,8 +256,24 @@ class Standard
 		$view->addressCustomerItem = $item;
 		$view->addressPaymentItem = $paymentAddressItem;
 		$view->addressDeliveryItems = $deliveryAddressItems;
+		$view->addressSalutations = $this->salutations();
+		$view->addressCountries = $this->countries();
+		$view->addressStates = $this->states();
 		$view->addressLanguages = $localeManager->search( $localeManager->filter( true ) )
 			->col( 'locale.languageid', 'locale.languageid' );
+
+		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the list of available countries
+	 *
+	 * @return array Associative list of two letter ISO country codes as keys and country names as values
+	 */
+	protected function countries() : array
+	{
+		$context = $this->context();
 
 		/** common/countries
 		 * List of available country codes for frontend and backend
@@ -277,16 +293,68 @@ class Standard
 		 * @param array List of two letter ISO country codes
 		 * @since 2023.04
 		 */
-		$countries = map( $view->config( 'common/countries', [] ) );
-		$view->addressCountries = $countries->flip()->map( function( $v, $key ) use ( $view ) {
-			return $view->translate( 'country', $key );
+		$countries = map( $context->config()->get( 'common/countries', [] ) );
+		$map = $countries->flip()->map( function( $v, $key ) use ( $context ) {
+			return $context->translate( 'country', $key );
 		} );
 
 		// Don't destroy custom order of countries, only sort if order is strictly alphabetical
 		if( $countries->is( $countries->clone()->sort(), true ) ) {
-			$view->addressCountries->asort();
+			$map->asort();
 		}
 
+		return $countries->all();
+	}
+
+
+	/**
+	 * Tests if an item is available and the step can be skipped
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Iface $basket Basket object
+	 * @return bool TRUE if step can be skipped, FALSE if not
+	 */
+	protected function isAvailable( \Aimeos\MShop\Order\Item\Iface $basket ) : bool
+	{
+		return !empty( $basket->getAddress( 'payment' ) );
+	}
+
+
+	/**
+	 * Returns the list of configured salutation codes
+	 *
+	 * @return array List of salutation codes
+	 */
+	protected function salutations() : array
+	{
+		/** client/html/common/address/salutations
+		 * List of salutions the customer can select from
+		 *
+		 * The following salutations are available:
+		 *
+		 * * empty string for "unknown"
+		 * * company
+		 * * mr
+		 * * ms
+		 *
+		 * You can modify the list of salutation codes and remove the ones
+		 * which shouldn't be used or add new ones.
+		 *
+		 * @param array List of available salutation codes
+		 * @since 2024.04
+		 * @see common/countries
+		 * @see common/states
+		 */
+		return $this->context()->config()->get( 'client/html/common/address/salutations', [] );
+	}
+
+
+	/**
+	 * Returns the states map for the configured countries
+	 *
+	 * @return array Associative list of two letter ISO country codes as keys and map of state codes and state names as values
+	 */
+	protected function states() : array
+	{
 		/** common/states
 		 * List of available states for frontend and backend
 		 *
@@ -317,23 +385,7 @@ class Standard
 		 * @param array Multi-dimensional list ISO country codes and state codes/names
 		 * @since 2023.04
 		 */
-		$view->addressStates = $view->config( 'common/states', [] );
-
-		$view->addressExtra = $context->session()->get( 'client/html/checkout/standard/address/extra', [] );
-
-		return parent::data( $view, $tags, $expire );
-	}
-
-
-	/**
-	 * Tests if an item is available and the step can be skipped
-	 *
-	 * @param \Aimeos\MShop\Order\Item\Iface $basket Basket object
-	 * @return bool TRUE if step can be skipped, FALSE if not
-	 */
-	protected function isAvailable( \Aimeos\MShop\Order\Item\Iface $basket ) : bool
-	{
-		return !empty( $basket->getAddress( 'payment' ) );
+		return $this->context()->config()->get( 'common/states', [] );
 	}
 
 
