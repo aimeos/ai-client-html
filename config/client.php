@@ -6,42 +6,43 @@ return [
 			'address' => [
 				'delivery' => [
 					'mandatory' => [
-						'customer.address.firstname',
-						'customer.address.lastname',
-						'customer.address.address1',
-						'customer.address.postal',
-						'customer.address.city',
-						'customer.address.languageid',
+						'firstname',
+						'lastname',
+						'address1',
+						'postal',
+						'city',
+						'languageid',
 					],
 					'optional' => [
-						'customer.address.salutation',
-						'customer.address.company',
-						'customer.address.vatid',
-						'customer.address.address2',
-						'customer.address.countryid',
-						'customer.address.state',
+						'salutation',
+						'company',
+						'vatid',
+						'address2',
+						'countryid',
+						'state',
 					]
 				],
 				'payment' => [
 					'mandatory' => [
-						'customer.firstname',
-						'customer.lastname',
-						'customer.address1',
-						'customer.postal',
-						'customer.city',
-						'customer.languageid',
-						'customer.email'
+						'firstname',
+						'lastname',
+						'address1',
+						'postal',
+						'city',
+						'languageid',
+						'email',
 					],
 					'optional' => [
-						'customer.salutation',
-						'customer.company',
-						'customer.vatid',
-						'customer.address2',
-						'customer.countryid',
-						'customer.state',
+						'salutation',
+						'company',
+						'vatid',
+						'address2',
+						'countryid',
+						'state',
 					]
 				],
-				'salutations' => ['', 'mr', 'ms']
+				'salutations' => ['', 'mr', 'ms'],
+				'validate' => []
 			],
 			'decorators' => [
 				'default' => ['Exceptions', 'Context']

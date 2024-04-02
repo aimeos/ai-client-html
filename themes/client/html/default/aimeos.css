@@ -233,6 +233,7 @@ img {
 .aimeos textarea:disabled,
 .aimeos .form-control:disabled,
 .aimeos .form-select:disabled {
+	color: var(--ai-tertiary);
 	border-color: var(--ai-bg-alt);
 	background-color: var(--ai-bg-alt);
 }

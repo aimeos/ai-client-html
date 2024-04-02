@@ -105,14 +105,17 @@ $pos = 0;
 					<div class="payment col-md-6">
 						<h3 class="header"><?= $enc->html( $this->translate( 'client', 'Billing address' ) ) ?></h3>
 
-						<div class="panel panel-default address-payment">
-							<div class="panel-heading" role="button" data-bs-toggle="collapse" href="#address-payment" aria-expanded="false" aria-controls="address-payment">
-								<?= nl2br( $enc->html( $addr['string'] ?: $this->translate( 'client', 'Add billing address' ) ) ) ?>
-								<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Change billing address' ), $enc::TRUST ) ?>"></a>
-							</div>
-							<div class="panel-body collapse" id="address-payment">
+						<div id="address-payment-list" class="accordion">
 
-								<div class="address form-list">
+							<div class="accordion-item address-item address-payment">
+								<div class="header" role="button"
+									data-bs-toggle="collapse" data-bs-target="#address-payment"
+									aria-controls="address-payment" aria-expanded="false">
+
+									<?= nl2br( $enc->html( $addr['string'] ?: $this->translate( 'client', 'Add billing address' ) ) ) ?>
+									<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Change billing address' ), $enc::TRUST ) ?>"></a>
+								</div>
+								<div class="address form-list accordion-collapse collapse" id="address-payment" data-bs-parent="#address-payment-list">
 
 									<?= $this->partial(
 										/** client/html/account/profile/address
@@ -142,14 +145,13 @@ $pos = 0;
 										]
 									) ?>
 
-								</div>
+									<div class="button-group">
+										<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
+											<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
+										</button>
+									</div>
 
-								<div class="button-group">
-									<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
-										<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
-									</button>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -158,20 +160,23 @@ $pos = 0;
 					<div class="delivery col-md-6">
 						<h3 class="header"><?= $enc->html( $this->translate( 'client', 'Delivery address' ) ) ?></h3>
 
-						<?php foreach( $this->addressDelivery as $pos => $addr ) : ?>
-							<div class="panel panel-default address-delivery">
-								<div class="panel-heading" role="button" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>" aria-expanded="false" aria-controls="address-delivery-<?= $enc->attr( $pos ) ?>">
-									<?= nl2br( $enc->html( $addr['string'] ?? '' ) ) ?>
-									<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Change delivery address' ), $enc::TRUST ) ?>"></a>
-								</div>
-								<div class="panel-body collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>">
+						<div id="address-delivery-list" class="accordion">
 
-									<input type="hidden"
-										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
-										value="<?= $enc->attr( $this->value( $addr, 'customer.address.id' ) ) ?>"
-									>
+							<?php foreach( $this->addressDelivery as $pos => $addr ) : ?>
+								<div class="accordion-item address-item address-delivery">
+									<div class="header" role="button"
+										data-bs-toggle="collapse" data-bs-target="#address-delivery-<?= $enc->attr( $pos ) ?>"
+										aria-controls="address-delivery-<?= $enc->attr( $pos ) ?>" aria-expanded="false">
 
-									<div class="address form-list">
+										<?= nl2br( $enc->html( $addr['string'] ?? '' ) ) ?>
+										<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Change delivery address' ), $enc::TRUST ) ?>"></a>
+									</div>
+									<div class="address form-list accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
+
+										<input type="hidden"
+											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
+											value="<?= $enc->attr( $this->value( $addr, 'customer.address.id' ) ) ?>"
+										>
 
 										<?= $this->partial(
 											$this->config( 'client/html/account/profile/address', 'common/partials/address' ),
@@ -191,35 +196,34 @@ $pos = 0;
 											]
 										) ?>
 
-									</div>
+										<div class="button-group">
+											<button class="btn btn-delete" value="<?= $pos ?>" name="<?= $enc->attr( $this->formparam( array( 'address', 'delete' ) ) ) ?>">
+												<?= $enc->html( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>
+											</button>
+											<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
+												<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
+											</button>
+										</div>
 
-									<div class="button-group">
-										<button class="btn btn-delete" value="<?= $pos ?>" name="<?= $enc->attr( $this->formparam( array( 'address', 'delete' ) ) ) ?>">
-											<?= $enc->html( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>
-										</button>
-										<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
-											<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
-										</button>
 									</div>
-
 								</div>
-							</div>
-						<?php endforeach ?>
+							<?php endforeach ?>
 
 
-						<?php $pos++ ?>
-						<div class="panel panel-default address-delivery-new">
-							<div class="panel-heading" role="button" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>" aria-expanded="false" aria-controls="address-delivery-<?= $enc->attr( $pos ) ?>">
-								<?= $enc->html( $this->translate( 'client', 'New delivery address' ) ) ?>
-								<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Add delivery address' ), $enc::TRUST ) ?>"></a>
-							</div>
-							<div class="panel-body collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>">
+							<?php $pos++ ?>
+							<div class="accordion-item address-item address-delivery-new">
+								<div class="header" role="button"
+									data-bs-toggle="collapse" data-bs-target="#address-delivery-<?= $enc->attr( $pos ) ?>"
+									aria-controls="address-delivery-<?= $enc->attr( $pos ) ?>" aria-expanded="false">
 
-								<input type="hidden" value="" disabled
-									name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
-								>
+									<?= $enc->html( $this->translate( 'client', 'New delivery address' ) ) ?>
+									<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Add delivery address' ), $enc::TRUST ) ?>"></a>
+								</div>
+								<div class="address form-list accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
 
-								<div class="address form-list">
+									<input type="hidden" value="" disabled
+										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
+									>
 
 									<?= $this->partial(
 										$this->config( 'client/html/account/profile/address', 'common/partials/address' ),
@@ -239,18 +243,18 @@ $pos = 0;
 										]
 									) ?>
 
-								</div>
+									<div class="button-group">
+										<button class="btn btn-cancel" value="1" type="reset" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>">
+											<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
+										</button>
+										<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
+											<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
+										</button>
+									</div>
 
-								<div class="button-group">
-									<button class="btn btn-cancel" value="1" type="reset" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>">
-										<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
-									</button>
-									<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
-										<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
-									</button>
 								</div>
-
 							</div>
+
 						</div>
 
 					</div>

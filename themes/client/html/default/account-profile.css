@@ -62,25 +62,26 @@
 	margin: 0.5rem 1rem;
 }
 
-.account-profile-address .panel {
+.account-profile-address .address-item {
 	border: 1px solid var(--ai-tertiary);
+	border-radius: 0;
 	margin: 0.5rem 0;
-	box-shadow: none;
+	padding: 1%;
 }
 
-.account-profile-address .panel-heading {
+.account-profile-address .header {
 	justify-content: space-between;
 	display: flex;
 	padding: 1rem;
 }
 
-.account-profile-address .panel-heading .act-show:after {
+.account-profile-address .header .act-show:after {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	content: "\f4cb";
 	font-size: 130%;
 }
 
-.account-profile-address .panel-heading .act-hide:after {
+.account-profile-address .header .act-hide:after {
 	font: normal normal normal 14px/1 bootstrap-icons;
 	content: "\f62a";
 	font-size: 130%;
