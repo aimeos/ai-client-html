@@ -22,26 +22,6 @@ class Standard
 	extends \Aimeos\Client\Html\Common\Client\Factory\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
-	private array $mandatory = array(
-		'order.address.firstname',
-		'order.address.lastname',
-		'order.address.address1',
-		'order.address.postal',
-		'order.address.city',
-		'order.address.languageid',
-		'order.address.email'
-	);
-
-	private array $optional = array(
-		'order.address.salutation',
-		'order.address.company',
-		'order.address.vatid',
-		'order.address.address2',
-		'order.address.countryid',
-		'order.address.state',
-	);
-
-
 	/**
 	 * Stores the given or fetched billing address in the basket.
 	 *
@@ -65,7 +45,7 @@ class Standard
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			$view->addressBillingError = $e->getErrorList();
+			$view->addressPaymentError = $e->getErrorList();
 			throw $e;
 		}
 	}
@@ -90,41 +70,259 @@ class Standard
 		$id = $view->get( 'addressCustomerItem' ) && $view->addressCustomerItem->getId() ? $view->addressCustomerItem->getId() : 'null';
 		$id = ( $values['order.address.addressid'] ?? null ) ?: $id;
 
-		$view->addressBillingString = $this->getAddressString( $view, $view->addressPaymentItem );
-		$view->addressBillingValuesNew = array_merge( $values, $view->param( 'ca_billing', [] ) );
-		$view->addressBillingValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
-		$view->addressBillingOption = $view->param( 'ca_billingoption', $id );
+		$view->addressPaymentString = $this->getAddressString( $view, $view->addressPaymentItem );
+		$view->addressPaymentValuesNew = array_merge( $values, $view->param( 'ca_billing', [] ) );
+		$view->addressPaymentValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
+		$view->addressPaymentOption = $view->param( 'ca_billingoption', $id );
+		$view->addressPaymentCss = $this->cssPayment();
 
-		$salutations = $context->config()->get( 'client/html/common/address/salutations', ['', 'mr', 'ms'] );
+		return parent::data( $view, $tags, $expire );
+	}
 
-		/** client/html/checkout/standard/address/billing/salutations
-		 * List of salutions the customer can select from for the billing address
+
+	/**
+	 * Checks the address fields for missing data and sanitizes the given parameter list.
+	 *
+	 * @param array $params Associative list of address keys (order.address.*) and their values
+	 * @return array List of missing field names
+	 */
+	protected function checkFields( array $params ) : array
+	{
+		$view = $this->view();
+
+		/** client/html/common/address/payment/mandatory
+		 * List of payment address input fields that are required
 		 *
-		 * The following salutations are available:
+		 * You can configure the list of payment address fields that are
+		 * necessary and must be filled by the customer before he can
+		 * continue the checkout process. Available field keys are:
 		 *
-		 * * empty string for "unknown"
 		 * * company
-		 * * mr
-		 * * ms
+		 * * vatid
+		 * * salutation
+		 * * firstname
+		 * * lastname
+		 * * address1
+		 * * address2
+		 * * address3
+		 * * postal
+		 * * city
+		 * * state
+		 * * languageid
+		 * * countryid
+		 * * telephone
+		 * * telefax
+		 * * mobile
+		 * * email
+		 * * website
 		 *
-		 * You can modify the list of salutation codes and remove the ones
-		 * which shouldn't be used or add new ones.
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/payment/mandatory" starting from 2014-03.
 		 *
-		 * @param array List of available salutation codes
+		 * @param array List of field keys
 		 * @since 2015.02
-		 * @see client/html/checkout/standard/address/billing/disable-new
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see client/html/checkout/standard/address/billing/hidden
+		 * @see client/html/checkout/standard/address/payment/disable-new
+		 * @see client/html/common/address/validate
+		 * @see client/html/common/address/payment/optional
+		 * @see client/html/common/address/payment/hidden
 		 * @see client/html/common/address/salutations
 		 * @see common/countries
 		 * @see common/states
 		 */
-		$view->addressBillingSalutations = $view->config( 'client/html/checkout/standard/address/billing/salutations', $salutations );
+		$mandatory = $view->config( 'client/html/common/address/payment/mandatory', [] );
 
-		$mandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
-		$optional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
-		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
+		/** client/html/common/address/payment/optional
+		 * List of payment address input fields that are optional
+		 *
+		 * You can configure the list of payment address fields that
+		 * customers can fill but don't have to before they can
+		 * continue the checkout process. Available field keys are:
+		 *
+		 * * company
+		 * * vatid
+		 * * salutation
+		 * * firstname
+		 * * lastname
+		 * * address1
+		 * * address2
+		 * * address3
+		 * * postal
+		 * * city
+		 * * state
+		 * * languageid
+		 * * countryid
+		 * * telephone
+		 * * telefax
+		 * * mobile
+		 * * email
+		 * * website
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/payment/optional" starting from 2014-03.
+		 *
+		 * @param array List of field keys
+		 * @since 2015.02
+		 * @see client/html/checkout/standard/address/payment/disable-new
+		 * @see client/html/common/address/validate
+		 * @see client/html/common/address/payment/mandatory
+		 * @see client/html/common/address/payment/hidden
+		 * @see client/html/common/address/salutations
+		 * @see common/countries
+		 * @see common/states
+		 */
+		$optional = $view->config( 'client/html/common/address/payment/optional', [] );
+
+		/** client/html/common/address/payment/hidden
+		 * List of payment address input fields that are optional and should be hidden
+		 *
+		 * You can configure the list of payment address fields that
+		 * are hidden when a customer enters his new payment address.
+		 * Available field keys are:
+		 *
+		 * * company
+		 * * vatid
+		 * * salutation
+		 * * firstname
+		 * * lastname
+		 * * address1
+		 * * address2
+		 * * address3
+		 * * postal
+		 * * city
+		 * * state
+		 * * languageid
+		 * * countryid
+		 * * telephone
+		 * * telefax
+		 * * mobile
+		 * * email
+		 * * website
+		 *
+		 * Caution: Only hide fields that don't require any input
+		 *
+		 * @param array List of field keys
+		 * @since 2015.02
+		 * @see client/html/checkout/standard/address/payment/disable-new
+		 * @see client/html/common/address/payment/mandatory
+		 * @see client/html/common/address/payment/optional
+		 * @see client/html/common/address/salutations
+		 * @see common/countries
+		 * @see common/states
+		 */
+		$hidden = $view->config( 'client/html/common/address/payment/hidden', [] );
+
+		/** client/html/common/address/validate
+		 * List of regular expressions to validate the data of the address fields
+		 *
+		 * To validate the address input data of the customer, an individual
+		 * {@link http://php.net/manual/en/pcre.pattern.php Perl compatible regular expression}
+		 * can be applied to each field. Available fields are:
+		 *
+		 * * company
+		 * * vatid
+		 * * salutation
+		 * * firstname
+		 * * lastname
+		 * * address1
+		 * * address2
+		 * * address3
+		 * * postal
+		 * * city
+		 * * state
+		 * * languageid
+		 * * countryid
+		 * * telephone
+		 * * telefax
+		 * * mobile
+		 * * email
+		 * * website
+		 *
+		 * Some fields are validated automatically because they are not
+		 * dependent on a country specific rule. These fields are:
+		 *
+		 * * salutation
+		 * * email
+		 * * website
+		 *
+		 * To validate e.g the postal/zip code, you can define a regular
+		 * expression like this if you want to allow only digits:
+		 *
+		 *  client/html/common/address/validate/postal = '^[0-9]+$'
+		 *
+		 * Several regular expressions can be defined line this:
+		 *
+		 *  client/html/common/address/validate = array(
+		 *      'postal' = '^[0-9]+$',
+		 *      'vatid' = '^[A-Z]{2}[0-9]{8}$',
+		 *  )
+		 *
+		 * Don't add any delimiting characters like slashes (/) to the beginning
+		 * or the end of the regular expression. They will be added automatically.
+		 * Any slashes inside the expression must be escaped by backlashes,
+		 * i.e. "\/".
+		 *
+		 * Until 2015-02, the configuration option was available as
+		 * "client/html/common/address/payment/validate" starting from 2014-09.
+		 *
+		 * @param array Associative list of field names and regular expressions
+		 * @since 2014.09
+		 * @see client/html/common/address/payment/mandatory
+		 * @see client/html/common/address/payment/optional
+		 */
+
+		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
+		$invalid = $this->validateFields( $params, $allFields );
+		$this->checkSalutation( $params, $mandatory );
+
+		$msg = $view->translate( 'client', 'Billing address part "%1$s" is invalid' );
+
+		foreach( $invalid as $key => $name ) {
+			$invalid[$key] = sprintf( $msg, $name );
+		}
+
+		$msg = $view->translate( 'client', 'Billing address part "%1$s" is missing' );
+
+		foreach( $mandatory as $key )
+		{
+			if( !isset( $params['order.address.' . $key] ) || $params['order.address.' . $key] == '' ) {
+				$invalid[$key] = sprintf( $msg, $key );
+			}
+		}
+
+		return $invalid;
+	}
+
+
+	/**
+	 * Additional checks for the salutation
+	 *
+	 * @param array $params Associative list of address keys (order.address.*) and their values
+	 * @param array &$mandatory List of mandatory field names
+	 * @since 2016.05
+	 */
+	protected function checkSalutation( array $params, array &$mandatory )
+	{
+		if( isset( $params['order.address.salutation'] )
+			&& $params['order.address.salutation'] === 'company'
+			&& in_array( 'company', $mandatory ) === false
+		) {
+			$mandatory[] = 'company';
+		}
+	}
+
+
+	/**
+	 * Returns the CSS classes for the payment address fields
+	 *
+	 * @return array Associative list of CSS classes for the payment address fields
+	 */
+	protected function cssPayment() : array
+	{
+		$config = $this->context()->config();
+
+		$mandatory = $config->get( 'client/html/common/address/payment/mandatory', [] );
+		$optional = $config->get( 'client/html/common/address/payment/optional', [] );
+		$hidden = $config->get( 'client/html/common/address/payment/hidden', [] );
 
 		$css = [];
 
@@ -140,247 +338,7 @@ class Standard
 			$css[$name][] = 'hidden';
 		}
 
-		$view->addressBillingMandatory = $mandatory;
-		$view->addressBillingOptional = $optional;
-		$view->addressBillingHidden = $hidden;
-		$view->addressBillingCss = $css;
-
-		return parent::data( $view, $tags, $expire );
-	}
-
-
-	/**
-	 * Checks the address fields for missing data and sanitizes the given parameter list.
-	 *
-	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
-	 * @return array List of missing field names
-	 */
-	protected function checkFields( array &$params ) : array
-	{
-		$view = $this->view();
-
-		/** client/html/checkout/standard/address/billing/mandatory
-		 * List of billing address input fields that are required
-		 *
-		 * You can configure the list of billing address fields that are
-		 * necessary and must be filled by the customer before he can
-		 * continue the checkout process. Available field keys are:
-		 *
-		 * * order.address.company
-		 * * order.address.vatid
-		 * * order.address.salutation
-		 * * order.address.firstname
-		 * * order.address.lastname
-		 * * order.address.address1
-		 * * order.address.address2
-		 * * order.address.address3
-		 * * order.address.postal
-		 * * order.address.city
-		 * * order.address.state
-		 * * order.address.languageid
-		 * * order.address.countryid
-		 * * order.address.telephone
-		 * * order.address.telefax
-		 * * order.address.mobile
-		 * * order.address.email
-		 * * order.address.website
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/billing/mandatory" starting from 2014-03.
-		 *
-		 * @param array List of field keys
-		 * @since 2015.02
-		 * @see client/html/checkout/standard/address/billing/disable-new
-		 * @see client/html/checkout/standard/address/billing/salutations
-		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see client/html/checkout/standard/address/billing/hidden
-		 * @see client/html/checkout/standard/address/validate
-		 * @see common/countries
-		 * @see common/states
-		 */
-		$mandatory = $view->config( 'client/html/checkout/standard/address/billing/mandatory', $this->mandatory );
-
-		/** client/html/checkout/standard/address/billing/optional
-		 * List of billing address input fields that are optional
-		 *
-		 * You can configure the list of billing address fields that
-		 * customers can fill but don't have to before they can
-		 * continue the checkout process. Available field keys are:
-		 *
-		 * * order.address.company
-		 * * order.address.vatid
-		 * * order.address.salutation
-		 * * order.address.firstname
-		 * * order.address.lastname
-		 * * order.address.address1
-		 * * order.address.address2
-		 * * order.address.address3
-		 * * order.address.postal
-		 * * order.address.city
-		 * * order.address.state
-		 * * order.address.languageid
-		 * * order.address.countryid
-		 * * order.address.telephone
-		 * * order.address.telefax
-		 * * order.address.mobile
-		 * * order.address.email
-		 * * order.address.website
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/billing/optional" starting from 2014-03.
-		 *
-		 * @param array List of field keys
-		 * @since 2015.02
-		 * @see client/html/checkout/standard/address/billing/disable-new
-		 * @see client/html/checkout/standard/address/billing/salutations
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/hidden
-		 * @see client/html/checkout/standard/address/validate
-		 * @see common/countries
-		 * @see common/states
-		 */
-		$optional = $view->config( 'client/html/checkout/standard/address/billing/optional', $this->optional );
-
-		/** client/html/checkout/standard/address/billing/hidden
-		 * List of billing address input fields that are optional and should be hidden
-		 *
-		 * You can configure the list of billing address fields that
-		 * are hidden when a customer enters his new billing address.
-		 * Available field keys are:
-		 *
-		 * * order.address.company
-		 * * order.address.vatid
-		 * * order.address.salutation
-		 * * order.address.firstname
-		 * * order.address.lastname
-		 * * order.address.address1
-		 * * order.address.address2
-		 * * order.address.address3
-		 * * order.address.postal
-		 * * order.address.city
-		 * * order.address.state
-		 * * order.address.languageid
-		 * * order.address.countryid
-		 * * order.address.telephone
-		 * * order.address.telefax
-		 * * order.address.mobile
-		 * * order.address.email
-		 * * order.address.website
-		 *
-		 * Caution: Only hide fields that don't require any input
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/billing/hidden" starting from 2014-03.
-		 *
-		 * @param array List of field keys
-		 * @since 2015.02
-		 * @see client/html/checkout/standard/address/billing/disable-new
-		 * @see client/html/checkout/standard/address/billing/salutations
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see common/countries
-		 * @see common/states
-		 */
-		$hidden = $view->config( 'client/html/checkout/standard/address/billing/hidden', [] );
-
-		/** client/html/checkout/standard/address/validate
-		 * List of regular expressions to validate the data of the address fields
-		 *
-		 * To validate the address input data of the customer, an individual
-		 * {@link http://php.net/manual/en/pcre.pattern.php Perl compatible regular expression}
-		 * can be applied to each field. Available fields are:
-		 *
-		 * * order.address.company
-		 * * order.address.vatid
-		 * * order.address.salutation
-		 * * order.address.firstname
-		 * * order.address.lastname
-		 * * order.address.address1
-		 * * order.address.address2
-		 * * order.address.address3
-		 * * order.address.postal
-		 * * order.address.city
-		 * * order.address.state
-		 * * order.address.languageid
-		 * * order.address.countryid
-		 * * order.address.telephone
-		 * * order.address.telefax
-		 * * order.address.mobile
-		 * * order.address.email
-		 * * order.address.website
-		 *
-		 * Some fields are validated automatically because they are not
-		 * dependent on a country specific rule. These fields are:
-		 *
-		 * * order.address.salutation
-		 * * order.address.email
-		 * * order.address.website
-		 *
-		 * To validate e.g the postal/zip code, you can define a regular
-		 * expression like this if you want to allow only digits:
-		 *
-		 *  client/html/checkout/standard/address/validate/order.address.postal = '^[0-9]+$'
-		 *
-		 * Several regular expressions can be defined line this:
-		 *
-		 *  client/html/checkout/standard/address/validate = array(
-		 *      'order.address.postal' = '^[0-9]+$',
-		 *      'order.address.vatid' = '^[A-Z]{2}[0-9]{8}$',
-		 *  )
-		 *
-		 * Don't add any delimiting characters like slashes (/) to the beginning
-		 * or the end of the regular expression. They will be added automatically.
-		 * Any slashes inside the expression must be escaped by backlashes,
-		 * i.e. "\/".
-		 *
-		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/billing/validate" starting from 2014-09.
-		 *
-		 * @param array Associative list of field names and regular expressions
-		 * @since 2014.09
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/optional
-		 */
-
-		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
-		$invalid = $this->validateFields( $params, $allFields );
-		$this->checkSalutation( $params, $mandatory );
-
-		foreach( $invalid as $key => $name )
-		{
-			$msg = $view->translate( 'client', 'Billing address part "%1$s" is invalid' );
-			$invalid[$key] = sprintf( $msg, $name );
-		}
-
-		foreach( $mandatory as $key )
-		{
-			if( !isset( $params[$key] ) || $params[$key] == '' )
-			{
-				$msg = $view->translate( 'client', 'Billing address part "%1$s" is missing' );
-				$invalid[$key] = sprintf( $msg, substr( $key, 19 ) );
-				unset( $params[$key] );
-			}
-		}
-
-		return $invalid;
-	}
-
-
-	/**
-	 * Additional checks for the salutation
-	 *
-	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
-	 * @param array &$mandatory List of mandatory field names
-	 * @since 2016.05
-	 */
-	protected function checkSalutation( array &$params, array &$mandatory )
-	{
-		if( isset( $params['order.address.salutation'] )
-			&& $params['order.address.salutation'] === 'company'
-			&& in_array( 'order.address.company', $mandatory ) === false
-		) {
-			$mandatory[] = 'order.address.company';
-		}
+		return $css;
 	}
 
 
@@ -462,10 +420,10 @@ class Standard
 		 *
 		 * @param boolean A value of "1" to disable, "0" enables the billing address form
 		 * @since 2015.02
-		 * @see client/html/checkout/standard/address/billing/salutations
-		 * @see client/html/checkout/standard/address/billing/mandatory
-		 * @see client/html/checkout/standard/address/billing/optional
-		 * @see client/html/checkout/standard/address/billing/hidden
+		 * @see client/html/common/address/billing/mandatory
+		 * @see client/html/common/address/billing/optional
+		 * @see client/html/common/address/billing/hidden
+		 * @see client/html/common/address/salutations
 		 */
 		$disable = $view->config( 'client/html/checkout/standard/address/billing/disable-new', false );
 		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
@@ -474,15 +432,15 @@ class Standard
 		{
 			$params = $view->param( 'ca_billing', [] );
 
-			if( ( $view->addressBillingError = $this->checkFields( $params ) ) !== [] ) {
+			if( ( $view->addressPaymentError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 		}
 		else // existing address
 		{
-			$params = $view->param( 'ca_billing_' . $option, [] ) + $view->param( 'ca_extra', [] );
+			$params = $view->param( 'ca_billing_' . $option, [] );
 
-			if( !empty( $params ) && ( $view->addressBillingError = $this->checkFields( $params ) ) !== [] ) {
+			if( !empty( $params ) && ( $view->addressPaymentError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
 			}
 
@@ -497,141 +455,136 @@ class Standard
 	/**
 	 * Validate the address key/value pairs using regular expressions
 	 *
-	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
+	 * @param array $params Associative list of address keys (order.address.*) and their values
 	 * @param array $fields List of field names to validate
 	 * @return array List of invalid address keys
 	 * @since 2016.05
 	 */
-	protected function validateFields( array &$params, array $fields ) : array
+	protected function validateFields( array $params, array $fields ) : array
 	{
 		$config = $this->context()->config();
 
-		/** client/html/checkout/standard/address/validate/company
+		/** client/html/common/address/validate/company
 		 * Regular expression to check the "company" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/vatid
+		/** client/html/common/address/validate/vatid
 		 * Regular expression to check the "vatid" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/salutation
+		/** client/html/common/address/validate/salutation
 		 * Regular expression to check the "salutation" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/firstname
+		/** client/html/common/address/validate/firstname
 		 * Regular expression to check the "firstname" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/lastname
+		/** client/html/common/address/validate/lastname
 		 * Regular expression to check the "lastname" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address1
+		/** client/html/common/address/validate/address1
 		 * Regular expression to check the "address1" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address2
+		/** client/html/common/address/validate/address2
 		 * Regular expression to check the "address2" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address3
+		/** client/html/common/address/validate/address3
 		 * Regular expression to check the "address3" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/postal
+		/** client/html/common/address/validate/postal
 		 * Regular expression to check the "postal" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/city
+		/** client/html/common/address/validate/city
 		 * Regular expression to check the "city" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/state
+		/** client/html/common/address/validate/state
 		 * Regular expression to check the "state" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/languageid
+		/** client/html/common/address/validate/languageid
 		 * Regular expression to check the "languageid" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/countryid
+		/** client/html/common/address/validate/countryid
 		 * Regular expression to check the "countryid" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/telephone
+		/** client/html/common/address/validate/telephone
 		 * Regular expression to check the "telephone" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/telefax
+		/** client/html/common/address/validate/telefax
 		 * Regular expression to check the "telefax" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/mobile
+		/** client/html/common/address/validate/mobile
 		 * Regular expression to check the "mobile" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/email
+		/** client/html/common/address/validate/email
 		 * Regular expression to check the "email" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/website
+		/** client/html/common/address/validate/website
 		 * Regular expression to check the "website" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
 		$invalid = [];
 
 		foreach( $params as $key => $value )
 		{
-			if( isset( $fields[$key] ) )
-			{
-				$name = ( $pos = strrpos( $key, '.' ) ) ? substr( $key, $pos + 1 ) : $key;
-				$regex = $config->get( 'client/html/checkout/standard/address/validate/' . $name );
+			$name = ( $pos = strrpos( $key, '.' ) ) ? substr( $key, $pos + 1 ) : $key;
 
-				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 )
-				{
-					$invalid[$key] = $name;
-					unset( $params[$key] );
-				}
-			}
-			else
+			if( isset( $fields[$name] ) )
 			{
-				unset( $params[$key] );
+				$regex = $config->get( 'client/html/common/address/validate/' . $name );
+
+				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 ) {
+					$invalid[$name] = $name;
+				}
 			}
 		}
 

@@ -52,8 +52,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-billing', $output );
 		$this->assertMatchesRegularExpression( '/form-item form-group city.*form-item form-group postal/smU', $output );
 
-		$this->assertGreaterThan( 0, count( $this->view->addressBillingMandatory ) );
-		$this->assertGreaterThan( 0, count( $this->view->addressBillingOptional ) );
+		$this->assertGreaterThan( 0, count( $this->view->addressPaymentCss ) );
 	}
 
 
@@ -61,7 +60,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->object->init();
 
-		$this->assertEmpty( $this->view->get( 'addressBillingError' ) );
+		$this->assertEmpty( $this->view->get( 'addressPaymentError' ) );
 	}
 
 
@@ -119,9 +118,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 2, count( $this->view->addressBillingError ) );
-			$this->assertArrayHasKey( 'order.address.email', $this->view->addressBillingError );
-			$this->assertArrayHasKey( 'order.address.languageid', $this->view->addressBillingError );
+			$this->assertEquals( 2, count( $this->view->addressPaymentError ) );
+			$this->assertArrayHasKey( 'email', $this->view->addressPaymentError );
+			$this->assertArrayHasKey( 'languageid', $this->view->addressPaymentError );
 			return;
 		}
 
@@ -162,7 +161,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view = \TestHelper::view();
 
 		$config = $this->context->config();
-		$config->set( 'client/html/checkout/standard/address/validate/postal', '^[0-9]{5}$' );
+		$config->set( 'client/html/common/address/validate/postal', '^[0-9]{5}$' );
 		$helper = new \Aimeos\Base\View\Helper\Config\Standard( $this->view, $config );
 		$this->view->addHelper( 'config', $helper );
 
@@ -190,8 +189,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$this->assertEquals( 1, count( $this->view->addressBillingError ) );
-			$this->assertArrayHasKey( 'order.address.postal', $this->view->addressBillingError );
+			$this->assertEquals( 1, count( $this->view->addressPaymentError ) );
+			$this->assertArrayHasKey( 'postal', $this->view->addressPaymentError );
 			return;
 		}
 
