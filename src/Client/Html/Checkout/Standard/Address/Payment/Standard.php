@@ -2,18 +2,17 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2013
  * @copyright Aimeos (aimeos.org), 2015-2024
  * @package Client
  * @subpackage Html
  */
 
 
-namespace Aimeos\Client\Html\Checkout\Standard\Address\Billing;
+namespace Aimeos\Client\Html\Checkout\Standard\Address\Payment;
 
 
 /**
- * Default implementation of checkout billing address HTML client.
+ * Default implementation of checkout payment address HTML client.
  *
  * @package Client
  * @subpackage Html
@@ -23,7 +22,7 @@ class Standard
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/**
-	 * Stores the given or fetched billing address in the basket.
+	 * Stores the given or fetched payment address in the basket.
 	 *
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
@@ -35,7 +34,7 @@ class Standard
 		try
 		{
 			// only start if there's something to do
-			if( $view->param( 'ca_billingoption', null ) === null ) {
+			if( $view->param( 'ca_paymentoption', null ) === null ) {
 				return;
 			}
 
@@ -71,9 +70,9 @@ class Standard
 		$id = ( $values['order.address.addressid'] ?? null ) ?: $id;
 
 		$view->addressPaymentString = $this->getAddressString( $view, $view->addressPaymentItem );
-		$view->addressPaymentValuesNew = array_merge( $values, $view->param( 'ca_billing', [] ) );
-		$view->addressPaymentValues = array_merge( $values, $view->param( 'ca_billing_' . $id, [] ) );
-		$view->addressPaymentOption = $view->param( 'ca_billingoption', $id );
+		$view->addressPaymentValuesNew = array_merge( $values, $view->param( 'ca_payment', [] ) );
+		$view->addressPaymentValues = array_merge( $values, $view->param( 'ca_payment_' . $id, [] ) );
+		$view->addressPaymentOption = $view->param( 'ca_paymentoption', $id );
 		$view->addressPaymentCss = $this->cssPayment();
 
 		return parent::data( $view, $tags, $expire );
@@ -408,40 +407,40 @@ class Standard
 		$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 
-		/** client/html/checkout/standard/address/billing/disable-new
-		 * Disables the option to enter a new billing address for an order
+		/** client/html/checkout/standard/address/payment/disable-new
+		 * Disables the option to enter a new payment address for an order
 		 *
-		 * Besides the main billing address, customers can usually enter a new
-		 * billing address as well. To suppress displaying the form fields for
-		 * a billing address, you can set this configuration option to "1".
+		 * Besides the main payment address, customers can usually enter a new
+		 * payment address as well. To suppress displaying the form fields for
+		 * a payment address, you can set this configuration option to "1".
 		 *
 		 * Until 2015-02, the configuration option was available as
-		 * "client/html/common/address/billing/disable-new" starting from 2014-03.
+		 * "client/html/common/address/payment/disable-new" starting from 2014-03.
 		 *
-		 * @param boolean A value of "1" to disable, "0" enables the billing address form
+		 * @param boolean A value of "1" to disable, "0" enables the payment address form
 		 * @since 2015.02
-		 * @see client/html/common/address/billing/mandatory
-		 * @see client/html/common/address/billing/optional
-		 * @see client/html/common/address/billing/hidden
+		 * @see client/html/common/address/payment/mandatory
+		 * @see client/html/common/address/payment/optional
+		 * @see client/html/common/address/payment/hidden
 		 * @see client/html/common/address/salutations
 		 */
-		$disable = $view->config( 'client/html/checkout/standard/address/billing/disable-new', false );
+		$disable = $view->config( 'client/html/checkout/standard/address/payment/disable-new', false );
 		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
 
-		if( ( $option = $view->param( 'ca_billingoption', 'null' ) ) === 'null' && $disable === false ) // new address
+		if( ( $option = $view->param( 'ca_paymentoption', 'null' ) ) === 'null' && $disable === false ) // new address
 		{
-			$params = $view->param( 'ca_billing', [] );
+			$params = $view->param( 'ca_payment', [] );
 
 			if( ( $view->addressPaymentError = $this->checkFields( $params ) ) !== [] ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one payment address part is missing or invalid' ) );
 			}
 		}
 		else // existing address
 		{
-			$params = $view->param( 'ca_billing_' . $option, [] );
+			$params = $view->param( 'ca_payment_' . $option, [] );
 
 			if( !empty( $params ) && ( $view->addressPaymentError = $this->checkFields( $params ) ) !== [] ) {
-				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one billing address part is missing or invalid' ) );
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one payment address part is missing or invalid' ) );
 			}
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' )->uses( [] );
@@ -592,8 +591,8 @@ class Standard
 	}
 
 
-	/** client/html/checkout/standard/address/billing/template-body
-	 * Relative path to the HTML body template of the checkout standard address billing client.
+	/** client/html/checkout/standard/address/payment/template-body
+	 * Relative path to the HTML body template of the checkout standard address payment client.
 	 *
 	 * The template file contains the HTML code and processing instructions
 	 * to generate the result shown in the body of the frontend. The
@@ -609,6 +608,6 @@ class Standard
 	 *
 	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @see client/html/checkout/standard/address/billing/template-header
+	 * @see client/html/checkout/standard/address/payment/template-header
 	 */
 }

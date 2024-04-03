@@ -60,8 +60,8 @@ class Standard
 	 */
 	private string $subPartPath = 'client/html/checkout/standard/address/subparts';
 
-	/** client/html/checkout/standard/address/billing/name
-	 * Name of the billing part used by the checkout standard address client implementation
+	/** client/html/checkout/standard/address/payment/name
+	 * Name of the payment part used by the checkout standard address client implementation
 	 *
 	 * Use "Myname" if your class is named "\Aimeos\Client\Checkout\Standard\Address\Billing\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
@@ -79,7 +79,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
-	private array $subPartNames = array( 'billing', 'delivery' );
+	private array $subPartNames = ['payment', 'delivery'];
 
 
 	/**

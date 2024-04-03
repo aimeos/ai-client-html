@@ -9,8 +9,8 @@ $enc = $this->encoder();
 
 
 ?>
-<?php $this->block()->start( 'checkout/standard/address/billing' ) ?>
-<div class="checkout-standard-address-billing col-xs-12 col-xl">
+<?php $this->block()->start( 'checkout/standard/address/payment' ) ?>
+<div class="checkout-standard-address-payment col-xs-12 col-xl">
 
 	<fieldset class="address">
 		<legend><?= $enc->html( $this->translate( 'client', 'Billing address', $enc::TRUST ) ) ?></legend>
@@ -24,12 +24,12 @@ $enc = $this->encoder();
 						data-bs-toggle="collapse" data-bs-target="#address-payment"
 						aria-controls="address-payment" aria-expanded="false">
 
-						<input id="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" type="radio"
-							name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ) ?>"
+						<input id="ca_paymentoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" type="radio"
+							name="<?= $enc->attr( $this->formparam( array( 'ca_paymentoption' ) ) ) ?>"
 							value="<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>"
 							<?= $this->get( 'addressPaymentOption' ) == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ?>
 						>
-						<label for="ca_billingoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" class="values">
+						<label for="ca_paymentoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" class="values">
 							<?= nl2br( $enc->html( $this->get( 'addressPaymentString', '' ) ) ) ?>
 						</label>
 					</div>
@@ -54,7 +54,7 @@ $enc = $this->encoder();
 								'countries' => $this->get( 'addressCountries', [] ),
 								'css' => $this->get( 'addressPaymentCss', [] ),
 								'error' => $this->get( 'addressPaymentError', [] ),
-								'formnames' => ['ca_billing'],
+								'formnames' => ['ca_payment'],
 								'languages' => $this->get( 'addressLanguages', [] ),
 								'languageid' => $this->get( 'contextLanguage' ),
 								'salutations' => $this->get( 'addressSalutations', [] ),
@@ -70,7 +70,7 @@ $enc = $this->encoder();
 
 			<?php endif ?>
 
-			<?php if( !$this->config( 'client/html/checkout/standard/address/billing/disable-new', false ) ) : ?>
+			<?php if( !$this->config( 'client/html/checkout/standard/address/payment/disable-new', false ) ) : ?>
 
 				<div class="accordion-item address-payment item-address item-new">
 					<div class="header" role="button"
@@ -78,11 +78,11 @@ $enc = $this->encoder();
 						aria-controls="address-payment-new"
 						aria-expanded="<?= isset( $this->addressPaymentItem ) ? 'false' : 'true' ?>">
 
-						<input id="ca_billingoption-new" type="radio" value="null"
-							name="<?= $enc->attr( $this->formparam( array( 'ca_billingoption' ) ) ) ?>"
+						<input id="ca_paymentoption-new" type="radio" value="null"
+							name="<?= $enc->attr( $this->formparam( array( 'ca_paymentoption' ) ) ) ?>"
 							<?= $this->get( 'addressPaymentOption' ) == 'null' ? 'checked="checked"' : '' ?>
 						>
-						<label for="ca_billingoption-new" class="values value-new">
+						<label for="ca_paymentoption-new" class="values value-new">
 							<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 						</label>
 					</div>
@@ -98,7 +98,7 @@ $enc = $this->encoder();
 								'css' => $this->get( 'addressPaymentCss', [] ),
 								'disabled' => isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ? true : false,
 								'error' => $this->get( 'addressPaymentOption' ) == 'null' ? $this->get( 'addressPaymentError', [] ) : [],
-								'formnames' => ['ca_billing'],
+								'formnames' => ['ca_payment'],
 								'languages' => $this->get( 'addressLanguages', [] ),
 								'languageid' => $this->get( 'contextLanguage' ),
 								'salutations' => $this->get( 'addressSalutations', [] ),
@@ -117,4 +117,4 @@ $enc = $this->encoder();
 	</fieldset>
 </div>
 <?php $this->block()->stop() ?>
-<?= $this->block()->get( 'checkout/standard/address/billing' ) ?>
+<?= $this->block()->get( 'checkout/standard/address/payment' ) ?>
