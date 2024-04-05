@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-04-04 16:07+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: shihua16165 <shihua16165@163.com>, 2014\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
@@ -103,6 +103,11 @@ msgstr "%1$s %2$s 扣减"
 msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s ( %4$s%2$s%3$s )"
 
+#, fuzzy, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] "%1$d 产品"
+
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s 在 %2$s"
@@ -110,6 +115,9 @@ msgstr "%1$s 在 %2$s"
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, fuzzy, php-format
 msgid "+ %1$s %2$s"
@@ -133,8 +141,16 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr ""
 
+#, fuzzy
+msgid "Add"
+msgstr "地址"
+
 msgid "Add billing address"
 msgstr ""
+
+#, fuzzy
+msgid "Add delivery address"
+msgstr "送货地址"
 
 msgid "Add to basket"
 msgstr "加入购物车"
@@ -161,6 +177,13 @@ msgstr "至少一个账单地址部件缺失或者无效"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "至少一个递送地址部件缺失或者无效"
+
+#, fuzzy, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr "至少一个账单地址部件缺失或者无效"
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "返回"
@@ -214,8 +237,32 @@ msgstr "类目"
 msgid "Change"
 msgstr "变更"
 
+#, fuzzy
+msgid "Change address"
+msgstr "新地址"
+
+#, fuzzy
+msgid "Change billing address"
+msgstr "跟账单地址一样"
+
+#, fuzzy
+msgid "Change coupons"
+msgstr "优惠券"
+
+#, fuzzy
+msgid "Change delivery"
+msgstr "交货"
+
+#, fuzzy
+msgid "Change delivery address"
+msgstr "送货地址"
+
 msgid "Change payment"
 msgstr "更改付款"
+
+#, fuzzy
+msgid "Change products"
+msgstr "被关注的商品"
 
 msgid "Characteristics"
 msgstr "特色"
@@ -340,6 +387,10 @@ msgstr ""
 msgid "Highest price"
 msgstr ""
 
+#, fuzzy, php-format
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgstr "我接受 <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">条款及细则</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">隐私权政策</a>"
+
 #, php-format
 msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
 msgstr ""
@@ -395,6 +446,9 @@ msgstr "最近浏览过的"
 msgid "Latest"
 msgstr "最新"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr ""
 
@@ -405,6 +459,9 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Mobile number"
+msgstr ""
+
+msgid "More"
 msgstr ""
 
 msgid "More reviews"
@@ -475,6 +532,9 @@ msgstr "支付费"
 
 msgid "Payment status"
 msgstr "支付状态"
+
+msgid "Percentage"
+msgstr ""
 
 msgid "Pin product"
 msgstr "被关注的商品"
@@ -549,6 +609,10 @@ msgid "Product description"
 msgstr "描述"
 
 #, fuzzy
+msgid "Product downloads"
+msgstr "商品"
+
+#, fuzzy
 msgid "Product filters"
 msgstr "商品"
 
@@ -588,6 +652,9 @@ msgstr ""
 
 msgid "Relevance"
 msgstr "关联"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr ""
@@ -656,6 +723,9 @@ msgstr "排序方式："
 
 msgid "Sort by:"
 msgstr "排序方式："
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "状态"
@@ -749,6 +819,9 @@ msgstr "三个月"
 
 msgid "Time frame"
 msgstr "事件范围"
+
+msgid "Title"
+msgstr ""
 
 msgid "Toggle fullscreen"
 msgstr ""
@@ -959,10 +1032,6 @@ msgstr "◀◀"
 #~ msgid "Account"
 #~ msgstr "账户"
 
-#~ msgid "Address"
-#~ msgid_plural "Addresses"
-#~ msgstr[0] "地址"
-
 #, php-format
 #~ msgid "Address with ID \"%1$s\" not found"
 #~ msgstr "未找到 ID为 \"%1$s\" 的地址"
@@ -1037,10 +1106,6 @@ msgstr "◀◀"
 #~ msgstr ""
 #~ "前往\n"
 #~ " "
-
-#, php-format
-#~ msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a>"
-#~ msgstr "我接受 <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">条款及细则</a> and <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">隐私权政策</a>"
 
 #~ msgid "If you have any questions, please reply to this e-mail"
 #~ msgstr "如果您有任何疑问，请回复此邮件"
