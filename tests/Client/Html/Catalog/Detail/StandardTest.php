@@ -90,9 +90,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( 'catalog-detail-additional', $output );
 
-		$this->assertStringContainsString( '<td class="name">size</td>', $output );
+		$this->assertStringContainsString( '<td class="name">Size</td>', $output );
 		$this->assertStringContainsString( '<span class="attr-name">XS</span>', $output );
-		$this->assertStringContainsString( '<td class="name">package-height</td>', $output );
+		$this->assertStringContainsString( '<td class="name">Package height</td>', $output );
 		$this->assertStringContainsString( '<td class="value">10.0</td>', $output );
 
 		$this->assertStringContainsString( '<span class="media-name">Example image</span>', $output );
