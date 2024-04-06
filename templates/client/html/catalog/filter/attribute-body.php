@@ -33,10 +33,6 @@ $attrTypes = $this->get( 'detailAttributeTypes', [] );
 $attrMap = $this->get( 'attributeMap', [] );
 $params = $this->param();
 
-$attrTypeName = function( string $code ) use ( $attrTypes ) {
-	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
-};
-
 
 ?>
 <?php $this->block()->start( 'catalog/filter/attribute' ) ?>
@@ -87,7 +83,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 					<?php if( !empty( $attributes ) ) : ?>
 
 						<fieldset class="attr-sets attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ) ?>">
-							<legend class="attr-type"><?= $enc->html( $attrTypeName( $attrType ) ) ?></legend>
+							<legend class="attr-type"><?= $enc->html( $attrTypes[$attrType]?->getName() ?? $attrType ) ?></legend>
 							<ul class="attr-list"><!--
 
 								<?php foreach( $attributes as $id => $attribute ) : ?>

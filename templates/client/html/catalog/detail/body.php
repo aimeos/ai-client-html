@@ -58,14 +58,6 @@ if( isset( $this->detailProductItem )
 $attrTypes = $this->get( 'detailAttributeTypes', [] );
 $propTypes = $this->get( 'detailPropertyTypes', [] );
 
-$attrTypeName = function( string $code ) use ( $attrTypes ) {
-	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
-};
-
-$propTypeName = function( string $code ) use ( $propTypes ) {
-	return isset( $propTypes[$code] ) && $propTypes[$code]->getName() !== $propTypes[$code]->getLabel() ? $propTypes[$code]->getName() : $this->translate( 'client/code', $code );
-};
-
 
 ?>
 <?php if( isset( $this->detailProductItem ) ) : ?>
@@ -401,7 +393,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 													<?php foreach( $attrItems as $attrItem ) : ?>
 
 														<tr class="item <?= ( $ids = $attrItem->get( 'parent' ) ) ? 'subproduct ' . map( $ids )->prefix( 'subproduct-' )->join( ' ' ) : '' ?>">
-															<td class="name"><?= $enc->html( $attrTypeName( $type ) ) ?></td>
+															<td class="name"><?= $enc->html( $attrTypes[$type]?->getName() ?? $type ) ?></td>
 															<td class="value">
 																<div class="media-list">
 
@@ -435,7 +427,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 													<?php foreach( $propItems as $propItem ) : ?>
 
 														<tr class="item <?= ( $id = $propItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
-															<td class="name"><?= $enc->html( $propTypeName( $propItem->getType() ), $enc::TRUST ) ?></td>
+															<td class="name"><?= $enc->html( $propTypes[$propItem->getType()]?->getName() ?? $propItem->getType(), $enc::TRUST ) ?></td>
 															<td class="value"><?= $enc->html( $propItem->getValue() ) ?></td>
 														</tr>
 
