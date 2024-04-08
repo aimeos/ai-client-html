@@ -201,10 +201,6 @@ class Standard
 		{
 			parent::init();
 
-			if( ( $param = $view->param( 'ca_extra' ) ) !== null ) {
-				$context->session()->set( 'client/html/checkout/standard/address/extra', (array) $param );
-			}
-
 			if( !isset( $view->standardStepActive )
 				&& !$this->call( 'isAvailable', \Aimeos\Controller\Frontend::create( $context, 'basket' )->get() )
 			) {
