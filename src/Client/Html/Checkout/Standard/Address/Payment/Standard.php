@@ -66,7 +66,7 @@ class Standard
 		$addr = current( $basketCntl->get()->getAddress( 'payment' ) );
 
 		$values = $addr ? $addr->toArray() : [];
-		$id = $view->get( 'addressCustomerItem' ) && $view->addressCustomerItem->getId() ? $view->addressCustomerItem->getId() : 'null';
+		$id = $view->addressCustomerItem?->getId() ?? 'null';
 		$id = ( $values['order.address.addressid'] ?? null ) ?: $id;
 
 		$view->addressPaymentString = $this->getAddressString( $view, $view->addressPaymentItem );

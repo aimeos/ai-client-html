@@ -86,7 +86,7 @@ $enc = $this->encoder();
 							<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 						</label>
 					</div>
-					<div class="address form-list accordion-collapse <?= isset( $this->addressPaymentItem ) ? 'collapse' : '' ?>"
+					<div class="address form-list accordion-collapse <?= isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ? 'collapse' : '' ?>"
 						id="address-payment-new" data-bs-parent="#address-payment-list">
 
 						<?= $this->partial(

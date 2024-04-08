@@ -19,7 +19,7 @@ $enc = $this->encoder();
 
 
 	<div class="form-horizontal row">
-		<?= $this->block()->get( 'checkout/standard/address/billing' ) ?>
+		<?= $this->block()->get( 'checkout/standard/address/payment' ) ?>
 
 		<?= $this->block()->get( 'checkout/standard/address/delivery' ) ?>
 	</div>
