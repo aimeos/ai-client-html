@@ -59,7 +59,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group firstname <?= $enc->attr( ( $this->value( $error, 'firstname' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'firstname', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/firstname' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/firstname' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-firstname-<?= $id ?>">
@@ -79,7 +79,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group lastname <?= $enc->attr( ( $this->value( $error, 'lastname' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'lastname', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/lastname' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/lastname' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-lastname-<?= $id ?>">
@@ -99,7 +99,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group title <?= $enc->attr( ( $this->value( $error, 'title' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'title', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/title' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/title' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-title-<?= $id ?>">
@@ -119,7 +119,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group company <?= $enc->attr( ( $this->value( $error, 'company' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'company', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/company' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/company' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-company-<?= $id ?>">
@@ -139,7 +139,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group address1 <?= $enc->attr( ( $this->value( $error, 'address1' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'address1', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/address1' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/address1' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-address1-<?= $id ?>">
@@ -159,7 +159,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group address2 <?= $enc->attr( ( $this->value( $error, 'address2' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'address2', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/address2' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/address2' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-address2-<?= $id ?>">
@@ -179,7 +179,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group address3 <?= $enc->attr( ( $this->value( $error, 'address3' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'address3', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/address3' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/address3' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-address3-<?= $id ?>">
@@ -199,7 +199,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group city <?= $enc->attr( ( $this->value( $error, 'city' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'city', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/city' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/city' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-city-<?= $id ?>">
@@ -219,7 +219,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group postal <?= $enc->attr( ( $this->value( $error, 'postal' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'postal', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/postal' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/postal' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-postal-<?= $id ?>">
@@ -335,7 +335,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group vatid <?= $enc->attr( ( $this->value( $error, 'vatid' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'vatid', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/vatid' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/vatid' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-vatid-<?= $id ?>">
@@ -355,7 +355,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group email <?= $enc->attr( ( $this->value( $error, 'email' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'email', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/email', '^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/email', '^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-email-<?= $id ?>">
@@ -375,7 +375,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group telephone <?= $enc->attr( ( $this->value( $error, 'telephone' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'telephone', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/telephone' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/telephone' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-telephone-<?= $id ?>">
@@ -395,7 +395,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group mobile <?= $enc->attr( ( $this->value( $error, 'mobile' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'mobile', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/mobile' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/mobile' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-mobile-<?= $id ?>">
@@ -415,7 +415,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group telefax <?= $enc->attr( ( $this->value( $error, 'telefax' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'telefax', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/telefax' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/telefax' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-telefax-<?= $id ?>">
@@ -435,7 +435,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group website <?= $enc->attr( ( $this->value( $error, 'website' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'website', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/checkout/standard/address/validate/website', '^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/website', '^([a-z]+://)?[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)+(:[0-9]+)?(/.*)?$' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-website-<?= $id ?>">
