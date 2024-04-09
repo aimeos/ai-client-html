@@ -39,7 +39,7 @@ $prefix = !$this->get( 'standardUrlExternal', true );
  *
  * @param array Associative list of field names and regular expressions
  * @since 2015.07
- * @see client/html/checkout/standard/address/validate
+ * @see client/html/common/address/validate
  */
 $defaultRegex = array( 'payment.cardno' => '^[0-9]{16,19}$', 'payment.cvv' => '^[0-9]{3}$' );
 $regex = $this->config( 'client/html/checkout/standard/process/validate', $defaultRegex );
