@@ -481,6 +481,12 @@ class Standard
 		 * @see client/html/common/address/validate
 		 */
 
+		/** client/html/common/address/validate/title
+		 * Regular expression to check the "title" address value
+		 *
+		 * @see client/html/common/address/validate
+		 */
+
 		/** client/html/common/address/validate/firstname
 		 * Regular expression to check the "firstname" address value
 		 *
