@@ -72,7 +72,7 @@ class Standard
 	{
 		$view = $this->view();
 
-		/** client/html/common/delivery/mandatory
+		/** client/html/common/address/delivery/mandatory
 		 * List of delivery address input fields that are required
 		 *
 		 * You can configure the list of delivery address fields that are
