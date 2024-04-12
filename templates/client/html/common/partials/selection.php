@@ -159,7 +159,7 @@ $attrTypes = $this->get( 'attributeTypes', [] );
 
 				<?php else : ?>
 
-					<select id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="form-control select-list"
+					<select id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="form-select select-list"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 						data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>"
 					>

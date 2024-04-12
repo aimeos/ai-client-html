@@ -162,7 +162,7 @@ $attrTypes = $this->get( 'attributeTypes', [] );
 				<?php else : ?>
 
 					<input type="hidden" value="1" name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'qty', ''] ) ) ?>">
-					<select id="select-<?= $enc->attr( $key ) ?>" class="form-control select-list"
+					<select id="select-<?= $enc->attr( $key ) ?>" class="form-select select-list"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrconfid', 'id', ''] ) ) ?>">
 
 						<?php if( $this->config( 'client/html/catalog/attribute/preselect/' . $code, false ) === false ) : ?>
