@@ -148,7 +148,8 @@ img {
 	box-shadow: none;
 }
 
-.aimeos .form-control {
+.aimeos .form-control,
+.aimeos .form-select {
 	border: none;
 	border-radius: var(--ai-radius);
 	border-bottom: 1px solid var(--ai-secondary);
