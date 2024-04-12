@@ -228,7 +228,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 								<?php if( $product->getQuantity() > 1 ) : ?>
 									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) ?>
-									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Less' ) ) ?>">−</a>
+									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Decrease' ) ) ?>">−</a>
 								<?php else : ?>
 									&nbsp;&nbsp;&nbsp;
 								<?php endif ?>
@@ -247,7 +247,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								>
 
 								<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() + 1 ) ?>
-								<a class="minibutton change up" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'More' ) ) ?>">+</a>
+								<a class="minibutton change up" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Increase' ) ) ?>">+</a>
 
 							<?php else : ?>
 								<?= $enc->html( $product->getQuantity() ) ?>
