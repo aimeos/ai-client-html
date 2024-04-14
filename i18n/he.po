@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-04-12 19:06+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Aimeos, 2024\n"
 "Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
@@ -82,12 +82,22 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s ב-%2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -111,8 +121,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "אירעה שגיאה שאינה ניתנת לשחזור"
 
+msgid "Add"
+msgstr "הוסף"
+
 msgid "Add billing address"
 msgstr "הוסף כתובת לחיוב"
+
+msgid "Add delivery address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "הוסף לסל"
@@ -139,6 +155,13 @@ msgstr "לפחות חלק אחד של כתובת החיוב חסר או לא ח�
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "לפחות חלק אחד מהכתובת למשלוח חסר או לא חוקי"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "אחורה"
@@ -190,8 +213,26 @@ msgstr "קטלוג"
 msgid "Change"
 msgstr "שינוי"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "שנה תשלום"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "מאפיין"
@@ -232,6 +273,9 @@ msgstr "נוצר"
 
 msgid "Customer account"
 msgstr "חשבון לקוח"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "מחק"
@@ -316,6 +360,15 @@ msgstr "המחיר הגבוה ביותר"
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -340,6 +393,9 @@ msgstr "לְרַבּוֹת %1$s%% VAT"
 
 msgid "Included rebates"
 msgstr "הנחות כלולות"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "מרווח"
@@ -374,6 +430,9 @@ msgstr "נראה לאחרונה"
 msgid "Latest"
 msgstr "האחרון"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr "תצוגת רשימה"
 
@@ -385,6 +444,9 @@ msgstr "נייד"
 
 msgid "Mobile number"
 msgstr "מספר נייד"
+
+msgid "More"
+msgstr "עוד"
 
 msgid "More reviews"
 msgstr "ביקורות נוספות"
@@ -457,6 +519,9 @@ msgstr "עלויות תשלום"
 msgid "Payment status"
 msgstr "סטטוס תשלום"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr "מוצר סיכה"
 
@@ -523,6 +588,9 @@ msgstr "מאפייני מוצר"
 msgid "Product description"
 msgstr "תיאור המוצר"
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr "מסנני מוצרים"
 
@@ -558,6 +626,9 @@ msgstr "הפניה"
 
 msgid "Relevance"
 msgstr "רלוונטיות"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "אפס"
@@ -628,6 +699,9 @@ msgstr "מיין לפי"
 
 msgid "Sort by:"
 msgstr "מיין לפי:"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "מדינה"
@@ -713,6 +787,9 @@ msgstr "שלושה חודשים"
 
 msgid "Time frame"
 msgstr "מסגרת זמן"
+
+msgid "Title"
+msgstr "כותרת"
 
 msgid "Toggle fullscreen"
 msgstr "החלף מסך מלא"
