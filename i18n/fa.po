@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-04-12 19:06+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Babak Momeni, 2022\n"
 "Language-Team: Persian (http://app.transifex.com/aimeos/aimeos-core/language/fa/)\n"
@@ -80,11 +80,20 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
+msgstr ""
+
+msgid "(opens in new window)"
 msgstr ""
 
 #, php-format
@@ -109,8 +118,14 @@ msgstr ""
 msgid "A non-recoverable error occured"
 msgstr "رخداد خطای غیر قابل بازیابی"
 
+msgid "Add"
+msgstr "اضافه کردن"
+
 msgid "Add billing address"
 msgstr "افزودن آدرس صدور فاکتور"
+
+msgid "Add delivery address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "افزودن به سبد خرید"
@@ -137,6 +152,13 @@ msgstr "حداقل قسمتی از آدرس صورتحساب مفقود یا ن�
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "حداقل قسمتی از آدرس تحویل مفقود یا نامعتبر می‌باشد"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "عقب"
@@ -188,8 +210,26 @@ msgstr "دسته بندی‌ها"
 msgid "Change"
 msgstr "تغییر دهید"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "روش پرداخت را تغییر دهید"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "مشخصات"
@@ -230,6 +270,9 @@ msgstr "ساخته شد"
 
 msgid "Customer account"
 msgstr "حساب کاربری مشتری"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "پاک کردن"
@@ -314,6 +357,15 @@ msgstr "بیشترین قیمت"
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -338,6 +390,9 @@ msgstr " شامل %1$s%% مالیات ارزش افزوده "
 
 msgid "Included rebates"
 msgstr "شامل تخفیف"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "فاصله"
@@ -372,6 +427,9 @@ msgstr "آخرین مشاهده"
 msgid "Latest"
 msgstr "آخرین"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr ""
 
@@ -383,6 +441,9 @@ msgstr ""
 
 msgid "Mobile number"
 msgstr ""
+
+msgid "More"
+msgstr "بیشتر"
 
 msgid "More reviews"
 msgstr "ادامه دیدگاهها"
@@ -455,6 +516,9 @@ msgstr "هزینه‌ی قابل پرداخت"
 msgid "Payment status"
 msgstr "وضعیت پرداخت"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -521,6 +585,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -556,6 +623,9 @@ msgstr "ارجاع, رجوع, مراجعه"
 
 msgid "Relevance"
 msgstr "ارتباط"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "بازنشانی کنید"
@@ -625,6 +695,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "مرتب سازی بر اساس:"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "استان"
@@ -710,6 +783,9 @@ msgstr "سه ماه"
 
 msgid "Time frame"
 msgstr "زمان"
+
+msgid "Title"
+msgstr "عنوان"
 
 msgid "Toggle fullscreen"
 msgstr "تعویض تمام صفحه"
