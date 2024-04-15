@@ -115,42 +115,45 @@ $pos = 0;
 									<?= nl2br( $enc->html( $addr['string'] ?: $this->translate( 'client', 'Add billing address' ) ) ) ?>
 									<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Change billing address' ), $enc::TRUST ) ?>"></a>
 								</div>
-								<div class="address form-list accordion-collapse collapse" id="address-payment" data-bs-parent="#address-payment-list">
+								<div class="address accordion-collapse collapse" id="address-payment" data-bs-parent="#address-payment-list">
 
-									<?= $this->partial(
-										/** client/html/account/profile/address
-										 * Relative path to the address partial template file
-										 *
-										 * Partials are templates which are reused in other templates and generate
-										 * reoccuring blocks filled with data from the assigned values. The address
-										 * partial creates an HTML block with input fields for address forms.
-										 *
-										 * @param string Relative path to the template file
-										 * @since 2024.04
-										 */
-										$this->config( 'client/html/account/profile/address', 'common/partials/address' ),
-										[
-											'address' => $addr,
-											'id' => $addr['customer.id'] ?? null,
-											'countries' => $this->get( 'addressCountries', [] ),
-											'css' => $this->get( 'addressPaymentCss', [] ),
-											'error' => $this->get( 'addressPaymentError', [] ),
-											'formnames' => ['address', 'payment'],
-											'languages' => $this->get( 'addressLanguages', [] ),
-											'languageid' => $this->get( 'contextLanguage' ),
-											'salutations' => $this->get( 'addressSalutations', [] ),
-											'states' => $this->get( 'addressStates', [] ),
-											'prefix' => 'customer.',
-											'type' => 'payment',
-										]
-									) ?>
+									<div class="form-list">
 
-									<div class="button-group">
-										<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
-											<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
-										</button>
+										<?= $this->partial(
+											/** client/html/account/profile/address
+											 * Relative path to the address partial template file
+											 *
+											 * Partials are templates which are reused in other templates and generate
+											 * reoccuring blocks filled with data from the assigned values. The address
+											 * partial creates an HTML block with input fields for address forms.
+											 *
+											 * @param string Relative path to the template file
+											 * @since 2024.04
+											 */
+											$this->config( 'client/html/account/profile/address', 'common/partials/address' ),
+											[
+												'address' => $addr,
+												'id' => $addr['customer.id'] ?? null,
+												'countries' => $this->get( 'addressCountries', [] ),
+												'css' => $this->get( 'addressPaymentCss', [] ),
+												'error' => $this->get( 'addressPaymentError', [] ),
+												'formnames' => ['address', 'payment'],
+												'languages' => $this->get( 'addressLanguages', [] ),
+												'languageid' => $this->get( 'contextLanguage' ),
+												'salutations' => $this->get( 'addressSalutations', [] ),
+												'states' => $this->get( 'addressStates', [] ),
+												'prefix' => 'customer.',
+												'type' => 'payment',
+											]
+										) ?>
+
+										<div class="button-group">
+											<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
+												<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
+											</button>
+										</div>
+
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -171,40 +174,42 @@ $pos = 0;
 										<?= nl2br( $enc->html( $addr['string'] ?? '' ) ) ?>
 										<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Change delivery address' ), $enc::TRUST ) ?>"></a>
 									</div>
-									<div class="address form-list accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
+									<div class="address accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
 
-										<input type="hidden"
-											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
-											value="<?= $enc->attr( $this->value( $addr, 'customer.address.id' ) ) ?>"
-										>
+										<div class="form-list">
+											<input type="hidden"
+												name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
+												value="<?= $enc->attr( $this->value( $addr, 'customer.address.id' ) ) ?>"
+											>
 
-										<?= $this->partial(
-											$this->config( 'client/html/account/profile/address', 'common/partials/address' ),
-											[
-												'address' => $addr,
-												'id' => $addr['customer.address.id'] ?? null,
-												'countries' => $this->get( 'addressCountries', [] ),
-												'css' => $this->get( 'addressDeliveryCss', [] ),
-												'error' => $this->get( 'addressDeliveryError', [] ),
-												'formnames' => ['address', 'delivery', $pos],
-												'languages' => $this->get( 'addressLanguages', [] ),
-												'languageid' => $this->get( 'contextLanguage' ),
-												'salutations' => $this->get( 'addressSalutations', [] ),
-												'states' => $this->get( 'addressStates', [] ),
-												'prefix' => 'customer.address.',
-												'type' => 'delivery',
-											]
-										) ?>
+											<?= $this->partial(
+												$this->config( 'client/html/account/profile/address', 'common/partials/address' ),
+												[
+													'address' => $addr,
+													'id' => $addr['customer.address.id'] ?? null,
+													'countries' => $this->get( 'addressCountries', [] ),
+													'css' => $this->get( 'addressDeliveryCss', [] ),
+													'error' => $this->get( 'addressDeliveryError', [] ),
+													'formnames' => ['address', 'delivery', $pos],
+													'languages' => $this->get( 'addressLanguages', [] ),
+													'languageid' => $this->get( 'contextLanguage' ),
+													'salutations' => $this->get( 'addressSalutations', [] ),
+													'states' => $this->get( 'addressStates', [] ),
+													'prefix' => 'customer.address.',
+													'type' => 'delivery',
+												]
+											) ?>
 
-										<div class="button-group">
-											<button class="btn btn-delete" value="<?= $pos ?>" name="<?= $enc->attr( $this->formparam( array( 'address', 'delete' ) ) ) ?>">
-												<?= $enc->html( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>
-											</button>
-											<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
-												<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
-											</button>
+											<div class="button-group">
+												<button class="btn btn-delete" value="<?= $pos ?>" name="<?= $enc->attr( $this->formparam( array( 'address', 'delete' ) ) ) ?>">
+													<?= $enc->html( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>
+												</button>
+												<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
+													<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
+												</button>
+											</div>
+
 										</div>
-
 									</div>
 								</div>
 							<?php endforeach ?>
@@ -219,39 +224,41 @@ $pos = 0;
 									<?= $enc->html( $this->translate( 'client', 'New delivery address' ) ) ?>
 									<a class="act-show" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Add delivery address' ), $enc::TRUST ) ?>"></a>
 								</div>
-								<div class="address form-list accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
+								<div class="address accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
 
-									<input type="hidden" value="" disabled
-										name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
-									>
+									<div class="form-list">
+										<input type="hidden" value="" disabled
+											name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
+										>
 
-									<?= $this->partial(
-										$this->config( 'client/html/account/profile/address', 'common/partials/address' ),
-										[
-											'id' => null,
-											'address' => [],
-											'countries' => $this->get( 'addressCountries', [] ),
-											'css' => $this->get( 'addressDeliveryCss', [] ),
-											'error' => $this->get( 'addressDeliveryError', [] ),
-											'formnames' => ['address', 'delivery', $pos],
-											'languages' => $this->get( 'addressLanguages', [] ),
-											'languageid' => $this->get( 'contextLanguage' ),
-											'salutations' => $this->get( 'addressSalutations', [] ),
-											'states' => $this->get( 'addressStates', [] ),
-											'prefix' => 'customer.address.',
-											'type' => 'delivery',
-										]
-									) ?>
+										<?= $this->partial(
+											$this->config( 'client/html/account/profile/address', 'common/partials/address' ),
+											[
+												'id' => null,
+												'address' => [],
+												'countries' => $this->get( 'addressCountries', [] ),
+												'css' => $this->get( 'addressDeliveryCss', [] ),
+												'error' => $this->get( 'addressDeliveryError', [] ),
+												'formnames' => ['address', 'delivery', $pos],
+												'languages' => $this->get( 'addressLanguages', [] ),
+												'languageid' => $this->get( 'contextLanguage' ),
+												'salutations' => $this->get( 'addressSalutations', [] ),
+												'states' => $this->get( 'addressStates', [] ),
+												'prefix' => 'customer.address.',
+												'type' => 'delivery',
+											]
+										) ?>
 
-									<div class="button-group">
-										<button class="btn btn-cancel" value="1" type="reset" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>">
-											<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
-										</button>
-										<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
-											<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
-										</button>
+										<div class="button-group">
+											<button class="btn btn-cancel" value="1" type="reset" data-bs-toggle="collapse" href="#address-delivery-<?= $enc->attr( $pos ) ?>">
+												<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
+											</button>
+											<button class="btn btn-primary btn-save" value="1" name="<?= $enc->attr( $this->formparam( array( 'address', 'save' ) ) ) ?>">
+												<?= $enc->html( $this->translate( 'client', 'Save' ), $enc::TRUST ) ?>
+											</button>
+										</div>
+
 									</div>
-
 								</div>
 							</div>
 

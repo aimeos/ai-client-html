@@ -33,39 +33,41 @@ $enc = $this->encoder();
 							<?= nl2br( $enc->html( $this->get( 'addressPaymentString', '' ) ) ) ?>
 						</label>
 					</div>
-					<div class="address form-list accordion-collapse collapse"
+					<div class="address accordion-collapse collapse"
 						id="address-payment" data-bs-parent="#address-payment-list">
 
-						<?= $this->partial(
-							/** client/html/checkout/standard/partials/address
-							 * Relative path to the address partial template file
-							 *
-							 * Partials are templates which are reused in other templates and generate
-							 * reoccuring blocks filled with data from the assigned values. The address
-							 * partial creates an HTML block with input fields for address forms.
-							 *
-							 * @param string Relative path to the template file
-							 * @since 2017.01
-							 */
-							$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
-							[
-								'address' => $this->addressPaymentItem->toArray(),
-								'id' => $this->addressPaymentItem->getAddressId(),
-								'countries' => $this->get( 'addressCountries', [] ),
-								'css' => $this->get( 'addressPaymentCss', [] ),
-								'error' => $this->get( 'addressPaymentError', [] ),
-								'formnames' => ['ca_payment'],
-								'languages' => $this->get( 'addressLanguages', [] ),
-								'languageid' => $this->get( 'contextLanguage' ),
-								'salutations' => $this->get( 'addressSalutations', [] ),
-								'states' => $this->get( 'addressStates', [] ),
-								'prefix' => 'order.address.',
-								'type' => 'payment',
-							]
-						) ?>
+						<div class="form-list">
 
+							<?= $this->partial(
+								/** client/html/checkout/standard/partials/address
+								 * Relative path to the address partial template file
+								 *
+								 * Partials are templates which are reused in other templates and generate
+								 * reoccuring blocks filled with data from the assigned values. The address
+								 * partial creates an HTML block with input fields for address forms.
+								 *
+								 * @param string Relative path to the template file
+								 * @since 2017.01
+								 */
+								$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
+								[
+									'address' => $this->addressPaymentItem->toArray(),
+									'id' => $this->addressPaymentItem->getAddressId(),
+									'countries' => $this->get( 'addressCountries', [] ),
+									'css' => $this->get( 'addressPaymentCss', [] ),
+									'error' => $this->get( 'addressPaymentError', [] ),
+									'formnames' => ['ca_payment'],
+									'languages' => $this->get( 'addressLanguages', [] ),
+									'languageid' => $this->get( 'contextLanguage' ),
+									'salutations' => $this->get( 'addressSalutations', [] ),
+									'states' => $this->get( 'addressStates', [] ),
+									'prefix' => 'order.address.',
+									'type' => 'payment',
+								]
+							) ?>
+
+						</div>
 					</div>
-
 				</div>
 
 			<?php endif ?>
@@ -86,28 +88,31 @@ $enc = $this->encoder();
 							<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 						</label>
 					</div>
-					<div class="address form-list accordion-collapse <?= isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ? 'collapse' : '' ?>"
+					<div class="address accordion-collapse <?= isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ? 'collapse' : '' ?>"
 						id="address-payment-new" data-bs-parent="#address-payment-list">
 
-						<?= $this->partial(
-							$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
-							[
-								'id' => null,
-								'address' => $this->get( 'addressPaymentValuesNew', [] ),
-								'countries' => $this->get( 'addressCountries', [] ),
-								'css' => $this->get( 'addressPaymentCss', [] ),
-								'disabled' => isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ? true : false,
-								'error' => $this->get( 'addressPaymentOption' ) == 'null' ? $this->get( 'addressPaymentError', [] ) : [],
-								'formnames' => ['ca_payment'],
-								'languages' => $this->get( 'addressLanguages', [] ),
-								'languageid' => $this->get( 'contextLanguage' ),
-								'salutations' => $this->get( 'addressSalutations', [] ),
-								'states' => $this->get( 'addressStates', [] ),
-								'prefix' => 'order.address.',
-								'type' => 'payment',
-							]
-						) ?>
+						<div class="form-list">
 
+							<?= $this->partial(
+								$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
+								[
+									'id' => null,
+									'address' => $this->get( 'addressPaymentValuesNew', [] ),
+									'countries' => $this->get( 'addressCountries', [] ),
+									'css' => $this->get( 'addressPaymentCss', [] ),
+									'disabled' => isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ? true : false,
+									'error' => $this->get( 'addressPaymentOption' ) == 'null' ? $this->get( 'addressPaymentError', [] ) : [],
+									'formnames' => ['ca_payment'],
+									'languages' => $this->get( 'addressLanguages', [] ),
+									'languageid' => $this->get( 'contextLanguage' ),
+									'salutations' => $this->get( 'addressSalutations', [] ),
+									'states' => $this->get( 'addressStates', [] ),
+									'prefix' => 'order.address.',
+									'type' => 'payment',
+								]
+							) ?>
+
+						</div>
 					</div>
 				</div>
 
