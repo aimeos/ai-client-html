@@ -333,17 +333,17 @@ img {
 	content: ": ";
 }
 
-.aimeos .address.form-list .form-item {
+.aimeos .address .form-list .form-item {
 	display: none;
 }
 
-.aimeos .address.form-list .mandatory,
-.aimeos .address.form-list .optional {
+.aimeos .address .form-list .mandatory,
+.aimeos .address .form-list .optional {
 	align-items: center;
 	display: flex;
 }
 
-.aimeos .address.form-list .mandatory label:after {
+.aimeos .address .form-list .mandatory label:after {
 	content: "*";
 }
 

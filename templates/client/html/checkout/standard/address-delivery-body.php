@@ -46,34 +46,37 @@ $enc = $this->encoder();
 							<?= nl2br( $enc->html( $this->value( 'addressDeliveryStrings', $id, '' ) ) ) ?>
 						</label>
 					</div>
-					<div class="address form-list accordion-collapse collapse"
+					<div class="address accordion-collapse collapse"
 						id="address-delivery-default" data-bs-parent="#address-delivery-list">
 
-						<?= $this->partial(
-							$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
-							[
-								'id' => $id,
-								'address' => $addr,
-								'countries' => $this->get( 'addressCountries', [] ),
-								'css' => $this->get( 'addressDeliveryCss', [] ),
-								'error' => $this->get( 'addressDeliveryOption' ) == $id ? $this->get( 'addressDeliveryError', [] ) : [],
-								'formnames' => ['ca_delivery'],
-								'languages' => $this->get( 'addressLanguages', [] ),
-								'languageid' => $this->get( 'contextLanguage' ),
-								'salutations' => $this->get( 'addressSalutations', [] ),
-								'states' => $this->get( 'addressStates', [] ),
-								'prefix' => 'order.address.',
-								'type' => 'delivery',
-							]
-						) ?>
+						<div class="form-list">
 
-						<div class="button-group">
-							<a class="btn btn-delete" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>"
-								href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">
-								<?= $enc->html( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>
-							</a>
+							<?= $this->partial(
+								$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
+								[
+									'id' => $id,
+									'address' => $addr,
+									'countries' => $this->get( 'addressCountries', [] ),
+									'css' => $this->get( 'addressDeliveryCss', [] ),
+									'error' => $this->get( 'addressDeliveryOption' ) == $id ? $this->get( 'addressDeliveryError', [] ) : [],
+									'formnames' => ['ca_delivery'],
+									'languages' => $this->get( 'addressLanguages', [] ),
+									'languageid' => $this->get( 'contextLanguage' ),
+									'salutations' => $this->get( 'addressSalutations', [] ),
+									'states' => $this->get( 'addressStates', [] ),
+									'prefix' => 'order.address.',
+									'type' => 'delivery',
+								]
+							) ?>
+
+							<div class="button-group">
+								<a class="btn btn-delete" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>"
+									href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">
+									<?= $enc->html( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>
+								</a>
+							</div>
+
 						</div>
-
 					</div>
 				</div>
 
@@ -94,34 +97,38 @@ $enc = $this->encoder();
 							<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 						</label>
 					</div>
-					<div class="address form-list accordion-collapse collapse"
+					<div class="address accordion-collapse collapse"
 						id="address-delivery-new" data-bs-parent="#address-delivery-list">
 
-						<?= $this->partial(
-							$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
-							[
-								'id' => null,
-								'address' => $this->get( 'addressDeliveryValuesNew', [] ),
-								'countries' => $this->get( 'addressCountries', [] ),
-								'css' => $this->get( 'addressDeliveryCss', [] ),
-								'error' => $this->get( 'addressDeliveryOption' ) == 'null' ? $this->get( 'addressPaymentError', [] ) : [],
-								'formnames' => ['ca_delivery'],
-								'languages' => $this->get( 'addressLanguages', [] ),
-								'languageid' => $this->get( 'contextLanguage' ),
-								'salutations' => $this->get( 'addressSalutations', [] ),
-								'states' => $this->get( 'addressStates', [] ),
-								'prefix' => 'order.address.',
-								'type' => 'delivery',
-							]
-						) ?>
+						<div class="form-list">
 
-						<div class="row form-item form-group store <?= join( ' ', $this->value( 'addressDeliveryCss', 'nostore', [] ) ) ?>">
-							<label class="col-md-5" for="address-delivery-store">
-								<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ) ?>
-							</label>
-							<div class="col-md-7">
-								<input id="address-delivery-store" class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ) ?>">
+							<?= $this->partial(
+								$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
+								[
+									'id' => null,
+									'address' => $this->get( 'addressDeliveryValuesNew', [] ),
+									'countries' => $this->get( 'addressCountries', [] ),
+									'css' => $this->get( 'addressDeliveryCss', [] ),
+									'error' => $this->get( 'addressDeliveryOption' ) == 'null' ? $this->get( 'addressPaymentError', [] ) : [],
+									'formnames' => ['ca_delivery'],
+									'languages' => $this->get( 'addressLanguages', [] ),
+									'languageid' => $this->get( 'contextLanguage' ),
+									'salutations' => $this->get( 'addressSalutations', [] ),
+									'states' => $this->get( 'addressStates', [] ),
+									'prefix' => 'order.address.',
+									'type' => 'delivery',
+								]
+							) ?>
+
+							<div class="row form-item form-group store <?= join( ' ', $this->value( 'addressDeliveryCss', 'nostore', [] ) ) ?>">
+								<label class="col-md-5" for="address-delivery-store">
+									<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ) ?>
+								</label>
+								<div class="col-md-7">
+									<input id="address-delivery-store" class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ) ?>">
+								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
