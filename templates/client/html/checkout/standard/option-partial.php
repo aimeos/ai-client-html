@@ -263,11 +263,9 @@
 				name="<?= $enc->attr( $this->formparam( array( 'cs_option_account' ) ) ) ?>"
 				<?= ( $this->param( 'cs_option_account', 1 ) == 1 ? 'checked="checked"' : '' ) ?>
 			>
-			<p>
-				<label for="option-account">
-					<?= $enc->html( $this->translate( 'client', 'Create a customer account for me' ), $enc::TRUST ) ?>
-				</label>
-			</p>
+			<label for="option-account">
+				<?= $enc->html( $this->translate( 'client', 'Create a customer account for me' ), $enc::TRUST ) ?>
+			</label>
 		</div>
 	</div>
 <?php endif ?>
@@ -282,17 +280,13 @@
 			name="<?= $enc->attr( $this->formparam( array( 'cs_option_terms_value' ) ) ) ?>"
 			<?= ( $this->param( 'cs_option_terms_value', null ) == 1 ? 'checked="checked"' : '' ) ?>
 		>
-
-		<p>
-			<label for="option-terms-accept">
-				<?= $enc->html( sprintf( $this->translate( 'client',
-					'I accept the <a href="%1$s" target="_blank" title="terms and conditions (opens in new tab)">terms and conditions</a>, <a href="%2$s" target="_blank" title="privacy policy (opens in new tab)">privacy policy</a> and <a href="%3$s" target="_blank" title="cancellation policy (opens in new tab)">cancellation policy</a>' ),
-					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/url', ['path' => 'terms'] ) ),
-					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/privacy/url', ['path' => 'privacy'] ) ),
-					$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/cancel/url', ['path' => 'cancel'] ) )
-				), $enc::TRUST ) ?>
-			</label>
-		</p>
-
+		<label for="option-terms-accept">
+			<?= $enc->html( sprintf( $this->translate( 'client',
+				'I accept the <a href="%1$s" target="_blank" title="terms and conditions (opens in new tab)">terms and conditions</a>, <a href="%2$s" target="_blank" title="privacy policy (opens in new tab)">privacy policy</a> and <a href="%3$s" target="_blank" title="cancellation policy (opens in new tab)">cancellation policy</a>' ),
+				$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/url', ['path' => 'terms'] ) ),
+				$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/privacy/url', ['path' => 'privacy'] ) ),
+				$enc->attr( $this->link( 'client/html/checkout/standard/summary/option/terms/cancel/url', ['path' => 'cancel'] ) )
+			), $enc::TRUST ) ?>
+		</label>
 	</div>
 </div>
