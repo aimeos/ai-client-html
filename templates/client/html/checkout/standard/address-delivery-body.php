@@ -13,7 +13,7 @@ $enc = $this->encoder();
 <div class="checkout-standard-address-delivery col-xs-12 col-xl">
 
 	<fieldset class="address">
-		<legend><?= $enc->html( $this->translate( 'client', 'Delivery address', $enc::TRUST ) ) ?></legend>
+		<legend><?= $enc->html( $this->translate( 'client', 'Delivery address' ), $enc::TRUST ) ?></legend>
 
 		<div id="address-delivery-list" class="accordion">
 
