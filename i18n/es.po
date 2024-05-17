@@ -37,7 +37,7 @@ msgid "%1$d review"
 msgid_plural "%1$d reviews"
 msgstr[0] "%1$dreseña"
 msgstr[1] "%1$dreseñas"
-msgstr[2] "%1$dreseñas"
+msgstr[2] "%1$d reseñas"
 
 #, php-format
 msgid ""

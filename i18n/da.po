@@ -118,7 +118,7 @@ msgid "A non-recoverable error occured"
 msgstr ""
 
 msgid "Add"
-msgstr ""
+msgstr "Tilføj"
 
 msgid "Add billing address"
 msgstr ""
