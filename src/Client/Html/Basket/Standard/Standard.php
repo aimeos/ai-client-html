@@ -197,24 +197,15 @@ class Standard
 
 		if( ( $prodid = $view->param( 'b_prodid', '' ) ) !== '' && $view->param( 'b_quantity', 0 ) > 0 )
 		{
-			try
-			{
-				$basketCntl->addProduct(
-					$productCntl->get( $prodid ),
-					(float) $view->param( 'b_quantity', 0 ),
-					(array) $view->param( 'b_attrvarid', [] ),
-					$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
-					array_filter( (array) $view->param( 'b_attrcustid', [] ) ),
-					(string) $view->param( 'b_stocktype', 'default' ),
-					$view->param( 'b_siteid' )
-				);
-			}
-			catch( \Exception $e )
-			{
-				//eg. product has been deactivated
-				$msg = $view->translate( 'client', "At least one product couldn't be added to the basket." );
-				$view->errors = array_merge( $view->get( 'errors', [] ), [$msg] );
-			}
+			$basketCntl->addProduct(
+				$productCntl->get( $prodid ),
+				(float) $view->param( 'b_quantity', 0 ),
+				(array) $view->param( 'b_attrvarid', [] ),
+				$this->getAttributeMap( $view->param( 'b_attrconfid', [] ) ),
+				array_filter( (array) $view->param( 'b_attrcustid', [] ) ),
+				(string) $view->param( 'b_stocktype', 'default' ),
+				$view->param( 'b_siteid' )
+			);
 		}
 		else
 		{
@@ -222,23 +213,14 @@ class Standard
 			{
 				if( ( $values['prodid'] ?? null ) && ( $values['quantity'] ?? 0 ) > 0 )
 				{
-					try
-					{
-						$basketCntl->addProduct( $productCntl->get( $values['prodid'] ),
-							(float) ( $values['quantity'] ?? 0 ),
-							array_filter( (array) ( $values['attrvarid'] ?? [] ) ),
-							$this->getAttributeMap( (array) ( $values['attrconfid'] ?? [] ) ),
-							array_filter( (array) ( $values['attrcustid'] ?? [] ) ),
-							(string) ( $values['stocktype'] ?? 'default' ),
-							$values['siteid'] ?? null
-						);
-					}
-					catch( \Exception $e )
-					{
-						//eg. product has been deactivated
-						$msg = $view->translate( 'client', "At least one product couldn't be added to the basket." );
-						$view->errors = array_merge( $view->get( 'errors', [] ), [$msg] );
-					}
+					$basketCntl->addProduct( $productCntl->get( $values['prodid'] ),
+						(float) ( $values['quantity'] ?? 0 ),
+						array_filter( (array) ( $values['attrvarid'] ?? [] ) ),
+						$this->getAttributeMap( (array) ( $values['attrconfid'] ?? [] ) ),
+						array_filter( (array) ( $values['attrcustid'] ?? [] ) ),
+						(string) ( $values['stocktype'] ?? 'default' ),
+						$values['siteid'] ?? null
+					);
 				}
 			}
 		}
