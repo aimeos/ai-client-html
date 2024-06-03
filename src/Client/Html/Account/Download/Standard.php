@@ -187,6 +187,7 @@ class Standard
 
 			$search = $manager->filter();
 			$expr = array(
+				$search->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
 				$search->compare( '==', 'order.customerid', $customerId ),
 				$search->compare( '==', 'order.product.attribute.id', $id ),
 			);
