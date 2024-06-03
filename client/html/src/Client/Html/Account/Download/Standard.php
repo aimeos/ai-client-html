@@ -284,7 +284,7 @@ class Standard
 
 		if( ( $customerId = $context->getUserId() ) !== null && $id !== null )
 		{
-			$manager = \Aimeos\MShop::create( $context, 'order/base' );
+			$manager = \Aimeos\MShop::create( $context, 'order' );
 
 			$search = $manager->createSearch();
 			$expr = array(
