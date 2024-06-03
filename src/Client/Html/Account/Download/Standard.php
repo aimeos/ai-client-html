@@ -181,20 +181,18 @@ class Standard
 	{
 		$context = $this->context();
 
-		if( ( $customerId = $context->user() ) !== null && $id !== null )
+		if( $id && ( $customerId = $context->user() ) )
 		{
 			$manager = \Aimeos\MShop::create( $context, 'order' );
 
-			$search = $manager->filter();
-			$expr = array(
-				$search->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
-				$search->compare( '==', 'order.customerid', $customerId ),
-				$search->compare( '==', 'order.product.attribute.id', $id ),
-			);
-			$search->setConditions( $search->and( $expr ) );
-			$search->slice( 0, 1 );
+			$filter = $manager->filter();
+			$filter->add( $filter->and( [
+				$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
+				$filter->compare( '==', 'order.customerid', $customerId ),
+				$filter->compare( '==', 'order.product.attribute.id', $id ),
+			] ) )->slice( 0, 1 );
 
-			if( !$manager->search( $search )->isEmpty() ) {
+			if( !$manager->search( $filter )->isEmpty() ) {
 				return true;
 			}
 		}
