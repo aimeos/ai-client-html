@@ -183,10 +183,11 @@ class Standard
 
 		if( ( $customerId = $context->user() ) !== null && $id !== null )
 		{
-			$manager = \Aimeos\MShop::create( $context, 'order/base' );
+			$manager = \Aimeos\MShop::create( $context, 'order' );
 
 			$search = $manager->filter();
 			$expr = array(
+				$search->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
 				$search->compare( '==', 'order.base.customerid', $customerId ),
 				$search->compare( '==', 'order.base.product.attribute.id', $id ),
 			);
