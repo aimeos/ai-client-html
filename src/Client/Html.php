@@ -113,6 +113,7 @@ class Html
 				unset( $decorators[$key] );
 			}
 		}
+		ksort($decorators);
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
 		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
