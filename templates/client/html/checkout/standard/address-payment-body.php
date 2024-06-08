@@ -17,19 +17,19 @@ $enc = $this->encoder();
 
 		<div id="address-payment-list" class="accordion">
 
-			<?php if( isset( $this->addressPaymentItem ) && $this->addressPaymentItem->getAddressId() ) : ?>
+			<?php if( isset( $this->addressPaymentItem ) && ( $id = $this->addressPaymentItem->getAddressId() ) ) : ?>
 
 				<div class="accordion-item address-payment item-address item-default">
 					<div class="header" role="button"
 						data-bs-toggle="collapse" data-bs-target="#address-payment"
 						aria-controls="address-payment" aria-expanded="false">
 
-						<input id="ca_paymentoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" type="radio"
+						<input id="ca_paymentoption-<?= $enc->attr( $id ) ?>" type="radio"
 							name="<?= $enc->attr( $this->formparam( array( 'ca_paymentoption' ) ) ) ?>"
-							value="<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>"
-							<?= $this->get( 'addressPaymentOption' ) == $this->addressPaymentItem->getAddressId() ? 'checked="checked"' : '' ?>
+							value="<?= $enc->attr( $id ) ?>"
+							<?= $this->get( 'addressPaymentOption' ) == $id ? 'checked="checked"' : '' ?>
 						>
-						<label for="ca_paymentoption-<?= $enc->attr( $this->addressPaymentItem->getAddressId() ) ?>" class="values">
+						<label for="ca_paymentoption-<?= $enc->attr( $id ) ?>" class="values">
 							<?= nl2br( $enc->html( $this->get( 'addressPaymentString', '' ) ) ) ?>
 						</label>
 					</div>
@@ -52,11 +52,11 @@ $enc = $this->encoder();
 								$this->config( 'client/html/checkout/standard/partials/address', 'common/partials/address' ),
 								[
 									'address' => $this->addressPaymentItem->toArray(),
-									'id' => $this->addressPaymentItem->getAddressId(),
+									'id' => $id,
 									'countries' => $this->get( 'addressCountries', [] ),
 									'css' => $this->get( 'addressPaymentCss', [] ),
 									'error' => $this->get( 'addressPaymentError', [] ),
-									'formnames' => ['ca_payment'],
+									'formnames' => ['ca_payment_' . $id],
 									'languages' => $this->get( 'addressLanguages', [] ),
 									'languageid' => $this->get( 'contextLanguage' ),
 									'salutations' => $this->get( 'addressSalutations', [] ),
