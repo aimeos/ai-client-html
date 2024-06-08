@@ -59,7 +59,7 @@ $enc = $this->encoder();
 									'countries' => $this->get( 'addressCountries', [] ),
 									'css' => $this->get( 'addressDeliveryCss', [] ),
 									'error' => $this->get( 'addressDeliveryOption' ) == $id ? $this->get( 'addressDeliveryError', [] ) : [],
-									'formnames' => ['ca_delivery'],
+									'formnames' => ['ca_delivery_' . $id],
 									'languages' => $this->get( 'addressLanguages', [] ),
 									'languageid' => $this->get( 'contextLanguage' ),
 									'salutations' => $this->get( 'addressSalutations', [] ),
