@@ -109,9 +109,7 @@ class Standard
 	{
 		$context = $this->context();
 
-		if( ( $id = $context->session()->get( 'aimeos/orderid' ) ) === null )
-		{
-			$context->logger()->log( 'Lost session at confirmation page' . PHP_EOL . '$_COOKIE: ' . print_r( $_COOKIE, true ) );
+		if( ( $id = $context->session()->get( 'aimeos/orderid' ) ) === null ) {
 			throw new \Aimeos\Client\Html\Exception( $context->translate( 'client', 'No order ID available in session' ) );
 		}
 
