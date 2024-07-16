@@ -219,7 +219,7 @@ msgid "Change coupons"
 msgstr "Kuponları değiştir"
 
 msgid "Change delivery"
-msgstr "Teslimatı değişimi"
+msgstr "Teslimatı değiştir"
 
 msgid "Change delivery address"
 msgstr "Teslimat adresini değiştir"
@@ -752,7 +752,7 @@ msgid "Telephone"
 msgstr "Telefon"
 
 msgid "Terms and conditions"
-msgstr "Hükümler ve koşullar"
+msgstr "Şartlar ve koşullar"
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -856,7 +856,7 @@ msgid "You can only watch up to %1$s products"
 msgstr "En fazla %1$s ürünü izleyebilirsiniz"
 
 msgid "You must log in first"
-msgstr "Öncelikle giriş yapmalısınız"
+msgstr "Öncelikle oturum açmalısınız"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Şimdi bir sonraki adıma yönlendirileceksiniz"
@@ -868,7 +868,7 @@ msgid "Your comment"
 msgstr "Yorumunuz"
 
 msgid "Your rating"
-msgstr "Ürüne puan verin"
+msgstr "Puanınız"
 
 msgid "Your reference"
 msgstr "Referansınız"

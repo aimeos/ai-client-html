@@ -89,9 +89,9 @@ msgstr ""
 #, php-format
 msgid "%1$s article"
 msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%1$s artículo"
+msgstr[1] "%1$s artículos"
+msgstr[2] "%1$s artículos"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -102,7 +102,7 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(abrir en nueva ventana)"
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -133,7 +133,7 @@ msgid "Add billing address"
 msgstr "Agregar dirección de facturación"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Añadir dirección de entrega"
 
 msgid "Add to basket"
 msgstr "Añadir a la cesta"
@@ -163,10 +163,10 @@ msgstr "Al menos una parte de la dirección de entrega no se encuentra o es inco
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Al menos una parte de la dirección de pago no está rellenada o no es válida"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "No se pudo agregar al menos un producto a la cesta."
 
 msgid "Back"
 msgstr "Volver"
@@ -219,25 +219,25 @@ msgid "Change"
 msgstr "Cambio"
 
 msgid "Change address"
-msgstr ""
+msgstr "Cambiar dirección"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Cambiar dirección de facturación"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Cambiar cupones"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Cambiar entrega"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Cambiar dirección de entrega"
 
 msgid "Change payment"
 msgstr "Cambiar pago"
 
 msgid "Change products"
-msgstr ""
+msgstr "Cambiar productos"
 
 msgid "Characteristics"
 msgstr "Características"
@@ -280,7 +280,7 @@ msgid "Customer account"
 msgstr "Cuenta de cliente"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Disminuir"
 
 msgid "Delete"
 msgstr "Eliminar"
@@ -370,7 +370,7 @@ msgid ""
 "target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
 "policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
 "policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgstr "Acepto los <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">términos y condiciones</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">política de privacidad</a> y <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">política de cancelación</a>"
 
 #, php-format
 msgid ""
@@ -400,7 +400,7 @@ msgid "Included rebates"
 msgstr "Rebajas incluidas"
 
 msgid "Increase"
-msgstr ""
+msgstr "Aumentar"
 
 msgid "Interval"
 msgstr "Intervalo"
@@ -436,7 +436,7 @@ msgid "Latest"
 msgstr "Últimos"
 
 msgid "Less"
-msgstr ""
+msgstr "Menos"
 
 msgid "List view"
 msgstr "Vista del listado"
@@ -525,7 +525,7 @@ msgid "Payment status"
 msgstr "Estado del pago"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Porcentaje"
 
 msgid "Pin product"
 msgstr "Producto marcado"
@@ -594,7 +594,7 @@ msgid "Product description"
 msgstr "Descripción del producto"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Descarga de productos"
 
 msgid "Product filters"
 msgstr "Filtros del producto"
@@ -633,7 +633,7 @@ msgid "Relevance"
 msgstr "Relevancia"
 
 msgid "Remove"
-msgstr ""
+msgstr "Eliminar"
 
 msgid "Reset"
 msgstr "Reiniciar"
@@ -706,7 +706,7 @@ msgid "Sort by:"
 msgstr "Ordenar por:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Estrellas"
 
 msgid "State"
 msgstr "Estado"
@@ -927,7 +927,7 @@ msgid "pin"
 msgstr "marcar"
 
 msgid "price:default"
-msgstr "precio:predeterminado"
+msgstr ""
 
 #, php-format
 msgid "process"
