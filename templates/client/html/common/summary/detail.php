@@ -289,8 +289,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				</div>
 				<div class="col-5 col-md-6">
 					<div class="row g-0">
-						<div class="quantity col-4">1</div>
-						<div class="unitprice col-4"><?= $price ?></div>
+						<div class="quantity col-5">1</div>
+						<div class="unitprice col-3"><?= $price ?></div>
 						<div class="price col-3"><?= $price ?></div>
 						<?php if( $modify ) : ?>
 							<div class="action col-1"></div>
@@ -318,8 +318,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				</div>
 				<div class="col-4 col-md-6">
 					<div class="row g-0">
-						<div class="quantity col-4">1</div>
-						<div class="unitprice col-4"><?= $price ?></div>
+						<div class="quantity col-5">1</div>
+						<div class="unitprice col-3"><?= $price ?></div>
 						<div class="price col-3"><?= $price ?></div>
 						<?php if( $modify ) : ?>
 							<div class="action col-1"></div>
@@ -410,8 +410,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<div class="total row g-0">
 			<div class="col-8 col-md-6 offset-4 offset-md-6">
 				<div class="row g-0">
-					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></div>
-					<div class="price col-4"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
+					<div class="quantity col-5"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></div>
+					<div class="price col-3"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
 						<div class="action col-1"></div>
