@@ -124,12 +124,12 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 ?>
 <div>
-	<div class="row g-0 headline">
+	<div class="headline row g-0">
 		<div class="col-8 col-md-6 offset-4 offset-md-6">
 			<div class="row g-0">
-				<div class="col-5 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ), $enc::TRUST ) ?></div>
-				<div class="col-3 unitprice"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
-				<div class="col-3 price"><?= $enc->html( $this->translate( 'client', 'Sum' ), $enc::TRUST ) ?></div>
+				<div class="quantity col-5"><?= $enc->html( $this->translate( 'client', 'Quantity' ), $enc::TRUST ) ?></div>
+				<div class="unitprice col-3"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
+				<div class="price col-3"><?= $enc->html( $this->translate( 'client', 'Sum' ), $enc::TRUST ) ?></div>
 				<?php if( $modify ) : ?>
 					<div class="action col-1"></div>
 				<?php endif ?>
@@ -146,7 +146,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php endif ?>
 
 		<?php foreach( $list as $position => $product ) : $totalQuantity += $product->getQuantity() ?>
-			<div class="row g-0 product-item <?= ( isset( $errors['product'][$position] ) ? 'error' : '' ) ?>">
+			<div class="product-item row g-0 <?= ( isset( $errors['product'][$position] ) ? 'error' : '' ) ?>">
 				<div class="col-4 col-md-6">
 					<div class="row g-0">
 						<div class="status col-1">
@@ -221,7 +221,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 					</div>
 				</div>
 				<div class="col-8 col-md-6">
-					<div class="row g-0 order">
+					<div class="order row g-0">
 						<div class="quantity col-5">
 
 							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
