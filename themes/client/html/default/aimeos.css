@@ -275,11 +275,11 @@ img {
 }
 
 .aimeos .minibutton.change.up {
-	text-align: end;
+	text-align: start;
 }
 
 .aimeos .minibutton.change.down {
-	text-align: start;
+	text-align: end;
 }
 
 .aimeos .button-group {

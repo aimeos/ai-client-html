@@ -127,8 +127,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 	<div class="row g-0 headline">
 		<div class="col-8 col-md-6 offset-4 offset-md-6">
 			<div class="row g-0">
-				<div class="col-4 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ), $enc::TRUST ) ?></div>
-				<div class="col-4 unitprice"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
+				<div class="col-5 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ), $enc::TRUST ) ?></div>
+				<div class="col-3 unitprice"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
 				<div class="col-3 price"><?= $enc->html( $this->translate( 'client', 'Sum' ), $enc::TRUST ) ?></div>
 				<?php if( $modify ) : ?>
 					<div class="action col-1"></div>
@@ -222,7 +222,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				</div>
 				<div class="col-8 col-md-6">
 					<div class="row g-0 order">
-						<div class="quantity col-4">
+						<div class="quantity col-5">
 
 							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 
@@ -253,7 +253,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								<?= $enc->html( $product->getQuantity() ) ?>
 							<?php endif ?>
 						</div>
-						<div class="unitprice col-4"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $precision ), $priceCurrency ) ) ?></div>
+						<div class="unitprice col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $precision ), $priceCurrency ) ) ?></div>
 						<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></div>
 						<?php if( $modify ) : ?>
 						<div class="action col-1">
@@ -377,8 +377,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<div class="total row g-0">
 			<div class="col-8 col-md-6 offset-4 offset-md-6">
 				<div class="row g-0 price-total">
-					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$s article', '%1$s articles', ceil( $totalQuantity ) ), round( $totalQuantity, 3 ) ) ) ?></div>
-					<div class="col-4 total-text"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
+					<div class="quantity col-5"><?= $enc->html( sprintf( $this->translate( 'client', '%1$s article', '%1$s articles', ceil( $totalQuantity ) ), round( $totalQuantity, 3 ) ) ) ?></div>
+					<div class="total-text col-3"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
 						<div class="action col-1"></div>
