@@ -357,7 +357,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->standardBasket = $controller->get();
 		$output = $this->object->body();
 
-		$this->assertMatchesRegularExpression( '#<li class="attr-item">.*90AB.*</li>#smU', $output );
+		$this->assertStringContainsString( '<span class="coupon-code">90AB</span>', $output );
 	}
 
 
@@ -385,7 +385,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->standardBasket = $controller->get();
 		$output = $this->object->body();
 
-		$this->assertDoesNotMatchRegularExpression( '#<ul class="attr-list">#smU', $output );
+		$this->assertStringNotContainsString( '<span class="coupon-code">', $output );
 	}
 
 
