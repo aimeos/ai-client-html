@@ -274,12 +274,9 @@ img {
 	content: "\f5de";
 }
 
-.aimeos .minibutton.change.up {
-	text-align: start;
-}
-
+.aimeos .minibutton.change.up,
 .aimeos .minibutton.change.down {
-	text-align: end;
+	text-align: center;
 }
 
 .aimeos .button-group {
