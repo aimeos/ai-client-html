@@ -90,7 +90,7 @@ $enc = $this->encoder();
 											<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
 										</div>
 									<?php endforeach ?>
-								</ul>
+								</div>
 							</div>
 						<?php endif ?>
 					</div>
