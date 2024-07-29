@@ -22,6 +22,9 @@ $enc = $this->encoder();
  * @see client/html/catalog/detail/metatags
  */
 
+$multi = $this->config( 'client/html/catalog/multiroute', false );
+$linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+
 
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
@@ -33,7 +36,8 @@ $enc = $this->encoder();
 			<title><?= $enc->html( strip_tags( $catItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 		<?php endif ?>
 
-		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', map( $this->get( 'listParams', [] ) )->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
+
+		<link rel="canonical" href="<?= $enc->attr( $this->link( $linkKey, map( $this->get( 'listParams', [] ) )->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
