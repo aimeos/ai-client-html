@@ -461,7 +461,10 @@ class Standard
 			 * @since 2020.04
 			 */
 
-			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
+			$startid = $config->get( 'client/html/catalog/lists/catid-default' );
+			$startid = $config->get( 'client/html/catalog/filter/tree/startid', $startid );
+
+			if( $startid ) {
 				$params['f_catid'] = $view->param( 'f_catid', $startid );
 				$params['f_name'] = $view->param( 'f_name', '' );
 			}
