@@ -131,7 +131,19 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				<div class="unitprice col-md-3"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
 				<div class="price col-sm-5 col-md-3"><?= $enc->html( $this->translate( 'client', 'Sum' ), $enc::TRUST ) ?></div>
 				<?php if( $modify ) : ?>
-					<div class="action col-2 col-sm-2 col-md-1"></div>
+					<div class="action col-2 col-sm-2 col-md-1">
+						<?php
+							$pos = [];
+							foreach( $this->summaryBasket->getProducts() as $position => $product ) {
+								if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) {
+									$pos[] = $position;
+								}
+							}
+						?>
+						<a class="minibutton delete" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"
+							href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ['b_action' => 'delete', 'b_position' => $pos] ) ) ?>">
+						</a>
+					</div>
 				<?php endif ?>
 			</div>
 		</div>
