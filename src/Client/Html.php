@@ -80,8 +80,16 @@ class Html
 	protected static function addComponentDecorators( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\Client\Html\Iface $client, string $path ) : \Aimeos\Client\Html\Iface
 	{
-		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
 		$config = $context->config();
+		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
+
+		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
+		$decorators = array_reverse( $config->get( 'client/html/' . $path . '/decorators/local', [] ) );
+		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
+
+		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
+		$decorators = array_reverse( $config->get( 'client/html/' . $path . '/decorators/global', [] ) );
+		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
 		/** client/html/common/decorators/default
 		 * Configures the list of decorators applied to all html clients
@@ -104,7 +112,7 @@ class Html
 		 * @param array List of decorator names
 		 * @since 2014.03
 		 */
-		$decorators = $config->get( 'client/html/common/decorators/default', [] );
+		$decorators = array_reverse( $config->get( 'client/html/common/decorators/default', [] ) );
 		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
@@ -115,14 +123,6 @@ class Html
 		}
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
-
-		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
-		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
-
-		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', [] );
 		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
 		return $client;

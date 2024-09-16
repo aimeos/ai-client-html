@@ -45,7 +45,10 @@ return [
 				'validate' => []
 			],
 			'decorators' => [
-				'default' => ['Exceptions', 'Context']
+				'default' => [
+					'Exceptions' => 'Exceptions',
+					'Context' => 'Context',
+				]
 			],
 		],
 		'catalog' => [
