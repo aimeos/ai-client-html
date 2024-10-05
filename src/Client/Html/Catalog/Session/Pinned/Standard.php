@@ -41,7 +41,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @see client/html/catalog/session#pinned
 		 */
 		$config = $context->config()->get( 'client/html/catalog/session/pinned', [] );
 		$key = $this->getParamHash( [], $uid . ':catalog:session-pinned-body', $config );
