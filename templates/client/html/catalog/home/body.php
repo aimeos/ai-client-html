@@ -64,7 +64,8 @@ $lazy = false;
 		<div class="home-gallery <?= $enc->attr( $this->homeTree->getCode() ) ?> slider-container">
 
 			<?php if( !( $mediaItems = $this->homeTree->getRefItems( 'media', 'stage', 'default' ) )->isEmpty() ) : ?>
-				<?php $params = ['path' => $this->homeTree->getId(), 'f_name' => $this->homeTree->getName( 'url' ), 'f_catid' => $this->homeTree->getId()] ?>
+				<?php $name = $this->homeTree->getName( 'url' ) ?>
+				<?php $params = ['path' => $name, 'f_name' => $name, 'f_catid' => $this->homeTree->getId()] ?>
 				<?php $url = $this->link( 'client/html/catalog/tree/url', $params ) ?>
 
 				<?php foreach( $mediaItems as $mediaItem ) : ?>
@@ -101,7 +102,8 @@ $lazy = false;
 
 						<div class="home-item cat-image <?= $enc->attr( $child->getCode() ) ?>">
 							<div class="home-stage catalog-stage-image">
-								<a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $child->getName( 'url' )] ) ) ?>">
+								<?php $name = $child->getName( 'url' ) ?>
+								<a class="stage-item row" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid' => $child->getId(), 'f_name' => $name, 'path' => $name] ) ) ?>">
 									<img class="stage-image" loading="<?= $lazy ? 'lazy' : '' ?>"
 										src="<?= $enc->attr( $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) ) ?>"
 										srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
