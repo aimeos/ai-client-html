@@ -41,7 +41,7 @@ $id = $this->get( 'id' );
 		<select class="form-control" autocomplete="honorific-prefix"
 			id="address-<?= $this->get( 'type', 'payment' ) ?>-salutation-<?= $id ?>"
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'salutation'] ) ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'salutation' ) ? '' : 'disabled' ?> >
+			<?= $this->value( $css, 'salutation' ) ? '' : 'disabled' ?> >
 
 			<?php if( count( $this->get( 'salutations', [] ) ) > 1 ) : ?>
 				<option value=""><?= $enc->html( $this->translate( 'client', 'Select salutation' ), $enc::TRUST ) ?></option>
@@ -72,7 +72,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'firstname'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'firstname' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'First name' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'firstname' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'firstname' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -92,7 +92,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'lastname'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'lastname' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Last name' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'lastname' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'lastname' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -112,7 +112,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'title'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'title' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Title' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'title' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'title' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -132,7 +132,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'company'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'company' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Company' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'company' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'company' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -152,7 +152,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'address1'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'address1' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Street' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'address1' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'address1' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -172,7 +172,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'address2'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'address2' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'address2' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'address2' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -192,11 +192,10 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'address3'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'address3' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Additional 2' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'address3' ) ? '' : 'disabled' ?>
+			<?php echo $this->value( $css, 'address3' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
-
 
 <div class="row form-item form-group city <?= $enc->attr( ( $this->value( $error, 'city' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'city', [] ) ) ) ?>"
 	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/city' ) ) ?>">
@@ -212,7 +211,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'city'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'city' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'City' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'city' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'city' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -232,7 +231,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'postal'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'postal' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'Postal code' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'postal' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'postal' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -250,7 +249,7 @@ $id = $this->get( 'id' );
 			<select class="form-control" autocomplete="address-level1"
 				id="address-<?= $this->get( 'type', 'payment' ) ?>-state-<?= $id ?>"
 				name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'state'] ) ) ) ?>"
-				<?= !$disabled && $this->value( $css, 'state' ) ? '' : 'disabled' ?> >
+				<?= $this->value( $css, 'state' ) ? '' : 'disabled' ?> >
 
 				<option value=""><?= $enc->html( $this->translate( 'client', 'Select state' ), $enc::TRUST ) ?></option>
 
@@ -286,7 +285,7 @@ $id = $this->get( 'id' );
 			<select class="form-control" autocomplete="country"
 				id="address-<?= $this->get( 'type', 'payment' ) ?>-countryid-<?= $id ?>"
 				name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'countryid'] ) ) ) ?>"
-				<?= !$disabled && $this->value( $css, 'countryid' ) ? '' : 'disabled' ?> >
+				<?= $this->value( $css, 'countryid' ) ? '' : 'disabled' ?> >
 
 				<?php if( count( $this->get( 'countries', [] ) ) > 1 ) : ?>
 					<option value=""><?= $enc->html( $this->translate( 'client', 'Select country' ), $enc::TRUST ) ?></option>
@@ -316,7 +315,7 @@ $id = $this->get( 'id' );
 			<select class="form-control" autocomplete="language"
 				id="address-<?= $this->get( 'type', 'payment' ) ?>-languageid-<?= $id ?>"
 				name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'languageid'] ) ) ) ?>"
-				<?= !$disabled && $this->value( $css, 'languageid' ) ? '' : 'disabled' ?> >
+				<?= $this->value( $css, 'languageid' ) ? '' : 'disabled' ?> >
 
 				<?php if( count( $this->get( 'languages', [] ) ) > 1 ) : ?>
 					<option value=""><?= $enc->html( $this->translate( 'client', 'Select language' ), $enc::TRUST ) ?></option>
@@ -348,7 +347,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'vatid'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'vatid' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', 'GB999999973' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'vatid' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'vatid' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -368,7 +367,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'email'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'email' ) ) ?>"
 			placeholder="name@example.com"
-			<?= !$disabled && $this->value( $css, 'email' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'email' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -388,7 +387,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'telephone'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'telephone' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'telephone' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'telephone' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -408,7 +407,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'mobile'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'mobile' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'mobile' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'mobile' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -428,7 +427,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'telefax'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'telefax' ) ) ?>"
 			placeholder="<?= $enc->attr( $this->translate( 'client', '+1 123 456 7890' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'telefax' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'telefax' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -448,7 +447,7 @@ $id = $this->get( 'id' );
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'website'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'website' ) ) ?>"
 			placeholder="https://example.com"
-			<?= !$disabled && $this->value( $css, 'website' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'website' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
@@ -466,7 +465,7 @@ $id = $this->get( 'id' );
 			id="address-<?= $this->get( 'type', 'payment' ) ?>-birthday-<?= $id ?>"
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'birthday'] ) ) ) ?>"
 			value="<?= $enc->attr( $this->value( $addr, $prefix . 'birthday' ) ) ?>"
-			<?= !$disabled && $this->value( $css, 'birthday' ) ? '' : 'disabled' ?>
+			<?= $this->value( $css, 'birthday' ) ? '' : 'disabled' ?>
 		>
 	</div>
 </div>
