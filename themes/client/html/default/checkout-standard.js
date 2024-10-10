@@ -140,6 +140,8 @@ AimeosCheckoutStandard = {
 	 * Initializes the checkout standard section
 	 */
 	init: function() {
+		if(this.once) return;
+		this.once = true;
 
 		this.onAddress();
 		this.onService();
