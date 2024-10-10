@@ -45,6 +45,9 @@ AimeosAccountProfile = {
 	 * Initializes the account watch actions
 	 */
 	init() {
+		if(this.once) return;
+		this.once = true;
+
 		this.onAddress();
 		this.onAddressToggle();
 	}
