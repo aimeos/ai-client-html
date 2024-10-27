@@ -3,32 +3,31 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Jeremy Flammang, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Jeremy Flammang, 2022\n"
-"Language-Team: Luxembourgish (http://app.transifex.com/aimeos/aimeos-core/language/lb/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Bengali (http://app.transifex.com/aimeos/aimeos-core/language/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lb\n"
+"Language: bn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] "%1$d Artikel"
-msgstr[1] "%1$d Artikelen"
+msgstr[0] ""
+msgstr[1] ""
 
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] "%1$d Rezensioun"
-msgstr[1] "%1$d Rezensiounen"
+msgstr[0] ""
+msgstr[1] ""
 
 #, php-format
 msgid ""
@@ -45,7 +44,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -67,11 +66,11 @@ msgstr ""
 
 #, php-format
 msgid "%1$s %2$s"
-msgstr "%1$s%2$s"
+msgstr ""
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "%1$s%2$s Rabatt"
+msgstr ""
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
@@ -85,11 +84,11 @@ msgstr[1] ""
 
 #, php-format
 msgid "%1$s at %2$s"
-msgstr "%1$s den %2$s"
+msgstr ""
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr "%1$s%3$s + %2$s%3$s"
+msgstr ""
 
 msgid "(opens in new window)"
 msgstr ""
@@ -100,56 +99,56 @@ msgstr ""
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr "+ %1$s%% %2$s"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr "+ %1$s%% TVA"
+msgstr ""
 
 msgid "+1 123 456 7890"
-msgstr "+352 123 456 789"
+msgstr ""
 
 #, php-format
 msgid "-%1$s%%"
-msgstr "-%1$s%%"
+msgstr ""
 
 msgid "A non-recoverable error occured"
-msgstr "Et as ee Problem opgetrueden"
+msgstr ""
 
 msgid "Add"
-msgstr "Dobäisetzen"
+msgstr "যুক্ত করুন"
 
 msgid "Add billing address"
-msgstr "Rechnungsadress dobäisetzen"
+msgstr ""
 
 msgid "Add delivery address"
 msgstr ""
 
 msgid "Add to basket"
-msgstr "An de Käddi"
+msgstr ""
 
 msgid "Additional"
-msgstr "Zousätzlech"
+msgstr ""
 
 msgid "Additional 2"
-msgstr "Zousätzlech 2"
+msgstr ""
 
 msgid "Apply"
 msgstr ""
 
 msgid "Article"
-msgstr "Artikel"
+msgstr ""
 
 msgid "Article no."
-msgstr "Artikel Nr."
+msgstr ""
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr "Mindestens een Deel vun der Rechnungsadress fehlt oder as ongülteg"
+msgstr ""
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
-msgstr "Mindestens een Deel vun der Liwweradress fehlt oder as ongülteg"
+msgstr ""
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
@@ -159,10 +158,10 @@ msgid "At least one product couldn't be added to the basket."
 msgstr ""
 
 msgid "Back"
-msgstr "Zeréck"
+msgstr ""
 
 msgid "Basket"
-msgstr "Käddi"
+msgstr ""
 
 msgid "Basket details"
 msgstr ""
@@ -174,39 +173,39 @@ msgid "Basket saved sucessfully"
 msgstr ""
 
 msgid "Billing address"
-msgstr "Rechnungsadress"
+msgstr ""
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr "Den Deel %1$s vun der Rechnungsadress as ongülteg"
+msgstr ""
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr "Den Deel %1$s vun der Rechnungsadress fehlt"
+msgstr ""
 
 msgid "Birthday"
-msgstr "Gebuertsdaag"
+msgstr ""
 
 msgid "Breadcrumb navigation"
 msgstr ""
 
 msgid "Bulk order"
-msgstr "Groussbestellung"
+msgstr ""
 
 msgid "Bundled products"
-msgstr "Gebündelt Produkter"
+msgstr ""
 
 msgid "Buy now"
-msgstr "Elo kaafen"
+msgstr ""
 
 msgid "Cancel"
-msgstr "Ofbriechen"
+msgstr ""
 
 msgid "Categories"
-msgstr "Kategorien"
+msgstr ""
 
 msgid "Change"
-msgstr "Wiesselen"
+msgstr ""
 
 msgid "Change address"
 msgstr ""
@@ -224,19 +223,19 @@ msgid "Change delivery address"
 msgstr ""
 
 msgid "Change payment"
-msgstr "Bezuelung änneren"
+msgstr ""
 
 msgid "Change products"
 msgstr ""
 
 msgid "Characteristics"
-msgstr "Characteristiken"
+msgstr ""
 
 msgid "Checkout"
-msgstr "Bei d'Kees"
+msgstr ""
 
 msgid "City"
-msgstr "Stadt"
+msgstr ""
 
 #, php-format
 msgid "Class \"%1$s\" not found"
@@ -273,16 +272,16 @@ msgid "Decrease"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "মুছে ফেলুন"
 
 msgid "Delete item"
 msgstr ""
 
 msgid "Delivery"
-msgstr ""
+msgstr "ডেলিভারি"
 
 msgid "Delivery address"
-msgstr ""
+msgstr "ডেলিভারির ঠিকানা"
 
 #, php-format
 msgid "Delivery address deleted successfully"
@@ -879,38 +878,38 @@ msgid "Your review"
 msgstr ""
 
 msgid "Zoom in/out"
-msgstr "Ran/Raus zoomen"
+msgstr ""
 
 #, php-format
 msgid "address"
-msgstr "Adress"
+msgstr ""
 
 #, php-format
 msgid "delivery"
-msgstr "Liwwerung"
+msgstr ""
 
 msgid "favorite"
-msgstr "Als Favorit späicheren"
+msgstr ""
 
 #, php-format
 msgid "from %1$s"
-msgstr "ab %1$s"
+msgstr ""
 
 msgid "like billing address"
-msgstr "wei d'Rechnungsadress"
+msgstr ""
 
 msgid "new address"
-msgstr "nei Adress"
+msgstr ""
 
 msgid "none"
-msgstr "keng"
+msgstr ""
 
 msgid "on request"
-msgstr "op Ufro"
+msgstr ""
 
 #, php-format
 msgid "payment"
-msgstr "Bezuelung"
+msgstr ""
 
 msgid "pin"
 msgstr ""
@@ -942,25 +941,25 @@ msgid "watch"
 msgstr ""
 
 msgid "▲ Name"
-msgstr "▲ Numm"
+msgstr ""
 
 msgid "▲ Price"
-msgstr "▲ Präis"
+msgstr ""
 
 msgid "▶"
-msgstr "▶"
+msgstr ""
 
 msgid "▶▶"
-msgstr "▶▶"
+msgstr ""
 
 msgid "▼ Name"
-msgstr "▼ Numm"
+msgstr ""
 
 msgid "▼ Price"
-msgstr "▼ Präis"
+msgstr ""
 
 msgid "◀"
-msgstr "◀"
+msgstr ""
 
 msgid "◀◀"
-msgstr "◀◀"
+msgstr ""
