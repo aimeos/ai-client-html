@@ -111,6 +111,8 @@ $priceTaxflag = $price->getTaxFlag();
 $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() );
 
 
+$pricetype = 'price:default';
+$pricefmt = $this->translate( 'client/code', $pricetype );
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $this->translate( 'client/code', 'price:default', null, 0, false ) ?: $this->translate( 'client', '%1$s %2$s' );
 /// Tax format with tax rate (%1$s) and tax name (%2$s)

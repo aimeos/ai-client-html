@@ -89,9 +89,10 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/config
  */
 
-$pricefmt = $this->translate( 'client/code', 'price:default' );
-/// Price format with price value (%1$s) and currency (%2$s)
-$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
+ $pricetype = 'price:default';
+ $pricefmt = $this->translate( 'client/code', $pricetype );
+ /// Price format with price value (%1$s) and currency (%2$s)
+ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>
