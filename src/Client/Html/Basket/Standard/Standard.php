@@ -107,7 +107,14 @@ class Standard
 					$this->updateProducts( $view );
 					$this->addCoupon( $view );
 			}
-
+		}
+		catch( \Exception $e )
+		{
+			$controller->save();
+			throw $e;
+		}
+		finally
+		{
 			/** client/html/basket/standard/check
 			 * Alters the behavior of the product checks before continuing with the checkout
 			 *
@@ -140,11 +147,6 @@ class Standard
 				case 1: $controller->get()->check( ['order/product'] );
 				default: $view->standardCheckout = true;
 			}
-		}
-		catch( \Exception $e )
-		{
-			$controller->save();
-			throw $e;
 		}
 
 		$controller->save();
