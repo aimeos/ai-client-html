@@ -62,7 +62,7 @@ abstract class Base
 	 * @return \Aimeos\Base\View\Iface The view object with the data required by the templates
 	 * @since 2018.01
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		return $this->client->data( $view, $tags, $expire );
 	}
@@ -75,7 +75,7 @@ abstract class Base
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
+	public function getSubClient( string $type, ?string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		return $this->client->getSubClient( $type, $name );
 	}

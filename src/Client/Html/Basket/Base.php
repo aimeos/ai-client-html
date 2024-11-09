@@ -42,7 +42,7 @@ abstract class Base
 	 * @return string|null Value associated to the requested key. If no value for the
 	 *	key is found in the cache, the given default value is returned
 	 */
-	protected function getBasketCached( string $key, string $default = null ) : ?string
+	protected function getBasketCached( string $key, ?string $default = null ) : ?string
 	{
 		return $this->context()->session()->get( $key, $default );
 	}
@@ -55,7 +55,7 @@ abstract class Base
 	 * @param string|null $value Value stored in the cache for the path
 	 * @return string|null Value
 	 */
-	protected function setBasketCached( string $key, string $value = null ) : ?string
+	protected function setBasketCached( string $key, ?string $value = null ) : ?string
 	{
 		$context = $this->context();
 

@@ -128,7 +128,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
+	public function getSubClient( string $type, ?string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		return $this->createSubClient( 'catalog/count/' . $type, $name );
 	}

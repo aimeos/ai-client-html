@@ -177,7 +177,7 @@ class Standard
 	 * @param string|null $id Unique order base product attribute ID referencing the download file
 	 * @return bool True if download is allowed, false if not
 	 */
-	protected function checkAccess( string $id = null ) : bool
+	protected function checkAccess( ?string $id = null ) : bool
 	{
 		$context = $this->context();
 
@@ -209,7 +209,7 @@ class Standard
 	 * @param string|null $id Unique order base product attribute ID referencing the download file
 	 * @return bool True if download is allowed, false if not
 	 */
-	protected function checkDownload( string $id = null ) : bool
+	protected function checkDownload( ?string $id = null ) : bool
 	{
 		$context = $this->context();
 
