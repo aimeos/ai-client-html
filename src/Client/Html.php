@@ -32,7 +32,7 @@ class Html
 	 * @throws \Aimeos\Client\Html\Exception If requested client implementation couldn't be found or initialisation fails
 	 */
 	public static function create( \Aimeos\MShop\ContextIface $context,
-		string $path, string $name = null ) : \Aimeos\Client\Html\Iface
+		string $path, ?string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		if( empty( $path ) ) {
 			throw new \Aimeos\Client\Html\Exception( 'Component path is empty', 400 );
@@ -63,7 +63,7 @@ class Html
 	 * @param string $classname Full name of the class for which the object should be returned
 	 * @param \Aimeos\Client\Html\Iface|null $client ExtJS client object
 	 */
-	public static function inject( string $classname, \Aimeos\Client\Html\Iface $client = null )
+	public static function inject( string $classname, ?\Aimeos\Client\Html\Iface $client = null )
 	{
 		self::$objects['\\' . ltrim( $classname, '\\' )] = $client;
 	}
