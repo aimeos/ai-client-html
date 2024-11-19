@@ -113,7 +113,7 @@ $attrTypes = $this->get( 'attributeTypes', [] );
 		<?php $list = map( $list )->uasort( $sortfcn ) ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ) ?>">
-			<label class="select-name"><?= $enc->html( isset($attrTypes[$code]) ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code ) ) ?></label>
+			<label class="select-name"><?= $enc->html( isset( $attrTypes[$code] ) ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
