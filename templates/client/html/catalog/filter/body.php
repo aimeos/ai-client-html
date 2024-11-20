@@ -101,7 +101,7 @@ $enc = $this->encoder();
  */
 $multi = $this->config( 'client/html/catalog/multiroute', false );
 $linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
-$params = map( $this->param() )->only( ['path', 'f_catid', 'f_name'] );
+$params = map( $this->param() )->only( ['path', 'f_catid', 'f_name', 'f_search'] );
 
 if( $catid = $this->config( 'client/html/catalog/filter/tree/startid' ) ) {
 	$params = $params->union( ['f_catid' => $catid] );
