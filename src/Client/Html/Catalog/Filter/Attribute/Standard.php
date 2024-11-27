@@ -90,7 +90,10 @@ class Standard
 		 * @see client/html/catalog/filter/attribute/types-option
 		 */
 		$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
-		$attrTypes = ( !is_array( $attrTypes ) ? explode( ',', $attrTypes ) : $attrTypes );
+
+		if( !is_array( $attrTypes ) ) {
+			$attrTypes = array_filter( explode( ',', $attrTypes ) );
+		}
 
 		/** client/html/catalog/filter/attribute/domains
 		 * List of domain names whose items should be fetched with the filter attributes
