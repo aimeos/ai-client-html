@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Aimeos, 2021\n"
 "Language-Team: Finnish (http://app.transifex.com/aimeos/aimeos-core/language/fi/)\n"
@@ -79,12 +79,21 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s at %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -108,8 +117,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr ""
 
+msgid "Add"
+msgstr ""
+
 msgid "Add billing address"
 msgstr "Lisää laskutusosoite"
+
+msgid "Add delivery address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "Lisää ostoskoriin"
@@ -136,6 +151,13 @@ msgstr "Ainakin yksi laskutusosoitteen osa puuttuu tai on virheellinen"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Ainakin yksi toimitusosoitteen osa puuttuu tai on virheellinen"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "Takaisin"
@@ -187,8 +209,26 @@ msgstr "Kategoriat"
 msgid "Change"
 msgstr "Muuta"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "Muuta maksua"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Ominaisuudet"
@@ -229,6 +269,9 @@ msgstr "Luotu"
 
 msgid "Customer account"
 msgstr "Asiakaskäyttäjätili"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "Poista"
@@ -313,6 +356,15 @@ msgstr ""
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -337,6 +389,9 @@ msgstr "Sis. %1$s%% Alv."
 
 msgid "Included rebates"
 msgstr "Sisältää hyvitykset"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "Väli"
@@ -371,6 +426,9 @@ msgstr "Nähty viimeksi"
 msgid "Latest"
 msgstr "Viimeisin"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr "Listanäkymä"
 
@@ -381,6 +439,9 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Mobile number"
+msgstr ""
+
+msgid "More"
 msgstr ""
 
 msgid "More reviews"
@@ -454,6 +515,9 @@ msgstr "Maksukustannukset"
 msgid "Payment status"
 msgstr "Maksun tila"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -520,6 +584,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -555,6 +622,9 @@ msgstr "Viittaus"
 
 msgid "Relevance"
 msgstr "Relevanssi"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "Nollaa"
@@ -624,6 +694,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "Järjestä:"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "Alue/osavaltio"
@@ -709,6 +782,9 @@ msgstr "Kolme kuukautta"
 
 msgid "Time frame"
 msgstr "Aikaväli"
+
+msgid "Title"
+msgstr ""
 
 msgid "Toggle fullscreen"
 msgstr "Ota kokonäyttötila käyttöön"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Darshan Sampat <darshan@usindia.com>, 2018\n"
 "Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
@@ -76,12 +76,20 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%2$sにおける%1$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s+%2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -105,7 +113,13 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr ""
 
+msgid "Add"
+msgstr "追加"
+
 msgid "Add billing address"
+msgstr ""
+
+msgid "Add delivery address"
 msgstr ""
 
 msgid "Add to basket"
@@ -133,6 +147,13 @@ msgstr "少なくとも1つの請求先住所の一部が欠落しているか�
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "少なくとも1つの配信先住所の一部が欠落しているか無効です"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "戻り"
@@ -184,8 +205,26 @@ msgstr "カテゴリ"
 msgid "Change"
 msgstr "変更"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "支払の変更"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "特性"
@@ -226,6 +265,9 @@ msgstr "作成した"
 
 msgid "Customer account"
 msgstr "顧客アカウント"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "削除"
@@ -310,6 +352,15 @@ msgstr ""
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -334,6 +385,9 @@ msgstr "%1$s%%VATを含む"
 
 msgid "Included rebates"
 msgstr "含まれたリベート"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "間隔"
@@ -368,6 +422,9 @@ msgstr "最後に見たのは"
 msgid "Latest"
 msgstr "最新"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr ""
 
@@ -379,6 +436,9 @@ msgstr ""
 
 msgid "Mobile number"
 msgstr ""
+
+msgid "More"
+msgstr "モア"
 
 msgid "More reviews"
 msgstr ""
@@ -451,6 +511,9 @@ msgstr "支払い費用"
 msgid "Payment status"
 msgstr "支払い状況"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -517,6 +580,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -552,6 +618,9 @@ msgstr ""
 
 msgid "Relevance"
 msgstr "関連性"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "リセット"
@@ -620,6 +689,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "並び替え"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "状態"
@@ -705,6 +777,9 @@ msgstr "3ヶ月"
 
 msgid "Time frame"
 msgstr "時間枠"
+
+msgid "Title"
+msgstr "タイトル"
 
 msgid "Toggle fullscreen"
 msgstr "フルスクリーン切り替え"

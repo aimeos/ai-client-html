@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Mario Domonji <mario.mk.gromovi@gmail.com>, 2015\n"
 "Language-Team: Serbian (http://app.transifex.com/aimeos/aimeos-core/language/sr/)\n"
@@ -81,12 +81,22 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s na %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -110,7 +120,13 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr ""
 
+msgid "Add"
+msgstr "Dodaj"
+
 msgid "Add billing address"
+msgstr ""
+
+msgid "Add delivery address"
 msgstr ""
 
 msgid "Add to basket"
@@ -138,6 +154,13 @@ msgstr "Barem jedan deo adrese racuna je pogresan ili nedostaje"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Barem jedan deo adrese za isporuku je pogresan ili nedostaje"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "Nazad"
@@ -189,8 +212,26 @@ msgstr ""
 msgid "Change"
 msgstr "Promeni"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "Promeniti nacin placanja"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Karakteristike"
@@ -230,6 +271,9 @@ msgid "Created"
 msgstr "Kreirano"
 
 msgid "Customer account"
+msgstr ""
+
+msgid "Decrease"
 msgstr ""
 
 msgid "Delete"
@@ -315,6 +359,15 @@ msgstr ""
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -339,6 +392,9 @@ msgstr "Uklj.. %1$s%% PDV"
 
 msgid "Included rebates"
 msgstr "Ukljuceni rabati"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr ""
@@ -373,6 +429,9 @@ msgstr "Poslednje gledano"
 msgid "Latest"
 msgstr ""
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr ""
 
@@ -383,6 +442,9 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Mobile number"
+msgstr ""
+
+msgid "More"
 msgstr ""
 
 msgid "More reviews"
@@ -456,6 +518,9 @@ msgstr "Cena placanja"
 msgid "Payment status"
 msgstr "Status placanja"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -522,6 +587,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -557,6 +625,9 @@ msgstr ""
 
 msgid "Relevance"
 msgstr "Važnost"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr ""
@@ -627,6 +698,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "Sortiraj po:"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "Drzava"
@@ -712,6 +786,9 @@ msgstr "Tri meseca"
 
 msgid "Time frame"
 msgstr "Vremenski period"
+
+msgid "Title"
+msgstr "Naslov"
 
 msgid "Toggle fullscreen"
 msgstr ""

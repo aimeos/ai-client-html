@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Plamen Petkov <mcplamen@gmail.com>, 2016,2019\n"
 "Language-Team: Bulgarian (http://app.transifex.com/aimeos/aimeos-core/language/bg/)\n"
@@ -79,12 +79,21 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s at %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -108,7 +117,13 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr ""
 
+msgid "Add"
+msgstr "Добави"
+
 msgid "Add billing address"
+msgstr ""
+
+msgid "Add delivery address"
 msgstr ""
 
 msgid "Add to basket"
@@ -136,6 +151,13 @@ msgstr "Част от разплащателния адрес липсва ил�
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Част от адреса за доставка липсва или е невалидна"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "Назад"
@@ -187,8 +209,26 @@ msgstr "Категории"
 msgid "Change"
 msgstr "Промени"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "Променете плащането"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Характеристики"
@@ -229,6 +269,9 @@ msgstr "Създадено"
 
 msgid "Customer account"
 msgstr "Потребителски профил"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "Изтрий"
@@ -313,6 +356,15 @@ msgstr ""
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -337,6 +389,9 @@ msgstr "Вкл. %1$s%% ДДС"
 
 msgid "Included rebates"
 msgstr "Влючени отстъпки"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr ""
@@ -371,6 +426,9 @@ msgstr "Последно видяни"
 msgid "Latest"
 msgstr "Последни"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr ""
 
@@ -381,6 +439,9 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Mobile number"
+msgstr ""
+
+msgid "More"
 msgstr ""
 
 msgid "More reviews"
@@ -454,6 +515,9 @@ msgstr "Разходи за плащане"
 msgid "Payment status"
 msgstr "Статус на плащане"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -520,6 +584,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -555,6 +622,9 @@ msgstr ""
 
 msgid "Relevance"
 msgstr "Връзка"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr ""
@@ -624,6 +694,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "Подреди по:"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "Област"
@@ -709,6 +782,9 @@ msgstr "Три месеца"
 
 msgid "Time frame"
 msgstr "Времева рамка"
+
+msgid "Title"
+msgstr "Заглавие"
 
 msgid "Toggle fullscreen"
 msgstr "Разширение до цял екран"

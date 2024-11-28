@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Hans He, 2022\n"
 "Language-Team: Chinese (http://app.transifex.com/aimeos/aimeos-core/language/zh/)\n"
@@ -81,12 +81,20 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s 在 %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -110,8 +118,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "发生了不可恢复的错误"
 
+msgid "Add"
+msgstr "添加"
+
 msgid "Add billing address"
 msgstr "添加帳單地址"
+
+msgid "Add delivery address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "加入購物車"
@@ -138,6 +152,13 @@ msgstr "至少一筆帳單寄送地址被遺漏或無效"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "至少一筆商品寄送地址被遺漏或無效"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "返回"
@@ -189,8 +210,26 @@ msgstr "商品型錄"
 msgid "Change"
 msgstr "變更"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "變更支付"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "特色"
@@ -231,6 +270,9 @@ msgstr "創建"
 
 msgid "Customer account"
 msgstr "用戶帳號"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "删除"
@@ -315,6 +357,15 @@ msgstr "最高价"
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -339,6 +390,9 @@ msgstr "包含 %1$s%% 增值稅"
 
 msgid "Included rebates"
 msgstr "折扣過後"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "間隔"
@@ -373,6 +427,9 @@ msgstr "最近觀看"
 msgid "Latest"
 msgstr "最新"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr "列表顯示"
 
@@ -384,6 +441,9 @@ msgstr ""
 
 msgid "Mobile number"
 msgstr ""
+
+msgid "More"
+msgstr "更多"
 
 msgid "More reviews"
 msgstr "更多評論"
@@ -456,6 +516,9 @@ msgstr "支付手續費"
 msgid "Payment status"
 msgstr "支付狀態"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr "固定产品"
 
@@ -522,6 +585,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -557,6 +623,9 @@ msgstr "參考"
 
 msgid "Relevance"
 msgstr "關聯"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "重置"
@@ -625,6 +694,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "排序方式："
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "狀態"
@@ -710,6 +782,9 @@ msgstr "三個月"
 
 msgid "Time frame"
 msgstr "時間範圍"
+
+msgid "Title"
+msgstr "標題"
 
 msgid "Toggle fullscreen"
 msgstr "切換全螢幕"

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: nzed <nemesreviz@gmail.com>, 2021-2022\n"
 "Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
@@ -84,12 +84,21 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s: %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s %3$s + %2$s %3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -113,8 +122,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "Helyrehozhatatlan hiba történt"
 
+msgid "Add"
+msgstr "Hozzáadás"
+
 msgid "Add billing address"
 msgstr "Számlázási cím hozzáadása"
+
+msgid "Add delivery address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "Kosárba"
@@ -141,6 +156,13 @@ msgstr "Legalább egy számlázási cím rész hiányzik vagy érvénytelen"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Legalább egy szállítási cím rész hiányzik vagy érvénytelen"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "Vissza"
@@ -192,8 +214,26 @@ msgstr "Kategóriák"
 msgid "Change"
 msgstr "Módosítás"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "Fizetés módosítás"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Jellemzők"
@@ -234,6 +274,9 @@ msgstr "Létrehozva"
 
 msgid "Customer account"
 msgstr "Ügyfél fiók"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "Törlés"
@@ -318,6 +361,15 @@ msgstr "Legmagasabb ár"
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -342,6 +394,9 @@ msgstr "Tartalmazza a %1$s%% ÁFÁ-t"
 
 msgid "Included rebates"
 msgstr "Tartalmazza a kedvezményeket"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "Időszak"
@@ -376,6 +431,9 @@ msgstr "Utoljára nézett"
 msgid "Latest"
 msgstr "Legújabb"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr "Soronkénti nézet"
 
@@ -387,6 +445,9 @@ msgstr ""
 
 msgid "Mobile number"
 msgstr ""
+
+msgid "More"
+msgstr "Több"
 
 msgid "More reviews"
 msgstr "További értékelések"
@@ -459,6 +520,9 @@ msgstr "Fizetési költségek"
 msgid "Payment status"
 msgstr "Fizetési státusz"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr "Pin termék"
 
@@ -525,6 +589,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -560,6 +627,9 @@ msgstr "Referencia"
 
 msgid "Relevance"
 msgstr "Fontosság"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "Visszaállítás"
@@ -629,6 +699,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "Rendezés"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "Állam"
@@ -714,6 +787,9 @@ msgstr "Három hónap"
 
 msgid "Time frame"
 msgstr "Időkeret"
+
+msgid "Title"
+msgstr "Cím"
 
 msgid "Toggle fullscreen"
 msgstr "Teljes képernyőre váltás"

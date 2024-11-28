@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Edu PM, 2024\n"
 "Language-Team: Spanish (http://app.transifex.com/aimeos/aimeos-core/language/es/)\n"
@@ -37,7 +37,7 @@ msgid "%1$d review"
 msgid_plural "%1$d reviews"
 msgstr[0] "%1$dreseña"
 msgstr[1] "%1$dreseñas"
-msgstr[2] "%1$dreseñas"
+msgstr[2] "%1$d reseñas"
 
 #, php-format
 msgid ""
@@ -87,12 +87,22 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] "%1$s artículo"
+msgstr[1] "%1$s artículos"
+msgstr[2] "%1$s artículos"
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s en %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr "(abrir en nueva ventana)"
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -116,8 +126,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "Ha ocurrido un error no recuperable"
 
+msgid "Add"
+msgstr "Agregar"
+
 msgid "Add billing address"
 msgstr "Agregar dirección de facturación"
+
+msgid "Add delivery address"
+msgstr "Añadir dirección de entrega"
 
 msgid "Add to basket"
 msgstr "Añadir a la cesta"
@@ -144,6 +160,13 @@ msgstr "Al menos una parte de la dirección de cobro no se encuentra o es incorr
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Al menos una parte de la dirección de entrega no se encuentra o es incorrecta"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr "Al menos una parte de la dirección de pago no está rellenada o no es válida"
+
+msgid "At least one product couldn't be added to the basket."
+msgstr "No se pudo agregar al menos un producto a la cesta."
 
 msgid "Back"
 msgstr "Volver"
@@ -195,8 +218,26 @@ msgstr "Categorías"
 msgid "Change"
 msgstr "Cambio"
 
+msgid "Change address"
+msgstr "Cambiar dirección"
+
+msgid "Change billing address"
+msgstr "Cambiar dirección de facturación"
+
+msgid "Change coupons"
+msgstr "Cambiar cupones"
+
+msgid "Change delivery"
+msgstr "Cambiar entrega"
+
+msgid "Change delivery address"
+msgstr "Cambiar dirección de entrega"
+
 msgid "Change payment"
 msgstr "Cambiar pago"
+
+msgid "Change products"
+msgstr "Cambiar productos"
 
 msgid "Characteristics"
 msgstr "Características"
@@ -237,6 +278,9 @@ msgstr "Creado"
 
 msgid "Customer account"
 msgstr "Cuenta de cliente"
+
+msgid "Decrease"
+msgstr "Disminuir"
 
 msgid "Delete"
 msgstr "Eliminar"
@@ -321,6 +365,15 @@ msgstr "Precio más alto"
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr "Acepto los <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">términos y condiciones</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">política de privacidad</a> y <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">política de cancelación</a>"
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -345,6 +398,9 @@ msgstr "Incl. el %1$s%% de IVA"
 
 msgid "Included rebates"
 msgstr "Rebajas incluidas"
+
+msgid "Increase"
+msgstr "Aumentar"
 
 msgid "Interval"
 msgstr "Intervalo"
@@ -379,6 +435,9 @@ msgstr "Última/s vista/s"
 msgid "Latest"
 msgstr "Últimos"
 
+msgid "Less"
+msgstr "Menos"
+
 msgid "List view"
 msgstr "Vista del listado"
 
@@ -390,6 +449,9 @@ msgstr "Móvil"
 
 msgid "Mobile number"
 msgstr "Número móvil"
+
+msgid "More"
+msgstr "Mas"
 
 msgid "More reviews"
 msgstr "Más comentarios"
@@ -462,6 +524,9 @@ msgstr "Comisiones de pago"
 msgid "Payment status"
 msgstr "Estado del pago"
 
+msgid "Percentage"
+msgstr "Porcentaje"
+
 msgid "Pin product"
 msgstr "Producto marcado"
 
@@ -528,6 +593,9 @@ msgstr "Características del producto"
 msgid "Product description"
 msgstr "Descripción del producto"
 
+msgid "Product downloads"
+msgstr "Descarga de productos"
+
 msgid "Product filters"
 msgstr "Filtros del producto"
 
@@ -563,6 +631,9 @@ msgstr "Referencias"
 
 msgid "Relevance"
 msgstr "Relevancia"
+
+msgid "Remove"
+msgstr "Eliminar"
 
 msgid "Reset"
 msgstr "Reiniciar"
@@ -633,6 +704,9 @@ msgstr "Ordenar por"
 
 msgid "Sort by:"
 msgstr "Ordenar por:"
+
+msgid "Stars"
+msgstr "Estrellas"
 
 msgid "State"
 msgstr "Estado"
@@ -718,6 +792,9 @@ msgstr "Tres meses"
 
 msgid "Time frame"
 msgstr "Marco de tiempo"
+
+msgid "Title"
+msgstr "Título"
 
 msgid "Toggle fullscreen"
 msgstr "Alternar pantalla completa"
@@ -850,7 +927,7 @@ msgid "pin"
 msgstr "marcar"
 
 msgid "price:default"
-msgstr "precio:predeterminado"
+msgstr ""
 
 #, php-format
 msgid "process"

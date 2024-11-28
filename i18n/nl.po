@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Yves Vermeulen <tmastar@gmail.com>, 2015\n"
 "Language-Team: Dutch (http://app.transifex.com/aimeos/aimeos-core/language/nl/)\n"
@@ -86,12 +86,21 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s at %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -115,7 +124,13 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr ""
 
+msgid "Add"
+msgstr "Toevoegen"
+
 msgid "Add billing address"
+msgstr ""
+
+msgid "Add delivery address"
 msgstr ""
 
 msgid "Add to basket"
@@ -143,6 +158,13 @@ msgstr "Tenminste één factuuradres is niet beschikbaar of niet juist ingevuld.
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Tenminste één leveringsadres is niet beschikbaar of niet juist ingevuld."
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "Terug"
@@ -194,8 +216,26 @@ msgstr "Categorieën"
 msgid "Change"
 msgstr "Aanpassen"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "Pas betaling aan"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Karakteristieken"
@@ -236,6 +276,9 @@ msgstr "Aangemaakt"
 
 msgid "Customer account"
 msgstr "Klanten account"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "Verwijderen"
@@ -320,6 +363,15 @@ msgstr ""
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -344,6 +396,9 @@ msgstr "Incl. %1$s%% BTW"
 
 msgid "Included rebates"
 msgstr "Kortingen zijn verrekend"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "Interval"
@@ -378,6 +433,9 @@ msgstr "Laatst gezien"
 msgid "Latest"
 msgstr "Laatste"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr ""
 
@@ -389,6 +447,9 @@ msgstr ""
 
 msgid "Mobile number"
 msgstr ""
+
+msgid "More"
+msgstr "Meer"
 
 msgid "More reviews"
 msgstr ""
@@ -461,6 +522,9 @@ msgstr "Betalingskosten"
 msgid "Payment status"
 msgstr "Betalings status"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -527,6 +591,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -562,6 +629,9 @@ msgstr "Referentie"
 
 msgid "Relevance"
 msgstr "Relevantie"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "Reset"
@@ -631,6 +701,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "Sortering"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "Provincie / Staat"
@@ -716,6 +789,9 @@ msgstr "Drie maanden"
 
 msgid "Time frame"
 msgstr "Tijdslot"
+
+msgid "Title"
+msgstr "Titel"
 
 msgid "Toggle fullscreen"
 msgstr "Full screen activeren"

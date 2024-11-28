@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Роман Андрейчук, 2022\n"
 "Language-Team: Russian (http://app.transifex.com/aimeos/aimeos-core/language/ru/)\n"
@@ -87,12 +87,23 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s в %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -116,8 +127,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr ""
 
+msgid "Add"
+msgstr "Добавить"
+
 msgid "Add billing address"
 msgstr "Добавьте платежный адрес"
+
+msgid "Add delivery address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "Добавить в корзину"
@@ -144,6 +161,13 @@ msgstr "Ошибка в одной из частей адреса"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Ошибка в одной из частей адреса доставки"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "Назад"
@@ -195,8 +219,26 @@ msgstr "Категории"
 msgid "Change"
 msgstr "Изменить"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "Изменить оплату"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Характеристики"
@@ -236,6 +278,9 @@ msgid "Created"
 msgstr "Создано"
 
 msgid "Customer account"
+msgstr ""
+
+msgid "Decrease"
 msgstr ""
 
 msgid "Delete"
@@ -321,6 +366,15 @@ msgstr ""
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -345,6 +399,9 @@ msgstr "Вкл. %1$s%% НДС"
 
 msgid "Included rebates"
 msgstr "Включены скидки"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "Интервал"
@@ -379,6 +436,9 @@ msgstr "Недавно смотрели"
 msgid "Latest"
 msgstr "Конечный"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr "Вид списка"
 
@@ -390,6 +450,9 @@ msgstr ""
 
 msgid "Mobile number"
 msgstr ""
+
+msgid "More"
+msgstr "Еще"
 
 msgid "More reviews"
 msgstr "Больше отзывов"
@@ -462,6 +525,9 @@ msgstr "Издержки на оплату"
 msgid "Payment status"
 msgstr "Статус оплаты"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -528,6 +594,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -563,6 +632,9 @@ msgstr "Рекомендация"
 
 msgid "Relevance"
 msgstr "рейтингу"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "Сброс"
@@ -634,6 +706,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "Упорядочить по:"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "Область"
@@ -719,6 +794,9 @@ msgstr "Три месяца"
 
 msgid "Time frame"
 msgstr "Временные рамки"
+
+msgid "Title"
+msgstr "Титул"
 
 msgid "Toggle fullscreen"
 msgstr ""

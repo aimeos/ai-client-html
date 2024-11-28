@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Metal <meteoramic@yahoo.com>, 2015-2024\n"
 "Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
@@ -79,12 +79,21 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] "%1$s ürün "
+msgstr[1] "%1$s ürün"
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%2$s tarihinde %1$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr "(yeni pencerede açar)"
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -108,8 +117,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "Kurtarılamaz bir hata oluştu"
 
+msgid "Add"
+msgstr "Ekle"
+
 msgid "Add billing address"
 msgstr "Fatura adresi ekleyin"
+
+msgid "Add delivery address"
+msgstr "Teslimat adresi ekle"
 
 msgid "Add to basket"
 msgstr "Sepete Ekle"
@@ -136,6 +151,13 @@ msgstr "En az bir fatura adresi bölümü eksik veya geçersiz"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "En az bir teslimat adresi bölümü eksik veya geçersiz"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr "En az bir ödeme adresi kısmı eksik veya geçersiz"
+
+msgid "At least one product couldn't be added to the basket."
+msgstr "En az bir ürün sepete eklenemedi."
 
 msgid "Back"
 msgstr "Geri"
@@ -187,8 +209,26 @@ msgstr "Kategoriler"
 msgid "Change"
 msgstr "Düzenle"
 
+msgid "Change address"
+msgstr "Adresi değiştir"
+
+msgid "Change billing address"
+msgstr "Fatura adresini değiştir"
+
+msgid "Change coupons"
+msgstr "Kuponları değiştir"
+
+msgid "Change delivery"
+msgstr "Teslimatı değiştir"
+
+msgid "Change delivery address"
+msgstr "Teslimat adresini değiştir"
+
 msgid "Change payment"
 msgstr "Ödemeyi değiştir"
+
+msgid "Change products"
+msgstr "Ürünleri değiştir"
 
 msgid "Characteristics"
 msgstr "Teknik özellikler"
@@ -229,6 +269,9 @@ msgstr "Oluşturulma Tarihi"
 
 msgid "Customer account"
 msgstr "Müşteri hesabı"
+
+msgid "Decrease"
+msgstr "Azalt"
 
 msgid "Delete"
 msgstr "Sil"
@@ -313,6 +356,15 @@ msgstr "En yüksek fiyat"
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">Kullanım Şartları</a>'nı, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">Gizlilik Politikası</a>'nı ve <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">İptal/İade Politikası</a>'nı kabul ediyorum."
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -337,6 +389,9 @@ msgstr "%%%1$s KDV dahil"
 
 msgid "Included rebates"
 msgstr "Dahil indirimler"
+
+msgid "Increase"
+msgstr "Arttır"
 
 msgid "Interval"
 msgstr "Aralık"
@@ -371,6 +426,9 @@ msgstr "Son görüntülenenler"
 msgid "Latest"
 msgstr "En yeni"
 
+msgid "Less"
+msgstr "Daha az"
+
 msgid "List view"
 msgstr "Liste görünümü"
 
@@ -382,6 +440,9 @@ msgstr "Cep telefonu"
 
 msgid "Mobile number"
 msgstr "Cep telefonu numarası"
+
+msgid "More"
+msgstr "Daha fazla"
 
 msgid "More reviews"
 msgstr "Daha fazla yorum"
@@ -454,6 +515,9 @@ msgstr "Ödeme maliyetleri"
 msgid "Payment status"
 msgstr "Ödeme durumu"
 
+msgid "Percentage"
+msgstr "Yüzde"
+
 msgid "Pin product"
 msgstr "Ürünü sabitle"
 
@@ -520,6 +584,9 @@ msgstr "Ürün özellikleri"
 msgid "Product description"
 msgstr "Ürün açıklaması"
 
+msgid "Product downloads"
+msgstr "Ürün indirmeleri"
+
 msgid "Product filters"
 msgstr "Ürün filtreleri"
 
@@ -555,6 +622,9 @@ msgstr "Referans"
 
 msgid "Relevance"
 msgstr "İlgi"
+
+msgid "Remove"
+msgstr "Kaldır"
 
 msgid "Reset"
 msgstr "Sıfırla"
@@ -625,6 +695,9 @@ msgstr "Sırala"
 msgid "Sort by:"
 msgstr "Sırala"
 
+msgid "Stars"
+msgstr "Yıldızlar"
+
 msgid "State"
 msgstr "İl"
 
@@ -679,7 +752,7 @@ msgid "Telephone"
 msgstr "Telefon"
 
 msgid "Terms and conditions"
-msgstr "Hükümler ve koşullar"
+msgstr "Şartlar ve koşullar"
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
@@ -709,6 +782,9 @@ msgstr "Üç ay"
 
 msgid "Time frame"
 msgstr "Zaman aralığı"
+
+msgid "Title"
+msgstr "Ünvan"
 
 msgid "Toggle fullscreen"
 msgstr "Tam ekrana geç"
@@ -780,7 +856,7 @@ msgid "You can only watch up to %1$s products"
 msgstr "En fazla %1$s ürünü izleyebilirsiniz"
 
 msgid "You must log in first"
-msgstr "Öncelikle giriş yapmalısınız"
+msgstr "Öncelikle oturum açmalısınız"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Şimdi bir sonraki adıma yönlendirileceksiniz"
@@ -792,7 +868,7 @@ msgid "Your comment"
 msgstr "Yorumunuz"
 
 msgid "Your rating"
-msgstr "Ürüne puan verin"
+msgstr "Puanınız"
 
 msgid "Your reference"
 msgstr "Referansınız"

@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2024-10-01 14:57+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Jean-Marc Kutyla, 2023\n"
 "Language-Team: French (http://app.transifex.com/aimeos/aimeos-core/language/fr/)\n"
@@ -92,12 +92,22 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
+msgid "%1$s article"
+msgid_plural "%1$s articles"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s le %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
+
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -121,8 +131,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "Une erreur irrécupérable s'est produite"
 
+msgid "Add"
+msgstr "Ajouter"
+
 msgid "Add billing address"
 msgstr "Ajouter une adresse de facturation"
+
+msgid "Add delivery address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "Ajouter au panier"
@@ -149,6 +165,13 @@ msgstr "Au moins une partie de l'adresse de facturation est manquante ou invalid
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Au moins une partie de l'adresse de livraison est manquante ou invalide"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "Précédent"
@@ -200,8 +223,26 @@ msgstr "Catégories"
 msgid "Change"
 msgstr "Modifier"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "Changer de paiement"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Caractéristiques"
@@ -242,6 +283,9 @@ msgstr "Créé"
 
 msgid "Customer account"
 msgstr "Compte client"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "Supprimer"
@@ -326,6 +370,15 @@ msgstr "Prix le plus élevé"
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -350,6 +403,9 @@ msgstr "Incl. %1$s%% de TVA"
 
 msgid "Included rebates"
 msgstr "Promotions incluses"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "Intervalle"
@@ -384,6 +440,9 @@ msgstr "Derniers articles consultés"
 msgid "Latest"
 msgstr "Le plus récent"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr "Vue en liste"
 
@@ -395,6 +454,9 @@ msgstr "Mobile"
 
 msgid "Mobile number"
 msgstr "Numéro de portable"
+
+msgid "More"
+msgstr "Plus"
 
 msgid "More reviews"
 msgstr "Autres avis"
@@ -467,6 +529,9 @@ msgstr "Frais de paiement"
 msgid "Payment status"
 msgstr "Statut du paiement"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr "Epingler un produit"
 
@@ -533,6 +598,9 @@ msgstr "caractéristiques produits"
 msgid "Product description"
 msgstr "Description produit"
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr "Filtres produit"
 
@@ -568,6 +636,9 @@ msgstr "Référence"
 
 msgid "Relevance"
 msgstr "Pertinence"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "Remise à zéro"
@@ -638,6 +709,9 @@ msgstr "Trier par"
 
 msgid "Sort by:"
 msgstr "Trier par :"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "État"
@@ -723,6 +797,9 @@ msgstr "Trois mois"
 
 msgid "Time frame"
 msgstr "Plage de temps"
+
+msgid "Title"
+msgstr "Titre"
 
 msgid "Toggle fullscreen"
 msgstr "Passer en mode plein écran"
