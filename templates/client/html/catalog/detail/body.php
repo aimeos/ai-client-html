@@ -165,7 +165,7 @@ $propTypes = $this->get( 'detailPropertyTypes', [] );
 
 							<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
 
-								<div class="catalog-detail-basket-selection">
+								<div class="catalog-detail-basket-selection items-selection">
 
 									<?= $this->partial(
 										/** client/html/common/partials/selection
@@ -196,7 +196,7 @@ $propTypes = $this->get( 'detailPropertyTypes', [] );
 
 							<?php elseif( $this->detailProductItem->getType() === 'group' ) : ?>
 
-								<div class="catalog-detail-basket-selection">
+								<div class="catalog-detail-basket-selection items-group">
 
 									<?= $this->partial(
 										/** client/html/catalog/detail/partials/group
@@ -223,7 +223,7 @@ $propTypes = $this->get( 'detailPropertyTypes', [] );
 
 							<?php endif ?>
 
-							<div class="catalog-detail-basket-attribute">
+							<div class="catalog-detail-basket-attribute items-attribute">
 
 								<?= $this->partial(
 									/** client/html/common/partials/attribute
