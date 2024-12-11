@@ -153,6 +153,26 @@ AimeosCatalogDetail = {
 
 
 	/**
+	 * Check for variants in URL
+	 * Set the variant attributes and trigger select-dropdown´s to show the variant article
+	 */
+	selectVariant() {
+		const product = $('article.product');
+		const urlProductId = window.location.pathname.split('/').pop();
+    
+		if(product && product.data('varattributes')) {
+			$.each(product.data('varattributes'), function (productId, varAttrs) {
+				if(productId == urlProductId) {
+					$.each(product.data('varattributes'), function (key, val) {
+						$('#select-' + product.data('id') + '-' + key).val(val).trigger('change');
+					});
+				}
+			});
+		}
+	},
+
+
+	/**
 	 * Opens the lightbox with big images
 	 */
 	onOpenLightbox() {
