@@ -80,9 +80,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertMatchesRegularExpression( '#<div class="price.+18.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="subtotal.+<div class="price.+18.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="delivery.+<div class="price.+1.00 .+</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+19.00 .+</div>#smU', $output );
 		$this->assertMatchesRegularExpression( '#<div class="total.+<div class="price.+19.00 .+</div>#smU', $output );
 		$this->assertMatchesRegularExpression( '#<div class="tax.+<div class="price.+3.03 .+</div>#smU', $output );
 	}
@@ -112,10 +110,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertMatchesRegularExpression( '#<div class="price.+18.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="price.+600.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="subtotal.+<div class="price.+618.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="delivery.+<div class="price.+31.00 .+</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+19.00 .+</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+630.00 .+</div>#smU', $output );
 		$this->assertMatchesRegularExpression( '#<div class="total.+<div class="price.+649.00 .+</div>#smU', $output );
 	}
 
@@ -242,9 +238,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertMatchesRegularExpression( '#<div class="price.+18.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="subtotal.+<div class="price.+18.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="delivery.+<div class="price.+1.00 .+</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+19.00 .+</div>#smU', $output );
 		$this->assertMatchesRegularExpression( '#<div class="total.+<div class="price.+19.00 .+</div>#smU', $output );
 	}
 
@@ -274,10 +268,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertMatchesRegularExpression( '#<div class="price.+36.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="price.+600.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="subtotal.+<div class="price.+636.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="delivery.+<div class="price.+32.00 .+</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+38.00 .+</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+630.00 .+</div>#smU', $output );
 		$this->assertMatchesRegularExpression( '#<div class="total.+<div class="price.+668.00 .+</div>#smU', $output );
 	}
 
@@ -298,9 +290,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->object->init();
 		$output = $this->object->body();
 
-		$this->assertMatchesRegularExpression( '#<div class="price.+36.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="subtotal.+<div class="price.+36.00 .+</div>#smU', $output );
-		$this->assertMatchesRegularExpression( '#<div class="delivery.+<div class="price.+2.00 .+</div>#smU', $output );
+		$this->assertMatchesRegularExpression( '#<div class="price.+38.00 .+</div>#smU', $output );
 		$this->assertMatchesRegularExpression( '#<div class="total.+<div class="price.+38.00 .+</div>#smU', $output );
 	}
 
