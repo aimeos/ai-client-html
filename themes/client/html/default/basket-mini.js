@@ -50,7 +50,10 @@ AimeosBasketMini = {
 
 					$(".name", product).html(entry.attributes['order.product.name']);
 					$(".quantity", product).html(entry.attributes['order.product.quantity']);
-					$(".price", product).html(formatter.format(entry.attributes['order.product.price']));
+					$(".price", product).html(
+						formatter.format(Number(entry.attributes['order.product.price'])
+						+ Number(entry.attributes['order.product.costs']))
+					);
 
 					if(entry.attributes['order.product.flags']) {
 						$(".action .delete", product).addClass("hidden");
