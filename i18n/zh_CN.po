@@ -103,11 +103,6 @@ msgstr "%1$s %2$s 扣减"
 msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s ( %4$s%2$s%3$s )"
 
-#, fuzzy, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] "%1$d 产品"
-
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s 在 %2$s"
@@ -884,10 +879,10 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "YYYY-MM-DD HH:mm"
 
 msgid "You are here:"
 msgstr "您现在的位置："

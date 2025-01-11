@@ -1,31 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ko\n"
+"Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: ko\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] ""
+msgstr[0] "1$d 문서"
 
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
+msgstr[0] "1$d 리뷰"
 
 #, php-format
 msgid ""
@@ -42,7 +37,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
+""
 msgstr ""
+"%1$s\n"
+"2$s %3$s %4$s %5$s\n"
+"6$s %7$s\n"
+"%8$s\n"
+"9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #, php-format
 msgid ""
@@ -60,140 +70,151 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
+""
 msgstr ""
+"%1$s\n"
+"2$s %3$s %4$s %5$s\n"
+"6$s %7$s\n"
+"%8$s\n"
+"9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+""
 
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "1$s %2$s 할인"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
+msgstr "1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
-msgstr ""
+msgstr "1$s에서 %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr ""
+msgstr "1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(새 창에서 열기)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr ""
+msgstr "+ %1$s%% VAT"
 
 msgid "+1 123 456 7890"
-msgstr ""
+msgstr "+1 123 456 7890"
 
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "복구할 수 없는 오류가 발생했습니다."
 
 msgid "Add"
 msgstr "추가"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "청구서 수신 주소 추가"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "배송 주소 추가"
 
 msgid "Add to basket"
-msgstr ""
+msgstr "장바구니에 담기"
 
 msgid "Additional"
-msgstr ""
+msgstr "추가"
 
 msgid "Additional 2"
-msgstr ""
+msgstr "추가 2"
 
 msgid "Apply"
 msgstr "적용"
 
 msgid "Article"
-msgstr ""
+msgstr "기사"
 
 msgid "Article no."
-msgstr ""
+msgstr "기사 번호"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr ""
+msgstr "하나 이상의 청구 주소 부분이 누락되었거나 유효하지 않습니다."
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
-msgstr ""
+msgstr "하나 이상의 배송 주소 부분이 누락되었거나 유효하지 않습니다."
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "하나 이상의 결제 주소 부분이 누락되었거나 유효하지 않습니다."
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "하나 이상의 제품을 장바구니에 추가할 수 없습니다."
 
 msgid "Back"
-msgstr ""
+msgstr "뒤로"
 
 msgid "Basket"
 msgstr "바구니"
 
 msgid "Basket details"
-msgstr ""
+msgstr "바구니 세부 정보"
 
 msgid "Basket name"
-msgstr ""
+msgstr "바구니 이름"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "바구니 저장 성공"
 
 msgid "Billing address"
 msgstr "청구지"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "청구 주소 부분 \"%1$s\"가 잘못되었습니다."
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr ""
+msgstr "청구 주소 부분 \"%1$s\"가 누락되었습니다."
 
 msgid "Birthday"
 msgstr "생일"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "이동 경로 탐색"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "대량 주문"
 
 msgid "Bundled products"
-msgstr ""
+msgstr "번들 제품"
 
 msgid "Buy now"
-msgstr ""
+msgstr "지금 구매하기"
 
 msgid "Cancel"
 msgstr "취소"
@@ -202,41 +223,41 @@ msgid "Categories"
 msgstr "범주"
 
 msgid "Change"
-msgstr ""
+msgstr "변경"
 
 msgid "Change address"
-msgstr ""
+msgstr "주소 변경"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "청구서 수신 주소 변경"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "쿠폰 변경"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "배달 변경"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "배송 주소 변경"
 
 msgid "Change payment"
-msgstr ""
+msgstr "결제 변경"
 
 msgid "Change products"
-msgstr ""
+msgstr "제품 변경"
 
 msgid "Characteristics"
-msgstr ""
+msgstr "특성"
 
 msgid "Checkout"
-msgstr ""
+msgstr "결제"
 
 msgid "City"
 msgstr "도시"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr ""
+msgstr "\"%1$s\" 클래스를 찾을 수 없습니다."
 
 msgid "Close"
 msgstr "닫기"
@@ -245,34 +266,34 @@ msgid "Company"
 msgstr "회사"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "확인"
 
 msgid "Country"
 msgstr "국가"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "쿠폰 코드"
 
 msgid "Coupons"
-msgstr ""
+msgstr "쿠폰"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "나를 위한 고객 계정 만들기"
 
 msgid "Created"
 msgstr "생성됨"
 
 msgid "Customer account"
-msgstr ""
+msgstr "고객 계정"
 
 msgid "Decrease"
-msgstr ""
+msgstr "감소"
 
 msgid "Delete"
 msgstr "삭제"
 
 msgid "Delete item"
-msgstr ""
+msgstr "항목 삭제"
 
 msgid "Delivery"
 msgstr "배송"
@@ -282,48 +303,48 @@ msgstr "배송 주소"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "배송 주소가 성공적으로 삭제되었습니다."
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "배달 주소 부분 \"%1$s\"가 잘못되었습니다."
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
-msgstr ""
+msgstr "배달 주소 부분 \"%1$s\"가 누락되었습니다."
 
 msgid "Delivery within"
-msgstr ""
+msgstr "이내 배송"
 
 msgid "Description"
-msgstr ""
+msgstr "설명"
 
 msgid "Details"
-msgstr ""
+msgstr "세부 정보"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "주소 저장하지 않기"
 
 msgid "Downloads"
-msgstr ""
+msgstr "다운로드"
 
 msgid "E-Mail"
-msgstr ""
+msgstr "이메일"
 
 msgid "End date"
-msgstr ""
+msgstr "종료 날짜"
 
 msgid "Favorite products"
-msgstr ""
+msgstr "즐겨 찾는 제품"
 
 msgid "Fax"
-msgstr ""
+msgstr "팩스"
 
 msgid "Fields with an * are mandatory"
-msgstr ""
+msgstr "표시가 있는 필드는 필수 입력 사항입니다."
 
 msgid "Filter"
-msgstr ""
+msgstr "필터"
 
 msgid "First"
 msgstr "처음"
@@ -332,115 +353,104 @@ msgid "First name"
 msgstr "이름"
 
 msgid "Found products"
-msgstr ""
+msgstr "제품 찾기"
 
 msgid "GB999999973"
-msgstr ""
+msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "페이지로 이동"
 
 msgid "Grid view"
-msgstr ""
+msgstr "그리드 보기"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "최고 가격"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
-" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
-"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
-"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
-"policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"이용약관 (새 탭에서 열기)\">이용약관</a>, <a href=\"%2$s\" target=\"_blank\" title=\"개인정보처리방침 (새 탭에서 열기)\">개인정보처리방침</a> 및 <a href=\"%3$s\" target=\"_blank\" title=\"취소 정책 (새 탭에서 열기)\">취소 정책에 동의합니다</a>에 대해 동의합니다."
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
-"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
-"policy</a>"
-msgstr ""
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"이용약관\" alt=\"약관\">이용약관</a>, <a href=\"%2$s\" target=\"_blank\" title=\"개인정보처리방침\" alt=\"개인정보처리방침\">개인정보처리방침</a> 및 <a href=\"%3$s\" target=\"_blank\" title=\"취소정책\" alt=\"취소정책\">취소정책에 동의합니다</a>에 동의합니다."
 
 msgid "If back in stock"
-msgstr ""
+msgstr "재고가 있는 경우"
 
 msgid "If price decreases"
-msgstr ""
+msgstr "가격이 하락하는 경우"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "포함 %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "포함 %1$s%% 부가가치세"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "리베이트 포함"
 
 msgid "Increase"
-msgstr ""
+msgstr "증가"
 
 msgid "Interval"
 msgstr "간격"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr ""
+msgstr "클라이언트 이름 \"%1$s\"에 잘못된 문자가 있습니다."
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "잘못된 클래스 이름 \"%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr ""
+msgstr "잘못된 도메인 \"%1$s\""
 
 msgid "Invoice"
-msgstr ""
+msgstr "인보이스"
 
 msgid "Language"
 msgstr "언어"
 
 msgid "Last"
-msgstr ""
+msgstr "마지막"
 
 msgid "Last name"
 msgstr "성"
 
 msgid "Last seen"
-msgstr ""
+msgstr "마지막으로 본"
 
 msgid "Latest"
-msgstr ""
+msgstr "최신"
 
 msgid "Less"
-msgstr ""
+msgstr "Less"
 
 msgid "List view"
-msgstr ""
+msgstr "목록 보기"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "최저 가격"
 
 msgid "Mobile"
-msgstr ""
+msgstr "모바일"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "휴대폰 번호"
 
 msgid "More"
-msgstr ""
+msgstr "자세히 보기"
 
 msgid "More reviews"
-msgstr ""
+msgstr "더 많은 리뷰"
 
 msgid "Name"
 msgstr "이름"
@@ -449,233 +459,229 @@ msgid "New"
 msgstr "신규"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "새 배송 주소"
 
 msgid "Next"
-msgstr ""
+msgstr "다음"
 
 msgid "Next order"
-msgstr ""
+msgstr "다음 주문"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
-msgstr ""
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgstr "<span class=\"검색 문자열\">\"%1$s\"</span>에 대한 문서를 찾을 수 없습니다. 다른 키워드로 다시 시도하세요."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "세션에서 사용할 수 있는 주문 ID가 없습니다."
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "사용 가능한 보기 없음"
 
 msgid "One month"
-msgstr ""
+msgstr "한 달"
 
 msgid "One week"
-msgstr ""
+msgstr "1주일"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "하위 메뉴 열기"
 
 msgid "Order ID"
-msgstr ""
+msgstr "주문 ID"
 
 msgid "Order details"
-msgstr ""
+msgstr "주문 세부 정보"
 
 msgid "Order history"
-msgstr ""
+msgstr "주문 내역"
 
 msgid "Order status"
-msgstr ""
+msgstr "주문 상태"
 
 msgid "Other customers also bought"
-msgstr ""
+msgstr "다른 고객도 다음을 구매했습니다."
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr ""
+msgstr "2$d의 %1$d 페이지"
 
 msgid "Pay now"
-msgstr ""
+msgstr "지금 결제하기"
 
 msgid "Payment"
-msgstr ""
+msgstr "결제"
 
 msgid "Payment costs"
-msgstr ""
+msgstr "결제 비용"
 
 msgid "Payment status"
-msgstr ""
+msgstr "결제 상태"
 
 msgid "Percentage"
-msgstr ""
+msgstr "백분율"
 
 msgid "Pin product"
-msgstr ""
+msgstr "핀 제품"
 
 msgid "Pinned products"
-msgstr ""
+msgstr "고정된 제품"
 
 msgid "Please accept the terms and conditions"
-msgstr ""
+msgstr "이용 약관에 동의해 주세요."
 
 msgid "Please check your order"
-msgstr ""
+msgstr "주문을 확인해 주세요"
 
 msgid "Please choose your delivery method"
-msgstr ""
+msgstr "배송 방법을 선택하세요."
 
 msgid "Please choose your payment method"
-msgstr ""
+msgstr "결제 방법을 선택하세요."
 
 msgid "Please enter at least three characters"
-msgstr ""
+msgstr "세 글자 이상을 입력하세요."
 
 msgid "Please enter your payment details"
-msgstr ""
+msgstr "결제 정보를 입력하세요."
 
 msgid "Please select"
-msgstr ""
+msgstr "선택하세요"
 
 msgid "Postal code"
-msgstr ""
+msgstr "우편 번호"
 
 msgid "Previous"
-msgstr ""
+msgstr "이전 게시물"
 
 msgid "Price"
-msgstr ""
+msgstr "가격"
 
 msgid "Price filter"
-msgstr ""
+msgstr "가격 필터"
 
 msgid "Price range"
-msgstr ""
+msgstr "가격 범위"
 
 msgid "Proceed"
-msgstr ""
+msgstr "진행"
 
 msgid "Processing the payment failed"
-msgstr ""
+msgstr "결제 처리에 실패했습니다."
 
 msgid "Product"
-msgstr ""
+msgstr "제품"
 
 msgid "Product actions"
-msgstr ""
+msgstr "제품 작업"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "제품 속성"
 
 msgid "Product categories"
-msgstr ""
+msgstr "제품 카테고리"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "제품 특성"
 
 msgid "Product description"
-msgstr ""
+msgstr "제품 설명"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "제품 다운로드"
 
 msgid "Product filters"
-msgstr ""
+msgstr "제품 필터"
 
 msgid "Product image"
-msgstr ""
+msgstr "제품 이미지"
 
 msgid "Product information"
-msgstr ""
+msgstr "제품 정보"
 
 msgid "Product price"
-msgstr ""
+msgstr "제품 가격"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "제품 리뷰"
 
 msgid "Product search"
-msgstr ""
+msgstr "제품 검색"
 
 msgid "Products you might be also interested in"
-msgstr ""
+msgstr "관심을 가질 만한 제품"
 
 msgid "Qty"
-msgstr ""
+msgstr "수량"
 
 msgid "Quantity"
-msgstr ""
+msgstr "수량"
 
 msgid "Rating"
-msgstr ""
+msgstr "평가"
 
 msgid "Reference"
-msgstr ""
+msgstr "참조"
 
 msgid "Relevance"
-msgstr ""
+msgstr "관련성"
 
 msgid "Remove"
-msgstr ""
+msgstr "제거"
 
 msgid "Reset"
-msgstr ""
+msgstr "초기화"
 
 #, php-format
 msgid "Result for \"%1$s\""
-msgstr ""
+msgstr "\"%1$s\"에 대한 결과"
 
 msgid "Reviews"
-msgstr ""
+msgstr "리뷰"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU 또는 상품명"
 
 msgid "Sale"
-msgstr ""
+msgstr "판매"
 
 msgid "Salutation"
-msgstr ""
+msgstr "인사말"
 
 msgid "Save"
-msgstr ""
+msgstr "저장"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "저장된 바구니가 성공적으로 제거됨"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "저장된 장바구니"
 
 msgid "Search"
-msgstr ""
+msgstr "검색"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
-msgstr[0] ""
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgstr[0] "<span class=\"검색 문자열\">\"%1$s\"</span>(%2$d 문서)에 대한 검색 결과"
 
 msgid "Select country"
-msgstr ""
+msgstr "국가 선택"
 
 msgid "Select currency"
-msgstr ""
+msgstr "통화 선택"
 
 msgid "Select language"
-msgstr ""
+msgstr "언어 선택"
 
 msgid "Select salutation"
-msgstr ""
+msgstr "인사말 선택"
 
 msgid "Select state"
-msgstr ""
+msgstr "상태 선택"
 
 msgid "Share"
-msgstr ""
+msgstr "공유"
 
 msgid "Shipping"
 msgstr "운송"
@@ -684,278 +690,288 @@ msgid "Show"
 msgstr "보기"
 
 msgid "Sort by"
-msgstr ""
+msgstr "정렬 기준"
 
 msgid "Sort by:"
-msgstr ""
+msgstr "정렬 기준:"
 
 msgid "Stars"
-msgstr ""
+msgstr "별"
 
 msgid "State"
 msgstr "상태"
 
 msgid "Stock"
-msgstr ""
+msgstr "재고"
 
 #, php-format
 msgid "Stock: %1$s, %2$s"
-msgstr ""
+msgstr "재고: %1$s, %2$s"
 
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
-msgstr ""
+msgstr "재고: %1$s, %2$s, 다시 %3$s에 있음"
 
 msgid "Street"
-msgstr ""
+msgstr "거리"
 
 msgid "Sub-total"
 msgstr "중간 합계"
 
 msgid "Submit"
-msgstr ""
+msgstr "제출하기"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "구독 ID"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "구독 세부 정보"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "구독"
 
 msgid "Suggested products"
-msgstr ""
+msgstr "추천 제품"
 
 msgid "Sum"
 msgstr "합"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "공급업체 정보"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "공급업체 목록"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "공급업체"
 
 msgid "Take a look"
-msgstr ""
+msgstr "살펴보기"
 
 msgid "Telephone"
 msgstr "전화"
 
 msgid "Terms and conditions"
-msgstr ""
+msgstr "이용 약관"
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
 msgstr ""
+"주문해 주시고 결제를 승인해 주셔서 감사합니다.\n"
+"몇 분 이내에 주문 세부 정보가 포함된 이메일이 전송됩니다."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
 msgstr ""
+"주문해 주셔서 감사합니다.\n"
+"결제가 완료되었으며 주문 세부 정보가 포함된 이메일이 몇 분 이내에 발송될 것입니다."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "검토해 주셔서 감사합니다!"
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
 msgstr ""
+"주문이 취소되었습니다.\n"
+"주문을 다시 시도하시겠습니까?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
 msgstr ""
+"주문에 대한 결제 확인이 아직 보류 중입니다.\n"
+"결제가 승인되는 즉시 이메일을 보내드립니다."
 
 msgid "Three month"
-msgstr ""
+msgstr "3개월"
 
 msgid "Time frame"
-msgstr ""
+msgstr "시간 프레임"
 
 msgid "Title"
 msgstr "제목"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "전체 화면 토글"
 
 msgid "Total"
 msgstr "총"
 
 msgid "Try again"
-msgstr ""
+msgstr "다시 시도"
 
 msgid "Two weeks"
-msgstr ""
+msgstr "2주"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "계정을 만들 수 없습니다: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
+msgstr "고객 \"%1$s\"의 주소를 저장할 수 없습니다: %2$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
 msgstr ""
+"안타깝게도 주문 결제가 거부되었습니다.\n"
+"다시 시도하시겠습니까?"
 
 msgid "Update"
-msgstr ""
+msgstr "업데이트"
 
 msgid "Variant"
-msgstr ""
+msgstr "변형"
 
 msgid "Vat ID"
-msgstr ""
+msgstr "VAT ID"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "공급업체 응답"
 
 msgid "Watch"
-msgstr ""
+msgstr "시계"
 
 msgid "Watched products"
-msgstr ""
+msgstr "시청한 제품"
 
 msgid "Web site"
-msgstr ""
+msgstr "웹 사이트"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "제품에 대해 어떻게 생각하시나요?"
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "YYYY-MM-DD HH:mm"
 
 msgid "You are here:"
-msgstr ""
+msgstr "여기 있습니다:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "최대 %1$의 제품만 즐겨찾기로 저장할 수 있습니다."
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "최대 %1$의 제품만 볼 수 있습니다."
 
 msgid "You must log in first"
-msgstr ""
+msgstr "먼저 로그인해야 합니다."
 
 msgid "You will now be forwarded to the next step"
-msgstr ""
+msgstr "이제 다음 단계로 넘어갑니다."
 
 msgid "Your choice"
-msgstr ""
+msgstr "선택 사항"
 
 msgid "Your comment"
-msgstr ""
+msgstr "귀하의 코멘트"
 
 msgid "Your rating"
-msgstr ""
+msgstr "평가"
 
 msgid "Your reference"
-msgstr ""
+msgstr "참조"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "참조 번호"
 
 msgid "Your review"
-msgstr ""
+msgstr "귀하의 리뷰"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "확대/축소"
 
 #, php-format
 msgid "address"
-msgstr ""
+msgstr "주소"
 
 #, php-format
 msgid "delivery"
-msgstr ""
+msgstr "배달"
 
 msgid "favorite"
-msgstr ""
+msgstr "즐겨 찾기"
 
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "1$s에서"
 
 msgid "like billing address"
-msgstr ""
+msgstr "청구지 주소와 같은"
 
 msgid "new address"
-msgstr ""
+msgstr "새 주소"
 
 msgid "none"
-msgstr ""
+msgstr "없음"
 
 msgid "on request"
-msgstr ""
+msgstr "요청 시"
 
 #, php-format
 msgid "payment"
-msgstr ""
+msgstr "결제"
 
 msgid "pin"
-msgstr ""
+msgstr "핀"
 
 msgid "price:default"
-msgstr ""
+msgstr "가격:기본값"
 
 #, php-format
 msgid "process"
-msgstr ""
+msgstr "프로세스"
 
 msgid "stock-high"
-msgstr ""
+msgstr "주식 최고"
 
 msgid "stock-low"
-msgstr ""
+msgstr "재고 부족"
 
 msgid "stock-out"
-msgstr ""
+msgstr "재고 부족"
 
 msgid "stock-unlimited"
-msgstr ""
+msgstr "재고 무제한"
 
 #, php-format
 msgid "summary"
-msgstr ""
+msgstr "요약"
 
 msgid "watch"
-msgstr ""
+msgstr "시계"
 
 msgid "▲ Name"
-msgstr ""
+msgstr "이름"
 
 msgid "▲ Price"
-msgstr ""
+msgstr "가격"
 
 msgid "▶"
-msgstr ""
+msgstr "▶"
 
 msgid "▶▶"
-msgstr ""
+msgstr "▶▶"
 
 msgid "▼ Name"
-msgstr ""
+msgstr "이름 ▼ 이름"
 
 msgid "▼ Price"
-msgstr ""
+msgstr "가격 ▼ 가격"
 
 msgid "◀"
-msgstr ""
+msgstr "◀"
 
 msgid "◀◀"
-msgstr ""
+msgstr "◀◀"

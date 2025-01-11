@@ -1,28 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# Dávid Siklaky <siklaky.david@gmail.com>, 2016
-# Dávid Siklaky <siklaky.david@gmail.com>, 2016
-# nzed <nemesreviz@gmail.com>, 2021-2022
-# Nóra Antal <nora1984antal@gmail.com>, 2016
-# nzed <nemesreviz@gmail.com>, 2021
-# Patrik Szakos <szakos0208@gmail.com>, 2021
-# Péter Kozma <kopegrafika@gmail.com>, 2016
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: hu\n"
+"Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
+"Last-Translator: nzed <nemesreviz@gmail.com>, 2021-2022\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: nzed <nemesreviz@gmail.com>, 2021-2022\n"
-"Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
 msgid "%1$d article"
@@ -51,7 +39,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #, php-format
 msgid ""
@@ -69,7 +72,23 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
+""
 msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+""
 
 #, php-format
 msgid "%1$s %2$s"
@@ -81,13 +100,7 @@ msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -98,11 +111,11 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s %3$s + %2$s %3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(új ablakban nyílik meg)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -129,7 +142,7 @@ msgid "Add billing address"
 msgstr "Számlázási cím hozzáadása"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Szállítási cím hozzáadása"
 
 msgid "Add to basket"
 msgstr "Kosárba"
@@ -159,10 +172,10 @@ msgstr "Legalább egy szállítási cím rész hiányzik vagy érvénytelen"
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Legalább egy fizetési címrész hiányzik vagy érvénytelen"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Legalább egy terméket nem lehetett a kosárba tenni."
 
 msgid "Back"
 msgstr "Vissza"
@@ -171,13 +184,13 @@ msgid "Basket"
 msgstr "Kosár"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Kosár részletek"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Kosár neve"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Kosár sikeresen mentve"
 
 msgid "Billing address"
 msgstr "Számlázási cím"
@@ -194,7 +207,7 @@ msgid "Birthday"
 msgstr "Születésnap"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Morzsa navigáció"
 
 msgid "Bulk order"
 msgstr "Tömeges megrendelés"
@@ -215,25 +228,25 @@ msgid "Change"
 msgstr "Módosítás"
 
 msgid "Change address"
-msgstr ""
+msgstr "Címváltoztatás"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Számlázási cím módosítása"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Kuponok váltása"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Változás a szállításban"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Szállítási cím módosítása"
 
 msgid "Change payment"
 msgstr "Fizetés módosítás"
 
 msgid "Change products"
-msgstr ""
+msgstr "Termékváltás"
 
 msgid "Characteristics"
 msgstr "Jellemzők"
@@ -276,7 +289,7 @@ msgid "Customer account"
 msgstr "Ügyfél fiók"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Csökkentés"
 
 msgid "Delete"
 msgstr "Törlés"
@@ -342,13 +355,13 @@ msgid "First name"
 msgstr "Keresztnév"
 
 msgid "Found products"
-msgstr ""
+msgstr "Talált termékek"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Tovább az oldalra"
 
 msgid "Grid view"
 msgstr "Rácsnézet"
@@ -360,22 +373,11 @@ msgid "Highest price"
 msgstr "Legmagasabb ár"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
-" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
-"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
-"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
-"policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgstr "Elfogadom a <a href=\"%1$s\" target=\"_blank\" title=\"általános szerződési feltételek (új lapon nyílik meg)\">általános szerződési feltételeket</a>, <a href=\"%2$s\" target=\"_blank\" title=\"adatvédelmi szabályzat (új lapon nyílik meg)\">Adatvédelmi szabályzat</a> és <a href=\"%3$s\" target=\"_blank\" title=\"lemondási szabályzat (új lapon nyílik meg)\">lemondási szabályzat</a>."
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
-"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
-"policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
 msgstr "Elfogadom a <a href=\"%1$s\" target=\"_blank\" title=\"felhasználási feltételek\" alt=\"felhasználási feltételek\">felhasználási feltételeket</a>, <a href=\"%2$s\" target=\"_blank\" title=\"adatkezelési alapelvek\" alt=\"adatkezelési alapelvek\">adatkezelési alapelveket</a> és a <a href=\"%3$s\" target=\"_blank\" title=\"lemondási alapelvek\" alt=\"lemondási alapelvek\">lemondási alapelveket</a>"
 
 msgid "If back in stock"
@@ -396,7 +398,7 @@ msgid "Included rebates"
 msgstr "Tartalmazza a kedvezményeket"
 
 msgid "Increase"
-msgstr ""
+msgstr "Növelje a  címet."
 
 msgid "Interval"
 msgstr "Időszak"
@@ -432,7 +434,7 @@ msgid "Latest"
 msgstr "Legújabb"
 
 msgid "Less"
-msgstr ""
+msgstr "Kevesebb"
 
 msgid "List view"
 msgstr "Soronkénti nézet"
@@ -441,10 +443,10 @@ msgid "Lowest price"
 msgstr "Legalacsonyabb ár"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Mobilszám"
 
 msgid "More"
 msgstr "Több"
@@ -468,9 +470,7 @@ msgid "Next order"
 msgstr "Következő rendelés"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "Nincs találtat a következő kulcsszóra: <span class=\"searchstring\">\"%1$s\"</span>. Kérjük, próbálkozzon egy másik kulcsszóval."
 
 msgid "No order ID available in session"
@@ -521,7 +521,7 @@ msgid "Payment status"
 msgstr "Fizetési státusz"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Százalékos arány"
 
 msgid "Pin product"
 msgstr "Pin termék"
@@ -560,7 +560,7 @@ msgid "Price"
 msgstr "Ár"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Árszűrő"
 
 msgid "Price range"
 msgstr "Árkategória"
@@ -575,40 +575,40 @@ msgid "Product"
 msgstr "Termék"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Termék akciók"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Termékjellemzők"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Termékkategóriák"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "A termék jellemzői"
 
 msgid "Product description"
-msgstr ""
+msgstr "Termékleírás"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Termék letöltések"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Termékszűrők"
 
 msgid "Product image"
 msgstr "A termék képe"
 
 msgid "Product information"
-msgstr ""
+msgstr "Termékinformáció"
 
 msgid "Product price"
 msgstr "Termék ár"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Termékértékelések"
 
 msgid "Product search"
-msgstr ""
+msgstr "Termék keresés"
 
 msgid "Products you might be also interested in"
 msgstr "Termékek, melyek iránt még érdeklődhet"
@@ -629,7 +629,7 @@ msgid "Relevance"
 msgstr "Fontosság"
 
 msgid "Remove"
-msgstr ""
+msgstr "Távolítsa el a"
 
 msgid "Reset"
 msgstr "Visszaállítás"
@@ -654,19 +654,17 @@ msgid "Save"
 msgstr "Mentés"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Mentett kosár sikeresen eltávolítva"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Mentett kosarak"
 
 msgid "Search"
 msgstr "Keresés"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "Találat a következő keresési kifejezésre  <span class=\"searchstring\">\"%1$s\"</span> (%2$d cikk)"
 msgstr[1] "Találatok a következő keresési kifejezésre: <span class=\"searchstring\">\"%1$s\"</span> (%2$d cikk)"
 
@@ -695,13 +693,13 @@ msgid "Show"
 msgstr "Mutat"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Rendezés"
 
 msgid "Sort by:"
 msgstr "Rendezés"
 
 msgid "Stars"
-msgstr ""
+msgstr "Csillagok"
 
 msgid "State"
 msgstr "Állam"
@@ -745,7 +743,7 @@ msgid "Supplier information"
 msgstr "Szállítói információk"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Beszállítók listája"
 
 msgid "Suppliers"
 msgstr "Szállítók"
@@ -767,7 +765,9 @@ msgstr "Köszönjük megrendelését és a befizetés hitelesítését, Hamarosa
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "köszönjük megrendelését! \nMegkaptuk befizetését, és hamarosan küldünk egy e-mailt a megrendelés részleteiről."
+msgstr ""
+"köszönjük megrendelését! \n"
+"Megkaptuk befizetését, és hamarosan küldünk egy e-mailt a megrendelés részleteiről."
 
 msgid "Thank you for your review!"
 msgstr "Köszönjük értékelését!"
@@ -861,7 +861,7 @@ msgid "You can only watch up to %1$s products"
 msgstr "Legfeljebb %1$s terméket követhet"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Először be kell jelentkeznie"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Most már jöhet a következő lépés"
@@ -922,7 +922,7 @@ msgid "pin"
 msgstr "kitűzés"
 
 msgid "price:default"
-msgstr ""
+msgstr "ár:alapértelmezett"
 
 #, php-format
 msgid "process"

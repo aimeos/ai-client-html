@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Ayshe Sammiyeva, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-01-10 19:07+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Ayshe Sammiyeva, 2023\n"
 "Language-Team: Turkmen (http://app.transifex.com/aimeos/aimeos-core/language/tk/)\n"
+"Language: tk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tk\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
@@ -45,7 +45,20 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+msgstr ""
+"%1$s\n"
+"%2$s%3$s%4$s%5$s\n"
+"%6$s%7$s\n"
+"%8$s\n"
+"%9$s%10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
 
 #, php-format
 msgid ""
@@ -76,12 +89,6 @@ msgstr "%1$s %2$s arzanladyş"
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -354,22 +361,11 @@ msgid "Highest price"
 msgstr "Iň ýokary baha"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
-" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
-"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
-"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
-"policy (opens in new tab)\">cancellation policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
 msgstr ""
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
-"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
-"policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
 msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">Şertleri</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">gizlinlik ýörelgelerini</a> we <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">ýatyryş syýasatyny</a> kabul edýärin"
 
 msgid "If back in stock"
@@ -462,9 +458,7 @@ msgid "Next order"
 msgstr "Indiki sargyt"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "<span class=\"searchstring\">\"%1$s\"</span> üçin haryt tapylmady Başga bir açar söz bilen gaýtadan synanyşmagyňyzy haýyş edýäris."
 
 msgid "No order ID available in session"
@@ -658,9 +652,7 @@ msgstr "Gözlemek"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "<span class=\"searchstring\">\"%1$s\"</span> üçin gözleg netijesi (%2$d harytlar)"
 msgstr[1] "<span class=\"searchstring\">\"%1$s\"</span> üçin gözlegiň netijesi (%2$d harytlar)"
 
@@ -756,12 +748,16 @@ msgstr "Şertler"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Sargydyňyz we tölegiňize rugsat bereniňiz üçin sag boluň.\nSargyt jikme-jiklikleri bolan e-poçta ýakyn birnäçe minutyň içinde size iberiler."
+msgstr ""
+"Sargydyňyz we tölegiňize rugsat bereniňiz üçin sag boluň.\n"
+"Sargyt jikme-jiklikleri bolan e-poçta ýakyn birnäçe minutyň içinde size iberiler."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Sargyt üçin sag boluň.\nTölegiňizi aldyk we sargyt jikme-jiklikleri bilen e-poçta ýakyn birnäçe minutda size iberiler."
+msgstr ""
+"Sargyt üçin sag boluň.\n"
+"Tölegiňizi aldyk we sargyt jikme-jiklikleri bilen e-poçta ýakyn birnäçe minutda size iberiler."
 
 msgid "Thank you for your review!"
 msgstr "Syn edeniňiz üçin sag boluň!"
@@ -769,12 +765,16 @@ msgstr "Syn edeniňiz üçin sag boluň!"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr "Sargyt ýatyryldy.\nSargydyňyzy täzeden synap görmek isleýärsiňizmi?"
+msgstr ""
+"Sargyt ýatyryldy.\n"
+"Sargydyňyzy täzeden synap görmek isleýärsiňizmi?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "Sargydyňyz üçin töleg tassyklamasy henizem garaşylýar.\nTöleg ygtyýar berlen badyna e-poçta alarsyňyz."
+msgstr ""
+"Sargydyňyz üçin töleg tassyklamasy henizem garaşylýar.\n"
+"Töleg ygtyýar berlen badyna e-poçta alarsyňyz."
 
 msgid "Three month"
 msgstr "Üç aý"
@@ -808,7 +808,9 @@ msgstr "Müşderi \"%1$s\" üçin salgy ýazdyryp bolmaýar: %2$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr "Gynansagam, sargydyňyz üçin töleg ret edildi.\nGaýtadan synanyşmak isleýärsiňizmi?"
+msgstr ""
+"Gynansagam, sargydyňyz üçin töleg ret edildi.\n"
+"Gaýtadan synanyşmak isleýärsiňizmi?"
 
 msgid "Update"
 msgstr "Täzelemek"

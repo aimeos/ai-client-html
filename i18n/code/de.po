@@ -1,103 +1,36 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# 
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Aimeos, 2015-2019,2021
-# nsendetzky, 2013
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: de\n"
+"Language-Team: German (http://app.transifex.com/aimeos/aimeos-core/language/de/)\n"
+"Last-Translator: nsendetzky, 2013\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: nsendetzky, 2013\n"
-"Language-Team: German (http://app.transifex.com/aimeos/aimeos-core/language/de/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. Tax name
-msgid "tax"
-msgstr "USt."
-
-#. PST tax name
-msgid "taxpst"
-msgstr "PST"
-
-#. GST tax name
-msgid "taxgst"
-msgstr "GST"
-
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr " "
-
-#. Favorite action
-msgid "favorite"
-msgstr "Als Favorit speichern"
-
-#. Pin action
-msgid "pin"
-msgstr "Merken"
-
-#. Watch action
-msgid "watch"
-msgstr "Beobachten"
-
-#. Product attribute
-msgid "size"
-msgstr "Größe"
-
-#. Product attribute
-msgid "length"
-msgstr "Länge"
-
-#. Product attribute
-msgid "width"
-msgstr "Weite"
 
 #. Product attribute
 msgid "color"
 msgstr "Farbe"
 
-#. Product attribute
-msgid "option"
-msgstr "Option"
+#. Pick-up date
+msgid "date.value"
+msgstr "Abholdatum"
 
-#. Product property package-length
-msgid "package-length"
-msgstr "Paketlänge"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "Paketbreite"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "Pakethöhe"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "Paketgewicht"
-
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "Kontoinhaber"
+#. Delivery type
+msgid "delivery.type"
+msgstr "Versandart"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
 msgstr "IBAN (Kontonummer)"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "Kontoinhaber"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -107,13 +40,33 @@ msgstr "BIC (Bankleitzahl)"
 msgid "directdebit.bankname"
 msgstr "Name der Bank"
 
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Vorname"
+#. Favorite action
+msgid "favorite"
+msgstr "Als Favorit speichern"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Nachname"
+#. Product attribute
+msgid "length"
+msgstr "Länge"
+
+#. Product attribute
+msgid "option"
+msgstr "Option"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "Pakethöhe"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "Paketlänge"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "Paketgewicht"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "Paketbreite"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -124,6 +77,10 @@ msgid "payment.cvv"
 msgstr "Sicherheitscode"
 
 #. Omnipay service provider
+msgid "payment.expiry"
+msgstr "Gültig bis (MMJJ)"
+
+#. Omnipay service provider
 msgid "payment.expirymonth"
 msgstr "Ablaufmonat"
 
@@ -132,25 +89,57 @@ msgid "payment.expiryyear"
 msgstr "Ablaufjahr"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr "Gültig bis (MMJJ)"
+msgid "payment.firstname"
+msgstr "Vorname"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "Abholdatum"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Nachname"
 
-#. Pick-up time
-msgid "time.hourminute"
-msgstr "Abholzeit"
+#. Pin action
+msgid "pin"
+msgstr "Merken"
 
-#. Pick-up location
-msgid "supplier.code"
-msgstr "Abholort"
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
+msgstr "Größe"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr " "
 
 #. Pick-up location
 msgid "supplier.address"
 msgstr "Abholort"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr "Versandart"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Abholort"
+
+#. Tax name
+msgid "tax"
+msgstr "USt."
+
+#. GST tax name
+msgid "taxgst"
+msgstr "GST"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "Abholzeit"
+
+#. Watch action
+msgid "watch"
+msgstr "Beobachten"
+
+#. Product attribute
+msgid "width"
+msgstr "Weite"

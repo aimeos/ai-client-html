@@ -1,102 +1,36 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# 
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Martin Vyšohlíd <vysohlidm@gmail.com>, 2016
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: cs\n"
+"Language-Team: Czech (http://app.transifex.com/aimeos/aimeos-core/language/cs/)\n"
+"Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>, 2016\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>, 2016\n"
-"Language-Team: Czech (http://app.transifex.com/aimeos/aimeos-core/language/cs/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
-
-#. Tax name
-msgid "tax"
-msgstr ""
-
-#. PST tax name
-msgid "taxpst"
-msgstr ""
-
-#. GST tax name
-msgid "taxgst"
-msgstr ""
-
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr ""
-
-#. Favorite action
-msgid "favorite"
-msgstr "oblíbené"
-
-#. Pin action
-msgid "pin"
-msgstr "připnout"
-
-#. Watch action
-msgid "watch"
-msgstr "sledovat"
-
-#. Product attribute
-msgid "size"
-msgstr "Velikost"
-
-#. Product attribute
-msgid "length"
-msgstr "Délka"
-
-#. Product attribute
-msgid "width"
-msgstr "Šířka"
 
 #. Product attribute
 msgid "color"
 msgstr "Barva"
 
-#. Product attribute
-msgid "option"
-msgstr "Možnost"
+#. Pick-up date
+msgid "date.value"
+msgstr "date.value"
 
-#. Product property package-length
-msgid "package-length"
-msgstr "balík-délka"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "balík-šířka"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "balík-výška"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "balík-hmotnost"
-
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "Vlastník účtu"
+#. Delivery type
+msgid "delivery.type"
+msgstr "delivery.type"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
 msgstr "Číslo účtu"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "Vlastník účtu"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -106,13 +40,33 @@ msgstr "Kód banky"
 msgid "directdebit.bankname"
 msgstr "Název banky"
 
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Křestní jméno"
+#. Favorite action
+msgid "favorite"
+msgstr "oblíbené"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Příjmení"
+#. Product attribute
+msgid "length"
+msgstr "Délka"
+
+#. Product attribute
+msgid "option"
+msgstr "Možnost"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "balík-výška"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "balík-délka"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "balík-hmotnost"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "balík-šířka"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -120,7 +74,11 @@ msgstr "Číslo kreditní karty"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "payment.cvv"
+
+#. Omnipay service provider
+msgid "payment.expiry"
+msgstr "payment.expiry"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -131,25 +89,57 @@ msgid "payment.expiryyear"
 msgstr "Rok vypršení"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr ""
+msgid "payment.firstname"
+msgstr "Křestní jméno"
 
-#. Pick-up date
-msgid "date.value"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Příjmení"
 
-#. Pick-up time
-msgid "time.hourminute"
-msgstr ""
+#. Pin action
+msgid "pin"
+msgstr "připnout"
 
-#. Pick-up location
-msgid "supplier.code"
-msgstr ""
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
+msgstr "Velikost"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr "stocktype:default"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "supplier.address"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr ""
+#. Pick-up location
+msgid "supplier.code"
+msgstr "supplier.code"
+
+#. Tax name
+msgid "tax"
+msgstr "daň"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "taxgst"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "taxpst"
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "time.hourminute"
+
+#. Watch action
+msgid "watch"
+msgstr "sledovat"
+
+#. Product attribute
+msgid "width"
+msgstr "Šířka"

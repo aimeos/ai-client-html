@@ -101,12 +101,6 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-
-#, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
@@ -849,10 +843,10 @@ msgid "Y-m-d"
 msgstr "m/d/Y"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "YYYY-MM-DD HH:mm"
 
 msgid "You are here:"
 msgstr ""

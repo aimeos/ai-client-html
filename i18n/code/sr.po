@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
-# 
+#
+#
 # Translators:
 # Translators:
 # Translators:
@@ -17,87 +17,31 @@ msgstr ""
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
 "Last-Translator: Mario Domonji <mario.mk.gromovi@gmail.com>, 2015\n"
 "Language-Team: Serbian (http://app.transifex.com/aimeos/aimeos-core/language/sr/)\n"
+"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#. Tax name
-msgid "tax"
-msgstr ""
-
-#. PST tax name
-msgid "taxpst"
-msgstr ""
-
-#. GST tax name
-msgid "taxgst"
-msgstr ""
-
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr ""
-
-#. Favorite action
-msgid "favorite"
-msgstr "omiljen"
-
-#. Pin action
-msgid "pin"
-msgstr "pin"
-
-#. Watch action
-msgid "watch"
-msgstr "gledanje"
-
-#. Product attribute
-msgid "size"
-msgstr "Veličina"
-
-#. Product attribute
-msgid "length"
-msgstr "Dužina"
-
-#. Product attribute
-msgid "width"
-msgstr "Širina"
 
 #. Product attribute
 msgid "color"
 msgstr "boja"
 
-#. Product attribute
-msgid "option"
-msgstr "Opcija"
-
-#. Product property package-length
-msgid "package-length"
+#. Pick-up date
+msgid "date.value"
 msgstr ""
 
-#. Product property package-width
-msgid "package-width"
+#. Delivery type
+msgid "delivery.type"
 msgstr ""
-
-#. Product property package-height
-msgid "package-height"
-msgstr ""
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr ""
-
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "vlasnik računa"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
 msgstr "broj računa"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "vlasnik računa"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -107,13 +51,33 @@ msgstr "broj banke"
 msgid "directdebit.bankname"
 msgstr "ime banke"
 
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Ime"
+#. Favorite action
+msgid "favorite"
+msgstr "omiljen"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Prezime"
+#. Product attribute
+msgid "length"
+msgstr "Dužina"
+
+#. Product attribute
+msgid "option"
+msgstr "Opcija"
+
+#. Product property package-height
+msgid "package-height"
+msgstr ""
+
+#. Product property package-length
+msgid "package-length"
+msgstr ""
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr ""
+
+#. Product property package-width
+msgid "package-width"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -121,6 +85,10 @@ msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cvv"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.expiry"
 msgstr ""
 
 #. Omnipay service provider
@@ -132,25 +100,57 @@ msgid "payment.expiryyear"
 msgstr ""
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr ""
+msgid "payment.firstname"
+msgstr "Ime"
 
-#. Pick-up date
-msgid "date.value"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Prezime"
 
-#. Pick-up time
-msgid "time.hourminute"
-msgstr ""
+#. Pin action
+msgid "pin"
+msgstr "pin"
 
-#. Pick-up location
-msgid "supplier.code"
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
+msgstr "Veličina"
+
+#. Stock type
+msgid "stocktype:default"
 msgstr ""
 
 #. Pick-up location
 msgid "supplier.address"
 msgstr ""
 
-#. Delivery type
-msgid "delivery.type"
+#. Pick-up location
+msgid "supplier.code"
 msgstr ""
+
+#. Tax name
+msgid "tax"
+msgstr ""
+
+#. GST tax name
+msgid "taxgst"
+msgstr ""
+
+#. PST tax name
+msgid "taxpst"
+msgstr ""
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr ""
+
+#. Watch action
+msgid "watch"
+msgstr "gledanje"
+
+#. Product attribute
+msgid "width"
+msgstr "Širina"

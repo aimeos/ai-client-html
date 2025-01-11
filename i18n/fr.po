@@ -1,34 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# a270031086f2a0d3514bc0cb507b48f6, 2019
-# Aimeos, 2017
-# Aimeos, 2017,2023
-# Doryan R, 2019
-# a270031086f2a0d3514bc0cb507b48f6, 2019
-# Jean-Baptiste Joulé <joule_jb@yahoo.fr>, 2019
-# Jean-Marc Kutyla, 2023
-# kevin teguia <teguiakevin@gmail.com>, 2018
-# Laurent Georget <laurent@lgeorget.eu>, 2020-2021
-# Medzo Zeng <medzozeng@hotmail.fr>, 2019
-# nsendetzky, 2014
-# Sacha Zacaropoulos <sacha@unimi.fr>, 2019
-# Six byNine <wwinx@hotmail.com>, 2018
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+"Language-Team: French (http://app.transifex.com/aimeos/aimeos-core/language/fr/)\n"
+"Last-Translator: Jean-Marc Kutyla, 2023\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Jean-Marc Kutyla, 2023\n"
-"Language-Team: French (http://app.transifex.com/aimeos/aimeos-core/language/fr/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #, php-format
 msgid "%1$d article"
@@ -59,7 +41,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #, php-format
 msgid ""
@@ -77,7 +74,23 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+""
 
 #, php-format
 msgid "%1$s %2$s"
@@ -92,13 +105,6 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s le %2$s"
 
@@ -107,7 +113,7 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(s'ouvre dans une nouvelle fenêtre)"
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -138,7 +144,7 @@ msgid "Add billing address"
 msgstr "Ajouter une adresse de facturation"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Ajouter une adresse de livraison"
 
 msgid "Add to basket"
 msgstr "Ajouter au panier"
@@ -168,10 +174,10 @@ msgstr "Au moins une partie de l'adresse de livraison est manquante ou invalide"
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Au moins une partie de l'adresse de paiement est manquante ou invalide"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Au moins un produit n'a pas pu être ajouté au panier."
 
 msgid "Back"
 msgstr "Précédent"
@@ -224,25 +230,25 @@ msgid "Change"
 msgstr "Modifier"
 
 msgid "Change address"
-msgstr ""
+msgstr "Changement d'adresse"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Changement d'adresse de facturation"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Changer les coupons"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Modifier la livraison"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Changement d'adresse de livraison"
 
 msgid "Change payment"
 msgstr "Changer de paiement"
 
 msgid "Change products"
-msgstr ""
+msgstr "Modifier les produits"
 
 msgid "Characteristics"
 msgstr "Caractéristiques"
@@ -285,7 +291,7 @@ msgid "Customer account"
 msgstr "Compte client"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Diminution"
 
 msgid "Delete"
 msgstr "Supprimer"
@@ -369,22 +375,11 @@ msgid "Highest price"
 msgstr "Prix le plus élevé"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
-" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
-"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
-"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
-"policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgstr "J'accepte les <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">termes et conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> et <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>."
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
-"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
-"policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
 msgstr "J'accepte les <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">termes et conditions</a>,  la <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">politique de confidentialité</a> et les <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">conditions de rétractation</a>"
 
 msgid "If back in stock"
@@ -405,7 +400,7 @@ msgid "Included rebates"
 msgstr "Promotions incluses"
 
 msgid "Increase"
-msgstr ""
+msgstr "Augmentation"
 
 msgid "Interval"
 msgstr "Intervalle"
@@ -441,7 +436,7 @@ msgid "Latest"
 msgstr "Le plus récent"
 
 msgid "Less"
-msgstr ""
+msgstr "Moins"
 
 msgid "List view"
 msgstr "Vue en liste"
@@ -477,9 +472,7 @@ msgid "Next order"
 msgstr "Commande suivante"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "Pas d'article trouvé pour <span class=\"searchstring\">\"%1$s\"</span>. Merci d'essayer à nouveau avec un autre mot-clé."
 
 msgid "No order ID available in session"
@@ -530,7 +523,7 @@ msgid "Payment status"
 msgstr "Statut du paiement"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Pourcentage"
 
 msgid "Pin product"
 msgstr "Epingler un produit"
@@ -599,7 +592,7 @@ msgid "Product description"
 msgstr "Description produit"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Téléchargements de produits"
 
 msgid "Product filters"
 msgstr "Filtres produit"
@@ -638,7 +631,7 @@ msgid "Relevance"
 msgstr "Pertinence"
 
 msgid "Remove"
-msgstr ""
+msgstr "Retirer"
 
 msgid "Reset"
 msgstr "Remise à zéro"
@@ -673,9 +666,7 @@ msgstr "Recherche"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "Résultat de la recherche pour <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[1] "Résultat de la recherche pour <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[2] "Résultat de la recherche pour <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
@@ -711,7 +702,7 @@ msgid "Sort by:"
 msgstr "Trier par :"
 
 msgid "Stars"
-msgstr ""
+msgstr "Étoiles"
 
 msgid "State"
 msgstr "État"
@@ -785,12 +776,16 @@ msgstr "Merci d'avoir partagé votre avis !"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr "Votre commande a été annulée.\nSouhaitez-vous réessayer?"
+msgstr ""
+"Votre commande a été annulée.\n"
+"Souhaitez-vous réessayer?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "La confirmation du paiement de votre commande est toujours en attente.\n Vous recevrez un e-mail dès que le paiement aura été autorisé."
+msgstr ""
+"La confirmation du paiement de votre commande est toujours en attente.\n"
+" Vous recevrez un e-mail dès que le paiement aura été autorisé."
 
 msgid "Three month"
 msgstr "Trois mois"

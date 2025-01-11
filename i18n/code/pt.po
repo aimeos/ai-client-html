@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
-# 
+#
+#
 # Translators:
 # Translators:
 # Translators:
@@ -18,87 +18,31 @@ msgstr ""
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
 "Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
 "Language-Team: Portuguese (http://app.transifex.com/aimeos/aimeos-core/language/pt/)\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
-
-#. Tax name
-msgid "tax"
-msgstr "imposto"
-
-#. PST tax name
-msgid "taxpst"
-msgstr ""
-
-#. GST tax name
-msgid "taxgst"
-msgstr ""
-
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr "Aplicar"
-
-#. Favorite action
-msgid "favorite"
-msgstr "adicionar aos favoritos"
-
-#. Pin action
-msgid "pin"
-msgstr "marcar"
-
-#. Watch action
-msgid "watch"
-msgstr "acompanhar"
-
-#. Product attribute
-msgid "size"
-msgstr "Tamanho"
-
-#. Product attribute
-msgid "length"
-msgstr "Comprimento"
-
-#. Product attribute
-msgid "width"
-msgstr "Largura"
 
 #. Product attribute
 msgid "color"
 msgstr "Cor"
 
-#. Product attribute
-msgid "option"
-msgstr "Opção"
+#. Pick-up date
+msgid "date.value"
+msgstr "Data de recolha"
 
-#. Product property package-length
-msgid "package-length"
-msgstr "pacote-comprimento"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "pacote-largura"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "pacote-altura"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "pacote-peso"
-
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "Titular da conta"
+#. Delivery type
+msgid "delivery.type"
+msgstr ""
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
 msgstr "Número da conta"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "Titular da conta"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -108,13 +52,33 @@ msgstr "Código do banco"
 msgid "directdebit.bankname"
 msgstr "Nome do Banco"
 
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Nome"
+#. Favorite action
+msgid "favorite"
+msgstr "adicionar aos favoritos"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Sobrenome"
+#. Product attribute
+msgid "length"
+msgstr "Comprimento"
+
+#. Product attribute
+msgid "option"
+msgstr "Opção"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "pacote-altura"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "pacote-comprimento"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "pacote-peso"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "pacote-largura"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -122,6 +86,10 @@ msgstr "Número do cartão de crédito"
 
 #. Omnipay service provider
 msgid "payment.cvv"
+msgstr ""
+
+#. Omnipay service provider
+msgid "payment.expiry"
 msgstr ""
 
 #. Omnipay service provider
@@ -133,25 +101,57 @@ msgid "payment.expiryyear"
 msgstr "Ano de validade"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr ""
+msgid "payment.firstname"
+msgstr "Nome"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "Data de recolha"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Sobrenome"
 
-#. Pick-up time
-msgid "time.hourminute"
-msgstr "Horário de recolha"
+#. Pin action
+msgid "pin"
+msgstr "marcar"
 
-#. Pick-up location
-msgid "supplier.code"
-msgstr "Local de recolha"
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
+msgstr "Tamanho"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr "Aplicar"
 
 #. Pick-up location
 msgid "supplier.address"
 msgstr "Morada de recolha"
 
-#. Delivery type
-msgid "delivery.type"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Local de recolha"
+
+#. Tax name
+msgid "tax"
+msgstr "imposto"
+
+#. GST tax name
+msgid "taxgst"
 msgstr ""
+
+#. PST tax name
+msgid "taxpst"
+msgstr ""
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "Horário de recolha"
+
+#. Watch action
+msgid "watch"
+msgstr "acompanhar"
+
+#. Product attribute
+msgid "width"
+msgstr "Largura"

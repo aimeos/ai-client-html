@@ -1,23 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# David Haška <dhaska93@gmail.com>, 2018
-# Martin Vyšohlíd <vysohlidm@gmail.com>, 2016
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: cs\n"
+"Language-Team: Czech (http://app.transifex.com/aimeos/aimeos-core/language/cs/)\n"
+"Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>, 2016\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Martin Vyšohlíd <vysohlidm@gmail.com>, 2016\n"
-"Language-Team: Czech (http://app.transifex.com/aimeos/aimeos-core/language/cs/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #, php-format
 msgid "%1$d article"
@@ -30,10 +23,10 @@ msgstr[3] "%1$d články"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%1$d recenze"
+msgstr[1] "%1$d recenze"
+msgstr[2] "%1$d recenze"
+msgstr[3] "%1$d recenze"
 
 #, php-format
 msgid ""
@@ -50,7 +43,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #, php-format
 msgid ""
@@ -68,7 +76,23 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
+""
 msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+""
 
 #, php-format
 msgid "%1$s %2$s"
@@ -80,15 +104,7 @@ msgstr "%1$s %2$s vypnuto"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -99,15 +115,15 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(otevře se v novém okně)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -121,16 +137,16 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Došlo k neopravitelné chybě"
 
 msgid "Add"
 msgstr "Přidat"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Přidání fakturační adresy"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Přidání doručovací adresy"
 
 msgid "Add to basket"
 msgstr "Přidat do košíku"
@@ -145,10 +161,10 @@ msgid "Apply"
 msgstr "Použít"
 
 msgid "Article"
-msgstr ""
+msgstr "Článek"
 
 msgid "Article no."
-msgstr ""
+msgstr "Článek č."
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -160,10 +176,10 @@ msgstr "Minimálně jedna část doručovací adresy chybí nebo je neplatná"
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Chybí alespoň jedna část platební adresy nebo je neplatná."
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Do košíku nebylo možné přidat alespoň jeden produkt."
 
 msgid "Back"
 msgstr "Zpět"
@@ -172,13 +188,13 @@ msgid "Basket"
 msgstr "Košík"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Podrobnosti o koši"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Název koše"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Košík úspěšně uložen"
 
 msgid "Billing address"
 msgstr "Fakturační adresa"
@@ -195,10 +211,10 @@ msgid "Birthday"
 msgstr "Datum narození"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Drobečková navigace"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Hromadná objednávka"
 
 msgid "Bundled products"
 msgstr "Sady produktů"
@@ -216,25 +232,25 @@ msgid "Change"
 msgstr "Změnit"
 
 msgid "Change address"
-msgstr ""
+msgstr "Změna adresy"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Změna fakturační adresy"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Změnové kupóny"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Dodání změny"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Změna doručovací adresy"
 
 msgid "Change payment"
 msgstr "Změna platby"
 
 msgid "Change products"
-msgstr ""
+msgstr "Změna produktů"
 
 msgid "Characteristics"
 msgstr "Vlastnosti"
@@ -268,22 +284,22 @@ msgid "Coupons"
 msgstr "Kupóny"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Vytvořit pro mě zákaznický účet"
 
 msgid "Created"
 msgstr "Vytvořeno"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Účet zákazníka"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Snížení"
 
 msgid "Delete"
 msgstr "Smazat"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Odstranit položku"
 
 msgid "Delivery"
 msgstr "Doručení"
@@ -293,7 +309,7 @@ msgstr "Doručovací adresa"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "Doručovací adresa úspěšně odstraněna"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -304,7 +320,7 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Část doručovací adresy \"%1$s\" chybí"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Dodání v rámci"
 
 msgid "Description"
 msgstr "Popis"
@@ -313,7 +329,7 @@ msgid "Details"
 msgstr "Podrobnosti"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Neukládat adresu"
 
 msgid "Downloads"
 msgstr "Ke stažení"
@@ -322,7 +338,7 @@ msgid "E-Mail"
 msgstr "E-mail"
 
 msgid "End date"
-msgstr ""
+msgstr "Datum ukončení"
 
 msgid "Favorite products"
 msgstr "Oblíbené produkty"
@@ -337,47 +353,36 @@ msgid "Filter"
 msgstr "Filtr"
 
 msgid "First"
-msgstr ""
+msgstr "První"
 
 msgid "First name"
 msgstr "Křestní jméno"
 
 msgid "Found products"
-msgstr ""
+msgstr "Nalezené produkty"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Přejít na stránku"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Zobrazení mřížky"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Nejvyšší cena"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
-" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
-"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
-"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
-"policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgstr "Souhlasím s <a href=\"%1$s\" target=\"_blank\" title=\"obchodní podmínky (otevře se v nové záložce)\">obchodními podmínkami</a>, <a href=\"%2$s\" target=\"_blank\" title=\"zásady ochrany osobních údajů (otevře se v nové záložce)\">zásadami ochrany osobních údajů</a> a <a href=\"%3$s\" target=\"_blank\" title=\"zásady storna (otevře se v nové záložce)\">zásadami storna</a>."
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
-"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
-"policy</a>"
-msgstr ""
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgstr "Souhlasím s <a href=\"%1$s\" target=\"_blank\" title=\"obchodní podmínky\" alt=\"obchodní podmínky\">obchodní podmínky</a>, <a href=\"%2$s\" target=\"_blank\" title=\"zásady ochrany osobních údajů\" alt=\"zásady ochrany osobních údajů\">zásady ochrany osobních údajů</a> a <a href=\"%3$s\" target=\"_blank\" title=\"storno podmínky\" alt=\"storno podmínky\">zásady zrušení</a>."
 
 msgid "If back in stock"
 msgstr "Pokud bude skladem"
@@ -387,7 +392,7 @@ msgstr "Pokud cena klesne"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Včetně %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -397,10 +402,10 @@ msgid "Included rebates"
 msgstr "včetně slev"
 
 msgid "Increase"
-msgstr ""
+msgstr "Zvýšení"
 
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
@@ -415,13 +420,13 @@ msgid "Invalid domain \"%1$s\""
 msgstr "Neplatná doména \"%1$s\""
 
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 msgid "Language"
 msgstr "Jazyk"
 
 msgid "Last"
-msgstr ""
+msgstr "Poslední"
 
 msgid "Last name"
 msgstr "Příjmení"
@@ -430,52 +435,50 @@ msgid "Last seen"
 msgstr "Naposledy zobrazeno"
 
 msgid "Latest"
-msgstr ""
+msgstr "Nejnovější"
 
 msgid "Less"
-msgstr ""
+msgstr "Méně"
 
 msgid "List view"
-msgstr ""
+msgstr "Zobrazení seznamu"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Nejnižší cena"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobilní"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Číslo mobilního telefonu"
 
 msgid "More"
-msgstr ""
+msgstr "Více na"
 
 msgid "More reviews"
-msgstr ""
+msgstr "Více recenzí"
 
 msgid "Name"
 msgstr "Jméno"
 
 msgid "New"
-msgstr ""
+msgstr "Nový"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "Nová doručovací adresa"
 
 msgid "Next"
 msgstr "Další"
 
 msgid "Next order"
-msgstr ""
+msgstr "Další objednávka"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "Nenalezeny žádné články pro <span class=\"searchstring\">\"%1$s\"</span>. Zkuste prosím znovu s jiným klíčovým slovem."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "V relaci není k dispozici ID objednávky"
 
 #, php-format
 msgid "No view available"
@@ -488,7 +491,7 @@ msgid "One week"
 msgstr "Jeden týden"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Otevřít podnabídku"
 
 msgid "Order ID"
 msgstr "ID objednávky"
@@ -522,10 +525,10 @@ msgid "Payment status"
 msgstr "Stav platby"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Procento"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Výrobek s kolíčkem"
 
 msgid "Pinned products"
 msgstr "Připnuté produkty"
@@ -561,10 +564,10 @@ msgid "Price"
 msgstr "Cena"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Cenový filtr"
 
 msgid "Price range"
-msgstr ""
+msgstr "Cenové rozpětí"
 
 msgid "Proceed"
 msgstr "Pokračovat"
@@ -576,40 +579,40 @@ msgid "Product"
 msgstr "Produkt"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Akce na výrobku"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Atributy produktu"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Kategorie produktů"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Vlastnosti produktu"
 
 msgid "Product description"
-msgstr ""
+msgstr "Popis produktu"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Stažené produkty"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtry výrobků"
 
 msgid "Product image"
-msgstr ""
+msgstr "Obrázek produktu"
 
 msgid "Product information"
-msgstr ""
+msgstr "Informace o výrobku"
 
 msgid "Product price"
-msgstr ""
+msgstr "Cena produktu"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Recenze produktu"
 
 msgid "Product search"
-msgstr ""
+msgstr "Vyhledávání produktů"
 
 msgid "Products you might be also interested in"
 msgstr "Produkty, které by vás také mohly zajímat"
@@ -621,53 +624,51 @@ msgid "Quantity"
 msgstr "Množství"
 
 msgid "Rating"
-msgstr ""
+msgstr "Hodnocení"
 
 msgid "Reference"
-msgstr ""
+msgstr "Odkaz"
 
 msgid "Relevance"
 msgstr "Relevantnost"
 
 msgid "Remove"
-msgstr ""
+msgstr "Odstranění stránky"
 
 msgid "Reset"
-msgstr ""
+msgstr "Obnovení"
 
 #, php-format
 msgid "Result for \"%1$s\""
 msgstr "Výsledek pro \"%1$s\" "
 
 msgid "Reviews"
-msgstr ""
+msgstr "Recenze"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU nebo název výrobku"
 
 msgid "Sale"
-msgstr ""
+msgstr "Prodej"
 
 msgid "Salutation"
 msgstr "Oslovení"
 
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Uložený koš úspěšně odstraněn"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Uložené koše"
 
 msgid "Search"
 msgstr "Vyhledávání"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "Výsledky hledání pro <span class=\"searchstring\">\"%1$s\"</span> (%2$d článek)"
 msgstr[1] "Hledat výsledek pro <span class=\"searchstring\">\"%1$s\"</span> (%2$d články)"
 msgstr[2] "Výsledky vyhledávání pro <span class=\"searchstring\">\"%1$s\"</span> (%2$d články)"
@@ -689,7 +690,7 @@ msgid "Select state"
 msgstr "Vybrat zemi"
 
 msgid "Share"
-msgstr ""
+msgstr "Sdílet"
 
 msgid "Shipping"
 msgstr "Doprava"
@@ -698,19 +699,19 @@ msgid "Show"
 msgstr "Zobrazit"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Seřadit podle"
 
 msgid "Sort by:"
 msgstr "Uspořádat dle:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Hvězdy"
 
 msgid "State"
 msgstr "Země"
 
 msgid "Stock"
-msgstr ""
+msgstr "Stock"
 
 #, php-format
 msgid "Stock: %1$s, %2$s"
@@ -727,16 +728,16 @@ msgid "Sub-total"
 msgstr "Mezisoučet"
 
 msgid "Submit"
-msgstr ""
+msgstr "Odeslat"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "ID předplatného"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Podrobnosti o předplatném"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Předplatné"
 
 msgid "Suggested products"
 msgstr "Doporučené produkty"
@@ -745,16 +746,16 @@ msgid "Sum"
 msgstr "Součet"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "Informace o dodavateli"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Seznam dodavatelů"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "Dodavatelé"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Podívejte se"
 
 msgid "Telephone"
 msgstr "Telefon"
@@ -765,25 +766,33 @@ msgstr "Pravidla a podmínky"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Děkujeme za vaši objednávku a autorizování platby.\nE-mail s podrobnostmi objednávky vám bude zaslán během několika minut."
+msgstr ""
+"Děkujeme za vaši objednávku a autorizování platby.\n"
+"E-mail s podrobnostmi objednávky vám bude zaslán během několika minut."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Děkujeme za vaši objednávku.\nObdrželi jsme vaši platbu a e-mail s podrobnostmi objednávky vám bude zaslán během několika minut."
+msgstr ""
+"Děkujeme za vaši objednávku.\n"
+"Obdrželi jsme vaši platbu a e-mail s podrobnostmi objednávky vám bude zaslán během několika minut."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "Děkujeme vám za recenzi!"
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr "Objednávka byla zrušena.\nPřejete si opakovat svou objednávku?"
+msgstr ""
+"Objednávka byla zrušena.\n"
+"Přejete si opakovat svou objednávku?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "Potvrzení platby vaší objednávky stále čeká na vyřízení.\nJakmile bude platba autorizována, obdržíte e-mail."
+msgstr ""
+"Potvrzení platby vaší objednávky stále čeká na vyřízení.\n"
+"Jakmile bude platba autorizována, obdržíte e-mail."
 
 msgid "Three month"
 msgstr "Tříměsíční"
@@ -792,10 +801,10 @@ msgid "Time frame"
 msgstr "Časový rámec"
 
 msgid "Title"
-msgstr ""
+msgstr "Název"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Přepnutí na celou obrazovku"
 
 msgid "Total"
 msgstr "Celkem"
@@ -808,7 +817,7 @@ msgstr "Dva týdny"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Nelze vytvořit účet: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
@@ -817,19 +826,21 @@ msgstr "Nelze uložit adresu pro zákazníka \"%1$s\": %2$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr "Platba za vaši objednávku byla bohužel zamítnuta.\nPřejete si ji opakovat?"
+msgstr ""
+"Platba za vaši objednávku byla bohužel zamítnuta.\n"
+"Přejete si ji opakovat?"
 
 msgid "Update"
 msgstr "Aktualizovat"
 
 msgid "Variant"
-msgstr ""
+msgstr "Varianta"
 
 msgid "Vat ID"
 msgstr "DIČ"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Odpověď prodejce"
 
 msgid "Watch"
 msgstr "Sledovat"
@@ -841,30 +852,30 @@ msgid "Web site"
 msgstr "Webová stránka"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "Co si myslíte o produktu"
 
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "YYYY-MM-DD HH:mm"
 
 msgid "You are here:"
 msgstr "Vy jste tady:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Do oblíbených položek můžete uložit pouze %1$s produktů."
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Můžete sledovat pouze %1$s produktů"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Nejprve se musíte přihlásit"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Nyní budete přesměrováni k dalšímu kroku"
@@ -873,22 +884,22 @@ msgid "Your choice"
 msgstr "Vaše volba"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Váš komentář"
 
 msgid "Your rating"
-msgstr ""
+msgstr "Vaše hodnocení"
 
 msgid "Your reference"
-msgstr ""
+msgstr "Váš odkaz"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Vaše referenční číslo"
 
 msgid "Your review"
-msgstr ""
+msgstr "Vaše recenze"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Zvětšení/zmenšení"
 
 #, php-format
 msgid "address"
@@ -915,7 +926,7 @@ msgid "none"
 msgstr "žádný"
 
 msgid "on request"
-msgstr ""
+msgstr "na vyžádání"
 
 #, php-format
 msgid "payment"
@@ -925,7 +936,7 @@ msgid "pin"
 msgstr "připnout"
 
 msgid "price:default"
-msgstr ""
+msgstr "cena:výchozí"
 
 #, php-format
 msgid "process"

@@ -1,102 +1,36 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# 
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# محمد مسعودزاده, 2021
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fa\n"
+"Language-Team: Persian (http://app.transifex.com/aimeos/aimeos-core/language/fa/)\n"
+"Last-Translator: محمد مسعودزاده, 2021\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: محمد مسعودزاده, 2021\n"
-"Language-Team: Persian (http://app.transifex.com/aimeos/aimeos-core/language/fa/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: fa\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#. Tax name
-msgid "tax"
-msgstr "مالیات"
-
-#. PST tax name
-msgid "taxpst"
-msgstr "PST"
-
-#. GST tax name
-msgid "taxgst"
-msgstr "GST"
-
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr " "
-
-#. Favorite action
-msgid "favorite"
-msgstr "مورد علاقه"
-
-#. Pin action
-msgid "pin"
-msgstr "سنجاق"
-
-#. Watch action
-msgid "watch"
-msgstr "تماشا کردن"
-
-#. Product attribute
-msgid "size"
-msgstr "اندازه"
-
-#. Product attribute
-msgid "length"
-msgstr "طول"
-
-#. Product attribute
-msgid "width"
-msgstr "عرض"
 
 #. Product attribute
 msgid "color"
 msgstr "رنگ"
 
-#. Product attribute
-msgid "option"
-msgstr "گزینه"
+#. Pick-up date
+msgid "date.value"
+msgstr "تاریخ تحویل"
 
-#. Product property package-length
-msgid "package-length"
-msgstr "طول بسته"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "پهنای بسته"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "بسته-ارتفاع"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "وزن بسته"
-
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr "صاحب حساب"
+#. Delivery type
+msgid "delivery.type"
+msgstr "نوع تحویل"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
 msgstr "شماره حساب"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "صاحب حساب"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -106,13 +40,33 @@ msgstr "کد بانک"
 msgid "directdebit.bankname"
 msgstr "نام بانک"
 
-#. Omnipay service provider
-msgid "payment.firstname"
-msgstr "نام"
+#. Favorite action
+msgid "favorite"
+msgstr "مورد علاقه"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "نام خانوادگی"
+#. Product attribute
+msgid "length"
+msgstr "طول"
+
+#. Product attribute
+msgid "option"
+msgstr "گزینه"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "بسته-ارتفاع"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "طول بسته"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "وزن بسته"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "پهنای بسته"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -123,6 +77,10 @@ msgid "payment.cvv"
 msgstr "شماره تایید"
 
 #. Omnipay service provider
+msgid "payment.expiry"
+msgstr "انقضا (MMYY)"
+
+#. Omnipay service provider
 msgid "payment.expirymonth"
 msgstr "ماه انقضا"
 
@@ -131,25 +89,57 @@ msgid "payment.expiryyear"
 msgstr "سال انقضا"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr "انقضا (MMYY)"
+msgid "payment.firstname"
+msgstr "نام"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "تاریخ تحویل"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "نام خانوادگی"
 
-#. Pick-up time
-msgid "time.hourminute"
-msgstr "زمان تحویل"
+#. Pin action
+msgid "pin"
+msgstr "سنجاق"
 
-#. Pick-up location
-msgid "supplier.code"
-msgstr "محل تحویل"
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Product attribute
+msgid "size"
+msgstr "اندازه"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr " "
 
 #. Pick-up location
 msgid "supplier.address"
 msgstr "آدرس تحویل"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr "نوع تحویل"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "محل تحویل"
+
+#. Tax name
+msgid "tax"
+msgstr "مالیات"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "GST"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "زمان تحویل"
+
+#. Watch action
+msgid "watch"
+msgstr "تماشا کردن"
+
+#. Product attribute
+msgid "width"
+msgstr "عرض"

@@ -1,27 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# alessandro massarelli <alessandro@botteega.com>, 2017
-# Enrico Porceddu <porceddu_enrico@yahoo.com>, 2018
-# Fabio Barbon <fabio.barbon@gmail.com>, 2021
-# isabella carlin <isabella@vg7.it>, 2020
-# Matteo Breschigliaro <matteo@vg7.it>, 2020
-# R M <roberto@proprionoi.it>, 2019
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: it\n"
+"Language-Team: Italian (http://app.transifex.com/aimeos/aimeos-core/language/it/)\n"
+"Last-Translator: R M <roberto@proprionoi.it>, 2019\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: R M <roberto@proprionoi.it>, 2019\n"
-"Language-Team: Italian (http://app.transifex.com/aimeos/aimeos-core/language/it/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #, php-format
 msgid "%1$d article"
@@ -52,7 +41,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #, php-format
 msgid ""
@@ -70,7 +74,23 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
+""
 msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+""
 
 #, php-format
 msgid "%1$s %2$s"
@@ -82,14 +102,7 @@ msgstr "%1$s %2$s di sconto"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -100,11 +113,11 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(si apre in una nuova finestra)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -122,7 +135,7 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Si è verificato un errore non recuperabile"
 
 msgid "Add"
 msgstr "Aggiungi"
@@ -131,7 +144,7 @@ msgid "Add billing address"
 msgstr "Aggiungi indirizzo di fatturazione"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Aggiungere l'indirizzo di consegna"
 
 msgid "Add to basket"
 msgstr "Aggiungi al carrello"
@@ -161,10 +174,10 @@ msgstr "Manca una parte dell'indirizzo di spedizione, oppure non è valido."
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Almeno una parte dell'indirizzo di pagamento è mancante o non valida"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Non è stato possibile aggiungere almeno un prodotto al carrello."
 
 msgid "Back"
 msgstr "Indietro"
@@ -173,13 +186,13 @@ msgid "Basket"
 msgstr "Carrello"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Dettagli del cestino"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Nome del cestino"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Cestino salvato con successo"
 
 msgid "Billing address"
 msgstr "Indirizzo di fatturazione"
@@ -196,7 +209,7 @@ msgid "Birthday"
 msgstr "Data di nascita"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Navigazione Breadcrumb"
 
 msgid "Bulk order"
 msgstr "Ordine all'ingrosso"
@@ -217,25 +230,25 @@ msgid "Change"
 msgstr "Modifica"
 
 msgid "Change address"
-msgstr ""
+msgstr "Cambiamento di indirizzo"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Modifica dell'indirizzo di fatturazione"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Cambiare i coupon"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Consegna del cambiamento"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Modifica dell'indirizzo di consegna"
 
 msgid "Change payment"
 msgstr "Modifica metodo di pagamento"
 
 msgid "Change products"
-msgstr ""
+msgstr "Cambiare i prodotti"
 
 msgid "Characteristics"
 msgstr "Caratteristiche"
@@ -278,13 +291,13 @@ msgid "Customer account"
 msgstr "Account cliente"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Diminuzione"
 
 msgid "Delete"
 msgstr "Cancella"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Eliminare l'elemento"
 
 msgid "Delivery"
 msgstr "Consegna"
@@ -344,13 +357,13 @@ msgid "First name"
 msgstr "Nome"
 
 msgid "Found products"
-msgstr ""
+msgstr "Prodotti trovati"
 
 msgid "GB999999973"
 msgstr "IT12345678910"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Vai alla pagina"
 
 msgid "Grid view"
 msgstr "Visualizzazione della griglia"
@@ -362,22 +375,11 @@ msgid "Highest price"
 msgstr "Prezzo più alto"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
-" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
-"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
-"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
-"policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgstr "Accetto i <a href=\"%1$s\" target=\"_blank\" title=\"termini e condizioni (si apre in una nuova scheda)\">termini e condizioni</a>, <a href=\"%2$s\" target=\"_blank\" title=\"informativa sulla privacy (si apre in una nuova scheda)\">l'informativa sulla privacy</a> e <a href=\"%3$s\" target=\"_blank\" title=\"informativa sulla cancellazione (si apre in una nuova scheda)\">l'informativa sulla cancellazione</a>."
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
-"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
-"policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
 msgstr "Accetto <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\"> i termini e condizioni </a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\"> la politica della privacy</a> e <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\"> la politica di cancellazione</a>"
 
 msgid "If back in stock"
@@ -398,7 +400,7 @@ msgid "Included rebates"
 msgstr "Incluso sconto"
 
 msgid "Increase"
-msgstr ""
+msgstr "Aumento"
 
 msgid "Interval"
 msgstr "Intervallo"
@@ -434,7 +436,7 @@ msgid "Latest"
 msgstr "Ultimo"
 
 msgid "Less"
-msgstr ""
+msgstr "Meno"
 
 msgid "List view"
 msgstr "Visualizzazione della lista"
@@ -443,13 +445,13 @@ msgid "Lowest price"
 msgstr "Prezzo più basso"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Numero di cellulare"
 
 msgid "More"
-msgstr ""
+msgstr "Di più"
 
 msgid "More reviews"
 msgstr "Ulteriori recensioni"
@@ -470,13 +472,11 @@ msgid "Next order"
 msgstr "Prossimo ordine"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "Nessun prodotto trovato per <span class=\"searchstring\">\"%1$s\"</span>. Riprova con un'altra parola."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "Nessun ID ordine disponibile nella sessione"
 
 #, php-format
 msgid "No view available"
@@ -523,7 +523,7 @@ msgid "Payment status"
 msgstr "Status del pagamento"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Percentuale"
 
 msgid "Pin product"
 msgstr "Appunta prodotto"
@@ -562,7 +562,7 @@ msgid "Price"
 msgstr "Prezzo"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Filtro prezzo"
 
 msgid "Price range"
 msgstr "Intervallo di prezzi"
@@ -577,40 +577,40 @@ msgid "Product"
 msgstr "Prodotto"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Azioni sui prodotti"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Attributi del prodotto"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Categorie di prodotti"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Caratteristiche del prodotto"
 
 msgid "Product description"
-msgstr ""
+msgstr "Descrizione del prodotto"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Download del prodotto"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtri prodotto"
 
 msgid "Product image"
 msgstr "Immagine del prodotto"
 
 msgid "Product information"
-msgstr ""
+msgstr "Informazioni sul prodotto"
 
 msgid "Product price"
 msgstr "Prezzo prodotto"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Recensioni dei prodotti"
 
 msgid "Product search"
-msgstr ""
+msgstr "Ricerca del prodotto"
 
 msgid "Products you might be also interested in"
 msgstr "Prodotti a cui potresti essere interessato"
@@ -631,7 +631,7 @@ msgid "Relevance"
 msgstr "Rilevanza"
 
 msgid "Remove"
-msgstr ""
+msgstr "Rimuovere"
 
 msgid "Reset"
 msgstr "Reset"
@@ -656,19 +656,17 @@ msgid "Save"
 msgstr "Salva"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Cestino salvato rimosso con successo"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Cestini salvati"
 
 msgid "Search"
 msgstr "Cerca"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "Risultato di ricerca per <span class=\"searchstring\">\"%1$s\"</span> (%2$d prodotto)"
 msgstr[1] "Risultato di ricerca per <span class=\"searchstring\">\"%1$s\"</span> (%2$d articoli)"
 msgstr[2] "Risultato di ricerca per <span class=\"searchstring\">\"%1$s\"</span> (%2$d articoli)"
@@ -698,13 +696,13 @@ msgid "Show"
 msgstr "Mostra"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Ordina per"
 
 msgid "Sort by:"
 msgstr "Ordina per:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Stelle"
 
 msgid "State"
 msgstr "Provincia"
@@ -748,7 +746,7 @@ msgid "Supplier information"
 msgstr "Informazioni sul fornitore"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Elenco dei fornitori"
 
 msgid "Suppliers"
 msgstr "Fornitori"
@@ -765,12 +763,16 @@ msgstr "Termini e Condizioni"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Grazie per il tuo ordine. Il pagamento è stato autorizzato.\nUn'e-mail con i dettagli dell'ordine ti verrà inviata nei prossimi minuti."
+msgstr ""
+"Grazie per il tuo ordine. Il pagamento è stato autorizzato.\n"
+"Un'e-mail con i dettagli dell'ordine ti verrà inviata nei prossimi minuti."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Grazie per il tuo ordine! \nAbbiamo ricevuto il pagamento. Un'email con i dettagli dell'ordine ti verrà inviata nei prossimi minuti."
+msgstr ""
+"Grazie per il tuo ordine! \n"
+"Abbiamo ricevuto il pagamento. Un'email con i dettagli dell'ordine ti verrà inviata nei prossimi minuti."
 
 msgid "Thank you for your review!"
 msgstr "Grazie per la tua recensione!"
@@ -783,7 +785,9 @@ msgstr "L'ordine è stato cancellato. Desideri riprovare a fare l'ordine?"
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "Il pagamento per il tuo ordine è ancora in sospeso.\nRiceverai un'email non appena il pagamento verrà autorizzato."
+msgstr ""
+"Il pagamento per il tuo ordine è ancora in sospeso.\n"
+"Riceverai un'email non appena il pagamento verrà autorizzato."
 
 msgid "Three month"
 msgstr "Tre mesi"
@@ -817,7 +821,9 @@ msgstr "Impossibile salvare l'indirizzo per il cliente \"%1$s\": %2$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr "Sfortunatamente il pagamento per il tuo ordine è stato rifiutato. \nDesideri riprovare?"
+msgstr ""
+"Sfortunatamente il pagamento per il tuo ordine è stato rifiutato. \n"
+"Desideri riprovare?"
 
 msgid "Update"
 msgstr "Aggiorna"
@@ -857,14 +863,14 @@ msgstr "Ti trovi qui:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Puoi salvare solo fino a %1$s prodotti come preferiti"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Puoi guardare solo fino a %1$s prodotti"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "È necessario effettuare prima il login"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Verrai inviato al prossimo passaggio"

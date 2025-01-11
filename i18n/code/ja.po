@@ -1,109 +1,92 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# 
-# Translators:
-# Translators:
-# Translators:
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ja\n"
+"Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
+"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
-"Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
-#. Tax name
-msgid "tax"
-msgstr ""
+#. Product attribute
+msgid "color"
+msgstr "カラー"
 
-#. PST tax name
-msgid "taxpst"
-msgstr ""
+#. Pick-up date
+msgid "date.value"
+msgstr "日付.値"
 
-#. GST tax name
-msgid "taxgst"
-msgstr ""
+#. Delivery type
+msgid "delivery.type"
+msgstr "配送タイプ"
 
-#. Price type default
-msgid "price:default"
-msgstr "%1$s%2$s"
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "口座番号"
 
-#. Stock type
-msgid "stocktype:default"
-msgstr ""
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "口座名義人"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "銀行コード"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "directdebit.銀行名"
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
-
-#. Pin action
-msgid "pin"
-msgstr ""
-
-#. Watch action
-msgid "watch"
-msgstr ""
-
-#. Product attribute
-msgid "size"
-msgstr "サイズ"
+msgstr "お気に入り"
 
 #. Product attribute
 msgid "length"
 msgstr "長さ"
 
 #. Product attribute
-msgid "width"
-msgstr "幅"
-
-#. Product attribute
-msgid "color"
-msgstr ""
-
-#. Product attribute
 msgid "option"
 msgstr "オプション"
 
-#. Product property package-length
-msgid "package-length"
-msgstr ""
-
-#. Product property package-width
-msgid "package-width"
-msgstr ""
-
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "パッケージの高さ"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "パッケージ長"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "パッケージ重量"
 
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr ""
+#. Product property package-width
+msgid "package-width"
+msgstr "パッケージ幅"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr "支払.カード番号"
 
-#. Direct debit service provider
-msgid "directdebit.bankcode"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr "支払い.cvv"
 
-#. Direct debit service provider
-msgid "directdebit.bankname"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.expiry"
+msgstr "支払期限"
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr "支払期限"
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr "支払年"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -113,42 +96,50 @@ msgstr "ファーストネーム"
 msgid "payment.lastname"
 msgstr "名字"
 
-#. Omnipay service provider
-msgid "payment.cardno"
-msgstr ""
+#. Pin action
+msgid "pin"
+msgstr "ピン"
 
-#. Omnipay service provider
-msgid "payment.cvv"
-msgstr ""
+#. Price type default
+msgid "price:default"
+msgstr "%1$s%2$s"
 
-#. Omnipay service provider
-msgid "payment.expirymonth"
-msgstr ""
+#. Product attribute
+msgid "size"
+msgstr "サイズ"
 
-#. Omnipay service provider
-msgid "payment.expiryyear"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.expiry"
-msgstr ""
-
-#. Pick-up date
-msgid "date.value"
-msgstr ""
-
-#. Pick-up time
-msgid "time.hourminute"
-msgstr ""
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr ""
+#. Stock type
+msgid "stocktype:default"
+msgstr "ストックタイプ：デフォルト"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "サプライヤーアドレス"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr ""
+#. Pick-up location
+msgid "supplier.code"
+msgstr "サプライヤーコード"
+
+#. Tax name
+msgid "tax"
+msgstr "税金"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "タックスグスト"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "納税者"
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "時分"
+
+#. Watch action
+msgid "watch"
+msgstr "時計"
+
+#. Product attribute
+msgid "width"
+msgstr "幅"

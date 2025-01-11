@@ -1,109 +1,92 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# 
-# Translators:
-# Translators:
-# Translators:
-# Translators:
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sk\n"
+"Language-Team: Slovak (http://app.transifex.com/aimeos/aimeos-core/language/sk/)\n"
+"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
-"Language-Team: Slovak (http://app.transifex.com/aimeos/aimeos-core/language/sk/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: sk\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#. Tax name
-msgid "tax"
-msgstr ""
+#. Product attribute
+msgid "color"
+msgstr "farba"
 
-#. PST tax name
-msgid "taxpst"
-msgstr ""
+#. Pick-up date
+msgid "date.value"
+msgstr "date.value"
 
-#. GST tax name
-msgid "taxgst"
-msgstr ""
+#. Delivery type
+msgid "delivery.type"
+msgstr "delivery.type"
 
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "directdebit.accountno"
 
-#. Stock type
-msgid "stocktype:default"
-msgstr ""
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "directdebit.accountowner"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "directdebit.bankcode"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "directdebit.bankname"
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
-
-#. Pin action
-msgid "pin"
-msgstr ""
-
-#. Watch action
-msgid "watch"
-msgstr ""
-
-#. Product attribute
-msgid "size"
-msgstr "Veľkosť"
+msgstr "obľúbený"
 
 #. Product attribute
 msgid "length"
 msgstr "Dĺžka"
 
 #. Product attribute
-msgid "width"
-msgstr "Šírka"
-
-#. Product attribute
-msgid "color"
-msgstr ""
-
-#. Product attribute
 msgid "option"
 msgstr "Varianta"
 
-#. Product property package-length
-msgid "package-length"
-msgstr ""
-
-#. Product property package-width
-msgid "package-width"
-msgstr ""
-
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "výška balenia"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "dĺžka balíka"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "hmotnosť balenia"
 
-#. Direct debit service provider
-msgid "directdebit.accountowner"
-msgstr ""
+#. Product property package-width
+msgid "package-width"
+msgstr "šírka balíka"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr "payment.cardno"
 
-#. Direct debit service provider
-msgid "directdebit.bankcode"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr "payment.cvv"
 
-#. Direct debit service provider
-msgid "directdebit.bankname"
-msgstr ""
+#. Omnipay service provider
+msgid "payment.expiry"
+msgstr "payment.expiry"
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr "payment.expirymonth"
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr "payment.expiryyear"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -113,42 +96,50 @@ msgstr "Krstné meno"
 msgid "payment.lastname"
 msgstr "Priezvisko"
 
-#. Omnipay service provider
-msgid "payment.cardno"
-msgstr ""
+#. Pin action
+msgid "pin"
+msgstr "pin"
 
-#. Omnipay service provider
-msgid "payment.cvv"
-msgstr ""
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
 
-#. Omnipay service provider
-msgid "payment.expirymonth"
-msgstr ""
+#. Product attribute
+msgid "size"
+msgstr "Veľkosť"
 
-#. Omnipay service provider
-msgid "payment.expiryyear"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.expiry"
-msgstr ""
-
-#. Pick-up date
-msgid "date.value"
-msgstr ""
-
-#. Pick-up time
-msgid "time.hourminute"
-msgstr ""
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr ""
+#. Stock type
+msgid "stocktype:default"
+msgstr "stocktype:default"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "supplier.address"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr ""
+#. Pick-up location
+msgid "supplier.code"
+msgstr "supplier.code"
+
+#. Tax name
+msgid "tax"
+msgstr "daň"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "taxgst"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "taxpst"
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "time.hourminute"
+
+#. Watch action
+msgid "watch"
+msgstr "sledovať"
+
+#. Product attribute
+msgid "width"
+msgstr "Šírka"

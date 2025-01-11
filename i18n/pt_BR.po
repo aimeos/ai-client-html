@@ -1,26 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# 
-# Translators:
-# b5fdd37cec45d8078af7e530465bb050, 2016
-# Bruno Rodrigues <brunojti@gmail.com>, 2016
-# Keite Clembet, 2022
-# b5fdd37cec45d8078af7e530465bb050, 2016
-# Webert Max, 2023
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pt_BR\n"
+"Language-Team: Portuguese (Brazil) (http://app.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
+"Last-Translator: Webert Max, 2023\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"POT-Creation-Date: 2025-01-10 19:54+0100\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Webert Max, 2023\n"
-"Language-Team: Portuguese (Brazil) (http://app.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #, php-format
 msgid "%1$d article"
@@ -51,7 +41,22 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+""
 
 #, php-format
 msgid ""
@@ -69,7 +74,23 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
+""
+msgstr ""
+"%1$s\n"
+"%2$s%3$s%4$s%5$s\n"
+"%6$s%7$s\n"
+"%8$s\n"
+"%9$s%10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+""
 
 #, php-format
 msgid "%1$s %2$s"
@@ -84,13 +105,6 @@ msgid "%1$s (%4$s%2$s%3$s)"
 msgstr "%1$s(%4$s%2$s%3$s)"
 
 #, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s em %2$s"
 
@@ -99,7 +113,7 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%3$s%1$s + %3$s%2$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(abre em uma nova janela)"
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -130,7 +144,7 @@ msgid "Add billing address"
 msgstr "Adicionar endereço de cobrança"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Adicionar endereço de entrega"
 
 msgid "Add to basket"
 msgstr "Adicionar ao carrinho"
@@ -160,10 +174,10 @@ msgstr "Pelo menos uma parte do endereço de entrega está faltando ou inválida
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Pelo menos uma parte do endereço de pagamento está faltando ou é inválida"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Pelo menos um produto não pôde ser adicionado à cesta."
 
 msgid "Back"
 msgstr "Voltar"
@@ -216,25 +230,25 @@ msgid "Change"
 msgstr "Alterar"
 
 msgid "Change address"
-msgstr ""
+msgstr "Mudança de endereço"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Alterar o endereço de cobrança"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Alterar cupons"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Entrega de mudanças"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Alterar o endereço de entrega"
 
 msgid "Change payment"
 msgstr "Alterar pagamento"
 
 msgid "Change products"
-msgstr ""
+msgstr "Alterar produtos"
 
 msgid "Characteristics"
 msgstr "Características"
@@ -277,7 +291,7 @@ msgid "Customer account"
 msgstr "Conta do cliente"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Diminuir"
 
 msgid "Delete"
 msgstr "Remover"
@@ -361,22 +375,11 @@ msgid "Highest price"
 msgstr "Preço mais alto"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
-" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
-"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
-"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
-"policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgstr "Aceito os <a href=\"%1$s\" target=\"_blank\" title=\"termos e condições (abre em uma nova guia)\">termos e condições</a>, <a href=\"%2$s\" target=\"_blank\" title=\"política de privacidade (abre em uma nova guia)\">política de privacidade</a> e <a href=\"%3$s\" target=\"_blank\" title=\"política de cancelamento (abre em uma nova guia)\">política de cancelamento</a>"
 
 #, php-format
-msgid ""
-"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
-"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
-"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
-"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
-"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
-"policy</a>"
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
 msgstr "Eu aceito os <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">termos e condições</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">política de privacidade</a> e a <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">política de cancelamento</a>"
 
 msgid "If back in stock"
@@ -397,7 +400,7 @@ msgid "Included rebates"
 msgstr "Descontos incluídos"
 
 msgid "Increase"
-msgstr ""
+msgstr "Aumento"
 
 msgid "Interval"
 msgstr "Intervalo"
@@ -433,7 +436,7 @@ msgid "Latest"
 msgstr "Último"
 
 msgid "Less"
-msgstr ""
+msgstr "Menos"
 
 msgid "List view"
 msgstr "Visualização em Lista"
@@ -469,9 +472,7 @@ msgid "Next order"
 msgstr "Próximo pedido"
 
 #, php-format
-msgid ""
-"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
-"try again with a different keyword."
+msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
 msgstr "Nenhum item encontrado para <span class=\"searchstring\">\"%1$s\"</span>. Por favor, tente novamente com outra palavra-chave."
 
 msgid "No order ID available in session"
@@ -522,7 +523,7 @@ msgid "Payment status"
 msgstr "Status de pagamento"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Porcentagem"
 
 msgid "Pin product"
 msgstr "Fixar produto"
@@ -591,7 +592,7 @@ msgid "Product description"
 msgstr "Descrição do produto"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Downloads de produtos"
 
 msgid "Product filters"
 msgstr "Filtros de produto"
@@ -630,7 +631,7 @@ msgid "Relevance"
 msgstr "Relevância"
 
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 msgid "Reset"
 msgstr "Redefinir"
@@ -665,9 +666,7 @@ msgstr "Pesquisar"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural ""
-"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
-"articles)"
+msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
 msgstr[0] "Resultado da busca por  <span class=\"searchstring\">\"%1$s\"</span> (%2$d item)"
 msgstr[1] "Resultado da busca por  <span class=\"searchstring\">\"%1$s\"</span> (%2$d itens)"
 msgstr[2] "Resultado da busca por  <span class=\"searchstring\">\"%1$s\"</span> (%2$d itens)"
@@ -703,7 +702,7 @@ msgid "Sort by:"
 msgstr "Ordenar por:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Estrelas"
 
 msgid "State"
 msgstr "Estado"
@@ -764,12 +763,16 @@ msgstr "Termos e condições"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Obrigado pelo seu pedido e por autorizar o pagamento.\nEm breve lhe será enviado um e-mail com os detalhes do pedido."
+msgstr ""
+"Obrigado pelo seu pedido e por autorizar o pagamento.\n"
+"Em breve lhe será enviado um e-mail com os detalhes do pedido."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr "Obrigado pelo seu pedido.\nRecebemos seu pagamento e em breve será enviado um e-mail com os detalhes do pedido."
+msgstr ""
+"Obrigado pelo seu pedido.\n"
+"Recebemos seu pagamento e em breve será enviado um e-mail com os detalhes do pedido."
 
 msgid "Thank you for your review!"
 msgstr "Obrigado por sua avaliação!"
@@ -777,12 +780,16 @@ msgstr "Obrigado por sua avaliação!"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr "O pedido foi cancelado.\nDeseja refazer seu pedido?"
+msgstr ""
+"O pedido foi cancelado.\n"
+"Deseja refazer seu pedido?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr "A confirmação de pagamento do seu pedido ainda está pendente.\nVocê irá receber um e-mail assim que o pagamento for autorizado."
+msgstr ""
+"A confirmação de pagamento do seu pedido ainda está pendente.\n"
+"Você irá receber um e-mail assim que o pagamento for autorizado."
 
 msgid "Three month"
 msgstr "Três meses"
@@ -816,7 +823,9 @@ msgstr "Incapaz de salvar o endereço do cliente \"%1$s\": %2$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr "Infelizmente o pagamento do seu pedido foi recusado.\nDeseja tentar novamente?"
+msgstr ""
+"Infelizmente o pagamento do seu pedido foi recusado.\n"
+"Deseja tentar novamente?"
 
 msgid "Update"
 msgstr "Atualizar"
