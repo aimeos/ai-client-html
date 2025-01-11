@@ -391,7 +391,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<div class="total row g-0">
 			<div class="col-12 col-md-6 offset-md-6">
 				<div class="price-total row g-0">
-					<div class="quantity col-5"><?= $enc->html( sprintf( $this->translate( 'client', '%1$s article', '%1$s articles', ceil( $totalQuantity ) ), round( $totalQuantity, 3 ) ) ) ?></div>
+					<div class="quantity col-5"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', ceil( $totalQuantity ) ), round( $totalQuantity, 3 ) ) ) ?></div>
 					<div class="total-text col-3"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
