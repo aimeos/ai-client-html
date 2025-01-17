@@ -1,6 +1,7 @@
 tests/tmp
 .phpunit.result.cache
 .phpunit.cache
+.potrans
 coveralls.json
 coverage.xml
 *.log
