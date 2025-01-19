@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-#
+# 
+# 
 # Translators:
 # Translators:
 # Translators:
@@ -16,31 +16,87 @@ msgstr ""
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
 "Last-Translator: Shoon Lae Won <wonshoonlae@gmail.com>, 2018\n"
 "Language-Team: Burmese (http://app.transifex.com/aimeos/aimeos-core/language/my/)\n"
-"Language: my\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Tax name
+msgid "tax"
+msgstr ""
+
+#. PST tax name
+msgid "taxpst"
+msgstr ""
+
+#. GST tax name
+msgid "taxgst"
+msgstr ""
+
+#. Price type default
+msgid "price:default"
+msgstr ""
+
+#. Stock type
+msgid "stocktype:default"
+msgstr ""
+
+#. Favorite action
+msgid "favorite"
+msgstr "နှစ်သက်သည်"
+
+#. Pin action
+msgid "pin"
+msgstr ""
+
+#. Watch action
+msgid "watch"
+msgstr "ကြည့်မည်"
+
+#. Product attribute
+msgid "size"
+msgstr "အရွယ်အစား"
+
+#. Product attribute
+msgid "length"
+msgstr "အနံ"
+
+#. Product attribute
+msgid "width"
+msgstr "အလျား"
 
 #. Product attribute
 msgid "color"
 msgstr "အရောင်"
 
-#. Pick-up date
-msgid "date.value"
+#. Product attribute
+msgid "option"
 msgstr ""
 
-#. Delivery type
-msgid "delivery.type"
-msgstr ""
+#. Product property package-length
+msgid "package-length"
+msgstr "ပါကင်အနံ"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "အကောင့်နံပါတ်"
+#. Product property package-width
+msgid "package-width"
+msgstr "ပါကင်အလျား"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "ပါကင်အမြင့်"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "ပါကင်အလေးချိန်"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
 msgstr "အကောင့်ပိုင်ရှင်"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "အကောင့်နံပါတ်"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -50,33 +106,13 @@ msgstr "ဘဏ်ကုဒ်"
 msgid "directdebit.bankname"
 msgstr "ဘဏ်အမည်"
 
-#. Favorite action
-msgid "favorite"
-msgstr "နှစ်သက်သည်"
-
-#. Product attribute
-msgid "length"
-msgstr "အနံ"
-
-#. Product attribute
-msgid "option"
+#. Omnipay service provider
+msgid "payment.firstname"
 msgstr ""
 
-#. Product property package-height
-msgid "package-height"
-msgstr "ပါကင်အမြင့်"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "ပါကင်အနံ"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "ပါကင်အလေးချိန်"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "ပါကင်အလျား"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr ""
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -84,10 +120,6 @@ msgstr "ခရက်ဒစ်ကဒ်နံပါတ်"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
-
-#. Omnipay service provider
-msgid "payment.expiry"
 msgstr ""
 
 #. Omnipay service provider
@@ -99,57 +131,25 @@ msgid "payment.expiryyear"
 msgstr "သက်တမ်းကုန်မည့်နှစ်"
 
 #. Omnipay service provider
-msgid "payment.firstname"
+msgid "payment.expiry"
 msgstr ""
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr ""
-
-#. Pin action
-msgid "pin"
-msgstr ""
-
-#. Price type default
-msgid "price:default"
-msgstr ""
-
-#. Product attribute
-msgid "size"
-msgstr "အရွယ်အစား"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr ""
-
-#. Pick-up location
-msgid "supplier.address"
-msgstr ""
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr "ထုတ်ယူမည့်နေရာ"
-
-#. Tax name
-msgid "tax"
-msgstr ""
-
-#. GST tax name
-msgid "taxgst"
-msgstr ""
-
-#. PST tax name
-msgid "taxpst"
+#. Pick-up date
+msgid "date.value"
 msgstr ""
 
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "ထုတ်ယူမည့်အချိန်"
 
-#. Watch action
-msgid "watch"
-msgstr "ကြည့်မည်"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "ထုတ်ယူမည့်နေရာ"
 
-#. Product attribute
-msgid "width"
-msgstr "အလျား"
+#. Pick-up location
+msgid "supplier.address"
+msgstr ""
+
+#. Delivery type
+msgid "delivery.type"
+msgstr ""

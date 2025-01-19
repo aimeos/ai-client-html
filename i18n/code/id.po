@@ -1,36 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# 
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Ranu Yulianto <vanarif@gmail.com>, 2018
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: id\n"
-"Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
-"Last-Translator: Ranu Yulianto <vanarif@gmail.com>, 2018\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"Last-Translator: Ranu Yulianto <vanarif@gmail.com>, 2018\n"
+"Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Tax name
+msgid "tax"
+msgstr "pajak"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "taxpst"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "taxgst"
+
+#. Price type default
+msgid "price:default"
+msgstr "harga: default"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr "stocktype:default"
+
+#. Favorite action
+msgid "favorite"
+msgstr "favorit"
+
+#. Pin action
+msgid "pin"
+msgstr "pin"
+
+#. Watch action
+msgid "watch"
+msgstr "amati"
+
+#. Product attribute
+msgid "size"
+msgstr "Ukuran"
+
+#. Product attribute
+msgid "length"
+msgstr "Panjang"
+
+#. Product attribute
+msgid "width"
+msgstr "Lebar"
 
 #. Product attribute
 msgid "color"
 msgstr "Warna"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "date.value"
+#. Product attribute
+msgid "option"
+msgstr "Pilihan"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr "jenis pengiriman"
+#. Product property package-length
+msgid "package-length"
+msgstr "ukuran paket"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "Nomor akun"
+#. Product property package-width
+msgid "package-width"
+msgstr "panjang paket"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "tinggi paket"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "berat paket"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
 msgstr "Pemilik akun"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Nomor akun"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -40,33 +106,13 @@ msgstr "Kode bank"
 msgid "directdebit.bankname"
 msgstr "Nama bank"
 
-#. Favorite action
-msgid "favorite"
-msgstr "favorit"
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Nama depan"
 
-#. Product attribute
-msgid "length"
-msgstr "Panjang"
-
-#. Product attribute
-msgid "option"
-msgstr "Pilihan"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "tinggi paket"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "ukuran paket"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "berat paket"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "panjang paket"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Nama akhir (keluarga)"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -77,10 +123,6 @@ msgid "payment.cvv"
 msgstr "payment.cvv"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr "payment.expiry"
-
-#. Omnipay service provider
 msgid "payment.expirymonth"
 msgstr "Bulan kadaluarsa"
 
@@ -89,57 +131,25 @@ msgid "payment.expiryyear"
 msgstr "Tahun kadaluarsa"
 
 #. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Nama depan"
+msgid "payment.expiry"
+msgstr "payment.expiry"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Nama akhir (keluarga)"
-
-#. Pin action
-msgid "pin"
-msgstr "pin"
-
-#. Price type default
-msgid "price:default"
-msgstr "harga: default"
-
-#. Product attribute
-msgid "size"
-msgstr "Ukuran"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr "stocktype:default"
-
-#. Pick-up location
-msgid "supplier.address"
-msgstr "pemasok.alamat"
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr "Tempat penjemputan"
-
-#. Tax name
-msgid "tax"
-msgstr "pajak"
-
-#. GST tax name
-msgid "taxgst"
-msgstr "taxgst"
-
-#. PST tax name
-msgid "taxpst"
-msgstr "taxpst"
+#. Pick-up date
+msgid "date.value"
+msgstr "date.value"
 
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "Waktu penjemputan"
 
-#. Watch action
-msgid "watch"
-msgstr "amati"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Tempat penjemputan"
 
-#. Product attribute
-msgid "width"
-msgstr "Lebar"
+#. Pick-up location
+msgid "supplier.address"
+msgstr "pemasok.alamat"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "jenis pengiriman"

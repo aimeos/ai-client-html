@@ -1,8 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-#
+# 
+# 
 # Translators:
 # Translators:
 # Translators:
@@ -16,31 +16,87 @@ msgstr ""
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
 "Last-Translator: shmuel adler, 2024\n"
 "Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
-"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: he\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
+
+#. Tax name
+msgid "tax"
+msgstr "מס"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
+
+#. GST tax name
+msgid "taxgst"
+msgstr ""
+
+#. Price type default
+msgid "price:default"
+msgstr "מחיר:ברירת מחדל"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr "</text_to_translate>"
+
+#. Favorite action
+msgid "favorite"
+msgstr "מועדף"
+
+#. Pin action
+msgid "pin"
+msgstr "פין"
+
+#. Watch action
+msgid "watch"
+msgstr "שעון"
+
+#. Product attribute
+msgid "size"
+msgstr "גודל"
+
+#. Product attribute
+msgid "length"
+msgstr "אורך"
+
+#. Product attribute
+msgid "width"
+msgstr "רוחב"
 
 #. Product attribute
 msgid "color"
 msgstr "צבע"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "תאריך איסוף"
+#. Product attribute
+msgid "option"
+msgstr "אופציה"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr "סוג משלוח"
+#. Product property package-length
+msgid "package-length"
+msgstr "אורך חבילה"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "מספר חשבון"
+#. Product property package-width
+msgid "package-width"
+msgstr "רוחב חבילה"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "גובה חבילה"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "משקל חבילה"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
 msgstr "בעל החשבון"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "מספר חשבון"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -50,33 +106,13 @@ msgstr "קוד בנק"
 msgid "directdebit.bankname"
 msgstr "שם הבנק"
 
-#. Favorite action
-msgid "favorite"
-msgstr "מועדף"
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "שם פרטי"
 
-#. Product attribute
-msgid "length"
-msgstr "אורך"
-
-#. Product attribute
-msgid "option"
-msgstr "אופציה"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "גובה חבילה"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "אורך חבילה"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "משקל חבילה"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "רוחב חבילה"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "שם משפחה"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -87,10 +123,6 @@ msgid "payment.cvv"
 msgstr "מספר אימות"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr "תוקף (MMYY)"
-
-#. Omnipay service provider
 msgid "payment.expirymonth"
 msgstr "תקף עד חודש"
 
@@ -99,57 +131,25 @@ msgid "payment.expiryyear"
 msgstr "תקף עד שנת"
 
 #. Omnipay service provider
-msgid "payment.firstname"
-msgstr "שם פרטי"
+msgid "payment.expiry"
+msgstr "תוקף (MMYY)"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "שם משפחה"
-
-#. Pin action
-msgid "pin"
-msgstr "פין"
-
-#. Price type default
-msgid "price:default"
-msgstr "מחיר:ברירת מחדל"
-
-#. Product attribute
-msgid "size"
-msgstr "גודל"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr "</text_to_translate>"
-
-#. Pick-up location
-msgid "supplier.address"
-msgstr "כתובת המסירה"
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr "מיקום המסירה"
-
-#. Tax name
-msgid "tax"
-msgstr "מס"
-
-#. GST tax name
-msgid "taxgst"
-msgstr ""
-
-#. PST tax name
-msgid "taxpst"
-msgstr "PST"
+#. Pick-up date
+msgid "date.value"
+msgstr "תאריך איסוף"
 
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "שעת מסירה"
 
-#. Watch action
-msgid "watch"
-msgstr "שעון"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "מיקום המסירה"
 
-#. Product attribute
-msgid "width"
-msgstr "רוחב"
+#. Pick-up location
+msgid "supplier.address"
+msgstr "כתובת המסירה"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "סוג משלוח"

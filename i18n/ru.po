@@ -1,16 +1,28 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Dimitri <doleiynyk@metaways.de>, 2013
+# Emiliya Adigozalova <emiliyaadigozalova@gmail.com>, 2021
+# Irina Fedulova <istartlin@gmail.com>, 2020
+# nsendetzky, 2014
+# Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
+# Роман Андрейчук, 2022
+# Роман Андрейчук, 2022
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ru\n"
-"Language-Team: Russian (http://app.transifex.com/aimeos/aimeos-core/language/ru/)\n"
-"Last-Translator: Роман Андрейчук, 2022\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"POT-Creation-Date: 2025-01-10 19:54+0100\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"Last-Translator: Роман Андрейчук, 2022\n"
+"Language-Team: Russian (http://app.transifex.com/aimeos/aimeos-core/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #, php-format
 msgid "%1$d article"
@@ -43,22 +55,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%12$s\n"
-"%11$s\n"
-"%9$s %10$s\n"
-"%8$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%12$s\n%11$s\n%9$s %10$s\n%8$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -76,23 +73,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -377,11 +358,22 @@ msgid "Highest price"
 msgstr "Самая высокая цена"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr "Я принимаю <a href=\"%1$s\" target=\"_blank\" title=\"правила и условия (открывается в новой вкладке)\">правила и условия</a>, <a href=\"%2$s\" target=\"_blank\" title=\"политика конфиденциальности (открывается в новой вкладке)\">политика конфиденциальности</a> и <a href=\"%3$s\" target=\"_blank\" title=\"политика отмены (открывается в новой вкладке)\">политика отмены</a>."
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr "Я принимаю <a href=\"%1$s\" target=\"_blank\" title=\"условия и положения\" alt=\"условия и положения\">условия</a>, <a href=\"%2$s\" target=\"_blank\" title=\"политика конфиденциальности\" alt=\"политика конфиденциальности\">политика конфиденциальности</a> и <a href=\"%3$s\" target=\"_blank\" title=\"политика отмены\" alt=\"политика отмены\">политика отмены</a>."
 
 msgid "If back in stock"
@@ -474,7 +466,9 @@ msgid "Next order"
 msgstr "Следующий заказ"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "Для <span class=\"searchstring\">\"%1$s\"</span> ничего не найдено. Попробуйте искать по другим словосочетаниям."
 
 msgid "No order ID available in session"
@@ -668,7 +662,9 @@ msgstr "Поиск"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "Результат поиска для <span class=\"searchstring\">\"%1$s\"</span> (%2$d вхождение)"
 msgstr[1] "Результаты поиска для <span class=\"searchstring\">\"%1$s\"</span> (%2$d вхождений)"
 msgstr[2] "Результаты поиска для <span class=\"searchstring\">\"%1$s\"</span> (%2$d вхождений)"
@@ -766,16 +762,12 @@ msgstr "Условия и соглашения"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Благодарим Вас за заказ и оплату.\n"
-"Письмо с деталями заказа будет выслано Вам в течение нескольких минут."
+msgstr "Благодарим Вас за заказ и оплату.\nПисьмо с деталями заказа будет выслано Вам в течение нескольких минут."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Благодарим Вас за заказ.\n"
-"Мы получили оплату и письмо с деталями заказа будет выслано Вам в течение нескольких минут."
+msgstr "Благодарим Вас за заказ.\nМы получили оплату и письмо с деталями заказа будет выслано Вам в течение нескольких минут."
 
 msgid "Thank you for your review!"
 msgstr "Спасибо за ваш отзыв!"
@@ -783,16 +775,12 @@ msgstr "Спасибо за ваш отзыв!"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
-"Заказ отменён.\n"
-"Хотите вернуть свой заказ?"
+msgstr "Заказ отменён.\nХотите вернуть свой заказ?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
-"Подтверждение оплаты за заказ пока ещё не получено.\n"
-"Как только оплата будет подтверждена, будет сформировано письмо с извещением об этом."
+msgstr "Подтверждение оплаты за заказ пока ещё не получено.\nКак только оплата будет подтверждена, будет сформировано письмо с извещением об этом."
 
 msgid "Three month"
 msgstr "Три месяца"
@@ -826,9 +814,7 @@ msgstr "Невозможно сохранить адрес для покупат
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
-"К сожалению, оплата за Ваш заказ была отклонена.\n"
-"Хотите повторить?"
+msgstr "К сожалению, оплата за Ваш заказ была отклонена.\nХотите повторить?"
 
 msgid "Update"
 msgstr "Обновить"
@@ -868,7 +854,7 @@ msgstr "Вы здесь:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr "Вы можете сохранить только до %1$ товаров в качестве избранных"
+msgstr "Вы можете сохранить только до %1$s товаров в качестве избранных"
 
 #, php-format
 msgid "You can only watch up to %1$s products"

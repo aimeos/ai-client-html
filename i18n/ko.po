@@ -1,26 +1,31 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ko\n"
-"Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"POT-Creation-Date: 2025-01-10 19:54+0100\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] "1$d 문서"
+msgstr[0] "%1$d 문서"
 
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] "1$d 리뷰"
+msgstr[0] "%1$d 리뷰"
 
 #, php-format
 msgid ""
@@ -37,22 +42,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"2$s %3$s %4$s %5$s\n"
-"6$s %7$s\n"
-"%8$s\n"
-"9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -70,43 +60,27 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-""
-msgstr ""
-"%1$s\n"
-"2$s %3$s %4$s %5$s\n"
-"6$s %7$s\n"
-"%8$s\n"
-"9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
-msgstr "1$s %2$s"
+msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "1$s %2$s 할인"
+msgstr "%1$s %2$s 할인"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr "1$s (%4$s%2$s%3$s)"
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
-msgstr "1$s에서 %2$s"
+msgstr "%1$s에서 %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr "1$s%3$s + %2$s%3$s"
+msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
 msgstr "(새 창에서 열기)"
@@ -371,11 +345,22 @@ msgid "Highest price"
 msgstr "최고 가격"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"이용약관 (새 탭에서 열기)\">이용약관</a>, <a href=\"%2$s\" target=\"_blank\" title=\"개인정보처리방침 (새 탭에서 열기)\">개인정보처리방침</a> 및 <a href=\"%3$s\" target=\"_blank\" title=\"취소 정책 (새 탭에서 열기)\">취소 정책에 동의합니다</a>에 대해 동의합니다."
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"이용약관\" alt=\"약관\">이용약관</a>, <a href=\"%2$s\" target=\"_blank\" title=\"개인정보처리방침\" alt=\"개인정보처리방침\">개인정보처리방침</a> 및 <a href=\"%3$s\" target=\"_blank\" title=\"취소정책\" alt=\"취소정책\">취소정책에 동의합니다</a>에 동의합니다."
 
 msgid "If back in stock"
@@ -468,7 +453,9 @@ msgid "Next order"
 msgstr "다음 주문"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "<span class=\"검색 문자열\">\"%1$s\"</span>에 대한 문서를 찾을 수 없습니다. 다른 키워드로 다시 시도하세요."
 
 msgid "No order ID available in session"
@@ -504,7 +491,7 @@ msgstr "다른 고객도 다음을 구매했습니다."
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr "2$d의 %1$d 페이지"
+msgstr "%2$d의 %1$d 페이지"
 
 msgid "Pay now"
 msgstr "지금 결제하기"
@@ -662,7 +649,9 @@ msgstr "검색"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "<span class=\"검색 문자열\">\"%1$s\"</span>(%2$d 문서)에 대한 검색 결과"
 
 msgid "Select country"
@@ -757,16 +746,12 @@ msgstr "이용 약관"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"주문해 주시고 결제를 승인해 주셔서 감사합니다.\n"
-"몇 분 이내에 주문 세부 정보가 포함된 이메일이 전송됩니다."
+msgstr "주문해 주시고 결제를 승인해 주셔서 감사합니다.\n몇 분 이내에 주문 세부 정보가 포함된 이메일이 전송됩니다."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"주문해 주셔서 감사합니다.\n"
-"결제가 완료되었으며 주문 세부 정보가 포함된 이메일이 몇 분 이내에 발송될 것입니다."
+msgstr "주문해 주셔서 감사합니다.\n결제가 완료되었으며 주문 세부 정보가 포함된 이메일이 몇 분 이내에 발송될 것입니다."
 
 msgid "Thank you for your review!"
 msgstr "검토해 주셔서 감사합니다!"
@@ -774,16 +759,12 @@ msgstr "검토해 주셔서 감사합니다!"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
-"주문이 취소되었습니다.\n"
-"주문을 다시 시도하시겠습니까?"
+msgstr "주문이 취소되었습니다.\n주문을 다시 시도하시겠습니까?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
-"주문에 대한 결제 확인이 아직 보류 중입니다.\n"
-"결제가 승인되는 즉시 이메일을 보내드립니다."
+msgstr "주문에 대한 결제 확인이 아직 보류 중입니다.\n결제가 승인되는 즉시 이메일을 보내드립니다."
 
 msgid "Three month"
 msgstr "3개월"
@@ -817,9 +798,7 @@ msgstr "고객 \"%1$s\"의 주소를 저장할 수 없습니다: %2$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
-"안타깝게도 주문 결제가 거부되었습니다.\n"
-"다시 시도하시겠습니까?"
+msgstr "안타깝게도 주문 결제가 거부되었습니다.\n다시 시도하시겠습니까?"
 
 msgid "Update"
 msgstr "업데이트"
@@ -859,11 +838,11 @@ msgstr "여기 있습니다:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr "최대 %1$의 제품만 즐겨찾기로 저장할 수 있습니다."
+msgstr "최대 %1$s의 제품만 즐겨찾기로 저장할 수 있습니다."
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr "최대 %1$의 제품만 볼 수 있습니다."
+msgstr "최대 %1$s의 제품만 볼 수 있습니다."
 
 msgid "You must log in first"
 msgstr "먼저 로그인해야 합니다."
@@ -905,7 +884,7 @@ msgstr "즐겨 찾기"
 
 #, php-format
 msgid "from %1$s"
-msgstr "1$s에서"
+msgstr "%1$s에서"
 
 msgid "like billing address"
 msgstr "청구지 주소와 같은"

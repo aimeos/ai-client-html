@@ -1,36 +1,104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# 
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Goran Sabo <info@noaset.pro>, 2020
+# Goran Sabo <info@noaset.pro>, 2020
+# Goran Sabo <info@noaset.pro>, 2020
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: sl\n"
-"Language-Team: Slovenian (http://app.transifex.com/aimeos/aimeos-core/language/sl/)\n"
-"Last-Translator: Goran Sabo <info@noaset.pro>, 2020\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"Last-Translator: Goran Sabo <info@noaset.pro>, 2020\n"
+"Language-Team: Slovenian (http://app.transifex.com/aimeos/aimeos-core/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. Tax name
+msgid "tax"
+msgstr "davek"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "PST"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "GST"
+
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr "Tip zaloge"
+
+#. Favorite action
+msgid "favorite"
+msgstr "priljubljen"
+
+#. Pin action
+msgid "pin"
+msgstr "shrani"
+
+#. Watch action
+msgid "watch"
+msgstr "sledi"
+
+#. Product attribute
+msgid "size"
+msgstr "Velikost"
+
+#. Product attribute
+msgid "length"
+msgstr "Dolžina"
+
+#. Product attribute
+msgid "width"
+msgstr "Velikost"
 
 #. Product attribute
 msgid "color"
 msgstr "Barva"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "Datum prevzema"
+#. Product attribute
+msgid "option"
+msgstr "Možnost"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr "Tip dostave"
+#. Product property package-length
+msgid "package-length"
+msgstr "package-length"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "Številka računa"
+#. Product property package-width
+msgid "package-width"
+msgstr "package-width"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "package-height"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "package-weight"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
 msgstr "Lastnik računa"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Številka računa"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -40,33 +108,13 @@ msgstr "Bančni SWIFT"
 msgid "directdebit.bankname"
 msgstr "Ime banke"
 
-#. Favorite action
-msgid "favorite"
-msgstr "priljubljen"
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Ime"
 
-#. Product attribute
-msgid "length"
-msgstr "Dolžina"
-
-#. Product attribute
-msgid "option"
-msgstr "Možnost"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "package-height"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "package-length"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "package-weight"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "package-width"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Priimek"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -77,10 +125,6 @@ msgid "payment.cvv"
 msgstr "payment.cvv"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr "payment.expiry"
-
-#. Omnipay service provider
 msgid "payment.expirymonth"
 msgstr "Datum poteka"
 
@@ -89,57 +133,25 @@ msgid "payment.expiryyear"
 msgstr "Leto poteka"
 
 #. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Ime"
+msgid "payment.expiry"
+msgstr "payment.expiry"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Priimek"
-
-#. Pin action
-msgid "pin"
-msgstr "shrani"
-
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Product attribute
-msgid "size"
-msgstr "Velikost"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr "Tip zaloge"
-
-#. Pick-up location
-msgid "supplier.address"
-msgstr "Naslov prevzema"
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr "Prevzemno mesto"
-
-#. Tax name
-msgid "tax"
-msgstr "davek"
-
-#. GST tax name
-msgid "taxgst"
-msgstr "GST"
-
-#. PST tax name
-msgid "taxpst"
-msgstr "PST"
+#. Pick-up date
+msgid "date.value"
+msgstr "Datum prevzema"
 
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "Čas prevzema"
 
-#. Watch action
-msgid "watch"
-msgstr "sledi"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Prevzemno mesto"
 
-#. Product attribute
-msgid "width"
-msgstr "Velikost"
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Naslov prevzema"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "Tip dostave"

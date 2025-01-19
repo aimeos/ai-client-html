@@ -1,16 +1,24 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Andreas Pandega, 2022
+# Andreas Pandega, 2022
+# Ranu Yulianto <vanarif@gmail.com>, 2018
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: id\n"
-"Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
-"Last-Translator: Andreas Pandega, 2022\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"POT-Creation-Date: 2025-01-10 19:54+0100\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"Last-Translator: Ranu Yulianto <vanarif@gmail.com>, 2018\n"
+"Language-Team: Indonesian (http://app.transifex.com/aimeos/aimeos-core/language/id/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #, php-format
 msgid "%1$d article"
@@ -37,22 +45,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -70,23 +63,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -94,7 +71,7 @@ msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "% 1 $ s % 2 $ s off"
+msgstr "%1$s %2$s off"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
@@ -102,7 +79,7 @@ msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
-msgstr "%1 $s pada %2 $s"
+msgstr "%1$s pada %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
@@ -113,7 +90,7 @@ msgstr "(terbuka di jendela baru)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr "+ % 1 $ s % 2 $ s"
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -371,11 +348,22 @@ msgid "Highest price"
 msgstr "Harga tertinggi"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr "Saya menerima <a href=\"%1$s\" target=\"_blank\" title=\"syarat dan ketentuan (terbuka di tab baru)\">syarat dan ketentuan</a>, <a href=\"%2$s\" target=\"_blank\" title=\"kebijakan privasi (terbuka di tab baru)\">kebijakan privasi</a> dan <a href=\"%3$s\" target=\"_blank\" title=\"kebijakan pembatalan (terbuka di tab baru)\">kebijakan pembatalan</a>"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr "Saya menerima <a href=\"%1$s\" target=\"_blank\" title=\"syarat dan ketentuan\" alt=\"syarat dan ketentuan\">syarat dan ketentuan</a>, <a href=\"%2$s\" target=\"_blank\" title=\"kebijakan privasi\" alt=\"kebijakan privasi\">kebijakan privasi</a> dan <a href=\"%3$s\" target=\"_blank\" title=\"kebijakan pembatalan\" alt=\"kebijakan pembatalan\">kebijakan pembatalan</a>"
 
 msgid "If back in stock"
@@ -468,7 +456,9 @@ msgid "Next order"
 msgstr "Urutan berikutnya"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "Tidak ada artikel yang ditemukan untuk <span class=\"searchstring\">\"%1$s\"</span>. Silakan coba lagi dengan kata kunci yang berbeda."
 
 msgid "No order ID available in session"
@@ -662,7 +652,9 @@ msgstr "Cari"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "Hasil pencarian untuk <span class=\"searchstring\">\"%1$s\"</span> (%2$d artikel)"
 
 msgid "Select country"
@@ -757,16 +749,12 @@ msgstr "Syarat dan ketentuan"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Terima kasih atas pesanan Anda dan otorisasi pembayarannya.\n"
-"Sebuah email berisi detail pesanan akan dikirimkan kepada Anda dalam beberapa menit ke depan."
+msgstr "Terima kasih atas pesanan Anda dan otorisasi pembayarannya.\nSebuah email berisi detail pesanan akan dikirimkan kepada Anda dalam beberapa menit ke depan."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Terima kasih atas pesanan Anda.\n"
-"Kami telah menerima pembayaran Anda dan email berisi detail pesanan akan dikirimkan kepada Anda dalam beberapa menit ke depan."
+msgstr "Terima kasih atas pesanan Anda.\nKami telah menerima pembayaran Anda dan email berisi detail pesanan akan dikirimkan kepada Anda dalam beberapa menit ke depan."
 
 msgid "Thank you for your review!"
 msgstr "Terima kasih atas ulasan Anda!"
@@ -774,16 +762,12 @@ msgstr "Terima kasih atas ulasan Anda!"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
-"Pesanan dibatalkan.\n"
-"Apakah Anda ingin mencoba kembali pesanan Anda?"
+msgstr "Pesanan dibatalkan.\nApakah Anda ingin mencoba kembali pesanan Anda?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
-"Konfirmasi pembayaran untuk pesanan Anda masih tertunda.\n"
-"Anda akan mendapatkan email segera setelah pembayaran diotorisasi."
+msgstr "Konfirmasi pembayaran untuk pesanan Anda masih tertunda.\nAnda akan mendapatkan email segera setelah pembayaran diotorisasi."
 
 msgid "Three month"
 msgstr "Tiga bulan"
@@ -817,9 +801,7 @@ msgstr "Tidak dapat menyimpan alamat untuk pelanggan \"%1$s\": %2$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
-"Sayangnya, pembayaran pesanan Anda ditolak.\n"
-"Apakah Anda ingin mencoba kembali?"
+msgstr "Sayangnya, pembayaran pesanan Anda ditolak.\nApakah Anda ingin mencoba kembali?"
 
 msgid "Update"
 msgstr "Perbarui"
@@ -859,11 +841,11 @@ msgstr "Anda di sini:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr "Anda hanya dapat menyimpan hingga %1 produk sebagai favorit"
+msgstr "Anda hanya dapat menyimpan hingga %1$s produk sebagai favorit"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr "Anda hanya dapat menonton hingga %1 produk"
+msgstr "Anda hanya dapat menonton hingga %1$s produk"
 
 msgid "You must log in first"
 msgstr "Anda harus masuk terlebih dahulu"
@@ -905,7 +887,7 @@ msgstr "favorit"
 
 #, php-format
 msgid "from %1$s"
-msgstr "dari% 1 $ s"
+msgstr "dari %1$s"
 
 msgid "like billing address"
 msgstr "seperti alamat penagihan"

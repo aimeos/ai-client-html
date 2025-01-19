@@ -1,16 +1,27 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Aimeos, 2023,2025
+# Aimeos, 2023,2025
+# Alex Kay <alex110504@gmail.com>, 2017
+# ranx2k <ranko@murumets.eu>, 2021
+# ranx2k <ranko@murumets.eu>, 2021
+# ranx2k <ranko@murumets.eu>, 2021
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: et\n"
-"Language-Team: Estonian (http://app.transifex.com/aimeos/aimeos-core/language/et/)\n"
-"Last-Translator: Aimeos, 2023,2025\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"POT-Creation-Date: 2025-01-10 19:54+0100\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"Last-Translator: ranx2k <ranko@murumets.eu>, 2021\n"
+"Language-Team: Estonian (http://app.transifex.com/aimeos/aimeos-core/language/et/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
 msgid "%1$d article"
@@ -39,22 +50,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -72,23 +68,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -119,7 +99,7 @@ msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr "+ %1$s%%% %2$s"
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -373,11 +353,22 @@ msgid "Highest price"
 msgstr "Kõrgeim hind"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr "Nõustun <a href=\"%1$s\" target=\"_blank\" title=\"tingimused (avaneb uues vahekaardis)\">tingimustega</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privaatsuspoliitika (avaneb uues vahekaardis)\">privaatsuspoliitika</a> ja <a href=\"%3$s\" target=\"_blank\" title=\"tühistamispoliitika (avaneb uues vahekaardis)\">Andestamispoliitika</a>."
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr "Nõustun <a href=\"%1$s\" target=\"_blank\" title=\"tingimused\" alt=\"tingimused\">tingimused</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privaatsuspoliitika\" alt=\"privaatsuspoliitika\">privaatsuspoliitika</a> ja <a href=\"%3$s\" target=\"_blank\" title=\"tühistamispoliitika\" alt=\"tühistamispoliitika\"> tühistamispoliitika</a>."
 
 msgid "If back in stock"
@@ -388,7 +379,7 @@ msgstr "Kui hind langeb"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "Sealhulgas %1$s%%% %2$s"
+msgstr "Sealhulgas %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -470,7 +461,9 @@ msgid "Next order"
 msgstr "Järgmine tellimus"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "Otsingule <span class=\"searchstring\">\"%1$s\"</span> tulemusi ei leitud. Palun proovige uuesti muu märksõnaga."
 
 msgid "No order ID available in session"
@@ -664,7 +657,9 @@ msgstr "Otsi"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "Tulemused otsingule <span class=\"searchstring\">\"%1$s\"</span> (%2$d toodet)"
 msgstr[1] "Tulemused otsingule <span class=\"searchstring\">\"%1$s\"</span> (%2$d toodet)"
 
@@ -760,16 +755,12 @@ msgstr "Kasutustingimused"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Täname Teid tellimuse ja tasumise eest.\n"
-"Mõne minuti jooksul peaksite saama tellimust kinnitava E-kirja."
+msgstr "Täname Teid tellimuse ja tasumise eest.\nMõne minuti jooksul peaksite saama tellimust kinnitava E-kirja."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"Täname tellimuse eest.\n"
-"Oleme Teie makse kätte saanud ja mõne minuti jooksul peaksite saama tellimust kinnitava E-kirja."
+msgstr "Täname tellimuse eest.\nOleme Teie makse kätte saanud ja mõne minuti jooksul peaksite saama tellimust kinnitava E-kirja."
 
 msgid "Thank you for your review!"
 msgstr "Täname arvustuse eest!"
@@ -777,16 +768,12 @@ msgstr "Täname arvustuse eest!"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
-"Tellimus tühistati.\n"
-"Kas soovite tellimuse uuesti esitada?"
+msgstr "Tellimus tühistati.\nKas soovite tellimuse uuesti esitada?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
-"Makse Teie tellimuse eest ootab endiselt kinnitamist.\n"
-"Te saate kohe e-kirja, kui makse on kinnitatud."
+msgstr "Makse Teie tellimuse eest ootab endiselt kinnitamist.\nTe saate kohe e-kirja, kui makse on kinnitatud."
 
 msgid "Three month"
 msgstr "Kolm kuud"
@@ -820,9 +807,7 @@ msgstr "Kliendi \"%1$s\" aadressi ei ole võimalik salvestada: %2$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
-"Kahjuks on Teie makse panga poolt tagasi lükatud.\n"
-"Kas soovite uuesti proovida?"
+msgstr "Kahjuks on Teie makse panga poolt tagasi lükatud.\nKas soovite uuesti proovida?"
 
 msgid "Update"
 msgstr "Uuenda"

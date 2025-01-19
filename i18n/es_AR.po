@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 19:06+0200\n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/aimeos/aimeos-core/language/es_AR/)\n"
@@ -115,10 +115,6 @@ msgstr ""
 msgid "Add billing address"
 msgstr ""
 
-#, fuzzy
-msgid "Add delivery address"
-msgstr "Dirección de Entrega"
-
 msgid "Add to basket"
 msgstr ""
 
@@ -158,14 +154,6 @@ msgstr ""
 msgid "Basket"
 msgstr "Carrito"
 
-#, fuzzy
-msgid "Basket details"
-msgstr "Carrito"
-
-#, fuzzy
-msgid "Basket name"
-msgstr "Apellido"
-
 msgid "Basket saved sucessfully"
 msgstr ""
 
@@ -204,31 +192,11 @@ msgstr "Categorias"
 msgid "Change"
 msgstr ""
 
-#, fuzzy
-msgid "Change address"
-msgstr "Dirección de Envio"
-
-#, fuzzy
-msgid "Change billing address"
-msgstr "Dirección de Envio"
-
 msgid "Change coupons"
 msgstr ""
 
-#, fuzzy
-msgid "Change delivery"
-msgstr "Entrega"
-
-#, fuzzy
-msgid "Change delivery address"
-msgstr "Dirección de Entrega"
-
 msgid "Change payment"
 msgstr ""
-
-#, fuzzy
-msgid "Change products"
-msgstr "Productos sugeridos"
 
 msgid "Characteristics"
 msgstr "Características"
@@ -330,16 +298,8 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#, fuzzy
-msgid "First"
-msgstr "Nombre"
-
 msgid "First name"
 msgstr "Nombre"
-
-#, fuzzy
-msgid "Found products"
-msgstr "Productos sugeridos"
 
 msgid "GB999999973"
 msgstr ""
@@ -404,10 +364,6 @@ msgstr ""
 
 msgid "Language"
 msgstr "Idioma"
-
-#, fuzzy
-msgid "Last"
-msgstr "Apellido"
 
 msgid "Last name"
 msgstr "Apellido"
@@ -559,51 +515,17 @@ msgstr ""
 msgid "Product"
 msgstr "Producto"
 
-#, fuzzy
-msgid "Product actions"
-msgstr "Producto"
-
-#, fuzzy
 msgid "Product attributes"
-msgstr "Atributos"
+msgstr ""
 
-#, fuzzy
-msgid "Product categories"
-msgstr "Categorias"
-
-#, fuzzy
-msgid "Product characteristics"
-msgstr "Características"
-
-#, fuzzy
-msgid "Product description"
-msgstr "Suscripciones"
-
-#, fuzzy
 msgid "Product downloads"
-msgstr "Producto"
-
-#, fuzzy
-msgid "Product filters"
-msgstr "Producto"
+msgstr ""
 
 msgid "Product image"
 msgstr ""
 
 msgid "Product information"
 msgstr ""
-
-#, fuzzy
-msgid "Product price"
-msgstr "Producto"
-
-#, fuzzy
-msgid "Product reviews"
-msgstr "Producto"
-
-#, fuzzy
-msgid "Product search"
-msgstr "Producto"
 
 msgid "Products you might be also interested in"
 msgstr ""
@@ -736,10 +658,6 @@ msgstr ""
 
 msgid "Supplier information"
 msgstr ""
-
-#, fuzzy
-msgid "Supplier list"
-msgstr "Proveedores"
 
 msgid "Suppliers"
 msgstr "Proveedores"
@@ -967,9 +885,6 @@ msgstr ""
 
 #~ msgid "Addresses"
 #~ msgstr "Direcciones"
-
-#~ msgid "Attributes"
-#~ msgstr "Atributos"
 
 #~ msgid "Options"
 #~ msgstr "Opciones"

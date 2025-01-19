@@ -1,16 +1,22 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Darshan Sampat <darshan@usindia.com>, 2018
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ja\n"
-"Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
-"Last-Translator: Darshan Sampat <darshan@usindia.com>, 2018\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"POT-Creation-Date: 2025-01-10 19:54+0100\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"Last-Translator: Darshan Sampat <darshan@usindia.com>, 2018\n"
+"Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #, php-format
 msgid "%1$d article"
@@ -20,7 +26,7 @@ msgstr[0] "\"%1$d\"個の記事"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] "1$d レビュー"
+msgstr[0] "%1$d レビュー"
 
 #, php-format
 msgid ""
@@ -37,10 +43,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s%2$s%3$s%4$s%5$s%6$s%7$s%8$s%9$s%10$s%11$s%12$s%13$s%14$s%15$s%16$s%17$s%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -58,35 +61,19 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-""
-msgstr ""
-"%1$s\n"
-"2$s %3$s %4$s %5$s\n"
-"6$s %7$s\n"
-"%8$s\n"
-"9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
-msgstr "%1$s%2$s"
+msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "%1$s%2$sオフ　"
+msgstr "%1$s %2$sオフ　"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr "1$s (%4$s%2$s%3$s)"
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -94,7 +81,7 @@ msgstr "%2$sにおける%1$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr "%1$s%3$s+%2$s%3$s"
+msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
 msgstr "(別ウィンドウで開きます）"
@@ -109,7 +96,7 @@ msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr "+%1$s%%VAT"
+msgstr "+%1$s%% VAT"
 
 msgid "+1 123 456 7890"
 msgstr "+1123 456 7890"
@@ -359,11 +346,22 @@ msgid "Highest price"
 msgstr "最高価格"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr "<a href=\"%1$s\" target=\"_blank\" title=\"利用規約 (新しいタブで開く)\">利用規約</a>、<a href=\"%2$s\" target=\"_blank\" title=\"プライバシーポリシー (新しいタブで開く)\">プライバシーポリシー</a>、および<a href=\"%3$s\" target=\"_blank\" title=\"キャンセルポリシー (新しいタブで開く)\">キャンセルポリシー</a>に同意します。"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr "私は<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">利用規約</a>、<a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">プライバシーポリシー</a>と<a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">キャンセルポリシー</a>に同意します"
 
 msgid "If back in stock"
@@ -374,7 +372,7 @@ msgstr "価格が下がった場合"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "1$s%% %2$s を含む。"
+msgstr "%1$s%% %2$s を含む。"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -456,7 +454,9 @@ msgid "Next order"
 msgstr "次の注文"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "<span class=\"searchstring\">\"%1$s\"</span>の品物は見つかりませんでした。別のキーワードでもう一度お試しください。"
 
 msgid "No order ID available in session"
@@ -650,7 +650,9 @@ msgstr "検索"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "<span class=\"searchstring\">\"%1$s\"</span>の検索結果（%2$d品物）"
 
 msgid "Select country"
@@ -745,16 +747,12 @@ msgstr "規約と条件"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"ご注文いただき、お支払いを承認していただきありがとうございます。\n"
-"注文詳細を記載した電子メールが数分以内にお客様に送信されます。"
+msgstr "ご注文いただき、お支払いを承認していただきありがとうございます。\n注文詳細を記載した電子メールが数分以内にお客様に送信されます。"
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"ご注文ありがとうございます.\n"
-"お支払いを受け取りましたそして注文詳細を記載した電子メールが数分以内にお客様に送信されます。"
+msgstr "ご注文ありがとうございます.\nお支払いを受け取りましたそして注文詳細を記載した電子メールが数分以内にお客様に送信されます。"
 
 msgid "Thank you for your review!"
 msgstr "レビューをありがとう！"
@@ -762,16 +760,12 @@ msgstr "レビューをありがとう！"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
-"注文はキャンセルされました。\n"
-"注文をやり直しますか？"
+msgstr "注文はキャンセルされました。\n注文をやり直しますか？"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
-"注文の支払い確認は依然として保留中です。\n"
-"支払いが承認されるとすぐに電子メールが届きます。"
+msgstr "注文の支払い確認は依然として保留中です。\n支払いが承認されるとすぐに電子メールが届きます。"
 
 msgid "Three month"
 msgstr "3ヶ月"
@@ -805,9 +799,7 @@ msgstr "顧客 \"%1$s\":%2$sの住所を保存できません"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
-"残念ながら、ご注文の支払いは拒否されました。\n"
-"再試行しますか？"
+msgstr "残念ながら、ご注文の支払いは拒否されました。\n再試行しますか？"
 
 msgid "Update"
 msgstr "更新"

@@ -1,16 +1,28 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Dávid Siklaky <siklaky.david@gmail.com>, 2016
+# Dávid Siklaky <siklaky.david@gmail.com>, 2016
+# nzed <nemesreviz@gmail.com>, 2021-2022
+# Nóra Antal <nora1984antal@gmail.com>, 2016
+# nzed <nemesreviz@gmail.com>, 2021
+# Patrik Szakos <szakos0208@gmail.com>, 2021
+# Péter Kozma <kopegrafika@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: hu\n"
-"Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
-"Last-Translator: nzed <nemesreviz@gmail.com>, 2021-2022\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"POT-Creation-Date: 2025-01-10 19:54+0100\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"Last-Translator: Péter Kozma <kopegrafika@gmail.com>, 2016\n"
+"Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, php-format
 msgid "%1$d article"
@@ -39,22 +51,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -72,23 +69,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -373,11 +354,22 @@ msgid "Highest price"
 msgstr "Legmagasabb ár"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr "Elfogadom a <a href=\"%1$s\" target=\"_blank\" title=\"általános szerződési feltételek (új lapon nyílik meg)\">általános szerződési feltételeket</a>, <a href=\"%2$s\" target=\"_blank\" title=\"adatvédelmi szabályzat (új lapon nyílik meg)\">Adatvédelmi szabályzat</a> és <a href=\"%3$s\" target=\"_blank\" title=\"lemondási szabályzat (új lapon nyílik meg)\">lemondási szabályzat</a>."
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr "Elfogadom a <a href=\"%1$s\" target=\"_blank\" title=\"felhasználási feltételek\" alt=\"felhasználási feltételek\">felhasználási feltételeket</a>, <a href=\"%2$s\" target=\"_blank\" title=\"adatkezelési alapelvek\" alt=\"adatkezelési alapelvek\">adatkezelési alapelveket</a> és a <a href=\"%3$s\" target=\"_blank\" title=\"lemondási alapelvek\" alt=\"lemondási alapelvek\">lemondási alapelveket</a>"
 
 msgid "If back in stock"
@@ -470,7 +462,9 @@ msgid "Next order"
 msgstr "Következő rendelés"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "Nincs találtat a következő kulcsszóra: <span class=\"searchstring\">\"%1$s\"</span>. Kérjük, próbálkozzon egy másik kulcsszóval."
 
 msgid "No order ID available in session"
@@ -664,7 +658,9 @@ msgstr "Keresés"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "Találat a következő keresési kifejezésre  <span class=\"searchstring\">\"%1$s\"</span> (%2$d cikk)"
 msgstr[1] "Találatok a következő keresési kifejezésre: <span class=\"searchstring\">\"%1$s\"</span> (%2$d cikk)"
 
@@ -765,9 +761,7 @@ msgstr "Köszönjük megrendelését és a befizetés hitelesítését, Hamarosa
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"köszönjük megrendelését! \n"
-"Megkaptuk befizetését, és hamarosan küldünk egy e-mailt a megrendelés részleteiről."
+msgstr "köszönjük megrendelését! \nMegkaptuk befizetését, és hamarosan küldünk egy e-mailt a megrendelés részleteiről."
 
 msgid "Thank you for your review!"
 msgstr "Köszönjük értékelését!"

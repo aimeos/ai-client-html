@@ -1,16 +1,27 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Abdulkarim Itani <abdulkarim.itani@gmail.com>, 2019
+# Ahmed Jeffry, 2023
+# Ahmed Jeffry, 2023
+# elragoubi <elragoubi@yahoo.com>, 2018
+# elragoubi <elragoubi@yahoo.com>, 2018
+# mahmoud devo <devosystem.sarl@gmail.com>, 2021
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ar\n"
-"Language-Team: Arabic (http://app.transifex.com/aimeos/aimeos-core/language/ar/)\n"
-"Last-Translator: Ahmed Jeffry, 2023\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"POT-Creation-Date: 2025-01-10 19:54+0100\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
+"PO-Revision-Date: 2015-07-09 20:33+0000\n"
+"Last-Translator: mahmoud devo <devosystem.sarl@gmail.com>, 2021\n"
+"Language-Team: Arabic (http://app.transifex.com/aimeos/aimeos-core/language/ar/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #, php-format
 msgid "%1$d article"
@@ -47,22 +58,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -80,23 +76,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-""
-msgstr ""
-"%1$s\n"
-"%2$2$s %3$s %4$s %5$s\n"
-"%6$6$s %7$s\n"
-"%8$s\n"
-"%9$9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -104,11 +84,11 @@ msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr "تم إيقاف %1$1$s %2$s"
+msgstr "تم إيقاف %1$s %2$s"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr "%1$1$s (%4$s%2$s%3$s)"
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -116,18 +96,18 @@ msgstr "%1$s في %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr "%1$1$s%3$s + %2$s%3$s"
+msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
 msgstr "(يفتح في نافذة جديدة)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr "+ %1$1$s %2$s"
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr "+ %1$$s%%%%2$s"
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -381,11 +361,22 @@ msgid "Highest price"
 msgstr "أعلى سعر"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr "أوافق على <a href=\"%1$s\" target=\"_blank\" title=\"الشروط والأحكام (يفتح في علامة تبويب جديدة)\">الشروط والأحكام</>، و<a href=\"%2$s\" target=\"_blank\" title=\"سياسة الخصوصية (يفتح في علامة تبويب جديدة)\">سياسة الخصوصية</> و<a href=\"%3$s\" target=\"_blank\" title=\"سياسة الإلغاء (يفتح في علامة تبويب جديدة)\">سياسة الإلغاء</>"
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr "أوافق على <a href=\"%1$s\" target=\"_blank\" title=\"الشروط والأحكام\" alt=\"الشروط والأحكام\">الشروط والأحكام</>، و<a href=\"%2$s\" target=\"_blank\" title=\"سياسة الخصوصية\" alt=\"سياسة الخصوصية\">سياسة الخصوصية</> و<a href=\"%3$s\" target=\"_blank\" target=\"_blank\" title=\"سياسة الإلغاء\" alt=\"سياسة الإلغاء\">سياسة الإلغاء</>"
 
 msgid "If back in stock"
@@ -396,7 +387,7 @@ msgstr "اذا انخفض السعر"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr "بما في ذلك %1$s%%%%2$s"
+msgstr "بما في ذلك %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -478,7 +469,9 @@ msgid "Next order"
 msgstr "الطلبية القادمة"
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr "لم يتم العثور على مقالات لـ <span class=\"searchstring\">\"%1$s\"</span>. يرجى المحاولة مرة أخرى باستخدام كلمة رئيسية مختلفة."
 
 msgid "No order ID available in session"
@@ -514,7 +507,7 @@ msgstr "اشترى عملاء آخرون أيضاً"
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr "الصفحة %1$د من %2$د"
+msgstr "الصفحة %1$d من %2$d"
 
 msgid "Pay now"
 msgstr "إدفع الأن"
@@ -672,7 +665,9 @@ msgstr "البحث"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] "نتيجة البحث عن <span class=\"searchstring\">\"%1$s\"</span> (%2$d مقالة)"
 msgstr[1] "نتيجة البحث عن <span class=\"searchstring\">\"%1$s\"</span> (%2$d مقالة)"
 msgstr[2] "نتيجة البحث عن <span class=\"searchstring\">\"%1$s\"</span> (%2$d مقالة)"
@@ -772,16 +767,12 @@ msgstr "الشروط والأحكام"
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"شكراً لك على طلبك وتفويضك بالدفع.\n"
-"سيتم إرسال بريد إلكتروني بتفاصيل الطلب إليك خلال الدقائق القليلة القادمة."
+msgstr "شكراً لك على طلبك وتفويضك بالدفع.\nسيتم إرسال بريد إلكتروني بتفاصيل الطلب إليك خلال الدقائق القليلة القادمة."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
-"شكراً على طلبك.\n"
-"لقد استلمنا دفعتك وسيتم إرسال بريد إلكتروني بتفاصيل الطلب إليك خلال الدقائق القليلة القادمة."
+msgstr "شكراً على طلبك.\nلقد استلمنا دفعتك وسيتم إرسال بريد إلكتروني بتفاصيل الطلب إليك خلال الدقائق القليلة القادمة."
 
 msgid "Thank you for your review!"
 msgstr "شكراً لك على مراجعتك!"
@@ -789,16 +780,12 @@ msgstr "شكراً لك على مراجعتك!"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
-"تم إلغاء الطلب.\n"
-"هل ترغب في إعادة محاولة طلبك؟"
+msgstr "تم إلغاء الطلب.\nهل ترغب في إعادة محاولة طلبك؟"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
-"لا يزال تأكيد الدفع لطلبك معلقاً.\n"
-"ستصلك رسالة بريد إلكتروني بمجرد الموافقة على الدفع."
+msgstr "لا يزال تأكيد الدفع لطلبك معلقاً.\nستصلك رسالة بريد إلكتروني بمجرد الموافقة على الدفع."
 
 msgid "Three month"
 msgstr "ثلاثة أشهر"
@@ -832,9 +819,7 @@ msgstr "يتعذر حفظ عنوان العميل \"%1$s\": %2$s"
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
-"للأسف، تم رفض الدفع لطلبك.\n"
-"هل ترغب في إعادة المحاولة؟"
+msgstr "للأسف، تم رفض الدفع لطلبك.\nهل ترغب في إعادة المحاولة؟"
 
 msgid "Update"
 msgstr "تحديث"
@@ -874,11 +859,11 @@ msgstr "أنت هنا"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr "يمكنك فقط حفظ ما يصل إلى %1 دولار فقط من المنتجات كمفضلة"
+msgstr "يمكنك فقط حفظ ما يصل إلى %1$s من المنتجات كمفضلة لديك"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr "يمكنك مشاهدة ما يصل إلى %1 دولار فقط من المنتجات"
+msgstr "يمكنك مشاهدة ما يصل إلى %1$s منتجاً فقط"
 
 msgid "You must log in first"
 msgstr "يجب عليك تسجيل الدخول أولاً"
@@ -920,7 +905,7 @@ msgstr "المفضلة"
 
 #, php-format
 msgid "from %1$s"
-msgstr "من %1$1$s"
+msgstr "من %1$s"
 
 msgid "like billing address"
 msgstr "مثل عنوان إرسال الفواتير"

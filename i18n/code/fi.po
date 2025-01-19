@@ -1,36 +1,101 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# 
+# Translators:
+# Translators:
+# Translators:
+# Translators:
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: fi\n"
-"Language-Team: Finnish (http://app.transifex.com/aimeos/aimeos-core/language/fi/)\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"Language-Team: Finnish (http://app.transifex.com/aimeos/aimeos-core/language/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Tax name
+msgid "tax"
+msgstr "vero"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "taxpst"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "taxgst"
+
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr "stocktype:default"
+
+#. Favorite action
+msgid "favorite"
+msgstr "suosikki"
+
+#. Pin action
+msgid "pin"
+msgstr "nasta"
+
+#. Watch action
+msgid "watch"
+msgstr "katso"
+
+#. Product attribute
+msgid "size"
+msgstr "koko"
+
+#. Product attribute
+msgid "length"
+msgstr "pituus"
+
+#. Product attribute
+msgid "width"
+msgstr "leveys"
 
 #. Product attribute
 msgid "color"
 msgstr "väri"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "date.value"
+#. Product attribute
+msgid "option"
+msgstr "vaihtoehto"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr "toimitus.tyyppi"
+#. Product property package-length
+msgid "package-length"
+msgstr "package-length"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "directdebit.accountno"
+#. Product property package-width
+msgid "package-width"
+msgstr "package-width"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "package-height"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "pakkauspaino"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
 msgstr "directdebit.accountowner"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "directdebit.accountno"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -40,33 +105,13 @@ msgstr "directdebit.bankcode"
 msgid "directdebit.bankname"
 msgstr "directdebit.bankname"
 
-#. Favorite action
-msgid "favorite"
-msgstr "suosikki"
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Etunimi"
 
-#. Product attribute
-msgid "length"
-msgstr "pituus"
-
-#. Product attribute
-msgid "option"
-msgstr "vaihtoehto"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "package-height"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "package-length"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "pakkauspaino"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "package-width"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Sukunimi"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -77,10 +122,6 @@ msgid "payment.cvv"
 msgstr "maksu.cvv"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr "payment.expiry"
-
-#. Omnipay service provider
 msgid "payment.expirymonth"
 msgstr "payment.expirymonth"
 
@@ -89,57 +130,25 @@ msgid "payment.expiryyear"
 msgstr "payment.expirieryyear"
 
 #. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Etunimi"
+msgid "payment.expiry"
+msgstr "payment.expiry"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Sukunimi"
-
-#. Pin action
-msgid "pin"
-msgstr "nasta"
-
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Product attribute
-msgid "size"
-msgstr "koko"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr "stocktype:default"
-
-#. Pick-up location
-msgid "supplier.address"
-msgstr "toimittaja.osoite"
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr "supplier.code"
-
-#. Tax name
-msgid "tax"
-msgstr "vero"
-
-#. GST tax name
-msgid "taxgst"
-msgstr "taxgst"
-
-#. PST tax name
-msgid "taxpst"
-msgstr "taxpst"
+#. Pick-up date
+msgid "date.value"
+msgstr "date.value"
 
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "time.hourminute"
 
-#. Watch action
-msgid "watch"
-msgstr "katso"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "supplier.code"
 
-#. Product attribute
-msgid "width"
-msgstr "leveys"
+#. Pick-up location
+msgid "supplier.address"
+msgstr "toimittaja.osoite"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "toimitus.tyyppi"

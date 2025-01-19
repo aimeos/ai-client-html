@@ -1,36 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# 
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Dávid Siklaky <siklaky.david@gmail.com>, 2016
+# Dávid Siklaky <siklaky.david@gmail.com>, 2016
+# nzed <nemesreviz@gmail.com>, 2020,2022
+# nzed <nemesreviz@gmail.com>, 2020
+# Péter Kozma <kopegrafika@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: hu\n"
-"Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
-"Last-Translator: nzed <nemesreviz@gmail.com>, 2020,2022\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"POT-Creation-Date: 2013-04-09 09:14+0200\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"Last-Translator: nzed <nemesreviz@gmail.com>, 2020,2022\n"
+"Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Tax name
+msgid "tax"
+msgstr "adó"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "Tartományi értékesítési adó"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "Szövetségi forgalmi adó"
+
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr " "
+
+#. Favorite action
+msgid "favorite"
+msgstr "kedvenc"
+
+#. Pin action
+msgid "pin"
+msgstr "kitűzés"
+
+#. Watch action
+msgid "watch"
+msgstr "Megtekintés"
+
+#. Product attribute
+msgid "size"
+msgstr "Méret"
+
+#. Product attribute
+msgid "length"
+msgstr "Hossz"
+
+#. Product attribute
+msgid "width"
+msgstr "Szélesség"
 
 #. Product attribute
 msgid "color"
 msgstr "Szín"
 
-#. Pick-up date
-msgid "date.value"
-msgstr "Átvétel kelte"
+#. Product attribute
+msgid "option"
+msgstr "Választási lehetőség"
 
-#. Delivery type
-msgid "delivery.type"
-msgstr "Szállításfajta"
+#. Product property package-length
+msgid "package-length"
+msgstr "csomag hossz"
 
-#. Direct debit service provider
-msgid "directdebit.accountno"
-msgstr "Számlaszám"
+#. Product property package-width
+msgid "package-width"
+msgstr "csomag szélesség"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "csomag magasság"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "csomag súly"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
 msgstr "Számla tulajdonos"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Számlaszám"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -40,33 +110,13 @@ msgstr "Bank kód"
 msgid "directdebit.bankname"
 msgstr "Bank név"
 
-#. Favorite action
-msgid "favorite"
-msgstr "kedvenc"
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Keresztnév"
 
-#. Product attribute
-msgid "length"
-msgstr "Hossz"
-
-#. Product attribute
-msgid "option"
-msgstr "Választási lehetőség"
-
-#. Product property package-height
-msgid "package-height"
-msgstr "csomag magasság"
-
-#. Product property package-length
-msgid "package-length"
-msgstr "csomag hossz"
-
-#. Product property package-weight
-msgid "package-weight"
-msgstr "csomag súly"
-
-#. Product property package-width
-msgid "package-width"
-msgstr "csomag szélesség"
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Vezetéknév"
 
 #. Omnipay service provider
 msgid "payment.cardno"
@@ -77,10 +127,6 @@ msgid "payment.cvv"
 msgstr "Ellenőrző szám"
 
 #. Omnipay service provider
-msgid "payment.expiry"
-msgstr "Lejárat (HHÉÉ)"
-
-#. Omnipay service provider
 msgid "payment.expirymonth"
 msgstr "Érvényességi hónap"
 
@@ -89,57 +135,25 @@ msgid "payment.expiryyear"
 msgstr "Érvényességi év"
 
 #. Omnipay service provider
-msgid "payment.firstname"
-msgstr "Keresztnév"
+msgid "payment.expiry"
+msgstr "Lejárat (HHÉÉ)"
 
-#. Omnipay service provider
-msgid "payment.lastname"
-msgstr "Vezetéknév"
-
-#. Pin action
-msgid "pin"
-msgstr "kitűzés"
-
-#. Price type default
-msgid "price:default"
-msgstr "%1$s %2$s"
-
-#. Product attribute
-msgid "size"
-msgstr "Méret"
-
-#. Stock type
-msgid "stocktype:default"
-msgstr " "
-
-#. Pick-up location
-msgid "supplier.address"
-msgstr "Átvétel címe"
-
-#. Pick-up location
-msgid "supplier.code"
-msgstr "Átvétel helyszíne"
-
-#. Tax name
-msgid "tax"
-msgstr "adó"
-
-#. GST tax name
-msgid "taxgst"
-msgstr "Szövetségi forgalmi adó"
-
-#. PST tax name
-msgid "taxpst"
-msgstr "Tartományi értékesítési adó"
+#. Pick-up date
+msgid "date.value"
+msgstr "Átvétel kelte"
 
 #. Pick-up time
 msgid "time.hourminute"
 msgstr "Átvétel időpontja"
 
-#. Watch action
-msgid "watch"
-msgstr "Megtekintés"
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Átvétel helyszíne"
 
-#. Product attribute
-msgid "width"
-msgstr "Szélesség"
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Átvétel címe"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "Szállításfajta"

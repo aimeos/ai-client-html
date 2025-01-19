@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 19:06+0200\n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -58,36 +58,6 @@ msgstr ""
 "%17$s\n"
 "%18$s\n"
 
-#, fuzzy, php-format
-msgid ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-msgstr ""
-"%2$s %3$s %4$s %5$s\n"
-"%1$s\n"
-"%7$s %6$s\n"
-"%8$s\n"
-"%10$s %11$s %9$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%2$s %1$s"
@@ -95,10 +65,6 @@ msgstr "%2$s %1$s"
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%2$s %1$s off"
-
-#, fuzzy, php-format
-msgid "%1$s (%4$s%2$s%3$s)"
-msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -110,14 +76,6 @@ msgstr "%3$s%1$s + %3$s%2$s"
 
 msgid "(opens in new window)"
 msgstr ""
-
-#, fuzzy, php-format
-msgid "+ %1$s %2$s"
-msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-msgid "+ %1$s%% %2$s"
-msgstr "%2$s %1$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -133,9 +91,8 @@ msgstr ""
 msgid "A non-recoverable error occured"
 msgstr ""
 
-#, fuzzy
 msgid "Add"
-msgstr "Address"
+msgstr ""
 
 msgid "Add billing address"
 msgstr ""
@@ -226,19 +183,11 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#, fuzzy
-msgid "Change address"
-msgstr "Address"
-
 msgid "Change billing address"
 msgstr ""
 
 msgid "Change coupons"
 msgstr ""
-
-#, fuzzy
-msgid "Change delivery"
-msgstr "Delivery"
 
 msgid "Change delivery address"
 msgstr ""
@@ -386,10 +335,6 @@ msgstr ""
 
 msgid "If price decreases"
 msgstr ""
-
-#, fuzzy, php-format
-msgid "Incl. %1$s%% %2$s"
-msgstr "%2$s %1$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -972,38 +917,10 @@ msgid "◀◀"
 msgstr ""
 
 #, php-format
-#~ msgid "%1$s ( %4$s%2$s%3$s )"
-#~ msgstr "%1$s ( %4$s%2$s%3$s )"
-
-#, php-format
 #~ msgid "+ %1$s %2$s/item"
 #~ msgstr "+ %2$s %1$s/item"
 
-#, fuzzy, php-format
-#~ msgid "Dear %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-#~ msgid "Dear Miss %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-#~ msgid "Dear Mr %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-#~ msgid "Dear Mrs %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-#~ msgid "Dear Ms %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
 #~ msgid "Order"
-#~ msgstr "Order"
-
-#, fuzzy, php-format
-#~ msgid "Order %1$s"
 #~ msgstr "Order"
 
 #~ msgid "basic"
