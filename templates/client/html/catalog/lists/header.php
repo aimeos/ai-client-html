@@ -79,5 +79,5 @@ $linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'clie
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-lists.js', 'fs-theme', true ) ) ?>"></script>
 
 <?php foreach( $this->get( 'listStockUrl', [] ) as $url ) : ?>
-	<script class="items-stock" nonce="<?= $enc->attr( 'contextNonce' ) ?>" defer src="<?= $enc->attr( $url ) ?>"></script>
+	<script class="items-stock" nonce="<?= $enc->attr( $this->get( 'contextNonce' ) ) ?>" defer src="<?= $enc->attr( $url ) ?>"></script>
 <?php endforeach ?>
