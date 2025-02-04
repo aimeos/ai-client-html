@@ -296,7 +296,6 @@ class Standard
 		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
 
 		$filter = $manager->filter( true )
-			->add( 'attribute.type.domain', '==', 'product' )
 			->add( 'attribute.type.code', '==', $codes )
 			->order( 'attribute.type.position' );
 

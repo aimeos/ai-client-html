@@ -194,10 +194,7 @@ class Standard
 	protected function attributeTypes( \Aimeos\Map $codes ) : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
-
-		$filter = $manager->filter( true )
-			->add( 'attribute.type.domain', '==', 'product' )
-			->order( 'attribute.type.position' );
+		$filter = $manager->filter( true )->order( 'attribute.type.position' );
 
 		if( !$codes->isEmpty() ) {
 			$filter->add( 'attribute.type.code', '==', $codes );
@@ -241,9 +238,7 @@ class Standard
 		$map = [];
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
-		$filter = $manager->filter( true )
-			->add( 'attribute.type.domain', '==', 'product' )
-			->order( 'attribute.type.position' );
+		$filter = $manager->filter( true )->order( 'attribute.type.position' );
 
 		if( !empty( $attrTypes ) ) {
 			$filter->add( 'attribute.type.code', '==', $attrTypes );
