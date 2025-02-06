@@ -239,14 +239,14 @@ class Standard
 		$context = $this->context();
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/address' );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$deliveryAddressItems = [];
 		$item = $controller->uses( ['customer/address'] )->get();
-		$paymentAddressItem = $orderAddressManager->create()->copyFrom( $item->getPaymentAddress() );
+		$paymentAddressItem = $orderManager->createAddress()->copyFrom( $item->getPaymentAddress() );
 
 		foreach( $item->getAddressItems() as $pos => $addrItem ) {
-			$deliveryAddressItems[$pos] = $orderAddressManager->create()->copyFrom( $addrItem );
+			$deliveryAddressItems[$pos] = $orderManager->createAddress()->copyFrom( $addrItem );
 		}
 
 		$view->addressCustomerItem = $item;

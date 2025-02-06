@@ -333,7 +333,7 @@ class Standard
 			return;
 		}
 
-		$manager = \Aimeos\MShop::create( $context, 'order/basket' );
+		$manager = \Aimeos\MShop::create( $context, 'basket' );
 
 		$item = $manager->create()->setId( md5( microtime( true ) . getmypid() . rand() ) )
 			->setCustomerId( $userId )->setName( $view->param( 'b_name', date( 'Y-m-d H:i:s' ) ) )

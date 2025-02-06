@@ -365,7 +365,7 @@ class Standard
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'order/address' );
+		$manager = \Aimeos\MShop::create( $context, 'order' );
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		$addrStrings = $addrValues = [];
@@ -375,7 +375,7 @@ class Standard
 		{
 			$params = $view->param( 'ca_delivery_' . $id, [] );
 			$basketValues = $addrMap->get( $id, map() )->toArray();
-			$addr = $manager->create()->copyFrom( $address )->fromArray( $basketValues )->fromArray( $params );
+			$addr = $manager->createAddress()->copyFrom( $address )->fromArray( $basketValues )->fromArray( $params );
 
 			$addrStrings[$id] = $this->getAddressString( $view, $addr );
 			$addrValues[$id] = $addr->toArray();
@@ -383,7 +383,7 @@ class Standard
 
 		$values = !$addrMap->isEmpty() ? $addrMap->first()->toArray() : [];
 		$values = array_merge( $values, $view->param( 'ca_delivery', [] ) );
-		$addrNew = $manager->create()->fromArray( $values );
+		$addrNew = $manager->createAddress()->fromArray( $values );
 
 		$addrStringNew = $this->getAddressString( $view, $addrNew );
 		$option = $addrNew->getAddressId() ?: ( $addrMap->isEmpty() ? 'like' : 'null' );

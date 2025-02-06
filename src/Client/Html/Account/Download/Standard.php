@@ -110,14 +110,11 @@ class Standard
 				return $view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
 			}
 
-			$manager = \Aimeos\MShop::create( $context, 'order/product/attribute' );
-			$item = $manager->get( $id );
-
 			if( $this->checkDownload( $id ) === false ) {
 				return $view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) );
-			} else {
-				$this->addDownload( $item );
 			}
+
+			$this->addDownload( \Aimeos\MShop::create( $context, 'order/product/attribute' )->get( $id ) );
 
 			parent::init();
 		}
