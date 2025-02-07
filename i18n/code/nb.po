@@ -27,11 +27,11 @@ msgstr "skatt"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "skattyter"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 #. Price type default
 msgid "price:default"
@@ -67,7 +67,7 @@ msgstr "Bredde"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "farge"
 
 #. Product attribute
 msgid "option"
@@ -75,35 +75,35 @@ msgstr "Alternativ"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "pakkelengde"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "pakkebredde"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "pakkehøyde"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "pakkevekt"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "direktedebit.kontoeier"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "direktedebit.kontonr"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "direktedebit.bankkode"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "direktedebit.banknavn"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,40 +115,40 @@ msgstr "Etternavn"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "betaling.kortnr"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "betaling.cvv"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "payment.expirymonth"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "betaling.utløpsår"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "betaling.utløp"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "dato.verdi"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "time.hourminute"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "leverandør.kode"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "leverandør.adresse"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "levering.type"

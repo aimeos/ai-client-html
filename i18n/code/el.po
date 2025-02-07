@@ -27,11 +27,11 @@ msgstr "φόρος"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 #. Price type default
 msgid "price:default"
@@ -39,7 +39,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr "stocktype:default"
 
 #. Favorite action
 msgid "favorite"
@@ -55,55 +55,55 @@ msgstr "παρακολουθήστε"
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "μέγεθος"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "μήκος"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "πλάτος"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "χρώμα"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "επιλογή"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "μήκος συσκευασίας"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "package-width"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "ύψος συσκευασίας"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "βάρος συσκευασίας"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "directdebit.accountowner"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "directdebit.accountno"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "directdebit.bankcode"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "directdebit.bankname"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,40 +115,40 @@ msgstr "Επώνυμο"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "payment.cardno"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "payment.cvv"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "payment.expirymonth"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "payment.expiryyearear"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "payment.expiry"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "date.value"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "time.hourminute"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "supplier.code"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "supplier.address"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "delivery.type"
