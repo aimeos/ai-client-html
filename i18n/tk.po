@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Ayshe Sammiyeva, 2023
+# Ayshe Sammiyeva, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Ayshe Sammiyeva, 2023\n"
 "Language-Team: Turkmen (http://app.transifex.com/aimeos/aimeos-core/language/tk/)\n"
@@ -76,12 +77,6 @@ msgstr "%1$s %2$s arzanladyş"
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
 msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
 
 #, php-format
 msgid "%1$s at %2$s"

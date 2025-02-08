@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aimeos, 2023
+# Aimeos, 2023,2025
+# Aimeos, 2023,2025
 # Alex Kay <alex110504@gmail.com>, 2017
 # ranx2k <ranko@murumets.eu>, 2021
 # ranx2k <ranko@murumets.eu>, 2021
@@ -12,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Aimeos, 2023\n"
+"Last-Translator: ranx2k <ranko@murumets.eu>, 2021\n"
 "Language-Team: Estonian (http://app.transifex.com/aimeos/aimeos-core/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,8 +32,8 @@ msgstr[1] "%1$d toodet"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d ülevaade"
+msgstr[1] "%1$d ülevaadet"
 
 #, php-format
 msgid ""
@@ -67,7 +68,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -75,17 +76,11 @@ msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s välja"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -96,15 +91,15 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(avaneb uues aknas)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -118,16 +113,16 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Tekkis taastamatu viga"
 
 msgid "Add"
-msgstr ""
+msgstr "Lisa"
 
 msgid "Add billing address"
 msgstr "Lisa arve esitamise aadress"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Lisa tarneaadress"
 
 msgid "Add to basket"
 msgstr "Lisa ostukorvi"
@@ -139,7 +134,7 @@ msgid "Additional 2"
 msgstr "Lisa 2"
 
 msgid "Apply"
-msgstr ""
+msgstr "Rakenda"
 
 msgid "Article"
 msgstr "Artikkel"
@@ -157,10 +152,10 @@ msgstr "Vähemalt üks postiaadressi lahter on tühi või vigane"
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Vähemalt üks makseaadressi osa puudub või on kehtetu."
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Vähemalt ühte toodet ei saanud ostukorvi lisada."
 
 msgid "Back"
 msgstr "Tagasi"
@@ -169,13 +164,13 @@ msgid "Basket"
 msgstr "Ostukorv"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Korvi üksikasjad"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Korvi nimi"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Korv salvestatud edukalt"
 
 msgid "Billing address"
 msgstr "Arve esitamise aadress"
@@ -192,7 +187,7 @@ msgid "Birthday"
 msgstr "Sünnipäev"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Leivakriipsu navigatsioon"
 
 msgid "Bulk order"
 msgstr "Hulgitellimus"
@@ -213,25 +208,25 @@ msgid "Change"
 msgstr "Muuda"
 
 msgid "Change address"
-msgstr ""
+msgstr "Muuda aadressi"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Arveldusaadressi muutmine"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Muuda kupongid"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Muuda tarnet"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Muuda tarneaadressi"
 
 msgid "Change payment"
 msgstr "Muuda makseviisi"
 
 msgid "Change products"
-msgstr ""
+msgstr "Muuda tooteid"
 
 msgid "Characteristics"
 msgstr "Iseloomulikud omadused"
@@ -244,7 +239,7 @@ msgstr "Linn"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr ""
+msgstr "Klassi \"%1$s\" ei leitud"
 
 msgid "Close"
 msgstr "Sulge"
@@ -274,13 +269,13 @@ msgid "Customer account"
 msgstr "Kliendikonto"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Vähendada"
 
 msgid "Delete"
 msgstr "Kustuta"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Elemendi kustutamine"
 
 msgid "Delivery"
 msgstr "Tarnitud"
@@ -310,7 +305,7 @@ msgid "Details"
 msgstr "Detailid"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Ära salvesta aadressi"
 
 msgid "Downloads"
 msgstr "Allalaetav info"
@@ -319,7 +314,7 @@ msgid "E-Mail"
 msgstr "E-posti aadress"
 
 msgid "End date"
-msgstr ""
+msgstr "Lõppkuupäev"
 
 msgid "Favorite products"
 msgstr "Lemmiktooted"
@@ -334,28 +329,28 @@ msgid "Filter"
 msgstr "Filtreeri"
 
 msgid "First"
-msgstr ""
+msgstr "Esimene"
 
 msgid "First name"
 msgstr "Eesnimi"
 
 msgid "Found products"
-msgstr ""
+msgstr "Leitud tooted"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Mine lehele"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Ruudustiku vaade"
 
 msgid "HH:mm"
 msgstr "TT:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Kõrgeim hind"
 
 #, php-format
 msgid ""
@@ -364,7 +359,7 @@ msgid ""
 "target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
 "policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
 "policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgstr "Nõustun <a href=\"%1$s\" target=\"_blank\" title=\"tingimused (avaneb uues vahekaardis)\">tingimustega</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privaatsuspoliitika (avaneb uues vahekaardis)\">privaatsuspoliitika</a> ja <a href=\"%3$s\" target=\"_blank\" title=\"tühistamispoliitika (avaneb uues vahekaardis)\">Andestamispoliitika</a>."
 
 #, php-format
 msgid ""
@@ -374,7 +369,7 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "Nõustun <a href=\"%1$s\" target=\"_blank\" title=\"tingimused\" alt=\"tingimused\">tingimused</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privaatsuspoliitika\" alt=\"privaatsuspoliitika\">privaatsuspoliitika</a> ja <a href=\"%3$s\" target=\"_blank\" title=\"tühistamispoliitika\" alt=\"tühistamispoliitika\"> tühistamispoliitika</a>."
 
 msgid "If back in stock"
 msgstr "Kui kaup on laos"
@@ -384,7 +379,7 @@ msgstr "Kui hind langeb"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Sealhulgas %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -394,31 +389,31 @@ msgid "Included rebates"
 msgstr "Sisaldavad soodustust"
 
 msgid "Increase"
-msgstr ""
+msgstr "Suurendada"
 
 msgid "Interval"
-msgstr ""
+msgstr "Intervall"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr ""
+msgstr "Väärad tähemärgid kliendi nimes \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "Vale klassi nimi \"%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr ""
+msgstr "Vale domeen \"%1$s\""
 
 msgid "Invoice"
-msgstr ""
+msgstr "Arve"
 
 msgid "Language"
 msgstr "Keel"
 
 msgid "Last"
-msgstr ""
+msgstr "Viimane"
 
 msgid "Last name"
 msgstr "Perekonnanimi"
@@ -430,22 +425,22 @@ msgid "Latest"
 msgstr "Uusim"
 
 msgid "Less"
-msgstr ""
+msgstr "Vähem"
 
 msgid "List view"
-msgstr ""
+msgstr "Nimekirja vaade"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Madalaim hind"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobiilne"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Mobiilinumber"
 
 msgid "More"
-msgstr ""
+msgstr "Rohkem"
 
 msgid "More reviews"
 msgstr "Veel arvustusi"
@@ -454,7 +449,7 @@ msgid "Name"
 msgstr "Nimi"
 
 msgid "New"
-msgstr ""
+msgstr "Uus"
 
 msgid "New delivery address"
 msgstr "Uus kättetoimetamise aadress"
@@ -472,7 +467,7 @@ msgid ""
 msgstr "Otsingule <span class=\"searchstring\">\"%1$s\"</span> tulemusi ei leitud. Palun proovige uuesti muu märksõnaga."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "Tellimuse ID ei ole sessioonis saadaval"
 
 #, php-format
 msgid "No view available"
@@ -485,7 +480,7 @@ msgid "One week"
 msgstr "Üks nädal"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Ava alammenüü"
 
 msgid "Order ID"
 msgstr "Tellimuse ID"
@@ -519,10 +514,10 @@ msgid "Payment status"
 msgstr "Makse staatus"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Protsentuaalne osakaal"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Pin toode"
 
 msgid "Pinned products"
 msgstr "Äramärgitud tooted"
@@ -558,10 +553,10 @@ msgid "Price"
 msgstr "Hind"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Hinnafilter"
 
 msgid "Price range"
-msgstr ""
+msgstr "Hinnavahemik"
 
 msgid "Proceed"
 msgstr "Edasi"
@@ -573,40 +568,40 @@ msgid "Product"
 msgstr "Toode"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Toote toimingud"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Toote omadused"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Tootekategooriad"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Toote omadused"
 
 msgid "Product description"
-msgstr ""
+msgstr "Toote kirjeldus"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Toote allalaadimine"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Toote filtrid"
 
 msgid "Product image"
 msgstr "Toote pilt"
 
 msgid "Product information"
-msgstr ""
+msgstr "Tooteinfo"
 
 msgid "Product price"
-msgstr ""
+msgstr "Toote hind"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Toote ülevaated"
 
 msgid "Product search"
-msgstr ""
+msgstr "Toote otsing"
 
 msgid "Products you might be also interested in"
 msgstr "Tooted, mis võiksid Teile veel huvi pakkuda"
@@ -621,16 +616,16 @@ msgid "Rating"
 msgstr "Hinne"
 
 msgid "Reference"
-msgstr ""
+msgstr "Viide"
 
 msgid "Relevance"
 msgstr "Täpsus"
 
 msgid "Remove"
-msgstr ""
+msgstr "Eemaldage"
 
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #, php-format
 msgid "Result for \"%1$s\""
@@ -640,10 +635,10 @@ msgid "Reviews"
 msgstr "Arvustused"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU või artikli nimi"
 
 msgid "Sale"
-msgstr ""
+msgstr "Müük"
 
 msgid "Salutation"
 msgstr "Pöördumine"
@@ -652,10 +647,10 @@ msgid "Save"
 msgstr "Salvesta"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Salvestatud korv eemaldatud edukalt"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Salvestatud korvid"
 
 msgid "Search"
 msgstr "Otsi"
@@ -693,13 +688,13 @@ msgid "Show"
 msgstr "Näita"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Sorteerimine"
 
 msgid "Sort by:"
 msgstr "Sorteeri:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Tähed"
 
 msgid "State"
 msgstr "Maakond"
@@ -722,13 +717,13 @@ msgid "Sub-total"
 msgstr "Vahesumma"
 
 msgid "Submit"
-msgstr ""
+msgstr "Esita"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "Tellimuse ID"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Tellimuse andmed"
 
 msgid "Subscriptions"
 msgstr "Tellimused"
@@ -743,13 +738,13 @@ msgid "Supplier information"
 msgstr "Tarnija info"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Tarnijate nimekiri"
 
 msgid "Suppliers"
 msgstr "Tarnijad"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Vaadake"
 
 msgid "Telephone"
 msgstr "Telefon"
@@ -787,10 +782,10 @@ msgid "Time frame"
 msgstr "Kestus"
 
 msgid "Title"
-msgstr ""
+msgstr "Pealkiri"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Täisekraani ümberlülitamine"
 
 msgid "Total"
 msgstr "Summa"
@@ -803,11 +798,11 @@ msgstr "Kaks nädalat"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Kontot ei ole võimalik luua: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
+msgstr "Kliendi \"%1$s\" aadressi ei ole võimalik salvestada: %2$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -818,13 +813,13 @@ msgid "Update"
 msgstr "Uuenda"
 
 msgid "Variant"
-msgstr ""
+msgstr "Variant"
 
 msgid "Vat ID"
 msgstr "Käibemaksukohuslase number"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Müüja vastus"
 
 msgid "Watch"
 msgstr "Lisa jälgimisnimekirja"
@@ -836,30 +831,30 @@ msgid "Web site"
 msgstr "Veebileht"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "Mida te arvate toote kohta"
 
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "AAA-KK-MK-TT"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "AAA-MM-TKT TKT:mm"
 
 msgid "You are here:"
 msgstr "Te olete siin:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Saate salvestada ainult kuni %1$s tooteid lemmikute hulka."
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Saate vaadata ainult kuni %1$s tooteid"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Sa pead kõigepealt sisse logima"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Teid suunatakse nüüd edasi järgmise sammuni"
@@ -868,19 +863,19 @@ msgid "Your choice"
 msgstr "Teie valik"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Teie kommentaar"
 
 msgid "Your rating"
-msgstr ""
+msgstr "Teie hinnang"
 
 msgid "Your reference"
-msgstr ""
+msgstr "Teie viide"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Teie viitenumber"
 
 msgid "Your review"
-msgstr ""
+msgstr "Teie hinnang"
 
 msgid "Zoom in/out"
 msgstr "Suumi sisse/välja"
@@ -910,17 +905,17 @@ msgid "none"
 msgstr "mitte ühtegi"
 
 msgid "on request"
-msgstr ""
+msgstr "soovi korral"
 
 #, php-format
 msgid "payment"
 msgstr "makse"
 
 msgid "pin"
-msgstr ""
+msgstr "pin"
 
 msgid "price:default"
-msgstr ""
+msgstr "price:default"
 
 #, php-format
 msgid "process"
@@ -943,7 +938,7 @@ msgid "summary"
 msgstr "kokkuvõte"
 
 msgid "watch"
-msgstr ""
+msgstr "vaata"
 
 msgid "▲ Name"
 msgstr "▲ Nimi"

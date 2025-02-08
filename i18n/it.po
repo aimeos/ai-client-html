@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: R M <roberto@proprionoi.it>, 2019\n"
 "Language-Team: Italian (http://app.transifex.com/aimeos/aimeos-core/language/it/)\n"
@@ -70,7 +70,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -82,14 +82,7 @@ msgstr "%1$s %2$s di sconto"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -100,11 +93,11 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(si apre in una nuova finestra)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -122,7 +115,7 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Si è verificato un errore non recuperabile"
 
 msgid "Add"
 msgstr "Aggiungi"
@@ -131,7 +124,7 @@ msgid "Add billing address"
 msgstr "Aggiungi indirizzo di fatturazione"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Aggiungere l'indirizzo di consegna"
 
 msgid "Add to basket"
 msgstr "Aggiungi al carrello"
@@ -161,10 +154,10 @@ msgstr "Manca una parte dell'indirizzo di spedizione, oppure non è valido."
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Almeno una parte dell'indirizzo di pagamento è mancante o non valida"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Non è stato possibile aggiungere almeno un prodotto al carrello."
 
 msgid "Back"
 msgstr "Indietro"
@@ -173,13 +166,13 @@ msgid "Basket"
 msgstr "Carrello"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Dettagli del cestino"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Nome del cestino"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Cestino salvato con successo"
 
 msgid "Billing address"
 msgstr "Indirizzo di fatturazione"
@@ -196,7 +189,7 @@ msgid "Birthday"
 msgstr "Data di nascita"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Navigazione Breadcrumb"
 
 msgid "Bulk order"
 msgstr "Ordine all'ingrosso"
@@ -217,25 +210,25 @@ msgid "Change"
 msgstr "Modifica"
 
 msgid "Change address"
-msgstr ""
+msgstr "Cambiamento di indirizzo"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Modifica dell'indirizzo di fatturazione"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Cambiare i coupon"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Consegna del cambiamento"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Modifica dell'indirizzo di consegna"
 
 msgid "Change payment"
 msgstr "Modifica metodo di pagamento"
 
 msgid "Change products"
-msgstr ""
+msgstr "Cambiare i prodotti"
 
 msgid "Characteristics"
 msgstr "Caratteristiche"
@@ -278,13 +271,13 @@ msgid "Customer account"
 msgstr "Account cliente"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Diminuzione"
 
 msgid "Delete"
 msgstr "Cancella"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Eliminare l'elemento"
 
 msgid "Delivery"
 msgstr "Consegna"
@@ -344,13 +337,13 @@ msgid "First name"
 msgstr "Nome"
 
 msgid "Found products"
-msgstr ""
+msgstr "Prodotti trovati"
 
 msgid "GB999999973"
 msgstr "IT12345678910"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Vai alla pagina"
 
 msgid "Grid view"
 msgstr "Visualizzazione della griglia"
@@ -368,7 +361,7 @@ msgid ""
 "target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
 "policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
 "policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgstr "Accetto i <a href=\"%1$s\" target=\"_blank\" title=\"termini e condizioni (si apre in una nuova scheda)\">termini e condizioni</a>, <a href=\"%2$s\" target=\"_blank\" title=\"informativa sulla privacy (si apre in una nuova scheda)\">l'informativa sulla privacy</a> e <a href=\"%3$s\" target=\"_blank\" title=\"informativa sulla cancellazione (si apre in una nuova scheda)\">l'informativa sulla cancellazione</a>."
 
 #, php-format
 msgid ""
@@ -398,7 +391,7 @@ msgid "Included rebates"
 msgstr "Incluso sconto"
 
 msgid "Increase"
-msgstr ""
+msgstr "Aumento"
 
 msgid "Interval"
 msgstr "Intervallo"
@@ -434,7 +427,7 @@ msgid "Latest"
 msgstr "Ultimo"
 
 msgid "Less"
-msgstr ""
+msgstr "Meno"
 
 msgid "List view"
 msgstr "Visualizzazione della lista"
@@ -443,13 +436,13 @@ msgid "Lowest price"
 msgstr "Prezzo più basso"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Numero di cellulare"
 
 msgid "More"
-msgstr ""
+msgstr "Di più"
 
 msgid "More reviews"
 msgstr "Ulteriori recensioni"
@@ -476,7 +469,7 @@ msgid ""
 msgstr "Nessun prodotto trovato per <span class=\"searchstring\">\"%1$s\"</span>. Riprova con un'altra parola."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "Nessun ID ordine disponibile nella sessione"
 
 #, php-format
 msgid "No view available"
@@ -523,7 +516,7 @@ msgid "Payment status"
 msgstr "Status del pagamento"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Percentuale"
 
 msgid "Pin product"
 msgstr "Appunta prodotto"
@@ -562,7 +555,7 @@ msgid "Price"
 msgstr "Prezzo"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Filtro prezzo"
 
 msgid "Price range"
 msgstr "Intervallo di prezzi"
@@ -577,40 +570,40 @@ msgid "Product"
 msgstr "Prodotto"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Azioni sui prodotti"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Attributi del prodotto"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Categorie di prodotti"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Caratteristiche del prodotto"
 
 msgid "Product description"
-msgstr ""
+msgstr "Descrizione del prodotto"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Download del prodotto"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtri prodotto"
 
 msgid "Product image"
 msgstr "Immagine del prodotto"
 
 msgid "Product information"
-msgstr ""
+msgstr "Informazioni sul prodotto"
 
 msgid "Product price"
 msgstr "Prezzo prodotto"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Recensioni dei prodotti"
 
 msgid "Product search"
-msgstr ""
+msgstr "Ricerca del prodotto"
 
 msgid "Products you might be also interested in"
 msgstr "Prodotti a cui potresti essere interessato"
@@ -631,7 +624,7 @@ msgid "Relevance"
 msgstr "Rilevanza"
 
 msgid "Remove"
-msgstr ""
+msgstr "Rimuovere"
 
 msgid "Reset"
 msgstr "Reset"
@@ -656,10 +649,10 @@ msgid "Save"
 msgstr "Salva"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Cestino salvato rimosso con successo"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Cestini salvati"
 
 msgid "Search"
 msgstr "Cerca"
@@ -698,13 +691,13 @@ msgid "Show"
 msgstr "Mostra"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Ordina per"
 
 msgid "Sort by:"
 msgstr "Ordina per:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Stelle"
 
 msgid "State"
 msgstr "Provincia"
@@ -748,7 +741,7 @@ msgid "Supplier information"
 msgstr "Informazioni sul fornitore"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Elenco dei fornitori"
 
 msgid "Suppliers"
 msgstr "Fornitori"
@@ -857,14 +850,14 @@ msgstr "Ti trovi qui:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Puoi salvare solo fino a %1$s prodotti come preferiti"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Puoi guardare solo fino a %1$s prodotti"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "È necessario effettuare prima il login"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Verrai inviato al prossimo passaggio"

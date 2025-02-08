@@ -6,6 +6,7 @@
 # Aldemar Hernández <napalm-beach@lycos.com>, 2016
 # Daniel Vega <danielvega131990@gmail.com>, 2015
 # Edu PM, 2024
+# Edu PM, 2024
 # Juan Ramos <juancagb.17@gmail.com>, 2017
 # Lara Merlotto <lara@vg7.it>, 2020
 # nsendetzky, 2014
@@ -15,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Edu PM, 2024\n"
+"Last-Translator: S 0l, 2021\n"
 "Language-Team: Spanish (http://app.transifex.com/aimeos/aimeos-core/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +73,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -84,14 +85,7 @@ msgstr "%1$s %2$s menos"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] "%1$s artículo"
-msgstr[1] "%1$s artículos"
-msgstr[2] "%1$s artículos"
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -106,7 +100,7 @@ msgstr "(abrir en nueva ventana)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -927,7 +921,7 @@ msgid "pin"
 msgstr "marcar"
 
 msgid "price:default"
-msgstr ""
+msgstr "precio:por defecto"
 
 #, php-format
 msgid "process"

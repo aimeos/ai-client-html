@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Tobias Madsen <tubbe.m@gmail.com>, 2020\n"
 "Language-Team: Danish (http://app.transifex.com/aimeos/aimeos-core/language/da/)\n"
@@ -64,7 +64,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -76,13 +76,7 @@ msgstr "%1$s %2$s rabat"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -93,11 +87,11 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(åbner i nyt vindue)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -115,16 +109,16 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Der opstod en fejl, der ikke kan genoprettes"
 
 msgid "Add"
 msgstr "Tilføj"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Tilføj faktureringsadresse"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Tilføj leveringsadresse"
 
 msgid "Add to basket"
 msgstr "Tilføj til kurv"
@@ -136,7 +130,7 @@ msgid "Additional 2"
 msgstr "Ekstra 2"
 
 msgid "Apply"
-msgstr ""
+msgstr "Ansøg"
 
 msgid "Article"
 msgstr "Vare"
@@ -154,10 +148,10 @@ msgstr "Mindst en leveringsadresse mangler eller er ugyldig."
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Mindst én del af betalingsadressen mangler eller er ugyldig"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Mindst ét produkt kunne ikke lægges i kurven."
 
 msgid "Back"
 msgstr "Tilbage"
@@ -166,13 +160,13 @@ msgid "Basket"
 msgstr "Indkøbskurv"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Detaljer om kurven"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Kurvens navn"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Kurv gemt med succes"
 
 msgid "Billing address"
 msgstr "Faktureringsadresse"
@@ -189,7 +183,7 @@ msgid "Birthday"
 msgstr "Fødselsdag"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Breadcrumb-navigation"
 
 msgid "Bulk order"
 msgstr "Multi-vare bestilling"
@@ -210,25 +204,25 @@ msgid "Change"
 msgstr "Skift"
 
 msgid "Change address"
-msgstr ""
+msgstr "Ændre adresse"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Ændre faktureringsadresse"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Skift kuponer"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Ændring af levering"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Ændre leveringsadresse"
 
 msgid "Change payment"
 msgstr "Skift betalingsmetode"
 
 msgid "Change products"
-msgstr ""
+msgstr "Skift produkter"
 
 msgid "Characteristics"
 msgstr "Karakteristika"
@@ -241,7 +235,7 @@ msgstr "By"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr ""
+msgstr "Klassen \"%1$s\" blev ikke fundet"
 
 msgid "Close"
 msgstr "Luk"
@@ -271,13 +265,13 @@ msgid "Customer account"
 msgstr "Brugerprofil"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Fald"
 
 msgid "Delete"
 msgstr "Slet"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Slet element"
 
 msgid "Delivery"
 msgstr "Levering"
@@ -307,7 +301,7 @@ msgid "Details"
 msgstr "Detajler"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Gem ikke adressen"
 
 msgid "Downloads"
 msgstr "Downloads"
@@ -331,19 +325,19 @@ msgid "Filter"
 msgstr "Filter"
 
 msgid "First"
-msgstr ""
+msgstr "Første gang"
 
 msgid "First name"
 msgstr "Fornavn"
 
 msgid "Found products"
-msgstr ""
+msgstr "Fandt produkter"
 
 msgid "GB999999973"
 msgstr "DK11223344"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Gå til siden"
 
 msgid "Grid view"
 msgstr "Flisevisning"
@@ -352,7 +346,7 @@ msgid "HH:mm"
 msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Højeste pris"
 
 #, php-format
 msgid ""
@@ -361,7 +355,7 @@ msgid ""
 "target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
 "policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
 "policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgstr "Jeg accepterer <a href=\"%1$s\" target=\"_blank\" title=\"vilkår og betingelser (åbner i ny fane)\">vilkår og betingelser</a>, <a href=\"%2$s\" target=\"_blank\" title=\"fortrolighedspolitik (åbner i ny fane)\">fortrolighedspolitik</a> og <a href=\"%3$s\" target=\"_blank\" title=\"afbestillingspolitik (åbner i ny fane)\">afbestillingspolitik</a>."
 
 #, php-format
 msgid ""
@@ -391,31 +385,31 @@ msgid "Included rebates"
 msgstr "Inkluderet rabat"
 
 msgid "Increase"
-msgstr ""
+msgstr "Forøgelse"
 
 msgid "Interval"
 msgstr "Interval"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr ""
+msgstr "Ugyldige tegn i klientnavn \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "Ugyldigt klassenavn \"%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr ""
+msgstr "Ugyldigt domæne \"%1$s\""
 
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 msgid "Language"
 msgstr "Sprog"
 
 msgid "Last"
-msgstr ""
+msgstr "Sidste gang"
 
 msgid "Last name"
 msgstr "Efternavn"
@@ -427,22 +421,22 @@ msgid "Latest"
 msgstr "Seneste"
 
 msgid "Less"
-msgstr ""
+msgstr "Mindre"
 
 msgid "List view"
 msgstr "Listevisning"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Laveste pris"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Mobilnummer"
 
 msgid "More"
-msgstr ""
+msgstr "Mere om det"
 
 msgid "More reviews"
 msgstr "Flere anmeldelser"
@@ -451,7 +445,7 @@ msgid "Name"
 msgstr "Navn"
 
 msgid "New"
-msgstr ""
+msgstr "Ny"
 
 msgid "New delivery address"
 msgstr "Ny leveringsadresse"
@@ -469,11 +463,11 @@ msgid ""
 msgstr "Ingen varer fundet for <span class=\"searchstring\">\"%1$s\"</span>. Prøv igen med et andet ord."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "Intet ordre-id tilgængeligt i sessionen"
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "Ingen visning tilgængelig"
 
 msgid "One month"
 msgstr "En måned"
@@ -482,7 +476,7 @@ msgid "One week"
 msgstr "En uge"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Åbn undermenu"
 
 msgid "Order ID"
 msgstr "Ordre ID"
@@ -516,10 +510,10 @@ msgid "Payment status"
 msgstr "Betalingsstatus"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Procentdel"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Pin-produkt"
 
 msgid "Pinned products"
 msgstr "Gemte produkter"
@@ -555,10 +549,10 @@ msgid "Price"
 msgstr "Pris"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Prisfilter"
 
 msgid "Price range"
-msgstr ""
+msgstr "Prisinterval"
 
 msgid "Proceed"
 msgstr "Forsæt"
@@ -570,40 +564,40 @@ msgid "Product"
 msgstr "Produkt"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Produkthandlinger"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Produktets egenskaber"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Produktkategorier"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Produktets egenskaber"
 
 msgid "Product description"
-msgstr ""
+msgstr "Produktbeskrivelse"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Downloads af produkter"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Produktfiltre"
 
 msgid "Product image"
 msgstr "Produktbillede"
 
 msgid "Product information"
-msgstr ""
+msgstr "Information om produktet"
 
 msgid "Product price"
 msgstr "Produkt pris"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Produktanmeldelser"
 
 msgid "Product search"
-msgstr ""
+msgstr "Produktsøgning"
 
 msgid "Products you might be also interested in"
 msgstr "Produkter du måske er interesseret i"
@@ -624,7 +618,7 @@ msgid "Relevance"
 msgstr "Relevans"
 
 msgid "Remove"
-msgstr ""
+msgstr "Fjerne"
 
 msgid "Reset"
 msgstr "Nulstil"
@@ -640,7 +634,7 @@ msgid "SKU or article name"
 msgstr "SKU eller varenavn"
 
 msgid "Sale"
-msgstr ""
+msgstr "Salg"
 
 msgid "Salutation"
 msgstr "Tiltaleform"
@@ -649,10 +643,10 @@ msgid "Save"
 msgstr "Gem"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Gemt kurv fjernet med succes"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Gemte kurve"
 
 msgid "Search"
 msgstr "Søg"
@@ -690,13 +684,13 @@ msgid "Show"
 msgstr "Vis"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Sorter efter"
 
 msgid "Sort by:"
 msgstr "Sorter efter:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Stjerner"
 
 msgid "State"
 msgstr "Status"
@@ -719,13 +713,13 @@ msgid "Sub-total"
 msgstr "Sub-total"
 
 msgid "Submit"
-msgstr ""
+msgstr "Indsend"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "Abonnements-id"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Oplysninger om abonnement"
 
 msgid "Subscriptions"
 msgstr "Abonnementer"
@@ -740,13 +734,13 @@ msgid "Supplier information"
 msgstr "Leverandør information"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Liste over leverandører"
 
 msgid "Suppliers"
 msgstr "Leverandører"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Tag et kig"
 
 msgid "Telephone"
 msgstr "Telefon"
@@ -770,7 +764,7 @@ msgstr "Tak for din anmeldelse!"
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
+msgstr "Ordren blev annulleret.\nØnsker du at prøve igen?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
@@ -778,13 +772,13 @@ msgid ""
 msgstr "Bekræftelsen af din betaling afventer vi stadig. Du får en mail når alt er bekræftet."
 
 msgid "Three month"
-msgstr ""
+msgstr "Tre måneder"
 
 msgid "Time frame"
-msgstr ""
+msgstr "Tidsramme"
 
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 msgid "Toggle fullscreen"
 msgstr "Aktiver/deaktiver fuldskærm"
@@ -800,16 +794,16 @@ msgstr "To uger"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Det er ikke muligt at oprette en konto: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
+msgstr "Det er ikke muligt at gemme adressen for kunden \"%1$s\": %2$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
+msgstr "Desværre blev betalingen for din ordre afvist.\nØnsker du at prøve igen?"
 
 msgid "Update"
 msgstr "Opdater"
@@ -821,10 +815,10 @@ msgid "Vat ID"
 msgstr "CVR-nummer"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Leverandørens svar"
 
 msgid "Watch"
-msgstr ""
+msgstr "Se her"
 
 msgid "Watched products"
 msgstr "Sete produkter"
@@ -849,17 +843,17 @@ msgstr "Du er her:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Du kan kun gemme op til %1$s produkter som favoritter"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Du kan kun se op til %1$s produkter"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Du skal logge ind først"
 
 msgid "You will now be forwarded to the next step"
-msgstr ""
+msgstr "Du vil nu blive sendt videre til næste trin"
 
 msgid "Your choice"
 msgstr "Dit valg"
@@ -891,7 +885,7 @@ msgid "delivery"
 msgstr "Levering"
 
 msgid "favorite"
-msgstr ""
+msgstr "Favorit"
 
 #, php-format
 msgid "from %1$s"
@@ -907,14 +901,14 @@ msgid "none"
 msgstr "ingen"
 
 msgid "on request"
-msgstr ""
+msgstr "på forespørgsel"
 
 #, php-format
 msgid "payment"
 msgstr "Betaling"
 
 msgid "pin"
-msgstr ""
+msgstr "nål"
 
 msgid "price:default"
 msgstr "Standardpris"
@@ -940,7 +934,7 @@ msgid "summary"
 msgstr "Opsummering"
 
 msgid "watch"
-msgstr ""
+msgstr "se på"
 
 msgid "▲ Name"
 msgstr "▲ Navn"

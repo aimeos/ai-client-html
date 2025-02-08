@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-02-06 13:04+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Antonio Sequeira <antonio.sequeira@adanora.pt>, 2022,2024\n"
+"Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
 "Language-Team: Portuguese (http://app.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -82,14 +82,7 @@ msgstr "%1$s %2$s off"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -100,11 +93,11 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(abre numa nova janela)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -131,7 +124,7 @@ msgid "Add billing address"
 msgstr "Inclua um endereço de faturação"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Adicionar endereço de entrega"
 
 msgid "Add to basket"
 msgstr "Adicionar ao carrinho"
@@ -161,10 +154,10 @@ msgstr "Pelo menos uma parte do endereço de entrega está em falta ou é invál
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Pelo menos uma parte do endereço de pagamento está em falta ou é inválida"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Pelo menos um produto não pôde ser adicionado ao cesto."
 
 msgid "Back"
 msgstr "Voltar"
@@ -217,25 +210,25 @@ msgid "Change"
 msgstr "Alterar"
 
 msgid "Change address"
-msgstr ""
+msgstr "Alterar o endereço"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Alterar o endereço de faturação"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Alterar cupões"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Modificar o fornecimento"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Alterar o endereço de entrega"
 
 msgid "Change payment"
 msgstr "Alterar pagamento"
 
 msgid "Change products"
-msgstr ""
+msgstr "Alterar produtos"
 
 msgid "Characteristics"
 msgstr "Características"
@@ -278,7 +271,7 @@ msgid "Customer account"
 msgstr "Conta do cliente"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Diminuir"
 
 msgid "Delete"
 msgstr "Remover"
@@ -368,7 +361,7 @@ msgid ""
 "target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
 "policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
 "policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgstr "Aceito os <a href=\"%1$s\" target=\"_blank\" title=\"termos e condições (abre num novo separador)\">termos e condições</a>, <a href=\"%2$s\" target=\"_blank\" title=\"política de privacidade (abre num novo separador)\">política de privacidade</a> e <a href=\"%3$s\" target=\"_blank\" title=\"política de cancelamento (abre num novo separador)\">política de cancelamento</a>"
 
 #, php-format
 msgid ""
@@ -398,7 +391,7 @@ msgid "Included rebates"
 msgstr "Descontos incluídos"
 
 msgid "Increase"
-msgstr ""
+msgstr "Aumentar"
 
 msgid "Interval"
 msgstr "Intervalo"
@@ -434,7 +427,7 @@ msgid "Latest"
 msgstr "Último"
 
 msgid "Less"
-msgstr ""
+msgstr "Menos"
 
 msgid "List view"
 msgstr "Vista de lista"
@@ -523,7 +516,7 @@ msgid "Payment status"
 msgstr "Status de pagamento"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Percentagem"
 
 msgid "Pin product"
 msgstr "Marcar produto"
@@ -592,7 +585,7 @@ msgid "Product description"
 msgstr "Descrição do produto"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Transferências de produtos"
 
 msgid "Product filters"
 msgstr "Filtro produto"
@@ -631,7 +624,7 @@ msgid "Relevance"
 msgstr "Relevância"
 
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 msgid "Reset"
 msgstr "Limpar"
@@ -704,7 +697,7 @@ msgid "Sort by:"
 msgstr "Ordenar por:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Estrelas"
 
 msgid "State"
 msgstr "Estado"
