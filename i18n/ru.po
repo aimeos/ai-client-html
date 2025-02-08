@@ -9,11 +9,12 @@
 # nsendetzky, 2014
 # Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015
 # Роман Андрейчук, 2022
+# Роман Андрейчук, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 14:57+0200\n"
+"POT-Creation-Date: 2025-01-19 18:13+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Роман Андрейчук, 2022\n"
 "Language-Team: Russian (http://app.transifex.com/aimeos/aimeos-core/language/ru/)\n"
@@ -72,7 +73,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -84,15 +85,7 @@ msgstr "скидка %1$s %2$s"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
-
-#, php-format
-msgid "%1$s article"
-msgid_plural "%1$s articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -103,11 +96,11 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(открывается в новом окне)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -125,7 +118,7 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Произошла неустранимая ошибка"
 
 msgid "Add"
 msgstr "Добавить"
@@ -134,7 +127,7 @@ msgid "Add billing address"
 msgstr "Добавьте платежный адрес"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "Добавить адрес доставки"
 
 msgid "Add to basket"
 msgstr "Добавить в корзину"
@@ -149,10 +142,10 @@ msgid "Apply"
 msgstr "Применить"
 
 msgid "Article"
-msgstr ""
+msgstr "Статья"
 
 msgid "Article no."
-msgstr ""
+msgstr "Артикул нет."
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -164,10 +157,10 @@ msgstr "Ошибка в одной из частей адреса доставк
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "Хотя бы одна часть платежного адреса отсутствует или недействительна"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "Как минимум один товар не удалось добавить в корзину."
 
 msgid "Back"
 msgstr "Назад"
@@ -176,13 +169,13 @@ msgid "Basket"
 msgstr "Корзина"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Детали корзины"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Название корзины"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Корзина сохранена успешно"
 
 msgid "Billing address"
 msgstr "Платёжный адрес"
@@ -199,10 +192,10 @@ msgid "Birthday"
 msgstr "День рождения"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Навигация по хлебным крошкам"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Оптовый заказ"
 
 msgid "Bundled products"
 msgstr "Комплект товаров"
@@ -220,25 +213,25 @@ msgid "Change"
 msgstr "Изменить"
 
 msgid "Change address"
-msgstr ""
+msgstr "Изменить адрес"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "Изменить адрес для выставления счетов"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "Меняйте купоны"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "Доставка изменений"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "Изменить адрес доставки"
 
 msgid "Change payment"
 msgstr "Изменить оплату"
 
 msgid "Change products"
-msgstr ""
+msgstr "Меняйте продукты"
 
 msgid "Characteristics"
 msgstr "Характеристики"
@@ -272,22 +265,22 @@ msgid "Coupons"
 msgstr "Купоны"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "Создайте для меня учетную запись клиента"
 
 msgid "Created"
 msgstr "Создано"
 
 msgid "Customer account"
-msgstr ""
+msgstr "Счет клиента"
 
 msgid "Decrease"
-msgstr ""
+msgstr "Уменьшить"
 
 msgid "Delete"
 msgstr "Удалить"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Удалить элемент"
 
 msgid "Delivery"
 msgstr "Доставка"
@@ -347,22 +340,22 @@ msgid "First name"
 msgstr "Имя"
 
 msgid "Found products"
-msgstr ""
+msgstr "Найденные продукты"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Перейти на страницу"
 
 msgid "Grid view"
 msgstr "Вид Сетка"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "ЧЧ:мм"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Самая высокая цена"
 
 #, php-format
 msgid ""
@@ -371,7 +364,7 @@ msgid ""
 "target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
 "policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
 "policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgstr "Я принимаю <a href=\"%1$s\" target=\"_blank\" title=\"правила и условия (открывается в новой вкладке)\">правила и условия</a>, <a href=\"%2$s\" target=\"_blank\" title=\"политика конфиденциальности (открывается в новой вкладке)\">политика конфиденциальности</a> и <a href=\"%3$s\" target=\"_blank\" title=\"политика отмены (открывается в новой вкладке)\">политика отмены</a>."
 
 #, php-format
 msgid ""
@@ -381,7 +374,7 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "Я принимаю <a href=\"%1$s\" target=\"_blank\" title=\"условия и положения\" alt=\"условия и положения\">условия</a>, <a href=\"%2$s\" target=\"_blank\" title=\"политика конфиденциальности\" alt=\"политика конфиденциальности\">политика конфиденциальности</a> и <a href=\"%3$s\" target=\"_blank\" title=\"политика отмены\" alt=\"политика отмены\">политика отмены</a>."
 
 msgid "If back in stock"
 msgstr "Если появится в наличии"
@@ -391,7 +384,7 @@ msgstr "При снижении цены"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Вкл. %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -401,7 +394,7 @@ msgid "Included rebates"
 msgstr "Включены скидки"
 
 msgid "Increase"
-msgstr ""
+msgstr "Увеличить"
 
 msgid "Interval"
 msgstr "Интервал"
@@ -437,19 +430,19 @@ msgid "Latest"
 msgstr "Конечный"
 
 msgid "Less"
-msgstr ""
+msgstr "Меньше"
 
 msgid "List view"
 msgstr "Вид списка"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Самая низкая цена"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Мобильный"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Номер мобильного телефона"
 
 msgid "More"
 msgstr "Еще"
@@ -479,7 +472,7 @@ msgid ""
 msgstr "Для <span class=\"searchstring\">\"%1$s\"</span> ничего не найдено. Попробуйте искать по другим словосочетаниям."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "Идентификатор заказа не доступен в сессии"
 
 #, php-format
 msgid "No view available"
@@ -492,7 +485,7 @@ msgid "One week"
 msgstr "Одна неделя"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Открыть подменю"
 
 msgid "Order ID"
 msgstr "Номер заказа"
@@ -526,10 +519,10 @@ msgid "Payment status"
 msgstr "Статус оплаты"
 
 msgid "Percentage"
-msgstr ""
+msgstr "Процент"
 
 msgid "Pin product"
-msgstr ""
+msgstr "Штыревое изделие"
 
 msgid "Pinned products"
 msgstr "Отмеченные товары"
@@ -565,10 +558,10 @@ msgid "Price"
 msgstr "цене"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Ценовой фильтр"
 
 msgid "Price range"
-msgstr ""
+msgstr "Диапазон цен"
 
 msgid "Proceed"
 msgstr "Продолжить"
@@ -580,40 +573,40 @@ msgid "Product"
 msgstr "Товар"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Действия с продуктами"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Атрибуты продукта"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Категории продуктов"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Характеристики продукта"
 
 msgid "Product description"
-msgstr ""
+msgstr "Описание товара"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "Загрузка продуктов"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Фильтры для продуктов"
 
 msgid "Product image"
-msgstr ""
+msgstr "Изображение продукта"
 
 msgid "Product information"
-msgstr ""
+msgstr "Информация о продукте"
 
 msgid "Product price"
 msgstr "Цена товара"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Отзывы о товаре"
 
 msgid "Product search"
-msgstr ""
+msgstr "Поиск товара"
 
 msgid "Products you might be also interested in"
 msgstr "Товары, которые могут быть Вам интересны"
@@ -634,7 +627,7 @@ msgid "Relevance"
 msgstr "рейтингу"
 
 msgid "Remove"
-msgstr ""
+msgstr "Удалить"
 
 msgid "Reset"
 msgstr "Сброс"
@@ -644,13 +637,13 @@ msgid "Result for \"%1$s\""
 msgstr "Результат для \"%1$s\""
 
 msgid "Reviews"
-msgstr ""
+msgstr "Отзывы"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU или название артикула"
 
 msgid "Sale"
-msgstr ""
+msgstr "Продажа"
 
 msgid "Salutation"
 msgstr "Приветствие"
@@ -659,10 +652,10 @@ msgid "Save"
 msgstr "Сохранить"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Сохраненная корзина удалена успешно"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Сохраненные корзины"
 
 msgid "Search"
 msgstr "Поиск"
@@ -702,13 +695,13 @@ msgid "Show"
 msgstr "Показать"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Сортировать по"
 
 msgid "Sort by:"
 msgstr "Упорядочить по:"
 
 msgid "Stars"
-msgstr ""
+msgstr "Звезды"
 
 msgid "State"
 msgstr "Область"
@@ -731,13 +724,13 @@ msgid "Sub-total"
 msgstr "Промежуточная сумма"
 
 msgid "Submit"
-msgstr ""
+msgstr "Отправить"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "Идентификатор подписки"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Информация о подписке"
 
 msgid "Subscriptions"
 msgstr "Подписки"
@@ -749,16 +742,16 @@ msgid "Sum"
 msgstr "Сумма"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "Информация о поставщике"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Список поставщиков"
 
 msgid "Suppliers"
 msgstr "Поставщики"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Взгляните"
 
 msgid "Telephone"
 msgstr "Телефон"
@@ -777,7 +770,7 @@ msgid ""
 msgstr "Благодарим Вас за заказ.\nМы получили оплату и письмо с деталями заказа будет выслано Вам в течение нескольких минут."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "Спасибо за ваш отзыв!"
 
 msgid ""
 "The order was canceled.\n"
@@ -799,7 +792,7 @@ msgid "Title"
 msgstr "Титул"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Переключить полноэкранный режим"
 
 msgid "Total"
 msgstr "Всего"
@@ -827,13 +820,13 @@ msgid "Update"
 msgstr "Обновить"
 
 msgid "Variant"
-msgstr ""
+msgstr "Вариант"
 
 msgid "Vat ID"
 msgstr "ID НДС"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Ответ поставщика"
 
 msgid "Watch"
 msgstr "Следить"
@@ -845,30 +838,30 @@ msgid "Web site"
 msgstr "Сайт"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "Что вы думаете о продукте"
 
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "ГГГГ-ММ-ДД"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "ГГГГ-ММ-ДД ЧЧ:мм"
 
 msgid "You are here:"
 msgstr "Вы здесь:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Вы можете сохранить только до %1$s товаров в качестве избранных"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Вы можете просматривать только до %1$s товаров"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Сначала вы должны войти в систему"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Переход к следующему шагу"

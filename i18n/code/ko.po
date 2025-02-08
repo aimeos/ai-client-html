@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
+# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,35 +24,35 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "세금"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "세금 PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "세금 GST"
 
 #. Price type default
 msgid "price:default"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "즐겨 찾기"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "핀"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "시계"
 
 #. Product attribute
 msgid "size"
@@ -63,47 +64,47 @@ msgstr "길이"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "너비"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "색상"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "옵션"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "패키지 길이"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "패키지 너비"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "패키지 높이"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "패키지 무게"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "계정 소유자"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "계정 번호"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "은행 코드"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "은행 이름"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,40 +116,40 @@ msgstr "성"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "신용 카드 번호"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "인증 번호"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "결제.만료월"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "결제.만료연도"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "만료 (MMYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "픽업 날짜"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "픽업 시간"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "픽업 위치"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "픽업 주소"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "배송 유형"

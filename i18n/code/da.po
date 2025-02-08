@@ -7,6 +7,7 @@
 # Translators:
 # Translators:
 # Translators:
+# Aimeos, 2025
 # Tobias Madsen <tubbe.m@gmail.com>, 2020
 msgid ""
 msgstr ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Tobias Madsen <tubbe.m@gmail.com>, 2020\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Danish (http://app.transifex.com/aimeos/aimeos-core/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,11 +29,11 @@ msgstr "moms"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "PST"
+msgstr "MOMS PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "GST"
+msgstr "MOMS GST"
 
 #. Price type default
 msgid "price:default"
@@ -40,19 +41,19 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "Favorit"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "nål"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "se på"
 
 #. Product attribute
 msgid "size"
@@ -120,7 +121,7 @@ msgstr "Kreditkort nummer"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Bekræftelsesnummer"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -132,23 +133,23 @@ msgstr "Udløbsår"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "Udløb (MMÅÅ)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "Dato for afhentning"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "Tidspunkt for afhentning"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "Afhentningssted"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "Adresse for afhentning"
 
 #. Delivery type
 msgid "delivery.type"

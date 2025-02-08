@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # shmuel adler, 2024
+# shmuel adler, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -40,7 +41,7 @@ msgstr "מחיר:ברירת מחדל"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr "</text_to_translate>"
 
 #. Favorite action
 msgid "favorite"

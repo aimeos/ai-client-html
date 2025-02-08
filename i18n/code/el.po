@@ -1,0 +1,155 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# 
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Aimeos, 2025
+msgid ""
+msgstr ""
+"Project-Id-Version: aimeos-core\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-09 09:14+0200\n"
+"PO-Revision-Date: 2015-07-09 20:34+0000\n"
+"Last-Translator: Aimeos, 2025\n"
+"Language-Team: Greek (http://app.transifex.com/aimeos/aimeos-core/language/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Tax name
+msgid "tax"
+msgstr "ΦΠΑ"
+
+#. PST tax name
+msgid "taxpst"
+msgstr "ΦΠΑ PST"
+
+#. GST tax name
+msgid "taxgst"
+msgstr "ΦΠΑ GST"
+
+#. Price type default
+msgid "price:default"
+msgstr "%1$s %2$s"
+
+#. Stock type
+msgid "stocktype:default"
+msgstr " "
+
+#. Favorite action
+msgid "favorite"
+msgstr "αγαπημένο"
+
+#. Pin action
+msgid "pin"
+msgstr "καρφίτσα"
+
+#. Watch action
+msgid "watch"
+msgstr "παρακολουθήστε"
+
+#. Product attribute
+msgid "size"
+msgstr "μέγεθος"
+
+#. Product attribute
+msgid "length"
+msgstr "μήκος"
+
+#. Product attribute
+msgid "width"
+msgstr "πλάτος"
+
+#. Product attribute
+msgid "color"
+msgstr "χρώμα"
+
+#. Product attribute
+msgid "option"
+msgstr "επιλογή"
+
+#. Product property package-length
+msgid "package-length"
+msgstr "μήκος συσκευασίας"
+
+#. Product property package-width
+msgid "package-width"
+msgstr "πλάτος συσκευασίας"
+
+#. Product property package-height
+msgid "package-height"
+msgstr "ύψος συσκευασίας"
+
+#. Product property package-weight
+msgid "package-weight"
+msgstr "βάρος συσκευασίας"
+
+#. Direct debit service provider
+msgid "directdebit.accountowner"
+msgstr "Ιδιοκτήτης λογαριασμού"
+
+#. Direct debit service provider
+msgid "directdebit.accountno"
+msgstr "Αριθμός λογαριασμού"
+
+#. Direct debit service provider
+msgid "directdebit.bankcode"
+msgstr "Κωδικός τράπεζας"
+
+#. Direct debit service provider
+msgid "directdebit.bankname"
+msgstr "Όνομα τράπεζας"
+
+#. Omnipay service provider
+msgid "payment.firstname"
+msgstr "Όνομα"
+
+#. Omnipay service provider
+msgid "payment.lastname"
+msgstr "Επώνυμο"
+
+#. Omnipay service provider
+msgid "payment.cardno"
+msgstr "Αριθμός πιστωτικής κάρτας"
+
+#. Omnipay service provider
+msgid "payment.cvv"
+msgstr "Αριθμός επαλήθευσης"
+
+#. Omnipay service provider
+msgid "payment.expirymonth"
+msgstr "Μήνας λήξης"
+
+#. Omnipay service provider
+msgid "payment.expiryyear"
+msgstr "Έτος λήξης"
+
+#. Omnipay service provider
+msgid "payment.expiry"
+msgstr "Λήξη (MMYY)"
+
+#. Pick-up date
+msgid "date.value"
+msgstr "Ημερομηνία παραλαβής"
+
+#. Pick-up time
+msgid "time.hourminute"
+msgstr "Ώρα παραλαβής"
+
+#. Pick-up location
+msgid "supplier.code"
+msgstr "Τοποθεσία παραλαβής"
+
+#. Pick-up location
+msgid "supplier.address"
+msgstr "Διεύθυνση παραλαβής"
+
+#. Delivery type
+msgid "delivery.type"
+msgstr "Τύπος παράδοσης"
