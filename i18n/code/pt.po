@@ -7,6 +7,7 @@
 # Translators:
 # Translators:
 # Translators:
+# Aimeos, 2025
 # António Almeida <promatik@gmail.com>, 2019
 # b5fdd37cec45d8078af7e530465bb050, 2016
 # b5fdd37cec45d8078af7e530465bb050, 2016

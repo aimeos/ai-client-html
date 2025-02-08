@@ -7,6 +7,7 @@
 # Translators:
 # Translators:
 # Translators:
+# Aimeos, 2025
 # alessandro massarelli <alessandro@botteega.com>, 2017
 # Fabio Barbon <fabio.barbon@gmail.com>, 2021
 # isabella carlin <isabella@vg7.it>, 2020

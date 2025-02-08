@@ -7,6 +7,7 @@
 # Translators:
 # Translators:
 # Translators:
+# Aimeos, 2025
 # Goran Sabo <info@noaset.pro>, 2020
 # Goran Sabo <info@noaset.pro>, 2020
 # Goran Sabo <info@noaset.pro>, 2020

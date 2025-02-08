@@ -7,6 +7,7 @@
 # Translators:
 # Translators:
 # Translators:
+# Aimeos, 2025
 # Tobias Madsen <tubbe.m@gmail.com>, 2020
 msgid ""
 msgstr ""
