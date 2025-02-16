@@ -157,7 +157,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 			<div class="content">
 				<input class="customerref-value"
 					title="<?= $enc->attr( $this->translate( 'client', 'Your reference' ), $enc::TRUST ) ?>"
-					name="<?= $this->formparam( array( 'cs_customerref' ) ) ?>"
+					name="<?= $enc->attr( $this->formparam( array( 'cs_customerref' ) ) ) ?>"
 					value="<?= $enc->attr( $this->standardBasket->getCustomerReference() ) ?>">
 			</div>
 		</div><!--
@@ -168,7 +168,7 @@ $basketUrl = $this->link( 'client/html/basket/standard/url' );
 			</div>
 
 			<div class="content">
-				<textarea class="comment-value" name="<?= $this->formparam( array( 'cs_comment' ) ) ?>"
+				<textarea class="comment-value" name="<?= $enc->attr( $this->formparam( array( 'cs_comment' ) ) ) ?>"
 					title="<?= $enc->attr( $this->translate( 'client', 'Your comment' ), $enc::TRUST ) ?>">
 					<?= $enc->html( $this->standardBasket->getComment() ) ?>
 				</textarea>
