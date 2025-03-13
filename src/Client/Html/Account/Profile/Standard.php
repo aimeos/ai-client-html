@@ -184,11 +184,13 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
-		$data = $view->param( 'address/payment', [] );
 
 		if( !$view->param( 'address/save' ) && !$view->param( 'address/delete' ) ) {
 			return;
 		}
+
+		$data = $view->param( 'address/payment', [] );
+		$map = $view->param( 'address/delivery', [] );
 
 		if( !empty( $data ) && ( $view->addressPaymentError = $this->checkFields( $data, 'payment' ) ) !== [] ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one payment address part is missing or invalid' ) );
@@ -198,9 +200,12 @@ class Standard
 		$addrItems = $cntl->uses( ['customer/address'] )->get()->getAddressItems();
 		$cntl->add( $view->param( 'address/payment', [] ) );
 
-		$map = $view->param( 'address/delivery', [] );
+		if( $pos = $view->param( 'address/delete' ) )
+		{
+			if( isset( $addrItems[$pos] ) ) {
+				$cntl->deleteAddressItem( $addrItems[$pos] );
+			}
 
-		if( $pos = $view->param( 'address/delete' ) ) {
 			unset( $map[$pos] );
 		}
 
@@ -212,11 +217,6 @@ class Standard
 
 			$addrItem = $addrItems->get( $pos ) ?: $cntl->createAddressItem();
 			$cntl->addAddressItem( $addrItem->fromArray( $data ), $pos );
-			$addrItems->remove( $pos );
-		}
-
-		foreach( $addrItems as $addrItem ) {
-			$cntl->deleteAddressItem( $addrItem );
 		}
 
 		$cntl->store();
