@@ -177,7 +177,7 @@ $pos = 0;
 									<div class="address accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
 
 										<div class="form-list">
-											<input type="hidden" disabled
+											<input type="hidden"
 												name="<?= $enc->attr( $this->formparam( array( 'address', 'delivery', $pos, 'customer.address.id' ) ) ) ?>"
 												value="<?= $enc->attr( $this->value( $addr, 'customer.address.id' ) ) ?>"
 											>
