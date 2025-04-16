@@ -79,8 +79,10 @@ class Standard
 
 		if( ( $code = $view->param( 'code' ) ) !== null )
 		{
+			$url = $view->link( 'client/html/checkout/confirm/url', ['code' => $code], ['absoluteUri' => true] );
+
 			$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
-			$orderItem = $serviceCntl->updateSync( $view->request(), $code, $orderid );
+			$orderItem = $serviceCntl->config( ['payment.url-self' => $url])->updateSync( $view->request(), $code, $orderid );
 		}
 		else
 		{
