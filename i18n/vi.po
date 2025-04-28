@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 18:13+0100\n"
+"POT-Creation-Date: 2025-02-09 12:55+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: nsendetzky, 2014\n"
 "Language-Team: Vietnamese (http://app.transifex.com/aimeos/aimeos-core/language/vi/)\n"
@@ -561,7 +561,7 @@ msgid "Processing the payment failed"
 msgstr ""
 
 msgid "Product"
-msgstr ""
+msgstr "Product"
 
 msgid "Product actions"
 msgstr ""
@@ -695,7 +695,7 @@ msgid "State"
 msgstr "Bang"
 
 msgid "Stock"
-msgstr ""
+msgstr "Stock"
 
 #, php-format
 msgid "Stock: %1$s, %2$s"
@@ -829,13 +829,13 @@ msgid "What do you think about the product"
 msgstr ""
 
 msgid "Y-m-d"
-msgstr "Y-m-d"
+msgstr "d/m/Y"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "ngày/tháng/năm"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "ngày/tháng/năm giờ:phút"
 
 msgid "You are here:"
 msgstr "Bạn đang ở đây"

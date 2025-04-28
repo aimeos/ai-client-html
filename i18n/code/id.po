@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # Ranu Yulianto <vanarif@gmail.com>, 2018
 msgid ""
 msgstr ""

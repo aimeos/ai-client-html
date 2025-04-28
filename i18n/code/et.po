@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # ranx2k <ranko@murumets.eu>, 2021
 # ranx2k <ranko@murumets.eu>, 2021
 msgid ""

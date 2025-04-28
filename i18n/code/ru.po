@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # Dimitri <doleiynyk@metaways.de>, 2013
 # Irina Fedulova <istartlin@gmail.com>, 2020
 # Андрей Аксёнов <aksenovaa@bk.ru>, 2014-2015

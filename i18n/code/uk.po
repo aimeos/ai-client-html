@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # Федір Вільгота <fredy31415@gmail.com>, 2019
 msgid ""
 msgstr ""

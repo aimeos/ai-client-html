@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # Bistra Kumanova <b.kumanova@creato.bg>, 2015
 # Plamen Petkov <mcplamen@gmail.com>, 2016,2019
 msgid ""

@@ -753,13 +753,13 @@ msgid "What do you think about the product"
 msgstr ""
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "d/m/Y"
 
 msgid "YYYY-MM-DD"
-msgstr "YYYY-MM-DD"
+msgstr "DD/MM/AAAA"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr "YYYY-MM-DD HH:mm"
+msgstr "DD/MM/AAAA hh:mm"
 
 msgid "You are here:"
 msgstr ""

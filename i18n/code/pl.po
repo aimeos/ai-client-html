@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # jerzys <jerzy.skalski@gmail.com>, 2014-2015
 # jerzys <jerzy.skalski@gmail.com>, 2015
 # jerzys <jerzy.skalski@gmail.com>, 2014

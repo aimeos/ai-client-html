@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # Martins Nav <mveisis1@gmail.com>, 2021
 msgid ""
 msgstr ""

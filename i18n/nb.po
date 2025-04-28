@@ -828,13 +828,13 @@ msgid "What do you think about the product"
 msgstr "Hva synes du om produktet"
 
 msgid "Y-m-d"
-msgstr "Y-m-d"
+msgstr "d.m.Y"
 
 msgid "YYYY-MM-DD"
-msgstr "YYYY-MM-DD"
+msgstr "DD.MM.ÅÅÅÅ"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr "YYYY-MM-DD HH:mm"
+msgstr "DD.MM.ÅÅÅÅ tt:mm"
 
 msgid "You are here:"
 msgstr "Du befinner deg her:"
