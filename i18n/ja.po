@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # Darshan Sampat <darshan@usindia.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-08 13:35+0100\n"
+"POT-Creation-Date: 2025-02-09 12:55+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Darshan Sampat <darshan@usindia.com>, 2018\n"
 "Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
@@ -827,13 +828,13 @@ msgid "What do you think about the product"
 msgstr "製品についてどう思うか"
 
 msgid "Y-m-d"
-msgstr "Y-m-d"
+msgstr "Y年m月d日"
 
 msgid "YYYY-MM-DD"
-msgstr "YYYY-MM-DD"
+msgstr "年/月/日"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr "YYYY-MM-DD HH:mm"
+msgstr "年/月/日 時:分"
 
 msgid "You are here:"
 msgstr "あなたはここにいる："

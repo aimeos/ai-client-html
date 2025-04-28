@@ -734,10 +734,10 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr "YYYY-MM-DD"
+msgstr "日-月-年"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr "YYYY-MM-DD HH:mm"
+msgstr "日-月-年 时:分"
 
 msgid "You are here:"
 msgstr "您现在的位置："

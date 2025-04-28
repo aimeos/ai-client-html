@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # CROB Support <support@crob.nl>, 2018
 # Kevin Peters <kevin@popkorn.be>, 2018
 # Klaas Runia <info@sennik.nl>, 2015

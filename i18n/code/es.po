@@ -8,6 +8,7 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
+# Aimeos, 2025
 # Daniel Vega <danielvega131990@gmail.com>, 2015
 # Lara Merlotto <lara@vg7.it>, 2020
 # S 0l, 2021
