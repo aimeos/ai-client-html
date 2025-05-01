@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 # CROB Support <support@crob.nl>, 2018
 # Kevin Peters <kevin@popkorn.be>, 2018
 # Klaas Runia <info@sennik.nl>, 2015
@@ -22,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Yves Vermeulen <tmastar@gmail.com>, 2015\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Dutch (http://app.transifex.com/aimeos/aimeos-core/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,15 +31,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "belasting"
+msgstr "BTW"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "belastingst"
+msgstr "BTW-PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "taxgst"
+msgstr "BTW-GST"
 
 #. Price type default
 msgid "price:default"
@@ -128,7 +127,7 @@ msgstr "Creditcard nummer"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "betaling.cvv"
+msgstr "Verificatienummer"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -140,7 +139,7 @@ msgstr "Verlopen in jaar"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "betaling.vervaldatum"
+msgstr "Verlopen (MMJJ)"
 
 #. Pick-up date
 msgid "date.value"
@@ -160,4 +159,4 @@ msgstr "Afhaal adres"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr "levering.type"
+msgstr "Type levering"

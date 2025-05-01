@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 # Martins Nav <mveisis1@gmail.com>, 2021
 msgid ""
 msgstr ""
@@ -16,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Martins Nav <mveisis1@gmail.com>, 2021\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Latvian (http://app.transifex.com/aimeos/aimeos-core/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,15 +25,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "nodokļi"
+msgstr "PVN"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "PST"
+msgstr "PVN PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "GST"
+msgstr "PVN GST"
 
 #. Price type default
 msgid "price:default"
@@ -78,27 +77,27 @@ msgstr "Opcija"
 
 #. Product property package-length
 msgid "package-length"
-msgstr "iepakojuma-garums"
+msgstr "Iepakojuma garums"
 
 #. Product property package-width
 msgid "package-width"
-msgstr "iepakojuma-platums"
+msgstr "Iepakojuma platums"
 
 #. Product property package-height
 msgid "package-height"
-msgstr "iepakojuma-augstums"
+msgstr "Iepakojuma augstums"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "iepakojuma-svars"
+msgstr "Iepakojuma svars"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "Bankas konta lietotājs"
+msgstr "Konta īpašnieks"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "Bankas konts"
+msgstr "Konta numurs"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -118,39 +117,39 @@ msgstr "Uzvārds"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "Maksājuma kartes numurs"
+msgstr "Kredītkartes numurs"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "payment.cvv"
+msgstr "Pārbaudes numurs"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "Derīguma mēnesis"
+msgstr "Derīguma termiņa beigu mēnesis"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "Derīguma gads"
+msgstr "Derīguma termiņa beigu gads"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "payment.expiry"
+msgstr "Derīguma termiņš (MMGGG)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "Saņemšanas datums"
+msgstr "Paņemšanas datums"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "Saņemšanas laiks"
+msgstr "Paņemšanas laiks"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "Saņemšanas vieta"
+msgstr "Savākšanas vieta"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "Saņemšanas adrese"
+msgstr "Savākšanas adrese"
 
 #. Delivery type
 msgid "delivery.type"

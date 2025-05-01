@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -25,15 +24,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "daň"
+msgstr "DPH"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "taxpst"
+msgstr "DPH PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "taxgst"
+msgstr "DPH GST"
 
 #. Price type default
 msgid "price:default"
@@ -41,7 +40,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr "stocktype:default"
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -93,19 +92,19 @@ msgstr "hmotnosť balenia"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "directdebit.accountowner"
+msgstr "Vlastník účtu"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "directdebit.accountno"
+msgstr "Číslo účtu"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "directdebit.bankcode"
+msgstr "Kód banky"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "directdebit.bankname"
+msgstr "Názov banky"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -117,40 +116,40 @@ msgstr "Priezvisko"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "payment.cardno"
+msgstr "Číslo kreditnej karty"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "payment.cvv"
+msgstr "Číslo overenia"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "payment.expirymonth"
+msgstr "Mesiac skončenia platnosti"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "payment.expiryyear"
+msgstr "Rok skončenia platnosti"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "payment.expiry"
+msgstr "Uplynutie platnosti (MMRR)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "date.value"
+msgstr "Dátum vyzdvihnutia"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "time.hourminute"
+msgstr "Čas vyzdvihnutia"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "supplier.code"
+msgstr "Miesto vyzdvihnutia"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "supplier.address"
+msgstr "Adresa vyzdvihnutia"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr "delivery.type"
+msgstr "Typ dodávky"

@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -25,15 +24,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "vero"
+msgstr "ALV"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "taxpst"
+msgstr "ALV PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "taxgst"
+msgstr "ALV GST"
 
 #. Price type default
 msgid "price:default"
@@ -41,7 +40,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr "stocktype:default"
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -77,35 +76,35 @@ msgstr "vaihtoehto"
 
 #. Product property package-length
 msgid "package-length"
-msgstr "package-length"
+msgstr "paketin pituus"
 
 #. Product property package-width
 msgid "package-width"
-msgstr "package-width"
+msgstr "paketin leveys"
 
 #. Product property package-height
 msgid "package-height"
-msgstr "package-height"
+msgstr "pakkaus korkeus"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "pakkauspaino"
+msgstr "pakkaus paino"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "directdebit.accountowner"
+msgstr "Tilin omistaja"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "directdebit.accountno"
+msgstr "Tilinumero"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "directdebit.bankcode"
+msgstr "Pankin koodi"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "directdebit.bankname"
+msgstr "Pankin nimi"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -117,40 +116,40 @@ msgstr "Sukunimi"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "payment.cardno"
+msgstr "Luottokortin numero"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "maksu.cvv"
+msgstr "Tarkastusnumero"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "payment.expirymonth"
+msgstr "Viimeinen kuukausi"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "payment.expirieryyear"
+msgstr "Viimeinen voimassaolovuosi"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "payment.expiry"
+msgstr "Viimeinen voimassaoloaika (MMYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "date.value"
+msgstr "Noutopäivämäärä"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "time.hourminute"
+msgstr "Noutoaika"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "supplier.code"
+msgstr "Noutopaikka"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "toimittaja.osoite"
+msgstr "Nouto-osoite"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr "toimitus.tyyppi"
+msgstr "Toimitustyyppi"
