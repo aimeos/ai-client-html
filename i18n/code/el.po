@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -25,15 +24,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "φόρος"
+msgstr "ΦΠΑ"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "taxpst"
+msgstr "ΦΠΑ PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "taxgst"
+msgstr "ΦΠΑ GST"
 
 #. Price type default
 msgid "price:default"
@@ -41,7 +40,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr "stocktype:default"
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -81,7 +80,7 @@ msgstr "μήκος συσκευασίας"
 
 #. Product property package-width
 msgid "package-width"
-msgstr "package-width"
+msgstr "πλάτος συσκευασίας"
 
 #. Product property package-height
 msgid "package-height"
@@ -93,19 +92,19 @@ msgstr "βάρος συσκευασίας"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "directdebit.accountowner"
+msgstr "Ιδιοκτήτης λογαριασμού"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "directdebit.accountno"
+msgstr "Αριθμός λογαριασμού"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "directdebit.bankcode"
+msgstr "Κωδικός τράπεζας"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "directdebit.bankname"
+msgstr "Όνομα τράπεζας"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -117,40 +116,40 @@ msgstr "Επώνυμο"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "payment.cardno"
+msgstr "Αριθμός πιστωτικής κάρτας"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "payment.cvv"
+msgstr "Αριθμός επαλήθευσης"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "payment.expirymonth"
+msgstr "Μήνας λήξης"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "payment.expiryyearear"
+msgstr "Έτος λήξης"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "payment.expiry"
+msgstr "Λήξη (MMYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "date.value"
+msgstr "Ημερομηνία παραλαβής"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "time.hourminute"
+msgstr "Ώρα παραλαβής"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "supplier.code"
+msgstr "Τοποθεσία παραλαβής"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "supplier.address"
+msgstr "Διεύθυνση παραλαβής"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr "delivery.type"
+msgstr "Τύπος παράδοσης"

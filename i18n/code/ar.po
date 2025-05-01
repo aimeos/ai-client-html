@@ -1,13 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
-# 
+#
+#
 # Translators:
 # Translators:
 # Translators:
 # Translators:
-# Aimeos, 2025
 # Aimeos, 2025
 msgid ""
 msgstr ""
@@ -41,7 +40,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr "نوع المخزون: افتراضي"
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -93,11 +92,11 @@ msgstr "وزن العبوة"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "المدين المباشر.مالك الحساب"
+msgstr "المدين المباشر مالك الحساب"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "Directdebit.accountno"
+msgstr "رقم الحساب"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
@@ -105,7 +104,7 @@ msgstr "الرمز البنكي المباشر للخصم المباشر"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "Directdebit.bankname.bankname"
+msgstr "اسم البنك"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -117,23 +116,23 @@ msgstr "اللقب"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "بطاقة الدفع.cardno"
+msgstr "رقم بطاقة الائتمان"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "الدفع.cvv"
+msgstr "رقم التحقق"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "الدفع.expirymonth"
+msgstr "شهر انتهاء الصلاحية"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "الدفع.expiryyear"
+msgstr "سنة انتهاء الصلاحية"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "الدفع.انتهاء الصلاحية"
+msgstr "انتهاء الصلاحية (MMYYY)"
 
 #. Pick-up date
 msgid "date.value"

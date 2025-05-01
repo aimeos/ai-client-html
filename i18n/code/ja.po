@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -41,7 +40,7 @@ msgstr "%1$s%2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr "ストックタイプ：デフォルト"
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -105,7 +104,7 @@ msgstr "銀行コード"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "directdebit.銀行名"
+msgstr "銀行名"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -117,39 +116,39 @@ msgstr "名字"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "支払.カード番号"
+msgstr "クレジットカード番号"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "支払い.cvv"
+msgstr "検証番号"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "支払期限"
+msgstr "有効期限月"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "支払年"
+msgstr "有効期限"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "支払期限"
+msgstr "有効期限（MMYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "日付.値"
+msgstr "ピックアップ日"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "時分"
+msgstr "ピックアップ時間"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "サプライヤーコード"
+msgstr "ピックアップ場所"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "サプライヤーアドレス"
+msgstr "ピックアップ住所"
 
 #. Delivery type
 msgid "delivery.type"

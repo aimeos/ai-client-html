@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -29,19 +28,19 @@ msgstr "세금"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "taxpst"
+msgstr "세금 PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "taxgst"
+msgstr "세금 GST"
 
 #. Price type default
 msgid "price:default"
-msgstr "가격:기본값"
+msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr "재고 유형:기본값"
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -93,19 +92,19 @@ msgstr "패키지 무게"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "directdebit.accountowner"
+msgstr "계정 소유자"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "directdebit.accountno"
+msgstr "계정 번호"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "directdebit.bankcode"
+msgstr "은행 코드"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "directdebit.bankname"
+msgstr "은행 이름"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -117,11 +116,11 @@ msgstr "성"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "payment.cardno"
+msgstr "신용 카드 번호"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "payment.cvv"
+msgstr "인증 번호"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -133,24 +132,24 @@ msgstr "결제.만료연도"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "payment.expiry"
+msgstr "만료 (MMYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "date.value"
+msgstr "픽업 날짜"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "시간.시간분"
+msgstr "픽업 시간"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "supplier.code"
+msgstr "픽업 위치"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "공급자.주소"
+msgstr "픽업 주소"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr "delivery.type"
+msgstr "배송 유형"

@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -25,15 +24,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "skatt"
+msgstr "MVA"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "skattyter"
+msgstr "MVA PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "taxgst"
+msgstr "MVA GST"
 
 #. Price type default
 msgid "price:default"
@@ -93,19 +92,19 @@ msgstr "pakkevekt"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "direktedebit.kontoeier"
+msgstr "Kontoeier"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "direktedebit.kontonr"
+msgstr "Kontonummer"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "direktedebit.bankkode"
+msgstr "Bankkode"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "direktedebit.banknavn"
+msgstr "Bankens navn"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -117,40 +116,40 @@ msgstr "Etternavn"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "betaling.kortnr"
+msgstr "Kredittkortnummer"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "betaling.cvv"
+msgstr "Verifiseringsnummer"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "payment.expirymonth"
+msgstr "Utløpsmåned"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "betaling.utløpsår"
+msgstr "Utløpsår"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "betaling.utløp"
+msgstr "Utløp (MMÅÅÅ)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "dato.verdi"
+msgstr "Dato for henting"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "time.hourminute"
+msgstr "Tidspunkt for henting"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "leverandør.kode"
+msgstr "Opphentingssted"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "leverandør.adresse"
+msgstr "Adresse for henting"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr "levering.type"
+msgstr "Leveringstype"

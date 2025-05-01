@@ -8,7 +8,6 @@
 # Translators:
 # Translators:
 # Aimeos, 2025
-# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
@@ -25,15 +24,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "mokesčiai"
+msgstr "PVM"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "taxpst"
+msgstr "PVM PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "taxgst"
+msgstr "PVM GST"
 
 #. Price type default
 msgid "price:default"
@@ -77,35 +76,35 @@ msgstr "Galimybė"
 
 #. Product property package-length
 msgid "package-length"
-msgstr "pakuotės ilgis"
+msgstr "Pakuotės ilgis"
 
 #. Product property package-width
 msgid "package-width"
-msgstr "pakuotės plotis"
+msgstr "Pakuotės plotis"
 
 #. Product property package-height
 msgid "package-height"
-msgstr "pakuotės aukštis"
+msgstr "Pakuotės aukštis"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr "pakuotės svoris"
+msgstr "Pakuotės svoris"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr "directdebit.accountowner"
+msgstr "Paskyros savininkas"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr "directdebit.accountno"
+msgstr "Sąskaitos numeris"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr "directdebit.bankcode"
+msgstr "Banko kodas"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr "directdebit.bankname"
+msgstr "Banko pavadinimas"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -117,39 +116,39 @@ msgstr "Pavardė"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr "payment.cardno"
+msgstr "Kredito kortelės numeris"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr "payment.cvv"
+msgstr "Patikrinimo numeris"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr "payment.expirymonth"
+msgstr "Galiojimo pabaigos mėnuo"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr "payment.expiryyear"
+msgstr "Galiojimo pabaigos metai"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr "payment.expiry"
+msgstr "Galiojimo terminas (MMYY)"
 
 #. Pick-up date
 msgid "date.value"
-msgstr "data.value"
+msgstr "Pasiėmimo data"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr "time.hourminute"
+msgstr "Pasiėmimo laikas"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr "supplier.code"
+msgstr "Pasiėmimo vieta"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr "supplier.address"
+msgstr "Pasiėmimo adresas"
 
 #. Delivery type
 msgid "delivery.type"
