@@ -340,7 +340,9 @@ class Standard
 				}
 			}
 
-			$url .= strpos( $url, '?' ) ? '&' : '?' . map( $urlParams )->toUrl();
+			if( !empty( $urlParams ) ) {
+				$url .= strpos( $url, '?' ) ? '&' : '?' . map( $urlParams )->toUrl();
+			}
 		}
 
 		$public = $hidden = [];
