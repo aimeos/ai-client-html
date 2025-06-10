@@ -7,7 +7,15 @@
 
 $enc = $this->encoder();
 
-
+if (isset($this->noOrder)): ?>
+<section class="aimeos checkout-confirm">
+    <div class="container-xxl">
+        <div class="checkout-confirm-intro">
+            <p class="note text-center"><?= $enc->html($this->translate('client','There is no order nor basket present!'))?></p>
+        </div>
+    </div>
+</section>
+<?php else : ?>
 ?>
 <div class="section aimeos checkout-confirm" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
 	<div class="container-xxl">
@@ -242,3 +250,4 @@ We received your payment and an e-mail with the order details will be sent to yo
 		</div>
 	</div>
 </div>
+<?php endif; ?>
