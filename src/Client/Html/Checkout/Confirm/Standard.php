@@ -69,38 +69,39 @@ class Standard
 		$config = $context->config();
 		$session = $context->session();
 
-		if( ( $orderid = $session->get( 'aimeos/orderid' ) ) === null ) {
+		if( $context->session()->get( 'aimeos/basket/list' ) !== null && ( $orderid = $session->get( 'aimeos/orderid' ) ) === null ) {
 			throw new \Aimeos\Client\Html\Exception( 'No order ID available' );
+		} else if ($orderid !== null) {
+
+			$ref = $config->get( 'mshop/order/manager/subdomains', [] );
+			$ref = $config->get( 'client/html/checkout/confirm/domains', $ref );
+			$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref );
+	
+			if( ( $code = $view->param( 'code' ) ) !== null )
+			{
+				$url = $view->link( 'client/html/checkout/confirm/url', ['code' => $code], ['absoluteUri' => true] );
+	
+				$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
+				$orderItem = $serviceCntl->config( ['payment.url-self' => $url] )->updateSync( $view->request(), $code, $orderid );
+			}
+			else
+			{
+				$orderItem = $orderCntl->get( $orderid, false );
+			}
+	
+			// update stock, coupons, etc.
+			$orderCntl->update( $orderItem );
+	
+			parent::init();
+	
+			if( $orderItem->getStatusPayment() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
+			{
+				\Aimeos\Controller\Frontend::create( $context, 'basket' )->clear();
+				$session->remove( array_keys( $session->get( 'aimeos/basket/cache', [] ) ) );
+			}
+	
+			$orderCntl->save( $orderItem );
 		}
-
-		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
-		$ref = $config->get( 'client/html/checkout/confirm/domains', $ref );
-		$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref );
-
-		if( ( $code = $view->param( 'code' ) ) !== null )
-		{
-			$url = $view->link( 'client/html/checkout/confirm/url', ['code' => $code], ['absoluteUri' => true] );
-
-			$serviceCntl = \Aimeos\Controller\Frontend::create( $context, 'service' );
-			$orderItem = $serviceCntl->config( ['payment.url-self' => $url] )->updateSync( $view->request(), $code, $orderid );
-		}
-		else
-		{
-			$orderItem = $orderCntl->get( $orderid, false );
-		}
-
-		// update stock, coupons, etc.
-		$orderCntl->update( $orderItem );
-
-		parent::init();
-
-		if( $orderItem->getStatusPayment() > \Aimeos\MShop\Order\Item\Base::PAY_REFUSED )
-		{
-			\Aimeos\Controller\Frontend::create( $context, 'basket' )->clear();
-			$session->remove( array_keys( $session->get( 'aimeos/basket/cache', [] ) ) );
-		}
-
-		$orderCntl->save( $orderItem );
 	}
 
 
@@ -117,32 +118,36 @@ class Standard
 		$context = $this->context();
 		$config = $context->config();
 
-		if( ( $id = $context->session()->get( 'aimeos/orderid' ) ) === null ) {
+		if( $context->session()->get( 'aimeos/basket/list' ) !== null && ( $id = $context->session()->get( 'aimeos/orderid' ) ) === null ) {
 			throw new \Aimeos\Client\Html\Exception( $context->translate( 'client', 'No order ID available in session' ) );
-		}
+		} else if ($id !== null) {
 
-		/** client/html/checkout/confirm/domains
-		 * List of domains to fetch items related to the order
-		 *
-		 * To adapt the order data loaded for displaying at the checkout confirmation
-		 * page, add or remove the names of the domains using this setting. By default,
-		 * all order sub-domains are included (order/address, order/coupon, order/product
-		 * and order/service) and you can remove unused domains or add additional ones
-		 * like "product" to get the original product items for the bought order products.
-		 * You can also add domains related to e.g. products like "catalog" for the
-		 * categories the products are assigned to.
-		 *
-		 * @param array List of domain names
-		 * @since 2023.07
-		 */
-		$ref = $config->get( 'mshop/order/manager/subdomains', [] );
-		$ref = $config->get( 'client/html/checkout/confirm/domains', $ref );
-		$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref )->get( $id, false );
+			/** client/html/checkout/confirm/domains
+			 * List of domains to fetch items related to the order
+			 *
+			 * To adapt the order data loaded for displaying at the checkout confirmation
+			 * page, add or remove the names of the domains using this setting. By default,
+			 * all order sub-domains are included (order/address, order/coupon, order/product
+			 * and order/service) and you can remove unused domains or add additional ones
+			 * like "product" to get the original product items for the bought order products.
+			 * You can also add domains related to e.g. products like "catalog" for the
+			 * categories the products are assigned to.
+			 *
+			 * @param array List of domain names
+			 * @since 2023.07
+			 */
+			$ref = $config->get( 'mshop/order/manager/subdomains', [] );
+			$ref = $config->get( 'client/html/checkout/confirm/domains', $ref );
+			$order = \Aimeos\Controller\Frontend::create( $context, 'order' )->uses( $ref )->get( $id, false );
+	
+			$view->confirmOrderItem = $order;
+			$view->summaryBasket = $order;
+		
+		} else {
+		    $view->noOrder = true;
+        	}
 
-		$view->confirmOrderItem = $order;
-		$view->summaryBasket = $order;
-
-		return parent::data( $view, $tags, $expire );
+        	return parent::data($view, $tags, $expire);
 	}
 
 
